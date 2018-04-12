@@ -9,6 +9,7 @@ import {
   routerMiddleware
 } from 'react-router-redux';
 import 'styles/index.scss';
+import { reducers } from 'public-modules';
 import { App } from 'layout';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -18,7 +19,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   combineReducers({
-    router: routerReducer
+    router: routerReducer,
+    ...reducers
   }),
   composeEnhancers(applyMiddleware(middleware))
 );
