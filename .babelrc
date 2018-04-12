@@ -11,6 +11,10 @@
       "libraryDirectory": "",
       "camel2DashComponentName": false,
     }, {
+      "libraryName": "HOCS",
+      "libraryDirectory": "",
+      "camel2DashComponentName": false,
+    }, {
       "libraryName": "components",
       "libraryDirectory": "",
       "camel2DashComponentName": false,
