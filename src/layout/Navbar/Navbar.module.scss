@@ -1,0 +1,32 @@
+@import "~styles/variables.scss";
+
+.Navbar {
+  text-align: center;
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: $brand-white;
+}
+
+.logo {
+  animation: logospin infinite 20s linear;
+  height: 80px;
+}
+
+.title {
+  font-size: 1.5em;
+}
+
+.route {
+  color: white;
+  margin-right: 5px;
+}
+
+@keyframes logospin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

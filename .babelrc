@@ -1,0 +1,23 @@
+
+{
+  "presets": ["react-app"],
+  "plugins": [
+    ["import", [{
+      "libraryName": "lodash",
+      "libraryDirectory": "",
+      "camel2DashComponentName": false,
+    }, {
+      "libraryName": "containers",
+      "libraryDirectory": "",
+      "camel2DashComponentName": false,
+    }, {
+      "libraryName": "components",
+      "libraryDirectory": "",
+      "camel2DashComponentName": false,
+    }, {
+      "libraryName": "layout",
+      "libraryDirectory": "",
+      "camel2DashComponentName": false,
+    }]]
+  ]
+}
