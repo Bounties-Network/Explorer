@@ -1,4 +1,4 @@
-import { PAGE_SIZE } from './constants';
+import { PAGE_SIZE, SORT_VALUE } from './constants';
 
 const initialState = {
   loading: true,
@@ -6,6 +6,7 @@ const initialState = {
   error: false,
   offset: 0,
   count: 0,
+  sort: SORT_VALUE,
   bounties: []
 };
 
@@ -15,19 +16,23 @@ const LOAD_BOUNTIES_FAIL = 'bounties/LOAD_BOUNTIES_FAIL';
 
 const LOAD_MORE = 'bounties/LOAD_MORE';
 
-function loadMore() {
+function loadMoreBounties() {
   return { type: LOAD_MORE };
 }
 
-function load() {
+function loadBounties() {
   return { type: LOAD_BOUNTIES };
 }
 
-function loadSuccess(bounties) {
-  return { type: LOAD_BOUNTIES_SUCCESS, bounties };
+function loadBountiesSuccess(bounties) {
+  return {
+    type: LOAD_BOUNTIES_SUCCESS,
+    bounties: bounties.results,
+    count: bounties.count
+  };
 }
 
-function loadFail(error) {
+function loadBountiesFail(error) {
   return { type: LOAD_BOUNTIES_FAIL, error };
 }
 
@@ -47,21 +52,19 @@ function BountiesReducer(state = initialState, action) {
 
       return {
         ...state,
-        loading: true,
+        loading: false,
         loaded: true,
         error: false,
-        count,
-        bounties
+        bounties,
+        count
       };
     }
     case LOAD_BOUNTIES_FAIL: {
-      const { error } = action;
-
       return {
         ...state,
         loading: false,
         loaded: true,
-        error
+        error: true
       };
     }
     case LOAD_MORE: {
@@ -76,10 +79,10 @@ function BountiesReducer(state = initialState, action) {
 }
 
 export const actions = {
-  load,
-  loadSuccess,
-  loadFail,
-  loadMore
+  loadBounties,
+  loadBountiesSuccess,
+  loadBountiesFail,
+  loadMoreBounties
 };
 
 export const actionTypes = {

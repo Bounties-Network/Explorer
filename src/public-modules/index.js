@@ -9,11 +9,13 @@ export const reducers = {
 
 import bountiesSagas from 'public-modules/Bounties/sagas';
 
-export const sagaWatchers = [bountiesSagas];
+export const sagaWatchers = [...bountiesSagas];
 
 import * as namedBountiesSagas from 'public-modules/Bounties/sagas';
 
-export const sagas = [namedBountiesSagas];
+export const sagas = {
+  ...namedBountiesSagas
+};
 
 import { actions as bountyActions } from 'public-modules/Bounties';
 
@@ -25,4 +27,10 @@ import { actionTypes as bountyActionTypes } from 'public-modules/Bounties';
 
 export const actionTypes = {
   ...bountyActionTypes
+};
+
+import * as bountiesSelectors from 'public-modules/Bounties/selectors';
+
+export const selectors = {
+  ...bountiesSelectors
 };

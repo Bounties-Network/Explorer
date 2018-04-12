@@ -52,42 +52,41 @@ const GET_OPTIONS = {
   credentials: 'same-origin'
 };
 
+function handleError(err) {
+  if (err.response) {
+    const response = err.response;
+    if (
+      response.status === HTTP_401_UNAUTHORIZED ||
+      response.status === HTTP_403_FORBIDDEN
+    ) {
+      rollbar.warning('User session expired: relogin');
+      // include redirect-type logic in here
+    }
+
+    if (response.status >= HTTP_500_INTERNAL_SERVER_ERROR) {
+      const error = new Error();
+      error.errorStatus = response.status;
+      error.errorMessage = response.statusText;
+      rollbar.error(`API Error: ${response.status}`, error);
+      throw error;
+    }
+  }
+
+  const error = new Error();
+  error.errorStatus = '';
+  error.errorMessage = err.message;
+
+  rollbar.error(`API Error: ${error.errorMessage}`, error);
+  throw error;
+}
+
 function checkRequestStatus(response) {
-  if (
-    response.status === HTTP_401_UNAUTHORIZED ||
-    response.status === HTTP_403_FORBIDDEN
-  ) {
-    rollbar.warning('User session expired: relogin');
-    // include redirect-type logic in here
-  }
-
-  if (response.status >= HTTP_500_INTERNAL_SERVER_ERROR) {
-    const error = new Error();
-    error.errorStatus = response.status;
-    error.errorMessage = response.statusText;
-    rollbar.error(`API Error: ${response.status}`, error);
-    throw error;
-  }
-
-  const json = response.json();
-
   if (
     response.status >= HTTP_200_OK &&
     response.status < HTTP_300_MULTIPLE_CHOICES
   ) {
-    return json;
+    return response.data;
   }
-
-  return json.then(err => {
-    const error = new Error(response.statusText);
-    error.body = err;
-    error.errorStatus = response.status;
-    error.errorMessage = response.statusText;
-
-    rollbar.error(`API Error: ${response.status}`, error);
-
-    throw error;
-  });
 }
 
 /**
@@ -100,13 +99,6 @@ function checkRequestStatus(response) {
  */
 export default function(url, method, options, customErrorHandler) {
   let bakedOptions;
-  let errorHandler = customErrorHandler;
-  if (customErrorHandler === undefined) {
-    errorHandler = result => {
-      throw result;
-    };
-  }
-
   const method_type = typeof method === 'string' ? method : '';
   switch ((method_type || '').toUpperCase()) {
     case 'PUT':
@@ -128,5 +120,5 @@ export default function(url, method, options, customErrorHandler) {
   return axios
     .request(`${API_ENDPOINT}/${url}`, { ...bakedOptions, ...options })
     .then(checkRequestStatus)
-    .catch(errorHandler);
+    .catch(handleError);
 }

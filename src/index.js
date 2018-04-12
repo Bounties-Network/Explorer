@@ -8,22 +8,26 @@ import {
   routerReducer,
   routerMiddleware
 } from 'react-router-redux';
+import createSagaMiddleware from 'redux-saga';
 import 'styles/index.scss';
-import { reducers } from 'public-modules';
+import { reducers, sagaWatchers } from 'public-modules';
 import { App } from 'layout';
 import registerServiceWorker from './registerServiceWorker';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   combineReducers({
     router: routerReducer,
     ...reducers
   }),
-  composeEnhancers(applyMiddleware(middleware))
+  composeEnhancers(applyMiddleware(middleware, sagaMiddleware))
 );
+
+sagaWatchers.map(saga => sagaMiddleware.run(saga));
 
 ReactDOM.render(
   <Provider store={store}>

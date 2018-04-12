@@ -113,8 +113,6 @@ module.exports = {
         use: [
           {
             options: {
-              emitError: true,
-              emitWarning: true,
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
               

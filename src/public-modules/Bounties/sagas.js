@@ -3,15 +3,15 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Bounties';
 
 const { LOAD_BOUNTIES } = actionTypes;
-const { loadFail, loadSuccess } = actions;
+const { loadBountiesFail, loadBountiesSuccess } = actions;
 
 export function* loadBounties(action) {
   try {
-    let endpoint = 'bounties';
+    let endpoint = 'bounty';
     const bounties = yield call(request, endpoint, 'GET');
-    yield put(loadSuccess(bounties));
+    yield put(loadBountiesSuccess(bounties));
   } catch (e) {
-    yield put(loadFail(e));
+    yield put(loadBountiesFail(e));
   }
 }
 
