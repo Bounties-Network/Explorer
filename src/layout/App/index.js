@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './App.module.scss';
-import { Switch, Route } from 'react-router-dom'
+import { hot } from 'react-hot-loader';
+import { Switch, Route } from 'react-router-dom';
 import { Navbar, NoMatch } from 'layout';
 import { Bounties, Discover } from 'containers';
 
@@ -15,4 +16,4 @@ const App = () => (
   </div>
 );
 
-export default App;
+export default hot(module)(App);

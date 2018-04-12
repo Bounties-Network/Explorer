@@ -18,6 +18,7 @@
       "libraryName": "layout",
       "libraryDirectory": "",
       "camel2DashComponentName": false,
-    }]]
+    }]],
+    "react-hot-loader/babel",
   ]
 }
