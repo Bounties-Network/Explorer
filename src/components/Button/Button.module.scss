@@ -1,0 +1,54 @@
+@import "~styles/variables.scss";
+
+.button {
+  cursor: pointer;
+}
+
+.disabled {
+}
+
+.primary {
+  background-color: $brand-primary;
+  color: $brand-white;
+  &.disabled {
+     background-color: $brand-disabled;
+     color: $brand-text;
+     cursor: default;
+  }
+}
+
+.primary:hover {
+  background-color: $brand-primary-hover;
+  &.disabled {
+     background-color: $brand-disabled;
+  }
+}
+
+.secondary {
+  background-color: $brand-secondary;
+  color: $brand-white;
+  &.disabled{
+     background-color: $brand-disabled;
+     color: $brand-text;
+     cursor: default;
+  }
+}
+
+.secondary:hover {
+  background-color: $brand-secondary-hover;
+  &.disabled {
+     background-color: $brand-disabled;
+  }
+}
+
+.small {
+  padding: 8px;
+}
+
+.medium {
+  padding: 10px;
+}
+
+.large {
+  padding: 14px;
+}
