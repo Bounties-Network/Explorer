@@ -2,8 +2,7 @@ const initialState = {
   loading: true,
   loaded: false,
   error: false,
-  count: 0,
-  category: []
+  currentCategory: {}
 };
 
 const LOAD_CATEGORY = 'category/LOAD_CATEGORY';
@@ -17,8 +16,7 @@ function loadCategory() {
 function loadCategorySuccess(category) {
   return {
     type: LOAD_CATEGORY_SUCCESS,
-    category: category.results,
-    count: category.count
+    currentCategory: category
   };
 }
 
@@ -38,14 +36,13 @@ function CategoryReducer(state = initialState, action) {
       };
     }
     case LOAD_CATEGORY_SUCCESS: {
-      const { category, count } = action;
+      const { currentCategory } = action;
       return {
         ...state,
         loading: false,
         loaded: true,
         error: false,
-        category,
-        count
+        currentCategory
       };
     }
     case LOAD_CATEGORY_FAIL: {
