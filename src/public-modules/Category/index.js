@@ -9,8 +9,8 @@ const LOAD_CATEGORY = 'category/LOAD_CATEGORY';
 const LOAD_CATEGORY_SUCCESS = 'category/LOAD_CATEGORY_SUCCESS';
 const LOAD_CATEGORY_FAIL = 'category/LOAD_CATEGORY_FAIL';
 
-function loadCategory() {
-  return { type: LOAD_CATEGORY };
+function loadCategory(id) {
+  return { type: LOAD_CATEGORY, id };
 }
 
 function loadCategorySuccess(category) {

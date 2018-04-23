@@ -9,8 +9,8 @@ const LOAD_BOUNTY = 'bounty/LOAD_BOUNTY';
 const LOAD_BOUNTY_SUCCESS = 'bounty/LOAD_BOUNTY_SUCCESS';
 const LOAD_BOUNTY_FAIL = 'bounty/LOAD_BOUNTY_FAIL';
 
-function loadBounty() {
-  return { type: LOAD_BOUNTY };
+function loadBounty(id) {
+  return { type: LOAD_BOUNTY, id };
 }
 
 function loadBountySuccess(bounty) {

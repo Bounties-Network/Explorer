@@ -20,8 +20,8 @@ function loadMoreBounties() {
   return { type: LOAD_MORE };
 }
 
-function loadBounties() {
-  return { type: LOAD_BOUNTIES };
+function loadBounties(id) {
+  return { type: LOAD_BOUNTIES, id };
 }
 
 function loadBountiesSuccess(bounties) {

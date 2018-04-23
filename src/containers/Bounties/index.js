@@ -30,9 +30,10 @@ const Bounties = props => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, router) => ({
   bounties: bountiesSelector(state),
   count: bountiesCountSelector(state),
+  bountyId: router.match.params.id,
   ...bountiesStateSelector(state)
 });
 
@@ -46,7 +47,7 @@ Bounties.propTypes = {
 const check = compose(
   FetchComponent(sagas.fetch),
   connect(mapStateToProps, { load: actions.loadBounties }),
-  LoadComponent
+  LoadComponent('bountyId')
 )(Bounties);
 
 export default check;

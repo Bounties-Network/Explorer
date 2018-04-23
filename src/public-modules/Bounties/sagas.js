@@ -6,6 +6,7 @@ const { LOAD_BOUNTIES } = actionTypes;
 const { loadBountiesFail, loadBountiesSuccess } = actions;
 
 export function* loadBounties(action) {
+  console.log(action);
   try {
     let endpoint = 'bounty';
     const bounties = yield call(request, endpoint, 'GET');

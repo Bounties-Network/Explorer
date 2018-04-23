@@ -7,7 +7,7 @@ const { loadBountyFail, loadBountySuccess } = actions;
 
 // Load single Bounty, needs ID
 export function* loadBounty(action) {
-  const id = action.id;
+  const { id } = action;
   try {
     let endpoint = `bounty/${id}`;
     const bounty = yield call(request, endpoint, 'GET');
