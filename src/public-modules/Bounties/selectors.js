@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const rootBountiesSelector = state => state.bounties;
+export const rootBountiesSelector = state => state.bounties;
 
 export const bountiesSelector = createSelector(
   rootBountiesSelector,

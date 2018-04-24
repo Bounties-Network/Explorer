@@ -9,8 +9,8 @@ const LOAD_USERINFO = 'userInfo/LOAD_USERINFO';
 const LOAD_USERINFO_SUCCESS = 'userInfo/LOAD_USERINFO_SUCCESS';
 const LOAD_USERINFO_FAIL = 'userInfo/LOAD_USERINFO_FAIL';
 
-function loadUserInfo() {
-  return { type: LOAD_USERINFO };
+function loadUserInfo(address) {
+  return { type: LOAD_USERINFO, address };
 }
 
 function loadUserInfoSuccess(userInfo) {

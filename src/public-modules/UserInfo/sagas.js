@@ -6,7 +6,7 @@ const { LOAD_USERINFO } = actionTypes;
 const { loadUserInfoFail, loadUserInfoSuccess } = actions;
 
 export function* loadUserInfo(action) {
-  const address = action.address;
+  const { address } = action;
   try {
     let endpoint = `user/${address}`;
     const userInfo = yield call(request, endpoint, 'GET');

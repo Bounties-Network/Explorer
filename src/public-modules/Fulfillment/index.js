@@ -9,8 +9,8 @@ const LOAD_FULFILLMENT = 'fulfillment/LOAD_FULFILLMENT';
 const LOAD_FULFILLMENT_SUCCESS = 'fulfillment/LOAD_FULFILLMENT_SUCCESS';
 const LOAD_FULFILLMENT_FAIL = 'fulfillment/LOAD_FULFILLMENT_FAIL';
 
-function loadFulfillment() {
-  return { type: LOAD_FULFILLMENT };
+function loadFulfillment(id) {
+  return { type: LOAD_FULFILLMENT, id };
 }
 
 function loadFulfillmentSuccess(fulfillment) {

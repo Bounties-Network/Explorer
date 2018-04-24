@@ -6,7 +6,7 @@ const { LOAD_FULFILLMENT } = actionTypes;
 const { loadFulfillmentFail, loadFulfillmentSuccess } = actions;
 
 export function* loadFulfillment(action) {
-  const id = action.id;
+  const { id } = action;
   try {
     let endpoint = `fulfillment/${id}`;
     const fulfillment = yield call(request, endpoint, 'GET');

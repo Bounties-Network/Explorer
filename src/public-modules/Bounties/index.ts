@@ -7,6 +7,7 @@ const initialState = {
   offset: 0,
   count: 0,
   sort: SORT_VALUE,
+  searchOptions: {},
   bounties: []
 };
 
@@ -20,8 +21,8 @@ function loadMoreBounties() {
   return { type: LOAD_MORE };
 }
 
-function loadBounties(id) {
-  return { type: LOAD_BOUNTIES, id };
+function loadBounties(searchOptions) {
+  return { type: LOAD_BOUNTIES, searchOptions };
 }
 
 function loadBountiesSuccess(bounties) {
@@ -39,16 +40,18 @@ function loadBountiesFail(error) {
 function BountiesReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_BOUNTIES: {
+      const { searchOptions } = action;
       return {
         ...state,
         loading: true,
         loaded: false,
         count: 0,
-        error: false
+        error: false,
+        searchOptions
       };
     }
     case LOAD_BOUNTIES_SUCCESS: {
-      const { bounties, count } = action;
+      const { bounties, count, searchOptions } = action;
 
       return {
         ...state,
@@ -56,15 +59,18 @@ function BountiesReducer(state = initialState, action) {
         loaded: true,
         error: false,
         bounties,
-        count
+        count,
+        searchOptions
       };
     }
     case LOAD_BOUNTIES_FAIL: {
+      const { searchOptions } = action;
       return {
         ...state,
         loading: false,
         loaded: true,
-        error: true
+        error: true,
+        searchOptions
       };
     }
     case LOAD_MORE: {

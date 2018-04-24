@@ -9,8 +9,8 @@ const LOAD_STATS = 'stats/LOAD_STATS';
 const LOAD_STATS_SUCCESS = 'stats/LOAD_STATS_SUCCESS';
 const LOAD_STATS_FAIL = 'stats/LOAD_STATS_FAIL';
 
-function loadStats() {
-  return { type: LOAD_STATS };
+function loadStats(address) {
+  return { type: LOAD_STATS, address };
 }
 
 function loadStatsSuccess(stats) {

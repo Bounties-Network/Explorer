@@ -10,8 +10,8 @@ const LOAD_CATEGORIES = 'categories/LOAD_CATEGORIES';
 const LOAD_CATEGORIES_SUCCESS = 'categories/LOAD_CATEGORIES_SUCCESS';
 const LOAD_CATEGORIES_FAIL = 'categories/LOAD_CATEGORIES_FAIL';
 
-function loadCategories() {
-  return { type: LOAD_CATEGORIES };
+function loadCategories(searchOptions) {
+  return { type: LOAD_CATEGORIES, searchOptions };
 }
 
 function loadCategoriesSuccess(categories) {
@@ -29,23 +29,26 @@ function loadCategoriesFail(error) {
 function CategoriesReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_CATEGORIES: {
+      const { searchOptions } = action;
       return {
         ...state,
         loading: true,
         loaded: false,
         count: 0,
-        error: false
+        error: false,
+        searchOptions
       };
     }
     case LOAD_CATEGORIES_SUCCESS: {
-      const { categories, count } = action;
+      const { categories, count, searchOptions } = action;
       return {
         ...state,
         loading: false,
         loaded: true,
         error: false,
         categories,
-        count
+        count,
+        searchOptions
       };
     }
     case LOAD_CATEGORIES_FAIL: {

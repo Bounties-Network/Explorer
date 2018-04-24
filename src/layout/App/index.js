@@ -9,7 +9,6 @@ const App = () => (
   <div className={styles.App}>
     <Navbar />
     <Switch>
-      <Route path="/bounty/:id  " component={Bounties} />
       <Route exact path="/" component={Bounties} />
       <Route exact path="/discover" component={Discover} />
       <Route component={NoMatch} />

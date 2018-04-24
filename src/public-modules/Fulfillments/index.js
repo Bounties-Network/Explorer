@@ -10,8 +10,8 @@ const LOAD_FULFILLMENTS = 'fulfillments/LOAD_FULFILLMENTS';
 const LOAD_FULFILLMENTS_SUCCESS = 'fulfillments/LOAD_FULFILLMENTS_SUCCESS';
 const LOAD_FULFILLMENTS_FAIL = 'fulfillments/LOAD_FULFILLMENTS_FAIL';
 
-function loadFulfillments() {
-  return { type: LOAD_FULFILLMENTS };
+function loadFulfillments(searchOptions) {
+  return { type: LOAD_FULFILLMENTS, searchOptions };
 }
 
 function loadFulfillmentsSuccess(fulfillments) {
@@ -29,16 +29,18 @@ function loadFulfillmentsFail(error) {
 function FulfillmentsReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_FULFILLMENTS: {
+      const { searchOptions } = action;
       return {
         ...state,
         loading: true,
         loaded: false,
         count: 0,
-        error: false
+        error: false,
+        searchOptions
       };
     }
     case LOAD_FULFILLMENTS_SUCCESS: {
-      const { fulfillments, count } = action;
+      const { fulfillments, count, searchOptions } = action;
 
       return {
         ...state,
@@ -46,7 +48,8 @@ function FulfillmentsReducer(state = initialState, action) {
         loaded: true,
         error: false,
         fulfillments,
-        count
+        count,
+        searchOptions
       };
     }
     case LOAD_FULFILLMENTS_FAIL: {

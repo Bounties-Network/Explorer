@@ -6,7 +6,7 @@ const { LOAD_CATEGORY } = actionTypes;
 const { loadCategoryFail, loadCategorySuccess } = actions;
 
 export function* loadCategory(action) {
-  const id = action.id;
+  const { id } = action;
   try {
     let endpoint = `category/${id}`;
     const category = yield call(request, endpoint, 'GET');
