@@ -12,9 +12,8 @@ const Button = props => {
 
   return (
     <button
-      className={`${styles.button} ${styles[size]} ${
-        styles[style]
-      } ${addedClasses}`}
+      className={`${styles.button} ${styles[size]}
+        ${styles[style]} ${addedClasses}`}
       onClick={onClick}
       disabled={disabled}
     >
@@ -24,16 +23,16 @@ const Button = props => {
 };
 
 Button.propTypes = {
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  className: PropTypes.string,
   style: PropTypes.oneOf(['primary', 'secondary']),
-  onClick: PropTypes.func,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   disabled: PropTypes.bool,
-  className: PropTypes.string
+  onClick: PropTypes.func
 };
 
 Button.defaultProps = {
-  size: 'medium',
   style: 'primary',
+  size: 'medium',
   disabled: false
 };
 
