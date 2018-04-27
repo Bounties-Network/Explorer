@@ -3,7 +3,7 @@
 .chip{
   // missing outline shadow
   color: $brand-grey;
-  box-shadow: 2px 2px lightgrey;
+  box-shadow: 0 3px 5px $brand-lightGrey;
   border-radius: 16px;
   white-space: nowrap;
   width: fit-content;

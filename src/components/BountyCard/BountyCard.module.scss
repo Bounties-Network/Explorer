@@ -1,10 +1,11 @@
+@import "~styles/variables.scss";
+
 .bountyCardContainer {
   margin-bottom: 20px;
   display: flex;
   width: 561px;
   height: 131px;
-  // border: 1px solid black;
-  box-shadow: 1px 1px 1px grey;
+  box-shadow: 0 0 10px $brand-lightGrey;
   padding: 25px;
 }
 
