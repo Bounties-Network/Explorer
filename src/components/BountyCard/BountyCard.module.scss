@@ -1,0 +1,26 @@
+.bountyCardContainer {
+  margin-bottom: 20px;
+  display: flex;
+  width: 561px;
+  height: 131px;
+  // border: 1px solid black;
+  box-shadow: 1px 1px 1px grey;
+  padding: 25px;
+}
+
+.bountyCardLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bountyCardLeftTop {
+  display: flex;
+  flex-direction: column;
+}
+
+.bountyCardRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

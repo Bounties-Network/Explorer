@@ -36,7 +36,7 @@ Payout.propTypes = {
 
 Payout.defaultProps = {
   USD: 0,
-  ETH: 0
+  ETH: 0.0
 };
 
 export default Payout;
