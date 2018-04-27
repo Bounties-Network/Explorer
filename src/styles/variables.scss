@@ -1,23 +1,24 @@
-$brand-white: white;
-$brand-primary: #243cad;
-$brand-secondary: #807d7d;
+$brand-purple: rgb(90, 45, 198);
+$brand-purple-hover: rgb(127, 80, 238);
+$brand-purple-disabled: rgb(218, 204, 248);
 
-$brand-primary-hover: #12278a;
-$brand-secondary-hover: #716f6f;
+$brand-destructive: rgb(210, 69, 69);
+$brand-destructive-hover: rgb(241, 101, 101);
+$brand-destructive-disabled: rgb(255, 210, 210);
 
-$brand-disabled: #e4e4e4;
-$brand-text: #2d2d2d;
+$brand-blue: rgb(72, 148, 255);
+$brand-orange: rgb(252, 169, 49);
 
-$brand-purple: #2d0874;
-$brand-blue: #3366CC;
-$brand-orange: #FE923B;
+$brand-green: rgb(109, 198, 141);
+$brand-red: rgb(210, 69, 69);
 
-$brand-green: #8CE258;
-$brand-red: #FF6846;
+$brand-black: rgb(38, 38, 38);
+$brand-darkGrey: rgb(98, 98, 98);
+$brand-grey: rgb(148, 148, 148);
+$brand-lightGrey: rgb(224, 224, 224);
+$brand-nearWhite: rgb(243, 243, 243);
 
-$brand-black: black;
-$brand-darkGrey: darkgrey;
-$brand-grey: grey;
+$brand-disabled: rgb(249, 249, 249);
 
 // need black/grey color pallete
 // need disabled/hover colors
