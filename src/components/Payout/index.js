@@ -5,7 +5,7 @@ import styles from './Payout.module.scss';
 import { Text } from 'components';
 
 const Payout = props => {
-  const { USD, ETH } = props;
+  const { USD, amount, symbol } = props;
 
   return (
     <span className={`${styles.payoutContainer}`}>
@@ -17,12 +17,12 @@ const Payout = props => {
           {USD}
         </Text>
       </span>
-      <span className={`${styles.ethContainer}`}>
+      <span className={`${styles.ETHContainer}`}>
         <Text style="Alt" color="blue">
-          {ETH}{' '}
+          {amount}{' '}
         </Text>
         <Text style="Alt" color="grey">
-          ETH
+          {symbol}
         </Text>
       </span>
     </span>
@@ -31,12 +31,14 @@ const Payout = props => {
 
 Payout.propTypes = {
   USD: PropTypes.number,
-  ETH: PropTypes.number
+  amount: PropTypes.number,
+  symbol: PropTypes.string
 };
 
 Payout.defaultProps = {
   USD: 0,
-  ETH: 0.0
+  amount: 0.0,
+  symbol: 'ETH'
 };
 
 export default Payout;

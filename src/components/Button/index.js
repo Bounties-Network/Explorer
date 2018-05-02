@@ -17,8 +17,7 @@ const Button = props => {
       onClick={onClick}
       disabled={disabled}
     >
-      {' '}
-      {text}{' '}
+      {props.children}
     </button>
   );
 };
@@ -28,15 +27,14 @@ Button.propTypes = {
   style: PropTypes.oneOf(['primary', 'secondary', 'destructive', 'link']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   disabled: PropTypes.bool,
-  onClick: PropTypes.func,
-  text: PropTypes.string
+  onClick: PropTypes.func
 };
 
 Button.defaultProps = {
   style: 'primary',
   size: 'medium',
   disabled: false,
-  text: 'button'
+  children: 'Button'
 };
 
 export default Button;
