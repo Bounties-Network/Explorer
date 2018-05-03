@@ -5,7 +5,10 @@ import styles from './Payout.module.scss';
 import { Text } from 'components';
 
 const Payout = props => {
-  const { USD, amount, symbol } = props;
+  let { USD, amount, symbol } = props;
+
+  USD = Number(USD).toFixed(2);
+  amount = Number(amount).toFixed(2);
 
   return (
     <span className={`${styles.payoutContainer}`}>

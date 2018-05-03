@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import styles from './BountyCard.module.scss';
 import { shortenAddress } from '../../utils/utilities';
 
-import { Chip, Text, Payout } from 'components';
+import { Card, Chip, Text, Payout } from 'components';
 
 const BountyCard = props => {
   const { bountyData } = props;
-  const {
+  let {
     title = '',
     categories = [],
     issuer = '',
@@ -18,29 +18,30 @@ const BountyCard = props => {
   } = bountyData;
 
   const renderCategories = categories => {
-    return categories.map(elem => <Chip>{elem.name}</Chip>);
+    return categories.map(elem => <Chip key={elem.name}>{elem.name}</Chip>);
   };
 
   return (
-    <span className={`${styles.bountyCardContainer}`}>
-      <span className={`${styles.bountyCardLeft}`}>
-        <span className={`${styles.bountyCardLeftTop}`}>
-          <Text style="CardHeading">{title}</Text>
-          <span>{renderCategories(categories)}</span>
+    <Card title={title} height="short">
+      <div className={`${styles.bountyCardContainer}`}>
+        <span className={`${styles.bountyCardLeft}`}>
+          <span className={`${styles.bountyCardLeftTop}`}>
+            {renderCategories(categories)}
+          </span>
+          <Text style="BodySmall" link>
+            {shortenAddress(issuer)}
+          </Text>
         </span>
-        <Text style="BodySmall" link>
-          {shortenAddress(issuer)}
-        </Text>
-      </span>
-      <span className={`${styles.bountyCardRight}`}>
-        <Payout
-          USD={Number(usd_price).toFixed(2)}
-          amount={Number(calculated_fulfillmentAmount).toFixed(2)}
-          symbol={tokenSymbol}
-        />
-        <Text style="FormLabel">{fulfillment_count} Submissions</Text>
-      </span>
-    </span>
+        <span className={`${styles.bountyCardRight}`}>
+          <Payout
+            USD={usd_price}
+            amount={calculated_fulfillmentAmount}
+            symbol={tokenSymbol}
+          />
+          <Text style="FormLabel">{fulfillment_count} Submissions</Text>
+        </span>
+      </div>
+    </Card>
   );
 };
 

@@ -1,0 +1,41 @@
+@import "~styles/variables.scss";
+
+.cardContainer {
+  display: flex;
+  box-shadow: 0 0 10px $brand-lightGrey;
+  padding: 25px;
+  flex-direction: column;
+}
+
+.cardTitle {
+
+}
+
+.cardBody {
+
+}
+
+.short {
+  height: 150px;
+}
+
+.medium {
+  height: 250px;
+}
+
+.tall {
+  height: 600px;
+}
+
+.skinny {
+  width: 300px;
+}
+
+.normal {
+  width: 600px;
+}
+
+.wide {
+  width: 900px;
+}
+

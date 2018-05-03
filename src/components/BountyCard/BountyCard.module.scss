@@ -1,12 +1,19 @@
 @import "~styles/variables.scss";
 
+.chip {
+  margin-right: 10px;
+}
+
 .bountyCardContainer {
-  margin-bottom: 20px;
+  margin-top: 10px;
   display: flex;
-  width: 561px;
-  height: 131px;
-  box-shadow: 0 0 10px $brand-lightGrey;
-  padding: 25px;
+  justify-content: space-between;
+}
+
+.bountyCardLeftTop {
+  width: 470px;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .bountyCardLeft {
@@ -15,12 +22,8 @@
   justify-content: space-between;
 }
 
-.bountyCardLeftTop {
-  display: flex;
-  flex-direction: column;
-}
-
 .bountyCardRight {
+  height: 120px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

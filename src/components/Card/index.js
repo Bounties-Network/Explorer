@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Card.module.scss';
 
+import { Text } from 'components';
+
 const Card = props => {
-  const { className, style, size, onClick, title, viewAll, tabs } = props;
+  const { className, style, height, width, title, tabs } = props;
   // Tabs Example:
   // tabs: [ {
   //   title: 'Active',
@@ -17,20 +19,29 @@ const Card = props => {
   //   content: []
   // } ]
 
-  return <div />;
+  return (
+    <div
+      className={`${styles.cardContainer} ${styles[height]} ${styles[width]}`}
+    >
+      <div className={`${styles.cardTitle}`}>
+        <Text style={'CardHeading'}>{props.title}</Text>
+      </div>
+      <div className={`${styles.cardBody}`}>{props.children}</div>
+    </div>
+  );
 };
 
 Card.propTypes = {
   className: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  onClick: PropTypes.func,
+  height: PropTypes.oneOf(['short', 'medium', 'tall']),
+  width: PropTypes.oneOf(['skinny', 'normal', 'wide']),
   title: PropTypes.string,
-  viewAll: PropTypes.boolean,
   tabs: PropTypes.array
 };
 
 Card.defaultProps = {
-  size: 'medium'
+  height: 'medium',
+  width: 'normal'
 };
 
 export default Card;
