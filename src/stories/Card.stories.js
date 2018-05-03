@@ -7,6 +7,6 @@ import { Card } from 'components';
 
 storiesOf('Card', module).add('Card', () => (
   <div>
-    <Card title={'this stuff goes here'}>stuff goes here</Card>
+    <Card title="My Bounties">stuff goes here</Card>
   </div>
 ));

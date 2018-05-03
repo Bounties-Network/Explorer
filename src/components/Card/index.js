@@ -24,7 +24,7 @@ const Card = props => {
       className={`${styles.cardContainer} ${styles[height]} ${styles[width]}`}
     >
       <div className={`${styles.cardTitle}`}>
-        <Text style={'CardHeading'}>{props.title}</Text>
+        <Text style={'H2'}>{props.title}</Text>
       </div>
       <div className={`${styles.cardBody}`}>{props.children}</div>
     </div>

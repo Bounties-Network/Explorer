@@ -9,8 +9,8 @@ Our components are deployed [here](http://components.bounties.network).
 - [Payout](#payout)
 - [Chip](#chip)
 - [Dialogue](#dialogue)
-- [Card](#card)
 - [Bounty Card](#bounty-card)
+- [Card](#card)
 
 
 ## Text
@@ -124,9 +124,58 @@ const renderCategories = categories => {
 
 ## Dialogue
 
+### Properties
 
+- className: Class names that would be applied to the dialogue box
+- size: One of: small, medium, large
+- header: String: Header text
+- closeButton: Boolean: Denoting if there will be a X in the top right of the dialogue box
+- buttons: Array: takes in an array of Buttons. Will render in the order of the buttons.
 
-## Card
+### Defaults
+
+- className: N/A
+- size: medium
+- header: ''
+- closeButton: false
+- buttons: []
+
+### Usage Examples
+
+```
+const primaryButton = (
+  <Button style={'primary'} onClick={action('primary-clicked')}>
+    Submit
+  </Button>
+);
+
+const secondaryButton = (
+  <Button style={'secondary'} onClick={action('secondary-clicked')}>
+    Cancel
+  </Button>
+);
+
+<Dialogue
+  header="Dialogue Title"
+  buttons={[secondaryButton, primaryButton]}
+  disabled={false}
+>
+  This is some body copy that may show up within a dialogue. It may describe
+  an event or something else. Who knows?
+</Dialogue>
+```
 
 ## Bounty Card
+
+### Data
+
+This bounty card is fully built out. You only need to pass in the data object that is received from one of the endpoints. Example endpoint: `https://api.bounties.network/bounty/286/`
+
+### Usage Examples
+
+```
+<BountyCard bountyData={fakeData} />
+```
+
+## Card
 

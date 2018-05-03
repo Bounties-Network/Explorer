@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import styles from './BountyCard.module.scss';
 import { shortenAddress } from '../../utils/utilities';
 
-import { Card, Chip, Text, Payout } from 'components';
+import { Chip, Text, Payout } from 'components';
 
 const BountyCard = props => {
   const { bountyData } = props;
-  let {
+  const {
     title = '',
     categories = [],
     issuer = '',
@@ -22,26 +22,25 @@ const BountyCard = props => {
   };
 
   return (
-    <Card title={title} height="short">
-      <div className={`${styles.bountyCardContainer}`}>
-        <span className={`${styles.bountyCardLeft}`}>
-          <span className={`${styles.bountyCardLeftTop}`}>
-            {renderCategories(categories)}
-          </span>
-          <Text style="BodySmall" link>
-            {shortenAddress(issuer)}
-          </Text>
+    <span className={`${styles.bountyCardContainer}`}>
+      <span className={`${styles.bountyCardLeft}`}>
+        <span className={`${styles.bountyCardLeftTop}`}>
+          <Text style="CardHeading">{title}</Text>
+          <span>{renderCategories(categories)}</span>
         </span>
-        <span className={`${styles.bountyCardRight}`}>
-          <Payout
-            USD={usd_price}
-            amount={calculated_fulfillmentAmount}
-            symbol={tokenSymbol}
-          />
-          <Text style="FormLabel">{fulfillment_count} Submissions</Text>
-        </span>
-      </div>
-    </Card>
+        <Text style="BodySmall" link>
+          {shortenAddress(issuer)}
+        </Text>
+      </span>
+      <span className={`${styles.bountyCardRight}`}>
+        <Payout
+          USD={usd_price}
+          amount={calculated_fulfillmentAmount}
+          symbol={tokenSymbol}
+        />
+        <Text style="FormLabel">{fulfillment_count} Submissions</Text>
+      </span>
+    </span>
   );
 };
 
