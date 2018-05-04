@@ -6,18 +6,6 @@ import { Text } from 'components';
 
 const Card = props => {
   const { className, style, height, width, title, tabs } = props;
-  // Tabs Example:
-  // tabs: [ {
-  //   title: 'Active',
-  //   badge: 3,
-  //   badgeStyle: {},
-  //   content: []
-  // }, {
-  //   title: 'Pending Submissions',
-  //   badge: 2,
-  //   badgeStyle: {},
-  //   content: []
-  // } ]
 
   return (
     <div

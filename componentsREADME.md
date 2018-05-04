@@ -10,6 +10,7 @@ Our components are deployed [here](http://components.bounties.network).
 - [Chip](#chip)
 - [Dialogue](#dialogue)
 - [Bounty Card](#bounty-card)
+- [Icons](#icons)
 - [Card](#card)
 
 
@@ -176,6 +177,34 @@ This bounty card is fully built out. You only need to pass in the data object th
 ```
 <BountyCard bountyData={fakeData} />
 ```
+
+## Icons
+
+### Usage
+
+- Need to import `i` from `./src/fontawesome-all.js`.
+- Only property is class. 
+- Class takes style prefix AND Icon name
+
+### Style Prefix
+
+- fas: Solid
+- far: Regular
+- fal: Light
+- fab: Brands
+
+### Usage Example
+
+```
+
+<i class='fas fa-camera-retro' />
+```
+
+### Additional Docs
+
+https://fontawesome.com/how-to-use/svg-with-js
+
+
 
 ## Card
 

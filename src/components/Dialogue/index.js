@@ -28,8 +28,8 @@ const Dialogue = props => {
 };
 
 Dialogue.propTypes = {
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
   className: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   header: PropTypes.string,
   closeButton: PropTypes.boolean,
   buttons: PropTypes.array
