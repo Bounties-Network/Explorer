@@ -1,3 +1,4 @@
+// COLORS:
 $brand-purple: rgb(90, 45, 198);
 $brand-purple-hover: rgb(127, 80, 238);
 $brand-purple-disabled: rgb(218, 204, 248);
@@ -23,3 +24,10 @@ $brand-disabled: rgb(249, 249, 249);
 // need black/grey color pallete
 // need disabled/hover colors
 // need to verify hex colors
+
+
+
+// BOX SHADOWS:
+$brand-chip-box-shadow: 0 2px 7px $brand-lightGrey;
+$brand-card-box-shadow: 0 0 10px $brand-lightGrey;
+$brand-bountyCard-box-shadow: 0 0 10px $brand-lightGrey;

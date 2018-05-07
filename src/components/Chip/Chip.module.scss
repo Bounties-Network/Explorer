@@ -1,9 +1,8 @@
 @import "~styles/variables.scss";
 
 .chip{
-  // missing outline shadow
   color: $brand-grey;
-  box-shadow: 0 2px 7px $brand-lightGrey;
+  box-shadow: $brand-chip-box-shadow;
   border-radius: 16px;
   white-space: nowrap;
   width: fit-content;

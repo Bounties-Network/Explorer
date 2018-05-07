@@ -5,7 +5,7 @@
   display: flex;
   width: 561px;
   height: 131px;
-  box-shadow: 0 0 10px $brand-lightGrey;
+  box-shadow: $brand-bountyCard-box-shadow;
   padding: 25px;
   justify-content: space-between;
 }

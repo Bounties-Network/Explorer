@@ -2,7 +2,7 @@
 
 .cardContainer {
   display: flex;
-  box-shadow: 0 0 10px $brand-lightGrey;
+  box-shadow: $brand-card-box-shadow;
   padding: 25px;
   flex-direction: column;
 }
