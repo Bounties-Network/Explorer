@@ -1,0 +1,33 @@
+@import "~styles/variables.scss";
+
+.sidebar {
+  background-color: $brand-darkGrey;
+  width: 65px;
+  height: 1000px;
+}
+
+.iconTab {
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  padding-top: 20px;
+  cursor: pointer;
+  padding-left: 6px;
+}
+
+.iconBar {
+  margin-top: 50px;
+}
+
+.logoBar {
+  background-color: $brand-purple;
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  padding: 10px;
+}
+
+.active {
+  border-left: 6px solid $brand-orange;
+  padding-left: 0px;
+}

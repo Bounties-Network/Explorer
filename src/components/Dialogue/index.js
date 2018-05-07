@@ -31,7 +31,7 @@ Dialogue.propTypes = {
   className: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   header: PropTypes.string,
-  closeButton: PropTypes.boolean,
+  closeButton: PropTypes.bool,
   buttons: PropTypes.array
 };
 

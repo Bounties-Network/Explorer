@@ -20,7 +20,7 @@ const DropdownComponent = props => {
   );
 };
 
-DropdownComponent.PropTypes = {
+DropdownComponent.propTypes = {
   options: PropTypes.array,
   onChange: PropTypes.function,
   placeholder: PropTypes.string

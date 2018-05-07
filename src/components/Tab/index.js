@@ -26,7 +26,7 @@ const Tab = props => {
 Tab.propTypes = {
   notificationAmount: PropTypes.number,
   notificationColor: PropTypes.string,
-  active: PropTypes.boolean
+  active: PropTypes.bool
 };
 
 Tab.defaultProps = {
