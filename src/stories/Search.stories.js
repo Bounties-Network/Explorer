@@ -7,6 +7,6 @@ import { Search } from 'components';
 
 storiesOf('Search', module).add('Search', () => (
   <div>
-    <Search />
+    <Search onChange={e => console.log(e)} />
   </div>
 ));
