@@ -1,0 +1,58 @@
+@import "~styles/variables.scss";
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.text {
+
+}
+
+.img {
+  height: 95%;
+  width: 95%;
+  border-radius: 50%;
+}
+
+.white {
+  background-color: white;
+  box-shadow: $brand-circle-box-shadow;
+}
+
+.purple {
+  background-color: $brand-purple;
+}
+
+.blue {
+  background-color: $brand-blue;
+}
+
+.orange {
+  background-color: $brand-orange;
+}
+
+.green {
+  background-color: $brand-green;
+}
+
+.red {
+  background-color: $brand-red;
+}
+
+.small {
+  height: 75px;
+  width: 75px;
+}
+
+.medium {
+  height: 150px;
+  width: 150px;
+}
+
+.large {
+  height: 200px;
+  width: 200px;
+}

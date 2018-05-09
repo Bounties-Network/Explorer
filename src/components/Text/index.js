@@ -43,7 +43,16 @@ Text.propTypes = {
   ]),
   src: PropTypes.string,
   link: PropTypes.boolean,
-  color: PropTypes.string
+  color: PropTypes.oneOf([
+    'purple',
+    'blue',
+    'orange',
+    'green',
+    'red',
+    'black',
+    'white',
+    'grey'
+  ])
 };
 
 Text.defaultProps = {
