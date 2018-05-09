@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 
 import { Circle, Text } from 'components';
 
-storiesOf('Circle', module).add('Circle', () => (
+storiesOf('Circle', module).add('All Circles', () => (
   <div>
     <Text style="H3">Text Circle</Text>
     <div
@@ -15,6 +15,7 @@ storiesOf('Circle', module).add('Circle', () => (
         justifyContent: 'space-between'
       }}
     >
+      <br />
       <Circle type="text" size="small" input="3/4" />
       <br />
       <Circle type="text" size="small" input="100%" />
@@ -30,6 +31,7 @@ storiesOf('Circle', module).add('Circle', () => (
         justifyContent: 'space-between'
       }}
     >
+      <br />
       <Circle type="img" size="small" input="https://i.imgur.com/lhTwRZY.png" />
     </div>
 
@@ -45,6 +47,7 @@ storiesOf('Circle', module).add('Circle', () => (
     >
       <br />
       <Text style="H4">White</Text>
+      <br />
       <Circle
         type="text"
         size="small"
@@ -55,6 +58,7 @@ storiesOf('Circle', module).add('Circle', () => (
       <br />
       <br />
       <Text style="H4">Purple</Text>
+      <br />
       <Circle
         type="text"
         size="small"
@@ -65,6 +69,7 @@ storiesOf('Circle', module).add('Circle', () => (
       <br />
       <br />
       <Text style="H4">Blue</Text>
+      <br />
       <Circle
         type="text"
         size="small"
@@ -75,6 +80,7 @@ storiesOf('Circle', module).add('Circle', () => (
       <br />
       <br />
       <Text style="H4">Orange</Text>
+      <br />
       <Circle
         type="text"
         size="small"
@@ -85,6 +91,7 @@ storiesOf('Circle', module).add('Circle', () => (
       <br />
       <br />
       <Text style="H4">Green</Text>
+      <br />
       <Circle
         type="text"
         size="small"
@@ -95,6 +102,7 @@ storiesOf('Circle', module).add('Circle', () => (
       <br />
       <br />
       <Text style="H4">Red</Text>
+      <br />
       <Circle
         type="text"
         size="small"
@@ -108,6 +116,7 @@ storiesOf('Circle', module).add('Circle', () => (
     <hr />
 
     <Text style="H3">Sizes</Text>
+    <br />
     <div
       style={{
         display: 'flex',
@@ -117,6 +126,7 @@ storiesOf('Circle', module).add('Circle', () => (
     >
       <br />
       <Text style="H4">Small</Text>
+      <br />
       <Circle
         type="text"
         size="small"
@@ -127,6 +137,7 @@ storiesOf('Circle', module).add('Circle', () => (
       <br />
       <br />
       <Text style="H4">Medium</Text>
+      <br />
       <Circle
         type="text"
         size="medium"
@@ -137,6 +148,7 @@ storiesOf('Circle', module).add('Circle', () => (
       <br />
       <br />
       <Text style="H4">Large</Text>
+      <br />
       <Circle
         type="text"
         size="large"
