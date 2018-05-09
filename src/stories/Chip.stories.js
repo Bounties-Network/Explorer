@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 
 import { Chip, Text } from 'components';
 
-storiesOf('Chip', module).add('Chip', () => (
+storiesOf('Chip', module).add('All Chips', () => (
   <div>
     <Text style="H3">Rounded Chips</Text>
     <br />

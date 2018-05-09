@@ -1,12 +1,17 @@
 .payoutContainer {
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  height: 50px;
+  width: 100px;
 }
 
 .usdContainer {
+  display: flex;
   justify-content: flex-end;
 }
 
 .ethContainer {
+  display: flex;
   justify-content: flex-end;
 }

@@ -7,6 +7,6 @@ import { Payout } from 'components';
 
 storiesOf('Payout', module).add('Payout', () => (
   <div>
-    <Payout USD={100} amount={0.05} symbol={'ETH'} />
+    <Payout USD={26} amount={0.05} symbol={'ETH'} />
   </div>
 ));

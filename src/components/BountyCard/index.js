@@ -26,7 +26,9 @@ const BountyCard = props => {
       <span className={`${styles.bountyCardLeft}`}>
         <span className={`${styles.bountyCardLeftTop}`}>
           <Text style="CardHeading">{title}</Text>
-          <span>{renderCategories(categories)}</span>
+          <span className={`${styles.chipBar}`}>
+            {renderCategories(categories)}
+          </span>
         </span>
         <Text style="BodySmall" link>
           {shortenAddress(issuer)}
