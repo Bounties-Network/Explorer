@@ -6,11 +6,7 @@ import { connect } from 'react-redux';
 import BountiesList from './BountiesList';
 import { actions, sagas, selectors } from 'public-modules';
 
-const {
-  bountiesSelector,
-  bountiesCountSelector,
-  bountiesStateSelector
-} = selectors;
+const { bountiesStateSelector, rootBountiesSelector } = selectors;
 
 const Bounties = props => {
   const { loading, count, error } = props;
@@ -30,11 +26,15 @@ const Bounties = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  bounties: bountiesSelector(state),
-  count: bountiesCountSelector(state),
-  ...bountiesStateSelector(state)
-});
+const mapStateToProps = (state, router) => {
+  let bountiesState = rootBountiesSelector(state);
+
+  return {
+    bounties: bountiesState.bounties,
+    count: bountiesState.count,
+    ...bountiesStateSelector(state)
+  };
+};
 
 Bounties.propTypes = {
   bounties: PropTypes.array,
@@ -46,7 +46,7 @@ Bounties.propTypes = {
 const check = compose(
   FetchComponent(sagas.fetch),
   connect(mapStateToProps, { load: actions.loadBounties }),
-  LoadComponent
+  LoadComponent('')
 )(Bounties);
 
 export default check;

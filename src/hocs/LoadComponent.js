@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { curry } from 'lodash';
 
-function LoadComponent(WrappedComponent) {
+function LoadComponent(initiatorProp, WrappedComponent) {
   return class Load extends Component {
     static propTypes = {
       load: PropTypes.func.isRequired
     };
 
     componentWillMount() {
-      this.props.load();
+      if (initiatorProp) {
+        this.props.load(this.props[initiatorProp]);
+      } else {
+        this.props.load();
+      }
     }
 
     render() {
@@ -17,4 +22,4 @@ function LoadComponent(WrappedComponent) {
   };
 }
 
-export default LoadComponent;
+export default curry(LoadComponent);
