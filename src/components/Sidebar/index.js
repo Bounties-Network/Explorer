@@ -4,6 +4,8 @@ import styles from './Sidebar.module.scss';
 
 import { i } from '../../fontawesome-all.js';
 
+import BeeLogo from '../../styles/logo.js';
+
 // import { Text } from 'components';
 
 const Sidebar = props => {
@@ -29,7 +31,8 @@ const Sidebar = props => {
     <div className={`${styles.sidebar}`}>
       <div className={`${styles.logoBar}`}>
         {/* TEMPORARY FAKE ICON*/}
-        <i className="fab fa-chrome" />
+        {/* <i className="fab fa-chrome" /> */}
+        <BeeLogo />
       </div>
       <div className={`${styles.iconBar}`}>{renderIcons(options)}</div>
     </div>
