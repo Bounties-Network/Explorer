@@ -1,0 +1,14 @@
+@import "~styles/variables.scss";
+
+.FullAddressBar {
+  display: flex;
+  flex-direction: row;
+}
+
+.AddressBar {
+  width: fit-content;
+  padding: 4px;
+  border-radius: 3px;
+  background-color: $brand-purple-disabled;
+}
+

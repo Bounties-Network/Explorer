@@ -1,0 +1,33 @@
+@import "~styles/variables.scss";
+
+.bountyCardContainer {
+  margin-bottom: 20px;
+  display: flex;
+  width: 561px;
+  height: 131px;
+  box-shadow: $brand-bountyCard-box-shadow;
+  padding: 25px;
+  justify-content: space-between;
+}
+
+.bountyCardLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bountyCardLeftTop {
+  display: flex;
+  flex-direction: column;
+}
+
+.bountyCardRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chipBar {
+  display: flex;
+  flex-wrap: wrap;
+}

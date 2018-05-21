@@ -1,0 +1,42 @@
+@import "~styles/variables.scss";
+
+.dialogue {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  justify-content: space-between;
+  box-shadow: 0 0 30px $brand-lightGrey;
+}
+
+.dialogueTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dialogueMid {
+
+}
+
+.dialogueBot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttonRow {
+  margin-left: 10px;
+}
+
+.small {
+  height: 200px;
+  width: 400px;
+}
+
+.medium {
+  height: 240px;
+  width: 400px;
+}
+
+.large {
+  height: 350px;
+  width: 500px;
+}

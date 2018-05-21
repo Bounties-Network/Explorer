@@ -1,0 +1,84 @@
+@import "~styles/variables.scss";
+
+.H1 {
+  font-size: 31px;
+}
+
+.H2 {
+  font-size: 25px;
+}
+
+.H3 {
+  font-size: 20px;
+}
+
+.H4 {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.CardHeading {
+  font-size: 16px;
+}
+
+.Body {
+  font-size: 16px;
+}
+
+.BodySmall {
+  font-size: 14px;
+}
+
+.FormLabel {
+  color: $brand-grey;
+  font-size: 14px;
+}
+
+.FormInvalid {
+  font-size: 14px;
+  color: $brand-red;
+}
+
+.Link {
+  text-decoration: underline;
+  color: $brand-purple;
+  cursor: pointer;
+}
+
+.Alt {
+  color: $brand-grey;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.purple {
+  color: $brand-purple;
+}
+
+.blue {
+  color: $brand-blue;
+}
+
+.orange {
+  color: $brand-orange;
+}
+
+.green {
+  color: $brand-green;
+}
+
+.red {
+  color: $brand-red;
+}
+
+.black {
+  color: $brand-black;
+}
+
+.grey {
+  color: $brand-grey;
+}
+
+.white {
+  color: white;
+}

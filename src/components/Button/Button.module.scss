@@ -2,53 +2,101 @@
 
 .button {
   cursor: pointer;
+  border-radius: 3px;
 }
 
 .disabled {
 }
 
 .primary {
-  background-color: $brand-primary;
-  color: $brand-white;
+  background-color: $brand-purple;
+  color: $brand-nearWhite;
   &.disabled {
-     background-color: $brand-disabled;
-     color: $brand-text;
+     background-color: $brand-purple-disabled;
+     color: $brand-nearWhite;
      cursor: default;
   }
 }
 
 .primary:hover {
-  background-color: $brand-primary-hover;
+  background-color: $brand-purple-hover;
   &.disabled {
-     background-color: $brand-disabled;
+     background-color: $brand-purple-disabled;
   }
 }
 
 .secondary {
-  background-color: $brand-secondary;
-  color: $brand-white;
+  background-color: $brand-disabled;
+  color: $brand-purple;
   &.disabled{
-     background-color: $brand-disabled;
-     color: $brand-text;
+     background-color: $brand-nearWhite;
+     color: $brand-darkGrey;
      cursor: default;
   }
 }
 
 .secondary:hover {
-  background-color: $brand-secondary-hover;
+  background-color: $brand-nearWhite;
   &.disabled {
-     background-color: $brand-disabled;
+     background-color: $brand-nearWhite;
   }
 }
 
+.destructive {
+  background-color: $brand-destructive;
+  color: $brand-disabled;
+  &.disabled{
+     background-color: $brand-destructive-disabled;
+     color: $brand-disabled;
+     cursor: default;
+  }
+}
+
+.destructive:hover {
+  background-color: $brand-destructive-hover;
+  &.disabled {
+     background-color: $brand-destructive-disabled;
+  }
+}
+
+.link {
+  background-color: none;
+  color: $brand-purple;
+  text-decoration: underline;
+  border: none;
+  &.disabled {
+    color: $brand-purple-disabled;
+  }
+}
+
+.link:hover {
+  color: $brand-purple-hover;
+  &.disabled {
+    color: $brand-purple-disabled;
+  }
+}
+
+.create {
+  background-color: $brand-blue;
+  color: white;
+}
+
+.icon {
+  height: 27px;
+  width: 35px;
+}
+
 .small {
-  padding: 8px;
+  height: 35px;
+  width: 75px;
 }
 
 .medium {
-  padding: 10px;
+  height: 35px;
+  width: 125px;
 }
 
 .large {
-  padding: 14px;
+  height: 35px;
+  width: 200px;
 }
