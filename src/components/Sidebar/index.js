@@ -29,11 +29,6 @@ const Sidebar = props => {
 
   return (
     <div className={`${styles.sidebar}`}>
-      <div className={`${styles.logoBar}`}>
-        {/* TEMPORARY FAKE ICON*/}
-        {/* <i className="fab fa-chrome" /> */}
-        <BeeLogo />
-      </div>
       <div className={`${styles.iconBar}`}>{renderIcons(options)}</div>
     </div>
   );

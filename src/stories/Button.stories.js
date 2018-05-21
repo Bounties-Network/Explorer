@@ -33,6 +33,10 @@ storiesOf('Button', module).add('All Buttons', () => (
       <Button onClick={action('clicked')} style="link">
         Hello Button
       </Button>
+      <Text style="H4">Create</Text>
+      <Button onClick={action('clicked')} style="create">
+        Create New Bounty
+      </Button>
     </div>
     <hr />
 

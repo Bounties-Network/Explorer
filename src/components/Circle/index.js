@@ -25,7 +25,7 @@ const Circle = props => {
 Circle.propTypes = {
   type: PropTypes.oneOf(['text', 'image']),
   input: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['mini', 'small', 'medium', 'large']),
   color: PropTypes.oneOf(['purple', 'blue', 'orange', 'green', 'red', 'white']),
   textColor: PropTypes.oneOf([
     'purple',

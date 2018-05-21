@@ -4,14 +4,11 @@ const BeeLogo = () => {
   return (
     <svg
       version="1.1"
-      id="Layer_1"
-      xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
-      width="50px"
-      height="50px"
+      width="55px"
+      height="55px"
       viewBox="0 0 720 720"
-      enable-background="new 0 0 720 720"
     >
       <rect y="36.688" fill="none" width="719.541" height="646.625" />
       <g>

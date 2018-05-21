@@ -24,7 +24,13 @@ const Button = props => {
 
 Button.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.oneOf(['primary', 'secondary', 'destructive', 'link']),
+  style: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'destructive',
+    'link',
+    'create'
+  ]),
   size: PropTypes.oneOf(['icon', 'small', 'medium', 'large']),
   disabled: PropTypes.bool,
   onClick: PropTypes.func
