@@ -2,8 +2,16 @@
 
 .sidebar {
   background-color: $brand-darkGrey;
-  width: 65px;
-  height: 1000px;
+  width: 55px;
+  height: 100%;
+
+  height: 100%; /* 100% Full-height */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
 }
 
 .iconTab {
@@ -16,7 +24,7 @@
 }
 
 .iconBar {
-  margin-top: 50px;
+
 }
 
 .logoBar {

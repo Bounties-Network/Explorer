@@ -6,6 +6,13 @@
   display: flex;
   justify-content: space-between;
   box-shadow: 0 4px 2px -2px $brand-lightGrey;
+  background-color: $brand-white;
+
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
 }
 
 .iconArea {
