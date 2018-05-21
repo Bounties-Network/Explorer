@@ -1,0 +1,12 @@
+.switch {
+  width: 250px !important;
+  background: #5a28c6 !important;
+}
+
+.switch-toggle {
+  width: 125px !important;
+}
+
+.switch.on .switch-toggle {
+  left: 125px !important;
+}
