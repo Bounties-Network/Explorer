@@ -25,6 +25,7 @@ function loadLeaderboardFail(error) {
 }
 
 function LeaderboardReducer(state = initialState, action) {
+  console.log('leaderboard', state, action);
   switch (action.type) {
     case LOAD_LEADERBOARD: {
       return {
@@ -46,6 +47,7 @@ function LeaderboardReducer(state = initialState, action) {
       };
     }
     case LOAD_LEADERBOARD_FAIL: {
+      console.log('error?', state, action);
       return {
         ...state,
         loading: false,
@@ -59,9 +61,9 @@ function LeaderboardReducer(state = initialState, action) {
 }
 
 export const actions = {
-  loadBounties,
-  loadBountiesSuccess,
-  loadBountiesFail
+  loadLeaderboard,
+  loadLeaderboardSuccess,
+  loadLeaderboardFail
 };
 
 export const actionTypes = {

@@ -1,11 +1,10 @@
 .switch {
-  border: 1px solid #ccc;
   height: 26px;
   border-radius: 13px;
   cursor: pointer;
   display: inline-block;
   width: 250px;
-  background: #5a28c6;
+  background: rgb(64, 35, 148);
 }
 
 .switch-toggle {
@@ -14,19 +13,18 @@
   justify-content: center;
   align-items: center;
   border: 1px solid #999;
-  box-shadow: 1px 1px 1px #ccc;
   width: 125px;
   height: 24px;
   left: 0;
-  top: -22px;
-  border-radius: 12px;
+  top: -21px;
+  border-radius: 13px;
   background: white;
   position: relative;
   transition: left 0.2s ease-in-out;
 }
 
 .switch.on .switch-toggle {
-  left: 125px;
+  left: 124px;
 }
 
 .switch.disabled {
@@ -36,8 +34,8 @@
 .optionText {
   align-items: center;
   padding-top: 3px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
   display: flex;
   justify-content: space-between;
   color: rgb(127, 80, 238);

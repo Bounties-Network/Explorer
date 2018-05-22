@@ -7,7 +7,7 @@ const { loadLeaderboardFail, loadLeaderboardSuccess } = actions;
 
 export function* loadLeaderboard(action) {
   try {
-    let endpoint = `leaderboard`;
+    let endpoint = `leaderboard/?limit=10&platform__in=gitcoin,bounties-network`;
     const leaderboard = yield call(request, endpoint, 'GET');
     yield put(loadLeaderboardSuccess(leaderboard));
   } catch (e) {

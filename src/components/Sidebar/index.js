@@ -4,46 +4,87 @@ import styles from './Sidebar.module.scss';
 
 import { i } from '../../fontawesome-all.js';
 
-import BeeLogo from '../../styles/logo.js';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faTachometer from '@fortawesome/fontawesome-pro-light/faTachometer';
+import faListAlt from '@fortawesome/fontawesome-pro-light/faListAlt';
+import faTrophyAlt from '@fortawesome/fontawesome-pro-light/faTrophyAlt';
+import faUserAlt from '@fortawesome/fontawesome-pro-light/faUserAlt';
 
-// import { Text } from 'components';
+class Sidebar extends React.Component {
+  constructor(props) {
+    super(props);
 
-const Sidebar = props => {
-  const { options, onClick } = props;
+    this.state = {
+      activeTab: 'dashboard',
+      tabs: ['dashboard', 'explorer', 'leaderboard', 'profile']
+    };
 
-  const renderIcons = options => {
-    return options.map(elem => {
-      const activeStatus = elem.active ? 'active' : '';
+    this.onTabClick = this.onTabClick.bind(this);
+    this.checkActive = this.checkActive.bind(this);
+  }
 
-      return (
-        <div
-          key={elem.icon}
-          className={`${styles[activeStatus]} ${styles.iconTab}`}
-          onClick={elem => onClick(elem)}
-        >
-          <i className={`fal fa-${elem.icon}`} />
+  onTabClick(page) {
+    // this.props.onChange();
+
+    this.setState({ activeTab: page });
+  }
+
+  checkActive(page) {
+    return this.state.activeTab === page ? 'active' : 'inactive';
+  }
+
+  render() {
+    return (
+      <div className={`${styles.sidebar}`}>
+        <div className={`${styles.iconBar}`}>
+          {/*Dashboard*/}
+          <div
+            className={`${styles.iconTab} ${
+              styles[this.checkActive('dashboard')]
+            }`}
+            onClick={e => this.onTabClick('dashboard')}
+          >
+            <FontAwesomeIcon icon={faTachometer} />
+          </div>
+          {/*Explorer*/}
+          <div
+            className={`${styles.iconTab} ${
+              styles[this.checkActive('explorer')]
+            }`}
+            onClick={e => this.onTabClick('explorer')}
+          >
+            <FontAwesomeIcon icon={faListAlt} />
+          </div>
+          {/*Leaderboard*/}
+          <div
+            className={`${styles.iconTab} ${
+              styles[this.checkActive('leaderboard')]
+            }`}
+            onClick={e => this.onTabClick('leaderboard')}
+          >
+            <FontAwesomeIcon icon={faTrophyAlt} />
+          </div>
+          {/*Profile*/}
+          <div
+            className={`${styles.iconTab} ${
+              styles[this.checkActive('profile')]
+            }`}
+            onClick={e => this.onTabClick('profile')}
+          >
+            <FontAwesomeIcon icon={faUserAlt} />
+          </div>
         </div>
-      );
-    });
-  };
-
-  return (
-    <div className={`${styles.sidebar}`}>
-      <div className={`${styles.iconBar}`}>{renderIcons(options)}</div>
-    </div>
-  );
-};
+      </div>
+    );
+  }
+}
 
 Sidebar.propTypes = {
-  options: PropTypes.array,
-  onChange: PropTypes.func,
-  active: PropTypes.bool
+  onChange: PropTypes.func
 };
 
 Sidebar.defaultProps = {
-  options: [],
-  onChange: () => {},
-  active: false
+  onChange: () => {}
 };
 
 export default Sidebar;

@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Header.module.scss';
 
-import { i } from '../../fontawesome-all.js';
-
 import { Button, Circle } from 'components';
 import BeeLogo from '../../styles/logo.js';
+
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faBell from '@fortawesome/fontawesome-pro-light/faBell';
 
 const Header = props => {
   const { notification, profilePic } = props;
@@ -17,7 +18,7 @@ const Header = props => {
       </div>
       <div className={`${styles.buttonArea}`}>
         <Button style="create">Create New Bounty</Button>
-        <i className="fal fa-bell" style={{ fontSize: '20px' }} />
+        <FontAwesomeIcon icon={faBell} />
         <Circle type="img" size="mini" input={profilePic} />
       </div>
     </div>

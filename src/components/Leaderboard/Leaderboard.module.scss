@@ -1,0 +1,68 @@
+@import "~styles/variables.scss";
+
+.leaderboard {
+  box-shadow: 0 0 1px 0 $brand-grey;
+  padding: 25px;
+  width: 40%;
+  height: fit-content;
+}
+
+.cardContainer {
+  display: flex;
+  width: 96%;
+  height: 40px;
+  padding: 15px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $brand-lightGrey;
+}
+
+.cardContainer:last-child {
+  border-bottom: none;
+}
+
+.cardLeft {
+  width: 55%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.index {
+  display: flex;
+  justify-content: center;
+}
+
+.profileInfo {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+}
+
+.nameBox {
+  min-width: 165px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.name {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.address {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cardRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.ethText {
+  display: flex;
+  justify-content: flex-end;
+}

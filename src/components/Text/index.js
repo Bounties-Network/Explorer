@@ -38,6 +38,7 @@ Text.propTypes = {
     'CardHeading',
     'Body',
     'BodySmall',
+    'Small',
     'FormLabel',
     'FormInvalid',
     'Alt'

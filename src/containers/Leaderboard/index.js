@@ -4,12 +4,11 @@ import { FetchComponent, LoadComponent } from 'hocs';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions, sagas, selectors } from 'public-modules';
+import styles from './Leaderboard.module.scss';
 
-const {
-  bountiesSelector,
-  bountiesCountSelector,
-  bountiesStateSelector
-} = selectors;
+import { Text, ToggleSwitch } from 'components';
+
+const { leaderboardSelector, rootLeaderboardSelector } = selectors;
 
 const Leaderboard = props => {
   const { loading, count, error } = props;
@@ -23,20 +22,30 @@ const Leaderboard = props => {
   }
 
   return (
-    <div>
-      <div>COUNT: {count}</div>
+    <div className={`${styles.leaderboardPage}`}>
+      <div className={`${styles.leaderboardHeader}`}>
+        <div className={`${styles.leaderboardHeaderBody}`}>
+          <Text style="H1" color="white">
+            Leaderboard
+          </Text>
+        </div>
+        <ToggleSwitch offOption="Top Earners" onOption="Top Issuers" />
+      </div>
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  bounties: bountiesSelector(state),
-  count: bountiesCountSelector(state),
-  ...bountiesStateSelector(state)
-});
+const mapStateToProps = (state, router) => {
+  let leaderboardState = rootLeaderboardSelector(state);
+
+  return {
+    leaderboard: leaderboardState.leaderboard,
+    ...leaderboardSelector(state)
+  };
+};
 
 Leaderboard.propTypes = {
-  bounties: PropTypes.array,
+  leaderboard: PropTypes.array,
   load: PropTypes.func,
   loading: PropTypes.bool,
   error: PropTypes.bool
@@ -44,8 +53,8 @@ Leaderboard.propTypes = {
 
 const check = compose(
   FetchComponent(sagas.fetch),
-  connect(mapStateToProps, { load: actions.loadBounties }),
-  LoadComponent
+  connect(mapStateToProps, { load: actions.loadLeaderboard }),
+  LoadComponent('')
 )(Leaderboard);
 
 export default check;

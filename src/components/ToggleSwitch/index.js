@@ -31,7 +31,7 @@ class ToggleSwitch extends React.Component {
           offOption={offOption}
           onOption={onOption}
         >
-          {this.state.switched ? offOption : onOption}
+          {this.state.switched ? onOption : offOption}
         </SwitchModule>
       </div>
     );

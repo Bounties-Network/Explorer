@@ -1,0 +1,23 @@
+@import "~styles/variables.scss";
+
+.leaderboardPage {
+  height: 100%;
+  width: 100%;
+}
+
+.leaderboardHeader {
+  height: 300px;
+  width: 100%;
+  background-color: $brand-purple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.leaderboardHeaderBody {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
