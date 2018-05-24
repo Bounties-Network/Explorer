@@ -9,7 +9,10 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faBell from '@fortawesome/fontawesome-pro-light/faBell';
 
 const Header = props => {
-  const { notification, profilePic } = props;
+  const {
+    notification,
+    profilePic = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+  } = props;
 
   return (
     <div className={`${styles.header}`}>

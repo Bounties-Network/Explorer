@@ -3,7 +3,7 @@ import styles from './App.module.scss';
 import { hot } from 'react-hot-loader';
 import { Switch, Route } from 'react-router-dom';
 import { Navbar, NoMatch } from 'layout';
-import { Bounties, Discover, Leaderboard } from 'containers';
+import { Bounties, Discover, LeaderboardPage } from 'containers';
 import { Header, Sidebar } from 'components';
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
       <div className={`${styles.body}`}>
         <Switch>
           <Route exact path="/" component={Bounties} />
-          <Route exact path="/leaderboard" component={Leaderboard} />
+          <Route exact path="/leaderboard" component={LeaderboardPage} />
           <Route component={NoMatch} />
         </Switch>
       </div>

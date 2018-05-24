@@ -59,7 +59,6 @@ const LeaderboardItem = props => {
 
 const Leaderboard = props => {
   const { leaderboardData } = props;
-
   const renderItems = dataArray => {
     return leaderboardData.map((elem, ind) => {
       return <LeaderboardItem data={elem} index={ind} />;

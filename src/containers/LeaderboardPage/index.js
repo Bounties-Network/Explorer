@@ -4,19 +4,20 @@ import { FetchComponent, LoadComponent } from 'hocs';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions, sagas, selectors } from 'public-modules';
-import styles from './Leaderboard.module.scss';
+import styles from './LeaderboardPage.module.scss';
 
-import { Text, ToggleSwitch } from 'components';
+import { Text, ToggleSwitch, Leaderboard } from 'components';
 
 const { leaderboardSelector, rootLeaderboardSelector } = selectors;
 
-const Leaderboard = props => {
+const LeaderboardPage = props => {
   const { loading, count, error } = props;
+
+  const top10 = props.leaderboard.slice(0, 10);
 
   if (loading) {
     return <div>loading...</div>;
   }
-
   if (error) {
     return <div>error...</div>;
   }
@@ -31,6 +32,7 @@ const Leaderboard = props => {
         </div>
         <ToggleSwitch offOption="Top Earners" onOption="Top Issuers" />
       </div>
+      <Leaderboard leaderboardData={top10} />
     </div>
   );
 };
@@ -44,7 +46,7 @@ const mapStateToProps = (state, router) => {
   };
 };
 
-Leaderboard.propTypes = {
+LeaderboardPage.propTypes = {
   leaderboard: PropTypes.array,
   load: PropTypes.func,
   loading: PropTypes.bool,
@@ -55,6 +57,6 @@ const check = compose(
   FetchComponent(sagas.fetch),
   connect(mapStateToProps, { load: actions.loadLeaderboard }),
   LoadComponent('')
-)(Leaderboard);
+)(LeaderboardPage);
 
 export default check;

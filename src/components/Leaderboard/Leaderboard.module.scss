@@ -5,6 +5,10 @@
   padding: 25px;
   width: 40%;
   height: fit-content;
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  background-color: white;
 }
 
 .cardContainer {
@@ -22,7 +26,7 @@
 }
 
 .cardLeft {
-  width: 55%;
+  width: 70%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,7 +44,7 @@
 }
 
 .nameBox {
-  min-width: 165px;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

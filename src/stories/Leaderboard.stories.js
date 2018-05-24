@@ -5,18 +5,6 @@ import { action } from '@storybook/addon-actions';
 
 import { Leaderboard } from 'components';
 
-// { title, categories, issuer, usd_price, eth_amount, fulfillment_count  }
-let fakeUserData = {
-  address: '0x7056e70a5ca249ba88e9550eb22caec4c985bb8e',
-  name: 'Simona Pop',
-  email: 'cryptomental.com@gmail.com',
-  githubusername: 'cryptomental',
-  total: '2000870000000000000000',
-  total_usd: 2724.0805,
-  bounties_fulfilled: 7,
-  fulfillments_accepted: 7
-};
-
 let fakeLeaderboardData = [
   {
     address: '0x7056e70a5ca249ba88e9550eb22caec4c985bb8e',
