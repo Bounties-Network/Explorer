@@ -12,7 +12,7 @@ const Button = props => {
 
   return (
     <button
-      className={`${styles.button} ${styles[size]}
+      className={`${className} ${styles.button} ${styles[size]}
         ${styles[style]} ${addedClasses}`}
       onClick={onClick}
       disabled={disabled}

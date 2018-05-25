@@ -11,7 +11,7 @@ import { Text, ToggleSwitch, Leaderboard } from 'components';
 const { leaderboardSelector, rootLeaderboardSelector } = selectors;
 
 const LeaderboardPage = props => {
-  const { loading, count, error } = props;
+  const { loading, error } = props;
 
   const top10 = props.leaderboard.slice(0, 10);
 

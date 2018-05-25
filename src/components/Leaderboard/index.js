@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './Leaderboard.module.scss';
 import { shortenAddress } from '../../utils/utilities';
 
@@ -10,12 +9,12 @@ const LeaderboardItem = props => {
   let {
     address = '0x7056e70a5ca249ba88e9550eb22caec4c985bb8e',
     name = '',
-    email = 'cryptomental.com@gmail.com',
-    githubusername = 'cryptomental',
-    total = '2000870000000000000000',
+    // email = 'cryptomental.com@gmail.com',
+    // githubusername = 'cryptomental',
+    // total = '2000870000000000000000',
     total_usd = 2724.0805,
-    bounties_fulfilled = 7,
-    fulfillments_accepted = 7,
+    // bounties_fulfilled = 7,
+    // fulfillments_accepted = 7,
     image = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
   } = data;
 

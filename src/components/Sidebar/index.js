@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Sidebar.module.scss';
 
-import { i } from '../../fontawesome-all.js';
-
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faTachometer from '@fortawesome/fontawesome-pro-light/faTachometer';
 import faListAlt from '@fortawesome/fontawesome-pro-light/faListAlt';

@@ -11,7 +11,9 @@ const Text = props => {
 
     return (
       <span
-        className={`text ${styles[style]} ${styles[color]} ${addedClasses}`}
+        className={`text ${className} ${styles[style]} ${
+          styles[color]
+        } ${addedClasses}`}
         id={id}
       >
         <a href={src} target="_blank">

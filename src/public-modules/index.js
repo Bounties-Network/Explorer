@@ -34,7 +34,7 @@ import { actionTypes as bountyActionTypes } from 'public-modules/Bounties';
 import { actionTypes as leaderboardActionTypes } from 'public-modules/Leaderboard';
 
 export const actionTypes = {
-  ...leaderboardActions,
+  ...leaderboardActionTypes,
   ...bountyActionTypes
 };
 

@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './App.module.scss';
 import { hot } from 'react-hot-loader';
 import { Switch, Route } from 'react-router-dom';
-import { Navbar, NoMatch } from 'layout';
-import { Bounties, Discover, LeaderboardPage } from 'containers';
+import { NoMatch } from 'layout';
+import { Bounties, LeaderboardPage } from 'containers';
 import { Header, Sidebar } from 'components';
 
 const App = () => {

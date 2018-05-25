@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './ToggleSwitch.module.scss';
+// import styles from './ToggleSwitch.module.scss';
 
 import { SwitchModule } from 'components';
 

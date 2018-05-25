@@ -5,18 +5,18 @@ import styles from './Circle.module.scss';
 import { Text } from 'components';
 
 const Circle = props => {
-  const { type, input, size, color, textColor, textStyle } = props;
+  const { type, input, size, color, textColor, textStyle = 'H2' } = props;
 
   return (
     <div className={`${styles.circle} ${styles[color]} ${styles[size]}`}>
       {type === 'text' ? (
         <div className={`${styles.text}`}>
-          <Text style="H2" color={textColor} style={textStyle}>
+          <Text color={textColor} style={textStyle}>
             {input}
           </Text>
         </div>
       ) : (
-        <img className={`${styles.img}`} src={input} />
+        <img className={`${styles.img}`} src={input} alt="circle" />
       )}
     </div>
   );
