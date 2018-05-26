@@ -76,6 +76,13 @@
   }
 }
 
+.clearFilter {
+  background-color: none;
+  color: $brand-blue;
+  text-decoration: underline;
+  border: none;
+}
+
 .create {
   background-color: $brand-blue;
   color: white;
@@ -88,7 +95,7 @@
 
 .small {
   height: 35px;
-  width: 75px;
+  width: 80px;
 }
 
 .medium {

@@ -29,7 +29,8 @@ Button.propTypes = {
     'secondary',
     'destructive',
     'link',
-    'create'
+    'create',
+    'clearFilter'
   ]),
   size: PropTypes.oneOf(['icon', 'small', 'medium', 'large']),
   disabled: PropTypes.bool,

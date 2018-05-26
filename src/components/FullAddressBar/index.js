@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './FullAddressBar.module.scss';
 
 import { Text, Button } from 'components';
-import { i } from '../../fontawesome-all';
 
 const FullAddressBarComponent = props => {
   const { address, copyButton } = props;
@@ -31,9 +30,7 @@ const FullAddressBarComponent = props => {
           size="icon"
           style="secondary"
           onClick={e => copyToClipboard(address)}
-        >
-          <i className="far fa-cut" />
-        </Button>
+        />
       </div>
     </div>
   );

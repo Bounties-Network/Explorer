@@ -46,11 +46,6 @@ const LeaderboardItem = props => {
       </span>
       <span className={`${styles.cardRight}`}>
         <Text color="purple">{`$${total_usd.toFixed(2)}`}</Text>
-        <div className={`${styles.ethText}`}>
-          <Text style="Alt" color="grey">
-            0.05 ETH
-          </Text>
-        </div>
       </span>
     </span>
   );
