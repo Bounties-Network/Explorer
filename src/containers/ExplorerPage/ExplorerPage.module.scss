@@ -77,8 +77,13 @@
 .skillsData {
   display: flex;
   align-content: space-around;
+  height: 100px;
+}
+
+.chipBar {
+  display: flex;
   flex-wrap: wrap;
-  height: 55px;
+  height: 80px;
 }
 
 .chip {
@@ -149,17 +154,19 @@
 
 .bounties {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   flex-direction: column;
   min-height: 52%;
   height: fit-content;
   background-color: $brand-lightGrey;
   padding-left: $center-padding-left;
   padding-right: $center-padding-right;
+
 }
 
 .sortBy {
   height: 30px;
+  margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -168,7 +175,7 @@
 
 .bountiesBody {
   display: flex;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .refineBy {
@@ -177,5 +184,9 @@
 
 .bountyCards {
   width: 76%;
-  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.bountyCard {
+
 }

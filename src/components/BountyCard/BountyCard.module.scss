@@ -1,33 +1,65 @@
 @import "~styles/variables.scss";
 
 .bountyCardContainer {
-  margin-bottom: 20px;
   display: flex;
-  width: 561px;
-  height: 131px;
-  box-shadow: $brand-bountyCard-box-shadow;
+  justify-content: space-between;
+  width: 96%;
+  height: 100px;
   padding: 25px;
-  justify-content: space-between;
+  box-shadow: $brand-bountyCard-box-shadow;
+  background-color: white;
+  border-radius: 4px;
+  margin-bottom: 20px;
 }
 
-.bountyCardLeft {
+.leftColumn {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.bountyCardLeftTop {
-  display: flex;
-  flex-direction: column;
-}
-
-.bountyCardRight {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  width: 50%;
 }
 
 .chipBar {
   display: flex;
-  flex-wrap: wrap;
+}
+
+.chip {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.profileBar {
+  display: flex;
+  align-items: center;
+}
+
+.addressText {
+  padding-left: 15px;
+}
+
+.midColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.dataCell {
+  display: flex;
+}
+
+.dataIcon {
+  display: flex;
+  justify-content: center;
+  width: 10px;
+  padding-right: 10px;
+}
+
+.dataCategory {
+  padding-left: 5px;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
