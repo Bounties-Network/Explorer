@@ -19,7 +19,7 @@ class Tabs extends React.Component {
   renderTabs(tabs) {
     return tabs.map(elem => {
       return (
-        <div onClick={e => this.onTabChange(elem)}>
+        <div key={elem.title} onClick={e => this.onTabChange(elem)}>
           <Tab
             notificationAmount={elem.notificationAmount}
             active={this.state.activeTab === elem.title}
@@ -46,11 +46,13 @@ class Tabs extends React.Component {
 }
 
 Tabs.propTypes = {
-  tabs: PropTypes.array
+  tabs: PropTypes.array,
+  onClick: PropTypes.func
 };
 
 Tabs.defaultProps = {
-  tabs: [{ title: 'title' }]
+  tabs: [{ title: 'title' }],
+  onClick: e => console.log(e)
 };
 
 export default Tabs;

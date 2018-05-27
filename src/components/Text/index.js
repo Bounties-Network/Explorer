@@ -23,7 +23,10 @@ const Text = props => {
   }
 
   return (
-    <span className={`text ${styles[style]} ${styles[color]}`} id={id}>
+    <span
+      className={`text ${className} ${styles[style]} ${styles[color]}`}
+      id={id}
+    >
       {props.children}
     </span>
   );

@@ -13,14 +13,14 @@ import faGlobe from '@fortawesome/fontawesome-pro-light/faGlobe';
 import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import faGithub from '@fortawesome/fontawesome-free-brands/faGithub';
 
-import { Text, Circle, FullAddressBar, Chip } from 'components';
+import { Text, Circle, FullAddressBar, Chip, Tabs } from 'components';
 
 const { currentUserSelector, rootCurrentUserSelector } = selectors;
 
 const renderChips = data => {
   return data.map((elem, idx) => {
     return (
-      <div className={`${styles.chip}`}>
+      <div className={`${styles.chip}`} key={elem + idx}>
         <Chip style="rectangle">{elem}</Chip>
       </div>
     );
@@ -31,6 +31,8 @@ const ExplorerPage = props => {
   console.log('props', props);
   const { loading, error, userAddress, currentUser } = props;
   const { address, email, githubUsername, name } = currentUser;
+
+  let tabs = [{ title: 'Bounties' }, { title: 'Submissions' }];
 
   const skills = ['React', 'CSS', 'HTML', 'Translations', 'Javascript'];
 
@@ -46,7 +48,7 @@ const ExplorerPage = props => {
       <div className={`${styles.profile}`}>
         <div className={`${styles.profilePic}`}>
           <Circle type="image" />
-          <Text>{name}</Text>
+          <Text className={styles.profileTitle}>{name}</Text>
           <FullAddressBar address={userAddress} />
         </div>
         <div className={`${styles.profileInfo}`}>
@@ -144,6 +146,9 @@ const ExplorerPage = props => {
             </div>
           </div>
         </div>
+      </div>
+      <div className={`${styles.tabs}`}>
+        <Tabs tabs={tabs} />
       </div>
       <div className={`${styles.bounties}`}>BOUNTIES</div>
     </div>
