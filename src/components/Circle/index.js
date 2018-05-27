@@ -5,7 +5,12 @@ import styles from './Circle.module.scss';
 import { Text } from 'components';
 
 const Circle = props => {
-  const { type, input, size, color, textColor, textStyle = 'H2' } = props;
+  let { type, input, size, color, textColor, textStyle = 'H2' } = props;
+
+  if (type === 'image' && input === '') {
+    input =
+      'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
+  }
 
   return (
     <div className={`${styles.circle} ${styles[color]} ${styles[size]}`}>
