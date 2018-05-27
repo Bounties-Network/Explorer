@@ -48,7 +48,9 @@ const ExplorerPage = props => {
       <div className={`${styles.profile}`}>
         <div className={`${styles.profilePic}`}>
           <Circle type="image" />
-          <Text className={styles.profileTitle}>{name}</Text>
+          <Text style="H2" className={styles.profileTitle}>
+            {name}
+          </Text>
           <FullAddressBar address={userAddress} />
         </div>
         <div className={`${styles.profileInfo}`}>
@@ -129,19 +131,28 @@ const ExplorerPage = props => {
                 <Text color="grey">
                   <FontAwesomeIcon icon={faGlobe} />
                 </Text>{' '}
-                <Text link> firstNameLastName.com</Text>
+                <Text color="blue" link>
+                  {' '}
+                  firstNameLastName.com
+                </Text>
               </div>
               <div>
                 <Text color="grey">
                   <FontAwesomeIcon icon={faTwitter} />
                 </Text>{' '}
-                <Text link> @twitterUsername</Text>
+                <Text color="blue" link>
+                  {' '}
+                  @twitterUsername
+                </Text>
               </div>
               <div>
                 <Text color="grey">
                   <FontAwesomeIcon icon={faGithub} />
                 </Text>{' '}
-                <Text link> @githubUsername</Text>
+                <Text color="blue" link>
+                  {' '}
+                  @githubUsername
+                </Text>
               </div>
             </div>
           </div>
@@ -150,7 +161,7 @@ const ExplorerPage = props => {
       <div className={`${styles.tabs}`}>
         <Tabs tabs={tabs} />
       </div>
-      <div className={`${styles.bounties}`}>BOUNTIES</div>
+      <div className={`${styles.bounties}`}>some words go here</div>
     </div>
   );
 };

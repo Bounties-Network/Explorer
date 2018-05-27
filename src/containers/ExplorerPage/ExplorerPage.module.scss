@@ -34,14 +34,9 @@
   margin-bottom: 10px;
 }
 
-.chip {
-  margin-left: 2px;
-  margin-right: 2px;
-  // margin: 2px;
-}
-
 .profileHeader {
   display: flex;
+  margin-bottom: 20px;
 }
 
 .about {
@@ -81,9 +76,16 @@
 
 .skillsData {
   display: flex;
+  align-content: space-around;
   flex-wrap: wrap;
-  height: 100px;
+  height: 55px;
 }
+
+.chip {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
 
 .networkStats {
   display: flex;
@@ -99,6 +101,7 @@
 .networkHeader {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .networkStatsCircle {
@@ -111,6 +114,7 @@
   display: flex;
   height: 100px;
   justify-content: space-around;
+  align-items: space-around;
 }
 
 .networkStatsDataCell {
@@ -133,6 +137,7 @@
   display: flex;
   height: 100px;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .tabs {
@@ -149,4 +154,5 @@
   justify-content: center;
   padding-left: $center-padding-left;
   padding-right: $center-padding-right;
+  padding-top: 2%;
 }

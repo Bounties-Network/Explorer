@@ -11,11 +11,10 @@ const Text = props => {
 
     return (
       <span
-        className={`text ${className} ${styles[style]} 
-        ${styles[color]} ${addedClasses}`}
+        className={`text ${className} ${styles[style]} ${addedClasses}`}
         id={id}
       >
-        <a href={src} target="_blank">
+        <a className={`${styles[color]}`} href={src} target="_blank">
           {props.children}
         </a>
       </span>
