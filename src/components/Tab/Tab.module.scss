@@ -1,11 +1,26 @@
+@import "~styles/variables.scss";
+
 .tab {
-  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 140px;
   cursor: pointer;
   padding: 0 5px;
 }
 
-.active {
+.notification {
+  display: flex;
+  justify-content: center;
+  margin-left: 30px;
+  width: 25px;
+  border-radius: 25px;
+  background-color: $brand-lightGrey;
+}
 
+.active {
+  border-bottom: 2px solid $brand-blue;
 }
 
 .notActive {

@@ -22,7 +22,7 @@ class Sidebar extends React.Component {
   }
 
   onTabClick(page) {
-    // this.props.onChange();
+    this.props.onClick(page);
 
     this.setState({ activeTab: page });
   }

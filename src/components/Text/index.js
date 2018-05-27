@@ -54,7 +54,8 @@ Text.propTypes = {
     'red',
     'black',
     'white',
-    'grey'
+    'grey',
+    'darkGrey'
   ])
 };
 

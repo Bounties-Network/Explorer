@@ -4,32 +4,53 @@ import styles from './Tabs.module.scss';
 
 import { Tab } from 'components';
 
-const Tabs = props => {
-  const { className, tabs } = props;
+class Tabs extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const renderTabs = tabs => {
+    this.state = {
+      activeTab: props.tabs[0].title
+    };
+
+    this.renderTabs = this.renderTabs.bind(this);
+    this.onTabChange = this.onTabChange.bind(this);
+  }
+
+  renderTabs(tabs) {
     return tabs.map(elem => {
       return (
-        <Tab
-          notificationAmount={elem.notificationAmount}
-          notificationColor={elem.notificationColor}
-          active={elem.active}
-        >
-          {elem.title}
-        </Tab>
+        <div onClick={e => this.onTabChange(elem)}>
+          <Tab
+            notificationAmount={elem.notificationAmount}
+            active={this.state.activeTab === elem.title}
+            onClick={() => this.onTabChange(elem.title)}
+          >
+            {elem.title}
+          </Tab>
+        </div>
       );
     });
-  };
+  }
 
-  return <div className={`${styles.tabs}`}>{renderTabs(tabs)}</div>;
-};
+  onTabChange(tab) {
+    this.setState({ activeTab: tab.title });
+
+    this.props.onClick(tab);
+  }
+
+  render() {
+    const { tabs } = this.props;
+
+    return <div className={`${styles.tabs}`}>{this.renderTabs(tabs)}</div>;
+  }
+}
 
 Tabs.propTypes = {
   tabs: PropTypes.array
 };
 
 Tabs.defaultProps = {
-  tabs: []
+  tabs: [{ title: 'title' }]
 };
 
 export default Tabs;

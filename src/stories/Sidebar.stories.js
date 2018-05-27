@@ -7,6 +7,6 @@ import { Sidebar } from 'components';
 
 storiesOf('Sidebar', module).add('Sidebar', () => (
   <div>
-    <Sidebar options={options} onClick={console.log} />
+    <Sidebar onClick={console.log} />
   </div>
 ));
