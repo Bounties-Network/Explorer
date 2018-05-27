@@ -148,11 +148,34 @@
 }
 
 .bounties {
-  height: 50%;
-  background-color: $brand-lightGrey;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 52%;
+  height: fit-content;
+  background-color: $brand-lightGrey;
   padding-left: $center-padding-left;
   padding-right: $center-padding-right;
-  padding-top: 2%;
+}
+
+.sortBy {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.bountiesBody {
+  display: flex;
+  margin-top: 10px;
+}
+
+.refineBy {
+  width: 20%;
+}
+
+.bountyCards {
+  width: 76%;
+  border: 1px solid black;
 }

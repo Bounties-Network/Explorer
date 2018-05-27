@@ -3,11 +3,12 @@
 .filter {
   height: 300px;
   width: 200px;
-  border: 1px solid black;
   padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  background-color: white;
+  border-radius: 2px;
 }
 
 .titleBar {

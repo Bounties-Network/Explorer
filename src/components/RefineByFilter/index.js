@@ -19,10 +19,12 @@ class RefineByFilter extends React.Component {
         }
       }
     };
+
+    this.onInputChange = this.onInputChange.bind(this);
+    this.clearFilter = this.clearFilter.bind(this);
   }
 
   onInputChange(prop, value) {
-    console.log('event', prop, value);
     let tempFilter = Object.assign({}, this.state.filter);
     if (prop === 'paymentStatus') {
       tempFilter[prop] = value;
@@ -37,12 +39,27 @@ class RefineByFilter extends React.Component {
     this.props.onChange(tempFilter);
   }
 
+  clearFilter() {
+    const filter = {
+      paymentStatus: 'any',
+      stage: {
+        draft: false,
+        active: false,
+        expired: false,
+        killed: false
+      }
+    };
+
+    this.setState({ filter });
+    this.props.onChange(filter);
+  }
+
   render() {
     return (
       <div className={`${styles.filter}`}>
         <div className={`${styles.titleBar}`}>
           <Text style="H4">Refine By:</Text>
-          <Button style="clearFilter" size="small">
+          <Button style="clearFilter" size="small" onClick={this.clearFilter}>
             Clear Filters
           </Button>
         </div>
@@ -50,21 +67,25 @@ class RefineByFilter extends React.Component {
           <Text style="Body">Stage</Text> <br />
           <input
             type="checkbox"
-            onChange={() => this.onInputChange('stage', 'drafts')}
+            checked={this.state.filter.stage.draft}
+            onChange={() => this.onInputChange('stage', 'draft')}
           />{' '}
           <Text>Drafts</Text> <br />
           <input
             type="checkbox"
+            checked={this.state.filter.stage.active}
             onChange={() => this.onInputChange('stage', 'active')}
           />{' '}
           <Text>Active</Text> <br />
           <input
             type="checkbox"
+            checked={this.state.filter.stage.expired}
             onChange={() => this.onInputChange('stage', 'expired')}
           />{' '}
           <Text>Expired</Text> <br />
           <input
             type="checkbox"
+            checked={this.state.filter.stage.killed}
             onChange={() => this.onInputChange('stage', 'killed')}
           />{' '}
           <Text>Killed</Text> <br />

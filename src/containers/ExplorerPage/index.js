@@ -13,7 +13,16 @@ import faGlobe from '@fortawesome/fontawesome-pro-light/faGlobe';
 import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import faGithub from '@fortawesome/fontawesome-free-brands/faGithub';
 
-import { Text, Circle, FullAddressBar, Chip, Tabs } from 'components';
+import {
+  Text,
+  Circle,
+  FullAddressBar,
+  Chip,
+  Tabs,
+  SortBy,
+  RefineByFilter,
+  BountyCard
+} from 'components';
 
 const { currentUserSelector, rootCurrentUserSelector } = selectors;
 
@@ -161,7 +170,17 @@ const ExplorerPage = props => {
       <div className={`${styles.tabs}`}>
         <Tabs tabs={tabs} />
       </div>
-      <div className={`${styles.bounties}`}>some words go here</div>
+      <div className={`${styles.bounties}`}>
+        <div className={`${styles.sortBy}`}>
+          <SortBy />
+        </div>
+        <div className={`${styles.bountiesBody}`}>
+          <div className={`${styles.refineBy}`}>
+            <RefineByFilter />
+          </div>
+          <div className={`${styles.bountyCards}`}>text</div>
+        </div>
+      </div>
     </div>
   );
 };
