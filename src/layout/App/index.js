@@ -10,7 +10,7 @@ const App = () => {
   return (
     <div className={styles.app}>
       <Header />
-      <Sidebar />
+      <Sidebar onClick={console.log} />
       <div className={`${styles.body}`}>
         <Switch>
           <Route exact path="/" component={Bounties} />

@@ -82,7 +82,9 @@ Sidebar.propTypes = {
 };
 
 Sidebar.defaultProps = {
-  onChange: () => {}
+  onChange: e => {
+    console.log(e);
+  }
 };
 
 export default Sidebar;
