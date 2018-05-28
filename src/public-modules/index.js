@@ -4,59 +4,71 @@
 import bountiesReducer from 'public-modules/Bounties';
 import leaderboardReducer from 'public-modules/Leaderboard';
 import userInfoReducer from 'public-modules/UserInfo';
+import statsReducer from 'public-modules/Stats';
 
 export const reducers = {
   bounties: bountiesReducer,
   leaderboard: leaderboardReducer,
-  userInfo: userInfoReducer
+  userInfo: userInfoReducer,
+  stats: statsReducer
 };
 
 import bountiesSagas from 'public-modules/Bounties/sagas';
 import leaderboardSagas from 'public-modules/Leaderboard/sagas';
 import userInfoSagas from 'public-modules/UserInfo/sagas';
+import statsSagas from 'public-modules/Stats/sagas';
 
 export const sagaWatchers = [
   ...leaderboardSagas,
   ...bountiesSagas,
-  ...userInfoSagas
+  ...userInfoSagas,
+  ...statsSagas
 ];
 
 import * as namedBountiesSagas from 'public-modules/Bounties/sagas';
 import * as namedLeaderboardSagas from 'public-modules/Leaderboard/sagas';
 import * as namedUserInfoSagas from 'public-modules/UserInfo/sagas';
+import * as namedStatsSagas from 'public-modules/Stats/sagas';
 
 export const sagas = {
   ...namedLeaderboardSagas,
   ...namedBountiesSagas,
-  ...namedUserInfoSagas
+  ...namedUserInfoSagas,
+  ...namedStatsSagas
 };
 
 import { actions as bountyActions } from 'public-modules/Bounties';
 import { actions as leaderboardActions } from 'public-modules/Leaderboard';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
+import { actions as statsActions } from 'public-modules/Stats';
 
 export const actions = {
   ...leaderboardActions,
   ...bountyActions,
-  ...userInfoActions
+  ...userInfoActions,
+  ...statsActions
 };
 
 import { actionTypes as bountyActionTypes } from 'public-modules/Bounties';
 import { actionTypes as leaderboardActionTypes } from 'public-modules/Leaderboard';
 import { actionTypes as userInfoActionTypes } from 'public-modules/UserInfo';
+import { actionTypes as statsActionTypes } from 'public-modules/Stats';
 
 export const actionTypes = {
   ...leaderboardActionTypes,
   ...bountyActionTypes,
-  ...userInfoActionTypes
+  ...userInfoActionTypes,
+  ...statsActionTypes
 };
 
 import * as bountiesSelectors from 'public-modules/Bounties/selectors';
 import * as leaderboardSelectors from 'public-modules/Leaderboard/selectors';
 import * as userInfoSelectors from 'public-modules/UserInfo/selectors';
+import * as statsSelectors from 'public-modules/Stats/selectors';
 
 export const selectors = {
   ...leaderboardSelectors,
   ...bountiesSelectors,
-  ...userInfoSelectors
+  ...userInfoSelectors,
+  ...statsSelectors
 };

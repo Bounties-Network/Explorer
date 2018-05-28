@@ -3,7 +3,12 @@ import styles from './App.module.scss';
 import { hot } from 'react-hot-loader';
 import { Switch, Route } from 'react-router-dom';
 import { NoMatch } from 'layout';
-import { Bounties, LeaderboardPage, ExplorerPage } from 'containers';
+import {
+  Bounties,
+  LeaderboardPage,
+  ExplorerPage,
+  DashboardPage
+} from 'containers';
 import { Header, Sidebar } from 'components';
 
 const App = () => {
@@ -14,6 +19,7 @@ const App = () => {
       <div className={`${styles.body}`}>
         <Switch>
           <Route exact path="/" component={Bounties} />
+          <Route exact path="/dashboard/:address" component={DashboardPage} />
           <Route exact path="/leaderboard" component={LeaderboardPage} />
           <Route exact path="/explorer/:address" component={ExplorerPage} />
           <Route component={NoMatch} />
