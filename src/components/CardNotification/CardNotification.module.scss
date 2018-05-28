@@ -1,0 +1,47 @@
+@import "~styles/variables.scss";
+
+.cardNotificationContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+  min-width: 600px;
+  border-bottom: 1px solid $brand-lightGrey;
+}
+
+.leftColumn {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.notificationDot {
+  width: 25px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: $brand-red;
+  font-size: 10px;
+}
+
+.profilePic {
+  display: flex;
+  align-content: center;
+  margin-right: 10px;
+}
+
+.textArea {
+  display: flex;
+}
+
+.textCell {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: fit-content;
+}
+
+.rightColumn {
+  width: 10%;
+  display: flex;
+  align-items: center;
+}
