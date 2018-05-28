@@ -1,0 +1,30 @@
+@import "~styles/variables.scss";
+
+.cardBountyContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 25px;
+  height: 50px;
+  border-bottom: 1px solid $brand-lightGrey
+}
+
+.leftColumn {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.notificationDot {
+  width: 25px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: $brand-green;
+  font-size: 10px;
+}
+
+.submissionsData {
+  margin-left: 5px;
+}
+

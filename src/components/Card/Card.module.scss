@@ -1,41 +1,42 @@
 @import "~styles/variables.scss";
 
 .cardContainer {
+  min-width: 600px;
   display: flex;
   box-shadow: $brand-card-box-shadow;
   padding: 25px;
+  width: 48%;
   flex-direction: column;
 }
 
 .cardTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.tabRow {
+  display: flex;
+  height: 60px;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid $brand-lightGrey;
 }
 
 .cardBody {
-
+  overflow-y: auto;
+  width: 100%;
 }
 
 .short {
-  height: 150px;
+  height: 300px;
 }
 
 .medium {
-  height: 250px;
-}
-
-.tall {
   height: 600px;
 }
 
-.skinny {
-  width: 300px;
+.tall {
+  height: 800px;
 }
-
-.normal {
-  width: 600px;
-}
-
-.wide {
-  width: 900px;
-}
-

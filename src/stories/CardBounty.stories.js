@@ -3,13 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { Card, CardBounty } from 'components';
-
-let tabsData = [
-  { title: 'Active', notificationAmount: 4 },
-  { title: 'Pending Submissions', notificationAmount: 2 },
-  { title: 'Drafts', notificationAmount: 2 }
-];
+import { CardBounty } from 'components';
 
 const fakeData = {
   id: 286,
@@ -90,23 +84,13 @@ const fakeData = {
   token: 2
 };
 
-storiesOf('Card', module).add('Card', () => (
+storiesOf('CardBounty', module).add('CardBounty', () => (
   <div>
-    <Card title="My Bounties" tabs={tabsData}>
-      <CardBounty bountyData={fakeData} displayNotification={true} />
-      <CardBounty bountyData={fakeData} displayNotification={false} />
-      <CardBounty bountyData={fakeData} displayNotification={false} />
-      <CardBounty bountyData={fakeData} displayNotification={true} />
-      <CardBounty bountyData={fakeData} displayNotification={true} />
-      <CardBounty bountyData={fakeData} displayNotification={true} />
-      <CardBounty bountyData={fakeData} displayNotification={true} />
-      <CardBounty bountyData={fakeData} displayNotification={true} />
-      <CardBounty bountyData={fakeData} displayNotification={false} />
-      <CardBounty bountyData={fakeData} displayNotification={false} />
-      <CardBounty bountyData={fakeData} displayNotification={true} />
-      <CardBounty bountyData={fakeData} displayNotification={true} />
-      <CardBounty bountyData={fakeData} displayNotification={true} />
-      <CardBounty bountyData={fakeData} displayNotification={true} />
-    </Card>
+    <CardBounty bountyData={fakeData} displayNotification={true} />
+    <CardBounty bountyData={fakeData} displayNotification={false} />
+    <CardBounty bountyData={fakeData} displayNotification={true} />
+    <CardBounty bountyData={fakeData} displayNotification={true} />
+    <CardBounty bountyData={fakeData} displayNotification={true} />
+    <CardBounty bountyData={fakeData} displayNotification={true} />
   </div>
 ));
