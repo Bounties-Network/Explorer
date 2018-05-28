@@ -6,6 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { CardBounty } from 'components';
 
 const fakeData = {
+  displayNotification: true,
   id: 286,
   bountyStage: 3,
   categories: [
@@ -86,11 +87,11 @@ const fakeData = {
 
 storiesOf('CardBounty', module).add('CardBounty', () => (
   <div>
-    <CardBounty bountyData={fakeData} displayNotification={true} />
-    <CardBounty bountyData={fakeData} displayNotification={false} />
-    <CardBounty bountyData={fakeData} displayNotification={true} />
-    <CardBounty bountyData={fakeData} displayNotification={true} />
-    <CardBounty bountyData={fakeData} displayNotification={true} />
-    <CardBounty bountyData={fakeData} displayNotification={true} />
+    <CardBounty bountyData={fakeData} />
+    <CardBounty bountyData={fakeData} />
+    <CardBounty bountyData={fakeData} />
+    <CardBounty bountyData={fakeData} />
+    <CardBounty bountyData={fakeData} />
+    <CardBounty bountyData={fakeData} />
   </div>
 ));

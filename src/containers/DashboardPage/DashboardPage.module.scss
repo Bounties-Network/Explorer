@@ -4,8 +4,8 @@
   background-color: $brand-lightGrey;
   height: 100%;
   width: 100%;
-  padding-left: $center-padding-left;
-  padding-right: $center-padding-right;
+  padding-left: 7%;
+  padding-right: 7%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,7 +17,7 @@
   height: 25%;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -71,5 +71,15 @@
 
 
 .dashboardBody {
+  height: 75%;
+  width: 100%;
+  display: flex;
+}
 
+.dashboardBodyLeft {
+  width: 50%;
+}
+
+.dashboardBodyRight {
+  width: 50%;
 }

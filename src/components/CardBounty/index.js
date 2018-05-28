@@ -9,8 +9,9 @@ import faCircle from '@fortawesome/fontawesome-pro-solid/faCircle';
 import { Text, Payout } from 'components';
 
 const CardBounty = props => {
-  const { bountyData, displayNotification = false } = props;
+  const { bountyData } = props;
   const {
+    displayNotification = false,
     title = 'this is some fake text',
     categories = [],
     issuer = '',
