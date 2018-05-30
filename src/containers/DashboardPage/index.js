@@ -7,22 +7,7 @@ import { actions, sagas, selectors } from 'public-modules';
 import styles from './DashboardPage.module.scss';
 import { shortenAddress } from '../../utils/utilities';
 
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faToolbox from '@fortawesome/fontawesome-pro-light/faToolbox';
-
-import {
-  Text,
-  Circle,
-  FullAddressBar,
-  Chip,
-  Tabs,
-  SortBy,
-  RefineByFilter,
-  BountyCard,
-  Card,
-  CardBounty,
-  CardNotification
-} from 'components';
+import { Text, Circle, Card, CardBounty, CardNotification } from 'components';
 
 let myBountiesTabs = [
   { title: 'Active', notificationAmount: 4 },

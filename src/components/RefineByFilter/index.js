@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './RefineByFilter.module.scss';
 
-import { Text, Button } from 'components';
+import { Text, Button, DropdownSearch } from 'components';
 
 class RefineByFilter extends React.Component {
   constructor(props) {
@@ -14,9 +14,11 @@ class RefineByFilter extends React.Component {
         stage: {
           draft: false,
           active: false,
+          completed: false,
           expired: false,
           killed: false
-        }
+        },
+        categories: []
       }
     };
 
@@ -28,15 +30,17 @@ class RefineByFilter extends React.Component {
     let tempFilter = Object.assign({}, this.state.filter);
     if (prop === 'paymentStatus') {
       tempFilter[prop] = value;
-      this.setState({ filter: tempFilter });
     }
     if (prop === 'stage') {
       tempFilter[prop][value] = !this.state.filter.stage[value];
-      this.setState({ filter: tempFilter });
+    }
+    if (prop === 'categories') {
+      tempFilter[prop] = value;
     }
 
-    setTimeout(() => console.log(this.state.filter.stage), 0);
-    this.props.onChange(tempFilter);
+    this.setState({ filter: tempFilter }, () =>
+      this.props.onChange(tempFilter)
+    );
   }
 
   clearFilter() {
@@ -45,18 +49,27 @@ class RefineByFilter extends React.Component {
       stage: {
         draft: false,
         active: false,
+        completed: false,
         expired: false,
         killed: false
-      }
+      },
+      categories: []
     };
 
     this.setState({ filter });
+    if (this.DropdownSearchComponent) {
+      this.DropdownSearchComponent.clearFilters();
+    }
     this.props.onChange(filter);
   }
 
   render() {
+    const { dropdown, dropdownOptions } = this.props;
+
     return (
-      <div className={`${styles.filter}`}>
+      <div
+        className={`${styles.filter} ${styles[dropdown ? 'withDropdown' : '']}`}
+      >
         <div className={`${styles.titleBar}`}>
           <Text style="H4">Refine By:</Text>
           <Button style="clearFilter" size="small" onClick={this.clearFilter}>
@@ -77,6 +90,12 @@ class RefineByFilter extends React.Component {
             onChange={() => this.onInputChange('stage', 'active')}
           />{' '}
           <Text>Active</Text> <br />
+          <input
+            type="checkbox"
+            checked={this.state.filter.stage.completed}
+            onChange={() => this.onInputChange('stage', 'completed')}
+          />{' '}
+          <Text>Completed</Text> <br />
           <input
             type="checkbox"
             checked={this.state.filter.stage.expired}
@@ -111,6 +130,18 @@ class RefineByFilter extends React.Component {
           />{' '}
           <Text>Unpaid</Text> <br />
         </div>
+        {dropdown && (
+          <div className={`${styles.dropdownSearch}`}>
+            <DropdownSearch
+              ref={DropdownSearchComponent =>
+                (this.DropdownSearchComponent = DropdownSearchComponent)
+              }
+              options={dropdownOptions}
+              placeholder="e.g. HTML"
+              onChange={e => this.onInputChange('categories', e)}
+            />
+          </div>
+        )}
       </div>
     );
   }

@@ -11,6 +11,10 @@
   border-radius: 4px;
 }
 
+.withDropdown {
+  height: 400px;
+}
+
 .titleBar {
   display: flex;
   justify-content: space-between;
@@ -23,4 +27,8 @@
 
 .paymentStatus {
 
+}
+
+.dropdownSearch {
+  height: 100px;
 }

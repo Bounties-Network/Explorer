@@ -6,8 +6,9 @@ import { NoMatch } from 'layout';
 import {
   Bounties,
   LeaderboardPage,
-  ExplorerPage,
-  DashboardPage
+  ProfilePage,
+  DashboardPage,
+  ExplorerPage
 } from 'containers';
 import { Header, Sidebar } from 'components';
 
@@ -19,9 +20,10 @@ const App = () => {
       <div className={`${styles.body}`}>
         <Switch>
           <Route exact path="/" component={Bounties} />
+          <Route exact path="/explorer" component={ExplorerPage} />
           <Route exact path="/dashboard/:address" component={DashboardPage} />
           <Route exact path="/leaderboard" component={LeaderboardPage} />
-          <Route exact path="/explorer/:address" component={ExplorerPage} />
+          <Route exact path="/profile/:address" component={ProfilePage} />
           <Route component={NoMatch} />
         </Switch>
       </div>

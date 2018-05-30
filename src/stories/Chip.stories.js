@@ -59,5 +59,39 @@ storiesOf('Chip', module).add('All Chips', () => (
 
     <br />
     <hr />
+
+    <Text style="H3">Chips with Close Button</Text>
+    <br />
+    <br />
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between'
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '250px'
+        }}
+      >
+        <Chip style="round" close onCloseClick={action('clicked')}>
+          HTML
+        </Chip>
+        <Chip style="round" close onCloseClick={action('clicked')}>
+          CSS
+        </Chip>
+        <Chip style="round" close onCloseClick={action('clicked')}>
+          React
+        </Chip>
+        <Chip style="round" close onCloseClick={action('clicked')}>
+          Javascript
+        </Chip>
+      </div>
+    </div>
+
+    <br />
+    <hr />
   </div>
 ));
