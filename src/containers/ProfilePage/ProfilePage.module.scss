@@ -1,6 +1,8 @@
 @import "~styles/variables.scss";
 
 .profilePage {
+  margin-top: 55px;
+  margin-left: 55px;
   width: 100%;
   height: 100%;
 }
@@ -11,8 +13,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-left: $center-padding-left;
-  padding-right: $center-padding-right;
 }
 
 .profilePic {
@@ -183,7 +183,7 @@
 }
 
 .bountyCards {
-  width: 76%;
+  width: 100%;
   border-radius: 4px;
 }
 

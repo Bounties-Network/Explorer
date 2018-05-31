@@ -513,7 +513,7 @@ const ProfilePage = props => {
         </div>
         <div className={`${styles.bountiesBody}`}>
           <div className={`${styles.refineBy}`}>
-            <RefineByFilter />
+            <RefineByFilter stages paymentStatus />
           </div>
           <div className={`${styles.bountyCards}`}>
             {renderBountyCards(fakeBountyData)}
