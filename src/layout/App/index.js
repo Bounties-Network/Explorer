@@ -12,6 +12,8 @@ import {
 } from 'containers';
 import { Header, Sidebar } from 'components';
 
+import '../../flexboxgrid.css';
+
 const App = () => {
   return (
     <div className={styles.app}>
