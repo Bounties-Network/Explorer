@@ -4,19 +4,6 @@ import styles from './Search.module.scss';
 
 import { Text } from 'components';
 
-// const Search = props => {
-//   const { onChange } = props;
-
-//   return (
-//     <input
-//       className={`${styles.search}`}
-//       type="text"
-//       placeholder="🔍  Search"
-//       onChange={onChange}
-//     />
-//   );
-// };
-
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -30,13 +17,10 @@ class Search extends React.Component {
 
   onSearchChange(e) {
     const { value } = e.target;
-    this.setState({ searchText: value });
-    setTimeout(() => console.log(this.state.searchText), 0);
+    this.setState({ searchText: value }, () => this.props.onChange(value));
   }
 
   render() {
-    // const { onChange } = this.props;
-
     return (
       <input
         className={`${styles.search}`}
@@ -45,15 +29,16 @@ class Search extends React.Component {
         onChange={this.onSearchChange}
         value={this.state.searchText}
       />
-      // <input
-      //   className={`${styles.search}`}
-      //   type="text"
-      //   placeholder="🔍  Search"
-      //   value={this.state.searchText}
-      //   onChange={this.onSearchChange}
-      // />
     );
   }
 }
+
+Search.propTypes = {
+  onChange: PropTypes.func
+};
+
+Search.defaultProps = {
+  onChange: () => {}
+};
 
 export default Search;
