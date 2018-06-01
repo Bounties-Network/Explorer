@@ -13,6 +13,7 @@ import {
 import { Header, Sidebar } from 'components';
 
 import '../../flexboxgrid.css';
+import '../../font-files/inter-ui.css';
 
 const App = () => {
   return (
