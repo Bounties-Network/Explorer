@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Sidebar.module.scss';
 
+import { Link } from 'react-router-dom';
+
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faTachometer from '@fortawesome/fontawesome-pro-light/faTachometer';
 import faListAlt from '@fortawesome/fontawesome-pro-light/faListAlt';
@@ -21,6 +23,25 @@ class Sidebar extends React.Component {
     this.checkActive = this.checkActive.bind(this);
   }
 
+  componentDidMount() {
+    if (window && window.location && window.location.pathname) {
+      let path = window.location.pathname;
+      let activeTab;
+
+      if (path.slice(0, 10) === '/dashboard') {
+        activeTab = 'dashboard';
+      } else if (path.slice(0, 9) === '/explorer') {
+        activeTab = 'explorer';
+      } else if (path.slice(0, 12) === '/leaderboard') {
+        activeTab = 'leaderboard';
+      } else if (path.slice(0, 8) === '/profile') {
+        activeTab = 'profile';
+      }
+
+      this.setState({ activeTab });
+    }
+  }
+
   onTabClick(page) {
     this.props.onClick(page);
 
@@ -36,41 +57,45 @@ class Sidebar extends React.Component {
       <div className={`${styles.sidebar}`}>
         <div className={`${styles.iconBar}`}>
           {/*Dashboard*/}
-          <div
+          <Link
             className={`${styles.iconTab} ${
               styles[this.checkActive('dashboard')]
             }`}
+            to="/dashboard"
             onClick={e => this.onTabClick('dashboard')}
           >
             <FontAwesomeIcon icon={faTachometer} />
-          </div>
+          </Link>
           {/*Explorer*/}
-          <div
+          <Link
             className={`${styles.iconTab} ${
               styles[this.checkActive('explorer')]
             }`}
+            to="/explorer"
             onClick={e => this.onTabClick('explorer')}
           >
             <FontAwesomeIcon icon={faListAlt} />
-          </div>
+          </Link>
           {/*Leaderboard*/}
-          <div
+          <Link
             className={`${styles.iconTab} ${
               styles[this.checkActive('leaderboard')]
             }`}
+            to="/leaderboard"
             onClick={e => this.onTabClick('leaderboard')}
           >
             <FontAwesomeIcon icon={faTrophyAlt} />
-          </div>
+          </Link>
           {/*Profile*/}
-          <div
+          <Link
             className={`${styles.iconTab} ${
               styles[this.checkActive('profile')]
             }`}
+            to="/profile"
             onClick={e => this.onTabClick('profile')}
           >
             <FontAwesomeIcon icon={faUserAlt} />
-          </div>
+          </Link>
         </div>
       </div>
     );
