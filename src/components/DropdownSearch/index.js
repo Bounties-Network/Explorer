@@ -16,7 +16,7 @@ const filterOptions = (filter, options) => {
 
   options.forEach(elem => {
     if (!hashTable[elem.name]) {
-      result.push({ name: elem.name, label: elem.name });
+      result.push(elem);
     }
   });
 

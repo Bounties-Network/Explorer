@@ -42,11 +42,14 @@ class ExplorerPage extends React.Component {
   }
 
   updateSearchOptions(prop, options) {
+    const { loadBounties } = this.props;
+
     let tempSearchOptions = Object.assign({}, this.state.searchOptions);
     tempSearchOptions[prop] = options;
 
     this.setState({ searchOptions: tempSearchOptions }, () => {
       console.log(this.state.searchOptions);
+      loadBounties(this.state.searchOptions);
     });
   }
 
