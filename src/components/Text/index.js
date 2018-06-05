@@ -47,7 +47,7 @@ Text.propTypes = {
     'Alt'
   ]),
   src: PropTypes.string,
-  link: PropTypes.boolean,
+  link: PropTypes.bool,
   color: PropTypes.oneOf([
     'purple',
     'blue',

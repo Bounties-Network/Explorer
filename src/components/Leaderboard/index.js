@@ -55,7 +55,13 @@ const Leaderboard = props => {
   const { leaderboardData } = props;
   const renderItems = dataArray => {
     return leaderboardData.map((elem, ind) => {
-      return <LeaderboardItem data={elem} index={ind} />;
+      return (
+        <LeaderboardItem
+          key={'leaderboardItem' + ind}
+          data={elem}
+          index={ind}
+        />
+      );
     });
   };
 

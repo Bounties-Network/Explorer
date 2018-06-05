@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions, sagas, selectors } from 'public-modules';
 import styles from './ProfilePage.module.scss';
+// import { web3 } from '../../utils/global';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faToolbox from '@fortawesome/fontawesome-pro-light/faToolbox';
@@ -339,6 +340,8 @@ let fakeBountyData = [
   }
 ];
 
+let web3 = window.web3;
+
 const { currentUserSelector, rootCurrentUserSelector } = selectors;
 
 const renderChips = data => {
@@ -362,7 +365,6 @@ const renderBountyCards = data => {
 };
 
 const ProfilePage = props => {
-  console.log('props', props);
   const { loading, error, userAddress, currentUser } = props;
   const { address, email, githubUsername, name } = currentUser;
 
@@ -526,7 +528,12 @@ const ProfilePage = props => {
 
 const mapStateToProps = (state, router) => {
   let currentUser = rootCurrentUserSelector(state);
-  const userAddress = router.match.params.address;
+  let userAddress = router.match.params.address || '';
+  // const userAddress = router.match.params.address;
+  if (web3 && web3.eth && web3.eth.accounts && web3.eth.accounts[0]) {
+    console.log(web3.eth.accounts[0]);
+    userAddress = web3.eth.accounts[0];
+  }
 
   return {
     userAddress: userAddress,

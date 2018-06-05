@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 // import styles from './ToggleSwitch.module.scss';
 
 import { SwitchModule } from 'components';
@@ -12,7 +13,14 @@ class ToggleSwitch extends React.Component {
     };
   }
 
-  toggleSwitch = () => {
+  componentDidMount() {
+    let { active } = this.props;
+
+    this.setState({ switched: active });
+  }
+
+  toggleSwitch = history => {
+    this.props.onClick();
     this.setState(prevState => {
       return {
         switched: !prevState.switched
@@ -39,13 +47,13 @@ class ToggleSwitch extends React.Component {
 }
 
 ToggleSwitch.propTypes = {
-  offOption: PropTypes.str,
-  onOption: PropTypes.str
+  onClick: PropTypes.func
 };
 
 ToggleSwitch.defaultProps = {
   offOption: '',
-  onOption: ''
+  onOption: '',
+  onClick: () => {}
 };
 
-export default ToggleSwitch;
+export default withRouter(ToggleSwitch);

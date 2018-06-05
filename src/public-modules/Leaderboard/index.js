@@ -9,8 +9,8 @@ const LOAD_LEADERBOARD = 'leaderboard/LOAD_LEADERBOARD';
 const LOAD_LEADERBOARD_SUCCESS = 'leaderboard/LOAD_LEADERBOARD_SUCCESS';
 const LOAD_LEADERBOARD_FAIL = 'leaderboard/LOAD_LEADERBOARD_FAIL';
 
-function loadLeaderboard() {
-  return { type: LOAD_LEADERBOARD };
+function loadLeaderboard(category) {
+  return { type: LOAD_LEADERBOARD, leaderboardCategory: category };
 }
 
 function loadLeaderboardSuccess(leaderboard) {

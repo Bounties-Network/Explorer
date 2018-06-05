@@ -797,14 +797,16 @@ const bountiesData = [
 ];
 
 const renderNotification = data => {
-  return data.map(elem => {
-    return <CardNotification notificationData={elem} />;
+  return data.map((elem, ind) => {
+    return (
+      <CardNotification notificationData={elem} key={'notification' + ind} />
+    );
   });
 };
 
 const renderBounties = data => {
-  return data.map(elem => {
-    return <CardBounty bountyData={elem} />;
+  return data.map((elem, ind) => {
+    return <CardBounty bountyData={elem} key={'bounty' + ind} />;
   });
 };
 
