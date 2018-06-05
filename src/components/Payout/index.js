@@ -31,7 +31,6 @@ const Payout = props => {
 
 Payout.propTypes = {
   USD: PropTypes.number,
-  amount: PropTypes.number,
   symbol: PropTypes.string
 };
 

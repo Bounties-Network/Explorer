@@ -4,6 +4,8 @@ import styles from './Search.module.scss';
 
 import { Text } from 'components';
 
+const debounceTimer = 400;
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -12,12 +14,23 @@ class Search extends React.Component {
       searchText: ''
     };
 
+    this.timeout = null;
+
     this.onSearchChange = this.onSearchChange.bind(this);
   }
 
   onSearchChange(e) {
     const { value } = e.target;
-    this.setState({ searchText: value }, () => this.props.onChange(value));
+    this.setState({ searchText: value });
+
+    // debounce
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+    this.timeout = setTimeout(
+      () => this.props.onChange(this.state.searchText),
+      debounceTimer
+    );
   }
 
   render() {

@@ -23,9 +23,9 @@ const BountyCard = props => {
   } = bountyData;
 
   const renderChips = categories => {
-    return categories.map(elem => (
-      <div className={`${styles.chip}`}>
-        <Chip key={elem.name}>{elem.name}</Chip>
+    return categories.map((elem, idx) => (
+      <div className={`${styles.chip}`} key={'chip' + idx}>
+        <Chip>{elem.name}</Chip>
       </div>
     ));
   };

@@ -28,11 +28,26 @@ const renderBounties = data => {
 class ExplorerPage extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      searchOptions: {}
+    };
+
+    this.updateSearchOptions = this.updateSearchOptions.bind(this);
   }
 
   componentWillMount() {
     const { loadCategories } = this.props;
     loadCategories();
+  }
+
+  updateSearchOptions(prop, options) {
+    let tempSearchOptions = Object.assign({}, this.state.searchOptions);
+    tempSearchOptions[prop] = options;
+
+    this.setState({ searchOptions: tempSearchOptions }, () => {
+      console.log(this.state.searchOptions);
+    });
   }
 
   render() {
@@ -46,7 +61,7 @@ class ExplorerPage extends React.Component {
       <div className={`${styles.explorerPage}`}>
         <div className={`${styles.filterColumn}`}>
           <div className={`${styles.searchBar}`}>
-            <Search />
+            <Search onChange={e => this.updateSearchOptions('search', e)} />
           </div>
           <div className={`${styles.refineBy}`}>
             <RefineByFilter
@@ -54,6 +69,7 @@ class ExplorerPage extends React.Component {
               stages
               difficulty
               dropdownOptions={categories}
+              onChange={e => this.updateSearchOptions('filter', e)}
             />
           </div>
         </div>
@@ -68,7 +84,7 @@ class ExplorerPage extends React.Component {
               </Text>
             </div>
             <div className={`${styles.sortBy}`}>
-              <SortBy />
+              <SortBy onClick={e => this.updateSearchOptions('sort', e)} />
             </div>
           </div>
           <div className={`${styles.bountiesList}`}>

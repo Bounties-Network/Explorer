@@ -22,7 +22,7 @@ const Header = props => {
       <div className={`${styles.buttonArea}`}>
         <Button style="primary">Create New Bounty</Button>
         <FontAwesomeIcon icon={faBell} />
-        <Circle type="img" size="mini" input={profilePic} />
+        <Circle type="image" size="mini" input={profilePic} />
       </div>
     </div>
   );
