@@ -10,7 +10,6 @@ const LOAD_USERINFO_SUCCESS = 'userInfo/LOAD_USERINFO_SUCCESS';
 const LOAD_USERINFO_FAIL = 'userInfo/LOAD_USERINFO_FAIL';
 
 function loadUserInfo(address) {
-  console.log('address', address);
   return { type: LOAD_USERINFO, address };
 }
 
@@ -26,7 +25,6 @@ function loadUserInfoFail(error) {
 }
 
 function UserInfoReducer(state = initialState, action) {
-  console.log(state, action);
   switch (action.type) {
     case LOAD_USERINFO: {
       return {

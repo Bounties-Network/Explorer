@@ -46,7 +46,6 @@ function LeaderboardReducer(state = initialState, action) {
       };
     }
     case LOAD_LEADERBOARD_FAIL: {
-      console.log('error?', state, action);
       return {
         ...state,
         loading: false,

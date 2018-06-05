@@ -49,8 +49,6 @@ class DropdownSearch extends React.Component {
     const { options } = this.props;
     const { filters, selection } = this.state;
 
-    console.log('eeee', e);
-
     let tempFilters = filters.slice(0, filters.length);
     tempFilters.push(e);
     let tempOptions = filterOptions(tempFilters, options);
@@ -59,7 +57,6 @@ class DropdownSearch extends React.Component {
       { filters: tempFilters, selection: null, options: tempOptions },
       () => {
         this.props.onChange(this.state.filters);
-        console.log('here', this.state);
       }
     );
   }
