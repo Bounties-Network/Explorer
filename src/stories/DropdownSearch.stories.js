@@ -6,9 +6,9 @@ import { action } from '@storybook/addon-actions';
 import { DropdownSearch } from 'components';
 
 const options = [
-  { value: 'React', label: 'React' },
-  { value: 'Javascript', label: 'Javascript' },
-  { value: 'CSS', label: 'CSS' }
+  { value: 'React', name: 'React' },
+  { value: 'Javascript', name: 'Javascript' },
+  { value: 'CSS', name: 'CSS' }
 ];
 
 storiesOf('DropdownSearch', module).add('DropdownSearch', () => (

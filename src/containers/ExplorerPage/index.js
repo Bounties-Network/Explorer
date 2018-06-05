@@ -8,7 +8,12 @@ import styles from './ExplorerPage.module.scss';
 
 import { RefineByFilter, Search, Text, SortBy, BountyCard } from 'components';
 
-const { bountiesStateSelector, rootBountiesSelector } = selectors;
+const {
+  bountiesStateSelector,
+  rootBountiesSelector,
+  categoriesSelector,
+  rootCategoriesSelector
+} = selectors;
 
 const renderBounties = data => {
   return data.map((elem, idx) => {
@@ -20,55 +25,71 @@ const renderBounties = data => {
   });
 };
 
-const ExplorerPage = props => {
-  const { loading, error, bounties, count } = props;
-  if (loading) {
-    return <div>loading...</div>;
+class ExplorerPage extends React.Component {
+  constructor(props) {
+    super(props);
   }
 
-  if (error) {
-    return <div>error...</div>;
+  componentWillMount() {
+    const { loadCategories } = this.props;
+    loadCategories();
   }
 
-  return (
-    <div className={`${styles.explorerPage}`}>
-      <div className={`${styles.filterColumn}`}>
-        <div className={`${styles.searchBar}`}>
-          <Search />
-        </div>
-        <div className={`${styles.refineBy}`}>
-          <RefineByFilter dropdown stages difficulty />
-        </div>
-      </div>
-      <div className={`${styles.bountiesColumn}`}>
-        <div className={`${styles.sortByBar}`}>
-          <div className={`${styles.count}`}>
-            <Text style="H2" color="purple">
-              {count}
-            </Text>
-            <Text style="H3" color="grey">
-              Bounties
-            </Text>
+  render() {
+    const { loading, error, bounties, count, categories } = this.props;
+
+    if (error) {
+      return <div>error...</div>;
+    }
+
+    return (
+      <div className={`${styles.explorerPage}`}>
+        <div className={`${styles.filterColumn}`}>
+          <div className={`${styles.searchBar}`}>
+            <Search />
           </div>
-          <div className={`${styles.sortBy}`}>
-            <SortBy />
+          <div className={`${styles.refineBy}`}>
+            <RefineByFilter
+              dropdown
+              stages
+              difficulty
+              dropdownOptions={categories}
+            />
           </div>
         </div>
-        <div className={`${styles.bountiesList}`}>
-          {renderBounties(bounties)}
+        <div className={`${styles.bountiesColumn}`}>
+          <div className={`${styles.sortByBar}`}>
+            <div className={`${styles.count}`}>
+              <Text style="H2" color="purple">
+                {count}
+              </Text>
+              <Text style="H3" color="grey">
+                Bounties
+              </Text>
+            </div>
+            <div className={`${styles.sortBy}`}>
+              <SortBy />
+            </div>
+          </div>
+          <div className={`${styles.bountiesList}`}>
+            {renderBounties(bounties)}
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = (state, router) => {
   let bountiesState = rootBountiesSelector(state);
+  let categoriesState = rootCategoriesSelector(state);
 
   return {
+    categories: categoriesState.categories,
     bounties: bountiesState.bounties,
     count: bountiesState.count,
-    ...bountiesStateSelector(state)
+    ...bountiesStateSelector(state),
+    ...categoriesSelector(state)
   };
 };
 
@@ -81,7 +102,7 @@ ExplorerPage.propTypes = {
 
 const check = compose(
   FetchComponent(sagas.fetch),
-  connect(mapStateToProps, { load: actions.loadBounties }),
+  connect(mapStateToProps, { load: actions.loadBounties, ...actions }),
   LoadComponent('')
 )(ExplorerPage);
 

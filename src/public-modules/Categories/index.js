@@ -10,7 +10,7 @@ const LOAD_CATEGORIES = 'categories/LOAD_CATEGORIES';
 const LOAD_CATEGORIES_SUCCESS = 'categories/LOAD_CATEGORIES_SUCCESS';
 const LOAD_CATEGORIES_FAIL = 'categories/LOAD_CATEGORIES_FAIL';
 
-function loadCategories(searchOptions) {
+function loadCategories(searchOptions = {}) {
   return { type: LOAD_CATEGORIES, searchOptions };
 }
 

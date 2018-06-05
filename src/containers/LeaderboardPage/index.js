@@ -20,8 +20,6 @@ const LeaderboardPage = props => {
     loadLeaderboard
   } = props;
 
-  const top10 = leaderboard.slice(0, 10);
-
   if (error) {
     return <div>error...</div>;
   }
@@ -51,7 +49,7 @@ const LeaderboardPage = props => {
           onClick={onToggleClick}
         />
       </div>
-      <Leaderboard leaderboardData={top10} />
+      <Leaderboard leaderboardData={leaderboard} />
     </div>
   );
 };

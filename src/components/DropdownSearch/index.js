@@ -11,12 +11,12 @@ const filterOptions = (filter, options) => {
   let hashTable = {};
 
   filter.forEach(elem => {
-    hashTable[elem.value] = true;
+    hashTable[elem.name] = true;
   });
 
   options.forEach(elem => {
-    if (!hashTable[elem.value]) {
-      result.push({ value: elem.value, label: elem.value });
+    if (!hashTable[elem.name]) {
+      result.push({ name: elem.name, label: elem.name });
     }
   });
 
@@ -39,33 +39,38 @@ class DropdownSearch extends React.Component {
     this.closeChip = this.closeChip.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({ options: this.props.options });
+  componentWillReceiveProps() {
+    if (this.state.options.length === 0) {
+      this.setState({ options: this.props.options });
+    }
   }
 
   onDropdownSelect(e) {
     const { options } = this.props;
     const { filters, selection } = this.state;
 
+    console.log('eeee', e);
+
     let tempFilters = filters.slice(0, filters.length);
-    tempFilters.push({ value: e.value, label: e.value });
+    tempFilters.push(e);
     let tempOptions = filterOptions(tempFilters, options);
 
     this.setState(
       { filters: tempFilters, selection: null, options: tempOptions },
       () => {
         this.props.onChange(this.state.filters);
+        console.log('here', this.state);
       }
     );
   }
 
-  closeChip(value) {
+  closeChip(name) {
     const { filters } = this.state;
     const { options } = this.props;
 
     let tempFilters = filters
       .slice(0, filters.length)
-      .filter(elem => elem.value !== value);
+      .filter(elem => elem.name !== name);
     let tempOptions = filterOptions(tempFilters, options);
     this.setState({ filters: tempFilters, options: tempOptions }, () => {
       this.props.onChange(this.state.filters);
@@ -76,8 +81,8 @@ class DropdownSearch extends React.Component {
     return data.map((elem, idx) => {
       return (
         <div className={`${styles.chip}`} key={'chip' + idx}>
-          <Chip close onCloseClick={() => this.closeChip(elem.value)}>
-            {elem.value}
+          <Chip close onCloseClick={() => this.closeChip(elem.name)}>
+            {elem.name}
           </Chip>
         </div>
       );
@@ -102,6 +107,7 @@ class DropdownSearch extends React.Component {
           options={this.state.options}
           onChange={this.onDropdownSelect}
           placeholder={this.props.placeholder}
+          labelKey="name"
         />
         <div>
           <div className={`${styles.chipBar}`}>
