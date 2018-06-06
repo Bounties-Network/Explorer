@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styles from './BountyCard.module.scss';
 import { shortenAddress } from '../../utils/utilities';
 
+import moment from 'moment';
+
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faSeedling from '@fortawesome/fontawesome-pro-light/faSeedling';
 import faClock from '@fortawesome/fontawesome-pro-light/faClock';
@@ -19,7 +21,8 @@ const BountyCard = props => {
     usd_price = 0,
     calculated_fulfillmentAmount = 0,
     tokenSymbol = 'ETH',
-    fulfillment_count = 0
+    fulfillment_count = 0,
+    deadline = ''
   } = bountyData;
 
   const renderChips = categories => {
@@ -51,7 +54,7 @@ const BountyCard = props => {
               <FontAwesomeIcon icon={faSeedling} />
             </Text>
           </div>
-          <Text color="black">Beginner </Text>
+          <Text color="black">FAKE Beginner </Text>
           <div className={`${styles.dataCategory}`}>
             <Text color="grey">Difficulty</Text>
           </div>
@@ -62,7 +65,7 @@ const BountyCard = props => {
               <FontAwesomeIcon icon={faClock} />
             </Text>
           </div>
-          <Text color="black">5 Days </Text>
+          <Text color="black">{moment(deadline).fromNow(true)}</Text>
           <div className={`${styles.dataCategory}`}>
             <Text color="grey">Remaining</Text>
           </div>
@@ -73,7 +76,7 @@ const BountyCard = props => {
               <FontAwesomeIcon icon={faLevelUp} />
             </Text>
           </div>
-          <Text color="black">0</Text>
+          <Text color="black">{fulfillment_count}</Text>
           <div className={`${styles.dataCategory}`}>
             <Text color="grey">Submissions</Text>
           </div>

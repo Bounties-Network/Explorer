@@ -2,7 +2,7 @@ const initialState = {
   loading: true,
   loaded: false,
   error: false,
-  currentUser: {}
+  stats: {}
 };
 
 const LOAD_STATS = 'stats/LOAD_STATS';
@@ -16,7 +16,7 @@ function loadStats(address) {
 function loadStatsSuccess(stats) {
   return {
     type: LOAD_STATS_SUCCESS,
-    currentUser: stats
+    stats: stats
   };
 }
 
@@ -35,14 +35,14 @@ function StatsReducer(state = initialState, action) {
       };
     }
     case LOAD_STATS_SUCCESS: {
-      const { currentUser } = action;
+      const { stats } = action;
 
       return {
         ...state,
         loading: false,
         loaded: true,
         error: false,
-        currentUser
+        stats
       };
     }
     case LOAD_STATS_FAIL: {

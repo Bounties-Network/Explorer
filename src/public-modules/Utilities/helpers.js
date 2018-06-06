@@ -38,7 +38,11 @@ function checkStages(stages) {
 }
 
 function queryBuilder(options) {
+  console.log('options', options);
   let result = '?';
+  if (options.address) {
+    result = result + `&issuer=${options.address}`;
+  }
   if (options.search) {
     result = result + `&search=${options.search}`;
   }
@@ -51,6 +55,8 @@ function queryBuilder(options) {
         })
         .join(',');
       result = result + categoriesTerm + categoriesQuery;
+    }
+    if (options.filter.paymentStatus) {
     }
     if (options.filter.difficulty) {
     }
@@ -88,7 +94,6 @@ function queryBuilder(options) {
     }
     result = result + `&ordering=${sortTerm}`;
   }
-  console.log('result', result);
   return result;
 }
 

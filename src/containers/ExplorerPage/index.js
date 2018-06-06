@@ -6,7 +6,14 @@ import { connect } from 'react-redux';
 import { actions, sagas, selectors } from 'public-modules';
 import styles from './ExplorerPage.module.scss';
 
-import { RefineByFilter, Search, Text, SortBy, BountyCard } from 'components';
+import {
+  RefineByFilter,
+  Search,
+  Text,
+  SortBy,
+  BountyCard,
+  Button
+} from 'components';
 
 const {
   bountiesStateSelector,
@@ -53,9 +60,13 @@ class ExplorerPage extends React.Component {
     });
   }
 
+  loadMoreBounties() {
+    // const currentCount = bounties.length;
+  }
+
   render() {
     const { loading, error, bounties, count, categories } = this.props;
-
+    console.log('bounties', bounties);
     if (error) {
       return <div>error...</div>;
     }
@@ -93,6 +104,9 @@ class ExplorerPage extends React.Component {
           <div className={`${styles.bountiesList}`}>
             {renderBounties(bounties)}
           </div>
+          {/* <div className={`${styles.loadMoreButton}`}>
+            <Button size='large' style='secondary'>Load More</Button> 
+          </div> */}
         </div>
       </div>
     );
