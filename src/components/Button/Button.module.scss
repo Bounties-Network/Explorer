@@ -1,11 +1,18 @@
 @import "~styles/variables.scss";
 
 .button {
-  cursor: pointer;
   border-radius: 3px;
+  border: none;
+  box-shadow: $base-box-shadow;
+  cursor: pointer;
+  display: inline-block;
+  font-size: $body-font-size;
+  padding: 0 $m-spacing;
 }
 
 .disabled {
+  border: none;
+  box-shadow: none;
 }
 
 .primary {
@@ -13,7 +20,7 @@
   color: $brand-nearWhite;
   &.disabled {
      background-color: $brand-purple-disabled;
-     color: $brand-nearWhite;
+     color: $brand-white;
      cursor: default;
   }
 }
@@ -26,11 +33,13 @@
 }
 
 .secondary {
-  background-color: $brand-disabled;
-  color: $brand-purple;
+  background-color: $brand-white;
+  border: 1px solid $base-border-color;
+  color: $brand-darkGrey;
   &.disabled{
      background-color: $brand-nearWhite;
-     color: $brand-darkGrey;
+     border: none;
+     color: $brand-grey;
      cursor: default;
   }
 }
@@ -64,6 +73,7 @@
   color: $brand-purple;
   text-decoration: underline;
   border: none;
+  box-shadow: none;
   &.disabled {
     color: $brand-purple-disabled;
   }
@@ -89,21 +99,21 @@
 }
 
 .icon {
-  height: 27px;
-  width: 35px;
+  height: 40px;
+  width: auto;
 }
 
 .small {
-  height: 35px;
-  width: 80px;
+  height: 40px;
+  width: auto;
 }
 
 .medium {
-  height: 35px;
-  width: 125px;
+  height: 40px;
+  width: auto;
 }
 
 .large {
-  height: 35px;
-  width: 200px;
+  height: 40px;
+  width: auto;
 }

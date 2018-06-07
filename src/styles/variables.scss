@@ -8,35 +8,43 @@ $xxl-spacing: $base-spacing * 5; // 40px
 
 // TYPOGRAPHY
 $base-font-size: 16px;
-$body-font-size: 0.875rem;
-$h5-font-size: 0.875rem;
-$h4-font-size: 1rem;
-$h3-font-size: 1.25rem;
-$h2-font-size: 1.563rem;
-$h1-font-size: 1.938rem;
+$body-small-font-size: 0.75rem; // 12px
+$body-font-size: 0.875rem; // 14px
 
+$h5-font-size: 0.875rem; // 14px
+$h4-font-size: 1rem; // 16px
+$h3-font-size: 1.25rem; // 20px
+$h2-font-size: 1.563rem; // 25px
+$h1-font-size: 1.938rem; // 31px
 
 // COLORS:
 $brand-purple: #5A28C6;
-$brand-purple-hover: rgb(127, 80, 238);
-$brand-purple-disabled: rgb(218, 204, 248);
+$brand-purple-hover: darken($brand-purple, 10%);
+$brand-purple-disabled: lighten($brand-purple, 30%);
 
-$brand-destructive: rgb(210, 69, 69);
-$brand-destructive-hover: rgb(241, 101, 101);
-$brand-destructive-disabled: rgb(255, 210, 210);
+$brand-dark-purple: #2E2A35;
 
-$brand-blue: rgb(72, 148, 255);
-$brand-orange: rgb(252, 169, 49);
+$brand-destructive: #D14545;
+$brand-destructive-hover: darken($brand-destructive, 10%);
+$brand-destructive-disabled: lighten($brand-destructive, 30%);
 
-$brand-green: rgb(109, 198, 141);
-$brand-red: rgb(210, 69, 69);
+$brand-blue: #4A93FF;
+$brand-blue-hover: darken($brand-blue, 10%);
+$brand-blue-disabled: lighten($brand-blue, 30%);
 
-$brand-black: rgb(38, 38, 38);
-$brand-darkGrey: rgb(98, 98, 98);
-$brand-grey: rgb(148, 148, 148);
-$brand-lightGrey: rgb(224, 224, 224);
-$brand-nearWhite: rgb(243, 243, 243);
-$brand-white: rgb(255, 255, 255);
+$brand-orange: #FBAA31;
+
+$brand-green: #6FC78D;
+$brand-red: #D14545;
+
+$brand-black: #262626;
+$brand-darkGrey: #636363;
+$brand-grey: #949494; // Lightest text
+$brand-lightGrey: #E0E0E0;
+$brand-nearWhite: #F3F2F6;
+$brand-white: #FFFFFF;
+
+$base-border-color: $brand-lightGrey;
 
 $brand-disabled: rgb(249, 249, 249);
 
@@ -51,11 +59,12 @@ $center-padding-right: 8%;
 
 
 // SIDEBAR:
-$sidebar-color: rgb(45, 42, 52);
+$sidebar-color: $brand-dark-purple;
 
 
 
 // BOX SHADOWS:
+$base-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
 $brand-chip-box-shadow: 0 2px 7px $brand-lightGrey;
 $brand-card-box-shadow: 0 0 10px $brand-lightGrey;
 $brand-bountyCard-box-shadow: 0 0 10px $brand-lightGrey;

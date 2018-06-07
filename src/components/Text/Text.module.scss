@@ -1,32 +1,32 @@
 @import "~styles/variables.scss";
 
 .H1 {
-  font-size: 31px;
+  font-size: $h1-font-size;
 }
 
 .H2 {
-  font-size: 25px;
+  font-size: $h2-font-size;
 }
 
 .H3 {
-  font-size: 20px;
+  font-size: $h3-font-size;
 }
 
 .H4 {
-  font-size: 16px;
+  font-size: $h4-font-size;
   font-weight: 900;
 }
 
 .CardHeading {
-  font-size: 16px;
+  font-size: $base-font-size;
 }
 
 .Body {
-  font-size: 14px;
+  font-size: $body-font-size;
 }
 
 .BodySmall {
-  font-size: 12px;
+  font-size: $body-small-font-size;
 }
 
 .Small {
@@ -35,11 +35,11 @@
 
 .FormLabel {
   color: $brand-grey;
-  font-size: 10px;
+  font-size: $body-small-font-size;
 }
 
 .FormInvalid {
-  font-size: 14px;
+  font-size: $body-font-size;
   color: $brand-red;
 }
 
@@ -51,7 +51,7 @@
 
 .Alt {
   color: $brand-grey;
-  font-size: 12px;
+  font-size: $body-small-font-size;
   text-transform: uppercase;
 }
 
