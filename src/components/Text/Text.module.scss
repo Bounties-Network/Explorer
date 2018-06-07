@@ -2,19 +2,22 @@
 
 .H1 {
   font-size: $h1-font-size;
+  font-weight: 500;
 }
 
 .H2 {
   font-size: $h2-font-size;
+  font-weight: 500;
 }
 
 .H3 {
   font-size: $h3-font-size;
+  font-weight: 500;
 }
 
 .H4 {
   font-size: $h4-font-size;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .CardHeading {
@@ -43,15 +46,21 @@
   color: $brand-red;
 }
 
+a {
+  color: $brand-blue;
+}
+
 .Link {
   text-decoration: underline;
-  color: $brand-purple;
+  color: $brand-blue;
   cursor: pointer;
 }
 
 .Alt {
   color: $brand-grey;
   font-size: $body-small-font-size;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
   text-transform: uppercase;
 }
 

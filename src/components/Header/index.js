@@ -20,7 +20,7 @@ const Header = props => {
         <BeeLogo />
       </div>
       <div className={`${styles.buttonArea}`}>
-        <Button style="create">Create New Bounty</Button>
+        <Button style="primary">Create New Bounty</Button>
         <FontAwesomeIcon icon={faBell} />
         <Circle type="img" size="mini" input={profilePic} />
       </div>
