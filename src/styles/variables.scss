@@ -1,3 +1,21 @@
+// SPACING (Based on an 8pt scale)
+$base-spacing: 0.5rem; // 8px
+$s-spacing: $base-spacing / 2; // 4px
+$m-spacing: $base-spacing * 2; // 16px
+$l-spacing: $base-spacing * 3; // 24px
+$xl-spacing: $base-spacing * 4; // 32px
+$xxl-spacing: $base-spacig * 5; // 40px
+
+// TYPOGRAPHY
+$base-font-size: 16px;
+$body-font-size: 0.875rem;
+$h5-font-size: 0.875rem;
+$h4-font-size: 1rem;
+$h3-font-size: 1.25rem;
+$h2-font-size: 1.563rem;
+$h1-font-size: 1.938rem;
+
+
 // COLORS:
 $brand-purple: #5A28C6;
 $brand-purple-hover: rgb(127, 80, 238);
