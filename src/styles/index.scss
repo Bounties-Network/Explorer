@@ -1,7 +1,13 @@
+@import "~styles/variables.scss";
+
+html {
+  font-size: $base-font-size;
+  font-family: 'Inter UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 body {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }
