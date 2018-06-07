@@ -181,7 +181,7 @@ class RefineByFilter extends React.Component {
             </div>
           </div>
         )}
-        {paymentStatus && (
+        {/* {paymentStatus && (
           <div className={`${styles.paymentStatus}`}>
             <Text style="H4" color="black">
               Payment Status
@@ -214,7 +214,7 @@ class RefineByFilter extends React.Component {
               </div>
             </div>
           </div>
-        )}
+        )} */}
         {dropdown && (
           <div className={`${styles.dropdownSearch}`}>
             <Text style="H4" color="black">

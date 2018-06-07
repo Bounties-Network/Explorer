@@ -1,0 +1,15 @@
+@import "~styles/variables.scss";
+
+.textInput {
+  margin-top: 10px;
+  height: 25px;
+  background-color: rgb(249, 248, 252);
+  border: 1px solid $brand-darkGrey;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.textInput:focus {
+  outline: 1px solid $brand-blue;
+  border: 1px solid $brand-blue;
+}

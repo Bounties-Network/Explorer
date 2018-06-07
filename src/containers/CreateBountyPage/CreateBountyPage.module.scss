@@ -1,0 +1,103 @@
+@import "~styles/variables.scss";
+
+.createNewBounty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createNewBountyHeader {
+  width: 100%;
+  height: 30%;
+  background-color: $brand-purple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.createNewBountyBody {
+  height: fit-content;
+  width: 50%;
+  background-color: white;
+  box-shadow: $brand-bountyCard-box-shadow;
+  position: absolute;
+  top: 20%;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 30px;
+}
+
+.formSection {
+  border-bottom: 1px solid $brand-lightGrey;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.formSection:nth-child(8) {
+  border-bottom: none;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.detailHeader {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.detailBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.subsectionHeader {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.subsectionHeaderText {
+  margin-bottom: 10px;
+}
+
+.bountyTitle {
+  margin-bottom: 20px;
+}
+
+.textInput {
+  width: 100%;
+}
+
+.textBox {
+  width: 100%;
+}
+
+.contactArea {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contactInputArea {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  margin-top: 15px;
+}
+
+.buttonBar {
+  margin-top: 75px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 45%;
+}

@@ -45,6 +45,12 @@ class DropdownSearch extends React.Component {
     }
   }
 
+  componentDidMount() {
+    if (this.state.options.length === 0) {
+      this.setState({ options: this.props.options });
+    }
+  }
+
   onDropdownSelect(e) {
     const { options } = this.props;
     const { filters, selection } = this.state;
@@ -100,6 +106,7 @@ class DropdownSearch extends React.Component {
     return (
       <div className={`${styles.dropdownSearch}`}>
         <Select
+          className={this.props.className}
           name="DropdownSearch"
           options={this.state.options}
           onChange={this.onDropdownSelect}

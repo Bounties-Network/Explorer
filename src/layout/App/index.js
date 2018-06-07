@@ -8,7 +8,8 @@ import {
   LeaderboardPage,
   ProfilePage,
   DashboardPage,
-  ExplorerPage
+  ExplorerPage,
+  CreateBountyPage
 } from 'containers';
 import { Header, Sidebar } from 'components';
 
@@ -23,6 +24,7 @@ const App = () => {
       <div className={`${styles.body}`}>
         <Switch>
           <Route exact path="/" component={Bounties} />
+          <Route exact path="/create" component={CreateBountyPage} />
           <Route exact path="/explorer" component={ExplorerPage} />
           <Route exact path="/dashboard/:address" component={DashboardPage} />
           <Route

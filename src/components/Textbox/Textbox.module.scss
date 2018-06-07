@@ -1,0 +1,17 @@
+@import "~styles/variables.scss";
+
+.textarea {
+  resize: vertical;
+  margin-top: 10px;
+  min-height: 200px;
+  max-height: 400px;
+  overflow: auto;
+  background-color: rgb(249, 248, 252);
+  border: 1px solid $brand-darkGrey;
+  padding: 5px;
+}
+
+.textarea:focus {
+  outline: 1px solid $brand-blue;
+  border: 1px solid $brand-blue;
+}
