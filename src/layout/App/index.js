@@ -13,7 +13,7 @@ import {
 } from 'containers';
 import { Header, Sidebar } from 'components';
 
-import '../../flexboxgrid.css';
+import '../../styles/flexboxgrid.css';
 import '../../font-files/inter-ui.css';
 
 const App = () => {
