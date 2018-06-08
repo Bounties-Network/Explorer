@@ -1,0 +1,13 @@
+@import "~styles/variables.scss";
+
+.descriptionToggle {
+  height: 30px;
+  max-width: 1000px;
+  width: 100%;
+  padding: 10px;
+  background-color: $base-input-background;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 3px;
+}

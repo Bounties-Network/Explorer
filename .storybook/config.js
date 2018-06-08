@@ -1,5 +1,5 @@
 import { configure } from '@storybook/react';
-import '../src/flexboxgrid.css';
+import '../src/styles/flexboxgrid.css';
 import '../src/font-files/inter-ui.css';
 import '../src/styles/index.scss';
 

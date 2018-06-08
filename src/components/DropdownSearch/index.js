@@ -132,7 +132,7 @@ DropdownSearch.propTypes = {
 DropdownSearch.defaultProps = {
   options: [],
   onChange: () => {},
-  placeholder: 'Select one!!!'
+  placeholder: 'e.g. HTML'
 };
 
 export default DropdownSearch;

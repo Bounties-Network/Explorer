@@ -6,8 +6,9 @@
   min-height: 200px;
   max-height: 400px;
   overflow: auto;
-  background-color: rgb(249, 248, 252);
-  border: 1px solid $brand-darkGrey;
+  background-color: $base-input-background;
+  border: 1px solid $brand-lightGrey;
+  border-radius: 3px;
   padding: 5px;
 }
 

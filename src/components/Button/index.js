@@ -28,6 +28,7 @@ Button.propTypes = {
     'primary',
     'secondary',
     'destructive',
+    'deleteLink',
     'link',
     'create',
     'clearFilter'

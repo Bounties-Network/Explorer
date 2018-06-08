@@ -78,6 +78,14 @@
   }
 }
 
+.deleteLink {
+  background-color: none;
+  color: $brand-red;
+  text-decoration: underline;
+  border: none;
+  box-shadow: none;
+}
+
 .clearFilter {
   background-color: none;
   color: $brand-blue;

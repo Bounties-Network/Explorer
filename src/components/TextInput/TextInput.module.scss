@@ -3,8 +3,9 @@
 .textInput {
   margin-top: 10px;
   height: 25px;
-  background-color: rgb(249, 248, 252);
-  border: 1px solid $brand-darkGrey;
+  background-color: $base-input-background;
+  border-radius: 3px;
+  border: 1px solid $brand-lightGrey;
   padding-left: 5px;
   padding-right: 5px;
 }
