@@ -45,6 +45,7 @@ class AccountSettings extends React.Component {
             <div className={`col-lg-8 ${styles.detailBody}`}>
               <div className={`${styles.profileHeaderBar}`}>
                 <Circle
+                  size="small"
                   type="image"
                   input="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
                 />
