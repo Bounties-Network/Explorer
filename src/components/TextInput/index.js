@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './TextInput.module.scss';
 
-const debounceTimer = 400;
+const debounceTimer = 300;
 
 class TextInput extends React.Component {
   constructor(props) {
@@ -29,11 +29,13 @@ class TextInput extends React.Component {
   }
 
   render() {
-    const { className } = this.props;
+    const { className, error } = this.props;
 
     return (
       <input
-        className={`${styles.textInput} ${className}`}
+        className={`${styles.textInput} ${className} ${
+          styles[error ? 'error' : '']
+        }`}
         type="text"
         value={this.state.text}
         onChange={this.onTextChange}
@@ -47,7 +49,8 @@ TextInput.propTypes = {
 };
 
 TextInput.defaultProps = {
-  onChange: () => {}
+  onChange: () => {},
+  error: false
 };
 
 export default TextInput;

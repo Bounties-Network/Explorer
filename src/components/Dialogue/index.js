@@ -5,7 +5,15 @@ import styles from './Dialogue.module.scss';
 import { Text, Button } from 'components';
 
 const Dialogue = props => {
-  const { className, size, header, text, closeButton, buttons } = props;
+  const {
+    className,
+    size,
+    header,
+    text,
+    closeButton,
+    buttons,
+    onCloseButtonClick
+  } = props;
 
   const renderButtons = buttons => {
     return buttons.map(elem => (
@@ -16,13 +24,25 @@ const Dialogue = props => {
   };
 
   return (
-    <div className={`${styles.dialogue} ${styles[className]} ${styles[size]} `}>
-      <div className={`${styles.dialogueTop}`}>
-        <Text style="H3">{header}</Text>
-        <Text style="Alt">X</Text>
+    <div className={`${styles.background}`}>
+      <div
+        className={`${styles.dialogue} ${styles[className]} ${styles[size]} `}
+      >
+        <div className={`${styles.dialogueTop}`}>
+          <div className={`${styles.dialogueHeaderText}`}>
+            <Text style="H3">{header}</Text>
+          </div>
+          {closeButton && (
+            <div onClick={onCloseButtonClick}>
+              <Text style="Alt" className={`${styles.closeButton}`}>
+                X
+              </Text>
+            </div>
+          )}
+        </div>
+        <div className={`${styles.dialogueMid}`}>{props.children}</div>
+        <div className={`${styles.dialogueBot}`}>{renderButtons(buttons)}</div>
       </div>
-      <div className={`${styles.dialogueMid}`}>{props.children}</div>
-      <div className={`${styles.dialogueBot}`}>{renderButtons(buttons)}</div>
     </div>
   );
 };
@@ -30,7 +50,6 @@ const Dialogue = props => {
 Dialogue.propTypes = {
   className: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  header: PropTypes.string,
   closeButton: PropTypes.bool,
   buttons: PropTypes.array
 };
@@ -40,7 +59,7 @@ Dialogue.defaultProps = {
   disabled: false,
   buttons: [],
   children: '',
-  closeButton: false
+  closeButton: true
 };
 
 export default Dialogue;

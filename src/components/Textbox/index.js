@@ -4,7 +4,7 @@ import styles from './Textbox.module.scss';
 
 import { Text } from 'components';
 
-const debounceTimer = 400;
+const debounceTimer = 300;
 
 class Textbox extends React.Component {
   constructor(props) {
@@ -31,11 +31,13 @@ class Textbox extends React.Component {
   }
 
   render() {
-    const { className } = this.props;
+    const { className, error } = this.props;
 
     return (
       <textarea
-        className={`${styles.textarea} ${className}`}
+        className={`${styles.textarea} ${className} ${
+          styles[error ? 'error' : '']
+        }`}
         value={this.state.text}
         onChange={this.onTextareaChange}
       />
@@ -48,7 +50,8 @@ Textbox.propTypes = {
 };
 
 Textbox.defaultProps = {
-  onChange: () => {}
+  onChange: () => {},
+  error: false
 };
 
 export default Textbox;
