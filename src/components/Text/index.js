@@ -3,18 +3,25 @@ import PropTypes from 'prop-types';
 import styles from './Text.module.scss';
 
 const Text = props => {
-  const { className, style, src, link, color, id } = props;
+  const { className, style, src, link, color, id, noUnderline } = props;
 
   let addedClasses = '';
   if (link) {
     addedClasses += styles.Link;
+    if (noUnderline) {
+      addedClasses += ` ${styles.noUnderline}`;
+    }
 
     return (
       <span
         className={`text ${className} ${styles[style]} ${addedClasses}`}
         id={id}
       >
-        <a className={`${styles[color]}`} href={src} target="_blank">
+        <a
+          className={`${styles[color]} ${addedClasses}`}
+          href={src}
+          target="_blank"
+        >
           {props.children}
         </a>
       </span>
@@ -23,7 +30,9 @@ const Text = props => {
 
   return (
     <span
-      className={`text ${className} ${styles[style]} ${styles[color]}`}
+      className={`text ${className} ${styles[style]} ${
+        styles[color]
+      } ${addedClasses}`}
       id={id}
     >
       {props.children}
@@ -66,7 +75,8 @@ Text.defaultProps = {
   size: 'body',
   src: '',
   link: false,
-  id: ''
+  id: '',
+  noUnderline: false
 };
 
 export default Text;

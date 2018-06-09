@@ -13,11 +13,16 @@ const Header = props => {
   const {
     history,
     notification,
-    profilePic = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+    profilePic = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+    loggedIn = false
   } = props;
 
   const onCreateClick = () => {
     history.push('/create');
+  };
+
+  const onSignInClick = () => {
+    history.push('/signin');
   };
 
   return (
@@ -25,11 +30,21 @@ const Header = props => {
       <div className={`${styles.iconArea}`}>
         <BeeLogo />
       </div>
-      <div className={`${styles.buttonArea}`}>
-        <Button style="primary" onClick={onCreateClick}>Create New Bounty</Button>
-        <FontAwesomeIcon icon={faBell} />
-        <Circle type="image" size="mini" input={profilePic} />
-      </div>
+      {loggedIn ? (
+        <div className={`${styles.buttonArea}`}>
+          <Button style="primary" onClick={onCreateClick}>
+            Create New Bounty
+          </Button>
+          <FontAwesomeIcon icon={faBell} />
+          <Circle type="image" size="mini" input={profilePic} />
+        </div>
+      ) : (
+        <div className={`${styles.signInButton}`}>
+          <Button style="primary" onClick={onSignInClick}>
+            Sign In
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
