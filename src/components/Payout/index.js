@@ -13,7 +13,7 @@ const Payout = props => {
   return (
     <span className={`${styles.payoutContainer}`}>
       <span className={`${styles.usdContainer}`}>
-        <Text style="H3" color="purple">
+        <Text style="H2" color="purple">
           $
         </Text>
         <Text style="H2" color="purple">
@@ -21,7 +21,7 @@ const Payout = props => {
         </Text>
       </span>
       <span className={`${styles.ethContainer}`}>
-        <Text style="CardHeading" color="grey">
+        <Text style="Body" color="grey">
           {amount} {symbol.toUpperCase()}
         </Text>
       </span>

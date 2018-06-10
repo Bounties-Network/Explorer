@@ -36,12 +36,18 @@ const BountyCard = props => {
   return (
     <div className={`${styles.bountyCardContainer}`}>
       <div className={`${styles.leftColumn}`}>
-        <Text>{title}</Text>
+        <Text
+          className={`${styles.bountyTitle}`}
+          style="H4"
+          weight="font-weight-bold"
+        >
+          {title}
+        </Text>
         <div className={`${styles.chipBar}`}>{renderChips(categories)}</div>
         <div className={`${styles.profileBar}`}>
           <Circle type="image" size="mini" />
           <div className={`${styles.addressText}`}>
-            <Text link color="blue" style="BodySmall">
+            <Text link color="blue" style="Body">
               {issuer}
             </Text>
           </div>
@@ -54,31 +60,43 @@ const BountyCard = props => {
               <FontAwesomeIcon icon={faSeedling} />
             </Text>
           </div>
-          <Text color="black">FAKE Beginner </Text>
+          <Text color="black" style="Body" weight="font-weight-bold">
+            FAKE Beginner{' '}
+          </Text>
           <div className={`${styles.dataCategory}`}>
-            <Text color="grey">Difficulty</Text>
+            <Text color="grey" style="Body">
+              Difficulty
+            </Text>
           </div>
         </div>
         <div className={`${styles.dataCell}`}>
           <div className={`${styles.dataIcon}`}>
-            <Text color="grey">
+            <Text color="grey" style="Body">
               <FontAwesomeIcon icon={faClock} />
             </Text>
           </div>
-          <Text color="black">{moment(deadline).fromNow(true)}</Text>
+          <Text color="black" style="Body" weight="font-weight-bold">
+            {moment(deadline).fromNow(true)}
+          </Text>
           <div className={`${styles.dataCategory}`}>
-            <Text color="grey">Remaining</Text>
+            <Text color="grey" style="Body">
+              Remaining
+            </Text>
           </div>
         </div>
         <div className={`${styles.dataCell}`}>
           <div className={`${styles.dataIcon}`}>
-            <Text color="grey">
+            <Text color="grey" style="Body">
               <FontAwesomeIcon icon={faLevelUp} />
             </Text>
           </div>
-          <Text color="black">{fulfillment_count}</Text>
+          <Text color="black" style="Body" weight="font-weight-bold">
+            {fulfillment_count}
+          </Text>
           <div className={`${styles.dataCategory}`}>
-            <Text color="grey">Submissions</Text>
+            <Text color="grey" style="Body">
+              Submissions
+            </Text>
           </div>
         </div>
       </div>

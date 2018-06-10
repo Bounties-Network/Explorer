@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Text.module.scss';
 
 const Text = props => {
-  const { className, style, src, link, color, id, noUnderline } = props;
+  const { className, style, src, link, color, weight, id, noUnderline } = props;
 
   let addedClasses = '';
   if (link) {
@@ -30,8 +30,8 @@ const Text = props => {
 
   return (
     <span
-      className={`text ${className} ${styles[style]} ${
-        styles[color]
+      className={`text ${className} ${styles[style]} ${styles[color]} ${
+        styles[weight]
       } ${addedClasses}`}
       id={id}
     >
@@ -68,7 +68,8 @@ Text.propTypes = {
     'grey',
     'lightGrey',
     'darkGrey'
-  ])
+  ]),
+  weight: PropTypes.oneOf(['font-weight-regular', 'font-weight-bold'])
 };
 
 Text.defaultProps = {
