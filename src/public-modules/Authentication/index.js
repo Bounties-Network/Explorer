@@ -38,7 +38,6 @@ function login(address, signature) {
 }
 
 function loginSuccess(user) {
-  console.log('login!!', user);
   return {
     type: LOGIN_SUCCESS,
     user
@@ -50,7 +49,6 @@ function loginFail(error) {
 }
 
 function AuthenticationReducer(state = initialState, action) {
-  console.log('auth', state, action);
   switch (action.type) {
     case LOAD_NONCE: {
       return {
@@ -87,13 +85,13 @@ function AuthenticationReducer(state = initialState, action) {
       };
     }
     case LOGIN_SUCCESS: {
-      const { nonce } = action;
+      const { user } = action;
       return {
         ...state,
         loading: false,
         loaded: true,
         error: false,
-        nonce: nonce.nonce
+        user
       };
     }
     case LOGIN_FAIL: {

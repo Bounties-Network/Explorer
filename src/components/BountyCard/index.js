@@ -22,7 +22,8 @@ const BountyCard = props => {
     calculated_fulfillmentAmount = 0,
     tokenSymbol = 'ETH',
     fulfillment_count = 0,
-    deadline = ''
+    deadline = '',
+    experienceLevel = null
   } = bountyData;
 
   const renderChips = categories => {
@@ -54,21 +55,23 @@ const BountyCard = props => {
         </div>
       </div>
       <div className={`${styles.midColumn}`}>
-        <div className={`${styles.dataCell}`}>
-          <div className={`${styles.dataIcon}`}>
-            <Text color="grey">
-              <FontAwesomeIcon icon={faSeedling} />
+        {experienceLevel && (
+          <div className={`${styles.dataCell}`}>
+            <div className={`${styles.dataIcon}`}>
+              <Text color="grey">
+                <FontAwesomeIcon icon={faSeedling} />
+              </Text>
+            </div>
+            <Text color="black" style="Body" weight="font-weight-bold">
+              {`${experienceLevel} `}
             </Text>
+            <div className={`${styles.dataCategory}`}>
+              <Text color="grey" style="Body">
+                Difficulty
+              </Text>
+            </div>
           </div>
-          <Text color="black" style="Body" weight="font-weight-bold">
-            FAKE Beginner{' '}
-          </Text>
-          <div className={`${styles.dataCategory}`}>
-            <Text color="grey" style="Body">
-              Difficulty
-            </Text>
-          </div>
-        </div>
+        )}
         <div className={`${styles.dataCell}`}>
           <div className={`${styles.dataIcon}`}>
             <Text color="grey" style="Body">

@@ -14,42 +14,42 @@ import rollbar from 'lib/rollbar';
 const POST_OPTIONS = {
   method: 'POST',
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+    accept: 'application/json',
+    'content-type': 'application/json'
   },
-  credentials: 'same-origin'
+  withCredentials: true
 };
 
 const PUT_OPTIONS = {
   method: 'PUT',
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+    accept: 'application/json',
+    'content-type': 'application/json'
   },
-  credentials: 'same-origin'
+  withCredentials: true
 };
 
 const PATCH_OPTIONS = {
   method: 'PATCH',
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+    accept: 'application/json',
+    'content-type': 'application/json'
   },
-  credentials: 'same-origin'
+  withCredentials: true
 };
 
 const OPTIONS_OPTIONS = {
   method: 'OPTIONS',
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+    accept: 'application/json',
+    'content-type': 'application/json'
   },
-  credentials: 'same-origin'
+  withCredentials: true
 };
 
 const GET_OPTIONS = {
   method: 'GET',
-  credentials: 'same-origin'
+  withCredentials: true
 };
 
 function handleError(err) {

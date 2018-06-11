@@ -191,7 +191,6 @@ class SignInPage extends React.Component {
         web3.eth.accounts[0],
         (err, resp) => {
           signature = resp;
-          console.log('SIGNATURE', signature);
           login(address, signature);
         }
       );
@@ -205,7 +204,7 @@ class SignInPage extends React.Component {
   }
 
   render() {
-    const { loading, error } = this.props;
+    const { loading, error, user } = this.props;
     const {
       displaySignInModal,
       displayWalletConfirmationModal,
@@ -289,6 +288,7 @@ const mapStateToProps = (state, router) => {
   let auth = rootAuthSelector(state);
 
   return {
+    user: auth.user,
     nonce: auth.nonce,
     ...authStateSelector(state)
   };

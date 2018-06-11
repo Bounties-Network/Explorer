@@ -24,8 +24,7 @@ export function* login(action) {
   let { address, signature } = action;
   let options = {
     method: 'POST',
-    credentials: 'include',
-    body: {
+    data: {
       public_address: address,
       signature: signature
     }
