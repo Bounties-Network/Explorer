@@ -1,50 +1,57 @@
 @import "~styles/variables.scss";
 
 .bountyCardContainer {
+  border-left: 3px solid transparent;
   display: flex;
   justify-content: space-between;
-  width: 96%;
-  height: 100px;
-  padding: 25px;
-  box-shadow: $brand-bountyCard-box-shadow;
-  background-color: white;
-  border-radius: 4px;
-  margin-bottom: 20px;
+  padding: $m-spacing;
+  background-color: $brand-white;
+  border-radius: $base-border-radius;
+  margin-bottom: $m-spacing;
+
+  &:hover {
+    border-left: 3px solid $brand-purple;
+    box-shadow: $m-box-shadow;
+  }
 }
 
 .leftColumn {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 50%;
 }
 
+.bountyTitle {
+  line-height: 1.3;
+  padding-bottom: $m-spacing;
+}
+
 .chipBar {
-  display: flex;
+  display: block;
+  padding-bottom: $m-spacing - $base-spacing;
 }
 
 .chip {
-  margin-left: 2px;
-  margin-right: 2px;
+  display: inline-block;
+  margin: 0 $s-spacing $base-spacing $s-spacing;
+
+  &:first-child {
+    margin-left: 0;
+  }
 }
 
 .profileBar {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .addressText {
-  padding-left: 15px;
-}
-
-.midColumn {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  padding-left: $m-spacing;
 }
 
 .dataCell {
   display: flex;
+  margin-bottom: $m-spacing;
 }
 
 .dataIcon {

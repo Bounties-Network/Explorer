@@ -6,6 +6,8 @@ $l-spacing: $base-spacing * 3; // 24px
 $xl-spacing: $base-spacing * 4; // 32px
 $xxl-spacing: $base-spacing * 5; // 40px
 
+$base-border-radius: $s-spacing;
+
 // TYPOGRAPHY
 $base-font-size: 16px;
 $body-small-font-size: 0.75rem; // 12px
@@ -67,6 +69,7 @@ $sidebar-color: $brand-dark-purple;
 
 // BOX SHADOWS:
 $base-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+$m-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 $brand-chip-box-shadow: 0 2px 7px $brand-lightGrey;
 $brand-card-box-shadow: 0 0 10px $brand-lightGrey;
 $brand-bountyCard-box-shadow: 0 0 10px $brand-lightGrey;

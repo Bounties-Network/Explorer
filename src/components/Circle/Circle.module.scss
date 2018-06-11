@@ -1,10 +1,8 @@
 @import "~styles/variables.scss";
 
 .circle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 50%;
+  display: inline-block;
 }
 
 .text {
@@ -43,8 +41,8 @@
 }
 
 .mini {
-  height: 30px;
-  width: 30px;
+  height: $xl-spacing;
+  width: $xl-spacing;
 }
 
 .small {
