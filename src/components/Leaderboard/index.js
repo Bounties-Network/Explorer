@@ -10,7 +10,7 @@ const LeaderboardItem = props => {
     address = '0x7056e70a5ca249ba88e9550eb22caec4c985bb8e',
     name = '',
     // email = 'cryptomental.com@gmail.com',
-    // githubusername = 'cryptomental',
+    githubusername = 'cryptomental',
     // total = '2000870000000000000000',
     total_usd = 2724.0805,
     // bounties_fulfilled = 7,
@@ -19,7 +19,7 @@ const LeaderboardItem = props => {
   } = data;
 
   if (name === '') {
-    name = '--';
+    name = githubusername;
   }
 
   return (

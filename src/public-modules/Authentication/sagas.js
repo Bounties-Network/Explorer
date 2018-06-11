@@ -22,7 +22,6 @@ export function* watchNonce() {
 
 export function* login(action) {
   let { address, signature } = action;
-  console.log('address: ', address, 'signature: ', signature);
   let options = {
     method: 'POST',
     credentials: 'include',
