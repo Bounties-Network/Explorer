@@ -11,9 +11,11 @@ import {
   ExplorerPage,
   CreateBountyPage,
   AccountSettings,
-  SignInPage
+  SignInPage,
+  Header,
+  Sidebar
 } from 'containers';
-import { Header, Sidebar } from 'components';
+// import { Header, Sidebar } from 'components';
 
 import '../../styles/flexboxgrid.css';
 import '../../font-files/inter-ui.css';
@@ -22,15 +24,15 @@ const App = () => {
   return (
     <div className={styles.app}>
       <Header />
-      <Sidebar onClick={console.log} />
+      <Sidebar />
       <div className={`${styles.body}`}>
         <Switch>
-          <Route exact path="/" component={Bounties} />
+          <Route exact path="/" component={DashboardPage} />
           <Route exact path="/signin" component={SignInPage} />
           <Route exact path="/settings" component={AccountSettings} />
           <Route exact path="/create" component={CreateBountyPage} />
           <Route exact path="/explorer" component={ExplorerPage} />
-          <Route exact path="/dashboard/:address" component={DashboardPage} />
+          <Route exact path="/dashboard/" component={DashboardPage} />
           <Route
             exact
             path="/leaderboard/fulfiller"

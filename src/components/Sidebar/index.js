@@ -53,6 +53,7 @@ class Sidebar extends React.Component {
   }
 
   render() {
+    const { loginStatus } = this.props;
     return (
       <div className={`${styles.sidebar}`}>
         <div className={`${styles.iconBar}`}>
@@ -87,15 +88,17 @@ class Sidebar extends React.Component {
             <FontAwesomeIcon icon={faTrophyAlt} />
           </Link>
           {/*Profile*/}
-          <Link
-            className={`${styles.iconTab} ${
-              styles[this.checkActive('profile')]
-            }`}
-            to="/profile"
-            onClick={e => this.onTabClick('profile')}
-          >
-            <FontAwesomeIcon icon={faUserAlt} />
-          </Link>
+          {loginStatus && (
+            <Link
+              className={`${styles.iconTab} ${
+                styles[this.checkActive('profile')]
+              }`}
+              to="/profile"
+              onClick={e => this.onTabClick('profile')}
+            >
+              <FontAwesomeIcon icon={faUserAlt} />
+            </Link>
+          )}
         </div>
       </div>
     );

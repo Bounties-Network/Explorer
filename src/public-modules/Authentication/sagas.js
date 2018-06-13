@@ -2,8 +2,15 @@ import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Authentication';
 
-const { LOAD_NONCE, LOGIN } = actionTypes;
-const { loadNonceFail, loadNonceSuccess, loginFail, loginSuccess } = actions;
+const { LOAD_NONCE, LOGIN, CHECK_LOGINSTATUS } = actionTypes;
+const {
+  loadNonceFail,
+  loadNonceSuccess,
+  loginFail,
+  loginSuccess,
+  checkLoginStatusFail,
+  checkLoginStatusSuccess
+} = actions;
 
 export function* loadNonce(action) {
   let { address } = action;
@@ -43,4 +50,18 @@ export function* watchLogin() {
   yield takeLatest(LOGIN, login);
 }
 
-export default [watchNonce, watchLogin];
+export function* checkLoginStatus(action) {
+  try {
+    let endpoint = 'auth/user/';
+    const loginStatus = yield call(request, endpoint, 'GET');
+    yield put(checkLoginStatusSuccess(loginStatus));
+  } catch (e) {
+    yield put(checkLoginStatusFail(e));
+  }
+}
+
+export function* watchLoginStatus() {
+  yield takeLatest(CHECK_LOGINSTATUS, checkLoginStatus);
+}
+
+export default [watchNonce, watchLogin, watchLoginStatus];

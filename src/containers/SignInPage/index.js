@@ -211,10 +211,6 @@ class SignInPage extends React.Component {
       signIntoMetamaskTextColor
     } = this.state;
 
-    if (error) {
-      return <div>error...</div>;
-    }
-
     return (
       <div className={`${styles.signInPage}`}>
         {displaySignInModal && this.renderSignInDialogue()}

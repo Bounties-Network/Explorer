@@ -15,7 +15,10 @@ const {
   bountiesStateSelector,
   rootBountiesSelector,
   statsSelector,
-  rootStatsSelector
+  rootStatsSelector,
+  rootAuthSelector,
+  authStateSelector,
+  publicAddressSelector
 } = selectors;
 
 let myBountiesTabs = [
@@ -269,31 +272,24 @@ class DashboardPage extends React.Component {
   }
 
   componentDidMount() {
-    const { loadUserInfo, userAddress, loadBounties } = this.props;
+    console.log('props?', this.props);
+    const { loadUserInfo, userAddress = '', loadBounties } = this.props;
     loadUserInfo(userAddress);
     loadBounties({ address: userAddress });
   }
 
   render() {
-    console.log('props', this.props);
     const {
       loading,
       error,
       bounties,
       currentUser,
-      userAddress,
+      userAddress = '',
       stats
     } = this.props;
     const { address, email, githubUsername, name } = currentUser;
     const { Completed } = stats;
     const bountiesIssued = stats.bounties;
-
-    if (loading) {
-      return <div>loading...</div>;
-    }
-    if (error) {
-      return <div>error...</div>;
-    }
 
     return (
       <div className={`${styles.dashboardPage}`}>
@@ -381,16 +377,19 @@ const mapStateToProps = (state, router) => {
   let currentUser = rootCurrentUserSelector(state);
   let bounties = rootBountiesSelector(state);
   let stats = rootStatsSelector(state);
-  let userAddress = router.match.params.address || '';
+  let auth = rootAuthSelector(state);
+  let userAddress = publicAddressSelector(auth);
 
   return {
-    userAddress: userAddress,
+    userAddress,
+    auth: auth,
     stats: stats.stats,
     bounties: bounties.bounties,
     currentUser: currentUser.currentUser,
     ...currentUserSelector(state),
     ...bountiesStateSelector(state),
-    ...statsSelector(state)
+    ...statsSelector(state),
+    ...authStateSelector(state)
   };
 };
 
@@ -402,8 +401,8 @@ DashboardPage.propTypes = {
 
 const check = compose(
   FetchComponent(sagas.fetch),
-  connect(mapStateToProps, { load: actions.loadStats, ...actions }),
-  LoadComponent('userAddress')
+  connect(mapStateToProps, { load: actions.checkLoginStatus, ...actions }),
+  LoadComponent('')
 )(DashboardPage);
 
 export default check;

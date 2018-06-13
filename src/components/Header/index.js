@@ -14,7 +14,7 @@ const Header = props => {
     history,
     notification,
     profilePic = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    loggedIn = false
+    loginStatus = false
   } = props;
 
   const onCreateClick = () => {
@@ -30,7 +30,7 @@ const Header = props => {
       <div className={`${styles.iconArea}`}>
         <BeeLogo />
       </div>
-      {loggedIn ? (
+      {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
           <Button style="primary" onClick={onCreateClick}>
             Create New Bounty
