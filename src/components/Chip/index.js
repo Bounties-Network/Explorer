@@ -5,7 +5,7 @@ import styles from './Chip.module.scss';
 import { Text } from 'components';
 
 const Chip = props => {
-  const { style, onClick, close, onCloseClick, children } = props;
+  const { style, onClick, close, onCloseClick, children, color } = props;
 
   const onChipClick = () => {
     onClick(children);
@@ -17,7 +17,7 @@ const Chip = props => {
 
   return (
     <span
-      className={`${styles.chip} ${styles[style]} ${
+      className={`${styles.chip} ${styles[style]} ${styles[color]} ${
         styles[close ? 'close' : '']
       }`}
       onClick={onChipClick}
@@ -45,7 +45,8 @@ Chip.defaultProps = {
   style: 'round',
   onClick: () => {},
   close: false,
-  onCloseClick: e => console.log(e)
+  onCloseClick: e => console.log(e),
+  color: ''
 };
 
 export default Chip;

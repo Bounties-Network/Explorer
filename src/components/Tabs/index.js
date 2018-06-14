@@ -19,7 +19,11 @@ class Tabs extends React.Component {
   renderTabs(tabs) {
     return tabs.map(elem => {
       return (
-        <div key={elem.title} onClick={e => this.onTabChange(elem)}>
+        <div
+          className={styles.tab}
+          key={elem.title}
+          onClick={e => this.onTabChange(elem)}
+        >
           <Tab
             notificationAmount={elem.notificationAmount}
             active={this.state.activeTab === elem.title}

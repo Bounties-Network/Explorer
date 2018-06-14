@@ -1,11 +1,11 @@
 @import "~styles/variables.scss";
 
 .tab {
+  width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
-  width: fit-content;
+  height: 50px;
   cursor: pointer;
   padding: 0 5px;
   margin-right: 10px;

@@ -28,6 +28,7 @@ Button.propTypes = {
     'primary',
     'secondary',
     'destructive',
+    'activate',
     'deleteLink',
     'link',
     'create',

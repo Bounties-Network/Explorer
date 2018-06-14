@@ -44,8 +44,9 @@ class ExplorerPage extends React.Component {
   }
 
   componentWillMount() {
-    const { loadCategories } = this.props;
+    const { loadCategories, loadBounty } = this.props;
     loadCategories();
+    loadBounty(1);
   }
 
   updateSearchOptions(prop, options) {

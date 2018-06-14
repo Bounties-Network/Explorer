@@ -11,9 +11,9 @@ import {
   ExplorerPage,
   CreateBountyPage,
   AccountSettings,
-  SignInPage,
   Header,
-  Sidebar
+  Sidebar,
+  ViewBounty
 } from 'containers';
 // import { Header, Sidebar } from 'components';
 
@@ -28,7 +28,7 @@ const App = () => {
       <div className={`${styles.body}`}>
         <Switch>
           <Route exact path="/" component={DashboardPage} />
-          <Route exact path="/signin" component={SignInPage} />
+          <Route exact path="/bounty/:bounty" component={ViewBounty} />
           <Route exact path="/settings" component={AccountSettings} />
           <Route exact path="/create" component={CreateBountyPage} />
           <Route exact path="/explorer" component={ExplorerPage} />

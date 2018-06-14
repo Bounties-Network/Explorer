@@ -7,6 +7,7 @@ import { actions, sagas, selectors } from 'public-modules';
 import styles from './DashboardPage.module.scss';
 import { shortenAddress } from '../../utils/utilities';
 
+import { SignInPage } from 'containers';
 import { Text, Circle, Card, CardBounty, CardNotification } from 'components';
 
 const {
@@ -285,95 +286,101 @@ class DashboardPage extends React.Component {
       bounties,
       currentUser,
       userAddress = '',
-      stats
+      stats,
+      auth
     } = this.props;
     const { address, email, githubUsername, name } = currentUser;
     const { Completed } = stats;
     const bountiesIssued = stats.bounties;
 
-    return (
-      <div className={`${styles.dashboardPage}`}>
-        <div className={`${styles.profileBar}`}>
-          <div className={`${styles.profileData}`}>
-            <div className={`${styles.circle}`}>
-              <Circle type="image" />
-            </div>
-            <div className={`${styles.profileText}`}>
-              <Text style="H1">{name}</Text>
-              <Text link color="blue">
-                {shortenAddress(userAddress)}
-              </Text>
-            </div>
-          </div>
-          <div className={`${styles.bountiesInfo}`}>
-            <div className={`${styles.dataCell}`}>
-              <Text color="purple" style="H2">
-                {bountiesIssued}
-              </Text>
-              <Text color="grey" style="Body">
-                Bounties Issued
-              </Text>
-            </div>
-            <div className={`${styles.dataCell}`}>
-              <Text color="purple" style="H2">
-                {Completed}
-              </Text>
-              <Text color="grey" style="Body">
-                Bounties Completed
-              </Text>
-            </div>
-            <div className={`${styles.dataCell}`}>
-              <div className={`${styles.moneyCell}`}>
-                <Text color="purple" style="H2">
-                  $1225
-                </Text>
-                <Text color="grey" style="Alt">
-                  1.25 ETH
+    if (auth.loginStatus) {
+      return (
+        <div className={`${styles.dashboardPage}`}>
+          <div className={`${styles.profileBar}`}>
+            <div className={`${styles.profileData}`}>
+              <div className={`${styles.circle}`}>
+                <Circle type="image" />
+              </div>
+              <div className={`${styles.profileText}`}>
+                <Text style="H1">{name}</Text>
+                <Text link color="blue">
+                  {shortenAddress(userAddress)}
                 </Text>
               </div>
-              <Text color="grey" style="Body">
-                Awarded
-              </Text>
             </div>
-            <div className={`${styles.dataCell}`}>
-              <div className={`${styles.moneyCell}`}>
+            <div className={`${styles.bountiesInfo}`}>
+              <div className={`${styles.dataCell}`}>
                 <Text color="purple" style="H2">
-                  $500
+                  {bountiesIssued}
                 </Text>
-                <Text color="grey" style="Alt">
-                  0.5 ETH
+                <Text color="grey" style="Body">
+                  Bounties Issued
                 </Text>
               </div>
-              <Text color="grey" style="Body">
-                Earned
-              </Text>
+              <div className={`${styles.dataCell}`}>
+                <Text color="purple" style="H2">
+                  {Completed}
+                </Text>
+                <Text color="grey" style="Body">
+                  Bounties Completed
+                </Text>
+              </div>
+              <div className={`${styles.dataCell}`}>
+                <div className={`${styles.moneyCell}`}>
+                  <Text color="purple" style="H2">
+                    $1225
+                  </Text>
+                  <Text color="grey" style="Alt">
+                    1.25 ETH
+                  </Text>
+                </div>
+                <Text color="grey" style="Body">
+                  Awarded
+                </Text>
+              </div>
+              <div className={`${styles.dataCell}`}>
+                <div className={`${styles.moneyCell}`}>
+                  <Text color="purple" style="H2">
+                    $500
+                  </Text>
+                  <Text color="grey" style="Alt">
+                    0.5 ETH
+                  </Text>
+                </div>
+                <Text color="grey" style="Body">
+                  Earned
+                </Text>
+              </div>
             </div>
           </div>
-        </div>
-        <div className={`${styles.dashboardBody}`}>
-          <div className={`${styles.dashboardBodyLeft}`}>
-            <div className={`${styles.myBounties}`}>
-              <Card title="My Bounties" tabs={myBountiesTabs}>
-                {renderBounties(bounties)}
-              </Card>
+          <div className={`${styles.dashboardBody}`}>
+            <div className={`${styles.dashboardBodyLeft}`}>
+              <div className={`${styles.myBounties}`}>
+                <Card title="My Bounties" tabs={myBountiesTabs}>
+                  {renderBounties(bounties)}
+                </Card>
+              </div>
+              {/* <div className={`${styles.mySubmissions}`}>{ renderBounties(bountiesData) }</div> */}
             </div>
-            {/* <div className={`${styles.mySubmissions}`}>{ renderBounties(bountiesData) }</div> */}
-          </div>
 
-          <div className={`${styles.dashboardBodyRight}`}>
-            <div className={`${styles.activity}`}>
-              <Card title="Activity" tabs={notificationTabs}>
-                {renderNotification(notificationData)}
-              </Card>
+            <div className={`${styles.dashboardBodyRight}`}>
+              <div className={`${styles.activity}`}>
+                <Card title="Activity" tabs={notificationTabs}>
+                  {renderNotification(notificationData)}
+                </Card>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <SignInPage />;
+    }
   }
 }
 
 const mapStateToProps = (state, router) => {
+  console.log(state);
   let currentUser = rootCurrentUserSelector(state);
   let bounties = rootBountiesSelector(state);
   let stats = rootStatsSelector(state);

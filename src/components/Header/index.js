@@ -22,7 +22,7 @@ const Header = props => {
   };
 
   const onSignInClick = () => {
-    history.push('/signin');
+    history.push('/dashboard');
   };
 
   return (

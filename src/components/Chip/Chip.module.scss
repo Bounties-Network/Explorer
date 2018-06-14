@@ -32,3 +32,41 @@
   cursor: pointer;
   margin-left: 10px;
 }
+
+.purple {
+  background-color: $brand-purple;
+}
+
+.blue {
+  background-color: $brand-blue;
+}
+
+.orange {
+  background-color: $brand-orange;
+}
+
+.green {
+  background-color: $brand-green;
+  color: white;
+  border: none;
+}
+
+.red {
+  background-color: $brand-red;
+}
+
+.black {
+  background-color: $brand-black;
+}
+
+.lightGrey {
+  background-color: $brand-lightGrey;
+}
+
+.grey {
+  background-color: $brand-grey;
+}
+
+.darkGrey {
+  background-color: $brand-darkGrey;
+}

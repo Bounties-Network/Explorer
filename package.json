@@ -63,6 +63,7 @@
     "react-switch": "^3.0.2",
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
+    "remarkable": "^1.7.1",
     "reselect": "^3.0.1",
     "resolve": "1.6.0",
     "rollbar": "^2.3.9",
