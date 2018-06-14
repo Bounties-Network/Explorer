@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Sidebar.module.scss';
 
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faTachometer from '@fortawesome/fontawesome-pro-light/faTachometer';
@@ -43,7 +43,8 @@ class Sidebar extends React.Component {
   }
 
   onTabClick(page) {
-    this.props.onClick(page);
+    // this.props.history.push(`/${page}`);
+    // this.props.onClick(page);
 
     this.setState({ activeTab: page });
   }
@@ -115,4 +116,4 @@ Sidebar.defaultProps = {
   }
 };
 
-export default Sidebar;
+export default withRouter(Sidebar);

@@ -272,12 +272,12 @@ class DashboardPage extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    console.log('props?', this.props);
-    const { loadUserInfo, userAddress = '', loadBounties } = this.props;
-    loadUserInfo(userAddress);
-    loadBounties({ address: userAddress });
-  }
+  // componentDidMount() {
+  //   console.log('props?', this.props);
+  //   const { loadUserInfo, userAddress = '', loadBounties } = this.props;
+  //   loadUserInfo(userAddress);
+  //   loadBounties({ address: userAddress });
+  // }
 
   render() {
     const {
@@ -380,7 +380,6 @@ class DashboardPage extends React.Component {
 }
 
 const mapStateToProps = (state, router) => {
-  console.log(state);
   let currentUser = rootCurrentUserSelector(state);
   let bounties = rootBountiesSelector(state);
   let stats = rootStatsSelector(state);
@@ -408,7 +407,7 @@ DashboardPage.propTypes = {
 
 const check = compose(
   FetchComponent(sagas.fetch),
-  connect(mapStateToProps, { load: actions.checkLoginStatus, ...actions }),
+  connect(mapStateToProps, { load: actions.loadBounties, ...actions }),
   LoadComponent('')
 )(DashboardPage);
 
