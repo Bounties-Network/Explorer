@@ -1,0 +1,21 @@
+.ModelViewer {
+
+}
+
+.controls {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.cell {
+  height: 50px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.modelArea {
+
+}

@@ -1,0 +1,82 @@
+@import "~styles/variables.scss";
+
+.loadingModel {
+  height: 60%;
+  width: 100%;
+}
+
+.body {
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.activateText {
+  width: 80%;
+  text-align: center;
+}
+
+.dropdownCell {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.submissionDetailBody {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.description {
+  margin: 30px;
+  text-align: center;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputCell {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  margin-top: 5px;
+}
+
+.descriptionCell {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.walletConfirmationDialogue {
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.metamaskLockModal{
+  height: 60%;
+}
+
+.bountyCardHeader {
+  display: flex;
+  justify-content: center;
+  width: 85%;
+  border: 1px solid $brand-lightGrey;
+}

@@ -3,8 +3,6 @@
 .textarea {
   resize: vertical;
   margin-top: 10px;
-  min-height: 200px;
-  max-height: 400px;
   overflow: auto;
   background-color: $base-input-background;
   border: 1px solid $brand-lightGrey;
@@ -19,4 +17,21 @@
 
 .error {
   outline: 1px solid red;
+}
+
+.resizeNone {
+  resize: none;
+}
+
+.small {
+  min-height: 150px;
+}
+
+.medium {
+  height: 400px;
+  min-height: 200px;
+}
+
+.large {
+  height: 600px;
 }

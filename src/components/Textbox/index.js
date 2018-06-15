@@ -31,13 +31,13 @@ class Textbox extends React.Component {
   }
 
   render() {
-    const { className, error } = this.props;
+    const { className, error, resizeNone, size } = this.props;
 
     return (
       <textarea
-        className={`${styles.textarea} ${className} ${
-          styles[error ? 'error' : '']
-        }`}
+        className={`${styles.textarea} ${styles[size]} ${className} ${
+          styles[resizeNone ? 'resizeNone' : '']
+        } ${styles[error ? 'error' : '']}`}
         value={this.state.text}
         onChange={this.onTextareaChange}
       />
@@ -46,12 +46,14 @@ class Textbox extends React.Component {
 }
 
 Textbox.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  size: PropTypes.oneOf(['small', 'medium', 'large'])
 };
 
 Textbox.defaultProps = {
   onChange: () => {},
-  error: false
+  error: false,
+  size: 'medium'
 };
 
 export default Textbox;

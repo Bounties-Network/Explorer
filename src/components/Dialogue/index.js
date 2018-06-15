@@ -23,6 +23,8 @@ const Dialogue = props => {
     ));
   };
 
+  const showButtonLine = buttons.length === 0 ? 'hide' : 'show';
+
   return (
     <div className={`${styles.background}`}>
       <div
@@ -40,8 +42,10 @@ const Dialogue = props => {
             </div>
           )}
         </div>
-        <div className={`${styles.dialogueMid}`}>{props.children}</div>
-        <div className={`${styles.dialogueBot}`}>{renderButtons(buttons)}</div>
+        {props.children}
+        <div className={`${styles.dialogueBot} ${styles[showButtonLine]}`}>
+          {renderButtons(buttons)}
+        </div>
       </div>
     </div>
   );

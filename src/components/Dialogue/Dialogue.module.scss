@@ -36,16 +36,14 @@
   width: 100%;
 }
 
-.dialogueMid {
-  height: 60%;
-  width: 100%;
-}
-
 .dialogueBot {
-  border-top: 1px solid $brand-lightGrey;
   padding-top: 30px;
   display: flex;
   justify-content: flex-end;
+}
+
+.show {
+  border-top: 1px solid $brand-lightGrey;
 }
 
 .buttonRow {
@@ -53,16 +51,16 @@
 }
 
 .small {
-  height: 200px;
+  height: 250px;
   width: 400px;
 }
 
 .medium {
-  height: 240px;
+  height: 350px;
   width: 400px;
 }
 
 .large {
-  height: 350px;
+  height: 650px;
   width: 500px;
 }
