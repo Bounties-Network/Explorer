@@ -15,12 +15,12 @@ import {
   ExplorerPage,
   CreateBountyPage,
   AccountSettings,
-  // Header,
-  // Sidebar,
+  Header,
+  Sidebar,
   ViewBounty,
   SignInPage
 } from 'containers';
-import { Header, Sidebar } from 'components';
+// import { Header, Sidebar } from 'components';
 
 import '../../styles/flexboxgrid.css';
 import '../../font-files/inter-ui.css';
@@ -78,7 +78,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state, router) => {
-  console.log(state);
   let auth = rootAuthSelector(state);
   let userAddress = publicAddressSelector(auth);
 

@@ -44,8 +44,7 @@ SidebarComponent.propTypes = {
 
 const check = compose(
   FetchComponent(sagas.fetch),
-  connect(mapStateToProps, { load: actions.checkLoginStatus, ...actions }),
-  LoadComponent('')
+  connect(mapStateToProps, { ...actions })
 )(SidebarComponent);
 
 export default check;

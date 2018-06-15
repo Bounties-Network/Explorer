@@ -44,8 +44,7 @@ HeaderComponent.propTypes = {
 
 const check = compose(
   FetchComponent(sagas.fetch),
-  connect(mapStateToProps, { load: actions.checkLoginStatus, ...actions }),
-  LoadComponent('')
+  connect(mapStateToProps, { ...actions })
 )(HeaderComponent);
 
 export default check;
