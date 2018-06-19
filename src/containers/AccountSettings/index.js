@@ -12,7 +12,8 @@ import {
   DropdownSearch,
   Button,
   Circle,
-  DescriptionToggle
+  DescriptionToggle,
+  FileUpload
 } from 'components';
 
 const { categoriesSelector, rootCategoriesSelector } = selectors;
@@ -20,6 +21,16 @@ const { categoriesSelector, rootCategoriesSelector } = selectors;
 class AccountSettings extends React.Component {
   constructor(props) {
     super(props);
+
+    this.uploadFile = this.uploadFile.bind(this);
+  }
+
+  uploadFile(file) {
+    const { uploadFile } = this.props;
+
+    let reader = new window.FileReader();
+    reader.onloadend = () => uploadFile(file.name, reader);
+    reader.readAsArrayBuffer(file);
   }
 
   render() {
@@ -49,7 +60,7 @@ class AccountSettings extends React.Component {
                   type="image"
                   input="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
                 />
-                <Button style="secondary">Upload New Photo</Button>
+                <FileUpload onChange={e => this.uploadFile(e)} />
                 <Button style="deleteLink">Delete</Button>
               </div>
             </div>
