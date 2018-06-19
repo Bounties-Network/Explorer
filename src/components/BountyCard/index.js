@@ -38,6 +38,7 @@ const BountyCard = props => {
     <div className={`${styles.bountyCardContainer}`}>
       <div className={`${styles.leftColumn}`}>
         <Text
+          link
           className={`${styles.bountyTitle}`}
           style="H4"
           weight="font-weight-bold"
