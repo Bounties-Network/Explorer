@@ -2,12 +2,13 @@
 
 .textarea {
   resize: vertical;
-  margin-top: 10px;
+  margin-top: $base-spacing;
   overflow: auto;
   background-color: $base-input-background;
   border: 1px solid $brand-lightGrey;
-  border-radius: 3px;
-  padding: 5px;
+  border-radius: $base-border-radius;
+  font-size: $body-font-size;
+  padding: $m-spacing;
 }
 
 .textarea:focus {
@@ -16,7 +17,8 @@
 }
 
 .error {
-  outline: 1px solid red;
+  border: 1px solid $brand-destructive;
+  outline: 1px solid $brand-destructive;
 }
 
 .resizeNone {
