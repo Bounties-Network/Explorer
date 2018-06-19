@@ -9,7 +9,7 @@ import { Button } from 'components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faCalendarAlt from '@fortawesome/fontawesome-pro-light/faCalendarAlt';
 
-import './DatePicker.css';
+import '../../styles/DatePicker.scss';
 
 const today = moment();
 const tomorrow = moment(today).add(1, 'days');
