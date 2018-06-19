@@ -1,13 +1,13 @@
 @import "~styles/variables.scss";
 
 .textInput {
-  margin-top: 10px;
-  height: 25px;
+  margin-top: $base-spacing;
+  height: $base-input-height;
   background-color: $base-input-background;
-  border-radius: 3px;
+  border-radius: $base-border-radius;
   border: 1px solid $brand-lightGrey;
-  padding-left: 5px;
-  padding-right: 5px;
+  font-size: $body-font-size;
+  padding: 0 $m-spacing;
 }
 
 .textInput:focus {
