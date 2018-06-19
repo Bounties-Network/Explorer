@@ -35,13 +35,15 @@ class Search extends React.Component {
 
   render() {
     return (
-      <input
-        className={`${styles.search}`}
-        type="text"
-        placeholder="🔍  Search"
-        onChange={this.onSearchChange}
-        value={this.state.searchText}
-      />
+      <div className={`${styles.searchContainer}`}>
+        <input
+          className={`${styles.search}`}
+          type="text"
+          placeholder="Search..."
+          onChange={this.onSearchChange}
+          value={this.state.searchText}
+        />
+      </div>
     );
   }
 }
