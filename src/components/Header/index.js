@@ -27,24 +27,42 @@ const Header = props => {
 
   return (
     <div className={`${styles.header}`}>
-      <div className={`${styles.iconArea}`}>
-        <BeeLogo />
+      <div className="row middle-xs">
+        <div className="col-xs-1">
+          <div className={`${styles.iconArea}`}>
+            <BeeLogo />
+          </div>
+        </div>
+        <div className="col-xs-2">
+          <div className="row middle-xs center-xs">Network</div>
+        </div>
+        {loginStatus ? (
+          <div className="col-xs-offset-5 col-xs-4">
+            <div className="row middle-xs">
+              <Button
+                className="col-xs-offset-2 col-xs-4"
+                style="primary"
+                onClick={onCreateClick}
+              >
+                Create New Bounty
+              </Button>
+              <FontAwesomeIcon className="col-xs-2" icon={faBell} />
+              <Circle
+                className="col-xs-2"
+                type="image"
+                size="mini"
+                input={profilePic}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="col-xs-offset-7 col-xs-2">
+            <Button style="primary" onClick={onSignInClick}>
+              Sign In
+            </Button>
+          </div>
+        )}
       </div>
-      {loginStatus ? (
-        <div className={`${styles.buttonArea}`}>
-          <Button style="primary" onClick={onCreateClick}>
-            Create New Bounty
-          </Button>
-          <FontAwesomeIcon icon={faBell} />
-          <Circle type="image" size="mini" input={profilePic} />
-        </div>
-      ) : (
-        <div className={`${styles.signInButton}`}>
-          <Button style="primary" onClick={onSignInClick}>
-            Sign In
-          </Button>
-        </div>
-      )}
     </div>
   );
 };

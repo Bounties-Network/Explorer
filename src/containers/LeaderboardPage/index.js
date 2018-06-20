@@ -35,19 +35,21 @@ const LeaderboardPage = props => {
   };
 
   return (
-    <div className={`${styles.leaderboardPage}`}>
-      <div className={`${styles.leaderboardHeader}`}>
-        <div className={`${styles.leaderboardHeaderBody}`}>
-          <Text style="H1" color="white">
-            Leaderboard
-          </Text>
+    <div className={`${styles.leaderboardPage} col-xs`}>
+      <div className={`${styles.leaderboardHeader} row center-xs middle-xs`}>
+        <div className="col-xs">
+          <div className={`${styles.leaderboardHeaderBody}`}>
+            <Text style="H1" color="white">
+              Leaderboard
+            </Text>
+          </div>
+          <ToggleSwitch
+            offOption="Top Earners"
+            onOption="Top Issuers"
+            active={leaderboardCategory === 'issuer'}
+            onClick={onToggleClick}
+          />
         </div>
-        <ToggleSwitch
-          offOption="Top Earners"
-          onOption="Top Issuers"
-          active={leaderboardCategory === 'issuer'}
-          onClick={onToggleClick}
-        />
       </div>
       <Leaderboard leaderboardData={leaderboard} />
     </div>
