@@ -15,6 +15,7 @@ import { Chip, Text, Payout, Circle } from 'components';
 const BountyCard = props => {
   const { bountyData, onChipClick } = props;
   const {
+    id = 0,
     title = '',
     categories = [],
     issuer = '',
@@ -50,6 +51,10 @@ const BountyCard = props => {
           className={`${styles.bountyTitle}`}
           style="H4"
           weight="font-weight-bold"
+          color="black"
+          link
+          router
+          src={`/bounty/${id}`}
         >
           {title}
         </Text>
@@ -57,7 +62,14 @@ const BountyCard = props => {
         <div className={`${styles.profileBar}`}>
           <Circle type="image" size="mini" input={profile_image} />
           <div className={`${styles.addressText}`}>
-            <Text link color="blue" style="Body">
+            <Text
+              link
+              color="blue"
+              style="Body"
+              link
+              router
+              src={`/profile/${issuer}`}
+            >
               {issuer}
             </Text>
           </div>
