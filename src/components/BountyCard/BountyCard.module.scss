@@ -12,6 +12,10 @@
   &:hover {
     border-left: 3px solid $brand-purple;
     box-shadow: $m-box-shadow;
+
+    .bountyTitle {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -22,8 +26,20 @@
 }
 
 .bountyTitle {
-  line-height: 1.3;
+  line-height: 1.4;
   padding-bottom: $m-spacing;
+  text-decoration: none;
+
+  a {
+    color: $brand-black;
+    display: block;
+    font-weight: 500;
+    text-decoration: inherit;
+
+    &:hover {
+      color: $brand-blue;
+    }
+  }
 }
 
 .chipBar {
@@ -33,11 +49,7 @@
 
 .chip {
   display: inline-block;
-  margin: 0 $s-spacing $base-spacing $s-spacing;
-
-  &:first-child {
-    margin-left: 0;
-  }
+  margin: 0 $s-spacing $base-spacing 0;
 }
 
 .profileBar {
