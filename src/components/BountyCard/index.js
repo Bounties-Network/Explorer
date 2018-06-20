@@ -14,6 +14,7 @@ import { Chip, Text, Payout, Circle } from 'components';
 
 const BountyCard = props => {
   const { bountyData, onChipClick } = props;
+  console.log(bountyData);
   const {
     id = 0,
     title = '',
@@ -25,8 +26,9 @@ const BountyCard = props => {
     fulfillment_count = 0,
     deadline = '',
     experienceLevel = null,
-    profile_image = ''
+    user = {}
   } = bountyData;
+  const { profile_image } = user;
 
   const renderChips = categories => {
     return categories.map((elem, idx) => (
