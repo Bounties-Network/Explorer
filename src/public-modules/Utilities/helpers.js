@@ -38,8 +38,13 @@ function checkStages(stages) {
 }
 
 function queryBuilder(options) {
-  console.log('options', options);
   let result = '?';
+  if (options.limit) {
+    result = result + `&limit=${options.limit}`;
+  }
+  if (options.offset) {
+    result = result + `&offset=${options.offset}`;
+  }
   if (options.address) {
     result = result + `&issuer=${options.address}`;
   }

@@ -37,7 +37,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('props', this.props);
     const { loading, loaded, error } = this.props;
 
     return (

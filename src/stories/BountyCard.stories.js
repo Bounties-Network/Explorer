@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
+import { MemoryRouter } from 'react-router-dom';
 import { action } from '@storybook/addon-actions';
 
 import { BountyCard } from 'components';
@@ -85,12 +86,16 @@ const fakeData = {
   token: 2
 };
 
-storiesOf('BountyCard', module).add('BountyCard', () => (
-  <div>
-    <BountyCard bountyData={fakeData} />
-    <BountyCard bountyData={fakeData} />
-    <BountyCard bountyData={fakeData} />
-    <BountyCard bountyData={fakeData} />
-    <BountyCard bountyData={fakeData} />
-  </div>
-));
+storiesOf('BountyCard', module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
+  .add('BountyCard', () => (
+    <div>
+      <BountyCard bountyData={fakeData} />
+      <BountyCard bountyData={fakeData} />
+      <BountyCard bountyData={fakeData} />
+      <BountyCard bountyData={fakeData} />
+      <BountyCard bountyData={fakeData} />
+    </div>
+  ));
