@@ -5,6 +5,22 @@ const initialState = {
   currentBounty: {}
 };
 
+const EXTEND_DEADLINE = 'bounty/EXTEND_DEADLINE';
+const EXTEND_DEADLINE_SUCCESS = 'bounty/EXTEND_DEADLINE_SUCCESS';
+const EXTEND_DEADLINE_FAIL = 'bounty/EXTEND_DEADLINE_FAIL';
+
+function extendDeadline(id, deadline) {
+  return { type: EXTEND_DEADLINE, id, deadline };
+}
+
+function extendDeadlineSuccess() {
+  return { type: EXTEND_DEADLINE_SUCCESS };
+}
+
+function extendDeadlineFail() {
+  return { type: EXTEND_DEADLINE_FAIL };
+}
+
 const LOAD_BOUNTY = 'bounty/LOAD_BOUNTY';
 const LOAD_BOUNTY_SUCCESS = 'bounty/LOAD_BOUNTY_SUCCESS';
 const LOAD_BOUNTY_FAIL = 'bounty/LOAD_BOUNTY_FAIL';

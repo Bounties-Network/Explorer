@@ -53,7 +53,7 @@ export function* getContractClients() {
         .at(config[network].standardBountiesAddress)
     };
   } else {
-    return null;
+    throw Error('Unkown Network');
   }
 }
 
