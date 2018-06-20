@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions, sagas, selectors } from 'public-modules';
 import styles from './CreateBountyPage.module.scss';
+import moment from 'moment';
 
 import {
   Text,
@@ -15,17 +16,60 @@ import {
   NumberInput,
   DatePicker,
   RadioGroup,
-  Button
+  Button,
+  FileUpload
 } from 'components';
 
-const { categoriesSelector, rootCategoriesSelector } = selectors;
+const {
+  rootCategoriesSelector,
+  rootFileUploadSelector,
+  filesSelector
+} = selectors;
+
+const tomorrow = moment().add(1, 'days');
 
 class CreateBountyPage extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      title: '',
+      description: '',
+      contactName: '',
+      contactEmail: '',
+      categories: [],
+      difficulty: 'beginner',
+      revisions: 0,
+      link: '',
+      files: {},
+      deadline: tomorrow,
+      paysTokens: false,
+      draft: true
+    };
+
+    this.uploadFile = this.uploadFile.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+    this.updateForm = this.updateForm.bind(this);
+  }
+
+  uploadFile(file) {
+    const { uploadFile } = this.props;
+
+    let reader = new window.FileReader();
+    reader.onloadend = () => uploadFile(file.name, reader);
+    reader.readAsArrayBuffer(file);
+  }
+
+  submitForm() {
+    console.log(this.state);
+  }
+
+  updateForm(key, value) {
+    console.log('form updated', key, value);
   }
 
   render() {
+    console.log('props', this.props);
     const { loading, error, categories } = this.props;
     if (error) {
       return <div>error...</div>;
@@ -184,7 +228,7 @@ class CreateBountyPage extends React.Component {
                   <Text style="FormLabel" color="grey">
                     Associated Files
                   </Text>
-                  <TextInput />
+                  <FileUpload onChange={e => this.uploadFile(e)} />
                 </div>
               </div>
             </div>
@@ -269,7 +313,7 @@ class CreateBountyPage extends React.Component {
                     Payout Method
                   </Text>
                   <RadioGroup
-                    options={['Now', 'Later']}
+                    options={['Later', 'Now']}
                     className={`${styles.content}`}
                   />
                 </div>
@@ -287,7 +331,7 @@ class CreateBountyPage extends React.Component {
               <Button size="large" style="secondary">
                 Cancel
               </Button>
-              <Button size="large" style="primary">
+              <Button size="large" style="primary" onClick={this.submitForm}>
                 Create Bounty
               </Button>
             </div>
@@ -299,11 +343,14 @@ class CreateBountyPage extends React.Component {
 }
 
 const mapStateToProps = (state, router) => {
+  console.log('state + router', state, router);
   let categoriesState = rootCategoriesSelector(state);
+  let files = rootFileUploadSelector(state);
 
   return {
+    files,
     categories: categoriesState.categories,
-    ...categoriesSelector(state)
+    ...filesSelector(state)
   };
 };
 
