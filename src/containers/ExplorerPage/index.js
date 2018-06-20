@@ -104,11 +104,11 @@ class ExplorerPage extends React.Component {
             />
           </div>
         </div>
-        {loading ? (
-          <Loading className={`${styles.loading}`} />
-        ) : (
-          <div className={`${styles.bountiesColumn}`}>
-            <div className={`${styles.sortByBar}`}>
+        <div className={`${styles.bountiesColumn}`}>
+          <div className={`${styles.sortByBar}`}>
+            {loading ? (
+              <div className={`${styles.count}`} />
+            ) : (
               <div className={`${styles.count}`}>
                 <Text style="H2" color="purple">
                   {count}
@@ -117,25 +117,31 @@ class ExplorerPage extends React.Component {
                   Bounties
                 </Text>
               </div>
-              <div className={`${styles.sortBy}`}>
-                <SortBy onClick={e => this.updateSearchOptions('sort', e)} />
-              </div>
-            </div>
-            <div className={`${styles.bountiesList}`}>
-              {this.renderBounties(bounties)}
-            </div>
-            <div className={`${styles.loadMoreButton}`}>
-              <Button
-                size="large"
-                style="primary"
-                disabled={loadingMore}
-                onClick={this.loadMoreBounties}
-              >
-                {loadingMore ? <Loading /> : 'Load More'}
-              </Button>
+            )}
+            <div className={`${styles.sortBy}`}>
+              <SortBy onClick={e => this.updateSearchOptions('sort', e)} />
             </div>
           </div>
-        )}
+          {loading ? (
+            <Loading className={`${styles.loading}`} />
+          ) : (
+            <div>
+              <div className={`${styles.bountiesList}`}>
+                {this.renderBounties(bounties)}
+              </div>
+              <div className={`${styles.loadMoreButton}`}>
+                <Button
+                  size="large"
+                  style="primary"
+                  disabled={loadingMore}
+                  onClick={this.loadMoreBounties}
+                >
+                  {loadingMore ? <Loading /> : 'Load More'}
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
