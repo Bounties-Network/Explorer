@@ -1,15 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
 import styles from './Text.module.scss';
 
 const Text = props => {
-  const { className, style, src, link, color, weight, id, noUnderline } = props;
+  const {
+    className,
+    style,
+    src,
+    link,
+    router,
+    color,
+    weight,
+    id,
+    noUnderline
+  } = props;
 
   let addedClasses = '';
-  if (link) {
+  if (link || router) {
     addedClasses += styles.Link;
     if (noUnderline) {
       addedClasses += ` ${styles.noUnderline}`;
+    }
+
+    if (router) {
+      <Link to={src}>
+        <span
+          className={`text ${className} ${styles[style]} ${addedClasses}`}
+          id={id}
+        >
+          {props.children}
+        </span>
+      </Link>;
     }
 
     return (
@@ -57,6 +79,7 @@ Text.propTypes = {
   ]),
   src: PropTypes.string,
   link: PropTypes.bool,
+  router: PropTypes.bool,
   color: PropTypes.oneOf([
     'purple',
     'blue',

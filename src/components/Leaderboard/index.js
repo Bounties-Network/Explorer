@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Leaderboard.module.scss';
 import { shortenAddress } from '../../utils/utilities';
 
-import { Text, Circle } from 'components';
+import { Text, Circle, Loading } from 'components';
 
 const LeaderboardItem = props => {
   const { data, index = 0 } = props;
@@ -15,7 +15,7 @@ const LeaderboardItem = props => {
     total_usd = 2724.0805,
     // bounties_fulfilled = 7,
     // fulfillments_accepted = 7,
-    image = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+    profile_image = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
   } = data;
 
   if (name === '') {
@@ -31,13 +31,13 @@ const LeaderboardItem = props => {
           </Text>
         </div>
         <div className={`${styles.profileInfo}`}>
-          <Circle type="image" input={image} size="small" />
+          <Circle type="image" input={profile_image} size="small" />
           <div className={`${styles.nameBox}`}>
             <div className={`${styles.name}`}>
               <Text style="H4">{name}</Text>
             </div>
             <div className={`${styles.address}`}>
-              <Text style="Small" link>
+              <Text style="Small" router src={`/profile/${address}`}>
                 {shortenAddress(address)}
               </Text>
             </div>
@@ -52,7 +52,7 @@ const LeaderboardItem = props => {
 };
 
 const Leaderboard = props => {
-  const { leaderboardData } = props;
+  const { leaderboardData, loading } = props;
   const renderItems = dataArray => {
     return leaderboardData.map((elem, ind) => {
       return (
@@ -67,7 +67,13 @@ const Leaderboard = props => {
 
   return (
     <div className={`${styles.leaderboard}`}>
-      {renderItems(leaderboardData)}
+      {loading ? (
+        <div className={`${styles.loading}`}>
+          <Loading />
+        </div>
+      ) : (
+        renderItems(leaderboardData)
+      )}
     </div>
   );
 };
