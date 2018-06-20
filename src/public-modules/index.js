@@ -9,6 +9,7 @@ import categoriesReducer from 'public-modules/Categories';
 import authenticationReducer from 'public-modules/Authentication';
 import bountyReducer from 'public-modules/Bounty';
 import fileUploadRducer from 'public-modules/FileUpload';
+import clientReducer from 'public-modules/Client';
 
 export const reducers = {
   bounties: bountiesReducer,
@@ -18,7 +19,8 @@ export const reducers = {
   categories: categoriesReducer,
   authentication: authenticationReducer,
   bounty: bountyReducer,
-  fileUpload: fileUploadRducer
+  fileUpload: fileUploadRducer,
+  client: clientReducer
 };
 
 import bountiesSagas from 'public-modules/Bounties/sagas';
@@ -29,6 +31,7 @@ import categoriesSagas from 'public-modules/Categories/sagas';
 import authenticationSagas from 'public-modules/Authentication/sagas';
 import bountySagas from 'public-modules/Bounty/sagas';
 import fileUploadSagas from 'public-modules/FileUpload/sagas';
+import clientSagas from 'public-modules/Client/sagas';
 
 export const sagaWatchers = [
   ...leaderboardSagas,
@@ -38,7 +41,8 @@ export const sagaWatchers = [
   ...categoriesSagas,
   ...authenticationSagas,
   ...bountySagas,
-  ...fileUploadSagas
+  ...fileUploadSagas,
+  ...clientSagas
 ];
 
 import * as namedBountiesSagas from 'public-modules/Bounties/sagas';
@@ -49,6 +53,7 @@ import * as namedCategoriesSagas from 'public-modules/Categories/sagas';
 import * as namedAuthenticationSagas from 'public-modules/Authentication/sagas';
 import * as namedBountySagas from 'public-modules/Bounty/sagas';
 import * as namedFileUploadSagas from 'public-modules/FileUpload/sagas';
+import * as namedClientSagas from 'public-modules/Client/sagas';
 
 export const sagas = {
   ...namedLeaderboardSagas,
@@ -58,7 +63,8 @@ export const sagas = {
   ...namedCategoriesSagas,
   ...namedAuthenticationSagas,
   ...namedBountySagas,
-  ...namedFileUploadSagas
+  ...namedFileUploadSagas,
+  ...namedClientSagas
 };
 
 import { actions as bountiesActions } from 'public-modules/Bounties';
@@ -69,6 +75,7 @@ import { actions as categoriesActions } from 'public-modules/Categories';
 import { actions as authenticationActions } from 'public-modules/Authentication';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as fileUploadActions } from 'public-modules/FileUpload';
+import { actions as clientActions } from 'public-modules/Client;';
 
 export const actions = {
   ...leaderboardActions,
@@ -78,7 +85,8 @@ export const actions = {
   ...categoriesActions,
   ...authenticationActions,
   ...bountyActions,
-  ...fileUploadActions
+  ...fileUploadActions,
+  ...clientActions
 };
 
 import { actionTypes as bountiesActionTypes } from 'public-modules/Bounties';
@@ -89,6 +97,7 @@ import { actionTypes as categoriesActionTypes } from 'public-modules/Categories'
 import { actionTypes as authenticationActionTypes } from 'public-modules/Authentication';
 import { actionTypes as bountyActionTypes } from 'public-modules/Bounty';
 import { actionTypes as fileUploadActionTypes } from 'public-modules/FileUpload';
+import { actionTypes as clientActionTypes } from 'public-modules/Client';
 
 export const actionTypes = {
   ...leaderboardActionTypes,
@@ -98,7 +107,8 @@ export const actionTypes = {
   ...categoriesActionTypes,
   ...authenticationActionTypes,
   ...bountyActionTypes,
-  ...fileUploadActionTypes
+  ...fileUploadActionTypes,
+  ...clientActionTypes
 };
 
 import * as bountiesSelectors from 'public-modules/Bounties/selectors';
@@ -109,6 +119,7 @@ import * as categoriesSelectors from 'public-modules/Categories/selectors';
 import * as authenticationSelectors from 'public-modules/Authentication/selectors';
 import * as bountySelectors from 'public-modules/Bounty/selectors';
 import * as fileUploadSelectors from 'public-modules/FileUpload/selectors';
+import * as clientSelectors from 'public-modules/Client/selectors';
 
 export const selectors = {
   ...leaderboardSelectors,
@@ -118,5 +129,6 @@ export const selectors = {
   ...categoriesSelectors,
   ...authenticationSelectors,
   ...bountySelectors,
-  ...fileUploadSelectors
+  ...fileUploadSelectors,
+  ...clientSelectors
 };
