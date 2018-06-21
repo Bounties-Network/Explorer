@@ -13,6 +13,7 @@ import 'styles/index.scss';
 import { reducers, sagaWatchers } from 'public-modules';
 import { App } from 'layout';
 import registerServiceWorker from './registerServiceWorker';
+import { reducer as formReducer } from 'redux-form';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -22,6 +23,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   combineReducers({
     router: routerReducer,
+    form: formReducer,
     ...reducers
   }),
   composeEnhancers(applyMiddleware(middleware, sagaMiddleware))

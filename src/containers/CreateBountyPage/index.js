@@ -4,6 +4,7 @@ import { FetchComponent, LoadComponent } from 'hocs';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions, sagas, selectors } from 'public-modules';
+import { Field, reduxForm } from 'redux-form';
 import styles from './CreateBountyPage.module.scss';
 import moment from 'moment';
 
@@ -19,6 +20,8 @@ import {
   Button,
   FileUpload
 } from 'components';
+
+const CREATE_BOUNTY = 'form/create_bounty';
 
 const {
   rootCategoriesSelector,
@@ -51,7 +54,7 @@ class CreateBountyPage extends React.Component {
 
     this.uploadFile = this.uploadFile.bind(this);
     this.submitForm = this.submitForm.bind(this);
-    this.updateForm = this.updateForm.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   uploadFile(file) {
@@ -62,21 +65,20 @@ class CreateBountyPage extends React.Component {
     reader.readAsArrayBuffer(file);
   }
 
-  submitForm() {
-    console.log(this.state);
-  }
-
-  updateForm(key, value) {
-    const tempState = Object.assign({}, this.state);
+  handleChange(key, value) {
+    const { change } = this.props;
     if (key === 'paysTokens') {
-      tempState[key] = value !== 'ETH';
-    } else if (key === 'draft') {
-      tempState[key] = value === 'Later';
-    } else {
-      tempState[key] = value;
+      value = value !== 'ETH';
+    }
+    if (key === 'draft') {
+      value = value === 'Later';
     }
 
-    this.setState(tempState, () => console.log(this.state));
+    change(key, value);
+  }
+
+  submitForm() {
+    console.log(this.state);
   }
 
   render() {
@@ -113,18 +115,17 @@ class CreateBountyPage extends React.Component {
                 <Text style="FormLabel" color="grey">
                   Title
                 </Text>
-                <TextInput
-                  className={`${styles.textInput}`}
-                  onChange={e => this.updateForm('title', e)}
-                />
+                <Field component={TextInput} type="input" name="title" />
               </div>
               <div className={`${styles.bountyTitle}`}>
                 <Text style="FormLabel" color="grey">
                   Description
                 </Text>
-                <Textbox
+                <Field
                   className={`${styles.textBox}`}
-                  onChange={e => this.updateForm('description', e)}
+                  component={Textbox}
+                  type="input"
+                  name="description"
                 />
               </div>
             </div>
@@ -147,16 +148,20 @@ class CreateBountyPage extends React.Component {
                   <Text style="FormLabel" color="grey">
                     Contact Name
                   </Text>
-                  <TextInput
-                    onChange={e => this.updateForm('contactName', e)}
+                  <Field
+                    component={TextInput}
+                    type="input"
+                    name="contactName"
                   />
                 </div>
                 <div className={`${styles.contactInputArea}`}>
                   <Text style="FormLabel" color="grey">
                     Contact Email
                   </Text>
-                  <TextInput
-                    onChange={e => this.updateForm('contactEmail', e)}
+                  <Field
+                    component={TextInput}
+                    type="input"
+                    name="contactEmail"
                   />
                 </div>
               </div>
@@ -189,7 +194,7 @@ class CreateBountyPage extends React.Component {
                     className={`${styles.content}`}
                     options={categories}
                     placeholder="e.g. HTML"
-                    onChange={e => this.updateForm('categories', e)}
+                    onChange={e => this.handleChange('categories', e)}
                   />
                 </div>
                 <div className={`${styles.contactInputArea}`}>
@@ -198,7 +203,7 @@ class CreateBountyPage extends React.Component {
                   </Text>
                   <Difficulty
                     className={`${styles.content}`}
-                    onChange={e => this.updateForm('difficulty', e)}
+                    onChange={e => this.handleChange('difficulty', e)}
                   />
                 </div>
               </div>
@@ -221,7 +226,9 @@ class CreateBountyPage extends React.Component {
                 </Text>
               </div>
               <div className={`${styles.contactArea}`}>
-                <NumberInput onChange={e => this.updateForm('revisions', e)} />
+                <NumberInput
+                  onChange={e => this.handleChange('revisions', e)}
+                />
               </div>
             </div>
           </div>
@@ -246,7 +253,7 @@ class CreateBountyPage extends React.Component {
                   <Text style="FormLabel" color="grey">
                     Web Link
                   </Text>
-                  <TextInput onChange={e => this.updateForm('link', e)} />
+                  <Field component={TextInput} type="input" name="link" />
                 </div>
                 <div className={`${styles.contactInputArea}`}>
                   <Text style="FormLabel" color="grey">
@@ -274,7 +281,9 @@ class CreateBountyPage extends React.Component {
               </div>
               <div className={`${styles.contactArea}`}>
                 <div className={`${styles.contactInputArea}`}>
-                  <DatePicker onChange={e => this.updateForm('deadline', e)} />
+                  <DatePicker
+                    onChange={e => this.handleChange('deadline', e)}
+                  />
                 </div>
               </div>
             </div>
@@ -303,16 +312,18 @@ class CreateBountyPage extends React.Component {
                   <RadioGroup
                     options={['ETH', 'ERC20 Token']}
                     className={`${styles.content}`}
-                    onChange={e => this.updateForm('paysTokens', e)}
+                    onChange={e => this.handleChange('paysTokens', e)}
                   />
                 </div>
                 <div className={`${styles.contactInputArea}`}>
                   <Text style="FormLabel" color="grey">
                     Payout Amount (ETH or whole tokens)
                   </Text>
-                  <TextInput
+                  <Field
+                    component={TextInput}
+                    type="input"
+                    name="payout"
                     className={`${styles.content}`}
-                    onChange={e => this.updateForm('title', e)}
                   />
                 </div>
               </div>
@@ -343,16 +354,18 @@ class CreateBountyPage extends React.Component {
                   <RadioGroup
                     options={['Later', 'Now']}
                     className={`${styles.content}`}
-                    onChange={e => this.updateForm('draft', e)}
+                    onChange={e => this.handleChange('draft', e)}
                   />
                 </div>
                 <div className={`${styles.contactInputArea}`}>
                   <Text style="FormLabel" color="grey">
                     Deposit Amount (ETH or whole tokens)
                   </Text>
-                  <TextInput
+                  <Field
+                    component={TextInput}
+                    type="input"
+                    name="deposit"
                     className={`${styles.content}`}
-                    onChange={e => this.updateForm('depositAmount', e)}
                   />
                 </div>
               </div>
@@ -375,6 +388,7 @@ class CreateBountyPage extends React.Component {
 }
 
 const mapStateToProps = (state, router) => {
+  console.log('state', state);
   let categoriesState = rootCategoriesSelector(state);
   let files = rootFileUploadSelector(state);
 
@@ -394,7 +408,8 @@ CreateBountyPage.propTypes = {
 const check = compose(
   FetchComponent(sagas.fetch),
   connect(mapStateToProps, { load: actions.loadCategories, ...actions }),
-  LoadComponent('')
+  LoadComponent(''),
+  reduxForm({ form: CREATE_BOUNTY })
 )(CreateBountyPage);
 
 export default check;
