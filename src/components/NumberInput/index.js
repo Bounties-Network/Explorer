@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NumbericInput from 'react-numeric-input';
-import styles from './NumberInput.module.scss';
 
-import './NumberInput.css';
+import '../../styles/NumberInput.scss';
 
 class NumberInput extends React.Component {
   constructor(props) {
