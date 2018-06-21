@@ -40,3 +40,5 @@ ReactDOM.render(
   document.getElementById('root')
 );
 registerServiceWorker();
+
+window.store = () => console.log(store.getState());
