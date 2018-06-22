@@ -35,7 +35,7 @@ const LeaderboardPage = props => {
   };
 
   return (
-    <div className={`${styles.leaderboardPage} col-xs`}>
+    <div className={`${styles.leaderboardPage}`}>
       <div className={`${styles.leaderboardHeader} row center-xs middle-xs`}>
         <div className="col-xs">
           <div className={`${styles.leaderboardHeaderBody}`}>

@@ -38,21 +38,18 @@ const Header = props => {
         </div>
         {loginStatus ? (
           <div className="col-xs-offset-5 col-xs-4">
-            <div className="row middle-xs">
-              <Button
-                className="col-xs-offset-2 col-xs-4"
-                style="primary"
-                onClick={onCreateClick}
-              >
-                Create New Bounty
-              </Button>
-              <FontAwesomeIcon className="col-xs-2" icon={faBell} />
-              <Circle
-                className="col-xs-2"
-                type="image"
-                size="mini"
-                input={profilePic}
-              />
+            <div className="row center-xs middle-xs">
+              <div className="col-xs-5">
+                <Button style="primary" onClick={onCreateClick}>
+                  Create New Bounty
+                </Button>
+              </div>
+              <div className="col-xs-1">
+                <FontAwesomeIcon icon={faBell} />
+              </div>
+              <div className="col-xs-2">
+                <Circle type="image" size="mini" input={profilePic} />
+              </div>
             </div>
           </div>
         ) : (

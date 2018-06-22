@@ -1,11 +1,9 @@
 @import "~styles/variables.scss";
 
 .cardContainer {
-/*  min-width: 750px;*/
   display: flex;
   box-shadow: $brand-card-box-shadow;
   padding: 25px;
-/*  width: 48%;*/
   flex-direction: column;
   background-color: white;
 }
