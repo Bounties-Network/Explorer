@@ -4,7 +4,7 @@ import styles from './Dropdown.module.scss';
 
 // import { Text } from 'components';
 import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import '../../styles/ReactDropdown.scss';
 
 const DropdownComponent = props => {
   const { options, onChange, placeholder } = props;
