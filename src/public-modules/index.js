@@ -75,7 +75,7 @@ import { actions as categoriesActions } from 'public-modules/Categories';
 import { actions as authenticationActions } from 'public-modules/Authentication';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as fileUploadActions } from 'public-modules/FileUpload';
-import { actions as clientActions } from 'public-modules/Client;';
+import { actions as clientActions } from 'public-modules/Client';
 
 export const actions = {
   ...leaderboardActions,

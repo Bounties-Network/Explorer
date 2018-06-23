@@ -1,11 +1,12 @@
 import web3 from 'public-modules/Utilities/Web3Client';
 import config from 'public-modules/config';
 import { networkSelector } from 'public-modules/Client/selectors';
-import { call, put, select, delay } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import { promisify } from 'public-modules/Utilities/helpers';
 import { actions } from 'public-modules/Client';
 
-const { hasWallet, setNetwork } = actions;
+const { setHasWallet, setNetwork } = actions;
 
 export function* getWeb3Client() {
   if (
@@ -21,9 +22,7 @@ export function* getWeb3Client() {
 }
 
 export function* getNetwork() {
-  const web3 = yield call(getWeb3Client);
-  getWeb3Network = promisify(cb => web3.version.getNetwork());
-  networkID = yield getWeb3Network();
+  const networkID = yield promisify(window.web3.version.getNetwork);
 
   let network = 'unknown';
   switch (networkID) {
@@ -66,4 +65,4 @@ export function* checkNetwork() {
   }
 }
 
-export default [checkNetwork];
+export default [];
