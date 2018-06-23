@@ -2,6 +2,7 @@ import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { promisify } from 'public-modules/Utilities/helpers';
 import { actionTypes, actions } from 'public-modules/Bounty';
+import { actions as transactionActions } from 'public-modules/Transaction';
 import { getContractClients } from 'public-modules/Client/sagas';
 
 const { LOAD_BOUNTY, EXTEND_DEADLINE } = actionTypes;
@@ -11,6 +12,8 @@ const {
   extendDeadlineFail,
   extendDeadlineSuccess
 } = actions;
+
+const { setTransaction } = transactionActions;
 
 // Load single Bounty, needs ID
 export function* loadBounty(action) {
@@ -31,7 +34,9 @@ export function* extendDeadline(action) {
     const transaction = yield call(
       promisify(cb => clients.standardBounties.extendDeadline(id, deadline))
     );
-    // put operation to new transaction
+
+    // need to call setTransaction for every web3 interaction
+    yield put(setTransaction(transaction));
     yield put(extendDeadlineSuccess());
   } catch (e) {
     yield put(extendDeadlineFail(e));
