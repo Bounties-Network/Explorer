@@ -100,3 +100,14 @@ function queryBuilder(options) {
 export function searchQueryBuilder(options) {
   return options ? queryBuilder(options) : '';
 }
+
+export const promisify = inner =>
+  new Promise((resolve, reject) =>
+    inner((err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(res);
+      }
+    })
+  );
