@@ -58,11 +58,11 @@ export function* getContractClients() {
 }
 
 export function* checkNetwork() {
-  // every half second, network and wallet status is updated in the redux store
+  // every second and a half, network and wallet status is updated in the redux store
   while (true) {
     yield call(getWeb3Client);
     yield call(getNetwork);
-    yield delay(500);
+    yield delay(1500);
   }
 }
 

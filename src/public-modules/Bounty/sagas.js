@@ -32,6 +32,7 @@ export function* extendDeadline(action) {
       promisify(cb => clients.standardBounties.extendDeadline(id, deadline))
     );
     // put operation to new transaction
+    yield put(extendDeadlineSuccess());
   } catch (e) {
     yield put(extendDeadlineFail(e));
   }
