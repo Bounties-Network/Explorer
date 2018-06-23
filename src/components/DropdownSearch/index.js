@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './DropdownSearch.module.scss';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+import '../../styles/ReactSelect.scss';
 
 import { Text, Chip } from 'components';
 
