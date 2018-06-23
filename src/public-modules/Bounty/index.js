@@ -81,6 +81,7 @@ export const actions = {
 };
 
 export const actionTypes = {
+  EXTEND_DEADLINE,
   LOAD_BOUNTY,
   LOAD_BOUNTY_SUCCESS,
   LOAD_BOUNTY_FAIL
