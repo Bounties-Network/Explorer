@@ -14,8 +14,15 @@
   position: absolute;
   background-color: $brand-white;
   border-radius: $base-border-radius;
-  border-left: 3px solid transparent;
   z-index: 1;
+}
+
+.trigger {
+  cursor: pointer;
+}
+
+.contentLeft {
+  right: 0px;
 }
 
 .content.show {

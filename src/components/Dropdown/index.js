@@ -34,11 +34,15 @@ class Dropdown extends React.Component {
   render() {
     const { show } = this.state;
 
-    const children = this.props.children;
+    const { children, position, className } = this.props;
 
-    const contentClass = show
-      ? `${styles.content} ${styles.show}`
-      : styles.content;
+    let contentClass = show
+      ? `${styles.content} ${styles.show} ${className}`
+      : `${styles.content} ${className}`;
+
+    if (position === 'left') {
+      contentClass += ` ${styles.contentLeft}`;
+    }
 
     return (
       <div className={styles.container}>
@@ -57,6 +61,8 @@ class Dropdown extends React.Component {
 }
 
 Dropdown.propTypes = {
+  position: PropTypes.oneOf(['left', 'right']),
+  className: PropTypes.string,
   children: PropTypes.arrayOf(function(propValue, key) {
     if (key > 1) {
       return new Error('Children Must Be DropdownTrigger and DropdownContent');
@@ -68,6 +74,10 @@ Dropdown.propTypes = {
       return new Error('Second Child Must Be a Dropdown Content Element');
     }
   })
+};
+
+Dropdown.defaultProps = {
+  position: 'right'
 };
 
 Dropdown.DropdownTrigger = DropdownTrigger;
