@@ -83,8 +83,7 @@ class ProfilePage extends React.Component {
   }
 
   componentDidMount() {
-    let { userAddress, loadStats } = this.props;
-    loadStats(userAddress);
+    let { userAddress } = this.props;
     this.updateSearchOptions('address', userAddress);
   }
 
@@ -266,17 +265,15 @@ class ProfilePage extends React.Component {
 const mapStateToProps = (state, router) => {
   let currentUser = rootCurrentUserSelector(state);
   let bounties = rootBountiesSelector(state);
-  let stats = rootStatsSelector(state);
   let userAddress = router.match.params.address || '';
   // const userAddress = router.match.params.address;
-  if (web3 && web3.eth && web3.eth.accounts && web3.eth.accounts[0]) {
-    console.log(web3.eth.accounts[0]);
-    userAddress = web3.eth.accounts[0];
-  }
+  // if (web3 && web3.eth && web3.eth.accounts && web3.eth.accounts[0]) {
+  //   userAddress = web3.eth.accounts[0];
+  // }
 
   return {
-    userAddress: userAddress,
-    stats: stats.stats,
+    userAddress: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
+    stats: {},
     bounties: bounties.bounties,
     currentUser: currentUser.currentUser,
     ...currentUserSelector(state),
@@ -293,7 +290,10 @@ ProfilePage.propTypes = {
 
 const check = compose(
   FetchComponent(sagas.fetch),
-  connect(mapStateToProps, { load: actions.loadUserInfo, ...actions }),
+  connect(
+    mapStateToProps,
+    { load: actions.loadUserInfo, ...actions }
+  ),
   LoadComponent('userAddress')
 )(ProfilePage);
 
