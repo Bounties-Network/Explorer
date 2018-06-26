@@ -2,8 +2,9 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
 import { Dropdown } from 'components';
+
+const { DropdownTrigger, DropdownContent } = Dropdown;
 
 const options = [
   { value: 'React', label: 'React' },
@@ -13,6 +14,11 @@ const options = [
 
 storiesOf('NewDropdown', module).add('NewDropdown', () => (
   <div>
-    <Dropdown />
+    <Dropdown>
+      <DropdownTrigger>TestDrop</DropdownTrigger>
+      <DropdownContent>
+        <div>yolo</div>
+      </DropdownContent>
+    </Dropdown>
   </div>
 ));

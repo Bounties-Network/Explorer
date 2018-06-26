@@ -1,4 +1,10 @@
+@import "~styles/variables.scss";
+
 .container {
+  outline: none;
+  .trigger {
+    outline: none;
+  }
   position: relative;
   display: inline-block;
 }
@@ -6,14 +12,12 @@
 .content {
   display: none;
   position: absolute;
-  background: red;
+  background-color: $brand-white;
+  border-radius: $base-border-radius;
+  border-left: 3px solid transparent;
   z-index: 1;
 }
 
 .content.show {
   display: block;
-}
-
-.test {
-  width: 500px;
 }
