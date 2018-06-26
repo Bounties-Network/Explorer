@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './NotificationDropdown.module.scss';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faBell from '@fortawesome/fontawesome-pro-light/faBell';
 
 const NotificationDropdown = props => {
-  return <div>Notification</div>;
+  return <FontAwesomeIcon icon={faBell} />;
 };
 
 NotificationDropdown.propTypes = {};

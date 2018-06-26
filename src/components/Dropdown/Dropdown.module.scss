@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.content {
+  display: none;
+  position: absolute;
+  background: red;
+  z-index: 1;
+}
+
+.content.show {
+  display: block;
+}
+
+.test {
+  width: 500px;
+}
