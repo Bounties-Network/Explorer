@@ -5,9 +5,8 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions, sagas, selectors } from 'public-modules';
 import styles from './LeaderboardPage.module.scss';
-import { withRouter } from 'react-router-dom';
 
-import { Text, ToggleSwitch, Leaderboard } from 'components';
+import { Text, ToggleSwitch, Leaderboard, Button, Loading } from 'components';
 
 const { leaderboardSelector, rootLeaderboardSelector } = selectors;
 
@@ -17,7 +16,9 @@ const LeaderboardPage = props => {
     error,
     leaderboard,
     leaderboardCategory,
-    loadLeaderboard
+    loadLeaderboard,
+    loadMoreLeaderboard,
+    loadingMore
   } = props;
 
   if (error) {
@@ -32,6 +33,10 @@ const LeaderboardPage = props => {
       props.history.push('/leaderboard/fulfiller');
       loadLeaderboard('fulfiller');
     }
+  };
+
+  const loadMore = () => {
+    loadMoreLeaderboard(leaderboardCategory, leaderboard.length);
   };
 
   return (
@@ -49,7 +54,21 @@ const LeaderboardPage = props => {
           onClick={onToggleClick}
         />
       </div>
-      <Leaderboard leaderboardData={leaderboard} />
+      <div className={`${styles.leaderboardBody}`}>
+        <Leaderboard leaderboardData={leaderboard} loading={loading} />
+        {loading ? (
+          ''
+        ) : (
+          <Button
+            style="primary"
+            className={`${styles.loadMore}`}
+            onClick={loadMore}
+            disabled={loadingMore}
+          >
+            {loadingMore ? <Loading /> : 'Load More'}
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

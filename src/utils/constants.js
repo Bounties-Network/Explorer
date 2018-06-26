@@ -12,3 +12,5 @@ export const HTTP_503_SERVICE_UNAVAILABLE = 503;
 
 // update this to be an env passthrough
 export const API_ENDPOINT = 'https://staging.api.bounties.network';
+
+export const URL_ENDPOINT = 'https://localhost:3000';
