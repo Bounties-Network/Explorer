@@ -94,11 +94,7 @@ Dropdown.propTypes = {
     if (key === 0 && propValue[0].type.name !== DropdownTrigger.name) {
       return new Error('First Child Must Be a Dropdown Trigger Element');
     }
-    if (
-      key === 1 &&
-      (propValue[1].type.name !== DropdownContent.name ||
-        propValue[1].type.name !== DropdownMenu.name)
-    ) {
+    if (key === 1 && propValue[1].type.name !== DropdownContent.name) {
       return new Error('Second Child Must Be a Dropdown Content Element');
     }
   })

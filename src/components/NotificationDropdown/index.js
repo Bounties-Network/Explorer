@@ -8,6 +8,9 @@ import { Dropdown, CardNotification } from 'components';
 const { DropdownTrigger, DropdownContent } = Dropdown;
 
 const renderNotifications = data => {
+  if (!data) {
+    return null;
+  }
   return data.map(elem => {
     return <CardNotification notificationData={elem} />;
   });
