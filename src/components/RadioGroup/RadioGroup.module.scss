@@ -4,12 +4,68 @@
   background-color: $brand-blue;
 }
 
-.item {
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
+.radioContainer {
+  display: block;
+  position: relative;
+  padding-left: $base-checkbox-size + $base-spacing;
+  margin-bottom: $base-spacing;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  /* Hide the browser's default radio button */
+  input {
+    position: absolute;
+    opacity: 0;
+    left: -9999px !important;
+
+    /* When the radio button is checked, add blue border-color */
+    &:checked ~ .customRadio {
+      border-color: $brand-blue;
+
+      /* Show the indicator (dot/circle) when checked */
+      &:after {
+        display: block;
+      }
+    }
+  }
+
+  /* On mouse-over, change border-color */
+  &:hover input ~ .customRadio {
+    border-color: $brand-grey;
+  }
+
+  &:hover input:checked ~ .customRadio {
+    border-color: $brand-blue;
+  }
+
+  /* Style the indicator (dot/circle) */
+  .customRadio:after {
+    top: $base-checkbox-size / 5.33;
+    left: $base-checkbox-size / 5.33;
+    width: $base-checkbox-size * 0.625;
+    height: $base-checkbox-size * 0.625;
+    border-radius: 50%;
+    background: $brand-blue;
+  }
 }
 
-.text {
-  margin-left: 10px;
+/* Create a custom radio button */
+.customRadio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: $base-checkbox-size;
+  width: $base-checkbox-size;
+  border: 2px solid $brand-lightGrey;
+  border-radius: 50%;
+
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  &:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
 }

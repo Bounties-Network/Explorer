@@ -4,8 +4,6 @@ import styles from './RadioGroup.module.scss';
 
 import { Text } from 'components';
 
-import './RadioGroup.css';
-
 class RadioGroup extends React.Component {
   constructor(props) {
     super(props);
@@ -27,21 +25,21 @@ class RadioGroup extends React.Component {
   renderRadioButtons(data) {
     return data.map((elem, idx) => {
       return (
-        <div key={'radio' + idx} className={`${styles.item}`}>
+        <label key={'radio' + idx} className={`${styles.radioContainer}`}>
           <input
             className={`${styles.radio}`}
             type="radio"
             checked={this.state.selection === elem}
             onChange={() => this.onSelectionChange(elem)}
           />{' '}
+          <span className={`${styles.customRadio}`} />
           <Text
-            className={`${styles.text}`}
-            color={this.state.selection === elem ? 'blue' : 'grey'}
+            style="Body"
+            color={this.state.selection === elem ? 'blue' : 'darkGrey'}
           >
             {elem}
           </Text>{' '}
-          <br />
-        </div>
+        </label>
       );
     });
   }
