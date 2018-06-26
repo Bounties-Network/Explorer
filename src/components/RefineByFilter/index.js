@@ -29,6 +29,7 @@ class RefineByFilter extends React.Component {
 
     this.onInputChange = this.onInputChange.bind(this);
     this.clearFilter = this.clearFilter.bind(this);
+    this.addCategory = this.addCategory.bind(this);
   }
 
   onInputChange(prop, value) {
@@ -49,6 +50,11 @@ class RefineByFilter extends React.Component {
     this.setState({ filter: tempFilter }, () =>
       this.props.onChange(tempFilter)
     );
+  }
+
+  addCategory(category) {
+    let tempFilter = Object.assign({}, this.state.filter);
+    this.DropdownSearchComponent.addCategory(category);
   }
 
   clearFilter() {

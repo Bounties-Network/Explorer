@@ -13,8 +13,10 @@ import faLevelUp from '@fortawesome/fontawesome-pro-light/faLevelUp';
 import { Chip, Text, Payout, Circle } from 'components';
 
 const BountyCard = props => {
-  const { bountyData } = props;
+  const { bountyData, onChipClick } = props;
+  console.log(bountyData);
   const {
+    id = 0,
     title = '',
     categories = [],
     issuer = '',
@@ -23,15 +25,25 @@ const BountyCard = props => {
     tokenSymbol = 'ETH',
     fulfillment_count = 0,
     deadline = '',
-    experienceLevel = null
+    experienceLevel = null,
+    user = {}
   } = bountyData;
+  const { profile_image } = user;
 
   const renderChips = categories => {
     return categories.map((elem, idx) => (
-      <div className={`${styles.chip}`} key={'chip' + idx}>
+      <div
+        className={`${styles.chip}`}
+        key={'chip' + idx}
+        onClick={() => returnChipData(elem)}
+      >
         <Chip>{elem.name}</Chip>
       </div>
     ));
+  };
+
+  const returnChipData = data => {
+    onChipClick(data);
   };
 
   return (
@@ -42,14 +54,25 @@ const BountyCard = props => {
           className={`${styles.bountyTitle}`}
           style="H4"
           weight="font-weight-bold"
+          color="black"
+          link
+          router
+          src={`/bounty/${id}`}
         >
           {title}
         </Text>
         <div className={`${styles.chipBar}`}>{renderChips(categories)}</div>
         <div className={`${styles.profileBar}`}>
-          <Circle type="image" size="mini" />
+          <Circle type="image" size="mini" input={profile_image} />
           <div className={`${styles.addressText}`}>
-            <Text link color="blue" style="Body">
+            <Text
+              link
+              color="blue"
+              style="Body"
+              link
+              router
+              src={`/profile/${issuer}`}
+            >
               {issuer}
             </Text>
           </div>
@@ -113,6 +136,10 @@ const BountyCard = props => {
       </div>
     </div>
   );
+};
+
+BountyCard.defaultProps = {
+  onChipClick: () => {}
 };
 
 export default BountyCard;
