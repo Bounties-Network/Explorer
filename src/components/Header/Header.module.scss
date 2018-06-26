@@ -12,7 +12,6 @@
   z-index: 2; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  overflow-x: hidden; /* Disable horizontal scroll */
 }
 
 .iconArea {
@@ -41,4 +40,8 @@
   align-items: center;
   justify-content: center;
   margin-right: 5%;
+}
+
+.profileDropdown {
+  top: 52px;
 }
