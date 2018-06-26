@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import styles from './Header.module.scss';
 import { withRouter } from 'react-router-dom';
 
-import { Button, Circle, NotificationDropdown } from 'components';
+import { Button, Circle, NotificationDropdown, Dropdown } from 'components';
 import BeeLogo from '../../styles/logo.js';
+import cog from '@fortawesome/fontawesome-pro-light/faCog';
+import signout from '@fortawesome/fontawesome-pro-light/faSignOut';
 
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faBell from '@fortawesome/fontawesome-pro-light/faBell';
+const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
 const Header = props => {
   const {
@@ -36,7 +37,15 @@ const Header = props => {
             Create New Bounty
           </Button>
           <NotificationDropdown notifications={notifications} />
-          <Circle type="image" size="mini" input={profilePic} />
+          <Dropdown position="left" className={styles.profileDropdown}>
+            <DropdownTrigger>
+              <Circle type="image" size="mini" input={profilePic} />
+            </DropdownTrigger>
+            <DropdownContent>
+              <MenuItem icon={cog}>Account Settings</MenuItem>
+              <MenuItem icon={signout}>Sign Out</MenuItem>
+            </DropdownContent>
+          </Dropdown>
         </div>
       ) : (
         <div className={`${styles.signInButton}`}>

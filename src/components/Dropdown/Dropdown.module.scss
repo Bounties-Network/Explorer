@@ -28,3 +28,24 @@
 .content.show {
   display: block;
 }
+
+.menuItem {
+  padding: 10px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.menuItem:hover {
+  color: $brand-blue-hover;
+}
+
+.menuItems {
+  padding: 0px;
+  margin: 0px;
+  display:inline-block;
+  list-style-type: none;
+}
+
+.faIcon {
+  margin-right: 10px;
+}
