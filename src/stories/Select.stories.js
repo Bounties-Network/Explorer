@@ -3,7 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { Select } from 'components';
+import { Select, Text } from 'components';
 
 const options = [
   { value: 'React', label: 'React' },
@@ -12,11 +12,35 @@ const options = [
 ];
 
 storiesOf('Select', module).add('Select', () => (
-  <div style={{ width: '200px' }}>
-    <Select
-      onChange={e => console.log(e)}
-      options={options}
-      placeholder="Select one!"
-    />
+  <div>
+    <div style={{ width: '200px' }}>
+      <div style={{ marginTop: '10px' }} />
+      <Select
+        label="Select a Category"
+        onChange={e => console.log(e)}
+        options={options}
+        placeholder="Select one!"
+      />
+      <div style={{ marginTop: '10px' }} />
+      <Text style="BodySmall">Disabled</Text>
+      <div style={{ marginTop: '10px' }} />
+      <Select
+        label="Select a Category"
+        disabled
+        onChange={e => console.log(e)}
+        options={options}
+        placeholder="Select one!"
+      />
+      <div style={{ marginTop: '10px' }} />
+      <Text style="BodySmall">Optional</Text>
+      <div style={{ marginTop: '10px' }} />
+      <Select
+        label="Select a Category"
+        optional
+        onChange={e => console.log(e)}
+        options={options}
+        placeholder="Select one!"
+      />
+    </div>
   </div>
 ));

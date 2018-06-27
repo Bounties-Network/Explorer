@@ -4,6 +4,7 @@ import styles from './Select.module.scss';
 
 // import { Text } from 'components';
 import SelectComponent from 'react-select';
+import { Text } from 'components';
 import '../../styles/ReactSelect.scss';
 
 class Select extends React.Component {
@@ -16,12 +17,30 @@ class Select extends React.Component {
   };
 
   render() {
-    const { options, onChange, placeholder } = this.props;
+    const {
+      options,
+      onChange,
+      placeholder,
+      label,
+      disabled,
+      optional
+    } = this.props;
     const { selectedOption } = this.state;
+
+    let labelText = label;
+    if (optional) {
+      labelText = `(Optional) ${labelText || ''}`;
+    }
 
     return (
       <div className={`${styles.select}`}>
+        {labelText ? (
+          <div>
+            <Text style="FormLabel">{labelText}</Text>
+          </div>
+        ) : null}
         <SelectComponent
+          disabled={disabled}
           searchable={false}
           clearable={false}
           options={options}
