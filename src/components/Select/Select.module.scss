@@ -2,3 +2,12 @@
 
 .select {
 }
+
+.error {
+  :global(.Select-control) {
+    border-color: $brand-red;
+  }
+}
+
+.selectComponent {
+}

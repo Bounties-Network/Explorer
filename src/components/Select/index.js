@@ -23,6 +23,7 @@ class Select extends React.Component {
       placeholder,
       label,
       disabled,
+      error,
       optional
     } = this.props;
     const { selectedOption } = this.state;
@@ -32,14 +33,22 @@ class Select extends React.Component {
       labelText = `(Optional) ${labelText || ''}`;
     }
 
+    let selectClass = styles.selectComponent;
+    if (error) {
+      selectClass += ` ${styles.error}`;
+    }
+
     return (
       <div className={`${styles.select}`}>
         {labelText ? (
           <div>
-            <Text style="FormLabel">{labelText}</Text>
+            <Text style="FormLabel" color={error ? 'red' : null}>
+              {labelText}
+            </Text>
           </div>
         ) : null}
         <SelectComponent
+          className={selectClass}
           disabled={disabled}
           searchable={false}
           clearable={false}
@@ -48,6 +57,13 @@ class Select extends React.Component {
           placeholder={placeholder}
           value={selectedOption}
         />
+        {error ? (
+          <div>
+            <Text style="FormLabel" color={'red'}>
+              {error}
+            </Text>
+          </div>
+        ) : null}
       </div>
     );
   }
