@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import styles from './Header.module.scss';
 import { withRouter } from 'react-router-dom';
 
-import { Button, Circle } from 'components';
+import { Button, Circle, NotificationDropdown, Dropdown } from 'components';
 import BeeLogo from '../../styles/logo.js';
+import cog from '@fortawesome/fontawesome-pro-light/faCog';
+import signout from '@fortawesome/fontawesome-pro-light/faSignOut';
 
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faBell from '@fortawesome/fontawesome-pro-light/faBell';
+const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
 const Header = props => {
   const {
     history,
-    notification,
+    notifications,
     profilePic = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
     loginStatus = false
   } = props;
@@ -45,10 +46,18 @@ const Header = props => {
                 </Button>
               </div>
               <div className="col-xs-1">
-                <FontAwesomeIcon icon={faBell} />
+                <NotificationDropdown notifications={notifications} />
               </div>
               <div className="col-xs-2">
-                <Circle type="image" size="mini" input={profilePic} />
+                <Dropdown position="left" className={styles.profileDropdown}>
+                  <DropdownTrigger>
+                    <Circle type="image" size="mini" input={profilePic} />
+                  </DropdownTrigger>
+                  <DropdownContent>
+                    <MenuItem icon={cog}>Account Settings</MenuItem>
+                    <MenuItem icon={signout}>Sign Out</MenuItem>
+                  </DropdownContent>
+                </Dropdown>
               </div>
             </div>
           </div>

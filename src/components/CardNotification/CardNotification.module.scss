@@ -1,11 +1,17 @@
 @import "~styles/variables.scss";
 
 .cardNotificationContainer {
+  height: 45px;
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   padding: 5px 20px;
   min-width: 600px;
   border-bottom: 1px solid $brand-lightGrey;
+}
+
+.cardNotificationContainer:hover {
+  background-color: $brand-nearWhite;
 }
 
 .leftColumn {
@@ -44,4 +50,5 @@
   width: 10%;
   display: flex;
   align-items: center;
+  padding-right: 5px;
 }

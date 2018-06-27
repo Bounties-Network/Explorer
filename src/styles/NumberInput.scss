@@ -1,0 +1,21 @@
+@import "~styles/variables.scss";
+
+.react-numeric-input {
+  height: $base-input-height;
+  padding: 0;
+}
+
+input.numberInput {
+  background: $base-input-background;
+  border: $base-border;
+  height: $base-input-height;
+}
+
+b {
+  background-color: white !important;
+}
+
+i {
+  background: rgb(72, 148, 255) !important;
+  cursor: pointer;
+}

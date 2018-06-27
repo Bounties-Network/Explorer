@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 // import styles from './ToggleSwitch.module.scss';
 
 import { SwitchModule } from 'components';
@@ -56,4 +55,4 @@ ToggleSwitch.defaultProps = {
   onClick: () => {}
 };
 
-export default withRouter(ToggleSwitch);
+export default ToggleSwitch;

@@ -1,0 +1,51 @@
+@import "~styles/variables.scss";
+
+.container {
+  outline: none;
+  .trigger {
+    outline: none;
+  }
+  position: relative;
+  display: inline-block;
+}
+
+.content {
+  display: none;
+  position: absolute;
+  background-color: $brand-white;
+  border-radius: $base-border-radius;
+  z-index: 1;
+}
+
+.trigger {
+  cursor: pointer;
+}
+
+.contentLeft {
+  right: 0px;
+}
+
+.content.show {
+  display: block;
+}
+
+.menuItem {
+  padding: 10px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.menuItem:hover {
+  color: $brand-blue-hover;
+}
+
+.menuItems {
+  padding: 0px;
+  margin: 0px;
+  display:inline-block;
+  list-style-type: none;
+}
+
+.faIcon {
+  margin-right: 10px;
+}

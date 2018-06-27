@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './DatePicker.module.scss';
-import Datetime from 'react-datetime';
+import Datetime from 'react-datepicker';
 import moment from 'moment';
 
 import { Button } from 'components';
@@ -44,7 +44,10 @@ class DatePicker extends React.Component {
     const { className } = this.props;
 
     return (
-      <Datetime onChange={e => this.onDateChange(e)} value={this.state.date} />
+      <Datetime
+        onChange={e => this.onDateChange(e)}
+        selected={this.state.date}
+      />
     );
   }
 }
