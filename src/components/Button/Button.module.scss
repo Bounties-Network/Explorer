@@ -105,20 +105,19 @@
 
 .icon {
   height: 40px;
-  width: auto;
 }
 
 .small {
-  height: 40px;
-  width: auto;
+  padding: 8px;
+  font-size: $body-font-size;
 }
 
 .medium {
-  height: 40px;
-  width: auto;
+  padding: 10px;
+  font-size: $h4-font-size;
 }
 
 .large {
-  height: 40px;
-  width: auto;
+  padding: 15px;
+  font-size: $h3-font-size;
 }
