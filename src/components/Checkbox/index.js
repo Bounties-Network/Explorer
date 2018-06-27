@@ -1,22 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Checkbox.module.scss';
+import { Text } from 'components';
 
 class Checkbox extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      checked: false
+      selected: false
     };
   }
 
   toggleState = () => {
-    this.setState({ checked: !this.state.checked });
+    this.setState({ selected: !this.state.selected });
   };
 
   render() {
-    const { checked } = this.state;
+    const { selected } = this.state;
+    const { checked, label, onChange, disabled } = this.props;
+
+    const checkedPropExists = typeof checked === 'boolean';
 
     return (
       <div>
@@ -24,9 +28,11 @@ class Checkbox extends React.Component {
           type="checkbox"
           className={styles.checkbox}
           value
-          checked={checked}
-          onChange={this.toggleState}
+          disabled={disabled}
+          checked={checkedPropExists ? checked : selected}
+          onChange={onChange || this.toggleState}
         />
+        {label ? <Text style="FormLabel">{label}</Text> : null}
       </div>
     );
   }
@@ -34,10 +40,9 @@ class Checkbox extends React.Component {
 
 Checkbox.propTypes = {
   checked: PropTypes.bool,
+  disabled: PropTypes.bool,
   className: PropTypes.string,
   label: PropTypes.string
 };
-
-Checkbox.defaultProps = {};
 
 export default Checkbox;
