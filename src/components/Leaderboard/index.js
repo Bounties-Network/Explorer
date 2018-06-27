@@ -23,7 +23,7 @@ const LeaderboardItem = props => {
   }
 
   return (
-    <span className={`${styles.cardContainer}`}>
+    <div className={`${styles.cardContainer}`}>
       <div className="row middle-xs">
         <div className="col-xs-1">
           <div className={`${styles.index}`}>
@@ -54,11 +54,11 @@ const LeaderboardItem = props => {
             <Text color="purple">{`$${total_usd.toFixed(2)}`}</Text>
           </div>
           <div>
-            <Text color="grey">{`${total_usd}`} ETH</Text>
+            <Text color="grey">? ETH</Text>
           </div>
         </div>
       </div>
-    </span>
+    </div>
   );
 };
 

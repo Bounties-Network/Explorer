@@ -9,13 +9,8 @@
 }
 
 .cardContainer {
-  /*display: flex;*/
-/*  width: 96%;*/
-/*  height: 40px;*/
   padding: 15px;
-/*  justify-content: space-between;
-  align-items: center;*/
-  /*border-bottom: 1px solid $brand-lightGrey;*/
+  border-bottom: 1px solid $brand-lightGrey;
 }
 
 .cardContainer:last-child {
