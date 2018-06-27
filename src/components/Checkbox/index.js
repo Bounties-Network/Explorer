@@ -4,13 +4,9 @@ import styles from './Checkbox.module.scss';
 import { Text } from 'components';
 
 class Checkbox extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selected: false
-    };
-  }
+  state = {
+    selected: false
+  };
 
   toggleState = () => {
     this.setState({ selected: !this.state.selected });

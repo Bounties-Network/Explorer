@@ -15,15 +15,9 @@ const today = moment();
 const tomorrow = moment(today).add(1, 'days');
 
 class DatePicker extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      date: tomorrow
-    };
-
-    this.onDateChange = this.onDateChange.bind(this);
-  }
+  state = {
+    date: tomorrow
+  };
 
   onDateChange = e => {
     if (moment(e).isValid()) {

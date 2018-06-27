@@ -3,7 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { DropdownComponent } from 'components';
+import { Select } from 'components';
 
 const options = [
   { value: 'React', label: 'React' },
@@ -11,9 +11,9 @@ const options = [
   { value: 'CSS', label: 'CSS' }
 ];
 
-storiesOf('Dropdown', module).add('Dropdown', () => (
-  <div>
-    <DropdownComponent
+storiesOf('Select', module).add('Select', () => (
+  <div style={{ width: '200px' }}>
+    <Select
       onChange={e => console.log(e)}
       options={options}
       placeholder="Select one!"
