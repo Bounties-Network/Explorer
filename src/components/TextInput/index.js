@@ -2,54 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './TextInput.module.scss';
 
-const debounceTimer = 300;
+const TextInput = props => {
+  const { input, className, error, title, name, placeholder, touched } = props;
 
-class TextInput extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      text: ''
-    };
-    this.onTextChange = this.onTextChange.bind(this);
-  }
-
-  onTextChange(e) {
-    const { value } = e.target;
-    this.setState({ text: value });
-
-    // debounce
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-    }
-    this.timeout = setTimeout(
-      () => this.props.onChange(this.state.text),
-      debounceTimer
-    );
-  }
-
-  render() {
-    const { className, error } = this.props;
-
-    return (
+  return (
+    <div>
+      <label>{title}</label>
       <input
         className={`${styles.textInput} ${className} ${
           styles[error ? 'error' : '']
         }`}
-        type="text"
-        value={this.state.text}
-        onChange={this.onTextChange}
+        name={name}
+        placeholder={placeholder}
+        {...input}
       />
-    );
-  }
-}
+      {touched && error && <span className="error">{error}</span>}
+    </div>
+  );
+};
 
 TextInput.propTypes = {
   onChange: PropTypes.func
 };
 
 TextInput.defaultProps = {
-  onChange: () => {},
   error: false
 };
 

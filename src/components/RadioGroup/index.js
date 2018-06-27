@@ -9,7 +9,7 @@ class RadioGroup extends React.Component {
     super(props);
 
     this.state = {
-      selection: ''
+      selection: this.props.options[0]
     };
 
     this.onSelectionChange = this.onSelectionChange.bind(this);
@@ -63,7 +63,8 @@ RadioGroup.propTypes = {
 };
 
 RadioGroup.defaultProps = {
-  onChange: () => {}
+  onChange: () => {},
+  options: []
 };
 
 export default RadioGroup;

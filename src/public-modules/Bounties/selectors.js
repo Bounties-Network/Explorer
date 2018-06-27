@@ -15,6 +15,7 @@ export const bountiesCountSelector = createSelector(
 export const bountiesStateSelector = createSelector(
   rootBountiesSelector,
   rootBounty => ({
+    loadingMore: rootBounty.loadingMore,
     loading: rootBounty.loading,
     loaded: rootBounty.loaded,
     error: rootBounty.error

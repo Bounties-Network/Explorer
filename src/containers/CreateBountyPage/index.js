@@ -4,7 +4,9 @@ import { FetchComponent, LoadComponent } from 'hocs';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions, sagas, selectors } from 'public-modules';
+import { Field, reduxForm } from 'redux-form';
 import styles from './CreateBountyPage.module.scss';
+import moment from 'moment';
 
 import {
   Text,
@@ -15,14 +17,68 @@ import {
   NumberInput,
   DatePicker,
   RadioGroup,
-  Button
+  Button,
+  FileUpload
 } from 'components';
 
-const { categoriesSelector, rootCategoriesSelector } = selectors;
+const CREATE_BOUNTY = 'form/create_bounty';
+
+const {
+  rootCategoriesSelector,
+  rootFileUploadSelector,
+  filesSelector
+} = selectors;
+
+const tomorrow = moment().add(1, 'days');
 
 class CreateBountyPage extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      title: '',
+      description: '',
+      contactName: '',
+      contactEmail: '',
+      categories: [],
+      difficulty: 'beginner',
+      revisions: 0,
+      link: '',
+      files: {},
+      deadline: tomorrow,
+      paysTokens: false,
+      payoutAmount: 0,
+      draft: true,
+      depositAmount: 0
+    };
+
+    this.uploadFile = this.uploadFile.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  uploadFile(file) {
+    const { uploadFile } = this.props;
+
+    let reader = new window.FileReader();
+    reader.onloadend = () => uploadFile(file.name, reader);
+    reader.readAsArrayBuffer(file);
+  }
+
+  handleChange(key, value) {
+    const { change } = this.props;
+    if (key === 'paysTokens') {
+      value = value !== 'ETH';
+    }
+    if (key === 'draft') {
+      value = value === 'Later';
+    }
+
+    change(key, value);
+  }
+
+  submitForm() {
+    console.log(this.state);
   }
 
   render() {
@@ -59,13 +115,18 @@ class CreateBountyPage extends React.Component {
                 <Text style="FormLabel" color="grey">
                   Title
                 </Text>
-                <TextInput className={`${styles.textInput}`} />
+                <Field component={TextInput} type="input" name="title" />
               </div>
               <div className={`${styles.bountyTitle}`}>
                 <Text style="FormLabel" color="grey">
                   Description
                 </Text>
-                <Textbox className={`${styles.textBox}`} />
+                <Field
+                  className={`${styles.textBox}`}
+                  component={Textbox}
+                  type="input"
+                  name="description"
+                />
               </div>
             </div>
           </div>
@@ -87,13 +148,21 @@ class CreateBountyPage extends React.Component {
                   <Text style="FormLabel" color="grey">
                     Contact Name
                   </Text>
-                  <TextInput />
+                  <Field
+                    component={TextInput}
+                    type="input"
+                    name="contactName"
+                  />
                 </div>
                 <div className={`${styles.contactInputArea}`}>
                   <Text style="FormLabel" color="grey">
                     Contact Email
                   </Text>
-                  <TextInput />
+                  <Field
+                    component={TextInput}
+                    type="input"
+                    name="contactEmail"
+                  />
                 </div>
               </div>
             </div>
@@ -125,13 +194,17 @@ class CreateBountyPage extends React.Component {
                     className={`${styles.content}`}
                     options={categories}
                     placeholder="e.g. HTML"
+                    onChange={e => this.handleChange('categories', e)}
                   />
                 </div>
                 <div className={`${styles.contactInputArea}`}>
                   <Text style="FormLabel" color="grey">
                     Difficulty
                   </Text>
-                  <Difficulty className={`${styles.content}`} />
+                  <Difficulty
+                    className={`${styles.content}`}
+                    onChange={e => this.handleChange('difficulty', e)}
+                  />
                 </div>
               </div>
             </div>
@@ -153,7 +226,9 @@ class CreateBountyPage extends React.Component {
                 </Text>
               </div>
               <div className={`${styles.contactArea}`}>
-                <NumberInput />
+                <NumberInput
+                  onChange={e => this.handleChange('revisions', e)}
+                />
               </div>
             </div>
           </div>
@@ -178,13 +253,13 @@ class CreateBountyPage extends React.Component {
                   <Text style="FormLabel" color="grey">
                     Web Link
                   </Text>
-                  <TextInput />
+                  <Field component={TextInput} type="input" name="link" />
                 </div>
                 <div className={`${styles.contactInputArea}`}>
                   <Text style="FormLabel" color="grey">
                     Associated Files
                   </Text>
-                  <TextInput />
+                  <FileUpload onChange={e => this.uploadFile(e)} />
                 </div>
               </div>
             </div>
@@ -206,7 +281,9 @@ class CreateBountyPage extends React.Component {
               </div>
               <div className={`${styles.contactArea}`}>
                 <div className={`${styles.contactInputArea}`}>
-                  <DatePicker />
+                  <DatePicker
+                    onChange={e => this.handleChange('deadline', e)}
+                  />
                 </div>
               </div>
             </div>
@@ -235,13 +312,19 @@ class CreateBountyPage extends React.Component {
                   <RadioGroup
                     options={['ETH', 'ERC20 Token']}
                     className={`${styles.content}`}
+                    onChange={e => this.handleChange('paysTokens', e)}
                   />
                 </div>
                 <div className={`${styles.contactInputArea}`}>
                   <Text style="FormLabel" color="grey">
                     Payout Amount (ETH or whole tokens)
                   </Text>
-                  <TextInput className={`${styles.content}`} />
+                  <Field
+                    component={TextInput}
+                    type="input"
+                    name="payout"
+                    className={`${styles.content}`}
+                  />
                 </div>
               </div>
             </div>
@@ -269,15 +352,21 @@ class CreateBountyPage extends React.Component {
                     Payout Method
                   </Text>
                   <RadioGroup
-                    options={['Now', 'Later']}
+                    options={['Later', 'Now']}
                     className={`${styles.content}`}
+                    onChange={e => this.handleChange('draft', e)}
                   />
                 </div>
                 <div className={`${styles.contactInputArea}`}>
                   <Text style="FormLabel" color="grey">
-                    Payout Amount (ETH or whole tokens)
+                    Deposit Amount (ETH or whole tokens)
                   </Text>
-                  <TextInput className={`${styles.content}`} />
+                  <Field
+                    component={TextInput}
+                    type="input"
+                    name="deposit"
+                    className={`${styles.content}`}
+                  />
                 </div>
               </div>
             </div>
@@ -287,7 +376,7 @@ class CreateBountyPage extends React.Component {
               <Button size="large" style="secondary">
                 Cancel
               </Button>
-              <Button size="large" style="primary">
+              <Button size="large" style="primary" onClick={this.submitForm}>
                 Create Bounty
               </Button>
             </div>
@@ -299,11 +388,14 @@ class CreateBountyPage extends React.Component {
 }
 
 const mapStateToProps = (state, router) => {
+  console.log('state', state);
   let categoriesState = rootCategoriesSelector(state);
+  let files = rootFileUploadSelector(state);
 
   return {
+    files: files.file,
     categories: categoriesState.categories,
-    ...categoriesSelector(state)
+    ...filesSelector(state)
   };
 };
 
@@ -316,7 +408,8 @@ CreateBountyPage.propTypes = {
 const check = compose(
   FetchComponent(sagas.fetch),
   connect(mapStateToProps, { load: actions.loadCategories, ...actions }),
-  LoadComponent('')
+  LoadComponent(''),
+  reduxForm({ form: CREATE_BOUNTY })
 )(CreateBountyPage);
 
 export default check;

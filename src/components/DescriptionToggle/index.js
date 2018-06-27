@@ -55,7 +55,7 @@ DescriptionToggle.propTypes = {
 
 DescriptionToggle.defaultProps = {
   default: false,
-  onChange: () => {}
+  onClick: () => {}
 };
 
 export default DescriptionToggle;

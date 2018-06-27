@@ -14,7 +14,8 @@
   align-items: center;
   padding: 30px;
   background-color: white;
-  width: 25%
+  width: 25%;
+  height: 600px;
 }
 
 .searchBar {
@@ -28,6 +29,12 @@
 .refineBy {
   width: 100%;
   display: flex;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 55px;
 }
 
 .bountiesColumn {
@@ -58,4 +65,11 @@
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $brand-nearWhite;
 }

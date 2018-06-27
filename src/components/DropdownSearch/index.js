@@ -67,6 +67,27 @@ class DropdownSearch extends React.Component {
     );
   }
 
+  addCategory(category) {
+    const { options } = this.props;
+    const { filters } = this.state;
+
+    let existing = filters
+      .map(elem => elem.name)
+      .filter(elem => elem === category.name);
+    if (existing.length === 0) {
+      let tempFilters = filters.slice(0, filters.length);
+      tempFilters.push(category);
+      let tempOptions = filterOptions(tempFilters, options);
+
+      this.setState(
+        { filters: tempFilters, selection: null, options: tempOptions },
+        () => {
+          this.props.onChange(this.state.filters);
+        }
+      );
+    }
+  }
+
   closeChip(name) {
     const { filters } = this.state;
     const { options } = this.props;

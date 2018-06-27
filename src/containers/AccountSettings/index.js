@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions, sagas, selectors } from 'public-modules';
 import styles from './AccountSettings.module.scss';
+import { Field, reduxForm } from 'redux-form';
 
 import {
   Text,
@@ -16,7 +17,13 @@ import {
   FileUpload
 } from 'components';
 
-const { categoriesSelector, rootCategoriesSelector } = selectors;
+const UPDATE_ACCOUNT_SETTINGS = 'settings/update_account_settings';
+
+const {
+  categoriesSelector,
+  rootCategoriesSelector,
+  rootAuthSelector
+} = selectors;
 
 class AccountSettings extends React.Component {
   constructor(props) {
@@ -34,6 +41,7 @@ class AccountSettings extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     const { loading, error, categories } = this.props;
     if (error) {
       return <div>error...</div>;
@@ -202,36 +210,6 @@ class AccountSettings extends React.Component {
                   >
                     This is a description of an email notification.
                   </DescriptionToggle>
-                  <DescriptionToggle className={`${styles.descriptionToggle}`}>
-                    This is a description of an email notification.
-                  </DescriptionToggle>
-                  <DescriptionToggle
-                    default={true}
-                    className={`${styles.descriptionToggle}`}
-                  >
-                    This is a description of an email notification.
-                  </DescriptionToggle>
-                  <DescriptionToggle className={`${styles.descriptionToggle}`}>
-                    This is a description of an email notification.
-                  </DescriptionToggle>
-                  <DescriptionToggle className={`${styles.descriptionToggle}`}>
-                    This is a description of an email notification.
-                  </DescriptionToggle>
-                  <DescriptionToggle
-                    default={true}
-                    className={`${styles.descriptionToggle}`}
-                  >
-                    This is a description of an email notification.
-                  </DescriptionToggle>
-                  <DescriptionToggle
-                    default={true}
-                    className={`${styles.descriptionToggle}`}
-                  >
-                    This is a description of an email notification.
-                  </DescriptionToggle>
-                  <DescriptionToggle className={`${styles.descriptionToggle}`}>
-                    This is a description of an email notification.
-                  </DescriptionToggle>
                 </div>
               </div>
             </div>
@@ -249,10 +227,12 @@ class AccountSettings extends React.Component {
 
 const mapStateToProps = (state, router) => {
   let categoriesState = rootCategoriesSelector(state);
+  let authState = rootAuthSelector(state);
+  console.log('authstate', authState);
 
   return {
-    categories: categoriesState.categories,
-    ...categoriesSelector(state)
+    user: authState.status,
+    categories: categoriesState.categories
   };
 };
 
@@ -263,6 +243,7 @@ AccountSettings.propTypes = {
 };
 
 const check = compose(
+  reduxForm({ form: UPDATE_ACCOUNT_SETTINGS }),
   FetchComponent(sagas.fetch),
   connect(mapStateToProps, { load: actions.loadCategories, ...actions }),
   LoadComponent('')

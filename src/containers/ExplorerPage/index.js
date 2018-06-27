@@ -12,7 +12,8 @@ import {
   Text,
   SortBy,
   BountyCard,
-  Button
+  Button,
+  Loading
 } from 'components';
 
 const {
@@ -21,16 +22,6 @@ const {
   categoriesSelector,
   rootCategoriesSelector
 } = selectors;
-
-const renderBounties = data => {
-  return data.map((elem, idx) => {
-    return (
-      <div className={`${styles.bounty}`} key={'bounty' + idx}>
-        <BountyCard bountyData={elem} />
-      </div>
-    );
-  });
-};
 
 class ExplorerPage extends React.Component {
   constructor(props) {
@@ -41,12 +32,14 @@ class ExplorerPage extends React.Component {
     };
 
     this.updateSearchOptions = this.updateSearchOptions.bind(this);
+    this.loadMoreBounties = this.loadMoreBounties.bind(this);
+    this.renderBounties = this.renderBounties.bind(this);
+    this.addCategory = this.addCategory.bind(this);
   }
 
   componentWillMount() {
-    const { loadCategories, loadBounty } = this.props;
+    const { loadCategories } = this.props;
     loadCategories();
-    loadBounty(1);
   }
 
   updateSearchOptions(prop, options) {
@@ -56,30 +49,53 @@ class ExplorerPage extends React.Component {
     tempSearchOptions[prop] = options;
 
     this.setState({ searchOptions: tempSearchOptions }, () => {
-      console.log(this.state.searchOptions);
       loadBounties(this.state.searchOptions);
     });
   }
 
   loadMoreBounties() {
-    // const currentCount = bounties.length;
+    const { loadMoreBounties, bounties } = this.props;
+    const { searchOptions } = this.state;
+
+    loadMoreBounties(searchOptions, bounties.length);
+  }
+
+  addCategory(category) {
+    this.filter.addCategory(category);
+  }
+
+  renderBounties(data) {
+    return data.map((elem, idx) => {
+      return (
+        <div className={`${styles.bounty}`} key={'bounty' + idx}>
+          <BountyCard bountyData={elem} onChipClick={this.addCategory} />
+        </div>
+      );
+    });
   }
 
   render() {
-    const { loading, error, bounties, count, categories } = this.props;
-    console.log('bounties', bounties);
+    const {
+      loading,
+      error,
+      bounties,
+      count,
+      categories,
+      loadingMore
+    } = this.props;
     if (error) {
       return <div>error...</div>;
     }
 
     return (
       <div className={`${styles.explorerPage}`}>
-        <div className={`${styles.filterColumn}`}>
+        <div className={`${styles.filterColumn}  ${styles.sticky}`}>
           <div className={`${styles.searchBar}`}>
             <Search onChange={e => this.updateSearchOptions('search', e)} />
           </div>
           <div className={`${styles.refineBy}`}>
             <RefineByFilter
+              ref={filter => (this.filter = filter)}
               dropdown
               stages
               difficulty
@@ -88,27 +104,38 @@ class ExplorerPage extends React.Component {
             />
           </div>
         </div>
-        <div className={`${styles.bountiesColumn}`}>
-          <div className={`${styles.sortByBar}`}>
-            <div className={`${styles.count}`}>
-              <Text style="H2" color="purple">
-                {count}
-              </Text>
-              <Text style="H3" color="grey">
-                Bounties
-              </Text>
+        {loading ? (
+          <Loading className={`${styles.loading}`} />
+        ) : (
+          <div className={`${styles.bountiesColumn}`}>
+            <div className={`${styles.sortByBar}`}>
+              <div className={`${styles.count}`}>
+                <Text style="H2" color="purple">
+                  {count}
+                </Text>
+                <Text style="H3" color="grey">
+                  Bounties
+                </Text>
+              </div>
+              <div className={`${styles.sortBy}`}>
+                <SortBy onClick={e => this.updateSearchOptions('sort', e)} />
+              </div>
             </div>
-            <div className={`${styles.sortBy}`}>
-              <SortBy onClick={e => this.updateSearchOptions('sort', e)} />
+            <div className={`${styles.bountiesList}`}>
+              {this.renderBounties(bounties)}
+            </div>
+            <div className={`${styles.loadMoreButton}`}>
+              <Button
+                size="large"
+                style="primary"
+                disabled={loadingMore}
+                onClick={this.loadMoreBounties}
+              >
+                {loadingMore ? <Loading /> : 'Load More'}
+              </Button>
             </div>
           </div>
-          <div className={`${styles.bountiesList}`}>
-            {renderBounties(bounties)}
-          </div>
-          {/* <div className={`${styles.loadMoreButton}`}>
-            <Button size='large' style='secondary'>Load More</Button> 
-          </div> */}
-        </div>
+        )}
       </div>
     );
   }
@@ -122,8 +149,7 @@ const mapStateToProps = (state, router) => {
     categories: categoriesState.categories,
     bounties: bountiesState.bounties,
     count: bountiesState.count,
-    ...bountiesStateSelector(state),
-    ...categoriesSelector(state)
+    ...bountiesStateSelector(state)
   };
 };
 

@@ -63,6 +63,7 @@
     "react-select": "^1.2.1",
     "react-switch": "^3.0.2",
     "redux": "^3.7.2",
+    "redux-form": "^7.4.2",
     "redux-saga": "^0.16.0",
     "remarkable": "^1.7.1",
     "reselect": "^3.0.1",
