@@ -1,13 +1,14 @@
 @import "~styles/variables.scss";
 
 .explorerPage {
-  width: 100%;
+/*  width: 100%;
   height: fit-content;
-  display: flex;
+  display: flex;*/
 }
 
 .filterColumn {
-  /*padding: 30px;*/
+  margin-left: -2rem;
+  padding: 30px;
   background-color: white;
 }
 
