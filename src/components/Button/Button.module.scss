@@ -6,8 +6,8 @@
   box-shadow: $base-box-shadow;
   cursor: pointer;
   display: inline-block;
-  font-size: $body-font-size;
-  padding: 0 $m-spacing;
+  font-size: $h4-font-size;
+  padding: 10px;
 }
 
 .disabled {
@@ -62,9 +62,17 @@
   }
 }
 
-.activate {
+.action {
   background-color: $brand-green;
   color: $brand-disabled;
+
+  &:hover {
+
+  }
+
+  &.disabled {
+
+  }
 }
 
 .link {
@@ -81,43 +89,4 @@
   &.disabled {
     color: $brand-blue-disabled;
   }
-}
-
-.deleteLink {
-  background-color: none;
-  color: $brand-red;
-  text-decoration: underline;
-  border: none;
-  box-shadow: none;
-}
-
-.clearFilter {
-  background-color: none;
-  color: $brand-blue;
-  text-decoration: underline;
-  border: none;
-}
-
-.create {
-  background-color: $brand-blue;
-  color: white;
-}
-
-.icon {
-  height: 40px;
-}
-
-.small {
-  padding: 8px;
-  font-size: $body-font-size;
-}
-
-.medium {
-  padding: 10px;
-  font-size: $h4-font-size;
-}
-
-.large {
-  padding: 15px;
-  font-size: $h3-font-size;
 }
