@@ -13,7 +13,7 @@ const options = [
 
 storiesOf('Select', module).add('Select', () => (
   <div>
-    <div style={{ width: '200px' }}>
+    <div style={{ width: '200px', marginLeft: '10px' }}>
       <div style={{ marginTop: '10px' }} />
       <Select
         label="Select a Category"

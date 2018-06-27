@@ -1,7 +1,6 @@
 @import "~styles/variables.scss";
 
 .textInput {
-  margin-top: $base-spacing;
   height: $base-input-height;
   background-color: $base-input-background;
   border-radius: $base-border-radius;
@@ -13,6 +12,10 @@
 .textInput:focus {
   outline: 1px solid $brand-blue;
   border: 1px solid $brand-blue;
+}
+
+.disabled {
+  background-color: $brand-grey;
 }
 
 .error {
