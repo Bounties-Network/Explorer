@@ -117,17 +117,26 @@ class ProfilePage extends React.Component {
     }
 
     return (
-      <div className={`${styles.profilePage} row`}>
-        <div className="col-xs">
-          <div className={`${styles.profile}`}>
-            <div className={`${styles.profilePic}`}>
-              <Circle type="image" />
-              <Text style="H2" className={styles.profileTitle}>
-                {name}
-              </Text>
-              <FullAddressBar address={userAddress} />
+      <div className={`${styles.profilePage}`}>
+        <div className={`${styles.profile}`}>
+          <div className={`${styles.profilePic}`}>
+            <div className="row center-xs middle-xs">
+              <div className="col-xs">
+                <Circle type="image" />
+              </div>
             </div>
-            <div className={`${styles.profileInfo}`}>
+            <div className="row center-xs middle-xs">
+              <div className="col-xs">
+                <Text style="H2" className={styles.profileTitle}>
+                  {name}
+                </Text>
+
+                <FullAddressBar address={userAddress} />
+              </div>
+            </div>
+          </div>
+          <div className={`${styles.profileInfo} row middle-xs`}>
+            <div className="col-xs-3">
               <div className={`${styles.about}`}>
                 <div className={`${styles.profileHeader}`}>
                   <Text style="Body">About</Text>
@@ -147,6 +156,8 @@ class ProfilePage extends React.Component {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="col-xs-3">
               <div className={`${styles.skills}`}>
                 <div className={`${styles.profileHeader}`}>
                   <Text style="Body">Skills</Text>
@@ -157,6 +168,8 @@ class ProfilePage extends React.Component {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="col-xs-3">
               <div className={`${styles.networkStats}`}>
                 <div className={`${styles.networkHeader}`}>
                   <Text style="Body">Network Stats</Text>
@@ -202,6 +215,8 @@ class ProfilePage extends React.Component {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="col-xs-3">
               <div className={`${styles.elsewhere}`}>
                 <div className={`${styles.profileHeader}`}>
                   <Text style="Body">Elsewhere</Text>
@@ -242,14 +257,18 @@ class ProfilePage extends React.Component {
               </div>
             </div>
           </div>
-          <div className={`${styles.tabs}`}>
-            <Tabs tabs={tabs} />
-          </div>
-          <div className={`${styles.bounties}`}>
-            <div className={`${styles.sortBy}`}>
+        </div>
+        <div className={`${styles.tabs} row`}>
+          <Tabs tabs={tabs} />
+        </div>
+        <div className={`${styles.bounties} row`}>
+          <div className={`${styles.sortBy} row`}>
+            <div className="col-xs-offset-7 col-xs-3">
               <SortBy onClick={e => this.updateSearchOptions('sort', e)} />
             </div>
-            <div className={`${styles.bountiesBody}`}>
+          </div>
+          <div className={`${styles.bountiesBody} row`}>
+            <div className="col-xs">
               <div className={`${styles.refineBy}`}>
                 <RefineByFilter
                   stages
@@ -257,9 +276,9 @@ class ProfilePage extends React.Component {
                   onChange={e => this.updateSearchOptions('filter', e)}
                 />
               </div>
-              <div className={`${styles.bountyCards}`}>
-                {renderBountyCards(bounties)}
-              </div>
+            </div>
+            <div className={`${styles.bountyCards}`}>
+              {renderBountyCards(bounties)}
             </div>
           </div>
         </div>
