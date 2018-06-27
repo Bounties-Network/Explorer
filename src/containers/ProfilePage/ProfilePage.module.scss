@@ -10,24 +10,24 @@
 
 .profile {
   height: 400px;
-  display: flex;
+  /*display: flex;*/
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  /*flex-direction: column;*/
   padding-left: $center-padding-left;
   padding-right: $center-padding-right;
 }
 
 .profilePic {
-  display: flex;
+  /*display: flex;*/
   height: 50%;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  /*flex-direction: column;*/
 }
 
 .profileInfo {
-  display: flex;
+  /*display: flex;*/
   width: 100%;
   justify-content: center;
 }
@@ -38,14 +38,14 @@
 }
 
 .profileHeader {
-  display: flex;
+  /*display: flex;*/
   margin-bottom: 20px;
 }
 
 .about {
-  display: flex;
+  /*display: flex;*/
   justify-content: space-between;
-  flex-direction: column;
+  /*flex-direction: column;*/
   padding-left: 20px;
   padding-right: 20px;
   width: 17%;
@@ -54,21 +54,21 @@
 }
 
 .aboutData {
-  display: flex;
-  flex-direction: column;
+  /*display: flex;*/
+  /*flex-direction: column;*/
   height: 100px;
 }
 
 .aboutDataCell {
-  display: flex;
-  flex-direction: column;
+  /*display: flex;*/
+  /*flex-direction: column;*/
   justify-content: center;
   padding-top: 10px;
 }
 
 .skills {
-  display: flex;
-  flex-direction: column;
+  /*display: flex;*/
+  /*flex-direction: column;*/
   justify-content: space-between;
   padding-left: 40px;
   padding-right: 20px;
@@ -78,14 +78,14 @@
 }
 
 .skillsData {
-  display: flex;
+  /*display: flex;*/
   align-content: space-around;
   height: 100px;
 }
 
 .chipBar {
-  display: flex;
-  flex-wrap: wrap;
+  /*display: flex;*/
+  /*flex-wrap: wrap;*/
   height: 80px;
 }
 
@@ -96,8 +96,8 @@
 
 
 .networkStats {
-  display: flex;
-  flex-direction: column;
+  /*display: flex;*/
+  /*flex-direction: column;*/
   justify-content: space-between;
   padding-left: 40px;
   padding-right: 20px;
@@ -107,56 +107,56 @@
 }
 
 .networkHeader {
-  display: flex;
+  /*display: flex;*/
   justify-content: center;
   margin-bottom: 20px;
 }
 
 .networkStatsCircle {
-  display: flex;
+  /*display: flex;*/
   justify-content: center;
   margin-bottom: 10px;
 }
 
 .networkStatsData {
-  display: flex;
+  /*display: flex;*/
   height: 100px;
   justify-content: space-around;
   align-items: space-around;
 }
 
 .networkStatsDataCell {
-  display: flex;
-  flex-direction: column;
+  /*display: flex;*/
+  /*flex-direction: column;*/
   text-align: center;
   width: 100px;
 }
 
 .elsewhere {
-  display: flex;
+  /*display: flex;*/
   justify-content: space-between;
-  flex-direction: column;
+  /*flex-direction: column;*/
   width: 20%;
   padding-left: 40px;
   height: 50%;
 }
 
 .elsewhereData {
-  display: flex;
+  /*display: flex;*/
   height: 100px;
-  flex-direction: column;
+  /*flex-direction: column;*/
   justify-content: space-around;
 }
 
 .tabs {
-  display: flex;
+  /*display: flex;*/
   justify-content: center;
   padding-left: $center-padding-left;
   padding-right: $center-padding-right;
 }
 
 .bounties {
-  display: flex;
+  /*display: flex;*/
   // justify-content: space-between;
   flex-direction: column;
   min-height: 52%;
@@ -171,13 +171,13 @@
   height: 30px;
   margin-top: 20px;
   width: 100%;
-  display: flex;
-  justify-content: flex-end;
+  /*display: flex;*/
+  /*justify-content: flex-end;*/
   align-items: center;
 }
 
 .bountiesBody {
-  display: flex;
+  /*display: flex;*/
   margin-top: 20px;
 }
 

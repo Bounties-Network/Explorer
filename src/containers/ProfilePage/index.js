@@ -117,143 +117,149 @@ class ProfilePage extends React.Component {
     }
 
     return (
-      <div className={`${styles.profilePage}`}>
-        <div className={`${styles.profile}`}>
-          <div className={`${styles.profilePic}`}>
-            <Circle type="image" />
-            <Text style="H2" className={styles.profileTitle}>
-              {name}
-            </Text>
-            <FullAddressBar address={userAddress} />
-          </div>
-          <div className={`${styles.profileInfo}`}>
-            <div className={`${styles.about}`}>
-              <div className={`${styles.profileHeader}`}>
-                <Text style="Body">About</Text>
-              </div>
-              <div className={`${styles.aboutData}`}>
-                <div className={`${styles.aboutDataCell}`}>
-                  <Text style="FormLabel">
-                    <FontAwesomeIcon icon={faToolbox} /> Organization
-                  </Text>
-                  <Text style="BodySmall">FAKE Consensys</Text>
-                </div>
-                <div className={`${styles.aboutDataCell}`}>
-                  <Text style="FormLabel">
-                    <FontAwesomeIcon icon={faComments} /> Languages Spoken
-                  </Text>
-                  <Text style="BodySmall">FAKE, English, Romanian</Text>
-                </div>
-              </div>
+      <div className={`${styles.profilePage} row`}>
+        <div className="col-xs">
+          <div className={`${styles.profile}`}>
+            <div className={`${styles.profilePic}`}>
+              <Circle type="image" />
+              <Text style="H2" className={styles.profileTitle}>
+                {name}
+              </Text>
+              <FullAddressBar address={userAddress} />
             </div>
-            <div className={`${styles.skills}`}>
-              <div className={`${styles.profileHeader}`}>
-                <Text style="Body">Skills</Text>
-              </div>
-              <div className={`${styles.skillsData}`}>
-                <div className={`${styles.chipBar}`}>{renderChips(skills)}</div>
-              </div>
-            </div>
-            <div className={`${styles.networkStats}`}>
-              <div className={`${styles.networkHeader}`}>
-                <Text style="Body">Network Stats</Text>
-              </div>
-              <div className={`${styles.networkStatsData}`}>
-                <div className={`${styles.networkStatsDataCell}`}>
-                  <div className={`${styles.networkStatsCircle}`}>
-                    <Circle
-                      size="small"
-                      color="green"
-                      textColor="white"
-                      textStyle="H4"
-                      input={`${bounties_acceptance_rate * 100}%`}
-                    />
+            <div className={`${styles.profileInfo}`}>
+              <div className={`${styles.about}`}>
+                <div className={`${styles.profileHeader}`}>
+                  <Text style="Body">About</Text>
+                </div>
+                <div className={`${styles.aboutData}`}>
+                  <div className={`${styles.aboutDataCell}`}>
+                    <Text style="FormLabel">
+                      <FontAwesomeIcon icon={faToolbox} /> Organization
+                    </Text>
+                    <Text style="BodySmall">FAKE Consensys</Text>
                   </div>
-                  <Text style="FormLabel">Submission Acceptance Rate</Text>
-                </div>
-                <div className={`${styles.networkStatsDataCell}`}>
-                  <div className={`${styles.networkStatsCircle}`}>
-                    <Circle
-                      size="small"
-                      color="orange"
-                      textColor="white"
-                      textStyle="H4"
-                      input="0/0"
-                    />
+                  <div className={`${styles.aboutDataCell}`}>
+                    <Text style="FormLabel">
+                      <FontAwesomeIcon icon={faComments} /> Languages Spoken
+                    </Text>
+                    <Text style="BodySmall">FAKE, English, Romanian</Text>
                   </div>
-                  <Text style="FormLabel">Average Submission Rating Given</Text>
-                </div>
-                <div className={`${styles.networkStatsDataCell}`}>
-                  <div className={`${styles.networkStatsCircle}`}>
-                    <Circle
-                      size="small"
-                      color="green"
-                      textColor="white"
-                      textStyle="H4"
-                      input="00%"
-                    />
-                  </div>
-                  <Text style="FormLabel">Response Rate</Text>
                 </div>
               </div>
-            </div>
-            <div className={`${styles.elsewhere}`}>
-              <div className={`${styles.profileHeader}`}>
-                <Text style="Body">Elsewhere</Text>
+              <div className={`${styles.skills}`}>
+                <div className={`${styles.profileHeader}`}>
+                  <Text style="Body">Skills</Text>
+                </div>
+                <div className={`${styles.skillsData}`}>
+                  <div className={`${styles.chipBar}`}>
+                    {renderChips(skills)}
+                  </div>
+                </div>
               </div>
-              <div className={`${styles.elsewhereData}`}>
-                <div>
-                  <Text color="grey">
-                    <FontAwesomeIcon icon={faGlobe} />
-                  </Text>{' '}
-                  <Text color="blue" link>
-                    {' '}
-                    FAKEfirstNameLastName.com
-                  </Text>
+              <div className={`${styles.networkStats}`}>
+                <div className={`${styles.networkHeader}`}>
+                  <Text style="Body">Network Stats</Text>
                 </div>
-                <div>
-                  <Text color="grey">
-                    <FontAwesomeIcon icon={faTwitter} />
-                  </Text>{' '}
-                  <Text color="blue" link>
-                    {' '}
-                    @FAKEtwitterUsername
-                  </Text>
+                <div className={`${styles.networkStatsData}`}>
+                  <div className={`${styles.networkStatsDataCell}`}>
+                    <div className={`${styles.networkStatsCircle}`}>
+                      <Circle
+                        size="small"
+                        color="green"
+                        textColor="white"
+                        textStyle="H4"
+                        input={`${bounties_acceptance_rate * 100}%`}
+                      />
+                    </div>
+                    <Text style="FormLabel">Submission Acceptance Rate</Text>
+                  </div>
+                  <div className={`${styles.networkStatsDataCell}`}>
+                    <div className={`${styles.networkStatsCircle}`}>
+                      <Circle
+                        size="small"
+                        color="orange"
+                        textColor="white"
+                        textStyle="H4"
+                        input="0/0"
+                      />
+                    </div>
+                    <Text style="FormLabel">
+                      Average Submission Rating Given
+                    </Text>
+                  </div>
+                  <div className={`${styles.networkStatsDataCell}`}>
+                    <div className={`${styles.networkStatsCircle}`}>
+                      <Circle
+                        size="small"
+                        color="green"
+                        textColor="white"
+                        textStyle="H4"
+                        input="00%"
+                      />
+                    </div>
+                    <Text style="FormLabel">Response Rate</Text>
+                  </div>
                 </div>
-                <div>
-                  <Text color="grey">
-                    <FontAwesomeIcon icon={faGithub} />
-                  </Text>{' '}
-                  <Text
-                    color="blue"
-                    link
-                    src={`https://github.com/${githubUsername}`}
-                  >
-                    {' '}
-                    {`@${githubUsername}`}
-                  </Text>
+              </div>
+              <div className={`${styles.elsewhere}`}>
+                <div className={`${styles.profileHeader}`}>
+                  <Text style="Body">Elsewhere</Text>
+                </div>
+                <div className={`${styles.elsewhereData}`}>
+                  <div>
+                    <Text color="grey">
+                      <FontAwesomeIcon icon={faGlobe} />
+                    </Text>{' '}
+                    <Text color="blue" link>
+                      {' '}
+                      FAKEfirstNameLastName.com
+                    </Text>
+                  </div>
+                  <div>
+                    <Text color="grey">
+                      <FontAwesomeIcon icon={faTwitter} />
+                    </Text>{' '}
+                    <Text color="blue" link>
+                      {' '}
+                      @FAKEtwitterUsername
+                    </Text>
+                  </div>
+                  <div>
+                    <Text color="grey">
+                      <FontAwesomeIcon icon={faGithub} />
+                    </Text>{' '}
+                    <Text
+                      color="blue"
+                      link
+                      src={`https://github.com/${githubUsername}`}
+                    >
+                      {' '}
+                      {`@${githubUsername}`}
+                    </Text>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className={`${styles.tabs}`}>
-          <Tabs tabs={tabs} />
-        </div>
-        <div className={`${styles.bounties}`}>
-          <div className={`${styles.sortBy}`}>
-            <SortBy onClick={e => this.updateSearchOptions('sort', e)} />
+          <div className={`${styles.tabs}`}>
+            <Tabs tabs={tabs} />
           </div>
-          <div className={`${styles.bountiesBody}`}>
-            <div className={`${styles.refineBy}`}>
-              <RefineByFilter
-                stages
-                paymentStatus
-                onChange={e => this.updateSearchOptions('filter', e)}
-              />
+          <div className={`${styles.bounties}`}>
+            <div className={`${styles.sortBy}`}>
+              <SortBy onClick={e => this.updateSearchOptions('sort', e)} />
             </div>
-            <div className={`${styles.bountyCards}`}>
-              {renderBountyCards(bounties)}
+            <div className={`${styles.bountiesBody}`}>
+              <div className={`${styles.refineBy}`}>
+                <RefineByFilter
+                  stages
+                  paymentStatus
+                  onChange={e => this.updateSearchOptions('filter', e)}
+                />
+              </div>
+              <div className={`${styles.bountyCards}`}>
+                {renderBountyCards(bounties)}
+              </div>
             </div>
           </div>
         </div>
