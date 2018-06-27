@@ -77,8 +77,14 @@ class ExplorerPage extends React.Component {
         <div className="row">
           <div className="col-xs-3">
             <div className={`${styles.filterColumn}`}>
-              <div className={`${styles.searchBar}`}>
-                <Search onChange={e => this.updateSearchOptions('search', e)} />
+              <div className="row center-xs middle-xs">
+                <div className="col-xs-6">
+                  <div className={`${styles.searchBar}`}>
+                    <Search
+                      onChange={e => this.updateSearchOptions('search', e)}
+                    />
+                  </div>
+                </div>
               </div>
               <div className={`${styles.refineBy}`}>
                 <RefineByFilter

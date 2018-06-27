@@ -1,24 +1,21 @@
 @import "~styles/variables.scss";
 
 .leaderboard {
+  margin-top: -50px;
   box-shadow: 0 0 1px 0 $brand-grey;
   padding: 25px;
-  width: 40%;
   height: fit-content;
-  position: absolute;
-  top: 20%;
-  left: 30%;
   background-color: white;
 }
 
 .cardContainer {
-  display: flex;
-  width: 96%;
-  height: 40px;
+  /*display: flex;*/
+/*  width: 96%;*/
+/*  height: 40px;*/
   padding: 15px;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid $brand-lightGrey;
+/*  justify-content: space-between;
+  align-items: center;*/
+  /*border-bottom: 1px solid $brand-lightGrey;*/
 }
 
 .cardContainer:last-child {
@@ -26,47 +23,47 @@
 }
 
 .cardLeft {
-  width: 70%;
-  display: flex;
+/*  width: 70%;*/
+/*  display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center;*/
 }
 
 .index {
-  display: flex;
-  justify-content: center;
+/*  display: flex;
+  justify-content: center;*/
 }
 
 .profileInfo {
-  display: flex;
+/*  display: flex;
   width: 70%;
-  justify-content: space-between;
+  justify-content: space-between;*/
 }
 
 .nameBox {
-  min-width: 200px;
+/*  min-width: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-around;*/
 }
 
 .name {
-  display: flex;
-  justify-content: flex-start;
+/*  display: flex;
+  justify-content: flex-start;*/
 }
 
 .address {
-  display: flex;
-  justify-content: flex-start;
+/*  display: flex;
+  justify-content: flex-start;*/
 }
 
 .cardRight {
-  display: flex;
+/*  display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-end;*/
 }
 
 .ethText {
-  display: flex;
-  justify-content: flex-end;
+/*  display: flex;
+  justify-content: flex-end;*/
 }
