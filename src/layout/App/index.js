@@ -1,4 +1,5 @@
 import React from 'react';
+import FontAwesome from 'fontAwesome';
 import styles from './App.module.scss';
 import { hot } from 'react-hot-loader';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
@@ -91,7 +92,10 @@ const check = compose(
   hot(module),
   FetchComponent(sagas.fetch),
   withRouter,
-  connect(mapStateToProps, { load: actions.checkLoginStatus, ...actions }),
+  connect(
+    mapStateToProps,
+    { load: actions.checkLoginStatus, ...actions }
+  ),
   LoadComponent('')
 )(App);
 
