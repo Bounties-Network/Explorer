@@ -1,0 +1,13 @@
+@import "~styles/variables.scss";
+
+.select {
+}
+
+.error {
+  :global(.Select-control) {
+    border-color: $brand-red;
+  }
+}
+
+.selectComponent {
+}

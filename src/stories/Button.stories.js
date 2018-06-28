@@ -8,58 +8,55 @@ import { Button, Text } from 'components';
 storiesOf('Button', module).add('All Buttons', () => (
   <div>
     <Text style="H3">Button Type</Text>
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-      }}
-    >
-      <br />
+    <div>
+      <div style={{ marginTop: '10px' }} />
       <Text style="H4">Primary</Text>
+      <span style={{ marginRight: '10px' }} />
       <Button onClick={action('clicked')}>Hello Button</Button>
-      <br />
+      <div style={{ marginTop: '10px' }} />
       <Text style="H4">Secondary</Text>
+      <span style={{ marginRight: '10px' }} />
       <Button onClick={action('clicked')} style="secondary">
         Hello Button
       </Button>
-      <br />
+      <div style={{ marginTop: '10px' }} />
       <Text style="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
       <Button onClick={action('clicked')} style="destructive">
         Hello Button
       </Button>
-      <br />
-      <Text style="H4">Link</Text>
-      <Button onClick={action('clicked')} style="link">
+      <div style={{ marginTop: '10px' }} />
+      <Text style="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} style="action">
         Hello Button
       </Button>
-      <Text style="H4">Create</Text>
-      <Button onClick={action('clicked')} style="create">
-        Create New Bounty
+      <div style={{ marginTop: '10px' }} />
+      <Text style="H4">Link</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} style="link">
+        Hello Button
       </Button>
     </div>
     <hr />
 
     <Text style="H3">Disabled</Text>
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-      }}
-    >
-      <br />
+    <div>
+      <div style={{ marginTop: '10px' }} />
       <Text style="H4">Primary</Text>
+      <span style={{ marginRight: '10px' }} />
       <Button onClick={action('should not fire')} disabled>
         Hello Button
       </Button>
-      <br />
+      <div style={{ marginTop: '10px' }} />
       <Text style="H4">Secondary</Text>
+      <span style={{ marginRight: '10px' }} />
       <Button onClick={action('should not fire')} disabled style="secondary">
         Hello Button
       </Button>
-      <br />
+      <div style={{ marginTop: '10px' }} />
       <Text style="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
       <Button
         onClick={action('should not fire')}
         disabled
@@ -68,35 +65,21 @@ storiesOf('Button', module).add('All Buttons', () => (
       >
         Hello Button
       </Button>
-      <br />
+      <div style={{ marginTop: '10px' }} />
+      <Text style="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button
+        onClick={action('should not fire')}
+        disabled
+        style="action"
+        text="Hello Button"
+      >
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
       <Text style="H4">Link</Text>
+      <span style={{ marginRight: '10px' }} />
       <Button onClick={action('should not fire')} disabled style="link">
-        Hello Button
-      </Button>
-    </div>
-    <hr />
-
-    <Text style="H3">Sizes</Text>
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-      }}
-    >
-      <br />
-      <Text style="H4">Small</Text>
-      <Button onClick={action('clicked')} size="small">
-        Button
-      </Button>
-      <br />
-      <Text style="H4">Medium</Text>
-      <Button onClick={action('clicked')} size="medium">
-        Hello Button
-      </Button>
-      <br />
-      <Text style="H4">Large</Text>
-      <Button onClick={action('clicked')} size="large">
         Hello Button
       </Button>
     </div>

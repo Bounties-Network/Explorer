@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Button.module.scss';
 
 const Button = props => {
-  const { className, style, size, disabled, onClick } = props;
+  const { className, style, disabled, onClick } = props;
 
   let addedClasses = '';
   if (disabled) {
@@ -12,7 +12,7 @@ const Button = props => {
 
   return (
     <button
-      className={`${className} ${styles.button} ${styles[size]}
+      className={`${className} ${styles.button}
         ${styles[style]} ${addedClasses}`}
       onClick={onClick}
       disabled={disabled}
@@ -24,26 +24,13 @@ const Button = props => {
 
 Button.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.oneOf([
-    'primary',
-    'secondary',
-    'destructive',
-    'activate',
-    'deleteLink',
-    'link',
-    'create',
-    'clearFilter'
-  ]),
-  size: PropTypes.oneOf(['icon', 'small', 'medium', 'large']),
+  style: PropTypes.oneOf(['primary', 'secondary', 'destructive', 'action']),
   disabled: PropTypes.bool,
   onClick: PropTypes.func
 };
 
 Button.defaultProps = {
-  style: 'primary',
-  size: 'medium',
-  disabled: false,
-  children: 'Button'
+  style: 'primary'
 };
 
 export default Button;

@@ -1,3 +1,7 @@
 .checkbox {
-  
+  cursor: pointer;
+}
+
+.checkbox:disabled {
+  cursor: default;
 }

@@ -7,6 +7,9 @@ import { Checkbox } from 'components';
 
 storiesOf('Checkbox', module).add('Checkbox', () => (
   <div>
-    <Checkbox onChange={action('checked')} />
+    <Checkbox label="Filter 1" />
+    <Checkbox label="Filter 2" />
+    <Checkbox label="Filter 3" />
+    <Checkbox label="Disabled Checkbox" disabled />
   </div>
 ));
