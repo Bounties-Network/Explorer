@@ -213,67 +213,63 @@ class SignInPage extends React.Component {
 
     return (
       <div className={`${styles.signInPage}`}>
-        {displaySignInModal && this.renderSignInDialogue()}
-        {displayWalletConfirmationModal &&
-          this.renderWalletConfirmationDialogue()}
-        <div className={`${styles.signInPageBody}`}>
-          <FontAwesomeIcon
-            icon={faSignIn}
-            className={`fa-6x ${styles.signInIcon}`}
-          />
-          <div className={`${styles.signInHeaderText}`}>
-            <Text style="H2">Sign in to use</Text>
-            <Text
-              style="H2"
-              link
-              color="purple"
-              className={`${styles.link}`}
-              noUnderline
-            >
-              bounties.network
-            </Text>
+        <div className={`${styles.test} container-fluid`}>
+          <div className="row middle-xs center-xs">
+            <div className="col-xs-8">
+              {displaySignInModal && this.renderSignInDialogue()}
+              {displayWalletConfirmationModal &&
+                this.renderWalletConfirmationDialogue()}
+              <div className={`${styles.signInPageBody}`}>
+                <div className="row center-xs middle-xs">
+                  <div className="col-xs-6">
+                    <FontAwesomeIcon
+                      icon={faSignIn}
+                      className={`fa-6x ${styles.signInIcon}`}
+                    />
+                    <div className={`${styles.signInHeaderText}`}>
+                      <Text style="H2">Sign in to use</Text>
+                      <Text
+                        style="H2"
+                        link
+                        color="purple"
+                        className={`${styles.link}`}
+                        noUnderline
+                      >
+                        bounties.network
+                      </Text>
+                    </div>
+                    <div className={`${styles.descriptionText}`}>
+                      <Text style="CardHeading" color="grey">
+                        In order for you to use certain features of the network
+                        like creating and fulfilling bounties, commenting, or
+                        viewing your network stats, please sign into Metamask
+                        and then press sign in.
+                      </Text>
+                    </div>
+                    <div className={`${styles.instructionText}`}>
+                      <Text style="CardHeading" color="grey">
+                        If you don't wish to sign in but wish to explore, feel
+                        free to check out some bounties using the
+                      </Text>
+                      <Text
+                        style="CardHeading"
+                        link
+                        className={`${styles.link}`}
+                      >
+                        explorer.
+                      </Text>
+                    </div>
+                    <Button
+                      className={`${styles.signInButton}`}
+                      onClick={this.openSignInDialogue}
+                    >
+                      Sign In
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <Text
-              className={`${styles.descriptionText}`}
-              style="CardHeading"
-              color="grey"
-            >
-              In order for you to use certain features of the network like
-              creating and fulfilling bounties, commenting, or viewing your
-              network stats,
-            </Text>
-            <Text
-              className={`${styles.descriptionText}`}
-              style="CardHeading"
-              color={signIntoMetamaskTextColor}
-            >
-              {'  '} please sign into Metamask
-            </Text>
-            <Text
-              className={`${styles.descriptionText}`}
-              style="CardHeading"
-              color="grey"
-            >
-              {' '}
-              and then press sign in.
-            </Text>
-          </div>
-          <div className={`${styles.instructionText}`}>
-            <Text style="CardHeading" color="grey">
-              If you don't wish to sign in but wish to explore, feel free to
-              check out some bounties using the
-            </Text>
-            <Text style="CardHeading" link className={`${styles.link}`}>
-              explorer.
-            </Text>
-          </div>
-          <Button
-            className={`${styles.signInButton}`}
-            onClick={this.openSignInDialogue}
-          >
-            Sign In
-          </Button>
         </div>
       </div>
     );
@@ -298,7 +294,10 @@ SignInPage.propTypes = {
 
 const check = compose(
   FetchComponent(sagas.fetch),
-  connect(mapStateToProps, { load: actions.loadBounties, ...actions }),
+  connect(
+    mapStateToProps,
+    { load: actions.loadBounties, ...actions }
+  ),
   LoadComponent('')
 )(SignInPage);
 

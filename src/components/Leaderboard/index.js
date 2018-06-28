@@ -42,7 +42,7 @@ const LeaderboardItem = props => {
                 <Text style="H4">{name}</Text>
               </div>
               <div className={`${styles.address}`}>
-                <Text style="Small" link>
+                <Text style="Body" link>
                   {shortenAddress(address)}
                 </Text>
               </div>
@@ -50,11 +50,17 @@ const LeaderboardItem = props => {
           </div>
         </div>
         <div className="col-xs-2">
-          <div>
-            <Text color="purple">{`$${total_usd.toFixed(2)}`}</Text>
-          </div>
-          <div>
-            <Text color="grey">? ETH</Text>
+          <div className={`${styles.cardRight}`}>
+            <div className={`${styles.usd}`}>
+              <Text style="H3" color="purple">{`$${total_usd.toFixed(
+                2
+              )}`}</Text>
+            </div>
+            <div>
+              <Text style="Body" color="grey">
+                ? ETH
+              </Text>
+            </div>
           </div>
         </div>
       </div>

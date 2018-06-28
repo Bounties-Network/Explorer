@@ -2,10 +2,12 @@
 
 .leaderboard {
   margin-top: -50px;
+  margin-bottom: 50px;
   box-shadow: 0 0 1px 0 $brand-grey;
   padding: 25px;
   height: fit-content;
   background-color: white;
+  border-radius: 3px;
 }
 
 .cardContainer {
@@ -43,6 +45,7 @@
 }
 
 .name {
+  padding-bottom: 5px;
 /*  display: flex;
   justify-content: flex-start;*/
 }
@@ -53,9 +56,14 @@
 }
 
 .cardRight {
+  text-align: right;
 /*  display: flex;
   flex-direction: column;
   justify-content: flex-end;*/
+}
+
+.usd {
+  padding-bottom: 5px;
 }
 
 .ethText {

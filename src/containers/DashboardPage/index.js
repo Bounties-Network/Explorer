@@ -332,7 +332,11 @@ class DashboardPage extends React.Component {
                     </div>
                     <div className={`${styles.dataCell} col-xs-3`}>
                       <div className={`${styles.moneyCell}`}>
-                        <Text color="purple" style="H2">
+                        <Text
+                          className={`${styles.usd}`}
+                          color="purple"
+                          style="H2"
+                        >
                           $1225
                         </Text>
                         <Text color="grey" style="Alt">
@@ -345,7 +349,11 @@ class DashboardPage extends React.Component {
                     </div>
                     <div className={`${styles.dataCell} col-xs-3`}>
                       <div className={`${styles.moneyCell}`}>
-                        <Text color="purple" style="H2">
+                        <Text
+                          className={`${styles.usd}`}
+                          color="purple"
+                          style="H2"
+                        >
                           $500
                         </Text>
                         <Text color="grey" style="Alt">
