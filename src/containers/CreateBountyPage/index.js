@@ -11,7 +11,6 @@ import {
   TextInput,
   Textbox,
   DropdownSearch,
-  Difficulty,
   NumberInput,
   DatePicker,
   RadioGroup,
@@ -131,7 +130,6 @@ class CreateBountyPage extends React.Component {
                   <Text style="FormLabel" color="grey">
                     Difficulty
                   </Text>
-                  <Difficulty className={`${styles.content}`} />
                 </div>
               </div>
             </div>
@@ -315,7 +313,10 @@ CreateBountyPage.propTypes = {
 
 const check = compose(
   FetchComponent(sagas.fetch),
-  connect(mapStateToProps, { load: actions.loadCategories, ...actions }),
+  connect(
+    mapStateToProps,
+    { load: actions.loadCategories, ...actions }
+  ),
   LoadComponent('')
 )(CreateBountyPage);
 

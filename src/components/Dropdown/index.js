@@ -27,7 +27,7 @@ class MenuItem extends React.Component {
 }
 
 MenuItem.propTypes = {
-  icon: PropTypes.string,
+  icon: PropTypes.object,
   className: PropTypes.string
 };
 
