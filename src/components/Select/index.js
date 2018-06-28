@@ -14,6 +14,7 @@ class Select extends React.Component {
 
   handleChange = selectedOption => {
     this.setState({ selectedOption });
+    this.props.onChange(selectedOption);
   };
 
   render() {
@@ -72,13 +73,16 @@ class Select extends React.Component {
 Select.propTypes = {
   options: PropTypes.array,
   onChange: PropTypes.function,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  label: PropTypes.string,
+  error: PropTypes.string,
+  disabled: PropTypes.bool,
+  optional: PropTypes.bool
 };
 
 Select.defaultProps = {
   options: [],
-  onChange: () => {},
-  placeholder: ''
+  onChange: () => {}
 };
 
 export default Select;

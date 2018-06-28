@@ -13,6 +13,7 @@ class TextInput extends React.Component {
   onTextChange = e => {
     const { value } = e.target;
     this.setState({ text: value });
+    this.props.onChange(value);
   };
 
   render() {
@@ -69,12 +70,17 @@ class TextInput extends React.Component {
 }
 
 TextInput.propTypes = {
+  className: PropTypes.string,
+  error: PropTypes.string,
+  optional: PropTypes.bool,
+  disabled: PropTypes.bool,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func
 };
 
 TextInput.defaultProps = {
-  onChange: () => {},
-  error: false
+  onChange: () => {}
 };
 
 export default TextInput;
