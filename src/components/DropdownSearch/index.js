@@ -25,19 +25,11 @@ const filterOptions = (filter, options) => {
 
 // props = options, onChange, placeholder
 class DropdownSearch extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selection: null,
-      options: [],
-      filters: []
-    };
-
-    this.onDropdownSelect = this.onDropdownSelect.bind(this);
-    this.renderChips = this.renderChips.bind(this);
-    this.closeChip = this.closeChip.bind(this);
-  }
+  state = {
+    selection: null,
+    options: [],
+    filters: []
+  };
 
   componentWillReceiveProps() {
     if (this.state.options.length === 0) {
@@ -51,11 +43,11 @@ class DropdownSearch extends React.Component {
     }
   }
 
-  onDropdownSelect(e) {
+  onDropdownSelect = e => {
     const { options } = this.props;
     const { filters, selection } = this.state;
 
-    let tempFilters = filters.slice(0, filters.length);
+    let tempFilters = filters.slice();
     tempFilters.push(e);
     let tempOptions = filterOptions(tempFilters, options);
 
@@ -65,22 +57,20 @@ class DropdownSearch extends React.Component {
         this.props.onChange(this.state.filters);
       }
     );
-  }
+  };
 
-  closeChip(name) {
+  closeChip = name => {
     const { filters } = this.state;
     const { options } = this.props;
 
-    let tempFilters = filters
-      .slice(0, filters.length)
-      .filter(elem => elem.name !== name);
+    let tempFilters = filters.slice().filter(elem => elem.name !== name);
     let tempOptions = filterOptions(tempFilters, options);
     this.setState({ filters: tempFilters, options: tempOptions }, () => {
       this.props.onChange(this.state.filters);
     });
-  }
+  };
 
-  renderChips(data) {
+  renderChips = data => {
     return data.map((elem, idx) => {
       return (
         <div className={`${styles.chip}`} key={'chip' + idx}>
@@ -90,9 +80,9 @@ class DropdownSearch extends React.Component {
         </div>
       );
     });
-  }
+  };
 
-  clearFilters() {
+  clearFilters = () => {
     const { filters } = this.state;
     const { options } = this.props;
 
@@ -100,19 +90,53 @@ class DropdownSearch extends React.Component {
     this.setState({ filters: [], options: tempOptions }, () => {
       this.props.onChange(this.state.filters);
     });
-  }
+  };
 
   render() {
+    const {
+      className,
+      disabled,
+      label,
+      error,
+      optional,
+      placeholder
+    } = this.props;
+
+    let labelText = label;
+    if (optional) {
+      labelText = `(Optional) ${labelText || ''}`;
+    }
+
+    let selectClass = className;
+    if (error) {
+      selectClass += ` ${styles.error}`;
+    }
+
     return (
       <div className={`${styles.dropdownSearch}`}>
+        {labelText ? (
+          <div>
+            <Text style="FormLabel" color={error ? 'red' : null}>
+              {labelText}
+            </Text>
+          </div>
+        ) : null}
         <Select
-          className={this.props.className}
+          disabled={disabled}
+          className={selectClass}
           name="DropdownSearch"
           options={this.state.options}
           onChange={this.onDropdownSelect}
-          placeholder={this.props.placeholder}
+          placeholder={placeholder}
           labelKey="name"
         />
+        {error ? (
+          <div>
+            <Text style="FormLabel" color={'red'}>
+              {error}
+            </Text>
+          </div>
+        ) : null}
         <div>
           <div className={`${styles.chipBar}`}>
             {this.renderChips(this.state.filters)}
@@ -126,13 +150,17 @@ class DropdownSearch extends React.Component {
 DropdownSearch.propTypes = {
   options: PropTypes.array,
   onChange: PropTypes.func,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  label: PropTypes.string,
+  error: PropTypes.string,
+  optional: PropTypes.bool,
   placeholder: PropTypes.string
 };
 
 DropdownSearch.defaultProps = {
   options: [],
-  onChange: () => {},
-  placeholder: 'e.g. HTML'
+  onChange: () => {}
 };
 
 export default DropdownSearch;
