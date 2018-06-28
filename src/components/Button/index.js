@@ -30,9 +30,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  style: 'primary',
-  disabled: false,
-  children: 'Button'
+  style: 'primary'
 };
 
 export default Button;

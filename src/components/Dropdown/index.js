@@ -26,6 +26,11 @@ class MenuItem extends React.Component {
   }
 }
 
+MenuItem.propTypes = {
+  icon: PropTypes.string,
+  className: PropTypes.string
+};
+
 class DropdownContent extends React.Component {
   render() {
     const { children } = this.props;
