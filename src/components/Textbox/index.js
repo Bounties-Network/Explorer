@@ -14,6 +14,7 @@ class Textbox extends React.Component {
   onTextareaChange = e => {
     const { value } = e.target;
     this.setState({ text: value });
+    this.props.onChange(value);
   };
 
   render() {
@@ -74,6 +75,13 @@ class Textbox extends React.Component {
 }
 
 Textbox.propTypes = {
+  className: PropTypes.string,
+  error: PropTypes.string,
+  resizable: PropTypes.bool,
+  optional: PropTypes.bool,
+  disabled: PropTypes.bool,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func
 };
 
