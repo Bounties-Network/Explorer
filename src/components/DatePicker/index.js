@@ -59,7 +59,11 @@ class DatePicker extends React.Component {
 }
 
 DatePicker.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  minDate: PropTypes.object,
+  showTimeSelect: PropTypes.bool,
+  label: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 DatePicker.defaultProps = {
