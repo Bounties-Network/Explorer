@@ -3,7 +3,8 @@
 .leaderboard {
   margin-top: -50px;
   margin-bottom: 50px;
-  box-shadow: 0 0 1px 0 $brand-grey;
+  /*box-shadow: 0 0 1px 0 $brand-grey;*/
+  box-shadow: $brand-bountyCard-box-shadow;
   padding: 25px;
   height: fit-content;
   background-color: white;
