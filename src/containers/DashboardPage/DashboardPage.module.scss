@@ -1,24 +1,13 @@
 @import "~styles/variables.scss";
 
 .dashboardPage {
-  background-color: $brand-lightGrey;
-  height: 100%;
-  width: 100%;
-  padding-left: 7%;
-  padding-right: 1%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
+/*  height: 100%;
+  width: 100%;*/
 }
 
 .profileBar {
   min-height: 200px;
   height: 25%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .profileData {
@@ -39,11 +28,7 @@
 }
 
 .bountiesInfo {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 100px;
-  width: 47%;
+
 }
 
 .dataCell {
@@ -68,18 +53,19 @@
   align-items: center;
 }
 
-
+.usd {
+  padding-right: 5px;
+}
 
 .dashboardBody {
   height: 75%;
   width: 100%;
-  display: flex;
 }
 
 .dashboardBodyLeft {
-  width: 50%;
+  margin-bottom: 50px;
 }
 
 .dashboardBodyRight {
-  width: 50%;
+  margin-bottom: 50px;
 }

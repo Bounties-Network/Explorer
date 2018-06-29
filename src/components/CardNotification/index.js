@@ -18,26 +18,30 @@ const CardNotification = props => {
 
   return (
     <div className={`${styles.cardNotificationContainer}`}>
-      <div className={`${styles.leftColumn}`}>
-        <div className={`${styles.profilePic}`}>
-          <Circle type="image" size="mini" />
+      <div className="row middle-xs">
+        <div className="col-xs-1">
+          <div className={`${styles.profilePic}`}>
+            <Circle type="image" size="mini" />
+          </div>
         </div>
-        <div className={`${styles.textArea}`}>
-          <div className={`${styles.textCell}`}>
-            <Text link color="blue">
-              {shortenAddress(address)}
+        <div className="col-xs-8">
+          <div className={`${styles.textArea}`}>
+            <div className={`${styles.textCell}`}>
+              <Text link color="blue">
+                {shortenAddress(address)}
+              </Text>
+              <Text className={`${styles.space}`}>{action}</Text>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-xs-3">
+          <div className={`${styles.dateText}`}>
+            <Text style="BodySmall" color="grey">
+              {date}
             </Text>
           </div>
-          <div className={`${styles.textCell}`}>
-            <Text>{action}</Text>
-          </div>
         </div>
-      </div>
-
-      <div className={`${styles.rightColumn}`}>
-        <Text style="H4" color="grey">
-          {date}
-        </Text>
       </div>
     </div>
   );

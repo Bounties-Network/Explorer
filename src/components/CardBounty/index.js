@@ -23,26 +23,29 @@ const CardBounty = props => {
 
   return (
     <div className={`${styles.cardBountyContainer}`}>
-      <div className={`${styles.leftColumn}`}>
-        <div className={`${styles.notificationDot}`}>
-          {displayNotification && <FontAwesomeIcon icon={faCircle} />}
-        </div>
-        <div className={`${styles.textArea}`}>
-          <Text style="H4">{title}</Text>
-          <div className={`${styles.submissionsData}`}>
-            <Text style="BodySmall" color="grey">
-              Created Yesterday - 2 Submissions
-            </Text>
+      <div className="row middle-xs">
+        <div className="col-xs-1">
+          <div className={`${styles.notificationDot}`}>
+            {displayNotification && <FontAwesomeIcon icon={faCircle} />}
           </div>
         </div>
-      </div>
-
-      <div className={`${styles.rightColumn}`}>
-        <Payout
-          USD={usd_price}
-          amount={calculated_fulfillmentAmount}
-          symbol={tokenSymbol}
-        />
+        <div className="col-xs-8">
+          <div className={`${styles.textArea}`}>
+            <Text style="H4">{title}</Text>
+            <div className={`${styles.submissionsData}`}>
+              <Text style="BodySmall" color="grey">
+                Created Yesterday - 2 Submissions
+              </Text>
+            </div>
+          </div>
+        </div>
+        <div className="col-xs-3">
+          <Payout
+            USD={usd_price}
+            amount={calculated_fulfillmentAmount}
+            symbol={tokenSymbol}
+          />
+        </div>
       </div>
     </div>
   );

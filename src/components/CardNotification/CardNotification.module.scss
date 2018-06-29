@@ -2,11 +2,11 @@
 
 .cardNotificationContainer {
   height: 45px;
-  cursor: pointer;
+/*  cursor: pointer;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between;*/
   padding: 5px 20px;
-  min-width: 600px;
+/*  min-width: 600px;*/
   border-bottom: 1px solid $brand-lightGrey;
 }
 
@@ -15,29 +15,29 @@
 }
 
 .leftColumn {
-  width: 90%;
+/*  width: 90%;*/
   height: 100%;
-  display: flex;
-  align-items: center;
+/*  display: flex;
+  align-items: center;*/
 }
 
 .notificationDot {
   width: 25px;
   height: 100%;
-  display: flex;
-  align-items: center;
+/*  display: flex;
+  align-items: center;*/
   color: $brand-red;
   font-size: 10px;
 }
 
 .profilePic {
-  display: flex;
-  align-content: center;
+/*  display: flex;
+  align-content: center;*/
   margin-right: 10px;
 }
 
 .textArea {
-  display: flex;
+/*  display: flex;*/
 }
 
 .textCell {
@@ -46,9 +46,17 @@
   width: fit-content;
 }
 
+.space {
+  padding-left: 5px;
+}
+
+.dateText {
+  text-align: right;
+}
+
 .rightColumn {
-  width: 10%;
+/*  width: 10%;
   display: flex;
-  align-items: center;
+  align-items: center;*/
   padding-right: 5px;
 }

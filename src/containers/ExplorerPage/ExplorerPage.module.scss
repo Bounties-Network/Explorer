@@ -1,27 +1,22 @@
 @import "~styles/variables.scss";
 
 .explorerPage {
-  width: 100%;
+/*  width: 100%;
   height: fit-content;
-  display: flex;
-  margin-top: 55px;
-  margin-left: 55px;
+  display: flex;*/
 }
 
 .filterColumn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-left: -2rem;
   padding: 30px;
   background-color: white;
-  width: 25%
 }
 
 .searchBar {
-  display: flex;
-  justify-content: center;
+/*  display: flex;
+  justify-content: center;*/
   padding-bottom: 30px;
-  width: 100%;
+/*  width: 100%;*/
   border-bottom: 1px solid $brand-lightGrey;
 }
 
@@ -32,14 +27,10 @@
 
 .bountiesColumn {
   background-color: $brand-nearWhite;
-  width: 75%;
   padding: 50px 100px;
 }
 
 .sortByBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 50px;
 }
 

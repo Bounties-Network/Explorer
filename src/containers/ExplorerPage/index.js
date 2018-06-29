@@ -74,40 +74,62 @@ class ExplorerPage extends React.Component {
 
     return (
       <div className={`${styles.explorerPage}`}>
-        <div className={`${styles.filterColumn}`}>
-          <div className={`${styles.searchBar}`}>
-            <Search onChange={e => this.updateSearchOptions('search', e)} />
-          </div>
-          <div className={`${styles.refineBy}`}>
-            <RefineByFilter
-              dropdown
-              stages
-              difficulty
-              dropdownOptions={categories}
-              onChange={e => this.updateSearchOptions('filter', e)}
-            />
-          </div>
-        </div>
-        <div className={`${styles.bountiesColumn}`}>
-          <div className={`${styles.sortByBar}`}>
-            <div className={`${styles.count}`}>
-              <Text style="H2" color="purple">
-                {count}
-              </Text>
-              <Text style="H3" color="grey">
-                Bounties
-              </Text>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-xs-3">
+              <div className={`${styles.filterColumn}`}>
+                <div className="row center-xs middle-xs">
+                  <div className="col-xs-6">
+                    <div className={`${styles.searchBar}`}>
+                      <Search
+                        onChange={e => this.updateSearchOptions('search', e)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className={`${styles.refineBy}`}>
+                  <RefineByFilter
+                    dropdown
+                    stages
+                    difficulty
+                    dropdownOptions={categories}
+                    onChange={e => this.updateSearchOptions('filter', e)}
+                  />
+                </div>
+              </div>
             </div>
-            <div className={`${styles.sortBy}`}>
-              <SortBy onClick={e => this.updateSearchOptions('sort', e)} />
+            <div className="col-xs-9">
+              <div className={`${styles.bountiesColumn}`}>
+                <div className={`${styles.sortByBar}`}>
+                  <div className="row middle-xs">
+                    <div className="col-xs-3">
+                      <div className={`${styles.count}`}>
+                        <Text style="H2" color="purple">
+                          {count}
+                        </Text>
+                        <Text style="H3" color="grey">
+                          Bounties
+                        </Text>
+                      </div>
+                    </div>
+                    <div className="col-xs-offset-3 col-xs-6">
+                      <div className={`${styles.sortBy}`}>
+                        <SortBy
+                          onClick={e => this.updateSearchOptions('sort', e)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className={`${styles.bountiesList}`}>
+                  {renderBounties(bounties)}
+                </div>
+                {/* <div className={`${styles.loadMoreButton}`}>
+                <Button size='large' style='secondary'>Load More</Button> 
+              </div> */}
+              </div>
             </div>
           </div>
-          <div className={`${styles.bountiesList}`}>
-            {renderBounties(bounties)}
-          </div>
-          {/* <div className={`${styles.loadMoreButton}`}>
-            <Button size='large' style='secondary'>Load More</Button> 
-          </div> */}
         </div>
       </div>
     );
@@ -136,7 +158,10 @@ ExplorerPage.propTypes = {
 
 const check = compose(
   FetchComponent(sagas.fetch),
-  connect(mapStateToProps, { load: actions.loadBounties, ...actions }),
+  connect(
+    mapStateToProps,
+    { load: actions.loadBounties, ...actions }
+  ),
   LoadComponent('')
 )(ExplorerPage);
 

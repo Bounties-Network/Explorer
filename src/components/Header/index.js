@@ -26,32 +26,47 @@ const Header = props => {
 
   return (
     <div className={`${styles.header}`}>
-      <div className={`${styles.iconArea}`}>
-        <BeeLogo />
+      <div className="row middle-xs">
+        <div className="col-xs-1">
+          <div className={`${styles.iconArea}`}>
+            <BeeLogo />
+          </div>
+        </div>
+        <div className="col-xs-2">
+          <div className="row middle-xs center-xs">Network</div>
+        </div>
+        {loginStatus ? (
+          <div className="col-xs-offset-5 col-xs-4">
+            <div className="row center-xs middle-xs">
+              <div className="col-xs-5">
+                <Button style="primary" onClick={onCreateClick}>
+                  Create New Bounty
+                </Button>
+              </div>
+              <div className="col-xs-1">
+                <NotificationDropdown notifications={notifications} />
+              </div>
+              <div className="col-xs-2">
+                <Dropdown position="left" className={styles.profileDropdown}>
+                  <DropdownTrigger>
+                    <Circle type="image" size="mini" input={profilePic} />
+                  </DropdownTrigger>
+                  <DropdownContent>
+                    <MenuItem icon={['fal', 'cog']}>Account Settings</MenuItem>
+                    <MenuItem icon={['fal', 'sign-out']}>Sign Out</MenuItem>
+                  </DropdownContent>
+                </Dropdown>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="col-xs-offset-7 col-xs-2">
+            <Button style="primary" onClick={onSignInClick}>
+              Sign In
+            </Button>
+          </div>
+        )}
       </div>
-      {loginStatus ? (
-        <div className={`${styles.buttonArea}`}>
-          <Button style="primary" onClick={onCreateClick}>
-            Create New Bounty
-          </Button>
-          <NotificationDropdown notifications={notifications} />
-          <Dropdown position="left" className={styles.profileDropdown}>
-            <DropdownTrigger>
-              <Circle type="image" size="mini" input={profilePic} />
-            </DropdownTrigger>
-            <DropdownContent>
-              <MenuItem icon={['fal', 'cog']}>Account Settings</MenuItem>
-              <MenuItem icon={['fal', 'sign-out']}>Sign Out</MenuItem>
-            </DropdownContent>
-          </Dropdown>
-        </div>
-      ) : (
-        <div className={`${styles.signInButton}`}>
-          <Button style="primary" onClick={onSignInClick}>
-            Sign In
-          </Button>
-        </div>
-      )}
     </div>
   );
 };

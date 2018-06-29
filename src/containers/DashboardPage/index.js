@@ -296,78 +296,100 @@ class DashboardPage extends React.Component {
     if (auth.loginStatus) {
       return (
         <div className={`${styles.dashboardPage}`}>
-          <div className={`${styles.profileBar}`}>
-            <div className={`${styles.profileData}`}>
-              <div className={`${styles.circle}`}>
-                <Circle type="image" />
-              </div>
-              <div className={`${styles.profileText}`}>
-                <Text style="H1">{name}</Text>
-                <Text link color="blue">
-                  {shortenAddress(userAddress)}
-                </Text>
-              </div>
-            </div>
-            <div className={`${styles.bountiesInfo}`}>
-              <div className={`${styles.dataCell}`}>
-                <Text color="purple" style="H2">
-                  {bountiesIssued}
-                </Text>
-                <Text color="grey" style="Body">
-                  Bounties Issued
-                </Text>
-              </div>
-              <div className={`${styles.dataCell}`}>
-                <Text color="purple" style="H2">
-                  {Completed}
-                </Text>
-                <Text color="grey" style="Body">
-                  Bounties Completed
-                </Text>
-              </div>
-              <div className={`${styles.dataCell}`}>
-                <div className={`${styles.moneyCell}`}>
-                  <Text color="purple" style="H2">
-                    $1225
-                  </Text>
-                  <Text color="grey" style="Alt">
-                    1.25 ETH
-                  </Text>
+          <div className="container-fluid">
+            <div className={`${styles.profileBar} row center-xs middle-xs`}>
+              <div className="col-xs-4">
+                <div className={`${styles.profileData}`}>
+                  <div className={`${styles.circle}`}>
+                    <Circle type="image" />
+                  </div>
+                  <div className={`${styles.profileText}`}>
+                    <Text style="H1">{name}</Text>
+                    <Text link color="blue">
+                      {shortenAddress(userAddress)}
+                    </Text>
+                  </div>
                 </div>
-                <Text color="grey" style="Body">
-                  Awarded
-                </Text>
               </div>
-              <div className={`${styles.dataCell}`}>
-                <div className={`${styles.moneyCell}`}>
-                  <Text color="purple" style="H2">
-                    $500
-                  </Text>
-                  <Text color="grey" style="Alt">
-                    0.5 ETH
-                  </Text>
+              <div className="col-xs-6">
+                <div className={`${styles.bountiesInfo}`}>
+                  <div className="row middle-xs">
+                    <div className={`${styles.dataCell} col-xs-3`}>
+                      <Text color="purple" style="H2">
+                        {bountiesIssued}
+                      </Text>
+                      <Text color="grey" style="Body">
+                        Bounties Issued
+                      </Text>
+                    </div>
+                    <div className={`${styles.dataCell} col-xs-3`}>
+                      <Text color="purple" style="H2">
+                        {Completed}
+                      </Text>
+                      <Text color="grey" style="Body">
+                        Bounties Completed
+                      </Text>
+                    </div>
+                    <div className={`${styles.dataCell} col-xs-3`}>
+                      <div className={`${styles.moneyCell}`}>
+                        <Text
+                          className={`${styles.usd}`}
+                          color="purple"
+                          style="H2"
+                        >
+                          $1225
+                        </Text>
+                        <Text color="grey" style="Alt">
+                          1.25 ETH
+                        </Text>
+                      </div>
+                      <Text color="grey" style="Body">
+                        Awarded
+                      </Text>
+                    </div>
+                    <div className={`${styles.dataCell} col-xs-3`}>
+                      <div className={`${styles.moneyCell}`}>
+                        <Text
+                          className={`${styles.usd}`}
+                          color="purple"
+                          style="H2"
+                        >
+                          $500
+                        </Text>
+                        <Text color="grey" style="Alt">
+                          0.5 ETH
+                        </Text>
+                      </div>
+                      <Text color="grey" style="Body">
+                        Earned
+                      </Text>
+                    </div>
+                  </div>
                 </div>
-                <Text color="grey" style="Body">
-                  Earned
-                </Text>
               </div>
-            </div>
-          </div>
-          <div className={`${styles.dashboardBody}`}>
-            <div className={`${styles.dashboardBodyLeft}`}>
-              <div className={`${styles.myBounties}`}>
-                <Card title="My Bounties" tabs={myBountiesTabs}>
-                  {renderBounties(bounties)}
-                </Card>
-              </div>
-              {/* <div className={`${styles.mySubmissions}`}>{ renderBounties(bountiesData) }</div> */}
             </div>
 
-            <div className={`${styles.dashboardBodyRight}`}>
-              <div className={`${styles.activity}`}>
-                <Card title="Activity" tabs={notificationTabs}>
-                  {renderNotification(notificationData)}
-                </Card>
+            <div className={`${styles.dashboardBody}`}>
+              <div className="row center-xs">
+                <div className="col-xs-5">
+                  <div className={`${styles.dashboardBodyLeft}`}>
+                    <div className={`${styles.myBounties}`}>
+                      <Card title="My Bounties" tabs={myBountiesTabs}>
+                        {renderBounties(bounties)}
+                      </Card>
+                    </div>
+                    {/* <div className={`${styles.mySubmissions}`}>{ renderBounties(bountiesData) }</div> */}
+                  </div>
+                </div>
+                <div className="col-xs-5">
+                  <div className={`${styles.dashboardBodyRight}`}>
+                    <div className={`${styles.activity}`}>
+                      <Card title="Activity" tabs={notificationTabs}>
+                        {renderNotification(notificationData)}
+                      </Card>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -407,7 +429,10 @@ DashboardPage.propTypes = {
 
 const check = compose(
   FetchComponent(sagas.fetch),
-  connect(mapStateToProps, { load: actions.loadBounties, ...actions }),
+  connect(
+    mapStateToProps,
+    { load: actions.loadBounties, ...actions }
+  ),
   LoadComponent('')
 )(DashboardPage);
 

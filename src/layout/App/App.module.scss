@@ -1,11 +1,15 @@
+@import "~styles/variables.scss";
+
 .app {
   height: 100%;
   width: 100%;
+  background-color: $brand-nearWhite;
 }
 
 .body {
   height: 100%;
   width: 100%;
-  position: absolute;
-  display: flex;
+/*  position: absolute;*/
+  padding: 55px 0 0 55px; 
+  box-sizing: border-box;
 }

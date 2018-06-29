@@ -23,31 +23,48 @@ const LeaderboardItem = props => {
   }
 
   return (
-    <span className={`${styles.cardContainer}`}>
-      <span className={`${styles.cardLeft}`}>
-        <div className={`${styles.index}`}>
-          <Text style="H2" color="grey">
-            {Number(index) + 1}
-          </Text>
+    <div className={`${styles.cardContainer}`}>
+      <div className="row middle-xs">
+        <div className="col-xs-1">
+          <div className={`${styles.index}`}>
+            <Text style="H2" color="grey">
+              {Number(index) + 1}
+            </Text>
+          </div>
         </div>
-        <div className={`${styles.profileInfo}`}>
-          <Circle type="image" input={image} size="small" />
-          <div className={`${styles.nameBox}`}>
-            <div className={`${styles.name}`}>
-              <Text style="H4">{name}</Text>
+        <div className="col-xs-9">
+          <div className={`${styles.profileInfo} row middle-xs start-xs`}>
+            <div className="col-xs-2">
+              <Circle type="image" input={image} size="small" />
             </div>
-            <div className={`${styles.address}`}>
-              <Text style="Small" link>
-                {shortenAddress(address)}
+            <div className="col-xs-10">
+              <div className={`${styles.name}`}>
+                <Text style="H4">{name}</Text>
+              </div>
+              <div className={`${styles.address}`}>
+                <Text style="Body" link>
+                  {shortenAddress(address)}
+                </Text>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-xs-2">
+          <div className={`${styles.cardRight}`}>
+            <div className={`${styles.usd}`}>
+              <Text style="H3" color="purple">{`$${total_usd.toFixed(
+                2
+              )}`}</Text>
+            </div>
+            <div>
+              <Text style="Body" color="grey">
+                ? ETH
               </Text>
             </div>
           </div>
         </div>
-      </span>
-      <span className={`${styles.cardRight}`}>
-        <Text color="purple">{`$${total_usd.toFixed(2)}`}</Text>
-      </span>
-    </span>
+      </div>
+    </div>
   );
 };
 
@@ -66,8 +83,12 @@ const Leaderboard = props => {
   };
 
   return (
-    <div className={`${styles.leaderboard}`}>
-      {renderItems(leaderboardData)}
+    <div className="row center-xs">
+      <div className="col-xs-7">
+        <div className={`${styles.leaderboard}`}>
+          {renderItems(leaderboardData)}
+        </div>
+      </div>
     </div>
   );
 };
