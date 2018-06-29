@@ -95,7 +95,7 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { size } = this.props;
+    const { size, visible } = this.props;
     let header, footer, body;
     const children = Array.isArray(this.props.children)
       ? this.props.children
@@ -121,8 +121,13 @@ class Modal extends React.Component {
       gridSize = 'col-xs-5';
     }
 
+    let baseClass = styles.overlay;
+    if (!visible) {
+      baseClass += ` ${styles.hidden}`;
+    }
+
     return (
-      <div className={styles.overlay} onClick={this.dismiss}>
+      <div className={baseClass} onClick={this.dismiss}>
         <div className={`${styles.modalWrapper} row center-xs middle-xs`}>
           <div className={gridSize}>
             <div className={styles.modal} onClick={this.modalClick}>
@@ -169,7 +174,7 @@ Modal.propTypes = {
 
 Modal.defaultProps = {
   size: 'medium',
-  dismissable: true
+  dismissable: false
 };
 
 Modal.Header = Header;

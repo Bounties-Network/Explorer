@@ -1,5 +1,9 @@
 @import "~styles/variables.scss";
 
+.hidden {
+  display: none;
+}
+
 .overlay {
   position: fixed;
   top: 0;
