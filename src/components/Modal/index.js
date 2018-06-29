@@ -24,16 +24,22 @@ class Footer extends React.Component {
 }
 
 class Modal extends React.Component {
-  onClose = () => {
-    conole.log('closed');
-  };
+  onClose = () => {};
 
   renderHeader(header) {
     if (!header) {
       return null;
     }
 
-    return <div className={styles.header}>{header}</div>;
+    return (
+      <ModalContext.Consumer>
+        {({ onClose }) => (
+          <div className={styles.header} onClick={onClose}>
+            {header}
+          </div>
+        )}
+      </ModalContext.Consumer>
+    );
   }
 
   renderBody(body) {
@@ -71,9 +77,11 @@ class Modal extends React.Component {
     return (
       <div className={styles.overlay}>
         <div className={styles.modal}>
-          {this.renderHeader(header)}
-          {this.renderBody(body)}
-          {this.renderFooter(footer)}
+          <ModalContext.Provider value={{ onClose: this.onClose }}>
+            {this.renderHeader(header)}
+            {this.renderBody(body)}
+            {this.renderFooter(footer)}
+          </ModalContext.Provider>
         </div>
       </div>
     );
