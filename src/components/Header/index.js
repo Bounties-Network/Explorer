@@ -5,8 +5,6 @@ import { withRouter } from 'react-router-dom';
 
 import { Button, Circle, NotificationDropdown, Dropdown } from 'components';
 import BeeLogo from '../../styles/logo.js';
-import cog from '@fortawesome/fontawesome-pro-light/faCog';
-import signout from '@fortawesome/fontawesome-pro-light/faSignOut';
 
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
@@ -54,8 +52,8 @@ const Header = props => {
                     <Circle type="image" size="mini" input={profilePic} />
                   </DropdownTrigger>
                   <DropdownContent>
-                    <MenuItem icon={cog}>Account Settings</MenuItem>
-                    <MenuItem icon={signout}>Sign Out</MenuItem>
+                    <MenuItem icon={['fal', 'cog']}>Account Settings</MenuItem>
+                    <MenuItem icon={['fal', 'sign-out']}>Sign Out</MenuItem>
                   </DropdownContent>
                 </Dropdown>
               </div>

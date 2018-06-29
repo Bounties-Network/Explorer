@@ -8,6 +8,7 @@
     "@fortawesome/fontawesome-pro-light": "^5.0.13",
     "@fortawesome/fontawesome-pro-regular": "^5.0.13",
     "@fortawesome/fontawesome-pro-solid": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^1.2.0",
     "@fortawesome/react-fontawesome": "0.0.20",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",

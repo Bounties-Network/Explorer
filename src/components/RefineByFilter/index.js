@@ -91,7 +91,7 @@ class RefineByFilter extends React.Component {
       >
         <div className={`${styles.titleBar}`}>
           <Text style="H4">Refine By:</Text>
-          <Button style="clearFilter" size="small" onClick={this.clearFilter}>
+          <Button size="small" onClick={this.clearFilter}>
             Clear Filters
           </Button>
         </div>

@@ -1,14 +1,24 @@
 @import "~styles/variables.scss";
 
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .textarea {
   resize: vertical;
-  margin-top: $base-spacing;
+  flex-grow: 100;
+  width: 100%;
   overflow: auto;
   background-color: $base-input-background;
   border: 1px solid $brand-lightGrey;
   border-radius: $base-border-radius;
   font-size: $body-font-size;
   padding: $m-spacing;
+  box-sizing: border-box;
 }
 
 .textarea:focus {
@@ -21,18 +31,10 @@
   outline: 1px solid $brand-destructive;
 }
 
+disabled {
+  background-color: $brand-grey;
+}
+
 .resizeNone {
   resize: none;
-}
-
-.small {
-  min-height: 150px;
-}
-
-.medium {
-  height: 230px;
-}
-
-.large {
-  height: 400px;
 }

@@ -14,3 +14,9 @@
   padding-right: 5px;
   padding-top: 5px;
 }
+
+.error {
+  :global(.Select-control) {
+    border-color: $brand-red;
+  }
+}
