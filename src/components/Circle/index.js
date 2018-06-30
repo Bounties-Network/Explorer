@@ -12,11 +12,20 @@ const Circle = props => {
       'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
   }
 
+  let textSize = 'Body';
+  if (size === 'small') {
+    textSize = 'BodySmall';
+  }
+
+  if (size === 'large') {
+    textSize = 'H1';
+  }
+
   return (
     <div className={`${styles.circle} ${styles[color]} ${styles[size]}`}>
       {type === 'text' ? (
         <div className={`${styles.text}`}>
-          <Text color={textColor} style={textStyle}>
+          <Text color={textColor} style={textSize}>
             {input}
           </Text>
         </div>
@@ -28,7 +37,7 @@ const Circle = props => {
 };
 
 Circle.propTypes = {
-  type: PropTypes.oneOf(['text', 'image']),
+  type: PropTypes.oneOf(['text', 'img']),
   input: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   color: PropTypes.oneOf(['purple', 'blue', 'orange', 'green', 'red', 'white']),
