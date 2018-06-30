@@ -25,9 +25,16 @@
 }
 
 .header {
+  padding: 0 10px 0 11px;
+  margin: 0 -10px 0 -11px;
+  border-bottom: 1px solid $brand-lightGrey;
+}
 
+.headerText {
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
 .body {
-
+  padding: 10px 0;
 }

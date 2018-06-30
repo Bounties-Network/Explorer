@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Card.module.scss';
+import { Text } from 'components';
 import { includes, each } from 'lodash';
 
 class Header extends React.Component {
   render() {
-    return <div className={styles.header}>{this.props.children}</div>;
+    return (
+      <div className={styles.header}>
+        <div className={styles.headerText}>
+          <Text style="H3">{this.props.children}</Text>
+        </div>
+      </div>
+    );
   }
 }
 
