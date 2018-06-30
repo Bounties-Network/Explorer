@@ -125,11 +125,6 @@ storiesOf('Circle', module).add('All Circles', () => (
       }}
     >
       <br />
-      <Text style="H4">Mini</Text>
-      <br />
-      <Circle type="img" size="mini" input="https://i.imgur.com/lhTwRZY.png" />
-      <br />
-      <br />
       <Text style="H4">Small</Text>
       <br />
       <Circle
