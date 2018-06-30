@@ -30,11 +30,28 @@
   border-bottom: 1px solid $brand-lightGrey;
 }
 
+.header.noUnderline {
+  border-bottom: none;
+}
+
+.headerTabs {
+  margin-top: 15px;
+  margin-bottom: -20px;
+  margin-left: -11px;
+  margin-right: -10px;
+}
+
+.headerTabsTop {
+  margin-bottom: -20px;
+  margin-left: -11px;
+  margin-right: -10px;
+}
+
 .headerText {
   padding-top: 10px;
   padding-bottom: 20px;
 }
 
 .body {
-  padding: 10px 0;
+  padding: 15px 0;
 }

@@ -1,20 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Card.module.scss';
-import { Text } from 'components';
+import { Text, Tabs } from 'components';
 import { includes, each } from 'lodash';
+
+const HeaderTitle = props => <Text style="H3">{props.children}</Text>;
+
+const HeaderTabs = props => {
+  const { top } = props;
+
+  let headerClass = styles.headerTabs;
+  if (top) {
+    headerClass = styles.headerTabsTop;
+  }
+
+  return (
+    <div className={headerClass}>
+      <Tabs {...props}>{props.children}</Tabs>
+    </div>
+  );
+};
+
+HeaderTabs.propTypes = {
+  top: PropTypes.bool
+};
+
+HeaderTabs.defaultProps = {
+  top: false
+};
 
 class Header extends React.Component {
   render() {
+    const { underline } = this.props;
+
+    let headerStyles = styles.header;
+    if (!underline) {
+      headerStyles += ` ${styles.noUnderline}`;
+    }
+
     return (
-      <div className={styles.header}>
+      <div className={headerStyles}>
         <div className={styles.headerText}>
-          <Text style="H3">{this.props.children}</Text>
+          {typeof this.props.children === 'string' ? (
+            <HeaderTitle>{this.props.children}</HeaderTitle>
+          ) : (
+            this.props.children
+          )}
         </div>
       </div>
     );
   }
 }
+
+Header.propTypes = {
+  underline: PropTypes.bool
+};
+
+Header.defaultProps = {
+  underline: true
+};
 
 class Body extends React.Component {
   render() {
@@ -46,7 +90,6 @@ class Card extends React.Component {
       ? this.props.children
       : [this.props.children];
     each(child => {
-      console.log(child);
       const childName = child.type.name;
       if (childName === Header.name) {
         header = child;
@@ -93,6 +136,8 @@ Card.propTypes = {
 
 Card.defaultProps = {};
 Card.Header = Header;
+Card.HeaderTitle = HeaderTitle;
+Card.HeaderTabs = HeaderTabs;
 Card.Body = Body;
 
 export default Card;
