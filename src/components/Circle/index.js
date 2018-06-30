@@ -7,11 +7,6 @@ import { Text } from 'components';
 const Circle = props => {
   let { type, input, size, color, textColor, textStyle = 'H2' } = props;
 
-  if (type === 'image' && input === '') {
-    input =
-      'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
-  }
-
   let textSize = 'Body';
   if (size === 'small') {
     textSize = 'BodySmall';
