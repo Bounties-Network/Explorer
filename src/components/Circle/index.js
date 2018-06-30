@@ -7,16 +7,20 @@ import { Text } from 'components';
 const Circle = props => {
   let { type, input, size, color, textColor, textStyle = 'H2' } = props;
 
-  if (type === 'image' && input === '') {
-    input =
-      'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
+  let textSize = 'Body';
+  if (size === 'small') {
+    textSize = 'BodySmall';
+  }
+
+  if (size === 'large') {
+    textSize = 'H1';
   }
 
   return (
     <div className={`${styles.circle} ${styles[color]} ${styles[size]}`}>
       {type === 'text' ? (
         <div className={`${styles.text}`}>
-          <Text color={textColor} style={textStyle}>
+          <Text color={textColor} style={textSize}>
             {input}
           </Text>
         </div>
@@ -28,32 +32,12 @@ const Circle = props => {
 };
 
 Circle.propTypes = {
-  type: PropTypes.oneOf(['text', 'image']),
+  type: PropTypes.oneOf(['text', 'img']),
   input: PropTypes.string,
-  size: PropTypes.oneOf(['mini', 'small', 'medium', 'large']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   color: PropTypes.oneOf(['purple', 'blue', 'orange', 'green', 'red', 'white']),
-  textColor: PropTypes.oneOf([
-    'purple',
-    'blue',
-    'orange',
-    'green',
-    'red',
-    'black',
-    'white',
-    'grey'
-  ]),
-  textStyle: PropTypes.oneOf([
-    'H1',
-    'H2',
-    'H3',
-    'H4',
-    'CardHeading',
-    'Body',
-    'BodySmall',
-    'FormLabel',
-    'FormInvalid',
-    'Alt'
-  ])
+  textColor: PropTypes.string,
+  textStyle: PropTypes.string
 };
 
 Circle.defaultProps = {

@@ -188,6 +188,27 @@ class ModalDemo extends React.Component {
             <Button>Submit</Button>
           </Modal.Footer>
         </Modal>
+        <div style={{ marginTop: '10px' }} />
+        <Button
+          onClick={() => {
+            this.openModal('loading');
+          }}
+        >
+          Loading
+        </Button>
+        <Modal
+          onClose={this.hideModal}
+          visible={this.state.modal === 'loading'}
+          dismissable
+        >
+          <Modal.Header closable loadingIcon>
+            I am a modal heading
+          </Modal.Header>
+          <Modal.Body>
+            <div>I am a modal body</div>
+            <div>More content</div>
+          </Modal.Body>
+        </Modal>
       </div>
     );
   }

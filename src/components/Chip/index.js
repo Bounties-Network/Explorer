@@ -7,24 +7,16 @@ import { Text } from 'components';
 const Chip = props => {
   const { style, onClick, close, onCloseClick, children, color } = props;
 
-  const onChipClick = () => {
-    onClick(children);
-  };
-
-  const onXClick = () => {
-    onCloseClick(children);
-  };
-
   return (
     <span
       className={`${styles.chip} ${styles[style]} ${styles[color]} ${
         styles[close ? 'close' : '']
       }`}
-      onClick={onChipClick}
+      onClick={onClick}
     >
       <Text>{props.children}</Text>
       {close && (
-        <div className={`${styles.closeButton}`} onClick={onXClick}>
+        <div className={`${styles.closeButton}`} onClick={onCloseClick}>
           <Text color="blue" style="BodySmall">
             x
           </Text>
@@ -43,9 +35,7 @@ Chip.propTypes = {
 
 Chip.defaultProps = {
   style: 'round',
-  onClick: () => {},
   close: false,
-  onCloseClick: e => console.log(e),
   color: ''
 };
 

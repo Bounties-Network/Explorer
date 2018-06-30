@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './DropdownSearch.module.scss';
+import styles from './SearchSelect.module.scss';
 import Select from 'react-select';
 import '../../styles/ReactSelect.scss';
 
@@ -24,7 +24,7 @@ const filterOptions = (filter, options) => {
 };
 
 // props = options, onChange, placeholder
-class DropdownSearch extends React.Component {
+class SearchSelect extends React.Component {
   state = {
     selection: null,
     options: [],
@@ -147,7 +147,7 @@ class DropdownSearch extends React.Component {
   }
 }
 
-DropdownSearch.propTypes = {
+SearchSelect.propTypes = {
   options: PropTypes.array,
   onChange: PropTypes.func,
   className: PropTypes.string,
@@ -158,9 +158,9 @@ DropdownSearch.propTypes = {
   placeholder: PropTypes.string
 };
 
-DropdownSearch.defaultProps = {
+SearchSelect.defaultProps = {
   options: [],
   onChange: () => {}
 };
 
-export default DropdownSearch;
+export default SearchSelect;

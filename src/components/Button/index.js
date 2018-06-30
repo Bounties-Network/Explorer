@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Button.module.scss';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const Button = props => {
-  const { className, style, disabled, onClick, loading } = props;
+  const { className, style, disabled, onClick, loading, icon } = props;
 
   const onClickHandler = () => {
     if (!loading && !disabled) {
@@ -32,7 +33,10 @@ const Button = props => {
       onClick={onClickHandler}
       disabled={disabled}
     >
-      <div className={childwrapper}>{props.children}</div>
+      <div className={childwrapper}>
+        {icon ? <FontAwesomeIcon icon={icon} className={styles.icon} /> : null}
+        {props.children}
+      </div>
       {loading ? <div className={styles.loader} /> : null}
     </button>
   );
@@ -47,6 +51,7 @@ Button.propTypes = {
     'action',
     'link'
   ]),
+  icon: PropTypes.array,
   disabled: PropTypes.bool,
   onClick: PropTypes.func
 };

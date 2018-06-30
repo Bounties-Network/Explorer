@@ -40,6 +40,49 @@ storiesOf('Button', module).add('All Buttons', () => (
     </div>
     <hr />
 
+    <Text style="H3">Icon</Text>
+    <div>
+      <div style={{ marginTop: '10px' }} />
+      <Text style="H4">Primary</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} icon={['fal', 'bell']}>
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text style="H4">Secondary</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button
+        onClick={action('clicked')}
+        style="secondary"
+        icon={['fal', 'bell']}
+      >
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text style="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button
+        onClick={action('clicked')}
+        style="destructive"
+        icon={['fal', 'bell']}
+      >
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text style="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} style="action" icon={['fal', 'bell']}>
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text style="H4">Link</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} style="link" icon={['fal', 'bell']}>
+        Hello Button
+      </Button>
+    </div>
+    <hr />
+
     <Text style="H3">Disabled</Text>
     <div>
       <div style={{ marginTop: '10px' }} />

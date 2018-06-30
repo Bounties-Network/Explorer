@@ -60,14 +60,3 @@ Tabs.defaultProps = {
 };
 
 export default Tabs;
-
-// Tabs Example:
-// tabs: [ {
-//   title: 'Active',
-//   notificationAmount: 3,
-//   notificationColor: 'blue',
-// }, {
-//   title: 'Pending Submissions',
-//   badge: 2,
-//   badgeStyle: 'yellow',
-// } ]
