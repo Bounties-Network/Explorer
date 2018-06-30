@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import styles from './Modal.module.scss';
-import { Text } from 'components';
+import { Text, Loading } from 'components';
 import { includes, each } from 'lodash';
 
 const ModalContext = React.createContext({});
 
 class Header extends React.Component {
   render() {
-    const { closable, icon, children } = this.props;
+    const { closable, icon, loadingIcon, children } = this.props;
 
     return (
       <ModalContext.Consumer>
@@ -25,9 +25,14 @@ class Header extends React.Component {
               </div>
             ) : null}
             <div className={styles.headerContent}>
-              {icon ? (
+              {icon && !loadingIcon ? (
                 <div>
                   <FontAwesomeIcon icon={icon} className={styles.iconHeader} />
+                </div>
+              ) : null}
+              {loadingIcon ? (
+                <div>
+                  <Loading className={styles.loadingHeader} />
                 </div>
               ) : null}
               <Text style="H2">{children}</Text>
@@ -41,6 +46,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   closable: PropTypes.bool,
+  loadingIcon: PropTypes.bool,
   icon: PropTypes.array
 };
 
