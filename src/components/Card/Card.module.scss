@@ -1,0 +1,57 @@
+@import "~styles/variables.scss";
+
+.card {
+  box-shadow: $brand-card-box-shadow;
+  background-color: $brand-white;
+  padding: 10px;
+  width: 100%;
+}
+
+.hover {
+  border-left: 1px solid $brand-white;
+  cursor: pointer;
+}
+
+.hover:hover {
+  border-left: 1px solid $brand-dark-purple;
+}
+
+.headerWrapper {
+
+}
+
+.bodyWrapper {
+
+}
+
+.header {
+  padding: 0 10px 0 11px;
+  margin: 0 -10px 0 -11px;
+  border-bottom: 1px solid $brand-lightGrey;
+}
+
+.header.noUnderline {
+  border-bottom: none;
+}
+
+.headerTabs {
+  margin-top: 15px;
+  margin-bottom: -20px;
+  margin-left: -11px;
+  margin-right: -10px;
+}
+
+.headerTabsTop {
+  margin-bottom: -20px;
+  margin-left: -11px;
+  margin-right: -10px;
+}
+
+.headerText {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.body {
+  padding: 15px 0;
+}
