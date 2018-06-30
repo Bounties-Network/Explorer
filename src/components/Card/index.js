@@ -39,6 +39,7 @@ class Card extends React.Component {
       ? this.props.children
       : [this.props.children];
     each(child => {
+      console.log(child);
       const childName = child.type.name;
       if (childName === Header.name) {
         header = child;
@@ -46,7 +47,7 @@ class Card extends React.Component {
       if (childName === Body.name) {
         body = child;
       }
-    }, this.props.children);
+    }, children);
 
     let cardClass = styles.card;
     if (hover) {

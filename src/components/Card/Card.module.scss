@@ -1,9 +1,19 @@
-.card {
+@import "~styles/variables.scss";
 
+.card {
+  box-shadow: $brand-card-box-shadow;
+  background-color: $brand-white;
+  padding: 10px;
+  width: 100%;
 }
 
 .hover {
+  border-left: 1px solid $brand-white;
+  cursor: pointer;
+}
 
+.hover:hover {
+  border-left: 1px solid $brand-dark-purple;
 }
 
 .headerWrapper {
