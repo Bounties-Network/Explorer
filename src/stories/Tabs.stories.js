@@ -6,9 +6,9 @@ import { action } from '@storybook/addon-actions';
 import { Tabs } from 'components';
 
 const tabsData = [
-  { title: 'Active', notificationAmount: 3, active: true },
-  { title: 'Pending', notificationAmount: 24 },
-  { title: 'Completed', notificationAmount: 0 }
+  { title: 'Active', tabCount: 3, active: true },
+  { title: 'Pending', tabCount: 24 },
+  { title: 'Completed', tabCount: 0 }
 ];
 
 storiesOf('Tabs', module).add('Tabs', () => (

@@ -25,7 +25,7 @@ class Tabs extends React.Component {
           onClick={e => this.onTabChange(elem)}
         >
           <Tab
-            notificationAmount={elem.notificationAmount}
+            tabCount={elem.tabCount}
             active={this.state.activeTab === elem.title}
             onClick={() => this.onTabChange(elem.title)}
           >
@@ -55,8 +55,7 @@ Tabs.propTypes = {
 };
 
 Tabs.defaultProps = {
-  tabs: [{ title: 'title' }],
-  onClick: e => console.log(e)
+  tabs: [{ title: 'title' }]
 };
 
 export default Tabs;

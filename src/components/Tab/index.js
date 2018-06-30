@@ -5,7 +5,7 @@ import styles from './Tab.module.scss';
 import { Text } from 'components';
 
 const Tab = props => {
-  const { notificationAmount, active } = props;
+  const { tabCount, active } = props;
 
   const activeStatus = active ? 'active' : 'notActive';
 
@@ -19,10 +19,10 @@ const Tab = props => {
           {props.children}
         </Text>
       </span>
-      {notificationAmount !== 0 && (
+      {tabCount !== 0 && (
         <div className={`${styles.notification}`}>
           <Text style="BodySmall" color="darkGrey">
-            {notificationAmount}
+            {tabCount}
           </Text>
         </div>
       )}
@@ -31,12 +31,12 @@ const Tab = props => {
 };
 
 Tab.propTypes = {
-  notificationAmount: PropTypes.number,
+  tabCount: PropTypes.number,
   active: PropTypes.bool
 };
 
 Tab.defaultProps = {
-  notificationAmount: 0,
+  tabCount: 0,
   active: false
 };
 
