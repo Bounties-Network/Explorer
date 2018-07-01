@@ -12,12 +12,32 @@ storiesOf('Table', module).add('Table', () => (
     <div style={{ marginTop: '10px' }} />
     <Table>
       <Table.Header>
-        <Table.HeaderCell>Header 1</Table.HeaderCell>
-        <Table.HeaderCell>Header 2</Table.HeaderCell>
-        <Table.HeaderCell>Header 3</Table.HeaderCell>
-        <Table.HeaderCell>Header 4</Table.HeaderCell>
+        <Table.HeaderCell>
+          <Table.HeaderText>Header 1</Table.HeaderText>
+        </Table.HeaderCell>
+        <Table.HeaderCell>
+          <Table.HeaderText>Header 2</Table.HeaderText>
+        </Table.HeaderCell>
+        <Table.HeaderCell>
+          <Table.HeaderText>Header 3</Table.HeaderText>
+        </Table.HeaderCell>
+        <Table.HeaderCell>
+          <Table.HeaderText>Header 4</Table.HeaderText>
+        </Table.HeaderCell>
       </Table.Header>
-      <Table.Row>
+      <Table.Row hover>
+        <Table.Cell>Cell 1</Table.Cell>
+        <Table.Cell>Cell 2</Table.Cell>
+        <Table.Cell>Cell 3</Table.Cell>
+        <Table.Cell>Cell 4</Table.Cell>
+      </Table.Row>
+      <Table.Row hover>
+        <Table.Cell>Cell 1</Table.Cell>
+        <Table.Cell>Cell 2</Table.Cell>
+        <Table.Cell>Cell 3</Table.Cell>
+        <Table.Cell>Cell 4</Table.Cell>
+      </Table.Row>
+      <Table.Row hover>
         <Table.Cell>Cell 1</Table.Cell>
         <Table.Cell>Cell 2</Table.Cell>
         <Table.Cell>Cell 3</Table.Cell>

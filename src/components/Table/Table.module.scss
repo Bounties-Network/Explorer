@@ -29,4 +29,11 @@
       &:before { content: none; }
     }
   }
+  .row.rowHover:hover {
+    background-color: $brand-nearWhite;
+  }
+
+  .row.rowHover {
+    cursor: pointer;
+  }
 }

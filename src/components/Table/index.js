@@ -4,6 +4,16 @@ import styles from './Table.module.scss';
 import { includes } from 'lodash';
 import { Text } from 'components';
 
+class HeaderText extends React.Component {
+  render() {
+    return (
+      <Text type="body" color="grey">
+        {this.props.children}
+      </Text>
+    );
+  }
+}
+
 class HeaderCell extends React.Component {
   render() {
     return <div className={styles.cell}>{this.props.children}</div>;
@@ -38,11 +48,19 @@ class Cell extends React.Component {
 
 class Row extends React.Component {
   render() {
-    return <div className={styles.row}>{this.props.children}</div>;
+    const { hover } = this.props;
+
+    let rowClass = styles.row;
+    if (hover) {
+      rowClass += ` ${styles.rowHover}`;
+    }
+
+    return <div className={rowClass}>{this.props.children}</div>;
   }
 }
 
 Row.propTypes = {
+  hover: PropTypes.bool,
   children: PropTypes.arrayOf(function(propValue, key) {
     for (let i = 0; i < propValue.length; i++) {
       if (propValue[i].type.name !== Cell.name) {
@@ -51,6 +69,8 @@ Row.propTypes = {
     }
   })
 };
+
+Row.defaultProps = {};
 
 class Table extends React.Component {
   render() {
@@ -71,6 +91,7 @@ Table.propTypes = {
 Table.defaultProps = {};
 Table.Row = Row;
 Table.Header = Header;
+Table.HeaderText = HeaderText;
 Table.Cell = Cell;
 Table.HeaderCell = HeaderCell;
 
