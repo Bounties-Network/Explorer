@@ -1,6 +1,11 @@
 @import "~styles/variables.scss";
 
 .circle {
+  :global(.identicon) {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  overflow: hidden;
   border-radius: 50%;
   display: flex;
   align-items: center;

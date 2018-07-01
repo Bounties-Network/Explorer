@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Avatar.module.scss';
 import { shortenAddress } from 'utils/helpers';
 import { Text, Circle } from 'components';
+import Blockies from 'react-blockies';
 
 const Avatar = props => {
   const {
@@ -13,7 +14,9 @@ const Avatar = props => {
     nameTextColor,
     addressTextType,
     addressTextColor,
-    border
+    border,
+    img,
+    hash
   } = props;
 
   const renderName = () => {
@@ -50,8 +53,8 @@ const Avatar = props => {
         border={border}
         size={size}
         color="white"
-        input="https://i.imgur.com/lhTwRZY.png"
-        type="img"
+        input={img ? img : hash}
+        type={img ? 'img' : 'blocky'}
       />
       {name || address ? (
         <div className={styles.textWrapper}>
@@ -65,9 +68,11 @@ const Avatar = props => {
 
 Avatar.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  img: PropTypes.string,
   border: PropTypes.bool,
   name: PropTypes.string,
   address: PropTypes.string,
+  hash: PropTypes.string,
   nameTextType: PropTypes.string,
   nameTextColor: PropTypes.string,
   addressTextType: PropTypes.string,

@@ -156,6 +156,45 @@ storiesOf('Circle', module).add('All Circles', () => (
         color="green"
         textColor="white"
       />
+      <Text type="H3">Blockies</Text>
+    </div>
+    <br />
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+      }}
+    >
+      <br />
+      <Text type="H4">Small</Text>
+      <br />
+      <Circle
+        type="blocky"
+        size="small"
+        input="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
+        color="white"
+      />
+      <br />
+      <br />
+      <Text type="H4">Medium</Text>
+      <br />
+      <Circle
+        type="blocky"
+        size="medium"
+        input="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
+        color="white"
+      />
+      <br />
+      <br />
+      <Text type="H4">Large</Text>
+      <br />
+      <Circle
+        type="blocky"
+        size="large"
+        input="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
+        color="white"
+      />
     </div>
   </div>
 ));
