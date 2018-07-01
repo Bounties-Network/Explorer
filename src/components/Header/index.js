@@ -32,19 +32,27 @@ const Header = props => {
       </div>
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
-          <Button type="primary" onClick={onCreateClick}>
+          <Button
+            type="primary"
+            onClick={onCreateClick}
+            className={styles.button}
+          >
             Create New Bounty
           </Button>
-          <NotificationDropdown notifications={notifications} />
-          <Dropdown position="left" className={styles.profileDropdown}>
-            <DropdownTrigger>
-              <Avatar size="small" img={profilePic} hash={userAddress} />
-            </DropdownTrigger>
-            <DropdownContent>
-              <MenuItem icon={['fal', 'cog']}>Account Settings</MenuItem>
-              <MenuItem icon={['fal', 'sign-out']}>Sign Out</MenuItem>
-            </DropdownContent>
-          </Dropdown>
+          <div className={styles.notification}>
+            <NotificationDropdown notifications={notifications} />
+          </div>
+          <div className={styles.profile}>
+            <Dropdown position="left" className={styles.profileDropdown}>
+              <DropdownTrigger>
+                <Avatar size="small" img={profilePic} hash={userAddress} />
+              </DropdownTrigger>
+              <DropdownContent>
+                <MenuItem icon={['fal', 'cog']}>Account Settings</MenuItem>
+                <MenuItem icon={['fal', 'sign-out']}>Sign Out</MenuItem>
+              </DropdownContent>
+            </Dropdown>
+          </div>
         </div>
       ) : (
         <div className={`${styles.signInButton}`}>
