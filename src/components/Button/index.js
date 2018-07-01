@@ -57,7 +57,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  style: 'primary'
+  type: 'primary'
 };
 
 export default Button;

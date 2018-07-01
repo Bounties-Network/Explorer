@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './CardNotification.module.scss';
-import { shortenAddress } from '../../utils/utilities';
+import { shortenAddress } from 'utils/helpers';
 
 import { Circle, Text, Payout } from 'components';
 
