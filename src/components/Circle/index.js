@@ -5,7 +5,7 @@ import styles from './Circle.module.scss';
 import { Text } from 'components';
 
 const Circle = props => {
-  let { type, input, size, color, textColor, textStyle = 'H2' } = props;
+  let { type, input, size, color, textColor, textStyle = 'H2', border } = props;
 
   let textSize = 'Body';
   if (size === 'small') {
@@ -16,8 +16,13 @@ const Circle = props => {
     textSize = 'H1';
   }
 
+  let circleClass = `${styles.circle} ${styles[color]} ${styles[size]}`;
+  if (border) {
+    circleClass += ` ${styles.border}`;
+  }
+
   return (
-    <div className={`${styles.circle} ${styles[color]} ${styles[size]}`}>
+    <div className={circleClass}>
       {type === 'text' ? (
         <div className={`${styles.text}`}>
           <Text color={textColor} style={textSize}>
@@ -32,6 +37,7 @@ const Circle = props => {
 };
 
 Circle.propTypes = {
+  border: PropTypes.bool,
   type: PropTypes.oneOf(['text', 'img']),
   input: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
@@ -41,8 +47,8 @@ Circle.propTypes = {
 };
 
 Circle.defaultProps = {
+  border: false,
   type: 'text',
-  input: '',
   size: 'medium',
   color: 'white',
   textColor: 'black',

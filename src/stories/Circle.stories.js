@@ -157,7 +157,5 @@ storiesOf('Circle', module).add('All Circles', () => (
         textColor="white"
       />
     </div>
-
-    <hr />
   </div>
 ));
