@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const Button = props => {
-  const { className, style, disabled, onClick, loading, icon } = props;
+  const { className, type, disabled, onClick, loading, icon } = props;
 
   const onClickHandler = () => {
     if (!loading && !disabled) {
@@ -29,7 +29,7 @@ const Button = props => {
   return (
     <button
       className={`${className} ${styles.button}
-        ${styles[style]} ${addedClasses}`}
+        ${styles[type]} ${addedClasses}`}
       onClick={onClickHandler}
       disabled={disabled}
     >
@@ -44,7 +44,7 @@ const Button = props => {
 
 Button.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.oneOf([
+  type: PropTypes.oneOf([
     'primary',
     'secondary',
     'destructive',

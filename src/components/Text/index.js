@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Text.module.scss';
 
 const Text = props => {
-  const { className, style, src, link, color, weight, id, noUnderline } = props;
+  const { className, type, src, link, color, weight, id, noUnderline } = props;
 
   let addedClasses = '';
   if (link) {
@@ -14,7 +14,7 @@ const Text = props => {
 
     return (
       <span
-        className={`text ${className} ${styles[style]} ${addedClasses}`}
+        className={`text ${className} ${styles[type]} ${addedClasses}`}
         id={id}
       >
         <a
@@ -30,7 +30,7 @@ const Text = props => {
 
   return (
     <span
-      className={`text ${className} ${styles[style]} ${styles[color]} ${
+      className={`text ${className} ${styles[type]} ${styles[color]} ${
         styles[weight]
       } ${addedClasses}`}
       id={id}
@@ -42,7 +42,7 @@ const Text = props => {
 
 Text.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.oneOf([
+  type: PropTypes.oneOf([
     'H1',
     'H2',
     'H3',

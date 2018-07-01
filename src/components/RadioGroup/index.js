@@ -34,7 +34,7 @@ class RadioGroup extends React.Component {
           />{' '}
           <span className={`${styles.customRadio}`} />
           <Text
-            style="Body"
+            type="Body"
             color={this.state.selection === elem ? 'blue' : 'darkGrey'}
           >
             {elem}

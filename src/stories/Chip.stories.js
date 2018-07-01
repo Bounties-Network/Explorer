@@ -7,7 +7,7 @@ import { Chip, Text } from 'components';
 
 storiesOf('Chip', module).add('All Chips', () => (
   <div>
-    <Text style="H3">Rounded Chips</Text>
+    <Text type="H3">Rounded Chips</Text>
     <br />
     <br />
     <div
@@ -34,7 +34,7 @@ storiesOf('Chip', module).add('All Chips', () => (
     <hr />
     <br />
 
-    <Text style="H3">Rectangle Chips</Text>
+    <Text type="H3">Rectangle Chips</Text>
     <br />
     <br />
     <div
@@ -50,17 +50,17 @@ storiesOf('Chip', module).add('All Chips', () => (
           width: '250px'
         }}
       >
-        <Chip style="rectangle">HTML</Chip>
-        <Chip style="rectangle">CSS</Chip>
-        <Chip style="rectangle">React</Chip>
-        <Chip style="rectangle">Javascript</Chip>
+        <Chip type="rectangle">HTML</Chip>
+        <Chip type="rectangle">CSS</Chip>
+        <Chip type="rectangle">React</Chip>
+        <Chip type="rectangle">Javascript</Chip>
       </div>
     </div>
 
     <br />
     <hr />
 
-    <Text style="H3">Chips with Close Button</Text>
+    <Text type="H3">Chips with Close Button</Text>
     <br />
     <br />
     <div
@@ -76,16 +76,16 @@ storiesOf('Chip', module).add('All Chips', () => (
           width: '250px'
         }}
       >
-        <Chip style="round" close onCloseClick={action('clicked')}>
+        <Chip type="round" close onCloseClick={action('clicked')}>
           HTML
         </Chip>
-        <Chip style="round" close onCloseClick={action('clicked')}>
+        <Chip type="round" close onCloseClick={action('clicked')}>
           CSS
         </Chip>
-        <Chip style="round" close onCloseClick={action('clicked')}>
+        <Chip type="round" close onCloseClick={action('clicked')}>
           React
         </Chip>
-        <Chip style="round" close onCloseClick={action('clicked')}>
+        <Chip type="round" close onCloseClick={action('clicked')}>
           Javascript
         </Chip>
       </div>

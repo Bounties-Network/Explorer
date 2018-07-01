@@ -25,7 +25,7 @@ const Circle = props => {
     <div className={circleClass}>
       {type === 'text' ? (
         <div className={`${styles.text}`}>
-          <Text color={textColor} style={textSize}>
+          <Text color={textColor} type={textSize}>
             {input}
           </Text>
         </div>

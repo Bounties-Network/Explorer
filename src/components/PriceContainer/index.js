@@ -9,8 +9,8 @@ const PriceContainer = props => {
 
   return (
     <div className={`${styles.ethContainer} ${className}`}>
-      <Text style="H3" color="white">{`$${usd}`}</Text>
-      <Text style="Alt" color="white">{`${value} ${currency}`}</Text>
+      <Text type="H3" color="white">{`$${usd}`}</Text>
+      <Text type="Alt" color="white">{`${value} ${currency}`}</Text>
     </div>
   );
 };

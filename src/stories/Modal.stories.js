@@ -39,7 +39,7 @@ class ModalDemo extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <span style={{ marginRight: '1em' }}>
-              <Button style="secondary" onClick={this.hideModal}>
+              <Button type="secondary" onClick={this.hideModal}>
                 Cancel
               </Button>
             </span>
@@ -65,7 +65,7 @@ class ModalDemo extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <span style={{ marginRight: '1em' }}>
-              <Button style="secondary" onClick={this.hideModal}>
+              <Button type="secondary" onClick={this.hideModal}>
                 Cancel
               </Button>
             </span>
@@ -92,7 +92,7 @@ class ModalDemo extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <span style={{ marginRight: '1em' }}>
-              <Button style="secondary" onClick={this.hideModal}>
+              <Button type="secondary" onClick={this.hideModal}>
                 Cancel
               </Button>
             </span>
@@ -121,7 +121,7 @@ class ModalDemo extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <span style={{ marginRight: '1em' }}>
-              <Button style="secondary" onClick={this.hideModal}>
+              <Button type="secondary" onClick={this.hideModal}>
                 Cancel
               </Button>
             </span>
@@ -151,7 +151,7 @@ class ModalDemo extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <span style={{ marginRight: '1em' }}>
-              <Button style="secondary" onClick={this.hideModal}>
+              <Button type="secondary" onClick={this.hideModal}>
                 Cancel
               </Button>
             </span>
@@ -181,7 +181,7 @@ class ModalDemo extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <span style={{ marginRight: '1em' }}>
-              <Button style="secondary" onClick={this.hideModal}>
+              <Button type="secondary" onClick={this.hideModal}>
                 Cancel
               </Button>
             </span>

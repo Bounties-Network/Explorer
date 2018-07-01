@@ -7,7 +7,7 @@ import { Circle, Text } from 'components';
 
 storiesOf('Circle', module).add('All Circles', () => (
   <div>
-    <Text style="H3">Text Circle</Text>
+    <Text type="H3">Text Circle</Text>
     <div
       style={{
         display: 'flex',
@@ -23,7 +23,7 @@ storiesOf('Circle', module).add('All Circles', () => (
 
     <hr />
 
-    <Text style="H3">Image Circle</Text>
+    <Text type="H3">Image Circle</Text>
     <div
       style={{
         display: 'flex',
@@ -37,7 +37,7 @@ storiesOf('Circle', module).add('All Circles', () => (
 
     <hr />
 
-    <Text style="H3">Colors</Text>
+    <Text type="H3">Colors</Text>
     <div
       style={{
         display: 'flex',
@@ -46,7 +46,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       }}
     >
       <br />
-      <Text style="H4">White</Text>
+      <Text type="H4">White</Text>
       <br />
       <Circle
         type="text"
@@ -57,7 +57,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       />
       <br />
       <br />
-      <Text style="H4">Purple</Text>
+      <Text type="H4">Purple</Text>
       <br />
       <Circle
         type="text"
@@ -68,7 +68,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       />
       <br />
       <br />
-      <Text style="H4">Blue</Text>
+      <Text type="H4">Blue</Text>
       <br />
       <Circle
         type="text"
@@ -79,7 +79,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       />
       <br />
       <br />
-      <Text style="H4">Orange</Text>
+      <Text type="H4">Orange</Text>
       <br />
       <Circle
         type="text"
@@ -90,7 +90,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       />
       <br />
       <br />
-      <Text style="H4">Green</Text>
+      <Text type="H4">Green</Text>
       <br />
       <Circle
         type="text"
@@ -101,7 +101,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       />
       <br />
       <br />
-      <Text style="H4">Red</Text>
+      <Text type="H4">Red</Text>
       <br />
       <Circle
         type="text"
@@ -115,7 +115,7 @@ storiesOf('Circle', module).add('All Circles', () => (
     <br />
     <hr />
 
-    <Text style="H3">Sizes</Text>
+    <Text type="H3">Sizes</Text>
     <br />
     <div
       style={{
@@ -125,7 +125,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       }}
     >
       <br />
-      <Text style="H4">Small</Text>
+      <Text type="H4">Small</Text>
       <br />
       <Circle
         type="text"
@@ -136,7 +136,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       />
       <br />
       <br />
-      <Text style="H4">Medium</Text>
+      <Text type="H4">Medium</Text>
       <br />
       <Circle
         type="text"
@@ -147,7 +147,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       />
       <br />
       <br />
-      <Text style="H4">Large</Text>
+      <Text type="H4">Large</Text>
       <br />
       <Circle
         type="text"

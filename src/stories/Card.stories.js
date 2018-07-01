@@ -14,7 +14,7 @@ storiesOf('Card', module).add('Card', () => (
       marginBottom: '30px'
     }}
   >
-    <Text style="H4">Regular Card</Text>
+    <Text type="H4">Regular Card</Text>
     <div style={{ marginTop: '20px' }} />
     <Card>
       <Card.Body>
@@ -22,7 +22,7 @@ storiesOf('Card', module).add('Card', () => (
       </Card.Body>
     </Card>
     <div style={{ marginTop: '20px' }} />
-    <Text style="H4">With Hover Behavior</Text>
+    <Text type="H4">With Hover Behavior</Text>
     <div style={{ marginTop: '20px' }} />
     <Card hover>
       <Card.Body>
@@ -30,7 +30,7 @@ storiesOf('Card', module).add('Card', () => (
       </Card.Body>
     </Card>
     <div style={{ marginTop: '20px' }} />
-    <Text style="H4">With Header Text and Underline</Text>
+    <Text type="H4">With Header Text and Underline</Text>
     <div style={{ marginTop: '20px' }} />
     <Card hover>
       <Card.Header>I am a card header :)</Card.Header>
@@ -39,7 +39,7 @@ storiesOf('Card', module).add('Card', () => (
       </Card.Body>
     </Card>
     <div style={{ marginTop: '20px' }} />
-    <Text style="H4">Tab Example</Text>
+    <Text type="H4">Tab Example</Text>
     <div style={{ marginTop: '20px' }} />
     <Card hover>
       <Card.Header underline={false}>
@@ -59,7 +59,7 @@ storiesOf('Card', module).add('Card', () => (
       </Card.Body>
     </Card>
     <div style={{ marginTop: '20px' }} />
-    <Text style="H4">Only Tab</Text>
+    <Text type="H4">Only Tab</Text>
     <div style={{ marginTop: '20px' }} />
     <Card hover>
       <Card.Header underline={false}>

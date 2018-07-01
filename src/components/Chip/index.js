@@ -17,7 +17,7 @@ const Chip = props => {
       <Text>{props.children}</Text>
       {close && (
         <div className={`${styles.closeButton}`} onClick={onCloseClick}>
-          <Text color="blue" style="BodySmall">
+          <Text color="blue" type="BodySmall">
             x
           </Text>
         </div>

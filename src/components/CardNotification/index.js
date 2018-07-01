@@ -35,7 +35,7 @@ const CardNotification = props => {
       </div>
 
       <div className={`${styles.rightColumn}`}>
-        <Text style="H4" color="grey">
+        <Text type="H4" color="grey">
           {date}
         </Text>
       </div>

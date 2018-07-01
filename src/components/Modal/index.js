@@ -35,7 +35,7 @@ class Header extends React.Component {
                   <Loading className={styles.loadingHeader} />
                 </div>
               ) : null}
-              <Text style="H2">{children}</Text>
+              <Text type="H2">{children}</Text>
             </div>
           </div>
         )}
