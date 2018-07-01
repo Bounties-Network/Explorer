@@ -39,7 +39,6 @@ storiesOf('Button', module).add('All Buttons', () => (
       </Button>
     </div>
     <hr />
-
     <Text type="H3">Icon</Text>
     <div>
       <div style={{ marginTop: '10px' }} />
@@ -82,7 +81,6 @@ storiesOf('Button', module).add('All Buttons', () => (
       </Button>
     </div>
     <hr />
-
     <Text type="H3">Disabled</Text>
     <div>
       <div style={{ marginTop: '10px' }} />
@@ -126,48 +124,39 @@ storiesOf('Button', module).add('All Buttons', () => (
         Hello Button
       </Button>
     </div>
+    <hr />
     <Text type="H3">Loading</Text>
     <div>
       <div style={{ marginTop: '10px' }} />
       <Text type="H4">Primary</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('should not fire')} loading>
-        Hello Button
-      </Button>
+      <Button loading>Hello Button</Button>
       <div style={{ marginTop: '10px' }} />
       <Text type="H4">Secondary</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('should not fire')} loading type="secondary">
+      <Button loading type="secondary">
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
       <Text type="H4">Destructive</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button
-        onClick={action('should not fire')}
-        loading
-        type="destructive"
-        text="Hello Button"
-      >
+      <Button loading type="destructive">
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
       <Text type="H4">Destructive</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button
-        onClick={action('should not fire')}
-        loading
-        type="action"
-        text="Hello Button"
-      >
+      <Button loading type="action">
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Link</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('should not fire')} disabled type="link">
-        Hello Button
-      </Button>
+    </div>
+    <hr />
+    <div>
+      <Text type="H3">Fit Width Button</Text>
+      <div style={{ marginTop: '10px', width: '300px' }}>
+        <Button fitWidth>Fit Width</Button>
+      </div>
     </div>
   </div>
 ));

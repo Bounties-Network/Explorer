@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const Button = props => {
-  const { className, type, disabled, onClick, loading, icon } = props;
+  const { className, type, disabled, onClick, loading, icon, fitWidth } = props;
 
   const onClickHandler = () => {
     if (!loading && !disabled) {
@@ -19,6 +19,10 @@ const Button = props => {
 
   if (loading) {
     addedClasses += styles.buttonLoading;
+  }
+
+  if (fitWidth) {
+    addedClasses += styles.fitWidth;
   }
 
   let childwrapper = '';
@@ -57,7 +61,8 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  type: 'primary'
+  type: 'primary',
+  fitWidth: false
 };
 
 export default Button;
