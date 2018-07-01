@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './CardNotification.module.scss';
-import { shortenAddress } from '../../utils/utilities';
+import { shortenAddress } from 'utils/helpers';
 
 import { Circle, Text, Payout } from 'components';
 
@@ -35,7 +35,7 @@ const CardNotification = props => {
       </div>
 
       <div className={`${styles.rightColumn}`}>
-        <Text style="H4" color="grey">
+        <Text type="H4" color="grey">
           {date}
         </Text>
       </div>

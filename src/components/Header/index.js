@@ -31,7 +31,7 @@ const Header = props => {
       </div>
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
-          <Button style="primary" onClick={onCreateClick}>
+          <Button type="primary" onClick={onCreateClick}>
             Create New Bounty
           </Button>
           <NotificationDropdown notifications={notifications} />
@@ -47,7 +47,7 @@ const Header = props => {
         </div>
       ) : (
         <div className={`${styles.signInButton}`}>
-          <Button style="primary" onClick={onSignInClick}>
+          <Button type="primary" onClick={onSignInClick}>
             Sign In
           </Button>
         </div>

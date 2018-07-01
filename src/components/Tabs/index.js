@@ -33,12 +33,12 @@ class Tab extends React.Component {
             >
               <Text
                 color={active ? 'black' : 'grey'}
-                style={active ? 'H4' : 'CardHeading'}
+                type={active ? 'H4' : 'CardHeading'}
               >
                 {this.props.children}
               </Text>
               <span className={countStyles}>
-                <Text style="BodySmall" color={tabTextColor}>
+                <Text type="BodySmall" color={tabTextColor}>
                   12
                 </Text>
               </span>

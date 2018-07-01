@@ -21,7 +21,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       placeholder="e.g. HTML"
     />
     <div style={{ marginTop: '10px' }} />
-    <Text style="BodySmall">Disabled</Text>
+    <Text type="BodySmall">Disabled</Text>
     <div style={{ marginTop: '10px' }} />
     <SearchSelect
       disabled
@@ -31,7 +31,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       placeholder="e.g. HTML"
     />
     <div style={{ marginTop: '10px' }} />
-    <Text style="BodySmall">Optional</Text>
+    <Text type="BodySmall">Optional</Text>
     <div style={{ marginTop: '10px' }} />
     <SearchSelect
       label="Select your Category"
@@ -41,7 +41,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       placeholder="e.g. HTML"
     />
     <div style={{ marginTop: '10px' }} />
-    <Text style="BodySmall">Error</Text>
+    <Text type="BodySmall">Error</Text>
     <div style={{ marginTop: '10px' }} />
     <SearchSelect
       label="Select your Category"

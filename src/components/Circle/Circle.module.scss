@@ -1,6 +1,11 @@
 @import "~styles/variables.scss";
 
 .circle {
+  :global(.identicon) {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  overflow: hidden;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -12,8 +17,8 @@
 }
 
 .img {
-  height: 95%;
-  width: 95%;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
 }
 
@@ -42,9 +47,18 @@
   background-color: $brand-red;
 }
 
+.border {
+  border-style: solid;
+  border-color: $brand-white;
+}
+
 .small {
   height: 50px;
   width: 50px;
+}
+
+.small.border {
+  border-width: 1px;
 }
 
 .medium {
@@ -52,7 +66,15 @@
   width: 100px;
 }
 
+.medium.border {
+  border-width: 2px;
+}
+
 .large {
   height: 200px;
   width: 200px;
+}
+
+.large.border {
+  border-width: 3px;
 }

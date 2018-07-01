@@ -43,7 +43,7 @@ class Select extends React.Component {
       <div className={`${styles.select}`}>
         {labelText ? (
           <div>
-            <Text style="FormLabel" color={error ? 'red' : null}>
+            <Text type="FormLabel" color={error ? 'red' : null}>
               {labelText}
             </Text>
           </div>
@@ -60,7 +60,7 @@ class Select extends React.Component {
         />
         {error ? (
           <div>
-            <Text style="FormLabel" color={'red'}>
+            <Text type="FormLabel" color={'red'}>
               {error}
             </Text>
           </div>

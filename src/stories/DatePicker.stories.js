@@ -10,15 +10,15 @@ storiesOf('DatePicker', module).add('DatePicker', () => (
     <div style={{ marginTop: '10px' }} />
     <DatePicker showTimeSelect />
     <div style={{ marginTop: '10px' }} />
-    <Text style="BodySmall">Disabled</Text>
+    <Text type="BodySmall">Disabled</Text>
     <div style={{ marginTop: '10px' }} />
     <DatePicker showTimeSelect disabled />
     <div style={{ marginTop: '10px' }} />
-    <Text style="BodySmall">No Timeframe</Text>
+    <Text type="BodySmall">No Timeframe</Text>
     <div style={{ marginTop: '10px' }} />
     <DatePicker />
     <div style={{ marginTop: '10px' }} />
-    <Text style="BodySmall">Label</Text>
+    <Text type="BodySmall">Label</Text>
     <div style={{ marginTop: '10px' }} />
     <DatePicker showTimeSelect label="Filter 1" />
   </div>

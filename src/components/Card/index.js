@@ -4,7 +4,7 @@ import styles from './Card.module.scss';
 import { Text, Tabs } from 'components';
 import { includes, each } from 'lodash';
 
-const HeaderTitle = props => <Text style="H3">{props.children}</Text>;
+const HeaderTitle = props => <Text type="H3">{props.children}</Text>;
 
 const HeaderTabs = props => {
   const { top } = props;

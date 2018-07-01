@@ -22,7 +22,7 @@ storiesOf('Select', module).add('Select', () => (
         placeholder="Select one!"
       />
       <div style={{ marginTop: '10px' }} />
-      <Text style="BodySmall">Disabled</Text>
+      <Text type="BodySmall">Disabled</Text>
       <div style={{ marginTop: '10px' }} />
       <Select
         label="Select a Category"
@@ -32,7 +32,7 @@ storiesOf('Select', module).add('Select', () => (
         placeholder="Select one!"
       />
       <div style={{ marginTop: '10px' }} />
-      <Text style="BodySmall">Optional</Text>
+      <Text type="BodySmall">Optional</Text>
       <div style={{ marginTop: '10px' }} />
       <Select
         label="Select a Category"
@@ -42,7 +42,7 @@ storiesOf('Select', module).add('Select', () => (
         placeholder="Select one!"
       />
       <div style={{ marginTop: '10px' }} />
-      <Text style="BodySmall">Error</Text>
+      <Text type="BodySmall">Error</Text>
       <div style={{ marginTop: '10px' }} />
       <Select
         label="Select a Category"

@@ -28,7 +28,7 @@ class Checkbox extends React.Component {
           checked={checkedPropExists ? checked : selected}
           onChange={onChange || this.toggleState}
         />
-        {label ? <Text style="FormLabel">{label}</Text> : null}
+        {label ? <Text type="FormLabel">{label}</Text> : null}
       </div>
     );
   }
