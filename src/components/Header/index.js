@@ -55,8 +55,12 @@ const Header = props => {
           </div>
         </div>
       ) : (
-        <div className={`${styles.signInButton}`}>
-          <Button type="primary" onClick={onSignInClick}>
+        <div className={`${styles.buttonArea}`}>
+          <Button
+            type="primary"
+            onClick={onSignInClick}
+            className={styles.button}
+          >
             Sign In
           </Button>
         </div>
