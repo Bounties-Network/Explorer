@@ -1,0 +1,53 @@
+.table {
+  $light-color: #ffffff;
+  $dark-color: #f2f2f2;
+  $md: 500px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  border: 1px solid $dark-color;
+  font-size: 1rem;
+  margin: 0.5rem;
+  line-height: 1.5;
+
+  // .Table-header
+  .header {
+    display: none;
+    @include breakpoint($md) {
+      font-weight: 700;
+      background-color: $dark-color;
+    }
+  }
+  // .Table-row
+  .row {
+    width: 100%;
+    &:nth-of-type(even) { background-color: $dark-color; }
+     &:nth-of-type(odd) { background-color: $light-color; }
+    @include breakpoint($md) {
+      display: flex;
+      flex-flow: row nowrap;
+      &:nth-of-type(even) { background-color: $light-color; }
+      &:nth-of-type(odd) { background-color: $dark-color; }
+    }
+    // .Table-row-item
+    .cell {
+      display: flex;
+      flex-flow: row nowrap;
+      flex-grow: 1;
+      flex-basis: 0;
+      padding: 0.5em;
+      word-break: break-word;
+      &:before {
+        content: attr(data-header);
+        width: 30%;
+        font-weight: 700;
+      }
+      @include breakpoint($md) {
+        border: 1px solid $light-color;
+        padding: 0.5em;
+        &:before { content: none; }
+      }
+    }
+  }
+}
