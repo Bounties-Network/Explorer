@@ -4,9 +4,20 @@ import styles from './ListGroup.module.scss';
 
 class ListItem extends React.Component {
   render() {
-    return <li className={styles.listItem}>{this.props.children}</li>;
+    const { hover } = this.props;
+
+    let itemClass = styles.listItem;
+    if (hover) {
+      itemClass += ` ${styles.itemHover}`;
+    }
+
+    return <li className={itemClass}>{this.props.children}</li>;
   }
 }
+
+ListItem.propTypes = {
+  hover: PropTypes.bool
+};
 
 class ListGroup extends React.Component {
   render() {

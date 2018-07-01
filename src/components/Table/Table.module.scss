@@ -8,16 +8,16 @@
   margin: 0.5rem;
   line-height: 1.5;
 
-  // .Table-header
-  .header {
-    display: none;
-  }
   // .Table-row
   .row {
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
     border-bottom: 1px solid $base-border-color;
+    @media only screen and (max-width: 500px) {
+      width: 100%;
+      display: block;
+    }
     .cell {
       display: flex;
       flex-flow: row nowrap;
@@ -27,6 +27,13 @@
       word-break: break-word;
       padding: 0.5em;
       &:before { content: none; }
+      @media only screen and (max-width: 500px) {
+        &:before {
+          content: attr(data-header);
+          width: 30%;
+          color: #949494;
+        }
+      }
     }
   }
   .row.rowHover:hover {
@@ -35,5 +42,12 @@
 
   .row.rowHover {
     cursor: pointer;
+  }
+
+  // .Table-header
+  .header {
+    @media only screen and (max-width: 500px) {
+      display: none;
+    }
   }
 }

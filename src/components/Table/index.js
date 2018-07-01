@@ -16,7 +16,13 @@ class HeaderText extends React.Component {
 
 class HeaderCell extends React.Component {
   render() {
-    return <div className={styles.cell}>{this.props.children}</div>;
+    const { flexGrow } = this.props;
+
+    return (
+      <div className={styles.cell} style={{}}>
+        {this.props.children}
+      </div>
+    );
   }
 }
 
@@ -42,7 +48,13 @@ Header.propTypes = {
 
 class Cell extends React.Component {
   render() {
-    return <div className={styles.cell}>{this.props.children}</div>;
+    const { headerText, flexGrow } = this.props;
+
+    return (
+      <div className={styles.cell} data-header={headerText} style={{}}>
+        {this.props.children}
+      </div>
+    );
   }
 }
 
