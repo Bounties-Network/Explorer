@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Table.module.scss';
+import { includes } from 'lodash';
 import { Text } from 'components';
 
 class HeaderCell extends React.Component {
   render() {
-    return <div className={styles.item}>{this.props.children}</div>;
+    return <div className={styles.cell}>{this.props.children}</div>;
   }
 }
 
@@ -69,5 +70,8 @@ Table.propTypes = {
 
 Table.defaultProps = {};
 Table.Row = Row;
+Table.Header = Header;
+Table.Cell = Cell;
+Table.HeaderCell = HeaderCell;
 
 export default Table;
