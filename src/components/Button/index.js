@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Button.module.scss';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const Button = props => {
-  const { className, style, disabled, onClick, loading } = props;
+  const { className, type, disabled, onClick, loading, icon, fitWidth } = props;
 
   const onClickHandler = () => {
     if (!loading && !disabled) {
@@ -20,6 +21,10 @@ const Button = props => {
     addedClasses += styles.buttonLoading;
   }
 
+  if (fitWidth) {
+    addedClasses += styles.fitWidth;
+  }
+
   let childwrapper = '';
   if (loading) {
     childwrapper = styles.childwrapper;
@@ -28,11 +33,14 @@ const Button = props => {
   return (
     <button
       className={`${className} ${styles.button}
-        ${styles[style]} ${addedClasses}`}
+        ${styles[type]} ${addedClasses}`}
       onClick={onClickHandler}
       disabled={disabled}
     >
-      <div className={childwrapper}>{props.children}</div>
+      <div className={childwrapper}>
+        {icon ? <FontAwesomeIcon icon={icon} className={styles.icon} /> : null}
+        {props.children}
+      </div>
       {loading ? <div className={styles.loader} /> : null}
     </button>
   );
@@ -40,19 +48,21 @@ const Button = props => {
 
 Button.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.oneOf([
+  type: PropTypes.oneOf([
     'primary',
     'secondary',
     'destructive',
     'action',
     'link'
   ]),
+  icon: PropTypes.array,
   disabled: PropTypes.bool,
   onClick: PropTypes.func
 };
 
 Button.defaultProps = {
-  style: 'primary'
+  type: 'primary',
+  fitWidth: false
 };
 
 export default Button;

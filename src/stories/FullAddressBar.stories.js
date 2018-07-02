@@ -8,7 +8,7 @@ import { FullAddressBar, Button, Text } from 'components';
 storiesOf('FullAddressBar', module).add('FullAddressBar', () => (
   <div>
     <div>
-      <Text style="H4">Just Address Bar</Text>
+      <Text type="H4">Just Address Bar</Text>
       <br />
       <br />
       <FullAddressBar address={'0x1234567891011121314151617181920212223242'} />
@@ -17,7 +17,7 @@ storiesOf('FullAddressBar', module).add('FullAddressBar', () => (
     <hr />
     <br />
     <div>
-      <Text style="H4">Address Bar with Copy Button</Text>
+      <Text type="H4">Address Bar with Copy Button</Text>
       <br />
       <FullAddressBar
         address={'0x1234567891011121314151617181920212223242'}

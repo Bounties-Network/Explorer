@@ -8,87 +8,87 @@ import { Text } from 'components';
 storiesOf('Text', module).add('All Texts', () => (
   <div>
     <div>
-      <Text style="H4">H1 - 31px</Text>
+      <Text type="H4">H1 - 31px</Text>
       <br />
-      <Text style="H1">The quick brown fox jumps over the lazy dog.!?</Text>
+      <Text type="H1">The quick brown fox jumps over the lazy dog.!?</Text>
       <hr />
     </div>
 
     <div>
-      <Text style="H4">H2 - 25px</Text>
+      <Text type="H4">H2 - 25px</Text>
       <br />
-      <Text style="H2">The quick brown fox jumps over the lazy dog.!?</Text>
+      <Text type="H2">The quick brown fox jumps over the lazy dog.!?</Text>
       <hr />
     </div>
 
     <div>
-      <Text style="H4">H3 - 20px</Text>
+      <Text type="H4">H3 - 20px</Text>
       <br />
-      <Text style="H3">The quick brown fox jumps over the lazy dog.!?</Text>
+      <Text type="H3">The quick brown fox jumps over the lazy dog.!?</Text>
       <hr />
     </div>
 
     <div>
-      <Text style="H4">H4 - 16px</Text>
+      <Text type="H4">H4 - 16px</Text>
       <br />
-      <Text style="H4">The quick brown fox jumps over the lazy dog.!?</Text>
+      <Text type="H4">The quick brown fox jumps over the lazy dog.!?</Text>
       <hr />
     </div>
 
     <div>
-      <Text style="H4">Card Heading - 16px (1em)</Text>
+      <Text type="H4">Card Heading - 16px (1em)</Text>
       <br />
-      <Text style="CardHeading">
+      <Text type="CardHeading">
         The quick brown fox jumps over the lazy dog.!?
       </Text>
       <hr />
     </div>
 
     <div>
-      <Text style="H4">Body - 16px (1em)</Text>
+      <Text type="H4">Body - 16px (1em)</Text>
       <br />
-      <Text style="Body">The quick brown fox jumps over the lazy dog.!?</Text>
+      <Text type="Body">The quick brown fox jumps over the lazy dog.!?</Text>
       <hr />
     </div>
 
     <div>
-      <Text style="H4">Body Small - 14px</Text>
+      <Text type="H4">Body Small - 14px</Text>
       <br />
-      <Text style="BodySmall">
+      <Text type="BodySmall">
         The quick brown fox jumps over the lazy dog.!?
       </Text>
       <hr />
     </div>
 
     <div>
-      <Text style="H4">Form Label / Metadata</Text>
+      <Text type="H4">Form Label / Metadata</Text>
       <br />
-      <Text style="FormLabel">
+      <Text type="FormLabel">
         The quick brown fox jumps over the lazy dog.!?
       </Text>
       <hr />
     </div>
 
     <div>
-      <Text style="H4">Form Invalid - 14px</Text>
+      <Text type="H4">Form Invalid - 14px</Text>
       <br />
-      <Text style="FormInvalid">
+      <Text type="FormInvalid">
         The quick brown fox jumps over the lazy dog.!?
       </Text>
       <hr />
     </div>
 
     <div>
-      <Text style="H4">Alt Label - 12px</Text>
+      <Text type="H4">Alt Label - 12px</Text>
       <br />
-      <Text style="Alt">The quick brown fox jumps over the lazy dog.!?</Text>
+      <Text type="Alt">The quick brown fox jumps over the lazy dog.!?</Text>
       <hr />
     </div>
 
     <div>
-      <Text style="H4">Link - Body</Text>
+      <Text type="H4">Link - Body</Text>
       <br />
-      <Text link src="http://google.com" style="Body">
+      <Text link src="http://google.com" type="Body">
         The quick brown fox jumps over the lazy dog.!?
       </Text>
       <hr />

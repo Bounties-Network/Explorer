@@ -1,0 +1,15 @@
+@import "~styles/variables.scss";
+
+.listItem {
+  padding: 10px 0;
+  border-bottom: 1px solid $base-border-color;
+}
+
+.listItem.itemHover:hover {
+  background-color: $brand-nearWhite;
+  cursor: pointer;
+}
+
+.listGroup {
+
+}

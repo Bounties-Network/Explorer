@@ -12,19 +12,19 @@ storiesOf('Textbox', module).add('Textbox', () => (
       <Textbox label="Description" placeholder="Enter Description" />
     </div>
     <div style={{ marginTop: '10px' }} />
-    <Text style="BodySmall">Disabled</Text>
+    <Text type="BodySmall">Disabled</Text>
     <div style={{ marginTop: '10px' }} />
     <div style={{ height: '100px', width: '200px' }}>
       <Textbox label="Description" placeholder="Enter Description" disabled />
     </div>
     <div style={{ marginTop: '10px' }} />
-    <Text style="BodySmall">Optional</Text>
+    <Text type="BodySmall">Optional</Text>
     <div style={{ marginTop: '10px' }} />
     <div style={{ height: '100px', width: '200px' }}>
       <Textbox label="Description" placeholder="Enter Description" optional />
     </div>
     <div style={{ marginTop: '10px' }} />
-    <Text style="BodySmall">Error</Text>
+    <Text type="BodySmall">Error</Text>
     <div style={{ marginTop: '10px' }} />
     <div style={{ height: '100px', width: '200px' }}>
       <Textbox
@@ -33,7 +33,7 @@ storiesOf('Textbox', module).add('Textbox', () => (
         error="description required"
       />
     </div>
-    <Text style="BodySmall">Non Resizable</Text>
+    <Text type="BodySmall">Non Resizable</Text>
     <div style={{ marginTop: '10px' }} />
     <div style={{ height: '100px', width: '200px' }}>
       <Textbox

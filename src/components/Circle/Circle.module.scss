@@ -1,17 +1,24 @@
 @import "~styles/variables.scss";
 
 .circle {
+  :global(.identicon) {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  overflow: hidden;
   border-radius: 50%;
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }
 
 .text {
-
+  width: 100%;
+  text-align: center;
 }
 
 .img {
-  height: 95%;
-  width: 95%;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
 }
 
@@ -40,22 +47,34 @@
   background-color: $brand-red;
 }
 
-.mini {
-  height: $xl-spacing;
-  width: $xl-spacing;
+.border {
+  border-style: solid;
+  border-color: $brand-white;
 }
 
 .small {
-  height: 50px;
-  width: 50px;
+  height: 35px;
+  width: 35px;
+}
+
+.small.border {
+  border-width: 1px;
 }
 
 .medium {
-  height: 100px;
-  width: 100px;
+  height: 60px;
+  width: 60px;
+}
+
+.medium.border {
+  border-width: 2px;
 }
 
 .large {
-  height: 200px;
-  width: 200px;
+  height: 110px;
+  width: 110px;
+}
+
+.large.border {
+  border-width: 3px;
 }

@@ -24,7 +24,7 @@ const FullAddressBarComponent = props => {
   return (
     <div className={`${styles.FullAddressBar}`}>
       <div className={`${styles.AddressBar}`}>
-        <Text color="purple" style="BodySmall" id="ethAddress">
+        <Text color="purple" type="BodySmall" id="ethAddress">
           {address}
         </Text>
       </div>
@@ -32,7 +32,7 @@ const FullAddressBarComponent = props => {
         <div style={{ marginLeft: '5px' }}>
           <Button
             size="icon"
-            style="secondary"
+            type="secondary"
             onClick={e => copyToClipboard(address)}
           >
             <FontAwesomeIcon icon={faCut} />
