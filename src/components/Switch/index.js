@@ -16,7 +16,7 @@ const defaultProps = {
   onDisabledClick: () => {}
 };
 
-function SwitchModule({
+function Switch({
   on,
   onClick,
   onDisabledClick,
@@ -46,7 +46,7 @@ function SwitchModule({
   );
 }
 
-SwitchModule.propTypes = propTypes;
-SwitchModule.defaultProps = defaultProps;
+Switch.propTypes = propTypes;
+Switch.defaultProps = defaultProps;
 
-export default SwitchModule;
+export default Switch;
