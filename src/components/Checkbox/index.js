@@ -30,7 +30,7 @@ class Checkbox extends React.Component {
         />
         <span className={`${styles.customCheckbox}`} />
         {label ? (
-          <Text style="Body" className={`${styles.checkboxLabel}`}>
+          <Text type="Body" className={`${styles.checkboxLabel}`}>
             {label}
           </Text>
         ) : null}
