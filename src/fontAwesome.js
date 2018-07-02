@@ -8,6 +8,8 @@ import tachometer from '@fortawesome/fontawesome-pro-light/faTachometer';
 import listAlt from '@fortawesome/fontawesome-pro-light/faListAlt';
 import trophyAlt from '@fortawesome/fontawesome-pro-light/faTrophyAlt';
 import userAlt from '@fortawesome/fontawesome-pro-light/faUserAlt';
+import chevronUp from '@fortawesome/fontawesome-pro-light/faChevronUp';
+import chevronDown from '@fortawesome/fontawesome-pro-light/faChevronDown';
 
 library.add(
   faBell,
@@ -18,5 +20,7 @@ library.add(
   tachometer,
   listAlt,
   trophyAlt,
-  userAlt
+  userAlt,
+  chevronUp,
+  chevronDown
 );
