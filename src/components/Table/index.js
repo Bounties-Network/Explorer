@@ -4,23 +4,15 @@ import styles from './Table.module.scss';
 import { includes } from 'lodash';
 import { Text } from 'components';
 
-class HeaderText extends React.Component {
-  render() {
-    return (
-      <Text type="body" color="grey">
-        {this.props.children}
-      </Text>
-    );
-  }
-}
-
 class HeaderCell extends React.Component {
   render() {
     const { flexGrow } = this.props;
 
     return (
-      <div className={styles.cell} style={{}}>
-        {this.props.children}
+      <div className={styles.cell}>
+        <Text type="body" color="grey">
+          {this.props.children}
+        </Text>
       </div>
     );
   }
@@ -52,7 +44,7 @@ class Cell extends React.Component {
 
     return (
       <div className={styles.cell} data-header={headerText} style={{}}>
-        {this.props.children}
+        <div className={styles.cellWrapper}>{this.props.children}</div>
       </div>
     );
   }
@@ -103,7 +95,6 @@ Table.propTypes = {
 Table.defaultProps = {};
 Table.Row = Row;
 Table.Header = Header;
-Table.HeaderText = HeaderText;
 Table.Cell = Cell;
 Table.HeaderCell = HeaderCell;
 
