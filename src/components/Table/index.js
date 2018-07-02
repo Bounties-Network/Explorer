@@ -6,10 +6,10 @@ import { Text } from 'components';
 
 class HeaderCell extends React.Component {
   render() {
-    const { flexGrow } = this.props;
+    const { flexGrow, flexBasis } = this.props;
 
     return (
-      <div className={styles.cell}>
+      <div className={styles.cell} style={{ flexGrow, flexBasis }}>
         <Text type="body" color="grey">
           {this.props.children}
         </Text>
@@ -17,6 +17,11 @@ class HeaderCell extends React.Component {
     );
   }
 }
+
+HeaderCell.propTypes = {
+  flexBasis: PropTypes.string,
+  flexGrow: PropTypes.number
+};
 
 class Header extends React.Component {
   render() {
@@ -29,6 +34,8 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
+  flexBasis: PropTypes.string,
+  flexGrow: PropTypes.number,
   children: PropTypes.arrayOf(function(propValue, key) {
     for (let i = 0; i < propValue.length; i++) {
       if (propValue[i].type.name !== HeaderCell.name) {
@@ -40,10 +47,14 @@ Header.propTypes = {
 
 class Cell extends React.Component {
   render() {
-    const { headerText, flexGrow } = this.props;
+    const { headerText, flexGrow, flexBasis } = this.props;
 
     return (
-      <div className={styles.cell} data-header={headerText} style={{}}>
+      <div
+        className={styles.cell}
+        data-header={headerText}
+        style={{ flexGrow, flexBasis }}
+      >
         <div className={styles.cellWrapper}>{this.props.children}</div>
       </div>
     );
