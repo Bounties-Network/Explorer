@@ -1,0 +1,57 @@
+@import "~styles/variables.scss";
+
+.cellWrapper {
+  width: 70%;
+}
+
+.table {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin: 0.5rem;
+  line-height: 1.5;
+
+  // .Table-row
+  .row {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    border-bottom: 1px solid $base-border-color;
+    @media only screen and (max-width: 500px) {
+      width: 100%;
+      display: block;
+    }
+    .cell {
+      display: flex;
+      flex-flow: row nowrap;
+      flex-grow: 1;
+      flex-basis: 0;
+      padding: 0.5em;
+      word-break: break-word;
+      padding: 0.5em;
+      &:before { content: none; }
+      @media only screen and (max-width: 500px) {
+        &:before {
+          content: attr(data-header);
+          width: 30%;
+          color: #949494;
+        }
+      }
+    }
+  }
+  .row.rowHover:hover {
+    background-color: $brand-nearWhite;
+  }
+
+  .row.rowHover {
+    cursor: pointer;
+  }
+
+  // .Table-header
+  .header {
+    @media only screen and (max-width: 500px) {
+      display: none;
+    }
+  }
+}

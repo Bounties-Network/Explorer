@@ -3,11 +3,8 @@
 .header {
   width: 100%;
   height: 55px;
-  display: flex;
-  justify-content: space-between;
   box-shadow: 0 4px 2px -2px $brand-lightGrey;
   background-color: $brand-white;
-
   position: fixed; /* Stay in place */
   z-index: 2; /* Stay on top */
   top: 0; /* Stay at the top */
@@ -15,31 +12,29 @@
 }
 
 .iconArea {
+  float: left;
   background-color: $brand-purple;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 40px;
-  width: 55px;
   height: 55px;
 }
 
-.buttonArea {
-  min-width: 25%;
-  max-width: 25%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-right: 5%;
+.button {
+  margin-right: 20px;
 }
 
-.signInButton {
-  min-width: 25%;
-  max-width: 25%;
+.buttonArea {
+  height: 100%;
+  float: right;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-right: 5%;
+}
+
+.notification {
+  margin-right: 20px;
+}
+
+.profile {
+  margin-right: 20px;
 }
 
 .profileDropdown {

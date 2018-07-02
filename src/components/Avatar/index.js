@@ -16,7 +16,8 @@ const Avatar = props => {
     addressTextColor,
     border,
     img,
-    hash
+    hash,
+    className
   } = props;
 
   const renderName = () => {
@@ -48,7 +49,7 @@ const Avatar = props => {
   };
 
   return (
-    <div className={styles.avatar}>
+    <div className={`${styles.avatar} ${className}`}>
       <Circle
         border={border}
         size={size}
