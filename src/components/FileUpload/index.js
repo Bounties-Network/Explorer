@@ -1,40 +1,111 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './FileUpload.module.scss';
+import { Text, Button } from 'components';
+import { bytesToSize } from 'utils/helpers';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 class FileUpload extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    filename: null,
+    filesize: null
+  };
 
-    this.state = {
-      file: null
-    };
-
-    this.handleFileUpload = this.handleFileUpload.bind(this);
-  }
-
-  handleFileUpload(e) {
+  handleChange = e => {
     const file = e.target.files[0];
-    this.setState({ file }, () => this.props.onChange(this.state.file));
-  }
+    this.setState({
+      filename: file.name,
+      filesize: file.size
+    });
+  };
+
+  removeFile = e => {
+    this.setState({
+      filename: null,
+      filesize: null
+    });
+  };
 
   render() {
-    const { className } = this.props;
-    const { file } = this.state;
+    const { file, disabled, loading, filesize, filename } = this.props;
+    const { filesize: filesizeDefault, filename: filenameDefault } = this.state;
+    const disabledState = loading || disabled;
+
+    let uploadStyles = styles.fileUpload;
+    let iconClass = styles.icon;
+    if (disabledState) {
+      uploadStyles += ` ${styles.disabled}`;
+      iconClass += ` ${styles.iconDisabled}`;
+    }
+
+    let filenameTextColor = 'black';
+    let filesizeTextColor = 'grey';
+    let iconColor = 'red';
+    if (disabledState) {
+      filenameTextColor = 'grey';
+      filesizeTextColor = 'lightGrey';
+      iconColor = 'grey';
+    }
 
     return (
-      <input
-        id="contract_code"
-        type="file"
-        name="file"
-        className={`${styles.fileUpload} ${className}`}
-        onChange={e => this.handleFileUpload(e)}
-      />
+      <div className={styles.fileUpload}>
+        <div className={styles.fileLabel}>
+          <div className={styles.fileInfo}>
+            <Text
+              type="Body"
+              className={styles.nameText}
+              color={filenameTextColor}
+            >
+              {filename || filenameDefault}
+            </Text>
+            {filenameDefault || filename
+              ? [
+                  <Text
+                    type="Body"
+                    className={styles.sizeText}
+                    color={filesizeTextColor}
+                    key={1}
+                  >
+                    ({bytesToSize(filesize || filesizeDefault)})
+                  </Text>,
+                  <Text type="Body" color={iconColor} key={2}>
+                    <FontAwesomeIcon
+                      icon={['fal', 'times']}
+                      className={iconClass}
+                      onClick={this.removeFile}
+                    />
+                  </Text>
+                ]
+              : null}
+          </div>
+        </div>
+        <Button
+          type="secondary"
+          className={styles.button}
+          disabled={disabled}
+          loading={loading}
+        >
+          <input
+            disabled={disabledState}
+            className={styles.fileInput}
+            type="file"
+            onChange={this.handleChange}
+          />
+          Upload File
+        </Button>
+      </div>
     );
   }
 }
 
-FileUpload.defaultProps = {
-  onChange: () => {}
+FileUpload.props = {
+  onRemove: PropTypes.func,
+  disabled: PropTypes.bool,
+  loading: PropTypes.bool,
+  filename: PropTypes.string,
+  filesize: PropTypes.string
 };
+
+FileUpload.defaultProps = {};
 
 export default FileUpload;

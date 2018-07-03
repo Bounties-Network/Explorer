@@ -61,6 +61,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  onClick: () => {},
   type: 'primary',
   fitWidth: false
 };
