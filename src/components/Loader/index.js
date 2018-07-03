@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Loader.module.scss';
 
 const Loader = props => (
-  <div className={`${styles.wrapper} ${styles[props.size]}`}>
+  <div className={`${styles.wrapper} ${styles[props.size]} ${props.className}`}>
     <div
       className={`${styles.loader} ${styles[props.color]} ${
         styles[props.size]
@@ -13,6 +13,7 @@ const Loader = props => (
 );
 
 Loader.propTypes = {
+  className: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium']),
   color: PropTypes.oneOf([
     'purple',
