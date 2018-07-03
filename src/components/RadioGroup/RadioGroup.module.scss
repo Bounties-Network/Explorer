@@ -5,15 +5,16 @@
 }
 
 .radioContainer {
-  display: block;
+  align-items: center;
+  display: flex;
   position: relative;
-  padding-left: $base-checkbox-size + $base-spacing;
-  margin-bottom: $base-spacing;
-  cursor: pointer;
+  padding-left: $base-checkbox-size + $base-spacing + ($s-spacing / 2);
+  margin-bottom: $base-spacing + ($s-spacing / 2);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  height: $base-checkbox-size + $s-spacing;
 
   /* Hide the browser's default radio button */
   input {
@@ -30,11 +31,26 @@
         display: block;
       }
     }
+
+    &:checked ~ .radioLabel {
+      color: $brand-blue;
+    }
+
+    &:disabled ~ .customRadio {
+      background-color: $brand-nearWhite;
+      border-color: $brand-lightGrey;
+      cursor: default;
+    }
+
+    &:disabled ~ .radioLabel {
+      color: $brand-grey;
+      cursor: default;
+    }
   }
 
   /* On mouse-over, change border-color */
   &:hover input ~ .customRadio {
-    border-color: $brand-grey;
+    border-color: $brand-blue;
   }
 
   &:hover input:checked ~ .customRadio {
@@ -54,6 +70,7 @@
 
 /* Create a custom radio button */
 .customRadio {
+  cursor: pointer;
   position: absolute;
   top: 0;
   left: 0;
@@ -68,4 +85,8 @@
     position: absolute;
     display: none;
   }
+}
+
+.radioLabel {
+  cursor: pointer;
 }

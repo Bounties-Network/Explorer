@@ -19,7 +19,7 @@ class Checkbox extends React.Component {
     const checkedPropExists = typeof checked === 'boolean';
 
     return (
-      <div>
+      <label className={`${styles.checkboxContainer}`}>
         <input
           type="checkbox"
           className={styles.checkbox}
@@ -28,8 +28,13 @@ class Checkbox extends React.Component {
           checked={checkedPropExists ? checked : selected}
           onChange={onChange || this.toggleState}
         />
-        {label ? <Text type="FormLabel">{label}</Text> : null}
-      </div>
+        <span className={`${styles.customCheckbox}`} />
+        {label ? (
+          <Text type="Body" className={`${styles.checkboxLabel}`}>
+            {label}
+          </Text>
+        ) : null}
+      </label>
     );
   }
 }
