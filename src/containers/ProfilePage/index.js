@@ -126,7 +126,7 @@ class ProfilePage extends React.Component {
               </div>
             </div>
             <div className="row center-xs middle-xs">
-              <div className="col-xs">
+              <div className="col-xs-4">
                 <Text style="H2" className={styles.profileTitle}>
                   {name}
                 </Text>
@@ -136,122 +136,167 @@ class ProfilePage extends React.Component {
             </div>
           </div>
           <div className={`${styles.profileInfo} row middle-xs`}>
-            <div className="col-xs-3">
-              <div className={`${styles.about}`}>
-                <div className={`${styles.profileHeader}`}>
-                  <Text style="Body">About</Text>
-                </div>
-                <div className={`${styles.aboutData}`}>
-                  <div className={`${styles.aboutDataCell}`}>
-                    <Text style="FormLabel">
-                      <FontAwesomeIcon icon={faToolbox} /> Organization
-                    </Text>
-                    <Text style="BodySmall">FAKE Consensys</Text>
-                  </div>
-                  <div className={`${styles.aboutDataCell}`}>
-                    <Text style="FormLabel">
-                      <FontAwesomeIcon icon={faComments} /> Languages Spoken
-                    </Text>
-                    <Text style="BodySmall">FAKE, English, Romanian</Text>
+            <div className="col-xs-2">
+              <div className="row">
+                <div className={`${styles.about}`}>
+                  <div className="col-xs-offset-1 col-xs-10">
+                    <div className={`${styles.profileHeader} row`}>
+                      <Text style="Body">About</Text>
+                    </div>
+                    <div className={`${styles.aboutData}`}>
+                      <div className={`${styles.aboutDataCell}`}>
+                        <div className="row">
+                          <Text style="FormLabel">
+                            <FontAwesomeIcon icon={faToolbox} /> Organization
+                          </Text>
+                        </div>
+                        <div className="row">
+                          <Text style="BodySmall">FAKE Consensys</Text>
+                        </div>
+                      </div>
+                      <div className={`${styles.aboutDataCell}`}>
+                        <div className="row">
+                          <Text style="FormLabel">
+                            <FontAwesomeIcon icon={faComments} /> Languages
+                            Spoken
+                          </Text>
+                        </div>
+                        <div className="row">
+                          <Text style="BodySmall">FAKE, English, Romanian</Text>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div className="col-xs-3">
-              <div className={`${styles.skills}`}>
-                <div className={`${styles.profileHeader}`}>
-                  <Text style="Body">Skills</Text>
-                </div>
-                <div className={`${styles.skillsData}`}>
-                  <div className={`${styles.chipBar}`}>
-                    {renderChips(skills)}
+              <div className={`${styles.skills} row`}>
+                <div className=" col-xs">
+                  <div className={`${styles.profileHeader}`}>
+                    <Text style="Body">Skills</Text>
+                  </div>
+                  <div className={`${styles.skillsData}`}>
+                    <div className={`${styles.chipBar}`}>
+                      {renderChips(skills)}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-xs-3">
+            <div className="col-xs-4">
               <div className={`${styles.networkStats}`}>
-                <div className={`${styles.networkHeader}`}>
-                  <Text style="Body">Network Stats</Text>
+                <div className="row middle-xs">
+                  <div className="col-xs">
+                    <div className={`${styles.networkHeader}`}>
+                      <Text style="Body">Network Stats</Text>
+                    </div>
+                  </div>
                 </div>
-                <div className={`${styles.networkStatsData}`}>
-                  <div className={`${styles.networkStatsDataCell}`}>
-                    <div className={`${styles.networkStatsCircle}`}>
-                      <Circle
-                        size="small"
-                        color="green"
-                        textColor="white"
-                        textStyle="H4"
-                        input={`${bounties_acceptance_rate * 100}%`}
-                      />
+                <div className={`${styles.networkStatsData} row center-xs`}>
+                  <div className="col-xs-4">
+                    <div className={`${styles.networkStatsDataCell}`}>
+                      <div className="row center-xs middle-xs">
+                        <div className={`${styles.networkStatsCircle}`}>
+                          <Circle
+                            size="small"
+                            color="green"
+                            textColor="white"
+                            textStyle="H4"
+                            input={`${bounties_acceptance_rate * 100}%`}
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <Text style="FormLabel">
+                          Submission Acceptance Rate
+                        </Text>
+                      </div>
                     </div>
-                    <Text style="FormLabel">Submission Acceptance Rate</Text>
                   </div>
-                  <div className={`${styles.networkStatsDataCell}`}>
-                    <div className={`${styles.networkStatsCircle}`}>
-                      <Circle
-                        size="small"
-                        color="orange"
-                        textColor="white"
-                        textStyle="H4"
-                        input="0/0"
-                      />
+                  <div className="col-xs-4">
+                    <div className={`${styles.networkStatsDataCell}`}>
+                      <div className="row center-xs middle-xs">
+                        <div className={`${styles.networkStatsCircle}`}>
+                          <Circle
+                            size="small"
+                            color="orange"
+                            textColor="white"
+                            textStyle="H4"
+                            input="0/0"
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <Text style="FormLabel">
+                          Average Submission Rating Given
+                        </Text>
+                      </div>
                     </div>
-                    <Text style="FormLabel">
-                      Average Submission Rating Given
-                    </Text>
                   </div>
-                  <div className={`${styles.networkStatsDataCell}`}>
-                    <div className={`${styles.networkStatsCircle}`}>
-                      <Circle
-                        size="small"
-                        color="green"
-                        textColor="white"
-                        textStyle="H4"
-                        input="00%"
-                      />
+                  <div className="col-xs-4">
+                    <div className={`${styles.networkStatsDataCell}`}>
+                      <div className="row center-xs middle-xs">
+                        <div className={`${styles.networkStatsCircle}`}>
+                          <Circle
+                            size="small"
+                            color="green"
+                            textColor="white"
+                            textStyle="H4"
+                            input="00%"
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <Text style="FormLabel">Response Rate</Text>
+                      </div>
                     </div>
-                    <Text style="FormLabel">Response Rate</Text>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-xs-3">
+            <div className="col-xs-2">
               <div className={`${styles.elsewhere}`}>
                 <div className={`${styles.profileHeader}`}>
                   <Text style="Body">Elsewhere</Text>
                 </div>
-                <div className={`${styles.elsewhereData}`}>
-                  <div>
-                    <Text color="grey">
-                      <FontAwesomeIcon icon={faGlobe} />
-                    </Text>{' '}
-                    <Text color="blue" link>
-                      {' '}
-                      FAKEfirstNameLastName.com
-                    </Text>
+                <div className={`${styles.elsewhereData} row`}>
+                  <div className="row">
+                    <div>
+                      <Text color="grey">
+                        <FontAwesomeIcon icon={faGlobe} />
+                      </Text>{' '}
+                      <Text color="blue" link>
+                        {' '}
+                        FAKEfirstNameLastName.com
+                      </Text>
+                    </div>
                   </div>
-                  <div>
-                    <Text color="grey">
-                      <FontAwesomeIcon icon={faTwitter} />
-                    </Text>{' '}
-                    <Text color="blue" link>
-                      {' '}
-                      @FAKEtwitterUsername
-                    </Text>
+                  <div className="row">
+                    <div>
+                      <Text color="grey">
+                        <FontAwesomeIcon icon={faTwitter} />
+                      </Text>{' '}
+                      <Text color="blue" link>
+                        {' '}
+                        @FAKEtwitterUsername
+                      </Text>
+                    </div>
                   </div>
-                  <div>
-                    <Text color="grey">
-                      <FontAwesomeIcon icon={faGithub} />
-                    </Text>{' '}
-                    <Text
-                      color="blue"
-                      link
-                      src={`https://github.com/${githubUsername}`}
-                    >
-                      {' '}
-                      {`@${githubUsername}`}
-                    </Text>
+                  <div className="row">
+                    <div>
+                      <Text color="grey">
+                        <FontAwesomeIcon icon={faGithub} />
+                      </Text>{' '}
+                      <Text
+                        color="blue"
+                        link
+                        src={`https://github.com/${githubUsername}`}
+                      >
+                        {' '}
+                        {`@${githubUsername}`}
+                      </Text>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -267,18 +312,20 @@ class ProfilePage extends React.Component {
               <SortBy onClick={e => this.updateSearchOptions('sort', e)} />
             </div>
           </div>
-          <div className={`${styles.bountiesBody} row`}>
-            <div className="col-xs">
-              <div className={`${styles.refineBy}`}>
-                <RefineByFilter
-                  stages
-                  paymentStatus
-                  onChange={e => this.updateSearchOptions('filter', e)}
-                />
+          <div className="row">
+            <div className={`${styles.bountiesBody}`}>
+              <div className="col-xs">
+                <div className={`${styles.refineBy}`}>
+                  <RefineByFilter
+                    stages
+                    paymentStatus
+                    onChange={e => this.updateSearchOptions('filter', e)}
+                  />
+                </div>
               </div>
-            </div>
-            <div className={`${styles.bountyCards}`}>
-              {renderBountyCards(bounties)}
+              <div className={`${styles.bountyCards}`}>
+                {renderBountyCards(bounties)}
+              </div>
             </div>
           </div>
         </div>
