@@ -2,17 +2,30 @@
 
 .button {
   border-radius: 3px;
+  position: relative;
   border: none;
   box-shadow: $base-box-shadow;
   cursor: pointer;
   display: inline-block;
-  font-size: $body-font-size;
-  padding: 0 $m-spacing;
+  font-size: $h4-font-size;
+  padding: 10px 15px;
+}
+
+.fitWidth {
+  width: 100%;
+}
+
+.icon {
+  margin-right: 10px;
 }
 
 .disabled {
   border: none;
   box-shadow: none;
+}
+
+.buttonLoading {
+  cursor: default;
 }
 
 .primary {
@@ -62,9 +75,17 @@
   }
 }
 
-.activate {
+.action {
   background-color: $brand-green;
   color: $brand-disabled;
+
+  &:hover {
+
+  }
+
+  &.disabled {
+
+  }
 }
 
 .link {
@@ -83,42 +104,53 @@
   }
 }
 
-.deleteLink {
-  background-color: none;
-  color: $brand-red;
-  text-decoration: underline;
-  border: none;
-  box-shadow: none;
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: .8em;
+  height: .8em;
 }
 
-.clearFilter {
-  background-color: none;
-  color: $brand-blue;
-  text-decoration: underline;
-  border: none;
+.loader {
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  text-indent: -9999em;
+  border-top: .3em solid rgba(255, 255, 255, 0.2);
+  border-right: .3em solid rgba(255, 255, 255, 0.2);
+  border-bottom: .3em solid rgba(255, 255, 255, 0.2);
+  border-left: .3em solid #ffffff;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
-.create {
-  background-color: $brand-blue;
-  color: white;
-}
-
-.icon {
-  height: 40px;
-  width: auto;
-}
-
-.small {
-  height: 40px;
-  width: auto;
-}
-
-.medium {
-  height: 40px;
-  width: auto;
-}
-
-.large {
-  height: 40px;
-  width: auto;
+.childwrapper {
+  visibility: hidden;
 }

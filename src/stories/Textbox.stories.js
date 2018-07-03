@@ -3,12 +3,45 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { Textbox } from 'components';
+import { Textbox, Text } from 'components';
 
 storiesOf('Textbox', module).add('Textbox', () => (
-  <div
-    style={{ width: '315px', display: 'flex', justifyContent: 'space-between' }}
-  >
-    <Textbox onChange={e => console.log(e)} />
+  <div style={{ marginLeft: '10px' }}>
+    <div style={{ marginTop: '10px' }} />
+    <div style={{ height: '100px', width: '200px' }}>
+      <Textbox label="Description" placeholder="Enter Description" />
+    </div>
+    <div style={{ marginTop: '10px' }} />
+    <Text type="BodySmall">Disabled</Text>
+    <div style={{ marginTop: '10px' }} />
+    <div style={{ height: '100px', width: '200px' }}>
+      <Textbox label="Description" placeholder="Enter Description" disabled />
+    </div>
+    <div style={{ marginTop: '10px' }} />
+    <Text type="BodySmall">Optional</Text>
+    <div style={{ marginTop: '10px' }} />
+    <div style={{ height: '100px', width: '200px' }}>
+      <Textbox label="Description" placeholder="Enter Description" optional />
+    </div>
+    <div style={{ marginTop: '10px' }} />
+    <Text type="BodySmall">Error</Text>
+    <div style={{ marginTop: '10px' }} />
+    <div style={{ height: '100px', width: '200px' }}>
+      <Textbox
+        label="Description"
+        placeholder="Enter Description"
+        error="description required"
+      />
+    </div>
+    <Text type="BodySmall">Non Resizable</Text>
+    <div style={{ marginTop: '10px' }} />
+    <div style={{ height: '100px', width: '200px' }}>
+      <Textbox
+        label="Description"
+        placeholder="Enter Description"
+        resizable={false}
+      />
+    </div>
+    <div style={{ marginTop: '10px' }} />
   </div>
 ));

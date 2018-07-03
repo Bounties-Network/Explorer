@@ -1,73 +1,102 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Tabs.module.scss';
+import { Text } from 'components';
 
-import { Tab } from 'components';
+const ModalContext = React.createContext({});
+
+class Tab extends React.Component {
+  render() {
+    const { tabCount, eventKey, tabColor } = this.props;
+
+    return (
+      <ModalContext.Consumer>
+        {({ onSelect, activeKey }) => {
+          const active = activeKey === eventKey;
+          let tabStyles = styles.tab;
+          if (active) {
+            tabStyles += ` ${styles.active}`;
+          }
+          let countStyles = styles.notification;
+          if (active) {
+            countStyles += ` ${styles[tabColor]}`;
+          }
+          let tabTextColor = 'darkGrey';
+          if (active && tabColor !== 'lightGrey') {
+            tabTextColor = 'white';
+          }
+
+          return (
+            <div
+              className={tabStyles}
+              onClick={() => onSelect(this.props.eventKey)}
+            >
+              <Text
+                color={active ? 'black' : 'grey'}
+                type={active ? 'H4' : 'CardHeading'}
+              >
+                {this.props.children}
+              </Text>
+              <span className={countStyles}>
+                <Text type="BodySmall" color={tabTextColor}>
+                  12
+                </Text>
+              </span>
+            </div>
+          );
+        }}
+      </ModalContext.Consumer>
+    );
+  }
+}
+
+Tab.propTypes = {
+  tabCount: PropTypes.number,
+  tabColor: PropTypes.oneOf(['blue', 'green', 'lightGrey']),
+  eventKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
+
+Tab.defaultProps = {
+  tabColor: 'lightGrey'
+};
 
 class Tabs extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    activeKey: null
+  };
 
-    this.state = {
-      activeTab: props.tabs[0].title
-    };
-
-    this.renderTabs = this.renderTabs.bind(this);
-    this.onTabChange = this.onTabChange.bind(this);
-  }
-
-  renderTabs(tabs) {
-    return tabs.map(elem => {
-      return (
-        <div
-          className={styles.tab}
-          key={elem.title}
-          onClick={e => this.onTabChange(elem)}
-        >
-          <Tab
-            notificationAmount={elem.notificationAmount}
-            active={this.state.activeTab === elem.title}
-            onClick={() => this.onTabChange(elem.title)}
-          >
-            {elem.title}
-          </Tab>
-        </div>
-      );
-    });
-  }
-
-  onTabChange(tab) {
-    this.setState({ activeTab: tab.title });
-
-    this.props.onClick(tab);
-  }
+  onSelect = key => {
+    this.setState({ activeKey: key });
+    this.props.onSelect(key);
+  };
 
   render() {
-    const { tabs } = this.props;
+    const { defaultActiveKey } = this.props;
+    const { activeKey } = this.state;
 
-    return <div className={`${styles.tabs}`}>{this.renderTabs(tabs)}</div>;
+    return (
+      <ModalContext.Provider
+        value={{ activeKey: activeKey, onSelect: this.onSelect }}
+      >
+        <div className={`${styles.tabs}`}>{this.props.children}</div>
+      </ModalContext.Provider>
+    );
   }
 }
 
 Tabs.propTypes = {
-  tabs: PropTypes.array,
-  onClick: PropTypes.func
+  children: PropTypes.arrayOf(function(propValue, key) {
+    for (let i = 0; i < propValue.length; i++) {
+      if (propValue[i].type.name !== Tab.name) {
+        return new Error('Children Must Be an Instance of Tab');
+      }
+    }
+  }),
+  onSelect: PropTypes.func,
+  activeKey: PropTypes.string
 };
 
-Tabs.defaultProps = {
-  tabs: [{ title: 'title' }],
-  onClick: e => console.log(e)
-};
+Tabs.defaultProps = {};
+Tabs.Tab = Tab;
 
 export default Tabs;
-
-// Tabs Example:
-// tabs: [ {
-//   title: 'Active',
-//   notificationAmount: 3,
-//   notificationColor: 'blue',
-// }, {
-//   title: 'Pending Submissions',
-//   badge: 2,
-//   badgeStyle: 'yellow',
-// } ]

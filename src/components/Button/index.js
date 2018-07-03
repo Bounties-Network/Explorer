@@ -1,49 +1,68 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Button.module.scss';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const Button = props => {
-  const { className, style, size, disabled, onClick } = props;
+  const { className, type, disabled, onClick, loading, icon, fitWidth } = props;
+
+  const onClickHandler = () => {
+    if (!loading && !disabled) {
+      onClick();
+    }
+  };
 
   let addedClasses = '';
   if (disabled) {
     addedClasses += styles.disabled;
   }
 
+  if (loading) {
+    addedClasses += styles.buttonLoading;
+  }
+
+  if (fitWidth) {
+    addedClasses += styles.fitWidth;
+  }
+
+  let childwrapper = '';
+  if (loading) {
+    childwrapper = styles.childwrapper;
+  }
+
   return (
     <button
-      className={`${className} ${styles.button} ${styles[size]}
-        ${styles[style]} ${addedClasses}`}
-      onClick={onClick}
+      className={`${className} ${styles.button}
+        ${styles[type]} ${addedClasses}`}
+      onClick={onClickHandler}
       disabled={disabled}
     >
-      {props.children}
+      <div className={childwrapper}>
+        {icon ? <FontAwesomeIcon icon={icon} className={styles.icon} /> : null}
+        {props.children}
+      </div>
+      {loading ? <div className={styles.loader} /> : null}
     </button>
   );
 };
 
 Button.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.oneOf([
+  type: PropTypes.oneOf([
     'primary',
     'secondary',
     'destructive',
-    'activate',
-    'deleteLink',
-    'link',
-    'create',
-    'clearFilter'
+    'action',
+    'link'
   ]),
-  size: PropTypes.oneOf(['icon', 'small', 'medium', 'large']),
+  icon: PropTypes.array,
   disabled: PropTypes.bool,
   onClick: PropTypes.func
 };
 
 Button.defaultProps = {
-  style: 'primary',
-  size: 'medium',
-  disabled: false,
-  children: 'Button'
+  type: 'primary',
+  fitWidth: false
 };
 
 export default Button;

@@ -1,42 +1,57 @@
 @import "~styles/variables.scss";
 
-.cardContainer {
-  min-width: 750px;
-  display: flex;
+.card {
   box-shadow: $brand-card-box-shadow;
-  padding: 25px;
-  width: 48%;
-  flex-direction: column;
-  background-color: white;
-}
-
-.cardTitle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.tabRow {
-  display: flex;
-  height: 180px;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.cardBody {
-  overflow-y: auto;
+  background-color: $brand-white;
+  padding: 10px;
   width: 100%;
 }
 
-.short {
-  height: 300px;
+.hover {
+  border-left: 1px solid $brand-white;
+  cursor: pointer;
 }
 
-.medium {
-  height: 600px;
+.hover:hover {
+  border-left: 1px solid $brand-dark-purple;
 }
 
-.tall {
-  height: 800px;
+.headerWrapper {
+
+}
+
+.bodyWrapper {
+
+}
+
+.header {
+  padding: 0 10px 0 11px;
+  margin: 0 -10px 0 -11px;
+  border-bottom: 1px solid $brand-lightGrey;
+}
+
+.header.noUnderline {
+  border-bottom: none;
+}
+
+.headerTabs {
+  margin-top: 15px;
+  margin-bottom: -20px;
+  margin-left: -11px;
+  margin-right: -10px;
+}
+
+.headerTabsTop {
+  margin-bottom: -20px;
+  margin-left: -11px;
+  margin-right: -10px;
+}
+
+.headerText {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.body {
+  padding: 15px 0;
 }

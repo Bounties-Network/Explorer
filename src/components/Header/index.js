@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import styles from './Header.module.scss';
 import { withRouter } from 'react-router-dom';
 
-import { Button, Circle, NotificationDropdown, Dropdown } from 'components';
+import { Button, Avatar, NotificationDropdown, Dropdown } from 'components';
 import BeeLogo from '../../styles/logo.js';
-import cog from '@fortawesome/fontawesome-pro-light/faCog';
-import signout from '@fortawesome/fontawesome-pro-light/faSignOut';
 
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
@@ -14,8 +12,9 @@ const Header = props => {
   const {
     history,
     notifications,
-    profilePic = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
-    loginStatus = false
+    profilePic,
+    userAddress,
+    loginStatus
   } = props;
 
   const onCreateClick = () => {
@@ -33,23 +32,35 @@ const Header = props => {
       </div>
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
-          <Button style="primary" onClick={onCreateClick}>
+          <Button
+            type="primary"
+            onClick={onCreateClick}
+            className={styles.button}
+          >
             Create New Bounty
           </Button>
-          <NotificationDropdown notifications={notifications} />
-          <Dropdown position="left" className={styles.profileDropdown}>
-            <DropdownTrigger>
-              <Circle type="image" size="mini" input={profilePic} />
-            </DropdownTrigger>
-            <DropdownContent>
-              <MenuItem icon={cog}>Account Settings</MenuItem>
-              <MenuItem icon={signout}>Sign Out</MenuItem>
-            </DropdownContent>
-          </Dropdown>
+          <div className={styles.notification}>
+            <NotificationDropdown notifications={notifications} />
+          </div>
+          <div className={styles.profile}>
+            <Dropdown position="left" className={styles.profileDropdown}>
+              <DropdownTrigger>
+                <Avatar size="small" img={profilePic} hash={userAddress} />
+              </DropdownTrigger>
+              <DropdownContent>
+                <MenuItem icon={['fal', 'cog']}>Account Settings</MenuItem>
+                <MenuItem icon={['fal', 'sign-out']}>Sign Out</MenuItem>
+              </DropdownContent>
+            </Dropdown>
+          </div>
         </div>
       ) : (
-        <div className={`${styles.signInButton}`}>
-          <Button style="primary" onClick={onSignInClick}>
+        <div className={`${styles.buttonArea}`}>
+          <Button
+            type="primary"
+            onClick={onSignInClick}
+            className={styles.button}
+          >
             Sign In
           </Button>
         </div>
@@ -63,7 +74,8 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
-  notification: false
+  notification: false,
+  loginStatus: false
 };
 
 export default withRouter(Header);

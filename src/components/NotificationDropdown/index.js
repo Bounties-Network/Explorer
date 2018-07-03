@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './NotificationDropdown.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faBell from '@fortawesome/fontawesome-pro-light/faBell';
 import { Dropdown, CardNotification } from 'components';
 
 const { DropdownTrigger, DropdownContent } = Dropdown;
@@ -22,7 +21,7 @@ const NotificationDropdown = props => {
   return (
     <Dropdown position="left" className={styles.customDropdown}>
       <DropdownTrigger>
-        <FontAwesomeIcon icon={faBell} />
+        <FontAwesomeIcon icon={['fal', 'bell']} />
       </DropdownTrigger>
       <DropdownContent>
         <div className={styles.notificationBox}>

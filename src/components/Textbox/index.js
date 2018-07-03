@@ -7,53 +7,87 @@ import { Text } from 'components';
 const debounceTimer = 300;
 
 class Textbox extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    text: ''
+  };
 
-    this.state = {
-      text: ''
-    };
-    this.onTextareaChange = this.onTextareaChange.bind(this);
-  }
-
-  onTextareaChange(e) {
+  onTextareaChange = e => {
     const { value } = e.target;
     this.setState({ text: value });
-
-    // debounce
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-    }
-    this.timeout = setTimeout(
-      () => this.props.onChange(this.state.text),
-      debounceTimer
-    );
-  }
+    this.props.onChange(value);
+  };
 
   render() {
-    const { className, error, resizeNone, size } = this.props;
+    const {
+      className,
+      error,
+      resizable,
+      optional,
+      label,
+      disabled,
+      placeholder
+    } = this.props;
+
+    let labelText = label;
+    if (optional) {
+      labelText = `(Optional) ${labelText || ''}`;
+    }
+
+    let inputClass = styles.textarea;
+    if (error) {
+      inputClass += ` ${styles.error}`;
+    }
+
+    if (disabled) {
+      inputClass += ` ${styles.disabled}`;
+    }
+
+    if (!resizable) {
+      inputClass += ` ${styles.resizeNone}`;
+    }
 
     return (
-      <textarea
-        className={`${styles.textarea} ${styles[size]} ${className} ${
-          styles[resizeNone ? 'resizeNone' : '']
-        } ${styles[error ? 'error' : '']}`}
-        value={this.state.text}
-        onChange={this.onTextareaChange}
-      />
+      <div className={styles.wrapper}>
+        {labelText ? (
+          <div>
+            <Text type="FormLabel" color={error ? 'red' : null}>
+              {labelText}
+            </Text>
+          </div>
+        ) : null}
+        <textarea
+          className={inputClass}
+          placeholder={placeholder}
+          disabled={disabled}
+          value={this.state.text}
+          onChange={this.onTextareaChange}
+        />
+        {error ? (
+          <div>
+            <Text type="FormLabel" color={'red'}>
+              {error}
+            </Text>
+          </div>
+        ) : null}
+      </div>
     );
   }
 }
 
 Textbox.propTypes = {
-  onChange: PropTypes.func,
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
+  className: PropTypes.string,
+  error: PropTypes.string,
+  resizable: PropTypes.bool,
+  optional: PropTypes.bool,
+  disabled: PropTypes.bool,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func
 };
 
 Textbox.defaultProps = {
   onChange: () => {},
-  error: false,
-  size: 'medium'
+  resizable: true
 };
 
 export default Textbox;

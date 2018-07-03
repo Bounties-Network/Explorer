@@ -7,98 +7,156 @@ import { Button, Text } from 'components';
 
 storiesOf('Button', module).add('All Buttons', () => (
   <div>
-    <Text style="H3">Button Type</Text>
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-      }}
-    >
-      <br />
-      <Text style="H4">Primary</Text>
+    <Text type="H3">Button Type</Text>
+    <div>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Primary</Text>
+      <span style={{ marginRight: '10px' }} />
       <Button onClick={action('clicked')}>Hello Button</Button>
-      <br />
-      <Text style="H4">Secondary</Text>
-      <Button onClick={action('clicked')} style="secondary">
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Secondary</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} type="secondary">
         Hello Button
       </Button>
-      <br />
-      <Text style="H4">Destructive</Text>
-      <Button onClick={action('clicked')} style="destructive">
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} type="destructive">
         Hello Button
       </Button>
-      <br />
-      <Text style="H4">Link</Text>
-      <Button onClick={action('clicked')} style="link">
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} type="action">
         Hello Button
       </Button>
-      <Text style="H4">Create</Text>
-      <Button onClick={action('clicked')} style="create">
-        Create New Bounty
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Link</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} type="link">
+        Hello Button
       </Button>
     </div>
     <hr />
-
-    <Text style="H3">Disabled</Text>
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-      }}
-    >
-      <br />
-      <Text style="H4">Primary</Text>
+    <Text type="H3">Icon</Text>
+    <div>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Primary</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} icon={['fal', 'bell']}>
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Secondary</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button
+        onClick={action('clicked')}
+        type="secondary"
+        icon={['fal', 'bell']}
+      >
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button
+        onClick={action('clicked')}
+        type="destructive"
+        icon={['fal', 'bell']}
+      >
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} type="action" icon={['fal', 'bell']}>
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Link</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} type="link" icon={['fal', 'bell']}>
+        Hello Button
+      </Button>
+    </div>
+    <hr />
+    <Text type="H3">Disabled</Text>
+    <div>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Primary</Text>
+      <span style={{ marginRight: '10px' }} />
       <Button onClick={action('should not fire')} disabled>
         Hello Button
       </Button>
-      <br />
-      <Text style="H4">Secondary</Text>
-      <Button onClick={action('should not fire')} disabled style="secondary">
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Secondary</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('should not fire')} disabled type="secondary">
         Hello Button
       </Button>
-      <br />
-      <Text style="H4">Destructive</Text>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
       <Button
         onClick={action('should not fire')}
         disabled
-        style="destructive"
+        type="destructive"
         text="Hello Button"
       >
         Hello Button
       </Button>
-      <br />
-      <Text style="H4">Link</Text>
-      <Button onClick={action('should not fire')} disabled style="link">
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button
+        onClick={action('should not fire')}
+        disabled
+        type="action"
+        text="Hello Button"
+      >
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Link</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('should not fire')} disabled type="link">
         Hello Button
       </Button>
     </div>
     <hr />
-
-    <Text style="H3">Sizes</Text>
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-      }}
-    >
-      <br />
-      <Text style="H4">Small</Text>
-      <Button onClick={action('clicked')} size="small">
-        Button
-      </Button>
-      <br />
-      <Text style="H4">Medium</Text>
-      <Button onClick={action('clicked')} size="medium">
+    <Text type="H3">Loading</Text>
+    <div>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Primary</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button loading>Hello Button</Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Secondary</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button loading type="secondary">
         Hello Button
       </Button>
-      <br />
-      <Text style="H4">Large</Text>
-      <Button onClick={action('clicked')} size="large">
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button loading type="destructive">
         Hello Button
       </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Destructive</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button loading type="action">
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
+    </div>
+    <hr />
+    <div>
+      <Text type="H3">Fit Width Button</Text>
+      <div style={{ marginTop: '10px', width: '300px' }}>
+        <Button fitWidth>Fit Width</Button>
+      </div>
     </div>
   </div>
 ));
