@@ -1,0 +1,43 @@
+.cropper {
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.upload {
+  position: relative;
+  margin-right: 10px;
+}
+
+.saveButton {
+  margin-right: 10px;
+}
+
+.croppie {
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+}
+
+.circleContent {
+  margin: 0 auto;
+}
+
+.contentWrapper {
+  height: 200px;
+}
+
+.inactive {
+  display: none;
+}
+
+.disabledInput {
+  cursor: default;
+}

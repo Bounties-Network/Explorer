@@ -12,6 +12,7 @@ import chevronUp from '@fortawesome/fontawesome-pro-light/faChevronUp';
 import chevronDown from '@fortawesome/fontawesome-pro-light/faChevronDown';
 import fileArchive from '@fortawesome/fontawesome-pro-light/faFileArchive';
 import times from '@fortawesome/fontawesome-pro-light/faTimes';
+import camera from '@fortawesome/fontawesome-pro-light/faCamera';
 
 library.add(
   faBell,
@@ -26,5 +27,6 @@ library.add(
   chevronUp,
   chevronDown,
   fileArchive,
-  times
+  times,
+  camera
 );
