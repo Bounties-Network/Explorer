@@ -8,23 +8,39 @@ class Rating extends React.Component {
     super(props);
     const uuid = uniqueId();
     this.state = {
-      uuid
+      uuid,
+      value: null
     };
   }
 
-  onChange = () => {};
+  onChange = e => {
+    const value = e.target.value;
+    const { onChange } = this.props;
+    this.setState({ value });
+    if (onChange) {
+      this.props.onChange(e.target.value);
+    }
+  };
 
   renderInputs = () => {
-    const { uuid } = this.state;
+    const { uuid, value: stateValue } = this.state;
+    const { value, defaultValue } = this.props;
+
+    const checkedValue = Number(value || stateValue || defaultValue);
     const componentSet = [];
 
     for (let i = 0; i <= 5; i++) {
+      let checked = false;
+      if (checkedValue === 5 - i) {
+        checked = true;
+      }
       componentSet.push(
         <input
           key={i + 'input'}
           type="radio"
           id={`${uuid}rating${i}`}
           name="rating"
+          checked={checked}
           value={5 - i}
           className={i === 5 ? styles.starClear : null}
           onChange={this.onChange}
@@ -42,5 +58,15 @@ class Rating extends React.Component {
     return <span className={styles.starGroup}>{this.renderInputs()}</span>;
   }
 }
+
+Rating.propTypes = {
+  value: PropTypes.number,
+  defaultValue: PropTypes.number,
+  onChange: PropTypes.func
+};
+
+Rating.defaultProps = {
+  onChange: () => {}
+};
 
 export default Rating;

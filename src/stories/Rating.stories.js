@@ -8,8 +8,8 @@ import { Rating, Text } from 'components';
 storiesOf('Rating', module).add('Rating', () => (
   <div style={{ marginLeft: '20px' }}>
     <div style={{ marginTop: '10px' }} />
-    <Text type="H3">Rating Component</Text>
+    <Text type="H3">Rating Component with Default</Text>
     <div style={{ marginTop: '10px' }} />
-    <Rating />
+    <Rating defaultValue={4} />
   </div>
 ));
