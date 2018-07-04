@@ -74,7 +74,7 @@ storiesOf('Button', module).add('All Buttons', () => (
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Destructive</Text>
+      <Text type="H4">Action</Text>
       <span style={{ marginRight: '10px' }} />
       <Button onClick={action('clicked')} type="action" icon={['fal', 'bell']}>
         Hello Button
@@ -119,7 +119,7 @@ storiesOf('Button', module).add('All Buttons', () => (
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Destructive</Text>
+      <Text type="H4">Action</Text>
       <span style={{ marginRight: '10px' }} />
       <Button
         onClick={action('should not fire')}
@@ -162,7 +162,7 @@ storiesOf('Button', module).add('All Buttons', () => (
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Destructive</Text>
+      <Text type="H4">Action</Text>
       <span style={{ marginRight: '10px' }} />
       <Button loading type="action">
         Hello Button
