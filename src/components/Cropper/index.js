@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Croppie } from 'croppie/croppie';
-import 'croppie/croppie.css';
+import '../../styles/Croppie.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Circle, Button } from 'components';
 import styles from './Cropper.module.scss';
