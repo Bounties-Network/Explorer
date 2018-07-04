@@ -3,11 +3,11 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { Chip, Text } from 'components';
+import { Pill, Text } from 'components';
 
-storiesOf('Chip', module).add('All Chips', () => (
+storiesOf('Pill', module).add('All Pills', () => (
   <div>
-    <Text type="H3">Rounded Chips</Text>
+    <Text type="H3">Rounded Pills</Text>
     <br />
     <br />
     <div
@@ -23,10 +23,10 @@ storiesOf('Chip', module).add('All Chips', () => (
           width: '250px'
         }}
       >
-        <Chip>HTML</Chip>
-        <Chip>CSS</Chip>
-        <Chip>React</Chip>
-        <Chip>Javascript</Chip>
+        <Pill>HTML</Pill>
+        <Pill>CSS</Pill>
+        <Pill>React</Pill>
+        <Pill>Javascript</Pill>
       </div>
     </div>
 
@@ -34,7 +34,7 @@ storiesOf('Chip', module).add('All Chips', () => (
     <hr />
     <br />
 
-    <Text type="H3">Rectangle Chips</Text>
+    <Text type="H3">Rectangle Pills</Text>
     <br />
     <br />
     <div
@@ -50,17 +50,17 @@ storiesOf('Chip', module).add('All Chips', () => (
           width: '250px'
         }}
       >
-        <Chip type="rectangle">HTML</Chip>
-        <Chip type="rectangle">CSS</Chip>
-        <Chip type="rectangle">React</Chip>
-        <Chip type="rectangle">Javascript</Chip>
+        <Pill type="rectangle">HTML</Pill>
+        <Pill type="rectangle">CSS</Pill>
+        <Pill type="rectangle">React</Pill>
+        <Pill type="rectangle">Javascript</Pill>
       </div>
     </div>
 
     <br />
     <hr />
 
-    <Text type="H3">Chips with Close Button</Text>
+    <Text type="H3">Pills with Close Button</Text>
     <br />
     <br />
     <div
@@ -76,18 +76,18 @@ storiesOf('Chip', module).add('All Chips', () => (
           width: '250px'
         }}
       >
-        <Chip type="round" close onCloseClick={action('clicked')}>
+        <Pill type="round" close onCloseClick={action('clicked')}>
           HTML
-        </Chip>
-        <Chip type="round" close onCloseClick={action('clicked')}>
+        </Pill>
+        <Pill type="round" close onCloseClick={action('clicked')}>
           CSS
-        </Chip>
-        <Chip type="round" close onCloseClick={action('clicked')}>
+        </Pill>
+        <Pill type="round" close onCloseClick={action('clicked')}>
           React
-        </Chip>
-        <Chip type="round" close onCloseClick={action('clicked')}>
+        </Pill>
+        <Pill type="round" close onCloseClick={action('clicked')}>
           Javascript
-        </Chip>
+        </Pill>
       </div>
     </div>
 

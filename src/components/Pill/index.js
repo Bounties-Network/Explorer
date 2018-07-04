@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Chip.module.scss';
+import styles from './Pill.module.scss';
 
 import { Text } from 'components';
 
 const Chip = props => {
-  const { style, onClick, close, onCloseClick, children, color } = props;
+  const { type, onClick, close, onCloseClick, children, color } = props;
 
   return (
     <span
-      className={`${styles.chip} ${styles[style]} ${styles[color]} ${
+      className={`${styles.chip} ${styles[type]} ${styles[color]} ${
         styles[close ? 'close' : '']
       }`}
       onClick={onClick}
@@ -27,14 +27,14 @@ const Chip = props => {
 };
 
 Chip.propTypes = {
-  style: PropTypes.oneOf(['round', 'rectangle']),
+  type: PropTypes.oneOf(['round', 'rectangle']),
   onClick: PropTypes.func,
   close: PropTypes.bool,
   onCloseClick: PropTypes.func
 };
 
 Chip.defaultProps = {
-  style: 'round',
+  type: 'round',
   close: false,
   color: ''
 };

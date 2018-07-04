@@ -4,7 +4,7 @@ import styles from './SearchSelect.module.scss';
 import Select from 'react-select';
 import '../../styles/ReactSelect.scss';
 
-import { Text, Chip } from 'components';
+import { Text, Pill } from 'components';
 
 const filterOptions = (filter, options) => {
   let result = [];
