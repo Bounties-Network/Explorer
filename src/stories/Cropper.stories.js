@@ -6,7 +6,7 @@ import { Cropper, Text } from 'components';
 storiesOf('Cropper', module).add('Cropper', () => (
   <div className="container">
     <div style={{ marginTop: '10px' }} />
-    <Text type="H3">Croppie Element</Text>
+    <Text type="H3">Cropper Element</Text>
     <div style={{ marginTop: '10px' }} />
     <Cropper />
     <div style={{ marginTop: '10px' }} />
