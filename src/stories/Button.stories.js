@@ -37,6 +37,12 @@ storiesOf('Button', module).add('All Buttons', () => (
       <Button onClick={action('clicked')} type="link">
         Hello Button
       </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Delete</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} type="link">
+        Hello Button
+      </Button>
     </div>
     <hr />
     <Text type="H3">Icon</Text>
@@ -75,6 +81,12 @@ storiesOf('Button', module).add('All Buttons', () => (
       </Button>
       <div style={{ marginTop: '10px' }} />
       <Text type="H4">Link</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('clicked')} type="link" icon={['fal', 'bell']}>
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Delete</Text>
       <span style={{ marginRight: '10px' }} />
       <Button onClick={action('clicked')} type="link" icon={['fal', 'bell']}>
         Hello Button
@@ -119,6 +131,12 @@ storiesOf('Button', module).add('All Buttons', () => (
       </Button>
       <div style={{ marginTop: '10px' }} />
       <Text type="H4">Link</Text>
+      <span style={{ marginRight: '10px' }} />
+      <Button onClick={action('should not fire')} disabled type="link">
+        Hello Button
+      </Button>
+      <div style={{ marginTop: '10px' }} />
+      <Text type="H4">Delete</Text>
       <span style={{ marginRight: '10px' }} />
       <Button onClick={action('should not fire')} disabled type="link">
         Hello Button
