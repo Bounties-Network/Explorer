@@ -13,6 +13,10 @@ import chevronDown from '@fortawesome/fontawesome-pro-light/faChevronDown';
 import fileArchive from '@fortawesome/fontawesome-pro-light/faFileArchive';
 import times from '@fortawesome/fontawesome-pro-light/faTimes';
 import camera from '@fortawesome/fontawesome-pro-light/faCamera';
+import infoCircle from '@fortawesome/fontawesome-pro-light/faInfoCircle';
+import ellipsisH from '@fortawesome/fontawesome-pro-light/faEllipsisH';
+import checkCircle from '@fortawesome/fontawesome-pro-light/faCheckCircle';
+import exclamationTriangle from '@fortawesome/fontawesome-pro-light/faExclamationTriangle';
 
 library.add(
   faBell,
@@ -28,5 +32,9 @@ library.add(
   chevronDown,
   fileArchive,
   times,
-  camera
+  camera,
+  infoCircle,
+  ellipsisH,
+  checkCircle,
+  exclamationTriangle
 );

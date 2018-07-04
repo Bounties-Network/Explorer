@@ -73,7 +73,7 @@ Text.propTypes = {
 };
 
 Text.defaultProps = {
-  size: 'body',
+  type: 'body',
   src: '',
   link: false,
   id: '',
