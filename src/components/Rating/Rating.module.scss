@@ -1,0 +1,62 @@
+@import "~styles/variables.scss";
+
+$unchecked-star: '\2606';
+$unchecked-color: $brand-lightGrey;
+$checked-star: '\2605';
+$checked-color: $brand-blue;
+
+.starGroup {
+  /* remove inline-block whitespace */
+  font-size: 0;
+  * {
+    font-size: 2rem;
+  }
+  /* flip the order so we can use the + and ~ combinators */
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  & > input {
+    display: none;
+    & + label {
+      /* only enough room for the star */
+      display: inline-block;
+      overflow: hidden;
+      text-indent: 9999px;
+      width: 1em;
+      white-space: nowrap;
+      cursor: pointer;
+      &:before {
+        display: inline-block;
+        text-indent: -9999px;
+        content: $unchecked-star;
+        color: $unchecked-color;
+      }
+    }
+    &:checked ~ label:before,
+      & + label:hover ~ label:before,
+      & + label:hover:before {
+      content: $checked-star;
+      color: $checked-color;
+    }
+  }
+  
+  /* the hidden clearer */
+  & > .starClear + label {
+    text-indent: -9999px;
+    width: .5em;
+    margin-left: -.5em;
+  }
+  & > .starClear + label:before {
+    width: .5em;
+  }
+
+  &:hover > input + label:before {
+    content: $unchecked-star;
+    color: $unchecked-color;
+    text-shadow: none;
+  }
+  &:hover > input + label:hover ~ label:before,
+  &:hover > input + label:hover:before {
+    content: $checked-star;
+    color: $checked-color;
+  }
+}
