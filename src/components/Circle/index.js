@@ -2,11 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Circle.module.scss';
 
-import { Text } from 'components';
+import { Text, Loader } from 'components';
 import Blockies from 'react-blockies';
 
 const Circle = props => {
-  let { type, input, size, color, textColor, textStyle = 'H2', border } = props;
+  let {
+    type,
+    input,
+    size,
+    color,
+    textColor,
+    textStyle = 'H2',
+    border,
+    className
+  } = props;
 
   let textSize = 'Body';
   if (size === 'small') {
@@ -17,7 +26,9 @@ const Circle = props => {
     textSize = 'H1';
   }
 
-  let circleClass = `${styles.circle} ${styles[color]} ${styles[size]}`;
+  let circleClass = `${styles.circle} ${styles[color]} ${
+    styles[size]
+  } ${className}`;
   if (border) {
     circleClass += ` ${styles.border}`;
   }
@@ -63,8 +74,26 @@ const Circle = props => {
     return <Blockies seed={input} size={blockySize} scale={blockyScale} />;
   };
 
+  const renderLoading = () => {
+    if (type !== 'loading') {
+      return null;
+    }
+
+    let loaderSize = 'small';
+    if (size === 'medium' || size === 'large') {
+      loaderSize = 'medium';
+    }
+
+    return (
+      <div className={`${styles.loading}`}>
+        <Loader size={loaderSize} />
+      </div>
+    );
+  };
+
   return (
     <div className={circleClass}>
+      {renderLoading()}
       {renderText()}
       {renderImg()}
       {renderBlocky()}
@@ -73,11 +102,21 @@ const Circle = props => {
 };
 
 Circle.propTypes = {
+  className: PropTypes.string,
   border: PropTypes.bool,
-  type: PropTypes.oneOf(['text', 'img', 'blocky']),
-  input: PropTypes.string,
+  type: PropTypes.oneOf(['text', 'img', 'blocky', 'loading']),
+  input: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  color: PropTypes.oneOf(['purple', 'blue', 'orange', 'green', 'red', 'white']),
+  color: PropTypes.oneOf([
+    'purple',
+    'blue',
+    'orange',
+    'green',
+    'red',
+    'white',
+    'grey',
+    'lightGrey'
+  ]),
   textColor: PropTypes.string,
   textStyle: PropTypes.string
 };

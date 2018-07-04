@@ -47,6 +47,15 @@
   background-color: $brand-red;
 }
 
+.grey {
+  background-color: $brand-grey;
+}
+
+.lightGrey {
+  background-color: $brand-lightGrey;
+}
+
+
 .border {
   border-style: solid;
   border-color: $brand-white;
@@ -58,6 +67,7 @@
 }
 
 .small.border {
+  box-shadow: 0 0 10px #E0E0E0;
   border-width: 1px;
 }
 
@@ -67,6 +77,7 @@
 }
 
 .medium.border {
+  box-shadow: 0 0 10px #E0E0E0;
   border-width: 2px;
 }
 
@@ -77,4 +88,8 @@
 
 .large.border {
   border-width: 3px;
+}
+
+.loading {
+  margin: auto;
 }
