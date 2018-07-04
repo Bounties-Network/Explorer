@@ -7,17 +7,15 @@ import { Circle, Button } from 'components';
 import styles from './Cropper.module.scss';
 
 class Cropper extends React.Component {
-  state = {
-    activeCrop: false
-  };
-
   constructor(props) {
     super(props);
     this.croppieImg = React.createRef();
     this.croppieInput = React.createRef();
+    this.state = {
+      src: props.src,
+      activeCrop: false
+    };
   }
-
-  componentDidMount() {}
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.activeCrop && prevState.file !== this.state.file) {
@@ -26,8 +24,11 @@ class Cropper extends React.Component {
   }
 
   onDelete = () => {
-    this.croppie.destroy();
-    this.croppie = null;
+    if (this.croppie) {
+      this.croppie.destroy();
+      this.croppie = null;
+    }
+
     this.setState({ activeCrop: false, src: null });
   };
 
@@ -63,8 +64,8 @@ class Cropper extends React.Component {
   };
 
   render() {
-    const { src, loading, disabled } = this.props;
-    const { activeCrop, loading: loadingState } = this.state;
+    const { loading, disabled } = this.props;
+    const { activeCrop, loading: loadingState, src } = this.state;
     const isLoading = loading || loadingState;
 
     const disabledState = isLoading || disabled;
@@ -83,6 +84,16 @@ class Cropper extends React.Component {
         <div className={`${styles.contentWrapper} row middle-xs`}>
           <div className="col-xs-3">
             <div className={croppieClass} ref={this.croppieImg} />
+            {src ? (
+              <Circle
+                type="img"
+                size="medium"
+                input={src}
+                color="lightGrey"
+                border
+                className={styles.circleContent}
+              />
+            ) : null}
             {!activeCrop && !src ? (
               <Circle
                 type="text"
@@ -135,7 +146,7 @@ class Cropper extends React.Component {
             ) : null}
             {activeCrop || src ? (
               <Button
-                type="link"
+                type="delete"
                 onClick={this.onDelete}
                 disabled={disabledState}
               >

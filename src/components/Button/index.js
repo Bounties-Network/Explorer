@@ -61,7 +61,8 @@ Button.propTypes = {
     'secondary',
     'destructive',
     'action',
-    'link'
+    'link',
+    'delete'
   ]),
   icon: PropTypes.array,
   disabled: PropTypes.bool,
