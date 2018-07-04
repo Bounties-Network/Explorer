@@ -8,10 +8,10 @@ storiesOf('Cropper', module).add('Cropper', () => (
     <div style={{ marginTop: '10px' }} />
     <Text type="H3">Croppie Element</Text>
     <div style={{ marginTop: '10px' }} />
-    <Croppie />
+    <Cropper />
     <div style={{ marginTop: '10px' }} />
     <Text type="H3">disabled</Text>
     <div style={{ marginTop: '10px' }} />
-    <Croppie disabled />
+    <Cropper disabled />
   </div>
 ));
