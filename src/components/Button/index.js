@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Button.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { Loader } from 'components';
 
 const Button = props => {
   const { className, type, disabled, onClick, loading, icon, fitWidth } = props;
@@ -11,6 +12,11 @@ const Button = props => {
       onClick();
     }
   };
+
+  let loaderColor = 'white';
+  if (type === 'secondary') {
+    loaderColor = 'blue';
+  }
 
   let addedClasses = '';
   if (disabled) {
@@ -41,7 +47,9 @@ const Button = props => {
         {icon ? <FontAwesomeIcon icon={icon} className={styles.icon} /> : null}
         {props.children}
       </div>
-      {loading ? <div className={styles.loader} /> : null}
+      {loading ? (
+        <Loader className={styles.loader} color={loaderColor} />
+      ) : null}
     </button>
   );
 };
@@ -61,6 +69,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  onClick: () => {},
   type: 'primary',
   fitWidth: false
 };

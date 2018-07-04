@@ -35,6 +35,18 @@ storiesOf('Circle', module).add('All Circles', () => (
       <Circle type="img" size="small" input="https://i.imgur.com/lhTwRZY.png" />
     </div>
 
+    <Text type="H3">Loading Circle</Text>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+      }}
+    >
+      <br />
+      <Circle type="img" size="small" type="loading" color="red" />
+    </div>
+
     <hr />
 
     <Text type="H3">Colors</Text>

@@ -10,6 +10,9 @@ import trophyAlt from '@fortawesome/fontawesome-pro-light/faTrophyAlt';
 import userAlt from '@fortawesome/fontawesome-pro-light/faUserAlt';
 import chevronUp from '@fortawesome/fontawesome-pro-light/faChevronUp';
 import chevronDown from '@fortawesome/fontawesome-pro-light/faChevronDown';
+import fileArchive from '@fortawesome/fontawesome-pro-light/faFileArchive';
+import times from '@fortawesome/fontawesome-pro-light/faTimes';
+import camera from '@fortawesome/fontawesome-pro-light/faCamera';
 
 library.add(
   faBell,
@@ -22,5 +25,8 @@ library.add(
   trophyAlt,
   userAlt,
   chevronUp,
-  chevronDown
+  chevronDown,
+  fileArchive,
+  times,
+  camera
 );
