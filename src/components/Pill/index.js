@@ -5,13 +5,22 @@ import styles from './Pill.module.scss';
 import { Text } from 'components';
 
 const Chip = props => {
-  const { type, onClick, close, onCloseClick, children, color } = props;
+  const {
+    type,
+    onClick,
+    close,
+    onCloseClick,
+    children,
+    backgroundColor,
+    borderColor
+  } = props;
 
   return (
     <span
-      className={`${styles.chip} ${styles[type]} ${styles[color]} ${
+      className={`${styles.chip} ${styles[type]} ${styles[backgroundColor]} ${
         styles[close ? 'close' : '']
-      }`}
+      } ${styles[borderColor + 'Border']}
+      `}
       onClick={onClick}
     >
       <Text>{props.children}</Text>
@@ -28,6 +37,8 @@ const Chip = props => {
 
 Chip.propTypes = {
   type: PropTypes.oneOf(['round', 'rectangle']),
+  backgroundColor: PropTypes.string,
+  borderColor: PropTypes.string,
   onClick: PropTypes.func,
   close: PropTypes.bool,
   onCloseClick: PropTypes.func
@@ -36,7 +47,8 @@ Chip.propTypes = {
 Chip.defaultProps = {
   type: 'round',
   close: false,
-  color: ''
+  backgroundColor: 'white',
+  borderColor: 'lightGrey'
 };
 
 export default Chip;

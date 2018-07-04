@@ -59,7 +59,7 @@ class SearchSelect extends React.Component {
     );
   };
 
-  closeChip = name => {
+  closePill = name => {
     const { filters } = this.state;
     const { options } = this.props;
 
@@ -70,13 +70,13 @@ class SearchSelect extends React.Component {
     });
   };
 
-  renderChips = data => {
+  renderPills = data => {
     return data.map((elem, idx) => {
       return (
-        <div className={`${styles.chip}`} key={'chip' + idx}>
-          <Chip close onCloseClick={() => this.closeChip(elem.name)}>
+        <div className={`${styles.pill}`} key={'pill' + idx}>
+          <Pill close onCloseClick={() => this.closePill(elem.name)}>
             {elem.name}
-          </Chip>
+          </Pill>
         </div>
       );
     });
@@ -138,8 +138,8 @@ class SearchSelect extends React.Component {
           </div>
         ) : null}
         <div>
-          <div className={`${styles.chipBar}`}>
-            {this.renderChips(this.state.filters)}
+          <div className={`${styles.pillBar}`}>
+            {this.renderPills(this.state.filters)}
           </div>
         </div>
       </div>

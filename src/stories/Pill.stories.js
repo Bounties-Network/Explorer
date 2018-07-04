@@ -93,5 +93,101 @@ storiesOf('Pill', module).add('All Pills', () => (
 
     <br />
     <hr />
+
+    <Text type="H3">Pills Transparent</Text>
+    <br />
+    <br />
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        backgroundColor: 'blue',
+        height: '60px',
+        paddingTop: '10px'
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '250px'
+        }}
+      >
+        <Pill type="round">HTML</Pill>
+        <Pill type="round">CSS</Pill>
+        <Pill type="round">React</Pill>
+        <Pill type="round">Javascript</Pill>
+      </div>
+    </div>
+
+    <br />
+    <hr />
+
+    <Text type="H3">Playing with Colors and sizes</Text>
+    <br />
+    <br />
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between'
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '250px'
+        }}
+      >
+        <Pill type="round" backgroundColor="blue" borderColor="black">
+          <Text type="H2" color="red">
+            HTML
+          </Text>
+        </Pill>
+        <Pill type="round" backgroundColor="purple" borderColor="purple">
+          <Text type="H4" color="white">
+            CSS
+          </Text>
+        </Pill>
+        <Pill type="round" backgroundColor="grey" borderColor="grey">
+          <Text type="small" color="green">
+            CSS
+          </Text>
+        </Pill>
+        <Pill type="round">Javascript</Pill>
+      </div>
+    </div>
+
+    <br />
+    <hr />
+
+    <Text type="H3">Icons & Network</Text>
+    <br />
+    <br />
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between'
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '250px'
+        }}
+      >
+        <Pill>
+          <Text color="green">&#9679;</Text>
+          <span style={{ marginRight: '10px' }} />
+          <Text color="black">Main Ethereum Network</Text>
+        </Pill>
+        <Pill>
+          <Text color="orange">&#9679;</Text>
+          <span style={{ marginRight: '10px' }} />
+          <Text color="black">Rinkeby Network</Text>
+        </Pill>
+      </div>
+    </div>
   </div>
 ));
