@@ -1,52 +1,113 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './Switch.module.scss';
+import { uniqueId } from 'lodash';
 
-import './Switch.css';
+class Switch extends React.Component {
+  constructor(props) {
+    super(props);
+    const uuid = uniqueId();
+    this.state = {
+      uuid,
+      value: props.offValue
+    };
+  }
 
-const propTypes = {
-  on: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-  enabled: PropTypes.bool,
-  className: PropTypes.string
-};
+  onChange = e => {
+    const value = e.target.value;
 
-const defaultProps = {
-  enabled: true,
-  className: '',
-  onDisabledClick: () => {}
-};
+    this.setState({ value: e.target.value });
+    this.props.onChange(value);
+  };
 
-function Switch({
-  on,
-  onClick,
-  onDisabledClick,
-  enabled,
-  className,
-  children,
-  offOption,
-  onOption
-}) {
-  const classes = [
-    'switch',
-    className,
-    on ? 'on ' : '',
-    enabled ? '' : 'disabled '
-  ].join(' ');
-  return (
-    <div
-      className={classes}
-      onClick={e => (enabled ? onClick(e) : onDisabledClick(e))}
-    >
-      <div className="optionText">
-        <div>{offOption}</div>
-        <div>{onOption}</div>
+  render() {
+    const {
+      offValue,
+      onValue,
+      selectedColor,
+      unselectedColor,
+      backgroundColor,
+      switchColor,
+      value,
+      defaultValue,
+      size,
+      curved
+    } = this.props;
+    const { uuid, value: stateValue } = this.state;
+
+    const currentValue = value || stateValue || defaultValue;
+    let switchClass = `${styles.switch} ${styles[backgroundColor]} ${
+      styles[size]
+    }`;
+    let offClass = `${styles.switchLabel} ${styles.switchLabelOff}`;
+    let onClass = `${styles.switchLabel} ${styles.switchLabelOn}`;
+
+    if (curved) {
+      switchClass += ` ${styles.curved}`;
+    }
+
+    let isOn = false;
+    if (currentValue === onValue) {
+      onClass += ` ${styles[selectedColor]}`;
+      offClass += ` ${styles[unselectedColor]}`;
+      isOn = true;
+    }
+
+    if (currentValue === offValue) {
+      offClass += ` ${styles[selectedColor]}`;
+      onClass += ` ${styles[unselectedColor]}`;
+    }
+
+    return (
+      <div className={switchClass}>
+        <input
+          type="radio"
+          className={styles.switchInput}
+          name={uuid}
+          value={offValue}
+          id={uuid + 'off'}
+          onChange={this.onChange}
+          checked={!isOn}
+        />
+        <label htmlFor={uuid + 'off'} className={offClass}>
+          {offValue}
+        </label>
+        <input
+          type="radio"
+          className={styles.switchInput}
+          name={uuid}
+          value={onValue}
+          id={uuid + 'on'}
+          onChange={this.onChange}
+          checked={isOn}
+        />
+        <label htmlFor={uuid + 'on'} className={onClass}>
+          {onValue}
+        </label>
+        <span className={`${styles.switchSelection} ${styles[switchColor]}`} />
       </div>
-      <div className="switch-toggle" children={children} />
-    </div>
-  );
+    );
+  }
 }
 
-Switch.propTypes = propTypes;
-Switch.defaultProps = defaultProps;
+Switch.propTypes = {
+  onChange: PropTypes.func,
+  backgroundColor: PropTypes.string,
+  switchColor: PropTypes.string,
+  selectedColor: PropTypes.string,
+  unselectedColor: PropTypes.string,
+  size: PropTypes.string,
+  curved: PropTypes.bool
+};
+
+Switch.defaultProps = {
+  onChange: () => {},
+  backgroundColor: 'lightGrey',
+  switchColor: 'white',
+  selectedColor: 'grey',
+  unselectedColor: 'grey',
+  size: 'small',
+  curved: false
+};
 
 export default Switch;

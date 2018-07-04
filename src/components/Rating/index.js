@@ -39,7 +39,7 @@ class Rating extends React.Component {
           key={i + 'input'}
           type="radio"
           id={`${uuid}rating${i}`}
-          name="rating"
+          name={uuid}
           checked={checked}
           value={5 - i}
           className={i === 5 ? styles.starClear : null}
