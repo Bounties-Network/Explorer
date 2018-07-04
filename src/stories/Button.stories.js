@@ -40,7 +40,7 @@ storiesOf('Button', module).add('All Buttons', () => (
       <div style={{ marginTop: '10px' }} />
       <Text type="H4">Delete</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('clicked')} type="link">
+      <Button onClick={action('clicked')} type="delete">
         Hello Button
       </Button>
     </div>
@@ -74,7 +74,7 @@ storiesOf('Button', module).add('All Buttons', () => (
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Destructive</Text>
+      <Text type="H4">Action</Text>
       <span style={{ marginRight: '10px' }} />
       <Button onClick={action('clicked')} type="action" icon={['fal', 'bell']}>
         Hello Button
@@ -88,7 +88,7 @@ storiesOf('Button', module).add('All Buttons', () => (
       <div style={{ marginTop: '10px' }} />
       <Text type="H4">Delete</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('clicked')} type="link" icon={['fal', 'bell']}>
+      <Button onClick={action('clicked')} type="delete" icon={['fal', 'bell']}>
         Hello Button
       </Button>
     </div>
@@ -119,7 +119,7 @@ storiesOf('Button', module).add('All Buttons', () => (
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Destructive</Text>
+      <Text type="H4">Action</Text>
       <span style={{ marginRight: '10px' }} />
       <Button
         onClick={action('should not fire')}
@@ -138,7 +138,7 @@ storiesOf('Button', module).add('All Buttons', () => (
       <div style={{ marginTop: '10px' }} />
       <Text type="H4">Delete</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('should not fire')} disabled type="link">
+      <Button onClick={action('should not fire')} disabled type="delete">
         Hello Button
       </Button>
     </div>
@@ -162,7 +162,7 @@ storiesOf('Button', module).add('All Buttons', () => (
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Destructive</Text>
+      <Text type="H4">Action</Text>
       <span style={{ marginRight: '10px' }} />
       <Button loading type="action">
         Hello Button

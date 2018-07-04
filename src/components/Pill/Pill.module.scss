@@ -6,11 +6,10 @@
   border: 1px solid $brand-lightGrey;
   white-space: nowrap;
   width: fit-content;
-  height: 20px;
-  padding: 0 5px;
+  height: fit-content;
   font-size: 11px;
   font-weight: 400;
-  padding: 0 12px;
+  padding: 5px 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +24,6 @@
 }
 
 .close {
-  
 }
 
 .closeButton {
@@ -47,8 +45,6 @@
 
 .green {
   background-color: $brand-green;
-  color: white;
-  border: none;
 }
 
 .red {
@@ -69,4 +65,40 @@
 
 .darkGrey {
   background-color: $brand-darkGrey;
+}
+
+.purpleBorder {
+  border-color: $brand-purple;
+}
+
+.blueBorder {
+  border-color: $brand-blue;
+}
+
+.orangeBorder {
+  border-color: $brand-orange;
+}
+
+.greenBorder {
+  border-color: $brand-green;
+}
+
+.redBorder {
+  border-color: $brand-red;
+}
+
+.blackBorder {
+  border-color: $brand-black;
+}
+
+.lightGreyBorder {
+  border-color: $brand-lightGrey;
+}
+
+.greyBorder {
+  border-color: $brand-grey;
+}
+
+.darkGreyBorder {
+  border-color: $brand-darkGrey;
 }
