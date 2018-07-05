@@ -17,6 +17,10 @@ import infoCircle from '@fortawesome/fontawesome-pro-light/faInfoCircle';
 import ellipsisH from '@fortawesome/fontawesome-pro-light/faEllipsisH';
 import checkCircle from '@fortawesome/fontawesome-pro-light/faCheckCircle';
 import exclamationTriangle from '@fortawesome/fontawesome-pro-light/faExclamationTriangle';
+import meh from '@fortawesome/fontawesome-pro-light/faMeh';
+import twitter from '@fortawesome/fontawesome-free-brands/faTwitter';
+import facebook from '@fortawesome/fontawesome-free-brands/faFacebook';
+import reddit from '@fortawesome/fontawesome-free-brands/faReddit';
 
 library.add(
   faBell,
@@ -36,5 +40,9 @@ library.add(
   infoCircle,
   ellipsisH,
   checkCircle,
-  exclamationTriangle
+  exclamationTriangle,
+  twitter,
+  facebook,
+  reddit,
+  meh
 );

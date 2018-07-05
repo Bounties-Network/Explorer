@@ -1,0 +1,62 @@
+@import "~styles/variables.scss";
+
+.numberInput {
+}
+
+.input {
+  width: 80px;
+  padding: 0 12px;
+  vertical-align: top;
+  text-align: center;
+  outline: none;
+  background: $brand-lightGrey;
+}
+
+.input,
+.decrement,
+.increment {
+  border: 1px solid #ccc;
+  height: 40px;
+  user-select: none;
+}
+
+.decrement,
+.increment {
+  display: inline-block;
+  width: 30px;
+  line-height: 38px;
+  background: $brand-white;
+  color: $brand-blue;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:active {
+    background: $brand-lightGrey;
+  }
+}
+
+.decrement {
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.increment {
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+}
+
+.disabled {
+  .decrement,
+  .increment {
+    cursor: default;
+    color: $brand-grey;
+    &:active {
+      background: $brand-white;
+    }
+  }
+  .input {
+    background: $brand-grey;
+  }
+}
+
