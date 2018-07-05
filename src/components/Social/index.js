@@ -24,4 +24,10 @@ const Social = props => {
   );
 };
 
+Social.propTypes = {
+  twitterLink: PropTypes.string,
+  facebookLink: PropTypes.string,
+  redditLink: PropTypes.string
+};
+
 export default Social;
