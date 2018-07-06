@@ -1,35 +1,31 @@
 @import "~styles/variables.scss";
 
-.H1 {
+.h1 {
   font-size: $h1-font-size;
 }
 
-.H2 {
+.h2 {
   font-size: $h2-font-size;
 }
 
-.H3 {
+.h3 {
   font-size: $h3-font-size;
 }
 
-.H4 {
+.h4 {
   font-size: $h4-font-size;
 }
 
-.CardHeading {
-  font-size: $base-font-size;
+.h5 {
+  font-size: $h5-font-size;
 }
 
 .Body {
   font-size: $body-font-size;
 }
 
-.BodySmall {
-  font-size: $body-small-font-size;
-}
-
 .Small {
-  font-size: 10px;
+  font-size: $body-small-font-size;
 }
 
 .FormLabel {
@@ -48,7 +44,6 @@ a {
 
 .Link {
   text-decoration: underline;
-  color: $brand-blue;
   cursor: pointer;
 }
 
@@ -64,8 +59,12 @@ a {
   font-weight: 400;
 }
 
-.font-weight-bold {
+.font-weight-medium {
   font-weight: 500;
+}
+
+.font-weight-bold {
+  font-weight: 600;
 }
 
 .purple {
@@ -96,7 +95,7 @@ a {
   color: $brand-lightGrey;
 }
 
-.grey {
+.defaultGrey {
   color: $brand-grey;
 }
 

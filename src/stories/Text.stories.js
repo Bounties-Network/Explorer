@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/storybook.scss';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -6,92 +7,45 @@ import { action } from '@storybook/addon-actions';
 import { Text } from 'components';
 
 storiesOf('Text', module).add('All Texts', () => (
-  <div>
-    <div>
-      <Text type="H4">H1 - 31px</Text>
-      <br />
-      <Text type="H1">The quick brown fox jumps over the lazy dog.!?</Text>
-      <hr />
-    </div>
+  <div class="sb-page-wrapper">
+    <div class="sb-component-group">
+      <div class="sb-component-container">
+        <Text typeScale="h1">Heading 1</Text>
+      </div>
 
-    <div>
-      <Text type="H4">H2 - 25px</Text>
-      <br />
-      <Text type="H2">The quick brown fox jumps over the lazy dog.!?</Text>
-      <hr />
-    </div>
+      <div class="sb-component-container">
+        <Text typeScale="h2">Heading 2</Text>
+      </div>
 
-    <div>
-      <Text type="H4">H3 - 20px</Text>
-      <br />
-      <Text type="H3">The quick brown fox jumps over the lazy dog.!?</Text>
-      <hr />
-    </div>
+      <div class="sb-component-container">
+        <Text typeScale="h3">Heading 3</Text>
+      </div>
 
-    <div>
-      <Text type="H4">H4 - 16px</Text>
-      <br />
-      <Text type="H4">The quick brown fox jumps over the lazy dog.!?</Text>
-      <hr />
-    </div>
+      <div class="sb-component-container">
+        <Text typeScale="h4">Heading 4</Text>
+      </div>
 
-    <div>
-      <Text type="H4">Card Heading - 16px (1em)</Text>
-      <br />
-      <Text type="CardHeading">
-        The quick brown fox jumps over the lazy dog.!?
-      </Text>
-      <hr />
-    </div>
+      <div class="sb-component-container">
+        <Text typeScale="h4">Heading 5</Text>
+      </div>
 
-    <div>
-      <Text type="H4">Body - 16px (1em)</Text>
-      <br />
-      <Text type="Body">The quick brown fox jumps over the lazy dog.!?</Text>
-      <hr />
-    </div>
+      <div class="sb-component-container">
+        <Text typeScale="Body">
+          The quick brown fox jumps over the lazy dog.!?
+        </Text>
+      </div>
 
-    <div>
-      <Text type="H4">Body Small - 14px</Text>
-      <br />
-      <Text type="BodySmall">
-        The quick brown fox jumps over the lazy dog.!?
-      </Text>
-      <hr />
-    </div>
+      <div class="sb-component-container">
+        <Text typeScale="Small">
+          The quick brown fox jumps over the lazy dog.!?
+        </Text>
+      </div>
 
-    <div>
-      <Text type="H4">Form Label / Metadata</Text>
-      <br />
-      <Text type="FormLabel">
-        The quick brown fox jumps over the lazy dog.!?
-      </Text>
-      <hr />
-    </div>
-
-    <div>
-      <Text type="H4">Form Invalid - 14px</Text>
-      <br />
-      <Text type="FormInvalid">
-        The quick brown fox jumps over the lazy dog.!?
-      </Text>
-      <hr />
-    </div>
-
-    <div>
-      <Text type="H4">Alt Label - 12px</Text>
-      <br />
-      <Text type="Alt">The quick brown fox jumps over the lazy dog.!?</Text>
-      <hr />
-    </div>
-
-    <div>
-      <Text type="H4">Link - Body</Text>
-      <br />
-      <Text link src="http://google.com" type="Body">
-        The quick brown fox jumps over the lazy dog.!?
-      </Text>
-      <hr />
+      <div class="sb-component-container">
+        <Text link src="http://google.com" typeScale="Body">
+          The quick brown fox jumps over the lazy dog.!?
+        </Text>
+      </div>
     </div>
   </div>
 ));

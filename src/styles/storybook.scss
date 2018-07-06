@@ -1,0 +1,15 @@
+.sb-page-wrapper {
+  margin: 40px auto 0;
+  max-width: 960px;
+  padding: 0 40px;;
+}
+
+.sb-component-group {
+  padding: 40px;
+  border: 1px solid #efefef;
+  border-radius: 3px;
+}
+
+.sb-component-container:not(:last-child) {
+  margin-bottom: 24px;
+}

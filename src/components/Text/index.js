@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 import styles from './Text.module.scss';
 
 const Text = props => {
-  const { className, type, src, link, color, weight, id, noUnderline } = props;
+  const {
+    className,
+    typeScale,
+    src,
+    link,
+    color,
+    weight,
+    id,
+    noUnderline
+  } = props;
 
   let addedClasses = '';
   if (link) {
@@ -14,7 +23,7 @@ const Text = props => {
 
     return (
       <span
-        className={`text ${className} ${styles[type]} ${addedClasses}`}
+        className={`text ${className} ${styles[typeScale]} ${addedClasses}`}
         id={id}
       >
         <a
@@ -30,7 +39,7 @@ const Text = props => {
 
   return (
     <span
-      className={`text ${className} ${styles[type]} ${styles[color]} ${
+      className={`text ${className} ${styles[typeScale]} ${styles[color]} ${
         styles[weight]
       } ${addedClasses}`}
       id={id}
@@ -42,19 +51,7 @@ const Text = props => {
 
 Text.propTypes = {
   className: PropTypes.string,
-  type: PropTypes.oneOf([
-    'H1',
-    'H2',
-    'H3',
-    'H4',
-    'CardHeading',
-    'Body',
-    'BodySmall',
-    'Small',
-    'FormLabel',
-    'FormInvalid',
-    'Alt'
-  ]),
+  typeScale: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'Body', 'Small']),
   src: PropTypes.string,
   link: PropTypes.bool,
   color: PropTypes.oneOf([
@@ -65,17 +62,22 @@ Text.propTypes = {
     'red',
     'black',
     'white',
-    'grey',
+    'defaultGrey',
     'lightGrey',
     'darkGrey'
   ]),
-  weight: PropTypes.oneOf(['font-weight-regular', 'font-weight-bold'])
+  weight: PropTypes.oneOf([
+    'font-weight-regular',
+    'font-weight-medium',
+    'font-weight-bold'
+  ])
 };
 
 Text.defaultProps = {
-  type: 'Body',
+  typeScale: 'Body',
   src: '',
   link: false,
+  weight: 'font-weight-regular',
   id: '',
   noUnderline: false
 };
