@@ -13,3 +13,13 @@
 .sb-component-container:not(:last-child) {
   margin-bottom: 24px;
 }
+
+.sb-component-group-heading {
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #efefef;
+}
+
+.sb-component-group-description {
+  margin-bottom: 24px;
+}

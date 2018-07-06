@@ -6,6 +6,7 @@ const Text = props => {
   const {
     className,
     typeScale,
+    lineHeight,
     src,
     link,
     color,
@@ -22,36 +23,35 @@ const Text = props => {
     }
 
     return (
-      <span
-        className={`text ${className} ${styles[typeScale]} ${addedClasses}`}
+      <a
+        className={`text ${className} ${styles[typeScale]} ${
+          styles[lineHeight]
+        } ${styles[color]} ${addedClasses}`}
         id={id}
+        href={src}
+        target="_blank"
       >
-        <a
-          className={`${styles[color]} ${addedClasses}`}
-          href={src}
-          target="_blank"
-        >
-          {props.children}
-        </a>
-      </span>
+        {props.children}
+      </a>
     );
   }
 
   return (
-    <span
-      className={`text ${className} ${styles[typeScale]} ${styles[color]} ${
-        styles[weight]
-      } ${addedClasses}`}
+    <p
+      className={`text ${className} ${styles[typeScale]} ${
+        styles[lineHeight]
+      } ${styles[color]} ${styles[weight]} ${addedClasses}`}
       id={id}
     >
       {props.children}
-    </span>
+    </p>
   );
 };
 
 Text.propTypes = {
   className: PropTypes.string,
   typeScale: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'Body', 'Small']),
+  lineHeight: PropTypes.oneOf(['lineHeight-default', 'lineHeight-reset']),
   src: PropTypes.string,
   link: PropTypes.bool,
   color: PropTypes.oneOf([

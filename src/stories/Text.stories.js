@@ -8,6 +8,18 @@ import { Text } from 'components';
 
 storiesOf('Text', module).add('All Texts', () => (
   <div class="sb-page-wrapper">
+    <Text className={'sb-component-group-heading'} typeScale="h1">
+      Typography
+    </Text>
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      Typographic components take props to define scale, line-height, color,
+      weight, text-decoration, and alignment.
+    </Text>
+
     <div class="sb-component-group">
       <div class="sb-component-container">
         <Text typeScale="h1">Heading 1</Text>

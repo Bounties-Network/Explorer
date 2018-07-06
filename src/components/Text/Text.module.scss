@@ -28,14 +28,12 @@
   font-size: $body-small-font-size;
 }
 
-.FormLabel {
-  color: $brand-grey;
-  font-size: $body-small-font-size;
+.lineHeight-default {
+  line-height: $base-line-height;
 }
 
-.FormInvalid {
-  font-size: $body-font-size;
-  color: $brand-red;
+.lineHeight-reset {
+  line-height: $line-height-reset;
 }
 
 a {
