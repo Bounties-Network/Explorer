@@ -11,22 +11,22 @@ const Text = props => {
     link,
     color,
     weight,
-    id,
-    noUnderline
+    alignment,
+    decoration,
+    id
   } = props;
 
   let addedClasses = '';
   if (link) {
-    addedClasses += styles.Link;
-    if (noUnderline) {
-      addedClasses += ` ${styles.noUnderline}`;
-    }
+    addedClasses += ` ${styles.Link}`;
 
     return (
       <a
         className={`text ${className} ${styles[typeScale]} ${
           styles[lineHeight]
-        } ${styles[color]} ${addedClasses}`}
+        } ${styles[color]} ${styles[alignment]} ${
+          styles[decoration]
+        } ${addedClasses}`}
         id={id}
         href={src}
         target="_blank"
@@ -40,7 +40,9 @@ const Text = props => {
     <p
       className={`text ${className} ${styles[typeScale]} ${
         styles[lineHeight]
-      } ${styles[color]} ${styles[weight]} ${addedClasses}`}
+      } ${styles[color]} ${styles[weight]} ${styles[alignment]} ${
+        styles[decoration]
+      } ${addedClasses}`}
       id={id}
     >
       {props.children}
@@ -70,6 +72,13 @@ Text.propTypes = {
     'fontWeight-regular',
     'fontWeight-medium',
     'fontWeight-bold'
+  ]),
+  alignment: PropTypes.oneOf(['align-left', 'align-center', 'align-right']),
+  decoration: PropTypes.oneOf([
+    'underline',
+    'noUnderline',
+    'italic',
+    'uppercase'
   ])
 };
 
@@ -78,8 +87,7 @@ Text.defaultProps = {
   src: '',
   link: false,
   weight: 'font-weight-regular',
-  id: '',
-  noUnderline: false
+  id: ''
 };
 
 export default Text;

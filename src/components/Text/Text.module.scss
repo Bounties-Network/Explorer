@@ -36,21 +36,14 @@
   line-height: $line-height-reset;
 }
 
-a {
-  color: $brand-blue;
-}
-
 .Link {
-  text-decoration: underline;
+  color: $brand-blue;
   cursor: pointer;
-}
+  text-decoration: none;
 
-.Alt {
-  color: $brand-grey;
-  font-size: $body-small-font-size;
-  font-weight: 500;
-  letter-spacing: 0.05rem;
-  text-transform: uppercase;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .fontWeight-regular {
@@ -63,6 +56,20 @@ a {
 
 .fontWeight-bold {
   font-weight: 600;
+}
+
+.align {
+  &-left {
+    text-align: left;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
 }
 
 .purple {
@@ -105,6 +112,19 @@ a {
   color: white;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .noUnderline {
   text-decoration: none;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.uppercase {
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }

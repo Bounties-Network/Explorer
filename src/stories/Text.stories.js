@@ -65,11 +65,11 @@ storiesOf('Text', module).add('All Texts', () => (
       </div>
 
       <div class="sb-component-container">
-        <Text typeScale="Body">Body copy</Text>
+        <Text typeScale="Body">Body copy & Large labels</Text>
       </div>
 
       <div class="sb-component-container">
-        <Text typeScale="Small">Small body copy & labels</Text>
+        <Text typeScale="Small">Metadata & small labels</Text>
       </div>
 
       <div class="sb-component-container">
@@ -141,20 +141,95 @@ storiesOf('Text', module).add('All Texts', () => (
 
     <div class="sb-component-group">
       <div class="sb-component-container">
-        <Text typeScale="h3" weight="fontWeight-regular">
+        <Text typeScale="Body" weight="fontWeight-regular">
           Regular
         </Text>
       </div>
 
       <div class="sb-component-container">
-        <Text typeScale="h3" weight="fontWeight-medium">
+        <Text typeScale="Body" weight="fontWeight-medium">
           Medium
         </Text>
       </div>
 
       <div class="sb-component-container">
-        <Text typeScale="h3" weight="fontWeight-bold">
+        <Text typeScale="Body" weight="fontWeight-bold">
           Bold
+        </Text>
+      </div>
+    </div>
+
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Alignment
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The alignment prop will define left, centered, or right text-alignment for
+      the given text component.
+    </Text>
+
+    <div class="sb-component-group">
+      <div class="sb-component-container">
+        <Text typeScale="Body" alignment="align-left">
+          Left align
+        </Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Body" alignment="align-center">
+          Center align
+        </Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Body" alignment="align-right">
+          Right align
+        </Text>
+      </div>
+    </div>
+
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Decoration
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The decoration prop will define CSS text-decoration for the given text
+      component. This can be used to add or remove underline, uppercase, and
+      italic properties to individual text components.
+    </Text>
+
+    <div class="sb-component-group">
+      <div class="sb-component-container">
+        <Text typeScale="Body" decoration="underline">
+          Underline
+        </Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Body" decoration="italic">
+          Italic
+        </Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Body" decoration="uppercase">
+          Uppercase
         </Text>
       </div>
     </div>
