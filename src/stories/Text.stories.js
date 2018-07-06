@@ -11,6 +11,7 @@ storiesOf('Text', module).add('All Texts', () => (
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
+      color="purple"
       weight="fontWeight-bold"
     >
       Typography
@@ -23,7 +24,14 @@ storiesOf('Text', module).add('All Texts', () => (
       Typographic components take props to define scale, line-height, color,
       weight, text-decoration, and alignment. These can all be combined to
       create a variety of typographic treatments to fit the demands of the
-      interface.
+      interface. Our UI uses the typeface{' '}
+      <Text link src="https://rsms.me/inter/">
+        Inter UI
+      </Text>{' '}
+      created by{' '}
+      <Text link src="https://twitter.com/rsms">
+        Rasmus Andersson
+      </Text>.
     </Text>
 
     <Text
@@ -70,12 +78,6 @@ storiesOf('Text', module).add('All Texts', () => (
 
       <div class="sb-component-container">
         <Text typeScale="Small">Metadata & small labels</Text>
-      </div>
-
-      <div class="sb-component-container">
-        <Text link src="http://google.com" typeScale="Body">
-          Link
-        </Text>
       </div>
     </div>
 
