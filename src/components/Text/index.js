@@ -67,9 +67,9 @@ Text.propTypes = {
     'darkGrey'
   ]),
   weight: PropTypes.oneOf([
-    'font-weight-regular',
-    'font-weight-medium',
-    'font-weight-bold'
+    'fontWeight-regular',
+    'fontWeight-medium',
+    'fontWeight-bold'
   ])
 };
 
