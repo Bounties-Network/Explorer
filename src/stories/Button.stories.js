@@ -10,13 +10,13 @@ storiesOf('Button', module).add('All Buttons', () => (
     <Text type="H3">Button Type</Text>
     <div>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Primary</Text>
+      <Text type="H4">Default</Text>
       <span style={{ marginRight: '10px' }} />
       <Button onClick={action('clicked')}>Hello Button</Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Secondary</Text>
+      <Text type="H4">Primary</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('clicked')} type="secondary">
+      <Button onClick={action('clicked')} type="primary">
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
@@ -40,7 +40,7 @@ storiesOf('Button', module).add('All Buttons', () => (
       <div style={{ marginTop: '10px' }} />
       <Text type="H4">Delete</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('clicked')} type="delete">
+      <Button onClick={action('clicked')} type="link-destructive">
         Hello Button
       </Button>
     </div>
@@ -48,19 +48,15 @@ storiesOf('Button', module).add('All Buttons', () => (
     <Text type="H3">Icon</Text>
     <div>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Primary</Text>
+      <Text type="H4">Default</Text>
       <span style={{ marginRight: '10px' }} />
       <Button onClick={action('clicked')} icon={['fal', 'bell']}>
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Secondary</Text>
+      <Text type="H4">Primary</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button
-        onClick={action('clicked')}
-        type="secondary"
-        icon={['fal', 'bell']}
-      >
+      <Button onClick={action('clicked')} type="primary" icon={['fal', 'bell']}>
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
@@ -86,9 +82,13 @@ storiesOf('Button', module).add('All Buttons', () => (
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Delete</Text>
+      <Text type="H4">Linkn-Destructive</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('clicked')} type="delete" icon={['fal', 'bell']}>
+      <Button
+        onClick={action('clicked')}
+        type="link-destructive"
+        icon={['fal', 'bell']}
+      >
         Hello Button
       </Button>
     </div>
@@ -96,15 +96,15 @@ storiesOf('Button', module).add('All Buttons', () => (
     <Text type="H3">Disabled</Text>
     <div>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Primary</Text>
+      <Text type="H4">Default</Text>
       <span style={{ marginRight: '10px' }} />
       <Button onClick={action('should not fire')} disabled>
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Secondary</Text>
+      <Text type="H4">Primary</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('should not fire')} disabled type="secondary">
+      <Button onClick={action('should not fire')} disabled type="primary">
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
@@ -136,9 +136,13 @@ storiesOf('Button', module).add('All Buttons', () => (
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Delete</Text>
+      <Text type="H4">Link-Destructive</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('should not fire')} disabled type="delete">
+      <Button
+        onClick={action('should not fire')}
+        disabled
+        type="link-destructive"
+      >
         Hello Button
       </Button>
     </div>
@@ -146,13 +150,13 @@ storiesOf('Button', module).add('All Buttons', () => (
     <Text type="H3">Loading</Text>
     <div>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Primary</Text>
+      <Text type="H4">Default</Text>
       <span style={{ marginRight: '10px' }} />
       <Button loading>Hello Button</Button>
       <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Secondary</Text>
+      <Text type="H4">Primary</Text>
       <span style={{ marginRight: '10px' }} />
-      <Button loading type="secondary">
+      <Button loading type="primary">
         Hello Button
       </Button>
       <div style={{ marginTop: '10px' }} />
@@ -173,7 +177,9 @@ storiesOf('Button', module).add('All Buttons', () => (
     <div>
       <Text type="H3">Fit Width Button</Text>
       <div style={{ marginTop: '10px', width: '300px' }}>
-        <Button fitWidth>Fit Width</Button>
+        <Button fitWidth type="primary">
+          Fit Width
+        </Button>
       </div>
     </div>
   </div>

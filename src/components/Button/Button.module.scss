@@ -7,8 +7,8 @@
   box-shadow: $base-box-shadow;
   cursor: pointer;
   display: inline-block;
-  font-size: $h4-font-size;
-  padding: 10px 15px;
+  font-size: $body-font-size;
+  padding: ($base-spacing * 1.5) $l-spacing;
   white-space: nowrap;
 }
 
@@ -44,7 +44,7 @@
   }
 }
 
-.secondary {
+.default {
   background-color: $brand-white;
   border: 1px solid $base-border-color;
   color: $brand-darkGrey;
@@ -106,7 +106,7 @@
 }
 
 
-.delete {
+.link-destructive {
   background-color: none;
   color: $brand-red;
   text-decoration: underline;

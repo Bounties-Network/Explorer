@@ -58,11 +58,11 @@ Button.propTypes = {
   className: PropTypes.string,
   type: PropTypes.oneOf([
     'primary',
-    'secondary',
+    'default',
     'destructive',
     'action',
     'link',
-    'delete'
+    'link-destructive'
   ]),
   icon: PropTypes.array,
   disabled: PropTypes.bool,
@@ -71,7 +71,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   onClick: () => {},
-  type: 'primary',
+  type: 'default',
   fitWidth: false
 };
 
