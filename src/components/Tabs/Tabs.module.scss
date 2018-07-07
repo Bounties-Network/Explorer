@@ -4,43 +4,41 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   border-bottom: 1px solid $brand-lightGrey;
 }
 
 .tab {
-  flex-grow: 1;
-  text-align: center;
+  display: flex;
+  align-items: center;
   width: auto;
+  padding: ($base-spacing * 1.5) $base-spacing;
   cursor: pointer;
-  padding: 5px 0;
+  border-bottom: 2px solid transparent;
+
+  &:not(:last-child) {
+    margin-right: $l-spacing;
+  }
 }
 
 .notification {
-  margin-left: 30px;
-  border-radius: 8px;
-  background-color: $brand-lightGrey;
-  padding: 0 3px;
+  margin-left: $base-spacing;
+  border-radius: 50px;
+  background-color: $brand-nearWhite;
+  padding: 0 $base-spacing 2px;
 }
 
 .notification.blue {
-  background-color: $brand-blue; 
+  background-color: $brand-blue;
 }
 
 .notification.green {
   background-color: $brand-green;
-  color: $brand-white;
 }
 
 .notification.lightGrey {
   background-color: $brand-lightGrey;
-  color: $brand-white;
 }
 
 .active {
   border-bottom: 2px solid $brand-blue;
-}
-
-.notActive {
-
 }
