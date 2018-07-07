@@ -34,18 +34,15 @@ $brand-dark-purple: #2E2A35;
 
 $brand-destructive: #D14545;
 $brand-destructive-hover: darken($brand-destructive, 10%);
-$brand-destructive-disabled: lighten($brand-destructive, 30%);
+$brand-red: $brand-destructive;
 
 $brand-blue: #4A93FF;
 $brand-blue-hover: darken($brand-blue, 10%);
-$brand-blue-disabled: lighten($brand-blue, 25%);
 
 $brand-orange: #FBAA31;
 
 $brand-green: #6FC78D;
-$brand-red: #D14545;
-$brand-red-hover: #870101;
-$brand-red-disabled: #ee9999;
+$brand-green-hover: darken($brand-green, 10%);
 
 $brand-black: #262626;
 $brand-darkGrey: #636363;
@@ -58,8 +55,6 @@ $brand-purpleWhite: #cebeff;
 $base-input-background: #F9F8FD;
 
 $base-border-color: $brand-lightGrey;
-
-$brand-disabled: rgb(249, 249, 249);
 
 // need black/grey color pallete
 // need disabled/hover colors

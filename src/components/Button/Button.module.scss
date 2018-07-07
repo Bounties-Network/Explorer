@@ -1,7 +1,7 @@
 @import "~styles/variables.scss";
 
 .button {
-  border-radius: 3px;
+  border-radius: $base-border-radius;
   position: relative;
   border: none;
   box-shadow: $base-box-shadow;
@@ -21,6 +21,7 @@
 }
 
 .disabled {
+  cursor: default;
   border: none;
   box-shadow: none;
 }
@@ -29,63 +30,92 @@
   cursor: default;
 }
 
-.primary {
-  background-color: $brand-blue;
-  color: $brand-nearWhite;
-
-  &:hover {
-    background-color: $brand-blue-hover;
-  }
-
-  &.disabled {
-     background-color: $brand-blue-disabled;
-     color: $brand-white;
-     cursor: default;
-  }
-}
-
 .default {
   background-color: $brand-white;
   border: 1px solid $base-border-color;
   color: $brand-darkGrey;
 
   &:hover {
-    background-color: $brand-nearWhite;
+    border-color: $brand-blue;
+    color: $brand-blue;
   }
 
   &.disabled{
      background-color: $brand-nearWhite;
      border: none;
      color: $brand-grey;
-     cursor: default;
+  }
+
+  &.buttonLoading:hover {
+    border-color: $base-border-color;
+    color: $brand-darkGrey;
+    cursor: default;
+  }
+}
+
+.primary {
+  background-color: $brand-blue;
+  color: $brand-white;
+
+  &:hover {
+    background-color: $brand-blue-hover;
+  }
+
+  &.disabled {
+     opacity: 0.4;
+
+     &:hover {
+       background-color: $brand-blue;
+     }
+  }
+
+  &.buttonLoading:hover {
+    background-color: $brand-blue;
+    cursor: default;
   }
 }
 
 .destructive {
   background-color: $brand-destructive;
-  color: $brand-disabled;
+  color: $brand-white;
 
   &:hover {
     background-color: $brand-destructive-hover;
   }
 
   &.disabled{
-     background-color: $brand-destructive-disabled;
-     color: $brand-disabled;
-     cursor: default;
+     opacity: 0.4;
+
+     &:hover {
+       background-color: $brand-destructive;
+     }
+  }
+
+  &.buttonLoading:hover {
+    background-color: $brand-destructive;
+    cursor: default;
   }
 }
 
 .action {
   background-color: $brand-green;
-  color: $brand-disabled;
+  color: $brand-white;
 
   &:hover {
-
+    background-color: $brand-green-hover;
   }
 
   &.disabled {
+    opacity: 0.4;
 
+    &:hover {
+      background-color: $brand-green;
+    }
+  }
+
+  &.buttonLoading:hover {
+    background-color: $brand-green;
+    cursor: default;
   }
 }
 
@@ -97,11 +127,11 @@
   box-shadow: none;
 
   &:hover {
-    color: $brand-blue-hover;
+    opacity: 0.75;
   }
 
   &.disabled {
-    color: $brand-blue-disabled;
+    opacity: 0.4;
   }
 }
 
@@ -114,11 +144,11 @@
   box-shadow: none;
 
   &:hover {
-    color: $brand-red-hover;
+    opacity: 0.75;
   }
 
   &.disabled {
-    color: $brand-red-disabled;
+    opacity: 0.4
   }
 }
 
