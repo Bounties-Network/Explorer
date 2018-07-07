@@ -14,7 +14,7 @@ const Button = props => {
   };
 
   let loaderColor = 'white';
-  if (type === 'secondary') {
+  if (type === 'default') {
     loaderColor = 'blue';
   }
 
