@@ -24,7 +24,7 @@
   margin-left: $base-spacing;
   border-radius: 50px;
   background-color: $brand-nearWhite;
-  padding: 0 $base-spacing 2px;
+  padding: $s-spacing $base-spacing;
 }
 
 .notification.blue {

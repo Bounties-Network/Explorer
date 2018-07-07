@@ -37,7 +37,7 @@ const Text = props => {
   }
 
   return (
-    <span
+    <p
       className={`text ${className} ${styles[typeScale]} ${
         styles[lineHeight]
       } ${styles[color]} ${styles[weight]} ${styles[alignment]} ${
@@ -46,7 +46,7 @@ const Text = props => {
       id={id}
     >
       {props.children}
-    </span>
+    </p>
   );
 };
 
