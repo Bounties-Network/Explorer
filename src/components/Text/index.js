@@ -12,7 +12,7 @@ const Text = props => {
     color,
     weight,
     alignment,
-    decoration,
+    style,
     id
   } = props;
 
@@ -25,7 +25,7 @@ const Text = props => {
         className={`text ${className} ${styles[typeScale]} ${
           styles[lineHeight]
         } ${styles[color]} ${styles[alignment]} ${
-          styles[decoration]
+          styles[style]
         } ${addedClasses}`}
         id={id}
         href={src}
@@ -41,7 +41,7 @@ const Text = props => {
       className={`text ${className} ${styles[typeScale]} ${
         styles[lineHeight]
       } ${styles[color]} ${styles[weight]} ${styles[alignment]} ${
-        styles[decoration]
+        styles[style]
       } ${addedClasses}`}
       id={id}
     >
@@ -74,12 +74,7 @@ Text.propTypes = {
     'fontWeight-bold'
   ]),
   alignment: PropTypes.oneOf(['align-left', 'align-center', 'align-right']),
-  decoration: PropTypes.oneOf([
-    'underline',
-    'noUnderline',
-    'italic',
-    'uppercase'
-  ])
+  style: PropTypes.oneOf(['underline', 'noUnderline', 'italic', 'uppercase'])
 };
 
 Text.defaultProps = {

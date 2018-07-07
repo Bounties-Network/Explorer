@@ -22,9 +22,9 @@ storiesOf('Text', module).add('All Texts', () => (
       lineHeight="lineHeight-default"
     >
       Typographic components take props to define scale, line-height, color,
-      weight, text-decoration, and alignment. These can all be combined to
-      create a variety of typographic treatments to fit the demands of the
-      interface. Our UI uses the typeface{' '}
+      weight, alignment, and style. These can all be combined to create a
+      variety of typographic treatments to fit the demands of the interface. Our
+      UI uses the typeface{' '}
       <Text link src="https://rsms.me/inter/">
         Inter UI
       </Text>{' '}
@@ -47,8 +47,8 @@ storiesOf('Text', module).add('All Texts', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The typeScale prop will define a font-size for the given text component
-      based on our typographic scale.
+      The <code>typeScale</code> prop will define a font-size for the given text
+      component based on our typographic scale.
     </Text>
 
     <div class="sb-component-group">
@@ -94,32 +94,32 @@ storiesOf('Text', module).add('All Texts', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The color prop will define a color for the given text component based on
-      our brands color variables.
+      The <code>color</code> prop will define a color for the given text
+      component based on our brands color variables.
     </Text>
 
     <div class="sb-component-group">
       <div class="sb-component-container">
         <Text typeScale="h3" color="black">
-          Darkest grey
+          black
         </Text>
       </div>
 
       <div class="sb-component-container">
         <Text typeScale="Body" color="darkGrey">
-          Body text grey
+          darkGrey
         </Text>
       </div>
 
       <div class="sb-component-container">
         <Text typeScale="Body" color="blue">
-          Link blue
+          blue
         </Text>
       </div>
 
       <div class="sb-component-container">
         <Text typeScale="Body" color="red">
-          Destructuve red
+          red
         </Text>
       </div>
     </div>
@@ -137,8 +137,9 @@ storiesOf('Text', module).add('All Texts', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The weight prop will define a font-weight for the given text component. We
-      use one of 3 weights for our UI typography: regular, medium, and bold.
+      The <code>weight</code> prop will define a font-weight for the given text
+      component. We use one of 3 weights for our UI typography: regular, medium,
+      and bold.
     </Text>
 
     <div class="sb-component-group">
@@ -174,8 +175,8 @@ storiesOf('Text', module).add('All Texts', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The alignment prop will define left, centered, or right text-alignment for
-      the given text component.
+      The <code>alignment</code> prop will define left, centered, or right
+      text-alignment for the given text component.
     </Text>
 
     <div class="sb-component-group">
@@ -203,7 +204,7 @@ storiesOf('Text', module).add('All Texts', () => (
       typeScale="h3"
       weight="fontWeight-bold"
     >
-      Decoration
+      Style
     </Text>
 
     <Text
@@ -211,26 +212,27 @@ storiesOf('Text', module).add('All Texts', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The decoration prop will define CSS text-decoration for the given text
-      component. This can be used to add or remove underline, uppercase, and
-      italic properties to individual text components.
+      The <code>style</code> prop will apply certain CSS text-decoration,
+      font-style, and text-transforms for the given text component. This can be
+      used to add or remove underline, uppercase, and italic properties to
+      individual text components.
     </Text>
 
     <div class="sb-component-group">
       <div class="sb-component-container">
-        <Text typeScale="Body" decoration="underline">
+        <Text typeScale="Body" style="underline">
           Underline
         </Text>
       </div>
 
       <div class="sb-component-container">
-        <Text typeScale="Body" decoration="italic">
+        <Text typeScale="Body" style="italic">
           Italic
         </Text>
       </div>
 
       <div class="sb-component-container">
-        <Text typeScale="Body" decoration="uppercase">
+        <Text typeScale="Body" style="uppercase">
           Uppercase
         </Text>
       </div>

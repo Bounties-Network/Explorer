@@ -1,3 +1,5 @@
+@import "~styles/variables.scss";
+
 .sb-page-wrapper {
   margin: 56px auto 0;
   max-width: 700px;
@@ -29,4 +31,13 @@
 
 .sb-component-group-description {
   margin-bottom: 24px;
+}
+
+code {
+  background: $brand-nearWhite;
+  border-radius: $base-border-radius;
+  color: $brand-darkGrey;
+  font-family: monospace;
+  margin: 0 $s-spacing;
+  padding: $s-spacing;
 }
