@@ -1,3 +1,5 @@
+@import "~styles/variables.scss";
+
 .cropper {
 }
 
@@ -13,14 +15,15 @@
 
 .upload {
   position: relative;
-  margin-right: 10px;
+  margin-right: $m-spacing;
 }
 
 .saveButton {
-  margin-right: 10px;
+  margin-right: $m-spacing;
 }
 
 .croppie {
+  border-radius: $base-border-radius;
   margin: 0 auto;
   width: 200px;
   height: 200px;
@@ -31,6 +34,8 @@
 }
 
 .contentWrapper {
+  display: flex;
+  align-items: center;
   height: 200px;
 }
 

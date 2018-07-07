@@ -117,11 +117,7 @@ class Cropper extends React.Component {
           </div>
           <div className="col-xs-9">
             {src ? null : (
-              <Button
-                type="secondary"
-                className={styles.upload}
-                disabled={disabledState}
-              >
+              <Button className={styles.upload} disabled={disabledState}>
                 {activeCrop || src ? 'Replace Photo' : 'Upload New Photo'}
                 <input
                   type="file"
@@ -146,7 +142,7 @@ class Cropper extends React.Component {
             ) : null}
             {activeCrop || src ? (
               <Button
-                type="delete"
+                type="link-destructive"
                 onClick={this.onDelete}
                 disabled={disabledState}
               >
