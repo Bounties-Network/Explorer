@@ -22,19 +22,6 @@
   border-radius: 50%;
 }
 
-.white {
-  background-color: white;
-  box-shadow: $brand-circle-box-shadow;
-}
-
-.purple {
-  background-color: $brand-purple;
-}
-
-.blue {
-  background-color: $brand-blue;
-}
-
 .orange {
   background-color: $brand-orange;
 }
@@ -47,47 +34,28 @@
   background-color: $brand-red;
 }
 
-.grey {
-  background-color: $brand-grey;
-}
-
 .lightGrey {
   background-color: $brand-lightGrey;
 }
 
-
-.border {
-  border-style: solid;
-  border-color: $brand-white;
-}
-
 .small {
-  height: 35px;
-  width: 35px;
-}
-
-.small.border {
-  box-shadow: 0 0 10px #E0E0E0;
-  border-width: 1px;
+  height: $xxl-spacing;
+  width: $xxl-spacing;
 }
 
 .medium {
-  height: 60px;
-  width: 60px;
-}
-
-.medium.border {
-  box-shadow: 0 0 10px #E0E0E0;
-  border-width: 2px;
+  height: $xl-spacing * 2;
+  width: $xl-spacing * 2;
 }
 
 .large {
-  height: 110px;
-  width: 110px;
+  height: $xxl-spacing * 2;
+  width: $xxl-spacing * 2;
 }
 
-.large.border {
-  border-width: 3px;
+.hasBorder {
+  border: 2px solid $brand-white;
+  box-shadow: $base-box-shadow;
 }
 
 .loading {

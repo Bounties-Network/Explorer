@@ -16,9 +16,21 @@ storiesOf('Circle', module).add('All Circles', () => (
       }}
     >
       <br />
-      <Circle type="text" size="small" input="3/4" />
+      <Circle
+        type="text"
+        size="small"
+        color="orange"
+        textColor="white"
+        input="3/4"
+      />
       <br />
-      <Circle type="text" size="small" input="100%" />
+      <Circle
+        type="text"
+        size="small"
+        color="orange"
+        textColor="white"
+        input="100%"
+      />
     </div>
 
     <hr />
@@ -58,38 +70,6 @@ storiesOf('Circle', module).add('All Circles', () => (
       }}
     >
       <br />
-      <Text type="H4">White</Text>
-      <br />
-      <Circle
-        type="text"
-        size="small"
-        input="100%"
-        color="white"
-        textColor="black"
-      />
-      <br />
-      <br />
-      <Text type="H4">Purple</Text>
-      <br />
-      <Circle
-        type="text"
-        size="small"
-        input="100%"
-        color="purple"
-        textColor="white"
-      />
-      <br />
-      <br />
-      <Text type="H4">Blue</Text>
-      <br />
-      <Circle
-        type="text"
-        size="small"
-        input="100%"
-        color="blue"
-        textColor="white"
-      />
-      <br />
       <br />
       <Text type="H4">Orange</Text>
       <br />
@@ -97,7 +77,7 @@ storiesOf('Circle', module).add('All Circles', () => (
         type="text"
         size="small"
         input="100%"
-        color="orange"
+        color="green"
         textColor="white"
       />
       <br />
@@ -108,7 +88,7 @@ storiesOf('Circle', module).add('All Circles', () => (
         type="text"
         size="small"
         input="100%"
-        color="green"
+        color="orange"
         textColor="white"
       />
       <br />
@@ -143,7 +123,7 @@ storiesOf('Circle', module).add('All Circles', () => (
         type="text"
         size="small"
         input="100%"
-        color="purple"
+        color="green"
         textColor="white"
       />
       <br />
@@ -165,7 +145,7 @@ storiesOf('Circle', module).add('All Circles', () => (
         type="text"
         size="large"
         input="100%"
-        color="green"
+        color="red"
         textColor="white"
       />
       <Text type="H3">Blockies</Text>

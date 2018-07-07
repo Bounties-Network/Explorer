@@ -19,18 +19,22 @@ const Circle = props => {
 
   let textSize = 'Body';
   if (size === 'small') {
-    textSize = 'BodySmall';
+    textSize = 'Small';
+  }
+
+  if (size === 'medium') {
+    textSize = 'h4';
   }
 
   if (size === 'large') {
-    textSize = 'H1';
+    textSize = 'h3';
   }
 
   let circleClass = `${styles.circle} ${styles[color]} ${
     styles[size]
   } ${className}`;
   if (border) {
-    circleClass += ` ${styles.border}`;
+    circleClass += ` ${styles.hasBorder}`;
   }
 
   const renderText = () => {
@@ -40,7 +44,7 @@ const Circle = props => {
 
     return (
       <div className={`${styles.text}`}>
-        <Text color={textColor} type={textSize}>
+        <Text color={textColor} typeScale={textSize}>
           {input}
         </Text>
       </div>
@@ -60,16 +64,8 @@ const Circle = props => {
       return null;
     }
 
-    let blockySize = 25;
-    let blockyScale = 4;
-    if (size === 'small') {
-      blockySize = 13;
-      blockyScale = 4;
-    }
-    if (size === 'large') {
-      blockySize = 40;
-      blockyScale = 5;
-    }
+    let blockySize = 15;
+    let blockyScale = 5;
 
     return <Blockies seed={input} size={blockySize} scale={blockyScale} />;
   };
@@ -80,7 +76,7 @@ const Circle = props => {
     }
 
     let loaderSize = 'small';
-    if (size === 'medium' || size === 'large') {
+    if (size === 'large') {
       loaderSize = 'medium';
     }
 
@@ -106,17 +102,8 @@ Circle.propTypes = {
   border: PropTypes.bool,
   type: PropTypes.oneOf(['text', 'img', 'blocky', 'loading']),
   input: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  color: PropTypes.oneOf([
-    'purple',
-    'blue',
-    'orange',
-    'green',
-    'red',
-    'white',
-    'grey',
-    'lightGrey'
-  ]),
+  size: PropTypes.oneOf(['small', 'large']),
+  color: PropTypes.oneOf(['orange', 'green', 'red', 'lightGrey']),
   textColor: PropTypes.string,
   textStyle: PropTypes.string
 };
@@ -124,10 +111,10 @@ Circle.propTypes = {
 Circle.defaultProps = {
   border: false,
   type: 'text',
-  size: 'medium',
+  size: 'small',
   color: 'white',
   textColor: 'black',
-  textStyle: 'H2'
+  textSize: 'h3'
 };
 
 export default Circle;

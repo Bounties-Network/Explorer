@@ -87,7 +87,7 @@ class Cropper extends React.Component {
             {src ? (
               <Circle
                 type="img"
-                size="medium"
+                size="large"
                 input={src}
                 color="lightGrey"
                 border
@@ -97,7 +97,7 @@ class Cropper extends React.Component {
             {!activeCrop && !src ? (
               <Circle
                 type="text"
-                size="medium"
+                size="large"
                 input={<FontAwesomeIcon icon={['fal', 'camera']} />}
                 textColor="darkGrey"
                 color="lightGrey"
@@ -108,7 +108,7 @@ class Cropper extends React.Component {
             {isLoading ? (
               <Circle
                 type="loading"
-                size="medium"
+                size="large"
                 color="lightGrey"
                 border
                 className={styles.circleContent}
