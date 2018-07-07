@@ -84,24 +84,8 @@ storiesOf('Button', module).add('All Buttons', () => (
     </Text>
 
     <div class="sb-component-group sb-button-group">
-      <Button onClick={action('clicked')} icon={['fal', 'bell']}>
-        Default
-      </Button>
-
-      <Button onClick={action('clicked')} type="primary" icon={['fal', 'bell']}>
-        Primary
-      </Button>
-
-      <Button
-        onClick={action('clicked')}
-        type="destructive"
-        icon={['fal', 'bell']}
-      >
-        Destructive
-      </Button>
-
-      <Button onClick={action('clicked')} type="action" icon={['fal', 'bell']}>
-        Action
+      <Button onClick={action('clicked')} type="primary" icon={['far', 'plus']}>
+        Create new bounty
       </Button>
     </div>
 

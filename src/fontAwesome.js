@@ -1,5 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import faBell from '@fortawesome/fontawesome-pro-light/faBell';
+import plus from '@fortawesome/fontawesome-pro-regular/faPlus';
 import cog from '@fortawesome/fontawesome-pro-light/faCog';
 import faTimes from '@fortawesome/fontawesome-pro-light/faTimes';
 import wallet from '@fortawesome/fontawesome-pro-light/faWallet';
@@ -24,6 +25,7 @@ import reddit from '@fortawesome/fontawesome-free-brands/faReddit';
 
 library.add(
   faBell,
+  plus,
   cog,
   signout,
   faTimes,
