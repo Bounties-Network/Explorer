@@ -46,6 +46,12 @@
   }
 }
 
+.inputLabel {
+  color: $brand-grey;
+  margin-bottom: $base-spacing;
+  font-size: $body-small-font-size;
+}
+
 .fontWeight-regular {
   font-weight: 400;
 }

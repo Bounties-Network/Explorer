@@ -9,6 +9,7 @@ const Text = props => {
     lineHeight,
     src,
     link,
+    inputLabel,
     color,
     weight,
     alignment,
@@ -33,6 +34,21 @@ const Text = props => {
       >
         {props.children}
       </a>
+    );
+  }
+
+  if (inputLabel) {
+    addedClasses += `${styles.inputLabel}`;
+
+    return (
+      <p
+        className={`text ${className} ${styles[lineHeight]} ${styles[weight]} ${
+          styles[alignment]
+        } ${addedClasses}`}
+        id={id}
+      >
+        {props.children}
+      </p>
     );
   }
 
