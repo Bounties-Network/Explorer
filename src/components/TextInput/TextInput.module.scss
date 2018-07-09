@@ -4,7 +4,7 @@
   height: $base-input-height;
   background-color: $base-input-background;
   border-radius: $base-border-radius;
-  border: 1px solid $brand-lightGrey;
+  border: $base-border;
   font-size: $body-font-size;
   padding: 0 $m-spacing;
 }
