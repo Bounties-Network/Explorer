@@ -80,8 +80,9 @@
     font-size: $body-font-size;
 
     &:focus {
-      outline: 1px solid $brand-blue;
-      border: 1px solid $brand-blue;
+      border-color: transparent;
+      box-shadow: 0 0 0 2px $brand-blue;
+      outline: none;
     }
 
     &:disabled {

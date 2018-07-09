@@ -42,9 +42,9 @@ const Text = props => {
 
     return (
       <p
-        className={`text ${className} ${styles[lineHeight]} ${styles[weight]} ${
-          styles[alignment]
-        } ${addedClasses}`}
+        className={`text ${className} ${styles[lineHeight]} ${styles[color]} ${
+          styles[weight]
+        } ${styles[alignment]} ${addedClasses}`}
         id={id}
       >
         {props.children}
