@@ -8,7 +8,9 @@
   cursor: pointer;
   display: inline-block;
   font-size: $body-font-size;
-  padding: ($base-spacing * 1.5) $l-spacing;
+  padding: 0 $l-spacing;
+  height: $base-input-height;
+  line-height: $base-input-height;
   white-space: nowrap;
   min-width: 150px;
 }

@@ -90,7 +90,7 @@ Avatar.defaultProps = {
   size: 'small',
   border: false,
   nameTextScale: 'h3',
-  nameTextWeight: 'fontWeight-medium',
+  nameTextWeight: 'fontWeight-bold',
   addressTextScale: 'Body'
 };
 
