@@ -60,7 +60,7 @@ class TextInput extends React.Component {
         {error ? (
           <div>
             <Text
-              className={`${styles.inputHelpText}`}
+              className={styles.inputHelpText}
               typeScale="Small"
               color={'red'}
             >

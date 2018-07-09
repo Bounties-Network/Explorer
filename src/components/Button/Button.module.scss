@@ -35,7 +35,7 @@
 
 .default {
   background-color: $brand-white;
-  border: 1px solid $base-border-color;
+  border: $base-border;
   color: $brand-darkGrey;
 
   &:hover {
@@ -45,8 +45,11 @@
 
   &.disabled{
      background-color: $brand-nearWhite;
-     border: none;
      color: $brand-lightGrey;
+
+     &:hover {
+       border: $base-border;
+     }
   }
 
   &.buttonLoading:hover {
