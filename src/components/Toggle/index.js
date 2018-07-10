@@ -12,7 +12,7 @@ const Toggle = props => {
     <div>
       {label ? (
         <div>
-          <Text type="FormLabel">{label}</Text>
+          <Text inputLabel>{label}</Text>
         </div>
       ) : null}
       <ToggleComponent disabled={disabled} onChange={onChange} />
