@@ -25,6 +25,7 @@
   padding: 0 $s-spacing 0 $xxl-spacing;
 
   &:focus {
+    background: $brand-white;
     border-color: transparent;
     box-shadow: 0 0 0 2px $brand-blue;
     outline: none;

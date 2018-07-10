@@ -30,7 +30,7 @@ class Textbox extends React.Component {
 
     let labelText = label;
     if (optional) {
-      labelText = `(Optional) ${labelText || ''}`;
+      labelText = `${labelText || ''} (Optional)`;
     }
 
     let inputClass = styles.textarea;
@@ -50,7 +50,7 @@ class Textbox extends React.Component {
       <div className={styles.wrapper}>
         {labelText ? (
           <div>
-            <Text type="FormLabel" color={error ? 'red' : null}>
+            <Text inputLabel color={error ? 'red' : null}>
               {labelText}
             </Text>
           </div>
@@ -64,7 +64,11 @@ class Textbox extends React.Component {
         />
         {error ? (
           <div>
-            <Text type="FormLabel" color={'red'}>
+            <Text
+              className={styles.inputHelpText}
+              typeScale="Small"
+              color={'red'}
+            >
               {error}
             </Text>
           </div>
