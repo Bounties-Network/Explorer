@@ -72,7 +72,7 @@
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   position: absolute;
   top: $base-toggle-size * 0.125;
-  left: 3px;
+  left: $base-toggle-size * 0.125;
   width: $base-toggle-size * 0.75;
   height: $base-toggle-size * 0.75;
   border-radius: 50%;
@@ -85,7 +85,7 @@
 }
 
 .react-toggle--checked .react-toggle-thumb {
-  left: 27px;
+  left: calc(#{$base-toggle-size} + (#{$base-toggle-size} * 0.125));
   border-color: $brand-green;
   outline: none;
 }
