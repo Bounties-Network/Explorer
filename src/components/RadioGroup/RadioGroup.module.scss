@@ -9,12 +9,12 @@
   display: flex;
   position: relative;
   padding-left: $base-checkbox-size + $base-spacing + ($s-spacing / 2);
-  margin-bottom: $base-spacing + ($s-spacing / 2);
+  margin-bottom: $base-spacing;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  height: $base-checkbox-size + $s-spacing;
+  height: $base-checkbox-size;
 
   /* Hide the browser's default radio button */
   input {
@@ -59,10 +59,10 @@
 
   /* Style the indicator (dot/circle) */
   .customRadio:after {
-    top: $base-checkbox-size / 5.33;
-    left: $base-checkbox-size / 5.33;
-    width: $base-checkbox-size * 0.625;
-    height: $base-checkbox-size * 0.625;
+    top: $base-checkbox-size * 0.15;
+    left: $base-checkbox-size * 0.15;
+    width: $base-checkbox-size / 2;
+    height: $base-checkbox-size / 2;
     border-radius: 50%;
     background: $brand-blue;
   }

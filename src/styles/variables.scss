@@ -9,7 +9,7 @@ $xxl-spacing: $base-spacing * 5; // 40px
 // SIZES
 $base-border-radius: 3px;
 $base-input-height: $xxl-spacing;
-$base-checkbox-size: 1rem; //16px
+$base-checkbox-size: $m-spacing * 1.25;
 
 // TYPOGRAPHY
 $base-font-size: 16px;
@@ -60,7 +60,7 @@ $base-border-color: $brand-lightGrey;
 $sidebar-color: $brand-dark-purple;
 
 // BOX SHADOWS:
-$base-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+$base-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
 $m-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 $brand-chip-box-shadow: 0 2px 7px $brand-lightGrey;
 $brand-card-box-shadow: 0 0 10px $brand-lightGrey;
