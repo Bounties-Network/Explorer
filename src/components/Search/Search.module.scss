@@ -3,27 +3,34 @@
 .searchContainer {
   position: relative;
 
-  &:before {
-    content: '🔍'; //Placeholder icon
+  .searchIcon {
+    color: $brand-grey;
     display: inline-block;
     position: absolute;
     text-align: center;
-    top: 20%;
+    line-height: $base-input-height;
+    top: 1px;
     left: $m-spacing;
   }
 }
 
-.search {
+.searchInput {
   background-color: $base-input-background;
   border-radius: $base-border-radius;
   border: 1px solid $brand-lightGrey;
-  width: 100%;
+  line-height: $base-input-height;
   height: $base-input-height;
+  width: 100%;
   font-size: $body-font-size;
-  padding: 0 $m-spacing 0 $base-input-height;
+  padding: 0 $s-spacing 0 $xxl-spacing;
 
   &:focus {
-    outline: 1px solid $brand-blue;
-    border: 1px solid $brand-blue;
+    border-color: transparent;
+    box-shadow: 0 0 0 2px $brand-blue;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $brand-grey;
   }
 }

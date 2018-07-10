@@ -2,6 +2,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import faBell from '@fortawesome/fontawesome-pro-light/faBell';
 import plus from '@fortawesome/fontawesome-pro-regular/faPlus';
 import cog from '@fortawesome/fontawesome-pro-light/faCog';
+import search from '@fortawesome/fontawesome-pro-regular/faSearch';
 import faTimes from '@fortawesome/fontawesome-pro-light/faTimes';
 import wallet from '@fortawesome/fontawesome-pro-light/faWallet';
 import signout from '@fortawesome/fontawesome-pro-light/faSignOut';
@@ -27,6 +28,7 @@ library.add(
   faBell,
   plus,
   cog,
+  search,
   signout,
   faTimes,
   wallet,
