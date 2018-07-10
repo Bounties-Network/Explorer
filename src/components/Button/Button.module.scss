@@ -39,6 +39,7 @@
   color: $brand-darkGrey;
 
   &:hover {
+    background-color: lighten($brand-blue, 33%);
     border-color: $brand-blue;
     color: $brand-blue;
   }
@@ -53,6 +54,7 @@
   }
 
   &.buttonLoading:hover {
+    background-color: inherit;
     border-color: $base-border-color;
     color: $brand-darkGrey;
     cursor: default;

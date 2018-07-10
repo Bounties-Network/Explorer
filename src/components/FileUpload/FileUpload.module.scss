@@ -38,7 +38,8 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   position: relative;
-  height: $base-input-height + ($s-spacing / 2);
+  height: $base-input-height;
+  box-shadow: none;
 }
 
 .nameText {

@@ -4,27 +4,29 @@
 }
 
 .input {
-  width: 80px;
-  padding: 0 12px;
+  padding: 0 $base-spacing;
   vertical-align: top;
   text-align: center;
   outline: none;
-  background: $brand-lightGrey;
+  background: $base-input-background;
+  border: $base-border;
+  border-width: 1px 0;
+  font-size: $body-font-size;
 }
 
 .input,
 .decrement,
 .increment {
-  border: 1px solid #ccc;
-  height: 40px;
+  height: $base-input-height;
   user-select: none;
 }
 
 .decrement,
 .increment {
+  border: $base-border;
   display: inline-block;
-  width: 30px;
-  line-height: 38px;
+  width: $base-input-height;
+  line-height: $base-input-height;
   background: $brand-white;
   color: $brand-blue;
   text-align: center;
@@ -32,31 +34,40 @@
   cursor: pointer;
 
   &:active {
-    background: $brand-lightGrey;
+    background-color: lighten($brand-blue, 33%);
+  }
+
+  &:hover {
+    background-color: lighten($brand-blue, 33%);
+    border-color: $brand-blue;
   }
 }
 
 .decrement {
-  border-right: none;
-  border-radius: 4px 0 0 4px;
+  border-radius: $base-border-radius 0 0 $base-border-radius;
 }
 
 .increment {
-  border-left: none;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 $base-border-radius $base-border-radius 0;
 }
 
 .disabled {
   .decrement,
   .increment {
-    cursor: default;
-    color: $brand-grey;
+    color: $brand-lightGrey;
+
     &:active {
-      background: $brand-white;
+      background-color: $brand-white;
+    }
+
+    &:hover {
+      background-color: $brand-white;
+      border: $base-border;
+      cursor: default;
     }
   }
   .input {
-    background: $brand-grey;
+    background: $brand-nearWhite;
+    color: $brand-lightGrey;
   }
 }
-
