@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Pill.module.scss';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 import { Text } from 'components';
 
@@ -12,6 +13,7 @@ const Chip = props => {
     onCloseClick,
     children,
     backgroundColor,
+    noBorder,
     borderColor
   } = props;
 
@@ -19,16 +21,17 @@ const Chip = props => {
     <span
       className={`${styles.chip} ${styles[type]} ${styles[backgroundColor]} ${
         styles[close ? 'close' : '']
+      } ${styles[noBorder ? 'noBorder' : '']}
       } ${styles[borderColor + 'Border']}
       `}
       onClick={onClick}
     >
-      <Text>{props.children}</Text>
+      <Text typeScale="Small">{props.children}</Text>
       {close && (
         <div className={`${styles.closeButton}`} onClick={onCloseClick}>
-          <Text color="blue" type="BodySmall">
-            x
-          </Text>
+          <i>
+            <FontAwesomeIcon icon={['fal', 'times']} />
+          </i>
         </div>
       )}
     </span>
@@ -38,6 +41,7 @@ const Chip = props => {
 Chip.propTypes = {
   type: PropTypes.oneOf(['round', 'rectangle']),
   backgroundColor: PropTypes.string,
+  noBorder: PropTypes.bool,
   borderColor: PropTypes.string,
   onClick: PropTypes.func,
   close: PropTypes.bool,
@@ -48,6 +52,7 @@ Chip.defaultProps = {
   type: 'round',
   close: false,
   backgroundColor: 'white',
+  noBorder: false,
   borderColor: 'lightGrey'
 };
 

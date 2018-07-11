@@ -12,14 +12,12 @@ storiesOf('Pill', module).add('All Pills', () => (
     <br />
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between'
+        display: 'flex'
       }}
     >
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
           width: '250px'
         }}
       >
@@ -39,14 +37,12 @@ storiesOf('Pill', module).add('All Pills', () => (
     <br />
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between'
+        display: 'flex'
       }}
     >
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
           width: '250px'
         }}
       >
@@ -65,14 +61,12 @@ storiesOf('Pill', module).add('All Pills', () => (
     <br />
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between'
+        display: 'flex'
       }}
     >
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
           width: '250px'
         }}
       >
@@ -100,7 +94,6 @@ storiesOf('Pill', module).add('All Pills', () => (
     <div
       style={{
         display: 'flex',
-        justifyContent: 'space-between',
         backgroundColor: 'blue',
         height: '60px',
         paddingTop: '10px'
@@ -109,7 +102,6 @@ storiesOf('Pill', module).add('All Pills', () => (
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
           width: '250px'
         }}
       >
@@ -128,33 +120,25 @@ storiesOf('Pill', module).add('All Pills', () => (
     <br />
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between'
+        display: 'flex'
       }}
     >
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
           width: '250px'
         }}
       >
-        <Pill type="round" backgroundColor="blue" borderColor="black">
-          <Text type="H2" color="red">
+        <Pill noBorder type="round" backgroundColor="blue">
+          <Text type="H2" color="white">
             HTML
           </Text>
         </Pill>
-        <Pill type="round" backgroundColor="purple" borderColor="purple">
+        <Pill noBorder type="round" backgroundColor="purple">
           <Text type="H4" color="white">
             CSS
           </Text>
         </Pill>
-        <Pill type="round" backgroundColor="grey" borderColor="grey">
-          <Text type="small" color="green">
-            CSS
-          </Text>
-        </Pill>
-        <Pill type="round">Javascript</Pill>
       </div>
     </div>
 
@@ -166,14 +150,12 @@ storiesOf('Pill', module).add('All Pills', () => (
     <br />
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between'
+        display: 'flex'
       }}
     >
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
           width: '250px'
         }}
       >
