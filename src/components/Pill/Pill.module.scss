@@ -1,12 +1,13 @@
 @import "~styles/variables.scss";
 
-.chip{
+.pill{
   color: $brand-grey;
   border: $base-border;
   white-space: nowrap;
   padding: $s-spacing $base-spacing;
   display: flex;
   width: fit-content;
+  height: fit-content;
   align-items: center;
 
   &:not(:last-child) {
