@@ -26,25 +26,32 @@ class Sort extends React.Component {
     const { active, defaultSort, className, children } = this.props;
     const { sort } = this.state;
 
-    let iconColor = 'black';
     let textColor = 'grey';
+    let textWeight = 'fontWeight-regular';
     if (active) {
-      iconColor = 'blue';
       textColor = 'black';
+      textWeight = 'fontWeight-bold';
     }
 
-    let icon = ['fal', 'chevron-down'];
+    let icon = ['far', 'chevron-down'];
     const sortState = sort || defaultSort;
     if (sortState === 'asc') {
-      icon = ['fal', 'chevron-up'];
+      icon = ['far', 'chevron-up'];
     }
 
     return (
       <span className={`${className} ${styles.sort}`} onClick={this.onClick}>
-        <Text color={textColor}>{children}</Text>
-        <Text type="Alt" color={iconColor} className={styles.chevron}>
-          <FontAwesomeIcon icon={icon} />
+        <Text
+          typeScale="Body"
+          weight={textWeight}
+          color={textColor}
+          className={`${styles.sortText}`}
+        >
+          {children}
         </Text>
+        <i className={styles.chevron}>
+          <FontAwesomeIcon icon={icon} />
+        </i>
       </span>
     );
   }
