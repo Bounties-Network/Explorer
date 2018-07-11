@@ -17,9 +17,11 @@
 }
 
 .modal {
+  border-radius: $base-border-radius;
+  box-shadow: $base-box-shadow;
   position: relative;
   background: $brand-white;
-  padding: 15px 35px;
+  padding: $l-spacing;
 }
 
 .closeIcon {
@@ -27,6 +29,10 @@
   float: right;
   color: $brand-grey;
   font-size: 1.2em;
+
+  &:hover {
+    color: $brand-blue;
+  }
 }
 
 .iconHeader {
@@ -49,27 +55,37 @@
 }
 
 .headerContent {
-  padding: 30px 0 10px 0;
+  padding: $xxl-spacing 0 $m-spacing 0;
 }
 
 .headerWrapper {
 }
 
+.heading {
+  padding-bottom: $m-spacing;
+}
+
+.message {
+  padding: $m-spacing 0;
+}
+
+.description {
+  padding: $m-spacing 0;
+}
+
 .body {
-  padding: 30px 0;
+  padding: $xxl-spacing;
 }
 
 .bodyWrapper {
-
 }
 
 .footer {
-  margin: 0px -35px;
-  border-top: solid 1px $brand-lightGrey;
+  margin: 0px (-$l-spacing);
+  border-top: $base-border;
   text-align: right;
-  padding: 25px 35px 10px 35px;
+  padding: $l-spacing $l-spacing 0;
 }
 
 .footerWrapper {
-
 }
