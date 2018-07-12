@@ -12,6 +12,7 @@
   left: 0;
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
+  box-sizing: border-box;
 }
 
 .iconTab {

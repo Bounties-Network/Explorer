@@ -5,6 +5,8 @@ html {
   box-sizing: border-box;
   font-size: $base-font-size;
   font-family: 'Inter UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  height: 100%;
+  width: 100%;
 }
 
 *, *:before, *:after {
@@ -12,6 +14,13 @@ html {
 }
 
 body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
   height: 100%;
   width: 100%;
   margin: 0;
