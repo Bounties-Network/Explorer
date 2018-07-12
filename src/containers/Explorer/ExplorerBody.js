@@ -1,8 +1,19 @@
 import React from 'react';
 import styles from './ExplorerBody.module.scss';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { Text, Sort } from 'components';
+import { LoadComponent } from 'hocs';
+import {
+  bountiesSelector,
+  bountiesCountSelector,
+  bountiesStateSelector
+} from 'public-modules/Bounties/selectors';
+import { actions } from 'public-modules/Bounties';
 
-const ExplorerBody = props => {
+const ExplorerBodyComponent = props => {
+  const { bounties } = props;
+
   return (
     <div className={styles.explorerBody}>
       <div className={styles.bodyHeading}>
@@ -40,5 +51,19 @@ const ExplorerBody = props => {
     </div>
   );
 };
+
+const mapStateToProps = state => ({
+  bounties: bountiesSelector(state),
+  count: bountiesCountSelector(state),
+  ...bountiesStateSelector(state)
+});
+
+const ExplorerBody = compose(
+  connect(
+    mapStateToProps,
+    { load: actions.loadBounties }
+  ),
+  LoadComponent('')
+)(ExplorerBodyComponent);
 
 export default ExplorerBody;
