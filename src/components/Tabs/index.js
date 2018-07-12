@@ -32,13 +32,14 @@ class Tab extends React.Component {
               onClick={() => onSelect(this.props.eventKey)}
             >
               <Text
-                color={active ? 'black' : 'grey'}
-                type={active ? 'H4' : 'CardHeading'}
+                color={active ? 'black' : 'defaultGrey'}
+                typeScale="Body"
+                weight={active ? 'fontWeight-medium' : 'fontWeight-regular'}
               >
                 {this.props.children}
               </Text>
               <span className={countStyles}>
-                <Text type="BodySmall" color={tabTextColor}>
+                <Text typeScale="Small" color={tabTextColor}>
                   12
                 </Text>
               </span>

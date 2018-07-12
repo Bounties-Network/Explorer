@@ -87,7 +87,7 @@ class Cropper extends React.Component {
             {src ? (
               <Circle
                 type="img"
-                size="medium"
+                size="large"
                 input={src}
                 color="lightGrey"
                 border
@@ -97,7 +97,7 @@ class Cropper extends React.Component {
             {!activeCrop && !src ? (
               <Circle
                 type="text"
-                size="medium"
+                size="large"
                 input={<FontAwesomeIcon icon={['fal', 'camera']} />}
                 textColor="darkGrey"
                 color="lightGrey"
@@ -108,7 +108,7 @@ class Cropper extends React.Component {
             {isLoading ? (
               <Circle
                 type="loading"
-                size="medium"
+                size="large"
                 color="lightGrey"
                 border
                 className={styles.circleContent}
@@ -117,11 +117,7 @@ class Cropper extends React.Component {
           </div>
           <div className="col-xs-9">
             {src ? null : (
-              <Button
-                type="secondary"
-                className={styles.upload}
-                disabled={disabledState}
-              >
+              <Button className={styles.upload} disabled={disabledState}>
                 {activeCrop || src ? 'Replace Photo' : 'Upload New Photo'}
                 <input
                   type="file"
@@ -146,7 +142,7 @@ class Cropper extends React.Component {
             ) : null}
             {activeCrop || src ? (
               <Button
-                type="delete"
+                type="link-destructive"
                 onClick={this.onDelete}
                 disabled={disabledState}
               >

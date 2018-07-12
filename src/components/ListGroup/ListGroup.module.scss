@@ -1,15 +1,29 @@
 @import "~styles/variables.scss";
 
 .listItem {
-  padding: 10px 0;
-  border-bottom: 1px solid $base-border-color;
+  padding: $m-spacing $m-spacing;
+  position: relative;
+  border-radius: $base-border-radius;
+  margin-top: -$base-border-width;
+
+  &:not(:last-child):after {
+    position: absolute;
+    content: '';
+    border-bottom: $base-border-width solid $brand-nearWhite;
+    width: calc(100% - #{$m-spacing});
+    padding: 0 $m-spacing;
+    bottom: 0;
+    transform: translateX(-50%);
+    left: 50%;
+  }
 }
 
 .listItem.itemHover:hover {
   background-color: $brand-nearWhite;
+  border: none;
   cursor: pointer;
 }
 
 .listGroup {
-
+  display: block;
 }

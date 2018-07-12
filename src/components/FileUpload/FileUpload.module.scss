@@ -9,7 +9,10 @@
   height: $base-input-height;
   background-color: $base-input-background;
   border-radius: $base-border-radius;
-  border: 1px solid $brand-lightGrey;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  line-height: $base-input-height;
+  border: $base-border;
   border-right: none;
   display: flex;
   align-items: center;
@@ -25,10 +28,18 @@
   height: 100%;
   opacity: 0;
   cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
 }
 
 .button {
-  position: relative;  
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  position: relative;
+  height: $base-input-height;
+  box-shadow: none;
 }
 
 .nameText {
@@ -38,7 +49,8 @@
 }
 
 .sizeText {
-  margin: 0 5px;
+  color: $brand-grey;
+  margin: 0 $base-spacing;
   white-space: nowrap;
 }
 

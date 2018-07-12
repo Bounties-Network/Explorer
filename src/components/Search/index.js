@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Search.module.scss';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 import { Text } from 'components';
 
@@ -36,8 +37,11 @@ class Search extends React.Component {
   render() {
     return (
       <div className={`${styles.searchContainer}`}>
+        <i className={styles.searchIcon}>
+          <FontAwesomeIcon icon={['far', 'search']} />
+        </i>
         <input
-          className={`${styles.search}`}
+          className={`${styles.searchInput}`}
           type="text"
           placeholder="Search..."
           onChange={this.onSearchChange}

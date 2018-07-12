@@ -1,8 +1,15 @@
+@import "~styles/variables.scss";
+
 .avatar {
   display: flex;
   align-items: center;
 }
 
 .textWrapper {
-  margin-left: 5px;
+  margin-left: $m-spacing;
+
+  .addressText {
+    margin-top: $s-spacing;
+    text-decoration: underline;
+  }
 }

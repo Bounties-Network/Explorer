@@ -28,7 +28,7 @@ class TextInput extends React.Component {
 
     let labelText = label;
     if (optional) {
-      labelText = `(Optional) ${labelText || ''}`;
+      labelText = `${labelText || ''} (Optional)`;
     }
 
     let inputClass = styles.textInput;
@@ -44,7 +44,7 @@ class TextInput extends React.Component {
       <div>
         {labelText ? (
           <div>
-            <Text type="FormLabel" color={error ? 'red' : null}>
+            <Text inputLabel color={error ? 'red' : null}>
               {labelText}
             </Text>
           </div>
@@ -59,8 +59,12 @@ class TextInput extends React.Component {
         />
         {error ? (
           <div>
-            <Text type="FormLabel" color={'red'}>
-              {error}
+            <Text
+              className={styles.inputHelpText}
+              typeScale="Small"
+              color={'red'}
+            >
+              * {error}
             </Text>
           </div>
         ) : null}

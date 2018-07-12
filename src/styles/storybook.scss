@@ -1,0 +1,48 @@
+@import "~styles/variables.scss";
+
+.sb-page-wrapper {
+  margin: 56px auto 0;
+  max-width: 700px;
+  padding: 0 40px;;
+}
+
+.sb-component-group {
+  margin-bottom: 56px;
+  padding: 32px;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+}
+
+.sb-button-group button:not(:last-child) {
+  display: block;
+  margin-bottom: $m-spacing;
+}
+
+.sb-component-container:not(:last-child) {
+  margin-bottom: 24px;
+}
+
+.sb-component-group-heading {
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sb-component-group-subheading {
+  margin: 48px 0 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sb-component-group-description {
+  margin-bottom: 24px;
+}
+
+code {
+  background: $brand-nearWhite;
+  border-radius: $base-border-radius;
+  color: $brand-darkGrey;
+  font-family: monospace;
+  margin: 0 $s-spacing;
+  padding: $s-spacing;
+}

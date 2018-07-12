@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import styles from './Modal.module.scss';
-import { Text, Loading } from 'components';
+import { Text, Loader } from 'components';
 import { includes, each } from 'lodash';
 
 const ModalContext = React.createContext({});
@@ -32,10 +32,14 @@ class Header extends React.Component {
               ) : null}
               {loadingIcon ? (
                 <div>
-                  <Loading className={styles.loadingHeader} />
+                  <Loader
+                    color="blue"
+                    size="medium"
+                    className={styles.loadingHeader}
+                  />
                 </div>
               ) : null}
-              <Text type="H2">{children}</Text>
+              {children}
             </div>
           </div>
         )}
@@ -49,6 +53,46 @@ Header.propTypes = {
   loadingIcon: PropTypes.bool,
   icon: PropTypes.array
 };
+
+class Heading extends React.Component {
+  render() {
+    return (
+      <Text
+        className={styles.heading}
+        typeScale="h3"
+        color="black"
+        weight="fontWeight-medium"
+      >
+        {this.props.children}
+      </Text>
+    );
+  }
+}
+
+class Message extends React.Component {
+  render() {
+    return (
+      <Text
+        className={styles.message}
+        typeScale="h4"
+        color="black"
+        weight="fontWeight-medium"
+      >
+        {this.props.children}
+      </Text>
+    );
+  }
+}
+
+class Description extends React.Component {
+  render() {
+    return (
+      <Text className={styles.description} typeScale="Body" color="defaultGrey">
+        {this.props.children}
+      </Text>
+    );
+  }
+}
 
 class Body extends React.Component {
   render() {
@@ -85,6 +129,24 @@ class Modal extends React.Component {
     return <div className={styles.headerWrapper}>{header}</div>;
   }
 
+  renderHeading(heading) {
+    if (!heading) {
+      return null;
+    }
+  }
+
+  renderMessage(message) {
+    if (!message) {
+      return null;
+    }
+  }
+
+  renderDescription(description) {
+    if (!description) {
+      return null;
+    }
+  }
+
   renderBody(body) {
     if (!body) {
       return null;
@@ -101,7 +163,7 @@ class Modal extends React.Component {
 
   render() {
     const { size, visible } = this.props;
-    let header, footer, body;
+    let header, heading, message, description, footer, body;
     const children = Array.isArray(this.props.children)
       ? this.props.children
       : [this.props.children];
@@ -109,6 +171,15 @@ class Modal extends React.Component {
       const childName = child.type.name;
       if (childName === Header.name) {
         header = child;
+      }
+      if (childName === Heading.name) {
+        heading = child;
+      }
+      if (childName === Message.name) {
+        message = child;
+      }
+      if (childName === Description.name) {
+        description = child;
       }
       if (childName === Body.name) {
         body = child;
@@ -138,6 +209,9 @@ class Modal extends React.Component {
             <div className={styles.modal} onClick={this.modalClick}>
               <ModalContext.Provider value={{ onClose: this.onClose }}>
                 {this.renderHeader(header)}
+                {this.renderHeading(heading)}
+                {this.renderMessage(message)}
+                {this.renderDescription(description)}
                 {this.renderBody(body)}
                 {this.renderFooter(footer)}
               </ModalContext.Provider>
@@ -167,6 +241,9 @@ Modal.propTypes = {
       if (
         !includes(collection[i].type.name, [
           Header.name,
+          Heading.name,
+          Message.name,
+          Description.name,
           Body.name,
           Footer.name
         ])
@@ -183,6 +260,9 @@ Modal.defaultProps = {
 };
 
 Modal.Header = Header;
+Modal.Heading = Heading;
+Modal.Message = Message;
+Modal.Description = Description;
 Modal.Body = Body;
 Modal.Footer = Footer;
 

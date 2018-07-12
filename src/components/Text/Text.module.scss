@@ -1,71 +1,81 @@
 @import "~styles/variables.scss";
 
-.H1 {
+.h1 {
   font-size: $h1-font-size;
 }
 
-.H2 {
+.h2 {
   font-size: $h2-font-size;
 }
 
-.H3 {
+.h3 {
   font-size: $h3-font-size;
 }
 
-.H4 {
+.h4 {
   font-size: $h4-font-size;
 }
 
-.CardHeading {
-  font-size: $base-font-size;
+.h5 {
+  font-size: $h5-font-size;
 }
 
 .Body {
   font-size: $body-font-size;
 }
 
-.BodySmall {
-  font-size: $body-small-font-size;
-}
-
 .Small {
-  font-size: 10px;
-}
-
-.FormLabel {
-  color: $brand-grey;
   font-size: $body-small-font-size;
 }
 
-.FormInvalid {
-  font-size: $body-font-size;
-  color: $brand-red;
+.lineHeight-default {
+  line-height: $base-line-height;
 }
 
-a {
-  color: $brand-blue;
+.lineHeight-reset {
+  line-height: $line-height-reset;
 }
 
 .Link {
-  text-decoration: underline;
   color: $brand-blue;
   cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-.Alt {
+.inputLabel {
   color: $brand-grey;
+  margin-bottom: $base-spacing;
   font-size: $body-small-font-size;
-  font-weight: 500;
-  letter-spacing: 0.05rem;
-  text-transform: uppercase;
 }
 
-.font-weight-regular {
+.fontWeight-regular {
   font-weight: 400;
 }
 
-.font-weight-bold {
+.fontWeight-medium {
   font-weight: 500;
+}
+
+.fontWeight-bold {
+  font-weight: 600;
+}
+
+.align {
+  &-left {
+    text-align: left;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
 }
 
 .purple {
@@ -96,7 +106,7 @@ a {
   color: $brand-lightGrey;
 }
 
-.grey {
+.defaultGrey {
   color: $brand-grey;
 }
 
@@ -108,6 +118,19 @@ a {
   color: white;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .noUnderline {
   text-decoration: none;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.uppercase {
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }

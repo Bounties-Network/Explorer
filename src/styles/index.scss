@@ -2,8 +2,13 @@
 @import "~styles/reset.scss";
 
 html {
+  box-sizing: border-box;
   font-size: $base-font-size;
   font-family: 'Inter UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 body {

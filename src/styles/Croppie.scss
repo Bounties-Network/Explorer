@@ -1,3 +1,5 @@
+@import "~styles/variables.scss";
+
 .croppie-container {
     width: 100%;
     height: 100%;
@@ -14,12 +16,14 @@
 }
 
 .croppie-container .cr-boundary {
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
+  border: 1px solid $brand-lightGrey;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
 }
 
 .croppie-container .cr-viewport,
@@ -31,7 +35,7 @@
     bottom: 0;
     right: 0;
     left: 0;
-    box-shadow: 0 0 2000px 2000px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 2000px 2000px rgba($brand-white, 0.75);
     z-index: 0;
 }
 
@@ -100,7 +104,7 @@
 
 .croppie-container .cr-slider-wrap {
     width: 75%;
-    margin: 15px auto;
+    margin: $m-spacing auto 0;
     text-align: center;
 }
 
@@ -143,7 +147,7 @@
 .cr-slider::-webkit-slider-runnable-track {
     width: 100%;
     height: 3px;
-    background: rgba(0, 0, 0, 0.5);
+    background: $brand-lightGrey;
     border: 0;
     border-radius: 3px;
 }
@@ -154,7 +158,7 @@
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: #ddd;
+    background: $brand-blue;
     margin-top: -6px;
 }
 
@@ -170,7 +174,7 @@ background: #ccc;
 .cr-slider::-moz-range-track {
     width: 100%;
     height: 3px;
-    background: rgba(0, 0, 0, 0.5);
+    background: $brand-lightGrey;
     border: 0;
     border-radius: 3px;
 }
@@ -180,13 +184,13 @@ background: #ccc;
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: #ddd;
+    background: $brand-blue;
     margin-top: -6px;
 }
 
 /*hide the outline behind the border*/
 .cr-slider:-moz-focusring {
-    outline: 1px solid white;
+    outline: 1px solid $brand-white;
     outline-offset: -1px;
 }
 
@@ -212,7 +216,7 @@ background: #ccc;
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background: #ddd;
+  background: $brand-blue;
   margin-top:1px;
 }
 .cr-slider:focus::-ms-fill-lower {

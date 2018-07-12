@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Pill.module.scss';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 import { Text } from 'components';
 
-const Chip = props => {
+const Pill = props => {
   const {
     type,
     onClick,
@@ -12,43 +13,51 @@ const Chip = props => {
     onCloseClick,
     children,
     backgroundColor,
+    textColor,
+    noBorder,
     borderColor
   } = props;
 
   return (
     <span
-      className={`${styles.chip} ${styles[type]} ${styles[backgroundColor]} ${
+      className={`${styles.pill} ${styles[type]} ${styles[backgroundColor]} ${
         styles[close ? 'close' : '']
+      } ${styles[noBorder ? 'noBorder' : '']}
       } ${styles[borderColor + 'Border']}
       `}
       onClick={onClick}
     >
-      <Text>{props.children}</Text>
+      <Text typeScale="Small" color={textColor}>
+        {props.children}
+      </Text>
       {close && (
         <div className={`${styles.closeButton}`} onClick={onCloseClick}>
-          <Text color="blue" type="BodySmall">
-            x
-          </Text>
+          <i>
+            <FontAwesomeIcon icon={['fal', 'times']} />
+          </i>
         </div>
       )}
     </span>
   );
 };
 
-Chip.propTypes = {
+Pill.propTypes = {
   type: PropTypes.oneOf(['round', 'rectangle']),
   backgroundColor: PropTypes.string,
+  textColor: PropTypes.string,
+  noBorder: PropTypes.bool,
   borderColor: PropTypes.string,
   onClick: PropTypes.func,
   close: PropTypes.bool,
   onCloseClick: PropTypes.func
 };
 
-Chip.defaultProps = {
+Pill.defaultProps = {
   type: 'round',
   close: false,
   backgroundColor: 'white',
+  noBorder: false,
   borderColor: 'lightGrey'
 };
 
-export default Chip;
+export default Pill;

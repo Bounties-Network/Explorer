@@ -1,7 +1,20 @@
+@import "~styles/variables.scss";
+
 .sort {
+  display: inline-block;
   cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: $l-spacing;
+  }
 }
 
 .chevron {
-  margin-left: 5px;
+  color: $brand-blue;
+  font-size: $body-small-font-size;
+  margin-left: $base-spacing;
+}
+
+.sortText {
+  display: inline-block;
 }

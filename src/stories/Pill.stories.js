@@ -12,14 +12,12 @@ storiesOf('Pill', module).add('All Pills', () => (
     <br />
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between'
+        display: 'flex'
       }}
     >
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
           width: '250px'
         }}
       >
@@ -39,14 +37,12 @@ storiesOf('Pill', module).add('All Pills', () => (
     <br />
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between'
+        display: 'flex'
       }}
     >
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
           width: '250px'
         }}
       >
@@ -65,27 +61,25 @@ storiesOf('Pill', module).add('All Pills', () => (
     <br />
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between'
+        display: 'flex'
       }}
     >
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
           width: '250px'
         }}
       >
-        <Pill type="round" close onCloseClick={action('clicked')}>
+        <Pill close onCloseClick={action('clicked')}>
           HTML
         </Pill>
-        <Pill type="round" close onCloseClick={action('clicked')}>
+        <Pill close onCloseClick={action('clicked')}>
           CSS
         </Pill>
-        <Pill type="round" close onCloseClick={action('clicked')}>
+        <Pill close onCloseClick={action('clicked')}>
           React
         </Pill>
-        <Pill type="round" close onCloseClick={action('clicked')}>
+        <Pill close onCloseClick={action('clicked')}>
           Javascript
         </Pill>
       </div>
@@ -100,7 +94,6 @@ storiesOf('Pill', module).add('All Pills', () => (
     <div
       style={{
         display: 'flex',
-        justifyContent: 'space-between',
         backgroundColor: 'blue',
         height: '60px',
         paddingTop: '10px'
@@ -109,14 +102,13 @@ storiesOf('Pill', module).add('All Pills', () => (
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
           width: '250px'
         }}
       >
-        <Pill type="round">HTML</Pill>
-        <Pill type="round">CSS</Pill>
-        <Pill type="round">React</Pill>
-        <Pill type="round">Javascript</Pill>
+        <Pill>HTML</Pill>
+        <Pill>CSS</Pill>
+        <Pill>React</Pill>
+        <Pill>Javascript</Pill>
       </div>
     </div>
 
@@ -128,33 +120,21 @@ storiesOf('Pill', module).add('All Pills', () => (
     <br />
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between'
+        display: 'flex'
       }}
     >
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
           width: '250px'
         }}
       >
-        <Pill type="round" backgroundColor="blue" borderColor="black">
-          <Text type="H2" color="red">
-            HTML
-          </Text>
+        <Pill noBorder backgroundColor="blue" textColor="white">
+          HTML
         </Pill>
-        <Pill type="round" backgroundColor="purple" borderColor="purple">
-          <Text type="H4" color="white">
-            CSS
-          </Text>
+        <Pill noBorder backgroundColor="purple" textColor="white">
+          CSS
         </Pill>
-        <Pill type="round" backgroundColor="grey" borderColor="grey">
-          <Text type="small" color="green">
-            CSS
-          </Text>
-        </Pill>
-        <Pill type="round">Javascript</Pill>
       </div>
     </div>
 
@@ -166,26 +146,22 @@ storiesOf('Pill', module).add('All Pills', () => (
     <br />
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'space-between'
+        display: 'flex'
       }}
     >
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
           width: '250px'
         }}
       >
-        <Pill>
-          <Text color="green">&#9679;</Text>
-          <span style={{ marginRight: '10px' }} />
-          <Text color="black">Main Ethereum Network</Text>
+        <Pill textColor="black">
+          <span style={{ marginRight: '10px', color: '#6FC78D' }}>&#9679;</span>Main
+          Ethereum Network
         </Pill>
-        <Pill>
-          <Text color="orange">&#9679;</Text>
-          <span style={{ marginRight: '10px' }} />
-          <Text color="black">Rinkeby Network</Text>
+        <Pill textColor="black">
+          <span style={{ marginRight: '10px', color: '#FBAA31' }}>&#9679;</span>Rinkeby
+          Network
         </Pill>
       </div>
     </div>

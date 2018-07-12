@@ -6,175 +6,178 @@ import { action } from '@storybook/addon-actions';
 import { Button, Text } from 'components';
 
 storiesOf('Button', module).add('All Buttons', () => (
-  <div>
-    <Text type="H3">Button Type</Text>
-    <div>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Primary</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('clicked')}>Hello Button</Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Secondary</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('clicked')} type="secondary">
-        Hello Button
+  <div class="sb-page-wrapper">
+    <Text
+      className={'sb-component-group-heading'}
+      typeScale="h1"
+      color="purple"
+      weight="fontWeight-bold"
+    >
+      Buttons
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      Button components take props to define their type, icon, disabled and
+      loading states, and how they should occupy space.
+    </Text>
+
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Type
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>type</code> prop will determine the type of button when applied
+      to an instance.
+    </Text>
+
+    <div class="sb-component-group sb-button-group">
+      <Button onClick={action('clicked')}>Default</Button>
+
+      <Button onClick={action('clicked')} type="primary">
+        Primary
       </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Destructive</Text>
-      <span style={{ marginRight: '10px' }} />
+
       <Button onClick={action('clicked')} type="destructive">
-        Hello Button
+        Destructive
       </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Destructive</Text>
-      <span style={{ marginRight: '10px' }} />
+
       <Button onClick={action('clicked')} type="action">
-        Hello Button
+        Action
       </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Link</Text>
-      <span style={{ marginRight: '10px' }} />
+
       <Button onClick={action('clicked')} type="link">
-        Hello Button
+        Link
       </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Delete</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('clicked')} type="delete">
-        Hello Button
+
+      <Button onClick={action('clicked')} type="link-destructive">
+        Link-Destructive
       </Button>
     </div>
-    <hr />
-    <Text type="H3">Icon</Text>
-    <div>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Primary</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('clicked')} icon={['fal', 'bell']}>
-        Hello Button
-      </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Secondary</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button
-        onClick={action('clicked')}
-        type="secondary"
-        icon={['fal', 'bell']}
-      >
-        Hello Button
-      </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Destructive</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button
-        onClick={action('clicked')}
-        type="destructive"
-        icon={['fal', 'bell']}
-      >
-        Hello Button
-      </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Action</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('clicked')} type="action" icon={['fal', 'bell']}>
-        Hello Button
-      </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Link</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('clicked')} type="link" icon={['fal', 'bell']}>
-        Hello Button
-      </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Delete</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('clicked')} type="delete" icon={['fal', 'bell']}>
-        Hello Button
+
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Icon
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>icon</code> prop will define whether or not a button contains an
+      icon.
+    </Text>
+
+    <div class="sb-component-group sb-button-group">
+      <Button onClick={action('clicked')} type="primary" icon={['far', 'plus']}>
+        Create new bounty
       </Button>
     </div>
-    <hr />
-    <Text type="H3">Disabled</Text>
-    <div>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Primary</Text>
-      <span style={{ marginRight: '10px' }} />
+
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Disabled
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>disabled</code> prop will disabled the button, rendering it
+      unclickable.
+    </Text>
+
+    <div class="sb-component-group sb-button-group">
       <Button onClick={action('should not fire')} disabled>
-        Hello Button
+        Default
       </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Secondary</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('should not fire')} disabled type="secondary">
-        Hello Button
+
+      <Button onClick={action('should not fire')} disabled type="primary">
+        Primary
       </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Destructive</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button
-        onClick={action('should not fire')}
-        disabled
-        type="destructive"
-        text="Hello Button"
-      >
-        Hello Button
+
+      <Button onClick={action('should not fire')} disabled type="destructive">
+        Destructive
       </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Action</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button
-        onClick={action('should not fire')}
-        disabled
-        type="action"
-        text="Hello Button"
-      >
-        Hello Button
-      </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Link</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('should not fire')} disabled type="link">
-        Hello Button
-      </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Delete</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button onClick={action('should not fire')} disabled type="delete">
-        Hello Button
+
+      <Button onClick={action('should not fire')} disabled type="action">
+        Action
       </Button>
     </div>
-    <hr />
-    <Text type="H3">Loading</Text>
-    <div>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Primary</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button loading>Hello Button</Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Secondary</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button loading type="secondary">
-        Hello Button
+
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Loading
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>loading</code> prop will display a loading state for the button,
+      useful for displaying upon submission of forms or inputs.
+    </Text>
+
+    <div class="sb-component-group sb-button-group">
+      <Button loading>Default</Button>
+
+      <Button loading type="primary" icon={['fal', 'bell']}>
+        Primary
       </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Destructive</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button loading type="destructive">
-        Hello Button
+
+      <Button loading type="destructive" icon={['fal', 'bell']}>
+        Destructive
       </Button>
-      <div style={{ marginTop: '10px' }} />
-      <Text type="H4">Action</Text>
-      <span style={{ marginRight: '10px' }} />
-      <Button loading type="action">
-        Hello Button
+
+      <Button loading type="action" icon={['fal', 'bell']}>
+        Action
       </Button>
-      <div style={{ marginTop: '10px' }} />
     </div>
-    <hr />
-    <div>
-      <Text type="H3">Fit Width Button</Text>
-      <div style={{ marginTop: '10px', width: '300px' }}>
-        <Button fitWidth>Fit Width</Button>
-      </div>
+
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Fit Width
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>fitWidth</code> prop will cause the button to span teh
+      full-width of its parent container.
+    </Text>
+
+    <div class="sb-component-group">
+      <Button fitWidth type="primary">
+        Full-width button
+      </Button>
     </div>
   </div>
 ));

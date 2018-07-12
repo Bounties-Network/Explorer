@@ -10,9 +10,10 @@ const Avatar = props => {
     size,
     name,
     address,
-    nameTextType,
+    nameTextScale,
     nameTextColor,
-    addressTextType,
+    nameTextWeight,
+    addressTextScale,
     addressTextColor,
     border,
     img,
@@ -27,7 +28,11 @@ const Avatar = props => {
 
     return (
       <div className={styles.nameText}>
-        <Text type={nameTextType} color={nameTextColor}>
+        <Text
+          typeScale={nameTextScale}
+          weight={nameTextWeight}
+          color={nameTextColor}
+        >
           {name}
         </Text>
       </div>
@@ -41,7 +46,7 @@ const Avatar = props => {
 
     return (
       <div className={styles.addressText}>
-        <Text type={addressTextType} color={addressTextColor} link>
+        <Text typeScale={addressTextScale} color={addressTextColor} link>
           {shortenAddress(address)}
         </Text>
       </div>
@@ -68,23 +73,25 @@ const Avatar = props => {
 };
 
 Avatar.propTypes = {
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['small', 'large']),
   img: PropTypes.string,
   border: PropTypes.bool,
   name: PropTypes.string,
   address: PropTypes.string,
   hash: PropTypes.string,
-  nameTextType: PropTypes.string,
+  nameTextScale: PropTypes.string,
   nameTextColor: PropTypes.string,
-  addressTextType: PropTypes.string,
+  nameTextWeight: PropTypes.string,
+  addressTextScale: PropTypes.string,
   addressTextColor: PropTypes.string
 };
 
 Avatar.defaultProps = {
-  size: 'medium',
+  size: 'small',
   border: false,
-  nameTextType: 'H3',
-  addressTextType: 'BodySmall'
+  nameTextScale: 'h3',
+  nameTextWeight: 'fontWeight-bold',
+  addressTextScale: 'Body'
 };
 
 export default Avatar;

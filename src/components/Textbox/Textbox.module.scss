@@ -14,25 +14,40 @@
   width: 100%;
   overflow: auto;
   background-color: $base-input-background;
-  border: 1px solid $brand-lightGrey;
+  border: $base-border;
   border-radius: $base-border-radius;
   font-size: $body-font-size;
-  padding: $m-spacing;
-  box-sizing: border-box;
+  padding: $base-spacing;
+
+  &::placeholder {
+    color: $brand-grey;
+  }
 }
 
 .textarea:focus {
-  outline: 1px solid $brand-blue;
-  border: 1px solid $brand-blue;
+  border-color: transparent;
+  background: $brand-white;
+  box-shadow: 0 0 0 2px $brand-blue;
+  outline: none;
 }
 
 .error {
-  border: 1px solid $brand-destructive;
-  outline: 1px solid $brand-destructive;
+  border-color: transparent;
+  box-shadow: 0 0 0 2px $brand-destructive;
+  outline: none;
 }
 
-disabled {
-  background-color: $brand-grey;
+.inputHelpText {
+  padding-top: $base-spacing;
+}
+
+.disabled {
+  background-color: $brand-nearWhite;
+  border: none;
+
+  &::placeholder {
+    color: $brand-lightGrey;
+  }
 }
 
 .resizeNone {

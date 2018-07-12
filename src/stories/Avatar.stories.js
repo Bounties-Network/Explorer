@@ -13,7 +13,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       <Text type="H4">With border, name and address (default text)</Text>
       <span style={{ marginRight: '10px' }} />
       <Avatar
-        size="medium"
+        size="large"
         border
         name="Simona Pop"
         img="https://i.imgur.com/lhTwRZY.png"
@@ -31,7 +31,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
         }}
       >
         <Avatar
-          size="medium"
+          size="large"
           border
           name="Simona Pop"
           address="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
@@ -55,7 +55,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
         }}
       >
         <Avatar
-          size="medium"
+          size="small"
           address="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
           img="https://i.imgur.com/lhTwRZY.png"
           addressTextColor="white"
@@ -65,7 +65,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       <div style={{ marginTop: '10px' }} />
       <Text type="H4">No name or address</Text>
       <span style={{ marginRight: '10px' }} />
-      <Avatar size="medium" img="https://i.imgur.com/lhTwRZY.png" />
+      <Avatar size="large" img="https://i.imgur.com/lhTwRZY.png" />
       <div style={{ marginTop: '10px' }} />
       <Text type="H4">Small</Text>
       <span style={{ marginRight: '10px' }} />
@@ -75,7 +75,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       <span style={{ marginRight: '10px' }} />
       <Avatar size="large" img="https://i.imgur.com/lhTwRZY.png" />
       <Text type="H4">No Image</Text>
-      <Avatar size="medium" hash="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r" />
+      <Avatar size="large" hash="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r" />
     </div>
   </div>
 ));

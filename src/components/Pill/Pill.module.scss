@@ -1,18 +1,18 @@
 @import "~styles/variables.scss";
 
-.chip{
+.pill{
   color: $brand-grey;
-  // box-shadow: $brand-chip-box-shadow;
-  border: 1px solid $brand-lightGrey;
+  border: $base-border;
   white-space: nowrap;
+  padding: $s-spacing $base-spacing;
+  display: flex;
   width: fit-content;
   height: fit-content;
-  font-size: 11px;
-  font-weight: 400;
-  padding: 5px 12px;
-  display: flex;
-  justify-content: center;
   align-items: center;
+
+  &:not(:last-child) {
+    margin-right: $base-spacing;
+  }
 }
 
 .round {
@@ -20,15 +20,18 @@
 }
 
 .rectangle {
-  border-radius: 3px;
-}
-
-.close {
+  border-radius: $base-border-radius;
 }
 
 .closeButton {
   cursor: pointer;
-  margin-left: 10px;
+  color: $brand-blue;
+  font-size: $body-small-font-size;
+  margin-left: $base-spacing;
+
+  &:hover {
+    color: $brand-blue-hover;
+  }
 }
 
 .purple {
@@ -51,54 +54,14 @@
   background-color: $brand-red;
 }
 
-.black {
-  background-color: $brand-black;
-}
-
-.lightGrey {
-  background-color: $brand-lightGrey;
-}
-
-.grey {
-  background-color: $brand-grey;
-}
-
-.darkGrey {
-  background-color: $brand-darkGrey;
-}
-
-.purpleBorder {
-  border-color: $brand-purple;
-}
-
-.blueBorder {
-  border-color: $brand-blue;
-}
-
-.orangeBorder {
-  border-color: $brand-orange;
-}
-
-.greenBorder {
-  border-color: $brand-green;
-}
-
-.redBorder {
-  border-color: $brand-red;
-}
-
-.blackBorder {
-  border-color: $brand-black;
+.whiteBorder {
+  border-color: $brand-white;
 }
 
 .lightGreyBorder {
   border-color: $brand-lightGrey;
 }
 
-.greyBorder {
-  border-color: $brand-grey;
-}
-
-.darkGreyBorder {
-  border-color: $brand-darkGrey;
+.noBorder {
+  border: none;
 }

@@ -39,7 +39,7 @@ class DatePicker extends React.Component {
       <div>
         {label ? (
           <div>
-            <Text type="FormLabel">{label}</Text>
+            <Text inputLabel>{label}</Text>
           </div>
         ) : null}
         <Datetime

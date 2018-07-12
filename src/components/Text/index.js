@@ -3,58 +3,73 @@ import PropTypes from 'prop-types';
 import styles from './Text.module.scss';
 
 const Text = props => {
-  const { className, type, src, link, color, weight, id, noUnderline } = props;
+  const {
+    className,
+    typeScale,
+    lineHeight,
+    src,
+    link,
+    inputLabel,
+    color,
+    weight,
+    alignment,
+    style,
+    id
+  } = props;
 
   let addedClasses = '';
   if (link) {
-    addedClasses += styles.Link;
-    if (noUnderline) {
-      addedClasses += ` ${styles.noUnderline}`;
-    }
+    addedClasses += ` ${styles.Link}`;
 
     return (
-      <span
-        className={`text ${className} ${styles[type]} ${addedClasses}`}
+      <a
+        className={`text ${className} ${styles[typeScale]} ${
+          styles[lineHeight]
+        } ${styles[color]} ${styles[alignment]} ${
+          styles[style]
+        } ${addedClasses}`}
+        id={id}
+        href={src}
+        target="_blank"
+      >
+        {props.children}
+      </a>
+    );
+  }
+
+  if (inputLabel) {
+    addedClasses += `${styles.inputLabel}`;
+
+    return (
+      <p
+        className={`text ${className} ${styles[lineHeight]} ${styles[color]} ${
+          styles[weight]
+        } ${styles[alignment]} ${addedClasses}`}
         id={id}
       >
-        <a
-          className={`${styles[color]} ${addedClasses}`}
-          href={src}
-          target="_blank"
-        >
-          {props.children}
-        </a>
-      </span>
+        {props.children}
+      </p>
     );
   }
 
   return (
-    <span
-      className={`text ${className} ${styles[type]} ${styles[color]} ${
-        styles[weight]
+    <p
+      className={`text ${className} ${styles[typeScale]} ${
+        styles[lineHeight]
+      } ${styles[color]} ${styles[weight]} ${styles[alignment]} ${
+        styles[style]
       } ${addedClasses}`}
       id={id}
     >
       {props.children}
-    </span>
+    </p>
   );
 };
 
 Text.propTypes = {
   className: PropTypes.string,
-  type: PropTypes.oneOf([
-    'H1',
-    'H2',
-    'H3',
-    'H4',
-    'CardHeading',
-    'Body',
-    'BodySmall',
-    'Small',
-    'FormLabel',
-    'FormInvalid',
-    'Alt'
-  ]),
+  typeScale: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'Body', 'Small']),
+  lineHeight: PropTypes.oneOf(['lineHeight-default', 'lineHeight-reset']),
   src: PropTypes.string,
   link: PropTypes.bool,
   color: PropTypes.oneOf([
@@ -65,19 +80,25 @@ Text.propTypes = {
     'red',
     'black',
     'white',
-    'grey',
+    'defaultGrey',
     'lightGrey',
     'darkGrey'
   ]),
-  weight: PropTypes.oneOf(['font-weight-regular', 'font-weight-bold'])
+  weight: PropTypes.oneOf([
+    'fontWeight-regular',
+    'fontWeight-medium',
+    'fontWeight-bold'
+  ]),
+  alignment: PropTypes.oneOf(['align-left', 'align-center', 'align-right']),
+  style: PropTypes.oneOf(['underline', 'noUnderline', 'italic', 'uppercase'])
 };
 
 Text.defaultProps = {
-  type: 'Body',
+  typeScale: 'Body',
   src: '',
   link: false,
-  id: '',
-  noUnderline: false
+  weight: 'font-weight-regular',
+  id: ''
 };
 
 export default Text;

@@ -15,18 +15,7 @@ const Loader = props => (
 Loader.propTypes = {
   className: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium']),
-  color: PropTypes.oneOf([
-    'purple',
-    'blue',
-    'orange',
-    'green',
-    'red',
-    'black',
-    'white',
-    'grey',
-    'lightGrey',
-    'darkGrey'
-  ])
+  color: PropTypes.oneOf(['blue', 'white'])
 };
 
 Loader.defaultProps = {

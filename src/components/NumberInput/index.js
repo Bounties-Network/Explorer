@@ -52,7 +52,7 @@ class NumberInput extends React.Component {
       <div className={numberInputClass}>
         {label ? (
           <div>
-            <Text type="FormLabel">{label}</Text>
+            <Text inputLabel>{label}</Text>
           </div>
         ) : null}
         <span className={styles.decrement} onClick={this.decrement}>

@@ -52,7 +52,7 @@ class FileUpload extends React.Component {
         <div className={styles.fileLabel}>
           <div className={styles.fileInfo}>
             <Text
-              type="Body"
+              typeScale="Body"
               className={styles.nameText}
               color={filenameTextColor}
             >
@@ -61,14 +61,14 @@ class FileUpload extends React.Component {
             {filenameDefault || filename
               ? [
                   <Text
-                    type="Body"
+                    typeScale="Body"
                     className={styles.sizeText}
                     color={filesizeTextColor}
                     key={1}
                   >
                     ({bytesToSize(filesize || filesizeDefault)})
                   </Text>,
-                  <Text type="Body" color={iconColor} key={2}>
+                  <Text typeScale="Body" color={iconColor} key={2}>
                     <FontAwesomeIcon
                       icon={['fal', 'times']}
                       className={iconClass}
@@ -79,12 +79,7 @@ class FileUpload extends React.Component {
               : null}
           </div>
         </div>
-        <Button
-          type="secondary"
-          className={styles.button}
-          disabled={disabled}
-          loading={loading}
-        >
+        <Button className={styles.button} disabled={disabled} loading={loading}>
           <input
             disabled={disabledState}
             className={styles.fileInput}

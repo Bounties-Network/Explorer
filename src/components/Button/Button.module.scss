@@ -1,15 +1,18 @@
 @import "~styles/variables.scss";
 
 .button {
-  border-radius: 3px;
+  border-radius: $base-border-radius;
   position: relative;
   border: none;
   box-shadow: $base-box-shadow;
   cursor: pointer;
   display: inline-block;
-  font-size: $h4-font-size;
-  padding: 10px 15px;
+  font-size: $body-font-size;
+  padding: 0 $l-spacing;
+  height: $base-input-height;
+  line-height: $base-input-height;
   white-space: nowrap;
+  min-width: 150px;
 }
 
 .fitWidth {
@@ -21,6 +24,7 @@
 }
 
 .disabled {
+  cursor: default;
   border: none;
   box-shadow: none;
 }
@@ -29,63 +33,98 @@
   cursor: default;
 }
 
+.default {
+  background-color: $brand-white;
+  border: $base-border;
+  color: $brand-darkGrey;
+  line-height: calc(#{$base-input-height} - (#{$base-border-width} * 2));
+
+  &:hover {
+    background-color: lighten($brand-blue, 33%);
+    border-color: $brand-blue;
+    color: $brand-blue;
+  }
+
+  &.disabled{
+     background-color: $brand-nearWhite;
+     color: $brand-lightGrey;
+
+     &:hover {
+       border: $base-border;
+     }
+  }
+
+  &.buttonLoading:hover {
+    background-color: inherit;
+    border-color: $base-border-color;
+    color: $brand-darkGrey;
+    cursor: default;
+  }
+}
+
 .primary {
   background-color: $brand-blue;
-  color: $brand-nearWhite;
+  color: $brand-white;
 
   &:hover {
     background-color: $brand-blue-hover;
   }
 
   &.disabled {
-     background-color: $brand-blue-disabled;
-     color: $brand-white;
-     cursor: default;
-  }
-}
+     opacity: 0.4;
 
-.secondary {
-  background-color: $brand-white;
-  border: 1px solid $base-border-color;
-  color: $brand-darkGrey;
-
-  &:hover {
-    background-color: $brand-nearWhite;
+     &:hover {
+       background-color: $brand-blue;
+     }
   }
 
-  &.disabled{
-     background-color: $brand-nearWhite;
-     border: none;
-     color: $brand-grey;
-     cursor: default;
+  &.buttonLoading:hover {
+    background-color: $brand-blue;
+    cursor: default;
   }
 }
 
 .destructive {
   background-color: $brand-destructive;
-  color: $brand-disabled;
+  color: $brand-white;
 
   &:hover {
     background-color: $brand-destructive-hover;
   }
 
   &.disabled{
-     background-color: $brand-destructive-disabled;
-     color: $brand-disabled;
-     cursor: default;
+     opacity: 0.4;
+
+     &:hover {
+       background-color: $brand-destructive;
+     }
+  }
+
+  &.buttonLoading:hover {
+    background-color: $brand-destructive;
+    cursor: default;
   }
 }
 
 .action {
   background-color: $brand-green;
-  color: $brand-disabled;
+  color: $brand-white;
 
   &:hover {
-
+    background-color: $brand-green-hover;
   }
 
   &.disabled {
+    opacity: 0.4;
 
+    &:hover {
+      background-color: $brand-green;
+    }
+  }
+
+  &.buttonLoading:hover {
+    background-color: $brand-green;
+    cursor: default;
   }
 }
 
@@ -97,16 +136,16 @@
   box-shadow: none;
 
   &:hover {
-    color: $brand-blue-hover;
+    opacity: 0.75;
   }
 
   &.disabled {
-    color: $brand-blue-disabled;
+    opacity: 0.4;
   }
 }
 
 
-.delete {
+.link-destructive {
   background-color: none;
   color: $brand-red;
   text-decoration: underline;
@@ -114,11 +153,11 @@
   box-shadow: none;
 
   &:hover {
-    color: $brand-red-hover;
+    opacity: 0.75;
   }
 
   &.disabled {
-    color: $brand-red-disabled;
+    opacity: 0.4
   }
 }
 

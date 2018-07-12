@@ -7,9 +7,11 @@ $xl-spacing: $base-spacing * 4; // 32px
 $xxl-spacing: $base-spacing * 5; // 40px
 
 // SIZES
+$base-border-width: 1px;
 $base-border-radius: 3px;
 $base-input-height: $xxl-spacing;
-$base-checkbox-size: 1rem; //16px
+$base-checkbox-size: $m-spacing * 1.25;
+$base-toggle-size: $l-spacing;
 
 // TYPOGRAPHY
 $base-font-size: 16px;
@@ -22,6 +24,9 @@ $h3-font-size: 1.25rem; // 20px
 $h2-font-size: 1.563rem; // 25px
 $h1-font-size: 1.938rem; // 31px
 
+$base-line-height: 1.75;
+$line-height-reset: 1;
+
 // COLORS:
 $brand-purple: #5A28C6;
 $brand-purple-hover: darken($brand-purple, 10%);
@@ -31,18 +36,15 @@ $brand-dark-purple: #2E2A35;
 
 $brand-destructive: #D14545;
 $brand-destructive-hover: darken($brand-destructive, 10%);
-$brand-destructive-disabled: lighten($brand-destructive, 30%);
+$brand-red: $brand-destructive;
 
 $brand-blue: #4A93FF;
 $brand-blue-hover: darken($brand-blue, 10%);
-$brand-blue-disabled: lighten($brand-blue, 25%);
 
 $brand-orange: #FBAA31;
 
 $brand-green: #6FC78D;
-$brand-red: #D14545;
-$brand-red-hover: #870101;
-$brand-red-disabled: #ee9999;
+$brand-green-hover: darken($brand-green, 10%);
 
 $brand-black: #262626;
 $brand-darkGrey: #636363;
@@ -56,29 +58,18 @@ $base-input-background: #F9F8FD;
 
 $base-border-color: $brand-lightGrey;
 
-$brand-disabled: rgb(249, 249, 249);
-
-// need black/grey color pallete
-// need disabled/hover colors
-// need to verify hex colors
-
-// Page Centering
-$center-padding-left: 9%;
-$center-padding-right: 8%;
-
 // SIDEBAR:
 $sidebar-color: $brand-dark-purple;
 
 // BOX SHADOWS:
-$base-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+$base-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
 $m-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 $brand-chip-box-shadow: 0 2px 7px $brand-lightGrey;
 $brand-card-box-shadow: 0 0 10px $brand-lightGrey;
 $brand-bountyCard-box-shadow: 0 0 10px $brand-lightGrey;
-$brand-circle-box-shadow: 0 0 10px $brand-lightGrey;
 
 // BORDERS
-$base-border: 1px solid $brand-lightGrey;
+$base-border: $base-border-width solid $brand-lightGrey;
 
 // Overlay Grey
 $overlay-background: rgba(0, 0, 0, 0.6);

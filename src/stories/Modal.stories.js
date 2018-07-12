@@ -32,18 +32,18 @@ class ModalDemo extends React.Component {
           onClose={this.hideModal}
           visible={this.state.modal === 'original'}
         >
-          <Modal.Header>I am a modal heading</Modal.Header>
+          <Modal.Header>
+            <Modal.Heading>I am a modal heading</Modal.Heading>
+            <Modal.Description>I am a modal description</Modal.Description>
+          </Modal.Header>
           <Modal.Body>
-            <div>I am a modal body</div>
-            <div>More content</div>
+            <Text typeScale="Body">I am some text within a modal body.</Text>
           </Modal.Body>
           <Modal.Footer>
             <span style={{ marginRight: '1em' }}>
-              <Button type="secondary" onClick={this.hideModal}>
-                Cancel
-              </Button>
+              <Button onClick={this.hideModal}>Cancel</Button>
             </span>
-            <Button>Submit</Button>
+            <Button type="primary">Submit</Button>
           </Modal.Footer>
         </Modal>
         <div style={{ marginTop: '10px' }} />
@@ -58,18 +58,19 @@ class ModalDemo extends React.Component {
           onClose={this.hideModal}
           visible={this.state.modal === 'closable'}
         >
-          <Modal.Header closable>I am a modal heading</Modal.Header>
+          <Modal.Header closable>
+            <Modal.Heading>I am a modal heading</Modal.Heading>
+            <Modal.Description>I am a modal description</Modal.Description>
+          </Modal.Header>
           <Modal.Body>
             <div>I am a modal body</div>
             <div>More content</div>
           </Modal.Body>
           <Modal.Footer>
             <span style={{ marginRight: '1em' }}>
-              <Button type="secondary" onClick={this.hideModal}>
-                Cancel
-              </Button>
+              <Button onClick={this.hideModal}>Cancel</Button>
             </span>
-            <Button>Submit</Button>
+            <Button type="primary">Submit</Button>
           </Modal.Footer>
         </Modal>
         <div style={{ marginTop: '10px' }} />
@@ -85,18 +86,19 @@ class ModalDemo extends React.Component {
           visible={this.state.modal === 'dismissable'}
           dismissable
         >
-          <Modal.Header closable>I am a modal heading</Modal.Header>
+          <Modal.Header closable>
+            <Modal.Heading>I am a modal heading</Modal.Heading>
+            <Modal.Description>I am a modal description</Modal.Description>
+          </Modal.Header>
           <Modal.Body>
             <div>I am a modal body</div>
             <div>More content</div>
           </Modal.Body>
           <Modal.Footer>
             <span style={{ marginRight: '1em' }}>
-              <Button type="secondary" onClick={this.hideModal}>
-                Cancel
-              </Button>
+              <Button onClick={this.hideModal}>Cancel</Button>
             </span>
-            <Button>Submit</Button>
+            <Button type="primary">Submit</Button>
           </Modal.Footer>
         </Modal>
         <div style={{ marginTop: '10px' }} />
@@ -113,19 +115,16 @@ class ModalDemo extends React.Component {
           dismissable
         >
           <Modal.Header closable icon={['fal', 'wallet']}>
-            I am a modal heading
+            <Modal.Message>I am a modal message</Modal.Message>
           </Modal.Header>
           <Modal.Body>
-            <div>I am a modal body</div>
-            <div>More content</div>
+            <Modal.Description>I am a modal description</Modal.Description>
           </Modal.Body>
           <Modal.Footer>
             <span style={{ marginRight: '1em' }}>
-              <Button type="secondary" onClick={this.hideModal}>
-                Cancel
-              </Button>
+              <Button onClick={this.hideModal}>Cancel</Button>
             </span>
-            <Button>Submit</Button>
+            <Button type="primary">Submit</Button>
           </Modal.Footer>
         </Modal>
         <div style={{ marginTop: '10px' }} />
@@ -143,7 +142,7 @@ class ModalDemo extends React.Component {
           size="small"
         >
           <Modal.Header closable icon={['fal', 'wallet']}>
-            I am a modal heading
+            <Modal.Heading>I am a modal heading</Modal.Heading>
           </Modal.Header>
           <Modal.Body>
             <div>I am a modal body</div>
@@ -151,11 +150,9 @@ class ModalDemo extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <span style={{ marginRight: '1em' }}>
-              <Button type="secondary" onClick={this.hideModal}>
-                Cancel
-              </Button>
+              <Button onClick={this.hideModal}>Cancel</Button>
             </span>
-            <Button>Submit</Button>
+            <Button type="primary">Submit</Button>
           </Modal.Footer>
         </Modal>
         <div style={{ marginTop: '10px' }} />
@@ -173,7 +170,7 @@ class ModalDemo extends React.Component {
           size="large"
         >
           <Modal.Header closable icon={['fal', 'wallet']}>
-            I am a modal heading
+            <Modal.Heading>I am a modal heading</Modal.Heading>
           </Modal.Header>
           <Modal.Body>
             <div>I am a modal body</div>
@@ -181,11 +178,9 @@ class ModalDemo extends React.Component {
           </Modal.Body>
           <Modal.Footer>
             <span style={{ marginRight: '1em' }}>
-              <Button type="secondary" onClick={this.hideModal}>
-                Cancel
-              </Button>
+              <Button onClick={this.hideModal}>Cancel</Button>
             </span>
-            <Button>Submit</Button>
+            <Button type="primary">Submit</Button>
           </Modal.Footer>
         </Modal>
         <div style={{ marginTop: '10px' }} />
@@ -201,12 +196,9 @@ class ModalDemo extends React.Component {
           visible={this.state.modal === 'loading'}
           dismissable
         >
-          <Modal.Header closable loadingIcon>
-            I am a modal heading
-          </Modal.Header>
+          <Modal.Header closable loadingIcon />
           <Modal.Body>
-            <div>I am a modal body</div>
-            <div>More content</div>
+            <Modal.Message>I am a modal message</Modal.Message>
           </Modal.Body>
         </Modal>
       </div>
