@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import styles from './Modal.module.scss';
-import { Text, Loading } from 'components';
+import { Text, Loader } from 'components';
 import { includes, each } from 'lodash';
 
 const ModalContext = React.createContext({});
@@ -32,7 +32,11 @@ class Header extends React.Component {
               ) : null}
               {loadingIcon ? (
                 <div>
-                  <Loading className={styles.loadingHeader} />
+                  <Loader
+                    color="blue"
+                    size="medium"
+                    className={styles.loadingHeader}
+                  />
                 </div>
               ) : null}
               {children}

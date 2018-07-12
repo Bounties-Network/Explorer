@@ -10,7 +10,7 @@
   outline: none;
   background: $base-input-background;
   border: $base-border;
-  border-width: 1px 0;
+  border-width: $base-border-width 0;
   font-size: $body-font-size;
 }
 

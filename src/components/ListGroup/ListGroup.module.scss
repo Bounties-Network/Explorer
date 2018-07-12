@@ -4,12 +4,12 @@
   padding: $m-spacing $m-spacing;
   position: relative;
   border-radius: $base-border-radius;
-  margin-top: -1px;
+  margin-top: -$base-border-width;
 
   &:not(:last-child):after {
     position: absolute;
     content: '';
-    border-bottom: 1px solid $brand-nearWhite;
+    border-bottom: $base-border-width solid $brand-nearWhite;
     width: calc(100% - #{$m-spacing});
     padding: 0 $m-spacing;
     bottom: 0;
