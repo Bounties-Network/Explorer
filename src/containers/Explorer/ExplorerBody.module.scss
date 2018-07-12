@@ -1,0 +1,33 @@
+@import "~styles/variables.scss";
+
+.explorerBody {
+  padding: 30px;
+}
+
+.bodyHeading {
+  width: 100%;
+  display: flex;
+}
+
+.bountyList {
+  margin-top: 15px;
+}
+
+.bountyNumber {
+  margin-right: 3px;
+}
+
+.sortGroup {
+  margin-left: auto;
+  display: flex;
+  align-items: flex-end;
+}
+
+.sortByText {
+  margin-right: $l-spacing;
+}
+
+.sortBy {
+  display: flex;
+  align-items: flex-end;
+}

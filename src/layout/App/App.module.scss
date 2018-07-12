@@ -1,3 +1,5 @@
+@import "~styles/variables.scss";
+
 .app {
   height: 100%;
   width: 100%;
@@ -8,4 +10,5 @@
   width: 100%;
   padding: 55px 0 0 55px;
   box-sizing: border-box;
+  background-color: $brand-lightGrey;
 }
