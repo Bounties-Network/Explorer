@@ -1,0 +1,49 @@
+@import "~styles/variables.scss";
+
+.bountyCard {
+  margin-bottom: 15px;
+  padding: 10px 15px;
+}
+
+.titleText {
+  width: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.categoryList {
+  margin-top: 5px;
+  display: flex;
+}
+
+.avatar {
+  margin-top: 10px;
+}
+
+.detailGroup {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.detailIcon {
+  width: 15px;
+  margin-right: 5px;
+}
+
+.detailInput {
+  margin-right: 5px;
+  
+}
+
+.price {
+  text-align: right;
+}
+
+.detailLabel {
+}
+
+.usd {
+  margin-bottom: 10px;
+}

@@ -26,7 +26,7 @@ class Sort extends React.Component {
     const { active, defaultSort, className, children } = this.props;
     const { sort } = this.state;
 
-    let textColor = 'grey';
+    let textColor = 'defaultGrey';
     let textWeight = 'fontWeight-regular';
     if (active) {
       textColor = 'black';

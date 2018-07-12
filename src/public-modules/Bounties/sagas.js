@@ -9,7 +9,7 @@ const { loadBountiesFail, loadBountiesSuccess } = actions;
 export function* loadBounties(action) {
   let query = searchQueryBuilder(action.searchOptions);
   try {
-    let endpoint = 'bounty/' + query;
+    let endpoint = 'bounty/?offset=500&limit=30';
     const bounties = yield call(request, endpoint, 'GET');
     yield put(loadBountiesSuccess(bounties));
   } catch (e) {
