@@ -37,7 +37,7 @@
 
 .iconHeader {
   color: $brand-purple;
-  margin-bottom: .4em;
+  margin: $xxl-spacing 0;
   font-size: 4em;
 }
 
@@ -74,14 +74,14 @@
 }
 
 .body {
-  padding: $xxl-spacing;
+  //padding-bottom: $xxl-spacing;
 }
 
 .bodyWrapper {
 }
 
 .footer {
-  margin: 0px (-$l-spacing);
+  margin: $xxl-spacing (-$l-spacing) 0;
   border-top: $base-border;
   text-align: right;
   padding: $l-spacing $l-spacing 0;

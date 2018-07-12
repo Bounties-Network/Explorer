@@ -37,6 +37,7 @@
   background-color: $brand-white;
   border: $base-border;
   color: $brand-darkGrey;
+  line-height: calc(#{$base-input-height} - (#{$base-border-width} * 2));
 
   &:hover {
     background-color: lighten($brand-blue, 33%);

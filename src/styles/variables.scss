@@ -7,6 +7,7 @@ $xl-spacing: $base-spacing * 4; // 32px
 $xxl-spacing: $base-spacing * 5; // 40px
 
 // SIZES
+$base-border-width: 1px;
 $base-border-radius: 3px;
 $base-input-height: $xxl-spacing;
 $base-checkbox-size: $m-spacing * 1.25;
@@ -68,7 +69,7 @@ $brand-card-box-shadow: 0 0 10px $brand-lightGrey;
 $brand-bountyCard-box-shadow: 0 0 10px $brand-lightGrey;
 
 // BORDERS
-$base-border: 1px solid $brand-lightGrey;
+$base-border: $base-border-width solid $brand-lightGrey;
 
 // Overlay Grey
 $overlay-background: rgba(0, 0, 0, 0.6);
