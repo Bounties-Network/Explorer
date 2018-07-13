@@ -20,6 +20,7 @@ const ExplorerBodyComponent = props => {
   const renderBounties = () => {
     return map(bounty => {
       const {
+        id,
         title,
         categories,
         user,
@@ -32,6 +33,7 @@ const ExplorerBodyComponent = props => {
       } = bounty;
       return (
         <BountyCard
+          key={id}
           title={title}
           categories={categories}
           img={user.profile_image}

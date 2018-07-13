@@ -5,6 +5,11 @@
   padding: 10px 15px;
 }
 
+.pill {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
 .titleText {
   width: 100%;
   display: inline-block;
@@ -16,10 +21,11 @@
 .categoryList {
   margin-top: 5px;
   display: flex;
+  flex-flow: row wrap;
 }
 
 .avatar {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .detailGroup {

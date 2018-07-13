@@ -21,7 +21,11 @@ const BountyCard = props => {
 
   const renderCategories = () => {
     return map(category => {
-      return <Pill>{category.name}</Pill>;
+      return (
+        <div className={styles.pill}>
+          <Pill>{category.name}</Pill>
+        </div>
+      );
     }, categories);
   };
 
