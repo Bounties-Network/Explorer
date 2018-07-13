@@ -4,19 +4,19 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid $brand-lightGrey;
 }
 
 .tab {
   display: flex;
   align-items: center;
   width: auto;
+  margin-bottom: -$base-border-width;
   padding: ($base-spacing * 1.5) $base-spacing;
   cursor: pointer;
   border-bottom: 2px solid transparent;
 
   &:not(:last-child) {
-    margin-right: $l-spacing;
+    margin-right: $m-spacing;
   }
 }
 

@@ -4,21 +4,20 @@ import styles from './Card.module.scss';
 import { Text, Tabs } from 'components';
 import { includes, each } from 'lodash';
 
-const HeaderTitle = props => <Text type="H3">{props.children}</Text>;
+const HeaderTitle = props => (
+  <Text
+    typeScale="h3"
+    weight="fontWeight-medium"
+    className={styles.headerTitle}
+  >
+    {props.children}
+  </Text>
+);
 
 const HeaderTabs = props => {
   const { top } = props;
 
-  let headerClass = styles.headerTabs;
-  if (top) {
-    headerClass = styles.headerTabsTop;
-  }
-
-  return (
-    <div className={headerClass}>
-      <Tabs {...props}>{props.children}</Tabs>
-    </div>
-  );
+  return <Tabs {...props}>{props.children}</Tabs>;
 };
 
 HeaderTabs.propTypes = {
@@ -40,13 +39,11 @@ class Header extends React.Component {
 
     return (
       <div className={headerStyles}>
-        <div className={styles.headerText}>
-          {typeof this.props.children === 'string' ? (
-            <HeaderTitle>{this.props.children}</HeaderTitle>
-          ) : (
-            this.props.children
-          )}
-        </div>
+        {typeof this.props.children === 'string' ? (
+          <HeaderTitle>{this.props.children}</HeaderTitle>
+        ) : (
+          this.props.children
+        )}
       </div>
     );
   }
