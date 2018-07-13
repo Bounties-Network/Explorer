@@ -1,4 +1,4 @@
-import { PAGE_SIZE, SORT_VALUE } from './constants';
+import { PAGE_SIZE, SORT_CREATED } from './constants';
 
 const initialState = {
   loading: true,
@@ -6,22 +6,22 @@ const initialState = {
   error: false,
   offset: 0,
   count: 0,
-  sort: SORT_VALUE,
-  sort_order: 'asc',
+  sort: SORT_CREATED,
+  sortOrder: 'asc',
   search: '',
-  stage_filters: {
+  stageFilters: {
     drafts: false,
-    active: false,
+    active: true,
     completed: false,
     expired: false,
     dead: false
   },
-  difficulty_filter: {
-    beginner: false,
-    intermediate: false,
-    advanced: false
+  difficultyFilters: {
+    beginner: true,
+    intermediate: true,
+    advanced: true
   },
-  category_filters: new Set([]),
+  categoryFilters: new Set([]),
   bounties: []
 };
 
@@ -86,31 +86,31 @@ function BountiesReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_CATEGORY_FILTER: {
       const { category } = action;
-      const updated_filters = new Set(state.category_filters);
+      const updated_filters = new Set(state.categoryFilters);
       updated_filters.add(category);
 
       return {
         ...state,
-        category_filters: updated_filters
+        categoryFilters: updated_filters
       };
     }
     case REMOVE_CATEGORY_FILTER: {
       const { category } = action;
-      const updated_filters = new Set(state.category_filters);
+      const updated_filters = new Set(state.categoryFilters);
       updated_filters.delete(category);
 
       return {
         ...state,
-        category_filters: updated_filters
+        categoryFilters: updated_filters
       };
     }
     case TOGGLE_DIFFICULTY_FILTER: {
       const { difficulty } = action;
       return {
         ...state,
-        difficulty_filters: {
-          ...state.difficulty_filters,
-          [difficulty]: !state.difficulty_filtersl[difficulty]
+        difficultyFilters: {
+          ...state.difficultyFilters,
+          [difficulty]: !state.difficultyFiltersl[difficulty]
         }
       };
     }
@@ -118,9 +118,9 @@ function BountiesReducer(state = initialState, action) {
       const { stage } = action;
       return {
         ...state,
-        stage_filters: {
-          ...state.stage_filters,
-          [stage]: !state.stage_filters[stage]
+        stageFilters: {
+          ...state.stageFilters,
+          [stage]: !state.stageFilters[stage]
         }
       };
     }
@@ -185,6 +185,12 @@ function BountiesReducer(state = initialState, action) {
 }
 
 export const actions = {
+  setSort,
+  setSearch,
+  toggleStageFilter,
+  toggleDifficultyFilter,
+  addCategoryFilter,
+  removeCategoryFilter,
   loadBounties,
   loadBountiesSuccess,
   loadBountiesFail,

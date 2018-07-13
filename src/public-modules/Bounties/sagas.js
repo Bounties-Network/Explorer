@@ -1,7 +1,7 @@
 import request from 'utils/request';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Bounties';
-import { searchQueryBuilder } from '../Utilities/helpers';
+import { bountiesQuerySelector } from 'public-modules/Bounties/selectors';
 
 const {
   LOAD_BOUNTIES,
@@ -16,10 +16,10 @@ const {
 const { loadBountiesFail, loadBountiesSuccess } = actions;
 
 export function* loadBounties(action) {
-  let query = searchQueryBuilder(action.searchOptions);
+  let params = yield select(bountiesQuerySelector);
   try {
-    let endpoint = 'bounty/?offset=500&limit=30';
-    const bounties = yield call(request, endpoint, 'GET');
+    let endpoint = 'bounty/';
+    const bounties = yield call(request, endpoint, 'GET', { params });
     yield put(loadBountiesSuccess(bounties));
   } catch (e) {
     yield put(loadBountiesFail(e));

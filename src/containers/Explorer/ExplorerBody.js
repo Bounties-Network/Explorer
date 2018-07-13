@@ -8,14 +8,15 @@ import { LoadComponent } from 'hocs';
 import { BountyCard } from 'explorer-components';
 import { map } from 'lodash';
 import {
-  bountiesSelector,
-  bountiesCountSelector,
-  bountiesStateSelector
-} from 'public-modules/Bounties/selectors';
+  SORT_VALUE,
+  SORT_CREATED,
+  SORT_EXPIRY
+} from 'public-modules/Bounties/constants';
+import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { actions } from 'public-modules/Bounties';
 
 const ExplorerBodyComponent = props => {
-  const { bounties } = props;
+  const { bounties, count, sort, setSort } = props;
 
   const renderBounties = () => {
     return map(bounty => {
@@ -59,7 +60,7 @@ const ExplorerBodyComponent = props => {
             typeScale="h3"
             className={styles.bountyNumber}
           >
-            54
+            {count}
           </Text>
           <Text color="defaultGrey" inline>
             bounties
@@ -75,11 +76,30 @@ const ExplorerBodyComponent = props => {
           >
             Sort By
           </Text>
-          <Sort active className={styles.sortBy}>
+          <Sort
+            className={styles.sortBy}
+            active={sort === SORT_VALUE}
+            onSort={sortOrder => setSort(SORT_VALUE, sortOrder)}
+          >
             Value
           </Sort>
-          <Sort className={styles.sortBy}>Creation Date</Sort>
-          <Sort className={styles.sortBy}>Expiry</Sort>
+          <Sort
+            className={styles.sortBy}
+            active={sort === SORT_CREATED}
+            onSort={sortOrder => {
+              console.log('yo');
+              setSort(SORT_CREATED, sortOrder);
+            }}
+          >
+            Creation Date
+          </Sort>
+          <Sort
+            className={styles.sortBy}
+            active={sort === SORT_EXPIRY}
+            onSort={sortOrder => setSort(SORT_EXPIRY, sortOrder)}
+          >
+            Expiry
+          </Sort>
         </div>
       </div>
       <div className={styles.bountyList}>{renderBounties()}</div>
@@ -87,16 +107,20 @@ const ExplorerBodyComponent = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  bounties: bountiesSelector(state),
-  count: bountiesCountSelector(state),
-  ...bountiesStateSelector(state)
-});
+const mapStateToProps = state => {
+  const bountyState = rootBountiesSelector(state);
+
+  return {
+    bounties: bountyState.bounties,
+    count: bountyState.count,
+    sort: bountyState.sort
+  };
+};
 
 const ExplorerBody = compose(
   connect(
     mapStateToProps,
-    { load: actions.loadBounties }
+    { load: actions.loadBounties, setSort: actions.setSort }
   ),
   LoadComponent('')
 )(ExplorerBodyComponent);
