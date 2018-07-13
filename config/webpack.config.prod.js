@@ -310,6 +310,52 @@ module.exports = {
               )
             ),
           },
+          {
+            test: /\.scss$/,
+            loader: ExtractTextPlugin.extract(
+              Object.assign(
+                {
+                  fallback: {
+                    loader: require.resolve('style-loader'),
+                    options: {
+                      hmr: false,
+                    },
+                  },
+                  use: [
+                    {
+                      loader: "css-loader",
+                      options: {
+                        "modules": false,
+                        "localIdentName": "[local]--[hash:base64:5]",
+                      },
+                    },
+                    require.resolve("sass-loader"),
+                    {
+                      loader: require.resolve('postcss-loader'),
+                      options: {
+                        // Necessary for external CSS imports to work
+                        // https://github.com/facebookincubator/create-react-app/issues/2677
+                        ident: 'postcss',
+                        plugins: () => [
+                          require('postcss-flexbugs-fixes'),
+                          autoprefixer({
+                            browsers: [
+                              '>1%',
+                              'last 4 versions',
+                              'Firefox ESR',
+                              'not ie < 9', // React doesn't support IE8 anyway
+                            ],
+                            flexbox: 'no-2009',
+                          }),
+                        ],
+                      },
+                    },
+                  ],
+                },
+                extractTextPluginOptions
+              )
+            ),
+          },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
           // This loader doesn't use a "test" so it will catch all modules
@@ -350,8 +396,8 @@ module.exports = {
         removeEmptyAttributes: true,
         removeStyleLinkTypeAttributes: true,
         keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
+        minifyJS: false,
+        minifyCSS: false,
         minifyURLs: true,
       },
     }),
@@ -370,10 +416,9 @@ module.exports = {
           // Pending further investigation:
           // https://github.com/mishoo/UglifyJS2/issues/2011
           comparisons: false,
+          keep_fnames: true,
         },
-        mangle: {
-          safari10: true,
-        },
+        mangle: false,
         output: {
           comments: false,
           // Turned on because emoji and regex is not minified properly using default
