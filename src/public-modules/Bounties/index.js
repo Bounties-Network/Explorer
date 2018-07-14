@@ -187,7 +187,6 @@ function BountiesReducer(state = initialState, action) {
         ...state,
         loading: true,
         loaded: false,
-        count: 0,
         error: false,
         searchOptions
       };

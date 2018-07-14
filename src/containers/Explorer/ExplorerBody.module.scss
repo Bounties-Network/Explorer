@@ -4,6 +4,12 @@
   padding: 30px;
 }
 
+.centeredBody {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .bodyHeading {
   width: 100%;
   display: flex;
@@ -11,6 +17,16 @@
 
 .bountyList {
   margin-top: 20px;
+}
+
+.bountyListCentered {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.centeredItem {
+  margin: 0 auto;
 }
 
 .bountyNumber {

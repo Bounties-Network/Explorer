@@ -15,9 +15,16 @@ const {
   REMOVE_CATEGORY_FILTER
 } = actionTypes;
 
-const { loadBountiesFail, loadBountiesSuccess } = actions;
+const {
+  loadBounties: loadBountiesAction,
+  loadBountiesFail,
+  loadBountiesSuccess
+} = actions;
 
 export function* loadBounties(action) {
+  if (action.type !== LOAD_BOUNTIES) {
+    yield put(loadBountiesAction());
+  }
   let params = yield select(bountiesQuerySelector);
   try {
     let endpoint = 'bounty/';

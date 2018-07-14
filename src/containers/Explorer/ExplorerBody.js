@@ -3,7 +3,7 @@ import styles from './ExplorerBody.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Text, Sort } from 'components';
+import { Text, Sort, Loader, ZeroState } from 'components';
 import { LoadComponent } from 'hocs';
 import { BountyCard } from 'explorer-components';
 import { map } from 'lodash';
@@ -16,7 +16,7 @@ import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { actions } from 'public-modules/Bounties';
 
 const ExplorerBodyComponent = props => {
-  const { bounties, count, sort, setSort } = props;
+  const { bounties, count, sort, setSort, loading } = props;
 
   const renderBounties = () => {
     return map(bounty => {
@@ -50,8 +50,13 @@ const ExplorerBodyComponent = props => {
     }, bounties);
   };
 
+  let className = styles.explorerBody;
+  if (loading || bounties.length === 0) {
+    className += ` ${styles.centeredBody}`;
+  }
+
   return (
-    <div className={styles.explorerBody}>
+    <div className={className}>
       <div className={styles.bodyHeading}>
         <div>
           <Text
@@ -87,7 +92,6 @@ const ExplorerBodyComponent = props => {
             className={styles.sortBy}
             active={sort === SORT_CREATED}
             onSort={sortOrder => {
-              console.log('yo');
               setSort(SORT_CREATED, sortOrder);
             }}
           >
@@ -102,7 +106,24 @@ const ExplorerBodyComponent = props => {
           </Sort>
         </div>
       </div>
-      <div className={styles.bountyList}>{renderBounties()}</div>
+      {loading ? (
+        <div className={styles.bountyListCentered}>
+          <Loader size="medium" className={styles.centeredItem} />
+        </div>
+      ) : null}
+      {!loading && bounties.length !== 0 ? (
+        <div className={styles.bountyList}>{renderBounties()}</div>
+      ) : null}
+      {!loading && bounties.length === 0 ? (
+        <div className={styles.bountyListCentered}>
+          <ZeroState
+            className={styles.centeredItem}
+            iconColor="white"
+            title="No Bounties Found"
+            text="Update your search filters to see more bounties"
+          />
+        </div>
+      ) : null}
     </div>
   );
 };
@@ -113,7 +134,8 @@ const mapStateToProps = state => {
   return {
     bounties: bountyState.bounties,
     count: bountyState.count,
-    sort: bountyState.sort
+    sort: bountyState.sort,
+    loading: bountyState.loading
   };
 };
 
