@@ -4,7 +4,7 @@ import {
   STAGE_MAPPING,
   PAGE_SIZE
 } from 'public-modules/Bounties/constants';
-import { reduce as reduceFunction } from 'lodash';
+import { reduce as reduceFunction, every, negate } from 'lodash';
 const reduce = reduceFunction.convert({ cap: false });
 
 export const rootBountiesSelector = state => state.bounties;
@@ -24,14 +24,24 @@ export const bountiesStateSelector = createSelector(
 );
 
 // We make this a selector to manage the set -> array conversion
-export const bountiesCategoryFiltesSelector = createSelector(
+export const bountiesCategoryFiltersSelector = createSelector(
   rootBountiesSelector,
   rootBounty => [...rootBounty.categoryFilters]
 );
 
+export const anyStageFiltersSelected = createSelector(
+  rootBountiesSelector,
+  rootBounty => every(negate(Boolean), rootBounty.stageFilters)
+);
+
+export const anyDifficultyFiltersSelected = createSelector(
+  rootBountiesSelector,
+  rootBounty => every(negate(Boolean), rootBounty.difficultyFilters)
+);
+
 export const bountiesQuerySelector = createSelector(
   rootBountiesSelector,
-  bountiesCategoryFiltesSelector,
+  bountiesCategoryFiltersSelector,
   (rootBounty, categories) => {
     const query = {};
     let orderPrefix = '';
