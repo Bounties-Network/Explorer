@@ -7,10 +7,13 @@ import {
   anyStageFiltersSelected,
   anyDifficultyFiltersSelected
 } from 'public-modules/Bounties/selectors';
+import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { throttle } from 'lodash';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { LoadComponent } from 'hocs';
 import { actions } from 'public-modules/Bounties';
+import { actions as categoryActions } from 'public-modules/Categories';
 const {
   setSearch,
   toggleStageFilter,
@@ -20,6 +23,7 @@ const {
   setAllStageFilters,
   setAllDifficultyFilters
 } = actions;
+const { loadCategories } = categoryActions;
 
 const FilterNavComponent = props => {
   const {
@@ -32,7 +36,11 @@ const FilterNavComponent = props => {
     anyStageFiltersSelected,
     anyDifficultyFiltersSelected,
     setAllDifficultyFilters,
-    setAllStageFilters
+    setAllStageFilters,
+    categories,
+    categoryFilters,
+    addCategoryFilter,
+    removeCategoryFilter
   } = props;
 
   return (
@@ -107,7 +115,14 @@ const FilterNavComponent = props => {
         <Text weight="fontWeight-medium" className={styles.groupText}>
           Category
         </Text>
-        <SearchSelect />
+        <SearchSelect
+          options={categories}
+          value={categoryFilters}
+          labelKey="name"
+          valueKey="normalized_name"
+          onChange={values => addCategoryFilter(values[values.length - 1])}
+          onClose={removeCategoryFilter}
+        />
       </div>
     </div>
   );
@@ -122,6 +137,7 @@ const mapStateToProps = state => {
     anyDifficultyFiltersSelected: anyDifficultyFiltersSelected(state),
     difficultyFilters: bountyState.difficultyFilters,
     categoryFilters: bountiesCategoryFiltersSelector(state),
+    categories: categoriesSelector(state),
     search: bountyState.search
   };
 };
@@ -136,9 +152,11 @@ const FilterNav = compose(
       addCategoryFilter,
       removeCategoryFilter,
       setAllDifficultyFilters,
-      setAllStageFilters
+      setAllStageFilters,
+      load: loadCategories
     }
-  )
+  ),
+  LoadComponent('')
 )(FilterNavComponent);
 
 export default FilterNav;
