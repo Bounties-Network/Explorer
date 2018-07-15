@@ -29,7 +29,7 @@ const ExplorerBodyComponent = props => {
     loadMoreBounties,
     offset,
     loadingMore,
-    addCategoryFilter,
+    toggleCategoryFilter,
     categoryFilters
   } = props;
 
@@ -60,7 +60,7 @@ const ExplorerBodyComponent = props => {
           value={Number(calculated_fulfillmentAmount).toFixed(2)}
           usd={Number(usd_price).toFixed(0)}
           currency={tokenSymbol}
-          onPillClick={addCategoryFilter}
+          onPillClick={toggleCategoryFilter}
           selectedCategories={categoryFilters}
         />
       );
@@ -175,7 +175,7 @@ const ExplorerBody = compose(
       load: actions.loadBounties,
       setSort: actions.setSort,
       loadMoreBounties: actions.loadMoreBounties,
-      addCategoryFilter: actions.addCategoryFilter
+      toggleCategoryFilter: actions.toggleCategoryFilter
     }
   ),
   LoadComponent('')

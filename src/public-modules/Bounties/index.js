@@ -96,6 +96,7 @@ const TOGGLE_STAGE_FILTER = 'bounties/TOGGLE_STAGE_FILTER';
 const TOGGLE_DIFFICULTY_FILTER = 'bounties/TOGGLE_DIFFICULTY_FILTER';
 const SET_ALL_STAGE_FILTERS = 'bounties/SET_ALL_STAGE_FILTERS';
 const SET_ALL_DIFFICULTY_FILTERS = 'bounties/SET_ALL_DIFFICULTY_FILTERS';
+const TOGGLE_CATEGORY_FILTER = 'bounties/TOGGLE_CATEGORY_FILTER';
 const ADD_CATEGORY_FILTER = 'bounties/SET_CATEGORY_FILTER';
 const REMOVE_CATEGORY_FILTER = 'bounties/REMOVE_CATEGORY_FILTER';
 
@@ -127,6 +128,10 @@ function setAllDifficultyFilters() {
   return { type: SET_ALL_DIFFICULTY_FILTERS };
 }
 
+function toggleCategoryFilter(category) {
+  return { type: TOGGLE_CATEGORY_FILTER, category };
+}
+
 function addCategoryFilter(category) {
   return { type: ADD_CATEGORY_FILTER, category };
 }
@@ -137,6 +142,21 @@ function removeCategoryFilter(category) {
 
 function BountiesReducer(state = initialState, action) {
   switch (action.type) {
+    case TOGGLE_CATEGORY_FILTER: {
+      const { category } = action;
+
+      const updated_filters = new Set(state.categoryFilters);
+      if (updated_filters.has(category)) {
+        updated_filters.delete(category);
+      } else {
+        updated_filters.add(category);
+      }
+
+      return {
+        ...state,
+        categoryFilters: updated_filters
+      };
+    }
     case ADD_CATEGORY_FILTER: {
       const { category } = action;
       const updated_filters = new Set(state.categoryFilters);
@@ -278,6 +298,7 @@ export const actions = {
   setAllStageFilters,
   addCategoryFilter,
   removeCategoryFilter,
+  toggleCategoryFilter,
   loadBounties,
   loadBountiesSuccess,
   loadBountiesFail,
@@ -296,6 +317,7 @@ export const actionTypes = {
   TOGGLE_DIFFICULTY_FILTER,
   ADD_CATEGORY_FILTER,
   REMOVE_CATEGORY_FILTER,
+  TOGGLE_CATEGORY_FILTER,
   LOAD_BOUNTIES,
   LOAD_BOUNTIES_SUCCESS,
   LOAD_BOUNTIES_FAIL,
