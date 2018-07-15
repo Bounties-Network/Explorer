@@ -22,6 +22,8 @@ const all_difficulty_filters = {
 
 const initialState = {
   loading: true,
+  loadingMore: false,
+  loadingMoreError: false,
   loaded: false,
   error: false,
   offset: 0,
@@ -46,11 +48,18 @@ const initialState = {
 };
 
 const LOAD_BOUNTIES = 'bounties/LOAD_BOUNTIES';
+const LOAD_MORE_BOUNTIES = 'bounties/LOAD_MORE_BOUNTIES';
+const LOAD_MORE_BOUNTIES_SUCCESS = 'bounties/LOAD_MORE_BOUNTIES_SUCCESS';
 const LOAD_BOUNTIES_SUCCESS = 'bounties/LOAD_BOUNTIES_SUCCESS';
+const LOAD_MORE_BOUNTIES_FAIL = 'bounties/LOAD_MORE_BOUNTIES_FAIL';
 const LOAD_BOUNTIES_FAIL = 'bounties/LOAD_BOUNTIES_FAIL';
 
 function loadBounties() {
   return { type: LOAD_BOUNTIES };
+}
+
+function loadMoreBounties() {
+  return { type: LOAD_MORE_BOUNTIES };
 }
 
 function loadBountiesSuccess(bounties) {
@@ -61,14 +70,19 @@ function loadBountiesSuccess(bounties) {
   };
 }
 
+function loadMoreBountiesSuccess(bounties) {
+  return {
+    type: LOAD_MORE_BOUNTIES_SUCCESS,
+    bounties: bounties.results
+  };
+}
+
 function loadBountiesFail(error) {
   return { type: LOAD_BOUNTIES_FAIL, error };
 }
 
-const LOAD_MORE = 'bounties/LOAD_MORE';
-
-function loadMoreBounties() {
-  return { type: LOAD_MORE };
+function loadMoreBountiesFail(error) {
+  return { type: LOAD_MORE_BOUNTIES_FAIL, error };
 }
 
 const SET_SORT = 'bounties/SET_SORT';
@@ -181,18 +195,22 @@ function BountiesReducer(state = initialState, action) {
         sortOrder
       };
     }
+    case LOAD_MORE_BOUNTIES: {
+      return {
+        ...state,
+        loadingMore: true
+      };
+    }
     case LOAD_BOUNTIES: {
-      const { searchOptions } = action;
       return {
         ...state,
         loading: true,
         loaded: false,
-        error: false,
-        searchOptions
+        error: false
       };
     }
     case LOAD_BOUNTIES_SUCCESS: {
-      const { bounties, count, searchOptions } = action;
+      const { bounties, count } = action;
 
       return {
         ...state,
@@ -200,24 +218,32 @@ function BountiesReducer(state = initialState, action) {
         loaded: true,
         error: false,
         bounties,
-        count,
-        searchOptions
+        count
+      };
+    }
+    case LOAD_MORE_BOUNTIES_SUCCESS: {
+      const { bounties } = action;
+
+      return {
+        ...state,
+        loadingMore: false,
+        bounties: [...state.bounties, ...bounties]
       };
     }
     case LOAD_BOUNTIES_FAIL: {
-      const { searchOptions } = action;
       return {
         ...state,
         loading: false,
         loaded: true,
         error: true,
-        searchOptions
+        offset: state.offset + PAGE_SIZE
       };
     }
-    case LOAD_MORE: {
+    case LOAD_MORE_BOUNTIES_FAIL: {
       return {
         ...state,
-        offset: state.offset + PAGE_SIZE
+        loadingMore: false,
+        loadingMoreError: true
       };
     }
     default:
@@ -237,7 +263,9 @@ export const actions = {
   loadBounties,
   loadBountiesSuccess,
   loadBountiesFail,
-  loadMoreBounties
+  loadMoreBounties,
+  loadMoreBountiesSuccess,
+  loadMoreBountiesFail
 };
 
 export const actionTypes = {
@@ -251,7 +279,10 @@ export const actionTypes = {
   REMOVE_CATEGORY_FILTER,
   LOAD_BOUNTIES,
   LOAD_BOUNTIES_SUCCESS,
-  LOAD_BOUNTIES_FAIL
+  LOAD_BOUNTIES_FAIL,
+  LOAD_MORE_BOUNTIES,
+  LOAD_MORE_BOUNTIES_SUCCESS,
+  LOAD_MORE_BOUNTIES_FAIL
 };
 
 export default BountiesReducer;

@@ -75,7 +75,6 @@ export const bountiesQuerySelector = createSelector(
     query['search'] = rootBounty.search;
     query['ordering'] = orderPrefix + rootBounty.sort;
     query['limit'] = PAGE_SIZE;
-    query['offset'] = rootBounty.offset;
     return query;
   }
 );

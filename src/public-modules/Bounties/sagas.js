@@ -1,10 +1,15 @@
 import request from 'utils/request';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Bounties';
-import { bountiesQuerySelector } from 'public-modules/Bounties/selectors';
+import { PAGE_SIZE } from 'public-modules/Bounties/constants';
+import {
+  bountiesQuerySelector,
+  rootBountiesSelector
+} from 'public-modules/Bounties/selectors';
 
 const {
   LOAD_BOUNTIES,
+  LOAD_MORE_BOUNTIES,
   SET_SORT,
   SET_SEARCH,
   TOGGLE_STAGE_FILTER,
@@ -18,7 +23,10 @@ const {
 const {
   loadBounties: loadBountiesAction,
   loadBountiesFail,
-  loadBountiesSuccess
+  loadBountiesSuccess,
+  loadMoreBounties: loadMoreBountiesAction,
+  loadMoreBountiesFail,
+  loadMoreBountiesSuccess
 } = actions;
 
 export function* loadBounties(action) {
@@ -32,6 +40,22 @@ export function* loadBounties(action) {
     yield put(loadBountiesSuccess(bounties));
   } catch (e) {
     yield put(loadBountiesFail(e));
+  }
+}
+
+export function* loadMoreBounties(action) {
+  let params = yield select(bountiesQuerySelector);
+  let bountyState = yield select(rootBountiesSelector);
+  const offset = bountyState.offset + PAGE_SIZE;
+
+  try {
+    let endpoint = 'bounty/';
+    const bounties = yield call(request, endpoint, 'GET', {
+      params: { ...params, offset }
+    });
+    yield put(loadMoreBountiesSuccess(bounties));
+  } catch (e) {
+    yield put(loadMoreBountiesFail(e));
   }
 }
 
@@ -52,4 +76,8 @@ export function* watchBounties() {
   );
 }
 
-export default [watchBounties];
+export function* watchLoadMoreBounties() {
+  yield takeLatest([LOAD_MORE_BOUNTIES], loadMoreBounties);
+}
+
+export default [watchBounties, watchLoadMoreBounties];

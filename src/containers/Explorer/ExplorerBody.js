@@ -3,20 +3,30 @@ import styles from './ExplorerBody.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Text, Sort, Loader, ZeroState } from 'components';
+import { Text, Sort, Loader, ZeroState, Button } from 'components';
 import { LoadComponent } from 'hocs';
 import { BountyCard } from 'explorer-components';
 import { map } from 'lodash';
 import {
   SORT_VALUE,
   SORT_CREATED,
-  SORT_EXPIRY
+  SORT_EXPIRY,
+  PAGE_SIZE
 } from 'public-modules/Bounties/constants';
 import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { actions } from 'public-modules/Bounties';
 
 const ExplorerBodyComponent = props => {
-  const { bounties, count, sort, setSort, loading } = props;
+  const {
+    bounties,
+    count,
+    sort,
+    setSort,
+    loading,
+    loadMoreBounties,
+    offset,
+    loadingMore
+  } = props;
 
   const renderBounties = () => {
     return map(bounty => {
@@ -112,7 +122,16 @@ const ExplorerBodyComponent = props => {
         </div>
       ) : null}
       {!loading && bounties.length !== 0 ? (
-        <div className={styles.bountyList}>{renderBounties()}</div>
+        <div className={styles.bountyList}>
+          {renderBounties()}
+          {offset + PAGE_SIZE < count ? (
+            <div className={styles.loadMoreButton}>
+              <Button loading={loadingMore} onClick={loadMoreBounties}>
+                Load More
+              </Button>
+            </div>
+          ) : null}
+        </div>
       ) : null}
       {!loading && bounties.length === 0 ? (
         <div className={styles.bountyListCentered}>
@@ -135,14 +154,20 @@ const mapStateToProps = state => {
     bounties: bountyState.bounties,
     count: bountyState.count,
     sort: bountyState.sort,
-    loading: bountyState.loading
+    offset: bountyState.offset,
+    loading: bountyState.loading,
+    loadingMore: bountyState.loadingMore
   };
 };
 
 const ExplorerBody = compose(
   connect(
     mapStateToProps,
-    { load: actions.loadBounties, setSort: actions.setSort }
+    {
+      load: actions.loadBounties,
+      setSort: actions.setSort,
+      loadMoreBounties: actions.loadMoreBounties
+    }
   ),
   LoadComponent('')
 )(ExplorerBodyComponent);
