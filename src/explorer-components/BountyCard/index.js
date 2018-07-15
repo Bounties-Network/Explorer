@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './BountyCard.module.scss';
-import { map } from 'lodash';
+import { map, includes } from 'lodash';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Card, Text, Pill, Avatar } from 'components';
 
@@ -16,14 +16,30 @@ const BountyCard = props => {
     deadline,
     value,
     usd,
-    currency
+    currency,
+    onPillClick,
+    selectedCategories
   } = props;
 
   const renderCategories = () => {
     return map(category => {
+      let backgroundColor = 'white';
+      let hoverBackgroundColor = 'nearWhite';
+      if (includes(category.normalized_name, selectedCategories)) {
+        backgroundColor = 'nearWhite';
+        hoverBackgroundColor = 'white';
+      }
+
       return (
         <div className={styles.pill}>
-          <Pill>{category.name}</Pill>
+          <Pill
+            key={category.normalized_name}
+            onClick={() => onPillClick(category.normalized_name)}
+            backgroundColor={backgroundColor}
+            hoverBackgroundColor={hoverBackgroundColor}
+          >
+            {category.name}
+          </Pill>
         </div>
       );
     }, categories);
@@ -118,10 +134,21 @@ const BountyCard = props => {
 };
 
 BountyCard.propTypes = {
-  experienceLevel: PropTypes.string
+  experienceLevel: PropTypes.string,
+  title: PropTypes.string,
+  categories: PropTypes.array,
+  img: PropTypes.string,
+  address: PropTypes.string,
+  submissions: PropTypes.number,
+  deadline: PropTypes.string,
+  value: PropTypes.number,
+  usd: PropTypes.number,
+  currency: PropTypes.string,
+  onPillClick: PropTypes.func
 };
 
 BountyCard.defaultProps = {
+  onPillClick: () => {},
   experienceLevel: 'Unknown'
 };
 

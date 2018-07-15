@@ -13,7 +13,10 @@ import {
   SORT_EXPIRY,
   PAGE_SIZE
 } from 'public-modules/Bounties/constants';
-import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
+import {
+  rootBountiesSelector,
+  bountiesCategoryFiltersSelector
+} from 'public-modules/Bounties/selectors';
 import { actions } from 'public-modules/Bounties';
 
 const ExplorerBodyComponent = props => {
@@ -25,7 +28,9 @@ const ExplorerBodyComponent = props => {
     loading,
     loadMoreBounties,
     offset,
-    loadingMore
+    loadingMore,
+    addCategoryFilter,
+    categoryFilters
   } = props;
 
   const renderBounties = () => {
@@ -55,6 +60,8 @@ const ExplorerBodyComponent = props => {
           value={Number(calculated_fulfillmentAmount).toFixed(2)}
           usd={Number(usd_price).toFixed(0)}
           currency={tokenSymbol}
+          onPillClick={addCategoryFilter}
+          selectedCategories={categoryFilters}
         />
       );
     }, bounties);
@@ -156,7 +163,8 @@ const mapStateToProps = state => {
     sort: bountyState.sort,
     offset: bountyState.offset,
     loading: bountyState.loading,
-    loadingMore: bountyState.loadingMore
+    loadingMore: bountyState.loadingMore,
+    categoryFilters: bountiesCategoryFiltersSelector(state)
   };
 };
 
@@ -166,7 +174,8 @@ const ExplorerBody = compose(
     {
       load: actions.loadBounties,
       setSort: actions.setSort,
-      loadMoreBounties: actions.loadMoreBounties
+      loadMoreBounties: actions.loadMoreBounties,
+      addCategoryFilter: actions.addCategoryFilter
     }
   ),
   LoadComponent('')

@@ -15,14 +15,15 @@ const Pill = props => {
     backgroundColor,
     textColor,
     noBorder,
-    borderColor
+    borderColor,
+    hoverBackgroundColor
   } = props;
 
   return (
     <span
       className={`${styles.pill} ${styles[type]} ${styles[backgroundColor]} ${
-        styles[close ? 'close' : '']
-      } ${styles[noBorder ? 'noBorder' : '']}
+        styles['hover' + hoverBackgroundColor]
+      } ${styles[close ? 'close' : '']} ${styles[noBorder ? 'noBorder' : '']}
       } ${styles[borderColor + 'Border']}
       `}
       onClick={onClick}
@@ -44,6 +45,7 @@ const Pill = props => {
 Pill.propTypes = {
   type: PropTypes.oneOf(['round', 'rectangle']),
   backgroundColor: PropTypes.string,
+  hoverBackgroundColor: PropTypes.string,
   textColor: PropTypes.string,
   noBorder: PropTypes.bool,
   borderColor: PropTypes.string,

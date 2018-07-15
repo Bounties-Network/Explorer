@@ -15,6 +15,7 @@ import { LoadComponent } from 'hocs';
 import { actions } from 'public-modules/Bounties';
 import { actions as categoryActions } from 'public-modules/Categories';
 const {
+  resetFilters,
   setSearch,
   toggleStageFilter,
   toggleDifficultyFilter,
@@ -28,6 +29,7 @@ const { loadCategories } = categoryActions;
 const FilterNavComponent = props => {
   const {
     search,
+    resetFilters,
     setSearch,
     toggleStageFilter,
     toggleDifficultyFilter,
@@ -52,8 +54,12 @@ const FilterNavComponent = props => {
         <Text inline typeScale="h4" weight="fontWeight-medium">
           Refine By
         </Text>
-        <Button type="link" className={styles.clearButton}>
-          Clear Filters
+        <Button
+          type="link"
+          className={styles.clearButton}
+          onClick={resetFilters}
+        >
+          Reset Filters
         </Button>
       </div>
       <div className={styles.stageFilter}>
@@ -153,6 +159,7 @@ const FilterNav = compose(
       removeCategoryFilter,
       setAllDifficultyFilters,
       setAllStageFilters,
+      resetFilters,
       load: loadCategories
     }
   ),

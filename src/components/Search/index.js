@@ -22,7 +22,7 @@ class Search extends React.Component {
     const { value } = this.props;
     const { searchText } = this.state;
 
-    const searchValue = value || searchText;
+    const searchValue = typeof value === 'string' ? value : searchText;
 
     return (
       <div className={`${styles.searchContainer}`}>

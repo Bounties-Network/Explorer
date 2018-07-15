@@ -20,16 +20,7 @@ const all_difficulty_filters = {
   advanced: false
 };
 
-const initialState = {
-  loading: true,
-  loadingMore: false,
-  loadingMoreError: false,
-  loaded: false,
-  error: false,
-  offset: 0,
-  count: 0,
-  sort: SORT_CREATED,
-  sortOrder: 'asc',
+const default_filters = {
   search: '',
   stageFilters: {
     drafts: false,
@@ -43,8 +34,21 @@ const initialState = {
     intermediate: false,
     advanced: false
   },
-  categoryFilters: new Set([]),
-  bounties: []
+  categoryFilters: new Set([])
+};
+
+const initialState = {
+  loading: true,
+  loadingMore: false,
+  loadingMoreError: false,
+  loaded: false,
+  error: false,
+  offset: 0,
+  count: 0,
+  sort: SORT_CREATED,
+  sortOrder: 'asc',
+  bounties: [],
+  ...default_filters
 };
 
 const LOAD_BOUNTIES = 'bounties/LOAD_BOUNTIES';
@@ -86,6 +90,7 @@ function loadMoreBountiesFail(error) {
 }
 
 const SET_SORT = 'bounties/SET_SORT';
+const RESET_FILTERS = 'bounties/RESET_FILTERS';
 const SET_SEARCH = 'bounties/SET_SEARCH';
 const TOGGLE_STAGE_FILTER = 'bounties/TOGGLE_STAGE_FILTER';
 const TOGGLE_DIFFICULTY_FILTER = 'bounties/TOGGLE_DIFFICULTY_FILTER';
@@ -96,6 +101,10 @@ const REMOVE_CATEGORY_FILTER = 'bounties/REMOVE_CATEGORY_FILTER';
 
 function setSort(sort, sortOrder) {
   return { type: SET_SORT, sort, sortOrder };
+}
+
+function resetFilters() {
+  return { type: RESET_FILTERS };
 }
 
 function setSearch(search) {
@@ -180,6 +189,14 @@ function BountiesReducer(state = initialState, action) {
         }
       };
     }
+    case RESET_FILTERS: {
+      const newState = {
+        ...state,
+        ...default_filters
+      };
+      console.log(newState);
+      return newState;
+    }
     case SET_SEARCH: {
       const { search } = action;
       return {
@@ -253,6 +270,7 @@ function BountiesReducer(state = initialState, action) {
 
 export const actions = {
   setSort,
+  resetFilters,
   setSearch,
   toggleStageFilter,
   toggleDifficultyFilter,
@@ -270,6 +288,7 @@ export const actions = {
 
 export const actionTypes = {
   SET_SORT,
+  RESET_FILTERS,
   SET_SEARCH,
   SET_ALL_STAGE_FILTERS,
   SET_ALL_DIFFICULTY_FILTERS,
