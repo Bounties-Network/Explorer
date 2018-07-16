@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 import { NoMatch } from 'layout';
 
 import { Explorer } from 'containers';
-import { Header, Sidebar } from 'components';
+import { Sidebar } from 'components';
+import { Header } from 'layout';
 
 import '../../styles/flexboxgrid.css';
 import '../../font-files/inter-ui.css';
