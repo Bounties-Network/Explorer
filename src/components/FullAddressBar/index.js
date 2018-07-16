@@ -22,23 +22,14 @@ const FullAddressBarComponent = props => {
   };
 
   return (
-    <div className={`${styles.FullAddressBar}`}>
-      <div className={`${styles.AddressBar}`}>
-        <Text color="purple" type="BodySmall" id="ethAddress">
-          {address}
-        </Text>
-      </div>
-      {copyButton && (
-        <div style={{ marginLeft: '5px' }}>
-          <Button
-            size="icon"
-            type="secondary"
-            onClick={e => copyToClipboard(address)}
-          >
-            <FontAwesomeIcon icon={faCut} />
-          </Button>
-        </div>
-      )}
+    <div
+      className={`${styles.AddressBar}`}
+      onClick={e => copyToClipboard(address)}
+    >
+      <Text color="purple" typeScale="Body" id="ethAddress">
+        {address}
+      </Text>
+      <span className={`${styles.tooltip}`}>Copy to clipboard</span>
     </div>
   );
 };
