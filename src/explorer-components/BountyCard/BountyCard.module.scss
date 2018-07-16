@@ -1,16 +1,17 @@
 @import "~styles/variables.scss";
 
 .bountyCard {
-  margin-bottom: 15px;
-  padding: 10px 15px;
+  margin-bottom: $m-spacing;
+  padding: $base-spacing $m-spacing;
 }
 
 .pill {
-  margin-right: 5px;
-  margin-bottom: 5px;
+  margin-right: $s-spacing;
+  margin-bottom: $s-spacing;
 }
 
 .titleText {
+  margin-bottom: $s-spacing;
   width: 100%;
   display: inline-block;
   white-space: nowrap;
@@ -19,27 +20,27 @@
 }
 
 .categoryList {
-  margin-top: 5px;
+  margin-top: $s-spacing;
   display: flex;
   flex-flow: row wrap;
 }
 
 .avatar {
-  margin-top: 5px;
+  margin-top: $base-spacing;
 }
 
 .detailGroup {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: $base-spacing;
 }
 
 .detailIcon {
-  width: 15px;
-  margin-right: 5px;
+  width: $m-spacing;
+  margin-right: $s-spacing;
 }
 
 .detailInput {
-  margin-right: 5px;
+  margin-right: $s-spacing;
   
 }
 
@@ -51,5 +52,5 @@
 }
 
 .usd {
-  margin-bottom: 10px;
+  margin-bottom: $base-spacing;
 }

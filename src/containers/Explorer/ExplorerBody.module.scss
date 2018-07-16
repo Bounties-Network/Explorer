@@ -1,7 +1,7 @@
 @import "~styles/variables.scss";
 
 .explorerBody {
-  padding: 30px;
+  padding: $xl-spacing;
 }
 
 .centeredBody {
@@ -16,7 +16,7 @@
 }
 
 .bountyList {
-  margin-top: 20px;
+  margin-top: $m-spacing;
 }
 
 .bountyListCentered {
@@ -30,7 +30,7 @@
 }
 
 .bountyNumber {
-  margin-right: 3px;
+  margin-right: $s-spacing;
 }
 
 .sortGroup {
