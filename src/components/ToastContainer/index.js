@@ -11,17 +11,17 @@ const BaseToast = props => {
   return (
     <div className={styles.baseToast}>
       <div className={styles.messageSection}>
-        <Text color="white" type="BodySmall" className={styles.icon}>
+        <i className={styles.icon}>
           <FontAwesomeIcon icon={icon} />
-        </Text>
-        <Text color="white" type="BodySmall" className={styles.message}>
+        </i>
+        <Text color="white" typeScale="Body" className={styles.message}>
           {message}
         </Text>
       </div>
       <div className={styles.linkSection}>
         <Text
           color="white"
-          type="BodySmall"
+          typeScale="Body"
           link="link"
           className={styles.link}
         >
@@ -36,9 +36,9 @@ const CloseIcon = props => {
   const { closeToast } = props;
 
   return (
-    <Text color="white" type="Body">
+    <i className={styles.closeIcon}>
       <FontAwesomeIcon icon={['fal', 'times']} />
-    </Text>
+    </i>
   );
 };
 
