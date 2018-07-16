@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import styles from './Header.module.scss';
 import { withRouter } from 'react-router-dom';
 
-import { Button, Avatar, NotificationDropdown, Dropdown } from 'components';
+import {
+  Button,
+  Avatar,
+  NotificationDropdown,
+  Dropdown,
+  Network
+} from 'components';
 import BeeLogo from '../../styles/logo.js';
 
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
@@ -30,6 +36,7 @@ const Header = props => {
       <div className={`${styles.iconArea}`}>
         <BeeLogo />
       </div>
+      <Network network="mainnet" className={styles.network} />
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
           <Button

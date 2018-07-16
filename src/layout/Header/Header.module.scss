@@ -9,13 +9,18 @@
   z-index: 2; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
+  display: flex;
+  align-items: center;
 }
 
 .iconArea {
-  float: left;
   background-color: $brand-purple;
   font-size: 40px;
   height: 55px;
+}
+
+.network {
+  margin-left: $m-spacing;
 }
 
 .button {
@@ -23,9 +28,10 @@
 }
 
 .buttonArea {
+  flex-grow: 1;
   height: 100%;
-  float: right;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
 
