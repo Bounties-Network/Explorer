@@ -30,7 +30,8 @@ const ExplorerBodyComponent = props => {
     offset,
     loadingMore,
     toggleCategoryFilter,
-    categoryFilters
+    categoryFilters,
+    error
   } = props;
 
   const renderBounties = () => {
@@ -140,13 +141,25 @@ const ExplorerBodyComponent = props => {
           ) : null}
         </div>
       ) : null}
-      {!loading && bounties.length === 0 ? (
+      {!loading && !error && bounties.length === 0 ? (
         <div className={styles.bountyListCentered}>
           <ZeroState
             className={styles.centeredItem}
             iconColor="white"
             title="No Bounties Found"
             text="Update your search filters to see more bounties"
+          />
+        </div>
+      ) : null}
+      {error ? (
+        <div className={styles.bountyListCentered}>
+          <ZeroState
+            className={styles.centeredItem}
+            type="error"
+            iconColor="white"
+            title="Uh oh, something happened"
+            text="Try a new filter or refresh the page and try again"
+            icon={['fal', 'exclamation-triangle']}
           />
         </div>
       ) : null}
@@ -164,6 +177,7 @@ const mapStateToProps = state => {
     offset: bountyState.offset,
     loading: bountyState.loading,
     loadingMore: bountyState.loadingMore,
+    error: bountyState.error,
     categoryFilters: bountiesCategoryFiltersSelector(state)
   };
 };

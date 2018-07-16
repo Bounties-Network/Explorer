@@ -235,7 +235,8 @@ function BountiesReducer(state = initialState, action) {
     case LOAD_MORE_BOUNTIES: {
       return {
         ...state,
-        loadingMore: true
+        loadingMore: true,
+        loadingMoreError: false
       };
     }
     case LOAD_BOUNTIES: {
@@ -264,7 +265,8 @@ function BountiesReducer(state = initialState, action) {
       return {
         ...state,
         loadingMore: false,
-        bounties: [...state.bounties, ...bounties]
+        bounties: [...state.bounties, ...bounties],
+        offset: state.offset + PAGE_SIZE
       };
     }
     case LOAD_BOUNTIES_FAIL: {
@@ -272,8 +274,7 @@ function BountiesReducer(state = initialState, action) {
         ...state,
         loading: false,
         loaded: true,
-        error: true,
-        offset: state.offset + PAGE_SIZE
+        error: true
       };
     }
     case LOAD_MORE_BOUNTIES_FAIL: {
