@@ -1,7 +1,7 @@
 const initialState = {
   locked: false,
   hasWallet: true,
-  network: 'mainnet'
+  network: 'unknown'
 };
 
 const SET_LOCKED = 'web3client/SET_LOCKED';

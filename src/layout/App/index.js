@@ -16,9 +16,11 @@ import '../../font-files/inter-ui.css';
 
 class AppComponent extends React.Component {
   render() {
+    const { network } = this.props;
+
     return (
       <div className={styles.app}>
-        <Header />
+        <Header network={network} />
         <Sidebar />
         <div className={`${styles.body}`}>
           <Switch>
@@ -30,9 +32,10 @@ class AppComponent extends React.Component {
   }
 }
 
-const mapStateToProps = (state, router) => {};
+const mapStateToProps = (state, router) => ({ network: state.client.network });
 
 const App = compose(
+  connect(mapStateToProps),
   hot(module),
   withRouter
 )(AppComponent);

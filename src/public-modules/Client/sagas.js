@@ -22,16 +22,14 @@ export function* getWeb3Client() {
 }
 
 export function* getNetwork() {
-  const networkID = yield promisify(window.web3.version.getNetwork);
+  const networkID = yield promisify(web3.eth.net.getId);
 
   let network = 'unknown';
-  switch (networkID) {
-    case '1': {
-      network = 'mainNet';
-    }
-    case '2': {
-      network = 'rinkeby';
-    }
+  if (networkID === 1) {
+    network = 'mainNet';
+  }
+  if (networkID === 4) {
+    network = 'rinkeby';
   }
 
   const currentNetwork = yield select(networkSelector);
@@ -44,25 +42,29 @@ export function* getNetwork() {
 
 export function* getContractClients() {
   const web3 = yield call(getWeb3Client);
-  const network = yield call(getNetwork);
-  if (network !== 'unknown') {
-    return {
-      standardBounties: web3.eth
-        .contract(config.interfaces.StandardBounties)
-        .at(config[network].standardBountiesAddress)
-    };
-  } else {
-    throw Error('Unkown Network');
+  if (web3) {
+    const network = yield call(getNetwork);
+    if (network !== 'unknown') {
+      return {
+        standardBounties: web3.eth
+          .contract(config.interfaces.StandardBounties)
+          .at(config[network].standardBountiesAddress)
+      };
+    } else {
+      throw Error('Unknown Network');
+    }
   }
 }
 
 export function* checkNetwork() {
   // every second and a half, network and wallet status is updated in the redux store
   while (true) {
-    yield call(getWeb3Client);
-    yield call(getNetwork);
-    yield delay(1500);
+    const web3 = yield call(getWeb3Client);
+    if (web3) {
+      yield call(getNetwork);
+    }
+    yield delay(1000);
   }
 }
 
-export default [];
+export default [checkNetwork];

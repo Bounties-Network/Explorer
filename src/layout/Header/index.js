@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Header.module.scss';
-import { withRouter } from 'react-router-dom';
 
 import {
   Button,
@@ -20,7 +19,8 @@ const Header = props => {
     notifications,
     profilePic,
     userAddress,
-    loginStatus
+    loginStatus,
+    network
   } = props;
 
   const onCreateClick = () => {
@@ -36,7 +36,9 @@ const Header = props => {
       <div className={`${styles.iconArea}`}>
         <BeeLogo />
       </div>
-      <Network network="mainnet" className={styles.network} />
+      {network !== 'unknown' ? (
+        <Network network={network} className={styles.network} />
+      ) : null}
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
           <Button
@@ -85,4 +87,4 @@ Header.defaultProps = {
   loginStatus: false
 };
 
-export default withRouter(Header);
+export default Header;
