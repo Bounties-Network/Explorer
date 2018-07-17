@@ -20,9 +20,7 @@ const {
   toggleStageFilter,
   toggleDifficultyFilter,
   addCategoryFilter,
-  removeCategoryFilter,
-  setAllStageFilters,
-  setAllDifficultyFilters
+  removeCategoryFilter
 } = actions;
 const { loadCategories } = categoryActions;
 
@@ -37,8 +35,6 @@ const FilterNavComponent = props => {
     difficultyFilters,
     anyStageFiltersSelected,
     anyDifficultyFiltersSelected,
-    setAllDifficultyFilters,
-    setAllStageFilters,
     categories,
     categoryFilters,
     addCategoryFilter,
@@ -67,11 +63,6 @@ const FilterNavComponent = props => {
           Stage
         </Text>
         <Checkbox
-          label="All"
-          onChange={setAllStageFilters}
-          checked={anyStageFiltersSelected}
-        />
-        <Checkbox
           label="Active"
           onChange={() => toggleStageFilter('active')}
           checked={stageFilters.active}
@@ -96,11 +87,6 @@ const FilterNavComponent = props => {
         <Text weight="fontWeight-medium" className={styles.groupText}>
           Difficulty
         </Text>
-        <Checkbox
-          label="All"
-          onChange={setAllDifficultyFilters}
-          checked={anyDifficultyFiltersSelected}
-        />
         <Checkbox
           label="Beginner"
           onChange={() => toggleDifficultyFilter('beginner')}
@@ -157,8 +143,6 @@ const FilterNav = compose(
       toggleDifficultyFilter,
       addCategoryFilter,
       removeCategoryFilter,
-      setAllDifficultyFilters,
-      setAllStageFilters,
       resetFilters,
       load: loadCategories
     }
