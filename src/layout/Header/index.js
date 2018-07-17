@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import styles from './Header.module.scss';
 
 import {
@@ -13,7 +15,7 @@ import BeeLogo from '../../styles/logo.js';
 
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
-const Header = props => {
+const HeaderComponent = props => {
   const {
     history,
     notifications,
@@ -78,13 +80,17 @@ const Header = props => {
   );
 };
 
-Header.propTypes = {
-  notification: PropTypes.bool
+HeaderComponent.propTypes = {
+  loginStatus: PropTypes.bool,
+  network: PropTypes.oneOf(['rinkeby', 'mainnet', 'unknown'])
 };
 
-Header.defaultProps = {
-  notification: false,
+HeaderComponent.defaultProps = {
   loginStatus: false
 };
+
+const mapStateToProps = state => ({ network: state.client.network });
+
+const Header = compose(connect(mapStateToProps))(HeaderComponent);
 
 export default Header;

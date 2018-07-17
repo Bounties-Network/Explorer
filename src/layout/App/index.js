@@ -4,7 +4,6 @@ import styles from './App.module.scss';
 import { hot } from 'react-hot-loader';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
 import { NoMatch } from 'layout';
 
 import { Explorer } from 'containers';
@@ -20,7 +19,7 @@ class AppComponent extends React.Component {
 
     return (
       <div className={styles.app}>
-        <Header network={network} />
+        <Header />
         <Sidebar />
         <div className={`${styles.body}`}>
           <Switch>
@@ -32,10 +31,7 @@ class AppComponent extends React.Component {
   }
 }
 
-const mapStateToProps = (state, router) => ({ network: state.client.network });
-
 const App = compose(
-  connect(mapStateToProps),
   hot(module),
   withRouter
 )(AppComponent);
