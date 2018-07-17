@@ -1,25 +1,5 @@
 import { PAGE_SIZE, SORT_CREATED } from './constants';
 
-// It may seem counter intuitive that all maps
-// to all values being false. However, the query generator only includes
-// the __in filter if at least one value is true
-const all_stage_filters = {
-  draft: false,
-  active: false,
-  completed: false,
-  expired: false,
-  dead: false
-};
-
-// It may seem counter intuitive that all maps
-// to all values being false. However, the query generator only includes
-// the __in filter if at least one value is true
-const all_difficulty_filters = {
-  beginner: false,
-  intermediate: false,
-  advanced: false
-};
-
 const default_filters = {
   search: '',
   stageFilters: {
@@ -94,8 +74,6 @@ const RESET_FILTERS = 'bounties/RESET_FILTERS';
 const SET_SEARCH = 'bounties/SET_SEARCH';
 const TOGGLE_STAGE_FILTER = 'bounties/TOGGLE_STAGE_FILTER';
 const TOGGLE_DIFFICULTY_FILTER = 'bounties/TOGGLE_DIFFICULTY_FILTER';
-const SET_ALL_STAGE_FILTERS = 'bounties/SET_ALL_STAGE_FILTERS';
-const SET_ALL_DIFFICULTY_FILTERS = 'bounties/SET_ALL_DIFFICULTY_FILTERS';
 const TOGGLE_CATEGORY_FILTER = 'bounties/TOGGLE_CATEGORY_FILTER';
 const ADD_CATEGORY_FILTER = 'bounties/SET_CATEGORY_FILTER';
 const REMOVE_CATEGORY_FILTER = 'bounties/REMOVE_CATEGORY_FILTER';
@@ -116,16 +94,8 @@ function toggleStageFilter(stage) {
   return { type: TOGGLE_STAGE_FILTER, stage };
 }
 
-function setAllStageFilters() {
-  return { type: SET_ALL_STAGE_FILTERS };
-}
-
 function toggleDifficultyFilter(difficulty) {
   return { type: TOGGLE_DIFFICULTY_FILTER, difficulty };
-}
-
-function setAllDifficultyFilters() {
-  return { type: SET_ALL_DIFFICULTY_FILTERS };
 }
 
 function toggleCategoryFilter(category) {
@@ -177,12 +147,6 @@ function BountiesReducer(state = initialState, action) {
         categoryFilters: updated_filters
       };
     }
-    case SET_ALL_DIFFICULTY_FILTERS: {
-      return {
-        ...state,
-        difficultyFilters: { ...all_difficulty_filters }
-      };
-    }
     case TOGGLE_DIFFICULTY_FILTER: {
       const { difficulty } = action;
       return {
@@ -191,12 +155,6 @@ function BountiesReducer(state = initialState, action) {
           ...state.difficultyFilters,
           [difficulty]: !state.difficultyFilters[difficulty]
         }
-      };
-    }
-    case SET_ALL_STAGE_FILTERS: {
-      return {
-        ...state,
-        stageFilters: { ...all_stage_filters }
       };
     }
     case TOGGLE_STAGE_FILTER: {
@@ -214,7 +172,6 @@ function BountiesReducer(state = initialState, action) {
         ...state,
         ...default_filters
       };
-      console.log(newState);
       return newState;
     }
     case SET_SEARCH: {
@@ -295,8 +252,6 @@ export const actions = {
   setSearch,
   toggleStageFilter,
   toggleDifficultyFilter,
-  setAllDifficultyFilters,
-  setAllStageFilters,
   addCategoryFilter,
   removeCategoryFilter,
   toggleCategoryFilter,
@@ -312,8 +267,6 @@ export const actionTypes = {
   SET_SORT,
   RESET_FILTERS,
   SET_SEARCH,
-  SET_ALL_STAGE_FILTERS,
-  SET_ALL_DIFFICULTY_FILTERS,
   TOGGLE_STAGE_FILTER,
   TOGGLE_DIFFICULTY_FILTER,
   ADD_CATEGORY_FILTER,
