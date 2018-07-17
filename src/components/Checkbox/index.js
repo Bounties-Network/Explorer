@@ -4,17 +4,22 @@ import styles from './Checkbox.module.scss';
 import { Text } from 'components';
 
 class Checkbox extends React.Component {
-  state = {
-    selected: false
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: this.props.checked || this.props.defaultChecked
+    };
+  }
 
   toggleState = () => {
     this.setState({ selected: !this.state.selected });
+    this.props.onChange(!this.state.selected);
   };
 
   render() {
     const { selected } = this.state;
-    const { checked, label, onChange, disabled } = this.props;
+    const { checked, label, disabled } = this.props;
 
     const checkedPropExists = typeof checked === 'boolean';
 
@@ -26,7 +31,7 @@ class Checkbox extends React.Component {
           value
           disabled={disabled}
           checked={checkedPropExists ? checked : selected}
-          onChange={onChange || this.toggleState}
+          onChange={this.toggleState}
         />
         <span className={`${styles.customCheckbox}`} />
         {label ? (
@@ -44,6 +49,11 @@ Checkbox.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
   label: PropTypes.string
+};
+
+Checkbox.defaultProps = {
+  onChange: () => {},
+  defaultChecked: false
 };
 
 export default Checkbox;

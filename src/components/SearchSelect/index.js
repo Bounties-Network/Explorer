@@ -2,94 +2,75 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SearchSelect.module.scss';
 import Select from 'react-select';
+import { reject, includes, filter, map, find } from 'lodash';
 import '../../styles/ReactSelect.scss';
 
 import { Text, Pill } from 'components';
 
-const filterOptions = (filter, options) => {
-  let result = [];
-  let hashTable = {};
-
-  filter.forEach(elem => {
-    hashTable[elem.name] = true;
-  });
-
-  options.forEach(elem => {
-    if (!hashTable[elem.name]) {
-      result.push(elem);
-    }
-  });
-
-  return result;
-};
-
 // props = options, onChange, placeholder
 class SearchSelect extends React.Component {
-  state = {
-    selection: null,
-    options: [],
-    filters: []
-  };
-
-  componentWillReceiveProps() {
-    if (this.state.options.length === 0) {
-      this.setState({ options: this.props.options });
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: this.props.value || []
+    };
   }
 
-  componentDidMount() {
-    if (this.state.options.length === 0) {
-      this.setState({ options: this.props.options });
-    }
-  }
+  filterOptions = () => {
+    const { options, value, valueKey } = this.props;
+    const { value: stateValue } = this.state;
 
-  onDropdownSelect = e => {
-    const { options } = this.props;
-    const { filters, selection } = this.state;
-
-    let tempFilters = filters.slice();
-    tempFilters.push(e);
-    let tempOptions = filterOptions(tempFilters, options);
-
-    this.setState(
-      { filters: tempFilters, selection: null, options: tempOptions },
-      () => {
-        this.props.onChange(this.state.filters);
-      }
+    const selectValue = value || stateValue;
+    return reject(
+      optionItem => includes(optionItem[valueKey], selectValue),
+      options
     );
   };
 
-  closePill = name => {
-    const { filters } = this.state;
-    const { options } = this.props;
+  onDropdownSelect = selectedValue => {
+    const { value, valueKey } = this.props;
+    const { value: stateValue } = this.state;
 
-    let tempFilters = filters.slice().filter(elem => elem.name !== name);
-    let tempOptions = filterOptions(tempFilters, options);
-    this.setState({ filters: tempFilters, options: tempOptions }, () => {
-      this.props.onChange(this.state.filters);
-    });
+    const selectValue = value || stateValue;
+
+    this.setState({ value: [...selectValue, selectedValue[valueKey]] });
+    this.props.onChange([...selectValue, selectedValue[valueKey]]);
   };
 
-  renderPills = data => {
-    return data.map((elem, idx) => {
+  closePill = closedValue => {
+    const { value } = this.props;
+    const { value: stateValue } = this.state;
+
+    const selectValue = value || stateValue;
+
+    const updatedValue = reject(
+      valueItem => valueItem === closedValue,
+      selectValue
+    );
+    this.setState({ value: updatedValue });
+    this.props.onClose(closedValue);
+  };
+
+  renderPills = () => {
+    const { value, options, valueKey, labelKey } = this.props;
+    const { value: stateValue } = this.state;
+
+    const selectValue = value || stateValue;
+
+    return map(valueItem => {
+      const label = find(
+        optionItem => optionItem[valueKey] === valueItem,
+        options
+      );
+
       return (
-        <div className={`${styles.pill}`} key={'pill' + idx}>
-          <Pill close onCloseClick={() => this.closePill(elem.name)}>
-            {elem.name}
+        <div className={`${styles.pill}`} key={valueItem}>
+          <Pill close onCloseClick={() => this.closePill(valueItem)}>
+            {label[labelKey]}
           </Pill>
         </div>
       );
-    });
-  };
-
-  clearFilters = () => {
-    const { filters } = this.state;
-    const { options } = this.props;
-
-    let tempOptions = filterOptions([], options);
-    this.setState({ filters: [], options: tempOptions }, () => {
-      this.props.onChange(this.state.filters);
-    });
+    }, selectValue);
   };
 
   render() {
@@ -98,8 +79,11 @@ class SearchSelect extends React.Component {
       disabled,
       label,
       error,
+      labelKey,
+      valueKey,
       optional,
-      placeholder
+      placeholder,
+      options
     } = this.props;
 
     let labelText = label;
@@ -123,12 +107,12 @@ class SearchSelect extends React.Component {
         ) : null}
         <Select
           disabled={disabled}
+          labelKey={labelKey}
+          valueKey={valueKey}
           className={selectClass}
-          name="DropdownSearch"
-          options={this.state.options}
+          options={this.filterOptions()}
           onChange={this.onDropdownSelect}
           placeholder={placeholder}
-          labelKey="name"
         />
         {error ? (
           <div>
@@ -138,9 +122,7 @@ class SearchSelect extends React.Component {
           </div>
         ) : null}
         <div>
-          <div className={`${styles.pillBar}`}>
-            {this.renderPills(this.state.filters)}
-          </div>
+          <div className={`${styles.pillBar}`}>{this.renderPills()}</div>
         </div>
       </div>
     );
@@ -148,6 +130,8 @@ class SearchSelect extends React.Component {
 }
 
 SearchSelect.propTypes = {
+  labelKey: PropTypes.string,
+  valueKey: PropTypes.string,
   options: PropTypes.array,
   onChange: PropTypes.func,
   className: PropTypes.string,
@@ -155,11 +139,15 @@ SearchSelect.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
   optional: PropTypes.bool,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  value: PropTypes.array
 };
 
 SearchSelect.defaultProps = {
+  labelKey: 'label',
+  valueKey: 'value',
   options: [],
+  onClose: () => {},
   onChange: () => {}
 };
 

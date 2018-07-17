@@ -11,7 +11,7 @@ class Sort extends React.Component {
 
   onClick = () => {
     const { sort } = this.state;
-    const { defaultSort } = this.props;
+    const { defaultSort, onSort } = this.props;
     const sortState = sort || defaultSort;
 
     let newSort = 'desc';
@@ -20,13 +20,14 @@ class Sort extends React.Component {
     }
 
     this.setState({ sort: newSort });
+    onSort(newSort);
   };
 
   render() {
     const { active, defaultSort, className, children } = this.props;
     const { sort } = this.state;
 
-    let textColor = 'grey';
+    let textColor = 'defaultGrey';
     let textWeight = 'fontWeight-regular';
     if (active) {
       textColor = 'black';
@@ -60,11 +61,13 @@ class Sort extends React.Component {
 Sort.propTypes = {
   className: PropTypes.string,
   active: PropTypes.bool,
+  onSort: PropTypes.func,
   defaultSort: PropTypes.oneOf(['asc', 'desc'])
 };
 
 Sort.defaultProps = {
-  defaultSort: 'desc',
+  onSort: () => {},
+  defaultSort: 'asc',
   active: false
 };
 

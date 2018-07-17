@@ -5,26 +5,35 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Text, Button } from 'components';
 
 const ZeroState = props => {
-  const { type, icon, action, title, text, actionText, onActionClick } = props;
+  const {
+    type,
+    icon,
+    action,
+    title,
+    text,
+    actionText,
+    onActionClick,
+    iconColor,
+    className
+  } = props;
 
   let iconType = icon;
-  let iconColor = 'lightGrey';
   let titleTextColor = 'black';
-  let textColor = 'grey';
+  let textColor = 'defaultGrey';
 
   if (type === 'error') {
     titleTextColor = 'red';
   }
 
   return (
-    <div className={styles.zeroState}>
+    <div className={`${styles.zeroState} ${className}`}>
       <div className={styles.icon}>
-        <Text type="H1" color={iconColor}>
+        <Text typeScale="h1" color={iconColor}>
           <FontAwesomeIcon icon={icon} className={styles.iconStyles} />
         </Text>
       </div>
       <div className={styles.title}>
-        <Text type="H3" color={titleTextColor}>
+        <Text typeScale="h3" color={titleTextColor}>
           {title}
         </Text>
       </div>
@@ -44,8 +53,10 @@ const ZeroState = props => {
 
 ZeroState.propTypes = {
   type: PropTypes.oneOf(['zero', 'error']),
+  className: PropTypes.string,
   onActionClick: PropTypes.func,
   icon: PropTypes.array,
+  iconColor: PropTypes.string,
   title: PropTypes.string,
   text: PropTypes.string,
   actionText: PropTypes.string,
@@ -53,6 +64,7 @@ ZeroState.propTypes = {
 };
 
 ZeroState.defaultProps = {
+  iconColor: 'lightGrey',
   icon: ['fal', 'meh'],
   onActionClick: () => {}
 };

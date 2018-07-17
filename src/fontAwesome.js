@@ -1,6 +1,9 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import faBell from '@fortawesome/fontawesome-pro-light/faBell';
 import plus from '@fortawesome/fontawesome-pro-regular/faPlus';
+import clock from '@fortawesome/fontawesome-pro-regular/faClock';
+import levelUp from '@fortawesome/fontawesome-pro-regular/faLevelUp';
+import seedling from '@fortawesome/fontawesome-pro-regular/faSeedling';
 import cog from '@fortawesome/fontawesome-pro-light/faCog';
 import search from '@fortawesome/fontawesome-pro-regular/faSearch';
 import faTimes from '@fortawesome/fontawesome-pro-light/faTimes';
@@ -48,5 +51,8 @@ library.add(
   twitter,
   facebook,
   reddit,
-  meh
+  meh,
+  clock,
+  levelUp,
+  seedling
 );

@@ -16,6 +16,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
     <div style={{ marginTop: '10px' }} />
     <SearchSelect
       label="Select your Category"
+      labelKey="name"
       onChange={action('clicked')}
       options={options}
       placeholder="e.g. HTML"
@@ -25,6 +26,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
     <div style={{ marginTop: '10px' }} />
     <SearchSelect
       disabled
+      labelKey="name"
       label="Select your Category"
       onChange={action('clicked')}
       options={options}
@@ -35,6 +37,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
     <div style={{ marginTop: '10px' }} />
     <SearchSelect
       label="Select your Category"
+      labelKey="name"
       onChange={action('clicked')}
       optional
       options={options}
@@ -45,6 +48,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
     <div style={{ marginTop: '10px' }} />
     <SearchSelect
       label="Select your Category"
+      labelKey="name"
       onChange={action('clicked')}
       error="required field"
       options={options}

@@ -8,33 +8,22 @@ import { Text } from 'components';
 const debounceTimer = 400;
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    searchText: ''
+  };
 
-    this.state = {
-      searchText: ''
-    };
-
-    this.timeout = null;
-
-    this.onSearchChange = this.onSearchChange.bind(this);
-  }
-
-  onSearchChange(e) {
+  onSearchChange = e => {
     const { value } = e.target;
     this.setState({ searchText: value });
-
-    // debounce
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-    }
-    this.timeout = setTimeout(
-      () => this.props.onChange(this.state.searchText),
-      debounceTimer
-    );
-  }
+    this.props.onChange(value);
+  };
 
   render() {
+    const { value } = this.props;
+    const { searchText } = this.state;
+
+    const searchValue = typeof value === 'string' ? value : searchText;
+
     return (
       <div className={`${styles.searchContainer}`}>
         <i className={styles.searchIcon}>
@@ -45,7 +34,7 @@ class Search extends React.Component {
           type="text"
           placeholder="Search..."
           onChange={this.onSearchChange}
-          value={this.state.searchText}
+          value={searchValue}
         />
       </div>
     );

@@ -14,10 +14,14 @@ const Text = props => {
     weight,
     alignment,
     style,
+    inline,
     id
   } = props;
 
   let addedClasses = '';
+  if (inline) {
+    addedClasses += ` ${styles.inline}`;
+  }
   if (link) {
     addedClasses += ` ${styles.Link}`;
 
@@ -70,6 +74,7 @@ Text.propTypes = {
   className: PropTypes.string,
   typeScale: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'Body', 'Small']),
   lineHeight: PropTypes.oneOf(['lineHeight-default', 'lineHeight-reset']),
+  inline: PropTypes.bool,
   src: PropTypes.string,
   link: PropTypes.bool,
   color: PropTypes.oneOf([

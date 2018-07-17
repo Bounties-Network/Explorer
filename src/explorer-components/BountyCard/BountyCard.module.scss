@@ -1,0 +1,56 @@
+@import "~styles/variables.scss";
+
+.bountyCard {
+  margin-bottom: $m-spacing;
+  padding: $base-spacing $m-spacing;
+}
+
+.pill {
+  margin-right: $s-spacing;
+  margin-bottom: $s-spacing;
+}
+
+.titleText {
+  margin-bottom: $s-spacing;
+  width: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.categoryList {
+  margin-top: $s-spacing;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.avatar {
+  margin-top: $base-spacing;
+}
+
+.detailGroup {
+  display: flex;
+  margin-bottom: $base-spacing;
+}
+
+.detailIcon {
+  width: $m-spacing;
+  margin-right: $s-spacing;
+}
+
+.detailInput {
+  margin-right: $s-spacing;
+  
+}
+
+.price {
+  text-align: right;
+}
+
+.detailLabel {
+}
+
+.usd {
+  margin-bottom: $base-spacing;
+}

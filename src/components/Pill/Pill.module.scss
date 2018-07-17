@@ -54,9 +54,26 @@
   background-color: $brand-red;
 }
 
+.nearWhite {
+  background-color: $brand-nearWhite;
+}
+
+.hoverwhite {
+  &:hover {
+    background-color: $brand-white;
+  }
+}
+
+.hovernearWhite {
+  &:hover {
+    background-color: $brand-nearWhite;
+  }
+}
+
 .whiteBorder {
   border-color: $brand-white;
 }
+
 
 .lightGreyBorder {
   border-color: $brand-lightGrey;

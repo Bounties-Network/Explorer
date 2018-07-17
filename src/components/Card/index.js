@@ -99,7 +99,7 @@ class Card extends React.Component {
       }
     }, children);
 
-    let cardClass = styles.card;
+    let cardClass = `${styles.card} ${className}`;
     if (hover) {
       cardClass += ` ${styles.hover}`;
     }
