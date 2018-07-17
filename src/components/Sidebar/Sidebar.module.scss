@@ -2,9 +2,6 @@
 
 .sidebar {
   background-color: $sidebar-color;
-  width: 55px;
-  height: 100%;
-
   height: 100%; /* 100% Full-height */
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
@@ -18,16 +15,31 @@
 .iconTab {
   display: flex;
   justify-content: center;
-  font-size: 25px;
-  padding: 10px 0;
-  margin: 5px 0;
+  text-align: center;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: $m-spacing $l-spacing;
   cursor: pointer;
-  padding-left: 6px;
-  color: $brand-grey;
+  color: $brand-white;
+  opacity: 0.5;
+
+  &:hover {
+    background-color: darken($sidebar-color, 25%);
+  }
 }
 
 .active {
   color: $brand-white;
-  border-left: 6px solid $brand-orange;
-  padding-left: 0px;
+  position: relative;
+  opacity: 1;
+
+  &:before {
+    position: absolute;
+    content: '';
+    background-color: $brand-orange;
+    box-shadow: $s-spacing 0px $xl-spacing 0px $brand-orange;
+    width: $s-spacing;
+    height: 100%;
+    left: 0;
+  }
 }
