@@ -8,25 +8,25 @@ import { Sidebar } from 'components';
 storiesOf('Sidebar', module).add('Sidebar', () => (
   <Sidebar defaultActiveTab="dashboard">
     <Sidebar.TabIcon
-      icon={['fal', 'tachometer']}
+      icon={['far', 'tachometer']}
       to="/dashboard"
       tabKey="dashboard"
       key={1}
     />
     <Sidebar.TabIcon
-      icon={['fal', 'list-alt']}
+      icon={['far', 'list-alt']}
       to="/explorer"
       tabKey="explorer"
       key={2}
     />
     <Sidebar.TabIcon
-      icon={['fal', 'trophy-alt']}
+      icon={['far', 'trophy-alt']}
       to="/leaderboard"
       tabKey="leaderboard"
       key={3}
     />
     <Sidebar.TabIcon
-      icon={['fal', 'user-alt']}
+      icon={['far', 'user-alt']}
       to="/profile"
       tabKey="profile"
       key={4}

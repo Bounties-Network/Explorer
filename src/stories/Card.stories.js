@@ -8,10 +8,10 @@ import { Card, Text, Tabs } from 'components';
 storiesOf('Card', module).add('Card', () => (
   <div
     style={{
+      backgroundColor: '#F3F2F6',
       marginLeft: '30px',
       width: '500px',
-      marginTop: '30px',
-      marginBottom: '30px'
+      padding: '30px'
     }}
   >
     <Text type="H4">Regular Card</Text>
@@ -32,8 +32,10 @@ storiesOf('Card', module).add('Card', () => (
     <div style={{ marginTop: '20px' }} />
     <Text type="H4">With Header Text and Underline</Text>
     <div style={{ marginTop: '20px' }} />
-    <Card hover>
-      <Card.Header>I am a card header :)</Card.Header>
+    <Card>
+      <Card.Header>
+        <Card.HeaderTitle>Header title</Card.HeaderTitle>
+      </Card.Header>
       <Card.Body>
         <div style={{ height: '150px' }}>I am a card :)</div>
       </Card.Body>
@@ -41,8 +43,8 @@ storiesOf('Card', module).add('Card', () => (
     <div style={{ marginTop: '20px' }} />
     <Text type="H4">Tab Example</Text>
     <div style={{ marginTop: '20px' }} />
-    <Card hover>
-      <Card.Header underline={false}>
+    <Card>
+      <Card.Header>
         <Card.HeaderTitle>Submissions</Card.HeaderTitle>
         <Card.HeaderTabs onSelect={() => {}}>
           <Tabs.Tab tabColor="blue" eventKey={1}>
@@ -61,8 +63,8 @@ storiesOf('Card', module).add('Card', () => (
     <div style={{ marginTop: '20px' }} />
     <Text type="H4">Only Tab</Text>
     <div style={{ marginTop: '20px' }} />
-    <Card hover>
-      <Card.Header underline={false}>
+    <Card>
+      <Card.Header>
         <Card.HeaderTabs onSelect={() => {}} top>
           <Tabs.Tab tabColor="blue" eventKey={1}>
             Active

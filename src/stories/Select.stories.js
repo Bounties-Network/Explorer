@@ -47,7 +47,6 @@ storiesOf('Select', module).add('Select', () => (
       <Select
         label="Select a Category"
         error="Required"
-        optional
         onChange={e => console.log(e)}
         options={options}
         placeholder="Select one!"
