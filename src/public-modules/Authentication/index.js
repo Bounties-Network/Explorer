@@ -1,27 +1,43 @@
-import { PAGE_SIZE, SORT_VALUE } from './constants';
-
 const initialState = {
-  loading: true,
-  loaded: false,
-  error: false,
-  offset: 0,
-  user: {},
+  user: null,
   nonce: '',
-  loginStatus: false
+  getCurrentUserState: {
+    loading: true,
+    loaded: false,
+    error: false
+  },
+  loadNonceState: {
+    loading: false,
+    loaded: false,
+    error: false
+  },
+  loginState: {
+    loading: false,
+    loaded: false,
+    error: false
+  }
 };
+
+const GET_CURRENT_USER = 'authentication/GET_CURRENT_USER';
+const GET_CURRENT_USER_SUCCESS = 'authentication/GET_CURRENT_USER_SUCCESS';
+const GET_CURRENT_USER_FAIL = 'authentication/GET_CURRENT_USER_FAIL';
+
+function getCurrentUser() {
+  return { type: GET_CURRENT_USER };
+}
+
+function getCurrentUserSuccess(user) {
+  return { type: GET_CURRENT_USER_SUCCESS, user };
+}
+
+function getCurrentUserFail(error) {
+  return { type: GET_CURRENT_USER_FAIL, error };
+}
 
 const LOAD_NONCE = 'authentication/LOAD_NONCE';
 const LOAD_NONCE_SUCCESS = 'authentication/LOAD_NONCE_SUCCESS';
 const LOAD_NONCE_FAIL = 'authentication/LOAD_NONCE_FAIL';
-const LOGIN = 'authentication/LOGIN';
-const LOGIN_SUCCESS = 'authentication/LOGIN_SUCCESS';
-const LOGIN_FAIL = 'authentication/LOGIN_FAIL';
-const CHECK_LOGINSTATUS = 'authentication/CHECK_LOGINSTATUS';
-const CHECK_LOGINSTATUS_SUCCESS = 'authentication/CHECK_LOGINSTATUS_SUCCESS';
-const CHECK_LOGINSTATUS_FAIL = 'authentication/CHECK_LOGINSTATUS_FAIL';
-const SET_LOGINSTATUS = 'authentication/SET_LOGINSTATUS';
 
-// load nonce
 function loadNonce(address) {
   return { type: LOAD_NONCE, address };
 }
@@ -37,7 +53,10 @@ function loadNonceFail(error) {
   return { type: LOAD_NONCE_FAIL, error };
 }
 
-// login
+const LOGIN = 'authentication/LOGIN';
+const LOGIN_SUCCESS = 'authentication/LOGIN_SUCCESS';
+const LOGIN_FAIL = 'authentication/LOGIN_FAIL';
+
 function login(address, signature) {
   return { type: LOGIN, address, signature };
 }
@@ -53,120 +72,105 @@ function loginFail(error) {
   return { type: LOGIN_FAIL, error };
 }
 
-// check login status
-
-function setLoginStatus(loginStatus, user) {
-  return { type: SET_LOGINSTATUS, loginStatus: true, user: {} };
-}
-
-function checkLoginStatus() {
-  return { type: CHECK_LOGINSTATUS };
-}
-
-function checkLoginStatusSuccess(status) {
-  return {
-    type: CHECK_LOGINSTATUS_SUCCESS,
-    status
-  };
-}
-
-function checkLoginStatusFail(error) {
-  return { type: CHECK_LOGINSTATUS_FAIL, error };
-}
-
 function AuthenticationReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_CURRENT_USER: {
+      return {
+        ...state,
+        getCurrentUserState: {
+          ...state.getCurrentUserState,
+          loading: true,
+          error: false
+        }
+      };
+    }
+    case GET_CURRENT_USER_SUCCESS: {
+      const { user } = action;
+
+      return {
+        ...state,
+        user,
+        getCurrentUserState: {
+          ...state.getCurrentUserState,
+          loading: false,
+          loaded: true,
+          error: false
+        }
+      };
+    }
+    case GET_CURRENT_USER_FAIL: {
+      return {
+        ...state,
+        getCurrentUserState: {
+          ...state.getCurrentUserState,
+          loading: false,
+          error: true
+        }
+      };
+    }
     case LOAD_NONCE: {
       return {
         ...state,
-        loading: true,
-        loaded: false,
-        error: false
+        nonce: '',
+        loadNonceState: {
+          ...state.loadNonceState,
+          loading: true,
+          error: false
+        }
       };
     }
     case LOAD_NONCE_SUCCESS: {
       const { nonce } = action;
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        error: false,
-        nonce: nonce.nonce
+        nonce,
+        loadNonceState: {
+          ...state.loadNonceState,
+          loading: false,
+          loaded: true
+        }
       };
     }
     case LOAD_NONCE_FAIL: {
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        error: true
+        loadNonceState: {
+          ...state.loadNonceState,
+          loading: false,
+          error: true
+        }
       };
     }
     case LOGIN: {
       return {
         ...state,
-        loading: true,
-        loaded: false,
-        error: false
+        loginState: {
+          ...state.loginState,
+          loading: true,
+          error: false
+        }
       };
     }
     case LOGIN_SUCCESS: {
       const { user } = action;
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        error: false,
         user,
-        loginStatus: true
+        loginState: {
+          ...state.loginState,
+          loading: false,
+          loaded: true
+        }
       };
     }
     case LOGIN_FAIL: {
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        error: true,
-        loginStatus: false
-      };
-    }
-    case CHECK_LOGINSTATUS: {
-      return {
-        ...state,
-        loading: true,
-        loaded: false,
-        error: false
-      };
-    }
-    case CHECK_LOGINSTATUS_SUCCESS: {
-      const { status } = action;
-      return {
-        ...state,
-        loading: false,
-        loaded: true,
-        error: false,
-        loginStatus: true,
-        status
-      };
-    }
-    case CHECK_LOGINSTATUS_FAIL: {
-      return {
-        ...state,
-        loading: false,
-        loaded: true,
-        error: true,
-        loginStatus: false
-      };
-    }
-    case SET_LOGINSTATUS: {
-      const { loginStatus, user } = action;
-      return {
-        ...state,
-        loading: true,
-        loaded: false,
-        error: false,
-        loginStatus,
-        user
+        loginState: {
+          ...state.loginState,
+          loading: false,
+          error: true
+        }
       };
     }
     default:
@@ -175,29 +179,27 @@ function AuthenticationReducer(state = initialState, action) {
 }
 
 export const actions = {
+  getCurrentUser,
+  getCurrentUserSuccess,
+  getCurrentUserFail,
   loadNonce,
   loadNonceSuccess,
   loadNonceFail,
   login,
   loginSuccess,
-  loginFail,
-  checkLoginStatus,
-  checkLoginStatusSuccess,
-  checkLoginStatusFail,
-  setLoginStatus
+  loginFail
 };
 
 export const actionTypes = {
+  GET_CURRENT_USER,
+  GET_CURRENT_USER_SUCCESS,
+  GET_CURRENT_USER_FAIL,
   LOAD_NONCE,
   LOAD_NONCE_SUCCESS,
   LOAD_NONCE_FAIL,
   LOGIN,
   LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  CHECK_LOGINSTATUS,
-  CHECK_LOGINSTATUS_SUCCESS,
-  CHECK_LOGINSTATUS_FAIL,
-  SET_LOGINSTATUS
+  LOGIN_FAIL
 };
 
 export default AuthenticationReducer;
