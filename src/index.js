@@ -10,6 +10,7 @@ import {
 } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import { reducers, sagaWatchers } from 'public-modules';
+import baseReducers from './reducers';
 import { App } from 'layout';
 import registerServiceWorker from './registerServiceWorker';
 import 'styles/index.scss';
@@ -27,7 +28,8 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   combineReducers({
     router: routerReducer,
-    ...reducers
+    ...reducers,
+    ...baseReducers
   }),
   composeEnhancers(applyMiddleware(middleware, sagaMiddleware))
 );
