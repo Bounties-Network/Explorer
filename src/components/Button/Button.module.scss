@@ -12,7 +12,10 @@
   height: $base-input-height;
   line-height: $base-input-height;
   white-space: nowrap;
-  min-width: 150px;
+}
+
+.margin {
+  margin-right: $m-spacing;
 }
 
 .fitWidth {

@@ -5,7 +5,16 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Loader } from 'components';
 
 const Button = props => {
-  const { className, type, disabled, onClick, loading, icon, fitWidth } = props;
+  const {
+    className,
+    type,
+    disabled,
+    onClick,
+    loading,
+    icon,
+    fitWidth,
+    margin
+  } = props;
 
   const onClickHandler = () => {
     if (!loading && !disabled) {
@@ -21,6 +30,10 @@ const Button = props => {
   let addedClasses = '';
   if (disabled) {
     addedClasses += styles.disabled;
+  }
+
+  if (margin) {
+    addedClasses += styles.margin;
   }
 
   if (loading) {
