@@ -78,6 +78,7 @@ Avatar.propTypes = {
   border: PropTypes.bool,
   name: PropTypes.string,
   address: PropTypes.string,
+  className: PropTypes.string,
   hash: PropTypes.string,
   nameTextScale: PropTypes.string,
   nameTextColor: PropTypes.string,
