@@ -53,6 +53,8 @@ const GET_OPTIONS = {
 };
 
 function handleError(err) {
+  const error = new Error();
+  error.errorStatus = '';
   if (err.response) {
     const response = err.response;
     if (
@@ -64,18 +66,16 @@ function handleError(err) {
     }
 
     if (response.status >= HTTP_500_INTERNAL_SERVER_ERROR) {
-      const error = new Error();
       error.errorStatus = response.status;
       error.errorMessage = response.statusText;
       rollbar.error(`API Error: ${response.status}`, error);
       throw error;
     }
+
+    error.errorStatus = response.status;
   }
 
-  const error = new Error();
-  error.errorStatus = '';
   error.errorMessage = err.message;
-
   rollbar.error(`API Error: ${error.errorMessage}`, error);
   throw error;
 }

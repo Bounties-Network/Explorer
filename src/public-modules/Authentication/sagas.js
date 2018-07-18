@@ -1,9 +1,13 @@
 import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Authentication';
+import { actionTypes as clientActionTypes } from 'public-modules/Client';
+import { get } from 'lodash';
 
+const { SET_INITIALIZED } = clientActionTypes;
 const { LOAD_NONCE, LOGIN, GET_CURRENT_USER } = actionTypes;
 const {
+  getCurrentUser: getCurrentUserAction,
   getCurrentUserSuccess,
   getCurrentUserFail,
   loadNonceSuccess,
@@ -11,6 +15,21 @@ const {
   loginSuccess,
   loginFail
 } = actions;
+
+export function* getCurrentUser(action) {
+  const endpoint = 'auth/user/';
+  try {
+    const currentUser = yield call(request, endpoint, 'GET');
+    yield put(getCurrentUserSuccess(currentUser));
+  } catch (e) {
+    if (get('errorStatus', e) === 401) {
+      console.log('success');
+      yield put(getCurrentUserSuccess());
+    } else {
+      yield put(getCurrentUserFail(e));
+    }
+  }
+}
 
 export function* loadNonce(action) {
   const { address } = action;
@@ -42,14 +61,16 @@ export function* login(action) {
   }
 }
 
-export function* getCurrentUser(action) {
-  const endpoint = 'auth/user/';
-  try {
-    const currentUser = yield call(request, endpoint, 'GET');
-    yield put(getCurrentUserSuccess(currentUser));
-  } catch (e) {
-    yield put(getCurrentUserFail(e));
-  }
+function* loadCurrentUser() {
+  yield put(getCurrentUserAction());
+}
+
+export function* watchSetInitialized() {
+  yield takeLatest(SET_INITIALIZED, loadCurrentUser);
+}
+
+export function* watchGetCurrentUser() {
+  yield takeLatest(GET_CURRENT_USER, getCurrentUser);
 }
 
 export function* watchNonce() {
@@ -60,8 +81,9 @@ export function* watchLogin() {
   yield takeLatest(LOGIN, login);
 }
 
-export function* watchGetCurrentUser() {
-  yield takeLatest(GET_CURRENT_USER, getCurrentUser);
-}
-
-export default [watchNonce, watchLogin, watchGetCurrentUser];
+export default [
+  watchNonce,
+  watchLogin,
+  watchGetCurrentUser,
+  watchSetInitialized
+];
