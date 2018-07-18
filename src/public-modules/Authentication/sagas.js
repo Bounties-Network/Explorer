@@ -2,35 +2,31 @@ import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Authentication';
 
-const { LOAD_NONCE, LOGIN, CHECK_LOGINSTATUS } = actionTypes;
+const { LOAD_NONCE, LOGIN, GET_CURRENT_USER } = actionTypes;
 const {
-  loadNonceFail,
+  getCurrentUserSuccess,
+  getCurrentUserFail,
   loadNonceSuccess,
-  loginFail,
+  loadNonceFail,
   loginSuccess,
-  checkLoginStatusFail,
-  checkLoginStatusSuccess
+  loginFail
 } = actions;
 
 export function* loadNonce(action) {
-  let { address } = action;
+  const { address } = action;
+  const endpoint = `auth/user/${address}/nonce/`;
   try {
-    let endpoint = `auth/user/${address}/nonce/`;
-    const url = yield call(request, endpoint, 'GET');
-    yield put(loadNonceSuccess(url));
+    const nonce = yield call(request, endpoint, 'GET');
+    yield put(loadNonceSuccess(nonce));
   } catch (e) {
     yield put(loadNonceFail(e));
   }
 }
 
-export function* watchNonce() {
-  yield takeLatest(LOAD_NONCE, loadNonce);
-}
-
 export function* login(action) {
-  let { address, signature } = action;
-  let options = {
-    method: 'POST',
+  const { address, signature } = action;
+  const endpoint = `auth/login/`;
+  const options = {
     data: {
       public_address: address,
       signature: signature
@@ -38,30 +34,34 @@ export function* login(action) {
   };
 
   try {
-    let endpoint = `auth/login/`;
-    const url = yield call(request, endpoint, 'POST', options);
-    yield put(loginSuccess(url));
+    const currentUser = yield call(request, endpoint, 'POST', options);
+    yield put(loginSuccess(currentUser));
   } catch (e) {
+    // need proper logic in here to check for 401 whih should not actually be treated as an error
     yield put(loginFail(e));
   }
+}
+
+export function* getCurrentUser(action) {
+  const endpoint = 'auth/user/';
+  try {
+    const currentUser = yield call(request, endpoint, 'GET');
+    yield put(getCurrentUserSuccess(currentUser));
+  } catch (e) {
+    yield put(getCurrentUserFail(e));
+  }
+}
+
+export function* watchNonce() {
+  yield takeLatest(LOAD_NONCE, loadNonce);
 }
 
 export function* watchLogin() {
   yield takeLatest(LOGIN, login);
 }
 
-export function* checkLoginStatus(action) {
-  try {
-    let endpoint = 'auth/user/';
-    const loginStatus = yield call(request, endpoint, 'GET');
-    yield put(checkLoginStatusSuccess(loginStatus));
-  } catch (e) {
-    yield put(checkLoginStatusFail(e));
-  }
+export function* watchGetCurrentUser() {
+  yield takeLatest(GET_CURRENT_USER, getCurrentUser);
 }
 
-export function* watchLoginStatus() {
-  yield takeLatest(CHECK_LOGINSTATUS, checkLoginStatus);
-}
-
-export default [watchNonce, watchLogin, watchLoginStatus];
+export default [watchNonce, watchLogin, watchGetCurrentUser];
