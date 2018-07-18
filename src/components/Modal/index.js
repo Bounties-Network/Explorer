@@ -187,7 +187,7 @@ class Modal extends React.Component {
       if (childName === Footer.name) {
         footer = child;
       }
-    }, this.props.children);
+    }, children);
 
     let gridSize = 'col-xs-7';
     if (size === 'large') {
