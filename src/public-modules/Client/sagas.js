@@ -4,14 +4,21 @@ import {
   networkSelector,
   addressSelector,
   walletLockedSelector,
-  hasWalletSelector
+  hasWalletSelector,
+  initializedSelector
 } from 'public-modules/Client/selectors';
 import { call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { promisify } from 'public-modules/Utilities/helpers';
 import { actions } from 'public-modules/Client';
 
-const { setHasWallet, setNetwork, setLocked, setAddress } = actions;
+const {
+  setHasWallet,
+  setNetwork,
+  setLocked,
+  setAddress,
+  setInitialized
+} = actions;
 
 function* getWalletAddress() {
   const accounts = yield promisify(web3.eth.getAccounts);
@@ -85,12 +92,16 @@ export function* getContractClients() {
   return null;
 }
 
-export function* checkNetwork() {
+export function* updateWalletData() {
   // every second and a half, network and wallet status is updated in the redux store
   while (true) {
+    const isInitialized = yield select(initializedSelector);
     yield call(getWeb3Client);
+    if (!isInitialized) {
+      yield put(setInitialized());
+    }
     yield delay(1000);
   }
 }
 
-export default [checkNetwork];
+export default [updateWalletData];

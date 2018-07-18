@@ -21,3 +21,8 @@ export const hasWalletSelector = createSelector(
   rootClientSelector,
   client => client.hasWallet
 );
+
+export const initializedSelector = createSelector(
+  rootClientSelector,
+  client => client.initialized
+);
