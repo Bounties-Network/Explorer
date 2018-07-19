@@ -26,8 +26,8 @@ function loadLeaderboardFail(error) {
   return { type: LOAD_LEADERBOARD_FAIL, error };
 }
 
-function leaderboardToggle(toggleValue = initialState.toggleValue) {
-  return { type: LEADERBOARD_TOGGLE, toggleValue };
+function leaderboardToggle() {
+  return { type: LEADERBOARD_TOGGLE };
 }
 
 function LeaderboardReducer(state = initialState, action) {
@@ -60,11 +60,12 @@ function LeaderboardReducer(state = initialState, action) {
       };
     }
     case LEADERBOARD_TOGGLE: {
-      const { toggleValue } = action;
+      const toggleValue =
+        state.toggleValue === 'fulfiller' ? 'issuer' : 'fulfiller';
 
       return {
         ...state,
-        toggleValue: toggleValue.toLowerCase()
+        toggleValue
       };
     }
     default:
