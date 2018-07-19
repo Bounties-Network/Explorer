@@ -1,17 +1,15 @@
 @import "~styles/variables.scss";
 
 .leaderCard {
-  padding: $base-spacing $m-spacing;
-  border-bottom: $base-border;
+  //border-bottom: $base-border;
 }
 
 .avatar {
-  margin-top: $base-spacing;
 }
 
 .place {
   text-align: left;
-  margin-top: $base-spacing
+  margin-top: $s-spacing
 }
 
 .price {
