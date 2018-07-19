@@ -7,7 +7,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { NoMatch } from 'layout';
 
-import { Explorer } from 'containers';
+import { Explorer, Leaderboard } from 'containers';
 import { Sidebar } from 'components';
 import { Header } from 'layout';
 
@@ -23,6 +23,7 @@ class AppComponent extends React.Component {
         <div className={`${styles.body}`}>
           <Switch>
             <Route exact path="/" component={Explorer} />
+            <Route exact path="/leaderboard" component={Leaderboard} />
           </Switch>
         </div>
       </div>
