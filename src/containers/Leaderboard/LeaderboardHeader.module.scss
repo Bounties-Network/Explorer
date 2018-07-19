@@ -1,0 +1,19 @@
+@import "~styles/variables.scss";
+
+.headerWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: $xxl-spacing;
+  padding-bottom: 2 * $xxl-spacing;
+  background: linear-gradient(to right, #5b29c8 , #594aff);
+}
+
+.titleText {
+  margin-bottom: $m-spacing;
+}
+
+.groupText {
+  margin-bottom: $m-spacing;
+}
