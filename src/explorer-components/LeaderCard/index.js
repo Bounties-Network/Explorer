@@ -19,7 +19,7 @@ const LeaderCard = props => {
               </Text>
             </div>
           </div>
-          <div className="col-xs-9">
+          <div className="col-xs-7">
             <div className={styles.avatar}>
               <Avatar
                 img={img}
@@ -30,7 +30,7 @@ const LeaderCard = props => {
               />
             </div>
           </div>
-          <div className="col-xs-2">
+          <div className="col-xs-4">
             <div className={styles.price}>
               <Text color="purple" typeScale="h3" className={styles.usd}>
                 ${usd}
