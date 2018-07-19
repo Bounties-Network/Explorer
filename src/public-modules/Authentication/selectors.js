@@ -7,6 +7,11 @@ export const loginStateSelector = createSelector(
   rootAuth => rootAuth.loginState
 );
 
+export const logoutStateSelector = createSelector(
+  rootAuthSelector,
+  rootAuth => rootAuth.logoutState
+);
+
 export const getCurrentUserStateSelector = createSelector(
   rootAuthSelector,
   rootAuth => rootAuth.getCurrentUserState

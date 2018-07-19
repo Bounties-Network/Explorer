@@ -4,7 +4,15 @@ import { shortenAddress } from 'utils/helpers';
 import styles from './baseStyles.module.scss';
 
 const AddressMismatch = props => {
-  const { visible, img, currentAddress, previousAddress, onClose } = props;
+  const {
+    visible,
+    img,
+    currentAddress,
+    previousAddress,
+    onClose,
+    logout,
+    loggingOut
+  } = props;
 
   return (
     <Modal visible={visible} size="small" dismissable onClose={onClose}>
@@ -41,7 +49,9 @@ const AddressMismatch = props => {
         <Button margin onClick={onClose}>
           Cancel
         </Button>
-        <Button type="primary">Logout</Button>
+        <Button type="primary" onClick={logout} loading={loggingOut}>
+          Logout
+        </Button>
       </Modal.Footer>
     </Modal>
   );

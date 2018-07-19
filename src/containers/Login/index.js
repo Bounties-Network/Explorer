@@ -13,7 +13,8 @@ import { actions } from './reducer';
 import { actions as authActions } from 'public-modules/Authentication';
 import {
   getCurrentUserSelector,
-  loginStateSelector
+  loginStateSelector,
+  logoutStateSelector
 } from 'public-modules/Authentication/selectors';
 import {
   addressSelector,
@@ -32,7 +33,9 @@ const LoginComponent = props => {
     img,
     showLogin,
     login,
-    signingIn
+    logout,
+    signingIn,
+    loggingOut
   } = props;
 
   if (!hasWallet) {
@@ -52,6 +55,8 @@ const LoginComponent = props => {
         currentAddress={walletAddress}
         previousAddress={userAddress}
         img={img}
+        logout={logout}
+        loggingOut={loggingOut}
         onClose={() => showLogin(false)}
       />
     );
@@ -70,23 +75,29 @@ const mapStateToProps = state => {
   const rootLogin = rootLoginSelector(state);
   const user = getCurrentUserSelector(state);
   const loginState = loginStateSelector(state);
+  const logoutState = logoutStateSelector(state);
 
   return {
     hasWallet: hasWalletSelector(state),
     walletLocked: walletLockedSelector(state),
     walletAddress: addressSelector(state),
-    userAddress: user && user.address,
+    userAddress: user && user.public_address,
     visible: rootLogin.visible,
     stage: rootLogin.stage,
     img: user && user.img,
-    signingIn: loginState.loading
+    signingIn: loginState.loading,
+    loggingOut: logoutState.loading
   };
 };
 
 const Login = compose(
   connect(
     mapStateToProps,
-    { showLogin: actions.showLogin, login: authActions.login }
+    {
+      showLogin: actions.showLogin,
+      login: authActions.login,
+      logout: authActions.logout
+    }
   )
 )(LoginComponent);
 
