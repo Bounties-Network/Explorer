@@ -1,41 +1,19 @@
 import React from 'react';
-import styles from './LeaderboardHeader.module.scss';
-import {
-  Search,
-  Switch,
-  Text,
-  Button,
-  Checkbox,
-  SearchSelect
-} from 'components';
-import {
-  rootBountiesSelector,
-  bountiesCategoryFiltersSelector,
-  anyStageFiltersSelected,
-  anyDifficultyFiltersSelected
-} from 'public-modules/Bounties/selectors';
-import { categoriesSelector } from 'public-modules/Categories/selectors';
-import { throttle } from 'lodash';
+
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { throttle } from 'lodash';
 import { LoadComponent } from 'hocs';
 
+import styles from './LeaderboardHeader.module.scss';
+import { Switch, Text } from 'components';
+import { rootLeaderboardSelector } from 'public-modules/Leaderboard/selectors';
+import { actions } from 'public-modules/Leaderboard';
+
 const LeaderboardHeaderComponent = props => {
-  const {
-    search,
-    resetFilters,
-    setSearch,
-    toggleStageFilter,
-    toggleDifficultyFilter,
-    stageFilters,
-    difficultyFilters,
-    anyStageFiltersSelected,
-    anyDifficultyFiltersSelected,
-    categories,
-    categoryFilters,
-    addCategoryFilter,
-    removeCategoryFilter
-  } = props;
+  const { switchValue, onSwitchChange, loading } = props;
+
+  console.log('hello', props, onSwitchChange, loading);
 
   return (
     <div className={`${styles.headerWrapper}`}>
@@ -56,39 +34,29 @@ const LeaderboardHeaderComponent = props => {
         backgroundColor="purple"
         switchColor="purpleWhite"
         curved="true"
+        onChange={onSwitchChange}
       />
     </div>
   );
 };
 
-// const mapStateToProps = state => {
-//   const bountyState = rootBountiesSelector(state);
-//
-//   return {
-//     stageFilters: bountyState.stageFilters,
-//     anyStageFiltersSelected: anyStageFiltersSelected(state),
-//     anyDifficultyFiltersSelected: anyDifficultyFiltersSelected(state),
-//     difficultyFilters: bountyState.difficultyFilters,
-//     categoryFilters: bountiesCategoryFiltersSelector(state),
-//     categories: categoriesSelector(state),
-//     search: bountyState.search
-//   };
-// };
-//
-// const FilterNav = compose(
-//   connect(
-//     mapStateToProps,
-//     {
-//       setSearch,
-//       toggleStageFilter,
-//       toggleDifficultyFilter,
-//       addCategoryFilter,
-//       removeCategoryFilter,
-//       resetFilters,
-//       load: loadCategories
-//     }
-//   ),
-//   LoadComponent('')
-// )(FilterNavComponent);
+const mapStateToProps = state => {
+  const leaderboardState = rootLeaderboardSelector(state);
 
-export default LeaderboardHeaderComponent;
+  return {
+    switchValue: leaderboardState.switchValue
+  };
+};
+
+const LeaderboardHeader = compose(
+  connect(
+    mapStateToProps,
+    {
+      onSwitchChange: actions.useLeaderboard,
+      load: actions.useLeaderboard
+    }
+  ),
+  LoadComponent('')
+)(LeaderboardHeaderComponent);
+
+export default LeaderboardHeader;
