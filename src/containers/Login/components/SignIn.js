@@ -2,9 +2,11 @@ import React from 'react';
 import { Modal, Text, Button } from 'components';
 
 const SignIn = props => {
+  const { visible, onClose, signIn } = props;
+
   return (
-    <Modal visible size="small">
-      <Modal.Header closable icon={['fal', 'wallet']}>
+    <Modal visible={visible} size="small" dismissable onClose={onClose}>
+      <Modal.Header closable icon={['fal', 'sign-in']}>
         <Modal.Heading>Sign in and verify address</Modal.Heading>
       </Modal.Header>
       <Modal.Body>
@@ -15,7 +17,9 @@ const SignIn = props => {
         </Text>
       </Modal.Body>
       <Modal.Footer>
-        <Button type="primary">Continue</Button>
+        <Button type="primary" onClick={signIn}>
+          Continue
+        </Button>
       </Modal.Footer>
     </Modal>
   );

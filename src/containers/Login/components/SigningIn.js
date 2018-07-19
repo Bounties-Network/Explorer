@@ -2,12 +2,14 @@ import React from 'react';
 import { Modal, Text, Button } from 'components';
 
 const SigningIn = props => {
+  const { visible } = props;
+
   return (
-    <Modal visible size="small">
-      <Modal.Header closable loadingIcon>
-        <Modal.Heading>
+    <Modal visible={visible} size="small">
+      <Modal.Header loadingIcon>
+        <Modal.Message>
           Complete signature request to verify your address and sign in.
-        </Modal.Heading>
+        </Modal.Message>
       </Modal.Header>
     </Modal>
   );

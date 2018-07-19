@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { actions as loginActions } from 'containers/Login/reducer';
+import { actions as authActions } from 'public-modules/Authentication';
+import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import styles from './Header.module.scss';
 
 import {
@@ -16,22 +19,9 @@ import BeeLogo from '../../styles/logo.js';
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
 const HeaderComponent = props => {
-  const {
-    history,
-    notifications,
-    profilePic,
-    userAddress,
-    loginStatus,
-    network
-  } = props;
+  const { user, network, showLogin, logout } = props;
 
-  const onCreateClick = () => {
-    history.push('/create');
-  };
-
-  const onSignInClick = () => {
-    history.push('/dashboard');
-  };
+  const loginStatus = !!user;
 
   return (
     <div className={`${styles.header}`}>
@@ -43,24 +33,22 @@ const HeaderComponent = props => {
       ) : null}
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
-          <Button
-            type="primary"
-            onClick={onCreateClick}
-            className={styles.button}
-          >
+          <Button type="primary" onClick={() => {}} className={styles.button}>
             Create New Bounty
           </Button>
           <div className={styles.notification}>
-            <NotificationDropdown notifications={notifications} />
+            <NotificationDropdown />
           </div>
           <div className={styles.profile}>
             <Dropdown position="left" className={styles.profileDropdown}>
               <DropdownTrigger>
-                <Avatar size="small" img={profilePic} hash={userAddress} />
+                <Avatar size="small" img={user.img} hash={user.address} />
               </DropdownTrigger>
               <DropdownContent>
                 <MenuItem icon={['fal', 'cog']}>Account Settings</MenuItem>
-                <MenuItem icon={['fal', 'sign-out']}>Sign Out</MenuItem>
+                <MenuItem icon={['fal', 'sign-out']} onClick={logout}>
+                  Sign Out
+                </MenuItem>
               </DropdownContent>
             </Dropdown>
           </div>
@@ -69,7 +57,7 @@ const HeaderComponent = props => {
         <div className={`${styles.buttonArea}`}>
           <Button
             type="primary"
-            onClick={onSignInClick}
+            onClick={() => showLogin(true)}
             className={styles.button}
           >
             Sign In
@@ -89,8 +77,16 @@ HeaderComponent.defaultProps = {
   loginStatus: false
 };
 
-const mapStateToProps = state => ({ network: state.client.network });
+const mapStateToProps = state => ({
+  network: state.client.network,
+  user: getCurrentUserSelector(state)
+});
 
-const Header = compose(connect(mapStateToProps))(HeaderComponent);
+const Header = compose(
+  connect(
+    mapStateToProps,
+    { showLogin: loginActions.showLogin, logout: authActions.logout }
+  )
+)(HeaderComponent);
 
 export default Header;

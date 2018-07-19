@@ -2,9 +2,11 @@ import React from 'react';
 import { Modal, Text, Button } from 'components';
 
 const UnlockWallet = props => {
+  const { visible, onClose } = props;
+
   return (
-    <Modal visible size="small">
-      <Modal.Header closable icon={['fal', 'wallet']}>
+    <Modal visible={visible} size="small" dismissable onClose={onClose}>
+      <Modal.Header closable icon={['fal', 'unlock']}>
         <Modal.Heading>Please unlock your secure wallet</Modal.Heading>
       </Modal.Header>
       <Modal.Body>
@@ -17,7 +19,7 @@ const UnlockWallet = props => {
         <Text inline>) in order to access bounties.network.</Text>
       </Modal.Body>
       <Modal.Footer>
-        <Button>Close</Button>
+        <Button onClick={onClose}>Close</Button>
       </Modal.Footer>
     </Modal>
   );

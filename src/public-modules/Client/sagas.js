@@ -1,5 +1,6 @@
 import web3 from 'public-modules/Utilities/Web3Client';
 import config from 'public-modules/config';
+import { proxiedWeb3Handler } from 'public-modules/Utilities/helpers';
 import {
   networkSelector,
   addressSelector,
@@ -9,8 +10,9 @@ import {
 } from 'public-modules/Client/selectors';
 import { call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import { promisify } from 'public-modules/Utilities/helpers';
 import { actions } from 'public-modules/Client';
+
+let proxiedWeb3;
 
 const {
   setHasWallet,
@@ -21,17 +23,17 @@ const {
 } = actions;
 
 function* getWalletAddress() {
-  const accounts = yield promisify(web3.eth.getAccounts);
+  const accounts = yield proxiedWeb3.eth.getAccounts();
   return accounts[0];
 }
 
 function* isWalletLocked() {
-  const accounts = yield promisify(web3.eth.getAccounts);
+  const accounts = yield proxiedWeb3.eth.getAccounts();
   return accounts.length === 0;
 }
 
 export function* getNetwork() {
-  const networkID = yield promisify(web3.eth.net.getId);
+  const networkID = yield proxiedWeb3.eth.net.getId();
 
   let network = 'unknown';
   if (networkID === 1) {
@@ -60,6 +62,7 @@ export function* getWeb3Client() {
   }
   if (hasWallet) {
     web3.setProvider(window.web3.currentProvider);
+    proxiedWeb3 = new Proxy(web3, proxiedWeb3Handler);
     isLocked = yield call(isWalletLocked);
   }
   if (!isLocked) {
@@ -76,6 +79,12 @@ export function* getWeb3Client() {
   if (currentNetwork !== networkPrev) {
     yield put(setNetwork(currentNetwork));
   }
+
+  if (isLocked || !hasWallet) {
+    return null;
+  }
+
+  return { web3, proxiedWeb3 };
 }
 
 export function* getContractClients() {

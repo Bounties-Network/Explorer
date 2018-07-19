@@ -9,22 +9,85 @@ import SignIn from './components/SignIn';
 import SigningIn from './components/SigningIn';
 import AddressMismatch from './components/AddressMismatch';
 import { rootLoginSelector } from './selectors';
+import { actions } from './reducer';
+import { actions as authActions } from 'public-modules/Authentication';
+import {
+  getCurrentUserSelector,
+  loginStateSelector
+} from 'public-modules/Authentication/selectors';
+import {
+  addressSelector,
+  walletLockedSelector,
+  hasWalletSelector
+} from 'public-modules/Client/selectors';
 
 const LoginComponent = props => {
-  const { visible, stage } = props;
+  const {
+    visible,
+    stage,
+    hasWallet,
+    walletLocked,
+    walletAddress,
+    userAddress,
+    img,
+    showLogin,
+    login,
+    signingIn
+  } = props;
 
-  return <div>Login</div>;
+  if (!hasWallet) {
+    return (
+      <WalletRequired visible={visible} onClose={() => showLogin(false)} />
+    );
+  }
+
+  if (walletLocked) {
+    return <UnlockWallet visible={visible} onClose={() => showLogin(false)} />;
+  }
+
+  if (userAddress && userAddress !== walletAddress) {
+    return (
+      <AddressMismatch
+        visible={visible}
+        currentAddress={walletAddress}
+        previousAddress={userAddress}
+        img={img}
+        onClose={() => showLogin(false)}
+      />
+    );
+  }
+
+  if (signingIn) {
+    return <SigningIn visible={visible} />;
+  }
+
+  return (
+    <SignIn visible={visible} onClose={() => showLogin(false)} signIn={login} />
+  );
 };
 
 const mapStateToProps = state => {
   const rootLogin = rootLoginSelector(state);
+  const user = getCurrentUserSelector(state);
+  const loginState = loginStateSelector(state);
 
   return {
+    hasWallet: hasWalletSelector(state),
+    walletLocked: walletLockedSelector(state),
+    walletAddress: addressSelector(state),
+    userAddress: user && user.address,
     visible: rootLogin.visible,
-    stage: rootLogin.stage
+    stage: rootLogin.stage,
+    img: user && user.img,
+    signingIn: loginState.loading
   };
 };
 
-const Login = compose(connect(mapStateToProps))(LoginComponent);
+const Login = compose(
+  connect(
+    mapStateToProps,
+    { showLogin: actions.showLogin, login: authActions.login }
+  )
+)(LoginComponent);
 
 export default Login;
