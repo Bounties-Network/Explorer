@@ -9,7 +9,7 @@ const LeaderCard = props => {
   const { place, img, name, address, value, usd, currency } = props;
 
   return (
-    <Card hover className={styles.leaderCard}>
+    <Card className={styles.leaderCard}>
       <Card.Body>
         <div className="row">
           <div className="col-xs-1">
@@ -52,8 +52,8 @@ LeaderCard.propTypes = {
   place: PropTypes.number,
   img: PropTypes.string,
   address: PropTypes.string,
-  value: PropTypes.number,
-  usd: PropTypes.number,
+  value: PropTypes.string,
+  usd: PropTypes.string,
   currency: PropTypes.string
 };
 

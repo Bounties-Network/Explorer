@@ -1,7 +1,6 @@
 import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Leaderboard';
-import { LIMIT, PLATFORM } from './constants';
 
 const { LOAD_LEADERBOARD } = actionTypes;
 const { loadLeaderboardFail, loadLeaderboardSuccess } = actions;
@@ -20,8 +19,8 @@ export function* loadLeaderboard() {
     );
     yield put(
       loadLeaderboardSuccess({
-        issuers: issuer_leaderboard,
-        earners: fulfiller_leaderboard
+        issuer: issuer_leaderboard,
+        fulfiller: fulfiller_leaderboard
       })
     );
   } catch (e) {
