@@ -1,0 +1,12 @@
+@import "~styles/variables.scss";
+
+.leadboardBody {
+  padding: 0px !important;
+  overflow-y: scroll;
+}
+
+.leaderbody {
+  margin-top: -$xxl-spacing;
+  display: flex;
+  justify-content: center;
+}
