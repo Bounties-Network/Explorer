@@ -20,8 +20,8 @@ export function* loadLeaderboard() {
     );
     yield put(
       loadLeaderboardSuccess({
-        issuer: issuer_leaderboard,
-        earner: fulfiller_leaderboard
+        issuers: issuer_leaderboard,
+        earners: fulfiller_leaderboard
       })
     );
   } catch (e) {
