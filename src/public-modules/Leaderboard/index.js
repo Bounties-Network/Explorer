@@ -61,6 +61,7 @@ function LeaderboardReducer(state = initialState, action) {
     }
     case LEADERBOARD_TOGGLE: {
       const { toggleValue } = action;
+
       return {
         ...state,
         toggleValue: toggleValue.toLowerCase()
