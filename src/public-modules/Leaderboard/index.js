@@ -26,7 +26,7 @@ function loadLeaderboardFail(error) {
   return { type: LOAD_LEADERBOARD_FAIL, error };
 }
 
-function useLeaderboard(switchValue) {
+function useLeaderboard(switchValue = 'Issuers') {
   return { type: USE_LEADERBOARD, switchValue };
 }
 
@@ -63,7 +63,7 @@ function LeaderboardReducer(state = initialState, action) {
       const { switchValue } = action;
       return {
         ...state,
-        switchValue
+        switchValue: switchValue.toLowerCase()
       };
     }
     default:
