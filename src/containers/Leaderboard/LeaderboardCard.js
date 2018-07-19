@@ -3,9 +3,17 @@ import styles from './LeaderboardCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Card, Text, Sort, Loader, ZeroState, Button } from 'components';
+import {
+  ListGroup,
+  Card,
+  Text,
+  Sort,
+  Loader,
+  ZeroState,
+  Button
+} from 'components';
 import { LoadComponent } from 'hocs';
-import { LeaderCard } from 'explorer-components';
+import { LeaderItem } from 'explorer-components';
 import { map, get } from 'lodash';
 import {
   SORT_VALUE,
@@ -33,7 +41,7 @@ const LeaderboardCardComponent = props => {
         } = leader;
 
         return (
-          <LeaderCard
+          <LeaderItem
             key={index + 1}
             place={index + 1}
             img={profile_image}
@@ -63,9 +71,9 @@ const LeaderboardCardComponent = props => {
               </div>
             ) : null}
             {!loading && leaderboard.length !== 0 ? (
-              <div className={styles.leaderList}>{renderLeaders()}</div>
+              <ListGroup>{renderLeaders()}</ListGroup>
             ) : null}
-            {!loading && !error && leaderboard.length === 0 ? (
+            {!loading && !error && leaderboard.size === 0 ? (
               <div className={styles.leaderListCentered}>
                 <ZeroState
                   className={styles.centeredItem}
