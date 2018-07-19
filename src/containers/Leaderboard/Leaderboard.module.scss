@@ -1,11 +1,6 @@
 @import "~styles/variables.scss";
 
-.filterNav {
-  background: $brand-white;
-  overflow-y: scroll;
-}
-
-.explorerBody {
+.leadboardBody {
   padding: 0px !important;
   overflow-y: scroll;
 }
@@ -14,10 +9,4 @@
   margin-top: -$xxl-spacing;
   display: flex;
   justify-content: center;
-}
-
-.leaderboardCard {
-  max-width: 960px;
-  width: 60%;
-
 }
