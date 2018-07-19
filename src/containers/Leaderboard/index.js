@@ -1,23 +1,15 @@
 import React from 'react';
 import LeaderboardHeader from './LeaderboardHeader';
-import LeaderboardBody from './LeaderboardBody';
+import LeaderboardCard from './LeaderboardCard';
 import styles from './Leaderboard.module.scss';
-
-import { Card } from 'components';
 
 const Explorer = props => {
   return (
     <div className="container-fluid">
       <div className="row fullHeight">
-        <div className={`col-xs-12 fullHeight ${styles.explorerBody}`}>
+        <div className={`col-xs-12 fullHeight ${styles.leadboardBody}`}>
           <LeaderboardHeader />
-          <div className={`${styles.leaderbody}`}>
-            <Card className={`${styles.leaderboardCard}`}>
-              <Card.Body>
-                <LeaderboardBody />
-              </Card.Body>
-            </Card>
-          </div>
+          <LeaderboardCard />
         </div>
       </div>
     </div>
