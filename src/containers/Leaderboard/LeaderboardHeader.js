@@ -26,8 +26,8 @@ const LeaderboardHeaderComponent = props => {
       </div>
       <Switch
         onChange={leaderboardToggle}
-        onValue={'Issuer'}
-        offValue={'Fulfiller'}
+        onValue={'Top Issuer'}
+        offValue={'Top Earners'}
         selectedColor="white"
         unselectedColor="lightGrey"
         backgroundColor="purple"
@@ -50,12 +50,8 @@ const mapStateToProps = state => {
 const LeaderboardHeader = compose(
   connect(
     mapStateToProps,
-    {
-      leaderboardToggle: actions.leaderboardToggle,
-      load: actions.leaderboardToggle // why do i need this?
-    }
-  ),
-  LoadComponent('')
+    { leaderboardToggle: actions.leaderboardToggle }
+  )
 )(LeaderboardHeaderComponent);
 
 export default LeaderboardHeader;
