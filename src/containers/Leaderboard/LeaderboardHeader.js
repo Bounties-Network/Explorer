@@ -11,9 +11,7 @@ import { rootLeaderboardSelector } from 'public-modules/Leaderboard/selectors';
 import { actions } from 'public-modules/Leaderboard';
 
 const LeaderboardHeaderComponent = props => {
-  const { switchValue, onSwitchChange, loading } = props;
-
-  console.log('hello', props, onSwitchChange, loading);
+  const { toggleValue, leaderboardToggle, loading } = props;
 
   return (
     <div className={`${styles.headerWrapper}`}>
@@ -27,14 +25,15 @@ const LeaderboardHeaderComponent = props => {
         </Text>
       </div>
       <Switch
-        onValue={'Earners'}
-        offValue={'Issuers'}
+        onChange={leaderboardToggle}
+        onValue={'Issuer'}
+        offValue={'Fulfiller'}
         selectedColor="white"
         unselectedColor="lightGrey"
         backgroundColor="purple"
         switchColor="purpleWhite"
-        curved="true"
-        onChange={onSwitchChange}
+        size="large"
+        curved
       />
     </div>
   );
@@ -44,7 +43,7 @@ const mapStateToProps = state => {
   const leaderboardState = rootLeaderboardSelector(state);
 
   return {
-    switchValue: leaderboardState.switchValue
+    toggleValue: leaderboardState.toggleValue
   };
 };
 
@@ -52,8 +51,8 @@ const LeaderboardHeader = compose(
   connect(
     mapStateToProps,
     {
-      onSwitchChange: actions.useLeaderboard,
-      load: actions.useLeaderboard
+      leaderboardToggle: actions.leaderboardToggle,
+      load: actions.leaderboardToggle // why do i need this?
     }
   ),
   LoadComponent('')
