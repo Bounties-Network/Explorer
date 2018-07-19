@@ -2,15 +2,17 @@ const initialState = {
   loading: true,
   loaded: false,
   error: false,
-  leaderboard: []
+  leaderboard: {},
+  switchValue: 'issuer'
 };
 
 const LOAD_LEADERBOARD = 'leaderboard/LOAD_LEADERBOARD';
 const LOAD_LEADERBOARD_SUCCESS = 'leaderboard/LOAD_LEADERBOARD_SUCCESS';
 const LOAD_LEADERBOARD_FAIL = 'leaderboard/LOAD_LEADERBOARD_FAIL';
+const USE_LEADERBOARD = 'leaderboard/USE_LEADERBOARD';
 
-function loadLeaderboard(category) {
-  return { type: LOAD_LEADERBOARD, leaderboardCategory: category };
+function loadLeaderboard() {
+  return { type: LOAD_LEADERBOARD };
 }
 
 function loadLeaderboardSuccess(leaderboard) {
@@ -22,6 +24,10 @@ function loadLeaderboardSuccess(leaderboard) {
 
 function loadLeaderboardFail(error) {
   return { type: LOAD_LEADERBOARD_FAIL, error };
+}
+
+function useLeaderboard(switchValue) {
+  return { type: USE_LEADERBOARD, switchValue };
 }
 
 function LeaderboardReducer(state = initialState, action) {
@@ -53,6 +59,13 @@ function LeaderboardReducer(state = initialState, action) {
         error: true
       };
     }
+    case USE_LEADERBOARD: {
+      const { switchValue } = action;
+      return {
+        ...state,
+        switchValue
+      };
+    }
     default:
       return state;
   }
@@ -61,13 +74,15 @@ function LeaderboardReducer(state = initialState, action) {
 export const actions = {
   loadLeaderboard,
   loadLeaderboardSuccess,
-  loadLeaderboardFail
+  loadLeaderboardFail,
+  useLeaderboard
 };
 
 export const actionTypes = {
   LOAD_LEADERBOARD,
   LOAD_LEADERBOARD_SUCCESS,
-  LOAD_LEADERBOARD_FAIL
+  LOAD_LEADERBOARD_FAIL,
+  USE_LEADERBOARD
 };
 
 export default LeaderboardReducer;
