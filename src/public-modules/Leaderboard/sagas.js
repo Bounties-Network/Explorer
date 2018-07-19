@@ -6,12 +6,24 @@ import { LIMIT, PLATFORM } from './constants';
 const { LOAD_LEADERBOARD } = actionTypes;
 const { loadLeaderboardFail, loadLeaderboardSuccess } = actions;
 
-export function* loadLeaderboard(action) {
-  let { leaderboardCategory } = action;
+export function* loadLeaderboard() {
   try {
-    let endpoint = `leaderboard/${leaderboardCategory}?limit=${LIMIT}&platform__in=${PLATFORM}`;
-    const leaderboard = yield call(request, endpoint, 'GET');
-    yield put(loadLeaderboardSuccess(leaderboard));
+    const issuer_leaderboard = yield call(
+      request,
+      'leaderboard/issuer/',
+      'GET'
+    );
+    const fulfiller_leaderboard = yield call(
+      request,
+      'leaderboard/fulfiller/',
+      'GET'
+    );
+    yield put(
+      loadLeaderboardSuccess({
+        issuer: issuer_leaderboard,
+        earner: fulfiller_leaderboard
+      })
+    );
   } catch (e) {
     yield put(loadLeaderboardFail(e));
   }

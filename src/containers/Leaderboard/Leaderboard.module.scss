@@ -1,0 +1,23 @@
+@import "~styles/variables.scss";
+
+.filterNav {
+  background: $brand-white;
+  overflow-y: scroll;
+}
+
+.explorerBody {
+  padding: 0px !important;
+  overflow-y: scroll;
+}
+
+.leaderbody {
+  margin-top: -$xxl-spacing;
+  display: flex;
+  justify-content: center;
+}
+
+.leaderboardCard {
+  max-width: 960px;
+  width: 60%;
+
+}
