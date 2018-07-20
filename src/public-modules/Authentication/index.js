@@ -1,19 +1,25 @@
+const defaultLoginState = {
+  loading: false,
+  error: false
+};
+
+const defaultLogoutState = {
+  loading: false,
+  error: false
+};
+
+const defaultGetCurrentUserState = {
+  loading: false,
+  error: false,
+  loaded: false
+};
+
 const initialState = {
   user: null,
   nonce: '',
-  getCurrentUserState: {
-    loading: true,
-    loaded: false,
-    error: false
-  },
-  loginState: {
-    loading: false,
-    error: false
-  },
-  logoutState: {
-    loading: false,
-    error: false
-  }
+  getCurrentUserState: defaultGetCurrentUserState,
+  loginState: defaultLoginState,
+  logoutState: defaultLogoutState
 };
 
 const GET_CURRENT_USER = 'authentication/GET_CURRENT_USER';
@@ -35,6 +41,7 @@ function getCurrentUserFail(error) {
 const LOGIN = 'authentication/LOGIN';
 const LOGIN_SUCCESS = 'authentication/LOGIN_SUCCESS';
 const LOGIN_FAIL = 'authentication/LOGIN_FAIL';
+const RESET_LOGIN_STATE = 'authentication/RESET_LOGIN_STATE';
 
 function login() {
   return { type: LOGIN };
@@ -49,6 +56,10 @@ function loginSuccess(user) {
 
 function loginFail(error) {
   return { type: LOGIN_FAIL, error };
+}
+
+function resetLoginState() {
+  return { type: RESET_LOGIN_STATE };
 }
 
 const LOGOUT = 'authentication/LOGOUT';
@@ -136,6 +147,12 @@ function AuthenticationReducer(state = initialState, action) {
         }
       };
     }
+    case RESET_LOGIN_STATE: {
+      return {
+        ...state,
+        loginState: { ...defaultLoginState }
+      };
+    }
     case LOGOUT: {
       return {
         ...state,
@@ -176,6 +193,7 @@ export const actions = {
   getCurrentUser,
   getCurrentUserSuccess,
   getCurrentUserFail,
+  resetLoginState,
   login,
   loginSuccess,
   loginFail,
@@ -193,7 +211,8 @@ export const actionTypes = {
   LOGIN_FAIL,
   LOGOUT,
   LOGOUT_SUCCESS,
-  LOGOUT_FAIL
+  LOGOUT_FAIL,
+  RESET_LOGIN_STATE
 };
 
 export default AuthenticationReducer;
