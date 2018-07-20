@@ -1,12 +1,14 @@
 @import "~styles/variables.scss";
 
-.leadboardBody {
-  padding: 0px !important;
-  overflow-y: scroll;
+.flexContainer {
+  display: flex;
+  flex-flow: column;
 }
 
-.leaderbody {
-  margin-top: -$xxl-spacing;
+.bodyCard {
   display: flex;
   justify-content: center;
+  flex: 1;
+  flex-flow: row;
+  background: $brand-lightGrey;
 }
