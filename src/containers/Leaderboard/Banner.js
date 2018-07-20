@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import { throttle } from 'lodash';
 import { LoadComponent } from 'hocs';
 
-import styles from './LeaderboardHeader.module.scss';
+import styles from './Banner.module.scss';
 import { Switch, Text } from 'components';
-import { rootLeaderboardSelector } from 'public-modules/Leaderboard/selectors';
-import { actions } from 'public-modules/Leaderboard';
+import { rootLeaderboardUISelector } from './selectors';
+import { actions } from './reducer';
 
-const LeaderboardHeaderComponent = props => {
+const BannerComponent = props => {
   const { toggleValue, leaderboardToggle, loading } = props;
 
   return (
@@ -40,18 +40,18 @@ const LeaderboardHeaderComponent = props => {
 };
 
 const mapStateToProps = state => {
-  const leaderboardState = rootLeaderboardSelector(state);
+  const leaderboardUIState = rootLeaderboardUISelector(state);
 
   return {
-    toggleValue: leaderboardState.toggleValue
+    toggleValue: leaderboardUIState.toggleValue
   };
 };
 
-const LeaderboardHeader = compose(
+const Banner = compose(
   connect(
     mapStateToProps,
     { leaderboardToggle: actions.leaderboardToggle }
   )
-)(LeaderboardHeaderComponent);
+)(BannerComponent);
 
-export default LeaderboardHeader;
+export default Banner;
