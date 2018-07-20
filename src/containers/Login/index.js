@@ -39,6 +39,7 @@ const LoginComponent = props => {
     logout,
     signingIn,
     loggingOut,
+    resetLoginState,
     error
   } = props;
 
@@ -53,7 +54,7 @@ const LoginComponent = props => {
   }
 
   if (error) {
-    return <ErrorModal visible={visible} onClose={() => showLogin(false)} />;
+    return <ErrorModal visible={visible} onClose={resetLoginState} />;
   }
 
   if (userAddress && userAddress !== walletAddress) {
@@ -105,7 +106,8 @@ const Login = compose(
     {
       showLogin: actions.showLogin,
       login: authActions.login,
-      logout: authActions.logout
+      logout: authActions.logout,
+      resetLoginState: authActions.resetLoginState
     }
   )
 )(LoginComponent);
