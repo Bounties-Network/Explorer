@@ -42,7 +42,11 @@ const HeaderComponent = props => {
           <div className={styles.profile}>
             <Dropdown position="left" className={styles.profileDropdown}>
               <DropdownTrigger>
-                <Avatar size="small" img={user.img} hash={user.address} />
+                <Avatar
+                  size="small"
+                  img={user.img}
+                  hash={user.public_address}
+                />
               </DropdownTrigger>
               <DropdownContent>
                 <MenuItem icon={['fal', 'cog']}>Account Settings</MenuItem>

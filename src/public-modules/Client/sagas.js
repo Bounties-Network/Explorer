@@ -65,6 +65,11 @@ export function* getWeb3Client() {
     proxiedWeb3 = new Proxy(web3, proxiedWeb3Handler);
     isLocked = yield call(isWalletLocked);
   }
+
+  if (!hasWallet) {
+    return null;
+  }
+
   if (!isLocked) {
     currentNetwork = yield call(getNetwork);
     currentAddress = yield call(getWalletAddress);
@@ -78,10 +83,6 @@ export function* getWeb3Client() {
 
   if (currentNetwork !== networkPrev) {
     yield put(setNetwork(currentNetwork));
-  }
-
-  if (isLocked || !hasWallet) {
-    return null;
   }
 
   return { web3, proxiedWeb3 };
