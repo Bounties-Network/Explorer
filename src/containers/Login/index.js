@@ -8,6 +8,7 @@ import UnlockWallet from './components/UnlockWallet';
 import SignIn from './components/SignIn';
 import SigningIn from './components/SigningIn';
 import AddressMismatch from './components/AddressMismatch';
+import ErrorModal from './components/ErrorModal';
 import { rootLoginSelector } from './selectors';
 import { actions } from './reducer';
 import { actions as authActions } from 'public-modules/Authentication';
@@ -35,7 +36,8 @@ const LoginComponent = props => {
     login,
     logout,
     signingIn,
-    loggingOut
+    loggingOut,
+    error
   } = props;
 
   if (!hasWallet) {
@@ -46,6 +48,10 @@ const LoginComponent = props => {
 
   if (walletLocked) {
     return <UnlockWallet visible={visible} onClose={() => showLogin(false)} />;
+  }
+
+  if (error) {
+    return <ErrorModal visible={visible} onClose={() => showLogin(false)} />;
   }
 
   if (userAddress && userAddress !== walletAddress) {
@@ -86,6 +92,7 @@ const mapStateToProps = state => {
     stage: rootLogin.stage,
     img: user && user.img,
     signingIn: loginState.loading,
+    error: loginState.error || logoutState.error,
     loggingOut: logoutState.loading
   };
 };
