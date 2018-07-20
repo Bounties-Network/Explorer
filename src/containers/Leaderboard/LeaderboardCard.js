@@ -41,16 +41,18 @@ const LeaderboardCardComponent = props => {
         } = leader;
 
         return (
-          <LeaderItem
-            key={index + 1}
-            place={index + 1}
-            img={profile_image}
-            name={name}
-            address={address}
-            value={Number(total / 10 ** 18).toFixed(2)}
-            usd={Number(total_usd).toFixed(0)}
-            currency={''}
-          />
+          <ListGroup.ListItem hover>
+            <LeaderItem
+              key={index + 1}
+              place={index + 1}
+              img={profile_image}
+              name={name}
+              address={address}
+              value={Number(total / 10 ** 18).toFixed(2)}
+              usd={Number(total_usd).toFixed(2)}
+              currency={''}
+            />
+          </ListGroup.ListItem>
         );
       });
   };
