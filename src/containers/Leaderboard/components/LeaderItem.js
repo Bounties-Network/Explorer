@@ -6,7 +6,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { ListGroup, Card, Text, Pill, Avatar } from 'components';
 
 const LeaderItem = props => {
-  const { place, img, name, address, value, usd, currency } = props;
+  const { place, img, name, address, usd, currency } = props;
 
   return (
     <div className="row">
@@ -35,11 +35,6 @@ const LeaderItem = props => {
           <Text color="purple" typeScale="h3" className={styles.usd}>
             ${usd}
           </Text>
-          <Text
-            color="defaultGrey"
-            typeScale="h5"
-            className={styles.currency}
-          >{`${value} ${currency}`}</Text>
         </div>
       </div>
     </div>
@@ -50,7 +45,6 @@ LeaderItem.propTypes = {
   place: PropTypes.number,
   img: PropTypes.string,
   address: PropTypes.string,
-  value: PropTypes.string,
   usd: PropTypes.string,
   currency: PropTypes.string
 };

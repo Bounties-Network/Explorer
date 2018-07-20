@@ -3,36 +3,14 @@
 .leaderboardCardContainer {
   margin-top: -$xxl-spacing;
   display: flex;
-  justify-content: center;
+  height: 100%;
+  position: relative;
 }
 
 .leaderboardCard {
-  margin-bottom: $xxl-spacing;
-  max-width: 960px;
-  width: 60%;
-}
-
-.cardBody {
-  padding: 0rem;
-  margin-top: -2rem;
-}
-
-.leaderList {
-  margin-top: $m-spacing;
-}
-
-.centeredBody {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.leaderListCentered {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
+  overflow-y: scroll;
 }
 
 .centeredItem {
-  margin: 0 auto;
+
 }
