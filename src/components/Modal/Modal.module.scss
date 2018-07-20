@@ -1,0 +1,92 @@
+@import "~styles/variables.scss";
+
+.hidden {
+  display: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background: $overlay-background;
+}
+
+.modal {
+  border-radius: $base-border-radius;
+  box-shadow: $base-box-shadow;
+  position: relative;
+  background: $brand-white;
+  padding: $l-spacing;
+}
+
+.closeIcon {
+  cursor: pointer;
+  float: right;
+  color: $brand-grey;
+  font-size: 1.2em;
+
+  &:hover {
+    color: $brand-blue;
+  }
+}
+
+.iconHeader {
+  color: $brand-purple;
+  margin: $xxl-spacing 0;
+  font-size: 4em;
+}
+
+.loadingHeader {
+  margin: 0 auto;
+  margin-bottom: $m-spacing;
+  font-size: 4em;
+}
+
+.modalWrapper {
+  height: 100%;
+}
+
+.header {
+}
+
+.headerContent {
+  padding: $xxl-spacing 0 $m-spacing 0;
+}
+
+.headerWrapper {
+}
+
+.heading {
+  padding-bottom: $m-spacing;
+}
+
+.message {
+  padding: $m-spacing 0;
+}
+
+.description {
+  padding: $m-spacing 0;
+}
+
+.body {
+  //padding-bottom: $xxl-spacing;
+  line-height: 1.5em;
+}
+
+.bodyWrapper {
+}
+
+.footer {
+  margin: $xxl-spacing (-$l-spacing) 0;
+  border-top: $base-border;
+  text-align: right;
+  padding: $l-spacing $l-spacing 0;
+}
+
+.footerWrapper {
+}

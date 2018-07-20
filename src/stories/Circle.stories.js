@@ -7,7 +7,7 @@ import { Circle, Text } from 'components';
 
 storiesOf('Circle', module).add('All Circles', () => (
   <div>
-    <Text style="H3">Text Circle</Text>
+    <Text type="H3">Text Circle</Text>
     <div
       style={{
         display: 'flex',
@@ -16,14 +16,26 @@ storiesOf('Circle', module).add('All Circles', () => (
       }}
     >
       <br />
-      <Circle type="text" size="small" input="3/4" />
+      <Circle
+        type="text"
+        size="small"
+        color="orange"
+        textColor="white"
+        input="3/4"
+      />
       <br />
-      <Circle type="text" size="small" input="100%" />
+      <Circle
+        type="text"
+        size="small"
+        color="orange"
+        textColor="white"
+        input="100%"
+      />
     </div>
 
     <hr />
 
-    <Text style="H3">Image Circle</Text>
+    <Text type="H3">Image Circle</Text>
     <div
       style={{
         display: 'flex',
@@ -35,9 +47,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       <Circle type="img" size="small" input="https://i.imgur.com/lhTwRZY.png" />
     </div>
 
-    <hr />
-
-    <Text style="H3">Colors</Text>
+    <Text type="H3">Loading Circle</Text>
     <div
       style={{
         display: 'flex',
@@ -46,51 +56,22 @@ storiesOf('Circle', module).add('All Circles', () => (
       }}
     >
       <br />
-      <Text style="H4">White</Text>
-      <br />
-      <Circle
-        type="text"
-        size="small"
-        input="100%"
-        color="white"
-        textColor="black"
-      />
-      <br />
-      <br />
-      <Text style="H4">Purple</Text>
-      <br />
-      <Circle
-        type="text"
-        size="small"
-        input="100%"
-        color="purple"
-        textColor="white"
-      />
+      <Circle type="img" size="small" type="loading" color="red" />
+    </div>
+
+    <hr />
+
+    <Text type="H3">Colors</Text>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+      }}
+    >
       <br />
       <br />
-      <Text style="H4">Blue</Text>
-      <br />
-      <Circle
-        type="text"
-        size="small"
-        input="100%"
-        color="blue"
-        textColor="white"
-      />
-      <br />
-      <br />
-      <Text style="H4">Orange</Text>
-      <br />
-      <Circle
-        type="text"
-        size="small"
-        input="100%"
-        color="orange"
-        textColor="white"
-      />
-      <br />
-      <br />
-      <Text style="H4">Green</Text>
+      <Text type="H4">Orange</Text>
       <br />
       <Circle
         type="text"
@@ -101,7 +82,18 @@ storiesOf('Circle', module).add('All Circles', () => (
       />
       <br />
       <br />
-      <Text style="H4">Red</Text>
+      <Text type="H4">Green</Text>
+      <br />
+      <Circle
+        type="text"
+        size="small"
+        input="100%"
+        color="orange"
+        textColor="white"
+      />
+      <br />
+      <br />
+      <Text type="H4">Red</Text>
       <br />
       <Circle
         type="text"
@@ -115,7 +107,7 @@ storiesOf('Circle', module).add('All Circles', () => (
     <br />
     <hr />
 
-    <Text style="H3">Sizes</Text>
+    <Text type="H3">Sizes</Text>
     <br />
     <div
       style={{
@@ -125,23 +117,18 @@ storiesOf('Circle', module).add('All Circles', () => (
       }}
     >
       <br />
-      <Text style="H4">Mini</Text>
-      <br />
-      <Circle type="img" size="mini" input="https://i.imgur.com/lhTwRZY.png" />
-      <br />
-      <br />
-      <Text style="H4">Small</Text>
+      <Text type="H4">Small</Text>
       <br />
       <Circle
         type="text"
         size="small"
         input="100%"
-        color="purple"
+        color="green"
         textColor="white"
       />
       <br />
       <br />
-      <Text style="H4">Medium</Text>
+      <Text type="H4">Medium</Text>
       <br />
       <Circle
         type="text"
@@ -152,17 +139,54 @@ storiesOf('Circle', module).add('All Circles', () => (
       />
       <br />
       <br />
-      <Text style="H4">Large</Text>
+      <Text type="H4">Large</Text>
       <br />
       <Circle
         type="text"
         size="large"
         input="100%"
-        color="green"
+        color="red"
         textColor="white"
       />
+      <Text type="H3">Blockies</Text>
     </div>
-
-    <hr />
+    <br />
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+      }}
+    >
+      <br />
+      <Text type="H4">Small</Text>
+      <br />
+      <Circle
+        type="blocky"
+        size="small"
+        input="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
+        color="white"
+      />
+      <br />
+      <br />
+      <Text type="H4">Medium</Text>
+      <br />
+      <Circle
+        type="blocky"
+        size="medium"
+        input="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
+        color="white"
+      />
+      <br />
+      <br />
+      <Text type="H4">Large</Text>
+      <br />
+      <Circle
+        type="blocky"
+        size="large"
+        input="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
+        color="white"
+      />
+    </div>
   </div>
 ));

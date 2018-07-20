@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './FullAddressBar.module.scss';
 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faCut from '@fortawesome/fontawesome-pro-light/faCut';
+
 import { Text, Button } from 'components';
-import { i } from '../../fontawesome-all';
 
 const FullAddressBarComponent = props => {
   const { address, copyButton } = props;
@@ -20,21 +22,14 @@ const FullAddressBarComponent = props => {
   };
 
   return (
-    <div className={`${styles.FullAddressBar}`}>
-      <div className={`${styles.AddressBar}`}>
-        <Text color="purple" style="BodySmall" id="ethAddress">
-          {address}
-        </Text>
-      </div>
-      <div style={{ marginLeft: '5px' }}>
-        <Button
-          size="icon"
-          style="secondary"
-          onClick={e => copyToClipboard(address)}
-        >
-          <i className="far fa-cut" />
-        </Button>
-      </div>
+    <div
+      className={`${styles.AddressBar}`}
+      onClick={e => copyToClipboard(address)}
+    >
+      <Text color="purple" typeScale="Body" id="ethAddress">
+        {address}
+      </Text>
+      <span className={`${styles.tooltip}`}>Copy to clipboard</span>
     </div>
   );
 };
@@ -44,7 +39,8 @@ FullAddressBarComponent.propTypes = {
 };
 
 FullAddressBarComponent.defaultProps = {
-  address: '0x0000000000000000000000000000000000000000'
+  address: '0x0000000000000000000000000000000000000000',
+  copyButton: true
 };
 
 export default FullAddressBarComponent;

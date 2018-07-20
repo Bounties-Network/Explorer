@@ -1,33 +1,45 @@
 @import "~styles/variables.scss";
 
 .sidebar {
-  background-color: $brand-darkGrey;
-  width: 65px;
-  height: 1000px;
+  background-color: $sidebar-color;
+  height: 100%; /* 100% Full-height */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  box-sizing: border-box;
 }
 
 .iconTab {
   display: flex;
   justify-content: center;
-  font-size: 25px;
-  padding-top: 20px;
+  text-align: center;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: $m-spacing $l-spacing;
   cursor: pointer;
-  padding-left: 6px;
-}
+  color: $brand-white;
+  opacity: 0.5;
 
-.iconBar {
-  margin-top: 50px;
-}
-
-.logoBar {
-  background-color: $brand-purple;
-  display: flex;
-  justify-content: center;
-  font-size: 40px;
-  padding: 10px;
+  &:hover {
+    background-color: darken($sidebar-color, 25%);
+  }
 }
 
 .active {
-  border-left: 6px solid $brand-orange;
-  padding-left: 0px;
+  color: $brand-white;
+  position: relative;
+  opacity: 1;
+
+  &:before {
+    position: absolute;
+    content: '';
+    background-color: $brand-orange;
+    box-shadow: $s-spacing 0px $xl-spacing 0px $brand-orange;
+    width: $s-spacing;
+    height: 100%;
+    left: 0;
+  }
 }

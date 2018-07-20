@@ -1,59 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Search.module.scss';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 import { Text } from 'components';
 
-// const Search = props => {
-//   const { onChange } = props;
-
-//   return (
-//     <input
-//       className={`${styles.search}`}
-//       type="text"
-//       placeholder="🔍  Search"
-//       onChange={onChange}
-//     />
-//   );
-// };
+const debounceTimer = 400;
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    searchText: ''
+  };
 
-    this.state = {
-      searchText: ''
-    };
-
-    this.onSearchChange = this.onSearchChange.bind(this);
-  }
-
-  onSearchChange(e) {
+  onSearchChange = e => {
     const { value } = e.target;
     this.setState({ searchText: value });
-    setTimeout(() => console.log(this.state.searchText), 0);
-  }
+    this.props.onChange(value);
+  };
 
   render() {
-    // const { onChange } = this.props;
+    const { value } = this.props;
+    const { searchText } = this.state;
+
+    const searchValue = typeof value === 'string' ? value : searchText;
 
     return (
-      <input
-        className={`${styles.search}`}
-        type="text"
-        placeholder="🔍  Search"
-        onChange={this.onSearchChange}
-        value={this.state.searchText}
-      />
-      // <input
-      //   className={`${styles.search}`}
-      //   type="text"
-      //   placeholder="🔍  Search"
-      //   value={this.state.searchText}
-      //   onChange={this.onSearchChange}
-      // />
+      <div className={`${styles.searchContainer}`}>
+        <i className={styles.searchIcon}>
+          <FontAwesomeIcon icon={['far', 'search']} />
+        </i>
+        <input
+          className={`${styles.searchInput}`}
+          type="text"
+          placeholder="Search..."
+          onChange={this.onSearchChange}
+          value={searchValue}
+        />
+      </div>
     );
   }
 }
+
+Search.propTypes = {
+  onChange: PropTypes.func
+};
+
+Search.defaultProps = {
+  onChange: () => {}
+};
 
 export default Search;

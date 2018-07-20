@@ -1,49 +1,85 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Sidebar.module.scss';
+import { Link } from 'react-router-dom';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
-import { i } from '../../fontawesome-all.js';
+const ModalContext = React.createContext({});
 
-import BeeLogo from '../../styles/logo.js';
+class TabIcon extends React.Component {
+  render() {
+    return (
+      <ModalContext.Consumer>
+        {({ activeTab, onTabClick }) => {
+          const { icon, link, tabKey } = this.props;
+          let tabStyle = styles.iconTab;
 
-// import { Text } from 'components';
+          if (activeTab === tabKey) {
+            tabStyle += ` ${styles.active}`;
+          }
 
-const Sidebar = props => {
-  const { options, onClick } = props;
+          return (
+            <a
+              className={tabStyle}
+              to={link}
+              onClick={() => onTabClick(tabKey)}
+            >
+              <FontAwesomeIcon icon={icon} />
+            </a>
+          );
+        }}
+      </ModalContext.Consumer>
+    );
+  }
+}
 
-  const renderIcons = options => {
-    return options.map(elem => {
-      const activeStatus = elem.active ? 'active' : '';
+TabIcon.propTypes = {
+  icon: PropTypes.array,
+  link: PropTypes.string,
+  tabKey: PropTypes.string
+};
 
-      return (
-        <div
-          key={elem.icon}
-          className={`${styles[activeStatus]} ${styles.iconTab}`}
-          onClick={elem => onClick(elem)}
-        >
-          <i className={`fal fa-${elem.icon}`} />
-        </div>
-      );
-    });
+class Sidebar extends React.Component {
+  state = {
+    activeTab: null
   };
 
-  return (
-    <div className={`${styles.sidebar}`}>
-      <div className={`${styles.iconBar}`}>{renderIcons(options)}</div>
-    </div>
-  );
-};
+  onTabClick = tabKey => {
+    this.setState({ activeTab: tabKey });
+  };
+
+  render() {
+    const { activeTab } = this.state;
+    const { defaultActiveTab, className } = this.props;
+
+    return (
+      <ModalContext.Provider
+        value={{
+          activeTab: activeTab || defaultActiveTab,
+          onTabClick: this.onTabClick
+        }}
+      >
+        <div className={`${styles.sidebar} ${className}`}>
+          {this.props.children}
+        </div>
+      </ModalContext.Provider>
+    );
+  }
+}
 
 Sidebar.propTypes = {
-  options: PropTypes.array,
-  onChange: PropTypes.func,
-  active: PropTypes.bool
+  children: PropTypes.arrayOf(function(propValue, key) {
+    for (let i = 0; i < propValue.length; i++) {
+      if (propValue[i].type.name !== TabIcon.name) {
+        return new Error('Children Must Be an Instance of TabIcon');
+      }
+    }
+  }),
+  className: PropTypes.string,
+  defaultActiveTab: PropTypes.string
 };
 
-Sidebar.defaultProps = {
-  options: [],
-  onChange: () => {},
-  active: false
-};
+Sidebar.defaultProps = {};
+Sidebar.TabIcon = TabIcon;
 
 export default Sidebar;

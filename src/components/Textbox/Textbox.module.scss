@@ -1,0 +1,55 @@
+@import "~styles/variables.scss";
+
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea {
+  resize: vertical;
+  flex-grow: 100;
+  width: 100%;
+  overflow: auto;
+  background-color: $base-input-background;
+  border: $base-border;
+  border-radius: $base-border-radius;
+  font-size: $body-font-size;
+  padding: $base-spacing;
+
+  &::placeholder {
+    color: $brand-grey;
+  }
+}
+
+.textarea:focus {
+  border-color: transparent;
+  background: $brand-white;
+  box-shadow: 0 0 0 2px $brand-blue;
+  outline: none;
+}
+
+.error {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px $brand-destructive;
+  outline: none;
+}
+
+.inputHelpText {
+  padding-top: $base-spacing;
+}
+
+.disabled {
+  background-color: $brand-nearWhite;
+  border: none;
+
+  &::placeholder {
+    color: $brand-lightGrey;
+  }
+}
+
+.resizeNone {
+  resize: none;
+}

@@ -1,0 +1,99 @@
+@import "~styles/variables.scss";
+
+.react-toggle {
+  touch-action: pan-x;
+
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.react-toggle-screenreader-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.react-toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.25s;
+  transition: opacity 0.25s;
+}
+
+.react-toggle-track {
+  width: $base-toggle-size * 2;
+  height: $base-toggle-size;
+  padding: 0;
+  border-radius: 50px;
+  background-color: $brand-lightGrey;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+
+  &-check,
+  &-x {
+    display: none;
+  }
+}
+
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: $brand-grey;
+}
+
+.react-toggle--checked .react-toggle-track {
+  background-color: $brand-green;
+  box-shadow: none;
+}
+
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: $brand-green-hover;
+}
+
+.react-toggle-thumb {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  position: absolute;
+  top: $base-toggle-size * 0.125;
+  left: $base-toggle-size * 0.125;
+  width: $base-toggle-size * 0.75;
+  height: $base-toggle-size * 0.75;
+  border-radius: 50%;
+  box-shadow: $base-box-shadow;
+  background-color: $brand-white;
+
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.react-toggle--checked .react-toggle-thumb {
+  left: calc(#{$base-toggle-size} + (#{$base-toggle-size} * 0.125));
+  border-color: $brand-green;
+  outline: none;
+}
+
+.react-toggle--focus .react-toggle-track {
+  box-shadow: 0 0 0 2px $brand-blue;
+}
+
+.react-toggle:active:not(.react-toggle--disabled) .react-toggle-track {
+  box-shadow: 0 0 0 2px $brand-blue;
+}

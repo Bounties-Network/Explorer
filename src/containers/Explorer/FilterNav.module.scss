@@ -1,0 +1,37 @@
+@import "~styles/variables.scss";
+
+.filterNav {
+  padding: $xl-spacing $m-spacing;
+}
+
+.searchWrapper {
+  padding-bottom: $l-spacing;
+  border-bottom: $base-border;
+}
+
+.refineWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: $base-spacing;
+}
+
+.clearButton {
+  margin-left: auto;
+}
+
+.stageFilter {
+  margin-top: $m-spacing;
+}
+
+.difficultyFilter {
+  margin-top: $m-spacing;
+}
+
+.categoryFilter {
+  margin-top: $m-spacing;
+}
+
+.groupText {
+  margin-bottom: $m-spacing;
+}

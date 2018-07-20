@@ -1,3 +1,27 @@
-.Appintro {
-  font-size: large;
+@import "~styles/variables.scss";
+
+.app {
+  height: 100%;
+  width: 100%;
+}
+
+.body {
+  height: 100%;
+  width: 100%;
+  padding: 55px 0 0 55px;
+  box-sizing: border-box;
+  background-color: $brand-lightGrey;
+}
+
+.loadingBody {
+  height: 100%;
+  width: 100%;
+  background-color: $brand-lightGrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sideNav {
+  width: 55px;
 }

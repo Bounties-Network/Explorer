@@ -1,0 +1,41 @@
+@import "~styles/variables.scss";
+
+.textInput {
+  height: $base-input-height;
+  background-color: $base-input-background;
+  border-radius: $base-border-radius;
+  border: $base-border;
+  font-size: $body-font-size;
+  line-height: $base-input-height;
+  padding: 0 $base-spacing;
+
+  &:focus {
+    border-color: transparent;
+    background: $brand-white;
+    box-shadow: 0 0 0 2px $brand-blue;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $brand-grey;
+  }
+}
+
+.disabled {
+  background-color: $brand-nearWhite;
+  border: none;
+
+  &::placeholder {
+    color: darken($brand-nearWhite, 10%);
+  }
+}
+
+.error {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px $brand-destructive;
+  outline: none;
+}
+
+.inputHelpText {
+  padding-top: $base-spacing;
+}

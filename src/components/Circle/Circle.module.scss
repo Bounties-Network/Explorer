@@ -1,33 +1,25 @@
 @import "~styles/variables.scss";
 
 .circle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  :global(.identicon) {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  overflow: hidden;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
 }
 
 .text {
-
+  width: 100%;
+  text-align: center;
 }
 
 .img {
-  height: 95%;
-  width: 95%;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
-}
-
-.white {
-  background-color: white;
-  box-shadow: $brand-circle-box-shadow;
-}
-
-.purple {
-  background-color: $brand-purple;
-}
-
-.blue {
-  background-color: $brand-blue;
 }
 
 .orange {
@@ -42,22 +34,30 @@
   background-color: $brand-red;
 }
 
-.mini {
-  height: 30px;
-  width: 30px;
+.lightGrey {
+  background-color: $brand-lightGrey;
 }
 
 .small {
-  height: 75px;
-  width: 75px;
+  height: $xxl-spacing;
+  width: $xxl-spacing;
 }
 
 .medium {
-  height: 150px;
-  width: 150px;
+  height: $xl-spacing * 2;
+  width: $xl-spacing * 2;
 }
 
 .large {
-  height: 200px;
-  width: 200px;
+  height: $xxl-spacing * 2;
+  width: $xxl-spacing * 2;
+}
+
+.hasBorder {
+  border: 2px solid $brand-white;
+  box-shadow: $base-box-shadow;
+}
+
+.loading {
+  margin: auto;
 }

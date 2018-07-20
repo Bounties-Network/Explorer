@@ -9,10 +9,16 @@ import {
   routerMiddleware
 } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
-import 'styles/index.scss';
 import { reducers, sagaWatchers } from 'public-modules';
+import baseReducers from './reducers';
 import { App } from 'layout';
 import registerServiceWorker from './registerServiceWorker';
+import 'styles/index.scss';
+import 'styles/flexboxgrid.css';
+import 'font-files/inter-ui.css';
+import 'styles/index.scss';
+import 'fontAwesome';
+import 'styles/Toastify.scss';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -22,7 +28,8 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   combineReducers({
     router: routerReducer,
-    ...reducers
+    ...reducers,
+    ...baseReducers
   }),
   composeEnhancers(applyMiddleware(middleware, sagaMiddleware))
 );

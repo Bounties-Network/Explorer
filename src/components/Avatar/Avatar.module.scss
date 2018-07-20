@@ -1,0 +1,16 @@
+@import "~styles/variables.scss";
+
+.avatar {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.textWrapper {
+  margin-left: $m-spacing;
+
+  .addressText {
+    margin-top: $s-spacing;
+    text-decoration: underline;
+  }
+}

@@ -14,45 +14,47 @@ import rollbar from 'lib/rollbar';
 const POST_OPTIONS = {
   method: 'POST',
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+    accept: 'application/json',
+    'content-type': 'application/json'
   },
-  credentials: 'same-origin'
+  withCredentials: true
 };
 
 const PUT_OPTIONS = {
   method: 'PUT',
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+    accept: 'application/json',
+    'content-type': 'application/json'
   },
-  credentials: 'same-origin'
+  withCredentials: true
 };
 
 const PATCH_OPTIONS = {
   method: 'PATCH',
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+    accept: 'application/json',
+    'content-type': 'application/json'
   },
-  credentials: 'same-origin'
+  withCredentials: true
 };
 
 const OPTIONS_OPTIONS = {
   method: 'OPTIONS',
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+    accept: 'application/json',
+    'content-type': 'application/json'
   },
-  credentials: 'same-origin'
+  withCredentials: true
 };
 
 const GET_OPTIONS = {
   method: 'GET',
-  credentials: 'same-origin'
+  withCredentials: true
 };
 
 function handleError(err) {
+  const error = new Error();
+  error.errorStatus = '';
   if (err.response) {
     const response = err.response;
     if (
@@ -64,18 +66,16 @@ function handleError(err) {
     }
 
     if (response.status >= HTTP_500_INTERNAL_SERVER_ERROR) {
-      const error = new Error();
       error.errorStatus = response.status;
       error.errorMessage = response.statusText;
       rollbar.error(`API Error: ${response.status}`, error);
       throw error;
     }
+
+    error.errorStatus = response.status;
   }
 
-  const error = new Error();
-  error.errorStatus = '';
   error.errorMessage = err.message;
-
   rollbar.error(`API Error: ${error.errorMessage}`, error);
   throw error;
 }

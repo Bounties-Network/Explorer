@@ -7,10 +7,8 @@ const { LOAD_CATEGORIES } = actionTypes;
 const { loadCategoriesFail, loadCategoriesSuccess } = actions;
 
 export function* loadCategories(action) {
-  const { searchOptions } = action;
-  const query = searchQueryBuilder(searchOptions);
   try {
-    const endpoint = `category/` + query;
+    const endpoint = 'category/?limit=2000';
     const categories = yield call(request, endpoint, 'GET');
     yield put(loadCategoriesSuccess(categories));
   } catch (e) {

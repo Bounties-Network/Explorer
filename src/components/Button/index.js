@@ -1,46 +1,91 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Button.module.scss';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { Loader } from 'components';
 
 const Button = props => {
-  const { className, style, size, disabled, onClick } = props;
+  const {
+    className,
+    type,
+    disabled,
+    onClick,
+    loading,
+    icon,
+    fitWidth,
+    margin
+  } = props;
+
+  const onClickHandler = () => {
+    if (!loading && !disabled) {
+      onClick();
+    }
+  };
+
+  let loaderColor = 'white';
+  if (type === 'default') {
+    loaderColor = 'blue';
+  }
 
   let addedClasses = '';
   if (disabled) {
     addedClasses += styles.disabled;
   }
 
+  if (margin) {
+    addedClasses += styles.margin;
+  }
+
+  if (loading) {
+    addedClasses += styles.buttonLoading;
+  }
+
+  if (fitWidth) {
+    addedClasses += styles.fitWidth;
+  }
+
+  let childwrapper = '';
+  if (loading) {
+    childwrapper = styles.childwrapper;
+  }
+
   return (
     <button
-      className={`${styles.button} ${styles[size]}
-        ${styles[style]} ${addedClasses}`}
-      onClick={onClick}
+      className={`${className} ${styles.button}
+        ${styles[type]} ${addedClasses}`}
+      onClick={onClickHandler}
       disabled={disabled}
     >
-      {props.children}
+      <div className={childwrapper}>
+        {icon ? <FontAwesomeIcon icon={icon} className={styles.icon} /> : null}
+        {props.children}
+      </div>
+      {loading ? (
+        <Loader className={styles.loader} color={loaderColor} />
+      ) : null}
     </button>
   );
 };
 
 Button.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.oneOf([
+  type: PropTypes.oneOf([
     'primary',
-    'secondary',
+    'default',
     'destructive',
+    'action',
     'link',
-    'create'
+    'link-destructive'
   ]),
-  size: PropTypes.oneOf(['icon', 'small', 'medium', 'large']),
+  icon: PropTypes.array,
   disabled: PropTypes.bool,
   onClick: PropTypes.func
 };
 
 Button.defaultProps = {
-  style: 'primary',
-  size: 'medium',
-  disabled: false,
-  children: 'Button'
+  onClick: () => {},
+  type: 'default',
+  fitWidth: false
 };
 
 export default Button;

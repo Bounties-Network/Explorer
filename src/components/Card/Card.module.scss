@@ -1,41 +1,30 @@
 @import "~styles/variables.scss";
 
-.cardContainer {
-  display: flex;
-  box-shadow: $brand-card-box-shadow;
-  padding: 25px;
-  flex-direction: column;
+.card {
+  box-shadow: $base-box-shadow;
+  background-color: $brand-white;
+  border-radius: $base-border-radius;
+  width: 100%;
 }
 
-.cardTitle {
-
+.hover {
+  border-left: 1px solid $brand-white;
+  box-shadow: none;
 }
 
-.cardBody {
-
+.hover:hover {
+  box-shadow: $base-box-shadow, -3px 0 0 0 $brand-purple;
 }
 
-.short {
-  height: 150px;
+.header {
+  border-bottom: $base-border;
+  padding: 0 $l-spacing;
 }
 
-.medium {
-  height: 250px;
+.headerTitle {
+  padding: $l-spacing 0;
 }
 
-.tall {
-  height: 600px;
+.body {
+  padding: $l-spacing;
 }
-
-.skinny {
-  width: 300px;
-}
-
-.normal {
-  width: 600px;
-}
-
-.wide {
-  width: 900px;
-}
-

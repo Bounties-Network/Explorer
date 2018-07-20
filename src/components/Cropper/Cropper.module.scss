@@ -1,0 +1,48 @@
+@import "~styles/variables.scss";
+
+.cropper {
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.upload {
+  position: relative;
+  margin-right: $m-spacing;
+}
+
+.saveButton {
+  margin-right: $m-spacing;
+}
+
+.croppie {
+  border-radius: $base-border-radius;
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+}
+
+.circleContent {
+  margin: 0 auto;
+}
+
+.contentWrapper {
+  display: flex;
+  align-items: center;
+  height: 200px;
+}
+
+.inactive {
+  display: none;
+}
+
+.disabledInput {
+  cursor: default;
+}

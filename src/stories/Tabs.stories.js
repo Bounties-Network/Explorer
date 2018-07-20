@@ -5,14 +5,16 @@ import { action } from '@storybook/addon-actions';
 
 import { Tabs } from 'components';
 
-const tabsData = [
-  { title: 'Active', notificationsColor: 'blue', notificationAmount: 3 },
-  { title: 'Pending', notificationsColor: 'yellow', notificationAmount: 4 },
-  { title: 'Completed', notificationAmount: 0 }
-];
-
 storiesOf('Tabs', module).add('Tabs', () => (
   <div>
-    <Tabs tabs={tabsData} />
+    <Tabs onSelect={() => {}}>
+      <Tabs.Tab tabColor="blue" eventKey={1}>
+        Active
+      </Tabs.Tab>
+      <Tabs.Tab tabColor="green" eventKey={2}>
+        Pending
+      </Tabs.Tab>
+      <Tabs.Tab eventKey={3}>Completed</Tabs.Tab>
+    </Tabs>
   </div>
 ));

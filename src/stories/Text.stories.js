@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/storybook.scss';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -6,92 +7,235 @@ import { action } from '@storybook/addon-actions';
 import { Text } from 'components';
 
 storiesOf('Text', module).add('All Texts', () => (
-  <div>
-    <div>
-      <Text style="H4">H1 - 31px</Text>
-      <br />
-      <Text style="H1">The quick brown fox jumps over the lazy dog.!?</Text>
-      <hr />
+  <div class="sb-page-wrapper">
+    <Text
+      className={'sb-component-group-heading'}
+      typeScale="h1"
+      color="purple"
+      weight="fontWeight-bold"
+    >
+      Typography
+    </Text>
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      Typographic components take props to define scale, line-height, color,
+      weight, alignment, and style. These can all be combined to create a
+      variety of typographic treatments to fit the demands of the interface. Our
+      UI uses the typeface{' '}
+      <Text link src="https://rsms.me/inter/">
+        Inter UI
+      </Text>{' '}
+      created by{' '}
+      <Text link src="https://twitter.com/rsms">
+        Rasmus Andersson
+      </Text>.
+    </Text>
+
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Typographic Scale
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>typeScale</code> prop will define a font-size for the given text
+      component based on our typographic scale.
+    </Text>
+
+    <div class="sb-component-group">
+      <div class="sb-component-container">
+        <Text typeScale="h1">Heading 1</Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="h2">Heading 2</Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="h3">Heading 3</Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="h4">Heading 4</Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="h4">Heading 5</Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Body">Body copy & Large labels</Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Small">Metadata & small labels</Text>
+      </div>
     </div>
 
-    <div>
-      <Text style="H4">H2 - 25px</Text>
-      <br />
-      <Text style="H2">The quick brown fox jumps over the lazy dog.!?</Text>
-      <hr />
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Color
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>color</code> prop will define a color for the given text
+      component based on our brands color variables.
+    </Text>
+
+    <div class="sb-component-group">
+      <div class="sb-component-container">
+        <Text typeScale="h3" color="black">
+          black
+        </Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Body" color="darkGrey">
+          darkGrey
+        </Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Body" color="blue">
+          blue
+        </Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Body" color="red">
+          red
+        </Text>
+      </div>
     </div>
 
-    <div>
-      <Text style="H4">H3 - 20px</Text>
-      <br />
-      <Text style="H3">The quick brown fox jumps over the lazy dog.!?</Text>
-      <hr />
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Weight
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>weight</code> prop will define a font-weight for the given text
+      component. We use one of 3 weights for our UI typography: regular, medium,
+      and bold.
+    </Text>
+
+    <div class="sb-component-group">
+      <div class="sb-component-container">
+        <Text typeScale="Body" weight="fontWeight-regular">
+          Regular
+        </Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Body" weight="fontWeight-medium">
+          Medium
+        </Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Body" weight="fontWeight-bold">
+          Bold
+        </Text>
+      </div>
     </div>
 
-    <div>
-      <Text style="H4">H4 - 16px</Text>
-      <br />
-      <Text style="H4">The quick brown fox jumps over the lazy dog.!?</Text>
-      <hr />
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Alignment
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>alignment</code> prop will define left, centered, or right
+      text-alignment for the given text component.
+    </Text>
+
+    <div class="sb-component-group">
+      <div class="sb-component-container">
+        <Text typeScale="Body" alignment="align-left">
+          Left align
+        </Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Body" alignment="align-center">
+          Center align
+        </Text>
+      </div>
+
+      <div class="sb-component-container">
+        <Text typeScale="Body" alignment="align-right">
+          Right align
+        </Text>
+      </div>
     </div>
 
-    <div>
-      <Text style="H4">Card Heading - 16px (1em)</Text>
-      <br />
-      <Text style="CardHeading">
-        The quick brown fox jumps over the lazy dog.!?
-      </Text>
-      <hr />
-    </div>
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Style
+    </Text>
 
-    <div>
-      <Text style="H4">Body - 16px (1em)</Text>
-      <br />
-      <Text style="Body">The quick brown fox jumps over the lazy dog.!?</Text>
-      <hr />
-    </div>
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>style</code> prop will apply certain CSS text-decoration,
+      font-style, and text-transforms for the given text component. This can be
+      used to add or remove underline, uppercase, and italic properties to
+      individual text components.
+    </Text>
 
-    <div>
-      <Text style="H4">Body Small - 14px</Text>
-      <br />
-      <Text style="BodySmall">
-        The quick brown fox jumps over the lazy dog.!?
-      </Text>
-      <hr />
-    </div>
+    <div class="sb-component-group">
+      <div class="sb-component-container">
+        <Text typeScale="Body" style="underline">
+          Underline
+        </Text>
+      </div>
 
-    <div>
-      <Text style="H4">Form Label / Metadata</Text>
-      <br />
-      <Text style="FormLabel">
-        The quick brown fox jumps over the lazy dog.!?
-      </Text>
-      <hr />
-    </div>
+      <div class="sb-component-container">
+        <Text typeScale="Body" style="italic">
+          Italic
+        </Text>
+      </div>
 
-    <div>
-      <Text style="H4">Form Invalid - 14px</Text>
-      <br />
-      <Text style="FormInvalid">
-        The quick brown fox jumps over the lazy dog.!?
-      </Text>
-      <hr />
-    </div>
-
-    <div>
-      <Text style="H4">Alt Label - 12px</Text>
-      <br />
-      <Text style="Alt">The quick brown fox jumps over the lazy dog.!?</Text>
-      <hr />
-    </div>
-
-    <div>
-      <Text style="H4">Link - Body</Text>
-      <br />
-      <Text link src="http://google.com" style="Body">
-        The quick brown fox jumps over the lazy dog.!?
-      </Text>
-      <hr />
+      <div class="sb-component-container">
+        <Text typeScale="Body" style="uppercase">
+          Uppercase
+        </Text>
+      </div>
     </div>
   </div>
 ));

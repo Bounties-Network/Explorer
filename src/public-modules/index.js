@@ -2,35 +2,45 @@
 
 // ultimately each of these imports should be in separate files
 import bountiesReducer from 'public-modules/Bounties';
+import leaderboardReducer from 'public-modules/Leaderboard';
+import userInfoReducer from 'public-modules/UserInfo';
+import statsReducer from 'public-modules/Stats';
+import categoriesReducer from 'public-modules/Categories';
+import authenticationReducer from 'public-modules/Authentication';
+import bountyReducer from 'public-modules/Bounty';
+import fileUploadRducer from 'public-modules/FileUpload';
+import clientReducer from 'public-modules/Client';
 
 export const reducers = {
-  bounties: bountiesReducer
+  bounties: bountiesReducer,
+  leaderboard: leaderboardReducer,
+  userInfo: userInfoReducer,
+  stats: statsReducer,
+  categories: categoriesReducer,
+  authentication: authenticationReducer,
+  bounty: bountyReducer,
+  fileUpload: fileUploadRducer,
+  client: clientReducer
 };
 
 import bountiesSagas from 'public-modules/Bounties/sagas';
+import leaderboardSagas from 'public-modules/Leaderboard/sagas';
+import userInfoSagas from 'public-modules/UserInfo/sagas';
+import statsSagas from 'public-modules/Stats/sagas';
+import categoriesSagas from 'public-modules/Categories/sagas';
+import authenticationSagas from 'public-modules/Authentication/sagas';
+import bountySagas from 'public-modules/Bounty/sagas';
+import fileUploadSagas from 'public-modules/FileUpload/sagas';
+import clientSagas from 'public-modules/Client/sagas';
 
-export const sagaWatchers = [...bountiesSagas];
-
-import * as namedBountiesSagas from 'public-modules/Bounties/sagas';
-
-export const sagas = {
-  ...namedBountiesSagas
-};
-
-import { actions as bountyActions } from 'public-modules/Bounties';
-
-export const actions = {
-  ...bountyActions
-};
-
-import { actionTypes as bountyActionTypes } from 'public-modules/Bounties';
-
-export const actionTypes = {
-  ...bountyActionTypes
-};
-
-import * as bountiesSelectors from 'public-modules/Bounties/selectors';
-
-export const selectors = {
-  ...bountiesSelectors
-};
+export const sagaWatchers = [
+  ...leaderboardSagas,
+  ...bountiesSagas,
+  ...userInfoSagas,
+  ...statsSagas,
+  ...categoriesSagas,
+  ...authenticationSagas,
+  ...bountySagas,
+  ...fileUploadSagas,
+  ...clientSagas
+];

@@ -11,4 +11,4 @@ export const HTTP_500_INTERNAL_SERVER_ERROR = 500;
 export const HTTP_503_SERVICE_UNAVAILABLE = 503;
 
 // update this to be an env passthrough
-export const API_ENDPOINT = 'https://api.bounties.network';
+export const API_ENDPOINT = 'https://staging.api.bounties.network';
