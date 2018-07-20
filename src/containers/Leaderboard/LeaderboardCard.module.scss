@@ -1,13 +1,8 @@
 @import "~styles/variables.scss";
 
-.leaderboardCardContainer {
-  margin-top: -$xxl-spacing;
-  display: flex;
-  height: 100%;
-  position: relative;
-}
-
 .leaderboardCard {
+  height: 100%;
+  margin-top: -$xxl-spacing;
   overflow-y: scroll;
 }
 
@@ -16,8 +11,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.centeredItem {
-
 }
