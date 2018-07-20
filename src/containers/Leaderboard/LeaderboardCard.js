@@ -50,14 +50,16 @@ const LeaderboardCardComponent = props => {
   };
 
   let className = styles.explorerBody;
-  if (loading || leaderboard.length === 0) {
+  let cardBodyClass;
+  if (loading || leaderboard[toggleValue].length === 0) {
     className += ` ${styles.centeredBody}`;
+    cardBodyClass = styles.cardBodyLoading;
   }
 
   return (
     <div className={`${styles.leaderboardCardContainer}`}>
       <Card className={`${styles.leaderboardCard}`}>
-        <Card.Body>
+        <Card.Body className={cardBodyClass}>
           {loading ? (
             <div className={`${styles.leaderListCentered}`}>
               <Loader
