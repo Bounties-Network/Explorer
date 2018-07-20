@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { map } from 'lodash';
 import { NoMatch } from 'layout';
 import { NAV_ITEMS } from './constants';
-import { Explorer, Login } from 'containers';
+import { Explorer, Login, CreateBounty } from 'containers';
 import { Sidebar, Loader } from 'components';
 import { Header } from 'layout';
 import { initializedSelector } from 'public-modules/Client/selectors';
@@ -45,6 +45,7 @@ class AppComponent extends React.Component {
               <div className={`${styles.body}`}>
                 <Switch>
                   <Route exact path="/explorer" component={Explorer} />
+                  <Route exact path="/createBounty" component={CreateBounty} />
                   <Redirect from="/" to="/explorer" />
                 </Switch>
               </div>
@@ -67,9 +68,9 @@ const mapStateToProps = state => {
 };
 
 const App = compose(
+  withRouter,
   connect(mapStateToProps),
-  hot(module),
-  withRouter
+  hot(module)
 )(AppComponent);
 
 export default App;
