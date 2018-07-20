@@ -59,9 +59,17 @@ Header.defaultProps = {
 
 class Body extends React.Component {
   render() {
-    return <div className={styles.body}>{this.props.children}</div>;
+    const { className } = this.props;
+
+    return (
+      <div className={`${styles.body} ${className}`}>{this.props.children}</div>
+    );
   }
 }
+
+Body.propTypes = {
+  className: PropTypes.string
+};
 
 class Card extends React.Component {
   renderHeader(header) {
@@ -69,14 +77,14 @@ class Card extends React.Component {
       return null;
     }
 
-    return <div className={styles.headerWrapper}>{header}</div>;
+    return header;
   }
 
   renderBody(body) {
     if (!body) {
       return null;
     }
-    return <div className={styles.bodyWrapper}>{body}</div>;
+    return body;
   }
 
   render() {
