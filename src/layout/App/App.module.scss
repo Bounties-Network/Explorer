@@ -12,3 +12,16 @@
   box-sizing: border-box;
   background-color: $brand-lightGrey;
 }
+
+.loadingBody {
+  height: 100%;
+  width: 100%;
+  background-color: $brand-lightGrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sideNav {
+  width: 55px;
+}

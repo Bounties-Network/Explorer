@@ -1,67 +1,104 @@
 import request from 'utils/request';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
+import { addressSelector } from 'public-modules/Client/selectors';
 import { actionTypes, actions } from 'public-modules/Authentication';
+import { actionTypes as clientActionTypes } from 'public-modules/Client';
+import { getWeb3Client } from 'public-modules/Client/sagas';
+import { promisify } from 'public-modules/Utilities/helpers';
+import { get } from 'lodash';
 
-const { LOAD_NONCE, LOGIN, CHECK_LOGINSTATUS } = actionTypes;
+const { SET_INITIALIZED } = clientActionTypes;
+const { LOGIN, LOGOUT, GET_CURRENT_USER } = actionTypes;
 const {
-  loadNonceFail,
-  loadNonceSuccess,
-  loginFail,
+  getCurrentUser: getCurrentUserAction,
+  getCurrentUserSuccess,
+  getCurrentUserFail,
   loginSuccess,
-  checkLoginStatusFail,
-  checkLoginStatusSuccess
+  loginFail,
+  logoutSuccess,
+  logoutFail
 } = actions;
 
-export function* loadNonce(action) {
-  let { address } = action;
+export function* getCurrentUser(action) {
+  const endpoint = 'auth/user/';
   try {
-    let endpoint = `auth/user/${address}/nonce/`;
-    const url = yield call(request, endpoint, 'GET');
-    yield put(loadNonceSuccess(url));
+    const currentUser = yield call(request, endpoint, 'GET');
+    yield put(getCurrentUserSuccess(currentUser));
   } catch (e) {
-    yield put(loadNonceFail(e));
+    if (get('errorStatus', e) === 401) {
+      yield put(getCurrentUserSuccess());
+    } else {
+      yield put(getCurrentUserFail(e));
+    }
   }
-}
-
-export function* watchNonce() {
-  yield takeLatest(LOAD_NONCE, loadNonce);
 }
 
 export function* login(action) {
-  let { address, signature } = action;
-  let options = {
-    method: 'POST',
-    data: {
-      public_address: address,
-      signature: signature
-    }
-  };
-
+  let signature;
+  const address = yield select(addressSelector);
+  const nonceEndpoint = `auth/user/${address}/nonce/`;
+  const loginEndpoint = 'auth/login/';
   try {
-    let endpoint = `auth/login/`;
-    const url = yield call(request, endpoint, 'POST', options);
-    yield put(loginSuccess(url));
+    const nonceResponce = yield call(request, nonceEndpoint, 'GET');
+    const nonce = nonceResponce.nonce;
+    const { web3, proxiedWeb3 } = yield call(getWeb3Client);
+    const message = web3.utils.fromUtf8(
+      'Hi there! Your special nonce: ' + nonce
+    );
+    const signature = yield proxiedWeb3.eth.personal.sign(message, address);
+    const loginOptions = {
+      data: {
+        public_address: address,
+        signature
+      }
+    };
+    const currentUser = yield call(
+      request,
+      loginEndpoint,
+      'POST',
+      loginOptions
+    );
+    yield put(loginSuccess(currentUser));
   } catch (e) {
     yield put(loginFail(e));
   }
+}
+
+export function* logout(action) {
+  const endpoint = 'auth/logout/';
+  try {
+    yield call(request, endpoint, 'GET');
+    yield put(logoutSuccess());
+    yield put(push('/explorer'));
+  } catch (e) {
+    yield put(logoutFail(e));
+  }
+}
+
+function* loadCurrentUser() {
+  yield put(getCurrentUserAction());
+}
+
+export function* watchSetInitialized() {
+  yield takeLatest(SET_INITIALIZED, loadCurrentUser);
+}
+
+export function* watchGetCurrentUser() {
+  yield takeLatest(GET_CURRENT_USER, getCurrentUser);
 }
 
 export function* watchLogin() {
   yield takeLatest(LOGIN, login);
 }
 
-export function* checkLoginStatus(action) {
-  try {
-    let endpoint = 'auth/user/';
-    const loginStatus = yield call(request, endpoint, 'GET');
-    yield put(checkLoginStatusSuccess(loginStatus));
-  } catch (e) {
-    yield put(checkLoginStatusFail(e));
-  }
+export function* watchLogout() {
+  yield takeLatest(LOGOUT, logout);
 }
 
-export function* watchLoginStatus() {
-  yield takeLatest(CHECK_LOGINSTATUS, checkLoginStatus);
-}
-
-export default [watchNonce, watchLogin, watchLoginStatus];
+export default [
+  watchLogin,
+  watchLogout,
+  watchGetCurrentUser,
+  watchSetInitialized
+];

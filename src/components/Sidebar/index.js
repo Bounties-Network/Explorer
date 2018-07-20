@@ -50,7 +50,7 @@ class Sidebar extends React.Component {
 
   render() {
     const { activeTab } = this.state;
-    const { defaultActiveTab } = this.props;
+    const { defaultActiveTab, className } = this.props;
 
     return (
       <ModalContext.Provider
@@ -59,7 +59,9 @@ class Sidebar extends React.Component {
           onTabClick: this.onTabClick
         }}
       >
-        <div className={`${styles.sidebar}`}>{this.props.children}</div>
+        <div className={`${styles.sidebar} ${className}`}>
+          {this.props.children}
+        </div>
       </ModalContext.Provider>
     );
   }
@@ -73,6 +75,7 @@ Sidebar.propTypes = {
       }
     }
   }),
+  className: PropTypes.string,
   defaultActiveTab: PropTypes.string
 };
 

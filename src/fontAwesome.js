@@ -9,6 +9,7 @@ import search from '@fortawesome/fontawesome-pro-regular/faSearch';
 import faTimes from '@fortawesome/fontawesome-pro-light/faTimes';
 import wallet from '@fortawesome/fontawesome-pro-light/faWallet';
 import signout from '@fortawesome/fontawesome-pro-light/faSignOut';
+import signin from '@fortawesome/fontawesome-pro-light/faSignIn';
 import tachometer from '@fortawesome/fontawesome-pro-regular/faTachometer';
 import listAlt from '@fortawesome/fontawesome-pro-regular/faListAlt';
 import trophyAlt from '@fortawesome/fontawesome-pro-regular/faTrophyAlt';
@@ -18,6 +19,8 @@ import chevronDown from '@fortawesome/fontawesome-pro-regular/faChevronDown';
 import fileArchive from '@fortawesome/fontawesome-pro-light/faFileArchive';
 import times from '@fortawesome/fontawesome-pro-light/faTimes';
 import camera from '@fortawesome/fontawesome-pro-light/faCamera';
+import unlock from '@fortawesome/fontawesome-pro-light/faUnlock';
+import addressCard from '@fortawesome/fontawesome-pro-light/faAddressCard';
 import infoCircle from '@fortawesome/fontawesome-pro-regular/faInfoCircle';
 import ellipsisH from '@fortawesome/fontawesome-pro-regular/faEllipsisH';
 import checkCircle from '@fortawesome/fontawesome-pro-regular/faCheckCircle';
@@ -33,6 +36,7 @@ library.add(
   cog,
   search,
   signout,
+  signin,
   faTimes,
   wallet,
   tachometer,
@@ -54,5 +58,7 @@ library.add(
   meh,
   clock,
   levelUp,
-  seedling
+  seedling,
+  unlock,
+  addressCard
 );
