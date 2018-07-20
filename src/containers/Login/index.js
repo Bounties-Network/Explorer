@@ -3,12 +3,14 @@ import styles from './Login.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Modal } from 'components';
-import WalletRequired from './components/WalletRequired';
-import UnlockWallet from './components/UnlockWallet';
-import SignIn from './components/SignIn';
-import SigningIn from './components/SigningIn';
-import AddressMismatch from './components/AddressMismatch';
-import ErrorModal from './components/ErrorModal';
+import {
+  WalletRequired,
+  UnlockWallet,
+  SignIn,
+  SigningIn,
+  AddressMismatch,
+  ErrorModal
+} from './components';
 import { rootLoginSelector } from './selectors';
 import { actions } from './reducer';
 import { actions as authActions } from 'public-modules/Authentication';
