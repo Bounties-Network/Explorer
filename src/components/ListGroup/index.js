@@ -28,7 +28,7 @@ class ListGroup extends React.Component {
 ListGroup.propTypes = {
   children: PropTypes.arrayOf(function(propValue, key) {
     for (let i = 0; i < propValue.length; i++) {
-      if (collection[i].type.name !== ListItem.name) {
+      if (propValue[i].type.name !== ListItem.name) {
         return new Error('Children Must Be an Instance of a List Item');
       }
     }
