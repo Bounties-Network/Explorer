@@ -13,7 +13,7 @@ import {
   Button
 } from 'components';
 import { LoadComponent } from 'hocs';
-import { LeaderItem } from 'explorer-components';
+import { LeaderItem } from './components';
 import { map, get } from 'lodash';
 import {
   SORT_VALUE,
@@ -31,14 +31,7 @@ const LeaderboardCardComponent = props => {
     return (leaderboard[toggleValue] || [])
       .slice(0, 10)
       .map((leader, index) => {
-        const {
-          name,
-          address,
-          profile_image,
-          value,
-          total,
-          total_usd
-        } = leader;
+        const { name, address, profile_image, total, total_usd } = leader;
 
         return (
           <ListGroup.ListItem hover>
@@ -48,7 +41,6 @@ const LeaderboardCardComponent = props => {
               img={profile_image}
               name={name}
               address={address}
-              value={Number(total / 10 ** 18).toFixed(2)}
               usd={Number(total_usd).toFixed(2)}
               currency={''}
             />
@@ -66,38 +58,42 @@ const LeaderboardCardComponent = props => {
     <div className={`${styles.leaderboardCardContainer}`}>
       <Card className={`${styles.leaderboardCard}`}>
         <Card.Body>
-          <div className={className}>
-            {loading ? (
-              <div className={styles.bountyListCentered}>
-                <Loader size="medium" className={styles.centeredItem} />
-              </div>
-            ) : null}
-            {!loading && leaderboard.length !== 0 ? (
-              <ListGroup>{renderLeaders()}</ListGroup>
-            ) : null}
-            {!loading && !error && leaderboard.size === 0 ? (
-              <div className={styles.leaderListCentered}>
-                <ZeroState
-                  className={styles.centeredItem}
-                  iconColor="white"
-                  title="No Bounties Found"
-                  text="Update your search filters to see more bounties"
-                />
-              </div>
-            ) : null}
-            {error ? (
-              <div className={styles.bountyListCentered}>
-                <ZeroState
-                  className={styles.centeredItem}
-                  type="error"
-                  iconColor="white"
-                  title="Uh oh, something happened"
-                  text="Try a new filter or refresh the page and try again"
-                  icon={['fal', 'exclamation-triangle']}
-                />
-              </div>
-            ) : null}
-          </div>
+          {loading ? (
+            <div className={`${styles.leaderListCentered}`}>
+              <Loader
+                color="blue"
+                size="medium"
+                className={styles.centeredItem}
+              />
+            </div>
+          ) : null}
+
+          {!loading && leaderboard.length !== 0 ? (
+            <ListGroup>{renderLeaders()}</ListGroup>
+          ) : null}
+          {!loading && !error && leaderboard[toggleValue].length === 0 ? (
+            <div className={styles.leaderListCentered}>
+              <ZeroState
+                className={styles.centeredItem}
+                iconColor="blue"
+                title="No Bounties Found"
+                text="Update your search filters to see more bounties"
+              />
+            </div>
+          ) : null}
+
+          {error ? (
+            <div className={styles.leaderListCentered}>
+              <ZeroState
+                className={styles.centeredItem}
+                type="error"
+                iconColor="white"
+                title="Uh oh, something happened"
+                text="Try a new filter or refresh the page and try again"
+                icon={['fal', 'exclamation-triangle']}
+              />
+            </div>
+          ) : null}
         </Card.Body>
       </Card>
     </div>

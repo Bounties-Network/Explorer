@@ -12,7 +12,7 @@ export function* loadLeaderboard() {
       fulfiller: call(request, 'leaderboard/fulfiller/', 'GET')
     });
 
-    yield put(loadLeaderboardSuccess({ issuer, fulfiller }));
+    yield put(loadLeaderboardSuccess({ issuer: [], fulfiller: [] }));
   } catch (e) {
     yield put(loadLeaderboardFail(e));
   }
