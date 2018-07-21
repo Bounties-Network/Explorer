@@ -21,6 +21,8 @@ import times from '@fortawesome/fontawesome-pro-light/faTimes';
 import camera from '@fortawesome/fontawesome-pro-light/faCamera';
 import unlock from '@fortawesome/fontawesome-pro-light/faUnlock';
 import addressCard from '@fortawesome/fontawesome-pro-light/faAddressCard';
+import briefcase from '@fortawesome/fontawesome-pro-regular/faBriefcase';
+import comments from '@fortawesome/fontawesome-pro-regular/faComments';
 import infoCircle from '@fortawesome/fontawesome-pro-regular/faInfoCircle';
 import ellipsisH from '@fortawesome/fontawesome-pro-regular/faEllipsisH';
 import checkCircle from '@fortawesome/fontawesome-pro-regular/faCheckCircle';
@@ -32,6 +34,8 @@ import reddit from '@fortawesome/fontawesome-free-brands/faReddit';
 import eye from '@fortawesome/fontawesome-pro-light/faEye';
 
 library.add(
+  comments,
+  briefcase,
   faBell,
   plus,
   cog,

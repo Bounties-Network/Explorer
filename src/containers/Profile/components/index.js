@@ -1,3 +1,4 @@
+import About from './About';
 import ProfileAvatar from './ProfileAvatar';
 
-export { ProfileAvatar };
+export { About, ProfileAvatar };

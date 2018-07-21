@@ -12,20 +12,11 @@ import {
   ZeroState,
   Button
 } from 'components';
-import { ProfileAvatar } from './components';
+import { About, ProfileAvatar } from './components';
 import { LoadComponent } from 'hocs';
-import { BountyCard } from 'explorer-components';
+
 import { map } from 'lodash';
-import {
-  SORT_VALUE,
-  SORT_CREATED,
-  SORT_EXPIRY,
-  PAGE_SIZE
-} from 'public-modules/Bounties/constants';
-import {
-  rootBountiesSelector,
-  bountiesCategoryFiltersSelector
-} from 'public-modules/Bounties/selectors';
+
 import { actions } from 'public-modules/Bounties';
 
 const ProfileDetailsComponent = props => {
@@ -38,13 +29,18 @@ const ProfileDetailsComponent = props => {
           img={'https://i.imgur.com/lhTwRZY.png'}
         />
       </div>
+
+      <div className={styles.userStatsContainer}>
+        <About />
+        <About />
+        <About />
+        <About />
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = state => {
-  const bountyState = rootBountiesSelector(state);
-
   return {};
 };
 
