@@ -7,7 +7,7 @@
   justify-content: center;
   padding-top: $xxl-spacing;
   padding-bottom: 2 * $xxl-spacing;
-  background: linear-gradient(to right, #5b29c8 , #594aff);
+  @include banner-gradient;
 }
 
 .titleText {

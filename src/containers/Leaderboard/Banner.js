@@ -2,8 +2,6 @@ import React from 'react';
 
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { throttle } from 'lodash';
-import { LoadComponent } from 'hocs';
 
 import styles from './Banner.module.scss';
 import { Switch, Text } from 'components';

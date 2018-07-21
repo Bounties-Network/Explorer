@@ -58,6 +58,10 @@ $base-input-background: #F9F8FD;
 
 $base-border-color: $brand-lightGrey;
 
+@mixin banner-gradient {
+  background: linear-gradient(to right, #5b29c8 , #594aff);
+}
+
 // SIDEBAR:
 $sidebar-color: $brand-dark-purple;
 

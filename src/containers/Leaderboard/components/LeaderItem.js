@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './LeaderItem.module.scss';
-import { map, includes } from 'lodash';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { ListGroup, Card, Text, Pill, Avatar } from 'components';
+import { ListGroup, Card, Text, Avatar } from 'components';
 
 const LeaderItem = props => {
-  const { place, img, name, address, usd, currency } = props;
+  const { place, img, name, address, usd } = props;
 
   return (
     <div className="row">
@@ -45,8 +43,7 @@ LeaderItem.propTypes = {
   place: PropTypes.number,
   img: PropTypes.string,
   address: PropTypes.string,
-  usd: PropTypes.string,
-  currency: PropTypes.string
+  usd: PropTypes.string
 };
 
 LeaderItem.defaultProps = {};
