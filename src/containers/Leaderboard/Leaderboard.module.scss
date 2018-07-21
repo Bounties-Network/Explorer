@@ -6,9 +6,8 @@
 }
 
 .bodyCard {
-  display: flex;
-  justify-content: center;
-  flex: 1;
-  flex-flow: row;
   background: $brand-lightGrey;
+  display: flex;
+  flex: 1;
+  justify-content: center;
 }

@@ -3,33 +3,22 @@ import styles from './LeaderboardCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import {
-  ListGroup,
-  Card,
-  Text,
-  Sort,
-  Loader,
-  ZeroState,
-  Button
-} from 'components';
+import { ListGroup, Card, Text, Loader, ZeroState, Button } from 'components';
 import { LoadComponent } from 'hocs';
 import { LeaderItem } from './components';
-import { map, get } from 'lodash';
-import {
-  SORT_VALUE,
-  SORT_CREATED,
-  SORT_EXPIRY,
-  PAGE_SIZE
-} from 'public-modules/Bounties/constants';
+import { map as fpMap } from 'lodash';
 import { rootLeaderboardSelector } from 'public-modules/Leaderboard/selectors';
 import { rootLeaderboardUISelector } from './selectors';
 import { actions } from 'public-modules/Leaderboard';
 
+const map = fpMap.convert({ cap: false });
+
 const LeaderboardCardComponent = props => {
-  const { leaderboard, count, loading, error, toggleValue } = props;
+  const { leaderboard, loading, error, toggleValue } = props;
+  const leaders = leaderboard[toggleValue] || [];
 
   const renderLeaders = () => {
-    return (leaderboard[toggleValue] || []).map((leader, index) => {
+    return map((leader, index) => {
       const { name, address, profile_image, total, total_usd } = leader;
 
       return (
@@ -41,58 +30,42 @@ const LeaderboardCardComponent = props => {
             name={name}
             address={address}
             usd={Number(total_usd).toFixed(2)}
-            currency={''}
           />
         </ListGroup.ListItem>
       );
-    });
+    }, leaders);
   };
 
-  let className = styles.explorerBody;
   let cardBodyClass;
-  if (loading || leaderboard[toggleValue].length === 0) {
-    className += ` ${styles.centeredBody}`;
+  if (loading || leaders.length === 0) {
     cardBodyClass = styles.cardBodyLoading;
   }
 
   return (
     <Card className={`${styles.leaderboardCard}`}>
       <Card.Body className={cardBodyClass}>
-        {loading ? (
-          <div className={`${styles.leaderListCentered}`}>
-            <Loader
-              color="blue"
-              size="medium"
-              className={styles.centeredItem}
-            />
-          </div>
-        ) : null}
+        {loading ? <Loader color="blue" size="medium" /> : null}
 
         {!loading && leaderboard.length !== 0 ? (
           <ListGroup>{renderLeaders()}</ListGroup>
         ) : null}
-        {!loading && !error && leaderboard[toggleValue].length === 0 ? (
-          <div className={styles.leaderListCentered}>
-            <ZeroState
-              className={styles.centeredItem}
-              iconColor="blue"
-              title="The Leaderboard is Empty"
-              text="Start issuing or fulfilling bounties to appear here"
-            />
-          </div>
+
+        {!loading && !error && leaders.length === 0 ? (
+          <ZeroState
+            iconColor="blue"
+            title="The Leaderboard is Empty"
+            text="Start issuing or fulfilling bounties to appear here"
+          />
         ) : null}
 
         {error ? (
-          <div className={styles.leaderListCentered}>
-            <ZeroState
-              className={styles.centeredItem}
-              type="error"
-              iconColor="white"
-              title="Uh oh, something happened"
-              text="Try to refresh the page and try again"
-              icon={['fal', 'exclamation-triangle']}
-            />
-          </div>
+          <ZeroState
+            type="error"
+            iconColor="white"
+            title="Uh oh, something happened"
+            text="Try to refresh the page and try again"
+            icon={['fal', 'exclamation-triangle']}
+          />
         ) : null}
       </Card.Body>
     </Card>
@@ -105,7 +78,6 @@ const mapStateToProps = state => {
 
   return {
     leaderboard: leaderboardState.leaderboard,
-    count: leaderboardState.count,
     loading: leaderboardState.loading,
     error: leaderboardState.error,
     toggleValue: leaderboardUIState.toggleValue
