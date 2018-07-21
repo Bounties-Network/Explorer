@@ -1,0 +1,11 @@
+@import "~styles/variables.scss";
+
+.profileContainer {
+  display: flex;
+  flex-flow: column;
+}
+
+.profileDetails {
+  background: $brand-white;
+  height: 22rem;
+}

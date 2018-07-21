@@ -1,0 +1,19 @@
+@import "~styles/variables.scss";
+
+.detailsContainer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.userInfoContainer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: $xxl-spacing;
+  flex: 1;
+
+  > div, > p {
+    margin-bottom: $m-spacing;
+  }
+}

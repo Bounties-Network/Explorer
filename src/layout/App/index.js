@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { map } from 'lodash';
 import { NoMatch } from 'layout';
 import { NAV_ITEMS } from './constants';
-import { Explorer, Leaderboard, Login, CreateBounty } from 'containers';
+import { Explorer, Leaderboard, Login, CreateBounty, Profile } from 'containers';
 import { RequireLoginComponent } from 'hocs';
 import { Sidebar, Loader } from 'components';
 import { Header } from 'layout';
@@ -55,6 +55,7 @@ class AppComponent extends React.Component {
               </Sidebar>,
               <div className={`${styles.body}`}>
                 <Switch>
+                  <Route exact path="/profile" component={Profile} />
                   <Route exact path="/leaderboard" component={Leaderboard} />
                   <Route exact path="/explorer" component={Explorer} />
                   <Route
