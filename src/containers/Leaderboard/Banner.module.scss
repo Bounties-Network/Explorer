@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: $banner-min-height;
   padding-top: $xxl-spacing;
   padding-bottom: 2 * $xxl-spacing;
   @include banner-gradient;
