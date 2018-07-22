@@ -17,6 +17,7 @@ import {
   Elsewhere,
   NetworkStats,
   ProfileAvatar,
+  ProfileTabs,
   Skills
 } from './components';
 import { LoadComponent } from 'hocs';
@@ -52,6 +53,10 @@ const ProfileDetailsComponent = props => {
         />
         <NetworkStats />
         <Elsewhere />
+      </div>
+
+      <div className={styles.profileTabs}>
+        <ProfileTabs />
       </div>
     </div>
   );

@@ -29,8 +29,9 @@
   align-items: flex-start;
 
   width: 100%;
+}
 
-  > div {
-
-  }
+.profileTabs {
+  display: flex;
+  justify-content: center;
 }
