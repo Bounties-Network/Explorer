@@ -1,13 +1,13 @@
 @import "~styles/variables.scss";
 
-.statContainer {
+@mixin statContainer($flex) {
+  // height: 12rem;
   padding: 0 $l-spacing;
-  display: flex;
   flex-flow: column;
-  align-items: space-around;
+  flex: $flex;
+  border-right: $base-border;
 
   > p {
-    flex: 1;
     margin-bottom: $xl-spacing;
   }
 }

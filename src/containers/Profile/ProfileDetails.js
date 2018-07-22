@@ -12,7 +12,13 @@ import {
   ZeroState,
   Button
 } from 'components';
-import { About, ProfileAvatar } from './components';
+import {
+  About,
+  Elsewhere,
+  NetworkStats,
+  ProfileAvatar,
+  Skills
+} from './components';
 import { LoadComponent } from 'hocs';
 
 import { map } from 'lodash';
@@ -32,9 +38,20 @@ const ProfileDetailsComponent = props => {
 
       <div className={styles.userStatsContainer}>
         <About />
-        <About />
-        <About />
-        <About />
+        <Skills
+          skills={[
+            'Javascript',
+            'React',
+            'C++',
+            'CSS',
+            'Python',
+            'Ruby',
+            'Sketch',
+            'RabbitMQ'
+          ]}
+        />
+        <NetworkStats />
+        <Elsewhere />
       </div>
     </div>
   );

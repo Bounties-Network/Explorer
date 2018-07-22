@@ -1,17 +1,17 @@
 import React from 'react';
 import baseStyles from '../BaseStyles.module.scss';
-import styles from './About.module.scss';
+import styles from './Elsewhere.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Avatar, FullAddressBar, Table, Text } from 'components';
 
-const About = props => {
+const Elsewhere = props => {
   const { address, img, name } = props;
 
   return (
     <React.Fragment>
-      <div className={styles.about}>
+      <div className={styles.elsewhere}>
         <Text typeScale="h3" color="black">
-          About
+          Elsewhere
         </Text>
 
         <div className={styles.bulletPointContainer}>
@@ -20,14 +20,10 @@ const About = props => {
               icon={['far', 'briefcase']}
               className={styles.icon}
             />
-            <div className={styles.bulletPointText}>
-              <Text typeScale="h5" color="defaultGrey">
-                Oranization
-              </Text>
-              <Text typeScale="h4" color="black">
-                ConsenSys
-              </Text>
-            </div>
+
+            <Text typeScale="h5" color="defaultGrey">
+              mattgarnett.com
+            </Text>
           </div>
 
           <div className={styles.bulletPoint}>
@@ -35,14 +31,21 @@ const About = props => {
               icon={['far', 'comments']}
               className={styles.icon}
             />
-            <div className={styles.bulletPointText}>
-              <Text typeScale="h5" color="defaultGrey">
-                Languages spoken
-              </Text>
-              <Text typeScale="h4" color="black">
-                English, German
-              </Text>
-            </div>
+
+            <Text typeScale="h5" color="defaultGrey">
+              @matt_garnett
+            </Text>
+          </div>
+
+          <div className={styles.bulletPoint}>
+            <FontAwesomeIcon
+              icon={['far', 'comments']}
+              className={styles.icon}
+            />
+
+            <Text typeScale="h5" color="defaultGrey">
+              @matt_garnett
+            </Text>
           </div>
         </div>
       </div>
@@ -50,4 +53,4 @@ const About = props => {
   );
 };
 
-export default About;
+export default Elsewhere;

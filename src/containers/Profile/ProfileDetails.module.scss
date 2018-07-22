@@ -25,13 +25,12 @@
   flex-direction: row;
   flex-wrap: wrap;
 
-  align-items: center;
-  flex: 1;
+  justify-content: flex-end;
+  align-items: flex-start;
+
   width: 100%;
 
   > div {
-    flex-grow: 1;
 
-    border-right: $base-border;
   }
 }

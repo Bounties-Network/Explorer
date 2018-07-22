@@ -1,7 +1,7 @@
 @import "~styles/variables.scss";
 @import "../BaseStyles.module.scss";
 
-.about {
+.elsewhere {
   @include statContainer(1);
 }
 
@@ -10,7 +10,7 @@
   flex-direction: column;
 
   > div:not(:last-child) {
-    margin-bottom: $l-spacing;
+    margin-bottom: $m-spacing;
   }
 }
 
