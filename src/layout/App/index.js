@@ -55,7 +55,6 @@ class AppComponent extends React.Component {
               </Sidebar>,
               <div className={`${styles.body}`}>
                 <Switch>
-                  <Route exact path="/profile" component={Profile} />
                   <Route exact path="/leaderboard" component={Leaderboard} />
                   <Route exact path="/explorer" component={Explorer} />
                   <Route
@@ -63,7 +62,8 @@ class AppComponent extends React.Component {
                     path="/createBounty"
                     component={RequireLoginComponent(CreateBounty)}
                   />
-                  <Redirect from="/" to="/explorer" />
+                  <Route exact path="/explorer" component={Explorer} />
+                  <Route exact path="/profile/:address/" component={Profile} />
                 </Switch>
               </div>
             ]

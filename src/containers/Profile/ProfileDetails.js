@@ -27,18 +27,19 @@ import { map } from 'lodash';
 import { actions } from 'public-modules/Bounties';
 
 const ProfileDetailsComponent = props => {
+  const { user } = props;
   return (
     <div className={styles.detailsContainer}>
       <div className={styles.userInfoContainer}>
         <ProfileAvatar
-          name={'Simona Pop'}
-          address={'0x1234567891011121314151617181920212223242'}
-          img={'https://i.imgur.com/lhTwRZY.png'}
+          name={user.name}
+          address={user.public_address}
+          img={user.profile_image}
         />
       </div>
 
       <div className={styles.userStatsContainer}>
-        <About />
+        <About organization={'ConsenSys'} languages={['English, German']} />
         <Skills
           skills={[
             'Javascript',

@@ -1,20 +1,19 @@
 import React from 'react';
-import baseStyles from '../BaseStyles.module.scss';
 import styles from './About.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Avatar, FullAddressBar, Table, Text } from 'components';
 
 const About = props => {
-  const { address, img, name } = props;
+  const { organization, languages } = props;
 
   return (
-    <React.Fragment>
-      <div className={styles.about}>
-        <Text typeScale="h3" color="black">
-          About
-        </Text>
+    <div className={styles.about}>
+      <Text typeScale="h3" color="black">
+        About
+      </Text>
 
-        <div className={styles.bulletPointContainer}>
+      <div className={styles.bulletPointContainer}>
+        {organization ? (
           <div className={styles.bulletPoint}>
             <FontAwesomeIcon
               icon={['far', 'briefcase']}
@@ -25,11 +24,13 @@ const About = props => {
                 Oranization
               </Text>
               <Text typeScale="h4" color="black">
-                ConsenSys
+                {organization}
               </Text>
             </div>
           </div>
+        ) : null}
 
+        {languages && languages.length > 0 ? (
           <div className={styles.bulletPoint}>
             <FontAwesomeIcon
               icon={['far', 'comments']}
@@ -40,13 +41,13 @@ const About = props => {
                 Languages spoken
               </Text>
               <Text typeScale="h4" color="black">
-                English, German
+                {languages.join(', ')}
               </Text>
             </div>
           </div>
-        </div>
+        ) : null}
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

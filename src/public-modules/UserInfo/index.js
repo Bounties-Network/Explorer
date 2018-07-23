@@ -2,7 +2,7 @@ const initialState = {
   loading: true,
   loaded: false,
   error: false,
-  currentUser: {}
+  user: {}
 };
 
 const LOAD_USERINFO = 'userInfo/LOAD_USERINFO';
@@ -13,10 +13,11 @@ function loadUserInfo(address) {
   return { type: LOAD_USERINFO, address };
 }
 
-function loadUserInfoSuccess(userInfo) {
+function loadUserInfoSuccess(user) {
+  console.log('hai from loaduserinfosuccess');
   return {
     type: LOAD_USERINFO_SUCCESS,
-    currentUser: userInfo
+    user
   };
 }
 
@@ -35,14 +36,14 @@ function UserInfoReducer(state = initialState, action) {
       };
     }
     case LOAD_USERINFO_SUCCESS: {
-      const { currentUser } = action;
+      const { user } = action;
 
       return {
         ...state,
         loading: false,
         loaded: true,
         error: false,
-        currentUser
+        user
       };
     }
     case LOAD_USERINFO_FAIL: {

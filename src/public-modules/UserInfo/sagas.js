@@ -10,6 +10,7 @@ export function* loadUserInfo(action) {
   try {
     let endpoint = `auth/user/${address}/profile/`;
     const userInfo = yield call(request, endpoint, 'GET');
+    console.log('saga', userInfo);
     yield put(loadUserInfoSuccess(userInfo));
   } catch (e) {
     yield put(loadUserInfoFail(e));
