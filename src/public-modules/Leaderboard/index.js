@@ -2,6 +2,8 @@ const initialState = {
   loading: true,
   loaded: false,
   error: false,
+  offset: 0,
+  count: 0,
   leaderboard: { issuer: [], fulfiller: [] }
 };
 
@@ -42,6 +44,7 @@ function LeaderboardReducer(state = initialState, action) {
         loading: false,
         loaded: true,
         error: false,
+        count: leaderboard.issuer.length,
         leaderboard
       };
     }

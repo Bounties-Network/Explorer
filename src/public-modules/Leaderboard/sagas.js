@@ -1,16 +1,19 @@
 import request from 'utils/request';
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Leaderboard';
-import { LIMIT } from './constants';
+import { leaderboardQuerySelector } from './selectors';
 
 const { LOAD_LEADERBOARD } = actionTypes;
 const { loadLeaderboardFail, loadLeaderboardSuccess } = actions;
 
 export function* loadLeaderboard() {
+  let params = yield select(leaderboardQuerySelector);
+
+  console.log(params);
   try {
     const { issuer, fulfiller } = yield all({
-      issuer: call(request, `leaderboard/issuer/?limit=${LIMIT}`, 'GET'),
-      fulfiller: call(request, `leaderboard/fulfiller/?limit=${LIMIT}`, 'GET')
+      issuer: call(request, `leaderboard/issuer/`, 'GET', { params }),
+      fulfiller: call(request, `leaderboard/fulfiller/`, 'GET', { params })
     });
 
     yield put(loadLeaderboardSuccess({ issuer, fulfiller }));

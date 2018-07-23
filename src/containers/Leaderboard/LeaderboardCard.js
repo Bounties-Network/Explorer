@@ -10,12 +10,15 @@ import { map as fpMap } from 'lodash';
 import { rootLeaderboardSelector } from 'public-modules/Leaderboard/selectors';
 import { rootLeaderboardUISelector } from './selectors';
 import { actions } from 'public-modules/Leaderboard';
+import { LIMIT } from 'public-modules/Leaderboard/constants';
 
 const map = fpMap.convert({ cap: false });
 
 const LeaderboardCardComponent = props => {
-  const { leaderboard, loading, error, toggleValue } = props;
+  const { leaderboard, loading, error, toggleValue, offset, count } = props;
   const leaders = leaderboard[toggleValue] || [];
+
+  console.log(props);
 
   const renderLeaders = () => {
     return map((leader, index) => {
@@ -50,6 +53,12 @@ const LeaderboardCardComponent = props => {
           <ListGroup>{renderLeaders()}</ListGroup>
         ) : null}
 
+        {offset + LIMIT < count ? (
+          <div className={styles.loadMoreButton}>
+            <Button>Load More</Button>
+          </div>
+        ) : null}
+
         {!loading && !error && leaders.length === 0 ? (
           <ZeroState
             iconColor="blue"
@@ -77,6 +86,8 @@ const mapStateToProps = state => {
   const leaderboardUIState = rootLeaderboardUISelector(state);
 
   return {
+    offset: leaderboardState.offset,
+    count: leaderboardState.count,
     leaderboard: leaderboardState.leaderboard,
     loading: leaderboardState.loading,
     error: leaderboardState.error,

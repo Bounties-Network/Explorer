@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { LIMIT } from './constants';
 
 export const rootLeaderboardSelector = state => state.leaderboard;
 
@@ -15,4 +16,16 @@ export const leaderboardStateSelector = createSelector(
     error: rootLeaderboard.error,
     toggleValue: rootLeaderboard.toggleValue
   })
+);
+
+export const leaderboardQuerySelector = createSelector(
+  rootLeaderboardSelector,
+  rootLeaderboard => {
+    const query = {
+      limit: LIMIT,
+      offset: rootLeaderboard.offset
+    };
+
+    return query;
+  }
 );
