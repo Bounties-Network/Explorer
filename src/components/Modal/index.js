@@ -117,6 +117,29 @@ class Modal extends React.Component {
     }
   };
 
+  componentWillMount() {
+    const { visible } = this.props;
+
+    if (visible) {
+      document.body.classList.add('modal-open');
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const wasVisible = prevProps.visible;
+    const { visible: isVisible } = this.props;
+
+    if (isVisible === wasVisible) {
+      return null;
+    }
+
+    if (isVisible) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.className = '';
+    }
+  }
+
   modalClick(e) {
     e.stopPropagation();
   }
@@ -208,9 +231,12 @@ class Modal extends React.Component {
 
     return (
       <div className={baseClass} onClick={this.dismiss}>
-        <div className={`${styles.modalWrapper} row center-xs middle-xs`}>
-          <div className={`${gridSize} ${styles.innerWrapper}`}>
-            <div className={styles.modal} onClick={this.modalClick}>
+        <div className="container-fluid">
+          <div className={`${styles.modalWrapper} row center-xs middle-xs`}>
+            <div
+              className={`${styles.modal} ${gridSize}`}
+              onClick={this.modalClick}
+            >
               <ModalContext.Provider value={{ onClose: this.onClose }}>
                 {this.renderHeader(header)}
                 {this.renderHeading(heading)}

@@ -54,14 +54,14 @@ const PageCard = props => {
       <div className={styles.headerWrapper}>
         <div className="container-fluid">
           <div className="row center-xs">
-            <div className="col-xs-10">{header}</div>
+            <div className="col-xs-9">{header}</div>
           </div>
         </div>
       </div>
       <div className={styles.contentWrapper}>
         <div className="container-fluid fullHeight">
           <div className="row center-xs fullHeight">
-            <div className="col-xs-7 fullHeight">{content}</div>
+            <div className="col-xs-9 fullHeight">{content}</div>
           </div>
         </div>
       </div>
