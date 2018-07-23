@@ -15,7 +15,17 @@ import { LIMIT } from 'public-modules/Leaderboard/constants';
 const map = fpMap.convert({ cap: false });
 
 const LeaderboardCardComponent = props => {
-  const { leaderboard, loading, error, toggleValue, count, loadMore } = props;
+  const {
+    leaderboard,
+    loading,
+    error,
+    toggleValue,
+    count,
+    loadMore,
+    loadingMore,
+    loadingMoreError
+  } = props;
+
   const leaders = leaderboard[toggleValue] || [];
 
   const renderLeaders = () => {
@@ -44,35 +54,42 @@ const LeaderboardCardComponent = props => {
 
   return (
     <React.Fragment>
-      {loading ? <Loader color="blue" size="medium" /> : null}
+      <div className={cardBodyClass}>
+        {loading ? <Loader color="blue" size="medium" /> : null}
 
-      {!loading && leaderboard.length !== 0 ? (
-        <ListGroup>{renderLeaders()}</ListGroup>
-      ) : null}
+        {!loading && leaderboard.length !== 0 ? (
+          <ListGroup>{renderLeaders()}</ListGroup>
+        ) : null}
 
-      {leaderboard[toggleValue].length < count[toggleValue] ? (
-        <div className={styles.loadMoreButton}>
-          <Button onClick={loadMore}>Load More</Button>
-        </div>
-      ) : null}
+        {!loading &&
+        !error &&
+        leaders.length !== 0 &&
+        leaderboard[toggleValue].length < count[toggleValue] ? (
+          <div className={styles.loadMoreButton}>
+            <Button loading={loadingMore} onClick={loadMore}>
+              Load More
+            </Button>
+          </div>
+        ) : null}
 
-      {!loading && !error && leaders.length === 0 ? (
-        <ZeroState
-          iconColor="blue"
-          title="No Results Yet"
-          text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
-        />
-      ) : null}
+        {!loading && !error && leaders.length === 0 ? (
+          <ZeroState
+            iconColor="blue"
+            title="No Results Yet"
+            text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
+          />
+        ) : null}
 
-      {error ? (
-        <ZeroState
-          type="error"
-          iconColor="white"
-          title="Uh oh, something happened"
-          text="Try to refresh the page and try again"
-          icon={['fal', 'exclamation-triangle']}
-        />
-      ) : null}
+        {error ? (
+          <ZeroState
+            type="error"
+            iconColor="white"
+            title="Uh oh, something happened"
+            text="Try to refresh the page and try again"
+            icon={['fal', 'exclamation-triangle']}
+          />
+        ) : null}
+      </div>
     </React.Fragment>
   );
 };
@@ -87,6 +104,7 @@ const mapStateToProps = state => {
     leaderboard: leaderboardState.leaderboard,
     loading: leaderboardState.loading,
     error: leaderboardState.error,
+    loadingMore: leaderboardState.loadingMore,
     toggleValue: leaderboardUIState.toggleValue
   };
 };
