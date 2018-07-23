@@ -15,7 +15,8 @@ const Text = props => {
     alignment,
     style,
     inline,
-    id
+    id,
+    onClick
   } = props;
 
   let addedClasses = '';
@@ -35,6 +36,7 @@ const Text = props => {
         id={id}
         href={src}
         target="_blank"
+        onClick={onClick}
       >
         {props.children}
       </a>
@@ -64,6 +66,7 @@ const Text = props => {
         styles[style]
       } ${addedClasses}`}
       id={id}
+      onClick={onClick}
     >
       {props.children}
     </p>
@@ -77,6 +80,7 @@ Text.propTypes = {
   inline: PropTypes.bool,
   src: PropTypes.string,
   link: PropTypes.bool,
+  onClick: PropTypes.func,
   color: PropTypes.oneOf([
     'purple',
     'blue',
@@ -100,9 +104,10 @@ Text.propTypes = {
 
 Text.defaultProps = {
   typeScale: 'Body',
+  onClick: () => {},
   src: '',
   link: false,
-  weight: 'font-weight-regular',
+  weight: 'fontWeight-regular',
   id: ''
 };
 

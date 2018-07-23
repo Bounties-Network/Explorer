@@ -8,9 +8,15 @@
   flex-direction: column;
 }
 
+.textareaWrapper {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+}
+
 .textarea {
   resize: vertical;
-  flex-grow: 100;
+  flex-grow: 1;
   width: 100%;
   overflow: auto;
   background-color: $base-input-background;
@@ -22,6 +28,18 @@
   &::placeholder {
     color: $brand-grey;
   }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: $s-spacing;
+  margin-right: $s-spacing;
+  border: $base-border;
+  border-radius: $base-border-radius;
+  background: $brand-white;
+  padding: $s-spacing;
 }
 
 .textarea:focus {

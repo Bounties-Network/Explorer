@@ -24,7 +24,7 @@ class Header extends React.Component {
                 />
               </div>
             ) : null}
-            <div className={styles.headerContent}>
+            <div className={children ? styles.headerContent : ''}>
               {icon && !loadingIcon ? (
                 <div>
                   <FontAwesomeIcon icon={icon} className={styles.iconHeader} />
@@ -209,7 +209,7 @@ class Modal extends React.Component {
     return (
       <div className={baseClass} onClick={this.dismiss}>
         <div className={`${styles.modalWrapper} row center-xs middle-xs`}>
-          <div className={gridSize}>
+          <div className={`${gridSize} ${styles.innerWrapper}`}>
             <div className={styles.modal} onClick={this.modalClick}>
               <ModalContext.Provider value={{ onClose: this.onClose }}>
                 {this.renderHeader(header)}

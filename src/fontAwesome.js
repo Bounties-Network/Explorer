@@ -29,6 +29,7 @@ import meh from '@fortawesome/fontawesome-pro-light/faMeh';
 import twitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import facebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import reddit from '@fortawesome/fontawesome-free-brands/faReddit';
+import eye from '@fortawesome/fontawesome-pro-light/faEye';
 
 library.add(
   faBell,
@@ -56,6 +57,7 @@ library.add(
   facebook,
   reddit,
   meh,
+  eye,
   clock,
   levelUp,
   seedling,
