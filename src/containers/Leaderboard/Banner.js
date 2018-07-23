@@ -26,6 +26,7 @@ const BannerComponent = props => {
         onChange={leaderboardToggle}
         onValue={'Top Issuer'}
         offValue={'Top Earners'}
+        value={toggleValue == 'issuer' ? 'Top Issuer' : 'Top Earners'}
         selectedColor="white"
         unselectedColor="lightGrey"
         backgroundColor="purple"
