@@ -27,7 +27,7 @@ class Content extends React.Component {
     const { children, className } = this.props;
     return (
       <Card className={`${styles.content} ${className}`}>
-        <Card.Body className="fullHeight">{children}</Card.Body>
+        <Card.Body>{children}</Card.Body>
       </Card>
     );
   }
