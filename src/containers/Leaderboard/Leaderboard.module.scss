@@ -1,13 +1,8 @@
 @import "~styles/variables.scss";
 
-.flexContainer {
-  display: flex;
-  flex-flow: column;
-}
-
 .bodyCard {
-  background: $brand-lightGrey;
-  display: flex;
-  flex: 1 0 (25rem + 2 * $xxl-spacing);
-  justify-content: center;
+  height: 100%;
+  min-height: 25rem;
+  max-height: 70vh;
+  overflow-y: scroll;
 }

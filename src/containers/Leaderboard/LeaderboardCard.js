@@ -45,39 +45,37 @@ const LeaderboardCardComponent = props => {
   }
 
   return (
-    <Card className={`${styles.leaderboardCard}`}>
-      <Card.Body className={cardBodyClass}>
-        {loading ? <Loader color="blue" size="medium" /> : null}
+    <React.Fragment>
+      {loading ? <Loader color="blue" size="medium" /> : null}
 
-        {!loading && leaderboard.length !== 0 ? (
-          <ListGroup>{renderLeaders()}</ListGroup>
-        ) : null}
+      {!loading && leaderboard.length !== 0 ? (
+        <ListGroup>{renderLeaders()}</ListGroup>
+      ) : null}
 
-        {offset + LIMIT < count ? (
-          <div className={styles.loadMoreButton}>
-            <Button>Load More</Button>
-          </div>
-        ) : null}
+      {offset + LIMIT < count ? (
+        <div className={styles.loadMoreButton}>
+          <Button>Load More</Button>
+        </div>
+      ) : null}
 
-        {!loading && !error && leaders.length === 0 ? (
-          <ZeroState
-            iconColor="blue"
-            title="No Results Yet"
-            text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
-          />
-        ) : null}
+      {!loading && !error && leaders.length === 0 ? (
+        <ZeroState
+          iconColor="blue"
+          title="No Results Yet"
+          text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
+        />
+      ) : null}
 
-        {error ? (
-          <ZeroState
-            type="error"
-            iconColor="white"
-            title="Uh oh, something happened"
-            text="Try to refresh the page and try again"
-            icon={['fal', 'exclamation-triangle']}
-          />
-        ) : null}
-      </Card.Body>
-    </Card>
+      {error ? (
+        <ZeroState
+          type="error"
+          iconColor="white"
+          title="Uh oh, something happened"
+          text="Try to refresh the page and try again"
+          icon={['fal', 'exclamation-triangle']}
+        />
+      ) : null}
+    </React.Fragment>
   );
 };
 

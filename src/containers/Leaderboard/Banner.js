@@ -12,7 +12,7 @@ const BannerComponent = props => {
   const { toggleValue, leaderboardToggle, loading } = props;
 
   return (
-    <div className={`${styles.headerWrapper}`}>
+    <div className={styles.headerWrapper}>
       <div className={`${styles.titleText}`}>
         <Text
           className={'sb-component-group-heading'}

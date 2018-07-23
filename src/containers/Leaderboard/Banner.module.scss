@@ -4,17 +4,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: $banner-min-height;
-  padding-top: $xxl-spacing;
-  padding-bottom: 2 * $xxl-spacing;
-  @include banner-gradient;
 }
 
 .titleText {
-  margin-bottom: $m-spacing;
-}
-
-.groupText {
   margin-bottom: $m-spacing;
 }
