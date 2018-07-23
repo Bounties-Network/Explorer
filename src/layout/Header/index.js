@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { actions as loginActions } from 'containers/Login/reducer';
 import { actions as authActions } from 'public-modules/Authentication';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
@@ -19,7 +20,7 @@ import BeeLogo from '../../styles/logo.js';
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
 const HeaderComponent = props => {
-  const { user, network, showLogin, logout } = props;
+  const { user, network, showLogin, logout, history } = props;
 
   const loginStatus = !!user;
 
@@ -33,7 +34,13 @@ const HeaderComponent = props => {
       ) : null}
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
-          <Button type="primary" onClick={() => {}} className={styles.button}>
+          <Button
+            type="primary"
+            onClick={() => {
+              history.push('createBounty');
+            }}
+            className={styles.button}
+          >
             Create New Bounty
           </Button>
           <div className={styles.notification}>
@@ -87,6 +94,7 @@ const mapStateToProps = state => ({
 });
 
 const Header = compose(
+  withRouter,
   connect(
     mapStateToProps,
     { showLogin: loginActions.showLogin, logout: authActions.logout }

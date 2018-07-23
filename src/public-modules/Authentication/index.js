@@ -65,6 +65,7 @@ function resetLoginState() {
 const LOGOUT = 'authentication/LOGOUT';
 const LOGOUT_SUCCESS = 'authentication/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'authentication/LOGIN_FAIL';
+const RESET_LOGOUT_STATE = 'authentication/RESET_LOGOUT_STATE';
 
 function logout() {
   return { type: LOGOUT };
@@ -78,6 +79,10 @@ function logoutSuccess() {
 
 function logoutFail(error) {
   return { type: LOGOUT_FAIL, error };
+}
+
+function resetLogoutState() {
+  return { type: RESET_LOGOUT_STATE };
 }
 
 function AuthenticationReducer(state = initialState, action) {
@@ -153,6 +158,12 @@ function AuthenticationReducer(state = initialState, action) {
         loginState: { ...defaultLoginState }
       };
     }
+    case RESET_LOGOUT_STATE: {
+      return {
+        ...state,
+        loginState: { ...defaultLogoutState }
+      };
+    }
     case LOGOUT: {
       return {
         ...state,
@@ -199,7 +210,8 @@ export const actions = {
   loginFail,
   logout,
   logoutSuccess,
-  logoutFail
+  logoutFail,
+  resetLogoutState
 };
 
 export const actionTypes = {
@@ -212,7 +224,8 @@ export const actionTypes = {
   LOGOUT,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
-  RESET_LOGIN_STATE
+  RESET_LOGIN_STATE,
+  RESET_LOGOUT_STATE
 };
 
 export default AuthenticationReducer;

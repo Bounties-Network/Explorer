@@ -1,11 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Text, Button } from 'components';
 
 const WalletRequired = props => {
-  const { visible, onClose } = props;
+  const { visible, onClose, closable } = props;
 
   return (
-    <Modal visible={visible} size="small" dismissable onClose={onClose}>
+    <Modal
+      visible={visible}
+      size="small"
+      dismissable={closable}
+      onClose={onClose}
+      closable={closable}
+    >
       <Modal.Header closable icon={['fal', 'wallet']}>
         <Modal.Message>
           Web3 enabled browser and secure wallet required.
@@ -20,26 +27,37 @@ const WalletRequired = props => {
         </Text>
         <Text inline>, please install a secure wallet such as </Text>
         <Text inline link src="https://metamask.io/">
-          MetaMask.
+          MetaMask.{' '}
         </Text>
         <Text inline>
-          {' '}
-          If you'd like help getting set up, take a look at our{' '}
+          If you&#39;d like help getting set up, take a look at our{' '}
         </Text>
         <Text inline link src="https://bounties.network/gettingStarted">
           Getting Started Guide
         </Text>
       </Modal.Body>
       <Modal.Footer>
-        <Button margin onClick={onClose}>
-          Cancel
-        </Button>
+        {closable ? (
+          <Button margin onClick={onClose}>
+            Cancel
+          </Button>
+        ) : null}
         <a href="https://metamask.io/">
           <Button type="primary">Visit MetaMask.io</Button>
         </a>
       </Modal.Footer>
     </Modal>
   );
+};
+
+WalletRequired.propTypes = {
+  visible: PropTypes.bool,
+  onClose: PropTypes.func,
+  closable: PropTypes.bool
+};
+
+WalletRequired.defaultProps = {
+  closable: true
 };
 
 export default WalletRequired;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal, ZeroState, Button } from 'components';
 
 const ErrorModal = props => {
@@ -14,6 +15,11 @@ const ErrorModal = props => {
       </Modal.Footer>
     </Modal>
   );
+};
+
+ErrorModal.propTypes = {
+  visible: PropTypes.bool,
+  onClose: PropTypes.func
 };
 
 export default ErrorModal;

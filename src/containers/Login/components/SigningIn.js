@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Text, Button } from 'components';
 
 const SigningIn = props => {
@@ -13,6 +14,10 @@ const SigningIn = props => {
       </Modal.Header>
     </Modal>
   );
+};
+
+SigningIn.propTypes = {
+  visible: PropTypes.bool
 };
 
 export default SigningIn;
