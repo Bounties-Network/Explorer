@@ -7,6 +7,7 @@ import styles from './baseStyles.module.scss';
 const AddressMismatch = props => {
   const {
     visible,
+    closable,
     img,
     currentAddress,
     previousAddress,
@@ -19,11 +20,11 @@ const AddressMismatch = props => {
     <Modal
       visible={visible}
       size="small"
-      dismissable={false}
-      closable={false}
+      dismissable={closable}
+      closable={closable}
       onClose={onClose}
     >
-      <Modal.Header closable icon={['fal', 'address-card']}>
+      <Modal.Header closable={closable} icon={['fal', 'address-card']}>
         <Modal.Heading>Wallet address does not match.</Modal.Heading>
       </Modal.Header>
       <Modal.Body>
@@ -63,6 +64,7 @@ const AddressMismatch = props => {
 };
 
 AddressMismatch.propTypes = {
+  closable: PropTypes.bool,
   visible: PropTypes.bool,
   img: PropTypes.string,
   currentAddress: PropTypes.string,
@@ -70,6 +72,10 @@ AddressMismatch.propTypes = {
   onClose: PropTypes.func,
   logout: PropTypes.func,
   loggingOut: PropTypes.bool
+};
+
+AddressMismatch.defaultProps = {
+  closable: true
 };
 
 export default AddressMismatch;
