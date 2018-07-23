@@ -33,7 +33,7 @@ const {
 
 export function* loadBounties(action) {
   if (action.type !== LOAD_BOUNTIES) {
-    yield put(loadBountiesAction());
+    return yield put(loadBountiesAction());
   }
   let params = yield select(bountiesQuerySelector);
   try {

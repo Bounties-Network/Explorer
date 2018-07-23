@@ -9,6 +9,7 @@ import { map } from 'lodash';
 import { NoMatch } from 'layout';
 import { NAV_ITEMS } from './constants';
 import { Explorer, Login, CreateBounty } from 'containers';
+import { RequireLoginComponent } from 'hocs';
 import { Sidebar, Loader } from 'components';
 import { Header } from 'layout';
 import { initializedSelector } from 'public-modules/Client/selectors';
@@ -45,7 +46,11 @@ class AppComponent extends React.Component {
               <div className={`${styles.body}`}>
                 <Switch>
                   <Route exact path="/explorer" component={Explorer} />
-                  <Route exact path="/createBounty" component={CreateBounty} />
+                  <Route
+                    exact
+                    path="/createBounty"
+                    component={RequireLoginComponent(CreateBounty)}
+                  />
                   <Redirect from="/" to="/explorer" />
                 </Switch>
               </div>

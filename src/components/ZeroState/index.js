@@ -4,6 +4,14 @@ import styles from './ZeroState.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Text, Button } from 'components';
 
+const BodyText = props => {
+  return (
+    <Text color="defaultGrey" inline className={styles.text}>
+      {props.children}
+    </Text>
+  );
+};
+
 const ZeroState = props => {
   const {
     type,
@@ -37,8 +45,12 @@ const ZeroState = props => {
           {title}
         </Text>
       </div>
-      <div className={styles.text}>
-        <Text color={textColor}>{text}</Text>
+      <div>
+        {typeof text === 'string' ? (
+          <BodyText>{text}</BodyText>
+        ) : (
+          props.children
+        )}
       </div>
       {action ? (
         <div className={styles.action}>
@@ -68,5 +80,7 @@ ZeroState.defaultProps = {
   icon: ['fal', 'meh'],
   onActionClick: () => {}
 };
+
+ZeroState.BodyText = BodyText;
 
 export default ZeroState;

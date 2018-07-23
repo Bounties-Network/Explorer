@@ -1,0 +1,16 @@
+@import "~styles/variables.scss";
+
+.loginWrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.notLoggedIn {
+  height: 100%;
+  width: 100%;
+}
+
+.subText {
+  margin-top: $m-spacing;
+}

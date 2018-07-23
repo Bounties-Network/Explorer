@@ -168,6 +168,10 @@ class Modal extends React.Component {
       ? this.props.children
       : [this.props.children];
     each(child => {
+      if (!child) {
+        return null;
+      }
+
       const childName = child.type.name;
       if (childName === Header.name) {
         header = child;

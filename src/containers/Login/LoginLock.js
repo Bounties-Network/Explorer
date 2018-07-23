@@ -1,23 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Login.module.scss';
+import styles from './LoginLock.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Modal } from 'components';
 import {
   WalletRequired,
   UnlockWallet,
-  SignIn,
-  SigningIn,
   AddressMismatch,
   ErrorModal
 } from './components';
-import { rootLoginSelector } from './selectors';
 import { actions } from './reducer';
 import { actions as authActions } from 'public-modules/Authentication';
 import {
   getCurrentUserSelector,
-  loginStateSelector,
   logoutStateSelector
 } from 'public-modules/Authentication/selectors';
 import {
@@ -26,58 +22,49 @@ import {
   hasWalletSelector
 } from 'public-modules/Client/selectors';
 
-const LoginComponent = props => {
+const LoginLockComponent = props => {
   const {
-    visible,
-    stage,
     hasWallet,
     walletLocked,
     walletAddress,
     userAddress,
     img,
-    showLogin,
-    login,
     logout,
-    signingIn,
     loggingOut,
-    resetLoginState,
     resetLogoutState,
-    loginError,
-    logoutError
+    error
   } = props;
 
-  if (!hasWallet) {
-    return (
-      <WalletRequired visible={visible} onClose={() => showLogin(false)} />
-    );
+  if (walletLocked || !walletAddress) {
+    return <UnlockWallet visible={true} pageLevel closable={false} />;
   }
 
-  if (walletLocked) {
-    return <UnlockWallet visible={visible} onClose={() => showLogin(false)} />;
+  if (error) {
+    return <ErrorModal visible={true} onClose={resetLogoutState} />;
   }
 
-  if (loginError || logoutError) {
+  if (
+    userAddress &&
+    userAddress.toLowerCase() !== walletAddress.toLowerCase()
+  ) {
     return (
-      <ErrorModal
-        visible={visible}
-        onClose={loginError ? resetLoginState : resetLogoutState}
+      <AddressMismatch
+        closable={false}
+        visible={true}
+        currentAddress={walletAddress}
+        previousAddress={userAddress}
+        img={img}
+        logout={logout}
+        loggingOut={loggingOut}
       />
     );
   }
 
-  if (signingIn) {
-    return <SigningIn visible={visible} />;
-  }
-
-  return (
-    <SignIn visible={visible} onClose={() => showLogin(false)} signIn={login} />
-  );
+  return null;
 };
 
 const mapStateToProps = state => {
-  const rootLogin = rootLoginSelector(state);
   const user = getCurrentUserSelector(state);
-  const loginState = loginStateSelector(state);
   const logoutState = logoutStateSelector(state);
 
   return {
@@ -85,46 +72,32 @@ const mapStateToProps = state => {
     walletLocked: walletLockedSelector(state),
     walletAddress: addressSelector(state),
     userAddress: user && user.public_address,
-    visible: rootLogin.visible,
-    stage: rootLogin.stage,
     img: user && user.img,
-    signingIn: loginState.loading,
-    loginError: loginState.error,
-    logoutError: logoutState.error,
+    error: logoutState.error,
     loggingOut: logoutState.loading
   };
 };
 
-const Login = compose(
+const LoginLock = compose(
   connect(
     mapStateToProps,
     {
-      showLogin: actions.showLogin,
-      login: authActions.login,
       logout: authActions.logout,
-      resetLoginState: authActions.resetLoginState,
       resetLogoutState: authActions.resetLogoutState
     }
   )
-)(LoginComponent);
+)(LoginLockComponent);
 
-Login.propTypes = {
-  visible: PropTypes.bool,
-  stage: PropTypes.string,
+LoginLock.propTypes = {
   hasWallet: PropTypes.bool,
   walletLocked: PropTypes.bool,
   walletAddress: PropTypes.string,
   userAddress: PropTypes.string,
   img: PropTypes.string,
-  showLogin: PropTypes.bool,
-  login: PropTypes.func,
   logout: PropTypes.func,
-  signingIn: PropTypes.bool,
   loggingOut: PropTypes.bool,
-  resetLoginState: PropTypes.func,
   resetLogoutState: PropTypes.func,
-  loginError: PropTypes.bool,
-  logoutError: PropTypes.bool
+  error: PropTypes.string
 };
 
-export default Login;
+export default LoginLock;

@@ -36,3 +36,13 @@ body {
 .fullHeight {
   height: 100%;
 }
+
+a {
+  color: $brand-blue;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
