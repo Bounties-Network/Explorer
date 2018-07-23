@@ -1,0 +1,28 @@
+@import "~styles/variables.scss"; 
+
+.pageCard {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerWrapper {
+  text-align: center;
+  padding-top: $xxl-spacing;
+  padding-bottom: 2 * $xxl-spacing;
+  @include banner-gradient;
+}
+
+.contentWrapper {
+  flex: 1 0 0px;
+  background: $brand-lightGrey;
+}
+
+.header {
+}
+
+.content {
+  margin-top: -$xxl-spacing;
+
+}
