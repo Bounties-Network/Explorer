@@ -53,8 +53,8 @@ const LeaderboardCardComponent = props => {
         {!loading && !error && leaders.length === 0 ? (
           <ZeroState
             iconColor="blue"
-            title="The Leaderboard is Empty"
-            text="Start issuing or fulfilling bounties to appear here"
+            title="No Results Yet"
+            text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
           />
         ) : null}
 
