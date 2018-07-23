@@ -25,8 +25,13 @@ class AppComponent extends React.Component {
     }, NAV_ITEMS);
   }
 
+  currentRouteSelector = () => {
+    const { pathname } = this.props.location;
+    return pathname.split('/')[1] || '';
+  };
+
   render() {
-    const { loadingUser, clientInitialized, userFail } = this.props;
+    const { loadingUser, clientInitialized, userFail, history } = this.props;
     const isPageLoading = loadingUser || !clientInitialized;
 
     return (
@@ -40,7 +45,12 @@ class AppComponent extends React.Component {
         {!isPageLoading && !userFail
           ? [
               <Header />,
-              <Sidebar defaultActiveTab="dashboard" className={styles.sideNav}>
+              <Sidebar
+                activeTab={this.currentRouteSelector()}
+                defaultActiveTab="dashboard"
+                className={styles.sideNav}
+                onTabClick={history.push}
+              >
                 {this.renderSideNavItems()}
               </Sidebar>,
               <div className={`${styles.body}`}>
