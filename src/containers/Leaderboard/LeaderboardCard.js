@@ -15,10 +15,8 @@ import { LIMIT } from 'public-modules/Leaderboard/constants';
 const map = fpMap.convert({ cap: false });
 
 const LeaderboardCardComponent = props => {
-  const { leaderboard, loading, error, toggleValue, offset, count } = props;
+  const { leaderboard, loading, error, toggleValue, count, loadMore } = props;
   const leaders = leaderboard[toggleValue] || [];
-
-  console.log(props);
 
   const renderLeaders = () => {
     return map((leader, index) => {
@@ -52,9 +50,9 @@ const LeaderboardCardComponent = props => {
         <ListGroup>{renderLeaders()}</ListGroup>
       ) : null}
 
-      {offset + LIMIT < count ? (
+      {leaderboard[toggleValue].length < count[toggleValue] ? (
         <div className={styles.loadMoreButton}>
-          <Button>Load More</Button>
+          <Button onClick={loadMore}>Load More</Button>
         </div>
       ) : null}
 
@@ -97,7 +95,8 @@ const LeaderboardCard = compose(
   connect(
     mapStateToProps,
     {
-      load: actions.loadLeaderboard
+      load: actions.loadLeaderboard,
+      loadMore: actions.loadMoreLeaderboard
     }
   ),
   LoadComponent('')

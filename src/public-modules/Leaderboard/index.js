@@ -1,23 +1,42 @@
+import { LIMIT } from './constants';
+import { concat } from 'lodash';
+
 const initialState = {
   loading: true,
+  loadingMore: false,
+  loadingMoreError: false,
   loaded: false,
   error: false,
-  offset: 0,
-  count: 0,
+  count: { issuer: 0, fulfiller: 0 },
   leaderboard: { issuer: [], fulfiller: [] }
 };
 
 const LOAD_LEADERBOARD = 'leaderboard/LOAD_LEADERBOARD';
 const LOAD_LEADERBOARD_SUCCESS = 'leaderboard/LOAD_LEADERBOARD_SUCCESS';
+const LOAD_MORE_LEADERBOARD = 'leaderboard/LOAD_MORE_LEADERBOARD';
+const LOAD_MORE_LEADERBOARD_SUCCESS =
+  'leaderboard/LOAD_MORE_LEADERBOARD_SUCCESS';
 const LOAD_LEADERBOARD_FAIL = 'leaderboard/LOAD_LEADERBOARD_FAIL';
 
 function loadLeaderboard() {
   return { type: LOAD_LEADERBOARD };
 }
 
-function loadLeaderboardSuccess(leaderboard) {
+function loadMoreLeaderboard() {
+  return { type: LOAD_MORE_LEADERBOARD };
+}
+
+function loadLeaderboardSuccess(leaderboard, count) {
   return {
     type: LOAD_LEADERBOARD_SUCCESS,
+    leaderboard,
+    count
+  };
+}
+
+function loadMoreLeaderboardSuccess(leaderboard) {
+  return {
+    type: LOAD_MORE_LEADERBOARD_SUCCESS,
     leaderboard
   };
 }
@@ -36,18 +55,48 @@ function LeaderboardReducer(state = initialState, action) {
         error: false
       };
     }
+    case LOAD_MORE_LEADERBOARD: {
+      return {
+        ...state,
+        loadingMore: true,
+        loadingMoreError: false
+      };
+    }
     case LOAD_LEADERBOARD_SUCCESS: {
-      const { leaderboard } = action;
+      const { leaderboard: leaderboards } = action;
+      const { issuer, fulfiller } = leaderboards;
+      const leaderboard = {
+        issuer: issuer.results,
+        fulfiller: fulfiller.results
+      };
+      const count = { issuer: issuer.count, fulfiller: fulfiller.count };
 
       return {
         ...state,
         loading: false,
         loaded: true,
         error: false,
-        count: leaderboard.issuer.length,
-        leaderboard
+        leaderboard,
+        count
       };
     }
+    case LOAD_MORE_LEADERBOARD_SUCCESS: {
+      const { leaderboard } = action;
+      const issuer = [...state.leaderboard.issuer, ...leaderboard.issuer];
+      const fulfiller = [
+        ...state.leaderboard.fulfiller,
+        ...leaderboard.fulfiller
+      ];
+
+      return {
+        ...state,
+        loadingMore: false,
+        leaderboard: { issuer, fulfiller },
+        issuerOffset: state.issueroOffset + issuer.length,
+        fulfillerOffset: state.fulfillerOffset + fulfiller.length
+      };
+    }
+
     case LOAD_LEADERBOARD_FAIL: {
       return {
         ...state,
@@ -63,13 +112,17 @@ function LeaderboardReducer(state = initialState, action) {
 
 export const actions = {
   loadLeaderboard,
+  loadMoreLeaderboard,
   loadLeaderboardSuccess,
+  loadMoreLeaderboardSuccess,
   loadLeaderboardFail
 };
 
 export const actionTypes = {
   LOAD_LEADERBOARD,
+  LOAD_MORE_LEADERBOARD,
   LOAD_LEADERBOARD_SUCCESS,
+  LOAD_MORE_LEADERBOARD_SUCCESS,
   LOAD_LEADERBOARD_FAIL
 };
 

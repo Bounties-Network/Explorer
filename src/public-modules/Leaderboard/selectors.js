@@ -13,8 +13,7 @@ export const leaderboardStateSelector = createSelector(
   rootLeaderboard => ({
     loading: rootLeaderboard.loading,
     loaded: rootLeaderboard.loaded,
-    error: rootLeaderboard.error,
-    toggleValue: rootLeaderboard.toggleValue
+    error: rootLeaderboard.error
   })
 );
 
@@ -22,8 +21,7 @@ export const leaderboardQuerySelector = createSelector(
   rootLeaderboardSelector,
   rootLeaderboard => {
     const query = {
-      limit: LIMIT,
-      offset: rootLeaderboard.offset
+      limit: LIMIT
     };
 
     return query;

@@ -1,15 +1,19 @@
 import request from 'utils/request';
 import { all, call, put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Leaderboard';
-import { leaderboardQuerySelector } from './selectors';
+import { leaderboardQuerySelector, leaderboardSelector } from './selectors';
+import { rootLeaderboardUISelector } from 'containers/Leaderboard/selectors';
 
-const { LOAD_LEADERBOARD } = actionTypes;
-const { loadLeaderboardFail, loadLeaderboardSuccess } = actions;
+const { LOAD_LEADERBOARD, LOAD_MORE_LEADERBOARD } = actionTypes;
+const {
+  loadLeaderboardFail,
+  loadLeaderboardSuccess,
+  loadMoreLeaderboardSuccess
+} = actions;
 
 export function* loadLeaderboard() {
-  let params = yield select(leaderboardQuerySelector);
+  const params = yield select(leaderboardQuerySelector);
 
-  console.log(params);
   try {
     const { issuer, fulfiller } = yield all({
       issuer: call(request, `leaderboard/issuer/`, 'GET', { params }),
@@ -22,8 +26,46 @@ export function* loadLeaderboard() {
   }
 }
 
+export function* loadMoreLeaderboard() {
+  const params = yield select(leaderboardQuerySelector);
+  const { leaderboard } = yield select(leaderboardSelector);
+  const { toggleValue } = yield select(rootLeaderboardUISelector);
+  const offset = {
+    issuer: leaderboard.issuer.length,
+    fulfiller: leaderboard.fulfiller.length
+  };
+
+  const getData = (toggleValue, offset, type) => {
+    return toggleValue == type
+      ? call(request, `leaderboard/${type}/`, 'GET', {
+          params: { ...params, offset: offset[type] }
+        })
+      : [];
+  };
+
+  const { issuer, fulfiller } = yield all({
+    issuer: getData(toggleValue, offset, 'issuer'),
+    fulfiller: getData(toggleValue, offset, 'fulfiller')
+  });
+
+  try {
+    yield put(
+      loadMoreLeaderboardSuccess({
+        issuer: issuer.results || [],
+        fulfiller: fulfiller.results || []
+      })
+    );
+  } catch (e) {
+    yield put(loadLeaderboardFail(e));
+  }
+}
+
 export function* watchLeaderboard() {
   yield takeLatest(LOAD_LEADERBOARD, loadLeaderboard);
 }
 
-export default [watchLeaderboard];
+export function* watchLoadMoreLeaderboard() {
+  yield takeLatest(LOAD_MORE_LEADERBOARD, loadMoreLeaderboard);
+}
+
+export default [watchLeaderboard, watchLoadMoreLeaderboard];
