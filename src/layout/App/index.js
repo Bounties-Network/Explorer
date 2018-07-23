@@ -67,7 +67,7 @@ const mapStateToProps = state => {
 
   return {
     clientInitialized: initializedSelector(state),
-    loadingUser: currentUserState.loading,
+    loadingUser: currentUserState.loading || !currentUserState.loaded,
     userFail: currentUserState.error
   };
 };
