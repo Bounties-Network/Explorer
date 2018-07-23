@@ -2,15 +2,15 @@ const initialState = {
   loading: true,
   loaded: false,
   error: false,
-  leaderboard: []
+  leaderboard: { issuer: [], fulfiller: [] }
 };
 
 const LOAD_LEADERBOARD = 'leaderboard/LOAD_LEADERBOARD';
 const LOAD_LEADERBOARD_SUCCESS = 'leaderboard/LOAD_LEADERBOARD_SUCCESS';
 const LOAD_LEADERBOARD_FAIL = 'leaderboard/LOAD_LEADERBOARD_FAIL';
 
-function loadLeaderboard(category) {
-  return { type: LOAD_LEADERBOARD, leaderboardCategory: category };
+function loadLeaderboard() {
+  return { type: LOAD_LEADERBOARD };
 }
 
 function loadLeaderboardSuccess(leaderboard) {

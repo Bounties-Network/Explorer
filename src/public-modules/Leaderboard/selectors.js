@@ -6,3 +6,13 @@ export const leaderboardSelector = createSelector(
   rootLeaderboardSelector,
   rootLeaderboard => rootLeaderboard
 );
+
+export const leaderboardStateSelector = createSelector(
+  leaderboardSelector,
+  rootLeaderboard => ({
+    loading: rootLeaderboard.loading,
+    loaded: rootLeaderboard.loaded,
+    error: rootLeaderboard.error,
+    toggleValue: rootLeaderboard.toggleValue
+  })
+);

@@ -1,0 +1,13 @@
+@import "~styles/variables.scss";
+
+.flexContainer {
+  display: flex;
+  flex-flow: column;
+}
+
+.bodyCard {
+  background: $brand-lightGrey;
+  display: flex;
+  flex: 1 0 (25rem + 2 * $xxl-spacing);
+  justify-content: center;
+}

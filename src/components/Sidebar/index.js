@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Sidebar.module.scss';
-import { Link } from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const ModalContext = React.createContext({});
@@ -11,7 +10,7 @@ class TabIcon extends React.Component {
     return (
       <ModalContext.Consumer>
         {({ activeTab, onTabClick }) => {
-          const { icon, link, tabKey } = this.props;
+          const { icon, to, tabKey } = this.props;
           let tabStyle = styles.iconTab;
 
           if (activeTab === tabKey) {
@@ -19,11 +18,7 @@ class TabIcon extends React.Component {
           }
 
           return (
-            <a
-              className={tabStyle}
-              to={link}
-              onClick={() => onTabClick(tabKey)}
-            >
+            <a className={tabStyle} to={to} onClick={() => onTabClick(tabKey)}>
               <FontAwesomeIcon icon={icon} />
             </a>
           );
@@ -46,16 +41,19 @@ class Sidebar extends React.Component {
 
   onTabClick = tabKey => {
     this.setState({ activeTab: tabKey });
+    this.props.onTabClick(`/${tabKey}`);
   };
 
   render() {
-    const { activeTab } = this.state;
-    const { defaultActiveTab, className } = this.props;
+    const { activeTab: activeTabState } = this.state;
+    const { defaultActiveTab, className, activeTab } = this.props;
+
+    const currentTab = activeTab || activeTabState || defaultActiveTab;
 
     return (
       <ModalContext.Provider
         value={{
-          activeTab: activeTab || defaultActiveTab,
+          activeTab: currentTab,
           onTabClick: this.onTabClick
         }}
       >

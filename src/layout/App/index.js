@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { map } from 'lodash';
 import { NoMatch } from 'layout';
 import { NAV_ITEMS } from './constants';
-import { Explorer, Login, CreateBounty } from 'containers';
+import { Explorer, Leaderboard, Login, CreateBounty } from 'containers';
 import { RequireLoginComponent } from 'hocs';
 import { Sidebar, Loader } from 'components';
 import { Header } from 'layout';
@@ -25,8 +25,13 @@ class AppComponent extends React.Component {
     }, NAV_ITEMS);
   }
 
+  currentRouteSelector = () => {
+    const { pathname } = this.props.location;
+    return pathname.split('/')[1] || '';
+  };
+
   render() {
-    const { loadingUser, clientInitialized, userFail } = this.props;
+    const { loadingUser, clientInitialized, userFail, history } = this.props;
     const isPageLoading = loadingUser || !clientInitialized;
 
     return (
@@ -40,11 +45,17 @@ class AppComponent extends React.Component {
         {!isPageLoading && !userFail
           ? [
               <Header />,
-              <Sidebar defaultActiveTab="dashboard" className={styles.sideNav}>
+              <Sidebar
+                activeTab={this.currentRouteSelector()}
+                defaultActiveTab="dashboard"
+                className={styles.sideNav}
+                onTabClick={history.push}
+              >
                 {this.renderSideNavItems()}
               </Sidebar>,
               <div className={`${styles.body}`}>
                 <Switch>
+                  <Route exact path="/leaderboard" component={Leaderboard} />
                   <Route exact path="/explorer" component={Explorer} />
                   <Route
                     exact
