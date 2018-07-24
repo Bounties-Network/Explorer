@@ -8,8 +8,14 @@ import {
   SearchSelect,
   NumberInput,
   DatePicker,
-  FileUpload
+  FileUpload,
+  RadioGroup
 } from 'components';
+import {
+  DIFFICULTY_OPTIONS,
+  PAYOUT_OPTIONS,
+  ACTIVATE_OPTIONS
+} from './constants';
 
 const CreateBounty = props => {
   return (
@@ -67,11 +73,11 @@ const CreateBounty = props => {
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-6">
+                <div className="col-xs-8">
                   <SearchSelect label="Bounty category" />
                 </div>
-                <div className="col-xs-6">
-                  TODO - need to rewrite radio component
+                <div className="col-xs-4">
+                  <RadioGroup options={DIFFICULTY_OPTIONS} label="Difficulty" />
                 </div>
               </div>
             </FormSection.InputGroup>
@@ -129,7 +135,9 @@ const CreateBounty = props => {
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-4">Radio Group - needs rewrite</div>
+                <div className="col-xs-4">
+                  <RadioGroup options={PAYOUT_OPTIONS} label="Payout method" />
+                </div>
                 <div className="col-xs-8">
                   <TextInput
                     label="Payout amount (ETH or whole tokens)"
@@ -151,7 +159,12 @@ const CreateBounty = props => {
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-4">Radio Group - needs rewrite</div>
+                <div className="col-xs-4">
+                  <RadioGroup
+                    options={ACTIVATE_OPTIONS}
+                    label="When to activate"
+                  />
+                </div>
                 <div className="col-xs-8">
                   <TextInput
                     label="Deposit amount (ETH or whole tokens)"
