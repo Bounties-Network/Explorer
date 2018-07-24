@@ -105,7 +105,8 @@ const mapStateToProps = state => {
     loading: leaderboardState.loading,
     error: leaderboardState.error,
     loadingMore: leaderboardState.loadingMore,
-    toggleValue: leaderboardUIState.toggleValue
+    toggleValue: leaderboardUIState.toggleValue,
+    key: leaderboardUIState.toggleValue
   };
 };
 
