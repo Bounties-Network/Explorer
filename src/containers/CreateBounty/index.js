@@ -7,7 +7,8 @@ import {
   MarkdownEditor,
   SearchSelect,
   NumberInput,
-  DatePicker
+  DatePicker,
+  FileUpload
 } from 'components';
 
 const CreateBounty = props => {
@@ -84,7 +85,23 @@ const CreateBounty = props => {
               task, in order to help set expectations for the contributors.
             </FormSection.SubText>
             <FormSection.InputGroup>
-              <NumberInput />
+              <div className="row">
+                <div className="col-xs-4">
+                  <NumberInput />
+                </div>
+              </div>
+            </FormSection.InputGroup>
+          </FormSection.Section>
+          <FormSection.Section title="ATTACHMENTS">
+            <FormSection.Description>
+              Does this bounty require any external assets for completion?
+            </FormSection.Description>
+            <FormSection.SubText>
+              Attach any files or links that may be helpful as references or
+              necessary for a contributor to complete the bounty.
+            </FormSection.SubText>
+            <FormSection.InputGroup>
+              <FileUpload />
             </FormSection.InputGroup>
           </FormSection.Section>
           <FormSection.Section title="DEADLINE">
@@ -95,7 +112,11 @@ const CreateBounty = props => {
               Enter the date and time for this bounty's deadline
             </FormSection.SubText>
             <FormSection.InputGroup>
-              <DatePicker />
+              <div className="row">
+                <div className="col-xs-4">
+                  <DatePicker showTimeSelect />
+                </div>
+              </div>
             </FormSection.InputGroup>
           </FormSection.Section>
           <FormSection.Section title="PAYOUT">
