@@ -1,0 +1,33 @@
+@import "~styles/variables.scss";
+
+.borderBlock {
+}
+
+.border {
+  border-bottom: $base-border;
+  margin-top: $xl-spacing;
+}
+
+.borderBlock:last-child {
+  display: none;
+}
+
+.section {
+  margin-top: $xl-spacing;
+}
+
+.section:first-child {
+  margin-top: 0px;
+}
+
+.description {
+  margin-bottom: $m-spacing;
+}
+
+.subText {
+  line-height: 1.5em;
+}
+
+.inputGroup {
+  margin-top: $l-spacing;
+}
