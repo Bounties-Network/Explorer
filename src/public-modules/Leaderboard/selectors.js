@@ -24,8 +24,8 @@ export const leaderboardQuerySelector = createSelector(
   rootLeaderboardSelector,
   rootLeaderboard => {
     const query = {
-      limit: LIMIT
-      // platform: config.platform
+      limit: LIMIT,
+      platform__in: config.platform
     };
 
     return query;
