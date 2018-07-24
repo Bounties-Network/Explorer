@@ -72,14 +72,16 @@ class Tabs extends React.Component {
   };
 
   render() {
-    const { defaultActiveKey } = this.props;
+    const { defaultActiveKey, className } = this.props;
     const { activeKey } = this.state;
 
     return (
       <ModalContext.Provider
         value={{ activeKey: activeKey, onSelect: this.onSelect }}
       >
-        <div className={`${styles.tabs}`}>{this.props.children}</div>
+        <div className={`${styles.tabs} ${className}`}>
+          {this.props.children}
+        </div>
       </ModalContext.Provider>
     );
   }
@@ -94,7 +96,8 @@ Tabs.propTypes = {
     }
   }),
   onSelect: PropTypes.func,
-  activeKey: PropTypes.string
+  activeKey: PropTypes.string,
+  className: PropTypes.string
 };
 
 Tabs.defaultProps = {};

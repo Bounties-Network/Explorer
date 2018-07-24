@@ -6,32 +6,19 @@
   align-items: center;
 }
 
-.userInfoContainer {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  margin-top: $xxl-spacing;
-  flex: 1;
+.profileAvatar {
+  padding: $xxl-spacing 0;
 
   > div, > p {
-    margin-bottom: $m-spacing;
+    margin-bottom: $base-spacing;
   }
 }
 
-.userStatsContainer {
-  margin: $xxl-spacing 0;
-
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  justify-content: flex-end;
-  align-items: flex-start;
-
-  width: 100%;
+.marginBottom {
+  margin-bottom: $xxl-spacing;
 }
 
-.profileTabs {
+.centerContent {
   display: flex;
   justify-content: center;
 }

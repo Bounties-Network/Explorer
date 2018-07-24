@@ -2,7 +2,7 @@
 @import "../BaseStyles.module.scss";
 
 .skills {
-  @include statContainer(1);
+  @include statContainer;
 }
 
 .skillsContainer {
@@ -14,4 +14,9 @@
 
 .skill {
   margin-bottom: $base-spacing;
+}
+
+.centerTabs {
+  display: flex;
+  justify-content: center;
 }

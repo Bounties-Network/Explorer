@@ -1,19 +1,18 @@
 import React from 'react';
+import styles from './ProfileAvatar.module.scss';
 import { Avatar, FullAddressBar, Text } from 'components';
 
 const ProfileAvatar = props => {
-  const { address, img, name } = props;
+  const { address, img, name, className } = props;
 
   return (
-    <React.Fragment>
+    <div className={`${styles.centerAvatar} ${className}`}>
       <Avatar size="large" border hash={address} img={img} />
-
       <Text typeScale="h1" color="black" weight="fontWeight-bold">
         {name}
       </Text>
-
       <FullAddressBar address={address} copyButton />
-    </React.Fragment>
+    </div>
   );
 };
 

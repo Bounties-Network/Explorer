@@ -9,7 +9,7 @@ import { map } from 'lodash';
 
 const ProfileTabs = props => {
   return (
-    <Tabs onSelect={() => {}}>
+    <Tabs className={styles.centerTabs} onSelect={() => {}}>
       <Tabs.Tab tabColor="blue" eventKey={1}>
         Bounties created
       </Tabs.Tab>

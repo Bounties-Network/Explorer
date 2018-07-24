@@ -2,7 +2,7 @@
 @import "../BaseStyles.module.scss";
 
 .about {
-  @include statContainer(1);
+  @include statContainer;
 }
 
 .bulletPointContainer {

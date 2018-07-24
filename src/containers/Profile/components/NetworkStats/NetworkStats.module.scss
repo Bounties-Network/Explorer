@@ -2,7 +2,7 @@
 @import "../BaseStyles.module.scss";
 
 .network {
-  @include statContainer(2);
+  @include statContainer;
 }
 
 .networkStatsHeader {

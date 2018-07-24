@@ -1,12 +1,8 @@
 @import "~styles/variables.scss";
 
-@mixin statContainer($flex) {
-  // height: 12rem;
-  padding: 0 $l-spacing;
-  flex-flow: column;
-  flex: $flex;
-  border-right: $base-border;
-
+@mixin statContainer() {
+  height: 100%;
+  border: $base-border;
   > p {
     margin-bottom: $xl-spacing;
   }
