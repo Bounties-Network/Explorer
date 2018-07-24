@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import createHistory from 'history/createBrowserHistory';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
+import { reducer as formReducer } from 'redux-form';
 import {
   ConnectedRouter,
   routerReducer,
@@ -29,6 +30,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   combineReducers({
     router: routerReducer,
+    form: formReducer,
     ...reducers,
     ...baseReducers
   }),
