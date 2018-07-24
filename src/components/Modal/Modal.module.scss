@@ -16,6 +16,10 @@
   background: $overlay-background;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .modal {
   max-height: 100%;
   overflow-y: auto;
