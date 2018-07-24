@@ -100,7 +100,7 @@ class SearchSelect extends React.Component {
       <div className={`${styles.dropdownSearch}`}>
         {labelText ? (
           <div>
-            <Text type="FormLabel" color={error ? 'red' : null}>
+            <Text inputLabel color={error ? 'red' : null}>
               {labelText}
             </Text>
           </div>
