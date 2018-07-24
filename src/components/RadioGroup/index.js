@@ -1,54 +1,69 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './RadioGroup.module.scss';
-
+import { map as fpMap } from 'lodash';
 import { Text } from 'components';
 
+const map = fpMap.convert({ cap: false });
+
 class RadioGroup extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    value: ''
+  };
 
-    this.state = {
-      selection: ''
-    };
+  onChange = selection => {
+    this.setState({ value: selection });
+    this.props.onChange(selection);
+  };
 
-    this.onSelectionChange = this.onSelectionChange.bind(this);
-    this.renderRadioButtons = this.renderRadioButtons.bind(this);
-  }
+  renderRadioButtons = () => {
+    const { value, valueKey, labelKey, options, disabled } = this.props;
+    const { value: stateValue } = this.state;
 
-  onSelectionChange(selection) {
-    this.setState({ selection: selection }, () => {
-      this.props.onChange(selection);
-    });
-  }
+    const selectedValue = value || stateValue;
 
-  renderRadioButtons(data) {
-    return data.map((elem, idx) => {
-      return (
+    return map(
+      (option, idx) => (
         <label key={'radio' + idx} className={`${styles.radioContainer}`}>
           <input
             className={`${styles.radio}`}
+            disabled={disabled}
             type="radio"
-            checked={this.state.selection === elem}
-            onChange={() => this.onSelectionChange(elem)}
+            checked={selectedValue === option[valueKey]}
+            onChange={() => this.onChange(option[valueKey])}
           />{' '}
           <span className={`${styles.customRadio}`} />
           <Text type="Body" className={`${styles.radioLabel}`}>
-            {elem}
+            {option[labelKey]}
           </Text>{' '}
         </label>
-      );
-    });
-  }
+      ),
+      options
+    );
+  };
 
   render() {
-    const { className, options } = this.props;
-    const { selection } = this.state;
+    const { className, label, optional, disabled } = this.props;
+
+    let baseClass = `${styles.radioGroup} ${className}`;
+    if (disabled) {
+      baseClass += ` ${styles.disabled}`;
+    }
+
+    let labelText = label;
+    if (optional) {
+      labelText = `${labelText || ''} (Optional)`;
+    }
 
     return (
-      <div className={`${styles.radioGroup} ${className}`}>
+      <div className={baseClass}>
+        {labelText ? (
+          <div>
+            <Text inputLabel>{labelText}</Text>
+          </div>
+        ) : null}
         <div className={`${styles.stagesBody}`}>
-          {this.renderRadioButtons(options)}
+          {this.renderRadioButtons()}
         </div>
       </div>
     );
@@ -56,10 +71,19 @@ class RadioGroup extends React.Component {
 }
 
 RadioGroup.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  options: PropTypes.array,
+  label: PropTypes.string,
+  disabled: PropTypes.bool,
+  optional: PropTypes.bool,
+  labelKey: PropTypes.string,
+  valueKey: PropTypes.string
 };
 
 RadioGroup.defaultProps = {
+  labelKey: 'label',
+  valueKey: 'value',
+  options: [],
   onChange: () => {}
 };
 

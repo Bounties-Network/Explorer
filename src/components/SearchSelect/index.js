@@ -7,7 +7,6 @@ import '../../styles/ReactSelect.scss';
 
 import { Text, Pill } from 'components';
 
-// props = options, onChange, placeholder
 class SearchSelect extends React.Component {
   constructor(props) {
     super(props);
