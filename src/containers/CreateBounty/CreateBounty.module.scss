@@ -1,20 +1,12 @@
 @import "~styles/variables.scss";
 
 .createBounty {
-  position: relative;
-  height: 100%;
-  width: 100%;
 }
 
 .cardContent {
   text-align: left;
 }
 
-.subText {
-  margin-top: $m-spacing;
-  line-height: 1.5em;
-}
-
-.inputBlock {
-  margin-top: $l-spacing;
+.markdownEditor {
+  height: 15em;
 }
