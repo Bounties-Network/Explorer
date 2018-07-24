@@ -185,7 +185,7 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { size, visible } = this.props;
+    const { size, visible, fixed } = this.props;
     let header, heading, message, description, footer, body;
     const children = Array.isArray(this.props.children)
       ? this.props.children
@@ -225,6 +225,10 @@ class Modal extends React.Component {
     }
 
     let baseClass = styles.overlay;
+    if (fixed) {
+      baseClass += ` ${styles.fixed}`;
+    }
+
     if (!visible) {
       baseClass += ` ${styles.hidden}`;
     }
@@ -256,6 +260,7 @@ class Modal extends React.Component {
 Modal.propTypes = {
   dismissable: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  fixed: PropTypes.bool,
   children: function(props, propName, componentName) {
     const children = props[propName];
     const isArray = Array.isArray(children);
@@ -285,6 +290,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
+  fixed: false,
   size: 'medium',
   dismissable: false
 };
