@@ -91,9 +91,7 @@ function LeaderboardReducer(state = initialState, action) {
       return {
         ...state,
         loadingMore: false,
-        leaderboard: { issuer, fulfiller },
-        issuerOffset: state.issueroOffset + issuer.length,
-        fulfillerOffset: state.fulfillerOffset + fulfiller.length
+        leaderboard: { issuer, fulfiller }
       };
     }
 

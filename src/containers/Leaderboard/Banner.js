@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import styles from './Banner.module.scss';
 import { Switch, Text } from 'components';
+import { PageCard } from 'explorer-components';
 import { rootLeaderboardUISelector } from './selectors';
 import { actions } from './reducer';
 
@@ -13,15 +14,7 @@ const BannerComponent = props => {
 
   return (
     <div className={styles.headerWrapper}>
-      <div className={`${styles.titleText}`}>
-        <Text
-          className={'sb-component-group-heading'}
-          typeScale="h1"
-          color="white"
-        >
-          Leaderboard
-        </Text>
-      </div>
+      <PageCard.Title className={styles.titleText}>Leaderboard</PageCard.Title>
       <Switch
         onChange={leaderboardToggle}
         onValue={'Top Issuer'}

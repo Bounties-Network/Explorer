@@ -10,7 +10,7 @@ class TabIcon extends React.Component {
     return (
       <ModalContext.Consumer>
         {({ activeTab, onTabClick }) => {
-          const { icon, to, tabKey } = this.props;
+          const { icon, tabKey } = this.props;
           let tabStyle = styles.iconTab;
 
           if (activeTab === tabKey) {
@@ -18,7 +18,7 @@ class TabIcon extends React.Component {
           }
 
           return (
-            <a className={tabStyle} to={to} onClick={() => onTabClick(tabKey)}>
+            <a className={tabStyle} onClick={() => onTabClick(tabKey)}>
               <FontAwesomeIcon icon={icon} />
             </a>
           );
@@ -30,7 +30,6 @@ class TabIcon extends React.Component {
 
 TabIcon.propTypes = {
   icon: PropTypes.array,
-  link: PropTypes.string,
   tabKey: PropTypes.string
 };
 

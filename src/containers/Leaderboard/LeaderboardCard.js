@@ -52,46 +52,47 @@ const LeaderboardCardComponent = props => {
     cardBodyClass = styles.cardBodyLoading;
   }
 
-  return (
-    <React.Fragment>
-      <div className={cardBodyClass}>
-        {loading ? <Loader color="blue" size="medium" /> : null}
+  let cardBody = (
+    <div className={cardBodyClass}>
+      <ListGroup>{renderLeaders()}</ListGroup>
 
-        {!loading && leaderboard.length !== 0 ? (
-          <ListGroup>{renderLeaders()}</ListGroup>
-        ) : null}
-
-        {!loading &&
-        !error &&
-        leaders.length !== 0 &&
-        leaderboard[toggleValue].length < count[toggleValue] ? (
-          <div className={styles.loadMoreButton}>
-            <Button loading={loadingMore} onClick={loadMore}>
-              Load More
-            </Button>
-          </div>
-        ) : null}
-
-        {!loading && !error && leaders.length === 0 ? (
-          <ZeroState
-            iconColor="blue"
-            title="No Results Yet"
-            text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
-          />
-        ) : null}
-
-        {error ? (
-          <ZeroState
-            type="error"
-            iconColor="white"
-            title="Uh oh, something happened"
-            text="Try to refresh the page and try again"
-            icon={['fal', 'exclamation-triangle']}
-          />
-        ) : null}
-      </div>
-    </React.Fragment>
+      {leaderboard[toggleValue].length < count[toggleValue] ? (
+        <div className={styles.loadMoreButton}>
+          <Button loading={loadingMore} onClick={loadMore}>
+            Load More
+          </Button>
+        </div>
+      ) : null}
+    </div>
   );
+
+  if (leaders.length === 0) {
+    cardBody = (
+      <ZeroState
+        iconColor="blue"
+        title="No Results Yet"
+        text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
+      />
+    );
+  }
+
+  if (loading) {
+    cardBody = <Loader color="blue" size="medium" />;
+  }
+
+  if (error || loadingMoreError) {
+    cardBody = (
+      <ZeroState
+        type="error"
+        iconColor="white"
+        title="Uh oh, something happened"
+        text="Try to refresh the page and try again"
+        icon={['fal', 'exclamation-triangle']}
+      />
+    );
+  }
+
+  return <div className={cardBodyClass}>{cardBody}</div>;
 };
 
 const mapStateToProps = state => {

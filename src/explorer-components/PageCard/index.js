@@ -5,10 +5,10 @@ import { map, includes, each } from 'lodash';
 import { Text, Card } from 'components';
 
 const Title = props => {
-  const { children } = props;
+  const { children, className } = props;
 
   return (
-    <Text typeScale="h1" color="white">
+    <Text className={className} typeScale="h1" color="white">
       {children}
     </Text>
   );
