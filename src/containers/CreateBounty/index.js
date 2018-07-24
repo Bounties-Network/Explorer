@@ -1,9 +1,16 @@
 import React from 'react';
 import styles from './CreateBounty.module.scss';
-import { Login } from 'containers';
+import { PageCard } from 'explorer-components';
 
 const CreateBounty = props => {
-  return <div className={styles.createBounty}>Create Bounty Page</div>;
+  return (
+    <PageCard>
+      <PageCard.Header>
+        <PageCard.Title>Create Bounty</PageCard.Title>
+      </PageCard.Header>
+      <PageCard.Content>BODY</PageCard.Content>
+    </PageCard>
+  );
 };
 
 export default CreateBounty;

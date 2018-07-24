@@ -1,0 +1,15 @@
+@import "~styles/variables.scss";
+
+.cardBodyLoading {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadMoreButton {
+  margin-top: $m-spacing;
+  margin-bottom: $m-spacing;
+  width: 100%;
+  text-align: center;
+}

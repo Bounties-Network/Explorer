@@ -92,6 +92,7 @@ class Switch extends React.Component {
 
 Switch.propTypes = {
   onChange: PropTypes.func,
+  value: PropTypes.string,
   backgroundColor: PropTypes.string,
   switchColor: PropTypes.string,
   selectedColor: PropTypes.string,

@@ -1,0 +1,14 @@
+@import "~styles/variables.scss";
+
+.place {
+  text-align: left;
+  margin-top: $s-spacing
+}
+
+.price {
+  text-align: right;
+}
+
+.usd {
+  margin-top: $base-spacing
+}

@@ -1,0 +1,11 @@
+@import "~styles/variables.scss";
+
+.headerWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titleText {
+  margin-bottom: $m-spacing;
+}
