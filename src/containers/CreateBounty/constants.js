@@ -15,3 +15,5 @@ export const ACTIVATE_OPTIONS = [
   { value: true, label: 'Now' },
   { value: false, label: 'Later' }
 ];
+
+export const UPLOAD_KEY = 'createBounty';

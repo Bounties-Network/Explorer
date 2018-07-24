@@ -1,6 +1,11 @@
 import React from 'react';
 import styles from './CreateBounty.module.scss';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { get } from 'lodash';
 import { PageCard, FormSection } from 'explorer-components';
+import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
+import { actions as uploadActions } from 'public-modules/FileUpload';
 import {
   Text,
   TextInput,
@@ -14,10 +19,13 @@ import {
 import {
   DIFFICULTY_OPTIONS,
   PAYOUT_OPTIONS,
-  ACTIVATE_OPTIONS
+  ACTIVATE_OPTIONS,
+  UPLOAD_KEY
 } from './constants';
 
-const CreateBounty = props => {
+const CreateBountyComponent = props => {
+  const { uploadFile, uploadLoading, uploaded } = props;
+
   return (
     <PageCard>
       <PageCard.Header>
@@ -107,7 +115,10 @@ const CreateBounty = props => {
               necessary for a contributor to complete the bounty.
             </FormSection.SubText>
             <FormSection.InputGroup>
-              <FileUpload />
+              <FileUpload
+                onChange={file => uploadFile('createBounty', file)}
+                loading={uploadLoading}
+              />
             </FormSection.InputGroup>
           </FormSection.Section>
           <FormSection.Section title="DEADLINE">
@@ -179,5 +190,22 @@ const CreateBounty = props => {
     </PageCard>
   );
 };
+
+const mapStateToProps = state => {
+  const rootUpload = rootUploadSelector(state);
+  const uploadState = rootUpload[UPLOAD_KEY] || {};
+
+  return {
+    uploadLoading: uploadState.uploading || false,
+    uploaded: uploadState.uploaded || false
+  };
+};
+
+const CreateBounty = compose(
+  connect(
+    mapStateToProps,
+    { uploadFile: uploadActions.uploadFile }
+  )
+)(CreateBountyComponent);
 
 export default CreateBounty;
