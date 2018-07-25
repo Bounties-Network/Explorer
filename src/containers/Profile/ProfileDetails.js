@@ -15,6 +15,7 @@ import {
 import { map } from 'lodash';
 
 import {
+  userInfoSelector,
   loadedUserInfoSelector,
   loadedUserSelector,
   loadedUserStatsSelector
@@ -28,7 +29,7 @@ const ProfileDetailsComponent = props => {
     loading,
     user,
     userStats,
-    userInfo,
+    loadedUserInfo,
     profileUI,
     switchValue,
     toggleNetworkSwitch,
@@ -85,8 +86,8 @@ const ProfileDetailsComponent = props => {
           <ProfileTabs
             currentTab={currentTab}
             setActiveTab={setActiveTab}
-            issuedCount={userInfo.stats.total_bounties || 0}
-            fulfilledCount={userInfo.stats.total_fulfillments || 0}
+            issuedCount={loadedUserInfo.stats.total_bounties || 0}
+            fulfilledCount={loadedUserInfo.stats.total_fulfillments || 0}
           />
         </div>
       </div>
@@ -102,7 +103,8 @@ const ProfileDetailsComponent = props => {
 };
 
 const mapStateToProps = state => {
-  const userInfo = loadedUserInfoSelector(state);
+  const userInfo = userInfoSelector(state);
+  const loadedUserInfo = loadedUserInfoSelector(state);
   const loadedUser = loadedUserSelector(state);
   const profileUI = profileUISelector(state);
   const userStats = loadedUserStatsSelector(state);
@@ -113,7 +115,7 @@ const mapStateToProps = state => {
     userStats,
     switchValue: profileUI.switchValue,
     currentTab: profileUI.currentTab,
-    userInfo
+    loadedUserInfo
   };
 };
 
