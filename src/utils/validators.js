@@ -1,5 +1,9 @@
-const required = value =>
-  value || typeof value === 'number' ? undefined : 'Required';
+const required = value => {
+  if (Array.isArray(value)) {
+    return value.length ? undefined : 'Required';
+  }
+  return value || typeof value === 'number' ? undefined : 'Required';
+};
 const maxLength = max => value =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined;
 const minLength = min => value =>

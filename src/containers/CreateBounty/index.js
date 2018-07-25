@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 import { get } from 'lodash';
 import { PageCard, FormSection } from 'explorer-components';
 import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
+import { formValueSelector } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
+import { DEFAULT_MARKDOWN } from 'utils/constants';
 import {
   Text,
   SearchSelect,
@@ -17,7 +19,13 @@ import {
   RadioGroup,
   TextInput
 } from 'components';
-import { FormTextInput, FormMarkdownEditor } from 'form-components';
+import {
+  FormTextInput,
+  FormMarkdownEditor,
+  FormSearchSelect,
+  FormRadioGroup,
+  FormNumberInput
+} from 'form-components';
 import {
   DIFFICULTY_OPTIONS,
   PAYOUT_OPTIONS,
@@ -25,8 +33,10 @@ import {
   UPLOAD_KEY
 } from './constants';
 
+const formSelector = formValueSelector('createBounty');
+
 const CreateBountyComponent = props => {
-  const { uploadFile, uploadLoading, uploaded } = props;
+  const { uploadFile, uploadLoading, uploaded, activateNow } = props;
 
   return (
     <form>
@@ -48,7 +58,6 @@ const CreateBountyComponent = props => {
               <FormSection.InputGroup>
                 <Field
                   name="title"
-                  type="input"
                   component={FormTextInput}
                   label="Title"
                   placeholder="Enter title..."
@@ -62,8 +71,7 @@ const CreateBountyComponent = props => {
               <FormSection.InputGroup>
                 <div className={styles.markdownEditor}>
                   <Field
-                    name="Description"
-                    type="input"
+                    name="description"
                     component={FormMarkdownEditor}
                     label="Description"
                     validate={[
@@ -85,7 +93,6 @@ const CreateBountyComponent = props => {
                   <div className="col-xs-6">
                     <Field
                       name="contactName"
-                      type="input"
                       component={FormTextInput}
                       label="Contact name"
                       placeholder="Enter name..."
@@ -98,7 +105,6 @@ const CreateBountyComponent = props => {
                   <div className="col-xs-6">
                     <Field
                       name="contactEmail"
-                      type="input"
                       component={FormTextInput}
                       label="Contact email"
                       placeholder="Enter email..."
@@ -125,16 +131,21 @@ const CreateBountyComponent = props => {
               <FormSection.InputGroup>
                 <div className="row">
                   <div className="col-xs-8">
-                    <SearchSelect
+                    <Field
+                      name="categories"
+                      component={FormSearchSelect}
                       label="Bounty category"
                       placeholder="Create or Select category..."
+                      validate={[validators.required]}
                       creatable
                     />
                   </div>
                   <div className="col-xs-4">
-                    <RadioGroup
-                      options={DIFFICULTY_OPTIONS}
+                    <Field
+                      name="difficulty"
+                      component={FormRadioGroup}
                       label="Difficulty"
+                      options={DIFFICULTY_OPTIONS}
                     />
                   </div>
                 </div>
@@ -151,7 +162,7 @@ const CreateBountyComponent = props => {
               <FormSection.InputGroup>
                 <div className="row">
                   <div className="col-xs-4">
-                    <NumberInput />
+                    <Field name="revisions" component={FormNumberInput} />
                   </div>
                 </div>
               </FormSection.InputGroup>
@@ -197,14 +208,20 @@ const CreateBountyComponent = props => {
               <FormSection.InputGroup>
                 <div className="row">
                   <div className="col-xs-4">
-                    <RadioGroup
+                    <Field
+                      name="isToken"
+                      component={FormRadioGroup}
+                      label="Payout Method"
                       options={PAYOUT_OPTIONS}
-                      label="Payout method"
                     />
                   </div>
                   <div className="col-xs-8">
-                    <TextInput
+                    <Field
+                      name="value"
+                      component={FormTextInput}
+                      type="number"
                       label="Payout amount (ETH or whole tokens)"
+                      validate={[validators.required]}
                       placeholder="Enter amount..."
                     />
                   </div>
@@ -224,16 +241,32 @@ const CreateBountyComponent = props => {
               <FormSection.InputGroup>
                 <div className="row">
                   <div className="col-xs-4">
-                    <RadioGroup
-                      options={ACTIVATE_OPTIONS}
+                    <Field
+                      name="activateNow"
+                      component={FormRadioGroup}
                       label="When to activate"
+                      options={ACTIVATE_OPTIONS}
                     />
                   </div>
                   <div className="col-xs-8">
-                    <TextInput
-                      label="Deposit amount (ETH or whole tokens)"
-                      placeholder="Enter amount..."
-                    />
+                    {activateNow ? (
+                      <Field
+                        name="balance"
+                        component={FormTextInput}
+                        type="number"
+                        label="Deposit amount (ETH or whole tokens)"
+                        validate={[
+                          validators.required,
+                          (balance, allValues) => {
+                            const valueField = allValues.value;
+                            if (valueField && balance < valueField) {
+                              return 'Deposit amount must at least match the payout amount.';
+                            }
+                          }
+                        ]}
+                        placeholder="Enter amount..."
+                      />
+                    ) : null}
                   </div>
                 </div>
               </FormSection.InputGroup>
@@ -251,12 +284,22 @@ const mapStateToProps = state => {
 
   return {
     uploadLoading: uploadState.uploading || false,
-    uploaded: uploadState.uploaded || false
+    uploaded: uploadState.uploaded || false,
+    activateNow: formSelector(state, 'activateNow')
   };
 };
 
 const CreateBounty = compose(
-  reduxForm({ form: 'createBounty' }),
+  reduxForm({
+    form: 'createBounty',
+    initialValues: {
+      description: DEFAULT_MARKDOWN,
+      difficulty: 0,
+      revisions: 3,
+      isToken: false,
+      activateNow: true
+    }
+  }),
   connect(
     mapStateToProps,
     { uploadFile: uploadActions.uploadFile }
