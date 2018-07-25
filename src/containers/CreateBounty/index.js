@@ -11,6 +11,7 @@ import { actions as categoryActions } from 'public-modules/Categories';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
+import moment from 'moment';
 import { DEFAULT_MARKDOWN } from 'utils/constants';
 import {
   Text,
@@ -26,7 +27,8 @@ import {
   FormMarkdownEditor,
   FormSearchSelect,
   FormRadioGroup,
-  FormNumberInput
+  FormNumberInput,
+  FormDatePicker
 } from 'form-components';
 import {
   DIFFICULTY_OPTIONS,
@@ -200,12 +202,17 @@ const CreateBountyComponent = props => {
                 When will this bounty be due?
               </FormSection.Description>
               <FormSection.SubText>
-                Enter the date and time for this bounty's deadline
+                Enter the date and time for this bounty's deadline (Timezone is
+                in UTC)
               </FormSection.SubText>
               <FormSection.InputGroup>
                 <div className="row">
                   <div className="col-xs-4">
-                    <DatePicker showTimeSelect />
+                    <Field
+                      name="deadline"
+                      component={FormDatePicker}
+                      showTimeSelect
+                    />
                   </div>
                 </div>
               </FormSection.InputGroup>
@@ -311,7 +318,10 @@ const CreateBounty = compose(
       difficulty: 0,
       revisions: 3,
       isToken: false,
-      activateNow: true
+      activateNow: true,
+      deadline: moment()
+        .add(1, 'days')
+        .utc()
     }
   }),
   connect(
