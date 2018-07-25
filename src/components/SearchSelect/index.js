@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SearchSelect.module.scss';
 import Select from 'react-select';
+import CreatableSelect from 'react-select/lib/Creatable';
 import { reject, includes, filter, map, find } from 'lodash';
 import '../../styles/ReactSelect.scss';
 
@@ -65,7 +66,7 @@ class SearchSelect extends React.Component {
       return (
         <div className={`${styles.pill}`} key={valueItem}>
           <Pill close onCloseClick={() => this.closePill(valueItem)}>
-            {label[labelKey]}
+            {label ? label[labelKey] : valueItem}
           </Pill>
         </div>
       );
@@ -82,7 +83,8 @@ class SearchSelect extends React.Component {
       valueKey,
       optional,
       placeholder,
-      options
+      options,
+      creatable
     } = this.props;
 
     let labelText = label;
@@ -104,15 +106,28 @@ class SearchSelect extends React.Component {
             </Text>
           </div>
         ) : null}
-        <Select
-          disabled={disabled}
-          labelKey={labelKey}
-          valueKey={valueKey}
-          className={selectClass}
-          options={this.filterOptions()}
-          onChange={this.onDropdownSelect}
-          placeholder={placeholder}
-        />
+        {creatable ? (
+          <CreatableSelect
+            disabled={disabled}
+            labelKey={labelKey}
+            valueKey={valueKey}
+            className={selectClass}
+            options={this.filterOptions()}
+            onChange={this.onDropdownSelect}
+            onCreateOption={this.onDropdownSelect}
+            placeholder={placeholder}
+          />
+        ) : (
+          <Select
+            disabled={disabled}
+            labelKey={labelKey}
+            valueKey={valueKey}
+            className={selectClass}
+            options={this.filterOptions()}
+            onChange={this.onDropdownSelect}
+            placeholder={placeholder}
+          />
+        )}
         {error ? (
           <div>
             <Text type="FormLabel" color={'red'}>
@@ -139,6 +154,7 @@ SearchSelect.propTypes = {
   error: PropTypes.string,
   optional: PropTypes.bool,
   placeholder: PropTypes.string,
+  creatable: PropTypes.bool,
   value: PropTypes.array
 };
 

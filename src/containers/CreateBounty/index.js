@@ -83,15 +83,30 @@ const CreateBountyComponent = props => {
               <FormSection.InputGroup>
                 <div className="row">
                   <div className="col-xs-6">
-                    <TextInput
+                    <Field
+                      name="contactName"
+                      type="input"
+                      component={FormTextInput}
                       label="Contact name"
                       placeholder="Enter name..."
+                      validate={[
+                        validators.required,
+                        validators.maxLength(128)
+                      ]}
                     />
                   </div>
                   <div className="col-xs-6">
-                    <TextInput
+                    <Field
+                      name="contactEmail"
+                      type="input"
+                      component={FormTextInput}
                       label="Contact email"
                       placeholder="Enter email..."
+                      validate={[
+                        validators.required,
+                        validators.maxLength(128),
+                        validators.email
+                      ]}
                     />
                   </div>
                 </div>
@@ -110,7 +125,11 @@ const CreateBountyComponent = props => {
               <FormSection.InputGroup>
                 <div className="row">
                   <div className="col-xs-8">
-                    <SearchSelect label="Bounty category" />
+                    <SearchSelect
+                      label="Bounty category"
+                      placeholder="Create or Select category..."
+                      creatable
+                    />
                   </div>
                   <div className="col-xs-4">
                     <RadioGroup
