@@ -27,6 +27,11 @@ class SearchSelect extends React.Component {
     );
   };
 
+  onCreateOption = value => {
+    this.props.onCreate(value);
+    this.onDropdownSelect(value);
+  };
+
   onDropdownSelect = selectedValue => {
     const { value, valueKey } = this.props;
     const { value: stateValue } = this.state;
@@ -117,7 +122,7 @@ class SearchSelect extends React.Component {
             className={selectClass}
             options={this.filterOptions()}
             onChange={this.onDropdownSelect}
-            onCreateOption={this.onDropdownSelect}
+            onCreateOption={this.onCreateOption}
             onFocus={onFocus}
             onBlur={() => onBlur(this.state.value)}
             placeholder={placeholder}
@@ -162,7 +167,8 @@ SearchSelect.propTypes = {
   creatable: PropTypes.bool,
   value: PropTypes.array,
   onFocus: PropTypes.func,
-  onBlur: PropTypes.func
+  onBlur: PropTypes.func,
+  onCreate: PropTypes.func
 };
 
 SearchSelect.defaultProps = {
@@ -172,7 +178,8 @@ SearchSelect.defaultProps = {
   onClose: () => {},
   onChange: () => {},
   onFocus: () => {},
-  onBlur: () => {}
+  onBlur: () => {},
+  onCreate: () => {}
 };
 
 export default SearchSelect;
