@@ -19,14 +19,17 @@ const Skills = props => {
   };
 
   return (
-    <React.Fragment>
-      <div className={styles.skills}>
-        <Text typeScale="h3" color="black">
-          Skills
-        </Text>
+    <div className={styles.skills}>
+      <Text typeScale="h3" color="black">
+        Skills
+      </Text>
+
+      {skills ? (
         <div className={styles.skillsContainer}>{renderSkills()}</div>
-      </div>
-    </React.Fragment>
+      ) : (
+        'N/A'
+      )}
+    </div>
   );
 };
 

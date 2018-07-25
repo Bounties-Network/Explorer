@@ -13,39 +13,32 @@ const About = props => {
       </Text>
 
       <div className={styles.bulletPointContainer}>
-        {organization ? (
-          <div className={styles.bulletPoint}>
-            <FontAwesomeIcon
-              icon={['far', 'briefcase']}
-              className={styles.icon}
-            />
-            <div className={styles.bulletPointText}>
-              <Text typeScale="h5" color="defaultGrey">
-                Oranization
-              </Text>
-              <Text typeScale="h4" color="black">
-                {organization}
-              </Text>
-            </div>
+        <div className={styles.bulletPoint}>
+          <FontAwesomeIcon
+            icon={['far', 'briefcase']}
+            className={styles.icon}
+          />
+          <div className={styles.bulletPointText}>
+            <Text typeScale="h5" color="defaultGrey">
+              Oranization
+            </Text>
+            <Text typeScale="h4" color="black">
+              {organization ? organization : 'N/A'}
+            </Text>
           </div>
-        ) : null}
+        </div>
 
-        {languages && languages.length > 0 ? (
-          <div className={styles.bulletPoint}>
-            <FontAwesomeIcon
-              icon={['far', 'comments']}
-              className={styles.icon}
-            />
-            <div className={styles.bulletPointText}>
-              <Text typeScale="h5" color="defaultGrey">
-                Languages spoken
-              </Text>
-              <Text typeScale="h4" color="black">
-                {languages.join(', ')}
-              </Text>
-            </div>
+        <div className={styles.bulletPoint}>
+          <FontAwesomeIcon icon={['far', 'comments']} className={styles.icon} />
+          <div className={styles.bulletPointText}>
+            <Text typeScale="h5" color="defaultGrey">
+              Languages spoken
+            </Text>
+            <Text typeScale="h4" color="black">
+              {languages ? languages.join(', ') : 'N/A'}
+            </Text>
           </div>
-        ) : null}
+        </div>
       </div>
     </div>
   );

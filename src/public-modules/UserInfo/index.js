@@ -2,7 +2,19 @@ const initialState = {
   loading: true,
   loaded: false,
   error: false,
-  user: {}
+  loadedUser: {
+    user: {},
+    stats: {
+      issuer_ratings_given: null,
+      issuer_ratings_received: null,
+      fulfiller_ratings_given: null,
+      fulfiller_ratings_received: null,
+      issuer_fulfillment_acceptance: null,
+      fulfiller_fulfillment_acceptance: null,
+      total_bounties: 0,
+      total_fulfillments: 0
+    }
+  }
 };
 
 const LOAD_USERINFO = 'userInfo/LOAD_USERINFO';
@@ -43,7 +55,7 @@ function UserInfoReducer(state = initialState, action) {
         loading: false,
         loaded: true,
         error: false,
-        user
+        loadedUser: user
       };
     }
     case LOAD_USERINFO_FAIL: {

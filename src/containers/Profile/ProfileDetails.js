@@ -2,16 +2,6 @@ import React from 'react';
 import styles from './ProfileDetails.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import {
-  FullAddressBar,
-  Avatar,
-  Text,
-  Sort,
-  Loader,
-  ZeroState,
-  Button
-} from 'components';
 import {
   About,
   Elsewhere,
@@ -20,14 +10,31 @@ import {
   ProfileTabs,
   Skills
 } from './components';
-import { LoadComponent } from 'hocs';
 
 import { map } from 'lodash';
 
-import { actions } from 'public-modules/Bounties';
+import {
+  userInfoSelector,
+  loadedUserSelector,
+  loadedUserStatsSelector
+} from 'public-modules/UserInfo/selectors';
+import { profileUISelector } from './selectors';
+import { actions as userInfoActions } from 'public-modules/UserInfo';
+import { actions } from './reducer';
 
 const ProfileDetailsComponent = props => {
-  const { user } = props;
+  const {
+    user,
+    userStats,
+    profileUI,
+    switchValue,
+    toggleNetworkSwitch
+  } = props;
+
+  if (!user) {
+    return <div />;
+  }
+
   return (
     <div className="col-xs-12 fullHeight">
       <div className="row">
@@ -40,35 +47,34 @@ const ProfileDetailsComponent = props => {
           />
         </div>
       </div>
-
       <div className={`row ${styles.marginBottom}`}>
         <div className={`col-xs-12 row ${styles.centerContent}`}>
           <div className="col-xs-2">
-            <About organization={'ConsenSys'} languages={['English, German']} />
-          </div>
-          <div className="col-xs-2">
-            <Skills
-              skills={[
-                'Javascript',
-                'React',
-                'C++',
-                'CSS',
-                'Python',
-                'Ruby',
-                'Sketch',
-                'RabbitMQ'
-              ]}
+            <About
+              organization={user.organization}
+              languages={user.languages}
             />
           </div>
+          <div className="col-xs-2">
+            <Skills skills={user.skills} />
+          </div>
           <div className="col-xs-4">
-            <NetworkStats />
+            <NetworkStats
+              stats={userStats}
+              switchValue={switchValue}
+              toggleNetworkSwitch={toggleNetworkSwitch}
+            />
           </div>
           <div className="col-xs-2">
-            <Elsewhere />
+            <Elsewhere
+              website={user.website}
+              twitter={user.twitter}
+              github={user.github}
+              linkedin={user.linkedin}
+            />
           </div>
         </div>
       </div>
-
       <div className="row">
         <div className="col-xs-12">
           <ProfileTabs />
@@ -79,13 +85,25 @@ const ProfileDetailsComponent = props => {
 };
 
 const mapStateToProps = state => {
-  return {};
+  const userInfo = userInfoSelector(state);
+  const loadedUser = loadedUserSelector(state);
+  const profileUI = profileUISelector(state);
+  const userStats = loadedUserStatsSelector(state);
+
+  return {
+    userInfo,
+    user: loadedUser,
+    userStats,
+    switchValue: profileUI.switchValue
+  };
 };
 
 const ProfileDetails = compose(
   connect(
     mapStateToProps,
-    {}
+    {
+      toggleNetworkSwitch: actions.toggleNetworkSwitch
+    }
   )
 )(ProfileDetailsComponent);
 

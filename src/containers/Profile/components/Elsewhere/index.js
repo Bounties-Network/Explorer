@@ -3,53 +3,39 @@ import baseStyles from '../BaseStyles.module.scss';
 import styles from './Elsewhere.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Avatar, FullAddressBar, Table, Text } from 'components';
+import { map } from 'lodash';
 
 const Elsewhere = props => {
-  const { address, img, name } = props;
+  const dataKeys = ['website', 'twitter', 'github', 'linkedin'];
 
-  return (
-    <React.Fragment>
-      <div className={styles.elsewhere}>
-        <Text typeScale="h3" color="black">
-          Elsewhere
-        </Text>
-
-        <div className={styles.bulletPointContainer}>
-          <div className={styles.bulletPoint}>
+  const renderSocialMedia = () => {
+    return map(key => {
+      return (
+        <div className="row">
+          <div className="col-xs-1">
             <FontAwesomeIcon
-              icon={['far', 'briefcase']}
+              icon={key === 'website' ? ['far', 'globe'] : ['fab', key]}
               className={styles.icon}
             />
-
-            <Text typeScale="h5" color="defaultGrey">
-              mattgarnett.com
-            </Text>
           </div>
-
-          <div className={styles.bulletPoint}>
-            <FontAwesomeIcon
-              icon={['far', 'comments']}
-              className={styles.icon}
-            />
-
+          <div className="col-xs-10">
             <Text typeScale="h5" color="defaultGrey">
-              @matt_garnett
-            </Text>
-          </div>
-
-          <div className={styles.bulletPoint}>
-            <FontAwesomeIcon
-              icon={['far', 'comments']}
-              className={styles.icon}
-            />
-
-            <Text typeScale="h5" color="defaultGrey">
-              @matt_garnett
+              {props[key] || 'N/A'}
             </Text>
           </div>
         </div>
-      </div>
-    </React.Fragment>
+      );
+    }, dataKeys);
+  };
+
+  return (
+    <div className={styles.elsewhere}>
+      <Text typeScale="h3" color="black">
+        Elsewhere
+      </Text>
+
+      <div className={styles.bulletPointContainer}>{renderSocialMedia()}</div>
+    </div>
   );
 };
 

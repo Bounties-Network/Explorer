@@ -3,78 +3,76 @@ import baseStyles from '../BaseStyles.module.scss';
 import styles from './NetworkStats.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Circle, Pill, Switch, Text } from 'components';
-import { map } from 'lodash';
+import { map as fpMap } from 'lodash';
+import { descriptionText, displayFormat } from './constants';
 
-// TODO: handle too many skills to display
+const map = fpMap.convert({ cap: false });
+
+function formatInput(value, format) {
+  if (format == 'fraction') {
+    return `${Number(Math.round(value * 5)).toFixed(0)}/5`;
+  } else {
+    return `${Number(value * 100).toFixed(0)}%`;
+  }
+}
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 const NetworkStats = props => {
-  const { skills } = props;
+  const { stats, switchValue, toggleNetworkSwitch } = props;
+  const { issuer, fulfiller } = stats;
+
+  const renderCircle = (input, color, text) => {
+    return (
+      <div className={styles.networkStatCircle}>
+        <Circle
+          type="text"
+          size="medium"
+          input={input}
+          color={color}
+          textColor="white"
+        />
+        <Text typeScale="Small" alignment="align-center" color="defaultGrey">
+          {text}
+        </Text>
+      </div>
+    );
+  };
+
+  const renderCircles = () => {
+    return map((value, key) => {
+      const text = descriptionText[switchValue][key];
+
+      if (value == null) {
+        return renderCircle('N/A', 'lightGrey', text);
+      }
+
+      const color = value >= 0.8 ? 'green' : value >= 0.5 ? 'orange' : 'red';
+      const input = formatInput(value, displayFormat[key]);
+
+      return renderCircle(input, color, text);
+    }, stats[switchValue]);
+  };
 
   return (
-    <React.Fragment>
-      <div className={styles.network}>
-        <div className={styles.networkStatsHeader}>
-          <Text typeScale="h3" color="black">
-            Network Stats
-          </Text>
+    <div className={styles.network}>
+      <div className={styles.networkStatsHeader}>
+        <Text typeScale="h3" color="black">
+          Network Stats
+        </Text>
 
-          <Switch onValue={'Fulfiller'} offValue={'Issuer'} />
-        </div>
-
-        <div className={styles.networkStatsContainer}>
-          <div className={styles.networkStatCircle}>
-            <Circle
-              type="text"
-              size="medium"
-              input="85%"
-              color="green"
-              textColor="white"
-            />
-            <Text
-              typeScale="Small"
-              alignment="align-center"
-              color="defaultGrey"
-            >
-              Submission acceptance rate
-            </Text>
-          </div>
-
-          <div className={styles.networkStatCircle}>
-            <Circle
-              type="text"
-              size="medium"
-              input="5/5"
-              color="green"
-              textColor="white"
-            />
-            <Text
-              typeScale="Small"
-              alignment="align-center"
-              color="defaultGrey"
-            >
-              Submission acceptance rate
-            </Text>
-          </div>
-
-          <div className={styles.networkStatCircle}>
-            <Circle
-              type="text"
-              size="medium"
-              input="5/5"
-              color="orange"
-              textColor="white"
-            />
-            <Text
-              typeScale="Small"
-              alignment="align-center"
-              color="defaultGrey"
-            >
-              Submission acceptance rate
-            </Text>
-          </div>
-        </div>
+        <Switch
+          onValue={'Fulfiller'}
+          offValue={'Issuer'}
+          value={capitalize(switchValue)}
+          onChange={toggleNetworkSwitch}
+        />
       </div>
-    </React.Fragment>
+
+      <div className={styles.networkStatsContainer}>{renderCircles()}</div>
+    </div>
   );
 };
 

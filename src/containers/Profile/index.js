@@ -5,52 +5,50 @@ import { LoadComponent } from 'hocs';
 import ProfileDetails from './ProfileDetails';
 import ProfileBounties from './ProfileBounties';
 import styles from './Profile.module.scss';
-import { userSelector } from 'public-modules/UserInfo/selectors';
+import {
+  userInfoSelector,
+  loadedUserSelector,
+  loadedUserStatsSelector
+} from 'public-modules/UserInfo/selectors';
+import { rootProfileUISelector } from './selectors';
+import { actions as userInfoActions } from 'public-modules/UserInfo';
+import { actions } from './reducer';
 
-import { actions } from 'public-modules/UserInfo';
+class ProfileComponent extends React.Component {
+  componentWillMount() {
+    this.props.loadUser(this.props.match.params.address || '');
+  }
 
-const ProfileComponent = props => {
-  // hack for now //
-  let { user } = props.user;
-  user = user.user || { name: '', address: '' };
-  /////////////////
-
-  return (
-    <div className="fullHeight">
-      <div className={`${styles.profileDetails}`}>
-        <ProfileDetails user={user} />
-      </div>
-      <div className={styles.profileBounties}>
-        <div className="row fullHeight">
-          <div className={`col-xs-3 fullHeight ${styles.filterNav}`}>
-            <div />
-          </div>
-          <div className={`col-xs-9 fullHeight ${styles.explorerBody}`}>
-            <ProfileBounties />
+  render() {
+    return (
+      <div className="fullHeight">
+        <div className={`${styles.profileDetails}`}>
+          <ProfileDetails />
+        </div>
+        <div className={styles.profileBounties}>
+          <div className="row fullHeight">
+            <div className={`col-xs-3 fullHeight ${styles.filterNav}`}>
+              <div />
+            </div>
+            <div className={`col-xs-9 fullHeight ${styles.explorerBody}`}>
+              <ProfileBounties />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = state => {
-  const user = userSelector(state);
-  console.log('ms2p', user);
-  return {
-    address: '0x60adc0f89a41af237ce73554ede170d733ec14e0',
-    user: user
-  };
+  return {};
 };
 
 const Profile = compose(
   connect(
     mapStateToProps,
-    {
-      load: actions.loadUserInfo
-    }
-  ),
-  LoadComponent('address')
+    { loadUser: userInfoActions.loadUserInfo }
+  )
 )(ProfileComponent);
 
 export default Profile;
