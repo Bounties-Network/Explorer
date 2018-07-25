@@ -20,7 +20,7 @@ class RadioGroup extends React.Component {
     const { value, valueKey, labelKey, options, disabled } = this.props;
     const { value: stateValue } = this.state;
 
-    const selectedValue = value || stateValue;
+    const selectedValue = value !== null ? value : stateValue;
 
     return map(
       (option, idx) => (
@@ -77,7 +77,8 @@ RadioGroup.propTypes = {
   disabled: PropTypes.bool,
   optional: PropTypes.bool,
   labelKey: PropTypes.string,
-  valueKey: PropTypes.string
+  valueKey: PropTypes.string,
+  value: PropTypes.string
 };
 
 RadioGroup.defaultProps = {

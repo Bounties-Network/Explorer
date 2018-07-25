@@ -49,6 +49,7 @@ class SearchSelect extends React.Component {
     );
     this.setState({ value: updatedValue });
     this.props.onClose(closedValue);
+    this.props.onChange(updatedValue);
   };
 
   renderPills = () => {
@@ -84,7 +85,9 @@ class SearchSelect extends React.Component {
       optional,
       placeholder,
       options,
-      creatable
+      creatable,
+      onFocus,
+      onBlur
     } = this.props;
 
     let labelText = label;
@@ -115,6 +118,8 @@ class SearchSelect extends React.Component {
             options={this.filterOptions()}
             onChange={this.onDropdownSelect}
             onCreateOption={this.onDropdownSelect}
+            onFocus={onFocus}
+            onBlur={() => onBlur(this.state.value)}
             placeholder={placeholder}
           />
         ) : (
@@ -155,7 +160,9 @@ SearchSelect.propTypes = {
   optional: PropTypes.bool,
   placeholder: PropTypes.string,
   creatable: PropTypes.bool,
-  value: PropTypes.array
+  value: PropTypes.array,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func
 };
 
 SearchSelect.defaultProps = {
@@ -163,7 +170,9 @@ SearchSelect.defaultProps = {
   valueKey: 'value',
   options: [],
   onClose: () => {},
-  onChange: () => {}
+  onChange: () => {},
+  onFocus: () => {},
+  onBlur: () => {}
 };
 
 export default SearchSelect;
