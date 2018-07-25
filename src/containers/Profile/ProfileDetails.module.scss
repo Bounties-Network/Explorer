@@ -1,9 +1,13 @@
 @import "~styles/variables.scss";
 
-.detailsContainer {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
+.details {
+  > div:not(:last-child) {
+    border-right: $base-border;
+  }
+
+  > div:not(:first-child) {
+    margin-left: $xl-spacing
+  }
 }
 
 .profileAvatar {

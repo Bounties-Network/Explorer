@@ -48,7 +48,9 @@ const ProfileDetailsComponent = props => {
         </div>
       </div>
       <div className={`row ${styles.marginBottom}`}>
-        <div className={`col-xs-12 row ${styles.centerContent}`}>
+        <div
+          className={`col-xs-12 row ${styles.details} ${styles.centerContent}`}
+        >
           <div className="col-xs-2">
             <About
               organization={user.organization}

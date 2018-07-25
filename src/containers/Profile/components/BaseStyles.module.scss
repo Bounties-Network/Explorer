@@ -2,7 +2,7 @@
 
 @mixin statContainer() {
   height: 100%;
-  border: $base-border;
+
   > p {
     margin-bottom: $xl-spacing;
   }
