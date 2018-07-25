@@ -40,7 +40,7 @@ class Tab extends React.Component {
               </Text>
               <span className={countStyles}>
                 <Text typeScale="Small" color={tabTextColor}>
-                  12
+                  {tabCount}
                 </Text>
               </span>
             </div>
@@ -72,12 +72,14 @@ class Tabs extends React.Component {
   };
 
   render() {
-    const { defaultActiveKey, className } = this.props;
-    const { activeKey } = this.state;
+    const { activeKey, className, defaultActiveKey } = this.props;
+    const { activeKey: stateActiveKey } = this.state;
+
+    const currentKey = activeKey || stateActiveKey || defaultActiveKey;
 
     return (
       <ModalContext.Provider
-        value={{ activeKey: activeKey, onSelect: this.onSelect }}
+        value={{ activeKey: currentKey, onSelect: this.onSelect }}
       >
         <div className={`${styles.tabs} ${className}`}>
           {this.props.children}

@@ -16,7 +16,7 @@ import { actions } from './reducer';
 
 class ProfileComponent extends React.Component {
   componentWillMount() {
-    this.props.loadUser(this.props.match.params.address || '');
+    this.props.setProfileAddress(this.props.match.params.address || '');
   }
 
   render() {
@@ -47,7 +47,7 @@ const mapStateToProps = state => {
 const Profile = compose(
   connect(
     mapStateToProps,
-    { loadUser: userInfoActions.loadUserInfo }
+    { setProfileAddress: actions.setProfileAddress }
   )
 )(ProfileComponent);
 

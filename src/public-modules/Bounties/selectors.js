@@ -72,9 +72,16 @@ export const bountiesQuerySelector = createSelector(
     if (categories.length) {
       query['categories__normalized_name__in'] = categories.join(',');
     }
+    if (rootBounty.issuerAddress) {
+      query['issuer'] = rootBounty.issuerAddress;
+    }
+    if (rootBounty.fulfillerAddress) {
+      query['fulfillments__fulfiller'] = rootBounty.fulfillerAddress;
+    }
     query['search'] = rootBounty.search;
     query['ordering'] = orderPrefix + rootBounty.sort;
     query['limit'] = PAGE_SIZE;
+
     return query;
   }
 );

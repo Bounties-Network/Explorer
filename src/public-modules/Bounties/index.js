@@ -14,6 +14,8 @@ const default_filters = {
     intermediate: false,
     advanced: false
   },
+  issuerAddress: '',
+  fulfillerAddress: '',
   categoryFilters: new Set([])
 };
 
@@ -76,6 +78,8 @@ const TOGGLE_STAGE_FILTER = 'bounties/TOGGLE_STAGE_FILTER';
 const TOGGLE_DIFFICULTY_FILTER = 'bounties/TOGGLE_DIFFICULTY_FILTER';
 const TOGGLE_CATEGORY_FILTER = 'bounties/TOGGLE_CATEGORY_FILTER';
 const ADD_CATEGORY_FILTER = 'bounties/SET_CATEGORY_FILTER';
+const ADD_ISSUER_FILTER = 'bounties/ADD_ISSUER_FILTER';
+const ADD_FULFILLER_FILTER = 'bounties/ADD_FULFILLER_FILTER';
 const REMOVE_CATEGORY_FILTER = 'bounties/REMOVE_CATEGORY_FILTER';
 
 function setSort(sort, sortOrder) {
@@ -104,6 +108,14 @@ function toggleCategoryFilter(category) {
 
 function addCategoryFilter(category) {
   return { type: ADD_CATEGORY_FILTER, category };
+}
+
+function addIssuerFilter(address) {
+  return { type: ADD_ISSUER_FILTER, address };
+}
+
+function addFulfillerFilter(address) {
+  return { type: ADD_FULFILLER_FILTER, address };
 }
 
 function removeCategoryFilter(category) {
@@ -135,6 +147,24 @@ function BountiesReducer(state = initialState, action) {
       return {
         ...state,
         categoryFilters: updated_filters
+      };
+    }
+    case ADD_ISSUER_FILTER: {
+      const { address } = action;
+
+      return {
+        ...state,
+        issuerAddress: address,
+        fulfillerAddress: ''
+      };
+    }
+    case ADD_FULFILLER_FILTER: {
+      const { address } = action;
+
+      return {
+        ...state,
+        issuerAddress: '',
+        fulfillerAddress: address
       };
     }
     case REMOVE_CATEGORY_FILTER: {
@@ -253,6 +283,8 @@ export const actions = {
   toggleStageFilter,
   toggleDifficultyFilter,
   addCategoryFilter,
+  addIssuerFilter,
+  addFulfillerFilter,
   removeCategoryFilter,
   toggleCategoryFilter,
   loadBounties,
@@ -270,6 +302,8 @@ export const actionTypes = {
   TOGGLE_STAGE_FILTER,
   TOGGLE_DIFFICULTY_FILTER,
   ADD_CATEGORY_FILTER,
+  ADD_ISSUER_FILTER,
+  ADD_FULFILLER_FILTER,
   REMOVE_CATEGORY_FILTER,
   TOGGLE_CATEGORY_FILTER,
   LOAD_BOUNTIES,

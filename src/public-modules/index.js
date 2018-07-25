@@ -33,7 +33,10 @@ import bountySagas from 'public-modules/Bounty/sagas';
 import fileUploadSagas from 'public-modules/FileUpload/sagas';
 import clientSagas from 'public-modules/Client/sagas';
 
+import profileSagas from 'containers/Profile/sagas';
+
 export const sagaWatchers = [
+  ...profileSagas,
   ...leaderboardSagas,
   ...bountiesSagas,
   ...userInfoSagas,

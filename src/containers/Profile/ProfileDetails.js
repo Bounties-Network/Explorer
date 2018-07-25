@@ -28,7 +28,9 @@ const ProfileDetailsComponent = props => {
     userStats,
     profileUI,
     switchValue,
-    toggleNetworkSwitch
+    toggleNetworkSwitch,
+    currentTab,
+    setActiveTab
   } = props;
 
   if (!user) {
@@ -79,7 +81,7 @@ const ProfileDetailsComponent = props => {
       </div>
       <div className="row">
         <div className="col-xs-12">
-          <ProfileTabs />
+          <ProfileTabs currentTab={currentTab} setActiveTab={setActiveTab} />
         </div>
       </div>
     </div>
@@ -96,7 +98,8 @@ const mapStateToProps = state => {
     userInfo,
     user: loadedUser,
     userStats,
-    switchValue: profileUI.switchValue
+    switchValue: profileUI.switchValue,
+    currentTab: profileUI.currentTab
   };
 };
 
@@ -104,7 +107,8 @@ const ProfileDetails = compose(
   connect(
     mapStateToProps,
     {
-      toggleNetworkSwitch: actions.toggleNetworkSwitch
+      toggleNetworkSwitch: actions.toggleNetworkSwitch,
+      setActiveTab: actions.setActiveTab
     }
   )
 )(ProfileDetailsComponent);
