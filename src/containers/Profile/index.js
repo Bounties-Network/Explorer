@@ -39,8 +39,7 @@ class ProfileComponent extends React.Component {
                       style={{
                         transform: style.transform,
                         position: style.position,
-                        top: 50,
-                        'max-width': '14.3rem'
+                        top: 50
                       }}
                     >
                       <FilterNav />

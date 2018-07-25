@@ -24,6 +24,8 @@ const NetworkStats = props => {
   const { stats, switchValue, toggleNetworkSwitch } = props;
   const { issuer, fulfiller } = stats;
 
+  console.log('vaalaue', issuer);
+
   const renderCircle = (input, color, text) => {
     return (
       <div className={styles.networkStatCircle}>

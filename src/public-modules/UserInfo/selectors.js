@@ -31,28 +31,14 @@ export const loadedUserStatsSelector = createSelector(
       total_fulfillments
     } = userInfo.stats;
 
-    const calcAcceptance = (accepted, total) => {
-      const result = accepted / total;
-      return isNaN(result) ? null : result;
-    };
-
-    const issuer_acceptance_rate = calcAcceptance(
-      issuer_fulfillment_acceptance,
-      total_bounties
-    );
-    const fulfiller_acceptance_rate = calcAcceptance(
-      fulfiller_fulfillment_acceptance,
-      total_fulfillments
-    );
-
     return {
       issuer: {
-        acceptance: issuer_acceptance_rate,
+        acceptance: issuer_fulfillment_acceptance,
         rating: issuer_ratings_received,
         ratingGiven: issuer_ratings_given
       },
       fulfiller: {
-        acceptance: fulfiller_acceptance_rate,
+        acceptance: fulfiller_fulfillment_acceptance,
         rating: fulfiller_ratings_received,
         ratingGiven: fulfiller_ratings_given
       }

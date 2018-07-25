@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './ProfileDetails.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { Loader } from 'components';
 import {
   About,
   Elsewhere,
@@ -24,6 +25,7 @@ import { actions } from './reducer';
 
 const ProfileDetailsComponent = props => {
   const {
+    loading,
     user,
     userStats,
     profileUI,
@@ -33,12 +35,10 @@ const ProfileDetailsComponent = props => {
     setActiveTab
   } = props;
 
-  if (!user) {
-    return <div />;
-  }
+  let bodyClass;
 
-  return (
-    <div className="col-xs-12 fullHeight">
+  let body = (
+    <React.Fragment>
       <div className="row">
         <div className="col-xs-12">
           <ProfileAvatar
@@ -84,8 +84,15 @@ const ProfileDetailsComponent = props => {
           <ProfileTabs currentTab={currentTab} setActiveTab={setActiveTab} />
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
+
+  if (loading) {
+    bodyClass = styles.bodyLoading;
+    body = <Loader color="blue" size="medium" />;
+  }
+
+  return <div className={`col-xs-12 fullHeight ${bodyClass}`}>{body}</div>;
 };
 
 const mapStateToProps = state => {
@@ -95,7 +102,7 @@ const mapStateToProps = state => {
   const userStats = loadedUserStatsSelector(state);
 
   return {
-    userInfo,
+    loading: userInfo.loading,
     user: loadedUser,
     userStats,
     switchValue: profileUI.switchValue,
