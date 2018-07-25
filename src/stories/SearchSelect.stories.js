@@ -54,5 +54,16 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       options={options}
       placeholder="e.g. HTML"
     />
+    <div style={{ marginTop: '10px' }} />
+    <Text type="BodySmall">Creatable</Text>
+    <div style={{ marginTop: '10px' }} />
+    <SearchSelect
+      label="Select your Category"
+      creatable
+      labelKey="name"
+      onChange={action('clicked')}
+      options={options}
+      placeholder="e.g. HTML"
+    />
   </div>
 ));
