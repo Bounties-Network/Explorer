@@ -11,8 +11,10 @@ import faCalendarAlt from '@fortawesome/fontawesome-pro-light/faCalendarAlt';
 
 import '../../styles/DatePicker.scss';
 
-const today = moment();
-const tomorrow = moment(today).add(1, 'days');
+const today = moment().utc();
+const tomorrow = moment()
+  .add(1, 'days')
+  .utc();
 
 class DatePicker extends React.Component {
   state = {
@@ -21,14 +23,24 @@ class DatePicker extends React.Component {
 
   onDateChange = e => {
     if (moment(e).isValid()) {
-      this.setState({ date: e }, () => {
-        this.props.onChange(e);
+      this.setState({ date: e.utc() }, () => {
+        this.props.onChange(e.utc());
       });
     }
   };
 
   render() {
-    const { className, minDate, showTimeSelect, label, disabled } = this.props;
+    const {
+      className,
+      minDate,
+      showTimeSelect,
+      label,
+      disabled,
+      value
+    } = this.props;
+    const { date: stateDate } = this.state;
+
+    const dateValue = value || stateDate;
 
     let format = 'MM/DD/YYYY';
     if (showTimeSelect) {
@@ -48,7 +60,7 @@ class DatePicker extends React.Component {
           selected={this.state.date}
           minDate={minDate}
           showTimeSelect={showTimeSelect}
-          value={this.state.date.format(format)}
+          value={dateValue.format(format)}
           timeFormat="HH:mm"
           timeIntervals={15}
           timeCaption="time"
@@ -63,12 +75,13 @@ DatePicker.propTypes = {
   minDate: PropTypes.object,
   showTimeSelect: PropTypes.bool,
   label: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  value: PropTypes.object
 };
 
 DatePicker.defaultProps = {
   onChange: () => {},
-  minDate: moment()
+  minDate: tomorrow
 };
 
 export default DatePicker;
