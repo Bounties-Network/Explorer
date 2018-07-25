@@ -76,14 +76,6 @@ export function* logout(action) {
   }
 }
 
-function* loadCurrentUser() {
-  yield put(getCurrentUserAction());
-}
-
-export function* watchSetInitialized() {
-  yield takeLatest(SET_INITIALIZED, loadCurrentUser);
-}
-
 export function* watchGetCurrentUser() {
   yield takeLatest(GET_CURRENT_USER, getCurrentUser);
 }
@@ -96,9 +88,4 @@ export function* watchLogout() {
   yield takeLatest(LOGOUT, logout);
 }
 
-export default [
-  watchLogin,
-  watchLogout,
-  watchGetCurrentUser,
-  watchSetInitialized
-];
+export default [watchLogin, watchLogout, watchGetCurrentUser];

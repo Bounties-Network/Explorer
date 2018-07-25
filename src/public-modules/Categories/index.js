@@ -26,6 +26,15 @@ function loadCategoriesFail(error) {
   return { type: LOAD_CATEGORIES_FAIL, error };
 }
 
+const ADD_TO_CATEGORIES = 'categories/ADD_TO_CATEGORIES';
+
+function addToCategories(category) {
+  return {
+    type: ADD_TO_CATEGORIES,
+    category: { name: category, normalized_name: category.toLowerCase().trim() }
+  };
+}
+
 function CategoriesReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_CATEGORIES: {
@@ -59,12 +68,21 @@ function CategoriesReducer(state = initialState, action) {
         error: true
       };
     }
+    case ADD_TO_CATEGORIES: {
+      const { category } = action;
+
+      return {
+        ...state,
+        categories: [...state.categories, category]
+      };
+    }
     default:
       return state;
   }
 }
 
 export const actions = {
+  addToCategories,
   loadCategories,
   loadCategoriesSuccess,
   loadCategoriesFail
@@ -73,7 +91,8 @@ export const actions = {
 export const actionTypes = {
   LOAD_CATEGORIES,
   LOAD_CATEGORIES_SUCCESS,
-  LOAD_CATEGORIES_FAIL
+  LOAD_CATEGORIES_FAIL,
+  ADD_TO_CATEGORIES
 };
 
 export default CategoriesReducer;

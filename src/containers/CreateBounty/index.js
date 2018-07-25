@@ -7,6 +7,8 @@ import { PageCard, FormSection } from 'explorer-components';
 import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
 import { formValueSelector } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
+import { actions as categoryActions } from 'public-modules/Categories';
+import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
 import { DEFAULT_MARKDOWN } from 'utils/constants';
@@ -36,7 +38,14 @@ import {
 const formSelector = formValueSelector('createBounty');
 
 const CreateBountyComponent = props => {
-  const { uploadFile, uploadLoading, uploaded, activateNow } = props;
+  const {
+    uploadFile,
+    uploadLoading,
+    uploaded,
+    activateNow,
+    addCategory,
+    categories
+  } = props;
 
   return (
     <form>
@@ -137,6 +146,10 @@ const CreateBountyComponent = props => {
                       label="Bounty category"
                       placeholder="Create or Select category..."
                       validate={[validators.required]}
+                      onCreateOption={addCategory}
+                      options={categories}
+                      labelKey="name"
+                      valueKey="normalized_name"
                       creatable
                     />
                   </div>
@@ -285,7 +298,8 @@ const mapStateToProps = state => {
   return {
     uploadLoading: uploadState.uploading || false,
     uploaded: uploadState.uploaded || false,
-    activateNow: formSelector(state, 'activateNow')
+    activateNow: formSelector(state, 'activateNow'),
+    categories: categoriesSelector(state)
   };
 };
 
@@ -302,7 +316,10 @@ const CreateBounty = compose(
   }),
   connect(
     mapStateToProps,
-    { uploadFile: uploadActions.uploadFile }
+    {
+      uploadFile: uploadActions.uploadFile,
+      addCategory: categoryActions.addToCategories
+    }
   )
 )(CreateBountyComponent);
 
