@@ -44,9 +44,18 @@ const Avatar = props => {
       return null;
     }
 
+    const buildProfileURL = address => {
+      return `/profile/${address}`;
+    };
+
     return (
       <div className={styles.addressText}>
-        <Text typeScale={addressTextScale} color={addressTextColor} link>
+        <Text
+          typeScale={addressTextScale}
+          color={addressTextColor}
+          src={buildProfileURL(address)}
+          link
+        >
           {shortenAddress(address)}
         </Text>
       </div>
