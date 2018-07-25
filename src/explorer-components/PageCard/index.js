@@ -14,6 +14,8 @@ const Title = props => {
   );
 };
 
+const Break = props => <div className={styles.break} />;
+
 class Header extends React.Component {
   render() {
     const { children, className } = this.props;
@@ -96,5 +98,6 @@ PageCard.propTypes = {
 PageCard.Content = Content;
 PageCard.Header = Header;
 PageCard.Title = Title;
+PageCard.Break = Break;
 
 export default PageCard;

@@ -5,8 +5,17 @@
 
 .cardContent {
   text-align: left;
+  margin-bottom: $xxl-spacing;
 }
 
 .markdownEditor {
   height: 15em;
+}
+
+.buttons {
+  text-align: center;
+}
+
+.submitError {
+  margin-top: $s-spacing;
 }
