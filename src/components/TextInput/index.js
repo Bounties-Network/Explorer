@@ -26,7 +26,8 @@ class TextInput extends React.Component {
       onBlur,
       onFocus,
       value,
-      placeholder
+      placeholder,
+      type
     } = this.props;
 
     const { text: textStateValue } = this.state;
@@ -59,7 +60,7 @@ class TextInput extends React.Component {
           placeholder={placeholder}
           disabled={disabled}
           className={inputClass}
-          type="text"
+          type={type}
           value={textValue}
           onChange={this.onTextChange}
           onBlur={onBlur}
@@ -91,13 +92,15 @@ TextInput.propTypes = {
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
-  value: PropTypes.string
+  value: PropTypes.string,
+  type: PropTypes.oneOf(['number', 'text'])
 };
 
 TextInput.defaultProps = {
   onChange: () => {},
   onBlur: () => {},
-  onFocus: () => {}
+  onFocus: () => {},
+  type: 'text'
 };
 
 export default TextInput;
