@@ -13,15 +13,7 @@ import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
 import moment from 'moment';
 import { DEFAULT_MARKDOWN } from 'utils/constants';
-import {
-  Text,
-  SearchSelect,
-  NumberInput,
-  DatePicker,
-  FileUpload,
-  RadioGroup,
-  TextInput
-} from 'components';
+import { FileUpload, Button, Text } from 'components';
 import {
   FormTextInput,
   FormMarkdownEditor,
@@ -46,11 +38,14 @@ const CreateBountyComponent = props => {
     uploaded,
     activateNow,
     addCategory,
-    categories
+    categories,
+    invalid,
+    handleSubmit,
+    submitFailed
   } = props;
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <PageCard>
         <PageCard.Header>
           <PageCard.Title>Create Bounty</PageCard.Title>
@@ -292,6 +287,15 @@ const CreateBountyComponent = props => {
               </FormSection.InputGroup>
             </FormSection.Section>
           </FormSection>
+          <PageCard.Break />
+          <div className={styles.buttons}>
+            <Button type="primary">Create bounty</Button>
+            {submitFailed ? (
+              <Text inputLabel color="red" className={styles.submitError}>
+                Fix errors before submitting.
+              </Text>
+            ) : null}
+          </div>
         </PageCard.Content>
       </PageCard>
     </form>
@@ -311,6 +315,16 @@ const mapStateToProps = state => {
 };
 
 const CreateBounty = compose(
+  connect(
+    mapStateToProps,
+    {
+      uploadFile: uploadActions.uploadFile,
+      addCategory: categoryActions.addToCategories,
+      onSubmit: values => {
+        console.log(values);
+      }
+    }
+  ),
   reduxForm({
     form: 'createBounty',
     initialValues: {
@@ -323,14 +337,7 @@ const CreateBounty = compose(
         .add(1, 'days')
         .utc()
     }
-  }),
-  connect(
-    mapStateToProps,
-    {
-      uploadFile: uploadActions.uploadFile,
-      addCategory: categoryActions.addToCategories
-    }
-  )
+  })
 )(CreateBountyComponent);
 
 export default CreateBounty;
