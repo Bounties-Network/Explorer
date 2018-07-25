@@ -10,7 +10,6 @@ import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
 import {
   Text,
-  MarkdownEditor,
   SearchSelect,
   NumberInput,
   DatePicker,
@@ -18,7 +17,7 @@ import {
   RadioGroup,
   TextInput
 } from 'components';
-import { FormTextInput } from 'form-components';
+import { FormTextInput, FormMarkdownEditor } from 'form-components';
 import {
   DIFFICULTY_OPTIONS,
   PAYOUT_OPTIONS,
@@ -53,12 +52,26 @@ const CreateBountyComponent = props => {
                   component={FormTextInput}
                   label="Title"
                   placeholder="Enter title..."
-                  validate={[validators.required, validators.minLength(2)]}
+                  validate={[
+                    validators.required,
+                    validators.minLength(2),
+                    validators.maxLength(256)
+                  ]}
                 />
               </FormSection.InputGroup>
               <FormSection.InputGroup>
                 <div className={styles.markdownEditor}>
-                  <MarkdownEditor label="Description" />
+                  <Field
+                    name="Description"
+                    type="input"
+                    component={FormMarkdownEditor}
+                    label="Description"
+                    validate={[
+                      validators.required,
+                      validators.minLength(2),
+                      validators.maxLength(120000)
+                    ]}
+                  />
                 </div>
               </FormSection.InputGroup>
             </FormSection.Section>

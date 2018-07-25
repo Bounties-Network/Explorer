@@ -28,8 +28,13 @@ class Textbox extends React.Component {
       placeholder,
       textAreaClass,
       overlay,
-      value
+      value,
+      onFocus,
+      onBlur
     } = this.props;
+
+    const { text: textStateValue } = this.state;
+    const textValue = typeof value === 'string' ? value : textStateValue;
 
     let labelText = label;
     if (optional) {
@@ -63,7 +68,9 @@ class Textbox extends React.Component {
             className={`${inputClass} ${textAreaClass}`}
             placeholder={placeholder}
             disabled={disabled}
-            value={this.state.text || value}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            value={textValue}
             onChange={this.onTextareaChange}
           />
           {overlay ? <div className={styles.overlay}>{overlay}</div> : null}
@@ -75,7 +82,7 @@ class Textbox extends React.Component {
               typeScale="Small"
               color={'red'}
             >
-              {error}
+              * {error}
             </Text>
           </div>
         ) : null}
@@ -92,11 +99,16 @@ Textbox.propTypes = {
   disabled: PropTypes.bool,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+  value: PropTypes.string
 };
 
 Textbox.defaultProps = {
   onChange: () => {},
+  onBlur: () => {},
+  onFocus: () => {},
   resizable: true
 };
 
