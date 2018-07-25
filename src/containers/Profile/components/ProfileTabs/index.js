@@ -8,7 +8,7 @@ import { map } from 'lodash';
 // TODO: handle too many skills to display
 
 const ProfileTabs = props => {
-  const { currentTab, setActiveTab } = props;
+  const { currentTab, setActiveTab, issuedCount, fulfilledCount } = props;
 
   return (
     <Tabs
@@ -17,10 +17,14 @@ const ProfileTabs = props => {
       defaultActiveKey={currentTab}
       onSelect={setActiveTab}
     >
-      <Tabs.Tab tabColor="lightGrey" tabCount={10} eventKey={'issued'}>
+      <Tabs.Tab tabColor="lightGrey" tabCount={issuedCount} eventKey={'issued'}>
         Bounties created
       </Tabs.Tab>
-      <Tabs.Tab tabColor="lightGrey" tabCount={5} eventKey={'fulfilled'}>
+      <Tabs.Tab
+        tabColor="lightGrey"
+        tabCount={fulfilledCount}
+        eventKey={'fulfilled'}
+      >
         Submissions
       </Tabs.Tab>
     </Tabs>
