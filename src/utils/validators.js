@@ -2,7 +2,7 @@ const required = value =>
   value || typeof value === 'number' ? undefined : 'Required';
 const maxLength = max => value =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined;
-export const minLength = min => value =>
+const minLength = min => value =>
   value && value.length < min ? `Must be ${min} characters or more` : undefined;
 const number = value =>
   value && isNaN(Number(value)) ? 'Must be a number' : undefined;
