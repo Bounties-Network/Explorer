@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { LoadComponent } from 'hocs';
 import ProfileDetails from './ProfileDetails';
 import ProfileBounties from './ProfileBounties';
+import FilterNav from './FilterNav';
 import styles from './Profile.module.scss';
 import {
   userInfoSelector,
@@ -13,6 +14,8 @@ import {
 import { rootProfileUISelector } from './selectors';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { actions } from './reducer';
+
+import { StickyContainer, Sticky } from 'react-sticky';
 
 class ProfileComponent extends React.Component {
   componentWillMount() {
@@ -25,16 +28,32 @@ class ProfileComponent extends React.Component {
         <div className={`${styles.profileDetails}`}>
           <ProfileDetails />
         </div>
-        <div className={styles.profileBounties}>
-          <div className="row fullHeight">
-            <div className={`col-xs-3 fullHeight ${styles.filterNav}`}>
-              <div />
-            </div>
-            <div className={`col-xs-9 fullHeight ${styles.explorerBody}`}>
-              <ProfileBounties />
+        <StickyContainer>
+          <div className={styles.profileBounties}>
+            <div className="row fullHeight">
+              <div className={`col-xs-3 fullHeight`}>
+                <Sticky topOffset={-50}>
+                  {({ style }) => (
+                    <div
+                      className={styles.filterNav}
+                      style={{
+                        transform: style.transform,
+                        position: style.position,
+                        top: 50,
+                        'max-width': '14.3rem'
+                      }}
+                    >
+                      <FilterNav />
+                    </div>
+                  )}
+                </Sticky>
+              </div>
+              <div className={`col-xs-9 fullHeight ${styles.explorerBody}`}>
+                <ProfileBounties />
+              </div>
             </div>
           </div>
-        </div>
+        </StickyContainer>
       </div>
     );
   }
