@@ -17,4 +17,15 @@
   margin: $xxl-spacing;
   background: $brand-white;
   max-width: 14.3rem;
+  min-width: 14.3rem;
+}
+
+.zeroStateCentered {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.centeredItem {
+  margin: 0 auto;
 }

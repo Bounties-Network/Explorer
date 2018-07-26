@@ -6,6 +6,7 @@ import ProfileDetails from './ProfileDetails';
 import ProfileBounties from './ProfileBounties';
 import FilterNav from './FilterNav';
 import styles from './Profile.module.scss';
+import { ZeroState } from 'components';
 import {
   userInfoSelector,
   loadedUserSelector,
@@ -23,7 +24,9 @@ class ProfileComponent extends React.Component {
   }
 
   render() {
-    return (
+    const { error, loaded, loading, user } = this.props;
+
+    let body = (
       <div className="fullHeight">
         <div className={`${styles.profileDetails}`}>
           <ProfileDetails />
@@ -55,11 +58,46 @@ class ProfileComponent extends React.Component {
         </StickyContainer>
       </div>
     );
+
+    if (loaded && !user) {
+      body = (
+        <div className={`fullHeight ${styles.zeroStateCentered}`}>
+          <ZeroState
+            className={styles.centeredItem}
+            iconColor="black"
+            title="No User Found"
+            text="Check the address is correct and try again"
+          />
+        </div>
+      );
+    }
+
+    if (error) {
+      body = (
+        <div className={`fullHeight ${styles.zeroStateCentered}`}>
+          <ZeroState
+            className={styles.centeredItem}
+            iconColor="red"
+            title="Error"
+            text="Please try again"
+          />
+        </div>
+      );
+    }
+
+    return body;
   }
 }
 
 const mapStateToProps = state => {
-  return {};
+  const userInfo = userInfoSelector(state);
+
+  return {
+    user: userInfo.loadedUser.user,
+    loading: userInfo.loading,
+    loaded: userInfo.loaded,
+    error: userInfo.error
+  };
 };
 
 const Profile = compose(

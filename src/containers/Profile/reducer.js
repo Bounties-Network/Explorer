@@ -1,6 +1,6 @@
 const initialState = {
   address: '0x0000000000000000000000000000000000000000',
-  switchValue: 'fulfiller',
+  switchValue: 'issuer',
   currentTab: 'issued'
 };
 
