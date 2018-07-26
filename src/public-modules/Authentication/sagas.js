@@ -21,7 +21,7 @@ const {
 } = actions;
 
 export function* getCurrentUser(action) {
-  const endpoint = 'auth/user/';
+  const endpoint = 'user/';
   try {
     const currentUser = yield call(request, endpoint, 'GET');
     yield put(getCurrentUserSuccess(currentUser));

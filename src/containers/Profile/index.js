@@ -20,7 +20,9 @@ import { StickyContainer, Sticky } from 'react-sticky';
 
 class ProfileComponent extends React.Component {
   componentWillMount() {
-    this.props.setProfileAddress(this.props.match.params.address || '');
+    this.props.setProfileAddress(
+      this.props.match.params.address.toLowerCase() || ''
+    );
   }
 
   render() {

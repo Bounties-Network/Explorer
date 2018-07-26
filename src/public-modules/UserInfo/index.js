@@ -26,7 +26,6 @@ function loadUserInfo(address) {
 }
 
 function loadUserInfoSuccess(user) {
-  console.log('hai from loaduserinfosuccess');
   return {
     type: LOAD_USERINFO_SUCCESS,
     user
