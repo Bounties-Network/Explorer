@@ -1,41 +1,12 @@
-/*
-ordering:
-search:
-issuer:
-fulfillmentAmount
-fulfillmentAmount__lt
-fulfillmentAmount__gt
-fulfillmentAmount__lte
-bountyStage
-bounty_created__lt
-bounty_created__gt
-deadline__lt
-deadline__gt
-bounty_id
-categories__normalized_name
-categories__normalized_name__contains
-categories__normalized_name__startswith
-categories__normalized_name__endswith
-categories__normalized_name__in
-fulfillments__fulfiller
-limit
-offset
+import { BigNumber } from 'bignumber.js';
 
-{
-  ordering: 'fulfillmentAmount',
-
-}
-*/
-
-function checkStages(stages) {
-  let result = false;
-  Object.keys(stages).forEach(elem => {
-    if (stages[elem]) {
-      result = true;
-    }
-  });
-  return result;
-}
+export const calculateDecimals = (amount, decimals) => {
+  const decimalPlaces = new BigNumber(parseInt(decimals), 10);
+  const baseTen = new BigNumber(10, 10);
+  const multiplyingDecimal = baseTen.pow(decimalPlaces);
+  const amountBase = new BigNumber(amount, 10);
+  return amountBase.times(multiplyingDecimal).toString();
+};
 
 export const readFile = file =>
   new Promise((resolve, reject) => {
