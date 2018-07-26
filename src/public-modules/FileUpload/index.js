@@ -15,8 +15,8 @@ function uploadFile(key, file) {
 function uploadFileSuccess(key, hash) {
   return {
     type: UPLOAD_FILE_SUCCESS,
-    hash,
-    key
+    key,
+    hash
   };
 }
 

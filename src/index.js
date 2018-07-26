@@ -11,6 +11,7 @@ import {
 } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import { reducers, sagaWatchers } from 'public-modules';
+import bountySagas from 'containers/CreateBounty/sagas';
 import baseReducers from './reducers';
 import { App } from 'layout';
 import registerServiceWorker from './registerServiceWorker';
@@ -36,7 +37,8 @@ const store = createStore(
   composeEnhancers(applyMiddleware(middleware, sagaMiddleware))
 );
 
-sagaWatchers.map(saga => sagaMiddleware.run(saga));
+console.log('sagas: ', bountySagas);
+[...sagaWatchers, ...bountySagas].map(saga => sagaMiddleware.run(saga));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -10,6 +10,7 @@ import {
 } from 'public-modules/Client/selectors';
 import { call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
+import { apiEndpoint } from 'utils/constants';
 import { actions } from 'public-modules/Client';
 
 let proxiedWeb3;
@@ -38,9 +39,11 @@ export function* getNetwork() {
   let network = 'unknown';
   if (networkID === 1) {
     network = 'mainnet';
+    apiEndpoint.set('https://staging.api.bounties.network');
   }
   if (networkID === 4) {
     network = 'rinkeby';
+    apiEndpoint.set('https://rinkebystaging.api.bounties.network');
   }
 
   return network;
@@ -88,15 +91,30 @@ export function* getWeb3Client() {
   return { web3, proxiedWeb3 };
 }
 
-export function* getContractClients() {
-  const web3 = yield call(getWeb3Client);
+export function* getContractClient() {
+  const { web3 } = yield call(getWeb3Client);
   const network = yield select(networkSelector);
 
   if (network !== 'unknown') {
     return {
-      standardBounties: web3.eth
-        .contract(config.interfaces.StandardBounties)
-        .at(config[network].standardBountiesAddress)
+      standardBounties: new web3.eth.Contract(
+        config.interfaces.StandardBounties,
+        config[network].standardBountiesAddress
+      ).methods
+    };
+  }
+  return null;
+}
+export function* getTokenClient(tokenAddress) {
+  const { web3 } = yield call(getWeb3Client);
+  const network = yield select(networkSelector);
+
+  if (network !== 'unknown') {
+    return {
+      tokenContract: new web3.eth.Contract(
+        config.interfaces.HumanStandardToken,
+        tokenAddress
+      ).methods
     };
   }
   return null;

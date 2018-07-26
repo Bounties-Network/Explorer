@@ -8,8 +8,13 @@ import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
 import { formValueSelector } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as categoryActions } from 'public-modules/Categories';
+import { actions as bountyActions } from 'public-modules/Bounty';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { Field, reduxForm } from 'redux-form';
+import {
+  createBountyStateSelector,
+  createDraftStateSelector
+} from 'public-modules/Bounty/selectors';
 import validators from 'utils/validators';
 import moment from 'moment';
 import { DEFAULT_MARKDOWN } from 'utils/constants';
@@ -41,11 +46,23 @@ const CreateBountyComponent = props => {
     categories,
     invalid,
     handleSubmit,
-    submitFailed
+    submitFailed,
+    createDraft,
+    paysTokens,
+    createBounty,
+    submittingBounty
   } = props;
 
+  const handleCreateBounty = values => {
+    const { activateNow, balance, ...bountyValues } = values;
+    if (activateNow) {
+      return createBounty(bountyValues, balance);
+    }
+    return createDraft(bountyValues);
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(handleCreateBounty)}>
       <PageCard>
         <PageCard.Header>
           <PageCard.Title>Create Bounty</PageCard.Title>
@@ -64,6 +81,7 @@ const CreateBountyComponent = props => {
               <FormSection.InputGroup>
                 <Field
                   name="title"
+                  disabled={submittingBounty}
                   component={FormTextInput}
                   label="Title"
                   placeholder="Enter title..."
@@ -77,6 +95,7 @@ const CreateBountyComponent = props => {
               <FormSection.InputGroup>
                 <div className={styles.markdownEditor}>
                   <Field
+                    disabled={submittingBounty}
                     name="description"
                     component={FormMarkdownEditor}
                     label="Description"
@@ -98,7 +117,8 @@ const CreateBountyComponent = props => {
                 <div className="row">
                   <div className="col-xs-6">
                     <Field
-                      name="contactName"
+                      disabled={submittingBounty}
+                      name="issuer_name"
                       component={FormTextInput}
                       label="Contact name"
                       placeholder="Enter name..."
@@ -110,7 +130,8 @@ const CreateBountyComponent = props => {
                   </div>
                   <div className="col-xs-6">
                     <Field
-                      name="contactEmail"
+                      disabled={submittingBounty}
+                      name="issuer_email"
                       component={FormTextInput}
                       label="Contact email"
                       placeholder="Enter email..."
@@ -138,6 +159,7 @@ const CreateBountyComponent = props => {
                 <div className="row">
                   <div className="col-xs-8">
                     <Field
+                      disabled={submittingBounty}
                       name="categories"
                       component={FormSearchSelect}
                       label="Bounty category"
@@ -152,7 +174,8 @@ const CreateBountyComponent = props => {
                   </div>
                   <div className="col-xs-4">
                     <Field
-                      name="difficulty"
+                      disabled={submittingBounty}
+                      name="experienceLevel"
                       component={FormRadioGroup}
                       label="Difficulty"
                       options={DIFFICULTY_OPTIONS}
@@ -172,7 +195,11 @@ const CreateBountyComponent = props => {
               <FormSection.InputGroup>
                 <div className="row">
                   <div className="col-xs-4">
-                    <Field name="revisions" component={FormNumberInput} />
+                    <Field
+                      name="revisions"
+                      component={FormNumberInput}
+                      disabled={submittingBounty}
+                    />
                   </div>
                 </div>
               </FormSection.InputGroup>
@@ -187,6 +214,7 @@ const CreateBountyComponent = props => {
               </FormSection.SubText>
               <FormSection.InputGroup>
                 <FileUpload
+                  disabled={submittingBounty}
                   onChange={file => uploadFile('createBounty', file)}
                   loading={uploadLoading}
                 />
@@ -204,6 +232,7 @@ const CreateBountyComponent = props => {
                 <div className="row">
                   <div className="col-xs-4">
                     <Field
+                      disabled={submittingBounty}
                       name="deadline"
                       component={FormDatePicker}
                       showTimeSelect
@@ -224,7 +253,8 @@ const CreateBountyComponent = props => {
                 <div className="row">
                   <div className="col-xs-4">
                     <Field
-                      name="isToken"
+                      disabled={submittingBounty}
+                      name="paysTokens"
                       component={FormRadioGroup}
                       label="Payout Method"
                       options={PAYOUT_OPTIONS}
@@ -232,7 +262,8 @@ const CreateBountyComponent = props => {
                   </div>
                   <div className="col-xs-8">
                     <Field
-                      name="value"
+                      name="fulfillmentAmount"
+                      disabled={submittingBounty}
                       component={FormTextInput}
                       type="number"
                       label="Payout amount (ETH or whole tokens)"
@@ -242,6 +273,25 @@ const CreateBountyComponent = props => {
                   </div>
                 </div>
               </FormSection.InputGroup>
+              {paysTokens ? (
+                <FormSection.InputGroup>
+                  <div className="row">
+                    <div className="col-xs-12">
+                      <Field
+                        name="tokenContract"
+                        disabled={submittingBounty}
+                        component={FormTextInput}
+                        label="Token Contract Address"
+                        validate={[
+                          validators.required,
+                          validators.isWeb3Address
+                        ]}
+                        placeholder="Enter token contract address..."
+                      />
+                    </div>
+                  </div>
+                </FormSection.InputGroup>
+              ) : null}
             </FormSection.Section>
             <FormSection.Section title="SAVE OR SUBMIT">
               <FormSection.Description>
@@ -258,6 +308,7 @@ const CreateBountyComponent = props => {
                   <div className="col-xs-4">
                     <Field
                       name="activateNow"
+                      disabled={submittingBounty}
                       component={FormRadioGroup}
                       label="When to activate"
                       options={ACTIVATE_OPTIONS}
@@ -267,6 +318,7 @@ const CreateBountyComponent = props => {
                     {activateNow ? (
                       <Field
                         name="balance"
+                        disabled={submittingBounty}
                         component={FormTextInput}
                         type="number"
                         label="Deposit amount (ETH or whole tokens)"
@@ -289,8 +341,14 @@ const CreateBountyComponent = props => {
           </FormSection>
           <PageCard.Break />
           <div className={styles.buttons}>
-            <Button type="primary">Create bounty</Button>
-            {submitFailed ? (
+            <Button
+              type="primary"
+              disabled={uploadLoading || (submitFailed && invalid)}
+              loading={submittingBounty}
+            >
+              Create bounty
+            </Button>
+            {submitFailed && invalid ? (
               <Text inputLabel color="red" className={styles.submitError}>
                 Fix errors before submitting.
               </Text>
@@ -305,12 +363,16 @@ const CreateBountyComponent = props => {
 const mapStateToProps = state => {
   const rootUpload = rootUploadSelector(state);
   const uploadState = rootUpload[UPLOAD_KEY] || {};
+  const draftState = createDraftStateSelector(state);
+  const bountyState = createBountyStateSelector(state);
 
   return {
     uploadLoading: uploadState.uploading || false,
     uploaded: uploadState.uploaded || false,
     activateNow: formSelector(state, 'activateNow'),
-    categories: categoriesSelector(state)
+    paysTokens: formSelector(state, 'paysTokens'),
+    categories: categoriesSelector(state),
+    submittingBounty: draftState.creating || bountyState.creating
   };
 };
 
@@ -320,18 +382,17 @@ const CreateBounty = compose(
     {
       uploadFile: uploadActions.uploadFile,
       addCategory: categoryActions.addToCategories,
-      onSubmit: values => {
-        console.log(values);
-      }
+      createDraft: bountyActions.createDraft,
+      createBounty: bountyActions.createBounty
     }
   ),
   reduxForm({
     form: 'createBounty',
     initialValues: {
       description: DEFAULT_MARKDOWN,
-      difficulty: 0,
+      experienceLevel: 0,
       revisions: 3,
-      isToken: false,
+      paysTokens: false,
       activateNow: true,
       deadline: moment()
         .add(1, 'days')

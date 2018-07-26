@@ -77,7 +77,7 @@ export function* logout(action) {
 }
 
 export function* watchGetCurrentUser() {
-  yield takeLatest(GET_CURRENT_USER, getCurrentUser);
+  yield takeLatest(SET_INITIALIZED, getCurrentUser);
 }
 
 export function* watchLogin() {

@@ -41,6 +41,7 @@
     "html-webpack-plugin": "2.29.0",
     "husky": "^0.14.3",
     "ipfs-api": "^22.1.0",
+    "ipfs-mini": "^1.1.2",
     "jest": "20.0.4",
     "lint-staged": "^7.0.4",
     "moment": "^2.22.2",
