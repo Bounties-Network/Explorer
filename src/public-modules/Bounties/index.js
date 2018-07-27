@@ -75,6 +75,7 @@ const SET_SORT = 'bounties/SET_SORT';
 const RESET_FILTERS = 'bounties/RESET_FILTERS';
 const SET_SEARCH = 'bounties/SET_SEARCH';
 const TOGGLE_STAGE_FILTER = 'bounties/TOGGLE_STAGE_FILTER';
+const ALL_STAGE_FILTERS = 'bounties/ALL_STAGE_FILTERS';
 const TOGGLE_DIFFICULTY_FILTER = 'bounties/TOGGLE_DIFFICULTY_FILTER';
 const TOGGLE_CATEGORY_FILTER = 'bounties/TOGGLE_CATEGORY_FILTER';
 const ADD_CATEGORY_FILTER = 'bounties/SET_CATEGORY_FILTER';
@@ -96,6 +97,10 @@ function setSearch(search) {
 
 function toggleStageFilter(stage) {
   return { type: TOGGLE_STAGE_FILTER, stage };
+}
+
+function allStageFilters() {
+  return { type: ALL_STAGE_FILTERS };
 }
 
 function toggleDifficultyFilter(difficulty) {
@@ -197,12 +202,23 @@ function BountiesReducer(state = initialState, action) {
         }
       };
     }
+    case ALL_STAGE_FILTERS: {
+      return {
+        ...state,
+        stageFilters: {
+          drafts: true,
+          active: true,
+          completed: true,
+          expired: true,
+          dead: true
+        }
+      };
+    }
     case RESET_FILTERS: {
-      const newState = {
+      return {
         ...state,
         ...default_filters
       };
-      return newState;
     }
     case SET_SEARCH: {
       const { search } = action;
@@ -281,6 +297,7 @@ export const actions = {
   resetFilters,
   setSearch,
   toggleStageFilter,
+  allStageFilters,
   toggleDifficultyFilter,
   addCategoryFilter,
   addIssuerFilter,
@@ -300,6 +317,7 @@ export const actionTypes = {
   RESET_FILTERS,
   SET_SEARCH,
   TOGGLE_STAGE_FILTER,
+  ALL_STAGE_FILTERS,
   TOGGLE_DIFFICULTY_FILTER,
   ADD_CATEGORY_FILTER,
   ADD_ISSUER_FILTER,

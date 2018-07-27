@@ -20,6 +20,7 @@ import { Sidebar, Loader } from 'components';
 import { Header } from 'layout';
 import { initializedSelector } from 'public-modules/Client/selectors';
 import { getCurrentUserStateSelector } from 'public-modules/Authentication/selectors';
+import { currentRouteSelector } from 'utils/helpers';
 
 import '../../styles/flexboxgrid.css';
 import '../../font-files/inter-ui.css';
@@ -30,11 +31,6 @@ class AppComponent extends React.Component {
       return <Sidebar.TabIcon {...navItem} key={navItem.tabKey} />;
     }, NAV_ITEMS);
   }
-
-  currentRouteSelector = () => {
-    const { pathname } = this.props.location;
-    return pathname.split('/')[1] || '';
-  };
 
   render() {
     const { loadingUser, clientInitialized, userFail, history } = this.props;
@@ -52,7 +48,7 @@ class AppComponent extends React.Component {
           ? [
               <Header />,
               <Sidebar
-                activeTab={this.currentRouteSelector()}
+                activeTab={currentRouteSelector(this.props.location.pathname)}
                 defaultActiveTab="dashboard"
                 className={styles.sideNav}
                 onTabClick={history.push}
