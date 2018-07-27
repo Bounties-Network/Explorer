@@ -14,8 +14,10 @@ const default_filters = {
     intermediate: false,
     advanced: false
   },
-  issuerAddress: '',
-  fulfillerAddress: '',
+  addressFilters: {
+    issuer: '',
+    fulfiller: ''
+  },
   categoryFilters: new Set([])
 };
 
@@ -73,6 +75,7 @@ function loadMoreBountiesFail(error) {
 
 const SET_SORT = 'bounties/SET_SORT';
 const RESET_FILTERS = 'bounties/RESET_FILTERS';
+const RESET_FILTERS_EXCEPT_ADDRESS = 'bounties/RESET_FILTERS_EXCEPT_ADDRESS';
 const SET_SEARCH = 'bounties/SET_SEARCH';
 const TOGGLE_STAGE_FILTER = 'bounties/TOGGLE_STAGE_FILTER';
 const ALL_STAGE_FILTERS = 'bounties/ALL_STAGE_FILTERS';
@@ -89,6 +92,10 @@ function setSort(sort, sortOrder) {
 
 function resetFilters() {
   return { type: RESET_FILTERS };
+}
+
+function resetFiltersExceptAddress() {
+  return { type: RESET_FILTERS_EXCEPT_ADDRESS };
 }
 
 function setSearch(search) {
@@ -159,8 +166,10 @@ function BountiesReducer(state = initialState, action) {
 
       return {
         ...state,
-        issuerAddress: address,
-        fulfillerAddress: ''
+        addressFilters: {
+          issuer: address,
+          fulfiller: ''
+        }
       };
     }
     case ADD_FULFILLER_FILTER: {
@@ -168,8 +177,10 @@ function BountiesReducer(state = initialState, action) {
 
       return {
         ...state,
-        issuerAddress: '',
-        fulfillerAddress: address
+        addressFilters: {
+          issuer: '',
+          fulfiller: address
+        }
       };
     }
     case REMOVE_CATEGORY_FILTER: {
@@ -218,6 +229,13 @@ function BountiesReducer(state = initialState, action) {
       return {
         ...state,
         ...default_filters
+      };
+    }
+    case RESET_FILTERS_EXCEPT_ADDRESS: {
+      return {
+        ...state,
+        ...default_filters,
+        addressFilters: state.addressFilters
       };
     }
     case SET_SEARCH: {
@@ -295,6 +313,7 @@ function BountiesReducer(state = initialState, action) {
 export const actions = {
   setSort,
   resetFilters,
+  resetFiltersExceptAddress,
   setSearch,
   toggleStageFilter,
   allStageFilters,
@@ -315,6 +334,7 @@ export const actions = {
 export const actionTypes = {
   SET_SORT,
   RESET_FILTERS,
+  RESET_FILTERS_EXCEPT_ADDRESS,
   SET_SEARCH,
   TOGGLE_STAGE_FILTER,
   ALL_STAGE_FILTERS,

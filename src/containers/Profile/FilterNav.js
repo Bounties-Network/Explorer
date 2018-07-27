@@ -15,7 +15,7 @@ import { LoadComponent } from 'hocs';
 import { actions } from 'public-modules/Bounties';
 import { actions as categoryActions } from 'public-modules/Categories';
 const {
-  resetFilters,
+  resetFiltersExceptAddress,
   setSearch,
   toggleStageFilter,
   toggleDifficultyFilter,
@@ -107,7 +107,7 @@ const FilterNav = compose(
       toggleDifficultyFilter,
       addCategoryFilter,
       removeCategoryFilter,
-      resetFilters,
+      resetFilters: resetFiltersExceptAddress,
       load: loadCategories
     }
   ),
