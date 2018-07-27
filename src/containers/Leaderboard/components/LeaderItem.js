@@ -24,6 +24,7 @@ const LeaderItem = props => {
             name={name}
             address={address}
             hash={address}
+            to={`profile/${address}`}
             size="small"
           />
         </div>

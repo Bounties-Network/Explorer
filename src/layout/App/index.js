@@ -8,7 +8,13 @@ import { connect } from 'react-redux';
 import { map } from 'lodash';
 import { NoMatch } from 'layout';
 import { NAV_ITEMS } from './constants';
-import { Explorer, Leaderboard, Login, CreateBounty, Profile } from 'containers';
+import {
+  Explorer,
+  Leaderboard,
+  Login,
+  CreateBounty,
+  Profile
+} from 'containers';
 import { RequireLoginComponent } from 'hocs';
 import { Sidebar, Loader } from 'components';
 import { Header } from 'layout';
@@ -62,8 +68,8 @@ class AppComponent extends React.Component {
                     path="/createBounty"
                     component={RequireLoginComponent(CreateBounty)}
                   />
-                  <Route exact path="/explorer" component={Explorer} />
                   <Route exact path="/profile/:address/" component={Profile} />
+                  <Redirect from="/" to="/explorer" />
                 </Switch>
               </div>
             ]

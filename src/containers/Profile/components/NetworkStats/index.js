@@ -3,7 +3,7 @@ import baseStyles from '../BaseStyles.module.scss';
 import styles from './NetworkStats.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Circle, Pill, Switch, Text } from 'components';
-import { map as fpMap } from 'lodash';
+import { map as fpMap, capitalize } from 'lodash';
 import { descriptionText, displayFormat } from './constants';
 
 const map = fpMap.convert({ cap: false });
@@ -14,10 +14,6 @@ function formatInput(value, format) {
   } else {
     return `${Number(value * 100).toFixed(0)}%`;
   }
-}
-
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 const NetworkStats = props => {

@@ -35,25 +35,27 @@ class ProfileComponent extends React.Component {
         </div>
         <StickyContainer>
           <div className={styles.profileBounties}>
-            <div className="row fullHeight">
-              <div className={`col-xs-3 fullHeight`}>
-                <Sticky topOffset={-50}>
-                  {({ style }) => (
-                    <div
-                      className={styles.filterNav}
-                      style={{
-                        transform: style.transform,
-                        position: style.position,
-                        top: 50
-                      }}
-                    >
-                      <FilterNav />
-                    </div>
-                  )}
-                </Sticky>
-              </div>
-              <div className={`col-xs-9 fullHeight ${styles.explorerBody}`}>
-                <ProfileBounties />
+            <div className="container-fluid">
+              <div className={`row fullHeight ${styles.clearMargins}`}>
+                <div className={`col-xs-3 fullHeight`}>
+                  <Sticky topOffset={-50}>
+                    {({ style }) => (
+                      <div
+                        className={styles.filterNav}
+                        style={{
+                          transform: style.transform,
+                          position: style.position,
+                          top: 50
+                        }}
+                      >
+                        <FilterNav />
+                      </div>
+                    )}
+                  </Sticky>
+                </div>
+                <div className={`col-xs-9 ${styles.explorerBody}`}>
+                  <ProfileBounties />
+                </div>
               </div>
             </div>
           </div>
