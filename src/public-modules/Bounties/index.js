@@ -14,6 +14,10 @@ const default_filters = {
     intermediate: false,
     advanced: false
   },
+  addressFilters: {
+    issuer: '',
+    fulfiller: ''
+  },
   categoryFilters: new Set([])
 };
 
@@ -71,11 +75,15 @@ function loadMoreBountiesFail(error) {
 
 const SET_SORT = 'bounties/SET_SORT';
 const RESET_FILTERS = 'bounties/RESET_FILTERS';
+const RESET_FILTERS_EXCEPT_ADDRESS = 'bounties/RESET_FILTERS_EXCEPT_ADDRESS';
 const SET_SEARCH = 'bounties/SET_SEARCH';
 const TOGGLE_STAGE_FILTER = 'bounties/TOGGLE_STAGE_FILTER';
+const ALL_STAGE_FILTERS = 'bounties/ALL_STAGE_FILTERS';
 const TOGGLE_DIFFICULTY_FILTER = 'bounties/TOGGLE_DIFFICULTY_FILTER';
 const TOGGLE_CATEGORY_FILTER = 'bounties/TOGGLE_CATEGORY_FILTER';
 const ADD_CATEGORY_FILTER = 'bounties/SET_CATEGORY_FILTER';
+const ADD_ISSUER_FILTER = 'bounties/ADD_ISSUER_FILTER';
+const ADD_FULFILLER_FILTER = 'bounties/ADD_FULFILLER_FILTER';
 const REMOVE_CATEGORY_FILTER = 'bounties/REMOVE_CATEGORY_FILTER';
 
 function setSort(sort, sortOrder) {
@@ -86,12 +94,20 @@ function resetFilters() {
   return { type: RESET_FILTERS };
 }
 
+function resetFiltersExceptAddress() {
+  return { type: RESET_FILTERS_EXCEPT_ADDRESS };
+}
+
 function setSearch(search) {
   return { type: SET_SEARCH, search };
 }
 
 function toggleStageFilter(stage) {
   return { type: TOGGLE_STAGE_FILTER, stage };
+}
+
+function allStageFilters() {
+  return { type: ALL_STAGE_FILTERS };
 }
 
 function toggleDifficultyFilter(difficulty) {
@@ -104,6 +120,14 @@ function toggleCategoryFilter(category) {
 
 function addCategoryFilter(category) {
   return { type: ADD_CATEGORY_FILTER, category };
+}
+
+function addIssuerFilter(address) {
+  return { type: ADD_ISSUER_FILTER, address };
+}
+
+function addFulfillerFilter(address) {
+  return { type: ADD_FULFILLER_FILTER, address };
 }
 
 function removeCategoryFilter(category) {
@@ -137,6 +161,28 @@ function BountiesReducer(state = initialState, action) {
         categoryFilters: updated_filters
       };
     }
+    case ADD_ISSUER_FILTER: {
+      const { address } = action;
+
+      return {
+        ...state,
+        addressFilters: {
+          issuer: address,
+          fulfiller: ''
+        }
+      };
+    }
+    case ADD_FULFILLER_FILTER: {
+      const { address } = action;
+
+      return {
+        ...state,
+        addressFilters: {
+          issuer: '',
+          fulfiller: address
+        }
+      };
+    }
     case REMOVE_CATEGORY_FILTER: {
       const { category } = action;
       const updated_filters = new Set(state.categoryFilters);
@@ -167,12 +213,30 @@ function BountiesReducer(state = initialState, action) {
         }
       };
     }
+    case ALL_STAGE_FILTERS: {
+      return {
+        ...state,
+        stageFilters: {
+          drafts: true,
+          active: true,
+          completed: true,
+          expired: true,
+          dead: true
+        }
+      };
+    }
     case RESET_FILTERS: {
-      const newState = {
+      return {
         ...state,
         ...default_filters
       };
-      return newState;
+    }
+    case RESET_FILTERS_EXCEPT_ADDRESS: {
+      return {
+        ...state,
+        ...default_filters,
+        addressFilters: state.addressFilters
+      };
     }
     case SET_SEARCH: {
       const { search } = action;
@@ -249,10 +313,14 @@ function BountiesReducer(state = initialState, action) {
 export const actions = {
   setSort,
   resetFilters,
+  resetFiltersExceptAddress,
   setSearch,
   toggleStageFilter,
+  allStageFilters,
   toggleDifficultyFilter,
   addCategoryFilter,
+  addIssuerFilter,
+  addFulfillerFilter,
   removeCategoryFilter,
   toggleCategoryFilter,
   loadBounties,
@@ -266,10 +334,14 @@ export const actions = {
 export const actionTypes = {
   SET_SORT,
   RESET_FILTERS,
+  RESET_FILTERS_EXCEPT_ADDRESS,
   SET_SEARCH,
   TOGGLE_STAGE_FILTER,
+  ALL_STAGE_FILTERS,
   TOGGLE_DIFFICULTY_FILTER,
   ADD_CATEGORY_FILTER,
+  ADD_ISSUER_FILTER,
+  ADD_FULFILLER_FILTER,
   REMOVE_CATEGORY_FILTER,
   TOGGLE_CATEGORY_FILTER,
   LOAD_BOUNTIES,

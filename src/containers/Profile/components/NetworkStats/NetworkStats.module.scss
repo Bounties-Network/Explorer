@@ -1,0 +1,35 @@
+@import "~styles/variables.scss";
+@import "../BaseStyles.module.scss";
+
+.network {
+  @include statContainer;
+}
+
+.networkStatsHeader {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: $l-spacing;
+
+  > p {
+    margin-right: $m-spacing;
+  }
+
+  > div {
+    margin-top: -$s-spacing;
+  }
+}
+
+.networkStatsContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.networkStatCircle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > div {
+    margin-bottom: $m-spacing;
+  }
+}

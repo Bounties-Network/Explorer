@@ -2,7 +2,19 @@ const initialState = {
   loading: true,
   loaded: false,
   error: false,
-  currentUser: {}
+  loadedUser: {
+    user: {},
+    stats: {
+      issuer_ratings_given: null,
+      issuer_ratings_received: null,
+      fulfiller_ratings_given: null,
+      fulfiller_ratings_received: null,
+      issuer_fulfillment_acceptance: null,
+      fulfiller_fulfillment_acceptance: null,
+      total_bounties: 0,
+      total_fulfillments: 0
+    }
+  }
 };
 
 const LOAD_USERINFO = 'userInfo/LOAD_USERINFO';
@@ -13,10 +25,10 @@ function loadUserInfo(address) {
   return { type: LOAD_USERINFO, address };
 }
 
-function loadUserInfoSuccess(userInfo) {
+function loadUserInfoSuccess(user) {
   return {
     type: LOAD_USERINFO_SUCCESS,
-    currentUser: userInfo
+    user
   };
 }
 
@@ -35,14 +47,14 @@ function UserInfoReducer(state = initialState, action) {
       };
     }
     case LOAD_USERINFO_SUCCESS: {
-      const { currentUser } = action;
+      const { user } = action;
 
       return {
         ...state,
         loading: false,
         loaded: true,
         error: false,
-        currentUser
+        loadedUser: user
       };
     }
     case LOAD_USERINFO_FAIL: {

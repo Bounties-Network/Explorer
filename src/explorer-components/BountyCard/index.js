@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import styles from './BountyCard.module.scss';
 import { map, includes } from 'lodash';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Card, Text, Pill, Avatar } from 'components';
+import { Card, Text, Pill } from 'components';
+import { LinkedAvatar } from 'explorer-components';
 
 const BountyCard = props => {
   const {
@@ -59,7 +60,13 @@ const BountyCard = props => {
             </Text>
             <div className={styles.categoryList}>{renderCategories()}</div>
             <div className={styles.avatar}>
-              <Avatar img={img} address={address} hash={address} size="small" />
+              <LinkedAvatar
+                img={img}
+                address={address}
+                hash={address}
+                to={`profile/${address}`}
+                size="small"
+              />
             </div>
           </div>
           <div className="col-xs-3">

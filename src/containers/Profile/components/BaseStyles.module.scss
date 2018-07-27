@@ -1,0 +1,9 @@
+@import "~styles/variables.scss";
+
+@mixin statContainer() {
+  height: 100%;
+
+  > p {
+    margin-bottom: $xl-spacing;
+  }
+}

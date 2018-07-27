@@ -72,9 +72,16 @@ export const bountiesQuerySelector = createSelector(
     if (categories.length) {
       query['categories__normalized_name__in'] = categories.join(',');
     }
+    if (rootBounty.addressFilters.issuer) {
+      query['issuer'] = rootBounty.addressFilters.issuer;
+    }
+    if (rootBounty.addressFilters.fulfiller) {
+      query['fulfillments__fulfiller'] = rootBounty.addressFilters.fulfiller;
+    }
     query['search'] = rootBounty.search;
     query['ordering'] = orderPrefix + rootBounty.sort;
     query['limit'] = PAGE_SIZE;
+
     return query;
   }
 );

@@ -8,7 +8,13 @@ import { connect } from 'react-redux';
 import { map } from 'lodash';
 import { NoMatch } from 'layout';
 import { NAV_ITEMS } from './constants';
-import { Explorer, Leaderboard, Login, CreateBounty } from 'containers';
+import {
+  Explorer,
+  Leaderboard,
+  Login,
+  CreateBounty,
+  Profile
+} from 'containers';
 import { RequireLoginComponent } from 'hocs';
 import { Sidebar, Loader } from 'components';
 import { Header } from 'layout';
@@ -16,6 +22,7 @@ import { actions as authActions } from 'public-modules/Authentication';
 import { actions as categoryActions } from 'public-modules/Categories';
 import { initializedSelector } from 'public-modules/Client/selectors';
 import { getCurrentUserStateSelector } from 'public-modules/Authentication/selectors';
+import { currentRouteSelector } from 'utils/helpers';
 
 import '../../styles/flexboxgrid.css';
 import '../../font-files/inter-ui.css';
@@ -25,18 +32,6 @@ class AppComponent extends React.Component {
     return map(navItem => {
       return <Sidebar.TabIcon {...navItem} key={navItem.tabKey} />;
     }, NAV_ITEMS);
-  }
-
-  currentRouteSelector = () => {
-    const { pathname } = this.props.location;
-    return pathname.split('/')[1] || '';
-  };
-
-  componentWillMount() {
-    const { getCurrentUser, loadCategories } = this.props;
-
-    getCurrentUser();
-    loadCategories();
   }
 
   render() {
@@ -55,7 +50,7 @@ class AppComponent extends React.Component {
           ? [
               <Header />,
               <Sidebar
-                activeTab={this.currentRouteSelector()}
+                activeTab={currentRouteSelector(this.props.location.pathname)}
                 defaultActiveTab="dashboard"
                 className={styles.sideNav}
                 onTabClick={history.push}
@@ -71,6 +66,7 @@ class AppComponent extends React.Component {
                     path="/createBounty"
                     component={RequireLoginComponent(CreateBounty)}
                   />
+                  <Route exact path="/profile/:address/" component={Profile} />
                   <Redirect from="/" to="/explorer" />
                 </Switch>
               </div>

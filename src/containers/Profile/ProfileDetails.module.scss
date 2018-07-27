@@ -1,0 +1,35 @@
+@import "~styles/variables.scss";
+
+.details {
+  > div:not(:last-child) {
+    border-right: $base-border;
+  }
+
+  > div:not(:first-child) {
+    margin-left: $xl-spacing
+  }
+}
+
+.profileAvatar {
+  padding: $xxl-spacing 0;
+
+  > div, > p {
+    margin-bottom: $base-spacing;
+  }
+}
+
+.marginBottom {
+  margin-bottom: $xxl-spacing;
+}
+
+.centerContent {
+  display: flex;
+  justify-content: center;
+}
+
+.bodyLoading {
+  min-height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

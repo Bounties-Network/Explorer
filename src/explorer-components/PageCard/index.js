@@ -5,7 +5,7 @@ import { map, includes, each } from 'lodash';
 import { Text, Card } from 'components';
 
 const Title = props => {
-  const { children, className } = props;
+  const { children, className, bodyClass } = props;
 
   return (
     <Text className={className} typeScale="h1" color="white">
@@ -26,10 +26,10 @@ class Header extends React.Component {
 
 class Content extends React.Component {
   render() {
-    const { children, className } = this.props;
+    const { children, className, bodyClass } = this.props;
     return (
       <Card className={`${styles.content} ${className}`}>
-        <Card.Body>{children}</Card.Body>
+        <Card.Body className={bodyClass}>{children}</Card.Body>
       </Card>
     );
   }
