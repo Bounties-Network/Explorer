@@ -9,9 +9,43 @@
     "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
   },
   "rinkeby": {
-    "standardBountiesAddress": "0xdd1636b88e9071507e859e61991ed4be6647f420"
+    "standardBountiesAddress": "0x40244fd09743f9d6c257171010e5f38a055b4778",
+    "ethProfilesAddress": "0x40244fd09743f9d6c257171010e5f38a055b4778"
   },
   "interfaces": {
+    "ETHProfiles": [
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "name": "user",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "name": "_profile",
+            "type": "string"
+          }
+        ],
+        "name": "profileUpdated",
+        "type": "event"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_profile",
+            "type": "string"
+          }
+        ],
+        "name": "addProfile",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ],
     "StandardBounties": [
       {
         "constant": false,

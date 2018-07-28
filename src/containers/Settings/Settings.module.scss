@@ -1,0 +1,25 @@
+@import "~styles/variables.scss";
+
+.createBounty {
+}
+
+.cardContent {
+  text-align: left;
+  margin-bottom: $xxl-spacing;
+}
+
+.markdownEditor {
+  height: 15em;
+}
+
+.buttons {
+  text-align: center;
+}
+
+.submitError {
+  margin-top: $base-spacing;
+}
+
+.emailToggle {
+  margin-bottom: $base-spacing;
+}
