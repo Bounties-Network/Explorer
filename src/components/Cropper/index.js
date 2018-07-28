@@ -33,7 +33,11 @@ class Cropper extends React.Component {
   };
 
   save = () => {
-    this.setState({ loading: true });
+    this.props.onChange(this.state.file);
+    if (this.croppie) {
+      this.croppie.destroy();
+      this.croppie = null;
+    }
   };
 
   readFile = () => {
@@ -56,7 +60,10 @@ class Cropper extends React.Component {
     reader.onload = e => {
       this.croppie.bind({ url: e.target.result });
     };
-    reader.readAsDataURL(file);
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   onInputChange = e => {
@@ -65,13 +72,12 @@ class Cropper extends React.Component {
 
   render() {
     const { loading, disabled } = this.props;
-    const { activeCrop, loading: loadingState, src } = this.state;
-    const isLoading = loading || loadingState;
+    const { activeCrop, src } = this.state;
 
-    const disabledState = isLoading || disabled;
+    const disabledState = loading || disabled;
     let inputStyle = styles.input;
     let croppieClass = styles.croppie;
-    if (!activeCrop || isLoading) {
+    if (!activeCrop || loading) {
       croppieClass += ` ${styles.inactive}`;
     }
 
@@ -105,7 +111,7 @@ class Cropper extends React.Component {
                 className={styles.circleContent}
               />
             ) : null}
-            {isLoading ? (
+            {loading ? (
               <Circle
                 type="loading"
                 size="large"
@@ -134,7 +140,7 @@ class Cropper extends React.Component {
               <Button
                 type="action"
                 className={styles.saveButton}
-                loading={isLoading}
+                loading={loading}
                 onClick={this.save}
               >
                 Save
