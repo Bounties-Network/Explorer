@@ -7,8 +7,9 @@ const { loadUserInfoFail, loadUserInfoSuccess } = actions;
 
 export function* loadUserInfo(action) {
   const { address } = action;
+
   try {
-    let endpoint = `auth/user/${address}/profile/`;
+    let endpoint = `user/${address}/profile/`;
     const userInfo = yield call(request, endpoint, 'GET');
     yield put(loadUserInfoSuccess(userInfo));
   } catch (e) {

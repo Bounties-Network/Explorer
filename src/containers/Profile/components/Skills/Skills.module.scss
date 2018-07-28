@@ -1,0 +1,17 @@
+@import "~styles/variables.scss";
+@import "../BaseStyles.module.scss";
+
+.skills {
+  @include statContainer;
+}
+
+.skillsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.skill {
+  margin-bottom: $base-spacing;
+}

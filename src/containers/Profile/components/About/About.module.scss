@@ -1,0 +1,35 @@
+@import "~styles/variables.scss";
+@import "../BaseStyles.module.scss";
+
+.about {
+  @include statContainer;
+}
+
+.bulletPointContainer {
+  display: flex;
+  flex-direction: column;
+
+  > div:not(:last-child) {
+    margin-bottom: $l-spacing;
+  }
+}
+
+.icon {
+  color: $brand-grey;
+  margin-top: -$s-spacing / 2;
+  margin-right: $base-spacing;
+}
+
+.bulletPoint {
+  display: flex;
+  flex-direction: row;
+
+  p:not(:last-child) {
+    margin-bottom: $m-spacing;
+  }
+}
+
+.bulletPointText {
+  display: flex;
+  flex-direction: column;
+}

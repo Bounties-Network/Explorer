@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './LeaderItem.module.scss';
-import { ListGroup, Card, Text, Avatar } from 'components';
+import { ListGroup, Card, Text } from 'components';
+import { LinkedAvatar } from 'explorer-components';
 
 const LeaderItem = props => {
   const { place, img, name, address, usd } = props;
@@ -18,11 +19,12 @@ const LeaderItem = props => {
 
       <div className="col-xs-7">
         <div className={styles.avatar}>
-          <Avatar
+          <LinkedAvatar
             img={img}
             name={name}
             address={address}
             hash={address}
+            to={`profile/${address}`}
             size="small"
           />
         </div>

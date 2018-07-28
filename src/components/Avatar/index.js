@@ -18,7 +18,9 @@ const Avatar = props => {
     border,
     img,
     hash,
-    className
+    className,
+    src,
+    onClick
   } = props;
 
   const renderName = () => {
@@ -46,7 +48,13 @@ const Avatar = props => {
 
     return (
       <div className={styles.addressText}>
-        <Text typeScale={addressTextScale} color={addressTextColor} link>
+        <Text
+          typeScale={addressTextScale}
+          color={addressTextColor}
+          src={src}
+          onClick={onClick}
+          link
+        >
           {shortenAddress(address)}
         </Text>
       </div>
@@ -84,7 +92,9 @@ Avatar.propTypes = {
   nameTextColor: PropTypes.string,
   nameTextWeight: PropTypes.string,
   addressTextScale: PropTypes.string,
-  addressTextColor: PropTypes.string
+  addressTextColor: PropTypes.string,
+  src: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 Avatar.defaultProps = {

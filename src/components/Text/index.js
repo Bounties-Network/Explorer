@@ -35,7 +35,6 @@ const Text = props => {
         } ${addedClasses}`}
         id={id}
         href={src}
-        target="_blank"
         onClick={onClick}
       >
         {props.children}

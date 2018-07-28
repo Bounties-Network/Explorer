@@ -7,32 +7,43 @@ import faCut from '@fortawesome/fontawesome-pro-light/faCut';
 
 import { Text, Button } from 'components';
 
-const FullAddressBarComponent = props => {
-  const { address, copyButton } = props;
+const DEFAULT_TEXT = 'Copy to clipboard';
+const COPIED_TEXT = 'Copied';
 
-  const copyToClipboard = str => {
+class FullAddressBarComponent extends React.Component {
+  state = {
+    tooltipText: DEFAULT_TEXT
+  };
+
+  resetText = () => this.setState({ tooltipText: DEFAULT_TEXT });
+
+  copyToClipboard = str => {
+    this.setState({ tooltipText: COPIED_TEXT });
     const el = document.createElement('textarea');
     el.value = str;
     document.body.appendChild(el);
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-    console.log('Address copied: ', str);
-    alert('Address copied: ' + str);
   };
 
-  return (
-    <div
-      className={`${styles.AddressBar}`}
-      onClick={e => copyToClipboard(address)}
-    >
-      <Text color="purple" typeScale="Body" id="ethAddress">
-        {address}
-      </Text>
-      <span className={`${styles.tooltip}`}>Copy to clipboard</span>
-    </div>
-  );
-};
+  render() {
+    const { address, copyButton } = this.props;
+
+    return (
+      <div
+        className={`${styles.AddressBar}`}
+        onClick={e => this.copyToClipboard(address)}
+        onMouseLeave={this.resetText}
+      >
+        <Text color="purple" typeScale="Body" id="ethAddress">
+          {address}
+        </Text>
+        <span className={`${styles.tooltip}`}>{this.state.tooltipText}</span>
+      </div>
+    );
+  }
+}
 
 FullAddressBarComponent.propTypes = {
   address: PropTypes.string
