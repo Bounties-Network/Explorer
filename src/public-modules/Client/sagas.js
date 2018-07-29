@@ -105,6 +105,7 @@ export function* getContractClient() {
   }
   return null;
 }
+
 export function* getTokenClient(tokenAddress) {
   const { web3 } = yield call(getWeb3Client);
   const network = yield select(networkSelector);

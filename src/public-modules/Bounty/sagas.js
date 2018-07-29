@@ -4,7 +4,10 @@ import config from 'public-modules/config';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Bounty';
 import { actions as transactionActions } from 'public-modules/Transaction';
-import { calculateDecimals } from 'public-modules/Utilities/helpers';
+import {
+  calculateDecimals,
+  promisifyContractCall
+} from 'public-modules/Utilities/helpers';
 import { addJSON } from 'public-modules/Utilities/ipfsClient';
 import {
   addressSelector,
@@ -120,10 +123,13 @@ export function* createBounty(action) {
     contractFulfillmentAmount = web3.utils.toWei(fulfillmentAmount, 'ether');
     contractBalance = web3.utils.toWei(balance, 'ether');
   }
-  const deadline = moment(values.deadline)
-    .utc()
-    .toDate()
-    .getTime();
+  const deadline = parseInt(
+    moment(values.deadline)
+      .utc()
+      .toDate()
+      .getTime() / 1000
+  );
+
   const issuedData = {
     payload: {
       title,
@@ -133,9 +139,9 @@ export function* createBounty(action) {
       sourceFileName: '',
       webReferenceUrl: '',
       categories,
-      created: (new Date().getTime() / 1000) | 0,
+      created: parseInt(new Date().getTime() / 1000) | 0,
       tokenAddress: tokenContract || '',
-      experienceLevel,
+      difficulty: experienceLevel,
       issuer: {
         address: userAddress,
         email: issuer_email,
@@ -148,15 +154,20 @@ export function* createBounty(action) {
           name: issuer_name
         }
       ],
-      symbol: tokenSymbol,
-      meta: {
-        platform: 'bounties-network',
-        schemaVersion: '0.1',
-        schemaName: 'standardSchema'
-      }
+      symbol: tokenSymbol
+    },
+    meta: {
+      platform: 'bounties-network',
+      schemaVersion: '0.1',
+      schemaName: 'standardSchema'
     }
   };
   const ipfsHash = yield call(addJSON, issuedData);
+  let sendContractData = { from: userAddress };
+  if (!paysTokens) {
+    sendContractData.value = contractBalance;
+  }
+
   if (paysTokens) {
     const { tokenContract: tokenContractClient } = yield call(
       getTokenClient,
@@ -178,18 +189,18 @@ export function* createBounty(action) {
   }
   const { standardBounties } = yield call(getContractClient);
   try {
-    yield call(
-      standardBounties.issueAndActivateBounty(
-        userAddress,
-        `${deadline}`,
-        ipfsHash,
-        contractFulfillmentAmount,
-        0x0,
-        paysTokens,
-        tokenContract || 0x0,
-        contractBalance
-      ).send,
-      { from: userAddress }
+    const txHash = yield promisifyContractCall(
+      standardBounties.issueAndActivateBounty,
+      sendContractData
+    )(
+      userAddress,
+      `${deadline}`,
+      ipfsHash,
+      contractFulfillmentAmount,
+      0x0,
+      paysTokens,
+      tokenContract || 0x0,
+      contractBalance
     );
     yield put(createBountySuccess());
   } catch (e) {

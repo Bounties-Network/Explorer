@@ -43,3 +43,14 @@ export const proxiedWeb3Handler = {
     }
   }
 };
+
+export const promisifyContractCall = (contractFunction, options) => (
+  ...args
+) => {
+  return new Promise((resolve, reject) => {
+    return contractFunction(...args)
+      .send(options)
+      .on('transactionHash', hash => resolve(hash))
+      .on('error', error => reject(error));
+  });
+};
