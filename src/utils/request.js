@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import {
-  API_ENDPOINT,
+  apiEndpoint,
   HTTP_401_UNAUTHORIZED,
   HTTP_200_OK,
   HTTP_403_FORBIDDEN,
@@ -99,6 +99,7 @@ function checkRequestStatus(response) {
  */
 export default function(url, method, options, customErrorHandler) {
   let bakedOptions;
+  const endpoint = apiEndpoint.get();
   const method_type = typeof method === 'string' ? method : '';
   switch ((method_type || '').toUpperCase()) {
     case 'PUT':
@@ -118,7 +119,7 @@ export default function(url, method, options, customErrorHandler) {
   }
 
   return axios
-    .request(`${API_ENDPOINT}/${url}`, { ...bakedOptions, ...options })
+    .request(`${endpoint}/${url}`, { ...bakedOptions, ...options })
     .then(checkRequestStatus)
     .catch(handleError);
 }

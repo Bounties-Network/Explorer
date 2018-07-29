@@ -69,8 +69,10 @@
 
 .react-datepicker-wrapper {
   display: inline-block;
+  width: 100%;
 
   input {
+    width: 100%;
     background: $base-input-background;
     height: $base-input-height;
     line-height: $base-input-height;
@@ -444,6 +446,7 @@
 }
 
 .react-datepicker__input-container {
+  width: 100%;
   position: relative;
   display: inline-block;
 }

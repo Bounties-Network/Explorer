@@ -228,7 +228,8 @@ function BountiesReducer(state = initialState, action) {
     case RESET_FILTERS: {
       return {
         ...state,
-        ...default_filters
+        ...default_filters,
+        count: 0
       };
     }
     case RESET_FILTERS_EXCEPT_ADDRESS: {

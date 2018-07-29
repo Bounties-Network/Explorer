@@ -11,9 +11,7 @@ import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { throttle } from 'lodash';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { LoadComponent } from 'hocs';
 import { actions } from 'public-modules/Bounties';
-import { actions as categoryActions } from 'public-modules/Categories';
 const {
   resetFilters,
   setSearch,
@@ -22,7 +20,6 @@ const {
   addCategoryFilter,
   removeCategoryFilter
 } = actions;
-const { loadCategories } = categoryActions;
 
 const FilterNavComponent = props => {
   const {
@@ -143,11 +140,9 @@ const FilterNav = compose(
       toggleDifficultyFilter,
       addCategoryFilter,
       removeCategoryFilter,
-      resetFilters,
-      load: loadCategories
+      resetFilters
     }
-  ),
-  LoadComponent('')
+  )
 )(FilterNavComponent);
 
 export default FilterNav;

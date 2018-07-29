@@ -13,26 +13,39 @@ class NumberInput extends React.Component {
   }
 
   increment = () => {
-    const { disabled } = this.props;
+    const { disabled, max, value, defaultValue } = this.props;
     if (disabled) {
       return null;
     }
 
-    const { value } = this.state;
-    const newValue = value + 1;
+    const { value: stateValue } = this.state;
+    const inputValue =
+      typeof value === 'number' ? value : stateValue || defaultValue;
+
+    const newValue = inputValue + 1;
+
+    if (newValue > max) {
+      return null;
+    }
 
     this.setState({ value: newValue });
     this.props.onChange(newValue);
   };
 
   decrement = () => {
-    const { disabled } = this.props;
+    const { disabled, min, value, defaultValue } = this.props;
     if (disabled) {
       return null;
     }
 
-    const { value } = this.state;
-    const newValue = value - 1;
+    const { value: stateValue } = this.state;
+    const inputValue =
+      typeof value === 'number' ? value : stateValue || defaultValue;
+
+    const newValue = inputValue - 1;
+    if (newValue < min) {
+      return null;
+    }
 
     this.setState({ value: newValue });
     this.props.onChange(newValue);
@@ -42,7 +55,8 @@ class NumberInput extends React.Component {
     const { min, max, value, defaultValue, disabled, label } = this.props;
     const { value: stateValue } = this.state;
 
-    const inputValue = value || stateValue || defaultValue;
+    const inputValue =
+      typeof value === 'number' ? value : stateValue || defaultValue;
     let numberInputClass = styles.numberInput;
     if (disabled) {
       numberInputClass += ` ${styles.disabled}`;

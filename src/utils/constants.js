@@ -10,8 +10,12 @@ export const HTTP_422_UNKNOWN = 422;
 export const HTTP_500_INTERNAL_SERVER_ERROR = 500;
 export const HTTP_503_SERVICE_UNAVAILABLE = 503;
 
+let API_ENDPOINT = 'https://staging.api.bounties.network';
 // update this to be an env passthrough
-export const API_ENDPOINT = 'https://staging.api.bounties.network';
+export const apiEndpoint = {
+  set: endpoint => (API_ENDPOINT = endpoint),
+  get: () => API_ENDPOINT
+};
 
 export const DEFAULT_MARKDOWN = `# Description
 - Description of the bounty

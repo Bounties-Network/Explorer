@@ -5,14 +5,15 @@ import { map, includes, each } from 'lodash';
 import { Text, Card } from 'components';
 
 const Title = props => {
-  const { children, className, bodyClass } = props;
-
+  const { children, className } = props;
   return (
     <Text className={className} typeScale="h1" color="white">
       {children}
     </Text>
   );
 };
+
+const Break = props => <div className={styles.break} />;
 
 class Header extends React.Component {
   render() {
@@ -54,14 +55,14 @@ const PageCard = props => {
       <div className={styles.headerWrapper}>
         <div className="container-fluid">
           <div className="row center-xs">
-            <div className="col-xs-10">{header}</div>
+            <div className="col-xs-9">{header}</div>
           </div>
         </div>
       </div>
       <div className={styles.contentWrapper}>
         <div className="container-fluid fullHeight">
           <div className="row center-xs fullHeight">
-            <div className="col-xs-7 fullHeight">{content}</div>
+            <div className="col-xs-9 fullHeight">{content}</div>
           </div>
         </div>
       </div>
@@ -96,5 +97,6 @@ PageCard.propTypes = {
 PageCard.Content = Content;
 PageCard.Header = Header;
 PageCard.Title = Title;
+PageCard.Break = Break;
 
 export default PageCard;

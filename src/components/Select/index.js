@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Select.module.scss';
-
-// import { Text } from 'components';
 import SelectComponent from 'react-select';
 import { Text } from 'components';
 import '../../styles/ReactSelect.scss';
@@ -25,7 +23,9 @@ class Select extends React.Component {
       label,
       disabled,
       error,
-      optional
+      optional,
+      labelKey,
+      valueKey
     } = this.props;
     const { selectedOption } = this.state;
 
@@ -53,6 +53,8 @@ class Select extends React.Component {
           disabled={disabled}
           searchable={false}
           clearable={false}
+          labelKey={labelKey}
+          valueKey={valueKey}
           options={options}
           onChange={this.handleChange}
           placeholder={placeholder}
@@ -81,10 +83,14 @@ Select.propTypes = {
   label: PropTypes.string,
   error: PropTypes.string,
   disabled: PropTypes.bool,
-  optional: PropTypes.bool
+  optional: PropTypes.bool,
+  labelKey: PropTypes.string,
+  valueKey: PropTypes.string
 };
 
 Select.defaultProps = {
+  labelKey: 'label',
+  valueKey: 'value',
   options: [],
   onChange: () => {}
 };
