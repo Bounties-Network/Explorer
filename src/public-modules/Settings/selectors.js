@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect';
 
-export const rootBountySelector = state => state.bounty;
+export const rootSettingsSelector = state => state.settings;
 
-export const createDraftStateSelector = createSelector(
-  rootBountySelector,
-  rootBounty => rootBounty.createDraftState
+export const settingsSelector = createSelector(
+  rootSettingsSelector,
+  rootSettings => rootSettings.settings
 );
 
-export const createBountyStateSelector = createSelector(
-  rootBountySelector,
-  rootBounty => rootBounty.createBountyState
+export const emailPreferencesSelector = createSelector(
+  rootSettingsSelector,
+  rootSettings => rootSettings.emailPreferences
 );

@@ -17,8 +17,13 @@ import {
   getTokenClient
 } from 'public-modules/Client/sagas';
 
-const { SAVE_SETTINGS } = actionTypes;
-const { saveSettingsSuccess, saveSettingsFail } = actions;
+const { SAVE_SETTINGS, SAVE_EMAIL_PREFERENCES } = actionTypes;
+const {
+  saveSettingsSuccess,
+  saveSettingsFail,
+  saveEmailPreferencesSuccess,
+  saveEmailPreferencesFail
+} = actions;
 
 const { setTransaction } = transactionActions;
 
@@ -44,7 +49,7 @@ export function* saveSettings(action) {
   const settings = {
     name,
     email,
-    languages: map(l => l.trim(), languages.split(',')),
+    languages: '', //map(l => l.trim(), languages.split(',')),
     organization,
     skills,
     social: {
@@ -60,7 +65,13 @@ export function* saveSettings(action) {
     }
   };
 
+  console.log('dump', values);
+  console.log('settings', settings);
+  return;
+
   const ipfsHash = yield call(addJSON, settings);
+
+  console.log('ipfs', ipfsHash);
 
   const { ethProfiles } = yield call(getContractClient);
   try {
@@ -72,8 +83,53 @@ export function* saveSettings(action) {
   }
 }
 
+export function* saveEmailPreferences(action) {
+  const { values } = action;
+  const {
+    activity,
+    BountyComment,
+    BountyExpired,
+    FulfillmentAcceptedFulfiller,
+    FulfillmentSubmittedIssuer,
+    FulfillmentUpdatedIssuer,
+    RatingIssued,
+    TransferRecipient
+  } = values;
+
+  const data = {
+    emails: {
+      activity,
+      both: {
+        RatingIssued
+      },
+      issuer: {
+        BountyComment,
+        BountyExpired,
+        TransferRecipient,
+        FulfillmentUpdatedIssuer,
+        FulfillmentSubmittedIssuer
+      },
+      fulfiller: {
+        FulfillmentAcceptedFulfiller
+      }
+    }
+  };
+
+  try {
+    const r = yield call(request, `user/settings/`, 'POST', { data });
+    yield put(saveEmailPreferencesSuccess());
+  } catch (e) {
+    console.log(e);
+    yield put(saveEmailPreferencesFail());
+  }
+}
+
+export function* watchSaveEmailPreferences() {
+  yield takeLatest(SAVE_EMAIL_PREFERENCES, saveEmailPreferences);
+}
+
 export function* watchSaveSettings() {
   yield takeLatest(SAVE_SETTINGS, saveSettings);
 }
 
-export default [watchSaveSettings];
+export default [watchSaveSettings, watchSaveEmailPreferences];
