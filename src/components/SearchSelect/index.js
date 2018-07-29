@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './SearchSelect.module.scss';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/lib/Creatable';
-import { reject, includes, filter, map, find } from 'lodash';
+import { reject, includes, filter, map, find, isUndefined } from 'lodash';
 import '../../styles/ReactSelect.scss';
 
 import { Text, Pill } from 'components';
@@ -64,6 +64,10 @@ class SearchSelect extends React.Component {
     const selectValue = value || stateValue;
 
     return map(valueItem => {
+      if (isUndefined(valueItem)) {
+        return null;
+      }
+
       const label = find(
         optionItem => optionItem[valueKey] === valueItem,
         options
