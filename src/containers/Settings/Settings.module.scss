@@ -1,8 +1,5 @@
 @import "~styles/variables.scss";
 
-.createBounty {
-}
-
 .cardContent {
   text-align: left;
   margin-bottom: $xxl-spacing;
@@ -12,12 +9,17 @@
   height: 15em;
 }
 
-.buttons {
+.submitButton {
+  margin-top: $xxl-spacing;
   text-align: center;
 }
 
 .submitError {
   margin-top: $base-spacing;
+}
+
+.buttons {
+  text-align: center;
 }
 
 .emailToggle {

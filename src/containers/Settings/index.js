@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Settings.module.scss';
+import SettingsForm from './SettingsForm';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { get } from 'lodash';
@@ -11,6 +12,10 @@ import { actions as skillActions } from 'public-modules/Skills';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as settingsActions } from 'public-modules/Settings';
 import { skillsSelector } from 'public-modules/Skills/selectors';
+import {
+  settingsSelector,
+  emailPreferencesSelector
+} from 'public-modules/Settings/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { Field, reduxForm } from 'redux-form';
 import {
@@ -30,6 +35,7 @@ import {
   FormDatePicker
 } from 'form-components';
 import {
+  EMAIL_NOTIFICATION_OPTIONS,
   DIFFICULTY_OPTIONS,
   PAYOUT_OPTIONS,
   ACTIVATE_OPTIONS,
@@ -53,20 +59,28 @@ let SettingsComponent = props => {
     createDraft,
     paysTokens,
     saveSettings,
-    submittingBounty
+    submittingBounty,
+    emailFormInitialValues,
+    saveEmailPreferences,
+    savingEmailPreferences,
+    errorSavingEmailPreferences
   } = props;
 
   const handleSaveSettings = values => {
     saveSettings(values);
   };
 
+  const handleSaveEmailPreferences = values => {
+    saveEmailPreferences(values);
+  };
+
   return (
-    <form onSubmit={handleSubmit(handleSaveSettings)}>
-      <PageCard>
-        <PageCard.Header>
-          <PageCard.Title>Account Settings</PageCard.Title>
-        </PageCard.Header>
-        <PageCard.Content className={styles.cardContent}>
+    <PageCard>
+      <PageCard.Header>
+        <PageCard.Title>Account Settings</PageCard.Title>
+      </PageCard.Header>
+      <PageCard.Content className={styles.cardContent}>
+        <form onSubmit={handleSubmit(handleSaveSettings)}>
           <FormSection>
             <FormSection.Section title="PROFILE PHOTO">
               <FormSection.InputGroup>
@@ -107,6 +121,7 @@ let SettingsComponent = props => {
                       component={FormTextInput}
                       label="Contact email"
                       placeholder="Enter email..."
+                      form="asdf"
                       validate={[validators.maxLength(128), validators.email]}
                     />
                   </div>
@@ -218,70 +233,14 @@ let SettingsComponent = props => {
                 </div>
               </FormSection.InputGroup>
             </FormSection.Section>
-            <FormSection.Section title="EMAIL NOTIFICATIONS">
-              <FormSection.Description>
-                What notifications would you like to receive via email?
-              </FormSection.Description>
-              <FormSection.SubText>
-                Opt in or out of the notifications you wish to receive via
-                email. We recommend sticking with the default settings so that
-                you can be informed of important activity relevant to you on the
-                network.
-              </FormSection.SubText>
-              <FormSection.InputGroup>
-                <div className="row">
-                  <div className={`col-xs-12 ${styles.emailToggle}`}>
-                    <FormToggle
-                      text={'This is a description of an email notification'}
-                    />
-                  </div>
-                  <div className={`col-xs-12 ${styles.emailToggle}`}>
-                    <FormToggle
-                      text={'This is a description of an email notification'}
-                    />
-                  </div>
-                  <div className={`col-xs-12 ${styles.emailToggle}`}>
-                    <FormToggle
-                      text={'This is a description of an email notification'}
-                    />
-                  </div>
-                  <div className={`col-xs-12 ${styles.emailToggle}`}>
-                    <FormToggle
-                      text={'This is a description of an email notification'}
-                    />
-                  </div>
-                  <div className={`col-xs-12 ${styles.emailToggle}`}>
-                    <FormToggle
-                      text={'This is a description of an email notification'}
-                    />
-                  </div>
-                  <div className={`col-xs-12 ${styles.emailToggle}`}>
-                    <FormToggle
-                      text={'This is a description of an email notification'}
-                    />
-                  </div>
-                  <div className={`col-xs-12 ${styles.emailToggle}`}>
-                    <FormToggle
-                      text={'This is a description of an email notification'}
-                    />
-                  </div>
-                  <div className={`col-xs-12 ${styles.emailToggle}`}>
-                    <FormToggle
-                      text={'This is a description of an email notification'}
-                    />
-                  </div>
-                </div>
-              </FormSection.InputGroup>
-            </FormSection.Section>
           </FormSection>
-          <PageCard.Break />
-          <div className={styles.buttons}>
+          <div className={styles.submitButton}>
             <Button
               type="primary"
               disabled={uploadLoading || (submitFailed && invalid)}
               loading={submittingBounty}
             >
-              Save
+              Update Profile
             </Button>
             {submitFailed && invalid ? (
               <Text inputLabel color="red" className={styles.submitError}>
@@ -289,27 +248,51 @@ let SettingsComponent = props => {
               </Text>
             ) : null}
           </div>
-        </PageCard.Content>
-      </PageCard>
-    </form>
+        </form>
+
+        <SettingsForm
+          initialValues={emailFormInitialValues}
+          onSubmit={handleSaveEmailPreferences}
+          loading={savingEmailPreferences}
+          error={errorSavingEmailPreferences}
+        />
+      </PageCard.Content>
+    </PageCard>
   );
 };
 
 const mapStateToProps = state => {
   const rootUpload = rootUploadSelector(state);
   const uploadState = rootUpload[UPLOAD_KEY] || {};
-  const draftState = createDraftStateSelector(state);
-  const bountyState = createBountyStateSelector(state);
+  const currentUser = getCurrentUserSelector(state);
+  const currentEmailPreferences = currentUser.settings.emails;
 
   return {
-    initialValues: { ...getCurrentUserSelector(state) },
+    initialValues: {
+      ...currentUser,
+      languages: currentUser.languages.join(', ')
+    },
+    emailFormInitialValues: {
+      RatingIssued: currentEmailPreferences.both.RatingIssued,
+      TransferRecipient: currentEmailPreferences.issuer.TransferRecipient,
+      BountyComment: currentEmailPreferences.issuer.BountyComment,
+      BountyExpired: currentEmailPreferences.issuer.BountyExpired,
+      FulfillmentUpdatedIssuer:
+        currentEmailPreferences.issuer.FulfillmentUpdatedIssuer,
+      FulfillmentSubmittedIssuer:
+        currentEmailPreferences.issuer.FulfillmentSubmittedIssuer,
+      FulfillmentAcceptedFulfiller:
+        currentEmailPreferences.fulfiller.FulfillmentAcceptedFulfiller,
+      activity: currentEmailPreferences.activity
+    },
     currentUser: getCurrentUserSelector(state),
     uploadLoading: uploadState.uploading || false,
     uploaded: uploadState.uploaded || false,
-    activateNow: formSelector(state, 'activateNow'),
-    paysTokens: formSelector(state, 'paysTokens'),
     skills: skillsSelector(state),
-    submittingBounty: draftState.creating || bountyState.creating
+    savingSettings: settingsSelector(state).saving,
+    errorSavingSettings: settingsSelector(state).error,
+    savingEmailPreferences: emailPreferencesSelector(state).saving,
+    errorSavingEmailPreferences: emailPreferencesSelector(state).error
   };
 };
 
@@ -321,7 +304,8 @@ const Settings = compose(
     {
       uploadFile: uploadActions.uploadFile,
       addSkill: skillActions.addToSkills,
-      saveSettings: settingsActions.saveSettings
+      saveSettings: settingsActions.saveSettings,
+      saveEmailPreferences: settingsActions.saveEmailPreferences
     }
   )
 )(SettingsComponent);

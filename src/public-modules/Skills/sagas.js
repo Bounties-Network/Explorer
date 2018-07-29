@@ -13,7 +13,6 @@ export function* loadSkills(action) {
     const endpoint = 'category/?limit=2000';
     const skills = yield call(request, endpoint, 'GET');
     yield put(loadSkillsSuccess(skills));
-    console.log('loaded skilllz');
   } catch (e) {
     yield put(loadSkillsFail(e));
   }
