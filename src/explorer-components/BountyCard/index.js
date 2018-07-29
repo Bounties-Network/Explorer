@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './BountyCard.module.scss';
-import { map, includes } from 'lodash';
+import { map, includes, capitalize } from 'lodash';
+import { REV_DIFFICULTY_MAPPING } from 'public-modules/Bounties/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Card, Text, Pill } from 'components';
 import { LinkedAvatar } from 'explorer-components';
@@ -81,7 +82,7 @@ const BountyCard = props => {
                 className={styles.detailInput}
                 weight="fontWeight-medium"
               >
-                {experienceLevel || 'Unknown'}
+                {capitalize(REV_DIFFICULTY_MAPPING[experienceLevel])}
               </Text>
               <Text inline color="defaultGrey" className={styles.detailLabel}>
                 difficulty
