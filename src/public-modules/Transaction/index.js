@@ -23,7 +23,7 @@ function setPendingWalletConfirm() {
   return { type: SET_PENDING_WALLET_CONFIRM };
 }
 
-function setError() {
+function setTransactionError() {
   return { type: SET_ERROR };
 }
 
@@ -74,7 +74,7 @@ function TransactionReducer(state = initialState, action) {
     case CLOSE_WALKTHROUGH: {
       return {
         ...state,
-        walkthroughVisible: true
+        walkthroughVisible: false
       };
     }
     case SET_TRANSACTION: {
@@ -101,8 +101,9 @@ export const actions = {
   setTransaction,
   setPendingReceipt,
   setPendingWalletConfirm,
-  setError,
-  initiateWalkthrough
+  setTransactionError,
+  initiateWalkthrough,
+  closeWalkthrough
 };
 
 export const actionTypes = {

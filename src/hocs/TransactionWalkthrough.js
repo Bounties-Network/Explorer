@@ -2,50 +2,57 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { curry } from 'lodash';
 import { TransactionWalkthrough } from 'explorer-components';
-import { actions } from 'public-modules/Bounty';
-import { rootTransactionSelector } from 'public-modules/Bounty/selectors';
+import { actions } from 'public-modules/Transaction';
+import { rootTransactionSelector } from 'public-modules/Transaction/selectors';
 import { withRouter } from 'react-router-dom';
 
-function TransactionWalkthroughHOC(WrappedComponent, config = {}) {
-  class TransactionWalkthrough extends Component {
+function TransactionWalkthroughHOC(config, WrappedComponent) {
+  class TransactionWalkthroughComponent extends React.Component {
+    state = {
+      onConfirm: () => {}
+    };
+
+    initiateWalkthrough = onConfirm => {
+      const { initiateWalkthrough } = this.props;
+
+      this.setState(
+        {
+          onConfirm
+        },
+        () => initiateWalkthrough()
+      );
+    };
+
     render() {
-      const {
-        visible,
-        stage,
-        initiateWalkthrough,
-        onClose,
-        history,
-        onDismiss,
-        onConfirm
-      } = this.props;
+      const { visible, stage, history, onClose, onDismiss } = this.props;
+
+      const { onConfirm } = this.state;
 
       return (
         <div className={config.wrapperClassName}>
           <TransactionWalkthrough
             visible={visible}
             stage={stage}
-            onClose={closeWalkthrough}
-            onDismiss={() => {
-              onClose();
-              onDismiss();
-            }}
+            onClose={onClose}
             onConfirm={onConfirm}
-            toDashboard={() => history.push('/dashboard')}
+            toDashboard={() => {
+              onClose();
+              history.push('/dashboard');
+            }}
             dismissable={config.dismissable}
             pendingReceiptText={config.pendingReceiptText}
             pendingWalletText={config.pendingWalletText}
           />
           <WrappedComponent
             {...this.props}
-            initiateWalkthrough={initiateWalkthrough}
+            initiateWalkthrough={this.initiateWalkthrough}
           />
         </div>
       );
     }
   }
-
-  TransactionWalkthrough.proptypes = {};
 
   const mapStateToProps = state => {
     const transactionState = rootTransactionSelector(state);
@@ -62,12 +69,10 @@ function TransactionWalkthroughHOC(WrappedComponent, config = {}) {
       mapStateToProps,
       {
         initiateWalkthrough: actions.initiateWalkthrough,
-        onClose: actions.closeWalkthrough,
-        onDismiss: config.onDismiss,
-        onConfirm: config.onConfirm
+        onClose: actions.closeWalkthrough
       }
     )
-  )(TransactionWalkthrough);
+  )(TransactionWalkthroughComponent);
 }
 
-export default TransactionWalkthroughHOC;
+export default curry(TransactionWalkthroughHOC);

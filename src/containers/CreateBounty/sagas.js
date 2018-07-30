@@ -10,10 +10,7 @@ export function* bountyCreated(action) {
 }
 
 export function* watchBountyCreated() {
-  yield takeLatest(
-    [CREATE_DRAFT_SUCCESS, CREATE_BOUNTY_SUCCESS],
-    bountyCreated
-  );
+  yield takeLatest([CREATE_DRAFT_SUCCESS], bountyCreated);
 }
 
 export default [watchBountyCreated];

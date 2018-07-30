@@ -10,6 +10,7 @@ import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as categoryActions } from 'public-modules/Categories';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
+import { TransactionWalkthrough } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
 import {
   createBountyStateSelector,
@@ -50,7 +51,8 @@ const CreateBountyComponent = props => {
     createDraft,
     paysTokens,
     createBounty,
-    submittingBounty
+    submittingBounty,
+    initiateWalkthrough
   } = props;
 
   const handleCreateBounty = values => {
@@ -62,7 +64,11 @@ const CreateBountyComponent = props => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleCreateBounty)}>
+    <form
+      onSubmit={handleSubmit(values =>
+        initiateWalkthrough(() => handleCreateBounty(values))
+      )}
+    >
       <PageCard>
         <PageCard.Header>
           <PageCard.Title>Create Bounty</PageCard.Title>
@@ -377,6 +383,9 @@ const mapStateToProps = state => {
 };
 
 const CreateBounty = compose(
+  TransactionWalkthrough({
+    dismissable: false
+  }),
   connect(
     mapStateToProps,
     {

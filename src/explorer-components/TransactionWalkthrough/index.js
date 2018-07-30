@@ -7,7 +7,7 @@ const InitiateWalkthrough = props => {
   const { onClose, visible, onConfirm } = props;
 
   return (
-    <Modal onClose={onClose} visible={visible}>
+    <Modal onClose={onClose} visible={visible} fixed size="small">
       <Modal.Header icon={['fal', 'wallet']}>
         <Modal.Message>Your wallet will take it from here!</Modal.Message>
       </Modal.Header>
@@ -30,7 +30,7 @@ const InitiateWalkthrough = props => {
   );
 };
 
-InitiateWalkthrough.PropTypes = {
+InitiateWalkthrough.propTypes = {
   onClose: PropTypes.func,
   visible: PropTypes.bool,
   onConfirm: PropTypes.func
@@ -40,7 +40,7 @@ const PendingWalletConfirm = props => {
   const { text } = props;
 
   return (
-    <Modal visible={true}>
+    <Modal visible={true} fixed size="small">
       <Modal.Header loadingIcon>
         <Modal.Message>{text}</Modal.Message>
       </Modal.Header>
@@ -53,22 +53,17 @@ PendingWalletConfirm.propTypes = {
 };
 
 const PendingReceipt = props => {
-  const { text, dismissable, onDismiss, visible, toDashboard } = props;
+  const { text, visible, toDashboard } = props;
 
   return (
-    <Modal visible={visible} dismissable={dismissable} onClose={onDismiss}>
-      <Modal.Header loadingIcon closable={dismissable}>
+    <Modal visible={visible} fixed size="small">
+      <Modal.Header loadingIcon>
         <Modal.Message>
           Waiting for your transaction to be cofirmed on the blockchain...
         </Modal.Message>
       </Modal.Header>
       <Modal.Body>{text}</Modal.Body>
       <Modal.Footer>
-        {dismissable ? (
-          <Button margin onClick={onDismiss}>
-            Dismiss
-          </Button>
-        ) : null}
         <Button type="primary" onClick={toDashboard}>
           Go to Dasbhoard
         </Button>
@@ -79,18 +74,16 @@ const PendingReceipt = props => {
 
 PendingReceipt.propTypes = {
   text: PropTypes.string,
-  dismissable: PropTypes.bool,
-  onDismiss: PropTypes.func,
   visible: PropTypes.bool,
   toDashboard: PropTypes.func
 };
 
 const WalkthroughError = props => {
-  const { onClose } = props;
+  const { onClose, visible } = props;
 
   return (
-    <Modal dismissable onClose={onClose} icon={['far', 'exclamation-triangle']}>
-      <Modal.Header closable>
+    <Modal dismissable onClose={onClose} fixed size="small" visible={visible}>
+      <Modal.Header icon={['far', 'exclamation-triangle']} closable>
         <Modal.Message>Something happened. Try again later.</Modal.Message>
       </Modal.Header>
       <Modal.Footer>
@@ -101,7 +94,7 @@ const WalkthroughError = props => {
 };
 
 WalkthroughError.propTypes = {
-  onClose: propTypes.func
+  onClose: PropTypes.func
 };
 
 const TransactionWalkthrough = props => {
@@ -109,11 +102,9 @@ const TransactionWalkthrough = props => {
     visible,
     stage,
     onClose,
-    onDismiss,
     onConfirm,
     toDashboard,
     pendingReceiptText,
-    dismissable,
     pendingWalletText
   } = props;
 
@@ -139,8 +130,6 @@ const TransactionWalkthrough = props => {
     return (
       <PendingReceipt
         text={pendingReceiptText}
-        dismissable={dismissable}
-        onDismiss={onDismiss}
         visible={true}
         toDashboard={toDashboard}
       />
@@ -148,7 +137,7 @@ const TransactionWalkthrough = props => {
   }
 
   if (stage === 'error') {
-    return <WalkthroughError onClose={onClose} />;
+    return <WalkthroughError onClose={onClose} visible={true} />;
   }
 };
 
@@ -163,15 +152,14 @@ TransactionWalkthrough.propTypes = {
   onConfirm: PropTypes.func,
   toDashboard: PropTypes.func,
   pendingReceiptText: PropTypes.text,
-  dismissable: PropTypes.bool,
   pendingWalletText: PropTypes.text
 };
 
 TransactionWalkthrough.defaultProps = {
   pendingReceiptText:
-    'Confirming Ethereum transaction with your enabled wallet',
+    'Your transaction is being processed. We will notify you once it is confirmed.',
   pendingWalletText:
-    'Your transaction is being processed. We will notify you once it is confirmed'
+    'Confirming Ethereum transaction with your enabled wallet. This may take a few seconds.'
 };
 
 export default TransactionWalkthrough;
