@@ -30,6 +30,12 @@ const InitiateWalkthrough = props => {
   );
 };
 
+InitiateWalkthrough.PropTypes = {
+  onClose: PropTypes.func,
+  visible: PropTypes.bool,
+  onConfirm: PropTypes.func
+};
+
 const PendingWalletConfirm = props => {
   const { text } = props;
 
@@ -40,6 +46,10 @@ const PendingWalletConfirm = props => {
       </Modal.Header>
     </Modal>
   );
+};
+
+PendingWalletConfirm.propTypes = {
+  text: PropTypes.string
 };
 
 const PendingReceipt = props => {
@@ -67,6 +77,14 @@ const PendingReceipt = props => {
   );
 };
 
+PendingReceipt.propTypes = {
+  text: PropTypes.string,
+  dismissable: PropTypes.bool,
+  onDismiss: PropTypes.func,
+  visible: PropTypes.bool,
+  toDashboard: PropTypes.func
+};
+
 const WalkthroughError = props => {
   const { onClose } = props;
 
@@ -80,6 +98,10 @@ const WalkthroughError = props => {
       </Modal.Footer>
     </Modal>
   );
+};
+
+WalkthroughError.propTypes = {
+  onClose: propTypes.func
 };
 
 const TransactionWalkthrough = props => {
@@ -128,6 +150,28 @@ const TransactionWalkthrough = props => {
   if (stage === 'error') {
     return <WalkthroughError onClose={onClose} />;
   }
+};
+
+TransactionWalkthrough.propTypes = {
+  visible: PropTypes.bool,
+  stage:
+    PropTypes.oneOf[
+      ('initiatePrompt', 'pendingWalletConfirm', 'pendingReceipt', 'error')
+    ],
+  onClose: PropTypes.func,
+  onDismiss: PropTypes.func,
+  onConfirm: PropTypes.func,
+  toDashboard: PropTypes.func,
+  pendingReceiptText: PropTypes.text,
+  dismissable: PropTypes.bool,
+  pendingWalletText: PropTypes.text
+};
+
+TransactionWalkthrough.defaultProps = {
+  pendingReceiptText:
+    'Confirming Ethereum transaction with your enabled wallet',
+  pendingWalletText:
+    'Your transaction is being processed. We will notify you once it is confirmed'
 };
 
 export default TransactionWalkthrough;
