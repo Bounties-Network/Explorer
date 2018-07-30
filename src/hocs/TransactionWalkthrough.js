@@ -14,7 +14,10 @@ function TransactionWalkthroughHOC(WrappedComponent, config = {}) {
         visible,
         stage,
         initiateWalkthrough,
-        closeWalkthrough
+        onClose,
+        history,
+        onDismiss,
+        onConfirm
       } = this.props;
 
       return (
@@ -22,7 +25,16 @@ function TransactionWalkthroughHOC(WrappedComponent, config = {}) {
           <TransactionWalkthrough
             visible={visible}
             stage={stage}
-            closeWalkthrough={closeWalkthrough}
+            onClose={closeWalkthrough}
+            onDismiss={() => {
+              onClose();
+              onDismiss();
+            }}
+            onConfirm={onConfirm}
+            toDashboard={() => history.push('/dashboard')}
+            dismissable={config.dismissable}
+            pendingReceiptText={config.pendingReceiptText}
+            pendingWalletText={config.pendingWalletText}
           />
           <WrappedComponent
             {...this.props}
@@ -50,7 +62,9 @@ function TransactionWalkthroughHOC(WrappedComponent, config = {}) {
       mapStateToProps,
       {
         initiateWalkthrough: actions.initiateWalkthrough,
-        closeWalkthrough: actions.closeWalkthrough
+        onClose: actions.closeWalkthrough,
+        onDismiss: config.onDismiss,
+        onConfirm: config.onConfirm
       }
     )
   )(TransactionWalkthrough);
