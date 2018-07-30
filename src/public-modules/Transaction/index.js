@@ -1,5 +1,5 @@
 const defaultWalkthroughState = {
-  walkthroughState: 'initiatePrompt',
+  walkthroughStage: 'initiatePrompt',
   walkthroughVisible: false,
   pendingReceiptHash: ''
 };
@@ -46,13 +46,14 @@ function TransactionReducer(state = initialState, action) {
     case INITIATE_WALKTHROUGH: {
       return {
         ...state,
+        ...defaultWalkthroughState,
         walkthroughVisible: true
       };
     }
     case SET_PENDING_WALLET_CONFIRM: {
       return {
         ...state,
-        walkthroughState: 'pendingWalletConfirm'
+        walkthroughStage: 'pendingWalletConfirm'
       };
     }
     case SET_PENDING_RECEIPT: {
@@ -60,20 +61,20 @@ function TransactionReducer(state = initialState, action) {
 
       return {
         ...state,
-        walkthroughState: 'pendingReceipt',
+        walkthroughStage: 'pendingReceipt',
         pendingReceiptHash: txHash
       };
     }
     case SET_ERROR: {
       return {
         ...state,
-        walkthroughState: 'error'
+        walkthroughStage: 'error'
       };
     }
     case CLOSE_WALKTHROUGH: {
       return {
         ...state,
-        ...defaultWalkthroughState
+        walkthroughVisible: true
       };
     }
     case SET_TRANSACTION: {
