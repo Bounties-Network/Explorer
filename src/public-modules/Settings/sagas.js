@@ -2,10 +2,11 @@ import request from 'utils/request';
 import moment from 'moment';
 import config from 'public-modules/config';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
 import { actionTypes, actions } from 'public-modules/Settings';
 import { actions as transactionActions } from 'public-modules/Transaction';
 import { calculateDecimals } from 'public-modules/Utilities/helpers';
-import { map } from 'lodash';
+import { forEach, trim, split, filter } from 'lodash';
 import { addJSON } from 'public-modules/Utilities/ipfsClient';
 import {
   addressSelector,
@@ -28,8 +29,6 @@ const {
 const { setTransaction } = transactionActions;
 
 export function* saveSettings(action) {
-  console.log(action);
-
   const { values } = action;
   const {
     name,
@@ -40,7 +39,9 @@ export function* saveSettings(action) {
     website,
     twitter,
     github,
-    linkedin
+    linkedin,
+    fileName,
+    ipfsHash: profileImageIpfsHash
   } = values;
 
   const userAddress = yield select(addressSelector);
@@ -49,7 +50,10 @@ export function* saveSettings(action) {
   const settings = {
     name,
     email,
-    languages: '', //map(l => l.trim(), languages.split(',')),
+    languages: filter(
+      l => l !== '',
+      forEach(l => trim(l), split(',', languages))
+    ),
     organization,
     skills,
     social: {
@@ -60,14 +64,10 @@ export function* saveSettings(action) {
       //dribbble: string
     },
     profilePhoto: {
-      fileDirectoryHash: '',
-      fileName: ''
+      fileDirectoryHash: profileImageIpfsHash,
+      fileName: fileName
     }
   };
-
-  console.log('dump', values);
-  console.log('settings', settings);
-  return;
 
   const ipfsHash = yield call(addJSON, settings);
 

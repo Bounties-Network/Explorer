@@ -2,29 +2,33 @@ import React from 'react';
 import styles from './Settings.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { map as fpMap } from 'lodash';
 import { PageCard, FormSection } from 'explorer-components';
 import { Field, reduxForm } from 'redux-form';
-
 import validators from 'utils/validators';
-
 import { FormToggle } from './components';
 import { Cropper, Button, Text } from 'components';
-
+import { actions as settingsActions } from 'public-modules/Settings';
+import { emailPreferencesSelector } from 'public-modules/Settings/selectors';
+import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { EMAIL_NOTIFICATION_OPTIONS } from './constants';
-
-import { map as fpMap } from 'lodash';
 
 const map = fpMap.convert({ cap: false });
 
-const EmailSettingsFormComponent = props => {
+let EmailPreferencesComponent = props => {
   const {
     error,
-    loading,
+    saving,
     submitFailed,
     invalid,
     onSubmit,
-    handleSubmit
+    handleSubmit,
+    saveEmailPreferences
   } = props;
+
+  const handleSaveEmailPreferences = values => {
+    saveEmailPreferences(values);
+  };
 
   const renderToggles = () => {
     return map(
@@ -32,7 +36,7 @@ const EmailSettingsFormComponent = props => {
         <div className={`col-xs-12 ${styles.emailToggle}`}>
           <Field
             form={'emailPreferences'}
-            disabled={loading}
+            disabled={saving}
             name={key}
             component={FormToggle}
             label={value}
@@ -44,8 +48,7 @@ const EmailSettingsFormComponent = props => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <PageCard.Break />
+    <form onSubmit={handleSubmit(handleSaveEmailPreferences)}>
       <FormSection>
         <FormSection.Section title="EMAIL NOTIFICATIONS">
           <FormSection.Description>
@@ -65,8 +68,8 @@ const EmailSettingsFormComponent = props => {
       <div className={styles.buttons}>
         <Button
           type="primary"
-          disabled={loading || (submitFailed && invalid)}
-          loading={loading}
+          disabled={saving || (submitFailed && invalid)}
+          loading={saving}
         >
           Save Email Preferences
         </Button>
@@ -81,18 +84,36 @@ const EmailSettingsFormComponent = props => {
 };
 
 const mapStateToProps = state => {
-  return {};
+  const prefs = getCurrentUserSelector(state).settings.emails;
+
+  return {
+    initialValues: {
+      RatingIssued: prefs.both.RatingIssued,
+      TransferRecipient: prefs.issuer.TransferRecipient,
+      BountyComment: prefs.issuer.BountyComment,
+      BountyExpired: prefs.issuer.BountyExpired,
+      FulfillmentUpdatedIssuer: prefs.issuer.FulfillmentUpdatedIssuer,
+      FulfillmentSubmittedIssuer: prefs.issuer.FulfillmentSubmittedIssuer,
+      FulfillmentAcceptedFulfiller:
+        prefs.fulfiller.FulfillmentAcceptedFulfiller,
+      activity: prefs.activity
+    },
+    saving: emailPreferencesSelector(state).saving,
+    error: emailPreferencesSelector(state).error
+  };
 };
 
-const ComponentWithReduxForm = reduxForm({ form: 'emailPreferences' })(
-  EmailSettingsFormComponent
+EmailPreferencesComponent = reduxForm({ form: 'emailPreferences' })(
+  EmailPreferencesComponent
 );
 
 const EmailPreferences = compose(
   connect(
     mapStateToProps,
-    {}
+    {
+      saveEmailPreferences: settingsActions.saveEmailPreferences
+    }
   )
-)(ComponentWithReduxForm);
+)(EmailPreferencesComponent);
 
 export default EmailPreferences;

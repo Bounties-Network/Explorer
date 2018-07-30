@@ -13,7 +13,10 @@ class Cropper extends React.Component {
     this.croppieInput = React.createRef();
     this.state = {
       src: props.src,
-      activeCrop: false
+      activeCrop: false,
+      fileName: 'image',
+      // used to force react to reload input component
+      nonce: 0
     };
   }
 
@@ -27,10 +30,6 @@ class Cropper extends React.Component {
     }
   }
 
-  onInputChange = e => {
-    this.setState({ activeCrop: true, src: null, file: e.target.files[0] });
-  };
-
   onDelete = () => {
     if (this.croppie) {
       this.croppie.destroy();
@@ -38,11 +37,15 @@ class Cropper extends React.Component {
     }
 
     this.props.onDelete();
-    this.setState({ activeCrop: false, src: null });
+    this.setState({
+      activeCrop: false,
+      src: null,
+      nonce: this.state.nonce + 1
+    });
   };
 
-  save = () => {
-    this.setState({ activeCrop: false });
+  save = e => {
+    e.preventDefault();
 
     this.croppie
       .result({
@@ -52,12 +55,15 @@ class Cropper extends React.Component {
         circle: true
       })
       .then(blob => {
+        blob.name = this.state.file.name;
         this.props.onChange(blob);
 
         if (this.croppie) {
           this.croppie.destroy();
           this.croppie = null;
         }
+
+        this.setState({ activeCrop: false });
       });
   };
 
@@ -81,22 +87,29 @@ class Cropper extends React.Component {
     reader.onload = e => {
       this.croppie.bind({ url: e.target.result });
     };
+    reader.readAsDataURL(file);
+  };
 
-    if (file) {
-      reader.readAsDataURL(file);
-    }
+  onInputChange = e => {
+    this.setState({ activeCrop: true, src: null, file: e.target.files[0] });
   };
 
   render() {
-    const { loading, disabled, src } = this.props;
-    const { activeCrop, src: srcState } = this.state;
+    const { loading, disabled, src: propsSrc } = this.props;
+    const {
+      activeCrop,
+      loading: loadingState,
+      src: srcState,
+      nonce
+    } = this.state;
+    const isLoading = loading || loadingState;
 
-    const currentSrc = src || srcState;
-    const disabledState = loading || disabled;
+    const src = propsSrc || srcState;
+    const disabledState = isLoading || disabled;
 
     let inputStyle = styles.input;
     let croppieClass = styles.croppie;
-    if (!activeCrop || loading) {
+    if (!activeCrop || isLoading) {
       croppieClass += ` ${styles.inactive}`;
     }
 
@@ -109,19 +122,17 @@ class Cropper extends React.Component {
         <div className={`${styles.contentWrapper} row middle-xs`}>
           <div className="col-xs-3">
             <div className={croppieClass} ref={this.croppieImg} />
-
-            {currentSrc && !activeCrop && !loading ? (
+            {src ? (
               <Circle
                 type="img"
                 size="large"
-                input={currentSrc}
+                input={src}
                 color="lightGrey"
                 border
                 className={styles.circleContent}
               />
             ) : null}
-
-            {!activeCrop && !currentSrc && !loading ? (
+            {!activeCrop && !src && !isLoading ? (
               <Circle
                 type="text"
                 size="large"
@@ -132,8 +143,7 @@ class Cropper extends React.Component {
                 className={styles.circleContent}
               />
             ) : null}
-
-            {loading ? (
+            {isLoading ? (
               <Circle
                 type="loading"
                 size="large"
@@ -145,8 +155,9 @@ class Cropper extends React.Component {
           </div>
           <div className="col-xs-9">
             <Button className={styles.upload} disabled={disabledState}>
-              {activeCrop || currentSrc ? 'Replace Photo' : 'Upload New Photo'}
+              Upload New Photo
               <input
+                key={nonce}
                 type="file"
                 className="upload"
                 accept="image/*"
@@ -156,18 +167,17 @@ class Cropper extends React.Component {
                 disabled={disabledState}
               />
             </Button>
-
-            {activeCrop || loading ? (
+            {activeCrop || isLoading ? (
               <Button
                 type="action"
                 className={styles.saveButton}
-                loading={loading}
+                loading={isLoading}
                 onClick={this.save}
               >
                 Save
               </Button>
             ) : null}
-            {activeCrop || currentSrc ? (
+            {activeCrop || src ? (
               <Button
                 type="link-destructive"
                 onClick={this.onDelete}

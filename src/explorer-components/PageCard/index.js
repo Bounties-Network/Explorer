@@ -26,9 +26,10 @@ class Header extends React.Component {
 
 class Content extends React.Component {
   render() {
-    const { children, className, bodyClass } = this.props;
+    const { children, className, bodyClass, noBanner } = this.props;
+    console.log('nobanner', noBanner);
     return (
-      <Card className={`${styles.content} ${className}`}>
+      <Card className={`${noBanner ? null : styles.content} ${className}`}>
         <Card.Body className={bodyClass}>{children}</Card.Body>
       </Card>
     );
@@ -36,6 +37,8 @@ class Content extends React.Component {
 }
 
 const PageCard = props => {
+  const { noBanner } = props;
+
   let header,
     content = [];
   const children = Array.isArray(props.children)
@@ -47,13 +50,13 @@ const PageCard = props => {
       header = child;
     }
     if (childName === Content.name) {
-      content.push(child);
+      content.push(React.cloneElement(child, { noBanner }));
     }
   }, children);
 
   return (
     <div className={styles.pageCard}>
-      <div className={styles.headerWrapper}>
+      <div className={noBanner ? null : styles.headerWrapper}>
         <div className="container-fluid">
           <div className="row center-xs">
             <div className="col-xs-9">{header}</div>
@@ -92,7 +95,12 @@ PageCard.propTypes = {
     if (!includes([Content.name], childrenTypes)) {
       return new Error('You must have a content child');
     }
-  }
+  },
+  noBanner: PropTypes.bool
+};
+
+PageCard.defaultProps = {
+  noBanner: false
 };
 
 PageCard.Content = Content;
