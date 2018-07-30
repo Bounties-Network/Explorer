@@ -16,9 +16,9 @@ const Button = props => {
     margin
   } = props;
 
-  const onClickHandler = () => {
+  const onClickHandler = e => {
     if (!loading && !disabled) {
-      onClick();
+      onClick(e);
     }
   };
 
