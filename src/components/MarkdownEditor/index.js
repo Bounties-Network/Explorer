@@ -35,18 +35,21 @@ class MarkdownEditor extends React.Component {
       error,
       label,
       disabled,
-      onChange,
+      onBlur,
+      onFocus,
       defaultValue,
       value
     } = this.props;
 
-    const textValue = value || stateValue || defaultValue;
+    const textValue =
+      typeof value === 'string' ? value : stateValue || defaultValue;
 
     return (
       <div className={styles.markdownEditor}>
         <Modal
           dismissable
           size={'large'}
+          fixed
           visible={showModal}
           onClose={this.hideModal}
         >
@@ -67,6 +70,8 @@ class MarkdownEditor extends React.Component {
           disabled={disabled}
           onChange={this.onChange}
           textAreaClass={styles.textArea}
+          onFocus={onFocus}
+          onBlur={onBlur}
           overlay={
             <Text
               type="Small"
@@ -85,7 +90,20 @@ class MarkdownEditor extends React.Component {
   }
 }
 
+MarkdownEditor.propTypes = {
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  defaultValue: PropTypes.string,
+  error: PropTypes.string,
+  label: PropTypes.string,
+  disabled: PropTypes.bool,
+  value: PropTypes.string
+};
+
 MarkdownEditor.defaultProps = {
+  onFocus: () => {},
+  onBlur: () => {},
   onChange: () => {},
   defaultValue: DEFAULT_MARKDOWN
 };

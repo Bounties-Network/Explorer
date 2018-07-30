@@ -1,0 +1,20 @@
+@import "~styles/variables.scss";
+
+.body {
+  border-radius: $base-border-radius;
+  background: $brand-nearWhite;
+}
+
+.rowContainer {
+  padding: $base-spacing 0;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+}
+
+.toggle {
+  display: flex;
+  justify-content: flex-end;
+}

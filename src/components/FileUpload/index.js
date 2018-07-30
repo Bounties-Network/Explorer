@@ -17,9 +17,16 @@ class FileUpload extends React.Component {
       filename: file.name,
       filesize: file.size
     });
+    this.props.onChange(file);
   };
 
   removeFile = e => {
+    const { disabled, loading } = this.props;
+
+    if (disabled || loading) {
+      return null;
+    }
+
     this.setState({
       filename: null,
       filesize: null
@@ -98,7 +105,8 @@ FileUpload.props = {
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
   filename: PropTypes.string,
-  filesize: PropTypes.string
+  filesize: PropTypes.string,
+  onChange: PropTypes.func
 };
 
 FileUpload.defaultProps = {};

@@ -1,4 +1,4 @@
-@import "~styles/variables.scss"; 
+@import "~styles/variables.scss";
 
 .pageCard {
   height: 100%;
@@ -24,4 +24,11 @@
 
 .content {
   margin-top: -$xxl-spacing;
+}
+
+.break {
+  margin: 0 -$l-spacing;
+  border-bottom: $base-border;
+  margin-top: $xxl-spacing;
+  margin-bottom: $l-spacing;
 }

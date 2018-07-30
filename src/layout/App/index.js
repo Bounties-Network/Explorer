@@ -13,11 +13,14 @@ import {
   Leaderboard,
   Login,
   CreateBounty,
-  Profile
+  Profile,
+  Settings
 } from 'containers';
 import { RequireLoginComponent } from 'hocs';
 import { Sidebar, Loader } from 'components';
 import { Header } from 'layout';
+import { actions as authActions } from 'public-modules/Authentication';
+import { actions as categoryActions } from 'public-modules/Categories';
 import { initializedSelector } from 'public-modules/Client/selectors';
 import { getCurrentUserStateSelector } from 'public-modules/Authentication/selectors';
 import { currentRouteSelector } from 'utils/helpers';
@@ -64,6 +67,11 @@ class AppComponent extends React.Component {
                     path="/createBounty"
                     component={RequireLoginComponent(CreateBounty)}
                   />
+                  <Route
+                    exact
+                    path="/settings"
+                    component={RequireLoginComponent(Settings)}
+                  />
                   <Route exact path="/profile/:address/" component={Profile} />
                   <Redirect from="/" to="/explorer" />
                 </Switch>
@@ -88,7 +96,13 @@ const mapStateToProps = state => {
 
 const App = compose(
   withRouter,
-  connect(mapStateToProps),
+  connect(
+    mapStateToProps,
+    {
+      getCurrentUser: authActions.getCurrentUser,
+      loadCategories: categoryActions.loadCategories
+    }
+  ),
   hot(module)
 )(AppComponent);
 

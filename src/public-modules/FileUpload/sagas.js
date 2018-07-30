@@ -1,25 +1,23 @@
 import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/FileUpload';
-import { IPFS_OPTIONS } from './constants.js';
-
-import ipfsAPI from 'ipfs-api';
-
-const ipfsNew = ipfsAPI(IPFS_OPTIONS);
+import { readFile } from 'public-modules/Utilities/helpers';
+import { addBufferToIPFS } from 'public-modules/Utilities/ipfsClient';
+import { Buffer } from 'buffer';
 
 const { UPLOAD_FILE } = actionTypes;
 const { uploadFileFail, uploadFileSuccess } = actions;
 
 export function* uploadFile(action) {
-  const { filename, reader } = action;
+  const { file, key } = action;
+  const reader = yield call(readFile, file);
   const buffer = Buffer.from(reader.result);
   try {
-    const upload = yield call(ipfsNew.add, [
-      { path: '/bounties/' + filename, content: buffer }
-    ]);
-    yield put(uploadFileSuccess(upload));
+    const ipfsHash = yield call(addBufferToIPFS, file.name, buffer);
+    console.log(`https://ipfs.infura.io/ipfs/${ipfsHash}/${file.name}`);
+    yield put(uploadFileSuccess(key, ipfsHash, file.name));
   } catch (e) {
-    yield put(uploadFileFail(e));
+    yield put(uploadFileFail(key, e));
   }
 }
 
