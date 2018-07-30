@@ -37,7 +37,7 @@ export function* getCurrentUser(action) {
 export function* login(action) {
   let signature;
   const address = yield select(addressSelector);
-  const nonceEndpoint = `auth/user/${address}/nonce/`;
+  const nonceEndpoint = `auth/${address}/nonce/`;
   const loginEndpoint = 'auth/login/';
   try {
     const nonceResponce = yield call(request, nonceEndpoint, 'GET');

@@ -6,7 +6,8 @@ import { actionTypes, actions } from 'public-modules/Bounty';
 import { actions as transactionActions } from 'public-modules/Transaction';
 import {
   calculateDecimals,
-  promisifyContractCall
+  promisifyContractCall,
+  batchContractMethods
 } from 'public-modules/Utilities/helpers';
 import { addJSON } from 'public-modules/Utilities/ipfsClient';
 import {
@@ -163,11 +164,7 @@ export function* createBounty(action) {
     }
   };
   const ipfsHash = yield call(addJSON, issuedData);
-  let sendContractData = { from: userAddress };
-  if (!paysTokens) {
-    sendContractData.value = contractBalance;
-  }
-
+  const { standardBounties } = yield call(getContractClient);
   if (paysTokens) {
     const { tokenContract: tokenContractClient } = yield call(
       getTokenClient,
@@ -175,24 +172,41 @@ export function* createBounty(action) {
     );
     try {
       const network = yield select(networkSelector);
-      yield call(
-        tokenContractClient.approve(
-          config[network].standardBountiesAddress,
-          contractBalance
-        ).send,
-        { from: userAddress }
+      const [approveHash, issuedBountyHash] = yield call(
+        batchContractMethods,
+        [
+          tokenContractClient.approve(
+            config[network].standardBountiesAddress,
+            contractBalance
+          ).send,
+          { from: userAddress }
+        ],
+        [
+          standardBounties.issueAndActivateBounty(
+            userAddress,
+            `${deadline}`,
+            ipfsHash,
+            contractFulfillmentAmount,
+            0x0,
+            paysTokens,
+            tokenContract || 0x0,
+            contractBalance
+          ).send,
+          { from: userAddress }
+        ]
       );
+      return yield put(createBountySuccess());
     } catch (e) {
-      console.log(e);
-      // token transfer failed
+      return yield put(createDraftFail());
     }
   }
-  const { standardBounties } = yield call(getContractClient);
+
   try {
-    const txHash = yield promisifyContractCall(
-      standardBounties.issueAndActivateBounty,
-      sendContractData
-    )(
+    const txHash = yield call(
+      promisifyContractCall(standardBounties.issueAndActivateBounty, {
+        from: userAddress,
+        value: contractBalance
+      }),
       userAddress,
       `${deadline}`,
       ipfsHash,
@@ -204,7 +218,6 @@ export function* createBounty(action) {
     );
     yield put(createBountySuccess());
   } catch (e) {
-    console.log(e);
     yield put(createDraftFail());
   }
 }

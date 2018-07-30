@@ -1,4 +1,8 @@
+import web3 from 'public-modules/Utilities/Web3Client';
+import { each as fpEach } from 'lodash';
 import { BigNumber } from 'bignumber.js';
+
+const each = fpEach.convert({ cap: false });
 
 export const calculateDecimals = (amount, decimals) => {
   const decimalPlaces = new BigNumber(parseInt(decimals), 10);
@@ -52,5 +56,28 @@ export const promisifyContractCall = (contractFunction, options) => (
       .send(options)
       .on('transactionHash', hash => resolve(hash))
       .on('error', error => reject(error));
+  });
+};
+
+export const batchContractMethods = (...methods) => {
+  return new Promise((resolve, reject) => {
+    const batch = new web3.eth.BatchRequest();
+    let completedCount = 0;
+    const txHashes = [];
+    each((method, idx) => {
+      const [fn, web3Options] = method;
+      batch.add(
+        fn.request(web3Options, (err, txHash) => {
+          if (err) {
+            return reject(err);
+          }
+          txHashes[idx] = txHash;
+          if (++completedCount === methods.length) {
+            return resolve(txHashes);
+          }
+        })
+      );
+    }, methods);
+    batch.execute();
   });
 };
