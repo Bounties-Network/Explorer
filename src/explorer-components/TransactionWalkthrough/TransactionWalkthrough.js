@@ -83,9 +83,51 @@ const WalkthroughError = props => {
 };
 
 const TransactionWalkthrough = props => {
-  const { visible, stage, onClose } = props;
+  const {
+    visible,
+    stage,
+    onClose,
+    onDismiss,
+    onConfirm,
+    toDashboard,
+    pendingReceiptText,
+    dismissable,
+    pendingWalletText
+  } = props;
 
-  return <div>Walkthrough</div>;
+  if (!visible) {
+    return null;
+  }
+
+  if (stage === 'initiatePrompt') {
+    return (
+      <InitiateWalkthrough
+        onConfirm={onConfirm}
+        visible={true}
+        onClose={onClose}
+      />
+    );
+  }
+
+  if (stage === 'pendingWalletConfirm') {
+    return <PendingWalletConfirm text={pendingWalletText} visible={true} />;
+  }
+
+  if (stage === 'pendingReceipt') {
+    return (
+      <PendingReceipt
+        text={pendingReceiptText}
+        dismissable={dismissable}
+        onDismiss={onDismiss}
+        visible={true}
+        toDashboard={toDashboard}
+      />
+    );
+  }
+
+  if (stage === 'error') {
+    return <WalkthroughError onClose={onClose} />;
+  }
 };
 
-export default TransactionLoading;
+export default TransactionWalkthrough;
