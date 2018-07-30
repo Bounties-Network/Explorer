@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SearchSelect.module.scss';
 import Select from 'react-select';
-import { reject, includes, filter, map, find } from 'lodash';
+import CreatableSelect from 'react-select/lib/Creatable';
+import { reject, includes, filter, map, find, isUndefined } from 'lodash';
 import '../../styles/ReactSelect.scss';
 
 import { Text, Pill } from 'components';
 
-// props = options, onChange, placeholder
 class SearchSelect extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +25,11 @@ class SearchSelect extends React.Component {
       optionItem => includes(optionItem[valueKey], selectValue),
       options
     );
+  };
+
+  onCreateOption = value => {
+    this.props.onCreate(value);
+    this.onDropdownSelect(value);
   };
 
   onDropdownSelect = selectedValue => {
@@ -49,6 +54,7 @@ class SearchSelect extends React.Component {
     );
     this.setState({ value: updatedValue });
     this.props.onClose(closedValue);
+    this.props.onChange(updatedValue);
   };
 
   renderPills = () => {
@@ -58,6 +64,10 @@ class SearchSelect extends React.Component {
     const selectValue = value || stateValue;
 
     return map(valueItem => {
+      if (isUndefined(valueItem)) {
+        return null;
+      }
+
       const label = find(
         optionItem => optionItem[valueKey] === valueItem,
         options
@@ -66,7 +76,7 @@ class SearchSelect extends React.Component {
       return (
         <div className={`${styles.pill}`} key={valueItem}>
           <Pill close onCloseClick={() => this.closePill(valueItem)}>
-            {label[labelKey]}
+            {label ? label[labelKey] : valueItem}
           </Pill>
         </div>
       );
@@ -83,7 +93,10 @@ class SearchSelect extends React.Component {
       valueKey,
       optional,
       placeholder,
-      options
+      options,
+      creatable,
+      onFocus,
+      onBlur
     } = this.props;
 
     let labelText = label;
@@ -100,20 +113,35 @@ class SearchSelect extends React.Component {
       <div className={`${styles.dropdownSearch}`}>
         {labelText ? (
           <div>
-            <Text type="FormLabel" color={error ? 'red' : null}>
+            <Text inputLabel color={error ? 'red' : null}>
               {labelText}
             </Text>
           </div>
         ) : null}
-        <Select
-          disabled={disabled}
-          labelKey={labelKey}
-          valueKey={valueKey}
-          className={selectClass}
-          options={this.filterOptions()}
-          onChange={this.onDropdownSelect}
-          placeholder={placeholder}
-        />
+        {creatable ? (
+          <CreatableSelect
+            disabled={disabled}
+            labelKey={labelKey}
+            valueKey={valueKey}
+            className={selectClass}
+            options={this.filterOptions()}
+            onChange={this.onDropdownSelect}
+            onCreateOption={this.onCreateOption}
+            onFocus={onFocus}
+            onBlur={() => onBlur(this.state.value)}
+            placeholder={placeholder}
+          />
+        ) : (
+          <Select
+            disabled={disabled}
+            labelKey={labelKey}
+            valueKey={valueKey}
+            className={selectClass}
+            options={this.filterOptions()}
+            onChange={this.onDropdownSelect}
+            placeholder={placeholder}
+          />
+        )}
         {error ? (
           <div>
             <Text type="FormLabel" color={'red'}>
@@ -140,7 +168,11 @@ SearchSelect.propTypes = {
   error: PropTypes.string,
   optional: PropTypes.bool,
   placeholder: PropTypes.string,
-  value: PropTypes.array
+  creatable: PropTypes.bool,
+  value: PropTypes.array,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  onCreate: PropTypes.func
 };
 
 SearchSelect.defaultProps = {
@@ -148,7 +180,10 @@ SearchSelect.defaultProps = {
   valueKey: 'value',
   options: [],
   onClose: () => {},
-  onChange: () => {}
+  onChange: () => {},
+  onFocus: () => {},
+  onBlur: () => {},
+  onCreate: () => {}
 };
 
 export default SearchSelect;

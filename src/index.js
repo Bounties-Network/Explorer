@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import createHistory from 'history/createBrowserHistory';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
+import { reducer as formReducer } from 'redux-form';
 import {
   ConnectedRouter,
   routerReducer,
@@ -10,7 +11,7 @@ import {
 } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import { reducers, sagaWatchers } from 'public-modules';
-import { sagaWatchers as otherSagaWatchers } from './sagas';
+import explorerSagas from './sagas';
 import baseReducers from './reducers';
 import { App } from 'layout';
 import registerServiceWorker from './registerServiceWorker';
@@ -29,13 +30,14 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   combineReducers({
     router: routerReducer,
+    form: formReducer,
     ...reducers,
     ...baseReducers
   }),
   composeEnhancers(applyMiddleware(middleware, sagaMiddleware))
 );
 
-[...sagaWatchers, ...otherSagaWatchers].map(saga => sagaMiddleware.run(saga));
+[...sagaWatchers, ...explorerSagas].map(saga => sagaMiddleware.run(saga));
 
 ReactDOM.render(
   <Provider store={store}>

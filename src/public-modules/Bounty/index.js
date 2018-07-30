@@ -1,72 +1,109 @@
-const initialState = {
-  loading: true,
-  loaded: false,
-  error: false,
-  currentBounty: {}
+const defaultCreateDraftState = {
+  creating: false,
+  error: false
 };
 
-const EXTEND_DEADLINE = 'bounty/EXTEND_DEADLINE';
-const EXTEND_DEADLINE_SUCCESS = 'bounty/EXTEND_DEADLINE_SUCCESS';
-const EXTEND_DEADLINE_FAIL = 'bounty/EXTEND_DEADLINE_FAIL';
+const defaultCreateBountyState = {
+  creating: false,
+  error: false
+};
 
-function extendDeadline(id, deadline) {
-  return { type: EXTEND_DEADLINE, id, deadline };
+const initialState = {
+  createDraftState: { ...defaultCreateDraftState },
+  createBountyState: { ...defaultCreateBountyState }
+};
+
+const CREATE_DRAFT = 'bounty/CREATE_DRAFT';
+const CREATE_DRAFT_SUCCESS = 'bounty/CREATE_DRAFT_SUCCESS';
+const CREATE_DRAFT_FAIL = 'bounty/CREATE_DRAFT_FAIL';
+
+function createDraft(values) {
+  return { type: CREATE_DRAFT, values };
 }
 
-function extendDeadlineSuccess() {
-  return { type: EXTEND_DEADLINE_SUCCESS };
+function createDraftSuccess() {
+  return { type: CREATE_DRAFT_SUCCESS };
 }
 
-function extendDeadlineFail() {
-  return { type: EXTEND_DEADLINE_FAIL };
+function createDraftFail(error) {
+  return { type: CREATE_DRAFT_FAIL, error };
 }
 
-const LOAD_BOUNTY = 'bounty/LOAD_BOUNTY';
-const LOAD_BOUNTY_SUCCESS = 'bounty/LOAD_BOUNTY_SUCCESS';
-const LOAD_BOUNTY_FAIL = 'bounty/LOAD_BOUNTY_FAIL';
+const CREATE_BOUNTY = 'bounty/CREATE_BOUNTY';
+const CREATE_BOUNTY_SUCCESS = 'bounty/CREATE_BOUNTY_SUCCESS';
+const CREATE_BOUNTY_FAIL = 'bounty/CREATE_BOUNTY_FAIL';
 
-function loadBounty(id) {
-  return { type: LOAD_BOUNTY, id };
+function createBounty(values, balance) {
+  return { type: CREATE_BOUNTY, values, balance };
 }
 
-function loadBountySuccess(bounty) {
-  return {
-    type: LOAD_BOUNTY_SUCCESS,
-    currentBounty: bounty
-  };
+function createBountySuccess() {
+  return { type: CREATE_BOUNTY_SUCCESS };
 }
 
-function loadBountyFail(error) {
-  return { type: LOAD_BOUNTY_FAIL, error };
+function createBountyFail(error) {
+  return { type: CREATE_BOUNTY_FAIL, error };
 }
 
 function BountyReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_BOUNTY: {
+    case CREATE_BOUNTY: {
       return {
         ...state,
-        loading: true,
-        loaded: false,
-        error: false
+        createBountyState: {
+          ...state.createBountyState,
+          creating: true,
+          error: false
+        }
       };
     }
-    case LOAD_BOUNTY_SUCCESS: {
-      const { currentBounty } = action;
-
+    case CREATE_BOUNTY_SUCCESS: {
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        error: false,
-        currentBounty
+        createBountyState: {
+          ...state.createBountyState,
+          creating: false
+        }
       };
     }
-    case LOAD_BOUNTY_FAIL: {
+    case CREATE_BOUNTY_FAIL: {
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        error: true
+        createBountyState: {
+          ...state.createBountyState,
+          creating: false,
+          error: true
+        }
+      };
+    }
+    case CREATE_DRAFT: {
+      return {
+        ...state,
+        createDraftState: {
+          ...state.createDraftState,
+          creating: true,
+          error: false
+        }
+      };
+    }
+    case CREATE_DRAFT_SUCCESS: {
+      return {
+        ...state,
+        createDraftState: {
+          ...state.createDraftState,
+          creating: false,
+          error: false
+        }
+      };
+    }
+    case CREATE_DRAFT_FAIL: {
+      return {
+        ...state,
+        createDraftState: {
+          ...state.createDraftState,
+          creating: false,
+          error: true
+        }
       };
     }
     default:
@@ -75,16 +112,21 @@ function BountyReducer(state = initialState, action) {
 }
 
 export const actions = {
-  loadBounty,
-  loadBountySuccess,
-  loadBountyFail
+  createBounty,
+  createBountySuccess,
+  createBountyFail,
+  createDraft,
+  createDraftSuccess,
+  createDraftFail
 };
 
 export const actionTypes = {
-  EXTEND_DEADLINE,
-  LOAD_BOUNTY,
-  LOAD_BOUNTY_SUCCESS,
-  LOAD_BOUNTY_FAIL
+  CREATE_BOUNTY,
+  CREATE_BOUNTY_SUCCESS,
+  CREATE_BOUNTY_FAIL,
+  CREATE_DRAFT,
+  CREATE_DRAFT_SUCCESS,
+  CREATE_DRAFT_FAIL
 };
 
 export default BountyReducer;

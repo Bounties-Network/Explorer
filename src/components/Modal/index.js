@@ -117,6 +117,29 @@ class Modal extends React.Component {
     }
   };
 
+  componentWillMount() {
+    const { visible } = this.props;
+
+    if (visible) {
+      document.body.classList.add('modal-open');
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const wasVisible = prevProps.visible;
+    const { visible: isVisible } = this.props;
+
+    if (isVisible === wasVisible) {
+      return null;
+    }
+
+    if (isVisible) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.className = '';
+    }
+  }
+
   modalClick(e) {
     e.stopPropagation();
   }
@@ -162,7 +185,7 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { size, visible } = this.props;
+    const { size, visible, fixed } = this.props;
     let header, heading, message, description, footer, body;
     const children = Array.isArray(this.props.children)
       ? this.props.children
@@ -202,15 +225,22 @@ class Modal extends React.Component {
     }
 
     let baseClass = styles.overlay;
+    if (fixed) {
+      baseClass += ` ${styles.fixed}`;
+    }
+
     if (!visible) {
       baseClass += ` ${styles.hidden}`;
     }
 
     return (
       <div className={baseClass} onClick={this.dismiss}>
-        <div className={`${styles.modalWrapper} row center-xs middle-xs`}>
-          <div className={`${gridSize} ${styles.innerWrapper}`}>
-            <div className={styles.modal} onClick={this.modalClick}>
+        <div className="container-fluid">
+          <div className={`${styles.modalWrapper} row center-xs middle-xs`}>
+            <div
+              className={`${styles.modal} ${gridSize}`}
+              onClick={this.modalClick}
+            >
               <ModalContext.Provider value={{ onClose: this.onClose }}>
                 {this.renderHeader(header)}
                 {this.renderHeading(heading)}
@@ -230,6 +260,7 @@ class Modal extends React.Component {
 Modal.propTypes = {
   dismissable: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  fixed: PropTypes.bool,
   children: function(props, propName, componentName) {
     const children = props[propName];
     const isArray = Array.isArray(children);
@@ -259,6 +290,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
+  fixed: false,
   size: 'medium',
   dismissable: false
 };

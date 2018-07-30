@@ -1,9 +1,11 @@
 @import "~styles/variables.scss";
 
 .numberInput {
+  display: flex;
 }
 
 .input {
+  flex-grow: 1;
   padding: 0 $base-spacing;
   vertical-align: top;
   text-align: center;
@@ -23,8 +25,9 @@
 
 .decrement,
 .increment {
+  flex: 0 0  $base-input-height;
   border: $base-border;
-  display: inline-block;
+  display: block;
   width: $base-input-height;
   line-height: $base-input-height;
   background: $brand-white;

@@ -1,3 +1,5 @@
+import { invert } from 'lodash';
+
 export const PAGE_SIZE = 25;
 
 export const SORT_VALUE = 'usd_price';
@@ -11,6 +13,8 @@ export const DIFFICULTY_MAPPING = {
   intermediate: 1,
   advanced: 2
 };
+
+export const REV_DIFFICULTY_MAPPING = invert(DIFFICULTY_MAPPING);
 
 export const STAGE_MAPPING = {
   draft: 0,

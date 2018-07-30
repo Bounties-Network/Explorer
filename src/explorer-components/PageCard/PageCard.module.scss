@@ -25,3 +25,10 @@
 .content {
   margin-top: -$xxl-spacing;
 }
+
+.break {
+  margin: 0 -$l-spacing;
+  border-bottom: $base-border;
+  margin-top: $xxl-spacing;
+  margin-bottom: $l-spacing;
+}

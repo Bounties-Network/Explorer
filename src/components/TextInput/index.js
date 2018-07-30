@@ -23,8 +23,15 @@ class TextInput extends React.Component {
       disabled,
       error,
       optional,
-      placeholder
+      onBlur,
+      onFocus,
+      value,
+      placeholder,
+      type
     } = this.props;
+
+    const { text: textStateValue } = this.state;
+    const textValue = typeof value === 'string' ? value : textStateValue;
 
     let labelText = label;
     if (optional) {
@@ -53,9 +60,11 @@ class TextInput extends React.Component {
           placeholder={placeholder}
           disabled={disabled}
           className={inputClass}
-          type="text"
-          value={this.state.text}
+          type={type}
+          value={textValue}
           onChange={this.onTextChange}
+          onBlur={onBlur}
+          onFocus={onFocus}
         />
         {error ? (
           <div>
@@ -80,11 +89,18 @@ TextInput.propTypes = {
   disabled: PropTypes.bool,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+  value: PropTypes.string,
+  type: PropTypes.oneOf(['number', 'text'])
 };
 
 TextInput.defaultProps = {
-  onChange: () => {}
+  onChange: () => {},
+  onBlur: () => {},
+  onFocus: () => {},
+  type: 'text'
 };
 
 export default TextInput;

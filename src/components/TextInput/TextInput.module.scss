@@ -8,6 +8,7 @@
   font-size: $body-font-size;
   line-height: $base-input-height;
   padding: 0 $base-spacing;
+  width: 100%;
 
   &:focus {
     border-color: transparent;
