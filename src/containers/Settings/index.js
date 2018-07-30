@@ -63,7 +63,11 @@ let SettingsComponent = props => {
     emailFormInitialValues,
     saveEmailPreferences,
     savingEmailPreferences,
-    errorSavingEmailPreferences
+    errorSavingEmailPreferences,
+    ipfsHash,
+    fileName,
+    profilePhotoURL,
+    resetUpload
   } = props;
 
   const handleSaveSettings = values => {
@@ -87,7 +91,9 @@ let SettingsComponent = props => {
                 <Cropper
                   disabled={submittingBounty}
                   onChange={file => uploadFile(UPLOAD_KEY, file)}
+                  onDelete={resetUpload}
                   loading={uploadLoading}
+                  src={profilePhotoURL ? profilePhotoURL : ''}
                 />
               </FormSection.InputGroup>
             </FormSection.Section>
@@ -288,11 +294,18 @@ const mapStateToProps = state => {
     currentUser: getCurrentUserSelector(state),
     uploadLoading: uploadState.uploading || false,
     uploaded: uploadState.uploaded || false,
+    ipfsHash: uploadState.uploaded ? uploadState.ipfsHash : null,
+    fileName: uploadState.uploaded ? uploadState.fileName : null,
     skills: skillsSelector(state),
     savingSettings: settingsSelector(state).saving,
     errorSavingSettings: settingsSelector(state).error,
     savingEmailPreferences: emailPreferencesSelector(state).saving,
-    errorSavingEmailPreferences: emailPreferencesSelector(state).error
+    errorSavingEmailPreferences: emailPreferencesSelector(state).error,
+    profilePhotoURL: uploadState.uploaded
+      ? `https://ipfs.infura.io/ipfs/${uploadState.ipfsHash}/${
+          uploadState.fileName
+        }`
+      : ''
   };
 };
 
@@ -303,6 +316,7 @@ const Settings = compose(
     mapStateToProps,
     {
       uploadFile: uploadActions.uploadFile,
+      resetUpload: uploadActions.resetUpload,
       addSkill: skillActions.addToSkills,
       saveSettings: settingsActions.saveSettings,
       saveEmailPreferences: settingsActions.saveEmailPreferences

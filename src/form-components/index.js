@@ -6,7 +6,8 @@ import {
   RadioGroup,
   NumberInput,
   DatePicker,
-  Toggle
+  Toggle,
+  Cropper
 } from 'components';
 
 export const FormTextInput = FormInput(TextInput);
@@ -16,3 +17,4 @@ export const FormRadioGroup = FormInput(RadioGroup);
 export const FormNumberInput = FormInput(NumberInput);
 export const FormDatePicker = FormInput(DatePicker);
 export const FormToggle = FormInput(FormToggle);
+export const FormCropper = FormInput(FormCropper);
