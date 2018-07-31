@@ -1,0 +1,34 @@
+@import "~styles/variables.scss";
+
+.centerAvatar {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.stats {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+
+  > .stat:not(:last-child) {
+    padding-right: $m-spacing;
+    border-right: $base-border-width solid $brand-grey;
+  }
+
+  > .stat:not(:first-child) {
+    margin-left: $m-spacing
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}

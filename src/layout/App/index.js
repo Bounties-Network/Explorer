@@ -10,6 +10,7 @@ import { NoMatch } from 'layout';
 import { NAV_ITEMS } from './constants';
 import {
   Explorer,
+  Dashboard,
   Leaderboard,
   Login,
   CreateBounty,
@@ -87,6 +88,11 @@ class AppComponent extends React.Component {
                     exact
                     path="/settings"
                     component={RequireLoginComponent(Settings)}
+                  />
+                  <Route
+                    exact
+                    path="/dashboard"
+                    component={RequireLoginComponent(Dashboard)}
                   />
                   <Route exact path="/profile/:address/" component={Profile} />
                   <Route
