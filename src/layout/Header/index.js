@@ -56,7 +56,14 @@ const HeaderComponent = props => {
                 />
               </DropdownTrigger>
               <DropdownContent>
-                <MenuItem icon={['fal', 'cog']}>Account Settings</MenuItem>
+                <MenuItem
+                  icon={['fal', 'cog']}
+                  onClick={() => {
+                    history.push('settings');
+                  }}
+                >
+                  Account Settings
+                </MenuItem>
                 <MenuItem icon={['fal', 'sign-out']} onClick={logout}>
                   Sign Out
                 </MenuItem>

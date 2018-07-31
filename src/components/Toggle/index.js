@@ -4,14 +4,11 @@ import styles from './Toggle.module.scss';
 import { Text } from 'components';
 import ToggleComponent from 'react-toggle';
 import '../../styles/Toggle.scss';
-import { uniqueId } from 'lodash';
 
 class Toggle extends React.Component {
   constructor(props) {
     super(props);
-    const uuid = uniqueId();
     this.state = {
-      uuid,
       value: props.value || props.defaultValue
     };
   }
@@ -24,7 +21,7 @@ class Toggle extends React.Component {
 
   render() {
     const { defaultValue, disabled, label, value } = this.props;
-    const { uuid, value: stateValue } = this.state;
+    const { value: stateValue } = this.state;
 
     const currentValue = value || stateValue || defaultValue;
 

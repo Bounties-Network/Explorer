@@ -78,6 +78,11 @@ class AppComponent extends React.Component {
                     component={RequireLoginComponent(Settings)}
                   />
                   <Route exact path="/profile/:address/" component={Profile} />
+                  <Route
+                    exact
+                    path="/profile/"
+                    component={RequireLoginComponent(Profile)}
+                  />
                   <Redirect from="/" to="/explorer" />
                 </Switch>
               </div>

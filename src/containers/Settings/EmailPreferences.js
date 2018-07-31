@@ -84,19 +84,19 @@ let EmailPreferencesComponent = props => {
 };
 
 const mapStateToProps = state => {
-  const prefs = getCurrentUserSelector(state).settings.emails;
+  const preferences = getCurrentUserSelector(state).settings.emails;
 
   return {
     initialValues: {
-      RatingIssued: prefs.both.RatingIssued,
-      TransferRecipient: prefs.issuer.TransferRecipient,
-      BountyComment: prefs.issuer.BountyComment,
-      BountyExpired: prefs.issuer.BountyExpired,
-      FulfillmentUpdatedIssuer: prefs.issuer.FulfillmentUpdatedIssuer,
-      FulfillmentSubmittedIssuer: prefs.issuer.FulfillmentSubmittedIssuer,
+      RatingIssued: preferences.both.RatingIssued,
+      TransferRecipient: preferences.issuer.TransferRecipient,
+      BountyComment: preferences.issuer.BountyComment,
+      BountyExpired: preferences.issuer.BountyExpired,
+      FulfillmentUpdatedIssuer: preferences.issuer.FulfillmentUpdatedIssuer,
+      FulfillmentSubmittedIssuer: preferences.issuer.FulfillmentSubmittedIssuer,
       FulfillmentAcceptedFulfiller:
-        prefs.fulfiller.FulfillmentAcceptedFulfiller,
-      activity: prefs.activity
+        preferences.fulfiller.FulfillmentAcceptedFulfiller,
+      activity: preferences.activity
     },
     saving: emailPreferencesSelector(state).saving,
     error: emailPreferencesSelector(state).error

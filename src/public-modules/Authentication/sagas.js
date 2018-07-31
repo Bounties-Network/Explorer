@@ -42,7 +42,6 @@ export function* login(action) {
   try {
     const nonceResponce = yield call(request, nonceEndpoint, 'GET');
     const nonce = nonceResponce.nonce;
-    console.log(nonceResponce);
     const signedUp = nonceResponce.has_signed_up;
     const { web3, proxiedWeb3 } = yield call(getWeb3Client);
     const message = web3.utils.fromUtf8(

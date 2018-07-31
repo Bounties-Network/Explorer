@@ -30,7 +30,9 @@ class Cropper extends React.Component {
     }
   }
 
-  onDelete = () => {
+  onDelete = e => {
+    e.preventDefault();
+
     if (this.croppie) {
       this.croppie.destroy();
       this.croppie = null;
@@ -122,7 +124,7 @@ class Cropper extends React.Component {
         <div className={`${styles.contentWrapper} row middle-xs`}>
           <div className="col-xs-3">
             <div className={croppieClass} ref={this.croppieImg} />
-            {src ? (
+            {src && !activeCrop && !loading ? (
               <Circle
                 type="img"
                 size="large"

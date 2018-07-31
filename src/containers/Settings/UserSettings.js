@@ -50,7 +50,8 @@ let UserSettingsComponent = props => {
     savingSettings,
     ipfsHash,
     fileName,
-    profilePhotoURL,
+    userProfilePhoto,
+    uploadedProfilePhoto,
     resetUpload
   } = props;
 
@@ -76,7 +77,7 @@ let UserSettingsComponent = props => {
               onChange={file => uploadFile(UPLOAD_KEY, file)}
               onDelete={resetUpload}
               loading={uploading}
-              src={profilePhotoURL ? profilePhotoURL : ''}
+              src={uploadedProfilePhoto || userProfilePhoto}
             />
 
             <Field name="fileName" component={fileNameField} />
@@ -110,7 +111,6 @@ let UserSettingsComponent = props => {
                   component={FormTextInput}
                   label="Contact email"
                   placeholder="Enter email..."
-                  form="asdf"
                   validate={[validators.maxLength(128), validators.email]}
                 />
               </div>
@@ -259,11 +259,12 @@ const mapStateToProps = state => {
     skills: skillsSelector(state),
     savingSettings: settingsSelector(state).saving,
     errorSavingSettings: settingsSelector(state).error,
-    profilePhotoURL: uploadState.uploaded
+    uploadedProfilePhoto: uploadState.uploaded
       ? `https://ipfs.infura.io/ipfs/${uploadState.ipfsHash}/${
           uploadState.fileName
         }`
-      : ''
+      : '',
+    userProfilePhoto: currentUser.profile_image
   };
 };
 

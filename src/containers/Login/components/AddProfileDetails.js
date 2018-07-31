@@ -24,8 +24,8 @@ const AddProfileDetails = props => {
                 <br />
                 <br />
                 We recommend you fill out as many details as possible, since
-                you'll need to submit a small transaction each time you change
-                in order for them to be kept on-chain.
+                you&#39;ll need to submit a small transaction each time you
+                change in order for them to be kept on-chain.
                 <br />
                 <br />
                 FAQ: Why are my profile details kept on-chain
@@ -47,7 +47,8 @@ const AddProfileDetails = props => {
       </Modal.Header>
       <Modal.Body>
         <Text>
-          Welcome to the Bounties Network! We're excited to see what you bounty.
+          Welcome to the Bounties Network! We&#39;re excited to see what you
+          bounty.
           <br />
           <br />
           Before you get started, we encourage you to add some profile details
@@ -55,16 +56,16 @@ const AddProfileDetails = props => {
           background and skillset.
           <br />
           <br />
-          In order to add details to your profile, you'll be required to approve
-          a small transaction. This is so we can keep your profile information
-          securely on-chain.
+          In order to add details to your profile, you&#39;ll be required to
+          approve a small transaction. This is so we can keep your profile
+          information securely on-chain.
           <br />
           <br />
           FAQ: Why are my profile details kept on-chain?
         </Text>
       </Modal.Body>
       <Modal.Footer>
-        <Button type="" onClick={onClose}>
+        <Button type="" onClick={onClose} margin>
           Skip
         </Button>
         <Button type="primary" onClick={showForm}>
