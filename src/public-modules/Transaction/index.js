@@ -1,7 +1,3 @@
-import { map as fpMap } from 'lodash';
-
-const map = fpMap.convert({ cap: false });
-
 const defaultWalkthroughState = {
   walkthroughStage: 'initiatePrompt',
   walkthroughVisible: false,
@@ -45,7 +41,7 @@ function TransactionReducer(state = {}, action) {
 
 const ADD_TRANSACTION = 'transaction/ADD_TRANSACTION';
 
-function addTransaction(transaction) {
+function addTransaction(transaction, txHash) {
   return { type: ADD_TRANSACTION, transaction };
 }
 
@@ -71,6 +67,24 @@ function TransactionsReducer(state = {}, action) {
     default:
       return state;
   }
+}
+
+const LOAD_TRANSACTIONS = 'transaction/LOAD_TRANSACTIONS';
+const LOAD_TRANSACTIONS_SUCCESS = 'transaction/LOAD_TRANSACTIONS_SUCCESS';
+const LOAD_TRANSACTIONS_FAIL = 'transaction/LOAD_TRANSACTIONS_FAIL';
+
+// These actions do not actually make a change to the store right now
+// as they do not need to. It's a polled, looping function.
+function loadTransactions() {
+  return { type: LOAD_TRANSACTIONS };
+}
+
+function loadTransactionsSuccess() {
+  return { type: LOAD_TRANSACTIONS_SUCCESS };
+}
+
+function loadTransactionsFail() {
+  return { type: LOAD_TRANSACTIONS_FAIL };
 }
 
 const INITIATE_WALKTHROUGH = 'transaction/INITIATE_WALKTHROUGH';
@@ -149,8 +163,8 @@ function ManageTransactionReducer(state = initialState, action) {
 
 export const actions = {
   loadTransactions,
-  loadTransactionSuccess,
-  loadTransactionFail,
+  loadTransactionsSuccess,
+  loadTransactionsFail,
   addTransaction,
   setTransactionViewed,
   setTransactionCompleted,
