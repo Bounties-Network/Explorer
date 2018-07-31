@@ -35,8 +35,10 @@ import github from '@fortawesome/fontawesome-free-brands/faGithub';
 import linkedin from '@fortawesome/fontawesome-free-brands/faLinkedin';
 import eye from '@fortawesome/fontawesome-pro-light/faEye';
 import globe from '@fortawesome/fontawesome-pro-regular/faGlobe';
+import idCardAlt from '@fortawesome/fontawesome-pro-light/faIdCardAlt';
 
 library.add(
+  idCardAlt,
   linkedin,
   github,
   globe,

@@ -37,11 +37,13 @@ export function* getCurrentUser(action) {
 export function* login(action) {
   let signature;
   const address = yield select(addressSelector);
-  const nonceEndpoint = `auth/user/${address}/nonce/`;
+  const nonceEndpoint = `auth/${address}/nonce/`;
   const loginEndpoint = 'auth/login/';
   try {
     const nonceResponce = yield call(request, nonceEndpoint, 'GET');
     const nonce = nonceResponce.nonce;
+    console.log(nonceResponce);
+    const signedUp = nonceResponce.has_signed_up;
     const { web3, proxiedWeb3 } = yield call(getWeb3Client);
     const message = web3.utils.fromUtf8(
       'Hi there! Your special nonce: ' + nonce
@@ -59,7 +61,7 @@ export function* login(action) {
       'POST',
       loginOptions
     );
-    yield put(loginSuccess(currentUser));
+    yield put(loginSuccess(currentUser, signedUp));
   } catch (e) {
     yield put(loginFail(e));
   }

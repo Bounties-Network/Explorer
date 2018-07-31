@@ -1,17 +1,23 @@
 import { actionTypes as authActionTypes } from 'public-modules/Authentication';
 
-const { LOGIN_SUCCESS, RESET_LOGIN_STATE } = authActionTypes;
+const { RESET_LOGIN_STATE } = authActionTypes;
 
 const initialState = {
   visible: false,
+  form: false,
   stage: 'login'
 };
 
 const SHOW_LOGIN = 'containers_login/SHOW_LOGIN';
+const SHOW_FORM = 'containers_login/SHOW_FORM';
 const SET_STAGE = 'containers_login/SET_STAGE';
 
 function showLogin(show) {
   return { type: SHOW_LOGIN, show };
+}
+
+function showForm(show) {
+  return { type: SHOW_FORM, show };
 }
 
 function setStage(stage) {
@@ -29,18 +35,20 @@ function Login(state = initialState, action) {
         stage: 'login'
       };
     }
+    case SHOW_FORM: {
+      const { show } = action;
+
+      return {
+        ...state,
+        form: show
+      };
+    }
     case SET_STAGE: {
       const { stage } = action;
 
       return {
         ...state,
         stage
-      };
-    }
-    case LOGIN_SUCCESS: {
-      return {
-        ...state,
-        visible: false
       };
     }
     case RESET_LOGIN_STATE: {
@@ -56,12 +64,14 @@ function Login(state = initialState, action) {
 
 export const actions = {
   showLogin,
+  showForm,
   setStage
 };
 
 export const actionTypes = {
   SHOW_LOGIN,
-  SET_STAGE
+  SET_STAGE,
+  SHOW_FORM
 };
 
 export default Login;

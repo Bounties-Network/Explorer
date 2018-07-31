@@ -21,3 +21,8 @@ export const getCurrentUserSelector = createSelector(
   rootAuthSelector,
   rootAuth => rootAuth.user
 );
+
+export const hasUserSignedUp = createSelector(
+  rootAuthSelector,
+  rootAuth => rootAuth.signedUp
+);
