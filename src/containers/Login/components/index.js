@@ -4,6 +4,7 @@ import SignIn from './SignIn';
 import SigningIn from './SigningIn';
 import AddressMismatch from './AddressMismatch';
 import ErrorModal from './ErrorModal';
+import AddProfileDetails from './AddProfileDetails';
 
 export {
   WalletRequired,
@@ -11,5 +12,6 @@ export {
   SignIn,
   SigningIn,
   AddressMismatch,
-  ErrorModal
+  ErrorModal,
+  AddProfileDetails
 };
