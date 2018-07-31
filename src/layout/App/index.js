@@ -16,7 +16,7 @@ import {
   Profile
 } from 'containers';
 import { RequireLoginComponent } from 'hocs';
-import { Sidebar, Loader } from 'components';
+import { Sidebar, Loader, ToastContainer } from 'components';
 import { Header } from 'layout';
 import { actions as authActions } from 'public-modules/Authentication';
 import { actions as categoryActions } from 'public-modules/Categories';
@@ -45,6 +45,12 @@ class AppComponent extends React.Component {
 
     return (
       <div className={styles.app}>
+        <ToastContainer
+          newestOnTop
+          autoClose={false}
+          hideProgressBar
+          draggable
+        />
         {isPageLoading ? (
           <div className={`${styles.loadingBody}`}>
             {' '}

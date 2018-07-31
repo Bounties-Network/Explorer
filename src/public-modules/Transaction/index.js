@@ -1,4 +1,5 @@
 const defaultWalkthroughState = {
+  transactionsInitiated: false,
   walkthroughStage: 'initiatePrompt',
   walkthroughVisible: false,
   pendingReceiptHash: ''
@@ -12,8 +13,8 @@ const initialState = {
 const SET_TRANSACTION_COMPLETED = 'transaction/SET_TRANSACTION_COMPLETED';
 const SET_TRANSACTION_VIEWED = 'transaction/SET_TRANSACTION_VIEWED';
 
-function setTransactionCompleted(txHash) {
-  return { type: SET_TRANSACTION_COMPLETED, txHash };
+function setTransactionCompleted(txHash, link, linkText, message) {
+  return { type: SET_TRANSACTION_COMPLETED, txHash, link, linkText, message };
 }
 
 function setTransactionViewed(txHash) {
@@ -23,9 +24,15 @@ function setTransactionViewed(txHash) {
 function TransactionReducer(state = {}, action) {
   switch (action.type) {
     case SET_TRANSACTION_COMPLETED: {
+      const { link, linkText, message } = action;
+
       return {
         ...state,
-        completed: true
+        completed: true,
+        viewed: false,
+        link,
+        linkText,
+        message
       };
     }
     case SET_TRANSACTION_VIEWED: {
@@ -42,7 +49,7 @@ function TransactionReducer(state = {}, action) {
 const ADD_TRANSACTION = 'transaction/ADD_TRANSACTION';
 
 function addTransaction(transaction, txHash) {
-  return { type: ADD_TRANSACTION, transaction };
+  return { type: ADD_TRANSACTION, transaction, txHash };
 }
 
 function TransactionsReducer(state = {}, action) {
@@ -113,8 +120,32 @@ function closeWalkthrough() {
   return { type: CLOSE_WALKTHROUGH };
 }
 
+// These also have no impact on the state
+// IF this fails, we do not do anything about it, as the server will serve up the completed transaction
+const POST_TRANSACTION = 'transaction/POST_TRANSACTION';
+const POST_TRANSACTION_SUCCESS = 'transaction/POST_TRANSACTION_SUCCESS';
+const POST_TRANSACTION_FAIL = 'transaction/POST_TRANSACTION_FAIL';
+
+function postTransaction(txHash) {
+  return { type: POST_TRANSACTION, txHash };
+}
+
+function postTransactionSuccess(txHash) {
+  return { type: POST_TRANSACTION_SUCCESS, txHash };
+}
+
+function postTransactionFail(txHash) {
+  return { type: POST_TRANSACTION_FAIL, txHash };
+}
+
 function ManageTransactionReducer(state = initialState, action) {
   switch (action.type) {
+    case LOAD_TRANSACTIONS_SUCCESS: {
+      return {
+        ...state,
+        transactionsInitiated: true
+      };
+    }
     case INITIATE_WALKTHROUGH: {
       return {
         ...state,
@@ -165,6 +196,9 @@ export const actions = {
   loadTransactions,
   loadTransactionsSuccess,
   loadTransactionsFail,
+  postTransaction,
+  postTransactionSuccess,
+  postTransactionFail,
   addTransaction,
   setTransactionViewed,
   setTransactionCompleted,
@@ -179,11 +213,15 @@ export const actionTypes = {
   LOAD_TRANSACTIONS,
   LOAD_TRANSACTIONS_SUCCESS,
   LOAD_TRANSACTIONS_FAIL,
+  POST_TRANSACTION,
+  POST_TRANSACTION_SUCCESS,
+  POST_TRANSACTION_FAIL,
   ADD_TRANSACTION,
   SET_TRANSACTION_COMPLETED,
   SET_TRANSACTION_VIEWED,
   SET_PENDING_RECEIPT,
   SET_PENDING_WALLET_CONFIRM,
+  CLOSE_WALKTHROUGH,
   SET_ERROR,
   INITIATE_WALKTHROUGH
 };

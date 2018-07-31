@@ -37,7 +37,9 @@ const store = createStore(
   composeEnhancers(applyMiddleware(middleware, sagaMiddleware))
 );
 
-[...sagaWatchers, ...explorerSagas].map(saga => sagaMiddleware.run(saga));
+[...sagaWatchers, ...explorerSagas].map(saga =>
+  sagaMiddleware.run(saga, store.dispatch)
+);
 
 ReactDOM.render(
   <Provider store={store}>
