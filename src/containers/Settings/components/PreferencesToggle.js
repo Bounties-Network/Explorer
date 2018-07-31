@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './FormToggle.module.scss';
+import styles from './PreferencesToggle.module.scss';
 import { Text, Toggle } from 'components';
 import { LinkedAvatar } from 'explorer-components';
 import { FormInput } from 'hocs';
 
-const FormToggle = props => {
+const PreferencesToggle = props => {
   const { value, label, onChange, className } = props;
 
   return (
@@ -24,11 +24,11 @@ const FormToggle = props => {
   );
 };
 
-FormToggle.propTypes = {
+PreferencesToggle.propTypes = {
   text: PropTypes.string,
   onChange: PropTypes.func
 };
 
-FormToggle.defaultProps = {};
+PreferencesToggle.defaultProps = {};
 
-export default FormInput(FormToggle);
+export default FormInput(PreferencesToggle);

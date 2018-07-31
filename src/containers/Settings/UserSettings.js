@@ -59,14 +59,6 @@ let UserSettingsComponent = props => {
     saveSettings({ ...values, ipfsHash, fileName });
   };
 
-  const fileNameField = field => (
-    <input {...field.input} type="hidden" value={fileName} />
-  );
-
-  const ipfsHashField = field => (
-    <input {...field.input} type="hidden" value={ipfsHash} />
-  );
-
   return (
     <form onSubmit={handleSubmit(handleSaveSettings)}>
       <FormSection>
@@ -79,9 +71,6 @@ let UserSettingsComponent = props => {
               loading={uploading}
               src={uploadedProfilePhoto || userProfilePhoto}
             />
-
-            <Field name="fileName" component={fileNameField} />
-            <Field name="ipfsHash" component={ipfsHashField} />
           </FormSection.InputGroup>
         </FormSection.Section>
         <FormSection.Section title="ABOUT">

@@ -6,7 +6,7 @@ import { map as fpMap } from 'lodash';
 import { PageCard, FormSection } from 'explorer-components';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
-import { FormToggle } from './components';
+import { PreferencesToggle } from './components';
 import { Cropper, Button, Text } from 'components';
 import { actions as settingsActions } from 'public-modules/Settings';
 import { emailPreferencesSelector } from 'public-modules/Settings/selectors';
@@ -38,7 +38,7 @@ let EmailPreferencesComponent = props => {
             form={'emailPreferences'}
             disabled={saving}
             name={key}
-            component={FormToggle}
+            component={PreferencesToggle}
             label={value}
           />
         </div>

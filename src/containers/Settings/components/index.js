@@ -1,3 +1,3 @@
-import FormToggle from './FormToggle';
+import PreferencesToggle from './PreferencesToggle';
 
-export { FormToggle };
+export { PreferencesToggle };

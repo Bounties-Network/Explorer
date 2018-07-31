@@ -69,9 +69,9 @@ export function* saveSettings(action) {
     }
   };
 
+  console.log(settings);
+  return;
   const ipfsHash = yield call(addJSON, settings);
-
-  console.log('ipfs', ipfsHash);
 
   const { ethProfiles } = yield call(getContractClient);
   try {

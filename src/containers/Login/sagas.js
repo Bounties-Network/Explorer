@@ -15,7 +15,10 @@ function* loginSuccess() {
   yield signedUp ? put(showLogin(false)) : put(setStage('profile'));
 }
 
-function* saveSettings() {}
+function* saveSettings() {
+  yield put(showLogin(false));
+  yield put(setStage('profile'));
+}
 
 export function* watchLogin() {
   yield takeLatest(LOGIN_SUCCESS, loginSuccess);

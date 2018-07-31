@@ -26,7 +26,6 @@ class Header extends React.Component {
 class Content extends React.Component {
   render() {
     const { children, className, bodyClass, noBanner } = this.props;
-    console.log('nobanner', noBanner);
     return (
       <Card className={`${noBanner ? null : styles.content} ${className}`}>
         <Card.Body className={bodyClass}>{children}</Card.Body>

@@ -31,8 +31,6 @@ const LoginComponent = props => {
   const {
     visible,
     stage,
-    form,
-    showForm,
     hasWallet,
     walletLocked,
     walletAddress,
@@ -76,12 +74,7 @@ const LoginComponent = props => {
 
   if (stage === 'profile') {
     return (
-      <AddProfileDetails
-        visible={visible}
-        onClose={() => showLogin(false)}
-        form={form}
-        showForm={() => showForm(true)}
-      />
+      <AddProfileDetails visible={visible} onClose={() => showLogin(false)} />
     );
   }
 
@@ -104,7 +97,6 @@ const mapStateToProps = state => {
     userName: user && user.name,
     userEmail: user && user.email,
     visible: rootLogin.visible,
-    form: rootLogin.form,
     stage: rootLogin.stage,
     img: user && user.img,
     signingIn: loginState.loading,
@@ -119,7 +111,6 @@ const Login = compose(
     mapStateToProps,
     {
       showLogin: actions.showLogin,
-      showForm: actions.showForm,
       login: authActions.login,
       logout: authActions.logout,
       resetLoginState: authActions.resetLoginState,
