@@ -8,6 +8,6 @@ export const skillsSelector = createSelector(
   skillsSelector => skillsSelector.skills
 );
 
-export const categoriesListSelector = createSelector(skillsSelector, skills =>
+export const skillsListSelector = createSelector(skillsSelector, skills =>
   map(skill => skill.normalized_name, skills)
 );

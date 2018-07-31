@@ -50,10 +50,7 @@ export function* saveSettings(action) {
   const settings = {
     name,
     email,
-    languages: filter(
-      l => l !== '',
-      forEach(l => trim(l), split(',', languages))
-    ),
+    languages,
     organization,
     skills,
     social: {
@@ -69,8 +66,6 @@ export function* saveSettings(action) {
     }
   };
 
-  console.log(settings);
-  return;
   const ipfsHash = yield call(addJSON, settings);
 
   const { ethProfiles } = yield call(getContractClient);

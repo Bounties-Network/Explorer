@@ -11,6 +11,7 @@ import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as skillActions } from 'public-modules/Skills';
 import { actions as settingsActions } from 'public-modules/Settings';
 import { skillsSelector } from 'public-modules/Skills/selectors';
+import { languagesSelector } from 'public-modules/Languages/selectors';
 import { settingsSelector } from 'public-modules/Settings/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { Field, reduxForm } from 'redux-form';
@@ -43,6 +44,7 @@ let UserSettingsComponent = props => {
     uploaded,
     addSkill,
     skills,
+    languages,
     invalid,
     handleSubmit,
     submitFailed,
@@ -90,7 +92,7 @@ let UserSettingsComponent = props => {
                   component={FormTextInput}
                   label="Name"
                   placeholder="Enter name..."
-                  validate={[validators.required, validators.maxLength(128)]}
+                  validate={[validators.maxLength(128)]}
                 />
               </div>
               <div className="col-xs-6">
@@ -111,10 +113,12 @@ let UserSettingsComponent = props => {
                 <Field
                   disabled={savingSettings}
                   name="languages"
-                  component={FormTextInput}
-                  label="Languages Spoken"
-                  placeholder="Enter languages..."
-                  validate={[validators.maxLength(128)]}
+                  component={FormSearchSelect}
+                  label="Languages"
+                  placeholder="Choose a languages..."
+                  options={languages}
+                  labelKey="name"
+                  valueKey="normalized_name"
                 />
               </div>
               <div className="col-xs-6">
@@ -246,6 +250,7 @@ const mapStateToProps = state => {
     ipfsHash: uploadState.uploaded ? uploadState.ipfsHash : null,
     fileName: uploadState.uploaded ? uploadState.fileName : null,
     skills: skillsSelector(state),
+    languages: languagesSelector(state),
     savingSettings: settingsSelector(state).saving,
     errorSavingSettings: settingsSelector(state).error,
     uploadedProfilePhoto: uploadState.uploaded

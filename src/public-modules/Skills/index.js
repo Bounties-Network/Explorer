@@ -7,8 +7,8 @@ const initialState = {
 };
 
 const LOAD_SKILLS = 'skills/LOAD_SKILLS';
-const LOAD_SKILLS_SUCCESS = 'skills/LOAD_CATEGORIES_SUCCESS';
-const LOAD_SKILLS_FAIL = 'skills/LOAD_CATEGORIES_FAIL';
+const LOAD_SKILLS_SUCCESS = 'skills/LOAD_SKILLS_SUCCESS';
+const LOAD_SKILLS_FAIL = 'skills/LOAD_SKILLS_FAIL';
 
 function loadSkills() {
   return { type: LOAD_SKILLS };
