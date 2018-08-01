@@ -32,9 +32,9 @@ export const reducers = {
   fileUpload: fileUploadRducer,
   client: clientReducer,
   settings: settingsReducer,
-  transaction: transactionReducer,
   notification: notificationReducer,
   fulfillments: fulfillmentsReducer
+  transaction: transactionReducer
 };
 
 import bountiesSagas from 'public-modules/Bounties/sagas';
