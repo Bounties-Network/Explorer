@@ -6,7 +6,7 @@ import { Text } from 'components';
 import { ToastContainer as ToastWrapper, toast } from 'react-toastify';
 
 const BaseToast = props => {
-  const { icon, message, link } = props;
+  const { icon, message, link, onClose } = props;
 
   return (
     <div className={styles.baseToast}>
@@ -45,7 +45,8 @@ const CloseIcon = props => {
 BaseToast.propTypes = {
   icon: PropTypes.array,
   message: PropTypes.string,
-  link: PropTypes.string
+  link: PropTypes.node,
+  onClose: PropTypes.func
 };
 
 const ToastContainer = props => {
