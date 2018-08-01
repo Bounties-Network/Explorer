@@ -9,6 +9,7 @@ import { formValueSelector } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as categoryActions } from 'public-modules/Categories';
 import { actions as bountyActions } from 'public-modules/Bounty';
+import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { TransactionWalkthrough } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
@@ -371,6 +372,7 @@ const mapStateToProps = state => {
   const uploadState = rootUpload[UPLOAD_KEY] || {};
   const draftState = createDraftStateSelector(state);
   const bountyState = createBountyStateSelector(state);
+  const user = getCurrentUserSelector(state) || {};
 
   return {
     uploadLoading: uploadState.uploading || false,
@@ -385,6 +387,8 @@ const mapStateToProps = state => {
       revisions: 3,
       paysTokens: false,
       activateNow: true,
+      issuer_email: user.email || '',
+      issuer_name: user.name || '',
       deadline: moment()
         .add(1, 'days')
         .utc()
