@@ -10,6 +10,7 @@ import authenticationReducer from 'public-modules/Authentication';
 import bountyReducer from 'public-modules/Bounty';
 import fileUploadRducer from 'public-modules/FileUpload';
 import clientReducer from 'public-modules/Client';
+import transactionReducer from 'public-modules/Transaction';
 
 export const reducers = {
   bounties: bountiesReducer,
@@ -20,7 +21,8 @@ export const reducers = {
   authentication: authenticationReducer,
   bounty: bountyReducer,
   fileUpload: fileUploadRducer,
-  client: clientReducer
+  client: clientReducer,
+  transaction: transactionReducer
 };
 
 import bountiesSagas from 'public-modules/Bounties/sagas';
@@ -32,6 +34,7 @@ import authenticationSagas from 'public-modules/Authentication/sagas';
 import bountySagas from 'public-modules/Bounty/sagas';
 import fileUploadSagas from 'public-modules/FileUpload/sagas';
 import clientSagas from 'public-modules/Client/sagas';
+import transactionSagas from 'public-modules/Transaction/sagas';
 
 export const sagaWatchers = [
   ...leaderboardSagas,
@@ -42,5 +45,6 @@ export const sagaWatchers = [
   ...authenticationSagas,
   ...bountySagas,
   ...fileUploadSagas,
-  ...clientSagas
+  ...clientSagas,
+  ...transactionSagas
 ];

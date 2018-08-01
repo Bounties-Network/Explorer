@@ -37,7 +37,7 @@ const HeaderComponent = props => {
           <Button
             type="primary"
             onClick={() => {
-              history.push('createBounty');
+              history.push('/createBounty');
             }}
             className={styles.button}
           >

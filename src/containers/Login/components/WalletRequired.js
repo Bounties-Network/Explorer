@@ -19,9 +19,7 @@ const WalletRequired = props => {
         </Modal.Message>
       </Modal.Header>
       <Modal.Body>
-        <Text inline type>
-          In order to use{' '}
-        </Text>
+        <Text inline>In order to use </Text>
         <Text weight="fontWeight-bold" inline>
           bounties.network
         </Text>

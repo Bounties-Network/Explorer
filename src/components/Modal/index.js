@@ -140,6 +140,10 @@ class Modal extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    document.body.className = '';
+  }
+
   modalClick(e) {
     e.stopPropagation();
   }

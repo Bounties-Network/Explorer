@@ -28,7 +28,11 @@ const {
   createBountyFail
 } = actions;
 
-const { setTransaction } = transactionActions;
+const {
+  setPendingWalletConfirm,
+  setTransactionError,
+  setPendingReceipt
+} = transactionActions;
 
 export function* getTokenData(tokenAddress) {
   const { tokenContract: tokenContractClient } = yield call(
@@ -103,6 +107,7 @@ export function* createBounty(action) {
     paysTokens
   } = values;
 
+  yield put(setPendingWalletConfirm());
   const userAddress = yield select(addressSelector);
   const { web3 } = yield call(getWeb3Client);
 
@@ -118,7 +123,6 @@ export function* createBounty(action) {
       contractBalance = calculateDecimals(balance, decimals);
     } catch (e) {
       console.log(e);
-      // call error toast here - contract isn't a proper erc20 token.
     }
   } else {
     contractFulfillmentAmount = web3.utils.toWei(fulfillmentAmount, 'ether');
@@ -195,9 +199,11 @@ export function* createBounty(action) {
           { from: userAddress }
         ]
       );
+      yield put(setPendingReceipt(issuedBountyHash));
       return yield put(createBountySuccess());
     } catch (e) {
-      return yield put(createDraftFail());
+      yield put(setTransactionError());
+      return yield put(createBountyFail());
     }
   }
 
@@ -216,9 +222,11 @@ export function* createBounty(action) {
       tokenContract || 0x0,
       contractBalance
     );
+    yield put(setPendingReceipt(txHash));
     yield put(createBountySuccess());
   } catch (e) {
-    yield put(createDraftFail());
+    yield put(setTransactionError());
+    yield put(createBountyFail());
   }
 }
 
