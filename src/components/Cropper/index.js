@@ -13,27 +13,60 @@ class Cropper extends React.Component {
     this.croppieInput = React.createRef();
     this.state = {
       src: props.src,
-      activeCrop: false
+      activeCrop: false,
+      fileName: 'image',
+      // used to force react to reload input component
+      nonce: 0
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.activeCrop && prevState.file !== this.state.file) {
+    if (
+      this.state.activeCrop &&
+      this.state.file &&
+      prevState.file !== this.state.file
+    ) {
       this.readFile();
     }
   }
 
-  onDelete = () => {
+  onDelete = e => {
+    e.preventDefault();
+
     if (this.croppie) {
       this.croppie.destroy();
       this.croppie = null;
     }
 
-    this.setState({ activeCrop: false, src: null });
+    this.props.onDelete();
+    this.setState({
+      activeCrop: false,
+      src: null,
+      nonce: this.state.nonce + 1
+    });
   };
 
-  save = () => {
-    this.setState({ loading: true });
+  save = e => {
+    e.preventDefault();
+
+    this.croppie
+      .result({
+        type: 'blob',
+        size: 'viewport',
+        quality: 0.75,
+        circle: true
+      })
+      .then(blob => {
+        blob.name = this.state.file.name;
+        this.props.onChange(blob);
+
+        if (this.croppie) {
+          this.croppie.destroy();
+          this.croppie = null;
+        }
+
+        this.setState({ activeCrop: false });
+      });
   };
 
   readFile = () => {
@@ -64,11 +97,18 @@ class Cropper extends React.Component {
   };
 
   render() {
-    const { loading, disabled } = this.props;
-    const { activeCrop, loading: loadingState, src } = this.state;
+    const { loading, disabled, src: propsSrc } = this.props;
+    const {
+      activeCrop,
+      loading: loadingState,
+      src: srcState,
+      nonce
+    } = this.state;
     const isLoading = loading || loadingState;
 
+    const src = propsSrc || srcState;
     const disabledState = isLoading || disabled;
+
     let inputStyle = styles.input;
     let croppieClass = styles.croppie;
     if (!activeCrop || isLoading) {
@@ -84,7 +124,7 @@ class Cropper extends React.Component {
         <div className={`${styles.contentWrapper} row middle-xs`}>
           <div className="col-xs-3">
             <div className={croppieClass} ref={this.croppieImg} />
-            {src ? (
+            {src && !activeCrop && !loading ? (
               <Circle
                 type="img"
                 size="large"
@@ -94,7 +134,7 @@ class Cropper extends React.Component {
                 className={styles.circleContent}
               />
             ) : null}
-            {!activeCrop && !src ? (
+            {!activeCrop && !src && !isLoading ? (
               <Circle
                 type="text"
                 size="large"
@@ -116,21 +156,20 @@ class Cropper extends React.Component {
             ) : null}
           </div>
           <div className="col-xs-9">
-            {src ? null : (
-              <Button className={styles.upload} disabled={disabledState}>
-                {activeCrop || src ? 'Replace Photo' : 'Upload New Photo'}
-                <input
-                  type="file"
-                  className="upload"
-                  accept="image/*"
-                  onChange={this.onInputChange}
-                  className={inputStyle}
-                  ref={this.croppieInput}
-                  disabled={disabledState}
-                />
-              </Button>
-            )}
-            {activeCrop ? (
+            <Button className={styles.upload} disabled={disabledState}>
+              Upload New Photo
+              <input
+                key={nonce}
+                type="file"
+                className="upload"
+                accept="image/*"
+                onChange={this.onInputChange}
+                className={inputStyle}
+                ref={this.croppieInput}
+                disabled={disabledState}
+              />
+            </Button>
+            {activeCrop || isLoading ? (
               <Button
                 type="action"
                 className={styles.saveButton}

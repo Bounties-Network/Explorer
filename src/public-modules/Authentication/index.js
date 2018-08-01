@@ -17,6 +17,7 @@ const defaultGetCurrentUserState = {
 const initialState = {
   user: null,
   nonce: '',
+  signedUp: false,
   getCurrentUserState: defaultGetCurrentUserState,
   loginState: defaultLoginState,
   logoutState: defaultLogoutState
@@ -47,10 +48,11 @@ function login() {
   return { type: LOGIN };
 }
 
-function loginSuccess(user) {
+function loginSuccess(user, signedUp) {
   return {
     type: LOGIN_SUCCESS,
-    user
+    user,
+    signedUp
   };
 }
 
@@ -132,10 +134,11 @@ function AuthenticationReducer(state = initialState, action) {
       };
     }
     case LOGIN_SUCCESS: {
-      const { user } = action;
+      const { user, signedUp } = action;
       return {
         ...state,
         user,
+        signedUp,
         loginState: {
           ...state.loginState,
           loading: false

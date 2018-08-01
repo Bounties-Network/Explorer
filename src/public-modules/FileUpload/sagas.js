@@ -14,7 +14,7 @@ export function* uploadFile(action) {
   const buffer = Buffer.from(reader.result);
   try {
     const ipfsHash = yield call(addBufferToIPFS, file.name, buffer);
-    yield put(uploadFileSuccess(key, ipfsHash));
+    yield put(uploadFileSuccess(key, ipfsHash, file.name));
   } catch (e) {
     yield put(uploadFileFail(key, e));
   }

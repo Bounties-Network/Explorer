@@ -1,6 +1,6 @@
 import { actionTypes as authActionTypes } from 'public-modules/Authentication';
 
-const { LOGIN_SUCCESS, RESET_LOGIN_STATE } = authActionTypes;
+const { RESET_LOGIN_STATE } = authActionTypes;
 
 const initialState = {
   visible: false,
@@ -35,12 +35,6 @@ function Login(state = initialState, action) {
       return {
         ...state,
         stage
-      };
-    }
-    case LOGIN_SUCCESS: {
-      return {
-        ...state,
-        visible: false
       };
     }
     case RESET_LOGIN_STATE: {

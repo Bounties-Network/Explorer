@@ -12,6 +12,7 @@ import {
   loadedUserSelector,
   loadedUserStatsSelector
 } from 'public-modules/UserInfo/selectors';
+import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { rootProfileUISelector } from './selectors';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { actions } from './reducer';
@@ -20,9 +21,9 @@ import { StickyContainer, Sticky } from 'react-sticky';
 
 class ProfileComponent extends React.Component {
   componentWillMount() {
-    this.props.setProfileAddress(
-      this.props.match.params.address.toLowerCase() || ''
-    );
+    const address =
+      this.props.match.params.address || this.props.currentUser.public_address;
+    this.props.setProfileAddress(address.toLowerCase() || '');
   }
 
   render() {
@@ -94,9 +95,11 @@ class ProfileComponent extends React.Component {
 }
 
 const mapStateToProps = state => {
+  const currentUser = getCurrentUserSelector(state);
   const userInfo = userInfoSelector(state);
 
   return {
+    currentUser,
     user: userInfo.loadedUser.user,
     loading: userInfo.loading,
     loaded: userInfo.loaded,

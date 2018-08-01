@@ -13,7 +13,8 @@ import {
   Leaderboard,
   Login,
   CreateBounty,
-  Profile
+  Profile,
+  Settings
 } from 'containers';
 import { RequireLoginComponent } from 'hocs';
 import { Sidebar, Loader, ToastContainer } from 'components';
@@ -77,7 +78,17 @@ class AppComponent extends React.Component {
                     path="/createBounty"
                     component={RequireLoginComponent(CreateBounty)}
                   />
+                  <Route
+                    exact
+                    path="/settings"
+                    component={RequireLoginComponent(Settings)}
+                  />
                   <Route exact path="/profile/:address/" component={Profile} />
+                  <Route
+                    exact
+                    path="/profile/"
+                    component={RequireLoginComponent(Profile)}
+                  />
                   <Redirect from="/" to="/explorer" />
                 </Switch>
               </div>

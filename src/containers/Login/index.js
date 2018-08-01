@@ -10,7 +10,8 @@ import {
   SignIn,
   SigningIn,
   AddressMismatch,
-  ErrorModal
+  ErrorModal,
+  AddProfileDetails
 } from './components';
 import { rootLoginSelector } from './selectors';
 import { actions } from './reducer';
@@ -34,6 +35,8 @@ const LoginComponent = props => {
     walletLocked,
     walletAddress,
     userAddress,
+    userName,
+    userEmail,
     img,
     showLogin,
     login,
@@ -69,6 +72,12 @@ const LoginComponent = props => {
     return <SigningIn visible={visible} />;
   }
 
+  if (stage === 'profile') {
+    return (
+      <AddProfileDetails visible={visible} onClose={() => showLogin(false)} />
+    );
+  }
+
   return (
     <SignIn visible={visible} onClose={() => showLogin(false)} signIn={login} />
   );
@@ -85,6 +94,8 @@ const mapStateToProps = state => {
     walletLocked: walletLockedSelector(state),
     walletAddress: addressSelector(state),
     userAddress: user && user.public_address,
+    userName: user && user.name,
+    userEmail: user && user.email,
     visible: rootLogin.visible,
     stage: rootLogin.stage,
     img: user && user.img,

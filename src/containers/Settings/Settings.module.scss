@@ -1,0 +1,22 @@
+@import "~styles/variables.scss";
+
+.cardContent {
+  text-align: left;
+  margin-bottom: $xxl-spacing;
+}
+
+.markdownEditor {
+  height: 15em;
+}
+
+.submitError {
+  margin-top: $base-spacing;
+}
+
+.buttons {
+  text-align: center;
+}
+
+.emailToggle {
+  margin-bottom: $base-spacing;
+}
