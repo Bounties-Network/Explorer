@@ -66,9 +66,13 @@ const CreateBountyComponent = props => {
 
   return (
     <form
-      onSubmit={handleSubmit(values =>
-        initiateWalkthrough(() => handleCreateBounty(values))
-      )}
+      onSubmit={handleSubmit(values => {
+        const { activateNow } = values;
+        if (activateNow) {
+          return initiateWalkthrough(() => handleCreateBounty(values));
+        }
+        handleCreateBounty(values);
+      })}
     >
       <PageCard>
         <PageCard.Header>
