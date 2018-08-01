@@ -5,7 +5,11 @@ import { connect } from 'react-redux';
 import { curry } from 'lodash';
 import { TransactionWalkthrough } from 'explorer-components';
 import { actions } from 'public-modules/Transaction';
-import { rootTransactionSelector } from 'public-modules/Transaction/selectors';
+import {
+  rootTransactionSelector,
+  pendingReceiptHashSelector,
+  getTransactionSelector
+} from 'public-modules/Transaction/selectors';
 import { withRouter } from 'react-router-dom';
 
 function TransactionWalkthroughHOC(config, WrappedComponent) {
@@ -26,7 +30,14 @@ function TransactionWalkthroughHOC(config, WrappedComponent) {
     };
 
     render() {
-      const { visible, stage, history, onClose, onDismiss } = this.props;
+      const {
+        visible,
+        stage,
+        history,
+        onClose,
+        onDismiss,
+        transaction
+      } = this.props;
 
       const { onConfirm } = this.state;
 
@@ -41,9 +52,11 @@ function TransactionWalkthroughHOC(config, WrappedComponent) {
               onClose();
               history.push('/dashboard');
             }}
+            transaction={transaction}
             dismissable={config.dismissable}
             pendingReceiptText={config.pendingReceiptText}
             pendingWalletText={config.pendingWalletText}
+            successOnClick={() => history.push(transaction.link)}
           />
           <WrappedComponent
             {...this.props}
@@ -56,10 +69,13 @@ function TransactionWalkthroughHOC(config, WrappedComponent) {
 
   const mapStateToProps = state => {
     const transactionState = rootTransactionSelector(state);
+    const pendingReceipt = pendingReceiptHashSelector(state);
+    const transaction = getTransactionSelector(pendingReceipt)(state);
 
     return {
       visible: transactionState.walkthroughVisible,
-      stage: transactionState.walkthroughStage
+      stage: transactionState.walkthroughStage,
+      transaction: transaction || {}
     };
   };
 

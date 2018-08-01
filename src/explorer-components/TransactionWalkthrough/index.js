@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styles from './TransactionWalkthrough.module.scss';
 import { Text, Modal, Button } from 'components';
 
@@ -97,6 +98,32 @@ WalkthroughError.propTypes = {
   onClose: PropTypes.func
 };
 
+const WalkthroughSuccess = props => {
+  const {
+    visible,
+    toDashboard,
+    buttonText,
+    successPath,
+    successOnClick
+  } = props;
+
+  return (
+    <Modal fixed size="small" visible={visible}>
+      <Modal.Header icon={['far', 'check-circle']}>
+        <Modal.Message>Your transaction has been confirmed!</Modal.Message>
+      </Modal.Header>
+      <Modal.Footer>
+        <Button margin onClick={toDashboard} type="primary">
+          To Dashboard
+        </Button>
+        <Button type="action" onClick={successOnClick}>
+          {buttonText}
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
 const TransactionWalkthrough = props => {
   const {
     visible,
@@ -105,7 +132,9 @@ const TransactionWalkthrough = props => {
     onConfirm,
     toDashboard,
     pendingReceiptText,
-    pendingWalletText
+    pendingWalletText,
+    transaction,
+    successOnClick
   } = props;
 
   if (!visible) {
@@ -126,12 +155,23 @@ const TransactionWalkthrough = props => {
     return <PendingWalletConfirm text={pendingWalletText} visible={true} />;
   }
 
-  if (stage === 'pendingReceipt') {
+  if (stage === 'pendingReceipt' && !transaction.completed) {
     return (
       <PendingReceipt
         text={pendingReceiptText}
         visible={true}
         toDashboard={toDashboard}
+      />
+    );
+  }
+
+  if (stage === 'pendingReceipt' && transaction.completed) {
+    return (
+      <WalkthroughSuccess
+        visible={true}
+        toDashboard={toDashboard}
+        buttonText={transaction.linkText}
+        successOnClick={successOnClick}
       />
     );
   }
