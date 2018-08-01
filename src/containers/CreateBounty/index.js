@@ -378,7 +378,17 @@ const mapStateToProps = state => {
     activateNow: formSelector(state, 'activateNow'),
     paysTokens: formSelector(state, 'paysTokens'),
     categories: categoriesSelector(state),
-    submittingBounty: draftState.creating || bountyState.creating
+    submittingBounty: draftState.creating || bountyState.creating,
+    initialValues: {
+      description: DEFAULT_MARKDOWN,
+      experienceLevel: 0,
+      revisions: 3,
+      paysTokens: false,
+      activateNow: true,
+      deadline: moment()
+        .add(1, 'days')
+        .utc()
+    }
   };
 };
 
@@ -396,17 +406,7 @@ const CreateBounty = compose(
     }
   ),
   reduxForm({
-    form: 'createBounty',
-    initialValues: {
-      description: DEFAULT_MARKDOWN,
-      experienceLevel: 0,
-      revisions: 3,
-      paysTokens: false,
-      activateNow: true,
-      deadline: moment()
-        .add(1, 'days')
-        .utc()
-    }
+    form: 'createBounty'
   })
 )(CreateBountyComponent);
 
