@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import base from '../BaseStyles.module.scss';
 import styles from './UserStats.module.scss';
-import { Avatar, FullAddressBar, Text } from 'components';
+import { Avatar, Text } from 'components';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import {
   userInfoSelector,

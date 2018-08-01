@@ -3,3 +3,9 @@
 .alignLeft {
   text-align: left;
 }
+
+.cardContainer {
+  max-height: 20%;
+  overflow-y: scroll;
+  text-align: left;
+}
