@@ -3,6 +3,14 @@
 .createBounty {
 }
 
+.centeredBody {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .cardContent {
   text-align: left;
   margin-bottom: $xxl-spacing;

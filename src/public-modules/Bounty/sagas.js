@@ -10,6 +10,7 @@ import {
   batchContractMethods
 } from 'public-modules/Utilities/helpers';
 import { addJSON } from 'public-modules/Utilities/ipfsClient';
+import { DIFFICULTY_VALUES } from './constants';
 import {
   addressSelector,
   networkSelector
@@ -20,12 +21,14 @@ import {
   getTokenClient
 } from 'public-modules/Client/sagas';
 
-const { CREATE_DRAFT, CREATE_BOUNTY } = actionTypes;
+const { CREATE_DRAFT, UPDATE_DRAFT, CREATE_BOUNTY, GET_DRAFT } = actionTypes;
 const {
   createDraftSuccess,
   createDraftFail,
   createBountySuccess,
-  createBountyFail
+  createBountyFail,
+  getDraftSuccess,
+  getDraftFail
 } = actions;
 
 const {
@@ -47,9 +50,11 @@ export function* getTokenData(tokenAddress) {
   };
 }
 
-export function* createDraft(action) {
-  const { values } = action;
+export function* createOrUpdateDraft(action) {
+  const { values, bountyId } = action;
   const draftBountyData = { ...values };
+  draftBountyData.experienceLevel =
+    DIFFICULTY_VALUES[draftBountyData.experienceLevel];
 
   const { paysTokens } = draftBountyData;
   const { web3 } = yield call(getWeb3Client);
@@ -69,16 +74,23 @@ export function* createDraft(action) {
         decimals
       );
     } catch (e) {
+      console.log(e);
       // call error toast here - contract isn't a proper erc20 token.
     }
   }
   draftBountyData.deadline = moment(draftBountyData.deadline)
     .utc()
     .toISOString();
-  const endpoint = 'bounty/draft/';
 
   try {
-    const bounty = yield call(request, endpoint, 'POST', {
+    let endpoint = 'bounty/draft/';
+    let methodType = 'POST';
+    if (action.type === UPDATE_DRAFT) {
+      methodType = 'PUT';
+      endpoint += `${bountyId}/`;
+    }
+
+    const bounty = yield call(request, endpoint, methodType, {
       data: draftBountyData
     });
     yield put(createDraftSuccess(bounty));
@@ -104,7 +116,10 @@ export function* createBounty(action) {
     issuer_email,
     issuer_name,
     fulfillmentAmount,
-    paysTokens
+    paysTokens,
+    sourceDirectoryHash,
+    sourceFileName,
+    uid
   } = values;
 
   yield put(setPendingWalletConfirm());
@@ -137,11 +152,12 @@ export function* createBounty(action) {
 
   const issuedData = {
     payload: {
+      uid,
       title,
       description,
       sourceFileHash: '',
-      sourceDirectoryHash: '',
-      sourceFileName: '',
+      sourceDirectoryHash,
+      sourceFileName,
       webReferenceUrl: '',
       categories,
       created: parseInt(new Date().getTime() / 1000) | 0,
@@ -230,12 +246,30 @@ export function* createBounty(action) {
   }
 }
 
+export function* getDraft(action) {
+  const { id } = action;
+  const address = yield select(addressSelector);
+  const addressFilter = address.toLowerCase();
+
+  try {
+    const endpoint = `bounty/draft/${id}/?issuer=${addressFilter}`;
+    const bounty = yield call(request, endpoint, 'GET');
+    yield put(getDraftSuccess(bounty));
+  } catch (e) {
+    yield put(getDraftFail(e));
+  }
+}
+
 export function* watchCreateDraft() {
-  yield takeLatest(CREATE_DRAFT, createDraft);
+  yield takeLatest([CREATE_DRAFT, UPDATE_DRAFT], createOrUpdateDraft);
 }
 
 export function* watchCreateBounty() {
   yield takeLatest(CREATE_BOUNTY, createBounty);
 }
 
-export default [watchCreateDraft, watchCreateBounty];
+export function* watchGetDraft() {
+  yield takeLatest(GET_DRAFT, getDraft);
+}
+
+export default [watchGetDraft, watchCreateDraft, watchCreateBounty];

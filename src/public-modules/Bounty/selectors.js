@@ -11,3 +11,13 @@ export const createBountyStateSelector = createSelector(
   rootBountySelector,
   rootBounty => rootBounty.createBountyState
 );
+
+export const getDraftStateSelector = createSelector(
+  rootBountySelector,
+  rootBounty => rootBounty.getDraftState
+);
+
+export const getDraftBountySelector = createSelector(
+  rootBountySelector,
+  rootBounty => rootBounty.draftBounty
+);

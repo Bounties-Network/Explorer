@@ -6,7 +6,7 @@ import { addBufferToIPFS } from 'public-modules/Utilities/ipfsClient';
 import { Buffer } from 'buffer';
 
 const { UPLOAD_FILE } = actionTypes;
-const { uploadFileFail, uploadFileSuccess } = actions;
+const { uploadFileFail, uploadFileSuccess, resetUpload } = actions;
 
 export function* uploadFile(action) {
   const { file, key } = action;

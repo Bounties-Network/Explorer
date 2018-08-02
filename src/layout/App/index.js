@@ -80,6 +80,11 @@ class AppComponent extends React.Component {
                   />
                   <Route
                     exact
+                    path="/createBounty/draft/:id/"
+                    component={RequireLoginComponent(CreateBounty)}
+                  />
+                  <Route
+                    exact
                     path="/settings"
                     component={RequireLoginComponent(Settings)}
                   />

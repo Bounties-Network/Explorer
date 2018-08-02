@@ -31,6 +31,7 @@ class FileUpload extends React.Component {
       filename: null,
       filesize: null
     });
+    this.props.onChange(null);
   };
 
   render() {
@@ -53,6 +54,11 @@ class FileUpload extends React.Component {
       filesizeTextColor = 'lightGrey';
       iconColor = 'grey';
     }
+    let bytes = '';
+    const hasFileSize = filesize || filesizeDefault;
+    if (hasFileSize) {
+      bytes = bytesToSize(filesize || filesizeDefault);
+    }
 
     return (
       <div className={styles.fileUpload}>
@@ -67,14 +73,16 @@ class FileUpload extends React.Component {
             </Text>
             {filenameDefault || filename
               ? [
-                  <Text
-                    typeScale="Body"
-                    className={styles.sizeText}
-                    color={filesizeTextColor}
-                    key={1}
-                  >
-                    ({bytesToSize(filesize || filesizeDefault)})
-                  </Text>,
+                  ((
+                    <Text
+                      typeScale="Body"
+                      className={styles.sizeText}
+                      color={filesizeTextColor}
+                      key={1}
+                    >
+                      {bytes ? `(${bytes})` : ''}
+                    </Text>
+                  ): null),
                   <Text typeScale="Body" color={iconColor} key={2}>
                     <FontAwesomeIcon
                       icon={['fal', 'times']}
