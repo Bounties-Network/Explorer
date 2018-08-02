@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Dashboard.module.scss';
-import { UserBounties, UserStats } from './components';
+import { BountiesPanel, UserStats } from './components';
 
 const Dashboard = props => {
   return (
@@ -12,10 +12,10 @@ const Dashboard = props => {
       </div>
       <div className="row center-xs">
         <div className="col-xs-5">
-          <UserBounties />
+          <BountiesPanel />
         </div>
         <div className="col-xs-5">
-          <UserBounties />
+          <BountiesPanel />
         </div>
       </div>
     </div>

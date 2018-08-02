@@ -10,7 +10,7 @@ export function* locationChanged(action) {
 
   yield put(resetFilters());
 
-  if (currentRouteSelector(pathname) != 'explorer') {
+  if (currentRouteSelector(pathname) == 'profile') {
     yield put(allStageFilters());
   }
 }

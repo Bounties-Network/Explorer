@@ -49,6 +49,7 @@ class UserStatsComponent extends React.Component {
           border
           name={name}
           address={public_address}
+          hash={public_address}
           img={profile_image}
           className={base.alignLeft}
         />

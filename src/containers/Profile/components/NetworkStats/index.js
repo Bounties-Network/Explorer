@@ -4,7 +4,7 @@ import styles from './NetworkStats.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Circle, Pill, Switch, Text } from 'components';
 import { map as fpMap, capitalize } from 'lodash';
-import { descriptionText, displayFormat } from './constants';
+import { descriptionText, displayFormat, statsToShow } from './constants';
 
 const map = fpMap.convert({ cap: false });
 
@@ -38,8 +38,9 @@ const NetworkStats = props => {
   };
 
   const renderCircles = () => {
-    return map((value, key) => {
+    return map(key => {
       const text = descriptionText[switchValue][key];
+      const value = stats[switchValue][key];
 
       if (value == null) {
         return renderCircle('N/A', 'lightGrey', text);
@@ -49,7 +50,7 @@ const NetworkStats = props => {
       const input = formatInput(value, displayFormat[key]);
 
       return renderCircle(input, color, text);
-    }, stats[switchValue]);
+    }, statsToShow);
   };
 
   return (

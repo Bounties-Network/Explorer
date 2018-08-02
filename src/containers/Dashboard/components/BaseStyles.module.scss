@@ -5,7 +5,10 @@
 }
 
 .cardContainer {
-  max-height: 20%;
-  overflow-y: scroll;
   text-align: left;
+}
+
+.listGroup {
+  height: 27vh;
+  overflow-y: scroll;
 }

@@ -2,6 +2,7 @@
 
 // ultimately each of these imports should be in separate files
 import bountiesReducer from 'public-modules/Bounties';
+import draftsReducer from 'public-modules/Drafts';
 import leaderboardReducer from 'public-modules/Leaderboard';
 import userInfoReducer from 'public-modules/UserInfo';
 import statsReducer from 'public-modules/Stats';
@@ -17,6 +18,7 @@ import transactionReducer from 'public-modules/Transaction';
 
 export const reducers = {
   bounties: bountiesReducer,
+  drafts: draftsReducer,
   leaderboard: leaderboardReducer,
   userInfo: userInfoReducer,
   stats: statsReducer,
@@ -32,6 +34,7 @@ export const reducers = {
 };
 
 import bountiesSagas from 'public-modules/Bounties/sagas';
+import draftsSagas from 'public-modules/Drafts/sagas';
 import leaderboardSagas from 'public-modules/Leaderboard/sagas';
 import userInfoSagas from 'public-modules/UserInfo/sagas';
 import statsSagas from 'public-modules/Stats/sagas';
@@ -48,6 +51,7 @@ import transactionSagas from 'public-modules/Transaction/sagas';
 export const sagaWatchers = [
   ...leaderboardSagas,
   ...bountiesSagas,
+  ...draftsSagas,
   ...userInfoSagas,
   ...statsSagas,
   ...categoriesSagas,

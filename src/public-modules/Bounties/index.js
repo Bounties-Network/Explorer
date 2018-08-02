@@ -3,8 +3,8 @@ import { PAGE_SIZE, SORT_CREATED } from './constants';
 const default_filters = {
   search: '',
   stageFilters: {
-    drafts: false,
-    active: true,
+    drafts: true,
+    active: false,
     completed: false,
     expired: false,
     dead: false

@@ -1,5 +1,5 @@
 import BountyItem from './BountyItem';
 import UserStats from './UserStats';
-import UserBounties from './UserBounties';
+import BountiesPanel from './BountiesPanel';
 
-export { BountyItem, UserBounties, UserStats };
+export { BountyItem, BountiesPanel, UserStats };

@@ -1,0 +1,16 @@
+@import "~styles/variables.scss";
+
+.loadMoreButton {
+  text-align: center;
+}
+
+.bodyLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.zeroState {
+  max-width: 25rem;
+  padding: $xxl-spacing;
+}

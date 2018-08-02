@@ -4,9 +4,18 @@ import base from '../BaseStyles.module.scss';
 import styles from './BountyItem.module.scss';
 import { ListGroup, Card, Text } from 'components';
 import { LinkedAvatar } from 'explorer-components';
+import Pluralize from 'pluralize';
+import moment from 'moment';
 
 const BountyItem = props => {
-  const { title, currency, value, usd_value } = props;
+  const { createdAt, currency, submissions, title, usd_value, value } = props;
+  const formattedTime = moment(createdAt, 'YYYY-MM-DD').fromNow();
+
+  let submissionsText = '';
+  if (typeof submissions === 'number') {
+    const pluralized = Pluralize('Submission', submissions, true);
+    submissionsText = `∙ ${pluralized}`;
+  }
 
   return (
     <div className={`row ${styles.container}`}>
@@ -18,7 +27,7 @@ const BountyItem = props => {
             color="defaultGrey"
             className={styles.details}
           >
-            Created Yesterday ∙ 2 Submissions
+            {`Created ${formattedTime} ${submissionsText}`}
           </Text>
         </div>
       </div>
@@ -37,7 +46,7 @@ const BountyItem = props => {
 };
 
 BountyItem.propTypes = {
-  title: PropTypes.number
+  title: PropTypes.string
 };
 
 BountyItem.defaultProps = {};

@@ -1,3 +1,5 @@
+export const statsToShow = ['acceptance', 'rating', 'ratingGiven'];
+
 export const descriptionText = {
   issuer: {
     acceptance: 'Fulfilment acceptance rate',
