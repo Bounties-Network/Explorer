@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './baseStyles.module.scss';
 import UserSettings from 'containers/Settings/UserSettings';
 import { Modal, Text, Button } from 'components';
 import { PageCard } from 'explorer-components';
@@ -53,8 +54,13 @@ class AddProfileDetails extends React.Component {
                 </div>
               </div>
             </div>
-            <PageCard.Break />
-            <UserSettings />
+
+            <div className="container-fluid">
+              <PageCard.Break />
+              <div className={styles.alignLeft}>
+                <UserSettings />
+              </div>
+            </div>
           </Modal.Body>
         </Modal>
       );

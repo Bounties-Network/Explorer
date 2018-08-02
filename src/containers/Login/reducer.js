@@ -40,7 +40,8 @@ function Login(state = initialState, action) {
     case RESET_LOGIN_STATE: {
       return {
         ...state,
-        visible: false
+        visible: false,
+        stage: 'login'
       };
     }
     default:

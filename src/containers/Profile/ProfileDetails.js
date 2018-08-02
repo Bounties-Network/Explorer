@@ -20,8 +20,9 @@ import {
   loadedUserSelector,
   loadedUserStatsSelector
 } from 'public-modules/UserInfo/selectors';
-import { profileUISelector } from './selectors';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
+import { ipfsToHttp } from 'utils/helpers';
+import { profileUISelector } from './selectors';
 import { actions } from './reducer';
 
 const ProfileDetailsComponent = props => {
@@ -46,7 +47,7 @@ const ProfileDetailsComponent = props => {
           <ProfileAvatar
             name={user.name}
             address={user.public_address}
-            img={user.profile_image}
+            img={ipfsToHttp(user.profileDirectoryHash, user.profileFileName)}
             className={styles.profileAvatar}
           />
         </div>

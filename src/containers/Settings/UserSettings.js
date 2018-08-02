@@ -17,6 +17,7 @@ import { settingsSelector } from 'public-modules/Settings/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
+import { ipfsToHttp } from 'utils/helpers';
 import { Cropper, Button, Text } from 'components';
 import { FormToggle } from './components';
 import {
@@ -64,8 +65,6 @@ class UserSettingsComponent extends React.Component {
 
     const { emptyProfileImage } = this.state;
 
-    console.log(this.props);
-
     const handleSaveSettings = values => {
       saveSettings({
         ...values,
@@ -84,9 +83,7 @@ class UserSettingsComponent extends React.Component {
       resetUpload(UPLOAD_KEY);
     };
 
-    const ipfsProfilePhoto = ipfsHash
-      ? `https://ipfs.infura.io/ipfs/${ipfsHash}/${fileName}`
-      : '';
+    const ipfsProfilePhoto = ipfsHash ? ipfsToHttp(ipfsHash, fileName) : '';
 
     return (
       <form

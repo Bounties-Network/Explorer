@@ -1,5 +1,13 @@
 @import "~styles/variables.scss";
 
 .avatar {
-  margin: $l-spacing auto; 
+  margin: $l-spacing auto;
+}
+
+.alignLeft {
+  text-align: left;
+}
+
+.modal {
+  margin: 0;
 }
