@@ -29,6 +29,10 @@ function TransactionWalkthroughHOC(config, WrappedComponent) {
       );
     };
 
+    componentWillUnmount() {
+      this.props.onClose();
+    }
+
     render() {
       const {
         visible,

@@ -8,14 +8,25 @@ const defaultCreateBountyState = {
   error: false
 };
 
+const defaultGetDraftState = {
+  loading: false,
+  error: false
+};
+
 const initialState = {
   createDraftState: { ...defaultCreateDraftState },
+  getDraftState: { ...defaultGetDraftState },
   createBountyState: { ...defaultCreateBountyState }
 };
 
+const UPDATE_DRAFT = 'bounty/UPDATE_DRAFT';
 const CREATE_DRAFT = 'bounty/CREATE_DRAFT';
 const CREATE_DRAFT_SUCCESS = 'bounty/CREATE_DRAFT_SUCCESS';
 const CREATE_DRAFT_FAIL = 'bounty/CREATE_DRAFT_FAIL';
+
+function updateDraft(bountyId, values) {
+  return { type: UPDATE_DRAFT, values, bountyId };
+}
 
 function createDraft(values) {
   return { type: CREATE_DRAFT, values };
@@ -27,6 +38,22 @@ function createDraftSuccess() {
 
 function createDraftFail(error) {
   return { type: CREATE_DRAFT_FAIL, error };
+}
+
+const GET_DRAFT = 'bounty/GET_DRAFT';
+const GET_DRAFT_SUCCESS = 'bounty/GET_DRAFT_SUCCESS';
+const GET_DRAFT_FAIL = 'bounty/GET_DRAFT_FAIL';
+
+function getDraft(id, issuer) {
+  return { type: GET_DRAFT, id, issuer };
+}
+
+function getDraftSuccess(bounty) {
+  return { type: GET_DRAFT_SUCCESS, bounty };
+}
+
+function getDraftFail(error) {
+  return { type: GET_DRAFT_FAIL, error };
 }
 
 const CREATE_BOUNTY = 'bounty/CREATE_BOUNTY';
@@ -47,6 +74,38 @@ function createBountyFail(error) {
 
 function BountyReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_DRAFT: {
+      return {
+        ...state,
+        getDraftState: {
+          ...state.getDraftState,
+          loading: true,
+          error: false
+        }
+      };
+    }
+    case GET_DRAFT_SUCCESS: {
+      const { bounty } = action;
+
+      return {
+        ...state,
+        draftBounty: bounty,
+        getDraftState: {
+          ...state.getDraftState,
+          loading: false
+        }
+      };
+    }
+    case GET_DRAFT_FAIL: {
+      return {
+        ...state,
+        getDraftState: {
+          ...state.getDraftState,
+          loading: false,
+          error: true
+        }
+      };
+    }
     case CREATE_BOUNTY: {
       return {
         ...state,
@@ -73,6 +132,16 @@ function BountyReducer(state = initialState, action) {
           ...state.createBountyState,
           creating: false,
           error: true
+        }
+      };
+    }
+    case UPDATE_DRAFT: {
+      return {
+        ...state,
+        createDraftState: {
+          ...state.createDraftState,
+          creating: true,
+          error: false
         }
       };
     }
@@ -112,7 +181,11 @@ function BountyReducer(state = initialState, action) {
 }
 
 export const actions = {
+  getDraft,
+  getDraftSuccess,
+  getDraftFail,
   createBounty,
+  updateDraft,
   createBountySuccess,
   createBountyFail,
   createDraft,
@@ -121,6 +194,10 @@ export const actions = {
 };
 
 export const actionTypes = {
+  GET_DRAFT,
+  GET_DRAFT_SUCCESS,
+  GET_DRAFT_FAIL,
+  UPDATE_DRAFT,
   CREATE_BOUNTY,
   CREATE_BOUNTY_SUCCESS,
   CREATE_BOUNTY_FAIL,

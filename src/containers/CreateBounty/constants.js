@@ -1,8 +1,14 @@
 export const DIFFICULTY_OPTIONS = [
-  { value: 0, label: 'Beginner' },
-  { value: 1, label: 'Intermediate' },
-  { value: 2, label: 'Expert' }
+  { value: 'Beginner', label: 'Beginner' },
+  { value: 'Intermediate', label: 'Intermediate' },
+  { value: 'Expert', label: 'Expert' }
 ];
+
+export const DRAFT_DIFFICULTY_MAPPINGS = {
+  0: 'Beginner',
+  1: 'Intermediate',
+  2: 'Expert'
+};
 
 // true and false to correspond with paysTokens field on the bounty model
 export const PAYOUT_OPTIONS = [

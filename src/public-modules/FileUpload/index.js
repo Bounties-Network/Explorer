@@ -1,9 +1,11 @@
 import { omit } from 'lodash';
 
 const initialState = {
-  uploading: true,
+  uploading: false,
   uploaded: false,
-  error: false
+  error: false,
+  ipfsHash: '',
+  fileName: ''
 };
 
 const UPLOAD_FILE = 'fileUpload/UPLOAD_FILE';
@@ -39,7 +41,10 @@ function FileUploadReducer(state = {}, action) {
 
       return {
         ...state,
-        [key]: { ...initialState }
+        [key]: {
+          ...initialState,
+          uploading: true
+        }
       };
     }
     case UPLOAD_FILE_SUCCESS: {
@@ -71,7 +76,12 @@ function FileUploadReducer(state = {}, action) {
     case RESET_UPLOAD: {
       const { key } = action;
 
-      return { ...omit(state, [key]) };
+      return {
+        ...state,
+        [key]: {
+          ...initialState
+        }
+      };
     }
     default:
       return state;
