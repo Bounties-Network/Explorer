@@ -10,7 +10,7 @@ const { loadSkillsFail, loadSkillsSuccess } = actions;
 
 export function* loadSkills(action) {
   try {
-    const endpoint = 'category/?limit=2000';
+    const endpoint = 'user/skills/?limit=2000';
     const skills = yield call(request, endpoint, 'GET');
     yield put(loadSkillsSuccess(skills));
   } catch (e) {

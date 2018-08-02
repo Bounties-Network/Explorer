@@ -7,6 +7,7 @@ import { get } from 'lodash';
 import { PageCard, FormSection } from 'explorer-components';
 import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
 import { formValueSelector } from 'redux-form';
+import { TransactionWalkthrough } from 'hocs';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as skillActions } from 'public-modules/Skills';
 import { actions as settingsActions } from 'public-modules/Settings';
@@ -16,7 +17,6 @@ import { settingsSelector } from 'public-modules/Settings/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
-import moment from 'moment';
 import { Cropper, Button, Text } from 'components';
 import { FormToggle } from './components';
 import {
@@ -54,7 +54,8 @@ let UserSettingsComponent = props => {
     fileName,
     userProfilePhoto,
     uploadedProfilePhoto,
-    resetUpload
+    resetUpload,
+    initiateWalkthrough
   } = props;
 
   const handleSaveSettings = values => {
@@ -62,7 +63,11 @@ let UserSettingsComponent = props => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleSaveSettings)}>
+    <form
+      onSubmit={handleSubmit(values =>
+        initiateWalkthrough(() => handleSaveSettings(values))
+      )}
+    >
       <FormSection>
         <FormSection.Section title="PROFILE PHOTO">
           <FormSection.InputGroup>
@@ -243,7 +248,7 @@ const mapStateToProps = state => {
   return {
     initialValues: {
       ...currentUser,
-      languages: currentUser.languages.join(', ')
+      languages: currentUser.languages
     },
     uploading: uploadState.uploading || false,
     uploaded: uploadState.uploaded || false,
@@ -265,6 +270,9 @@ const mapStateToProps = state => {
 UserSettingsComponent = reduxForm({ form: 'settings' })(UserSettingsComponent);
 
 const UserSettings = compose(
+  TransactionWalkthrough({
+    dismissable: false
+  }),
   connect(
     mapStateToProps,
     {

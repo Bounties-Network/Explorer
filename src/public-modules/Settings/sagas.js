@@ -17,6 +17,7 @@ import {
   getWeb3Client,
   getTokenClient
 } from 'public-modules/Client/sagas';
+import { promisifyContractCall } from 'public-modules/Utilities/helpers';
 
 const { SAVE_SETTINGS, SAVE_EMAIL_PREFERENCES } = actionTypes;
 const {
@@ -26,7 +27,11 @@ const {
   saveEmailPreferencesFail
 } = actions;
 
-const { setTransaction } = transactionActions;
+const {
+  setPendingWalletConfirm,
+  setPendingReceipt,
+  setTransactionError
+} = transactionActions;
 
 export function* saveSettings(action) {
   const { values } = action;
@@ -43,6 +48,8 @@ export function* saveSettings(action) {
     fileName,
     ipfsHash: profileImageIpfsHash
   } = values;
+
+  yield put(setPendingWalletConfirm());
 
   const userAddress = yield select(addressSelector);
   const { web3 } = yield call(getWeb3Client);
@@ -70,10 +77,16 @@ export function* saveSettings(action) {
 
   const { ethProfiles } = yield call(getContractClient);
   try {
-    yield call(ethProfiles.addProfile(ipfsHash).send, { from: userAddress });
+    const txHash = yield call(
+      promisifyContractCall(ethProfiles.addProfile, { from: userAddress }),
+      ipfsHash
+    );
+
+    yield put(setPendingReceipt(txHash));
     yield put(saveSettingsSuccess());
   } catch (e) {
     console.log(e);
+    yield put(setTransactionError());
     yield put(saveSettingsFail());
   }
 }
