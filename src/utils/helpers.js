@@ -18,3 +18,7 @@ export function bytesToSize(bytes) {
 export function currentRouteSelector(pathname) {
   return pathname.split('/')[1] || '';
 }
+
+export function ipfsToHttp(directoryHash, fileName) {
+  return `https://ipfs.infura.io/ipfs/${directoryHash}/${fileName}`;
+}
