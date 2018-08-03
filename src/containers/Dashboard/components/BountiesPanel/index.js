@@ -60,7 +60,7 @@ class BountiesPanelComponent extends React.Component {
       <React.Fragment>
         <ListGroup>{this.renderBounties(list)}</ListGroup>
         {list.length < count ? (
-          <div className={styles.loadMoreButton}>
+          <div className={base.loadMoreButton}>
             <Button
               loading={loadingMore}
               onClick={this.props[`${currentTab}LoadMore`]}
@@ -73,9 +73,9 @@ class BountiesPanelComponent extends React.Component {
     );
 
     if (count <= 0) {
-      bodyClass = styles.bodyLoading;
+      bodyClass = base.bodyLoading;
       body = (
-        <div className={styles.zeroState}>
+        <div className={base.zeroState}>
           <ZeroState
             title={'You have 0 active bounties'}
             text={
@@ -91,14 +91,14 @@ class BountiesPanelComponent extends React.Component {
     }
 
     if (loading) {
-      bodyClass = styles.bodyLoading;
+      bodyClass = base.bodyLoading;
       body = <Loader color="blue" size="medium" />;
     }
 
     if (error) {
-      bodyClass = styles.bodyLoading;
+      bodyClass = base.bodyLoading;
       body = (
-        <div className={styles.zeroState}>
+        <div className={base.zeroState}>
           <ZeroState
             type="error"
             text={'Something went wrong. Try again later.'}
@@ -111,9 +111,9 @@ class BountiesPanelComponent extends React.Component {
 
     return (
       <div className={base.cardContainer}>
-        <Card>
+        <Card className={base.card}>
           <Card.Header>
-            <Card.HeaderTitle>My bounties</Card.HeaderTitle>
+            <Card.HeaderTitle>My Bounties</Card.HeaderTitle>
             <Card.HeaderTabs
               onSelect={setActiveTab}
               activeKey={currentTab}

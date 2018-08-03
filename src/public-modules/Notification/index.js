@@ -2,6 +2,7 @@ const initialState = {
   loading: true,
   loaded: false,
   error: false,
+  count: 0,
   notifications: []
 };
 
@@ -13,10 +14,11 @@ function loadNotifications(address) {
   return { type: LOAD_NOTIFICATIONS, address };
 }
 
-function loadNotificationsSuccess(notifications) {
+function loadNotificationsSuccess(notifications, count) {
   return {
     type: LOAD_NOTIFICATIONS_SUCCESS,
-    notifications: notifications
+    notifications,
+    count
   };
 }
 
@@ -35,14 +37,15 @@ function NotificationReducer(state = initialState, action) {
       };
     }
     case LOAD_NOTIFICATIONS_SUCCESS: {
-      const { notifications } = action;
+      const { notifications, count } = action;
 
       return {
         ...state,
         loading: false,
         loaded: true,
         error: false,
-        notifications
+        notifications,
+        count
       };
     }
     case LOAD_NOTIFICATIONS_FAIL: {

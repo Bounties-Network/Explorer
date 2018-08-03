@@ -8,7 +8,30 @@
   text-align: left;
 }
 
-.listGroup {
+.card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   height: 27vh;
+  min-height: 25rem;
+}
+
+.listGroup {
   overflow-y: scroll;
+}
+
+.loadMoreButton {
+  text-align: center;
+}
+
+.bodyLoading {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.zeroState {
+  max-width: 25rem;
+  padding: $xxl-spacing;
 }

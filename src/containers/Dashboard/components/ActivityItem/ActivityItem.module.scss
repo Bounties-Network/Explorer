@@ -1,0 +1,24 @@
+@import "~styles/variables.scss";
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.details {
+  margin-top: $m-spacing
+}
+
+.value {
+  margin-left: -1rem;
+  text-align: right;
+}
+
+.iconStyles {
+  color: $brand-purple;
+}
+
+.message {
+  display: flex;
+  flex-direction: row;
+}

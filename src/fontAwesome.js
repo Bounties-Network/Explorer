@@ -1,6 +1,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import faBell from '@fortawesome/fontawesome-pro-light/faBell';
 import plus from '@fortawesome/fontawesome-pro-regular/faPlus';
+import plusCircle from '@fortawesome/fontawesome-pro-regular/faPlusCircle';
 import clock from '@fortawesome/fontawesome-pro-regular/faClock';
 import levelUp from '@fortawesome/fontawesome-pro-regular/faLevelUp';
 import seedling from '@fortawesome/fontawesome-pro-regular/faSeedling';
@@ -23,6 +24,7 @@ import unlock from '@fortawesome/fontawesome-pro-light/faUnlock';
 import addressCard from '@fortawesome/fontawesome-pro-light/faAddressCard';
 import briefcase from '@fortawesome/fontawesome-pro-regular/faBriefcase';
 import comments from '@fortawesome/fontawesome-pro-regular/faComments';
+import comment from '@fortawesome/fontawesome-pro-regular/faComment';
 import infoCircle from '@fortawesome/fontawesome-pro-regular/faInfoCircle';
 import ellipsisH from '@fortawesome/fontawesome-pro-regular/faEllipsisH';
 import checkCircle from '@fortawesome/fontawesome-pro-regular/faCheckCircle';
@@ -36,16 +38,20 @@ import linkedin from '@fortawesome/fontawesome-free-brands/faLinkedin';
 import eye from '@fortawesome/fontawesome-pro-light/faEye';
 import globe from '@fortawesome/fontawesome-pro-regular/faGlobe';
 import idCardAlt from '@fortawesome/fontawesome-pro-light/faIdCardAlt';
+import star from '@fortawesome/fontawesome-pro-regular/faStar';
 
 library.add(
+  star,
   idCardAlt,
   linkedin,
   github,
   globe,
+  comment,
   comments,
   briefcase,
   faBell,
   plus,
+  plusCircle,
   cog,
   search,
   signout,

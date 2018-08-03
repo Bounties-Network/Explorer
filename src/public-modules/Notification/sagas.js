@@ -13,14 +13,16 @@ export function* loadNotifications(action) {
   try {
     let endpoint = `notification/activity/user/${address.toLowerCase()}`;
     const notifications = yield call(request, endpoint, 'GET');
-    yield put(loadNotificationsSuccess(notifications));
+    const { results, count } = notifications;
+
+    yield put(loadNotificationsSuccess(results, count));
   } catch (e) {
     yield put(loadNotificationsFail(e));
   }
 }
 
 export function* watchNotifications() {
-  yield takeLatest(SET_ADDRESS, loadNotifications);
+  yield takeLatest(LOAD_NOTIFICATIONS, loadNotifications);
 }
 
 export default [watchNotifications];
