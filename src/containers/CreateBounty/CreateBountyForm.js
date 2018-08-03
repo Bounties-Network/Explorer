@@ -298,6 +298,8 @@ class CreateBountyFormComponent extends React.Component {
                     disabled={submittingBounty}
                     component={FormTextInput}
                     type="number"
+                    min="0"
+                    step=".00001"
                     label="Payout amount (ETH or whole tokens)"
                     validate={[validators.required]}
                     placeholder="Enter amount..."
@@ -349,11 +351,14 @@ class CreateBountyFormComponent extends React.Component {
                       name="balance"
                       disabled={submittingBounty}
                       component={FormTextInput}
+                      type="number"
+                      min="0"
+                      step=".00001"
                       label="Deposit amount (ETH or whole tokens)"
                       validate={[
                         validators.required,
                         (balance, allValues) => {
-                          const valueField = allValues.value;
+                          const valueField = allValues.fulfillmentAmount;
                           if (valueField && balance < valueField) {
                             return 'Deposit amount must at least match the payout amount.';
                           }
