@@ -33,7 +33,8 @@ class ActivityPanelComponent extends React.Component {
   };
 
   render() {
-    const { list, count, loading, loadingMore, loadMore, error } = this.props;
+    const { list, count, loading, loadingMore, error } = this.props;
+    const loadMore = () => this.props.loadMore(this.props.public_address);
 
     let bodyClass;
     let body = (
@@ -118,8 +119,8 @@ const ActivityPanel = compose(
   connect(
     mapStateToProps,
     {
-      load: actions.loadNotifications
-      //activeLoadMore: bountiesActions.loadMoreBounties,
+      load: actions.loadNotifications,
+      loadMore: actions.loadMoreNotifications
     }
   ),
   LoadComponent('public_address')
