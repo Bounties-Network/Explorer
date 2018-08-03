@@ -24,7 +24,7 @@ function loadNotificationsFail(error) {
   return { type: LOAD_NOTIFICATIONS_FAIL, error };
 }
 
-function NotificationsReducer(state = initialState, action) {
+function NotificationReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_NOTIFICATIONS: {
       return {
@@ -70,4 +70,4 @@ export const actionTypes = {
   LOAD_NOTIFICATIONS_FAIL
 };
 
-export default NotificationsReducer;
+export default NotificationReducer;
