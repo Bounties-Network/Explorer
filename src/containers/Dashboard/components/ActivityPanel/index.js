@@ -111,7 +111,7 @@ const mapStateToProps = state => {
     loading: notificationState.loading,
     loadingMore: notificationState.loadingMore,
     error: notificationState.error,
-    public_address //: '0x577ec61db11b49286839f502481776f0be01104d',
+    public_address: '0x577ec61db11b49286839f502481776f0be01104d'
   };
 };
 

@@ -1,6 +1,15 @@
+import { omit } from 'lodash';
+
+const defaultFilters = {
+  issuer: '',
+  fulfiller: ''
+};
+
 const initialState = {
   loading: true,
   loaded: false,
+  loadingMore: false,
+  loadingMoreError: false,
   error: false,
   count: 0,
   fulfillments: []
@@ -10,54 +19,105 @@ const LOAD_FULFILLMENTS = 'fulfillments/LOAD_FULFILLMENTS';
 const LOAD_FULFILLMENTS_SUCCESS = 'fulfillments/LOAD_FULFILLMENTS_SUCCESS';
 const LOAD_FULFILLMENTS_FAIL = 'fulfillments/LOAD_FULFILLMENTS_FAIL';
 
-function loadFulfillments(searchOptions) {
-  return { type: LOAD_FULFILLMENTS, searchOptions };
+const LOAD_MORE_FULFILLMENTS = 'fulfillments/LOAD_MORE_FULFILLMENTS';
+const LOAD_MORE_FULFILLMENTS_SUCCESS =
+  'fulfillments/LOAD_MORE_FULFILLMENTS_SUCCESS';
+const LOAD_MORE_FULFILLMENTS_FAIL = 'fulfillments/LOAD_MORE_FULFILLMENTS_FAIL';
+
+function loadFulfillments(key) {
+  return { type: LOAD_FULFILLMENTS, key };
 }
 
-function loadFulfillmentsSuccess(fulfillments) {
-  return {
-    type: LOAD_FULFILLMENTS_SUCCESS,
-    fulfillments: fulfillments.results,
-    count: fulfillments.count
-  };
+function loadFulfillmentsSuccess(key, fulfillments, count) {
+  return { type: LOAD_FULFILLMENTS_SUCCESS, key, fulfillments, count };
 }
 
-function loadFulfillmentsFail(error) {
-  return { type: LOAD_FULFILLMENTS_FAIL, error };
+function loadFulfillmentsFail(key, error) {
+  return { type: LOAD_FULFILLMENTS_FAIL, key, error };
 }
 
-function FulfillmentsReducer(state = initialState, action) {
+function loadMoreFulfillments(key) {
+  return { type: LOAD_MORE_FULFILLMENTS, key };
+}
+
+function loadMoreFulfillmentsSuccess(key, fulfillments) {
+  return { type: LOAD_MORE_FULFILLMENTS_SUCCESS, key, fulfillments };
+}
+
+function loadMoreFulfillmentsFail(key, error) {
+  return { type: LOAD_MORE_FULFILLMENTS_FAIL, key, error };
+}
+
+const ADD_ISSUER_FILTER = 'fulfillments/ADD_ISSUER_FILTER';
+const ADD_FULFILLER_FILTER = 'fulfillments/ADD_FULFILLER_FILTER';
+
+function addIssuerFilter(key, address) {
+  return { type: ADD_ISSUER_FILTER, key, address };
+}
+
+function addFulfillerFilter(key, address) {
+  return { type: ADD_FULFILLER_FILTER, key, address };
+}
+
+function FulfillmentsReducer(state = {}, action) {
   switch (action.type) {
     case LOAD_FULFILLMENTS: {
-      const { searchOptions } = action;
-      return {
-        ...state,
-        loading: true,
-        loaded: false,
-        count: 0,
-        error: false,
-        searchOptions
-      };
+      const { key } = action;
+
+      return { ...state, [key]: { ...state[key], ...initialState } };
     }
     case LOAD_FULFILLMENTS_SUCCESS: {
-      const { fulfillments, count, searchOptions } = action;
+      const { key, fulfillments, count } = action;
 
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        error: false,
-        fulfillments,
-        count,
-        searchOptions
+        [key]: {
+          ...state[key],
+          loading: false,
+          loaded: true,
+          fulfillments,
+          count
+        }
       };
     }
     case LOAD_FULFILLMENTS_FAIL: {
+      const { key } = action;
+
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        error: true
+        [key]: {
+          ...state[key],
+          uploading: false,
+          error: true
+        }
+      };
+    }
+    case ADD_ISSUER_FILTER: {
+      const { key, address } = action;
+
+      return {
+        ...state,
+        [key]: {
+          ...state[key],
+          filters: {
+            issuer: address,
+            fulfiller: ''
+          }
+        }
+      };
+    }
+    case ADD_FULFILLER_FILTER: {
+      const { key, address } = action;
+
+      return {
+        ...state,
+        [key]: {
+          ...state[key],
+          filters: {
+            issuer: '',
+            fulfiller: address
+          }
+        }
       };
     }
     default:
@@ -68,13 +128,23 @@ function FulfillmentsReducer(state = initialState, action) {
 export const actions = {
   loadFulfillments,
   loadFulfillmentsSuccess,
-  loadFulfillmentsFail
+  loadFulfillmentsFail,
+  loadMoreFulfillments,
+  loadMoreFulfillmentsSuccess,
+  loadMoreFulfillmentsFail,
+  addIssuerFilter,
+  addFulfillerFilter
 };
 
 export const actionTypes = {
   LOAD_FULFILLMENTS,
   LOAD_FULFILLMENTS_SUCCESS,
-  LOAD_FULFILLMENTS_FAIL
+  LOAD_FULFILLMENTS_FAIL,
+  LOAD_MORE_FULFILLMENTS,
+  LOAD_MORE_FULFILLMENTS_SUCCESS,
+  LOAD_MORE_FULFILLMENTS_FAIL,
+  ADD_ISSUER_FILTER,
+  ADD_FULFILLER_FILTER
 };
 
 export default FulfillmentsReducer;

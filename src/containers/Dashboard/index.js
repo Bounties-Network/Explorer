@@ -1,6 +1,11 @@
 import React from 'react';
 import styles from './Dashboard.module.scss';
-import { ActivityPanel, BountiesPanel, UserStats } from './components';
+import {
+  ActivityPanel,
+  BountiesPanel,
+  SubmissionsPanel,
+  UserStats
+} from './components';
 
 const Dashboard = props => {
   return (
@@ -16,6 +21,11 @@ const Dashboard = props => {
         </div>
         <div className="col-xs-5">
           <ActivityPanel />
+        </div>
+      </div>
+      <div className="row center-xs">
+        <div className="col-xs-10">
+          <SubmissionsPanel className={styles.submissionsContainer} />
         </div>
       </div>
     </div>
