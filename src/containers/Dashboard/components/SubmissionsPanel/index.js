@@ -5,46 +5,42 @@ import base from '../BaseStyles.module.scss';
 import styles from './BountiesPanel.module.scss';
 import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
-import {
-  Button,
-  Card,
-  ListGroup,
-  Loader,
-  Tabs,
-  Text,
-  ZeroState
-} from 'components';
-import { BountyItem } from '../';
-import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
-import { rootDraftsSelector } from 'public-modules/Drafts/selectors';
+import { FULFILLER_KEY, ISSUER_KEY } from './constants';
+import { Button, Card, Table, Loader, Tabs, Text, ZeroState } from 'components';
+import { SubmissionItem } from '../';
+import { loadedUserStatsSelector } from 'public-modules/UserInfo/selectors';
+import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
 import { submissionsPanelSelector } from './selectors';
-import { actions as bountiesActions } from 'public-modules/Bounties';
-import { actions as draftsActions } from 'public-modules/Drafts';
+import { actions as fulfillmentActions } from 'public-modules/Fulfillments';
 import { actions } from './reducer';
 
 class SubmissionsPanelComponent extends React.Component {
-  renderBounties = list => {
-    return map(bounty => {
+  renderSubmissions = list => {
+    return map(submission => {
       const {
-        calculated_fulfillmentAmount,
+        bounty_data,
+        fulfiller,
         created,
-        fulfillment_count,
+        accepted,
+        usd_price
+      } = submission;
+      const {
         title,
         tokenSymbol,
-        usd_price
-      } = bounty;
+        tokenDecimals,
+        fulfillmentAmount
+      } = bounty_data;
 
       return (
-        <ListGroup.ListItem hover>
-          <BountyItem
-            title={title}
-            submissions={fulfillment_count}
-            value={parseFloat(calculated_fulfillmentAmount).toFixed(2)}
-            currency={tokenSymbol}
-            usd_value={parseFloat(usd_price).toFixed(0)}
-            createdAt={created}
-          />
-        </ListGroup.ListItem>
+        <SubmissionItem
+          title={title}
+          fulfiller={fulfiller}
+          submissionDate={created}
+          status={accepted}
+          usd={(usd_price || 0).toFixed(0)}
+          amount={(fulfillmentAmount / 10 ** tokenDecimals).toFixed(2)}
+          currency={tokenSymbol}
+        />
       );
     }, list);
   };
@@ -54,23 +50,32 @@ class SubmissionsPanelComponent extends React.Component {
       className,
       setActiveTab,
       currentTab,
-      received,
-      submitted
+      list,
+      count,
+      loading,
+      loadingMore,
+      loadMore,
+      error,
+      total_received,
+      total_submitted
     } = this.props;
-    const { list, count, loading, loadingMore, loadMore, error } = this.props[
-      currentTab
-    ];
 
     let bodyClass;
     let body = (
       <React.Fragment>
-        <ListGroup>{this.renderBounties(list)}</ListGroup>
+        <Table>
+          <Table.Header>
+            <Table.HeaderCell flexGrow={4}>Bounty title</Table.HeaderCell>
+            <Table.HeaderCell flexGrow={3}>Fulfiller</Table.HeaderCell>
+            <Table.HeaderCell flexGrow={2}>Submission date</Table.HeaderCell>
+            <Table.HeaderCell flexGrow={2}>Status</Table.HeaderCell>
+            <Table.HeaderCell flexGrow={2}>Payment amount</Table.HeaderCell>
+          </Table.Header>
+          {this.renderSubmissions(list)}
+        </Table>
         {list.length < count ? (
           <div className={base.loadMoreButton}>
-            <Button
-              loading={loadingMore}
-              onClick={this.props[`${currentTab}LoadMore`]}
-            >
+            <Button loading={loadingMore} onClick={loadMore}>
               Load More
             </Button>
           </div>
@@ -83,10 +88,8 @@ class SubmissionsPanelComponent extends React.Component {
       body = (
         <div className={base.zeroState}>
           <ZeroState
-            title={'You have 0 active bounties'}
-            text={
-              "It looks like you don't have any active bounties at the moment. Enter a title for a new bounty here to get started creating one!"
-            }
+            title={`You have ${currentTab} 0 submissions`}
+            text={`It looks like you don\'t have any submissions. Come back after you have ${currentTab} a fulfillment!`}
             action
             actionText={'Create new bounty'}
             onActionClick={() => {}}
@@ -127,14 +130,14 @@ class SubmissionsPanelComponent extends React.Component {
             >
               <Tabs.Tab
                 tabColor="blue"
-                tabCount={received.count}
+                tabCount={total_received}
                 eventKey={'received'}
               >
                 Received
               </Tabs.Tab>
               <Tabs.Tab
                 tabColor="green"
-                tabCount={submitted.count}
+                tabCount={total_submitted}
                 eventKey={'submitted'}
               >
                 Submitted
@@ -151,27 +154,18 @@ class SubmissionsPanelComponent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const bountyState = rootBountiesSelector(state);
-  const draftsState = rootDraftsSelector(state);
+  const fulfillmentsState = fulfillmentsSelector(state);
+  const stats = loadedUserStatsSelector(state);
 
   return {
     currentTab: submissionsPanelSelector(state).currentTab,
-    received: {
-      list: bountyState.bounties,
-      count: bountyState.count,
-      offset: bountyState.offset,
-      loading: bountyState.loading,
-      loadingMore: bountyState.loadingMore,
-      error: bountyState.error
-    },
-    submitted: {
-      list: draftsState.drafts,
-      count: draftsState.count,
-      offset: draftsState.offset,
-      loading: draftsState.loading,
-      loadingMore: draftsState.loadingMore,
-      error: draftsState.error
-    }
+    list: fulfillmentsState.fulfillments,
+    count: fulfillmentsState.count,
+    loading: fulfillmentsState.loading,
+    loadingMore: fulfillmentsState.loadingMore,
+    error: fulfillmentsState.error,
+    total_received: stats.issuer.fulfillments,
+    total_submitted: stats.fulfiller.total
   };
 };
 
@@ -180,8 +174,7 @@ const SubmissionsPanel = compose(
     mapStateToProps,
     {
       load: actions.loadSubmissionsPanel,
-      activeLoadMore: bountiesActions.loadMoreBounties,
-      draftsLoadMore: draftsActions.loadMoreDrafts,
+      loadMore: fulfillmentActions.loadMoreFulfillments,
       setActiveTab: actions.setActiveTab
     }
   ),

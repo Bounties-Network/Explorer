@@ -30,7 +30,8 @@ export const loadedUserStatsSelector = createSelector(
       total_bounties,
       total_fulfillments,
       awarded,
-      earned
+      earned,
+      total_fulfillments_on_bounties
     } = userInfo.stats;
 
     return {
@@ -40,7 +41,8 @@ export const loadedUserStatsSelector = createSelector(
         acceptance: issuer_fulfillment_acceptance,
         rating: issuer_ratings_received,
         ratingGiven: issuer_ratings_given,
-        total: total_bounties
+        total: total_bounties,
+        fulfillments: total_fulfillments_on_bounties
       },
       fulfiller: {
         acceptance: fulfiller_fulfillment_acceptance,

@@ -15,7 +15,7 @@ const { addIssuerFilter, setSort } = bountiesActions;
 const { loadBounties } = bountiesActions;
 const { loadDrafts } = draftsActions;
 
-export function* loadBountiesPanel(action) {
+export function* loadBountiesPanel() {
   const { public_address } = yield select(getCurrentUserSelector);
 
   yield put(addIssuerFilter(public_address));

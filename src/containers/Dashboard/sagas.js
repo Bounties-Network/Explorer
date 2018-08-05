@@ -1,6 +1,6 @@
 import bountiesPanelSagas from './components/BountiesPanel/sagas';
 import submissionsPanelSagas from './components/SubmissionsPanel/sagas';
 
-const sagaWatchers = [...submissionsPanelSagas];
+const sagaWatchers = [...bountiesPanelSagas, ...submissionsPanelSagas];
 
 export default sagaWatchers;

@@ -11,6 +11,7 @@ const initialState = {
   loadingMore: false,
   loadingMoreError: false,
   error: false,
+  filters: defaultFilters,
   count: 0,
   fulfillments: []
 };
@@ -24,99 +25,113 @@ const LOAD_MORE_FULFILLMENTS_SUCCESS =
   'fulfillments/LOAD_MORE_FULFILLMENTS_SUCCESS';
 const LOAD_MORE_FULFILLMENTS_FAIL = 'fulfillments/LOAD_MORE_FULFILLMENTS_FAIL';
 
-function loadFulfillments(key) {
-  return { type: LOAD_FULFILLMENTS, key };
+function loadFulfillments() {
+  return { type: LOAD_FULFILLMENTS };
 }
 
-function loadFulfillmentsSuccess(key, fulfillments, count) {
-  return { type: LOAD_FULFILLMENTS_SUCCESS, key, fulfillments, count };
+function loadFulfillmentsSuccess(fulfillments, count) {
+  return { type: LOAD_FULFILLMENTS_SUCCESS, fulfillments, count };
 }
 
-function loadFulfillmentsFail(key, error) {
-  return { type: LOAD_FULFILLMENTS_FAIL, key, error };
+function loadFulfillmentsFail(error) {
+  return { type: LOAD_FULFILLMENTS_FAIL, error };
 }
 
-function loadMoreFulfillments(key) {
-  return { type: LOAD_MORE_FULFILLMENTS, key };
+function loadMoreFulfillments() {
+  return { type: LOAD_MORE_FULFILLMENTS };
 }
 
-function loadMoreFulfillmentsSuccess(key, fulfillments) {
-  return { type: LOAD_MORE_FULFILLMENTS_SUCCESS, key, fulfillments };
+function loadMoreFulfillmentsSuccess(fulfillments) {
+  return { type: LOAD_MORE_FULFILLMENTS_SUCCESS, fulfillments };
 }
 
-function loadMoreFulfillmentsFail(key, error) {
-  return { type: LOAD_MORE_FULFILLMENTS_FAIL, key, error };
+function loadMoreFulfillmentsFail(error) {
+  return { type: LOAD_MORE_FULFILLMENTS_FAIL, error };
 }
 
 const ADD_ISSUER_FILTER = 'fulfillments/ADD_ISSUER_FILTER';
 const ADD_FULFILLER_FILTER = 'fulfillments/ADD_FULFILLER_FILTER';
 
-function addIssuerFilter(key, address) {
-  return { type: ADD_ISSUER_FILTER, key, address };
+function addIssuerFilter(address) {
+  return { type: ADD_ISSUER_FILTER, address };
 }
 
-function addFulfillerFilter(key, address) {
-  return { type: ADD_FULFILLER_FILTER, key, address };
+function addFulfillerFilter(address) {
+  return { type: ADD_FULFILLER_FILTER, address };
 }
 
-function FulfillmentsReducer(state = {}, action) {
+function FulfillmentsReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_FULFILLMENTS: {
-      const { key } = action;
-
-      return { ...state, [key]: { ...state[key], ...initialState } };
+      return {
+        ...state,
+        loading: true,
+        loaded: false,
+        error: false
+      };
     }
     case LOAD_FULFILLMENTS_SUCCESS: {
-      const { key, fulfillments, count } = action;
+      const { fulfillments, count } = action;
 
       return {
         ...state,
-        [key]: {
-          ...state[key],
-          loading: false,
-          loaded: true,
-          fulfillments,
-          count
-        }
+        loading: false,
+        loaded: true,
+        fulfillments,
+        count
       };
     }
     case LOAD_FULFILLMENTS_FAIL: {
-      const { key } = action;
+      return {
+        ...state,
+        loading: false,
+        error: true
+      };
+    }
+    case LOAD_MORE_FULFILLMENTS: {
+      return {
+        ...state,
+        loadingMore: true,
+        loadingMoreError: false
+      };
+    }
+    case LOAD_MORE_FULFILLMENTS_SUCCESS: {
+      const { fulfillments } = action;
 
       return {
         ...state,
-        [key]: {
-          ...state[key],
-          uploading: false,
-          error: true
-        }
+        loadingMore: false,
+        fulfillments: [...state.fulfillments, ...fulfillments]
+      };
+    }
+    case LOAD_MORE_FULFILLMENTS_FAIL: {
+      return {
+        ...state,
+        loadingMore: false,
+        loadingMoreError: true
       };
     }
     case ADD_ISSUER_FILTER: {
-      const { key, address } = action;
+      const { address } = action;
 
       return {
         ...state,
-        [key]: {
-          ...state[key],
-          filters: {
-            issuer: address,
-            fulfiller: ''
-          }
+        filters: {
+          ...state.filters,
+          issuer: address,
+          fulfiller: ''
         }
       };
     }
     case ADD_FULFILLER_FILTER: {
-      const { key, address } = action;
+      const { address } = action;
 
       return {
         ...state,
-        [key]: {
-          ...state[key],
-          filters: {
-            issuer: '',
-            fulfiller: address
-          }
+        filters: {
+          ...state.filters,
+          issuer: '',
+          fulfiller: address
         }
       };
     }

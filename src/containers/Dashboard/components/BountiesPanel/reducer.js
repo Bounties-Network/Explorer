@@ -15,11 +15,6 @@ const setActiveTab = tabKey => {
 
 function bountiesPanelReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_BOUNTIES_PANEL: {
-      return {
-        ...state
-      };
-    }
     case SET_ACTIVE_TAB: {
       const { tabKey } = action;
 
