@@ -408,7 +408,9 @@ const mapStateToProps = state => {
     uid: draftBounty.uid,
     bountyId: draftBounty.id,
     filename: uploadedFile ? uploadedFile.fileName : draftBounty.sourceFileName,
-    fileHash: uploadedFile ? uploadedFile.hash : draftBounty.sourceFileHash
+    fileHash: uploadedFile
+      ? uploadedFile.ipfsHash
+      : draftBounty.sourceDirectoryHash
   };
 };
 
