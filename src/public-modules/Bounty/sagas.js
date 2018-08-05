@@ -21,8 +21,16 @@ import {
   getTokenClient
 } from 'public-modules/Client/sagas';
 
-const { CREATE_DRAFT, UPDATE_DRAFT, CREATE_BOUNTY, GET_DRAFT } = actionTypes;
 const {
+  CREATE_DRAFT,
+  UPDATE_DRAFT,
+  CREATE_BOUNTY,
+  GET_DRAFT,
+  GET_BOUNTY
+} = actionTypes;
+const {
+  getBountySuccess,
+  getBountyFail,
   createDraftSuccess,
   createDraftFail,
   createBountySuccess,
@@ -260,6 +268,20 @@ export function* getDraft(action) {
   }
 }
 
+export function* getBounty(action) {
+  const { id } = action;
+  const address = yield select(addressSelector);
+  const addressFilter = address.toLowerCase();
+
+  try {
+    const endpoint = `bounty/${id}/?issuer=${addressFilter}`;
+    const bounty = yield call(request, endpoint, 'GET');
+    yield put(getBountySuccess(bounty));
+  } catch (e) {
+    yield put(getBountyFail(e));
+  }
+}
+
 export function* watchCreateDraft() {
   yield takeLatest([CREATE_DRAFT, UPDATE_DRAFT], createOrUpdateDraft);
 }
@@ -272,4 +294,13 @@ export function* watchGetDraft() {
   yield takeLatest(GET_DRAFT, getDraft);
 }
 
-export default [watchGetDraft, watchCreateDraft, watchCreateBounty];
+export function* watchGetBounty() {
+  yield takeLatest(GET_BOUNTY, getBounty);
+}
+
+export default [
+  watchGetDraft,
+  watchCreateDraft,
+  watchCreateBounty,
+  watchGetBounty
+];

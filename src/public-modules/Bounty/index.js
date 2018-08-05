@@ -1,3 +1,8 @@
+const defaultGetBountyState = {
+  loading: false,
+  error: false
+};
+
 const defaultCreateDraftState = {
   creating: false,
   error: false
@@ -14,10 +19,27 @@ const defaultGetDraftState = {
 };
 
 const initialState = {
+  getBountyState: { ...defaultGetBountyState },
   createDraftState: { ...defaultCreateDraftState },
   getDraftState: { ...defaultGetDraftState },
   createBountyState: { ...defaultCreateBountyState }
 };
+
+const GET_BOUNTY = 'bounty/GET_BOUNTY';
+const GET_BOUNTY_SUCCESS = 'bounty/GET_BOUNTY_SUCCESS';
+const GET_BOUNTY_FAIL = 'bounty/GET_BOUNTY_FAIL';
+
+function getBounty(id) {
+  return { type: GET_BOUNTY, id };
+}
+
+function getBountySuccess(bounty) {
+  return { type: GET_BOUNTY_SUCCESS, bounty };
+}
+
+function getBountyFail() {
+  return { type: GET_BOUNTY_FAIL };
+}
 
 const UPDATE_DRAFT = 'bounty/UPDATE_DRAFT';
 const CREATE_DRAFT = 'bounty/CREATE_DRAFT';
@@ -74,6 +96,39 @@ function createBountyFail(error) {
 
 function BountyReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_BOUNTY: {
+      return {
+        ...state,
+        getBountyState: {
+          ...defaultGetBountyState,
+          loading: true,
+          error: false
+        }
+      };
+    }
+    case GET_BOUNTY_SUCCESS: {
+      const { bounty } = action;
+
+      return {
+        ...state,
+        bounty,
+        getBountyState: {
+          ...defaultGetBountyState,
+          loading: false,
+          error: false
+        }
+      };
+    }
+    case GET_BOUNTY_FAIL: {
+      return {
+        ...state,
+        getBountyState: {
+          ...defaultGetBountyState,
+          loading: false,
+          error: true
+        }
+      };
+    }
     case GET_DRAFT: {
       return {
         ...state,
@@ -181,6 +236,9 @@ function BountyReducer(state = initialState, action) {
 }
 
 export const actions = {
+  getBounty,
+  getBountySuccess,
+  getBountyFail,
   getDraft,
   getDraftSuccess,
   getDraftFail,
@@ -194,6 +252,9 @@ export const actions = {
 };
 
 export const actionTypes = {
+  GET_BOUNTY,
+  GET_BOUNTY_SUCCESS,
+  GET_BOUNTY_FAIL,
   GET_DRAFT,
   GET_DRAFT_SUCCESS,
   GET_DRAFT_FAIL,

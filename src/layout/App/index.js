@@ -11,6 +11,7 @@ import { NAV_ITEMS } from './constants';
 import {
   Explorer,
   Dashboard,
+  Bounty,
   Leaderboard,
   Login,
   CreateBounty,
@@ -84,6 +85,7 @@ class AppComponent extends React.Component {
                     path="/createBounty/draft/:id/"
                     component={RequireLoginComponent(CreateBounty)}
                   />
+                  <Route exact path="/bounty/:id/" component={Bounty} />
                   <Route
                     exact
                     path="/settings"
