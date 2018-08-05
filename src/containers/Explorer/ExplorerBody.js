@@ -58,8 +58,8 @@ const ExplorerBodyComponent = props => {
           experienceLevel={experienceLevel}
           submissions={fulfillment_count}
           deadline={moment(deadline, 'YYYY-MM-DDThh:mm:ssZ').fromNow(true)}
-          value={Number(calculated_fulfillmentAmount).toFixed(2)}
-          usd={Number(usd_price).toFixed(0)}
+          value={Number(calculated_fulfillmentAmount)}
+          usd={Number(usd_price).toFixed(2)}
           currency={tokenSymbol}
           onPillClick={toggleCategoryFilter}
           selectedCategories={categoryFilters}

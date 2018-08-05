@@ -1,0 +1,41 @@
+@import "~styles/variables.scss";
+
+.header {
+  display: flex;
+}
+
+.ethBox {
+  padding: $m-spacing;
+  background-color: $brand-purple-hover;
+  text-align: center;
+  height: fit-content;
+  white-space: nowrap;
+}
+
+.bountyHeader {
+  margin-left: $l-spacing;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.categories {
+  margin-top: $base-spacing;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stage {
+  margin-top: -$base-spacing;
+}
+
+.avatar {
+  margin-top: $base-spacing;
+}
+
+.usd {
+  margin-bottom: $base-spacing;
+}
+
+.pill {
+  margin-top: $s-spacing;  
+}
