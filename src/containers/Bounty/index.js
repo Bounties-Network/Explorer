@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
+import showdown from 'showdown';
 import { map } from 'lodash';
 import { DRAFT } from 'public-modules/Bounty/constants';
 import {
@@ -14,6 +15,10 @@ import {
 } from 'public-modules/Bounty/selectors';
 import { Pill, Text } from 'components';
 import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
+
+showdown.setOption('simpleLineBreaks', true);
+const converter = new showdown.Converter();
+converter.setFlavor('github');
 
 class BountyComponent extends React.Component {
   constructor(props) {
@@ -33,7 +38,7 @@ class BountyComponent extends React.Component {
   render() {
     const { user, loading, error, isDraft, bounty } = this.props;
 
-    if (loading) {
+    if (loading || !bounty) {
       return <div>...loading</div>;
     }
 
@@ -77,7 +82,21 @@ class BountyComponent extends React.Component {
             </div>
           </div>
         </PageCard.Header>
-        <PageCard.Content>Body Content</PageCard.Content>
+        <PageCard.Content>
+          <div className="row">
+            <div className="col-xs-2">Filter</div>
+            <div className="col-xs-10">
+              <div className={styles.descriptionSection}>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: converter.makeHtml(bounty.description)
+                  }}
+                  className="markdownContent"
+                />
+              </div>
+            </div>
+          </div>
+        </PageCard.Content>
       </PageCard>
     );
   }
@@ -105,7 +124,7 @@ const mapStateToProps = (state, router) => {
     loading: bountyState.loading,
     error: bountyState.error,
     isDraft,
-    bounty: bounty || {}
+    bounty: bounty
   };
 };
 

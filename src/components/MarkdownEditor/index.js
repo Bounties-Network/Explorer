@@ -59,7 +59,7 @@ class MarkdownEditor extends React.Component {
               dangerouslySetInnerHTML={{
                 __html: converter.makeHtml(textValue)
               }}
-              className={styles.previewContent}
+              className="markdownContent"
             />
           </Modal.Body>
         </Modal>
