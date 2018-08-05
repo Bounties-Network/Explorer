@@ -16,7 +16,8 @@ const Text = props => {
     style,
     inline,
     id,
-    onClick
+    onClick,
+    download
   } = props;
 
   let addedClasses = '';
@@ -50,6 +51,7 @@ const Text = props => {
         id={id}
         href={src}
         onClick={onClick}
+        download={download}
       >
         {props.children}
       </a>
