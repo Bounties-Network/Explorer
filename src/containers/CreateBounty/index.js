@@ -15,7 +15,7 @@ import {
 import moment from 'moment';
 import { Loader, ZeroState } from 'components';
 import { DEFAULT_MARKDOWN } from 'utils/constants';
-import { DRAFT_DIFFICULTY_MAPPINGS } from './constants';
+import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 
 class CreateBountyComponent extends React.Component {
   componentWillMount() {
@@ -64,10 +64,13 @@ class CreateBountyComponent extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, router) => {
   const user = getCurrentUserSelector(state) || {};
   const getDraftState = getDraftStateSelector(state);
-  const draftBounty = getDraftBountySelector(state) || {};
+  let draftBounty = {};
+  if (router.match.path === '/createBounty/draft/:id/') {
+    draftBounty = getDraftBountySelector(state) || {};
+  }
 
   return {
     draftError: getDraftState.error,
@@ -77,7 +80,7 @@ const mapStateToProps = state => {
       categories: draftBounty.categories,
       description: draftBounty.description || DEFAULT_MARKDOWN,
       experienceLevel:
-        DRAFT_DIFFICULTY_MAPPINGS[draftBounty.experienceLevel] || 'Beginner',
+        DIFFICULTY_MAPPINGS[draftBounty.experienceLevel] || 'Beginner',
       revisions: draftBounty.revisions || 3,
       paysTokens: draftBounty.paysTokens || false,
       tokenContract: draftBounty.tokenContract,

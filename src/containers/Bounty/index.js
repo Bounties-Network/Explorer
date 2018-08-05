@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import showdown from 'showdown';
+import moment from 'moment';
 import { map } from 'lodash';
 import { DRAFT } from 'public-modules/Bounty/constants';
 import {
@@ -13,7 +14,8 @@ import {
   getBountySelector,
   getBountyStateSelector
 } from 'public-modules/Bounty/selectors';
-import { Pill, Text } from 'components';
+import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
+import { Pill, Text, Social } from 'components';
 import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
 
 showdown.setOption('simpleLineBreaks', true);
@@ -38,6 +40,7 @@ class BountyComponent extends React.Component {
   render() {
     const { user, loading, error, isDraft, bounty } = this.props;
 
+    console.log('bounty: ', bounty);
     if (loading || !bounty) {
       return <div>...loading</div>;
     }
@@ -82,18 +85,65 @@ class BountyComponent extends React.Component {
             </div>
           </div>
         </PageCard.Header>
-        <PageCard.Content>
+        <PageCard.Content className={styles.pageBody}>
           <div className="row">
-            <div className="col-xs-2">Filter</div>
-            <div className="col-xs-10">
-              <div className={styles.descriptionSection}>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: converter.makeHtml(bounty.description)
-                  }}
-                  className="markdownContent"
-                />
+            <div className={`col-xs-2 ${styles.filter}`}>
+              <div className={styles.buttonSection}>Button Div</div>
+              {isDraft ? null : (
+                <div className={styles.labelGroup}>
+                  <Text color="defaultGrey">Total Balance</Text>
+                </div>
+              )}
+              <div className={styles.labelGroup}>
+                <Text color="defaultGrey" className={styles.label}>
+                  Issuer Contact
+                </Text>
+                <Text link src={`mailto:${bounty.issuer_email}`}>
+                  {bounty.issuer_email}
+                </Text>
               </div>
+              <div className={styles.labelGroup}>
+                <Text color="defaultGrey" className={styles.label}>
+                  Deadline
+                </Text>
+                <Text>
+                  {moment
+                    .utc(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ')
+                    .fromNow(true)}
+                </Text>
+              </div>
+              <div className={styles.labelGroup}>
+                <Text color="defaultGrey" className={styles.label}>
+                  Difficulty
+                </Text>
+                <Text>{DIFFICULTY_MAPPINGS[bounty.experienceLevel]}</Text>
+              </div>
+              {bounty.sourceDirectoryHash ? (
+                <div className={styles.labelGroup}>
+                  <Text color="defaultGrey" className={styles.label}>
+                    Associated Files
+                  </Text>
+                  <Text
+                    link
+                    src={`https://ipfs.infura.io/ipfs/${
+                      bounty.sourceDirectoryHash
+                    }/${bounty.sourceFileName}`}
+                  >
+                    {bounty.sourceFileName}
+                  </Text>
+                </div>
+              ) : null}
+              <div className={styles.social}>
+                <Social />
+              </div>
+            </div>
+            <div className={`col-xs-10 ${styles.descriptionSection}`}>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: converter.makeHtml(bounty.description)
+                }}
+                className="markdownContent"
+              />
             </div>
           </div>
         </PageCard.Content>

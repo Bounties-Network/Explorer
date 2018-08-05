@@ -125,6 +125,7 @@ const mapStateToProps = state => {
 };
 
 const App = compose(
+  hot(module),
   withRouter,
   connect(
     mapStateToProps,
@@ -132,8 +133,7 @@ const App = compose(
       getCurrentUser: authActions.getCurrentUser,
       loadCategories: categoryActions.loadCategories
     }
-  ),
-  hot(module)
+  )
 )(AppComponent);
 
 export default App;

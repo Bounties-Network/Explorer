@@ -42,4 +42,37 @@
 
 .description {
   text-align: left;
+  padding: $base-spacing;
+}
+
+.filter {
+  text-align: left;
+}
+
+.descriptionSection {
+  /* I do not want to mess with the flexbox grid side padding or margins */
+  margin-top: -$l-spacing;
+  margin-bottom: -$l-spacing;
+  padding-top: $l-spacing;
+  padding-bottom: $xxl-spacing;
+  border-left: $base-border;
+  overflow: scroll;
+}
+
+.buttonSection {
+  margin-bottom: $l-spacing;
+}
+
+.label {
+  margin-bottom: $base-spacing;
+}
+
+.labelGroup {
+  word-wrap: break-word;
+  margin-bottom: $l-spacing;
+  margin-right: $m-spacing;
+}
+
+.pageBody {
+  max-height: 100%;
 }

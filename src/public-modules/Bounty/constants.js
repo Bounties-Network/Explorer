@@ -4,6 +4,12 @@ export const DIFFICULTY_VALUES = {
   Expert: 2
 };
 
+export const DIFFICULTY_MAPPINGS = {
+  0: 'Beginner',
+  1: 'Intermediate',
+  2: 'Expert'
+};
+
 export const STAGE_VALUES = {
   0: 'Draft',
   1: 'Active',
