@@ -51,6 +51,7 @@ const ExplorerBodyComponent = props => {
       return (
         <BountyCard
           key={id}
+          id={id}
           title={title}
           categories={categories}
           img={user.profile_image}
