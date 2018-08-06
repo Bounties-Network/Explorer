@@ -11,10 +11,8 @@ import {
 } from 'public-modules/Utilities/helpers';
 import { addJSON } from 'public-modules/Utilities/ipfsClient';
 import { DIFFICULTY_VALUES } from './constants';
-import {
-  addressSelector,
-  networkSelector
-} from 'public-modules/Client/selectors';
+import { networkSelector } from 'public-modules/Client/selectors';
+import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import {
   getContractClient,
   getWeb3Client,
@@ -131,7 +129,9 @@ export function* createBounty(action) {
   } = values;
 
   yield put(setPendingWalletConfirm());
-  const userAddress = yield select(addressSelector);
+  const user = yield select(getCurrentUserSelector);
+  const userAddress = user.public_address;
+
   const { web3 } = yield call(getWeb3Client);
 
   if (paysTokens) {
@@ -256,7 +256,8 @@ export function* createBounty(action) {
 
 export function* getDraft(action) {
   const { id } = action;
-  const address = yield select(addressSelector);
+  const user = yield select(getCurrentUserSelector);
+  const address = user.public_address;
   const addressFilter = address.toLowerCase();
 
   try {
@@ -270,11 +271,9 @@ export function* getDraft(action) {
 
 export function* getBounty(action) {
   const { id } = action;
-  const address = yield select(addressSelector);
-  const addressFilter = address.toLowerCase();
 
   try {
-    const endpoint = `bounty/${id}/?issuer=${addressFilter}`;
+    const endpoint = `bounty/${id}/`;
     const bounty = yield call(request, endpoint, 'GET');
     yield put(getBountySuccess(bounty));
   } catch (e) {

@@ -8,6 +8,7 @@ import showdown from 'showdown';
 import moment from 'moment';
 import { map } from 'lodash';
 import { DRAFT } from 'public-modules/Bounty/constants';
+import ActionBar from './ActionBar';
 import {
   getDraftStateSelector,
   getDraftBountySelector,
@@ -40,7 +41,6 @@ class BountyComponent extends React.Component {
   render() {
     const { user, loading, error, isDraft, bounty } = this.props;
 
-    console.log('bounty: ', bounty);
     if (loading || !bounty) {
       return <div>...loading</div>;
     }
@@ -65,7 +65,18 @@ class BountyComponent extends React.Component {
               <PageCard.Title>{bounty.title}</PageCard.Title>
               <div className={styles.categories}>
                 {map(
-                  category => <Pill className={styles.pill}>{category}</Pill>,
+                  category => (
+                    <Pill
+                      className={styles.pill}
+                      key={
+                        typeof category === 'object'
+                          ? category.normalized_name
+                          : category
+                      }
+                    >
+                      {typeof category === 'object' ? category.name : category}
+                    </Pill>
+                  ),
                   bounty.categories
                 )}
               </div>
@@ -87,11 +98,18 @@ class BountyComponent extends React.Component {
         </PageCard.Header>
         <PageCard.Content className={styles.pageBody}>
           <div className="row">
-            <div className={`col-xs-2 ${styles.filter}`}>
-              <div className={styles.buttonSection}>Button Div</div>
+            <div className={`col-xs-3 ${styles.filter}`}>
+              <div className={styles.buttonSection}>
+                <ActionBar isDraft={isDraft} bounty={bounty} user={user} />
+              </div>
               {isDraft ? null : (
                 <div className={styles.labelGroup}>
-                  <Text color="defaultGrey">Total Balance</Text>
+                  <Text color="defaultGrey" className={styles.label}>
+                    Total Balance
+                  </Text>
+                  <Text>{`${Number(bounty.calculated_balance)} ${
+                    bounty.tokenSymbol
+                  }`}</Text>
                 </div>
               )}
               <div className={styles.labelGroup}>
@@ -137,7 +155,7 @@ class BountyComponent extends React.Component {
                 <Social />
               </div>
             </div>
-            <div className={`col-xs-10 ${styles.descriptionSection}`}>
+            <div className={`col-xs-9 ${styles.descriptionSection}`}>
               <div
                 dangerouslySetInnerHTML={{
                   __html: converter.makeHtml(bounty.description)
