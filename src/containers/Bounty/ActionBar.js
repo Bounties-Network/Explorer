@@ -17,7 +17,8 @@ const ActionBar = props => {
     modalType,
     modalVisible,
     closeModal,
-    showModal
+    showModal,
+    activateDraftBounty
   } = props;
 
   if (isDraft) {
@@ -27,11 +28,13 @@ const ActionBar = props => {
           visible={modalVisible}
           onClose={closeModal}
           modalType={modalType}
+          onActivateDraft={activateDraftBounty}
           onExtendDeadline={
             isDraft
               ? () => history.push(`/createBounty/draft/${bounty.id}/`)
               : null
           }
+          bounty={bounty}
         />
         <Button
           type="action"

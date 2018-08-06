@@ -10,6 +10,7 @@ import moment from 'moment';
 import { map } from 'lodash';
 import { DRAFT } from 'public-modules/Bounty/constants';
 import ActionBar from './ActionBar';
+import { TransactionWalkthrough } from 'hocs';
 import {
   getDraftStateSelector,
   getDraftBountySelector,
@@ -50,7 +51,9 @@ class BountyComponent extends React.Component {
       modalType,
       modalVisible,
       showModal,
-      closeModal
+      closeModal,
+      activateDraftBounty,
+      initiateWalkthrough
     } = this.props;
 
     if (loading || !bounty) {
@@ -120,6 +123,11 @@ class BountyComponent extends React.Component {
                   modalVisible={modalVisible}
                   closeModal={closeModal}
                   showModal={showModal}
+                  activateDraftBounty={values =>
+                    initiateWalkthrough(() =>
+                      activateDraftBounty({ ...bounty }, values.balance)
+                    )
+                  }
                 />
               </div>
               {isDraft ? null : (
@@ -220,11 +228,15 @@ const mapStateToProps = (state, router) => {
 };
 
 const Bounty = compose(
+  TransactionWalkthrough({
+    dismissable: false
+  }),
   connect(
     mapStateToProps,
     {
       loadBounty: bountyActions.getBounty,
       loadDraftBounty: bountyActions.getDraft,
+      activateDraftBounty: bountyActions.createBounty,
       closeModal: bountyUIActions.closeModal,
       showModal: bountyUIActions.showModal
     }
