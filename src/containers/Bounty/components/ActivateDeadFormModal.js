@@ -6,7 +6,7 @@ import { BigNumber } from 'bignumber.js';
 import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 
-const ActivateDraftFormModal = props => {
+const ActivateDeadFormModal = props => {
   const { onClose, minimumBalance, handleSubmit } = props;
 
   return (
@@ -19,10 +19,10 @@ const ActivateDraftFormModal = props => {
         size="small"
       >
         <Modal.Header closable={true}>
-          <Modal.Message>Activate your bounty</Modal.Message>
+          <Modal.Message>Re-Activate your bounty</Modal.Message>
           <Modal.Description>
-            Indicate an amount for your initial deposit to activate the bounty.
-            At minimum, your initial deposit must match your payout amount.
+            Indicate an amount for your deposit to activate the bounty. At
+            minimum, your deposit must match the payout amount.
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
@@ -54,11 +54,11 @@ const ActivateDraftFormModal = props => {
           >
             Cancel
           </Button>
-          <Button type="action">Activate</Button>
+          <Button type="action">Re-Activate</Button>
         </Modal.Footer>
       </Modal>
     </form>
   );
 };
 
-export default reduxForm({ form: 'activateDraft' })(ActivateDraftFormModal);
+export default reduxForm({ form: 'activateDead' })(ActivateDeadFormModal);

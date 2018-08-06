@@ -39,6 +39,8 @@ import eye from '@fortawesome/fontawesome-pro-light/faEye';
 import globe from '@fortawesome/fontawesome-pro-regular/faGlobe';
 import idCardAlt from '@fortawesome/fontawesome-pro-light/faIdCardAlt';
 import star from '@fortawesome/fontawesome-pro-regular/faStar';
+import calendarAlt from '@fortawesome/fontawesome-pro-regular/faCalendarAlt';
+import dollarSign from '@fortawesome/fontawesome-pro-regular/faDollarSign';
 
 library.add(
   star,
@@ -80,5 +82,7 @@ library.add(
   levelUp,
   seedling,
   unlock,
-  addressCard
+  addressCard,
+  calendarAlt,
+  dollarSign
 );

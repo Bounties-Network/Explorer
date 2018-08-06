@@ -1,5 +1,13 @@
-import ExtendDeadlineModal from './ExtendDeadlineModal';
+import ExtendDeadlineErrorModal from './ExtendDeadlineErrorModal';
 import ModalManager from './ModalManager';
 import ActivateDraftFormModal from './ActivateDraftFormModal';
+import ExtendDeadlineFormModal from './ExtendDeadlineFormModal';
+import ActivateDeadFormModal from './ActivateDeadFormModal';
 
-export { ExtendDeadlineModal, ModalManager, ActivateDraftFormModal };
+export {
+  ExtendDeadlineErrorModal,
+  ModalManager,
+  ActivateDraftFormModal,
+  ExtendDeadlineFormModal,
+  ActivateDeadFormModal
+};

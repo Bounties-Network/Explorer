@@ -5,6 +5,7 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Bounty';
 import { actions as transactionActions } from 'public-modules/Transaction';
 import { BigNumber } from 'bignumber.js';
+import { addressSelector } from 'public-modules/Client/selectors';
 import {
   calculateDecimals,
   promisifyContractCall,
@@ -25,15 +26,17 @@ const {
   UPDATE_DRAFT,
   CREATE_BOUNTY,
   GET_DRAFT,
-  GET_BOUNTY
+  GET_BOUNTY,
+  KILL_BOUNTY,
+  ACTIVATE_BOUNTY
 } = actionTypes;
 const {
   getBountySuccess,
   getBountyFail,
   createDraftSuccess,
   createDraftFail,
-  createBountySuccess,
-  createBountyFail,
+  stdBountySuccess,
+  stdBountyFail,
   getDraftSuccess,
   getDraftFail
 } = actions;
@@ -153,7 +156,8 @@ export function* createBounty(action) {
         decimals
       );
     } catch (e) {
-      console.log(e);
+      yield put(setTransactionError());
+      return yield put(stdBountyFail());
     }
   } else {
     contractFulfillmentAmount = web3.utils.toWei(
@@ -241,10 +245,10 @@ export function* createBounty(action) {
         ]
       );
       yield put(setPendingReceipt(issuedBountyHash));
-      return yield put(createBountySuccess());
+      return yield put(stdBountySuccess());
     } catch (e) {
       yield put(setTransactionError());
-      return yield put(createBountyFail());
+      return yield put(stdBountyFail());
     }
   }
 
@@ -264,10 +268,10 @@ export function* createBounty(action) {
       contractBalance
     );
     yield put(setPendingReceipt(txHash));
-    yield put(createBountySuccess());
+    yield put(stdBountySuccess());
   } catch (e) {
     yield put(setTransactionError());
-    yield put(createBountyFail());
+    yield put(stdBountyFail());
   }
 }
 
@@ -298,6 +302,62 @@ export function* getBounty(action) {
   }
 }
 
+export function* killBounty(action) {
+  const { id } = action;
+  const userAddress = yield select(addressSelector);
+  yield put(setPendingWalletConfirm());
+
+  try {
+    const { standardBounties } = yield call(getContractClient);
+    const txHash = yield call(
+      promisifyContractCall(standardBounties.killBounty, {
+        from: userAddress
+      }),
+      id
+    );
+    yield put(stdBountySuccess());
+    yield put(setPendingReceipt(txHash));
+  } catch (e) {
+    yield put(stdBountyFail());
+    yield put(setTransactionError());
+  }
+}
+
+export function* activateBounty(action) {
+  const { id, balance, paysTokens, decimals } = action;
+  const userAddress = yield select(addressSelector);
+  yield put(setPendingWalletConfirm());
+  let contractBalance;
+  if (paysTokens) {
+    contractBalance = calculateDecimals(
+      BigNumber(balance, 10).toString(),
+      parseInt(decimals)
+    );
+  } else {
+    const { web3 } = yield call(getWeb3Client);
+    contractBalance = web3.utils.toWei(
+      BigNumber(balance, 10).toString(),
+      'ether'
+    );
+  }
+  try {
+    const { standardBounties } = yield call(getContractClient);
+    const txHash = yield call(
+      promisifyContractCall(standardBounties.activateBounty, {
+        from: userAddress,
+        value: paysTokens ? null : contractBalance
+      }),
+      id,
+      contractBalance
+    );
+    yield put(stdBountySuccess());
+    yield put(setPendingReceipt(txHash));
+  } catch (e) {
+    yield put(stdBountyFail());
+    yield put(setTransactionError());
+  }
+}
+
 export function* watchCreateDraft() {
   yield takeLatest([CREATE_DRAFT, UPDATE_DRAFT], createOrUpdateDraft);
 }
@@ -314,9 +374,19 @@ export function* watchGetBounty() {
   yield takeLatest(GET_BOUNTY, getBounty);
 }
 
+export function* watchKillBounty() {
+  yield takeLatest(KILL_BOUNTY, killBounty);
+}
+
+export function* watchActivateBounty() {
+  yield takeLatest(ACTIVATE_BOUNTY, activateBounty);
+}
+
 export default [
   watchGetDraft,
   watchCreateDraft,
   watchCreateBounty,
-  watchGetBounty
+  watchGetBounty,
+  watchKillBounty,
+  watchActivateBounty
 ];
