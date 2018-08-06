@@ -5,7 +5,8 @@ import {
   ExtendDeadlineErrorModal,
   ActivateDraftFormModal,
   ExtendDeadlineFormModal,
-  ActivateDeadFormModal
+  ActivateDeadFormModal,
+  IncreasePayoutFormModal
 } from 'containers/Bounty/components';
 
 const ModalManager = props => {
@@ -17,7 +18,8 @@ const ModalManager = props => {
     bounty,
     onActivateDraft,
     activateDeadBounty,
-    extendDeadline
+    extendDeadline,
+    increasePayout
   } = props;
 
   if (!visible) {
@@ -73,6 +75,16 @@ const ModalManager = props => {
           bounty.calculated_fulfillmentAmount,
           10
         ).toString()}
+      />
+    );
+  }
+
+  if (modalType === 'increasePayout') {
+    return (
+      <IncreasePayoutFormModal
+        onClose={onClose}
+        onSubmit={increasePayout}
+        minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}
       />
     );
   }

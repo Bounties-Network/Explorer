@@ -1,3 +1,9 @@
+@import "~styles/variables.scss";
+
 .modalBody {
   text-align: left;  
+}
+
+.inputGroup {
+  margin-top: $s-spacing;
 }

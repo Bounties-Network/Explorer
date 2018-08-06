@@ -20,7 +20,7 @@ import {
 import { addressSelector } from 'public-modules/Client/selectors';
 import { rootBountyPageSelector } from './selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
-import { Pill, Text, Social } from 'components';
+import { Pill, Text, Social, Loader, ZeroState } from 'components';
 import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
 
 showdown.setOption('simpleLineBreaks', true);
@@ -58,11 +58,30 @@ class BountyComponent extends React.Component {
       walletAddress,
       killBounty,
       activateBounty,
-      extendDeadline
+      extendDeadline,
+      increasePayout
     } = this.props;
 
+    if (error) {
+      return (
+        <div className={styles.centeredBody}>
+          <ZeroState
+            type="error"
+            iconColor="red"
+            title="Could not find that bounty"
+            text="Try refreshing, or make sure your url is correct"
+            icon={['far', 'exclamation-triangle']}
+          />
+        </div>
+      );
+    }
+
     if (loading || !bounty) {
-      return <div>...loading</div>;
+      return (
+        <div className={styles.centeredBody}>
+          <Loader size="medium" />
+        </div>
+      );
     }
 
     return (
@@ -143,13 +162,26 @@ class BountyComponent extends React.Component {
                         bounty.id,
                         values.balance,
                         bounty.paysTokens,
-                        bounty.tokenDecimals
+                        bounty.tokenDecimals,
+                        bounty.tokenContract
                       )
                     )
                   }
                   extendDeadline={values =>
                     initiateWalkthrough(() =>
                       extendDeadline(bounty.id, values.deadline)
+                    )
+                  }
+                  increasePayout={values =>
+                    initiateWalkthrough(() =>
+                      increasePayout(
+                        bounty.id,
+                        values.fulfillmentAmount,
+                        values.balance,
+                        bounty.paysTokens,
+                        bounty.tokenDecimals,
+                        bounty.tokenContract
+                      )
                     )
                   }
                 />
@@ -254,7 +286,8 @@ const mapStateToProps = (state, router) => {
 
 const Bounty = compose(
   TransactionWalkthrough({
-    dismissable: false
+    dismissable: false,
+    wrapperClassName: styles.body
   }),
   connect(
     mapStateToProps,
@@ -266,7 +299,8 @@ const Bounty = compose(
       showModal: bountyUIActions.showModal,
       killBounty: bountyActions.killBounty,
       activateBounty: bountyActions.activateBounty,
-      extendDeadline: bountyActions.extendDeadline
+      extendDeadline: bountyActions.extendDeadline,
+      increasePayout: bountyActions.increasePayout
     }
   )
 )(BountyComponent);

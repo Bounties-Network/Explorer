@@ -6,10 +6,11 @@
     "rinkeby": "https://rinkeby.api.bounties.network"
   },
   "mainNet": {
-    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+    "standardBountiesAddress": "0x2af47a65da8CD66729b4209C22017d6A5C2d2400",
+    "ethProfilesAddress": "0x40244fd09743f9d6c257171010e5f38a055b4778"
   },
   "rinkeby": {
-    "standardBountiesAddress": "0x40244fd09743f9d6c257171010e5f38a055b4778",
+    "standardBountiesAddress": "0xDd1636B88e9071507e859e61991ed4be6647F420",
     "ethProfilesAddress": "0x40244fd09743f9d6c257171010e5f38a055b4778"
   },
   "interfaces": {
