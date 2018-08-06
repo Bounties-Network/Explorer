@@ -1,13 +1,13 @@
 const initialState = {
-  modal: '',
+  modalType: '',
   modalVisible: false
 };
 
 const SHOW_MODAL = 'BountyPage/SHOW_MODAL';
 const CLOSE_MODAL = 'BountyPage/CLOSE_MODAL';
 
-function showModal(modal) {
-  return { type: SHOW_MODAL, modal };
+function showModal(modalType) {
+  return { type: SHOW_MODAL, modalType };
 }
 
 function closeModal() {
@@ -17,19 +17,19 @@ function closeModal() {
 function BountyPageUIReducer(state = initialState, action) {
   switch (action.type) {
     case SHOW_MODAL: {
-      const { modal } = action;
+      const { modalType } = action;
 
       return {
         ...state,
         modalVisible: true,
-        modal
+        modalType
       };
     }
     case CLOSE_MODAL:
       return {
         ...state,
         modalVisible: false,
-        modal: ''
+        modalType: ''
       };
     default:
       return state;
