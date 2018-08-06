@@ -96,7 +96,11 @@ class Description extends React.Component {
 
 class Body extends React.Component {
   render() {
-    return <div className={styles.body}>{this.props.children}</div>;
+    const { className } = this.props;
+
+    return (
+      <div className={`${styles.body} ${className}`}>{this.props.children}</div>
+    );
   }
 }
 
