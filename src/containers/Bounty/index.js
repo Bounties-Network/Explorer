@@ -3,6 +3,7 @@ import styles from './Bounty.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions as bountyActions } from 'public-modules/Bounty';
+import { actions as bountyUIActions } from './reducer';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import showdown from 'showdown';
 import moment from 'moment';
@@ -15,6 +16,7 @@ import {
   getBountySelector,
   getBountyStateSelector
 } from 'public-modules/Bounty/selectors';
+import { rootBountyPageSelector } from './selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import { Pill, Text, Social } from 'components';
 import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
@@ -39,7 +41,17 @@ class BountyComponent extends React.Component {
   }
 
   render() {
-    const { user, loading, error, isDraft, bounty } = this.props;
+    const {
+      user,
+      loading,
+      error,
+      isDraft,
+      bounty,
+      modalType,
+      modalVisible,
+      showModal,
+      closeModal
+    } = this.props;
 
     if (loading || !bounty) {
       return <div>...loading</div>;
@@ -100,7 +112,15 @@ class BountyComponent extends React.Component {
           <div className="row">
             <div className={`col-xs-3 ${styles.filter}`}>
               <div className={styles.buttonSection}>
-                <ActionBar isDraft={isDraft} bounty={bounty} user={user} />
+                <ActionBar
+                  isDraft={isDraft}
+                  bounty={bounty}
+                  user={user}
+                  modalType={modalType}
+                  modalVisible={modalVisible}
+                  closeModal={closeModal}
+                  showModal={showModal}
+                />
               </div>
               {isDraft ? null : (
                 <div className={styles.labelGroup}>
@@ -175,6 +195,7 @@ const mapStateToProps = (state, router) => {
   const getBountyState = getBountyStateSelector(state);
   const draftBounty = getDraftBountySelector(state);
   const currentBounty = getBountySelector(state);
+  const bountyPage = rootBountyPageSelector(state);
 
   const { match } = router;
   let bounty = currentBounty;
@@ -192,7 +213,9 @@ const mapStateToProps = (state, router) => {
     loading: bountyState.loading,
     error: bountyState.error,
     isDraft,
-    bounty: bounty
+    bounty: bounty,
+    modalType: bountyPage.modalType,
+    modalVisible: bountyPage.modalVisible
   };
 };
 
@@ -201,7 +224,9 @@ const Bounty = compose(
     mapStateToProps,
     {
       loadBounty: bountyActions.getBounty,
-      loadDraftBounty: bountyActions.getDraft
+      loadDraftBounty: bountyActions.getDraft,
+      closeModal: bountyUIActions.closeModal,
+      showModal: bountyUIActions.showModal
     }
   )
 )(BountyComponent);
