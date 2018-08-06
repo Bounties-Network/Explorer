@@ -1,8 +1,10 @@
 import React from 'react';
 import { BigNumber } from 'bignumber.js';
 import {
-  ExtendDeadlineModal,
-  ActivateDraftFormModal
+  ExtendDeadlineErrorModal,
+  ActivateDraftFormModal,
+  ExtendDeadlineFormModal,
+  ActivateDeadFormModal
 } from 'containers/Bounty/components';
 
 const ModalManager = props => {
@@ -12,7 +14,8 @@ const ModalManager = props => {
     onClose,
     onExtendDeadline,
     bounty,
-    onActivateDraft
+    onActivateDraft,
+    activateDeadBounty
   } = props;
 
   if (!visible) {
@@ -21,7 +24,7 @@ const ModalManager = props => {
 
   if (modalType === 'deadlineWarning') {
     return (
-      <ExtendDeadlineModal
+      <ExtendDeadlineErrorModal
         onClose={onClose}
         onExtendDeadline={onExtendDeadline}
       />
@@ -33,6 +36,23 @@ const ModalManager = props => {
       <ActivateDraftFormModal
         onClose={onClose}
         onSubmit={onActivateDraft}
+        minimumBalance={BigNumber(
+          bounty.calculated_fulfillmentAmount,
+          10
+        ).toString()}
+      />
+    );
+  }
+
+  if (modalType === 'extendDealine') {
+    return <ExtendDeadlineFormModal onClose={onClose} onSubmit={() => {}} />;
+  }
+
+  if (modalType === 'activateDead') {
+    return (
+      <ActivateDeadFormModal
+        onClose={onClose}
+        onSubmit={activateDeadBounty}
         minimumBalance={BigNumber(
           bounty.calculated_fulfillmentAmount,
           10

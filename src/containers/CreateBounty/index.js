@@ -64,13 +64,10 @@ class CreateBountyComponent extends React.Component {
   }
 }
 
-const mapStateToProps = (state, router) => {
+const mapStateToProps = state => {
   const user = getCurrentUserSelector(state) || {};
   const getDraftState = getDraftStateSelector(state);
-  let draftBounty = {};
-  if (router.match.path === '/createBounty/draft/:id/') {
-    draftBounty = getDraftBountySelector(state) || {};
-  }
+  const draftBounty = getDraftBountySelector(state) || {};
 
   return {
     draftError: getDraftState.error,
@@ -91,7 +88,11 @@ const mapStateToProps = (state, router) => {
       activateNow: true,
       issuer_email: user.email || '',
       issuer_name: user.name || '',
-      deadline: (moment(draftBounty.deadline) || moment()).add(1, 'days').utc()
+      deadline:
+        moment(draftBounty.deadline).utc() ||
+        moment()
+          .add(1, 'days')
+          .utc()
     }
   };
 };

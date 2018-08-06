@@ -7,9 +7,9 @@ export const createDraftStateSelector = createSelector(
   rootBounty => rootBounty.createDraftState
 );
 
-export const createBountyStateSelector = createSelector(
+export const stdBountyStateSelector = createSelector(
   rootBountySelector,
-  rootBounty => rootBounty.createBountyState
+  rootBounty => rootBounty.stdBountyState
 );
 
 export const getDraftStateSelector = createSelector(

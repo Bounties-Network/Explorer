@@ -17,6 +17,7 @@ import {
   getBountySelector,
   getBountyStateSelector
 } from 'public-modules/Bounty/selectors';
+import { addressSelector } from 'public-modules/Client/selectors';
 import { rootBountyPageSelector } from './selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import { Pill, Text, Social } from 'components';
@@ -53,7 +54,10 @@ class BountyComponent extends React.Component {
       showModal,
       closeModal,
       activateDraftBounty,
-      initiateWalkthrough
+      initiateWalkthrough,
+      walletAddress,
+      killBounty,
+      activateBounty
     } = this.props;
 
     if (loading || !bounty) {
@@ -123,9 +127,23 @@ class BountyComponent extends React.Component {
                   modalVisible={modalVisible}
                   closeModal={closeModal}
                   showModal={showModal}
+                  walletAddress={walletAddress}
                   activateDraftBounty={values =>
                     initiateWalkthrough(() =>
                       activateDraftBounty({ ...bounty }, values.balance)
+                    )
+                  }
+                  killBounty={() =>
+                    initiateWalkthrough(() => killBounty(bounty.id))
+                  }
+                  activateDeadBounty={values =>
+                    initiateWalkthrough(() =>
+                      activateBounty(
+                        bounty.id,
+                        values.balance,
+                        bounty.paysTokens,
+                        bounty.tokenDecimals
+                      )
                     )
                   }
                 />
@@ -135,9 +153,9 @@ class BountyComponent extends React.Component {
                   <Text color="defaultGrey" className={styles.label}>
                     Total Balance
                   </Text>
-                  <Text>{`${Number(bounty.calculated_balance)} ${
-                    bounty.tokenSymbol
-                  }`}</Text>
+                  <Text color="purple" weight="fontWeight-medium">{`${Number(
+                    bounty.calculated_balance
+                  )} ${bounty.tokenSymbol}`}</Text>
                 </div>
               )}
               <div className={styles.labelGroup}>
@@ -223,7 +241,8 @@ const mapStateToProps = (state, router) => {
     isDraft,
     bounty: bounty,
     modalType: bountyPage.modalType,
-    modalVisible: bountyPage.modalVisible
+    modalVisible: bountyPage.modalVisible,
+    walletAddress: addressSelector(state)
   };
 };
 
@@ -238,7 +257,9 @@ const Bounty = compose(
       loadDraftBounty: bountyActions.getDraft,
       activateDraftBounty: bountyActions.createBounty,
       closeModal: bountyUIActions.closeModal,
-      showModal: bountyUIActions.showModal
+      showModal: bountyUIActions.showModal,
+      killBounty: bountyActions.killBounty,
+      activateBounty: bountyActions.activateBounty
     }
   )
 )(BountyComponent);

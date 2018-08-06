@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'components';
 
-const ExtendDeadlineModal = props => {
+const ExtendDeadlineErrorModal = props => {
   const { onClose, onExtendDeadline } = props;
 
   return (
@@ -15,7 +15,7 @@ const ExtendDeadlineModal = props => {
         <Button margin onClick={onClose}>
           Cancel
         </Button>
-        <Button type="primary" onClick={onExtendDeadline}>
+        <Button type="primary" submit onClick={onExtendDeadline}>
           Extend Deadline
         </Button>
       </Modal.Footer>
@@ -23,4 +23,4 @@ const ExtendDeadlineModal = props => {
   );
 };
 
-export default ExtendDeadlineModal;
+export default ExtendDeadlineErrorModal;

@@ -6,6 +6,7 @@ import moment from 'moment';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Button } from 'components';
+import { DEAD } from 'public-modules/Bounty/constants';
 import { ModalManager } from './components';
 
 const ActionBar = props => {
@@ -18,24 +19,19 @@ const ActionBar = props => {
     modalVisible,
     closeModal,
     showModal,
-    activateDraftBounty
+    killBounty,
+    activateDraftBounty,
+    walletAddress,
+    activateDeadBounty
   } = props;
 
+  const belongsToLoggedInUser = bounty.issuer === user.public_address;
+  const loggedOutButAddressMatches = !user && bounty.issuer === walletAddress;
+
+  let actionOptions = null;
   if (isDraft) {
-    return (
+    actionOptions = (
       <div>
-        <ModalManager
-          visible={modalVisible}
-          onClose={closeModal}
-          modalType={modalType}
-          onActivateDraft={activateDraftBounty}
-          onExtendDeadline={
-            isDraft
-              ? () => history.push(`/createBounty/draft/${bounty.id}/`)
-              : null
-          }
-          bounty={bounty}
-        />
         <Button
           type="action"
           fitWidth
@@ -57,6 +53,72 @@ const ActionBar = props => {
       </div>
     );
   }
+
+  if (!isDraft && (belongsToLoggedInUser || loggedOutButAddressMatches)) {
+    actionOptions = (
+      <div>
+        {bounty.bountyStage === DEAD ? (
+          <Button
+            type="action"
+            className={styles.reactivateButton}
+            fitWidth
+            onClick={() => showModal('activateDead')}
+          >
+            Re-Activate Bounty
+          </Button>
+        ) : (
+          <Button
+            type="destructive"
+            className={styles.killButton}
+            fitWidth
+            onClick={killBounty}
+          >
+            Kill bounty
+          </Button>
+        )}
+        <Button
+          icon={['far', 'calendar-alt']}
+          fitWidth
+          className={styles.buttonGroup}
+        >
+          Change deadline
+        </Button>
+        <Button
+          icon={['far', 'user-alt']}
+          fitWidth
+          className={styles.buttonGroup}
+        >
+          Transfer Ownership
+        </Button>
+        <Button
+          icon={['far', 'dollar-sign']}
+          fitWidth
+          className={styles.buttonGroup}
+        >
+          Change Prize
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <ModalManager
+        visible={modalVisible}
+        onClose={closeModal}
+        modalType={modalType}
+        onActivateDraft={activateDraftBounty}
+        onExtendDeadline={
+          isDraft
+            ? () => history.push(`/createBounty/draft/${bounty.id}/`)
+            : null
+        }
+        activateDeadBounty={activateDeadBounty}
+        bounty={bounty}
+      />
+      {actionOptions}
+    </div>
+  );
 };
 
 export default withRouter(ActionBar);

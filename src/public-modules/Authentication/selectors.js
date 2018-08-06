@@ -22,6 +22,11 @@ export const getCurrentUserSelector = createSelector(
   rootAuth => rootAuth.user
 );
 
+export const getUserAddressSelector = createSelector(
+  getCurrentUserSelector,
+  user => (user ? user.public_address : '')
+);
+
 export const hasUserSignedUp = createSelector(
   rootAuthSelector,
   rootAuth => rootAuth.signedUp
