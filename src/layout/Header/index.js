@@ -59,7 +59,7 @@ const HeaderComponent = props => {
                 <MenuItem
                   icon={['fal', 'cog']}
                   onClick={() => {
-                    history.push('settings');
+                    history.push('/settings');
                   }}
                 >
                   Account Settings

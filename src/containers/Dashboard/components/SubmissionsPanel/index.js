@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import base from '../BaseStyles.module.scss';
-import styles from './BountiesPanel.module.scss';
+import styles from './SubmissionsPanel.module.scss';
 import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
 import { FULFILLER_KEY, ISSUER_KEY } from './constants';
@@ -90,9 +90,6 @@ class SubmissionsPanelComponent extends React.Component {
           <ZeroState
             title={`You have ${currentTab} 0 submissions`}
             text={`It looks like you don\'t have any submissions. Come back after you have ${currentTab} a fulfillment!`}
-            action
-            actionText={'Create new bounty'}
-            onActionClick={() => {}}
             iconColor="blue"
           />
         </div>
@@ -120,7 +117,7 @@ class SubmissionsPanelComponent extends React.Component {
 
     return (
       <div className={`${className} ${base.cardContainer}`}>
-        <Card className={base.card}>
+        <Card className={styles.card}>
           <Card.Header>
             <Card.HeaderTitle>Submissions</Card.HeaderTitle>
             <Card.HeaderTabs

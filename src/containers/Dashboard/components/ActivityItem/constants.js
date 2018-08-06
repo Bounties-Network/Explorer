@@ -6,7 +6,7 @@ const general = ['far', 'star'];
 
 export const notification_template = {
   FulfillmentSubmitted: {
-    message: 'You made a submission',
+    message: 'You made a submission to',
     icon: level_up
   },
   FulfillmentSubmittedIssuer: {

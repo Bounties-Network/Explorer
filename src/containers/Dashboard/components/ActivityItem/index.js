@@ -23,8 +23,9 @@ const ActivityItem = props => {
       </div>
       <div className="col-xs-8">
         <div className={base.alignLeft}>
-          <Text>
-            {message} {title}
+          <Text inline>{message}</Text>
+          <Text weight="fontWeight-medium" inline>
+            {' ' + title}
           </Text>
         </div>
       </div>

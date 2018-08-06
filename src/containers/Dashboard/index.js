@@ -9,7 +9,7 @@ import {
 
 const Dashboard = props => {
   return (
-    <div className="container-fluid">
+    <div className={`container-fluid ${styles.container}`}>
       <div className="row center-xs">
         <div className="col-xs-10">
           <UserStats className={styles.statsContainer} />
@@ -23,7 +23,7 @@ const Dashboard = props => {
           <ActivityPanel />
         </div>
       </div>
-      <div className="row center-xs">
+      <div className={`row center-xs ${styles.submissionsFlex}`}>
         <div className="col-xs-10">
           <SubmissionsPanel className={styles.submissionsContainer} />
         </div>
