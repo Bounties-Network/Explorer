@@ -4,6 +4,7 @@ import config from 'public-modules/config';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Bounty';
 import { actions as transactionActions } from 'public-modules/Transaction';
+import { BigNumber } from 'bignumber.js';
 import {
   calculateDecimals,
   promisifyContractCall,
@@ -121,6 +122,7 @@ export function* createBounty(action) {
     experienceLevel,
     issuer_email,
     issuer_name,
+    calculated_fulfillmentAmount,
     fulfillmentAmount,
     paysTokens,
     sourceDirectoryHash,
@@ -140,16 +142,31 @@ export function* createBounty(action) {
       tokenSymbol = symbol;
       tokenDecimals = parseInt(decimals);
       contractFulfillmentAmount = calculateDecimals(
-        fulfillmentAmount,
+        BigNumber(
+          calculated_fulfillmentAmount || fulfillmentAmount,
+          10
+        ).toString(),
         decimals
       );
-      contractBalance = calculateDecimals(balance, decimals);
+      contractBalance = calculateDecimals(
+        BigNumber(balance, 10).toString(),
+        decimals
+      );
     } catch (e) {
       console.log(e);
     }
   } else {
-    contractFulfillmentAmount = web3.utils.toWei(fulfillmentAmount, 'ether');
-    contractBalance = web3.utils.toWei(balance, 'ether');
+    contractFulfillmentAmount = web3.utils.toWei(
+      BigNumber(
+        calculated_fulfillmentAmount || fulfillmentAmount,
+        10
+      ).toString(),
+      'ether'
+    );
+    contractBalance = web3.utils.toWei(
+      BigNumber(balance, 10).toString(),
+      'ether'
+    );
   }
   const deadline = parseInt(
     moment(values.deadline)
