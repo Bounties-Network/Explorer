@@ -28,7 +28,8 @@ const {
   GET_DRAFT,
   GET_BOUNTY,
   KILL_BOUNTY,
-  ACTIVATE_BOUNTY
+  ACTIVATE_BOUNTY,
+  EXTEND_DEADLINE
 } = actionTypes;
 const {
   getBountySuccess,
@@ -358,6 +359,34 @@ export function* activateBounty(action) {
   }
 }
 
+export function* extendDeadline(action) {
+  const { id, deadline } = action;
+  const userAddress = yield select(addressSelector);
+  yield put(setPendingWalletConfirm());
+  const formattedDeadline = parseInt(
+    moment(deadline)
+      .utc()
+      .toDate()
+      .getTime() / 1000
+  );
+
+  try {
+    const { standardBounties } = yield call(getContractClient);
+    const txHash = yield call(
+      promisifyContractCall(standardBounties.extendDeadline, {
+        from: userAddress
+      }),
+      id,
+      `${formattedDeadline}`
+    );
+    yield put(stdBountySuccess());
+    yield put(setPendingReceipt(txHash));
+  } catch (e) {
+    yield put(stdBountyFail());
+    yield put(setTransactionError());
+  }
+}
+
 export function* watchCreateDraft() {
   yield takeLatest([CREATE_DRAFT, UPDATE_DRAFT], createOrUpdateDraft);
 }
@@ -382,11 +411,16 @@ export function* watchActivateBounty() {
   yield takeLatest(ACTIVATE_BOUNTY, activateBounty);
 }
 
+export function* watchExtendDeadline() {
+  yield takeLatest(EXTEND_DEADLINE, extendDeadline);
+}
+
 export default [
   watchGetDraft,
   watchCreateDraft,
   watchCreateBounty,
   watchGetBounty,
   watchKillBounty,
-  watchActivateBounty
+  watchActivateBounty,
+  watchExtendDeadline
 ];

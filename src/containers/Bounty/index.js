@@ -57,7 +57,8 @@ class BountyComponent extends React.Component {
       initiateWalkthrough,
       walletAddress,
       killBounty,
-      activateBounty
+      activateBounty,
+      extendDeadline
     } = this.props;
 
     if (loading || !bounty) {
@@ -144,6 +145,11 @@ class BountyComponent extends React.Component {
                         bounty.paysTokens,
                         bounty.tokenDecimals
                       )
+                    )
+                  }
+                  extendDeadline={values =>
+                    initiateWalkthrough(() =>
+                      extendDeadline(bounty.id, values.deadline)
                     )
                   }
                 />
@@ -259,7 +265,8 @@ const Bounty = compose(
       closeModal: bountyUIActions.closeModal,
       showModal: bountyUIActions.showModal,
       killBounty: bountyActions.killBounty,
-      activateBounty: bountyActions.activateBounty
+      activateBounty: bountyActions.activateBounty,
+      extendDeadline: bountyActions.extendDeadline
     }
   )
 )(BountyComponent);

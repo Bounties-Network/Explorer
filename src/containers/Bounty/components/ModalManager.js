@@ -1,5 +1,6 @@
 import React from 'react';
 import { BigNumber } from 'bignumber.js';
+import moment from 'moment';
 import {
   ExtendDeadlineErrorModal,
   ActivateDraftFormModal,
@@ -12,10 +13,11 @@ const ModalManager = props => {
     visible,
     modalType,
     onClose,
-    onExtendDeadline,
+    onExtendDeadlineError,
     bounty,
     onActivateDraft,
-    activateDeadBounty
+    activateDeadBounty,
+    extendDeadline
   } = props;
 
   if (!visible) {
@@ -26,7 +28,7 @@ const ModalManager = props => {
     return (
       <ExtendDeadlineErrorModal
         onClose={onClose}
-        onExtendDeadline={onExtendDeadline}
+        onExtendDeadline={onExtendDeadlineError}
       />
     );
   }
@@ -44,8 +46,22 @@ const ModalManager = props => {
     );
   }
 
-  if (modalType === 'extendDealine') {
-    return <ExtendDeadlineFormModal onClose={onClose} onSubmit={() => {}} />;
+  if (modalType === 'extendDeadline') {
+    const tomorrow = moment()
+      .add(1, 'days')
+      .utc();
+    const currentDeadline = moment(bounty.deadline).utc();
+
+    const minimumDeadline =
+      currentDeadline > tomorrow ? currentDeadline : tomorrow;
+
+    return (
+      <ExtendDeadlineFormModal
+        onClose={onClose}
+        onSubmit={extendDeadline}
+        minimumDeadline={minimumDeadline}
+      />
+    );
   }
 
   if (modalType === 'activateDead') {
