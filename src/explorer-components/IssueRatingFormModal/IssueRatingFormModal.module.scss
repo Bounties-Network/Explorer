@@ -1,0 +1,24 @@
+@import "~styles/variables.scss";
+
+.bountyInfoContainer {
+  margin-bottom: $xxl-spacing;
+}
+
+.centerBountyInfo {
+  justify-content: center;
+}
+
+.bountyInfo {
+  padding: $m-spacing;
+  border: $base-border;
+  box-shadow: $base-box-shadow;
+}
+
+.rowText {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detailsGroup {
+  margin-bottom: $base-spacing;
+}

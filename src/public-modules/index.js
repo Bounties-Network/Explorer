@@ -33,7 +33,7 @@ export const reducers = {
   client: clientReducer,
   settings: settingsReducer,
   notification: notificationReducer,
-  fulfillments: fulfillmentsReducer
+  fulfillments: fulfillmentsReducer,
   transaction: transactionReducer
 };
 

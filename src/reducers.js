@@ -8,7 +8,7 @@ const reducers = {
   loginContainer: loginReducer,
   leaderboardUI: leaderboardUIReducer,
   profileUI: profileUIReducer,
-  ...dashboardReducer
+  ...dashboardReducer,
   bountyPageUI: bountyPageUIReducer,
   profileUI: profileUIReducer
 };
