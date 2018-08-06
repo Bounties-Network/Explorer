@@ -37,8 +37,8 @@ function getBountySuccess(bounty) {
   return { type: GET_BOUNTY_SUCCESS, bounty };
 }
 
-function getBountyFail() {
-  return { type: GET_BOUNTY_FAIL };
+function getBountyFail(error) {
+  return { type: GET_BOUNTY_FAIL, error };
 }
 
 const UPDATE_DRAFT = 'bounty/UPDATE_DRAFT';
@@ -54,8 +54,8 @@ function createDraft(values) {
   return { type: CREATE_DRAFT, values };
 }
 
-function createDraftSuccess() {
-  return { type: CREATE_DRAFT_SUCCESS };
+function createDraftSuccess(bounty) {
+  return { type: CREATE_DRAFT_SUCCESS, bounty };
 }
 
 function createDraftFail(error) {
@@ -82,7 +82,7 @@ const CREATE_BOUNTY = 'bounty/CREATE_BOUNTY';
 const KILL_BOUNTY = 'bounty/KILL_BOUNTY';
 const EXTEND_DEADLINE = 'bounty/EXTEND_DEADLINE';
 const TRANSFER_OWNERSHIP = 'bounty/TRANSFER_OWNERSHIP';
-const CHANGE_PRIZE = 'bounty/CHANGE_PRIZE';
+const INCREASE_PAYOUT = 'bounty/INCREASE_PAYOUT';
 const ACTIVATE_BOUNTY = 'bounty/ACTIVATE_BOUNTY';
 const STD_BOUNTY_SUCCESS = 'bounty/STD_BOUNTY_SUCCESS';
 const STD_BOUNTY_FAIL = 'bounty/STD_BOUNTY_FAIL';
@@ -103,12 +103,34 @@ function extendDeadline(id, deadline) {
   return { type: EXTEND_DEADLINE, id, deadline };
 }
 
-function changePrize(id, amount) {
-  return { type: CHANGE_PRIZE, id, amount };
+function increasePayout(
+  id,
+  fulfillmentAmount,
+  balance,
+  paysTokens,
+  decimals,
+  tokenContract
+) {
+  return {
+    type: INCREASE_PAYOUT,
+    id,
+    fulfillmentAmount,
+    balance,
+    paysTokens,
+    decimals,
+    tokenContract
+  };
 }
 
-function activateBounty(id, balance, paysTokens, decimals) {
-  return { type: ACTIVATE_BOUNTY, id, balance, paysTokens, decimals };
+function activateBounty(id, balance, paysTokens, decimals, tokenContract) {
+  return {
+    type: ACTIVATE_BOUNTY,
+    id,
+    balance,
+    paysTokens,
+    decimals,
+    tokenContract
+  };
 }
 
 function stdBountySuccess() {
@@ -188,7 +210,7 @@ function BountyReducer(state = initialState, action) {
     }
     case KILL_BOUNTY:
     case TRANSFER_OWNERSHIP:
-    case CHANGE_PRIZE:
+    case INCREASE_PAYOUT:
     case EXTEND_DEADLINE:
     case ACTIVATE_BOUNTY:
     case CREATE_BOUNTY: {
@@ -273,7 +295,7 @@ export const actions = {
   getDraftSuccess,
   getDraftFail,
   createBounty,
-  changePrize,
+  increasePayout,
   activateBounty,
   killBounty,
   transferOwnership,
@@ -295,7 +317,7 @@ export const actionTypes = {
   GET_DRAFT_FAIL,
   UPDATE_DRAFT,
   CREATE_BOUNTY,
-  CHANGE_PRIZE,
+  INCREASE_PAYOUT,
   EXTEND_DEADLINE,
   ACTIVATE_BOUNTY,
   KILL_BOUNTY,

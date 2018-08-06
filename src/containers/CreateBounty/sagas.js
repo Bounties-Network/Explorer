@@ -6,7 +6,9 @@ import { actionTypes as bountyActionTypes } from 'public-modules/Bounty';
 const { CREATE_DRAFT_SUCCESS, CREATE_BOUNTY_SUCCESS } = bountyActionTypes;
 
 export function* bountyCreated(action) {
-  yield put(push('/explorer'));
+  const { bounty } = action;
+
+  yield put(push(`/bounty/draft/${bounty.id}`));
 }
 
 export function* watchBountyCreated() {

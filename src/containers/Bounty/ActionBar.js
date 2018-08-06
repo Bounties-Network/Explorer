@@ -23,10 +23,11 @@ const ActionBar = props => {
     activateDraftBounty,
     walletAddress,
     activateDeadBounty,
-    extendDeadline
+    extendDeadline,
+    increasePayout
   } = props;
 
-  const belongsToLoggedInUser = bounty.issuer === user.public_address;
+  const belongsToLoggedInUser = user && bounty.issuer === user.public_address;
   const loggedOutButAddressMatches = !user && bounty.issuer === walletAddress;
 
   let actionOptions = null;
@@ -55,7 +56,7 @@ const ActionBar = props => {
     );
   }
 
-  if (!isDraft && (belongsToLoggedInUser || loggedOutButAddressMatches)) {
+  if (!isDraft && belongsToLoggedInUser) {
     actionOptions = (
       <div>
         {bounty.bountyStage === DEAD ? (
@@ -93,11 +94,29 @@ const ActionBar = props => {
           Transfer Ownership
         </Button>
         <Button
+          onClick={() => showModal('increasePayout')}
           icon={['far', 'dollar-sign']}
           fitWidth
           className={styles.buttonGroup}
         >
           Change Prize
+        </Button>
+      </div>
+    );
+  }
+
+  if (!belongsToLoggedInUser) {
+    actionOptions = (
+      <div>
+        <Button type="action" fitWidth>
+          Sign in to fulfill
+        </Button>
+        <Button
+          icon={['far', 'dollar-sign']}
+          className={styles.buttonGroup}
+          fitWidth
+        >
+          Contribute
         </Button>
       </div>
     );
@@ -117,6 +136,7 @@ const ActionBar = props => {
         }
         extendDeadline={extendDeadline}
         activateDeadBounty={activateDeadBounty}
+        increasePayout={increasePayout}
         bounty={bounty}
       />
       {actionOptions}
