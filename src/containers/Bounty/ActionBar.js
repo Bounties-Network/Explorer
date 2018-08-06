@@ -22,7 +22,8 @@ const ActionBar = props => {
     killBounty,
     activateDraftBounty,
     walletAddress,
-    activateDeadBounty
+    activateDeadBounty,
+    extendDeadline
   } = props;
 
   const belongsToLoggedInUser = bounty.issuer === user.public_address;
@@ -80,6 +81,7 @@ const ActionBar = props => {
           icon={['far', 'calendar-alt']}
           fitWidth
           className={styles.buttonGroup}
+          onClick={() => showModal('extendDeadline')}
         >
           Change deadline
         </Button>
@@ -108,11 +110,12 @@ const ActionBar = props => {
         onClose={closeModal}
         modalType={modalType}
         onActivateDraft={activateDraftBounty}
-        onExtendDeadline={
+        onExtendDeadlineError={
           isDraft
             ? () => history.push(`/createBounty/draft/${bounty.id}/`)
             : null
         }
+        extendDeadline={extendDeadline}
         activateDeadBounty={activateDeadBounty}
         bounty={bounty}
       />

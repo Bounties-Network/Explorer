@@ -80,7 +80,7 @@ function getDraftFail(error) {
 
 const CREATE_BOUNTY = 'bounty/CREATE_BOUNTY';
 const KILL_BOUNTY = 'bounty/KILL_BOUNTY';
-const CHANGE_DEADLINE = 'bounty/CHANGE_DEADLINE';
+const EXTEND_DEADLINE = 'bounty/EXTEND_DEADLINE';
 const TRANSFER_OWNERSHIP = 'bounty/TRANSFER_OWNERSHIP';
 const CHANGE_PRIZE = 'bounty/CHANGE_PRIZE';
 const ACTIVATE_BOUNTY = 'bounty/ACTIVATE_BOUNTY';
@@ -99,8 +99,8 @@ function killBounty(id) {
   return { type: KILL_BOUNTY, id };
 }
 
-function changeDeadline(id, deadline) {
-  return { type: CHANGE_DEADLINE, id, deadline };
+function extendDeadline(id, deadline) {
+  return { type: EXTEND_DEADLINE, id, deadline };
 }
 
 function changePrize(id, amount) {
@@ -189,7 +189,7 @@ function BountyReducer(state = initialState, action) {
     case KILL_BOUNTY:
     case TRANSFER_OWNERSHIP:
     case CHANGE_PRIZE:
-    case CHANGE_DEADLINE:
+    case EXTEND_DEADLINE:
     case ACTIVATE_BOUNTY:
     case CREATE_BOUNTY: {
       return {
@@ -277,7 +277,7 @@ export const actions = {
   activateBounty,
   killBounty,
   transferOwnership,
-  changeDeadline,
+  extendDeadline,
   stdBountySuccess,
   stdBountyFail,
   updateDraft,
@@ -296,7 +296,7 @@ export const actionTypes = {
   UPDATE_DRAFT,
   CREATE_BOUNTY,
   CHANGE_PRIZE,
-  CHANGE_DEADLINE,
+  EXTEND_DEADLINE,
   ACTIVATE_BOUNTY,
   KILL_BOUNTY,
   TRANSFER_OWNERSHIP,
