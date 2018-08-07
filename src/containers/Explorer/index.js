@@ -7,10 +7,10 @@ const Explorer = props => {
   return (
     <div className="container-fluid">
       <div className="row fullHeight">
-        <div className={`col-xs-3 fullHeight ${styles.filterNav}`}>
+        <div className={`fullHeight ${styles.filterNav}`}>
           <FilterNav />
         </div>
-        <div className={`col-xs-9 fullHeight ${styles.explorerBody}`}>
+        <div className={`col-xs fullHeight ${styles.explorerBody}`}>
           <ExplorerBody />
         </div>
       </div>

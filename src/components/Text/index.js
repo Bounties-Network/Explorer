@@ -22,7 +22,21 @@ const Text = props => {
   let addedClasses = '';
   if (inline) {
     addedClasses += ` ${styles.inline}`;
+
+    return (
+      <span
+        className={`text ${className} ${styles[typeScale]} ${
+          styles[lineHeight]
+        } ${styles[color]} ${styles[weight]} ${styles[alignment]} ${
+          styles[style]
+        } ${addedClasses}`}
+        id={id}
+      >
+        {props.children}
+      </span>
+    );
   }
+
   if (link) {
     addedClasses += ` ${styles.Link}`;
 

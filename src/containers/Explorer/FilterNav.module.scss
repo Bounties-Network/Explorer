@@ -1,7 +1,13 @@
 @import "~styles/variables.scss";
 
 .filterNav {
-  padding: $xl-spacing $m-spacing;
+  display: none;
+  padding: $xl-spacing;
+  width: 20rem;
+
+  @media only screen and (min-width: 48em) {
+    display: block;
+  }
 }
 
 .searchWrapper {
@@ -13,7 +19,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  margin-top: $base-spacing;
+  margin-top: $m-spacing;
 }
 
 .clearButton {
@@ -21,15 +27,15 @@
 }
 
 .stageFilter {
-  margin-top: $m-spacing;
+  margin-top: $xl-spacing;
 }
 
 .difficultyFilter {
-  margin-top: $m-spacing;
+  margin-top: $xl-spacing;
 }
 
 .categoryFilter {
-  margin-top: $m-spacing;
+  margin-top: $xl-spacing;
 }
 
 .groupText {

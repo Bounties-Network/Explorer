@@ -27,7 +27,7 @@ $h1-font-size: 1.938rem; // 31px
 $base-line-height: 1.75;
 $line-height-reset: 1;
 
-// COLORS:
+// COLORS
 $brand-purple: #5A28C6;
 $brand-purple-hover: darken($brand-purple, 10%);
 $brand-purple-disabled: lighten($brand-purple, 30%);
@@ -58,16 +58,16 @@ $base-input-background: #FAF9FD;
 
 $base-border-color: $brand-lightGrey;
 
-// BANNER:
+// BANNER
 @mixin banner-gradient {
   background: linear-gradient(to right, #5b29c8 , #594aff);
 }
 $banner-min-height: 13rem;
 
-// SIDEBAR:
+// SIDEBAR
 $sidebar-color: $brand-dark-purple;
 
-// BOX SHADOWS:
+// BOX SHADOWS
 $base-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
 $m-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 $brand-chip-box-shadow: 0 2px 7px $brand-lightGrey;
@@ -79,5 +79,3 @@ $base-border: $base-border-width solid $brand-lightGrey;
 
 // Overlay Grey
 $overlay-background: rgba(0, 0, 0, 0.6);
-
-// Circle

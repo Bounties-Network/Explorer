@@ -1,8 +1,11 @@
 @import "~styles/variables.scss";
 
 .bountyCard {
-  margin-bottom: $m-spacing;
-  padding: $base-spacing $m-spacing;
+  margin-bottom: $base-spacing;
+
+  @media only screen and (min-width: 48em) {
+    margin-bottom: $m-spacing;
+  }
 }
 
 .pill {
@@ -29,19 +32,47 @@
   margin-top: $base-spacing;
 }
 
+.bountyPrimaryData {
+  order: 1;
+}
+
+.bountyMetaData {
+  flex-grow: 0;
+  order: 3;
+  margin-top: $l-spacing;
+
+  @media only screen and (min-width: 48em) {
+    margin-top: 0;
+    order: 2;
+  }
+}
+
 .detailGroup {
-  display: flex;
-  margin-bottom: $base-spacing;
+  display: block;
+  margin-bottom: $m-spacing;
+  word-wrap: break-word;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .detailIcon {
+  display: inline-block;
   width: $m-spacing;
   margin-right: $s-spacing;
 }
 
 .detailInput {
   margin-right: $s-spacing;
-  
+}
+
+.bountyPrize {
+  order: 2;
+
+  @media only screen and (min-width: 48em) {
+    order: 3;
+  }
 }
 
 .price {

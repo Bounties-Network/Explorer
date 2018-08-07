@@ -1,7 +1,13 @@
 @import "~styles/variables.scss";
 
 .explorerBody {
-  padding: $xl-spacing;
+  padding: $xl-spacing 0;
+  max-width: 1040px;
+  margin: 0 auto;
+
+  @media only screen and (min-width: 48em) {
+    padding: $xl-spacing $base-spacing;
+  }
 }
 
 .centeredBody {
