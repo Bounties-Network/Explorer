@@ -80,7 +80,7 @@ const ExplorerBodyComponent = props => {
           <Text
             inline
             color="purple"
-            typeScale="h3"
+            typeScale="h2"
             className={styles.bountyNumber}
           >
             {count}
@@ -126,7 +126,7 @@ const ExplorerBodyComponent = props => {
       </div>
       {loading ? (
         <div className={styles.bountyListCentered}>
-          <Loader size="medium" className={styles.centeredItem} />
+          <Loader size="medium" color="blue" className={styles.centeredItem} />
         </div>
       ) : null}
       {!loading && bounties.length !== 0 ? (

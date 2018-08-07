@@ -1,12 +1,15 @@
 @import "~styles/variables.scss";
 
 .explorerBody {
-  padding: $xl-spacing 0;
-  max-width: 1040px;
-  margin: 0 auto;
+  margin-left: 0;
+  padding: $l-spacing $base-spacing;
+  width: 100%;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
 
   @media only screen and (min-width: 48em) {
-    padding: $xl-spacing $base-spacing;
+    margin-left: $base-filterNav-width;
+    padding: $xl-spacing $l-spacing;
   }
 }
 
@@ -42,6 +45,7 @@
 .sortGroup {
   margin-left: auto;
   display: flex;
+  display: none; /*Temporarily hide for responsive testing*/
   align-items: flex-end;
 }
 
@@ -57,4 +61,5 @@
 .loadMoreButton {
   width: 100%;
   text-align: center;
+  padding-bottom: $l-spacing;
 }

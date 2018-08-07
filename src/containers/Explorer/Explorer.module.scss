@@ -1,10 +1,7 @@
 @import "~styles/variables.scss";
 
-.filterNav {
-  background: $brand-white;
-  overflow-y: scroll;
-}
-
-.explorerBody {
-  overflow-y: scroll;
+.explorerContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
 }

@@ -6,11 +6,15 @@
 }
 
 .body {
+  padding-top: $base-header-height;
   height: 100%;
-  width: 100%;
-  padding: 55px 0 0 55px;
   box-sizing: border-box;
   background-color: $brand-nearWhite;
+  overflow: auto;
+
+  @media only screen and (min-width: 48em) {
+    margin-left: $base-sidebar-width;
+  }
 }
 
 .loadingBody {
@@ -20,8 +24,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.sideNav {
-  width: 55px;
 }

@@ -2,8 +2,8 @@
 
 .header {
   width: 100%;
-  height: 55px;
-  box-shadow: 0 4px 2px -2px $brand-lightGrey;
+  height: $base-header-height;
+  box-shadow: $base-box-shadow;
   background-color: $brand-white;
   position: fixed; /* Stay in place */
   z-index: 10; /* Stay on top */
@@ -16,11 +16,15 @@
 .iconArea {
   background-color: $brand-purple;
   font-size: 40px;
-  height: 55px;
+  height: 4.4rem;
+  width: 4.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .network {
-  margin-left: $m-spacing;
+  margin-left: $xl-spacing;
 }
 
 .button {

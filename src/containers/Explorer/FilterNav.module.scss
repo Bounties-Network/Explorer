@@ -1,12 +1,19 @@
 @import "~styles/variables.scss";
 
 .filterNav {
+  background: $brand-white;
   display: none;
+  margin-top: $base-header-height;
   padding: $xl-spacing;
-  width: 20rem;
+  width: $base-filterNav-width;
+  overflow-y: scroll;
+  top: 0;
+  bottom: 0;
+  position: fixed;
 
   @media only screen and (min-width: 48em) {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
 }
 
