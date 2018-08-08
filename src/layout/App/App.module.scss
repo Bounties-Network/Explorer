@@ -6,14 +6,16 @@
 }
 
 .body {
-  padding-top: $base-header-height;
+  padding-top: $header-height-sm;
   height: 100%;
   box-sizing: border-box;
   background-color: $brand-nearWhite;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 
   @media only screen and (min-width: 48em) {
     margin-left: $base-sidebar-width;
+    padding-top: $header-height-lg;
   }
 }
 

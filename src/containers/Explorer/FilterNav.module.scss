@@ -3,7 +3,7 @@
 .filterNav {
   background: $brand-white;
   display: none;
-  margin-top: $base-header-height;
+  margin-top: $header-height-sm;
   padding: $xl-spacing;
   width: $base-filterNav-width;
   overflow-y: scroll;
@@ -14,6 +14,7 @@
   @media only screen and (min-width: 48em) {
     display: flex;
     flex-direction: column;
+    margin-top: $header-height-lg;
   }
 }
 

@@ -2,7 +2,7 @@
 
 .header {
   width: 100%;
-  height: $base-header-height;
+  height: $header-height-sm;
   box-shadow: $base-box-shadow;
   background-color: $brand-white;
   position: fixed; /* Stay in place */
@@ -11,16 +11,25 @@
   left: 0;
   display: flex;
   align-items: center;
+
+  @media only screen and (min-width: 48em) {
+    height: $header-height-lg;
+  }
 }
 
 .iconArea {
   background-color: $brand-purple;
   font-size: 40px;
-  height: 4.4rem;
-  width: 4.4rem;
+  height: $header-height-sm;
+  width: $header-height-sm;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (min-width: 48em) {
+    height: $header-height-lg;
+    width: $header-height-lg;
+  }
 }
 
 .network {
@@ -28,7 +37,11 @@
 }
 
 .button {
-  margin-right: 20px;
+  margin-right: $base-spacing;
+
+  @media only screen and (min-width: 48em) {
+    margin-right: $l-spacing;
+  }
 }
 
 .buttonArea {

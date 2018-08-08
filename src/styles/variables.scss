@@ -12,9 +12,11 @@ $base-border-radius: 3px;
 $base-input-height: $xxl-spacing;
 $base-checkbox-size: $m-spacing * 1.25;
 $base-toggle-size: $l-spacing;
-$base-header-height: 4.4rem;
-$base-sidebar-width: $base-header-height;
 $base-filterNav-width: 20rem;
+
+$header-height-sm: 3.5rem;
+$header-height-lg: 4.4rem;
+$base-sidebar-width: $header-height-lg;
 
 // TYPOGRAPHY
 $base-font-size: 16px;
