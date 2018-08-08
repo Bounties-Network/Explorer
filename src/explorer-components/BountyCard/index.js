@@ -50,8 +50,10 @@ const BountyCard = props => {
   return (
     <Card hover className={styles.bountyCard}>
       <Card.Body>
-        <div className={`row ${styles.bountyPrimaryData}`}>
-          <div className="col-xs-9 col-sm-6 col-lg-7">
+        <div className="row">
+          <div
+            className={`col-xs-9 col-sm-6 col-lg-7 ${styles.bountyPrimaryData}`}
+          >
             <Text
               typeScale="h4"
               weight="fontWeight-medium"

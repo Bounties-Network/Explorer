@@ -4,17 +4,21 @@
   background: $brand-white;
   display: none;
   margin-top: $header-height-sm;
-  padding: $xl-spacing;
-  width: $base-filterNav-width;
+  padding: $l-spacing;
+  width: $filterNav-width-fixed;
   overflow-y: scroll;
   top: 0;
   bottom: 0;
   position: fixed;
 
   @media only screen and (min-width: 48em) {
-    display: flex;
-    flex-direction: column;
+    display: block;
     margin-top: $header-height-lg;
+    width: $filterNav-width-fluid;
+  }
+
+  @media only screen and (min-width: 65em) {
+    width: $filterNav-width-fixed;
   }
 }
 
@@ -27,7 +31,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  margin-top: $m-spacing;
+  margin-top: $l-spacing;
 }
 
 .clearButton {

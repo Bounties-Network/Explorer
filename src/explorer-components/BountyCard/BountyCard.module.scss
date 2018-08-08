@@ -3,7 +3,7 @@
 .bountyCard {
   margin-bottom: $base-spacing;
 
-  @media only screen and (min-width: 48em) {
+  @media only screen and (min-width: 65em) {
     margin-bottom: $m-spacing;
   }
 }
@@ -47,6 +47,7 @@
   order: 3;
   margin-top: $m-spacing;
   padding-top: $m-spacing;
+  padding-right: 0;
 
   @media only screen and (min-width: 48em) {
     border: none;
