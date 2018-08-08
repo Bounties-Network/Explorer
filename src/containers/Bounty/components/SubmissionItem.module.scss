@@ -1,0 +1,25 @@
+@import "~styles/variables.scss";
+
+.labelGroup {
+  word-wrap: break-word;
+  margin-right: $m-spacing;
+  margin-bottom: $l-spacing;
+}
+
+.filter {
+  text-align: left;
+}
+
+.avatarLabel {
+  padding-top: $base-spacing;
+}
+
+.label {
+  margin-bottom: $base-spacing;
+}
+
+.actionColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

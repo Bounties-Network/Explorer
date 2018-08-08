@@ -2,7 +2,8 @@ import { omit } from 'lodash';
 
 const defaultFilters = {
   issuer: '',
-  fulfiller: ''
+  fulfiller: '',
+  bounty_id: ''
 };
 
 const initialState = {
@@ -51,6 +52,7 @@ function loadMoreFulfillmentsFail(error) {
 
 const ADD_ISSUER_FILTER = 'fulfillments/ADD_ISSUER_FILTER';
 const ADD_FULFILLER_FILTER = 'fulfillments/ADD_FULFILLER_FILTER';
+const ADD_BOUNTY_FILTER = 'fulfillments/ADD_BOUNTY_FILTER';
 
 function addIssuerFilter(address) {
   return { type: ADD_ISSUER_FILTER, address };
@@ -58,6 +60,10 @@ function addIssuerFilter(address) {
 
 function addFulfillerFilter(address) {
   return { type: ADD_FULFILLER_FILTER, address };
+}
+
+function addBountyFilter(id) {
+  return { type: ADD_BOUNTY_FILTER, id };
 }
 
 function FulfillmentsReducer(state = initialState, action) {
@@ -135,6 +141,17 @@ function FulfillmentsReducer(state = initialState, action) {
         }
       };
     }
+    case ADD_BOUNTY_FILTER: {
+      const { id } = action;
+
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          bounty_id: id
+        }
+      };
+    }
     default:
       return state;
   }
@@ -148,7 +165,8 @@ export const actions = {
   loadMoreFulfillmentsSuccess,
   loadMoreFulfillmentsFail,
   addIssuerFilter,
-  addFulfillerFilter
+  addFulfillerFilter,
+  addBountyFilter
 };
 
 export const actionTypes = {
@@ -159,7 +177,8 @@ export const actionTypes = {
   LOAD_MORE_FULFILLMENTS_SUCCESS,
   LOAD_MORE_FULFILLMENTS_FAIL,
   ADD_ISSUER_FILTER,
-  ADD_FULFILLER_FILTER
+  ADD_FULFILLER_FILTER,
+  ADD_BOUNTY_FILTER
 };
 
 export default FulfillmentsReducer;

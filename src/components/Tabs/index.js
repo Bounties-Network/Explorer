@@ -7,7 +7,7 @@ const ModalContext = React.createContext({});
 
 class Tab extends React.Component {
   render() {
-    const { tabCount, eventKey, tabColor } = this.props;
+    const { tabCount, eventKey, tabColor, tabClassName } = this.props;
 
     return (
       <ModalContext.Consumer>
@@ -28,7 +28,7 @@ class Tab extends React.Component {
 
           return (
             <div
-              className={tabStyles}
+              className={`${tabStyles} ${tabClassName}`}
               onClick={() => onSelect(this.props.eventKey)}
             >
               <Text
@@ -99,7 +99,8 @@ Tabs.propTypes = {
   }),
   onSelect: PropTypes.func,
   activeKey: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  tabClassName: PropTypes.string
 };
 
 Tabs.defaultProps = {};
