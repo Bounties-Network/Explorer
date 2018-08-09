@@ -39,8 +39,11 @@ class BountyComponent extends React.Component {
       loadDraftBounty,
       loadFulfillments,
       resetFilters,
-      addBountyFilter
+      addBountyFilter,
+      setBountyId
     } = props;
+
+    setBountyId(match.params.id);
 
     if (match.path === '/bounty/draft/:id/') {
       loadDraftBounty(match.params.id);
@@ -221,7 +224,7 @@ class BountyComponent extends React.Component {
           </PageCard.Content>
         </PageCard>
         <PageCard noBanner>
-          <PageCard.Content className={styles.cardContent}>
+          <PageCard.Content className={styles.submissionsAndCommentsCard}>
             <SubmissionsAndCommentsCard
               bounty={bounty}
               currentUser={user}
@@ -270,9 +273,10 @@ const Bounty = compose(
     mapStateToProps,
     {
       showModal: bountyUIActions.showModal,
+      setBountyId: bountyUIActions.setBountyId,
+      setActiveTab: bountyUIActions.setActiveTab,
       loadBounty: bountyActions.getBounty,
       loadDraftBounty: bountyActions.getDraft,
-      setActiveTab: bountyUIActions.setActiveTab,
       loadFulfillments: fulfillmentsActions.loadFulfillments,
       addBountyFilter: fulfillmentsActions.addBountyFilter,
       resetFilters: fulfillmentsActions.resetFilters
