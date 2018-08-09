@@ -7,6 +7,8 @@ import IncreasePayoutFormModal from './IncreasePayoutFormModal';
 import SubmissionItem from './SubmissionItem';
 import FulfillBountyFormModal from './FulfillBountyFormModal';
 import KillBountyFormModal from './KillBountyFormModal';
+import NewCommentForm from './NewCommentForm';
+import CommentItem from './CommentItem';
 
 export {
   ExtendDeadlineErrorModal,
@@ -17,5 +19,7 @@ export {
   IncreasePayoutFormModal,
   SubmissionItem,
   FulfillBountyFormModal,
-  KillBountyFormModal
+  KillBountyFormModal,
+  NewCommentForm,
+  CommentItem
 };

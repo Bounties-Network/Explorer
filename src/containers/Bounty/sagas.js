@@ -1,6 +1,6 @@
 import request from 'utils/request';
 import { push } from 'react-router-redux';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes as transactionActionTypes } from 'public-modules/Transaction';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
 import { actions as commentsActions } from 'public-modules/Comments';
@@ -8,6 +8,7 @@ import {
   actions as bountyPageActions,
   actionTypes as bountyPageActionTypes
 } from './reducer';
+import { bountyIdSelector } from './selectors';
 
 const { INITIATE_WALKTHROUGH } = transactionActionTypes;
 const { SET_ACTIVE_TAB } = bountyPageActionTypes;
@@ -25,7 +26,8 @@ export function* loadTab(action) {
   if (tabKey == 'submissions') {
     yield put(loadFulfillments());
   } else {
-    yield put(loadComments());
+    const bountyId = yield select(bountyIdSelector);
+    yield put(loadComments(bountyId));
   }
 }
 

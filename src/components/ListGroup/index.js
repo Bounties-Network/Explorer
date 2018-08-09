@@ -4,9 +4,13 @@ import styles from './ListGroup.module.scss';
 
 class ListItem extends React.Component {
   render() {
-    const { hover } = this.props;
+    const { hover, className } = this.props;
 
     let itemClass = styles.listItem;
+    if (className) {
+      itemClass = className;
+    }
+
     if (hover) {
       itemClass += ` ${styles.itemHover}`;
     }
@@ -16,7 +20,8 @@ class ListItem extends React.Component {
 }
 
 ListItem.propTypes = {
-  hover: PropTypes.bool
+  hover: PropTypes.bool,
+  className: PropTypes.string
 };
 
 class ListGroup extends React.Component {

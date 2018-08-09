@@ -71,12 +71,19 @@ const SubmissionItem = props => {
             <Text>{description || 'N/A'}</Text>
           </div>
 
-          <div className={styles.labelGroup}>
-            <Text color="defaultGrey" className={styles.label}>
-              Associated files
-            </Text>
-            <Text>{dataFileName || 'N/A'}</Text>
-          </div>
+          {dataHash ? (
+            <div className={styles.labelGroup}>
+              <Text color="defaultGrey" className={styles.label}>
+                Associated files
+              </Text>
+              <Text
+                link
+                src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+              >
+                {dataFileName}
+              </Text>
+            </div>
+          ) : null}
         </div>
         <div className={`col-xs-3 ${styles.actionColumn}`}>
           <FulfillmentStagePill className={styles.label} accepted={accepted} />
