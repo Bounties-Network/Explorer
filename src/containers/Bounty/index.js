@@ -4,8 +4,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
-import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
-import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as bountyUIActions } from './reducer';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import showdown from 'showdown';
@@ -21,14 +19,11 @@ import {
   getBountySelector,
   getBountyStateSelector
 } from 'public-modules/Bounty/selectors';
-import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
 import { addressSelector } from 'public-modules/Client/selectors';
-import { getUploadKeySelector } from 'public-modules/FileUpload/selectors';
 import { rootBountyPageSelector } from './selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
 import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
-import { UPLOAD_KEY } from './constants';
 
 showdown.setOption('simpleLineBreaks', true);
 const converter = new showdown.Converter();
@@ -43,6 +38,7 @@ class BountyComponent extends React.Component {
       loadBounty,
       loadDraftBounty,
       loadFulfillments,
+      resetFilters,
       addBountyFilter
     } = props;
 
@@ -52,6 +48,8 @@ class BountyComponent extends React.Component {
 
     if (match.path === '/bounty/:id/') {
       loadBounty(match.params.id);
+
+      resetFilters();
       addBountyFilter(match.params.id);
       loadFulfillments(match.params.id);
     }
@@ -64,25 +62,9 @@ class BountyComponent extends React.Component {
       error,
       isDraft,
       bounty,
-      modalType,
-      modalVisible,
-      showModal,
-      closeModal,
-      activateDraftBounty,
-      initiateWalkthrough,
       walletAddress,
-      killBounty,
-      activateBounty,
-      extendDeadline,
-      increasePayout,
-      currentTab,
-      setActiveTab,
-      fulfillments,
-      uploadFile,
-      resetUpload,
-      uploadState,
-      fulfillBounty,
-      acceptFulfillment
+      initiateWalkthrough,
+      showModal
     } = this.props;
 
     if (error) {
@@ -166,58 +148,12 @@ class BountyComponent extends React.Component {
               <div className={`col-xs-3 ${styles.filter}`}>
                 <div className={styles.buttonSection}>
                   <ActionBar
-                    isDraft={isDraft}
                     bounty={bounty}
                     user={user}
-                    modalType={modalType}
-                    modalVisible={modalVisible}
-                    closeModal={closeModal}
-                    showModal={showModal}
+                    isDraft={isDraft}
                     walletAddress={walletAddress}
-                    uploadFile={uploadFile}
-                    resetUpload={resetUpload}
-                    uploadState={uploadState}
-                    activateDraftBounty={values =>
-                      initiateWalkthrough(() =>
-                        activateDraftBounty({ ...bounty }, values.balance)
-                      )
-                    }
-                    killBounty={() =>
-                      initiateWalkthrough(() => killBounty(bounty.id))
-                    }
-                    activateDeadBounty={values =>
-                      initiateWalkthrough(() =>
-                        activateBounty(
-                          bounty.id,
-                          values.balance,
-                          bounty.paysTokens,
-                          bounty.tokenDecimals,
-                          bounty.tokenContract
-                        )
-                      )
-                    }
-                    extendDeadline={values =>
-                      initiateWalkthrough(() =>
-                        extendDeadline(bounty.id, values.deadline)
-                      )
-                    }
-                    increasePayout={values =>
-                      initiateWalkthrough(() =>
-                        increasePayout(
-                          bounty.id,
-                          values.fulfillmentAmount,
-                          values.balance,
-                          bounty.paysTokens,
-                          bounty.tokenDecimals,
-                          bounty.tokenContract
-                        )
-                      )
-                    }
-                    fulfillBounty={values =>
-                      initiateWalkthrough(() =>
-                        fulfillBounty(bounty.id, values)
-                      )
-                    }
+                    initiateWalkthrough={initiateWalkthrough}
+                    showModal={showModal}
                   />
                 </div>
                 {isDraft ? null : (
@@ -289,14 +225,7 @@ class BountyComponent extends React.Component {
             <SubmissionsAndCommentsCard
               bounty={bounty}
               currentUser={user}
-              currentTab={currentTab}
-              setActiveTab={setActiveTab}
-              fulfillmentsData={fulfillments}
-              acceptFulfillment={(bountyId, fulfillmentId) =>
-                initiateWalkthrough(() =>
-                  acceptFulfillment(bountyId, fulfillmentId)
-                )
-              }
+              initiateWalkthrough={initiateWalkthrough}
             />
           </PageCard.Content>
         </PageCard>
@@ -310,9 +239,6 @@ const mapStateToProps = (state, router) => {
   const getBountyState = getBountyStateSelector(state);
   const draftBounty = getDraftBountySelector(state);
   const currentBounty = getBountySelector(state);
-  const bountyPage = rootBountyPageSelector(state);
-  const uploadState = getUploadKeySelector(UPLOAD_KEY)(state);
-  const fulfillments = fulfillmentsSelector(state);
 
   const { match } = router;
   let bounty = currentBounty;
@@ -326,17 +252,12 @@ const mapStateToProps = (state, router) => {
   }
 
   return {
-    user: getCurrentUserSelector(state),
-    loading: bountyState.loading,
-    error: bountyState.error,
     isDraft,
     bounty: bounty,
-    modalType: bountyPage.modalType,
-    modalVisible: bountyPage.modalVisible,
+    user: getCurrentUserSelector(state),
     walletAddress: addressSelector(state),
-    currentTab: bountyPage.currentTab,
-    fulfillments: { ...fulfillments },
-    uploadState
+    loading: bountyState.loading,
+    error: bountyState.error
   };
 };
 
@@ -348,22 +269,13 @@ const Bounty = compose(
   connect(
     mapStateToProps,
     {
+      showModal: bountyUIActions.showModal,
       loadBounty: bountyActions.getBounty,
       loadDraftBounty: bountyActions.getDraft,
+      setActiveTab: bountyUIActions.setActiveTab,
       loadFulfillments: fulfillmentsActions.loadFulfillments,
       addBountyFilter: fulfillmentsActions.addBountyFilter,
-      activateDraftBounty: bountyActions.createBounty,
-      closeModal: bountyUIActions.closeModal,
-      showModal: bountyUIActions.showModal,
-      setActiveTab: bountyUIActions.setActiveTab,
-      killBounty: bountyActions.killBounty,
-      activateBounty: bountyActions.activateBounty,
-      extendDeadline: bountyActions.extendDeadline,
-      increasePayout: bountyActions.increasePayout,
-      fulfillBounty: fulfillmentActions.createFulfillment,
-      acceptFulfillment: fulfillmentActions.acceptFulfillment,
-      uploadFile: uploadActions.uploadFile,
-      resetUpload: uploadActions.resetUpload
+      resetFilters: fulfillmentsActions.resetFilters
     }
   )
 )(BountyComponent);

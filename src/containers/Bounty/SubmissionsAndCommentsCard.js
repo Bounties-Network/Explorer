@@ -6,30 +6,27 @@ import { map as fpMap } from 'lodash';
 import { PageCard, FormSection } from 'explorer-components';
 import { Field, reduxForm } from 'redux-form';
 import { SubmissionItem } from './components';
-import { Button, ListGroup, Tabs, Text } from 'components';
-import { actions as settingsActions } from 'public-modules/Settings';
-import { emailPreferencesSelector } from 'public-modules/Settings/selectors';
-import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
+import { Button, ListGroup, Loader, Tabs, Text, ZeroState } from 'components';
+import { rootBountyPageSelector } from './selectors';
+import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
+import { commentsSelector } from 'public-modules/Comments/selectors';
+import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
+import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
+import { actions as commentsActions } from 'public-modules/Comments';
+import { actions as bountyUIActions } from './reducer';
 
 const map = fpMap.convert({ cap: false });
 
-let SubmissionsAndCommentsCard = props => {
+let SubmissionsAndCommentsCardComponent = props => {
   const {
-    currentTab,
-    fulfillmentsData,
-    comments,
-    isIssuer,
-    stage, // PENDING, ACCEPTED ???
-    acceptSubmission,
-    rate,
-    showModal,
     setActiveTab,
+    currentTab,
+    fulfillments,
+    comments,
     bounty,
     currentUser,
     acceptFulfillment
   } = props;
-
-  const { fulfillments } = fulfillmentsData;
 
   const bountyBelongsToLoggedInUser =
     currentUser && bounty.issuer === currentUser.public_address;
@@ -38,6 +35,7 @@ let SubmissionsAndCommentsCard = props => {
     return map(fulfillment => {
       const {
         fulfillment_id,
+        fulfiller_email,
         fulfiller,
         sourceDirectoryHash,
         sourceFileName,
@@ -47,7 +45,7 @@ let SubmissionsAndCommentsCard = props => {
         user
       } = fulfillment;
 
-      const { name, email, profile_image } = user;
+      const { name, profile_image } = user;
       const submissionBelongsToLoggedInUser =
         currentUser && fulfiller === currentUser.public_address;
 
@@ -55,7 +53,7 @@ let SubmissionsAndCommentsCard = props => {
         <ListGroup.ListItem hover>
           <SubmissionItem
             name={name}
-            email={email}
+            email={fulfiller_email}
             address={fulfiller}
             img={profile_image}
             url={'add link to model in api'}
@@ -72,8 +70,37 @@ let SubmissionsAndCommentsCard = props => {
           />
         </ListGroup.ListItem>
       );
-    }, fulfillments);
+    }, fulfillments.list);
   };
+
+  let body = <div />;
+  let bodyClass = '';
+
+  if (currentTab == 'submissions') {
+    body = <ListGroup>{renderFulfillments()}</ListGroup>;
+
+    if (!fulfillments.list.length) {
+      bodyClass = styles.bodyLoading;
+      body = (
+        <div className={styles.zeroState}>
+          <ZeroState
+            title={'There are 0 submissions'}
+            text={'Submissions to this bounty will appear here.'}
+            iconColor="blue"
+          />
+        </div>
+      );
+    }
+
+    if (fulfillments.loading) {
+      bodyClass = styles.bodyLoading;
+      body = <Loader color="blue" size="medium" />;
+    }
+  }
+
+  if (currentTab == 'comments') {
+    body = <ListGroup>{renderFulfillments()}</ListGroup>;
+  }
 
   return (
     <div>
@@ -86,7 +113,7 @@ let SubmissionsAndCommentsCard = props => {
         <Tabs.Tab
           tabClassName={styles.tab}
           tabColor="lightGrey"
-          tabCount={fulfillments.length}
+          tabCount={fulfillments.list.length}
           eventKey={'submissions'}
         >
           Submissions
@@ -94,20 +121,48 @@ let SubmissionsAndCommentsCard = props => {
         <Tabs.Tab
           tabClassName={styles.tab}
           tabColor="lightGrey"
-          tabCount={fulfillments.length}
+          tabCount={fulfillments.list.length}
           eventKey={'comments'}
         >
           Comments
         </Tabs.Tab>
       </Tabs>
-
-      {currentTab == 'submission' ? (
-        <ListGroup>{renderFulfillments()}</ListGroup>
-      ) : (
-        <ListGroup>{renderFulfillments()}</ListGroup>
-      )}
+      <div className={bodyClass}>{body}</div>
     </div>
   );
 };
+
+const mapStateToProps = (state, router) => {
+  const bountyPage = rootBountyPageSelector(state);
+  const fulfillmentsState = fulfillmentsSelector(state);
+  const commentsState = commentsSelector(state);
+
+  return {
+    // ui state
+    modalType: bountyPage.modalType,
+    modalVisible: bountyPage.modalVisible,
+    currentTab: bountyPage.currentTab,
+
+    // data
+    fulfillments: {
+      ...fulfillmentsState,
+      list: fulfillmentsState.fulfillments
+    },
+    comments: {
+      ...commentsState,
+      list: commentsState.comments
+    }
+  };
+};
+
+const SubmissionsAndCommentsCard = compose(
+  connect(
+    mapStateToProps,
+    {
+      setActiveTab: bountyUIActions.setActiveTab,
+      acceptFulfillment: fulfillmentActions.acceptFulfillment
+    }
+  )
+)(SubmissionsAndCommentsCardComponent);
 
 export default SubmissionsAndCommentsCard;

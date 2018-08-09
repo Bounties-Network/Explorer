@@ -1,9 +1,19 @@
 @import "~styles/variables.scss";
 
-.tabs {
-}
-
 .tab {
   flex: 1;
   justify-content: center;
+}
+
+.bodyLoading {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  min-height: 15rem;
+}
+
+.zeroState {
+  max-width: 25rem;
+  padding: $xxl-spacing;
 }

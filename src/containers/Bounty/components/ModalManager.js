@@ -1,55 +1,106 @@
 import React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { BigNumber } from 'bignumber.js';
 import moment from 'moment';
+import { actions as bountyActions } from 'public-modules/Bounty';
+import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
+import { actions as bountyUIActions } from '../reducer';
+import { rootBountyPageSelector } from '../selectors';
 import {
   ExtendDeadlineErrorModal,
   ActivateDraftFormModal,
   ExtendDeadlineFormModal,
   ActivateDeadFormModal,
   IncreasePayoutFormModal,
-  FulfillBountyFormModal
+  FulfillBountyFormModal,
+  KillBountyFormModal
 } from 'containers/Bounty/components';
 
-const ModalManager = props => {
+const ModalManagerComponent = props => {
   const {
-    visible,
-    modalType,
-    onClose,
-    onExtendDeadlineError,
     bounty,
-    onActivateDraft,
-    activateDeadBounty,
-    extendDeadline,
-    increasePayout,
-    fulfillBounty,
-    uploadFile,
-    resetUpload,
-    uploadState,
-    uploadKey
+    onExtendDeadlineError,
+    modalVisible,
+    modalType,
+    closeModal,
+    initiateWalkthrough,
+
+    /* bounty actions */
+    activateDraftBountyAction,
+    killBountyAction,
+    activateBountyAction,
+    extendDeadlineAction,
+    increasePayoutAction,
+    fulfillBountyAction
+    /*****************/
   } = props;
 
-  if (!visible) {
+  if (!modalVisible) {
     return null;
   }
+
+  const minimumBalance = BigNumber(
+    bounty.calculated_fulfillmentAmount,
+    10
+  ).toString();
+
+  const killBounty = () =>
+    initiateWalkthrough(() => killBountyAction(bounty.id));
+
+  const activateDraftBounty = values =>
+    initiateWalkthrough(() =>
+      activateDraftBountyAction({ ...bounty }, values.balance)
+    );
+
+  const extendDeadline = values =>
+    initiateWalkthrough(() => extendDeadlineAction(bounty.id, values.deadline));
+
+  const activateBounty = values =>
+    initiateWalkthrough(() =>
+      activateBountyAction(
+        bounty.id,
+        values.balance,
+        bounty.paysTokens,
+        bounty.tokenDecimals,
+        bounty.tokenContract
+      )
+    );
+
+  const increasePayout = values =>
+    initiateWalkthrough(() =>
+      increasePayoutAction(
+        bounty.id,
+        values.fulfillmentAmount,
+        values.balance,
+        bounty.paysTokens,
+        bounty.tokenDecimals,
+        bounty.tokenContract
+      )
+    );
+
+  const fulfillBounty = values =>
+    initiateWalkthrough(() => fulfillBountyAction(bounty.id, values));
 
   if (modalType === 'deadlineWarning') {
     return (
       <ExtendDeadlineErrorModal
-        onClose={onClose}
+        onClose={closeModal}
         onExtendDeadline={onExtendDeadlineError}
       />
     );
   }
 
+  if (modalType === 'kill') {
+    return <KillBountyFormModal onClose={closeModal} onSubmit={killBounty} />;
+  }
+
   if (modalType === 'activate') {
     return (
       <ActivateDraftFormModal
-        onClose={onClose}
-        onSubmit={onActivateDraft}
-        minimumBalance={BigNumber(
-          bounty.calculated_fulfillmentAmount,
-          10
-        ).toString()}
+        onClose={closeModal}
+        onSubmit={activateDraftBounty}
+        minimumBalance={minimumBalance}
       />
     );
   }
@@ -65,7 +116,7 @@ const ModalManager = props => {
 
     return (
       <ExtendDeadlineFormModal
-        onClose={onClose}
+        onClose={closeModal}
         onSubmit={extendDeadline}
         minimumDeadline={minimumDeadline}
       />
@@ -75,12 +126,9 @@ const ModalManager = props => {
   if (modalType === 'activateDead') {
     return (
       <ActivateDeadFormModal
-        onClose={onClose}
-        onSubmit={activateDeadBounty}
-        minimumBalance={BigNumber(
-          bounty.calculated_fulfillmentAmount,
-          10
-        ).toString()}
+        onClose={closeModal}
+        onSubmit={activateBounty}
+        minimumBalance={minimumBalance}
       />
     );
   }
@@ -88,7 +136,7 @@ const ModalManager = props => {
   if (modalType === 'increasePayout') {
     return (
       <IncreasePayoutFormModal
-        onClose={onClose}
+        onClose={closeModal}
         onSubmit={increasePayout}
         minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}
       />
@@ -97,16 +145,34 @@ const ModalManager = props => {
 
   if (modalType === 'fulfillBounty') {
     return (
-      <FulfillBountyFormModal
-        onClose={onClose}
-        uploadFile={uploadFile}
-        resetUpload={resetUpload}
-        uploadState={uploadState}
-        uploadKey={uploadKey}
-        onSubmit={fulfillBounty}
-      />
+      <FulfillBountyFormModal onClose={closeModal} onSubmit={fulfillBounty} />
     );
   }
 };
+
+const mapStateToProps = (state, router) => {
+  const bountyPage = rootBountyPageSelector(state);
+
+  return {
+    modalType: bountyPage.modalType,
+    modalVisible: bountyPage.modalVisible
+  };
+};
+
+const ModalManager = compose(
+  connect(
+    mapStateToProps,
+    {
+      closeModal: bountyUIActions.closeModal,
+      showModal: bountyUIActions.showModal,
+      activateDraftBountyAction: bountyActions.createBounty,
+      killBountyAction: bountyActions.killBounty,
+      activateBountyAction: bountyActions.activateBounty,
+      extendDeadlineAction: bountyActions.extendDeadline,
+      increasePayoutAction: bountyActions.increasePayout,
+      fulfillBountyAction: fulfillmentActions.createFulfillment
+    }
+  )
+)(ModalManagerComponent);
 
 export default ModalManager;
