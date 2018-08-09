@@ -6,7 +6,8 @@ import {
   ActivateDraftFormModal,
   ExtendDeadlineFormModal,
   ActivateDeadFormModal,
-  IncreasePayoutFormModal
+  IncreasePayoutFormModal,
+  FulfillBountyFormModal
 } from 'containers/Bounty/components';
 
 const ModalManager = props => {
@@ -19,7 +20,12 @@ const ModalManager = props => {
     onActivateDraft,
     activateDeadBounty,
     extendDeadline,
-    increasePayout
+    increasePayout,
+    fulfillBounty,
+    uploadFile,
+    resetUpload,
+    uploadState,
+    uploadKey
   } = props;
 
   if (!visible) {
@@ -85,6 +91,19 @@ const ModalManager = props => {
         onClose={onClose}
         onSubmit={increasePayout}
         minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}
+      />
+    );
+  }
+
+  if (modalType === 'fulfillBounty') {
+    return (
+      <FulfillBountyFormModal
+        onClose={onClose}
+        uploadFile={uploadFile}
+        resetUpload={resetUpload}
+        uploadState={uploadState}
+        uploadKey={uploadKey}
+        onSubmit={fulfillBounty}
       />
     );
   }

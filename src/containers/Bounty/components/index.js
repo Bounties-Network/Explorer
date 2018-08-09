@@ -5,6 +5,7 @@ import ExtendDeadlineFormModal from './ExtendDeadlineFormModal';
 import ActivateDeadFormModal from './ActivateDeadFormModal';
 import IncreasePayoutFormModal from './IncreasePayoutFormModal';
 import SubmissionItem from './SubmissionItem';
+import FulfillBountyFormModal from './FulfillBountyFormModal';
 
 export {
   ExtendDeadlineErrorModal,
@@ -13,5 +14,6 @@ export {
   ExtendDeadlineFormModal,
   ActivateDeadFormModal,
   IncreasePayoutFormModal,
-  SubmissionItem
+  SubmissionItem,
+  FulfillBountyFormModal
 };

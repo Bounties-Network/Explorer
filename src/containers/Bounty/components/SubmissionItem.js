@@ -16,7 +16,9 @@ const SubmissionItem = props => {
     dataHash,
     dataFileName,
     status,
-    created
+    created,
+    showAccept,
+    showEdit
   } = props;
 
   const formattedTime = moment(created, 'YYYY-MM-DD').format('MM/DD/YYYY');
@@ -26,16 +28,18 @@ const SubmissionItem = props => {
       <div className="row">
         <div className={`col-xs-3 ${styles.detailsContainer} ${styles.filter}`}>
           <div className="row">
-            <div className="col-xs-4">
-              <LinkedAvatar img={img} hash={address} />
+            <div className="col-xs-12">
+              <LinkedAvatar
+                className={styles.labelGroup}
+                name={name}
+                address={address}
+                img={img}
+                hash={address}
+              />
             </div>
-
-            <div className="col-xs-8">
-              <div className={`${styles.avatarLabel} ${styles.labelGroup}`}>
-                <Text>{name}</Text>
-                <Text>0x1234..4312</Text>
-              </div>
-
+          </div>
+          <div className="row">
+            <div className="col-xs-12">
               <div className={styles.labelGroup}>
                 <Text color="defaultGrey" className={styles.label}>
                   Contact
@@ -74,17 +78,18 @@ const SubmissionItem = props => {
           </div>
         </div>
         <div className={`col-xs-3 ${styles.actionColumn}`}>
-          <div>
-            <FulfillmentStagePill className={styles.label} accepted={status} />
-          </div>
-          <Button
-            type="action"
-            className={styles.reactivateButton}
-            icon={['far', 'check']}
-            onClick={() => {}}
-          >
-            Accept
-          </Button>
+          <FulfillmentStagePill className={styles.label} accepted={status} />
+
+          {showAccept ? (
+            <Button
+              type="action"
+              className={styles.reactivateButton}
+              icon={['far', 'check']}
+              onClick={() => {}}
+            >
+              Accept
+            </Button>
+          ) : null}
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Button } from 'components';
 import { DEAD } from 'public-modules/Bounty/constants';
+import { UPLOAD_KEY } from './constants';
 import { ModalManager } from './components';
 
 const ActionBar = props => {
@@ -24,7 +25,11 @@ const ActionBar = props => {
     walletAddress,
     activateDeadBounty,
     extendDeadline,
-    increasePayout
+    increasePayout,
+    uploadFile,
+    resetUpload,
+    uploadState,
+    fulfillBounty
   } = props;
 
   const belongsToLoggedInUser = user && bounty.issuer === user.public_address;
@@ -108,7 +113,11 @@ const ActionBar = props => {
   if (!belongsToLoggedInUser) {
     actionOptions = (
       <div>
-        <Button type="action" fitWidth>
+        <Button
+          type="action"
+          fitWidth
+          onClick={() => showModal('fulfillBounty')}
+        >
           Sign in to fulfill
         </Button>
         <Button
@@ -128,6 +137,10 @@ const ActionBar = props => {
         visible={modalVisible}
         onClose={closeModal}
         modalType={modalType}
+        uploadKey={UPLOAD_KEY}
+        uploadState={uploadState}
+        uploadFile={uploadFile}
+        resetUpload={resetUpload}
         onActivateDraft={activateDraftBounty}
         onExtendDeadlineError={
           isDraft
@@ -137,6 +150,7 @@ const ActionBar = props => {
         extendDeadline={extendDeadline}
         activateDeadBounty={activateDeadBounty}
         increasePayout={increasePayout}
+        fulfillBounty={fulfillBounty}
         bounty={bounty}
       />
       {actionOptions}

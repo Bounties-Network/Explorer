@@ -4,6 +4,8 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
+import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
+import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as bountyUIActions } from './reducer';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import showdown from 'showdown';
@@ -21,10 +23,12 @@ import {
 } from 'public-modules/Bounty/selectors';
 import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
 import { addressSelector } from 'public-modules/Client/selectors';
+import { getUploadKeySelector } from 'public-modules/FileUpload/selectors';
 import { rootBountyPageSelector } from './selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
 import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
+import { UPLOAD_KEY } from './constants';
 
 showdown.setOption('simpleLineBreaks', true);
 const converter = new showdown.Converter();
@@ -73,7 +77,11 @@ class BountyComponent extends React.Component {
       increasePayout,
       currentTab,
       setActiveTab,
-      fulfillments
+      fulfillments,
+      uploadFile,
+      resetUpload,
+      uploadState,
+      fulfillBounty
     } = this.props;
 
     if (error) {
@@ -165,6 +173,9 @@ class BountyComponent extends React.Component {
                     closeModal={closeModal}
                     showModal={showModal}
                     walletAddress={walletAddress}
+                    uploadFile={uploadFile}
+                    resetUpload={resetUpload}
+                    uploadState={uploadState}
                     activateDraftBounty={values =>
                       initiateWalkthrough(() =>
                         activateDraftBounty({ ...bounty }, values.balance)
@@ -200,6 +211,12 @@ class BountyComponent extends React.Component {
                           bounty.tokenContract
                         )
                       )
+                    }
+                    fulfillBounty={values =>
+                      initiateWalkthrough(() => {
+                        console.log('fulfilling bounty...', values);
+                        fulfillBounty(bounty.id, values);
+                      })
                     }
                   />
                 </div>
@@ -267,10 +284,11 @@ class BountyComponent extends React.Component {
             </div>
           </PageCard.Content>
         </PageCard>
-
         <PageCard noBanner>
           <PageCard.Content className={styles.cardContent}>
             <SubmissionsAndCommentsCard
+              bounty={bounty}
+              currentUser={user}
               currentTab={currentTab}
               setActiveTab={setActiveTab}
               fulfillmentsData={fulfillments}
@@ -288,6 +306,7 @@ const mapStateToProps = (state, router) => {
   const draftBounty = getDraftBountySelector(state);
   const currentBounty = getBountySelector(state);
   const bountyPage = rootBountyPageSelector(state);
+  const uploadState = getUploadKeySelector(UPLOAD_KEY)(state);
   const fulfillments = fulfillmentsSelector(state);
 
   const { match } = router;
@@ -311,7 +330,8 @@ const mapStateToProps = (state, router) => {
     modalVisible: bountyPage.modalVisible,
     walletAddress: addressSelector(state),
     currentTab: bountyPage.currentTab,
-    fulfillments: { ...fulfillments }
+    fulfillments: { ...fulfillments },
+    uploadState
   };
 };
 
@@ -334,7 +354,10 @@ const Bounty = compose(
       killBounty: bountyActions.killBounty,
       activateBounty: bountyActions.activateBounty,
       extendDeadline: bountyActions.extendDeadline,
-      increasePayout: bountyActions.increasePayout
+      increasePayout: bountyActions.increasePayout,
+      fulfillBounty: fulfillmentActions.createFulfillment,
+      uploadFile: uploadActions.uploadFile,
+      resetUpload: uploadActions.resetUpload
     }
   )
 )(BountyComponent);

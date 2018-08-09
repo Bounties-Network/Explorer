@@ -1,6 +1,7 @@
 import { FormInput } from 'hocs';
 import {
   TextInput,
+  Textbox,
   MarkdownEditor,
   SearchSelect,
   RadioGroup,
@@ -10,6 +11,7 @@ import {
 } from 'components';
 
 export const FormTextInput = FormInput(TextInput);
+export const FormTextbox = FormInput(Textbox);
 export const FormMarkdownEditor = FormInput(MarkdownEditor);
 export const FormSearchSelect = FormInput(SearchSelect);
 export const FormRadioGroup = FormInput(RadioGroup);
