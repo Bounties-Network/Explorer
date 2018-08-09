@@ -14,11 +14,13 @@
   @media only screen and (min-width: 48em) {
     display: block;
     margin-top: $header-height-lg;
+    padding: $m-spacing;
     width: $filterNav-width-fluid;
   }
 
   @media only screen and (min-width: 65em) {
     width: $filterNav-width-fixed;
+    padding: $l-spacing;
   }
 }
 
