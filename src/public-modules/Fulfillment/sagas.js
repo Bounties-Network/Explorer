@@ -107,6 +107,33 @@ export function* createFulfillment(action) {
   }
 }
 
+export function* acceptFulfillment(action) {
+  const { bountyId, fulfillmentId } = action;
+
+  yield put(setPendingWalletConfirm());
+
+  const userAddress = yield select(addressSelector);
+  const { web3 } = yield call(getWeb3Client);
+
+  const { standardBounties } = yield call(getContractClient);
+  try {
+    const txHash = yield call(
+      promisifyContractCall(standardBounties.acceptFulfillment, {
+        from: userAddress
+      }),
+      bountyId,
+      fulfillmentId
+    );
+
+    yield put(setPendingReceipt(txHash));
+    yield put(acceptFulfillmentSuccess());
+  } catch (e) {
+    console.log(e);
+    yield put(setTransactionError());
+    yield put(acceptFulfillmentFail());
+  }
+}
+
 export function* watchFulfillment() {
   yield takeLatest(LOAD_FULFILLMENT, loadFulfillment);
 }
@@ -116,7 +143,7 @@ export function* watchCreateFulfillment() {
 }
 
 export function* watchAcceptFulfillment() {
-  yield takeLatest(ACCEPT_FULFILLMENT, createFulfillment);
+  yield takeLatest(ACCEPT_FULFILLMENT, acceptFulfillment);
 }
 
 export default [
