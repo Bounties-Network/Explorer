@@ -1,33 +1,35 @@
 import React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import styles from './Modals.module.scss';
-import { FileUpload, Modal, Button } from 'components';
+import { getUploadKeySelector } from 'public-modules/FileUpload/selectors';
+import { actions as fileUploadActions } from 'public-modules/FileUpload';
+import { Button, FileUpload, Modal, Text } from 'components';
 import { Field, reduxForm } from 'redux-form';
-import { BigNumber } from 'bignumber.js';
 import validators from 'utils/validators';
 import { FormTextInput, FormTextbox } from 'form-components';
 
-const FulfillBountyFormModal = props => {
+let FulfillBountyFormModalComponent = props => {
   const {
+    handleSubmit,
     onClose,
     onSubmit,
-    handleSubmit,
     uploadFile,
     resetUpload,
-    uploadState,
-    uploadKey
+
+    // upload state
+    uploading,
+    error,
+    ipfsHash,
+    fileName
   } = props;
-  const uploading = uploadState ? uploadState.uploading : false;
-  const uploaded = uploadState ? uploadState.uploaded : false;
-  const error = uploadState ? uploadState.error : false;
-  const ipfsHash = uploadState ? uploadState.ipfsHash : '';
-  const fileName = uploadState ? uploadState.fileName : '';
 
   const submitFulfillment = values => {
     onSubmit({ ...values, ipfsHash, fileName });
   };
 
   const closeAndReset = () => {
-    resetUpload(uploadKey);
+    resetUpload('fulfillment');
     onClose();
   };
 
@@ -85,10 +87,15 @@ const FulfillBountyFormModal = props => {
           </div>
           <div className={`row ${styles.fulfillmentInput}`}>
             <div className="col-xs-12">
+              <Text typeScale="Small" color="defaultGrey">
+                Attachment
+              </Text>
               <FileUpload
                 disabled={uploading}
                 onChange={file =>
-                  file ? uploadFile(uploadKey, file) : resetUpload(uploadKey)
+                  file
+                    ? uploadFile('fulfillment', file)
+                    : resetUpload('fulfillment')
                 }
                 loading={uploading}
                 filename={fileName}
@@ -111,6 +118,7 @@ const FulfillBountyFormModal = props => {
         <Modal.Footer>
           <Button
             margin
+            disabled={uploading}
             onClick={e => {
               e.preventDefault();
               closeAndReset();
@@ -118,11 +126,38 @@ const FulfillBountyFormModal = props => {
           >
             Cancel
           </Button>
-          <Button type="primary">Submit</Button>
+          <Button disabled={uploading} type="primary">
+            Submit
+          </Button>
         </Modal.Footer>
       </Modal>
     </form>
   );
 };
 
-export default reduxForm({ form: 'fulfillBounty' })(FulfillBountyFormModal);
+FulfillBountyFormModalComponent = reduxForm({ form: 'fulfillBounty' })(
+  FulfillBountyFormModalComponent
+);
+
+const mapStateToProps = (state, router) => {
+  const uploadState = getUploadKeySelector('fulfillment')(state);
+
+  return {
+    uploading: uploadState ? uploadState.uploading : false,
+    error: uploadState ? uploadState.error : false,
+    ipfsHash: uploadState ? uploadState.ipfsHash : '',
+    fileName: uploadState ? uploadState.fileName : ''
+  };
+};
+
+const FulfillBountyFormModal = compose(
+  connect(
+    mapStateToProps,
+    {
+      uploadFile: fileUploadActions.uploadFile,
+      resetUpload: fileUploadActions.resetUpload
+    }
+  )
+)(FulfillBountyFormModalComponent);
+
+export default FulfillBountyFormModal;

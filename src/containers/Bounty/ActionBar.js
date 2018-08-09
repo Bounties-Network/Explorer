@@ -3,37 +3,25 @@ import styles from './ActionBar.module.scss';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
 import { Button } from 'components';
 import { DEAD } from 'public-modules/Bounty/constants';
-import { UPLOAD_KEY } from './constants';
 import { ModalManager } from './components';
 
 const ActionBar = props => {
   const {
-    isDraft,
     bounty,
-    user,
     history,
-    modalType,
-    modalVisible,
-    closeModal,
+    initiateWalkthrough,
+    isDraft,
     showModal,
-    killBounty,
-    activateDraftBounty,
-    walletAddress,
-    activateDeadBounty,
-    extendDeadline,
-    increasePayout,
-    uploadFile,
-    resetUpload,
-    uploadState,
-    fulfillBounty
+    user,
+    walletAddress
   } = props;
 
   const belongsToLoggedInUser = user && bounty.issuer === user.public_address;
   const loggedOutButAddressMatches = !user && bounty.issuer === walletAddress;
+
+  const draftUrl = `/createBounty/draft/${bounty.id}/`;
 
   let actionOptions = null;
   if (isDraft) {
@@ -52,7 +40,7 @@ const ActionBar = props => {
         >
           Activate Bounty
         </Button>
-        <Link to={`/createBounty/draft/${bounty.id}/`}>
+        <Link to={draftUrl}>
           <Button fitWidth className={styles.editBountyButton}>
             Edit Bounty
           </Button>
@@ -78,7 +66,7 @@ const ActionBar = props => {
             type="destructive"
             className={styles.killButton}
             fitWidth
-            onClick={killBounty}
+            onClick={() => showModal('kill')}
           >
             Kill bounty
           </Button>
@@ -134,24 +122,9 @@ const ActionBar = props => {
   return (
     <div>
       <ModalManager
-        visible={modalVisible}
-        onClose={closeModal}
-        modalType={modalType}
-        uploadKey={UPLOAD_KEY}
-        uploadState={uploadState}
-        uploadFile={uploadFile}
-        resetUpload={resetUpload}
-        onActivateDraft={activateDraftBounty}
-        onExtendDeadlineError={
-          isDraft
-            ? () => history.push(`/createBounty/draft/${bounty.id}/`)
-            : null
-        }
-        extendDeadline={extendDeadline}
-        activateDeadBounty={activateDeadBounty}
-        increasePayout={increasePayout}
-        fulfillBounty={fulfillBounty}
         bounty={bounty}
+        onExtendDeadlineError={isDraft ? () => history.push(draftUrl) : null}
+        initiateWalkthrough={initiateWalkthrough}
       />
       {actionOptions}
     </div>

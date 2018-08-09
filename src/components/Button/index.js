@@ -27,21 +27,21 @@ const Button = props => {
     loaderColor = 'blue';
   }
 
-  let addedClasses = '';
+  let addedClasses = [];
   if (disabled) {
-    addedClasses += styles.disabled;
+    addedClasses.push(styles.disabled);
   }
 
   if (margin) {
-    addedClasses += styles.margin;
+    addedClasses.push(styles.margin);
   }
 
   if (loading) {
-    addedClasses += styles.buttonLoading;
+    addedClasses.push(styles.buttonLoading);
   }
 
   if (fitWidth) {
-    addedClasses += styles.fitWidth;
+    addedClasses.push(styles.fitWidth);
   }
 
   let childwrapper = '';
@@ -52,7 +52,7 @@ const Button = props => {
   return (
     <button
       className={`${className} ${styles.button}
-        ${styles[type]} ${addedClasses}`}
+        ${styles[type]} ${addedClasses.join(' ')}`}
       onClick={onClickHandler}
       disabled={disabled}
     >
