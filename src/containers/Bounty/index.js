@@ -81,7 +81,8 @@ class BountyComponent extends React.Component {
       uploadFile,
       resetUpload,
       uploadState,
-      fulfillBounty
+      fulfillBounty,
+      acceptFulfillment
     } = this.props;
 
     if (error) {
@@ -213,10 +214,9 @@ class BountyComponent extends React.Component {
                       )
                     }
                     fulfillBounty={values =>
-                      initiateWalkthrough(() => {
-                        console.log('fulfilling bounty...', values);
-                        fulfillBounty(bounty.id, values);
-                      })
+                      initiateWalkthrough(() =>
+                        fulfillBounty(bounty.id, values)
+                      )
                     }
                   />
                 </div>
@@ -292,6 +292,11 @@ class BountyComponent extends React.Component {
               currentTab={currentTab}
               setActiveTab={setActiveTab}
               fulfillmentsData={fulfillments}
+              acceptFulfillment={(bountyId, fulfillmentId) =>
+                initiateWalkthrough(() =>
+                  acceptFulfillment(bountyId, fulfillmentId)
+                )
+              }
             />
           </PageCard.Content>
         </PageCard>
@@ -356,6 +361,7 @@ const Bounty = compose(
       extendDeadline: bountyActions.extendDeadline,
       increasePayout: bountyActions.increasePayout,
       fulfillBounty: fulfillmentActions.createFulfillment,
+      acceptFulfillment: fulfillmentActions.acceptFulfillment,
       uploadFile: uploadActions.uploadFile,
       resetUpload: uploadActions.resetUpload
     }

@@ -15,10 +15,11 @@ const SubmissionItem = props => {
     description,
     dataHash,
     dataFileName,
-    status,
+    accepted,
     created,
     showAccept,
-    showEdit
+    showEdit,
+    acceptFulfillment
   } = props;
 
   const formattedTime = moment(created, 'YYYY-MM-DD').format('MM/DD/YYYY');
@@ -78,14 +79,14 @@ const SubmissionItem = props => {
           </div>
         </div>
         <div className={`col-xs-3 ${styles.actionColumn}`}>
-          <FulfillmentStagePill className={styles.label} accepted={status} />
+          <FulfillmentStagePill className={styles.label} accepted={accepted} />
 
-          {showAccept ? (
+          {showAccept && !accepted ? (
             <Button
               type="action"
               className={styles.reactivateButton}
               icon={['far', 'check']}
-              onClick={() => {}}
+              onClick={acceptFulfillment}
             >
               Accept
             </Button>

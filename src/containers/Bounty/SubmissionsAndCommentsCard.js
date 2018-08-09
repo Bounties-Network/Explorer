@@ -25,7 +25,8 @@ let SubmissionsAndCommentsCard = props => {
     showModal,
     setActiveTab,
     bounty,
-    currentUser
+    currentUser,
+    acceptFulfillment
   } = props;
 
   const { fulfillments } = fulfillmentsData;
@@ -36,6 +37,7 @@ let SubmissionsAndCommentsCard = props => {
   const renderFulfillments = () => {
     return map(fulfillment => {
       const {
+        fulfillment_id,
         fulfiller,
         sourceDirectoryHash,
         sourceFileName,
@@ -61,8 +63,12 @@ let SubmissionsAndCommentsCard = props => {
             dataHash={sourceDirectoryHash}
             dataFileName={sourceFileName}
             created={created}
+            accepted={accepted}
             showAccept={bountyBelongsToLoggedInUser}
             showEdit={submissionBelongsToLoggedInUser}
+            acceptFulfillment={() =>
+              acceptFulfillment(bounty.id, fulfillment_id)
+            }
           />
         </ListGroup.ListItem>
       );
