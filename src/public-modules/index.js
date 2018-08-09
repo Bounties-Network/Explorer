@@ -17,6 +17,7 @@ import settingsReducer from 'public-modules/Settings';
 import transactionReducer from 'public-modules/Transaction';
 import notificationReducer from 'public-modules/Notification';
 import fulfillmentsReducer from 'public-modules/Fulfillments';
+import fulfillmentReducer from 'public-modules/Fulfillment';
 
 export const reducers = {
   bounties: bountiesReducer,
@@ -34,6 +35,7 @@ export const reducers = {
   settings: settingsReducer,
   notification: notificationReducer,
   fulfillments: fulfillmentsReducer,
+  fulfillment: fulfillmentReducer,
   transaction: transactionReducer
 };
 
@@ -53,6 +55,7 @@ import settingsSagas from 'public-modules/Settings/sagas';
 import transactionSagas from 'public-modules/Transaction/sagas';
 import notificationSagas from 'public-modules/Notification/sagas';
 import fulfillmentsSagas from 'public-modules/Fulfillments/sagas';
+import fulfillmentsSaga from 'public-modules/Fulfillment/sagas';
 
 export const sagaWatchers = [
   ...leaderboardSagas,
@@ -70,5 +73,6 @@ export const sagaWatchers = [
   ...settingsSagas,
   ...transactionSagas,
   ...notificationSagas,
-  ...fulfillmentsSagas
+  ...fulfillmentsSagas,
+  ...fulfillmentsSaga
 ];

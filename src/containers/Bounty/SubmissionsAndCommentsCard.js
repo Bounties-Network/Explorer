@@ -23,10 +23,15 @@ let SubmissionsAndCommentsCard = props => {
     acceptSubmission,
     rate,
     showModal,
-    setActiveTab
+    setActiveTab,
+    bounty,
+    currentUser
   } = props;
 
   const { fulfillments } = fulfillmentsData;
+
+  const bountyBelongsToLoggedInUser =
+    currentUser && bounty.issuer === currentUser.public_address;
 
   const renderFulfillments = () => {
     return map(fulfillment => {
@@ -41,6 +46,8 @@ let SubmissionsAndCommentsCard = props => {
       } = fulfillment;
 
       const { name, email, profile_image } = user;
+      const submissionBelongsToLoggedInUser =
+        currentUser && fulfiller === currentUser.public_address;
 
       return (
         <ListGroup.ListItem hover>
@@ -49,11 +56,13 @@ let SubmissionsAndCommentsCard = props => {
             email={email}
             address={fulfiller}
             img={profile_image}
-            url={'https://google.com'}
+            url={'add link to model in api'}
             description={description}
             dataHash={sourceDirectoryHash}
             dataFileName={sourceFileName}
             created={created}
+            showAccept={bountyBelongsToLoggedInUser}
+            showEdit={submissionBelongsToLoggedInUser}
           />
         </ListGroup.ListItem>
       );
