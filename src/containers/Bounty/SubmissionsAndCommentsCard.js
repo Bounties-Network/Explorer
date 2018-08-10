@@ -19,6 +19,7 @@ const map = fpMap.convert({ cap: false });
 
 let SubmissionsAndCommentsCardComponent = props => {
   const {
+    showModal,
     setActiveTab,
     currentTab,
     fulfillments,
@@ -43,9 +44,13 @@ let SubmissionsAndCommentsCardComponent = props => {
         accepted,
         created,
         description,
-        user
+        user,
+        fulfiller_reivew,
+        issuer_reivew
       } = fulfillment;
 
+      console.log(fulfillment);
+      console.log(fulfiller_reivew, issuer_reivew);
       const { name, profile_image } = user;
       const submissionBelongsToLoggedInUser =
         currentUser && fulfiller === currentUser.public_address;
@@ -63,11 +68,14 @@ let SubmissionsAndCommentsCardComponent = props => {
             dataFileName={sourceFileName}
             created={created}
             accepted={accepted}
-            showAccept={bountyBelongsToLoggedInUser}
-            showEdit={submissionBelongsToLoggedInUser}
+            fulfiller_reivew={fulfiller_reivew || null}
+            issuer_reivew={issuer_reivew || null}
+            bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
+            submissionBelongsToLoggedInUser={submissionBelongsToLoggedInUser}
             acceptFulfillment={() =>
               acceptFulfillment(bounty.id, fulfillment_id)
             }
+            showModal={showModal}
           />
         </ListGroup.ListItem>
       );
@@ -217,6 +225,7 @@ const SubmissionsAndCommentsCard = compose(
   connect(
     mapStateToProps,
     {
+      showModal: bountyUIActions.showModal,
       setActiveTab: bountyUIActions.setActiveTab,
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
       postComment: commentsActions.postComment

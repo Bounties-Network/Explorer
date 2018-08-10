@@ -3,15 +3,22 @@ import styles from './IssueRatingFormModal.module.scss';
 import { Button, Modal, Text } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
-import { FormTextInput } from 'form-components';
+import { FormTextbox, FormRating } from 'form-components';
+import BountyDetails from './BountyDetails';
 
-const KillBountyFormModal = props => {
-  const {
-    onClose,
-    handleSubmit,
-    type,
-    bounty,
-  } = props;
+const messageTemplate = {
+  issuer: [
+    'Your bounty submission was accepted! If you would like, you can rate your experience with the following bounty issuer:',
+    'This will help set expectations for other fulfillers on the platform.'
+  ],
+  fulfiller: [
+    'You accepted a submission to your bounty! If you would like, you can rate your experience with the following fulfiller:',
+    'This will help set expectations for other issuers on the platform.'
+  ]
+};
+
+const IssueRatingFormModal = props => {
+  const { onClose, handleSubmit, type, bounty } = props;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -24,63 +31,38 @@ const KillBountyFormModal = props => {
       >
         <Modal.Header closable={true}>
           <Modal.Message>
-            <div className={styles.bountyInfoContainer}>
-              <div className={`row ${styles.centerBountyInfo}`}>
-                <div className="col-xs-10">
-                  <div className={styles.bountyInfo}>
-                    <div className="row">
-                      <div className="col-xs-12">
-                        <div className={`${styles.rowText} ${styles.detailsGroup}`}>
-                          <Text
-                            inline
-                            typeScale="h5"
-                            weight="fontWeight-medium"
-                          >
-                            {bounty.title}
-                          </Text>
-                          <Text
-                            inline
-                            color="purple"
-                            typeScale="h5"
-                            weight="fontWeight-medium"
-                            className={styles.usd}
-                          >
-                            ${bounty.usd_price.toFixed(0)}
-                          </Text>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-xs-12">
-                        <div className={styles.rowText}>
-                          <Text
-                            inline
-                            typeScale="Small"
-                            color="defaultGrey"
-                            className={styles.details}
-                          >
-                            {`Created bleh`}
-                          </Text>
-                          <Text
-                            inline
-                            color="defaultGrey"
-                            typeScale="Small"
-                            className={styles.usd}
-                          >
-                            {`500 ETH`}
-                          </Text>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <BountyDetails bounty={bounty} />
+            <Text typeScale="h3">Rate {type}</Text>
+          </Modal.Message>
+          <Modal.Description>
+            <div className={`row ${styles.centerColumn}`}>
+              <div className="col-xs-8">
+                <Text color="defaultGrey">{messageTemplate[type][0]}</Text>
+                <Text color="defaultGrey">{messageTemplate[type][1]}</Text>
+              </div>
+            </div>
+            <div className={`row ${styles.review} ${styles.centerColumn}`}>
+              <div className="col-xs-10">
+                <div className={styles.inputGroup}>
+                  <Field
+                    name="rating"
+                    component={FormRating}
+                    type="string"
+                    label="Rating"
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <Field
+                    name="text"
+                    component={FormTextbox}
+                    type="string"
+                    label="Mini review"
+                    validate={[]}
+                    placeholder="Enter review..."
+                  />
                 </div>
               </div>
             </div>
-
-            Rate {type}
-          </Modal.Message>
-          <Modal.Description>
-            {type}
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody} />
@@ -94,11 +76,11 @@ const KillBountyFormModal = props => {
           >
             Cancel
           </Button>
-          <Button type="destructive">Kill</Button>
+          <Button type="primary">Submit</Button>
         </Modal.Footer>
       </Modal>
     </form>
   );
 };
 
-export default reduxForm({ form: 'killBounty' })(KillBountyFormModal);
+export default reduxForm({ form: 'issueRating' })(IssueRatingFormModal);

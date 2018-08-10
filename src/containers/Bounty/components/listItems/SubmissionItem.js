@@ -18,12 +18,53 @@ const SubmissionItem = props => {
     dataFileName,
     accepted,
     created,
-    showAccept,
-    showEdit,
-    acceptFulfillment
+    fulfiller_reivew,
+    issuer_reivew,
+    bountyBelongsToLoggedInUser,
+    submissionBelongsToLoggedInUser,
+    acceptFulfillment,
+    showModal
   } = props;
 
   const formattedTime = moment(created, 'YYYY-MM-DD').format('MM/DD/YYYY');
+
+  let actionButton = null;
+  if (bountyBelongsToLoggedInUser && !accepted) {
+    actionButton = (
+      <Button
+        type="action"
+        className={styles.reactivateButton}
+        icon={['far', 'check']}
+        onClick={acceptFulfillment}
+      >
+        Accept
+      </Button>
+    );
+  }
+  console.log(bountyBelongsToLoggedInUser, accepted, fulfiller_reivew);
+  if (bountyBelongsToLoggedInUser && accepted && !fulfiller_reivew) {
+    actionButton = (
+      <Button
+        className={styles.reactivateButton}
+        icon={['far', 'star']}
+        onClick={() => showModal('issueRatingForFulfiller')}
+      >
+        Rate fulfiller
+      </Button>
+    );
+  }
+
+  if (submissionBelongsToLoggedInUser && accepted && !issuer_reivew) {
+    actionButton = (
+      <Button
+        className={styles.reactivateButton}
+        icon={['far', 'star']}
+        onClick={() => showModal('issueRatingForIssuer')}
+      >
+        Rate issuer
+      </Button>
+    );
+  }
 
   return (
     <div className="">
@@ -92,17 +133,7 @@ const SubmissionItem = props => {
         </div>
         <div className={`col-xs-3 ${styles.actionColumn}`}>
           <FulfillmentStagePill className={styles.label} accepted={accepted} />
-
-          {showAccept && !accepted ? (
-            <Button
-              type="action"
-              className={styles.reactivateButton}
-              icon={['far', 'check']}
-              onClick={acceptFulfillment}
-            >
-              Accept
-            </Button>
-          ) : null}
+          {actionButton}
         </div>
       </div>
     </div>
