@@ -17,8 +17,9 @@
 }
 
 .ethBox {
-  padding: $m-spacing;
+  padding: $l-spacing;
   background-color: $brand-purple-hover;
+  border-radius: $base-border-radius;
   text-align: center;
   height: fit-content;
   white-space: nowrap;
@@ -41,15 +42,20 @@
 }
 
 .avatar {
-  margin-top: $base-spacing;
+  margin-top: $m-spacing;
 }
 
 .usd {
   margin-bottom: $base-spacing;
 }
 
+.currency {
+  opacity: 0.6;
+}
+
 .pill {
   margin-top: $s-spacing;
+  opacity: 0.6;
 }
 
 .description {

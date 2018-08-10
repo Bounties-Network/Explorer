@@ -98,12 +98,12 @@ class BountyComponent extends React.Component {
           <PageCard.Header>
             <div className={styles.header}>
               <div className={styles.ethBox}>
-                <Text color="white" typeScale="h3" className={styles.usd}>
+                <Text color="white" typeScale="h1" className={styles.usd}>
                   {`$${Number(bounty.usd_price).toFixed(2)}`}
                 </Text>
                 <Text
                   color="white"
-                  typeScale="h5"
+                  typeScale="Body"
                   className={styles.currency}
                 >{`${Number(bounty.calculated_fulfillmentAmount)} ${
                   bounty.tokenSymbol
@@ -116,6 +116,7 @@ class BountyComponent extends React.Component {
                     category => (
                       <Pill
                         className={styles.pill}
+                        textColor="white"
                         key={
                           typeof category === 'object'
                             ? category.normalized_name
