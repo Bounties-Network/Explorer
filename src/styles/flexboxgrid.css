@@ -4,6 +4,13 @@
   margin-left: auto;
 }
 
+.pageWrapper {
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $l-spacing;
+}
+
 .row {
   box-sizing: border-box;
   display: -ms-flexbox;

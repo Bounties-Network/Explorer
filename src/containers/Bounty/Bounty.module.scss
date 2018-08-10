@@ -58,6 +58,11 @@
   opacity: 0.6;
 }
 
+.pageBody > div {
+  display: flex;
+  flex-direction: row;
+}
+
 .description {
   text-align: left;
   padding: $base-spacing;
@@ -65,16 +70,18 @@
 
 .filter {
   text-align: left;
+  width: 20rem;
+  padding-right: $l-spacing;
 }
 
 .descriptionSection {
-  /* I do not want to mess with the flexbox grid side padding or margins */
   margin-top: -$l-spacing;
   margin-bottom: -$l-spacing;
   padding-top: $l-spacing;
   padding-bottom: $xxl-spacing;
+  padding-left: $l-spacing;
+  padding-right: $l-spacing;
   border-left: $base-border;
-  overflow: scroll;
 }
 
 .buttonSection {
