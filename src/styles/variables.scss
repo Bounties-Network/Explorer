@@ -12,12 +12,13 @@ $base-border-radius: 3px;
 $base-input-height: $xxl-spacing;
 $base-checkbox-size: $m-spacing * 1.25;
 $base-toggle-size: $l-spacing;
-$filterNav-width-fluid: 30%;
+$filterNav-width-fluid: 25%;
 $filterNav-width-fixed: 20rem;
 
 $header-height-sm: 3.5rem;
 $header-height-lg: 4rem;
-$base-sidebar-width: $header-height-lg;
+$sidebar-width-sm: $header-height-sm;
+$sidebar-width-lg: $header-height-lg;
 
 // TYPOGRAPHY
 $base-font-size: 16px;

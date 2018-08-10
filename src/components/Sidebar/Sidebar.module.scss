@@ -7,10 +7,14 @@
   float: left;
   padding-top: $header-height-lg * 2;
   position: fixed;
-  width: $base-sidebar-width;
+  width: $sidebar-width-sm;
 
   @media only screen and (min-width: 48em) {
     display: block;
+  }
+
+  @media only screen and (min-width: 65em) {
+    width: $sidebar-width-lg;
   }
 }
 

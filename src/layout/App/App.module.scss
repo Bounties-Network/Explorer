@@ -14,7 +14,12 @@
   -webkit-overflow-scrolling: touch;
 
   @media only screen and (min-width: 48em) {
-    margin-left: $base-sidebar-width;
+    margin-left: $sidebar-width-sm;
+    padding-top: $header-height-sm;
+  }
+
+  @media only screen and (min-width: 48em) {
+    margin-left: $sidebar-width-lg;
     padding-top: $header-height-lg;
   }
 }
