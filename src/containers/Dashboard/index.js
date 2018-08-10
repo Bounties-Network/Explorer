@@ -9,7 +9,7 @@ import {
 
 const Dashboard = props => {
   return (
-    <div className={`container-fluid ${styles.container}`}>
+    <div className="container-fluid">
       <div className="row center-xs">
         <div className="col-xs-10">
           <UserStats className={styles.statsContainer} />

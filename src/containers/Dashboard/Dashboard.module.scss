@@ -1,18 +1,16 @@
 @import "~styles/variables.scss";
 
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
 .statsContainer {
   margin-top: 1.5 * $xxl-spacing;
   margin-bottom: 2 * $xxl-spacing;
 }
 
 .submissionsContainer {
-  height: 80%;
-  margin-top: $xxl-spacing;
+  margin-bottom: $xxl-spacing;
+  height: 100%;
+  margin-top: $m-spacing;
+  min-height: 25rem;
+
 }
 
 .submissionsFlex {
