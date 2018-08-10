@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { uniqueId, range, map } from 'lodash';
+import { Text } from 'components';
 import styles from './Rating.module.scss';
 
 class Rating extends React.Component {
@@ -55,11 +56,25 @@ class Rating extends React.Component {
   };
 
   render() {
-    return <span className={styles.starGroup}>{this.renderInputs()}</span>;
+    const { label, error } = this.props;
+    return (
+      <div>
+        {label ? (
+          <div>
+            <Text inputLabel color={error ? 'red' : null}>
+              {label}
+            </Text>
+          </div>
+        ) : null}
+        <span className={styles.starGroup}>{this.renderInputs()}</span>
+      </div>
+    );
   }
 }
 
 Rating.propTypes = {
+  label: PropTypes.string,
+  error: PropTypes.string,
   value: PropTypes.number,
   defaultValue: PropTypes.number,
   onChange: PropTypes.func

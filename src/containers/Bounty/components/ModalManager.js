@@ -16,6 +16,7 @@ import {
   FulfillBountyFormModal,
   KillBountyFormModal
 } from 'containers/Bounty/components';
+import { IssueRatingFormModal } from 'explorer-components';
 
 const ModalManagerComponent = props => {
   const {
@@ -146,6 +147,28 @@ const ModalManagerComponent = props => {
   if (modalType === 'fulfillBounty') {
     return (
       <FulfillBountyFormModal onClose={closeModal} onSubmit={fulfillBounty} />
+    );
+  }
+
+  if (modalType === 'issueRatingForIssuer') {
+    return (
+      <IssueRatingFormModal
+        type="issuer"
+        onSubmit={values => console.log(values)}
+        onClose={closeModal}
+        bounty={bounty}
+      />
+    );
+  }
+
+  if (modalType === 'issueRatingForFulfiller') {
+    return (
+      <IssueRatingFormModal
+        type="fulfiller"
+        onSubmit={values => console.log(values)}
+        onClose={closeModal}
+        bounty={bounty}
+      />
     );
   }
 };

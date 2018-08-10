@@ -1,17 +1,28 @@
 @import "~styles/variables.scss";
 
+.inputGroup {
+  margin-top: $xxl-spacing;
+}
+
 .bountyInfoContainer {
   margin-bottom: $xxl-spacing;
 }
 
-.centerBountyInfo {
+.centerColumn {
   justify-content: center;
 }
 
 .bountyInfo {
+  position: relative;
   padding: $m-spacing;
   border: $base-border;
   box-shadow: $base-box-shadow;
+
+  .pill {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+  }
 }
 
 .rowText {
@@ -21,4 +32,8 @@
 
 .detailsGroup {
   margin-bottom: $base-spacing;
+}
+
+.review {
+  text-align: left;
 }
