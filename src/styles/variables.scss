@@ -12,6 +12,13 @@ $base-border-radius: 3px;
 $base-input-height: $xxl-spacing;
 $base-checkbox-size: $m-spacing * 1.25;
 $base-toggle-size: $l-spacing;
+$filterNav-width-fluid: 25%;
+$filterNav-width-fixed: 20rem;
+
+$header-height-sm: 3.5rem;
+$header-height-lg: 4rem;
+$sidebar-width-sm: $header-height-sm;
+$sidebar-width-lg: $header-height-lg;
 
 // TYPOGRAPHY
 $base-font-size: 16px;
@@ -27,12 +34,12 @@ $h1-font-size: 1.938rem; // 31px
 $base-line-height: 1.75;
 $line-height-reset: 1;
 
-// COLORS:
+// COLORS
 $brand-purple: #5A28C6;
 $brand-purple-hover: darken($brand-purple, 10%);
 $brand-purple-disabled: lighten($brand-purple, 30%);
 
-$brand-dark-purple: #2E2A35;
+$brand-dark-purple: #2D2838;
 
 $brand-destructive: #D14545;
 $brand-destructive-hover: darken($brand-destructive, 10%);
@@ -46,28 +53,28 @@ $brand-orange: #FBAA31;
 $brand-green: #6FC78D;
 $brand-green-hover: darken($brand-green, 10%);
 
-$brand-black: #262626;
-$brand-darkGrey: #636363;
-$brand-grey: #949494; // Lightest text
-$brand-lightGrey: #E0E0E0;
-$brand-nearWhite: #F3F2F6;
+$brand-black: #2D2838;
+$brand-darkGrey: #615E67;
+$brand-grey: #A09CA8; // Lightest text
+$brand-lightGrey: #D9D8DE;
+$brand-nearWhite: #F1F0F6;
 $brand-white: #FFFFFF;
 $brand-purpleWhite: #cebeff;
 
-$base-input-background: #F9F8FD;
+$base-input-background: #FAF9FD;
 
 $base-border-color: $brand-lightGrey;
 
-// BANNER:
+// BANNER
 @mixin banner-gradient {
   background: linear-gradient(to right, #5b29c8 , #594aff);
 }
 $banner-min-height: 13rem;
 
-// SIDEBAR:
+// SIDEBAR
 $sidebar-color: $brand-dark-purple;
 
-// BOX SHADOWS:
+// BOX SHADOWS
 $base-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
 $m-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 $brand-chip-box-shadow: 0 2px 7px $brand-lightGrey;
@@ -79,5 +86,3 @@ $base-border: $base-border-width solid $brand-lightGrey;
 
 // Overlay Grey
 $overlay-background: rgba(0, 0, 0, 0.6);
-
-// Circle

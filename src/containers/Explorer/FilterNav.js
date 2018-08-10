@@ -44,7 +44,7 @@ const FilterNavComponent = props => {
         <Search value={search} onChange={throttle(300, setSearch)} />
       </div>
       <div className={styles.refineWrapper}>
-        <Text inline typeScale="h4" weight="fontWeight-medium">
+        <Text inline typeScale="h3" weight="fontWeight-medium">
           Refine By
         </Text>
         <Button

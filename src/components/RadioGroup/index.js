@@ -33,7 +33,7 @@ class RadioGroup extends React.Component {
             onChange={() => this.onChange(option[valueKey])}
           />{' '}
           <span className={`${styles.customRadio}`} />
-          <Text type="Body" className={`${styles.radioLabel}`}>
+          <Text type="Body" color="darkGrey" className={`${styles.radioLabel}`}>
             {option[labelKey]}
           </Text>{' '}
         </label>

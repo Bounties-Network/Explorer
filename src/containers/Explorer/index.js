@@ -5,15 +5,9 @@ import styles from './Explorer.module.scss';
 
 const Explorer = props => {
   return (
-    <div className="container-fluid">
-      <div className="row fullHeight">
-        <div className={`col-xs-3 fullHeight ${styles.filterNav}`}>
-          <FilterNav />
-        </div>
-        <div className={`col-xs-9 fullHeight ${styles.explorerBody}`}>
-          <ExplorerBody />
-        </div>
-      </div>
+    <div className={`${styles.explorerContainer}`}>
+      <FilterNav />
+      <ExplorerBody />
     </div>
   );
 };

@@ -1,7 +1,19 @@
 @import "~styles/variables.scss";
 
 .explorerBody {
-  padding: $xl-spacing;
+  margin-left: 0;
+  padding: $l-spacing $base-spacing;
+  width: 100%;
+  height: 100%;
+
+  @media only screen and (min-width: 48em) {
+    padding: $xl-spacing $m-spacing $xl-spacing calc(#{$filterNav-width-fluid} + #{$xl-spacing});
+  }
+
+  @media only screen and (min-width: 65em) {
+    padding-left: $filterNav-width-fixed + $l-spacing;
+    padding-right: $l-spacing;
+  }
 }
 
 .centeredBody {
@@ -36,6 +48,7 @@
 .sortGroup {
   margin-left: auto;
   display: flex;
+  display: none; /*Temporarily hide for responsive testing*/
   align-items: flex-end;
 }
 
@@ -51,4 +64,5 @@
 .loadMoreButton {
   width: 100%;
   text-align: center;
+  padding-bottom: $l-spacing;
 }

@@ -137,6 +137,9 @@
   text-decoration: underline;
   border: none;
   box-shadow: none;
+  padding: 0;
+  height: auto;
+  line-height: 1;
 
   &:hover {
     opacity: 0.75;
@@ -154,6 +157,9 @@
   text-decoration: underline;
   border: none;
   box-shadow: none;
+  padding: 0;
+  height: auto;
+  line-height: 1;
 
   &:hover {
     opacity: 0.75;

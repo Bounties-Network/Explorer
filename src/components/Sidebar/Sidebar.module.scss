@@ -2,14 +2,20 @@
 
 .sidebar {
   background-color: $sidebar-color;
+  display: none; /*Temporary to test responsive views w/o sidebar*/
   height: 100%; /* 100% Full-height */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  box-sizing: border-box;
+  float: left;
+  padding-top: $header-height-lg * 2;
+  position: fixed;
+  width: $sidebar-width-sm;
+
+  @media only screen and (min-width: 48em) {
+    display: block;
+  }
+
+  @media only screen and (min-width: 65em) {
+    width: $sidebar-width-lg;
+  }
 }
 
 .iconTab {
@@ -17,14 +23,15 @@
   justify-content: center;
   text-align: center;
   align-items: center;
-  font-size: 1.5rem;
-  padding: $m-spacing $l-spacing;
+  font-size: 1.3rem;
+  padding: $base-spacing $l-spacing;
+  margin: $m-spacing 0;
   cursor: pointer;
   color: $brand-white;
   opacity: 0.5;
 
   &:hover {
-    background-color: darken($sidebar-color, 25%);
+    opacity: 1;
   }
 }
 

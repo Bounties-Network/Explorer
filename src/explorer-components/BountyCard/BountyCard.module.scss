@@ -1,8 +1,11 @@
 @import "~styles/variables.scss";
 
 .bountyCard {
-  margin-bottom: $m-spacing;
-  padding: $base-spacing $m-spacing;
+  margin-bottom: $base-spacing;
+
+  @media only screen and (min-width: 65em) {
+    margin-bottom: $m-spacing;
+  }
 }
 
 .pill {
@@ -11,12 +14,17 @@
 }
 
 .titleText {
-  margin-bottom: $s-spacing;
+  margin-bottom: $m-spacing;
   width: 100%;
+  line-height: 1.25;
   display: inline-block;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+
+  @media only screen and (min-width: 48em) {
+    margin-bottom: $s-spacing;
+  }
 }
 
 .categoryList {
@@ -29,19 +37,56 @@
   margin-top: $base-spacing;
 }
 
+.bountyPrimaryData {
+  order: 1;
+}
+
+.bountyMetaData {
+  border-top: 1px solid $brand-nearWhite;
+  flex-grow: 0;
+  order: 3;
+  margin-top: $m-spacing;
+  padding-top: $m-spacing;
+  padding-right: 0;
+
+  @media only screen and (min-width: 48em) {
+    border: none;
+    margin-top: 0;
+    padding-top: 0;
+    order: 2;
+  }
+}
+
 .detailGroup {
-  display: flex;
+  display: block;
   margin-bottom: $base-spacing;
+  word-wrap: break-word;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media only screen and (min-width: 48em) {
+    margin-bottom: $m-spacing;
+  }
 }
 
 .detailIcon {
+  display: inline-block;
   width: $m-spacing;
   margin-right: $s-spacing;
 }
 
 .detailInput {
   margin-right: $s-spacing;
-  
+}
+
+.bountyPrize {
+  order: 2;
+
+  @media only screen and (min-width: 48em) {
+    order: 3;
+  }
 }
 
 .price {

@@ -35,7 +35,11 @@ class Checkbox extends React.Component {
         />
         <span className={`${styles.customCheckbox}`} />
         {label ? (
-          <Text type="Body" className={`${styles.checkboxLabel}`}>
+          <Text
+            type="Body"
+            color="darkGrey"
+            className={`${styles.checkboxLabel}`}
+          >
             {label}
           </Text>
         ) : null}
