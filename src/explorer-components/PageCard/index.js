@@ -7,7 +7,12 @@ import { Text, Card } from 'components';
 const Title = props => {
   const { children, className } = props;
   return (
-    <Text className={className} typeScale="h1" color="white">
+    <Text
+      className={className}
+      className={styles.title}
+      typeScale="h2"
+      color="white"
+    >
       {children}
     </Text>
   );
@@ -55,17 +60,13 @@ const PageCard = props => {
   return (
     <div className={styles.pageCard}>
       <div className={noBanner ? null : styles.headerWrapper}>
-        <div className="container-fluid">
-          <div className="row center-xs">
-            <div className="col-xs-9">{header}</div>
-          </div>
+        <div className="row center-xs">
+          <div className="col-xs-9">{header}</div>
         </div>
       </div>
       <div className={styles.contentWrapper}>
-        <div className="container-fluid fullHeight">
-          <div className="row center-xs fullHeight">
-            <div className="col-xs-9 fullHeight">{content}</div>
-          </div>
+        <div className="row center-xs">
+          <div className="col-xs-9">{content}</div>
         </div>
       </div>
     </div>
