@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import base from '../BaseStyles.module.scss';
 import styles from './SubmissionItem.module.scss';
+import { Link } from 'react-router-dom';
 import { Table, Card, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
 
 const SubmissionItem = props => {
   const {
+    bountyId,
     title,
     fulfiller,
     submissionDate,
@@ -17,12 +19,12 @@ const SubmissionItem = props => {
     currency
   } = props;
 
-  const formattedTime = moment(submissionDate, 'YYYY-MM-DD').fromNow();
+  const formattedTime = moment(submissionDate, 'YYYY-MM-DD').format('M/D/YYYY');
 
   return (
     <Table.Row hover>
       <Table.Cell headerText="Bounty title" flexGrow={4}>
-        {title}
+        <Link to={`/bounty/${bountyId}`}>{title}</Link>
       </Table.Cell>
       <Table.Cell headerText="Fulfiller" flexGrow={3}>
         <LinkedAvatar

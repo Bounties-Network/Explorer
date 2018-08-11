@@ -25,6 +25,7 @@ class SubmissionsPanelComponent extends React.Component {
         usd_price
       } = submission;
       const {
+        id,
         title,
         tokenSymbol,
         tokenDecimals,
@@ -33,6 +34,7 @@ class SubmissionsPanelComponent extends React.Component {
 
       return (
         <SubmissionItem
+          bountyId={id}
           title={title}
           fulfiller={fulfiller}
           submissionDate={created}

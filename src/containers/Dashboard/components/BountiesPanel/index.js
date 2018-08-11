@@ -1,6 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import base from '../BaseStyles.module.scss';
 import styles from './BountiesPanel.module.scss';
 import { LoadComponent } from 'hocs';
@@ -50,7 +51,7 @@ class BountiesPanelComponent extends React.Component {
   };
 
   render() {
-    const { setActiveTab, currentTab, active, drafts } = this.props;
+    const { setActiveTab, currentTab, active, drafts, history } = this.props;
     const { list, count, loading, loadingMore, loadMore, error } = this.props[
       currentTab
     ];
@@ -77,13 +78,15 @@ class BountiesPanelComponent extends React.Component {
       body = (
         <div className={base.zeroState}>
           <ZeroState
-            title={'You have 0 active bounties'}
+            title={`You have 0 ${currentTab} bounties`}
             text={
-              "It looks like you don't have any active bounties at the moment. Enter a title for a new bounty here to get started creating one!"
+              "It looks like you don't have any active bounties at the \
+              moment. Enter a title for a new bounty here to get started \
+              creating one!"
             }
             action
             actionText={'Create new bounty'}
-            onActionClick={() => {}}
+            onActionClick={() => history.push('/createBounty')}
             iconColor="blue"
           />
         </div>
@@ -170,6 +173,7 @@ const mapStateToProps = state => {
 };
 
 const BountiesPanel = compose(
+  withRouter,
   connect(
     mapStateToProps,
     {
