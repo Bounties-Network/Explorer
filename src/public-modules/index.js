@@ -19,6 +19,7 @@ import notificationReducer from 'public-modules/Notification';
 import fulfillmentsReducer from 'public-modules/Fulfillments';
 import fulfillmentReducer from 'public-modules/Fulfillment';
 import commentsReducer from 'public-modules/Comments';
+import reviewReducer from 'public-modules/Review';
 
 export const reducers = {
   bounties: bountiesReducer,
@@ -38,7 +39,8 @@ export const reducers = {
   fulfillments: fulfillmentsReducer,
   fulfillment: fulfillmentReducer,
   transaction: transactionReducer,
-  comments: commentsReducer
+  comments: commentsReducer,
+  review: reviewReducer
 };
 
 import bountiesSagas from 'public-modules/Bounties/sagas';
@@ -59,6 +61,7 @@ import notificationSagas from 'public-modules/Notification/sagas';
 import fulfillmentsSagas from 'public-modules/Fulfillments/sagas';
 import fulfillmentSagas from 'public-modules/Fulfillment/sagas';
 import commentsSagas from 'public-modules/Comments/sagas';
+import reviewSagas from 'public-modules/Review/sagas';
 
 export const sagaWatchers = [
   ...leaderboardSagas,
@@ -78,5 +81,6 @@ export const sagaWatchers = [
   ...notificationSagas,
   ...fulfillmentsSagas,
   ...fulfillmentSagas,
-  ...commentsSagas
+  ...commentsSagas,
+  ...reviewSagas
 ];

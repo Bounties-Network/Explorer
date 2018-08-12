@@ -1,9 +1,12 @@
 import React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import styles from './IssueRatingFormModal.module.scss';
-import { Button, Modal, Text } from 'components';
+import { Avatar, Button, Modal, Text } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
 import { FormTextbox, FormRating } from 'form-components';
+import { actions as reviewActions } from 'public-modules/Review';
 import BountyDetails from './BountyDetails';
 
 const messageTemplate = {
@@ -17,11 +20,27 @@ const messageTemplate = {
   ]
 };
 
-const IssueRatingFormModal = props => {
-  const { onClose, handleSubmit, type, bounty } = props;
+const IssueRatingFormModalComponent = props => {
+  const {
+    onClose,
+    handleSubmit,
+    postReview,
+    type,
+    bounty,
+    fulfillmentId,
+    name,
+    address,
+    img
+  } = props;
+
+  const handleReview = values => {
+    const { rating, review } = values;
+
+    postReview(bounty.id, fulfillmentId, rating, review);
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(handleReview)}>
       <Modal
         dismissable={true}
         onClose={onClose}
@@ -38,6 +57,14 @@ const IssueRatingFormModal = props => {
             <div className={`row ${styles.centerColumn}`}>
               <div className="col-xs-8">
                 <Text color="defaultGrey">{messageTemplate[type][0]}</Text>
+                <div className={styles.avatar}>
+                  <Avatar
+                    name={name}
+                    address={address}
+                    hash={address}
+                    img={img}
+                  />
+                </div>
                 <Text color="defaultGrey">{messageTemplate[type][1]}</Text>
               </div>
             </div>
@@ -53,7 +80,7 @@ const IssueRatingFormModal = props => {
                 </div>
                 <div className={styles.inputGroup}>
                   <Field
-                    name="text"
+                    name="review"
                     component={FormTextbox}
                     type="string"
                     label="Mini review"
@@ -82,5 +109,14 @@ const IssueRatingFormModal = props => {
     </form>
   );
 };
+
+const IssueRatingFormModal = compose(
+  connect(
+    () => {},
+    {
+      postReview: reviewActions.postReview
+    }
+  )
+)(IssueRatingFormModalComponent);
 
 export default reduxForm({ form: 'issueRating' })(IssueRatingFormModal);

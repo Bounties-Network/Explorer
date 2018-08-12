@@ -56,7 +56,7 @@ export function* createFulfillment(action) {
   const {
     name,
     email,
-    link,
+    url,
     description,
     fileName,
     ipfsHash: fulfillmentDataHash
@@ -69,14 +69,15 @@ export function* createFulfillment(action) {
 
   const payload = {
     payload: {
-      description: description,
+      url,
+      description,
       sourceFileName: fileName,
       sourceDirectoryHash: fulfillmentDataHash,
       sourceFileHash: '',
       fulfiller: {
-        email: email,
-        address: userAddress,
-        name: name
+        email,
+        userAddress,
+        name
       }
     },
     meta: {

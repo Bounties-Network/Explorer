@@ -6,3 +6,8 @@ export const bountyIdSelector = createSelector(
   rootBountyPageSelector,
   rootBounty => rootBounty.bountyId
 );
+
+export const modalPropsSelector = createSelector(
+  rootBountyPageSelector,
+  rootBounty => rootBounty.modalProps
+);

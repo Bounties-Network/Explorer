@@ -44,25 +44,26 @@ let SubmissionsAndCommentsCardComponent = props => {
         accepted,
         created,
         description,
+        url,
         user,
         fulfiller_reivew,
         issuer_reivew
       } = fulfillment;
 
-      console.log(fulfillment);
-      console.log(fulfiller_reivew, issuer_reivew);
       const { name, profile_image } = user;
       const submissionBelongsToLoggedInUser =
         currentUser && fulfiller === currentUser.public_address;
 
       return (
-        <ListGroup.ListItem hover>
+        <ListGroup.ListItem>
           <SubmissionItem
+            fulfillmentId={fulfillment_id}
+            bounty={bounty}
             name={name}
             email={fulfiller_email}
             address={fulfiller}
             img={profile_image}
-            url={'add link to model in api'}
+            url={url}
             description={description}
             dataHash={sourceDirectoryHash}
             dataFileName={sourceFileName}
