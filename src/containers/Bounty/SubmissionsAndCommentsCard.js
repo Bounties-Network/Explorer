@@ -46,8 +46,8 @@ let SubmissionsAndCommentsCardComponent = props => {
         description,
         url,
         user,
-        fulfiller_reivew,
-        issuer_reivew
+        fulfiller_review,
+        issuer_review
       } = fulfillment;
 
       const { name, profile_image } = user;
@@ -69,8 +69,8 @@ let SubmissionsAndCommentsCardComponent = props => {
             dataFileName={sourceFileName}
             created={created}
             accepted={accepted}
-            fulfiller_reivew={fulfiller_reivew || null}
-            issuer_reivew={issuer_reivew || null}
+            fulfiller_review={fulfiller_review || null}
+            issuer_review={issuer_review || null}
             bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
             submissionBelongsToLoggedInUser={submissionBelongsToLoggedInUser}
             acceptFulfillment={() =>
