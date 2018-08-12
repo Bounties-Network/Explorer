@@ -76,7 +76,7 @@ let FulfillBountyFormModalComponent = props => {
           <div className={`row ${styles.fulfillmentInput}`}>
             <div className="col-xs-12">
               <Field
-                name="link"
+                name="url"
                 component={FormTextInput}
                 type="string"
                 label="Web link"

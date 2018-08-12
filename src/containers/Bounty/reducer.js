@@ -2,6 +2,7 @@ const initialState = {
   bountyId: -1,
   modalType: '',
   modalVisible: false,
+  modalProps: {},
   currentTab: 'submissions'
 };
 
@@ -10,8 +11,8 @@ const CLOSE_MODAL = 'BountyPage/CLOSE_MODAL';
 const SET_BOUNTY_ID = 'BountyPage/SET_BOUNTY_ID';
 const SET_ACTIVE_TAB = 'BountyPage/SET_ACTIVE_TAB';
 
-function showModal(modalType) {
-  return { type: SHOW_MODAL, modalType };
+function showModal(modalType, modalProps = {}) {
+  return { type: SHOW_MODAL, modalType, modalProps };
 }
 
 function closeModal() {
@@ -29,19 +30,21 @@ function setActiveTab(tabKey) {
 function BountyPageUIReducer(state = initialState, action) {
   switch (action.type) {
     case SHOW_MODAL: {
-      const { modalType } = action;
+      const { modalType, modalProps } = action;
 
       return {
         ...state,
         modalVisible: true,
-        modalType
+        modalType,
+        modalProps
       };
     }
     case CLOSE_MODAL:
       return {
         ...state,
         modalVisible: false,
-        modalType: ''
+        modalType: '',
+        modalProps: {}
       };
     case SET_BOUNTY_ID: {
       const { bountyId } = action;

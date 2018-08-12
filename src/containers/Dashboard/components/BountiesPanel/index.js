@@ -27,6 +27,7 @@ class BountiesPanelComponent extends React.Component {
   renderBounties = list => {
     return map(bounty => {
       const {
+        id,
         calculated_fulfillmentAmount,
         created,
         fulfillment_count,
@@ -38,6 +39,7 @@ class BountiesPanelComponent extends React.Component {
       return (
         <ListGroup.ListItem hover>
           <BountyItem
+            bountyId={id}
             title={title}
             submissions={fulfillment_count}
             value={parseFloat(calculated_fulfillmentAmount).toFixed(2)}

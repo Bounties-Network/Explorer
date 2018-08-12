@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import base from '../BaseStyles.module.scss';
 import styles from './BountyItem.module.scss';
@@ -8,7 +9,16 @@ import Pluralize from 'pluralize';
 import moment from 'moment';
 
 const BountyItem = props => {
-  const { createdAt, currency, submissions, title, usd_value, value } = props;
+  const {
+    bountyId,
+    createdAt,
+    currency,
+    submissions,
+    title,
+    usd_value,
+    value
+  } = props;
+
   const formattedTime = moment(createdAt, 'YYYY-MM-DD').fromNow();
 
   let submissionsText = '';
@@ -21,7 +31,11 @@ const BountyItem = props => {
     <div className={`row ${styles.container}`}>
       <div className="col-xs-10">
         <div className={base.alignLeft}>
-          <Text>{title}</Text>
+          <Link to={`/bounty/${bountyId}`} className={styles.link}>
+            <Text typeScale="Body" weight="fontWeight-medium">
+              {title}
+            </Text>
+          </Link>
           <Text
             typeScale="Small"
             color="defaultGrey"

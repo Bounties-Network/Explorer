@@ -22,9 +22,13 @@ const SubmissionItem = props => {
   const formattedTime = moment(submissionDate, 'YYYY-MM-DD').format('M/D/YYYY');
 
   return (
-    <Table.Row hover>
+    <Table.Row>
       <Table.Cell headerText="Bounty title" flexGrow={4}>
-        <Link to={`/bounty/${bountyId}`}>{title}</Link>
+        <Link to={`/bounty/${bountyId}`} className={styles.link}>
+          <Text typeScale="h4" weight="fontWeight-medium">
+            {title}
+          </Text>
+        </Link>
       </Table.Cell>
       <Table.Cell headerText="Fulfiller" flexGrow={3}>
         <LinkedAvatar

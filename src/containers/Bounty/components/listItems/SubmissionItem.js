@@ -8,6 +8,8 @@ import moment from 'moment';
 
 const SubmissionItem = props => {
   const {
+    fulfillmentId,
+    bounty,
     name,
     address,
     img,
@@ -41,13 +43,20 @@ const SubmissionItem = props => {
       </Button>
     );
   }
-  console.log(bountyBelongsToLoggedInUser, accepted, fulfiller_reivew);
+
   if (bountyBelongsToLoggedInUser && accepted && !fulfiller_reivew) {
     actionButton = (
       <Button
         className={styles.reactivateButton}
         icon={['far', 'star']}
-        onClick={() => showModal('issueRatingForFulfiller')}
+        onClick={() =>
+          showModal('issueRatingForFulfiller', {
+            fulfillmentId,
+            name,
+            address,
+            img
+          })
+        }
       >
         Rate fulfiller
       </Button>
@@ -59,7 +68,14 @@ const SubmissionItem = props => {
       <Button
         className={styles.reactivateButton}
         icon={['far', 'star']}
-        onClick={() => showModal('issueRatingForIssuer')}
+        onClick={() =>
+          showModal('issueRatingForIssuer', {
+            fulfillmentId,
+            name: bounty.issuer_name,
+            address: bounty.issuer_address,
+            img: bounty.user.profile_image
+          })
+        }
       >
         Rate issuer
       </Button>
@@ -87,7 +103,9 @@ const SubmissionItem = props => {
                 <Text color="defaultGrey" className={styles.label}>
                   Contact
                 </Text>
-                <Text>{email}</Text>
+                <Text link src={`mailto:${email}`}>
+                  {email}
+                </Text>
               </div>
 
               <div className={styles.labelGroup}>
@@ -100,12 +118,16 @@ const SubmissionItem = props => {
           </div>
         </div>
         <div className={`col-xs-6 ${styles.filter}`}>
-          <div className={styles.labelGroup}>
-            <Text color="defaultGrey" className={styles.label}>
-              Web link
-            </Text>
-            <Text>{url || 'N/A'}</Text>
-          </div>
+          {url ? (
+            <div className={styles.labelGroup}>
+              <Text color="defaultGrey" className={styles.label}>
+                Web link
+              </Text>
+              <Text link src={url}>
+                {url}
+              </Text>
+            </div>
+          ) : null}
           <div className={styles.labelGroup}>
             <Text color="defaultGrey" className={styles.label}>
               Description
