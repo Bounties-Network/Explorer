@@ -7,6 +7,7 @@ import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
 import { FormTextbox, FormRating } from 'form-components';
 import { actions as reviewActions } from 'public-modules/Review';
+import { rootReviewSelector } from 'public-modules/Review/selectors';
 import BountyDetails from './BountyDetails';
 
 const messageTemplate = {
@@ -30,7 +31,8 @@ const IssueRatingFormModalComponent = props => {
     fulfillmentId,
     name,
     address,
-    img
+    img,
+    posting
   } = props;
 
   const handleReview = values => {
@@ -100,19 +102,30 @@ const IssueRatingFormModalComponent = props => {
               e.preventDefault();
               onClose();
             }}
+            disabled={posting}
           >
             Cancel
           </Button>
-          <Button type="primary">Submit</Button>
+          <Button type="primary" loading={posting} disabled={posting}>
+            Submit
+          </Button>
         </Modal.Footer>
       </Modal>
     </form>
   );
 };
 
+const mapStateToProps = state => {
+  const reviewState = rootReviewSelector(state);
+
+  return {
+    posting: reviewState.posting
+  };
+};
+
 const IssueRatingFormModal = compose(
   connect(
-    () => {},
+    mapStateToProps,
     {
       postReview: reviewActions.postReview
     }

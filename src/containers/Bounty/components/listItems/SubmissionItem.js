@@ -20,8 +20,8 @@ const SubmissionItem = props => {
     dataFileName,
     accepted,
     created,
-    fulfiller_reivew,
-    issuer_reivew,
+    fulfiller_review,
+    issuer_review,
     bountyBelongsToLoggedInUser,
     submissionBelongsToLoggedInUser,
     acceptFulfillment,
@@ -44,7 +44,7 @@ const SubmissionItem = props => {
     );
   }
 
-  if (bountyBelongsToLoggedInUser && accepted && !fulfiller_reivew) {
+  if (bountyBelongsToLoggedInUser && accepted && !fulfiller_review) {
     actionButton = (
       <Button
         className={styles.reactivateButton}
@@ -63,7 +63,7 @@ const SubmissionItem = props => {
     );
   }
 
-  if (submissionBelongsToLoggedInUser && accepted && !issuer_reivew) {
+  if (submissionBelongsToLoggedInUser && accepted && !issuer_review) {
     actionButton = (
       <Button
         className={styles.reactivateButton}
