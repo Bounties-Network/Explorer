@@ -1,6 +1,7 @@
 import request from 'utils/request';
 import { push } from 'react-router-redux';
 import { put, takeLatest, select } from 'redux-saga/effects';
+import { LOCATION_CHANGE } from 'react-router-redux';
 import { actionTypes as transactionActionTypes } from 'public-modules/Transaction';
 import { actionTypes as reviewActionTypes } from 'public-modules/Review';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
@@ -35,7 +36,10 @@ export function* loadTab(action) {
 }
 
 export function* watchCloseModals() {
-  yield takeLatest([INITIATE_WALKTHROUGH, POST_REVIEW_SUCCESS], closeModals);
+  yield takeLatest(
+    [INITIATE_WALKTHROUGH, POST_REVIEW_SUCCESS, LOCATION_CHANGE],
+    closeModals
+  );
 }
 
 export function* watchSetActiveTab() {
