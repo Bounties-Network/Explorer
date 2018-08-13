@@ -55,7 +55,7 @@ let SubmissionsAndCommentsCardComponent = props => {
         currentUser && fulfiller === currentUser.public_address;
 
       return (
-        <ListGroup.ListItem>
+        <ListGroup.ListItem className={styles.submissionItem}>
           <SubmissionItem
             fulfillmentId={fulfillment_id}
             bounty={bounty}

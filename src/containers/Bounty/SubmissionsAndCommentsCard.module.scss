@@ -8,7 +8,7 @@
     position: absolute;
     content: '';
     border-bottom: $base-border-width solid $brand-lightGrey;
-    width: calc(100% + 3rem});
+    width: calc(100% + 3rem);
     transform: translateX(-50%);
     left: 50%;
   }
@@ -32,6 +32,15 @@
   padding: $xxl-spacing;
 }
 
+.submissionItem {
+  color: $brand-darkGrey;
+  padding: $xl-spacing $m-spacing $l-spacing;
+
+  &:not(:last-child) {
+    border-bottom: $base-border;
+  }
+}
+
 .commentItem {
   padding: $m-spacing $m-spacing;
   position: relative;
@@ -42,7 +51,7 @@
     position: absolute;
     content: '';
     border-bottom: $base-border-width solid $brand-lightGrey;
-    width: calc(100% + 3rem});
+    width: calc(100% + 3rem);
     padding: 0 $m-spacing;
     bottom: 0;
     transform: translateX(-50%);
