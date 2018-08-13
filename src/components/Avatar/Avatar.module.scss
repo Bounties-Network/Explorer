@@ -6,11 +6,14 @@
   width: fit-content;
 }
 
+.nameText {
+  margin-bottom: $s-spacing;
+}
+
 .textWrapper {
   margin-left: $m-spacing;
 
   .addressText {
-    margin-top: $s-spacing;
     text-decoration: underline;
   }
 }
