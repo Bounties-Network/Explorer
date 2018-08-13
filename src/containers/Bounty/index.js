@@ -139,6 +139,7 @@ class BountyComponent extends React.Component {
                     to={`profile/${bounty.user.public_address}`}
                     addressTextColor="white"
                     size="small"
+                    border="true"
                   />
                 </div>
               </div>
