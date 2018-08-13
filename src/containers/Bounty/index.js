@@ -162,7 +162,7 @@ class BountyComponent extends React.Component {
               </div>
               {isDraft ? null : (
                 <div className={styles.labelGroup}>
-                  <Text color="defaultGrey" className={styles.label}>
+                  <Text inputLabel className={styles.label}>
                     Total Balance
                   </Text>
                   <Text color="purple" weight="fontWeight-medium">{`${Number(
@@ -171,7 +171,7 @@ class BountyComponent extends React.Component {
                 </div>
               )}
               <div className={styles.labelGroup}>
-                <Text color="defaultGrey" className={styles.label}>
+                <Text inputLabel className={styles.label}>
                   Issuer Contact
                 </Text>
                 <Text link src={`mailto:${bounty.issuer_email}`}>
@@ -179,7 +179,7 @@ class BountyComponent extends React.Component {
                 </Text>
               </div>
               <div className={styles.labelGroup}>
-                <Text color="defaultGrey" className={styles.label}>
+                <Text inputLabel className={styles.label}>
                   Deadline
                 </Text>
                 <Text>
@@ -189,14 +189,14 @@ class BountyComponent extends React.Component {
                 </Text>
               </div>
               <div className={styles.labelGroup}>
-                <Text color="defaultGrey" className={styles.label}>
+                <Text inputLabel className={styles.label}>
                   Difficulty
                 </Text>
                 <Text>{DIFFICULTY_MAPPINGS[bounty.experienceLevel]}</Text>
               </div>
               {bounty.sourceDirectoryHash ? (
                 <div className={styles.labelGroup}>
-                  <Text color="defaultGrey" className={styles.label}>
+                  <Text inputLabel className={styles.label}>
                     Associated Files
                   </Text>
                   <Text

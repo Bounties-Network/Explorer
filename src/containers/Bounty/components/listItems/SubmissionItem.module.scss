@@ -2,8 +2,23 @@
 
 .labelGroup {
   word-wrap: break-word;
+  padding-left: $xl-spacing + $m-spacing;
   margin-right: $m-spacing;
-  margin-bottom: $l-spacing;
+  margin-bottom: $xl-spacing;
+
+  p {
+    margin-bottom: $base-spacing;
+  }
+}
+
+.contactInfo {
+  p:first-child {
+    margin-top: $xl-spacing;
+  }
+}
+
+.detailsContainer {
+
 }
 
 .filter {
@@ -12,10 +27,6 @@
 
 .avatarLabel {
   padding-top: $base-spacing;
-}
-
-.label {
-  margin-bottom: $base-spacing;
 }
 
 .actionColumn {

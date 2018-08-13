@@ -89,17 +89,17 @@ const SubmissionItem = props => {
           <div className="row">
             <div className="col-xs-12">
               <LinkedAvatar
-                className={styles.labelGroup}
                 name={name}
                 address={address}
                 img={img}
                 hash={address}
+                nameTextScale={'h4'}
               />
             </div>
           </div>
           <div className="row">
             <div className="col-xs-12">
-              <div className={styles.labelGroup}>
+              <div className={`${styles.labelGroup} ${styles.contactInfo}`}>
                 <Text color="defaultGrey" className={styles.label}>
                   Contact
                 </Text>

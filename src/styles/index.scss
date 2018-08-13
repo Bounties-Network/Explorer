@@ -109,7 +109,7 @@ a {
     text-decoration: underline;
   }
 
-  em {
+  em, b {
     font-weight: 700;
     color: $brand-black;
   }
@@ -121,7 +121,6 @@ a {
   ul {
     list-style-type: disc;
     list-style-position: inside;
-    padding-left: $l-spacing;
   }
 
   ol {
