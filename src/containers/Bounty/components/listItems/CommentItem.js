@@ -13,19 +13,24 @@ const CommentItem = props => {
   return (
     <div className="">
       <div className="row">
-        <div className={`col-xs-4 ${styles.details}`}>
+        <div className={`col-xs-12 col-sm-4 ${styles.avatar}`}>
           <LinkedAvatar
             className={styles.labelGroup}
             name={name}
             address={address}
             img={img}
             hash={address}
+            nameTextScale={'h4'}
           />
         </div>
-        <div className="col-xs-8">
+        <div className="col-xs-12 col-sm-8">
           <div className={styles.details}>
-            <Text typeScale="body">{text}</Text>
-            <Text typeScale="Small" color="defaultGrey">
+            <Text typeScale="Body">{text}</Text>
+            <Text
+              className={styles.timeStamp}
+              typeScale="Small"
+              color="defaultGrey"
+            >
               {formattedTime}
             </Text>
           </div>

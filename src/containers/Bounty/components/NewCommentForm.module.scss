@@ -1,5 +1,11 @@
 @import "~styles/variables.scss";
 
 .container {
+  display: flex;
   padding: $base-spacing 0;
+
+  > div {
+    flex: 1;
+    padding-right: $base-spacing;
+  }
 }
