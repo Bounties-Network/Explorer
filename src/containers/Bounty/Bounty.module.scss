@@ -69,17 +69,17 @@
 }
 
 .filter {
+  flex-grow: 0;
+  flex-shrink: 0;
   text-align: left;
-  width: 20rem;
+  width: 15rem;
   padding-right: $l-spacing;
 }
 
 .descriptionSection {
   margin-top: -$l-spacing;
   margin-bottom: -$l-spacing;
-  padding-top: $l-spacing;
-  padding-bottom: $xxl-spacing;
-  padding-left: $l-spacing;
+  padding: $xxl-spacing $xl-spacing $xxl-spacing $xxl-spacing;
   border-left: $base-border;
 }
 
