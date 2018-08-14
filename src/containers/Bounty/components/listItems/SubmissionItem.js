@@ -84,7 +84,11 @@ const SubmissionItem = props => {
 
   return (
     <div className="row">
-      <div className={`col-xs-3 ${styles.detailsContainer} ${styles.filter}`}>
+      <div
+        className={`col-xs-12 col-sm-3 ${styles.detailsContainer} ${
+          styles.filter
+        }`}
+      >
         <LinkedAvatar
           name={name}
           address={address}
@@ -105,7 +109,7 @@ const SubmissionItem = props => {
           <Text>{formattedTime}</Text>
         </div>
       </div>
-      <div className={`col-xs-7 ${styles.filter}`}>
+      <div className={`col-xs-12 col-sm-7 ${styles.filter}`}>
         {url ? (
           <div className={styles.labelGroup}>
             <Text inputLabel>Web link</Text>
@@ -114,7 +118,7 @@ const SubmissionItem = props => {
             </Text>
           </div>
         ) : null}
-        <div className={styles.labelGroup}>
+        <div className={`${styles.labelGroup} ${styles.submissionContents}`}>
           <Text inputLabel>Description</Text>
           <Text className={styles.submissionDescription}>
             {description || 'N/A'}
@@ -136,7 +140,7 @@ const SubmissionItem = props => {
           </div>
         ) : null}
       </div>
-      <div className={`col-xs-2 ${styles.actionColumn}`}>
+      <div className={`col-sm-2 ${styles.actionColumn}`}>
         <FulfillmentStagePill className={styles.label} accepted={accepted} />
         {actionButton}
       </div>
