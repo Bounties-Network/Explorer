@@ -45,7 +45,7 @@
 .bountyHeader {
   padding-top: $l-spacing;
   text-align: left;
-  flex-grow: 1;
+  width: 100%;
 
   @media only screen and (min-width: 35em) {
     padding-top: 0;
@@ -155,7 +155,7 @@
   margin-top: $l-spacing;
   margin-left: -$m-spacing;
   margin-right: -$m-spacing;
-  padding: $l-spacing $l-spacing $l-spacing $l-spacing;
+  padding: $l-spacing $m-spacing;
 
   @media only screen and (min-width: 35em) {
     margin-top: -$l-spacing;
