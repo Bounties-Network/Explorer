@@ -148,9 +148,11 @@ a {
     padding: $base-spacing;
     white-space: pre-wrap;
     word-wrap: break-word;
+    line-height: 1.5;
 
     code {
       color: $brand-darkGrey;
+      font-family: monospace;
     }
   }
 }
