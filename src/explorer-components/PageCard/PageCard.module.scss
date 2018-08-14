@@ -20,6 +20,10 @@
   padding-top: $l-spacing;
   padding-bottom: $l-spacing;
   @include banner-gradient;
+
+  @media only screen and (min-width: 48em) {
+    padding-bottom: $xl-spacing * 2;
+  }
 }
 
 .contentWrapper {

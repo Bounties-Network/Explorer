@@ -5,6 +5,11 @@
   flex-wrap: wrap;
   padding: $m-spacing;
   position: relative;
+
+  @media only screen and (min-width: 35em) {
+    flex-wrap: nowrap;
+    padding: $l-spacing;
+  }
 }
 
 .body {
@@ -26,12 +31,21 @@
   text-align: center;
   height: fit-content;
   white-space: nowrap;
+
+  @media only screen and (min-width: 35em) {
+    padding: $l-spacing;
+    margin-right: $l-spacing;
+  }
 }
 
 .bountyHeader {
   padding-top: $l-spacing;
   text-align: left;
   flex-grow: 1;
+
+  @media only screen and (min-width: 35em) {
+    padding-top: 0;
+  }
 }
 
 .categories {
@@ -44,6 +58,12 @@
   position: absolute;
   right: $m-spacing;
   top: $m-spacing;
+
+  @media only screen and (min-width: 35em) {
+    position: relative;
+    right: 0;
+    top: 0;
+  }
 }
 
 .avatar {
@@ -54,6 +74,12 @@
   font-size: $h3-font-size;
   display: inline-block;
   padding-right: $base-spacing;
+
+  @media only screen and (min-width: 35em) {
+    display: block;
+    font-size: $h2-font-size;
+    padding: 0;
+  }
 }
 
 .currency {
@@ -72,6 +98,7 @@
   padding: $m-spacing;
 
   @media only screen and (min-width: 35em) {
+    padding: $l-spacing;
     flex-direction: row;
   }
 }
@@ -102,11 +129,20 @@
   flex-direction: row;
   padding-top: $m-spacing;
 
+  @media only screen and (min-width: 35em) {
+    flex-direction: column;
+  }
+
   .labelGroup {
     width: 50%;
     margin: 0;
     padding-bottom: $xl-spacing;
     padding-right: $xl-spacing;
+
+    @media only screen and (min-width: 35em) {
+      padding-right: 0;
+      width: 100%;
+    }
   }
 }
 
@@ -124,6 +160,7 @@
     margin-right: 0;
     padding: $xxl-spacing $xl-spacing $xxl-spacing $xxl-spacing;
     border-left: $base-border;
+    border-top: none;
   }
 }
 
