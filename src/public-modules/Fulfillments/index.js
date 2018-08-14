@@ -1,7 +1,17 @@
+import { omit } from 'lodash';
+
+const defaultFilters = {
+  issuer: '',
+  fulfiller: ''
+};
+
 const initialState = {
   loading: true,
   loaded: false,
+  loadingMore: false,
+  loadingMoreError: false,
   error: false,
+  filters: defaultFilters,
   count: 0,
   fulfillments: []
 };
@@ -10,54 +20,119 @@ const LOAD_FULFILLMENTS = 'fulfillments/LOAD_FULFILLMENTS';
 const LOAD_FULFILLMENTS_SUCCESS = 'fulfillments/LOAD_FULFILLMENTS_SUCCESS';
 const LOAD_FULFILLMENTS_FAIL = 'fulfillments/LOAD_FULFILLMENTS_FAIL';
 
-function loadFulfillments(searchOptions) {
-  return { type: LOAD_FULFILLMENTS, searchOptions };
+const LOAD_MORE_FULFILLMENTS = 'fulfillments/LOAD_MORE_FULFILLMENTS';
+const LOAD_MORE_FULFILLMENTS_SUCCESS =
+  'fulfillments/LOAD_MORE_FULFILLMENTS_SUCCESS';
+const LOAD_MORE_FULFILLMENTS_FAIL = 'fulfillments/LOAD_MORE_FULFILLMENTS_FAIL';
+
+function loadFulfillments() {
+  return { type: LOAD_FULFILLMENTS };
 }
 
-function loadFulfillmentsSuccess(fulfillments) {
-  return {
-    type: LOAD_FULFILLMENTS_SUCCESS,
-    fulfillments: fulfillments.results,
-    count: fulfillments.count
-  };
+function loadFulfillmentsSuccess(fulfillments, count) {
+  return { type: LOAD_FULFILLMENTS_SUCCESS, fulfillments, count };
 }
 
 function loadFulfillmentsFail(error) {
   return { type: LOAD_FULFILLMENTS_FAIL, error };
 }
 
+function loadMoreFulfillments() {
+  return { type: LOAD_MORE_FULFILLMENTS };
+}
+
+function loadMoreFulfillmentsSuccess(fulfillments) {
+  return { type: LOAD_MORE_FULFILLMENTS_SUCCESS, fulfillments };
+}
+
+function loadMoreFulfillmentsFail(error) {
+  return { type: LOAD_MORE_FULFILLMENTS_FAIL, error };
+}
+
+const ADD_ISSUER_FILTER = 'fulfillments/ADD_ISSUER_FILTER';
+const ADD_FULFILLER_FILTER = 'fulfillments/ADD_FULFILLER_FILTER';
+
+function addIssuerFilter(address) {
+  return { type: ADD_ISSUER_FILTER, address };
+}
+
+function addFulfillerFilter(address) {
+  return { type: ADD_FULFILLER_FILTER, address };
+}
+
 function FulfillmentsReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_FULFILLMENTS: {
-      const { searchOptions } = action;
       return {
         ...state,
         loading: true,
         loaded: false,
-        count: 0,
-        error: false,
-        searchOptions
+        error: false
       };
     }
     case LOAD_FULFILLMENTS_SUCCESS: {
-      const { fulfillments, count, searchOptions } = action;
+      const { fulfillments, count } = action;
 
       return {
         ...state,
         loading: false,
         loaded: true,
-        error: false,
         fulfillments,
-        count,
-        searchOptions
+        count
       };
     }
     case LOAD_FULFILLMENTS_FAIL: {
       return {
         ...state,
         loading: false,
-        loaded: true,
         error: true
+      };
+    }
+    case LOAD_MORE_FULFILLMENTS: {
+      return {
+        ...state,
+        loadingMore: true,
+        loadingMoreError: false
+      };
+    }
+    case LOAD_MORE_FULFILLMENTS_SUCCESS: {
+      const { fulfillments } = action;
+
+      return {
+        ...state,
+        loadingMore: false,
+        fulfillments: [...state.fulfillments, ...fulfillments]
+      };
+    }
+    case LOAD_MORE_FULFILLMENTS_FAIL: {
+      return {
+        ...state,
+        loadingMore: false,
+        loadingMoreError: true
+      };
+    }
+    case ADD_ISSUER_FILTER: {
+      const { address } = action;
+
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          issuer: address,
+          fulfiller: ''
+        }
+      };
+    }
+    case ADD_FULFILLER_FILTER: {
+      const { address } = action;
+
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          issuer: '',
+          fulfiller: address
+        }
       };
     }
     default:
@@ -68,13 +143,23 @@ function FulfillmentsReducer(state = initialState, action) {
 export const actions = {
   loadFulfillments,
   loadFulfillmentsSuccess,
-  loadFulfillmentsFail
+  loadFulfillmentsFail,
+  loadMoreFulfillments,
+  loadMoreFulfillmentsSuccess,
+  loadMoreFulfillmentsFail,
+  addIssuerFilter,
+  addFulfillerFilter
 };
 
 export const actionTypes = {
   LOAD_FULFILLMENTS,
   LOAD_FULFILLMENTS_SUCCESS,
-  LOAD_FULFILLMENTS_FAIL
+  LOAD_FULFILLMENTS_FAIL,
+  LOAD_MORE_FULFILLMENTS,
+  LOAD_MORE_FULFILLMENTS_SUCCESS,
+  LOAD_MORE_FULFILLMENTS_FAIL,
+  ADD_ISSUER_FILTER,
+  ADD_FULFILLER_FILTER
 };
 
 export default FulfillmentsReducer;

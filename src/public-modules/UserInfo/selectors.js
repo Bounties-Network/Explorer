@@ -28,19 +28,27 @@ export const loadedUserStatsSelector = createSelector(
       issuer_fulfillment_acceptance,
       fulfiller_fulfillment_acceptance,
       total_bounties,
-      total_fulfillments
+      total_fulfillments,
+      awarded,
+      earned,
+      total_fulfillments_on_bounties
     } = userInfo.stats;
 
     return {
+      awarded: awarded || 0,
+      earned: earned || 0,
       issuer: {
         acceptance: issuer_fulfillment_acceptance,
         rating: issuer_ratings_received,
-        ratingGiven: issuer_ratings_given
+        ratingGiven: issuer_ratings_given,
+        total: total_bounties,
+        fulfillments: total_fulfillments_on_bounties
       },
       fulfiller: {
         acceptance: fulfiller_fulfillment_acceptance,
         rating: fulfiller_ratings_received,
-        ratingGiven: fulfiller_ratings_given
+        ratingGiven: fulfiller_ratings_given,
+        total: total_fulfillments
       }
     };
   }

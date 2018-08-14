@@ -1,0 +1,18 @@
+@import "~styles/variables.scss";
+
+.statsContainer {
+  margin-top: 1.5 * $xxl-spacing;
+  margin-bottom: 2 * $xxl-spacing;
+}
+
+.submissionsContainer {
+  margin-bottom: $xxl-spacing;
+  height: 100%;
+  margin-top: $m-spacing;
+  min-height: 25rem;
+
+}
+
+.submissionsFlex {
+  flex-grow: 1 !important;
+}

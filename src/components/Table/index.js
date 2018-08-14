@@ -10,7 +10,7 @@ class HeaderCell extends React.Component {
 
     return (
       <div className={styles.cell} style={{ flexGrow, flexBasis }}>
-        <Text type="body" color="grey">
+        <Text type="body" color="defaultGrey">
           {this.props.children}
         </Text>
       </div>

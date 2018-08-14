@@ -2,6 +2,7 @@
 
 // ultimately each of these imports should be in separate files
 import bountiesReducer from 'public-modules/Bounties';
+import draftsReducer from 'public-modules/Drafts';
 import leaderboardReducer from 'public-modules/Leaderboard';
 import userInfoReducer from 'public-modules/UserInfo';
 import statsReducer from 'public-modules/Stats';
@@ -14,9 +15,12 @@ import fileUploadRducer from 'public-modules/FileUpload';
 import clientReducer from 'public-modules/Client';
 import settingsReducer from 'public-modules/Settings';
 import transactionReducer from 'public-modules/Transaction';
+import notificationReducer from 'public-modules/Notification';
+import fulfillmentsReducer from 'public-modules/Fulfillments';
 
 export const reducers = {
   bounties: bountiesReducer,
+  drafts: draftsReducer,
   leaderboard: leaderboardReducer,
   userInfo: userInfoReducer,
   stats: statsReducer,
@@ -28,10 +32,13 @@ export const reducers = {
   fileUpload: fileUploadRducer,
   client: clientReducer,
   settings: settingsReducer,
-  transaction: transactionReducer
+  transaction: transactionReducer,
+  notification: notificationReducer,
+  fulfillments: fulfillmentsReducer
 };
 
 import bountiesSagas from 'public-modules/Bounties/sagas';
+import draftsSagas from 'public-modules/Drafts/sagas';
 import leaderboardSagas from 'public-modules/Leaderboard/sagas';
 import userInfoSagas from 'public-modules/UserInfo/sagas';
 import statsSagas from 'public-modules/Stats/sagas';
@@ -44,10 +51,13 @@ import fileUploadSagas from 'public-modules/FileUpload/sagas';
 import clientSagas from 'public-modules/Client/sagas';
 import settingsSagas from 'public-modules/Settings/sagas';
 import transactionSagas from 'public-modules/Transaction/sagas';
+import notificationSagas from 'public-modules/Notification/sagas';
+import fulfillmentsSagas from 'public-modules/Fulfillments/sagas';
 
 export const sagaWatchers = [
   ...leaderboardSagas,
   ...bountiesSagas,
+  ...draftsSagas,
   ...userInfoSagas,
   ...statsSagas,
   ...categoriesSagas,
@@ -58,5 +68,7 @@ export const sagaWatchers = [
   ...fileUploadSagas,
   ...clientSagas,
   ...settingsSagas,
-  ...transactionSagas
+  ...transactionSagas,
+  ...notificationSagas,
+  ...fulfillmentsSagas
 ];
