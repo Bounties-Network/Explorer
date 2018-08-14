@@ -2,6 +2,9 @@
 
 .header {
   display: flex;
+  flex-wrap: wrap;
+  padding: $m-spacing;
+  position: relative;
 }
 
 .body {
@@ -17,7 +20,7 @@
 }
 
 .ethBox {
-  padding: $l-spacing;
+  padding: $m-spacing;
   background-color: $brand-purple-hover;
   border-radius: $base-border-radius;
   text-align: center;
@@ -26,7 +29,7 @@
 }
 
 .bountyHeader {
-  margin-left: $l-spacing;
+  padding-top: $l-spacing;
   text-align: left;
   flex-grow: 1;
 }
@@ -38,7 +41,9 @@
 }
 
 .stage {
-  margin-top: -$base-spacing;
+  position: absolute;
+  right: $m-spacing;
+  top: $m-spacing;
 }
 
 .avatar {
@@ -46,11 +51,14 @@
 }
 
 .usd {
-  margin-bottom: $base-spacing;
+  font-size: $h3-font-size;
+  display: inline-block;
+  padding-right: $base-spacing;
 }
 
 .currency {
   opacity: 0.6;
+  display: inline-block;
 }
 
 .pill {
@@ -60,7 +68,12 @@
 
 .pageBody > div {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  padding: $m-spacing;
+
+  @media only screen and (min-width: 35em) {
+    flex-direction: row;
+  }
 }
 
 .description {
@@ -72,15 +85,46 @@
   flex-grow: 0;
   flex-shrink: 0;
   text-align: left;
-  width: 15rem;
-  padding-right: $l-spacing;
+
+  @media only screen and (min-width: 35em) {
+    padding-right: $l-spacing;
+    width: 12rem;
+  }
+
+  @media only screen and (min-width: 48em) {
+    width: 15rem;
+  }
+}
+
+.bountyMetadata {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding-top: $m-spacing;
+
+  .labelGroup {
+    width: 50%;
+    margin: 0;
+    padding-bottom: $xl-spacing;
+    padding-right: $xl-spacing;
+  }
 }
 
 .descriptionSection {
-  margin-top: -$l-spacing;
-  margin-bottom: -$l-spacing;
-  padding: $xxl-spacing $xl-spacing $xxl-spacing $xxl-spacing;
-  border-left: $base-border;
+  border-top: $base-border;
+  margin-top: $l-spacing;
+  margin-left: -$m-spacing;
+  margin-right: -$m-spacing;
+  padding: $l-spacing $l-spacing $l-spacing $l-spacing;
+
+  @media only screen and (min-width: 35em) {
+    margin-top: -$l-spacing;
+    margin-bottom: -$l-spacing;
+    margin-left: 0;
+    margin-right: 0;
+    padding: $xxl-spacing $xl-spacing $xxl-spacing $xxl-spacing;
+    border-left: $base-border;
+  }
 }
 
 .buttonSection {
