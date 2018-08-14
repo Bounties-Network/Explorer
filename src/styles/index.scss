@@ -59,10 +59,10 @@ a {
 
   h1, h2, h3, h4, h5 {
     color: $brand-black;
-    font-weight: 400;
+    font-weight: 500;
 
     &:not(:first-child) {
-      margin-top: $l-spacing;
+      margin-top: $m-spacing;
     }
   }
 
@@ -89,7 +89,6 @@ a {
   h5 {
     font-size: $body-font-size;
     margin-bottom: $base-spacing;
-    font-weight: 500;
   }
 
   p:not(:last-child) {
