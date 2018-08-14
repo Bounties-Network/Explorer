@@ -160,57 +160,59 @@ class BountyComponent extends React.Component {
                   showModal={showModal}
                 />
               </div>
-              {isDraft ? null : (
+              <div className={styles.bountyMetadata}>
+                {isDraft ? null : (
+                  <div className={styles.labelGroup}>
+                    <Text inputLabel className={styles.label}>
+                      Total Balance
+                    </Text>
+                    <Text color="purple" weight="fontWeight-medium">{`${Number(
+                      bounty.calculated_balance
+                    )} ${bounty.tokenSymbol}`}</Text>
+                  </div>
+                )}
                 <div className={styles.labelGroup}>
                   <Text inputLabel className={styles.label}>
-                    Total Balance
+                    Issuer Contact
                   </Text>
-                  <Text color="purple" weight="fontWeight-medium">{`${Number(
-                    bounty.calculated_balance
-                  )} ${bounty.tokenSymbol}`}</Text>
+                  <Text link src={`mailto:${bounty.issuer_email}`}>
+                    {bounty.issuer_email}
+                  </Text>
                 </div>
-              )}
-              <div className={styles.labelGroup}>
-                <Text inputLabel className={styles.label}>
-                  Issuer Contact
-                </Text>
-                <Text link src={`mailto:${bounty.issuer_email}`}>
-                  {bounty.issuer_email}
-                </Text>
-              </div>
-              <div className={styles.labelGroup}>
-                <Text inputLabel className={styles.label}>
-                  Deadline
-                </Text>
-                <Text>
-                  {moment
-                    .utc(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ')
-                    .fromNow(true)}
-                </Text>
-              </div>
-              <div className={styles.labelGroup}>
-                <Text inputLabel className={styles.label}>
-                  Difficulty
-                </Text>
-                <Text>{DIFFICULTY_MAPPINGS[bounty.experienceLevel]}</Text>
-              </div>
-              {bounty.sourceDirectoryHash ? (
                 <div className={styles.labelGroup}>
                   <Text inputLabel className={styles.label}>
-                    Associated Files
+                    Deadline
                   </Text>
-                  <Text
-                    link
-                    src={`https://ipfs.infura.io/ipfs/${
-                      bounty.sourceDirectoryHash
-                    }/${bounty.sourceFileName}`}
-                  >
-                    {bounty.sourceFileName}
+                  <Text>
+                    {moment
+                      .utc(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ')
+                      .fromNow(true)}
                   </Text>
                 </div>
-              ) : null}
-              <div className={styles.social}>
-                <Social />
+                <div className={styles.labelGroup}>
+                  <Text inputLabel className={styles.label}>
+                    Difficulty
+                  </Text>
+                  <Text>{DIFFICULTY_MAPPINGS[bounty.experienceLevel]}</Text>
+                </div>
+                {bounty.sourceDirectoryHash ? (
+                  <div className={styles.labelGroup}>
+                    <Text inputLabel className={styles.label}>
+                      Associated Files
+                    </Text>
+                    <Text
+                      link
+                      src={`https://ipfs.infura.io/ipfs/${
+                        bounty.sourceDirectoryHash
+                      }/${bounty.sourceFileName}`}
+                    >
+                      {bounty.sourceFileName}
+                    </Text>
+                  </div>
+                ) : null}
+                <div className={styles.social}>
+                  <Social />
+                </div>
               </div>
             </div>
             <div className={`${styles.descriptionSection}`}>

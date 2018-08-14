@@ -6,9 +6,6 @@
 
 .pageWrapper {
   box-sizing: border-box;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 $l-spacing;
 }
 
 .row {
@@ -255,6 +252,12 @@
 @media only screen and (min-width: 48em) {
   .container {
     width: 46rem;
+  }
+
+  .pageWrapper {
+    max-width: 65rem;
+    margin: 0 auto;
+    padding: 0 24px;
   }
 
   .col-sm,
