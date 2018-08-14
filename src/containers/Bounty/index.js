@@ -98,7 +98,7 @@ class BountyComponent extends React.Component {
           <PageCard.Header>
             <div className={styles.header}>
               <div className={styles.ethBox}>
-                <Text color="white" typeScale="h1" className={styles.usd}>
+                <Text color="white" typeScale="h2" className={styles.usd}>
                   {`$${Number(bounty.usd_price).toFixed(2)}`}
                 </Text>
                 <Text
