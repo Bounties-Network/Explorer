@@ -3,12 +3,14 @@
 .tabsContainer {
   padding: 1px 0;
   position: relative;
+  margin-left: -$l-spacing;
+  margin-right: -$l-spacing;
 
   &:not(:last-child):after {
     position: absolute;
     content: '';
     border-bottom: $base-border-width solid $brand-lightGrey;
-    width: calc(100% + 3rem);
+    width: 100%;
     transform: translateX(-50%);
     left: 50%;
   }
@@ -17,6 +19,12 @@
 .tab {
   flex: 1;
   justify-content: center;
+  padding-top: 0;
+  padding-bottom: $m-spacing;
+
+  @media only screen and (min-width: 35em) {
+    padding-bottom: $l-spacing;
+  }
 }
 
 .bodyLoading {
@@ -34,7 +42,8 @@
 
 .submissionItem {
   color: $brand-darkGrey;
-  padding: $xl-spacing $m-spacing $l-spacing;
+  padding: $xl-spacing $base-spacing $l-spacing;
+  position: relative;
 
   &:not(:last-child) {
     border-bottom: $base-border;

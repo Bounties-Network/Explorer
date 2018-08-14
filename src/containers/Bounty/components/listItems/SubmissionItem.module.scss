@@ -37,10 +37,20 @@
   align-items: flex-end;
 }
 
+.submissionContents {
+  padding-top: $l-spacing;
+}
+
 .submissionDescription {
   line-height: $base-line-height;
 }
 
 .fileIcon {
   margin-right: $base-spacing;
+}
+
+.label {
+  position: absolute;
+  top: $xl-spacing;
+  right: 0;
 }

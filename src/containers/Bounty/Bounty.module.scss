@@ -10,6 +10,10 @@
     flex-wrap: nowrap;
     padding: $l-spacing;
   }
+
+  @media only screen and (min-width: 48em) {
+    padding: $xl-spacing 0;
+  }
 }
 
 .body {
@@ -179,5 +183,18 @@
 }
 
 .submissionsAndCommentsCard {
+  border-radius: 0;
   margin-bottom: $xxl-spacing;
+
+  @media only screen and (min-width: 48em) {
+    border-radius: $base-border-radius;
+  }
+
+  > div {
+    padding: $m-spacing;
+
+    @media only screen and (min-width: 35em) {
+      padding: $l-spacing;
+    }
+  }
 }
