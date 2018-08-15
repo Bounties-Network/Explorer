@@ -37,7 +37,8 @@ const ModalManagerComponent = props => {
     extendDeadlineAction,
     increasePayoutAction,
     fulfillBountyAction,
-    transferOwnershipAction
+    transferOwnershipAction,
+    contributeAction
     /*****************/
   } = props;
 
@@ -77,6 +78,17 @@ const ModalManagerComponent = props => {
       )
     );
 
+  const contribute = values =>
+    initiateWalkthrough(() =>
+      contributeAction(
+        bounty.id,
+        values.contribution,
+        bounty.paysTokens,
+        bounty.tokenDecimals,
+        bounty.tokenContract
+      )
+    );
+
   const increasePayout = values =>
     initiateWalkthrough(() =>
       increasePayoutAction(
@@ -93,8 +105,7 @@ const ModalManagerComponent = props => {
     initiateWalkthrough(() => fulfillBountyAction(bounty.id, values));
 
   if (modalType === 'contribute') {
-    console.log(ContributeFormModal);
-    return <ContributeFormModal onClose={closeModal} onSubmit={() => {}} />;
+    return <ContributeFormModal onClose={closeModal} onSubmit={contribute} />;
   }
 
   if (modalType === 'deadlineWarning') {
@@ -225,7 +236,8 @@ const ModalManager = compose(
       extendDeadlineAction: bountyActions.extendDeadline,
       increasePayoutAction: bountyActions.increasePayout,
       fulfillBountyAction: fulfillmentActions.createFulfillment,
-      transferOwnershipAction: bountyActions.transferOwnership
+      transferOwnershipAction: bountyActions.transferOwnership,
+      contributeAction: bountyActions.contribute
     }
   )
 )(ModalManagerComponent);

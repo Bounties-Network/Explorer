@@ -469,8 +469,8 @@ export function* increasePayout(action) {
         [
           standardBounties.increasePayout(
             id,
-            parseInt(contractFulfillmentAmount),
-            parseInt(contractBalance)
+            contractFulfillmentAmount,
+            contractBalance
           ).send,
           { from: userAddress }
         ]
