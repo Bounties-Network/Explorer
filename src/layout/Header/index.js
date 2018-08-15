@@ -55,7 +55,7 @@ const HeaderComponent = props => {
                 <Avatar
                   size="small"
                   img={
-                    user.isProfileImageDirty
+                    user.is_profile_image_dirty
                       ? ipfsToHttp(
                           user.profileDirectoryHash,
                           user.profileFileName
