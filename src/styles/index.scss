@@ -62,37 +62,37 @@ a {
     font-weight: 500;
 
     &:not(:first-child) {
-      margin-top: $m-spacing;
+      padding-top: $m-spacing;
     }
   }
 
   h1 {
     font-size: $h2-font-size;
-    margin-bottom: $m-spacing;
+    padding-bottom: $m-spacing;
   }
 
   h2 {
     font-size: $h3-font-size;
-    margin-bottom: $m-spacing;
+    padding-bottom: $m-spacing;
   }
 
   h3 {
     font-size: $h4-font-size;
-    margin-bottom: $m-spacing;
+    padding-bottom: $m-spacing;
   }
 
   h4 {
     font-size: $h5-font-size;
-    margin-bottom: $base-spacing;
+    padding-bottom: $base-spacing;
   }
 
   h5 {
     font-size: $body-font-size;
-    margin-bottom: $base-spacing;
+    padding-bottom: $base-spacing;
   }
 
   p:not(:last-child) {
-    margin-bottom: $m-spacing;
+    padding-bottom: $m-spacing;
   }
 
   body {
