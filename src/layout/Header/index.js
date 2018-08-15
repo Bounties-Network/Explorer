@@ -35,15 +35,17 @@ const HeaderComponent = props => {
       ) : null}
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
-          <Button
-            type="primary"
-            onClick={() => {
-              history.push('/createBounty');
-            }}
-            className={styles.button}
-          >
-            Create New Bounty
-          </Button>
+          {history.location.pathname !== '/createBounty' && (
+            <Button
+              type="primary"
+              onClick={() => {
+                history.push('/createBounty');
+              }}
+              className={styles.button}
+            >
+              Create New Bounty
+            </Button>
+          )}
           <div className={styles.notification}>
             <NotificationDropdown />
           </div>
