@@ -13,6 +13,10 @@ html {
   box-sizing: inherit;
 }
 
+input, textarea {
+  appearance: none;
+}
+
 .modal-open {
   overflow: hidden;
 }
@@ -29,12 +33,6 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-}
-
-.container-fluid {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  height: 100%;
 }
 
 .fullHeight {
