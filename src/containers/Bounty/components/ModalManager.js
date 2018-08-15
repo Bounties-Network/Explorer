@@ -14,7 +14,8 @@ import {
   ActivateDeadFormModal,
   IncreasePayoutFormModal,
   FulfillBountyFormModal,
-  KillBountyFormModal
+  KillBountyFormModal,
+  TransferOwnershipFormModal
 } from 'containers/Bounty/components';
 import { IssueRatingFormModal } from 'explorer-components';
 
@@ -121,6 +122,17 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={extendDeadline}
         minimumDeadline={minimumDeadline}
+      />
+    );
+  }
+
+  if (modalType === 'transferOwnership') {
+    return (
+      <TransferOwnershipFormModal
+        onClose={closeModal}
+        onSubmit={() => {
+          console.log('submitted');
+        }}
       />
     );
   }

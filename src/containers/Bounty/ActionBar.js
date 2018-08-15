@@ -83,6 +83,7 @@ const ActionBar = props => {
           icon={['far', 'user-alt']}
           fitWidth
           className={styles.buttonGroup}
+          onClick={() => showModal('transferOwnership')}
         >
           Transfer Ownership
         </Button>
