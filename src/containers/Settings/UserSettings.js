@@ -271,7 +271,8 @@ const mapStateToProps = state => {
 
   return {
     initialValues: {
-      ...currentUser
+      ...currentUser,
+      languages: currentUser.languages
     },
     uploading: uploadState.uploading || false,
     uploaded: uploadState.uploaded || false,

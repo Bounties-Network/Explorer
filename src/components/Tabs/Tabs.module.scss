@@ -14,6 +14,7 @@
   padding: ($base-spacing * 1.5) $base-spacing;
   cursor: pointer;
   border-bottom: 2px solid transparent;
+  z-index: 1;
 
   &:not(:last-child) {
     margin-right: $m-spacing;

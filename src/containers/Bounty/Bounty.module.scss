@@ -1,0 +1,102 @@
+@import "~styles/variables.scss";
+
+.header {
+  display: flex;
+}
+
+.body {
+  height: 100%;
+}
+
+.centeredBody {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ethBox {
+  padding: $l-spacing;
+  background-color: $brand-purple-hover;
+  border-radius: $base-border-radius;
+  text-align: center;
+  height: fit-content;
+  white-space: nowrap;
+}
+
+.bountyHeader {
+  margin-left: $l-spacing;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.categories {
+  margin-top: $base-spacing;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stage {
+  margin-top: -$base-spacing;
+}
+
+.avatar {
+  margin-top: $m-spacing;
+}
+
+.usd {
+  margin-bottom: $base-spacing;
+}
+
+.currency {
+  opacity: 0.6;
+}
+
+.pill {
+  margin-top: $s-spacing;
+  opacity: 0.6;
+}
+
+.pageBody > div {
+  display: flex;
+  flex-direction: row;
+}
+
+.description {
+  text-align: left;
+  padding: $base-spacing;
+}
+
+.filter {
+  text-align: left;
+  width: 20rem;
+  padding-right: $l-spacing;
+}
+
+.descriptionSection {
+  margin-top: -$l-spacing;
+  margin-bottom: -$l-spacing;
+  padding-top: $l-spacing;
+  padding-bottom: $xxl-spacing;
+  padding-left: $l-spacing;
+  border-left: $base-border;
+}
+
+.buttonSection {
+  margin-bottom: $l-spacing;
+}
+
+.label {
+  margin-bottom: $base-spacing;
+}
+
+.labelGroup {
+  word-wrap: break-word;
+  margin-bottom: $l-spacing;
+  margin-right: $m-spacing;
+}
+
+.submissionsAndCommentsCard {
+  margin-bottom: $xxl-spacing;
+}

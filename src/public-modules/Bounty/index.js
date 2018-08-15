@@ -1,10 +1,15 @@
+const defaultGetBountyState = {
+  loading: false,
+  error: false
+};
+
 const defaultCreateDraftState = {
   creating: false,
   error: false
 };
 
-const defaultCreateBountyState = {
-  creating: false,
+const defaultStdBountyState = {
+  pending: false,
   error: false
 };
 
@@ -14,10 +19,27 @@ const defaultGetDraftState = {
 };
 
 const initialState = {
+  getBountyState: { ...defaultGetBountyState },
   createDraftState: { ...defaultCreateDraftState },
   getDraftState: { ...defaultGetDraftState },
-  createBountyState: { ...defaultCreateBountyState }
+  stdBountyState: { ...defaultStdBountyState }
 };
+
+const GET_BOUNTY = 'bounty/GET_BOUNTY';
+const GET_BOUNTY_SUCCESS = 'bounty/GET_BOUNTY_SUCCESS';
+const GET_BOUNTY_FAIL = 'bounty/GET_BOUNTY_FAIL';
+
+function getBounty(id) {
+  return { type: GET_BOUNTY, id };
+}
+
+function getBountySuccess(bounty) {
+  return { type: GET_BOUNTY_SUCCESS, bounty };
+}
+
+function getBountyFail(error) {
+  return { type: GET_BOUNTY_FAIL, error };
+}
 
 const UPDATE_DRAFT = 'bounty/UPDATE_DRAFT';
 const CREATE_DRAFT = 'bounty/CREATE_DRAFT';
@@ -32,8 +54,8 @@ function createDraft(values) {
   return { type: CREATE_DRAFT, values };
 }
 
-function createDraftSuccess() {
-  return { type: CREATE_DRAFT_SUCCESS };
+function createDraftSuccess(bounty) {
+  return { type: CREATE_DRAFT_SUCCESS, bounty };
 }
 
 function createDraftFail(error) {
@@ -57,23 +79,103 @@ function getDraftFail(error) {
 }
 
 const CREATE_BOUNTY = 'bounty/CREATE_BOUNTY';
-const CREATE_BOUNTY_SUCCESS = 'bounty/CREATE_BOUNTY_SUCCESS';
-const CREATE_BOUNTY_FAIL = 'bounty/CREATE_BOUNTY_FAIL';
+const KILL_BOUNTY = 'bounty/KILL_BOUNTY';
+const EXTEND_DEADLINE = 'bounty/EXTEND_DEADLINE';
+const TRANSFER_OWNERSHIP = 'bounty/TRANSFER_OWNERSHIP';
+const INCREASE_PAYOUT = 'bounty/INCREASE_PAYOUT';
+const ACTIVATE_BOUNTY = 'bounty/ACTIVATE_BOUNTY';
+const STD_BOUNTY_SUCCESS = 'bounty/STD_BOUNTY_SUCCESS';
+const STD_BOUNTY_FAIL = 'bounty/STD_BOUNTY_FAIL';
 
 function createBounty(values, balance) {
   return { type: CREATE_BOUNTY, values, balance };
 }
 
-function createBountySuccess() {
-  return { type: CREATE_BOUNTY_SUCCESS };
+function transferOwnership(id, address) {
+  return { type: TRANSFER_OWNERSHIP, id, address };
 }
 
-function createBountyFail(error) {
-  return { type: CREATE_BOUNTY_FAIL, error };
+function killBounty(id) {
+  return { type: KILL_BOUNTY, id };
+}
+
+function extendDeadline(id, deadline) {
+  return { type: EXTEND_DEADLINE, id, deadline };
+}
+
+function increasePayout(
+  id,
+  fulfillmentAmount,
+  balance,
+  paysTokens,
+  decimals,
+  tokenContract
+) {
+  return {
+    type: INCREASE_PAYOUT,
+    id,
+    fulfillmentAmount,
+    balance,
+    paysTokens,
+    decimals,
+    tokenContract
+  };
+}
+
+function activateBounty(id, balance, paysTokens, decimals, tokenContract) {
+  return {
+    type: ACTIVATE_BOUNTY,
+    id,
+    balance,
+    paysTokens,
+    decimals,
+    tokenContract
+  };
+}
+
+function stdBountySuccess() {
+  return { type: STD_BOUNTY_SUCCESS };
+}
+
+function stdBountyFail() {
+  return { type: STD_BOUNTY_FAIL };
 }
 
 function BountyReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_BOUNTY: {
+      return {
+        ...state,
+        getBountyState: {
+          ...defaultGetBountyState,
+          loading: true,
+          error: false
+        }
+      };
+    }
+    case GET_BOUNTY_SUCCESS: {
+      const { bounty } = action;
+
+      return {
+        ...state,
+        bounty,
+        getBountyState: {
+          ...defaultGetBountyState,
+          loading: false,
+          error: false
+        }
+      };
+    }
+    case GET_BOUNTY_FAIL: {
+      return {
+        ...state,
+        getBountyState: {
+          ...defaultGetBountyState,
+          loading: false,
+          error: true
+        }
+      };
+    }
     case GET_DRAFT: {
       return {
         ...state,
@@ -106,31 +208,36 @@ function BountyReducer(state = initialState, action) {
         }
       };
     }
+    case KILL_BOUNTY:
+    case TRANSFER_OWNERSHIP:
+    case INCREASE_PAYOUT:
+    case EXTEND_DEADLINE:
+    case ACTIVATE_BOUNTY:
     case CREATE_BOUNTY: {
       return {
         ...state,
-        createBountyState: {
-          ...state.createBountyState,
-          creating: true,
+        stdBountyState: {
+          ...state.stdBountyState,
+          pending: true,
           error: false
         }
       };
     }
-    case CREATE_BOUNTY_SUCCESS: {
+    case STD_BOUNTY_SUCCESS: {
       return {
         ...state,
-        createBountyState: {
-          ...state.createBountyState,
-          creating: false
+        stdBountyState: {
+          ...state.stdBountyState,
+          pending: false
         }
       };
     }
-    case CREATE_BOUNTY_FAIL: {
+    case STD_BOUNTY_FAIL: {
       return {
         ...state,
-        createBountyState: {
-          ...state.createBountyState,
-          creating: false,
+        stdBountyState: {
+          ...state.stdBountyState,
+          pending: false,
           error: true
         }
       };
@@ -181,29 +288,45 @@ function BountyReducer(state = initialState, action) {
 }
 
 export const actions = {
+  getBounty,
+  getBountySuccess,
+  getBountyFail,
   getDraft,
   getDraftSuccess,
   getDraftFail,
   createBounty,
+  increasePayout,
+  activateBounty,
+  killBounty,
+  transferOwnership,
+  extendDeadline,
+  stdBountySuccess,
+  stdBountyFail,
   updateDraft,
-  createBountySuccess,
-  createBountyFail,
   createDraft,
   createDraftSuccess,
   createDraftFail
 };
 
 export const actionTypes = {
+  GET_BOUNTY,
+  GET_BOUNTY_SUCCESS,
+  GET_BOUNTY_FAIL,
   GET_DRAFT,
   GET_DRAFT_SUCCESS,
   GET_DRAFT_FAIL,
   UPDATE_DRAFT,
   CREATE_BOUNTY,
-  CREATE_BOUNTY_SUCCESS,
-  CREATE_BOUNTY_FAIL,
+  INCREASE_PAYOUT,
+  EXTEND_DEADLINE,
+  ACTIVATE_BOUNTY,
+  KILL_BOUNTY,
+  TRANSFER_OWNERSHIP,
   CREATE_DRAFT,
   CREATE_DRAFT_SUCCESS,
-  CREATE_DRAFT_FAIL
+  CREATE_DRAFT_FAIL,
+  STD_BOUNTY_SUCCESS,
+  STD_BOUNTY_FAIL
 };
 
 export default BountyReducer;

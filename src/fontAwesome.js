@@ -28,6 +28,7 @@ import comment from '@fortawesome/fontawesome-pro-regular/faComment';
 import infoCircle from '@fortawesome/fontawesome-pro-regular/faInfoCircle';
 import ellipsisH from '@fortawesome/fontawesome-pro-regular/faEllipsisH';
 import checkCircle from '@fortawesome/fontawesome-pro-regular/faCheckCircle';
+import check from '@fortawesome/fontawesome-pro-regular/faCheck';
 import exclamationTriangle from '@fortawesome/fontawesome-pro-regular/faExclamationTriangle';
 import meh from '@fortawesome/fontawesome-pro-light/faMeh';
 import twitter from '@fortawesome/fontawesome-free-brands/faTwitter';
@@ -39,8 +40,11 @@ import eye from '@fortawesome/fontawesome-pro-light/faEye';
 import globe from '@fortawesome/fontawesome-pro-regular/faGlobe';
 import idCardAlt from '@fortawesome/fontawesome-pro-light/faIdCardAlt';
 import star from '@fortawesome/fontawesome-pro-regular/faStar';
+import calendarAlt from '@fortawesome/fontawesome-pro-regular/faCalendarAlt';
+import dollarSign from '@fortawesome/fontawesome-pro-regular/faDollarSign';
 
 library.add(
+  check,
   star,
   idCardAlt,
   linkedin,
@@ -80,5 +84,7 @@ library.add(
   levelUp,
   seedling,
   unlock,
-  addressCard
+  addressCard,
+  calendarAlt,
+  dollarSign
 );

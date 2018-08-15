@@ -16,7 +16,7 @@ import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { TransactionWalkthrough } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
 import {
-  createBountyStateSelector,
+  stdBountyStateSelector,
   createDraftStateSelector,
   getDraftStateSelector,
   getDraftBountySelector
@@ -396,7 +396,7 @@ const mapStateToProps = state => {
   const rootUpload = rootUploadSelector(state);
   const uploadedFile = getUploadKeySelector(UPLOAD_KEY)(state);
   const draftState = createDraftStateSelector(state);
-  const bountyState = createBountyStateSelector(state);
+  const bountyState = stdBountyStateSelector(state);
   const draftBounty = getDraftBountySelector(state) || {};
 
   return {
@@ -404,11 +404,13 @@ const mapStateToProps = state => {
     activateNow: formSelector(state, 'activateNow'),
     paysTokens: formSelector(state, 'paysTokens'),
     categories: categoriesSelector(state),
-    submittingBounty: draftState.creating || bountyState.creating,
+    submittingBounty: draftState.creating || bountyState.pending,
     uid: draftBounty.uid,
     bountyId: draftBounty.id,
     filename: uploadedFile ? uploadedFile.fileName : draftBounty.sourceFileName,
-    fileHash: uploadedFile ? uploadedFile.hash : draftBounty.sourceFileHash
+    fileHash: uploadedFile
+      ? uploadedFile.ipfsHash
+      : draftBounty.sourceDirectoryHash
   };
 };
 

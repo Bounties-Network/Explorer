@@ -13,6 +13,15 @@
   margin-bottom: $s-spacing;
 }
 
+.link {
+  color: inherit;
+}
+
+.link:hover {
+  color: $brand-blue;
+  text-decoration: underline;
+}
+
 .titleText {
   margin-bottom: $m-spacing;
   width: 100%;

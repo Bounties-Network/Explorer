@@ -1,0 +1,40 @@
+@import "~styles/variables.scss";
+
+.labelGroup {
+  word-wrap: break-word;
+  padding-left: $xl-spacing + $m-spacing;
+  margin-right: $m-spacing;
+  margin-bottom: $xl-spacing;
+
+  p {
+    margin-bottom: $base-spacing;
+  }
+}
+
+.contactInfo {
+  p:first-child {
+    margin-top: $xl-spacing;
+  }
+}
+
+.detailsContainer {
+
+}
+
+.filter {
+  text-align: left;
+}
+
+.avatarLabel {
+  padding-top: $base-spacing;
+}
+
+.actionColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.fileIcon {
+  margin-right: $base-spacing;
+}

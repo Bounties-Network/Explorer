@@ -17,3 +17,12 @@
 .usd {
   margin-top: $base-spacing
 }
+
+.link {
+  color: inherit;
+}
+
+.link:hover {
+  color: $brand-blue;
+  text-decoration: underline;
+}

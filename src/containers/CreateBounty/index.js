@@ -15,7 +15,7 @@ import {
 import moment from 'moment';
 import { Loader, ZeroState } from 'components';
 import { DEFAULT_MARKDOWN } from 'utils/constants';
-import { DRAFT_DIFFICULTY_MAPPINGS } from './constants';
+import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 
 class CreateBountyComponent extends React.Component {
   componentWillMount() {
@@ -77,7 +77,7 @@ const mapStateToProps = state => {
       categories: draftBounty.categories,
       description: draftBounty.description || DEFAULT_MARKDOWN,
       experienceLevel:
-        DRAFT_DIFFICULTY_MAPPINGS[draftBounty.experienceLevel] || 'Beginner',
+        DIFFICULTY_MAPPINGS[draftBounty.experienceLevel] || 'Beginner',
       revisions: draftBounty.revisions || 3,
       paysTokens: draftBounty.paysTokens || false,
       tokenContract: draftBounty.tokenContract,
@@ -88,7 +88,11 @@ const mapStateToProps = state => {
       activateNow: true,
       issuer_email: user.email || '',
       issuer_name: user.name || '',
-      deadline: (moment(draftBounty.deadline) || moment()).add(1, 'days').utc()
+      deadline:
+        moment(draftBounty.deadline).utc() ||
+        moment()
+          .add(1, 'days')
+          .utc()
     }
   };
 };

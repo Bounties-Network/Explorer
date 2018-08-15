@@ -1,0 +1,9 @@
+@import "~styles/variables.scss";
+
+.details {
+  text-align: left;
+
+  p:not(:last-child) {
+    margin-bottom: $m-spacing;
+  }
+}

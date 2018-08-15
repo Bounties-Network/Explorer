@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './BountyCard.module.scss';
 import { map, includes, capitalize } from 'lodash';
+import { Link } from 'react-router-dom';
 import { REV_DIFFICULTY_MAPPING } from 'public-modules/Bounties/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Card, Text, Pill } from 'components';
@@ -9,6 +10,7 @@ import { LinkedAvatar } from 'explorer-components';
 
 const BountyCard = props => {
   const {
+    id,
     title,
     categories,
     img,
@@ -54,13 +56,15 @@ const BountyCard = props => {
           <div
             className={`col-xs-9 col-sm-6 col-lg-7 ${styles.bountyPrimaryData}`}
           >
-            <Text
-              typeScale="h4"
-              weight="fontWeight-medium"
-              className={styles.titleText}
-            >
-              {title}
-            </Text>
+            <Link to={`/bounty/${id}`} className={styles.link}>
+              <Text
+                typeScale="h4"
+                weight="fontWeight-medium"
+                className={styles.titleText}
+              >
+                {title}
+              </Text>
+            </Link>
             <div className={styles.categoryList}>{renderCategories()}</div>
             <div className={styles.avatar}>
               <LinkedAvatar

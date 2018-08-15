@@ -1,4 +1,4 @@
-@import "~styles/variables.scss"; 
+@import "~styles/variables.scss";
 
 .pageCard {
   height: 100%;
@@ -9,21 +9,24 @@
 
 .headerWrapper {
   text-align: center;
-  padding-top: $xxl-spacing;
-  padding-bottom: 2 * $xxl-spacing;
+  padding-top: $xl-spacing * 2;
+  padding-bottom: $xl-spacing * 3;
   @include banner-gradient;
 }
 
 .contentWrapper {
-  flex: 1 0 0px;
-  background: $brand-lightGrey;
 }
 
 .header {
 }
 
+.title {
+  line-height: $base-line-height * 1.25;
+}
+
 .content {
   margin-top: -$xxl-spacing;
+  margin-bottom: $l-spacing;
 }
 
 .break {

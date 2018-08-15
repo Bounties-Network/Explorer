@@ -5,7 +5,6 @@ import base from '../BaseStyles.module.scss';
 import styles from './ActivityPanel.module.scss';
 import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
-import { ID_TO_NOTIFICATION } from 'utils/constants';
 import { Button, Card, ListGroup, Loader, Text, ZeroState } from 'components';
 import { ActivityItem } from '../';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
@@ -18,12 +17,11 @@ class ActivityPanelComponent extends React.Component {
       const { created, data, notification } = activity;
       const { bounty_title } = data;
       const { notification_name: notification_id } = notification;
-      const notification_name = ID_TO_NOTIFICATION[notification_id];
 
       return (
         <ListGroup.ListItem>
           <ActivityItem
-            type={notification_name}
+            type={notification_id}
             title={bounty_title}
             createdAt={created}
           />
@@ -40,13 +38,13 @@ class ActivityPanelComponent extends React.Component {
     let body = (
       <React.Fragment>
         <ListGroup>{this.renderActivity(list)}</ListGroup>
-        {list.length < count ? (
+        {list.length < count && (
           <div className={base.loadMoreButton}>
             <Button loading={loadingMore} onClick={loadMore}>
               Load More
             </Button>
           </div>
-        ) : null}
+        )}
       </React.Fragment>
     );
 

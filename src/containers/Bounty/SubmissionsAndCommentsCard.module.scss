@@ -1,0 +1,60 @@
+@import "~styles/variables.scss";
+
+.tabsContainer {
+  padding: 1px 0;
+  position: relative;
+
+  &:not(:last-child):after {
+    position: absolute;
+    content: '';
+    border-bottom: $base-border-width solid $brand-lightGrey;
+    width: calc(100% + 3rem);
+    transform: translateX(-50%);
+    left: 50%;
+  }
+}
+
+.tab {
+  flex: 1;
+  justify-content: center;
+}
+
+.bodyLoading {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  min-height: 15rem;
+}
+
+.zeroState {
+  max-width: 25rem;
+  padding: $xxl-spacing;
+}
+
+.submissionItem {
+  color: $brand-darkGrey;
+  padding: $xl-spacing $m-spacing $l-spacing;
+
+  &:not(:last-child) {
+    border-bottom: $base-border;
+  }
+}
+
+.commentItem {
+  padding: $m-spacing $m-spacing;
+  position: relative;
+  border-radius: $base-border-radius;
+  margin-top: -$base-border-width;
+
+  &:not(:last-child):after {
+    position: absolute;
+    content: '';
+    border-bottom: $base-border-width solid $brand-lightGrey;
+    width: calc(100% + 3rem);
+    padding: 0 $m-spacing;
+    bottom: 0;
+    transform: translateX(-50%);
+    left: 50%;
+  }
+}

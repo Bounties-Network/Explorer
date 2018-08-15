@@ -11,6 +11,7 @@ import { NAV_ITEMS } from './constants';
 import {
   Explorer,
   Dashboard,
+  Bounty,
   Leaderboard,
   Login,
   CreateBounty,
@@ -84,6 +85,8 @@ class AppComponent extends React.Component {
                     path="/createBounty/draft/:id/"
                     component={RequireLoginComponent(CreateBounty)}
                   />
+                  <Route exact path="/bounty/draft/:id/" component={Bounty} />
+                  <Route exact path="/bounty/:id/" component={Bounty} />
                   <Route
                     exact
                     path="/settings"
@@ -122,6 +125,7 @@ const mapStateToProps = state => {
 };
 
 const App = compose(
+  hot(module),
   withRouter,
   connect(
     mapStateToProps,
@@ -129,8 +133,7 @@ const App = compose(
       getCurrentUser: authActions.getCurrentUser,
       loadCategories: categoryActions.loadCategories
     }
-  ),
-  hot(module)
+  )
 )(AppComponent);
 
 export default App;

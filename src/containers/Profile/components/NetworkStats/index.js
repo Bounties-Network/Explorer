@@ -10,7 +10,7 @@ const map = fpMap.convert({ cap: false });
 
 function formatInput(value, format) {
   if (format == 'fraction') {
-    return `${Number(Math.round(value * 5)).toFixed(0)}/5`;
+    return `${Number(value.toFixed(0))}/5`;
   } else {
     return `${Number(value * 100).toFixed(0)}%`;
   }
