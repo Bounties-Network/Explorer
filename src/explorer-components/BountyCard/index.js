@@ -4,6 +4,7 @@ import styles from './BountyCard.module.scss';
 import { map, includes, capitalize } from 'lodash';
 import { Link } from 'react-router-dom';
 import { REV_DIFFICULTY_MAPPING } from 'public-modules/Bounties/constants';
+import { EXPIRED } from 'public-modules/Bounty/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Card, Text, Pill } from 'components';
 import { LinkedAvatar } from 'explorer-components';
@@ -18,6 +19,7 @@ const BountyCard = props => {
     experienceLevel,
     submissions,
     deadline,
+    stage,
     value,
     usd,
     currency,
@@ -110,7 +112,7 @@ const BountyCard = props => {
                 {deadline}
               </Text>
               <Text inline color="defaultGrey" className={styles.detailLabel}>
-                remaining
+                {stage === EXPIRED ? 'expired' : 'remaining'}
               </Text>
             </div>
             <div className={styles.detailGroup}>
