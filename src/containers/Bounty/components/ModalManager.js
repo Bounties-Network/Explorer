@@ -15,6 +15,7 @@ import {
   IncreasePayoutFormModal,
   FulfillBountyFormModal,
   KillBountyFormModal,
+  ContributeFormModal,
   TransferOwnershipFormModal
 } from 'containers/Bounty/components';
 import { IssueRatingFormModal } from 'explorer-components';
@@ -35,7 +36,8 @@ const ModalManagerComponent = props => {
     activateBountyAction,
     extendDeadlineAction,
     increasePayoutAction,
-    fulfillBountyAction
+    fulfillBountyAction,
+    transferOwnershipAction
     /*****************/
   } = props;
 
@@ -58,6 +60,11 @@ const ModalManagerComponent = props => {
 
   const extendDeadline = values =>
     initiateWalkthrough(() => extendDeadlineAction(bounty.id, values.deadline));
+
+  const transferOwnership = values =>
+    initiateWalkthrough(() =>
+      transferOwnershipAction(bounty.id, values.newOwner)
+    );
 
   const activateBounty = values =>
     initiateWalkthrough(() =>
@@ -84,6 +91,11 @@ const ModalManagerComponent = props => {
 
   const fulfillBounty = values =>
     initiateWalkthrough(() => fulfillBountyAction(bounty.id, values));
+
+  if (modalType === 'contribute') {
+    console.log(ContributeFormModal);
+    return <ContributeFormModal onClose={closeModal} onSubmit={() => {}} />;
+  }
 
   if (modalType === 'deadlineWarning') {
     return (
@@ -130,9 +142,7 @@ const ModalManagerComponent = props => {
     return (
       <TransferOwnershipFormModal
         onClose={closeModal}
-        onSubmit={() => {
-          console.log('submitted');
-        }}
+        onSubmit={transferOwnership}
       />
     );
   }
@@ -214,7 +224,8 @@ const ModalManager = compose(
       activateBountyAction: bountyActions.activateBounty,
       extendDeadlineAction: bountyActions.extendDeadline,
       increasePayoutAction: bountyActions.increasePayout,
-      fulfillBountyAction: fulfillmentActions.createFulfillment
+      fulfillBountyAction: fulfillmentActions.createFulfillment,
+      transferOwnershipAction: bountyActions.transferOwnership
     }
   )
 )(ModalManagerComponent);

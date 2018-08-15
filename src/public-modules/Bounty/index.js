@@ -84,6 +84,7 @@ const EXTEND_DEADLINE = 'bounty/EXTEND_DEADLINE';
 const TRANSFER_OWNERSHIP = 'bounty/TRANSFER_OWNERSHIP';
 const INCREASE_PAYOUT = 'bounty/INCREASE_PAYOUT';
 const ACTIVATE_BOUNTY = 'bounty/ACTIVATE_BOUNTY';
+const CONTRIBUTE = 'bounty/CONTRIBUTE';
 const STD_BOUNTY_SUCCESS = 'bounty/STD_BOUNTY_SUCCESS';
 const STD_BOUNTY_FAIL = 'bounty/STD_BOUNTY_FAIL';
 
@@ -101,6 +102,10 @@ function killBounty(id) {
 
 function extendDeadline(id, deadline) {
   return { type: EXTEND_DEADLINE, id, deadline };
+}
+
+function contribute(id, value, paysTokens, decimals, tokenContract) {
+  return { type: CONTRIBUTE, id, value, paysTokens, decimals, tokenContract };
 }
 
 function increasePayout(
@@ -213,6 +218,7 @@ function BountyReducer(state = initialState, action) {
     case INCREASE_PAYOUT:
     case EXTEND_DEADLINE:
     case ACTIVATE_BOUNTY:
+    case CONTRIBUTE:
     case CREATE_BOUNTY: {
       return {
         ...state,
@@ -300,6 +306,7 @@ export const actions = {
   killBounty,
   transferOwnership,
   extendDeadline,
+  contribute,
   stdBountySuccess,
   stdBountyFail,
   updateDraft,
@@ -321,6 +328,7 @@ export const actionTypes = {
   EXTEND_DEADLINE,
   ACTIVATE_BOUNTY,
   KILL_BOUNTY,
+  CONTRIBUTE,
   TRANSFER_OWNERSHIP,
   CREATE_DRAFT,
   CREATE_DRAFT_SUCCESS,

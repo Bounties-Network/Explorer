@@ -30,7 +30,9 @@ const {
   KILL_BOUNTY,
   ACTIVATE_BOUNTY,
   EXTEND_DEADLINE,
-  INCREASE_PAYOUT
+  INCREASE_PAYOUT,
+  CONTRIBUTE,
+  TRANSFER_OWNERSHIP
 } = actionTypes;
 const {
   getBountySuccess,
@@ -493,6 +495,84 @@ export function* increasePayout(action) {
   }
 }
 
+export function* contribute(action) {
+  const { id, value, paysTokens, decimals, tokenContract } = action;
+  const userAddress = yield select(addressSelector);
+  yield put(setPendingWalletConfirm());
+  let addedBalance;
+  if (paysTokens) {
+    addedBalance = calculateDecimals(
+      BigNumber(value, 10).toString(),
+      parseInt(decimals)
+    );
+  } else {
+    const { web3 } = yield call(getWeb3Client);
+    addedBalance = web3.utils.toWei(BigNumber(value, 10).toString(), 'ether');
+  }
+  try {
+    const { standardBounties } = yield call(getContractClient);
+    let txHash;
+    if (paysTokens) {
+      const { tokenContract: tokenContractClient } = yield call(
+        getTokenClient,
+        tokenContract
+      );
+      const network = yield select(networkSelector);
+      const [approveHash, contributeHash] = yield call(
+        batchContractMethods,
+        [
+          tokenContractClient.approve(
+            config[network].standardBountiesAddress,
+            parseInt(addedBalance)
+          ).send,
+          { from: userAddress }
+        ],
+        [
+          standardBounties.contribute(id, parseInt(addedBalance)).send,
+          { from: userAddress }
+        ]
+      );
+      txHash = contributeHash;
+    } else {
+      txHash = yield call(
+        promisifyContractCall(standardBounties.contribute, {
+          from: userAddress,
+          value: addedBalance
+        }),
+        id,
+        addedBalance
+      );
+    }
+    yield put(stdBountySuccess());
+    yield put(setPendingReceipt(txHash));
+  } catch (e) {
+    yield put(stdBountyFail());
+    yield put(setTransactionError());
+  }
+}
+
+export function* transferIssuer(action) {
+  const { id, address } = action;
+  const userAddress = yield select(addressSelector);
+  yield put(setPendingWalletConfirm());
+
+  try {
+    const { standardBounties } = yield call(getContractClient);
+    const txHash = yield call(
+      promisifyContractCall(standardBounties.transferIssuer, {
+        from: userAddress
+      }),
+      id,
+      address
+    );
+    yield put(stdBountySuccess());
+    yield put(setPendingReceipt(txHash));
+  } catch (e) {
+    yield put(stdBountyFail());
+    yield put(setTransactionError());
+  }
+}
+
 export function* watchCreateDraft() {
   yield takeLatest([CREATE_DRAFT, UPDATE_DRAFT], createOrUpdateDraft);
 }
@@ -525,6 +605,14 @@ export function* watchIncreasePayout() {
   yield takeLatest(INCREASE_PAYOUT, increasePayout);
 }
 
+export function* watchTransferIssuer() {
+  yield takeLatest(TRANSFER_OWNERSHIP, transferIssuer);
+}
+
+export function* watchContribute() {
+  yield takeLatest(CONTRIBUTE, contribute);
+}
+
 export default [
   watchGetDraft,
   watchCreateDraft,
@@ -533,5 +621,7 @@ export default [
   watchKillBounty,
   watchActivateBounty,
   watchExtendDeadline,
-  watchIncreasePayout
+  watchIncreasePayout,
+  watchTransferIssuer,
+  watchContribute
 ];

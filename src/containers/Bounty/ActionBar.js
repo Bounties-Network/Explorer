@@ -112,6 +112,7 @@ const ActionBar = props => {
         <Button
           icon={['far', 'dollar-sign']}
           className={styles.buttonGroup}
+          onClick={() => showModal('contribute')}
           fitWidth
         >
           Contribute
