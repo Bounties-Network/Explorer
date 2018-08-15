@@ -460,15 +460,15 @@ export function* increasePayout(action) {
         [
           tokenContractClient.approve(
             config[network].standardBountiesAddress,
-            contractBalance
+            parseInt(contractBalance)
           ).send,
           { from: userAddress }
         ],
         [
           standardBounties.increasePayout(
             id,
-            contractFulfillmentAmount,
-            contractBalance
+            parseInt(contractFulfillmentAmount),
+            parseInt(contractBalance)
           ).send,
           { from: userAddress }
         ]
