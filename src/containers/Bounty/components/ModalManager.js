@@ -140,6 +140,10 @@ const ModalManagerComponent = props => {
       <IncreasePayoutFormModal
         onClose={closeModal}
         onSubmit={increasePayout}
+        minimumPayout={BigNumber(
+          bounty.calculated_fulfillmentAmount,
+          10
+        ).toString()}
         minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}
       />
     );

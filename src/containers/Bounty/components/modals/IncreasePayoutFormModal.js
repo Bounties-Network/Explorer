@@ -7,7 +7,7 @@ import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 
 const IncreasePayoutFormModal = props => {
-  const { onClose, minimumBalance, handleSubmit } = props;
+  const { onClose, minimumBalance, minimumPayout, handleSubmit } = props;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -54,7 +54,17 @@ const IncreasePayoutFormModal = props => {
               min="0"
               step=".00001"
               label="New prize amount (ETH or whole tokens)"
-              validate={[validators.required]}
+              validate={[
+                validators.required,
+                (fulfillmentAmount, values) => {
+                  if (
+                    Number(minimumPayout || 0) >
+                    Number(values.fulfillmentAmount || 0)
+                  ) {
+                    return 'Your payout amount must be greater than the previous payout amount.';
+                  }
+                }
+              ]}
               placeholder="Enter amount..."
             />
           </div>
