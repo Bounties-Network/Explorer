@@ -55,7 +55,7 @@ class Textbox extends React.Component {
     }
 
     return (
-      <div className={styles.wrapper}>
+      <div className={`${styles.wrapper} ${className}`}>
         {labelText ? (
           <div>
             <Text inputLabel color={error ? 'red' : null}>

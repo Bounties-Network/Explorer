@@ -10,8 +10,8 @@ const NewCommentForm = props => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={`row ${styles.container}`}>
-        <div className="col-xs-10">
+      <div className={`container-fluid ${styles.container}`}>
+        <div className={styles.textbox}>
           <Field
             name="text"
             component={FormTextInput}
@@ -19,9 +19,7 @@ const NewCommentForm = props => {
             placeholder="Write a comment..."
           />
         </div>
-        <div className="col-xs-2">
-          <Button loading={loading}>Post comment</Button>
-        </div>
+        <Button loading={loading}>Post comment</Button>
       </div>
     </form>
   );
