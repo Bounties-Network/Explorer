@@ -16,9 +16,13 @@ import {
   ZeroState
 } from 'components';
 import { BountyItem } from '../';
-import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
-import { rootDraftsSelector } from 'public-modules/Drafts/selectors';
-import { bountiesPanelSelector } from './selectors';
+import {
+  bountiesPanelSelector,
+  tabDataSelector,
+  currentTabSelector
+} from './selectors';
+import { bountiesCountSelector } from 'public-modules/Bounties/selectors';
+import { draftsCountSelector } from 'public-modules/Drafts/selectors';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as draftsActions } from 'public-modules/Drafts';
 import { actions } from './reducer';
@@ -53,16 +57,22 @@ class BountiesPanelComponent extends React.Component {
   };
 
   render() {
-    const { setActiveTab, currentTab, active, drafts, history } = this.props;
-    const { list, count, loading, loadingMore, loadMore, error } = this.props[
-      currentTab
-    ];
+    const {
+      tabData,
+      activeCount,
+      currentTab,
+      draftsCount,
+      history,
+      setActiveTab
+    } = this.props;
+
+    const { list, count, loading, loadingMore, error } = tabData;
 
     let bodyClass;
     let body = (
       <React.Fragment>
         <ListGroup>{this.renderBounties(list)}</ListGroup>
-        {list.length < count ? (
+        {list.length < count && (
           <div className={base.loadMoreButton}>
             <Button
               loading={loadingMore}
@@ -71,7 +81,7 @@ class BountiesPanelComponent extends React.Component {
               Load More
             </Button>
           </div>
-        ) : null}
+        )}
       </React.Fragment>
     );
 
@@ -126,14 +136,14 @@ class BountiesPanelComponent extends React.Component {
             >
               <Tabs.Tab
                 tabColor="green"
-                tabCount={active.count}
+                tabCount={activeCount}
                 eventKey={'active'}
               >
                 Active
               </Tabs.Tab>
               <Tabs.Tab
                 tabColor="blue"
-                tabCount={drafts.count}
+                tabCount={draftsCount}
                 eventKey={'drafts'}
               >
                 Drafts
@@ -150,27 +160,16 @@ class BountiesPanelComponent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const bountyState = rootBountiesSelector(state);
-  const draftsState = rootDraftsSelector(state);
+  const currentTab = currentTabSelector(state);
+  const tabData = tabDataSelector(state);
+  const activeCount = bountiesCountSelector(state);
+  const draftsCount = draftsCountSelector(state);
 
   return {
-    currentTab: bountiesPanelSelector(state).currentTab,
-    active: {
-      list: bountyState.bounties,
-      count: bountyState.count,
-      offset: bountyState.offset,
-      loading: bountyState.loading,
-      loadingMore: bountyState.loadingMore,
-      error: bountyState.error
-    },
-    drafts: {
-      list: draftsState.drafts,
-      count: draftsState.count,
-      offset: draftsState.offset,
-      loading: draftsState.loading,
-      loadingMore: draftsState.loadingMore,
-      error: draftsState.error
-    }
+    currentTab,
+    tabData,
+    activeCount,
+    draftsCount
   };
 };
 
@@ -180,9 +179,9 @@ const BountiesPanel = compose(
     mapStateToProps,
     {
       load: actions.loadBountiesPanel,
+      setActiveTab: actions.setActiveTab,
       activeLoadMore: bountiesActions.loadMoreBounties,
-      draftsLoadMore: draftsActions.loadMoreDrafts,
-      setActiveTab: actions.setActiveTab
+      draftsLoadMore: draftsActions.loadMoreDrafts
     }
   ),
   LoadComponent('')

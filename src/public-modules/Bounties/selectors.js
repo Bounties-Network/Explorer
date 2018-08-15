@@ -23,6 +23,11 @@ export const bountiesStateSelector = createSelector(
   })
 );
 
+export const bountiesCountSelector = createSelector(
+  rootBountiesSelector,
+  rootBounties => rootBounties.count
+);
+
 // We make this a selector to manage the set -> array conversion
 export const bountiesCategoryFiltersSelector = createSelector(
   rootBountiesSelector,
