@@ -107,7 +107,7 @@ const ActionBar = props => {
           fitWidth
           onClick={() => showModal('fulfillBounty')}
         >
-          Sign in to fulfill
+          {user ? 'Fulfill' : 'Sign in to fulfill'}
         </Button>
         <Button
           icon={['far', 'dollar-sign']}
