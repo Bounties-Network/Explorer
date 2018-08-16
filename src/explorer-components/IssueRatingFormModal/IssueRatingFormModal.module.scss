@@ -45,3 +45,8 @@
   display: flex;
   justify-content: center;
 }
+
+.submitError {
+  margin-top: $base-spacing;
+  margin-bottom: -$s-spacing;
+}

@@ -25,7 +25,7 @@ class Rating extends React.Component {
 
   renderInputs = () => {
     const { uuid, value: stateValue } = this.state;
-    const { value, defaultValue } = this.props;
+    const { value, defaultValue, error } = this.props;
 
     const checkedValue = Number(value || stateValue || defaultValue);
     const componentSet = [];
@@ -67,6 +67,17 @@ class Rating extends React.Component {
           </div>
         ) : null}
         <span className={styles.starGroup}>{this.renderInputs()}</span>
+        {error ? (
+          <div>
+            <Text
+              className={styles.inputHelpText}
+              typeScale="Small"
+              color={'red'}
+            >
+              * {error}
+            </Text>
+          </div>
+        ) : null}
       </div>
     );
   }
