@@ -46,11 +46,13 @@ const ProfileBountiesComponent = props => {
         deadline,
         calculated_fulfillmentAmount,
         usd_price,
-        tokenSymbol
+        tokenSymbol,
+        bountyStage
       } = bounty;
       return (
         <BountyCard
           key={id}
+          id={id}
           title={title}
           categories={categories}
           img={user.profile_image}
@@ -62,6 +64,7 @@ const ProfileBountiesComponent = props => {
           usd={Number(usd_price).toFixed(0)}
           currency={tokenSymbol}
           onPillClick={toggleCategoryFilter}
+          stage={bountyStage}
           selectedCategories={categoryFilters}
         />
       );

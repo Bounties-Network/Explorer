@@ -3,7 +3,8 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import base from '../BaseStyles.module.scss';
 import styles from './UserStats.module.scss';
-import { Avatar, Text } from 'components';
+import { Text } from 'components';
+import { LinkedAvatar } from 'explorer-components';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import {
   userInfoSelector,
@@ -52,7 +53,7 @@ class UserStatsComponent extends React.Component {
 
     return (
       <div className={`${styles.container} ${className}`}>
-        <Avatar
+        <LinkedAvatar
           size="large"
           border
           name={name}
@@ -63,6 +64,7 @@ class UserStatsComponent extends React.Component {
               ? ipfsToHttp(profileDirectoryHash, profileFileName)
               : profile_image
           }
+          to={`/profile/${public_address}`}
           className={base.alignLeft}
         />
 

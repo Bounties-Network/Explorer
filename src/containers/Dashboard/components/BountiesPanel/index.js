@@ -37,7 +37,8 @@ class BountiesPanelComponent extends React.Component {
         fulfillment_count,
         title,
         tokenSymbol,
-        usd_price
+        usd_price,
+        bountyStage
       } = bounty;
 
       return (
@@ -50,6 +51,7 @@ class BountiesPanelComponent extends React.Component {
             currency={tokenSymbol}
             usd_value={parseFloat(usd_price).toFixed(0)}
             createdAt={created}
+            isDraft={this.props.currentTab === 'drafts'}
           />
         </ListGroup.ListItem>
       );

@@ -14,7 +14,9 @@ import {
   ActivateDeadFormModal,
   IncreasePayoutFormModal,
   FulfillBountyFormModal,
-  KillBountyFormModal
+  KillBountyFormModal,
+  ContributeFormModal,
+  TransferOwnershipFormModal
 } from 'containers/Bounty/components';
 import { IssueRatingFormModal } from 'explorer-components';
 
@@ -34,7 +36,9 @@ const ModalManagerComponent = props => {
     activateBountyAction,
     extendDeadlineAction,
     increasePayoutAction,
-    fulfillBountyAction
+    fulfillBountyAction,
+    transferOwnershipAction,
+    contributeAction
     /*****************/
   } = props;
 
@@ -58,11 +62,27 @@ const ModalManagerComponent = props => {
   const extendDeadline = values =>
     initiateWalkthrough(() => extendDeadlineAction(bounty.id, values.deadline));
 
+  const transferOwnership = values =>
+    initiateWalkthrough(() =>
+      transferOwnershipAction(bounty.id, values.newOwner)
+    );
+
   const activateBounty = values =>
     initiateWalkthrough(() =>
       activateBountyAction(
         bounty.id,
         values.balance,
+        bounty.paysTokens,
+        bounty.tokenDecimals,
+        bounty.tokenContract
+      )
+    );
+
+  const contribute = values =>
+    initiateWalkthrough(() =>
+      contributeAction(
+        bounty.id,
+        values.contribution,
         bounty.paysTokens,
         bounty.tokenDecimals,
         bounty.tokenContract
@@ -83,6 +103,10 @@ const ModalManagerComponent = props => {
 
   const fulfillBounty = values =>
     initiateWalkthrough(() => fulfillBountyAction(bounty.id, values));
+
+  if (modalType === 'contribute') {
+    return <ContributeFormModal onClose={closeModal} onSubmit={contribute} />;
+  }
 
   if (modalType === 'deadlineWarning') {
     return (
@@ -125,6 +149,15 @@ const ModalManagerComponent = props => {
     );
   }
 
+  if (modalType === 'transferOwnership') {
+    return (
+      <TransferOwnershipFormModal
+        onClose={closeModal}
+        onSubmit={transferOwnership}
+      />
+    );
+  }
+
   if (modalType === 'activateDead') {
     return (
       <ActivateDeadFormModal
@@ -140,6 +173,10 @@ const ModalManagerComponent = props => {
       <IncreasePayoutFormModal
         onClose={closeModal}
         onSubmit={increasePayout}
+        minimumPayout={BigNumber(
+          bounty.calculated_fulfillmentAmount,
+          10
+        ).toString()}
         minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}
       />
     );
@@ -198,7 +235,9 @@ const ModalManager = compose(
       activateBountyAction: bountyActions.activateBounty,
       extendDeadlineAction: bountyActions.extendDeadline,
       increasePayoutAction: bountyActions.increasePayout,
-      fulfillBountyAction: fulfillmentActions.createFulfillment
+      fulfillBountyAction: fulfillmentActions.createFulfillment,
+      transferOwnershipAction: bountyActions.transferOwnership,
+      contributeAction: bountyActions.contribute
     }
   )
 )(ModalManagerComponent);

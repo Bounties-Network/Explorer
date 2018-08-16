@@ -94,6 +94,7 @@ const SubmissionItem = props => {
           address={address}
           img={img}
           hash={address}
+          to={`/profile/${address}`}
           nameTextScale={'h4'}
           nameTextColor="black"
         />

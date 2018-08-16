@@ -46,7 +46,8 @@ const ExplorerBodyComponent = props => {
         deadline,
         calculated_fulfillmentAmount,
         usd_price,
-        tokenSymbol
+        tokenSymbol,
+        bountyStage
       } = bounty;
       return (
         <BountyCard
@@ -64,6 +65,7 @@ const ExplorerBodyComponent = props => {
           currency={tokenSymbol}
           onPillClick={toggleCategoryFilter}
           selectedCategories={categoryFilters}
+          stage={bountyStage}
         />
       );
     }, bounties);

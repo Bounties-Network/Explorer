@@ -7,6 +7,8 @@ import IncreasePayoutFormModal from './modals/IncreasePayoutFormModal';
 import SubmissionItem from './listItems/SubmissionItem';
 import FulfillBountyFormModal from './modals/FulfillBountyFormModal';
 import KillBountyFormModal from './modals/KillBountyFormModal';
+import TransferOwnershipFormModal from './modals/TransferOwnershipFormModal';
+import ContributeFormModal from './modals/ContributeFormModal';
 import NewCommentForm from './NewCommentForm';
 import CommentItem from './listItems/CommentItem';
 
@@ -20,6 +22,8 @@ export {
   SubmissionItem,
   FulfillBountyFormModal,
   KillBountyFormModal,
+  TransferOwnershipFormModal,
+  ContributeFormModal,
   NewCommentForm,
   CommentItem
 };

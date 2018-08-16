@@ -99,13 +99,7 @@ WalkthroughError.propTypes = {
 };
 
 const WalkthroughSuccess = props => {
-  const {
-    visible,
-    toDashboard,
-    buttonText,
-    successPath,
-    successOnClick
-  } = props;
+  const { visible, toDashboard, buttonText, successPath, successLink } = props;
 
   return (
     <Modal fixed size="small" visible={visible}>
@@ -116,9 +110,9 @@ const WalkthroughSuccess = props => {
         <Button margin onClick={toDashboard} type="primary">
           To Dashboard
         </Button>
-        <Button type="action" onClick={successOnClick}>
-          {buttonText}
-        </Button>
+        <a href={successLink}>
+          <Button type="action">{buttonText}</Button>
+        </a>
       </Modal.Footer>
     </Modal>
   );
@@ -134,7 +128,7 @@ const TransactionWalkthrough = props => {
     pendingReceiptText,
     pendingWalletText,
     transaction,
-    successOnClick
+    successLink
   } = props;
 
   if (!visible) {
@@ -171,7 +165,7 @@ const TransactionWalkthrough = props => {
         visible={true}
         toDashboard={toDashboard}
         buttonText={transaction.linkText}
-        successOnClick={successOnClick}
+        successLink={successLink}
       />
     );
   }

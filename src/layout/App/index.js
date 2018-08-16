@@ -31,6 +31,14 @@ import '../../styles/flexboxgrid.css';
 import '../../font-files/inter-ui.css';
 
 class AppComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.body = React.createRef();
+    props.history.listen(
+      () => this.body && this.body.current && this.body.current.scrollTo(0, 0)
+    );
+  }
+
   renderSideNavItems() {
     return map(navItem => {
       return <Sidebar.TabIcon {...navItem} key={navItem.tabKey} />;
@@ -71,7 +79,7 @@ class AppComponent extends React.Component {
               >
                 {this.renderSideNavItems()}
               </Sidebar>,
-              <div className={`${styles.body}`}>
+              <div className={`${styles.body}`} ref={this.body}>
                 <Switch>
                   <Route exact path="/leaderboard" component={Leaderboard} />
                   <Route exact path="/explorer" component={Explorer} />

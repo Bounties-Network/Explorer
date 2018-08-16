@@ -15,6 +15,7 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { TransactionWalkthrough } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
+import { BigNumber } from 'bignumber.js';
 import {
   stdBountyStateSelector,
   createDraftStateSelector,
@@ -359,7 +360,11 @@ class CreateBountyFormComponent extends React.Component {
                         validators.required,
                         (balance, allValues) => {
                           const valueField = allValues.fulfillmentAmount;
-                          if (valueField && balance < valueField) {
+                          if (
+                            valueField &&
+                            BigNumber(balance, 10).toString() <
+                              BigNumber(valueField, 10).toString()
+                          ) {
                             return 'Deposit amount must at least match the payout amount.';
                           }
                         }

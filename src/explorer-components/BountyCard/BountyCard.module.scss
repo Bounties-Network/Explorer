@@ -27,9 +27,6 @@
   width: 100%;
   line-height: 1.25;
   display: inline-block;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
 
   @media only screen and (min-width: 48em) {
     margin-bottom: $s-spacing;

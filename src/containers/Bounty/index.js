@@ -9,7 +9,7 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import showdown from 'showdown';
 import moment from 'moment';
 import { map } from 'lodash';
-import { DRAFT } from 'public-modules/Bounty/constants';
+import { DRAFT, EXPIRED } from 'public-modules/Bounty/constants';
 import ActionBar from './ActionBar';
 import SubmissionsAndCommentsCard from './SubmissionsAndCommentsCard';
 import { TransactionWalkthrough } from 'hocs';
@@ -136,7 +136,7 @@ class BountyComponent extends React.Component {
                     img={bounty.user.profile_image}
                     address={bounty.user.public_address}
                     hash={bounty.user.public_address}
-                    to={`profile/${bounty.user.public_address}`}
+                    to={`/profile/${bounty.user.public_address}`}
                     addressTextColor="white"
                     size="small"
                     border="true"
@@ -181,12 +181,12 @@ class BountyComponent extends React.Component {
                 </div>
                 <div className={styles.labelGroup}>
                   <Text inputLabel className={styles.label}>
-                    Deadline
+                    {bounty.bountyStage === EXPIRED ? 'Expired' : 'Deadline'}
                   </Text>
                   <Text>
-                    {moment
-                      .utc(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ')
-                      .fromNow(true)}
+                    {moment(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ').fromNow(
+                      true
+                    )}
                   </Text>
                 </div>
                 <div className={styles.labelGroup}>

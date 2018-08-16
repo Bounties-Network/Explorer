@@ -19,7 +19,8 @@ const ActionBar = props => {
   } = props;
 
   const belongsToLoggedInUser = user && bounty.issuer === user.public_address;
-  const loggedOutButAddressMatches = !user && bounty.issuer === walletAddress;
+  const loggedOutButAddressMatches =
+    !user && walletAddress && bounty.issuer === walletAddress.toLowerCase();
 
   const draftUrl = `/createBounty/draft/${bounty.id}/`;
 
@@ -49,7 +50,7 @@ const ActionBar = props => {
     );
   }
 
-  if (!isDraft && belongsToLoggedInUser) {
+  if (!isDraft && (belongsToLoggedInUser || loggedOutButAddressMatches)) {
     actionOptions = (
       <div>
         {bounty.bountyStage === DEAD ? (
@@ -71,6 +72,16 @@ const ActionBar = props => {
             Kill bounty
           </Button>
         )}
+        {bounty.bountyStage !== DEAD && (
+          <Button
+            icon={['far', 'dollar-sign']}
+            className={styles.buttonGroup}
+            onClick={() => showModal('contribute')}
+            fitWidth
+          >
+            Contribute
+          </Button>
+        )}
         <Button
           icon={['far', 'calendar-alt']}
           fitWidth
@@ -83,6 +94,7 @@ const ActionBar = props => {
           icon={['far', 'user-alt']}
           fitWidth
           className={styles.buttonGroup}
+          onClick={() => showModal('transferOwnership')}
         >
           Transfer Ownership
         </Button>
@@ -92,13 +104,13 @@ const ActionBar = props => {
           fitWidth
           className={styles.buttonGroup}
         >
-          Change Prize
+          Increase Prize
         </Button>
       </div>
     );
   }
 
-  if (!belongsToLoggedInUser) {
+  if (!belongsToLoggedInUser && !loggedOutButAddressMatches) {
     actionOptions = (
       <div>
         <Button
@@ -106,11 +118,12 @@ const ActionBar = props => {
           fitWidth
           onClick={() => showModal('fulfillBounty')}
         >
-          Sign in to fulfill
+          {user ? 'Fulfill' : 'Sign in to fulfill'}
         </Button>
         <Button
           icon={['far', 'dollar-sign']}
           className={styles.buttonGroup}
+          onClick={() => showModal('contribute')}
           fitWidth
         >
           Contribute

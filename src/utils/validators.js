@@ -13,7 +13,7 @@ const minLength = min => value =>
 const totalLength = length => value =>
   value && value.length !== length ? `Must be ${length} characters` : undefined;
 const isWeb3Address = value =>
-  web3.utils.isAddress(value) ? undefined : 'Must be a proper contract address';
+  web3.utils.isAddress(value) ? undefined : 'Must be a proper web3 address';
 const number = value =>
   value && isNaN(Number(value)) ? 'Must be a number' : undefined;
 const email = value =>
