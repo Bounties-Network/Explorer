@@ -73,7 +73,7 @@ const BountyCard = props => {
                 img={img}
                 address={address}
                 hash={address}
-                to={`profile/${address}`}
+                to={`/profile/${address}`}
                 size="small"
               />
             </div>
