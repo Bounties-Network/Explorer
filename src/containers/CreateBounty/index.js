@@ -91,11 +91,11 @@ const mapStateToProps = (state, router) => {
       activateNow: true,
       issuer_email: user.email || '',
       issuer_name: user.name || '',
-      deadline:
-        moment(draftBounty.deadline).utc() ||
-        moment()
-          .add(1, 'days')
-          .utc()
+      deadline: draftBounty.deadline
+        ? moment(draftBounty.deadline)
+        : moment()
+            .add(3, 'days')
+            .utc()
     }
   };
 };
