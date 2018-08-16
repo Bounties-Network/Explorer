@@ -3,6 +3,10 @@
 .createBounty {
 }
 
+.createBountyHeader {
+  padding: $xxl-spacing 0;
+}
+
 .centeredBody {
   height: 100%;
   display: flex;
@@ -14,14 +18,21 @@
 .cardContent {
   text-align: left;
   margin-bottom: $xxl-spacing;
+  padding: $xl-spacing;
 }
 
 .markdownEditor {
   height: 15em;
 }
 
-.buttons {
+.buttonContainer {
+  display: block;
+  border-top: $base-border;
   text-align: center;
+  margin-left: -($xxl-spacing + $m-spacing);
+  margin-right: -($xxl-spacing + $m-spacing);
+  padding-top: $xl-spacing;
+  margin-bottom: -$l-spacing;
 }
 
 .submitError {
