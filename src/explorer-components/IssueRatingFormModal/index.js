@@ -2,11 +2,14 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import styles from './IssueRatingFormModal.module.scss';
-import { Avatar, Button, Modal, Text } from 'components';
+import { Avatar, Button, Modal, Text, Loader } from 'components';
+import { LoadComponent } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
 import { FormTextbox, FormRating } from 'form-components';
 import { actions as reviewActions } from 'public-modules/Review';
+import { actions as revieweeActions } from './reducer';
+import { rootRevieweeSelector } from './selectors';
 import { rootReviewSelector } from 'public-modules/Review/selectors';
 import BountyDetails from './BountyDetails';
 
@@ -26,20 +29,35 @@ const IssueRatingFormModalComponent = props => {
     onClose,
     handleSubmit,
     postReview,
+    reviewee,
     type,
     bounty,
     fulfillmentId,
-    name,
-    address,
-    img,
-    posting
+    loading,
+    error,
+    posting,
+    postingError
   } = props;
+
+  const { name, address, img } = reviewee;
 
   const handleReview = values => {
     const { rating, review } = values;
 
     postReview(bounty.id, fulfillmentId, rating, review);
   };
+
+  let revieweeAvatar = (
+    <Avatar name={name} address={address} hash={address} img={img} />
+  );
+
+  if (loading) {
+    revieweeAvatar = <Loader size="medium" color="blue" />;
+  }
+
+  if (error) {
+    revieweeAvatar = null;
+  }
 
   return (
     <form onSubmit={handleSubmit(handleReview)}>
@@ -59,14 +77,7 @@ const IssueRatingFormModalComponent = props => {
             <div className={`row ${styles.centerColumn}`}>
               <div className="col-xs-8">
                 <Text color="defaultGrey">{messageTemplate[type][0]}</Text>
-                <div className={styles.avatar}>
-                  <Avatar
-                    name={name}
-                    address={address}
-                    hash={address}
-                    img={img}
-                  />
-                </div>
+                <div className={styles.avatar}>{revieweeAvatar}</div>
                 <Text color="defaultGrey">{messageTemplate[type][1]}</Text>
               </div>
             </div>
@@ -115,11 +126,23 @@ const IssueRatingFormModalComponent = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   const reviewState = rootReviewSelector(state);
+  const revieweeState = rootRevieweeSelector(state);
+  const { bounty, fulfillmentId, type } = ownProps;
 
   return {
-    posting: reviewState.posting
+    reviewee: revieweeState.reviewee,
+    loading: revieweeState.loading,
+    error: revieweeState.error,
+    posting: reviewState.posting,
+    postingError: reviewState.postingError,
+
+    identifiers: {
+      bountyId: bounty.id,
+      fulfillmentId,
+      type
+    }
   };
 };
 
@@ -127,9 +150,12 @@ const IssueRatingFormModal = compose(
   connect(
     mapStateToProps,
     {
+      load: revieweeActions.loadReviewee,
       postReview: reviewActions.postReview
     }
-  )
+  ),
+  reduxForm({ form: 'issueRating' }),
+  LoadComponent('identifiers')
 )(IssueRatingFormModalComponent);
 
-export default reduxForm({ form: 'issueRating' })(IssueRatingFormModal);
+export default IssueRatingFormModal;

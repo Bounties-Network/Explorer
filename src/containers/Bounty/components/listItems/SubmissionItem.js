@@ -51,10 +51,7 @@ const SubmissionItem = props => {
         icon={['far', 'star']}
         onClick={() =>
           showModal('issueRatingForFulfiller', {
-            fulfillmentId,
-            name,
-            address,
-            img
+            fulfillmentId
           })
         }
       >
@@ -70,10 +67,7 @@ const SubmissionItem = props => {
         icon={['far', 'star']}
         onClick={() =>
           showModal('issueRatingForIssuer', {
-            fulfillmentId,
-            name: bounty.issuer_name,
-            address: bounty.issuer_address,
-            img: bounty.user.profile_image
+            fulfillmentId
           })
         }
       >
