@@ -19,6 +19,7 @@ const map = fpMap.convert({ cap: false });
 
 let SubmissionsAndCommentsCardComponent = props => {
   const {
+    initiateWalkthrough,
     showModal,
     setActiveTab,
     currentTab,
@@ -74,7 +75,9 @@ let SubmissionsAndCommentsCardComponent = props => {
             bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
             submissionBelongsToLoggedInUser={submissionBelongsToLoggedInUser}
             acceptFulfillment={() =>
-              acceptFulfillment(bounty.id, fulfillment_id)
+              initiateWalkthrough(() =>
+                acceptFulfillment(bounty.id, fulfillment_id)
+              )
             }
             showModal={showModal}
           />

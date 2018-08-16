@@ -1,11 +1,12 @@
 import request from 'utils/request';
 import { push } from 'react-router-redux';
-import { put, takeLatest, select } from 'redux-saga/effects';
+import { all, put, takeLatest, select } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { actionTypes as transactionActionTypes } from 'public-modules/Transaction';
 import { actionTypes as reviewActionTypes } from 'public-modules/Review';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
 import { actions as commentsActions } from 'public-modules/Comments';
+import { actions as transactionActions } from 'public-modules/Transaction';
 import {
   actions as bountyPageActions,
   actionTypes as bountyPageActionTypes
@@ -18,14 +19,18 @@ const { POST_REVIEW_SUCCESS } = reviewActionTypes;
 const { closeModal } = bountyPageActions;
 const { loadFulfillments } = fulfillmentsActions;
 const { loadComments } = commentsActions;
+const { closeWalkthrough } = transactionActions;
 
-export function* closeModals(action) {
+export function* closeBountyModal(action) {
   yield put(closeModal());
-  yield put(loadFulfillments());
+
+  if (action.type === LOCATION_CHANGE) {
+    yield put(closeWalkthrough());
+  }
 }
 
 export function* loadTab(action) {
-  const { tabKey } = action;
+  const { tabKey = 'submissions' } = action;
 
   if (tabKey == 'submissions') {
     yield put(loadFulfillments());
@@ -38,12 +43,15 @@ export function* loadTab(action) {
 export function* watchCloseModals() {
   yield takeLatest(
     [INITIATE_WALKTHROUGH, POST_REVIEW_SUCCESS, LOCATION_CHANGE],
-    closeModals
+    closeBountyModal
   );
 }
 
-export function* watchSetActiveTab() {
-  yield takeLatest(SET_ACTIVE_TAB, loadTab);
+export function* watchTabLoads() {
+  yield takeLatest(
+    [SET_ACTIVE_TAB, POST_REVIEW_SUCCESS, LOCATION_CHANGE],
+    loadTab
+  );
 }
 
-export default [watchCloseModals, watchSetActiveTab];
+export default [watchCloseModals, watchTabLoads];

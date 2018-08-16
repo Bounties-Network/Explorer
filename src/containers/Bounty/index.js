@@ -225,15 +225,18 @@ class BountyComponent extends React.Component {
             </div>
           </PageCard.Content>
         </PageCard>
-        <PageCard noBanner>
-          <PageCard.Content className={styles.submissionsAndCommentsCard}>
-            <SubmissionsAndCommentsCard
-              bounty={bounty}
-              currentUser={user}
-              initiateWalkthrough={initiateWalkthrough}
-            />
-          </PageCard.Content>
-        </PageCard>
+        {!isDraft && (
+          <PageCard noBanner>
+            <PageCard.Content className={styles.submissionsAndCommentsCard}>
+              <SubmissionsAndCommentsCard
+                bounty={bounty}
+                isDraft={isDraft}
+                currentUser={user}
+                initiateWalkthrough={initiateWalkthrough}
+              />
+            </PageCard.Content>
+          </PageCard>
+        )}
       </div>
     );
   }

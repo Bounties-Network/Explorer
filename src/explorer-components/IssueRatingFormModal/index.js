@@ -28,6 +28,8 @@ const IssueRatingFormModalComponent = props => {
   const {
     onClose,
     handleSubmit,
+    submitFailed,
+    invalid,
     postReview,
     reviewee,
     type,
@@ -89,6 +91,7 @@ const IssueRatingFormModalComponent = props => {
                     component={FormRating}
                     type="string"
                     label="Rating"
+                    validate={[validators.required]}
                   />
                 </div>
                 <div className={styles.inputGroup}>
@@ -97,7 +100,7 @@ const IssueRatingFormModalComponent = props => {
                     component={FormTextbox}
                     type="string"
                     label="Mini review"
-                    validate={[]}
+                    validate={[validators.required]}
                     placeholder="Enter review..."
                   />
                 </div>
@@ -120,6 +123,19 @@ const IssueRatingFormModalComponent = props => {
           <Button type="primary" loading={posting} disabled={posting}>
             Submit
           </Button>
+
+          {submitFailed &&
+            invalid && (
+              <Text inputLabel color="red" className={styles.submitError}>
+                Fix errors before submitting.
+              </Text>
+            )}
+
+          {postingError && (
+            <Text inputLabel color="red" className={styles.submitError}>
+              Something went wrong. Please try again later.
+            </Text>
+          )}
         </Modal.Footer>
       </Modal>
     </form>
