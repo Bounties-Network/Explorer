@@ -26,6 +26,13 @@ class ProfileComponent extends React.Component {
     this.props.setProfileAddress(address.toLowerCase() || '');
   }
 
+  componentDidUpdate(prevProps) {
+    const currentAddress = this.props.match.params.address;
+    if (prevProps.match !== this.props.match) {
+      this.props.setProfileAddress(currentAddress.toLowerCase());
+    }
+  }
+
   render() {
     const { error, loaded, loading, user } = this.props;
 

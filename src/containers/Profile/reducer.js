@@ -41,6 +41,7 @@ function profileUIReducer(state = initialState, action) {
 
       return {
         ...state,
+        ...initialState,
         address
       };
     }
