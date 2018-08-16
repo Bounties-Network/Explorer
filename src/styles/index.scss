@@ -13,6 +13,10 @@ html {
   box-sizing: inherit;
 }
 
+input, textarea {
+  appearance: none;
+}
+
 .modal-open {
   overflow: hidden;
 }
@@ -29,12 +33,6 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-}
-
-.container-fluid {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  height: 100%;
 }
 
 .fullHeight {
@@ -59,41 +57,40 @@ a {
 
   h1, h2, h3, h4, h5 {
     color: $brand-black;
-    font-weight: 400;
+    font-weight: 500;
 
     &:not(:first-child) {
-      margin-top: $l-spacing;
+      padding-top: $m-spacing;
     }
   }
 
   h1 {
     font-size: $h2-font-size;
-    margin-bottom: $m-spacing;
+    padding-bottom: $m-spacing;
   }
 
   h2 {
     font-size: $h3-font-size;
-    margin-bottom: $m-spacing;
+    padding-bottom: $m-spacing;
   }
 
   h3 {
     font-size: $h4-font-size;
-    margin-bottom: $m-spacing;
+    padding-bottom: $m-spacing;
   }
 
   h4 {
     font-size: $h5-font-size;
-    margin-bottom: $base-spacing;
+    padding-bottom: $base-spacing;
   }
 
   h5 {
     font-size: $body-font-size;
-    margin-bottom: $base-spacing;
-    font-weight: 500;
+    padding-bottom: $base-spacing;
   }
 
   p:not(:last-child) {
-    margin-bottom: $m-spacing;
+    padding-bottom: $m-spacing;
   }
 
   body {
@@ -148,9 +145,11 @@ a {
     padding: $base-spacing;
     white-space: pre-wrap;
     word-wrap: break-word;
+    line-height: 1.5;
 
     code {
       color: $brand-darkGrey;
+      font-family: monospace;
     }
   }
 }

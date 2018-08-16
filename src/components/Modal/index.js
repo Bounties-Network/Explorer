@@ -224,14 +224,6 @@ class Modal extends React.Component {
       }
     }, children);
 
-    let gridSize = 'col-xs-7';
-    if (size === 'large') {
-      gridSize = 'col-xs-9';
-    }
-    if (size === 'small') {
-      gridSize = 'col-xs-5';
-    }
-
     let baseClass = styles.overlay;
     if (fixed) {
       baseClass += ` ${styles.fixed}`;
@@ -243,21 +235,19 @@ class Modal extends React.Component {
 
     return (
       <div className={baseClass} onClick={this.dismiss}>
-        <div className="container-fluid">
-          <div className={`${styles.modalWrapper} row center-xs middle-xs`}>
-            <div
-              className={`${styles.modal} ${gridSize}`}
-              onClick={this.modalClick}
-            >
-              <ModalContext.Provider value={{ onClose: this.onClose }}>
-                {this.renderHeader(header)}
-                {this.renderHeading(heading)}
-                {this.renderMessage(message)}
-                {this.renderDescription(description)}
-                {this.renderBody(body)}
-                {this.renderFooter(footer)}
-              </ModalContext.Provider>
-            </div>
+        <div className={`${styles.modalWrapper}`}>
+          <div
+            className={`${styles.modal} ${styles[size]}`}
+            onClick={this.modalClick}
+          >
+            <ModalContext.Provider value={{ onClose: this.onClose }}>
+              {this.renderHeader(header)}
+              {this.renderHeading(heading)}
+              {this.renderMessage(message)}
+              {this.renderDescription(description)}
+              {this.renderBody(body)}
+              {this.renderFooter(footer)}
+            </ModalContext.Provider>
           </div>
         </div>
       </div>

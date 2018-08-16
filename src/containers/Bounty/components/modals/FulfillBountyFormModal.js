@@ -40,7 +40,7 @@ let FulfillBountyFormModalComponent = props => {
         onClose={closeAndReset}
         visible={true}
         fixed
-        size="small"
+        size="medium"
       >
         <Modal.Header closable={true}>
           <Modal.Message>Enter submission details</Modal.Message>
@@ -52,7 +52,7 @@ let FulfillBountyFormModalComponent = props => {
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
           <div className="row">
-            <div className="col-xs-6">
+            <div className="col-xs">
               <Field
                 name="name"
                 component={FormTextInput}
@@ -62,7 +62,7 @@ let FulfillBountyFormModalComponent = props => {
                 placeholder="Enter name..."
               />
             </div>
-            <div className="col-xs-6">
+            <div className="col-xs">
               <Field
                 name="email"
                 component={FormTextInput}
@@ -74,7 +74,7 @@ let FulfillBountyFormModalComponent = props => {
             </div>
           </div>
           <div className={`row ${styles.fulfillmentInput}`}>
-            <div className="col-xs-12">
+            <div className="col-xs">
               <Field
                 name="url"
                 component={FormTextInput}
@@ -84,12 +84,8 @@ let FulfillBountyFormModalComponent = props => {
                 placeholder="Enter URL..."
               />
             </div>
-          </div>
-          <div className={`row ${styles.fulfillmentInput}`}>
-            <div className="col-xs-12">
-              <Text typeScale="Small" color="defaultGrey">
-                Attachment
-              </Text>
+            <div className="col-xs">
+              <Text inputLabel>Attachment</Text>
               <FileUpload
                 disabled={uploading}
                 onChange={file =>
@@ -102,8 +98,8 @@ let FulfillBountyFormModalComponent = props => {
               />
             </div>
           </div>
-          <div className="row">
-            <div className="col-xs-12">
+          <div className={`row ${styles.fulfillmentInput}`}>
+            <div className="col-xs">
               <Field
                 name="description"
                 component={FormTextbox}

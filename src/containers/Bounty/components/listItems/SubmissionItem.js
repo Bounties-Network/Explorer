@@ -83,80 +83,66 @@ const SubmissionItem = props => {
   }
 
   return (
-    <div className="">
-      <div className="row">
-        <div className={`col-xs-3 ${styles.detailsContainer} ${styles.filter}`}>
-          <div className="row">
-            <div className="col-xs-12">
-              <LinkedAvatar
-                name={name}
-                address={address}
-                img={img}
-                hash={address}
-                nameTextScale={'h4'}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xs-12">
-              <div className={`${styles.labelGroup} ${styles.contactInfo}`}>
-                <Text color="defaultGrey" className={styles.label}>
-                  Contact
-                </Text>
-                <Text link src={`mailto:${email}`}>
-                  {email}
-                </Text>
-              </div>
-
-              <div className={styles.labelGroup}>
-                <Text color="defaultGrey" className={styles.label}>
-                  Submitted
-                </Text>
-                <Text>{formattedTime}</Text>
-              </div>
-            </div>
-          </div>
+    <div className="row">
+      <div
+        className={`col-xs-12 col-sm-3 ${styles.detailsContainer} ${
+          styles.filter
+        }`}
+      >
+        <LinkedAvatar
+          name={name}
+          address={address}
+          img={img}
+          hash={address}
+          nameTextScale={'h4'}
+          nameTextColor="black"
+        />
+        <div className={`${styles.labelGroup} ${styles.contactInfo}`}>
+          <Text inputLabel>Contact</Text>
+          <Text link src={`mailto:${email}`}>
+            {email}
+          </Text>
         </div>
-        <div className={`col-xs-6 ${styles.filter}`}>
-          {url ? (
-            <div className={styles.labelGroup}>
-              <Text color="defaultGrey" className={styles.label}>
-                Web link
-              </Text>
-              <Text link src={url}>
-                {url}
-              </Text>
-            </div>
-          ) : null}
+
+        <div className={styles.labelGroup}>
+          <Text inputLabel>Submitted</Text>
+          <Text>{formattedTime}</Text>
+        </div>
+      </div>
+      <div className={`col-xs-12 col-sm-7 ${styles.filter}`}>
+        {url ? (
           <div className={styles.labelGroup}>
-            <Text color="defaultGrey" className={styles.label}>
-              Description
+            <Text inputLabel>Web link</Text>
+            <Text link src={url}>
+              {url}
             </Text>
-            <Text>{description || 'N/A'}</Text>
           </div>
-
-          {dataHash ? (
-            <div className={styles.labelGroup}>
-              <Text color="defaultGrey" className={styles.label}>
-                Associated files
-              </Text>
-              <FontAwesomeIcon
-                icon={['fal', 'file-archive']}
-                className={styles.fileIcon}
-              />
-              <Text
-                link
-                src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-              >
-                {dataFileName}
-              </Text>
-            </div>
-          ) : null}
+        ) : null}
+        <div className={`${styles.labelGroup} ${styles.submissionContents}`}>
+          <Text inputLabel>Description</Text>
+          <Text className={styles.submissionDescription}>
+            {description || 'N/A'}
+          </Text>
         </div>
-        <div className={`col-xs-3 ${styles.actionColumn}`}>
-          <FulfillmentStagePill className={styles.label} accepted={accepted} />
-          {actionButton}
-        </div>
+        {dataHash ? (
+          <div className={styles.labelGroup}>
+            <Text inputLabel>Associated files</Text>
+            <FontAwesomeIcon
+              icon={['fal', 'file-archive']}
+              className={styles.fileIcon}
+            />
+            <Text
+              link
+              src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+            >
+              {dataFileName}
+            </Text>
+          </div>
+        ) : null}
+      </div>
+      <div className={`col-sm-2 ${styles.actionColumn}`}>
+        <FulfillmentStagePill className={styles.label} accepted={accepted} />
+        {actionButton}
       </div>
     </div>
   );

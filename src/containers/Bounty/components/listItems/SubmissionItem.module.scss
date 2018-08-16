@@ -4,7 +4,10 @@
   word-wrap: break-word;
   padding-left: $xl-spacing + $m-spacing;
   margin-right: $m-spacing;
-  margin-bottom: $xl-spacing;
+
+  &:not(:last-child) {
+    margin-bottom: $xl-spacing;
+  }
 
   p {
     margin-bottom: $base-spacing;
@@ -18,7 +21,6 @@
 }
 
 .detailsContainer {
-
 }
 
 .filter {
@@ -35,6 +37,20 @@
   align-items: flex-end;
 }
 
+.submissionContents {
+  padding-top: $l-spacing;
+}
+
+.submissionDescription {
+  line-height: $base-line-height;
+}
+
 .fileIcon {
   margin-right: $base-spacing;
+}
+
+.label {
+  position: absolute;
+  top: $xl-spacing;
+  right: 0;
 }

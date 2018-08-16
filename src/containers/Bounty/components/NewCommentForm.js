@@ -10,15 +10,13 @@ const NewCommentForm = props => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={`container-fluid ${styles.container}`}>
-        <div className={styles.textbox}>
-          <Field
-            name="text"
-            component={FormTextInput}
-            type="text"
-            placeholder="Write a comment..."
-          />
-        </div>
+      <div className={styles.container}>
+        <Field
+          name="text"
+          component={FormTextInput}
+          type="text"
+          placeholder="Write a comment..."
+        />
         <Button loading={loading}>Post comment</Button>
       </div>
     </form>

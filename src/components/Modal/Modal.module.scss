@@ -54,7 +54,28 @@
 }
 
 .modalWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
+  padding-top: $header-height-sm + $s-spacing;
+}
+
+.small, .medium, .large {
+  width: 100%;
+  margin: $s-spacing;
+}
+
+.small {
+  max-width: 30rem;
+}
+
+.medium {
+  max-width: 38rem;
+}
+
+.large {
+  max-width: 55rem;
 }
 
 .innerWrapper {
@@ -66,7 +87,9 @@
 }
 
 .headerContent {
+  line-height: $base-line-height;
   padding: $xxl-spacing 0 $m-spacing 0;
+  text-align: center;
 }
 
 .headerWrapper {
@@ -77,23 +100,24 @@
 }
 
 .message {
-  padding: $m-spacing 0;
+  text-align: center;
 }
 
 .description {
   padding: $m-spacing 0;
+  text-align: center;
 }
 
 .body {
-  //padding-bottom: $xxl-spacing;
-  line-height: 1.5em;
+  padding: $l-spacing 0;
+  line-height: $base-line-height;
 }
 
 .bodyWrapper {
 }
 
 .footer {
-  margin: $xxl-spacing (-$m-spacing) 0;
+  margin: $xxl-spacing (-$l-spacing) 0;
   border-top: $base-border;
   text-align: right;
   padding: $l-spacing $l-spacing 0;

@@ -2,10 +2,10 @@
 
 .container {
   display: flex;
-  flex-direction: row;
   padding: $base-spacing 0;
-}
 
-.textbox {
-  flex-grow: 1;
+  > div {
+    flex: 1;
+    padding-right: $base-spacing;
+  }
 }

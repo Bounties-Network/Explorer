@@ -2,8 +2,15 @@
 
 .details {
   text-align: left;
+  padding-left: $xl-spacing + $m-spacing;
+  padding-top: $l-spacing;
 
-  p:not(:last-child) {
-    margin-bottom: $m-spacing;
+  @media only screen and (min-width: 48em) {
+    padding-left: 0;
+    padding-top: 0;
   }
+}
+
+.timeStamp {
+  padding-top: $base-spacing;
 }
