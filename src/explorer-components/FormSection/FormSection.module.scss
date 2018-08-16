@@ -15,6 +15,7 @@
 .sectionTitle {
   line-height: $base-line-height;
   letter-spacing: 1px;
+  padding-bottom: $s-spacing;
 }
 
 .description {
@@ -28,5 +29,5 @@
 }
 
 .inputGroup {
-  margin-top: $xl-spacing;
+  padding-top: $xl-spacing;
 }

@@ -18,11 +18,23 @@
 .cardContent {
   text-align: left;
   margin-bottom: $xxl-spacing;
-  padding: $xl-spacing;
+  padding: 0;
+
+  @media only screen and (min-width: 48em) {
+    padding: $xl-spacing;
+  }
 }
 
 .markdownEditor {
   height: 15em;
+}
+
+.input:not(:last-child) {
+  padding-bottom: $l-spacing;
+
+  @media only screen and (min-width: 48em) {
+    padding-bottom: 0;
+  }
 }
 
 .buttonContainer {
@@ -32,7 +44,12 @@
   margin-left: -($xxl-spacing + $m-spacing);
   margin-right: -($xxl-spacing + $m-spacing);
   padding-top: $xl-spacing;
+  padding-bottom: $xl-spacing;
   margin-bottom: -$l-spacing;
+
+  @media only screen and (min-width: 48em) {
+    padding-bottom: 0;
+  }
 }
 
 .submitError {

@@ -48,7 +48,7 @@ class MarkdownEditor extends React.Component {
       <div className={styles.markdownEditor}>
         <Modal
           dismissable
-          size={'large'}
+          size={'medium'}
           fixed
           visible={showModal}
           onClose={this.hideModal}

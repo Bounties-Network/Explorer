@@ -30,7 +30,7 @@ class Section extends React.Component {
     return [
       <div className={styles.section}>
         <div className="row">
-          <div className="col-xs-3">
+          <div className="col-xs-12 col-sm-3">
             <Text
               className={styles.sectionTitle}
               color="defaultGrey"
@@ -40,7 +40,7 @@ class Section extends React.Component {
               {title}
             </Text>
           </div>
-          <div className="col-xs-9">{children}</div>
+          <div className="col-xs-12 col-sm-9">{children}</div>
         </div>
       </div>
     ];
