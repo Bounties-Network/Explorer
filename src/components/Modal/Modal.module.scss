@@ -44,7 +44,7 @@
 .iconHeader {
   color: $brand-purple;
   margin: $xxl-spacing 0;
-  font-size: 4em;
+  font-size: 3em;
 }
 
 .loadingHeader {
@@ -88,7 +88,7 @@
 
 .headerContent {
   line-height: $base-line-height;
-  padding: $xxl-spacing 0 $m-spacing 0;
+  padding: $xxl-spacing 0 0 0;
   text-align: center;
 }
 
@@ -104,12 +104,12 @@
 }
 
 .description {
-  padding: $m-spacing 0;
+  padding: $xl-spacing 0 $xxl-spacing;
   text-align: center;
 }
 
 .body {
-  padding: $l-spacing 0;
+  padding-bottom: $xl-spacing;
   line-height: $base-line-height;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .footer {
-  margin: $xxl-spacing (-$base-spacing) 0;
+  margin: $xxl-spacing (-$l-spacing) 0;
   border-top: $base-border;
   text-align: right;
   padding: $l-spacing $l-spacing 0;

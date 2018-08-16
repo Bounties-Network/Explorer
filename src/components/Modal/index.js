@@ -87,7 +87,7 @@ class Message extends React.Component {
 class Description extends React.Component {
   render() {
     return (
-      <Text className={styles.description} typeScale="Body" color="defaultGrey">
+      <Text className={styles.description} typeScale="Body" color="darkGrey">
         {this.props.children}
       </Text>
     );
