@@ -34,7 +34,9 @@ class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     this.body = React.createRef();
-    props.history.listen(() => this.body && this.body.current.scrollTo(0, 0));
+    props.history.listen(
+      () => this.body && this.body.current && this.body.current.scrollTo(0, 0)
+    );
   }
 
   renderSideNavItems() {
