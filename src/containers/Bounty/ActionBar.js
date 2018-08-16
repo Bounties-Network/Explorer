@@ -104,7 +104,7 @@ const ActionBar = props => {
           fitWidth
           className={styles.buttonGroup}
         >
-          Change Prize
+          Increase Prize
         </Button>
       </div>
     );
