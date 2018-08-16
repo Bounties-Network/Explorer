@@ -17,10 +17,11 @@
 
 .cardContent {
   text-align: left;
-  margin-bottom: $xxl-spacing;
+  margin-bottom: 0;
   padding: 0;
 
   @media only screen and (min-width: 48em) {
+    margin-bottom: $xxl-spacing;
     padding: $xl-spacing;
   }
 }
@@ -41,13 +42,15 @@
   display: block;
   border-top: $base-border;
   text-align: center;
-  margin-left: -($xxl-spacing + $m-spacing);
-  margin-right: -($xxl-spacing + $m-spacing);
+  margin-left: -$l-spacing;
+  margin-right: -$l-spacing;
   padding-top: $xl-spacing;
   padding-bottom: $xl-spacing;
   margin-bottom: -$l-spacing;
 
   @media only screen and (min-width: 48em) {
+    margin-left: -($xxl-spacing + $m-spacing);
+    margin-right: -($xxl-spacing + $m-spacing);
     padding-bottom: 0;
   }
 }
