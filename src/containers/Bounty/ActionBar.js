@@ -19,7 +19,8 @@ const ActionBar = props => {
   } = props;
 
   const belongsToLoggedInUser = user && bounty.issuer === user.public_address;
-  const loggedOutButAddressMatches = !user && bounty.issuer === walletAddress;
+  const loggedOutButAddressMatches =
+    !user && walletAddress && bounty.issuer === walletAddress.toLowerCase();
 
   const draftUrl = `/createBounty/draft/${bounty.id}/`;
 
@@ -49,7 +50,7 @@ const ActionBar = props => {
     );
   }
 
-  if (!isDraft && belongsToLoggedInUser) {
+  if (!isDraft && (belongsToLoggedInUser || loggedOutButAddressMatches)) {
     actionOptions = (
       <div>
         {bounty.bountyStage === DEAD ? (
@@ -69,6 +70,16 @@ const ActionBar = props => {
             onClick={() => showModal('kill')}
           >
             Kill bounty
+          </Button>
+        )}
+        {bounty.bountyStage !== DEAD && (
+          <Button
+            icon={['far', 'dollar-sign']}
+            className={styles.buttonGroup}
+            onClick={() => showModal('contribute')}
+            fitWidth
+          >
+            Contribute
           </Button>
         )}
         <Button
@@ -99,7 +110,7 @@ const ActionBar = props => {
     );
   }
 
-  if (!belongsToLoggedInUser) {
+  if (!belongsToLoggedInUser && !loggedOutButAddressMatches) {
     actionOptions = (
       <div>
         <Button

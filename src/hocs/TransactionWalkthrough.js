@@ -60,7 +60,7 @@ function TransactionWalkthroughHOC(config, WrappedComponent) {
             dismissable={config.dismissable}
             pendingReceiptText={config.pendingReceiptText}
             pendingWalletText={config.pendingWalletText}
-            successOnClick={() => history.push(transaction.link)}
+            successLink={transaction.link}
           />
           <WrappedComponent
             {...this.props}
