@@ -84,6 +84,8 @@ let FulfillBountyFormModalComponent = props => {
                 placeholder="Enter URL..."
               />
             </div>
+          </div>
+          <div className={`row ${styles.fulfillmentInput}`}>
             <div className="col-xs">
               <Text inputLabel>Attachment</Text>
               <FileUpload
