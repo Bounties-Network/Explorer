@@ -7,10 +7,13 @@
 
 .overlay {
   cursor: pointer;
+  padding: $s-spacing;
 }
 
 .textArea {
   white-space: pre-wrap;
+  line-height: 1.4;
+  padding: $m-spacing;
 }
 
 .overlay:hover {
