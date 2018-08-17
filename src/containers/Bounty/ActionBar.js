@@ -12,6 +12,7 @@ const ActionBar = props => {
     bounty,
     history,
     initiateWalkthrough,
+    initiateLoginProtection,
     isDraft,
     showModal,
     user,
@@ -34,7 +35,9 @@ const ActionBar = props => {
           className={styles.activateButton}
           onClick={() => {
             if (moment(bounty.deadline) < moment()) {
-              return showModal('deadlineWarning');
+              return initiateLoginProtection(() =>
+                showModal('deadlineWarning')
+              );
             }
             showModal('activate');
           }}
@@ -58,7 +61,9 @@ const ActionBar = props => {
             type="action"
             className={styles.reactivateButton}
             fitWidth
-            onClick={() => showModal('activateDead')}
+            onClick={() =>
+              initiateLoginProtection(() => showModal('activateDead'))
+            }
           >
             Re-Activate Bounty
           </Button>
@@ -67,7 +72,7 @@ const ActionBar = props => {
             type="destructive"
             className={styles.killButton}
             fitWidth
-            onClick={() => showModal('kill')}
+            onClick={() => initiateLoginProtection(() => showModal('kill'))}
           >
             Kill bounty
           </Button>
@@ -76,7 +81,9 @@ const ActionBar = props => {
           <Button
             icon={['far', 'dollar-sign']}
             className={styles.buttonGroup}
-            onClick={() => showModal('contribute')}
+            onClick={() =>
+              initiateLoginProtection(() => showModal('contribute'))
+            }
             fitWidth
           >
             Contribute
@@ -86,7 +93,9 @@ const ActionBar = props => {
           icon={['far', 'calendar-alt']}
           fitWidth
           className={styles.buttonGroup}
-          onClick={() => showModal('extendDeadline')}
+          onClick={() =>
+            initiateLoginProtection(() => showModal('extendDeadline'))
+          }
         >
           Change deadline
         </Button>
@@ -94,12 +103,16 @@ const ActionBar = props => {
           icon={['far', 'user-alt']}
           fitWidth
           className={styles.buttonGroup}
-          onClick={() => showModal('transferOwnership')}
+          onClick={() =>
+            initiateLoginProtection(() => showModal('transferOwnership'))
+          }
         >
           Transfer Ownership
         </Button>
         <Button
-          onClick={() => showModal('increasePayout')}
+          onClick={() =>
+            initiateLoginProtection(() => showModal('increasePayout'))
+          }
           icon={['far', 'dollar-sign']}
           fitWidth
           className={styles.buttonGroup}
@@ -116,14 +129,16 @@ const ActionBar = props => {
         <Button
           type="action"
           fitWidth
-          onClick={() => showModal('fulfillBounty')}
+          onClick={() =>
+            initiateLoginProtection(() => showModal('fulfillBounty'))
+          }
         >
           {user ? 'Fulfill' : 'Sign in to fulfill'}
         </Button>
         <Button
           icon={['far', 'dollar-sign']}
           className={styles.buttonGroup}
-          onClick={() => showModal('contribute')}
+          onClick={() => initiateLoginProtection(() => showModal('contribute'))}
           fitWidth
         >
           Contribute
