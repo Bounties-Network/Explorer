@@ -1,3 +1,6 @@
+import { actionTypes as authActionTypes } from 'public-modules/Authentication';
+const { LOGOUT_SUCCESS } = authActionTypes;
+
 const defaultWalkthroughState = {
   transactionsInitiated: false,
   walkthroughStage: 'initiatePrompt',
@@ -140,6 +143,12 @@ function postTransactionFail(txHash) {
 
 function ManageTransactionReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGOUT_SUCCESS: {
+      return {
+        ...state,
+        transactionsInitiated: false
+      };
+    }
     case LOAD_TRANSACTIONS_SUCCESS: {
       return {
         ...state,
