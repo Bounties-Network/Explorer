@@ -1,22 +1,10 @@
-import React from 'react';
-import request from 'utils/request';
-import { LIMIT } from './constants';
-import { call, put, takeLatest, select } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
-import { toast as callToast } from 'react-toastify';
-import { each, get } from 'lodash';
-import { Toast } from 'components';
-import { Link } from 'react-router-dom';
-import {
-  notificationsSelector,
-  rootNotificationSelector,
-  notificationsListSelector
-} from 'public-modules/Notification/selectors';
-import { getUserAddressSelector } from 'public-modules/Authentication/selectors';
-import { actions, actionTypes } from 'public-modules/Notification';
-import { notification_template } from 'utils/constants';
-import { deserializeNotification } from './helpers';
+import request from "utils/request";
+import { call, put, select, takeLatest } from "redux-saga/effects";
+import { LIMIT } from "./constants";
+import { rootNotificationSelector } from "./selectors";
+import { actionTypes, actions } from "public-modules/Notification";
 
+const { LOAD_NOTIFICATIONS, LOAD_MORE_NOTIFICATIONS } = actionTypes;
 const {
   loadNotifications,
   loadNotificationsSuccess,
@@ -37,17 +25,9 @@ const {
 
 export function* loadNotificationsSaga(action) {
   try {
-    const address = yield select(getUserAddressSelector);
-    if (!address) {
-      return null;
-    }
-    const currentNotifications = yield select(notificationsSelector);
-    const endpoint = `notification/push/user/${address}/`;
-    const response = yield call(request, endpoint, 'GET');
-    const notifications = response.results;
-    for (let i = 0; i < notifications.length; i++) {
-      const notificationItem = notifications[i];
-      const newNotification = deserializeNotification(notificationItem);
+    let endpoint = `notification/activity/user/${address.toLowerCase()}`;
+    const notifications = yield call(request, endpoint, "GET");
+    const { results, count } = notifications;
 
       if (currentNotifications[newNotification.id]) {
         continue;
@@ -68,11 +48,13 @@ export function* loadMoreNotifications(action) {
     return null;
   }
   try {
-    const currentOffset = offset + LIMIT;
-    const endpoint = `notification/push/user/${address}/?offset=${currentOffset}`;
-    const response = yield call(request, endpoint, 'GET');
-    const notifications = response.results;
-    yield put(loadMoreNotificationsSuccess(notifications));
+    const endpoint = `notification/activity/user/${address.toLowerCase()}`;
+    const params = { offset, limit: LIMIT };
+
+    const notifications = yield call(request, endpoint, "GET", params);
+
+    const { results, count } = notifications;
+    yield put(loadMoreNotificationsSuccess(results, count));
   } catch (e) {
     yield put(loadMoreNotificationsFail(e));
   }

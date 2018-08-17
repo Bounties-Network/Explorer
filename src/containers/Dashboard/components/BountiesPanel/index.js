@@ -1,12 +1,11 @@
-import React from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
-import base from '../BaseStyles.module.scss';
-import styles from './BountiesPanel.module.scss';
-import { LoadComponent } from 'hocs';
-import { map } from 'lodash';
+import React from "react";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import base from "../BaseStyles.module.scss";
+import styles from "./BountiesPanel.module.scss";
+import { LoadComponent } from "hocs";
+import { map } from "lodash";
 import {
   Button,
   Card,
@@ -15,18 +14,18 @@ import {
   Tabs,
   Text,
   ZeroState
-} from 'components';
-import { BountyItem } from '../';
+} from "components";
+import { BountyItem } from "../";
 import {
   bountiesPanelSelector,
   tabDataSelector,
   currentTabSelector
-} from './selectors';
-import { bountiesCountSelector } from 'public-modules/Bounties/selectors';
-import { draftsCountSelector } from 'public-modules/Drafts/selectors';
-import { actions as bountiesActions } from 'public-modules/Bounties';
-import { actions as draftsActions } from 'public-modules/Drafts';
-import { actions } from './reducer';
+} from "./selectors";
+import { bountiesCountSelector } from "public-modules/Bounties/selectors";
+import { draftsCountSelector } from "public-modules/Drafts/selectors";
+import { actions as bountiesActions } from "public-modules/Bounties";
+import { actions as draftsActions } from "public-modules/Drafts";
+import { actions } from "./reducer";
 
 class BountiesPanelComponent extends React.Component {
   renderBounties = list => {
@@ -44,25 +43,16 @@ class BountiesPanelComponent extends React.Component {
 
       return (
         <ListGroup.ListItem hover>
-          <Link
-            to={
-              this.props.currentTab === 'drafts'
-                ? `/bounty/draft/${id}`
-                : `/bounty/${id}`
-            }
-            className={styles.link}
-          >
-            <BountyItem
-              bountyId={id}
-              title={title}
-              submissions={fulfillment_count}
-              value={parseFloat(calculated_fulfillmentAmount).toFixed(2)}
-              currency={tokenSymbol}
-              usd_value={parseFloat(usd_price).toFixed(0)}
-              createdAt={created}
-              isDraft={this.props.currentTab === 'drafts'}
-            />
-          </Link>
+          <BountyItem
+            bountyId={id}
+            title={title}
+            submissions={fulfillment_count}
+            value={parseFloat(calculated_fulfillmentAmount).toFixed(2)}
+            currency={tokenSymbol}
+            usd_value={parseFloat(usd_price).toFixed(0)}
+            createdAt={created}
+            isDraft={this.props.currentTab === "drafts"}
+          />
         </ListGroup.ListItem>
       );
     }, list);
@@ -103,14 +93,12 @@ class BountiesPanelComponent extends React.Component {
         <div className={base.zeroState}>
           <ZeroState
             title={`You have 0 ${currentTab} bounties`}
-            text={
-              "It looks like you don't have any active bounties at the \
-              moment. Enter a title for a new bounty here to get started \
-              creating one!"
-            }
+            text={`It looks like you don't have any active bounties at the
+              moment. Enter a title for a new bounty here to get started
+              creating one!`}
             action
-            actionText={'Create new bounty'}
-            onActionClick={() => history.push('/createBounty')}
+            actionText={"Create new bounty"}
+            onActionClick={() => history.push("/createBounty")}
             iconColor="blue"
           />
         </div>
@@ -128,9 +116,9 @@ class BountiesPanelComponent extends React.Component {
         <div className={base.zeroState}>
           <ZeroState
             type="error"
-            text={'Something went wrong. Try again later.'}
+            text={"Something went wrong. Try again later."}
             iconColor="red"
-            icon={['far', 'exclamation-triangle']}
+            icon={["far", "exclamation-triangle"]}
           />
         </div>
       );
@@ -149,14 +137,14 @@ class BountiesPanelComponent extends React.Component {
               <Tabs.Tab
                 tabColor="green"
                 tabCount={activeCount}
-                eventKey={'active'}
+                eventKey={"active"}
               >
                 Active
               </Tabs.Tab>
               <Tabs.Tab
                 tabColor="blue"
                 tabCount={draftsCount}
-                eventKey={'drafts'}
+                eventKey={"drafts"}
               >
                 Drafts
               </Tabs.Tab>
@@ -196,7 +184,7 @@ const BountiesPanel = compose(
       draftsLoadMore: draftsActions.loadMoreDrafts
     }
   ),
-  LoadComponent('')
+  LoadComponent("")
 )(BountiesPanelComponent);
 
 export default BountiesPanel;

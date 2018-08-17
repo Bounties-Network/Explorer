@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './IssueRatingFormModal.module.scss';
-import { Text } from 'components';
-import { FulfillmentStagePill } from 'explorer-components';
+import React from "react";
+import styles from "./IssueRatingFormModal.module.scss";
+import { Text } from "components";
+import { FulfillmentStagePill } from "explorer-components";
 
 const BountyDetails = props => {
   const { bounty } = props;
@@ -33,7 +33,7 @@ const BountyDetails = props => {
                 color="defaultGrey"
                 className={styles.details}
               >
-                {`Created bleh`}
+                {"Created bleh"}
               </Text>
               <Text
                 inline
@@ -41,7 +41,7 @@ const BountyDetails = props => {
                 typeScale="Small"
                 className={styles.usd}
               >
-                {`500 ETH`}
+                {"500 ETH"}
               </Text>
             </div>
           </div>

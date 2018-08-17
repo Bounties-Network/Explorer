@@ -1,8 +1,8 @@
-import request from 'utils/request';
-import { all, call, put, takeLatest, select } from 'redux-saga/effects';
-import { actionTypes, actions } from 'public-modules/Leaderboard';
-import { leaderboardQuerySelector, leaderboardSelector } from './selectors';
-import { rootLeaderboardUISelector } from 'containers/Leaderboard/selectors';
+import request from "utils/request";
+import { all, call, put, takeLatest, select } from "redux-saga/effects";
+import { actionTypes, actions } from "public-modules/Leaderboard";
+import { leaderboardQuerySelector, leaderboardSelector } from "./selectors";
+import { rootLeaderboardUISelector } from "containers/Leaderboard/selectors";
 
 const { LOAD_LEADERBOARD, LOAD_MORE_LEADERBOARD } = actionTypes;
 const {
@@ -16,8 +16,8 @@ export function* loadLeaderboard() {
 
   try {
     const { issuer, fulfiller } = yield all({
-      issuer: call(request, `leaderboard/issuer/`, 'GET', { params }),
-      fulfiller: call(request, `leaderboard/fulfiller/`, 'GET', { params })
+      issuer: call(request, "leaderboard/issuer/", "GET", { params }),
+      fulfiller: call(request, "leaderboard/fulfiller/", "GET", { params })
     });
 
     yield put(loadLeaderboardSuccess({ issuer, fulfiller }));
@@ -37,15 +37,15 @@ export function* loadMoreLeaderboard() {
 
   const getData = (toggleValue, offset, type) => {
     return toggleValue == type
-      ? call(request, `leaderboard/${type}/`, 'GET', {
+      ? call(request, `leaderboard/${type}/`, "GET", {
           params: { ...params, offset: offset[type] }
         })
       : [];
   };
 
   const { issuer, fulfiller } = yield all({
-    issuer: getData(toggleValue, offset, 'issuer'),
-    fulfiller: getData(toggleValue, offset, 'fulfiller')
+    issuer: getData(toggleValue, offset, "issuer"),
+    fulfiller: getData(toggleValue, offset, "fulfiller")
   });
 
   try {

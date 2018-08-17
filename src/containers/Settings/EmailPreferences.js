@@ -1,17 +1,16 @@
-import React from 'react';
-import styles from './Settings.module.scss';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { map as fpMap } from 'lodash';
-import { PageCard, FormSection } from 'explorer-components';
-import { Field, reduxForm } from 'redux-form';
-import validators from 'utils/validators';
-import { PreferencesToggle } from './components';
-import { Cropper, Button, Text } from 'components';
-import { actions as settingsActions } from 'public-modules/Settings';
-import { emailPreferencesSelector } from 'public-modules/Settings/selectors';
-import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
-import { EMAIL_NOTIFICATION_OPTIONS } from './constants';
+import React from "react";
+import styles from "./Settings.module.scss";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { map as fpMap } from "lodash";
+import { PageCard, FormSection } from "explorer-components";
+import { Field, reduxForm } from "redux-form";
+import { PreferencesToggle } from "./components";
+import { Button, Text } from "components";
+import { actions as settingsActions } from "public-modules/Settings";
+import { emailPreferencesSelector } from "public-modules/Settings/selectors";
+import { getCurrentUserSelector } from "public-modules/Authentication/selectors";
+import { EMAIL_NOTIFICATION_OPTIONS } from "./constants";
 
 const map = fpMap.convert({ cap: false });
 
@@ -35,7 +34,7 @@ let EmailPreferencesComponent = props => {
       (value, key) => (
         <div className={`col-xs-12 ${styles.emailToggle}`}>
           <Field
-            form={'emailPreferences'}
+            form={"emailPreferences"}
             disabled={saving}
             name={key}
             component={PreferencesToggle}
@@ -103,7 +102,7 @@ const mapStateToProps = state => {
   };
 };
 
-EmailPreferencesComponent = reduxForm({ form: 'emailPreferences' })(
+EmailPreferencesComponent = reduxForm({ form: "emailPreferences" })(
   EmailPreferencesComponent
 );
 
