@@ -3,13 +3,14 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import styles from './ReviewModal.module.scss';
 import { map } from 'lodash';
-import { Button, ListGroup, Modal, Text } from 'components';
+import { Button, ListGroup, Modal, Text, ZeroState } from 'components';
 import ReviewItem from './ReviewItem';
 
 let ReviewsModal = props => {
   const {
     visible,
     onClose,
+    reviewType,
     loadMore,
     loadingMore,
     loadingMoreError,
@@ -34,6 +35,30 @@ let ReviewsModal = props => {
     }, reviews);
   };
 
+  let body = (
+    <ZeroState
+      type="error"
+      iconColor="red"
+      title="No Reviews Found"
+      text="We didn't find any reviews associated with this action."
+    />
+  );
+
+  if (reviews.length) {
+    body = (
+      <div>
+        <ListGroup>{renderReviews()}</ListGroup>
+        {reviews.length < count && (
+          <div className={styles.loadMoreButton}>
+            <Button loading={loadingMore} onClick={loadMore}>
+              Load More
+            </Button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <Modal
       dismissable={true}
@@ -43,13 +68,11 @@ let ReviewsModal = props => {
       size="medium"
     >
       <Modal.Header closable={true}>
-        <Modal.Message>Issuer ratings received</Modal.Message>
+        <Modal.Message>{reviewType} ratings received</Modal.Message>
       </Modal.Header>
       <Modal.Body className={styles.modalBody}>
         <div className="row">
-          <div className="col-xs">
-            <ListGroup>{renderReviews()}</ListGroup>
-          </div>
+          <div className="col-xs">{body}</div>
         </div>
       </Modal.Body>
     </Modal>

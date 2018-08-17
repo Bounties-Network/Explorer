@@ -148,7 +148,7 @@ const ProfileBountiesComponent = props => {
         <div className={styles.bountyListCentered}>
           <ZeroState
             className={styles.centeredItem}
-            iconColor="bloack"
+            iconColor="black"
             title="No Bounties Found"
             text="Update your search filters to see more bounties"
           />

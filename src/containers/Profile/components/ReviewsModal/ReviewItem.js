@@ -21,7 +21,13 @@ const ReviewItem = props => {
       </div>
       <div className={styles.review}>
         <Text>{review}</Text>
-        <Avatar address={address} hash={address} img={img} typeScale={'h4'} />
+        <Avatar
+          name={name}
+          address={address}
+          hash={address}
+          img={img}
+          nameTextScale={'h4'}
+        />
       </div>
       <div className={styles.created}>
         <Text typeScale="Small" color="defaultGrey">
@@ -33,7 +39,12 @@ const ReviewItem = props => {
 };
 
 ReviewItem.propTypes = {
-  title: PropTypes.string
+  rating: PropTypes.number,
+  review: PropTypes.string,
+  name: PropTypes.string,
+  address: PropTypes.string,
+  img: PropTypes.string,
+  created: PropTypes.string
 };
 
 ReviewItem.defaultProps = {};

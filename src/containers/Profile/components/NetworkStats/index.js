@@ -34,17 +34,22 @@ const NetworkStatsComponent = props => {
     toggleNetworkSwitch,
     reviewsState,
     setReviewsModalVisible,
-    reviewsModalVisible
+    reviewsModalVisible,
+    loadMoreReviews
   } = props;
-  console.log(props);
 
   const { loadingMore, loadingMoreError, error, reviews, count } = reviewsState;
   const { issuer, fulfiller } = stats;
 
   const renderCircle = key => {
     const text = descriptionText[switchValue][key];
-    const value = stats[switchValue][key];
+    let value = stats[switchValue][key];
     let color = value >= 0.8 ? 'green' : value >= 0.5 ? 'orange' : 'red';
+
+    if (value > 1) {
+      color = value >= 4 ? 'green' : value >= 3 ? 'orange' : 'red';
+    }
+
     let input = formatInput(value, displayFormat[key]);
 
     if (value == null) {
@@ -66,6 +71,7 @@ const NetworkStatsComponent = props => {
             typeScale="Small"
             alignment="align-center"
             color="defaultGrey"
+            className={styles.reviewsModalLink}
           >
             {text}
           </Text>
@@ -83,8 +89,10 @@ const NetworkStatsComponent = props => {
       <ReviewsModal
         visible={reviewsModalVisible}
         onClose={() => setReviewsModalVisible(false)}
+        reviewType={switchValue.charAt(0).toUpperCase() + switchValue.slice(1)}
         reviews={reviews}
         count={count}
+        loadMore={loadMoreReviews}
         loadingMore={loadingMore}
         loadingMoreError={loadingMoreError}
       />
@@ -110,13 +118,17 @@ const NetworkStatsComponent = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   const reviewsState = reviewsStateSelector(state);
   const profileUI = profileUISelector(state);
 
   return {
     reviewsState,
-    reviewsModalVisible: profileUI.reviewsModalVisible
+    reviewsModalVisible: profileUI.reviewsModalVisible,
+    reviewsLoaderInitialProps: {
+      address: ownProps.address,
+      reviewType: ownProps.switchValue
+    }
   };
 };
 
@@ -124,10 +136,11 @@ const NetworkStats = compose(
   connect(
     mapStateToProps,
     {
-      load: reviewsActions.loadReviewsReceived
+      load: reviewsActions.loadReviewsReceived,
+      loadMoreReviews: reviewsActions.loadMoreReviews
     }
   ),
-  LoadComponent('address')
+  LoadComponent('reviewsLoaderInitialProps')
 )(NetworkStatsComponent);
 
 export default NetworkStats;
