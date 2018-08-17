@@ -34,7 +34,7 @@ let EmailPreferencesComponent = props => {
       (value, key) => (
         <div className={`col-xs-12 ${styles.emailToggle}`}>
           <Field
-            form={"emailPreferences"}
+            form="emailPreferences"
             disabled={saving}
             name={key}
             component={PreferencesToggle}

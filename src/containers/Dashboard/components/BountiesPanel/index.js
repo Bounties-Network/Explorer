@@ -97,7 +97,7 @@ class BountiesPanelComponent extends React.Component {
               moment. Enter a title for a new bounty here to get started
               creating one!`}
             action
-            actionText={"Create new bounty"}
+            actionText="Create new bounty"
             onActionClick={() => history.push("/createBounty")}
             iconColor="blue"
           />
@@ -116,7 +116,7 @@ class BountiesPanelComponent extends React.Component {
         <div className={base.zeroState}>
           <ZeroState
             type="error"
-            text={"Something went wrong. Try again later."}
+            text="Something went wrong. Try again later."
             iconColor="red"
             icon={["far", "exclamation-triangle"]}
           />
@@ -137,14 +137,14 @@ class BountiesPanelComponent extends React.Component {
               <Tabs.Tab
                 tabColor="green"
                 tabCount={activeCount}
-                eventKey={"active"}
+                eventKey="active"
               >
                 Active
               </Tabs.Tab>
               <Tabs.Tab
                 tabColor="blue"
                 tabCount={draftsCount}
-                eventKey={"drafts"}
+                eventKey="drafts"
               >
                 Drafts
               </Tabs.Tab>
