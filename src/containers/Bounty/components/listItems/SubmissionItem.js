@@ -50,9 +50,11 @@ const SubmissionItem = props => {
         className={styles.reactivateButton}
         icon={['far', 'star']}
         onClick={() =>
-          showModal('issueRatingForFulfiller', {
-            fulfillmentId
-          })
+          initiateLoginProtection(() =>
+            showModal('issueRatingForFulfiller', {
+              fulfillmentId
+            })
+          )
         }
       >
         Rate fulfiller
@@ -66,9 +68,11 @@ const SubmissionItem = props => {
         className={styles.reactivateButton}
         icon={['far', 'star']}
         onClick={() =>
-          showModal('issueRatingForIssuer', {
-            fulfillmentId
-          })
+          initiateLoginProtection(() =>
+            showModal('issueRatingForIssuer', {
+              fulfillmentId
+            })
+          )
         }
       >
         Rate issuer
