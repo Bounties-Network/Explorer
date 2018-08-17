@@ -9,8 +9,8 @@ import { map } from 'lodash';
 import { Button, Card, ListGroup, Loader, Text, ZeroState } from 'components';
 import { ActivityItem } from '../';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
-import { rootNotificationSelector } from 'public-modules/Notification/selectors';
-import { actions } from 'public-modules/Notification';
+import { rootActivitySelector } from 'public-modules/Activity/selectors';
+import { actions } from 'public-modules/Activity';
 
 class ActivityPanelComponent extends React.Component {
   renderActivity = list => {
@@ -104,17 +104,17 @@ class ActivityPanelComponent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const notificationState = rootNotificationSelector(state);
+  const activityState = rootActivitySelector(state);
   const currentUser = getCurrentUserSelector(state);
   const { public_address } = currentUser;
 
   return {
-    list: notificationState.notifications,
-    count: notificationState.count,
-    offset: notificationState.offset,
-    loading: notificationState.loading,
-    loadingMore: notificationState.loadingMore,
-    error: notificationState.error,
+    list: activityState.activity,
+    count: activityState.count,
+    offset: activityState.offset,
+    loading: activityState.loading,
+    loadingMore: activityState.loadingMore,
+    error: activityState.error,
     public_address
   };
 };
@@ -123,8 +123,8 @@ const ActivityPanel = compose(
   connect(
     mapStateToProps,
     {
-      load: actions.loadNotifications,
-      loadMore: actions.loadMoreNotifications
+      load: actions.loadActivity,
+      loadMore: actions.loadMoreActivity
     }
   ),
   LoadComponent('public_address')
