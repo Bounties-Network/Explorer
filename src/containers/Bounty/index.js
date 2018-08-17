@@ -12,7 +12,7 @@ import { map } from 'lodash';
 import { DRAFT, EXPIRED } from 'public-modules/Bounty/constants';
 import ActionBar from './ActionBar';
 import SubmissionsAndCommentsCard from './SubmissionsAndCommentsCard';
-import { TransactionWalkthrough } from 'hocs';
+import { TransactionWalkthrough, FunctionalLoginLock } from 'hocs';
 import {
   getDraftStateSelector,
   getDraftBountySelector,
@@ -67,6 +67,7 @@ class BountyComponent extends React.Component {
       bounty,
       walletAddress,
       initiateWalkthrough,
+      initiateLoginProtection,
       showModal
     } = this.props;
 
@@ -156,6 +157,7 @@ class BountyComponent extends React.Component {
                   user={user}
                   isDraft={isDraft}
                   walletAddress={walletAddress}
+                  initiateLoginProtection={initiateLoginProtection}
                   initiateWalkthrough={initiateWalkthrough}
                   showModal={showModal}
                 />
@@ -232,6 +234,7 @@ class BountyComponent extends React.Component {
                 bounty={bounty}
                 isDraft={isDraft}
                 currentUser={user}
+                initiateLoginProtection={initiateLoginProtection}
                 initiateWalkthrough={initiateWalkthrough}
               />
             </PageCard.Content>
@@ -270,6 +273,7 @@ const mapStateToProps = (state, router) => {
 };
 
 const Bounty = compose(
+  FunctionalLoginLock({}),
   TransactionWalkthrough({
     dismissable: false,
     wrapperClassName: styles.body
