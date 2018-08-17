@@ -121,11 +121,15 @@ class Modal extends React.Component {
     }
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const { visible } = this.props;
 
     if (visible) {
       document.body.classList.add('modal-open');
+      const pageBody = document.getElementsByClassName('page-body')[0];
+      if (pageBody) {
+        pageBody.classList.add('modal-open');
+      }
     }
   }
 
@@ -139,13 +143,25 @@ class Modal extends React.Component {
 
     if (isVisible) {
       document.body.classList.add('modal-open');
+      const pageBody = document.getElementsByClassName('page-body')[0];
+      if (pageBody) {
+        pageBody.classList.add('modal-open');
+      }
     } else {
       document.body.className = '';
+      const pageBody = document.getElementsByClassName('page-body')[0];
+      if (pageBody) {
+        pageBody.classList.remove('modal-open');
+      }
     }
   }
 
   componentWillUnmount() {
     document.body.className = '';
+    const pageBody = document.getElementsByClassName('page-body')[0];
+    if (pageBody) {
+      pageBody.classList.remove('modal-open');
+    }
   }
 
   modalClick(e) {
