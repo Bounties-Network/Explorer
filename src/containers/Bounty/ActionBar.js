@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import { Button } from 'components';
-import { DEAD } from 'public-modules/Bounty/constants';
+import { DEAD, ACTIVE } from 'public-modules/Bounty/constants';
 import { ModalManager } from './components';
 
 const ActionBar = props => {
@@ -28,7 +28,7 @@ const ActionBar = props => {
   let actionOptions = null;
   if (isDraft) {
     actionOptions = (
-      <div>
+      <div className={styles.actionBar}>
         <Button
           type="action"
           fitWidth
@@ -55,7 +55,7 @@ const ActionBar = props => {
 
   if (!isDraft && (belongsToLoggedInUser || loggedOutButAddressMatches)) {
     actionOptions = (
-      <div>
+      <div className={styles.actionBar}>
         {bounty.bountyStage === DEAD ? (
           <Button
             type="action"
@@ -123,9 +123,13 @@ const ActionBar = props => {
     );
   }
 
-  if (!belongsToLoggedInUser && !loggedOutButAddressMatches) {
+  if (
+    !belongsToLoggedInUser &&
+    !loggedOutButAddressMatches &&
+    bounty.bountyStage === ACTIVE
+  ) {
     actionOptions = (
-      <div>
+      <div className={styles.actionBar}>
         <Button
           type="action"
           fitWidth

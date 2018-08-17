@@ -151,17 +151,15 @@ class BountyComponent extends React.Component {
           </PageCard.Header>
           <PageCard.Content className={styles.pageBody}>
             <div className={`${styles.filter}`}>
-              <div className={styles.buttonSection}>
-                <ActionBar
-                  bounty={bounty}
-                  user={user}
-                  isDraft={isDraft}
-                  walletAddress={walletAddress}
-                  initiateLoginProtection={initiateLoginProtection}
-                  initiateWalkthrough={initiateWalkthrough}
-                  showModal={showModal}
-                />
-              </div>
+              <ActionBar
+                bounty={bounty}
+                user={user}
+                isDraft={isDraft}
+                walletAddress={walletAddress}
+                initiateLoginProtection={initiateLoginProtection}
+                initiateWalkthrough={initiateWalkthrough}
+                showModal={showModal}
+              />
               <div className={styles.bountyMetadata}>
                 {isDraft ? null : (
                   <div className={styles.labelGroup}>
@@ -273,7 +271,9 @@ const mapStateToProps = (state, router) => {
 };
 
 const Bounty = compose(
-  FunctionalLoginLock({}),
+  FunctionalLoginLock({
+    wrapperClassName: styles.body
+  }),
   TransactionWalkthrough({
     dismissable: false,
     wrapperClassName: styles.body
