@@ -23,7 +23,7 @@ const Dashboard = props => {
           <ActivityPanel />
         </div>
       </div>
-      <div className={`row center-xs ${styles.submissionsFlex}`}>
+      <div className={`center-xs ${styles.submissionsFlex}`}>
         <div className="col-xs-10">
           <SubmissionsPanel className={styles.submissionsContainer} />
         </div>

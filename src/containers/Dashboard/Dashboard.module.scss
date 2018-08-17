@@ -10,9 +10,9 @@
   height: 100%;
   margin-top: $m-spacing;
   min-height: 25rem;
-
 }
 
 .submissionsFlex {
+  display: flex;
   flex-grow: 1 !important;
 }
