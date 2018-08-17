@@ -35,7 +35,8 @@ const ProfileDetailsComponent = props => {
     switchValue,
     toggleNetworkSwitch,
     currentTab,
-    setActiveTab
+    setActiveTab,
+    setReviewsModalVisible
   } = props;
 
   let bodyClass;
@@ -74,6 +75,8 @@ const ProfileDetailsComponent = props => {
               stats={userStats}
               switchValue={switchValue}
               toggleNetworkSwitch={toggleNetworkSwitch}
+              address={user.public_address}
+              setReviewsModalVisible={setReviewsModalVisible}
             />
           </div>
           <div className="col-xs-2">
@@ -129,7 +132,8 @@ const ProfileDetails = compose(
     mapStateToProps,
     {
       toggleNetworkSwitch: actions.toggleNetworkSwitch,
-      setActiveTab: actions.setActiveTab
+      setActiveTab: actions.setActiveTab,
+      setReviewsModalVisible: actions.setReviewsModalVisible
     }
   )
 )(ProfileDetailsComponent);

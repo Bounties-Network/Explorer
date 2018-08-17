@@ -10,8 +10,12 @@ const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS';
 const LOAD_REVIEWS_SUCCESS = 'reviews/LOAD_REVIEWS_SUCCESS';
 const LOAD_REVIEWS_FAIL = 'reviews/LOAD_REVIEWS_FAIL';
 
-function loadReviews(address, type) {
-  return { type: LOAD_REVIEWS, address, type };
+function loadReviewsGiven(address) {
+  return { type: LOAD_REVIEWS, address, role: 'reviewer' };
+}
+
+function loadReviewsReceived(address) {
+  return { type: LOAD_REVIEWS, address, role: 'reviewee' };
 }
 
 function loadReviewsSuccess(reviews, count) {
@@ -58,7 +62,8 @@ function LoadReviewsReducer(state = initialState, action) {
 }
 
 export const actions = {
-  loadReviews,
+  loadReviewsGiven,
+  loadReviewsReceived,
   loadReviewsSuccess,
   loadReviewsFail
 };

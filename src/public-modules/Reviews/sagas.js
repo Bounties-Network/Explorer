@@ -6,10 +6,10 @@ const { LOAD_REVIEWS } = actionTypes;
 const { loadReviewsFail, loadReviewsSuccess } = actions;
 
 export function* loadReviews(action) {
-  const { address, type } = action;
+  const { address, role } = action;
 
   try {
-    let endpoint = `reviews/?${type}__public_address=${address}`;
+    let endpoint = `reviews/?${role}__public_address=${address}`;
     const reviews = yield call(request, endpoint, 'GET');
     yield put(loadReviewsSuccess(reviews.results, reviews.count));
   } catch (e) {
