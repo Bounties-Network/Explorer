@@ -29,38 +29,33 @@ const BountyItem = props => {
   }
 
   return (
-    <Link
-      to={isDraft ? `/bounty/draft/${bountyId}` : `/bounty/${bountyId}`}
-      className={styles.link}
-    >
-      <div className={`row ${styles.container}`}>
-        <div className="col-xs-10">
-          <div className={base.alignLeft}>
-            <Text typeScale="Body" weight="fontWeight-medium">
-              {title}
-            </Text>
+    <div className={`row ${styles.container}`}>
+      <div className="col-xs-10">
+        <div className={base.alignLeft}>
+          <Text typeScale="Body" weight="fontWeight-medium">
+            {title}
+          </Text>
 
-            <Text
-              typeScale="Small"
-              color="defaultGrey"
-              className={styles.details}
-            >
-              {`Created ${formattedTime} ${submissionsText}`}
-            </Text>
-          </div>
-        </div>
-        <div className="col-xs-2">
-          <div className={styles.value}>
-            <Text color="purple" typeScale="h3" className={styles.usd}>
-              ${usd_value}
-            </Text>
-            <Text color="defaultGrey" typeScale="Small" className={styles.usd}>
-              {`${value} ${currency}`}
-            </Text>
-          </div>
+          <Text
+            typeScale="Small"
+            color="defaultGrey"
+            className={styles.details}
+          >
+            {`Created ${formattedTime} ${submissionsText}`}
+          </Text>
         </div>
       </div>
-    </Link>
+      <div className="col-xs-2">
+        <div className={styles.value}>
+          <Text color="purple" typeScale="h3" className={styles.usd}>
+            ${usd_value}
+          </Text>
+          <Text color="defaultGrey" typeScale="Small" className={styles.usd}>
+            {`${value} ${currency}`}
+          </Text>
+        </div>
+      </div>
+    </div>
   );
 };
 
