@@ -6,18 +6,21 @@ import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 
 const NewCommentForm = props => {
-  const { handleSubmit, loading } = props;
+  const { disabled, handleSubmit, loading, submitText } = props;
 
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.container}>
         <Field
+          disabled={disabled}
           name="text"
           component={FormTextInput}
           type="text"
           placeholder="Write a comment..."
         />
-        <Button loading={loading}>Post comment</Button>
+        <Button disabled={disabled} loading={loading}>
+          {submitText}
+        </Button>
       </div>
     </form>
   );

@@ -25,7 +25,8 @@ const SubmissionItem = props => {
     bountyBelongsToLoggedInUser,
     submissionBelongsToLoggedInUser,
     acceptFulfillment,
-    showModal
+    showModal,
+    initiateLoginProtection
   } = props;
 
   const formattedTime = moment(created, 'YYYY-MM-DD').format('MM/DD/YYYY');

@@ -82,6 +82,7 @@ let SubmissionsAndCommentsCardComponent = props => {
                 )
               )
             }
+            initiateLoginProtection={initiateLoginProtection}
             showModal={showModal}
           />
         </ListGroup.ListItem>
@@ -134,14 +135,18 @@ let SubmissionsAndCommentsCardComponent = props => {
   }
 
   if (currentTab == 'comments') {
-    const newCommentForm = currentUser ? (
+    const newCommentForm = (
       <ListGroup.ListItem className={styles.commentItem}>
         <NewCommentForm
-          onSubmit={values => postComment(bounty.id, values.text)}
+          disabled={!currentUser}
+          submitText={currentUser ? 'Post comment' : 'Sign in to post comment'}
+          onSubmit={values =>
+            initiateLoginProtection(() => postComment(bounty.id, values.text))
+          }
           loading={comments.posting}
         />
       </ListGroup.ListItem>
-    ) : null;
+    );
 
     body = (
       <ListGroup>
