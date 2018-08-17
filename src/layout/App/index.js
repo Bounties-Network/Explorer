@@ -79,7 +79,7 @@ class AppComponent extends React.Component {
               >
                 {this.renderSideNavItems()}
               </Sidebar>,
-              <div className={`${styles.body}`} ref={this.body}>
+              <div className={`${styles.body} page-body`} ref={this.body}>
                 <Switch>
                   <Route exact path="/leaderboard" component={Leaderboard} />
                   <Route exact path="/explorer" component={Explorer} />
