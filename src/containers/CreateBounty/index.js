@@ -53,7 +53,7 @@ class CreateBountyComponent extends React.Component {
 
     return (
       <PageCard>
-        <PageCard.Header>
+        <PageCard.Header className={styles.createBountyHeader}>
           <PageCard.Title>Create Bounty</PageCard.Title>
         </PageCard.Header>
         <PageCard.Content className={styles.cardContent}>

@@ -14,19 +14,17 @@ const UnlockWallet = props => {
       closable={closable}
     >
       <Modal.Header closable={closable} icon={['fal', 'unlock']}>
-        <Modal.Heading>Please unlock your secure wallet</Modal.Heading>
+        <Modal.Message>Please unlock your secure wallet</Modal.Message>
       </Modal.Header>
       <Modal.Body>
-        <Text inline>
+        <Modal.Description>
           You&#39;ll need to log in to your secure wallet account (e.g.
-        </Text>
-        <Text weight="fontWeight-bold" inline>
-          MetaMask
-        </Text>
-        <Text inline>
+          <Text weight="fontWeight-bold" inline>
+            MetaMask
+          </Text>
           ) in order to access {pageLevel ? 'parts of the ' : ''}the Bounties
           Network.
-        </Text>
+        </Modal.Description>
       </Modal.Body>
       {closable ? (
         <Modal.Footer>

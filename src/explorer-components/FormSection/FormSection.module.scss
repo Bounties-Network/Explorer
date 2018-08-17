@@ -1,33 +1,33 @@
 @import "~styles/variables.scss";
 
-.borderBlock {
-}
-
-.border {
-  border-bottom: $base-border;
-  margin-top: $xl-spacing;
-}
-
-.borderBlock:last-child {
-  display: none;
-}
-
 .section {
-  margin-top: $xl-spacing;
+  padding: $xxl-spacing 0;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:not(:last-child) {
+    border-bottom: $base-border;
+  }
 }
 
-.section:first-child {
-  margin-top: 0px;
+.sectionTitle {
+  line-height: $base-line-height;
+  letter-spacing: 1px;
+  padding-bottom: $s-spacing;
 }
 
 .description {
+  line-height: $base-line-height;
   margin-bottom: $m-spacing;
 }
 
 .subText {
-  line-height: 1.5em;
+  line-height: $base-line-height;
+  padding-bottom: $l-spacing;
 }
 
 .inputGroup {
-  margin-top: $l-spacing;
+  padding-top: $xl-spacing;
 }

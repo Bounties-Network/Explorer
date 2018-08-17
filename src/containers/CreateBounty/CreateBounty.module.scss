@@ -3,6 +3,10 @@
 .createBounty {
 }
 
+.createBountyHeader {
+  padding: $xxl-spacing 0;
+}
+
 .centeredBody {
   height: 100%;
   display: flex;
@@ -13,15 +17,42 @@
 
 .cardContent {
   text-align: left;
-  margin-bottom: $xxl-spacing;
+  margin-bottom: 0;
+  padding: 0;
+
+  @media only screen and (min-width: 48em) {
+    margin-bottom: $xxl-spacing;
+    padding: $xl-spacing;
+  }
 }
 
 .markdownEditor {
   height: 15em;
 }
 
-.buttons {
+.input:not(:last-child) {
+  padding-bottom: $l-spacing;
+
+  @media only screen and (min-width: 48em) {
+    padding-bottom: 0;
+  }
+}
+
+.buttonContainer {
+  display: block;
+  border-top: $base-border;
   text-align: center;
+  margin-left: -$l-spacing;
+  margin-right: -$l-spacing;
+  padding-top: $xl-spacing;
+  padding-bottom: $xl-spacing;
+  margin-bottom: -$l-spacing;
+
+  @media only screen and (min-width: 48em) {
+    margin-left: -($xxl-spacing + $m-spacing);
+    margin-right: -($xxl-spacing + $m-spacing);
+    padding-bottom: 0;
+  }
 }
 
 .submitError {

@@ -147,7 +147,7 @@ class CreateBountyFormComponent extends React.Component {
             </FormSection.Description>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-6">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={submittingBounty}
                     name="issuer_name"
@@ -157,7 +157,7 @@ class CreateBountyFormComponent extends React.Component {
                     validate={[validators.required, validators.maxLength(128)]}
                   />
                 </div>
-                <div className="col-xs-6">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={submittingBounty}
                     name="issuer_email"
@@ -185,7 +185,7 @@ class CreateBountyFormComponent extends React.Component {
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-8">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={submittingBounty}
                     name="categories"
@@ -200,7 +200,7 @@ class CreateBountyFormComponent extends React.Component {
                     creatable
                   />
                 </div>
-                <div className="col-xs-4">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={submittingBounty}
                     name="experienceLevel"
@@ -222,7 +222,7 @@ class CreateBountyFormComponent extends React.Component {
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-4">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     name="revisions"
                     component={FormNumberInput}
@@ -263,7 +263,7 @@ class CreateBountyFormComponent extends React.Component {
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-4">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={submittingBounty}
                     name="deadline"
@@ -284,7 +284,7 @@ class CreateBountyFormComponent extends React.Component {
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-4">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={submittingBounty}
                     name="paysTokens"
@@ -293,7 +293,7 @@ class CreateBountyFormComponent extends React.Component {
                     options={PAYOUT_OPTIONS}
                   />
                 </div>
-                <div className="col-xs-8">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     name="fulfillmentAmount"
                     disabled={submittingBounty}
@@ -311,7 +311,7 @@ class CreateBountyFormComponent extends React.Component {
             {paysTokens ? (
               <FormSection.InputGroup>
                 <div className="row">
-                  <div className="col-xs-12">
+                  <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                     <Field
                       name="tokenContract"
                       disabled={submittingBounty}
@@ -337,7 +337,7 @@ class CreateBountyFormComponent extends React.Component {
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-4">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     name="activateNow"
                     disabled={submittingBounty}
@@ -346,7 +346,7 @@ class CreateBountyFormComponent extends React.Component {
                     options={ACTIVATE_OPTIONS}
                   />
                 </div>
-                <div className="col-xs-8">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   {activateNow ? (
                     <Field
                       name="balance"
@@ -377,8 +377,7 @@ class CreateBountyFormComponent extends React.Component {
             </FormSection.InputGroup>
           </FormSection.Section>
         </FormSection>
-        <PageCard.Break />
-        <div className={styles.buttons}>
+        <div className={styles.buttonContainer}>
           <Button
             type="primary"
             disabled={uploadLoading || (submitFailed && invalid)}
