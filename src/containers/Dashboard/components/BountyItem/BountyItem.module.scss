@@ -20,9 +20,8 @@
 
 .link {
   color: inherit;
-}
-
-.link:hover {
-  color: $brand-blue;
-  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
 }

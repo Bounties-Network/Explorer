@@ -44,6 +44,7 @@ class BountiesPanelComponent extends React.Component {
       return (
         <ListGroup.ListItem hover>
           <BountyItem
+            hover
             bountyId={id}
             title={title}
             submissions={fulfillment_count}
