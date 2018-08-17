@@ -38,7 +38,7 @@ export function* getNetwork() {
 
   let network = 'unknown';
   if (networkID === 1) {
-    network = 'mainnet';
+    network = 'mainNet';
     apiEndpoint.set('https://staging.api.bounties.network');
   }
   if (networkID === 4) {
