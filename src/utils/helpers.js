@@ -1,5 +1,5 @@
 export function shortenAddress(address) {
-  return address.slice(0, 6) + "..." + address.slice(-4);
+  return address.slice(0, 6) + '...' + address.slice(-4);
 }
 
 export function findETHValue(ethObj) {
@@ -9,14 +9,14 @@ export function findETHValue(ethObj) {
 }
 
 export function bytesToSize(bytes) {
-  var sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-  if (bytes == 0) return "0 Byte";
+  var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  if (bytes == 0) return '0 Byte';
   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-  return Math.round(bytes / Math.pow(1024, i), 2) + " " + sizes[i];
+  return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
 }
 
 export function currentRouteSelector(pathname) {
-  return pathname.split("/")[1] || "";
+  return pathname.split('/')[1] || '';
 }
 
 export function ipfsToHttp(directoryHash, fileName) {

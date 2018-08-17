@@ -1,8 +1,8 @@
-import request from "utils/request";
-import { call, put, select, takeLatest } from "redux-saga/effects";
-import { LIMIT } from "./constants";
-import { rootNotificationSelector } from "./selectors";
-import { actionTypes, actions } from "public-modules/Notification";
+import request from 'utils/request';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { LIMIT } from './constants';
+import { rootNotificationSelector } from './selectors';
+import { actionTypes, actions } from 'public-modules/Notification';
 
 const { LOAD_NOTIFICATIONS, LOAD_MORE_NOTIFICATIONS } = actionTypes;
 const {
@@ -26,7 +26,7 @@ const {
 export function* loadNotificationsSaga(action) {
   try {
     let endpoint = `notification/activity/user/${address.toLowerCase()}`;
-    const notifications = yield call(request, endpoint, "GET");
+    const notifications = yield call(request, endpoint, 'GET');
     const { results, count } = notifications;
 
       if (currentNotifications[newNotification.id]) {
@@ -51,7 +51,7 @@ export function* loadMoreNotifications(action) {
     const endpoint = `notification/activity/user/${address.toLowerCase()}`;
     const params = { offset, limit: LIMIT };
 
-    const notifications = yield call(request, endpoint, "GET", params);
+    const notifications = yield call(request, endpoint, 'GET', params);
 
     const { results, count } = notifications;
     yield put(loadMoreNotificationsSuccess(results, count));

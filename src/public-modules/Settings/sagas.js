@@ -1,23 +1,23 @@
-import request from "utils/request";
-import moment from "moment";
-import config from "public-modules/config";
-import { call, put, takeLatest, select } from "redux-saga/effects";
-import { rootUploadSelector } from "public-modules/FileUpload/selectors";
-import { actionTypes, actions } from "public-modules/Settings";
-import { actions as transactionActions } from "public-modules/Transaction";
-import { calculateDecimals } from "public-modules/Utilities/helpers";
-import { forEach, trim, split, filter } from "lodash";
-import { addJSON } from "public-modules/Utilities/ipfsClient";
+import request from 'utils/request';
+import moment from 'moment';
+import config from 'public-modules/config';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
+import { actionTypes, actions } from 'public-modules/Settings';
+import { actions as transactionActions } from 'public-modules/Transaction';
+import { calculateDecimals } from 'public-modules/Utilities/helpers';
+import { forEach, trim, split, filter } from 'lodash';
+import { addJSON } from 'public-modules/Utilities/ipfsClient';
 import {
   addressSelector,
   networkSelector
-} from "public-modules/Client/selectors";
+} from 'public-modules/Client/selectors';
 import {
   getContractClient,
   getWeb3Client,
   getTokenClient
-} from "public-modules/Client/sagas";
-import { promisifyContractCall } from "public-modules/Utilities/helpers";
+} from 'public-modules/Client/sagas';
+import { promisifyContractCall } from 'public-modules/Utilities/helpers';
 
 const { SAVE_SETTINGS, SAVE_EMAIL_PREFERENCES } = actionTypes;
 const {
@@ -124,7 +124,7 @@ export function* saveEmailPreferences(action) {
   };
 
   try {
-    const r = yield call(request, "user/settings/", "POST", { data });
+    const r = yield call(request, 'user/settings/', 'POST', { data });
     yield put(saveEmailPreferencesSuccess());
   } catch (e) {
     console.log(e);

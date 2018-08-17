@@ -1,16 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "./PageCard.module.scss";
-import { map, includes, each } from "lodash";
-import { Text, Card } from "components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './PageCard.module.scss';
+import { map, includes, each } from 'lodash';
+import { Text, Card } from 'components';
 
 const Title = props => {
   const { children, className } = props;
   return (
     <Text
       className={className ? className : styles.title}
-      typeScale="h2"
-      color="white"
+      typeScale='h2'
+      color='white'
     >
       {children}
     </Text>
@@ -59,10 +59,10 @@ const PageCard = props => {
   return (
     <div className={styles.pageCard}>
       <div className={noBanner ? null : styles.headerWrapper}>
-        <div className="pageWrapper">{header}</div>
+        <div className='pageWrapper'>{header}</div>
       </div>
       <div className={styles.contentWrapper}>
-        <div className="pageWrapper">{content}</div>
+        <div className='pageWrapper'>{content}</div>
       </div>
     </div>
   );
@@ -83,11 +83,11 @@ PageCard.propTypes = {
     }, collection);
 
     if (!includes([Header.name], childrenTypes)) {
-      return new Error("You must have a header child");
+      return new Error('You must have a header child');
     }
 
     if (!includes([Content.name], childrenTypes)) {
-      return new Error("You must have a content child");
+      return new Error('You must have a content child');
     }
   },
   noBanner: PropTypes.bool

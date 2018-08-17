@@ -1,20 +1,20 @@
-import React from "react";
-import request from "utils/request";
-import { call, put, takeLatest, select } from "redux-saga/effects";
-import { delay } from "redux-saga";
+import React from 'react';
+import request from 'utils/request';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import {
   addressSelector,
   networkSelector
-} from "public-modules/Client/selectors";
-import { toast as callToast } from "react-toastify";
-import { Toast } from "components";
-import { Link } from "react-router-dom";
+} from 'public-modules/Client/selectors';
+import { toast as callToast } from 'react-toastify';
+import { Toast } from 'components';
+import { Link } from 'react-router-dom';
 import {
   transactionsSelector,
   getTransactionSelector,
   transactionsInitiatedSelector
-} from "public-modules/Transaction/selectors";
-import { actions, actionTypes } from "public-modules/Transaction";
+} from 'public-modules/Transaction/selectors';
+import { actions, actionTypes } from 'public-modules/Transaction';
 
 const {
   loadTransactions,
@@ -44,7 +44,7 @@ export function* loadTransactionsSaga(action) {
     }
     const currentTransactions = yield select(transactionsSelector);
     const endpoint = `notification/transaction/user/${address}/`;
-    const response = yield call(request, endpoint, "GET");
+    const response = yield call(request, endpoint, 'GET');
     const transactions = response.results;
     for (let key in transactions) {
       const transaction = transactions[key];
@@ -78,7 +78,7 @@ export function* postTransactionSaga(action) {
   try {
     const address = yield select(getUserAddressSelector);
     const endpoint = `notification/transaction/user/${address}/`;
-    yield call(request, endpoint, "POST", {
+    yield call(request, endpoint, 'POST', {
       data: {
         tx_hash: txHash,
         platform: config.postingPlatform
@@ -97,8 +97,8 @@ export function* pendingReceiptSaga(action) {
       {
         viewed: false,
         completed: false,
-        link: "",
-        linkText: ""
+        link: '',
+        linkText: ''
       },
       txHash
     )
@@ -117,7 +117,7 @@ export function* showTransactionNotification(action) {
   const network = yield select(networkSelector);
   const { link, linkText, message } = currentTransaction;
   let postedLink = (
-    <Link to={link} style={{ color: "inherit" }}>
+    <Link to={link} style={{ color: 'inherit' }}>
       {linkText}
     </Link>
   );
@@ -126,15 +126,15 @@ export function* showTransactionNotification(action) {
 
   if (!currentTransaction.completed) {
     const baseUrl =
-      network === "mainNet"
-        ? "https://etherscan.io/tx/"
-        : "https://rinkeby.etherscan.io/tx/";
+      network === 'mainNet'
+        ? 'https://etherscan.io/tx/'
+        : 'https://rinkeby.etherscan.io/tx/';
     postedLink = (
-      <a href={baseUrl + txHash} style={{ color: "inherit" }}>
+      <a href={baseUrl + txHash} style={{ color: 'inherit' }}>
         View on etherscan
       </a>
     );
-    postedMessage = "Processing transaction";
+    postedMessage = 'Processing transaction';
     toastType = Toast.TYPE.TRANSACTION;
   }
 

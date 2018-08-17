@@ -1,11 +1,11 @@
-import React from "react";
-import { compose } from "redux";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
-import base from "../BaseStyles.module.scss";
-import styles from "./BountiesPanel.module.scss";
-import { LoadComponent } from "hocs";
-import { map } from "lodash";
+import React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import base from '../BaseStyles.module.scss';
+import styles from './BountiesPanel.module.scss';
+import { LoadComponent } from 'hocs';
+import { map } from 'lodash';
 import {
   Button,
   Card,
@@ -14,18 +14,18 @@ import {
   Tabs,
   Text,
   ZeroState
-} from "components";
-import { BountyItem } from "../";
+} from 'components';
+import { BountyItem } from '../';
 import {
   bountiesPanelSelector,
   tabDataSelector,
   currentTabSelector
-} from "./selectors";
-import { bountiesCountSelector } from "public-modules/Bounties/selectors";
-import { draftsCountSelector } from "public-modules/Drafts/selectors";
-import { actions as bountiesActions } from "public-modules/Bounties";
-import { actions as draftsActions } from "public-modules/Drafts";
-import { actions } from "./reducer";
+} from './selectors';
+import { bountiesCountSelector } from 'public-modules/Bounties/selectors';
+import { draftsCountSelector } from 'public-modules/Drafts/selectors';
+import { actions as bountiesActions } from 'public-modules/Bounties';
+import { actions as draftsActions } from 'public-modules/Drafts';
+import { actions } from './reducer';
 
 class BountiesPanelComponent extends React.Component {
   renderBounties = list => {
@@ -51,7 +51,7 @@ class BountiesPanelComponent extends React.Component {
             currency={tokenSymbol}
             usd_value={parseFloat(usd_price).toFixed(0)}
             createdAt={created}
-            isDraft={this.props.currentTab === "drafts"}
+            isDraft={this.props.currentTab === 'drafts'}
           />
         </ListGroup.ListItem>
       );
@@ -97,9 +97,9 @@ class BountiesPanelComponent extends React.Component {
               moment. Enter a title for a new bounty here to get started
               creating one!`}
             action
-            actionText="Create new bounty"
-            onActionClick={() => history.push("/createBounty")}
-            iconColor="blue"
+            actionText='Create new bounty'
+            onActionClick={() => history.push('/createBounty')}
+            iconColor='blue'
           />
         </div>
       );
@@ -107,7 +107,7 @@ class BountiesPanelComponent extends React.Component {
 
     if (loading) {
       bodyClass = base.bodyLoading;
-      body = <Loader color="blue" size="medium" />;
+      body = <Loader color='blue' size='medium' />;
     }
 
     if (error) {
@@ -115,10 +115,10 @@ class BountiesPanelComponent extends React.Component {
       body = (
         <div className={base.zeroState}>
           <ZeroState
-            type="error"
-            text="Something went wrong. Try again later."
-            iconColor="red"
-            icon={["far", "exclamation-triangle"]}
+            type='error'
+            text='Something went wrong. Try again later.'
+            iconColor='red'
+            icon={['far', 'exclamation-triangle']}
           />
         </div>
       );
@@ -135,16 +135,16 @@ class BountiesPanelComponent extends React.Component {
               defaultActiveKey={currentTab}
             >
               <Tabs.Tab
-                tabColor="green"
+                tabColor='green'
                 tabCount={activeCount}
-                eventKey="active"
+                eventKey='active'
               >
                 Active
               </Tabs.Tab>
               <Tabs.Tab
-                tabColor="blue"
+                tabColor='blue'
                 tabCount={draftsCount}
-                eventKey="drafts"
+                eventKey='drafts'
               >
                 Drafts
               </Tabs.Tab>
@@ -184,7 +184,7 @@ const BountiesPanel = compose(
       draftsLoadMore: draftsActions.loadMoreDrafts
     }
   ),
-  LoadComponent("")
+  LoadComponent('')
 )(BountiesPanelComponent);
 
 export default BountiesPanel;

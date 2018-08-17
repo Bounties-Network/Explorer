@@ -9,8 +9,7 @@ import { BigNumber } from 'bignumber.js';
 import { addressSelector } from 'public-modules/Client/selectors';
 import {
   calculateDecimals,
-  promisifyContractCall,
-  batchContractMethods
+  promisifyContractCall
 } from 'public-modules/Utilities/helpers';
 import { addJSON } from 'public-modules/Utilities/ipfsClient';
 import { DIFFICULTY_VALUES } from './constants';
@@ -117,7 +116,6 @@ export function* createOrUpdateDraft(action) {
 
 export function* createBounty(action) {
   let tokenSymbol = 'ETH';
-  let tokenDecimals = 18;
   let contractFulfillmentAmount;
   let contractBalance;
 
@@ -148,7 +146,6 @@ export function* createBounty(action) {
     try {
       const { symbol, decimals } = yield call(getTokenData, tokenContract);
       tokenSymbol = symbol;
-      tokenDecimals = parseInt(decimals);
       contractFulfillmentAmount = calculateDecimals(
         BigNumber(
           calculated_fulfillmentAmount || fulfillmentAmount,
