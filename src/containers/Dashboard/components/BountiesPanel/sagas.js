@@ -12,12 +12,13 @@ import { SORT_CREATED } from 'public-modules/Bounties/constants';
 const { LOAD_BOUNTIES_PANEL, SET_ACTIVE_TAB } = actionTypes;
 const { addIssuerFilter, setSort } = bountiesActions;
 
-const { loadBounties } = bountiesActions;
+const { loadBounties, resetFilters } = bountiesActions;
 const { loadDrafts } = draftsActions;
 
 export function* loadBountiesPanel() {
   const { public_address } = yield select(getCurrentUserSelector);
 
+  yield put(resetFilters());
   yield put(addIssuerFilter(public_address));
   yield put(setSort(SORT_CREATED, 'desc'));
   yield put(loadBounties());
