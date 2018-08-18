@@ -15,7 +15,8 @@ import fileUploadRducer from 'public-modules/FileUpload';
 import clientReducer from 'public-modules/Client';
 import settingsReducer from 'public-modules/Settings';
 import transactionReducer from 'public-modules/Transaction';
-import notificationReducer from 'public-modules/Notification';
+import activityReducer from 'public-modules/Activity';
+import NotificationReducer from 'public-modules/Notification';
 import fulfillmentsReducer from 'public-modules/Fulfillments';
 import fulfillmentReducer from 'public-modules/Fulfillment';
 import commentsReducer from 'public-modules/Comments';
@@ -36,7 +37,8 @@ export const reducers = {
   fileUpload: fileUploadRducer,
   client: clientReducer,
   settings: settingsReducer,
-  notification: notificationReducer,
+  activity: activityReducer,
+  notification: NotificationReducer,
   fulfillments: fulfillmentsReducer,
   fulfillment: fulfillmentReducer,
   transaction: transactionReducer,
@@ -59,6 +61,7 @@ import fileUploadSagas from 'public-modules/FileUpload/sagas';
 import clientSagas from 'public-modules/Client/sagas';
 import settingsSagas from 'public-modules/Settings/sagas';
 import transactionSagas from 'public-modules/Transaction/sagas';
+import activitySagas from 'public-modules/Activity/sagas';
 import notificationSagas from 'public-modules/Notification/sagas';
 import fulfillmentsSagas from 'public-modules/Fulfillments/sagas';
 import fulfillmentSagas from 'public-modules/Fulfillment/sagas';
@@ -81,6 +84,7 @@ export const sagaWatchers = [
   ...clientSagas,
   ...settingsSagas,
   ...transactionSagas,
+  ...activitySagas,
   ...notificationSagas,
   ...fulfillmentsSagas,
   ...fulfillmentSagas,

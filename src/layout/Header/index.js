@@ -9,13 +9,9 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import { ipfsToHttp } from 'utils/helpers';
 import styles from './Header.module.scss';
 
-import {
-  Button,
-  Avatar,
-  NotificationDropdown,
-  Dropdown,
-  Network
-} from 'components';
+import { Button, Avatar, Dropdown, Network } from 'components';
+
+import { NotificationDropdown } from 'containers';
 import BeeLogo from '../../styles/logo.js';
 
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
@@ -50,7 +46,11 @@ const HeaderComponent = props => {
             <NotificationDropdown />
           </div>
           <div className={styles.profile}>
-            <Dropdown position="left" className={styles.profileDropdown}>
+            <Dropdown
+              position="left"
+              className={styles.profileDropdown}
+              hideOnClick
+            >
               <DropdownTrigger>
                 <Avatar
                   size="small"
@@ -65,7 +65,7 @@ const HeaderComponent = props => {
                   hash={user.public_address}
                 />
               </DropdownTrigger>
-              <DropdownContent>
+              <DropdownContent className={styles.profileDropdown}>
                 <MenuItem
                   icon={['fal', 'cog']}
                   onClick={() => {

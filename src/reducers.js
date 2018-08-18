@@ -3,7 +3,7 @@ import leaderboardUIReducer from 'containers/Leaderboard/reducer';
 import profileUIReducer from 'containers/Profile/reducer';
 import dashboardReducer from 'containers/Dashboard/reducer';
 import bountyPageUIReducer from 'containers/Bounty/reducer';
-import issueRatingFormModalReducer from 'explorer-components/IssueRatingFormModal/reducer';
+import issueRatingFormModalReducer from 'containers/Bounty/components/modals/IssueRatingFormModal/reducer';
 
 const reducers = {
   loginContainer: loginReducer,

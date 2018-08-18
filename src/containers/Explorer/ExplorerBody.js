@@ -59,7 +59,7 @@ const ExplorerBodyComponent = props => {
           address={user.public_address}
           experienceLevel={experienceLevel}
           submissions={fulfillment_count}
-          deadline={moment(deadline, 'YYYY-MM-DDThh:mm:ssZ').fromNow(true)}
+          deadline={moment.utc(deadline, 'YYYY-MM-DDThh:mm:ssZ').fromNow(true)}
           value={Number(calculated_fulfillmentAmount)}
           usd={Number(usd_price).toFixed(2)}
           currency={tokenSymbol}

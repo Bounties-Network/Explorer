@@ -17,7 +17,8 @@ const Text = props => {
     inline,
     id,
     onClick,
-    download
+    download,
+    onMouseDown
   } = props;
 
   let addedClasses = '';
@@ -26,6 +27,7 @@ const Text = props => {
 
     return (
       <span
+        onMouseDown={onMouseDown}
         className={`text ${className} ${styles[typeScale]} ${
           styles[lineHeight]
         } ${styles[color]} ${styles[weight]} ${styles[alignment]} ${
@@ -43,6 +45,7 @@ const Text = props => {
 
     return (
       <a
+        onMouseDown={onMouseDown}
         className={`text ${className} ${styles[typeScale]} ${
           styles[lineHeight]
         } ${styles[color]} ${styles[alignment]} ${
@@ -63,6 +66,7 @@ const Text = props => {
 
     return (
       <p
+        onMouseDown={onMouseDown}
         className={`text ${className} ${styles[lineHeight]} ${styles[color]} ${
           styles[weight]
         } ${styles[alignment]} ${addedClasses}`}
@@ -75,6 +79,7 @@ const Text = props => {
 
   return (
     <p
+      onMouseDown={onMouseDown}
       className={`text ${className} ${styles[typeScale]} ${
         styles[lineHeight]
       } ${styles[color]} ${styles[weight]} ${styles[alignment]} ${
@@ -120,6 +125,7 @@ Text.propTypes = {
 Text.defaultProps = {
   typeScale: 'Body',
   onClick: () => {},
+  onMouseDown: () => {},
   src: '',
   link: false,
   weight: 'fontWeight-regular',

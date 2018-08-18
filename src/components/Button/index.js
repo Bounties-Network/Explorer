@@ -13,7 +13,8 @@ const Button = props => {
     loading,
     icon,
     fitWidth,
-    margin
+    margin,
+    onMouseDown
   } = props;
 
   const onClickHandler = e => {
@@ -55,6 +56,7 @@ const Button = props => {
         ${styles[type]} ${addedClasses.join(' ')}`}
       onClick={onClickHandler}
       disabled={disabled}
+      onMouseDown={onMouseDown}
     >
       <div className={childwrapper}>
         {icon ? <FontAwesomeIcon icon={icon} className={styles.icon} /> : null}
@@ -85,7 +87,8 @@ Button.propTypes = {
 Button.defaultProps = {
   onClick: () => {},
   type: 'default',
-  fitWidth: false
+  fitWidth: false,
+  onMouseDown: () => {}
 };
 
 export default Button;

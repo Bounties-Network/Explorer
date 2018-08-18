@@ -20,7 +20,7 @@ const BountyItem = props => {
     value
   } = props;
 
-  const formattedTime = moment(createdAt, 'YYYY-MM-DD').fromNow();
+  const formattedTime = moment.utc(createdAt, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
 
   let submissionsText = '';
   if (typeof submissions === 'number') {

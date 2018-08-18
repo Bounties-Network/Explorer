@@ -5,8 +5,21 @@
   align-items: center;
 }
 
+.text {
+  margin: 0 $m-spacing;
+  flex-grow: 1;
+}
+
+.time {
+  white-space: nowrap;
+}
+
 .details {
   margin-top: $m-spacing
+}
+
+.transparent {
+  background: rgba(255,255,255,.5);
 }
 
 .value {
@@ -21,4 +34,8 @@
 .message {
   display: flex;
   flex-direction: row;
+}
+
+.alignLeft {
+  text-align: left;
 }
