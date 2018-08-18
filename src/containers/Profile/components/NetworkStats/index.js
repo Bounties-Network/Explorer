@@ -1,7 +1,4 @@
 import React from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import baseStyles from '../BaseStyles.module.scss';
 import styles from './NetworkStats.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { LoadComponent } from 'hocs';

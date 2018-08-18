@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { map } from 'lodash';
 
 export const rootDraftsSelector = state => state.drafts;
 

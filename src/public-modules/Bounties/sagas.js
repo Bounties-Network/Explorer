@@ -27,7 +27,6 @@ const {
   loadBounties: loadBountiesAction,
   loadBountiesFail,
   loadBountiesSuccess,
-  loadMoreBounties: loadMoreBountiesAction,
   loadMoreBountiesFail,
   loadMoreBountiesSuccess
 } = actions;

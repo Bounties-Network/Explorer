@@ -1,8 +1,5 @@
 import request from 'utils/request';
-import moment from 'moment';
-import config from 'public-modules/config';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
-import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
 import { actionTypes, actions } from 'public-modules/Settings';
 import { actions as transactionActions } from 'public-modules/Transaction';
 import { calculateDecimals } from 'public-modules/Utilities/helpers';

@@ -1,19 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './CardNotification.module.scss';
 import { shortenAddress } from 'utils/helpers';
 
-import { Circle, Text, Payout } from 'components';
+import { Circle, Text } from 'components';
 
 const CardNotification = props => {
   const { notificationData } = props;
   const {
-    icon = '',
     address = '',
     action = '',
-    title = '',
     date = '',
-    displayNotification = false
   } = notificationData;
 
   return (

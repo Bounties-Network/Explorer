@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './CommentItem.module.scss';
-import { Button, Card, ListGroup, Text } from 'components';
-import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
+import { Text } from 'components';
+import { LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
 
 const CommentItem = props => {
