@@ -36,7 +36,7 @@ export function* loadMoreLeaderboard() {
   };
 
   const getData = (toggleValue, offset, type) => {
-    return toggleValue == type
+    return toggleValue === type
       ? call(request, `leaderboard/${type}/`, 'GET', {
           params: { ...params, offset: offset[type] }
         })

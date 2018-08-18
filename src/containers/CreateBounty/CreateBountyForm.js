@@ -392,7 +392,6 @@ class CreateBountyFormComponent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const rootUpload = rootUploadSelector(state);
   const uploadedFile = getUploadKeySelector(UPLOAD_KEY)(state);
   const draftState = createDraftStateSelector(state);
   const bountyState = stdBountyStateSelector(state);

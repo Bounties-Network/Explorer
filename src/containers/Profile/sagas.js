@@ -1,10 +1,9 @@
 import { put, takeLatest, select } from 'redux-saga/effects';
 import { profileUISelector } from './selectors';
-import { actionTypes, actions } from './reducer';
+import { actionTypes } from './reducer';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { actions as reviewsActions } from 'public-modules/Reviews';
 import {
-  actionTypes as bountiesActionTypes,
   actions as bountiesActions
 } from 'public-modules/Bounties';
 
@@ -23,7 +22,7 @@ export function* loadProfileBounties(action) {
   const { tabKey } = action;
   const { address } = yield select(profileUISelector);
 
-  if (tabKey == 'issued') {
+  if (tabKey === 'issued') {
     yield put(addIssuerFilter(address));
   } else {
     yield put(addFulfillerFilter(address));

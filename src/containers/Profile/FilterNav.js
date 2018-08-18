@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './FilterNav.module.scss';
-import { Search, Text, Button, Checkbox, SearchSelect } from 'components';
+import { Text, Button, Checkbox } from 'components';
 import {
   rootBountiesSelector,
   bountiesCategoryFiltersSelector,
@@ -8,7 +8,6 @@ import {
   anyDifficultyFiltersSelected
 } from 'public-modules/Bounties/selectors';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
-import { throttle } from 'lodash';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { LoadComponent } from 'hocs';
@@ -26,19 +25,9 @@ const { loadCategories } = categoryActions;
 
 const FilterNavComponent = props => {
   const {
-    search,
     resetFilters,
-    setSearch,
     toggleStageFilter,
-    toggleDifficultyFilter,
-    stageFilters,
-    difficultyFilters,
-    anyStageFiltersSelected,
-    anyDifficultyFiltersSelected,
-    categories,
-    categoryFilters,
-    addCategoryFilter,
-    removeCategoryFilter
+    stageFilters
   } = props;
 
   return (

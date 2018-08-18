@@ -1,9 +1,6 @@
 import React from 'react';
 import styles from './NetworkStats.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { LoadComponent } from 'hocs';
-import { ReviewsModal } from '../';
-import { Circle, Pill, Switch, Text } from 'components';
+import { Circle, Switch, Text } from 'components';
 import { map as fpMap, capitalize } from 'lodash';
 import { descriptionText, displayFormat, statsToShow } from './constants';
 import { profileUISelector } from 'containers/Profile/selectors';
@@ -13,30 +10,15 @@ import { actions as reviewsActions } from 'public-modules/Reviews';
 const map = fpMap.convert({ cap: false });
 
 function formatInput(value, format) {
-  if (value == null) {
-    return 'N/A';
-  }
-
-  if (format == 'fraction') {
+  if (format === 'fraction') {
     return `${Number(value.toFixed(0))}/5`;
   } else {
     return `${Number(value * 100).toFixed(0)}%`;
   }
 }
 
-const NetworkStatsComponent = props => {
-  const {
-    stats,
-    switchValue,
-    toggleNetworkSwitch,
-    reviewsState,
-    setReviewsModalVisible,
-    reviewsModalVisible,
-    loadMoreReviews
-  } = props;
-
-  const { loadingMore, loadingMoreError, error, reviews, count } = reviewsState;
-  const { issuer, fulfiller } = stats;
+const NetworkStats = props => {
+  const { stats, switchValue, toggleNetworkSwitch } = props;
 
   const renderCircle = key => {
     const text = descriptionText[switchValue][key];

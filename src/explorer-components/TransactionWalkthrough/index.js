@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import styles from './TransactionWalkthrough.module.scss';
 import { Text, Modal, Button } from 'components';
 
@@ -99,7 +98,7 @@ WalkthroughError.propTypes = {
 };
 
 const WalkthroughSuccess = props => {
-  const { visible, toDashboard, buttonText, successPath, successLink } = props;
+  const { visible, toDashboard, buttonText, successLink } = props;
 
   return (
     <Modal fixed size="small" visible={visible}>

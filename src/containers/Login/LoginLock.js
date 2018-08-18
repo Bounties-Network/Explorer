@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './LoginLock.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { Modal } from 'components';
 import {
-  WalletRequired,
   UnlockWallet,
   AddressMismatch,
   ErrorModal
 } from './components';
-import { actions } from './reducer';
 import { actions as authActions } from 'public-modules/Authentication';
 import {
   getCurrentUserSelector,
@@ -24,7 +20,6 @@ import {
 
 const LoginLockComponent = props => {
   const {
-    hasWallet,
     walletLocked,
     walletAddress,
     userAddress,
