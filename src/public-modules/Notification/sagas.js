@@ -14,6 +14,7 @@ import {
 } from 'public-modules/Notification/selectors';
 import { getUserAddressSelector } from 'public-modules/Authentication/selectors';
 import { actions, actionTypes } from 'public-modules/Notification';
+import { notification_template } from 'utils/constants';
 import { deserializeNotification } from './helpers';
 
 const {
@@ -22,6 +23,7 @@ const {
   loadNotificationsFail,
   loadMoreNotificationsSuccess,
   loadMoreNotificationsFail,
+  setNotificationViewed,
   addNotification
 } = actions;
 
@@ -76,11 +78,33 @@ export function* loadMoreNotifications(action) {
   }
 }
 
-export function* showNotification(action) {
-  return null;
+export function* showNotification(action, dispatch) {
+  const { loaded } = yield select(rootNotificationSelector);
+  const address = yield select(getUserAddressSelector);
+
+  if (!address) {
+    return null;
+  }
+  if (!loaded) {
+    return null;
+  }
+
+  const {
+    notification: { bounty_title, link, notification_name, id }
+  } = action;
+  let postedLink = (
+    <Link to={link} style={{ color: 'inherit' }}>
+      View Bounty
+    </Link>
+  );
+  const postedMessage = notification_template[notification_name].message;
+  const toastType = Toast.TYPE.NOTIFICATION;
+  yield call(Toast, toastType, postedMessage, postedLink, () =>
+    dispatch(setNotificationViewed(id))
+  );
 }
 
-export function* setNotificationViewed(action) {
+export function* setNotificationViewedSaga(action) {
   const { id } = action;
 
   const endpoint = `notification/push/${id}/view/`;
@@ -106,7 +130,7 @@ export function* watchLoadMore() {
 }
 
 export function* watchSetNotificationViewed() {
-  yield takeLatest(SET_NOTIFICATION_VIEWED, setNotificationViewed);
+  yield takeLatest(SET_NOTIFICATION_VIEWED, setNotificationViewedSaga);
 }
 
 export function* watchViewAllNotifications() {
