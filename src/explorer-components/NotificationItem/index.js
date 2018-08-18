@@ -8,28 +8,33 @@ import { LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
 
 const NotificationItem = props => {
-  const { createdAt, title, type } = props;
+  const { createdAt, title, type, userAddress, profileImage } = props;
   const { message, icon } = notification_template[type];
   const formattedTime = moment(createdAt, 'YYYY-MM-DD').fromNow();
 
   return (
-    <div className={`row ${styles.container}`}>
-      <div className="col-xs-1">
-        <div className={styles.alignLeft}>
+    <div className={styles.container}>
+      <div className={styles.notifier}>
+        {userAddress ? (
+          <LinkedAvatar
+            address={userAddress}
+            img={profileImage}
+            hash={userAddress}
+            to={`/profile/${userAddress}`}
+          />
+        ) : (
           <FontAwesomeIcon icon={icon} className={styles.iconStyles} />
-        </div>
+        )}
       </div>
-      <div className="col-xs-8">
-        <div className={base.alignLeft}>
-          <Text color="black" inline>
-            {message}
-          </Text>
-          <Text color="black" weight="fontWeight-medium" inline>
-            {' ' + title}
-          </Text>
-        </div>
+      <div className={styles.text}>
+        <Text color="black" inline>
+          {message}
+        </Text>
+        <Text color="black" weight="fontWeight-medium" inline>
+          {' ' + title}
+        </Text>
       </div>
-      <div className="col-xs-3">
+      <div className={styles.time}>
         <Text color="defaultGrey" typeScale="Small">
           {formattedTime}
         </Text>

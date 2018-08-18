@@ -1,12 +1,16 @@
 @import "~styles/variables.scss";
 
 .notificationBox {
-  height: 30vh;
   min-height: 200px;
-  min-width: 400px;
+  height: 40vh;
+  min-width: 500px;
   overflow: scroll;
 }
 
 .customDropdown {
   top: 45px;
+}
+
+.link:hover, .link:visited, .link:link, .link:active {
+  text-decoration: none;
 }

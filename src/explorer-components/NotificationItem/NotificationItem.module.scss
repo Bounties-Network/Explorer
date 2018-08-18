@@ -5,6 +5,15 @@
   align-items: center;
 }
 
+.text {
+  margin: 0 $m-spacing;
+  flex-grow: 1;
+}
+
+.time {
+  white-space: nowrap;
+}
+
 .details {
   margin-top: $m-spacing
 }

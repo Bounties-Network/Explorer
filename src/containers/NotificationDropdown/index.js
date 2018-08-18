@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './NotificationDropdown.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { map } from 'lodash';
+import { Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { notificationsListSelector } from 'public-modules/Notification/selectors';
@@ -13,15 +14,25 @@ const { DropdownTrigger, DropdownContent } = Dropdown;
 
 const renderNotifications = notifications => {
   return map(notification => {
-    const { notification_name, bounty_title, created } = notification;
+    const {
+      notification_name,
+      bounty_title,
+      created,
+      from_user,
+      link
+    } = notification;
 
     return (
-      <ListGroup.ListItem>
-        <NotificationItem
-          type={notification_name}
-          title={bounty_title}
-          createdAt={created}
-        />
+      <ListGroup.ListItem hover>
+        <Link to={link} className={styles.link}>
+          <NotificationItem
+            type={notification_name}
+            title={bounty_title}
+            createdAt={created}
+            userAddress={from_user && from_user.public_address}
+            profileImg={from_user && from_user.profile_image}
+          />
+        </Link>
       </ListGroup.ListItem>
     );
   }, notifications);
