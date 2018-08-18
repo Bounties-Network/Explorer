@@ -41,28 +41,8 @@ export function* loadReviewee(action) {
   }
 }
 
-// export function* loadMoreFulfillments() {
-//   const params = yield select(fulfillmentsQuerySelector);
-//   const offset = (yield select(fulfillmentsSelector)).fulfillments.length;
-//
-//   params['offset'] = offset;
-//
-//   try {
-//     let endpoint = 'fulfillment';
-//     const fulfillments = yield call(request, endpoint, 'GET', { params });
-//     const { results, count } = fulfillments;
-//     yield put(loadMoreFulfillmentsSuccess(results, count));
-//   } catch (e) {
-//     yield put(loadMoreFulfillmentsFail(e));
-//   }
-// }
-
 export function* watchReviewee() {
   yield takeLatest(LOAD_REVIEWEE, loadReviewee);
 }
-
-// export function* watchLoadMoreFulfillments() {
-//   yield takeLatest(LOAD_MORE_FULFILLMENTS, loadMoreFulfillments);
-// }
 
 export default [watchReviewee];

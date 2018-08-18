@@ -17,9 +17,9 @@ import {
   FulfillBountyFormModal,
   KillBountyFormModal,
   ContributeFormModal,
-  TransferOwnershipFormModal
+  TransferOwnershipFormModal,
+  IssueRatingFormModal
 } from 'containers/Bounty/components';
-import { IssueRatingFormModal } from 'explorer-components';
 
 const ModalManagerComponent = props => {
   const {

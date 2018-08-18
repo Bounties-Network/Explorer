@@ -11,6 +11,7 @@ import TransferOwnershipFormModal from './modals/TransferOwnershipFormModal';
 import ContributeFormModal from './modals/ContributeFormModal';
 import NewCommentForm from './NewCommentForm';
 import CommentItem from './listItems/CommentItem';
+import IssueRatingFormModal from './modals/IssueRatingFormModal';
 
 export {
   ExtendDeadlineErrorModal,
@@ -25,5 +26,6 @@ export {
   TransferOwnershipFormModal,
   ContributeFormModal,
   NewCommentForm,
-  CommentItem
+  CommentItem,
+  IssueRatingFormModal
 };
