@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './SubmissionsAndCommentsCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { map as fpMap } from 'lodash';
+import { map as fpMap, filter } from 'lodash';
 import { PageCard, FormSection } from 'explorer-components';
 import { Field, reduxForm } from 'redux-form';
 import { SubmissionItem, NewCommentForm, CommentItem } from './components';
@@ -22,6 +22,7 @@ let SubmissionsAndCommentsCardComponent = props => {
     initiateWalkthrough,
     initiateLoginProtection,
     showModal,
+    setReviewee,
     setActiveTab,
     currentTab,
     fulfillments,
@@ -35,7 +36,7 @@ let SubmissionsAndCommentsCardComponent = props => {
   const bountyBelongsToLoggedInUser =
     currentUser && bounty.issuer === currentUser.public_address;
 
-  const renderFulfillments = () => {
+  const renderFulfillments = list => {
     return map(fulfillment => {
       const {
         fulfillment_id,
@@ -60,11 +61,11 @@ let SubmissionsAndCommentsCardComponent = props => {
         <ListGroup.ListItem className={styles.submissionItem}>
           <SubmissionItem
             fulfillmentId={fulfillment_id}
+            fulfiller_name={name}
+            fulfiller_email={fulfiller_email}
+            fulfiller_address={fulfiller}
+            fulfiller_img={profile_image}
             bounty={bounty}
-            name={name}
-            email={fulfiller_email}
-            address={fulfiller}
-            img={profile_image}
             url={url}
             description={description}
             dataHash={sourceDirectoryHash}
@@ -84,10 +85,11 @@ let SubmissionsAndCommentsCardComponent = props => {
             }
             initiateLoginProtection={initiateLoginProtection}
             showModal={showModal}
+            setReviewee={setReviewee}
           />
         </ListGroup.ListItem>
       );
-    }, fulfillments.list);
+    }, list);
   };
 
   const renderComments = () => {
@@ -113,7 +115,7 @@ let SubmissionsAndCommentsCardComponent = props => {
   let bodyClass = '';
 
   if (currentTab == 'submissions') {
-    body = <ListGroup>{renderFulfillments()}</ListGroup>;
+    body = <ListGroup>{renderFulfillments(fulfillments.list)}</ListGroup>;
 
     if (!fulfillments.list.length) {
       bodyClass = styles.bodyLoading;
@@ -134,16 +136,33 @@ let SubmissionsAndCommentsCardComponent = props => {
     }
 
     if (!bountyBelongsToLoggedInUser) {
-      bodyClass = styles.bodyLoading;
-      body = (
-        <div className={styles.zeroState}>
-          <ZeroState
-            title={'Submissions are private'}
-            text={'The submissions for this bounty have been set to private.'}
-            iconColor="blue"
-          />
-        </div>
+      const userFulfillments = filter(
+        ['fulfiller', currentUser.public_address],
+        fulfillments.list
       );
+
+      body = (
+        <React.Fragment>
+          <ListGroup>{renderFulfillments(userFulfillments)}</ListGroup>
+          <Text alignment="align-center" color="defaultGrey" typeScale="Small">
+            Submissions to this bounty are hidden. Your submissions are only
+            visible to you.
+          </Text>
+        </React.Fragment>
+      );
+
+      if (!userFulfillments.length) {
+        bodyClass = styles.bodyLoading;
+        body = (
+          <div className={styles.zeroState}>
+            <ZeroState
+              title={'Submissions are private'}
+              text={'The submissions for this bounty have been set to private.'}
+              iconColor="blue"
+            />
+          </div>
+        );
+      }
     }
   }
 
@@ -252,6 +271,7 @@ const SubmissionsAndCommentsCard = compose(
     {
       showModal: bountyUIActions.showModal,
       setActiveTab: bountyUIActions.setActiveTab,
+      setReviewee: bountyUIActions.setReviewee,
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
       postComment: commentsActions.postComment
     }

@@ -3,9 +3,11 @@ import styles from './Bounty.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions as bountyActions } from 'public-modules/Bounty';
+import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
 import { actions as bountyUIActions } from './reducer';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
+import queryString from 'query-string';
 import showdown from 'showdown';
 import moment from 'moment';
 import { map } from 'lodash';
@@ -35,8 +37,10 @@ class BountyComponent extends React.Component {
 
     const {
       match,
+      location,
       loadBounty,
       loadDraftBounty,
+      loadFulfillment,
       loadFulfillments,
       resetFilters,
       addBountyFilter,
@@ -55,6 +59,12 @@ class BountyComponent extends React.Component {
       resetFilters();
       addBountyFilter(match.params.id);
       loadFulfillments(match.params.id);
+
+      const values = queryString.parse(location.search);
+
+      if (values.rating) {
+        loadFulfillment(match.params.id, values.fulfillment_id);
+      }
     }
   }
 
@@ -315,6 +325,7 @@ const Bounty = compose(
       loadBounty: bountyActions.getBounty,
       loadDraftBounty: bountyActions.getDraft,
       loadFulfillments: fulfillmentsActions.loadFulfillments,
+      loadFulfillment: fulfillmentActions.loadFulfillment,
       addBountyFilter: fulfillmentsActions.addBountyFilter,
       resetFilters: fulfillmentsActions.resetFilters
     }
