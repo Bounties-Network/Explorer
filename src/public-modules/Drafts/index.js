@@ -5,7 +5,6 @@ const initialState = {
   loadingMore: false,
   loadingMoreError: false,
 
-  count: 0,
   drafts: []
 };
 
@@ -86,7 +85,7 @@ function DraftsReducer(state = initialState, action) {
       };
     }
     case LOAD_MORE_DRAFTS_SUCCESS: {
-      const { drafts, count } = action;
+      const { drafts } = action;
       return {
         ...state,
         loadingMore: false,

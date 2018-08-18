@@ -4,7 +4,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { PageCard, FormSection } from 'explorer-components';
 import {
-  rootUploadSelector,
   getUploadKeySelector
 } from 'public-modules/FileUpload/selectors';
 import { formValueSelector } from 'redux-form';

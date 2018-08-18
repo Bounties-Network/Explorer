@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
-import validators from 'utils/validators';
 import { FormDatePicker } from 'form-components';
 
 const ExtendDeadlineFormModal = props => {

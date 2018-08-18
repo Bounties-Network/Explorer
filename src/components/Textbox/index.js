@@ -4,8 +4,6 @@ import styles from './Textbox.module.scss';
 
 import { Text } from 'components';
 
-const debounceTimer = 300;
-
 class Textbox extends React.Component {
   state = {
     text: ''

@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './Search.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
-import { Text } from 'components';
-
-const debounceTimer = 400;
-
 class Search extends React.Component {
   state = {
     searchText: ''

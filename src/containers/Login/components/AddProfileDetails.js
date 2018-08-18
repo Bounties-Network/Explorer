@@ -4,7 +4,6 @@ import styles from './baseStyles.module.scss';
 import UserSettings from 'containers/Settings/UserSettings';
 import { Modal, Text, Button } from 'components';
 import { PageCard } from 'explorer-components';
-import { actions } from '../reducer';
 
 class AddProfileDetails extends React.Component {
   constructor(props) {

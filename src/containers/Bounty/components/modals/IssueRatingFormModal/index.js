@@ -5,7 +5,6 @@ import styles from './IssueRatingFormModal.module.scss';
 import { Avatar, Button, Modal, Text, Loader } from 'components';
 import { LoadComponent } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
-import validators from 'utils/validators';
 import { FormTextbox, FormRating } from 'form-components';
 import { actions as reviewActions } from 'public-modules/Review';
 import { actions as revieweeActions } from './reducer';

@@ -3,14 +3,11 @@ import styles from './SubmissionsAndCommentsCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { map as fpMap } from 'lodash';
-import { PageCard, FormSection } from 'explorer-components';
-import { Field, reduxForm } from 'redux-form';
 import { SubmissionItem, NewCommentForm, CommentItem } from './components';
-import { Button, ListGroup, Loader, Tabs, Text, ZeroState } from 'components';
+import { ListGroup, Loader, Tabs, Text, ZeroState } from 'components';
 import { rootBountyPageSelector } from './selectors';
 import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
 import { commentsSelector } from 'public-modules/Comments/selectors';
-import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
 import { actions as commentsActions } from 'public-modules/Comments';
 import { actions as bountyUIActions } from './reducer';
@@ -112,7 +109,7 @@ let SubmissionsAndCommentsCardComponent = props => {
   let body = <div />;
   let bodyClass = '';
 
-  if (currentTab == 'submissions') {
+  if (currentTab === 'submissions') {
     body = <ListGroup>{renderFulfillments()}</ListGroup>;
 
     if (!fulfillments.list.length) {
@@ -147,8 +144,8 @@ let SubmissionsAndCommentsCardComponent = props => {
     }
   }
 
-  if (currentTab == 'comments') {
-    const newCommentForm = (
+  if (currentTab === 'comments') {
+    const newCommentForm = currentUser ? (
       <ListGroup.ListItem className={styles.commentItem}>
         <NewCommentForm
           disabled={!currentUser}

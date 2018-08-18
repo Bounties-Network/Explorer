@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './Avatar.module.scss';
 import { shortenAddress } from 'utils/helpers';
 import { Text, Circle } from 'components';
-import Blockies from 'react-blockies';
 
 const Avatar = props => {
   const {

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './PreferencesToggle.module.scss';
 import { Text, Toggle } from 'components';
-import { LinkedAvatar } from 'explorer-components';
 import { FormInput } from 'hocs';
 
 const PreferencesToggle = props => {

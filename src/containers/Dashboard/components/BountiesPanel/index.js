@@ -3,7 +3,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import base from '../BaseStyles.module.scss';
-import styles from './BountiesPanel.module.scss';
 import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
 import {
@@ -12,12 +11,10 @@ import {
   ListGroup,
   Loader,
   Tabs,
-  Text,
   ZeroState
 } from 'components';
 import { BountyItem } from '../';
 import {
-  bountiesPanelSelector,
   tabDataSelector,
   currentTabSelector
 } from './selectors';
@@ -37,8 +34,7 @@ class BountiesPanelComponent extends React.Component {
         fulfillment_count,
         title,
         tokenSymbol,
-        usd_price,
-        bountyStage
+        usd_price
       } = bounty;
 
       return (

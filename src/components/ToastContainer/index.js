@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import styles from './ToastContainer.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Text } from 'components';
-import { ToastContainer as ToastWrapper, toast } from 'react-toastify';
+import { ToastContainer as ToastWrapper } from 'react-toastify';
 
 const BaseToast = props => {
-  const { icon, message, link, onClose } = props;
+  const { icon, message, link } = props;
 
   return (
     <div className={styles.baseToast}>
@@ -33,8 +33,6 @@ const BaseToast = props => {
 };
 
 const CloseIcon = props => {
-  const { closeToast } = props;
-
   return (
     <i className={styles.closeIcon}>
       <FontAwesomeIcon icon={['fal', 'times']} />

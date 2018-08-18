@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './SearchSelect.module.scss';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/lib/Creatable';
-import { reject, includes, filter, map, find, isUndefined } from 'lodash';
+import { reject, includes, map, find, isUndefined } from 'lodash';
 import '../../styles/ReactSelect.scss';
 
 import { Text, Pill } from 'components';
@@ -93,7 +93,6 @@ class SearchSelect extends React.Component {
       valueKey,
       optional,
       placeholder,
-      options,
       creatable,
       onFocus,
       onBlur
