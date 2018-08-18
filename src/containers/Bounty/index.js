@@ -58,6 +58,34 @@ class BountyComponent extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const {
+      match,
+      loadBounty,
+      loadDraftBounty,
+      loadFulfillments,
+      resetFilters,
+      addBountyFilter,
+      setBountyId
+    } = this.props;
+
+    if (prevProps.match !== match) {
+      setBountyId(match.params.id);
+
+      if (match.path === '/bounty/draft/:id/') {
+        loadDraftBounty(match.params.id);
+      }
+
+      if (match.path === '/bounty/:id/') {
+        loadBounty(match.params.id);
+
+        resetFilters();
+        addBountyFilter(match.params.id);
+        loadFulfillments(match.params.id);
+      }
+    }
+  }
+
   render() {
     const {
       user,
