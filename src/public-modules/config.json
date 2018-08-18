@@ -1,5 +1,6 @@
 {
   "platform": "gitcoin,bounties-network,hiring",
+  "postingPlatform": "bounties-network",
   "categoryPlatform": "main",
   "url": {
     "mainNet": "https://api.bounties.network",

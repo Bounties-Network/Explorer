@@ -1,5 +1,6 @@
 import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
+import config from 'public-modules/config';
 import { actionTypes, actions } from 'public-modules/UserInfo';
 
 const { LOAD_USERINFO } = actionTypes;
@@ -9,7 +10,9 @@ export function* loadUserInfo(action) {
   const { address } = action;
 
   try {
-    let endpoint = `user/${address}/profile/`;
+    let endpoint = `user/${address}/profile/?platform=${
+      config.postingPlatform
+    }`;
     const userInfo = yield call(request, endpoint, 'GET');
     yield put(loadUserInfoSuccess(userInfo));
   } catch (e) {

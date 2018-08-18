@@ -2,6 +2,7 @@ import React from 'react';
 import request from 'utils/request';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
+import config from 'public-modules/config';
 import { networkSelector } from 'public-modules/Client/selectors';
 import { toast as callToast } from 'react-toastify';
 import { each, get } from 'lodash';
@@ -43,7 +44,9 @@ export function* loadTransactionsSaga(action) {
       return null;
     }
     const currentTransactions = yield select(transactionsSelector);
-    const endpoint = `notification/transaction/user/${address}/`;
+    const endpoint = `notification/transaction/user/${address}/?platform=${
+      config.postingPlatform
+    }`;
     const response = yield call(request, endpoint, 'GET');
     const transactions = response.results;
     for (let key in transactions) {
@@ -80,7 +83,8 @@ export function* postTransactionSaga(action) {
     const endpoint = `notification/transaction/user/${address}/`;
     yield call(request, endpoint, 'POST', {
       data: {
-        tx_hash: txHash
+        tx_hash: txHash,
+        platform: config.postingPlatform
       }
     });
     yield put(postTransactionSuccess(txHash));
