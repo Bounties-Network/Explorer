@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import base from '../BaseStyles.module.scss';
-import styles from './ActivityItem.module.scss';
-import { notification_template } from './constants';
+import styles from './NotificationItem.module.scss';
+import { notification_template } from 'utils/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { ListGroup, Card, Text } from 'components';
 import { LinkedAvatar } from 'explorer-components';
-import Pluralize from 'pluralize';
 import moment from 'moment';
 
-const ActivityItem = props => {
+const NotificationItem = props => {
   const { createdAt, title, type } = props;
   const { message, icon } = notification_template[type];
   const formattedTime = moment(createdAt, 'YYYY-MM-DD').fromNow();
@@ -17,7 +15,7 @@ const ActivityItem = props => {
   return (
     <div className={`row ${styles.container}`}>
       <div className="col-xs-1">
-        <div className={base.alignLeft}>
+        <div className={styles.alignLeft}>
           <FontAwesomeIcon icon={icon} className={styles.iconStyles} />
         </div>
       </div>
@@ -40,10 +38,10 @@ const ActivityItem = props => {
   );
 };
 
-ActivityItem.propTypes = {
+NotificationItem.propTypes = {
   title: PropTypes.string
 };
 
-ActivityItem.defaultProps = {};
+NotificationItem.defaultProps = {};
 
-export default ActivityItem;
+export default NotificationItem;

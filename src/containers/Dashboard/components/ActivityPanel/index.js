@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
 import { Button, Card, ListGroup, Loader, Text, ZeroState } from 'components';
-import { ActivityItem } from '../';
+import { NotificationItem } from 'explorer-components';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { rootActivitySelector } from 'public-modules/Activity/selectors';
 import { actions } from 'public-modules/Activity';
@@ -25,7 +25,7 @@ class ActivityPanelComponent extends React.Component {
       return (
         <ListGroup.ListItem hover>
           <Link to={relative_link} className={styles.link}>
-            <ActivityItem
+            <NotificationItem
               type={notification_id}
               title={bounty_title}
               createdAt={created}

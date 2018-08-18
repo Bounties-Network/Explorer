@@ -3,6 +3,7 @@ export const deserializeNotification = notificationItem => {
     notification: { from_user, notification_name },
     data: { link, bounty_title },
     viewed,
+    created,
     id
   } = notificationItem;
   return {
@@ -11,6 +12,7 @@ export const deserializeNotification = notificationItem => {
     // make link relative
     link: link.replace(/^.*\/\/[^\/]+/, ''),
     bounty_title,
+    created,
     viewed,
     id
   };

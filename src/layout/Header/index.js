@@ -9,13 +9,9 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import { ipfsToHttp } from 'utils/helpers';
 import styles from './Header.module.scss';
 
-import {
-  Button,
-  Avatar,
-  NotificationDropdown,
-  Dropdown,
-  Network
-} from 'components';
+import { Button, Avatar, Dropdown, Network } from 'components';
+
+import { NotificationDropdown } from 'containers';
 import BeeLogo from '../../styles/logo.js';
 
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
