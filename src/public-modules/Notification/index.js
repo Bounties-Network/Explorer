@@ -1,6 +1,9 @@
 import { keyBy, map, mapValues } from 'lodash';
 import { LIMIT } from './constants';
 import { deserializeNotification } from './helpers';
+import { actionTypes as authActionTypes } from 'public-modules/Authentication';
+
+const { LOGOUT_SUCCESS } = authActionTypes;
 
 const initialState = {
   loading: true,
@@ -122,6 +125,11 @@ function loadMoreNotificationsFail(error) {
 
 function ManageNotificationReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGOUT_SUCCESS: {
+      return {
+        ...initialState
+      };
+    }
     case LOAD_NOTIFICATIONS: {
       return {
         ...state,

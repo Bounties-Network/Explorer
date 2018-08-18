@@ -145,8 +145,7 @@ function ManageTransactionReducer(state = initialState, action) {
   switch (action.type) {
     case LOGOUT_SUCCESS: {
       return {
-        ...state,
-        transactionsInitiated: false
+        ...initialState
       };
     }
     case LOAD_TRANSACTIONS_SUCCESS: {
