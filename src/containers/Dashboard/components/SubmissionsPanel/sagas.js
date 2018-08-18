@@ -8,6 +8,7 @@ import { FULFILLER_KEY, ISSUER_KEY } from './constants';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
 
 const { LOAD_SUBMISSIONS_PANEL, SET_ACTIVE_TAB } = actionTypes;
+const { setActiveTab } = actions;
 const {
   addFulfillerFilter,
   addIssuerFilter,
@@ -25,11 +26,10 @@ export function* locationChanged(action) {
 
 export function* loadSubmissionsPanel(action) {
   const { public_address } = yield select(getCurrentUserSelector);
-  yield put(addIssuerFilter(public_address));
-  yield put(loadFulfillments());
+  yield put(setActiveTab('received'));
 }
 
-export function* setActiveTab(action) {
+export function* loadActiveTab(action) {
   const { public_address } = yield select(getCurrentUserSelector);
   const { tabKey } = action;
 
@@ -47,7 +47,7 @@ export function* watchLoadSubmissions() {
 }
 
 export function* watchActiveTab() {
-  yield takeLatest(SET_ACTIVE_TAB, setActiveTab);
+  yield takeLatest(SET_ACTIVE_TAB, loadActiveTab);
 }
 
 export function* watchRouter() {
