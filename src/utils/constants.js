@@ -125,7 +125,7 @@ export const notification_template = {
     icon: general
   },
   [NOTIFICATION_ID.BOUNTY_COMMENT]: {
-    message: 'You received a comment on',
+    message: 'You received a comment',
     icon: comment
   },
   [NOTIFICATION_ID.BOUNTY_ISSUED_ACTIVATED]: {
@@ -137,7 +137,7 @@ export const notification_template = {
     icon: level_up
   },
   [NOTIFICATION_ID.FULFILLMENT_UPDATED_ISSUER]: {
-    message: 'A submission for your bounty was updated:',
+    message: 'A submission for your bounty was updated',
     icon: general
   },
   [NOTIFICATION_ID.RATING_ISSUED]: {
@@ -145,7 +145,7 @@ export const notification_template = {
     icon: star
   },
   [NOTIFICATION_ID.RATING_RECEIVED]: {
-    message: 'You received a rating:',
+    message: 'You received a rating',
     icon: star
   },
   [NOTIFICATION_ID.PROFILE_UPDATED]: {
