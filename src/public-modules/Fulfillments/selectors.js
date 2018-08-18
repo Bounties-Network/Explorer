@@ -20,7 +20,7 @@ export const fulfillmentsQuerySelector = createSelector(
     if (fulfillmentsState.filters) {
       const { fulfiller, issuer, bounty_id } = fulfillmentsState.filters;
       query['fulfiller'] = fulfiller;
-      query['bounty__issuer_address'] = issuer;
+      query['bounty__user__public_address'] = issuer;
       query['bounty'] = bounty_id;
     }
 

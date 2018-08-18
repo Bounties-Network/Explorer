@@ -14,8 +14,9 @@ const {
   SET_PROFILE_ADDRESS,
   TOGGLE_NETWORK_SWITCH
 } = actionTypes;
+const { RESET_FILTERS } = bountiesActionTypes;
 const { addIssuerFilter, addFulfillerFilter } = bountiesActions;
-const { loadBounties } = bountiesActions;
+const { loadBounties, allStageFilters, resetFilters } = bountiesActions;
 const { loadUserInfo } = userInfoActions;
 const { loadReviewsReceived } = reviewsActions;
 
@@ -42,6 +43,9 @@ export function* loadUser(action) {
   const { currentTab } = yield select(profileUISelector);
 
   yield put(loadUserInfo(address));
+  yield put(resetFilters());
+  yield put(allStageFilters());
+
   yield loadProfileBounties({ tabKey: currentTab });
 }
 

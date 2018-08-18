@@ -1,21 +1,30 @@
 import request from 'utils/request';
 import { all, call, put, takeLatest, select } from 'redux-saga/effects';
+import { LOCATION_CHANGE } from 'react-router-redux';
+import { currentRouteSelector } from 'utils/helpers';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { actionTypes, actions } from './reducer';
 import { FULFILLER_KEY, ISSUER_KEY } from './constants';
-
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
 
 const { LOAD_SUBMISSIONS_PANEL, SET_ACTIVE_TAB } = actionTypes;
 const {
   addFulfillerFilter,
   addIssuerFilter,
-  loadFulfillments
+  loadFulfillments,
+  resetFilters
 } = fulfillmentsActions;
+
+export function* locationChanged(action) {
+  const { pathname } = action.payload;
+
+  if (currentRouteSelector(pathname) === 'dashboard') {
+    yield put(fulfillmentsActions.resetFilters());
+  }
+}
 
 export function* loadSubmissionsPanel(action) {
   const { public_address } = yield select(getCurrentUserSelector);
-
   yield put(addIssuerFilter(public_address));
   yield put(loadFulfillments());
 }
@@ -41,4 +50,8 @@ export function* watchActiveTab() {
   yield takeLatest(SET_ACTIVE_TAB, setActiveTab);
 }
 
-export default [watchLoadSubmissions, watchActiveTab];
+export function* watchRouter() {
+  yield takeLatest(LOCATION_CHANGE, locationChanged);
+}
+
+export default [watchLoadSubmissions, watchActiveTab, watchRouter];
