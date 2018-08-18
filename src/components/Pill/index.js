@@ -11,7 +11,6 @@ const Pill = props => {
     onClick,
     close,
     onCloseClick,
-    children,
     backgroundColor,
     textColor,
     noBorder,

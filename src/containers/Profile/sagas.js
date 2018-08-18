@@ -1,5 +1,4 @@
-import request from 'utils/request';
-import { all, call, put, takeLatest, select } from 'redux-saga/effects';
+import { put, takeLatest, select } from 'redux-saga/effects';
 import { profileUISelector } from './selectors';
 import { actionTypes, actions } from './reducer';
 import { actions as userInfoActions } from 'public-modules/UserInfo';

@@ -1,5 +1,3 @@
-import web3 from 'public-modules/Utilities/Web3Client';
-import config from 'public-modules/config';
 import { hasUserSignedUp } from 'public-modules/Authentication/selectors';
 import { takeLatest, put, select } from 'redux-saga/effects';
 import { actions as authActions } from 'public-modules/Authentication';

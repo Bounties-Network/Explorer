@@ -10,9 +10,7 @@ const reducers = {
   leaderboardUI: leaderboardUIReducer,
   profileUI: profileUIReducer,
   ...dashboardReducer,
-  bountyPageUI: bountyPageUIReducer,
-  profileUI: profileUIReducer,
-  ratingFormModal: issueRatingFormModalReducer
+  bountyPageUI: bountyPageUIReducer
 };
 
 // Reducers not from public-modules

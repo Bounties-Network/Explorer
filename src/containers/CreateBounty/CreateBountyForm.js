@@ -11,7 +11,6 @@ import { formValueSelector } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as categoryActions } from 'public-modules/Categories';
 import { actions as bountyActions } from 'public-modules/Bounty';
-import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { TransactionWalkthrough } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
@@ -19,12 +18,9 @@ import { BigNumber } from 'bignumber.js';
 import {
   stdBountyStateSelector,
   createDraftStateSelector,
-  getDraftStateSelector,
   getDraftBountySelector
 } from 'public-modules/Bounty/selectors';
 import validators from 'utils/validators';
-import moment from 'moment';
-import { DEFAULT_MARKDOWN } from 'utils/constants';
 import { FileUpload, Button, Text } from 'components';
 import {
   FormTextInput,

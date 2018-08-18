@@ -12,15 +12,12 @@ import {
   Skills
 } from './components';
 
-import { map } from 'lodash';
-
 import {
   userInfoSelector,
   loadedUserInfoSelector,
   loadedUserSelector,
   loadedUserStatsSelector
 } from 'public-modules/UserInfo/selectors';
-import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { ipfsToHttp } from 'utils/helpers';
 import { profileUISelector } from './selectors';
 import { actions } from './reducer';
@@ -31,7 +28,6 @@ const ProfileDetailsComponent = props => {
     user,
     userStats,
     loadedUserInfo,
-    profileUI,
     switchValue,
     toggleNetworkSwitch,
     currentTab,

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 function LinkedComponentHOC(WrappedComponent) {
   const LinkedComponent = props => {
-    const { address, history, to } = props;
+    const { history, to } = props;
 
     const handler = e => {
       e.preventDefault();

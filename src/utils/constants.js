@@ -1,5 +1,3 @@
-import { invert } from 'lodash';
-
 export const HTTP_200_OK = 200;
 export const HTTP_300_MULTIPLE_CHOICES = 300;
 export const HTTP_400_BAD_REQUEST = 400;

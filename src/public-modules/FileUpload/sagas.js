@@ -1,4 +1,3 @@
-import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/FileUpload';
 import { readFile } from 'public-modules/Utilities/helpers';
@@ -6,7 +5,7 @@ import { addBufferToIPFS } from 'public-modules/Utilities/ipfsClient';
 import { Buffer } from 'buffer';
 
 const { UPLOAD_FILE } = actionTypes;
-const { uploadFileFail, uploadFileSuccess, resetUpload } = actions;
+const { uploadFileFail, uploadFileSuccess } = actions;
 
 export function* uploadFile(action) {
   const { file, key } = action;

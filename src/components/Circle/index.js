@@ -12,7 +12,6 @@ const Circle = props => {
     size,
     color,
     textColor,
-    textStyle = 'H2',
     border,
     className
   } = props;
@@ -104,8 +103,7 @@ Circle.propTypes = {
   input: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   size: PropTypes.oneOf(['small', 'large']),
   color: PropTypes.oneOf(['orange', 'green', 'red', 'lightGrey']),
-  textColor: PropTypes.string,
-  textStyle: PropTypes.string
+  textColor: PropTypes.string
 };
 
 Circle.defaultProps = {

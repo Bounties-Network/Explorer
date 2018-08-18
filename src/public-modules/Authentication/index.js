@@ -178,7 +178,6 @@ function AuthenticationReducer(state = initialState, action) {
       };
     }
     case LOGOUT_SUCCESS: {
-      const { user } = action;
       return {
         ...state,
         user: null,

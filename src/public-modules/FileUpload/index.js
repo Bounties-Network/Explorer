@@ -1,5 +1,3 @@
-import { omit } from 'lodash';
-
 const initialState = {
   uploading: false,
   uploaded: false,

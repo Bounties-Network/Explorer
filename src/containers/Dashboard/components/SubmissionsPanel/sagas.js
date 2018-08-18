@@ -1,7 +1,4 @@
-import request from 'utils/request';
-import { all, call, put, takeLatest, select } from 'redux-saga/effects';
-import { LOCATION_CHANGE } from 'react-router-redux';
-import { currentRouteSelector } from 'utils/helpers';
+import { put, takeLatest, select } from 'redux-saga/effects';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { actionTypes, actions } from './reducer';
 import { FULFILLER_KEY, ISSUER_KEY } from './constants';

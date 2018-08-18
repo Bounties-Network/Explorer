@@ -223,7 +223,7 @@ export function* createBounty(action) {
     );
     try {
       const network = yield select(networkSelector);
-      const test = yield call(
+      yield call(
         promisifyContractCall(tokenContractClient.approve, {
           from: userAddress
         }),

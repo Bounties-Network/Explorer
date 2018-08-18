@@ -25,9 +25,7 @@ const ZeroState = props => {
     className
   } = props;
 
-  let iconType = icon;
   let titleTextColor = 'black';
-  let textColor = 'defaultGrey';
 
   if (type === 'error') {
     titleTextColor = 'red';

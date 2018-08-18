@@ -1,5 +1,3 @@
-import { omit } from 'lodash';
-
 const defaultFilters = {
   issuer: '',
   fulfiller: '',

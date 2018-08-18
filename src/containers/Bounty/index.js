@@ -20,7 +20,6 @@ import {
   getBountyStateSelector
 } from 'public-modules/Bounty/selectors';
 import { addressSelector } from 'public-modules/Client/selectors';
-import { rootBountyPageSelector } from './selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
 import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';

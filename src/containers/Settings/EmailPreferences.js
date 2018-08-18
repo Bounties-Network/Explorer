@@ -16,11 +16,9 @@ const map = fpMap.convert({ cap: false });
 
 let EmailPreferencesComponent = props => {
   const {
-    error,
     saving,
     submitFailed,
     invalid,
-    onSubmit,
     handleSubmit,
     saveEmailPreferences
   } = props;

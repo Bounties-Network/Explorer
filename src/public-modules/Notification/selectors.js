@@ -1,6 +1,3 @@
-import { createSelector } from 'reselect';
-import { values, orderBy, some } from 'lodash';
-
 export const rootNotificationSelector = state => state.notification;
 
 export const notificationsSelector = createSelector(

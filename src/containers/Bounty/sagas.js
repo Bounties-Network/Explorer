@@ -1,6 +1,4 @@
-import request from 'utils/request';
-import { push } from 'react-router-redux';
-import { all, put, takeLatest, select } from 'redux-saga/effects';
+import { put, takeLatest, select } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { actionTypes as transactionActionTypes } from 'public-modules/Transaction';
 import { actionTypes as reviewActionTypes } from 'public-modules/Review';
@@ -32,7 +30,7 @@ export function* closeBountyModal(action) {
 export function* loadTab(action) {
   const { tabKey = 'submissions' } = action;
 
-  if (tabKey == 'submissions') {
+  if (tabKey === 'submissions') {
     yield put(loadFulfillments());
   } else {
     const bountyId = yield select(bountyIdSelector);

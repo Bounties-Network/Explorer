@@ -1,7 +1,6 @@
-import request from 'utils/request';
-import { all, call, put, takeLatest, select } from 'redux-saga/effects';
+import { put, takeLatest, select } from 'redux-saga/effects';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
-import { actionTypes, actions } from './reducer';
+import { actionTypes } from './reducer';
 import {
   actionTypes as bountiesActionTypes,
   actions as bountiesActions
