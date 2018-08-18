@@ -8,7 +8,7 @@ import moment from 'moment';
 const CommentItem = props => {
   const { name, address, img, text, created } = props;
 
-  const formattedTime = moment(created, 'YYYY-MM-DD').fromNow();
+  const formattedTime = moment.utc(created, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
 
   return (
     <div className="">
