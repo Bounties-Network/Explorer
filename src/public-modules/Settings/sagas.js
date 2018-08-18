@@ -95,7 +95,7 @@ export function* saveEmailPreferences(action) {
   const { values } = action;
   const {
     activity,
-    BountyComment,
+    BountyCommentReceived,
     BountyExpired,
     FulfillmentAcceptedFulfiller,
     FulfillmentSubmittedIssuer,
@@ -111,7 +111,7 @@ export function* saveEmailPreferences(action) {
         RatingIssued
       },
       issuer: {
-        BountyComment,
+        BountyCommentReceived,
         BountyExpired,
         TransferRecipient,
         FulfillmentUpdatedIssuer,

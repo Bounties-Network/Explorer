@@ -58,7 +58,8 @@ export const NOTIFICATION_ID = {
   FULFILLMENT_UPDATED_ISSUER: 18,
   RATING_ISSUED: 19,
   RATING_RECEIVED: 20,
-  PROFILE_UPDATED: 21
+  PROFILE_UPDATED: 21,
+  COMMENT_ISSUED: 22
 };
 
 const plus = ['far', 'plus-circle'];
@@ -151,5 +152,9 @@ export const notification_template = {
   [NOTIFICATION_ID.PROFILE_UPDATED]: {
     message: 'You updated your profile',
     icon: level_up
+  },
+  [NOTIFICATION_ID.COMMENT_ISSUED]: {
+    message: 'You wrote a comment',
+    icon: comment
   }
 };
