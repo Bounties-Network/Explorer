@@ -44,7 +44,9 @@ export function* loadTransactionsSaga(action) {
       return null;
     }
     const currentTransactions = yield select(transactionsSelector);
-    const endpoint = `notification/transaction/user/${address}/`;
+    const endpoint = `notification/transaction/user/${address}/?platform=${
+      config.postingPlatform
+    }`;
     const response = yield call(request, endpoint, 'GET');
     const transactions = response.results;
     for (let key in transactions) {

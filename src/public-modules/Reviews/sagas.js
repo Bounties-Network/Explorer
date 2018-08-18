@@ -1,5 +1,6 @@
 import request from 'utils/request';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
+import config from 'public-modules/config';
 import { actionTypes, actions } from 'public-modules/Reviews';
 import { reviewsStateSelector } from 'public-modules/Reviews/selectors';
 import { LIMIT } from 'public-modules/Reviews/constants';
@@ -17,7 +18,9 @@ export function* loadReviews(action) {
   const { address, reviewType, role } = data;
 
   try {
-    let endpoint = `reviews/?${role}__public_address=${address}&review_type=${reviewType}&limit=${LIMIT}`;
+    let endpoint = `reviews/?${role}__public_address=${address}&review_type=${reviewType}&limit=${LIMIT}&platform=${
+      config.postingPlatform
+    }`;
     const reviews = yield call(request, endpoint, 'GET');
     yield put(loadReviewsSuccess(reviews.results, reviews.count));
   } catch (e) {
