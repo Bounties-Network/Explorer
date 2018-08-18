@@ -12,6 +12,19 @@
   flex-direction: column;
 }
 
+.notification:after {
+  position:absolute;
+  left: 25%;
+  top: 15%;
+  z-index: 1000;
+  content: ' \25CF';
+  font-size: .5em;
+  line-height: .75em;
+  text-align: right;
+  color: $brand-red;
+  font-weight:bold;
+}
+
 .customDropdown {
   top: 45px;
 }

@@ -8,7 +8,8 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import {
   notificationsListSelector,
-  rootNotificationSelector
+  rootNotificationSelector,
+  hasUnreadNotifications
 } from 'public-modules/Notification/selectors';
 import { actions } from 'public-modules/Notification';
 import { NotificationItem } from 'explorer-components';
@@ -33,7 +34,8 @@ const NotificationDropdown = props => {
     loadMoreNotifications,
     loadingMore,
     loaded,
-    error
+    error,
+    hasUnread
   } = props;
 
   const renderNotifications = () => {
@@ -74,7 +76,9 @@ const NotificationDropdown = props => {
   return (
     <Dropdown position="left" className={styles.customDropdown}>
       <DropdownTrigger>
-        <FontAwesomeIcon icon={['fal', 'bell']} />
+        <Text typeScale="h4" className={hasUnread ? styles.notification : ''}>
+          <FontAwesomeIcon icon={['fal', 'bell']} />
+        </Text>
       </DropdownTrigger>
       <DropdownContent>
         <div className={styles.notificationBox}>
@@ -164,7 +168,8 @@ const mapStateToProps = state => {
     notifications: notificationsListSelector(state),
     count: rootState.count,
     loadingMore: rootState.loadingMore,
-    loaded: rootState.loaded
+    loaded: rootState.loaded,
+    hasUnread: hasUnreadNotifications(state)
   };
 };
 

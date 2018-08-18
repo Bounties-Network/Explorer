@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { values, orderBy } from 'lodash';
+import { values, orderBy, some } from 'lodash';
 
 export const rootNotificationSelector = state => state.notification;
 
@@ -15,4 +15,9 @@ export const notificationsListSelector = createSelector(
       orderBy(['id'], ['desc'], values(rootNotification.notifications)) || []
     );
   }
+);
+
+export const hasUnreadNotifications = createSelector(
+  notificationsListSelector,
+  notifications => some(['viewed', false], notifications)
 );
