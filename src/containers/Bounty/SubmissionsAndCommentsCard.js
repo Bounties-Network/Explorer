@@ -132,6 +132,19 @@ let SubmissionsAndCommentsCardComponent = props => {
       bodyClass = styles.bodyLoading;
       body = <Loader color="blue" size="medium" />;
     }
+
+    if (!bountyBelongsToLoggedInUser) {
+      bodyClass = styles.bodyLoading;
+      body = (
+        <div className={styles.zeroState}>
+          <ZeroState
+            title={'Submissions are private'}
+            text={'The submissions for this bounty have been set to private.'}
+            iconColor="blue"
+          />
+        </div>
+      );
+    }
   }
 
   if (currentTab == 'comments') {
