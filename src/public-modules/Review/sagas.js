@@ -1,6 +1,7 @@
 import request from 'utils/request';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Review';
+import config from 'public-modules/config';
 import { LIMIT } from './constants';
 
 const { POST_REVIEW } = actionTypes;
@@ -15,7 +16,11 @@ export function* postNewReview(action) {
   try {
     let endpoint = `bounty/${bountyId}/fulfillment/${fulfillmentId}/review/`;
     const review = yield call(request, endpoint, 'POST', {
-      data: { rating, review: _review }
+      data: {
+        rating,
+        review: _review,
+        platform: config.postingPlatform
+      }
     });
 
     yield put(postReviewSuccess(review));
