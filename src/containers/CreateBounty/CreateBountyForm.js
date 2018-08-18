@@ -35,7 +35,6 @@ import {
   PAYOUT_OPTIONS,
   ACTIVATE_OPTIONS,
   UPLOAD_KEY,
-  DRAFT_DIFFICULTY_MAPPINGS
 } from './constants';
 
 const formSelector = formValueSelector('createBounty');

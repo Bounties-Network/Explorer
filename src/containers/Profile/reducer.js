@@ -39,7 +39,7 @@ function profileUIReducer(state = initialState, action) {
     case TOGGLE_NETWORK_SWITCH: {
       return {
         ...state,
-        switchValue: state.switchValue == 'issuer' ? 'fulfiller' : 'issuer'
+        switchValue: state.switchValue === 'issuer' ? 'fulfiller' : 'issuer'
       };
     }
     case SET_PROFILE_ADDRESS: {
