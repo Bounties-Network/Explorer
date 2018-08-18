@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from './CreateBounty.module.scss';
-import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { PageCard } from 'explorer-components';
 import { BigNumber } from 'bignumber.js';
-import { formValueSelector } from 'redux-form';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import CreateBountyForm from './CreateBountyForm';

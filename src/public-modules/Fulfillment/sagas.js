@@ -2,21 +2,14 @@ import request from 'utils/request';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Fulfillment';
 import { actions as transactionActions } from 'public-modules/Transaction';
-import { BigNumber } from 'bignumber.js';
 import { addressSelector } from 'public-modules/Client/selectors';
 import {
-  calculateDecimals,
-  promisifyContractCall,
-  batchContractMethods
+  promisifyContractCall
 } from 'public-modules/Utilities/helpers';
 import { addJSON } from 'public-modules/Utilities/ipfsClient';
-import { DIFFICULTY_VALUES } from './constants';
-import { networkSelector } from 'public-modules/Client/selectors';
-import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import {
   getContractClient,
   getWeb3Client,
-  getTokenClient
 } from 'public-modules/Client/sagas';
 
 const {
@@ -65,7 +58,7 @@ export function* createFulfillment(action) {
   yield put(setPendingWalletConfirm());
 
   const userAddress = yield select(addressSelector);
-  const { web3 } = yield call(getWeb3Client);
+  yield call(getWeb3Client);
 
   const payload = {
     payload: {
@@ -114,7 +107,7 @@ export function* acceptFulfillment(action) {
   yield put(setPendingWalletConfirm());
 
   const userAddress = yield select(addressSelector);
-  const { web3 } = yield call(getWeb3Client);
+  yield call(getWeb3Client);
 
   const { standardBounties } = yield call(getContractClient);
   try {

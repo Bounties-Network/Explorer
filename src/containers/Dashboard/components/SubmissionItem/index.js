@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import base from '../BaseStyles.module.scss';
 import styles from './SubmissionItem.module.scss';
 import { Link } from 'react-router-dom';
-import { Table, Card, Text } from 'components';
+import { Table, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
 

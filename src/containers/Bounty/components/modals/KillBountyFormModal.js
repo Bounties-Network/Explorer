@@ -1,9 +1,7 @@
 import React from 'react';
 import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
-import { Field, reduxForm } from 'redux-form';
-import validators from 'utils/validators';
-import { FormTextInput } from 'form-components';
+import { reduxForm } from 'redux-form';
 
 const KillBountyFormModal = props => {
   const { onClose, handleSubmit } = props;

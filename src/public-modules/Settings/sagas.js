@@ -2,17 +2,13 @@ import request from 'utils/request';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Settings';
 import { actions as transactionActions } from 'public-modules/Transaction';
-import { calculateDecimals } from 'public-modules/Utilities/helpers';
-import { forEach, trim, split, filter } from 'lodash';
 import { addJSON } from 'public-modules/Utilities/ipfsClient';
 import {
-  addressSelector,
-  networkSelector
+  addressSelector
 } from 'public-modules/Client/selectors';
 import {
   getContractClient,
-  getWeb3Client,
-  getTokenClient
+  getWeb3Client
 } from 'public-modules/Client/sagas';
 import { promisifyContractCall } from 'public-modules/Utilities/helpers';
 
@@ -49,7 +45,7 @@ export function* saveSettings(action) {
   yield put(setPendingWalletConfirm());
 
   const userAddress = yield select(addressSelector);
-  const { web3 } = yield call(getWeb3Client);
+  yield call(getWeb3Client);
 
   const settings = {
     name,
@@ -121,7 +117,7 @@ export function* saveEmailPreferences(action) {
   };
 
   try {
-    const r = yield call(request, 'user/settings/', 'POST', { data });
+    yield call(request, 'user/settings/', 'POST', { data });
     yield put(saveEmailPreferencesSuccess());
   } catch (e) {
     console.log(e);

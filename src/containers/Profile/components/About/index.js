@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './About.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Avatar, FullAddressBar, Table, Text } from 'components';
+import { Text } from 'components';
 
 const About = props => {
   const { organization, languages } = props;

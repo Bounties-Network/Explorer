@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ProfileTabs.module.scss';
-import { Tabs, Text } from 'components';
+import { Tabs } from 'components';
 
 // TODO: handle too many skills to display
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './SubmissionItem.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Button, ListGroup, Text } from 'components';
+import { Button, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
 

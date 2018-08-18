@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { uniqueId, range, map } from 'lodash';
+import { uniqueId } from 'lodash';
 import { Text } from 'components';
 import styles from './Rating.module.scss';
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { LoadComponent } from 'hocs';
 import ProfileDetails from './ProfileDetails';
 import ProfileBounties from './ProfileBounties';
 import FilterNav from './FilterNav';
@@ -9,12 +8,8 @@ import styles from './Profile.module.scss';
 import { ZeroState } from 'components';
 import {
   userInfoSelector,
-  loadedUserSelector,
-  loadedUserStatsSelector
 } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
-import { rootProfileUISelector } from './selectors';
-import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { actions } from './reducer';
 
 import { StickyContainer, Sticky } from 'react-sticky';
@@ -34,7 +29,7 @@ class ProfileComponent extends React.Component {
   }
 
   render() {
-    const { error, loaded, loading, user } = this.props;
+    const { error, loaded, user } = this.props;
 
     let body = (
       <div className='fullHeight'>
