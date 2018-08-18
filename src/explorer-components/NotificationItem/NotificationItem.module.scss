@@ -18,6 +18,10 @@
   margin-top: $m-spacing
 }
 
+.transparent {
+  background: rgba(255,255,255,.5);
+}
+
 .value {
   margin-left: -1rem;
   text-align: right;

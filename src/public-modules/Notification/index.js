@@ -1,4 +1,5 @@
-import { keyBy, map } from 'lodash';
+import { keyBy, map, mapValues } from 'lodash';
+import { LIMIT } from './constants';
 import { deserializeNotification } from './helpers';
 
 const initialState = {
@@ -12,15 +13,29 @@ const initialState = {
   notifications: {}
 };
 
+// These trigger calls to the server but we do not include loading, success or fail states
+// that is because the calls go asynchrounously behind the scenes. With the exception of view all,
+// the user does not know the notification is being viewed. We may want to add these states for view all
+const VIEW_ALL_NOTIFICATIONS = 'notification/VIEW_ALL_NOTIFICATIONS';
 const SET_NOTIFICATION_VIEWED = 'notification/SET_NOTIFICATION_VIEWED';
 
 function setNotificationViewed(id) {
   return { type: SET_NOTIFICATION_VIEWED, id };
 }
 
+function viewAllNotifications() {
+  return { type: VIEW_ALL_NOTIFICATIONS };
+}
+
 function NotificationReducer(state = {}, action) {
   switch (action.type) {
     case SET_NOTIFICATION_VIEWED: {
+      return {
+        ...state,
+        viewed: true
+      };
+    }
+    case VIEW_ALL_NOTIFICATIONS: {
       return {
         ...state,
         viewed: true
@@ -53,6 +68,11 @@ function NotificationsReducer(state = {}, action) {
       return {
         ...state,
         [id]: NotificationReducer(state[id], action)
+      };
+    }
+    case VIEW_ALL_NOTIFICATIONS: {
+      return {
+        ...mapValues(value => NotificationReducer(value, action), state)
       };
     }
     default:
@@ -89,7 +109,7 @@ function loadMoreNotifications(address) {
   return { type: LOAD_MORE_NOTIFICATIONS, address };
 }
 
-function loadMoreNotificationsSuccess(notifications, count) {
+function loadMoreNotificationsSuccess(notifications) {
   return {
     type: LOAD_MORE_NOTIFICATIONS_SUCCESS,
     notifications
@@ -110,7 +130,7 @@ function ManageNotificationReducer(state = initialState, action) {
       };
     }
     case LOAD_NOTIFICATIONS_SUCCESS: {
-      const { notifications, count } = action;
+      const { count } = action;
 
       return {
         ...state,
@@ -134,12 +154,12 @@ function ManageNotificationReducer(state = initialState, action) {
       };
     }
     case LOAD_MORE_NOTIFICATIONS_SUCCESS: {
-      const { notifications, count } = action;
+      const { notifications } = action;
 
       return {
         ...state,
+        offset: state.offset + LIMIT,
         loadingMore: false,
-        count,
         notifications: {
           ...keyBy('id', map(deserializeNotification, notifications)),
           ...state.notifications
@@ -153,6 +173,7 @@ function ManageNotificationReducer(state = initialState, action) {
         loadingMoreError: true
       };
     }
+    case VIEW_ALL_NOTIFICATIONS:
     case SET_NOTIFICATION_VIEWED:
     case ADD_NOTIFICATION: {
       return {
@@ -173,7 +194,8 @@ export const actions = {
   loadMoreNotificationsSuccess,
   loadMoreNotificationsFail,
   addNotification,
-  setNotificationViewed
+  setNotificationViewed,
+  viewAllNotifications
 };
 
 export const actionTypes = {
@@ -184,7 +206,8 @@ export const actionTypes = {
   LOAD_MORE_NOTIFICATIONS_SUCCESS,
   LOAD_MORE_NOTIFICATIONS_FAIL,
   ADD_NOTIFICATION,
-  SET_NOTIFICATION_VIEWED
+  SET_NOTIFICATION_VIEWED,
+  VIEW_ALL_NOTIFICATIONS
 };
 
 export default ManageNotificationReducer;

@@ -46,7 +46,11 @@ const HeaderComponent = props => {
             <NotificationDropdown />
           </div>
           <div className={styles.profile}>
-            <Dropdown position="left" className={styles.profileDropdown}>
+            <Dropdown
+              position="left"
+              className={styles.profileDropdown}
+              hideOnClick
+            >
               <DropdownTrigger>
                 <Avatar
                   size="small"
@@ -61,7 +65,7 @@ const HeaderComponent = props => {
                   hash={user.public_address}
                 />
               </DropdownTrigger>
-              <DropdownContent>
+              <DropdownContent className={styles.profileDropdown}>
                 <MenuItem
                   icon={['fal', 'cog']}
                   onClick={() => {

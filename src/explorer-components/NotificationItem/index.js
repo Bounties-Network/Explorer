@@ -10,7 +10,7 @@ import moment from 'moment';
 const NotificationItem = props => {
   const { createdAt, title, type, userAddress, profileImage } = props;
   const { message, icon } = notification_template[type];
-  const formattedTime = moment(createdAt, 'YYYY-MM-DD').fromNow();
+  const formattedTime = moment.utc(createdAt, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
 
   return (
     <div className={styles.container}>

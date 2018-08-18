@@ -38,10 +38,10 @@ MenuItem.defaultProps = {
 
 class DropdownContent extends React.Component {
   render() {
-    const { children } = this.props;
+    const { children, className } = this.props;
 
     if (Array.isArray(children) && children[0].type.name === MenuItem.name) {
-      return <ul className={styles.menuItems}>{children}</ul>;
+      return <ul className={`${styles.menuItems} ${className}`}>{children}</ul>;
     }
 
     return children;
@@ -69,7 +69,7 @@ class Dropdown extends React.Component {
   render() {
     const { show } = this.state;
 
-    const { children, position, className } = this.props;
+    const { children, position, className, hideOnClick } = this.props;
 
     let contentClass = show
       ? `${styles.content} ${styles.show} ${className}`
@@ -80,12 +80,16 @@ class Dropdown extends React.Component {
     }
 
     return (
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        tabIndex={hideOnClick ? null : '0'}
+        onBlur={hideOnClick ? () => {} : this.hide}
+      >
         <div
           className={styles.trigger}
-          tabIndex="0"
-          onBlur={this.hide}
           onClick={this.toggle}
+          tabIndex={hideOnClick ? '0' : null}
+          onBlur={hideOnClick ? this.hide : () => {}}
         >
           {this.props.children[0]}
         </div>

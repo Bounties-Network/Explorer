@@ -1,16 +1,52 @@
 @import "~styles/variables.scss";
 
 .notificationBox {
+  box-shadow: $base-box-shadow;
+  background-color: $brand-white;
+  border-radius: $base-border-radius;
   min-height: 200px;
   height: 40vh;
   min-width: 500px;
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
 }
 
 .customDropdown {
   top: 45px;
 }
 
+.headline {
+  padding: $m-spacing;
+  border-bottom: $base-border;
+  display: flex;
+  align-items: center;
+}
+
+.headlineTitle {
+  flex-grow: 1;
+}
+
+.transparent {
+  opacity: .4;
+}
+
+.headlineLink {
+  margin-right: $m-spacing;
+}
+
 .link:hover, .link:visited, .link:link, .link:active {
   text-decoration: none;
+}
+
+.loadMore {
+  text-align: center;
+  margin: $s-spacing 0;
+}
+
+.zeroState {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -17,6 +17,12 @@
   }
 }
 
+.profileDropdown {
+  box-shadow: $base-box-shadow;
+  background-color: $brand-white;
+  border-radius: $base-border-radius;
+}
+
 .iconArea {
   background-color: $brand-purple;
   font-size: 40px;
