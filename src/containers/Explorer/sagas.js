@@ -8,10 +8,8 @@ const { resetFilters, allStageFilters } = actions;
 export function* locationChanged(action) {
   const { pathname } = action.payload;
 
-  yield put(resetFilters());
-
-  if (currentRouteSelector(pathname) == 'profile') {
-    yield put(allStageFilters());
+  if (currentRouteSelector(pathname) == 'explorer') {
+    yield put(resetFilters());
   }
 }
 

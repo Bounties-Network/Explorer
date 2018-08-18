@@ -2,10 +2,7 @@ import React from 'react';
 import request from 'utils/request';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import {
-  addressSelector,
-  networkSelector
-} from 'public-modules/Client/selectors';
+import { networkSelector } from 'public-modules/Client/selectors';
 import { toast as callToast } from 'react-toastify';
 import { each, get } from 'lodash';
 import { Toast } from 'components';
@@ -16,6 +13,7 @@ import {
   getTransactionSelector,
   transactionsInitiatedSelector
 } from 'public-modules/Transaction/selectors';
+import { getUserAddressSelector } from 'public-modules/Authentication/selectors';
 import { actions, actionTypes } from 'public-modules/Transaction';
 
 const {
@@ -40,7 +38,10 @@ const {
 
 export function* loadTransactionsSaga(action) {
   try {
-    const address = yield select(addressSelector);
+    const address = yield select(getUserAddressSelector);
+    if (!address) {
+      return null;
+    }
     const currentTransactions = yield select(transactionsSelector);
     const endpoint = `notification/transaction/user/${address}/`;
     const response = yield call(request, endpoint, 'GET');
@@ -75,7 +76,7 @@ export function* postTransactionSaga(action) {
   }
 
   try {
-    const address = yield select(addressSelector);
+    const address = yield select(getUserAddressSelector);
     const endpoint = `notification/transaction/user/${address}/`;
     yield call(request, endpoint, 'POST', {
       data: {

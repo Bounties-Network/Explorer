@@ -5,6 +5,7 @@ import { BigNumber } from 'bignumber.js';
 import moment from 'moment';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
+import { actions as reviewActions } from 'public-modules/Review';
 import { actions as bountyUIActions } from '../reducer';
 import { rootBountyPageSelector, modalPropsSelector } from '../selectors';
 import {
@@ -16,9 +17,9 @@ import {
   FulfillBountyFormModal,
   KillBountyFormModal,
   ContributeFormModal,
-  TransferOwnershipFormModal
+  TransferOwnershipFormModal,
+  IssueRatingFormModal
 } from 'containers/Bounty/components';
-import { IssueRatingFormModal } from 'explorer-components';
 
 const ModalManagerComponent = props => {
   const {
@@ -192,7 +193,7 @@ const ModalManagerComponent = props => {
     return (
       <IssueRatingFormModal
         type="issuer"
-        onSubmit={values => console.log(values)}
+        onSubmit={reviewActions}
         onClose={closeModal}
         bounty={bounty}
         {...modalProps}
@@ -204,7 +205,7 @@ const ModalManagerComponent = props => {
     return (
       <IssueRatingFormModal
         type="fulfiller"
-        onSubmit={values => console.log(values)}
+        onSubmit={reviewActions}
         onClose={closeModal}
         bounty={bounty}
         {...modalProps}

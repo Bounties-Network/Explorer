@@ -1,14 +1,25 @@
 import React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import baseStyles from '../BaseStyles.module.scss';
 import styles from './NetworkStats.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { LoadComponent } from 'hocs';
+import { ReviewsModal } from '../';
 import { Circle, Pill, Switch, Text } from 'components';
 import { map as fpMap, capitalize } from 'lodash';
 import { descriptionText, displayFormat, statsToShow } from './constants';
+import { profileUISelector } from 'containers/Profile/selectors';
+import { reviewsStateSelector } from 'public-modules/Reviews/selectors';
+import { actions as reviewsActions } from 'public-modules/Reviews';
 
 const map = fpMap.convert({ cap: false });
 
 function formatInput(value, format) {
+  if (value == null) {
+    return 'N/A';
+  }
+
   if (format == 'fraction') {
     return `${Number(value.toFixed(0))}/5`;
   } else {
@@ -16,11 +27,35 @@ function formatInput(value, format) {
   }
 }
 
-const NetworkStats = props => {
-  const { stats, switchValue, toggleNetworkSwitch } = props;
+const NetworkStatsComponent = props => {
+  const {
+    stats,
+    switchValue,
+    toggleNetworkSwitch,
+    reviewsState,
+    setReviewsModalVisible,
+    reviewsModalVisible,
+    loadMoreReviews
+  } = props;
+
+  const { loadingMore, loadingMoreError, error, reviews, count } = reviewsState;
   const { issuer, fulfiller } = stats;
 
-  const renderCircle = (input, color, text) => {
+  const renderCircle = key => {
+    const text = descriptionText[switchValue][key];
+    let value = stats[switchValue][key];
+    let color = value >= 0.8 ? 'green' : value >= 0.5 ? 'orange' : 'red';
+
+    if (value > 1) {
+      color = value >= 4 ? 'green' : value >= 3 ? 'orange' : 'red';
+    }
+
+    let input = formatInput(value, displayFormat[key]);
+
+    if (value == null) {
+      color = 'lightGrey';
+    }
+
     return (
       <div className={styles.networkStatCircle}>
         <Circle
@@ -30,31 +65,37 @@ const NetworkStats = props => {
           color={color}
           textColor="white"
         />
-        <Text typeScale="Small" alignment="align-center" color="defaultGrey">
-          {text}
-        </Text>
+        {key === 'rating' ? (
+          <Text
+            onClick={() => setReviewsModalVisible(true)}
+            typeScale="Small"
+            alignment="align-center"
+            color="defaultGrey"
+            className={styles.reviewsModalLink}
+          >
+            {text}
+          </Text>
+        ) : (
+          <Text typeScale="Small" alignment="align-center" color="defaultGrey">
+            {text}
+          </Text>
+        )}
       </div>
     );
   };
 
-  const renderCircles = () => {
-    return map(key => {
-      const text = descriptionText[switchValue][key];
-      const value = stats[switchValue][key];
-
-      if (value == null) {
-        return renderCircle('N/A', 'lightGrey', text);
-      }
-
-      const color = value >= 0.8 ? 'green' : value >= 0.5 ? 'orange' : 'red';
-      const input = formatInput(value, displayFormat[key]);
-
-      return renderCircle(input, color, text);
-    }, statsToShow);
-  };
-
   return (
     <div className={styles.network}>
+      <ReviewsModal
+        visible={reviewsModalVisible}
+        onClose={() => setReviewsModalVisible(false)}
+        reviewType={switchValue.charAt(0).toUpperCase() + switchValue.slice(1)}
+        reviews={reviews}
+        count={count}
+        loadMore={loadMoreReviews}
+        loadingMore={loadingMore}
+        loadingMoreError={loadingMoreError}
+      />
       <div className={styles.networkStatsHeader}>
         <Text typeScale="h3" color="black">
           Network Stats
@@ -68,9 +109,38 @@ const NetworkStats = props => {
         />
       </div>
 
-      <div className={styles.networkStatsContainer}>{renderCircles()}</div>
+      <div className={styles.networkStatsContainer}>
+        {renderCircle('acceptance')}
+        {renderCircle('rating')}
+        {renderCircle('ratingGiven')}
+      </div>
     </div>
   );
 };
+
+const mapStateToProps = (state, ownProps) => {
+  const reviewsState = reviewsStateSelector(state);
+  const profileUI = profileUISelector(state);
+
+  return {
+    reviewsState,
+    reviewsModalVisible: profileUI.reviewsModalVisible,
+    reviewsLoaderInitialProps: {
+      address: ownProps.address,
+      reviewType: ownProps.switchValue
+    }
+  };
+};
+
+const NetworkStats = compose(
+  connect(
+    mapStateToProps,
+    {
+      load: reviewsActions.loadReviewsReceived,
+      loadMoreReviews: reviewsActions.loadMoreReviews
+    }
+  ),
+  LoadComponent('reviewsLoaderInitialProps')
+)(NetworkStatsComponent);
 
 export default NetworkStats;

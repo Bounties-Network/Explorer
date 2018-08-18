@@ -107,7 +107,7 @@ let FulfillBountyFormModalComponent = props => {
                 component={FormTextbox}
                 type="string"
                 label="Description"
-                validate={[]}
+                validate={[validators.required]}
                 placeholder="Enter description..."
               />
             </div>

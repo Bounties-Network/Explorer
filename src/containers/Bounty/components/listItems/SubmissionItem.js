@@ -25,7 +25,8 @@ const SubmissionItem = props => {
     bountyBelongsToLoggedInUser,
     submissionBelongsToLoggedInUser,
     acceptFulfillment,
-    showModal
+    showModal,
+    initiateLoginProtection
   } = props;
 
   const formattedTime = moment(created, 'YYYY-MM-DD').format('MM/DD/YYYY');
@@ -50,12 +51,11 @@ const SubmissionItem = props => {
         className={styles.reactivateButton}
         icon={['far', 'star']}
         onClick={() =>
-          showModal('issueRatingForFulfiller', {
-            fulfillmentId,
-            name,
-            address,
-            img
-          })
+          initiateLoginProtection(() =>
+            showModal('issueRatingForFulfiller', {
+              fulfillmentId
+            })
+          )
         }
       >
         Rate fulfiller
@@ -69,12 +69,11 @@ const SubmissionItem = props => {
         className={styles.reactivateButton}
         icon={['far', 'star']}
         onClick={() =>
-          showModal('issueRatingForIssuer', {
-            fulfillmentId,
-            name: bounty.issuer_name,
-            address: bounty.issuer_address,
-            img: bounty.user.profile_image
-          })
+          initiateLoginProtection(() =>
+            showModal('issueRatingForIssuer', {
+              fulfillmentId
+            })
+          )
         }
       >
         Rate issuer
@@ -142,7 +141,10 @@ const SubmissionItem = props => {
         ) : null}
       </div>
       <div className={`col-sm-2 ${styles.actionColumn}`}>
-        <FulfillmentStagePill className={styles.label} accepted={accepted} />
+        <FulfillmentStagePill
+          className={styles.fulfillmentStage}
+          accepted={accepted}
+        />
         {actionButton}
       </div>
     </div>

@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import base from '../BaseStyles.module.scss';
 import styles from './ActivityPanel.module.scss';
+import { Link } from 'react-router-dom';
 import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
 import { Button, Card, ListGroup, Loader, Text, ZeroState } from 'components';
@@ -15,16 +16,21 @@ class ActivityPanelComponent extends React.Component {
   renderActivity = list => {
     return map(activity => {
       const { created, data, notification } = activity;
-      const { bounty_title } = data;
+      const { bounty_title, link } = data;
       const { notification_name: notification_id } = notification;
 
+      // strips away the host from url
+      const relative_link = link.replace(/^.*\/\/[^\/]+/, '');
+
       return (
-        <ListGroup.ListItem>
-          <ActivityItem
-            type={notification_id}
-            title={bounty_title}
-            createdAt={created}
-          />
+        <ListGroup.ListItem hover>
+          <Link to={relative_link} className={styles.link}>
+            <ActivityItem
+              type={notification_id}
+              title={bounty_title}
+              createdAt={created}
+            />
+          </Link>
         </ListGroup.ListItem>
       );
     }, list);

@@ -14,7 +14,7 @@ const {
   loadMoreFulfillmentsSuccess
 } = actions;
 
-export function* loadFulfillments(action) {
+export function* loadFulfillments() {
   const params = yield select(fulfillmentsQuerySelector);
 
   try {

@@ -12,7 +12,7 @@ import { map } from 'lodash';
 import { DRAFT, EXPIRED } from 'public-modules/Bounty/constants';
 import ActionBar from './ActionBar';
 import SubmissionsAndCommentsCard from './SubmissionsAndCommentsCard';
-import { TransactionWalkthrough } from 'hocs';
+import { TransactionWalkthrough, FunctionalLoginLock } from 'hocs';
 import {
   getDraftStateSelector,
   getDraftBountySelector,
@@ -67,6 +67,7 @@ class BountyComponent extends React.Component {
       bounty,
       walletAddress,
       initiateWalkthrough,
+      initiateLoginProtection,
       showModal
     } = this.props;
 
@@ -150,16 +151,15 @@ class BountyComponent extends React.Component {
           </PageCard.Header>
           <PageCard.Content className={styles.pageBody}>
             <div className={`${styles.filter}`}>
-              <div className={styles.buttonSection}>
-                <ActionBar
-                  bounty={bounty}
-                  user={user}
-                  isDraft={isDraft}
-                  walletAddress={walletAddress}
-                  initiateWalkthrough={initiateWalkthrough}
-                  showModal={showModal}
-                />
-              </div>
+              <ActionBar
+                bounty={bounty}
+                user={user}
+                isDraft={isDraft}
+                walletAddress={walletAddress}
+                initiateLoginProtection={initiateLoginProtection}
+                initiateWalkthrough={initiateWalkthrough}
+                showModal={showModal}
+              />
               <div className={styles.bountyMetadata}>
                 {isDraft ? null : (
                   <div className={styles.labelGroup}>
@@ -225,15 +225,19 @@ class BountyComponent extends React.Component {
             </div>
           </PageCard.Content>
         </PageCard>
-        <PageCard noBanner>
-          <PageCard.Content className={styles.submissionsAndCommentsCard}>
-            <SubmissionsAndCommentsCard
-              bounty={bounty}
-              currentUser={user}
-              initiateWalkthrough={initiateWalkthrough}
-            />
-          </PageCard.Content>
-        </PageCard>
+        {!isDraft && (
+          <PageCard noBanner>
+            <PageCard.Content className={styles.submissionsAndCommentsCard}>
+              <SubmissionsAndCommentsCard
+                bounty={bounty}
+                isDraft={isDraft}
+                currentUser={user}
+                initiateLoginProtection={initiateLoginProtection}
+                initiateWalkthrough={initiateWalkthrough}
+              />
+            </PageCard.Content>
+          </PageCard>
+        )}
       </div>
     );
   }
@@ -267,6 +271,9 @@ const mapStateToProps = (state, router) => {
 };
 
 const Bounty = compose(
+  FunctionalLoginLock({
+    wrapperClassName: styles.body
+  }),
   TransactionWalkthrough({
     dismissable: false,
     wrapperClassName: styles.body

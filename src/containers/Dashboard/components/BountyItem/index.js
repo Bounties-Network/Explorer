@@ -32,14 +32,10 @@ const BountyItem = props => {
     <div className={`row ${styles.container}`}>
       <div className="col-xs-10">
         <div className={base.alignLeft}>
-          <Link
-            to={isDraft ? `/bounty/draft/${bountyId}` : `/bounty/${bountyId}`}
-            className={styles.link}
-          >
-            <Text typeScale="Body" weight="fontWeight-medium">
-              {title}
-            </Text>
-          </Link>
+          <Text typeScale="Body" weight="fontWeight-medium">
+            {title}
+          </Text>
+
           <Text
             typeScale="Small"
             color="defaultGrey"

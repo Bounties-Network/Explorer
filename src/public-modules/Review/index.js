@@ -4,9 +4,9 @@ const initialState = {
   review: {}
 };
 
-const POST_REVIEW = 'comments/POST_REVIEW';
-const POST_REVIEW_SUCCESS = 'comments/POST_COMMENT_SUCCESS';
-const POST_REVIEW_FAIL = 'comments/POST_COMMENT_FAIL';
+const POST_REVIEW = 'review/POST_REVIEW';
+const POST_REVIEW_SUCCESS = 'review/POST_REVIEW_SUCCESS';
+const POST_REVIEW_FAIL = 'review/POST_REVIEW_FAIL';
 
 function postReview(bountyId, fulfillmentId, rating, review) {
   return {

@@ -31,7 +31,7 @@ class UserStatsComponent extends React.Component {
     const {
       name,
       public_address,
-      isProfileImageDirty,
+      is_profile_image_dirty,
       profile_image,
       profileDirectoryHash,
       profileFileName
@@ -60,7 +60,7 @@ class UserStatsComponent extends React.Component {
           address={public_address}
           hash={public_address}
           img={
-            isProfileImageDirty
+            is_profile_image_dirty
               ? ipfsToHttp(profileDirectoryHash, profileFileName)
               : profile_image
           }

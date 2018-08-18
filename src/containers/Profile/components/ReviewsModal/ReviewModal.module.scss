@@ -1,0 +1,12 @@
+@import "~styles/variables.scss";
+
+.modalBody {
+  padding-bottom: 0 !important;
+  max-height: 25rem;
+}
+
+.loadMoreButton {
+  width: 100%;
+  text-align: center;
+  margin-top: $m-spacing;
+}

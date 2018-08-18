@@ -19,6 +19,8 @@ const map = fpMap.convert({ cap: false });
 
 let SubmissionsAndCommentsCardComponent = props => {
   const {
+    initiateWalkthrough,
+    initiateLoginProtection,
     showModal,
     setActiveTab,
     currentTab,
@@ -74,8 +76,13 @@ let SubmissionsAndCommentsCardComponent = props => {
             bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
             submissionBelongsToLoggedInUser={submissionBelongsToLoggedInUser}
             acceptFulfillment={() =>
-              acceptFulfillment(bounty.id, fulfillment_id)
+              initiateLoginProtection(() =>
+                initiateWalkthrough(() =>
+                  acceptFulfillment(bounty.id, fulfillment_id)
+                )
+              )
             }
+            initiateLoginProtection={initiateLoginProtection}
             showModal={showModal}
           />
         </ListGroup.ListItem>
@@ -125,17 +132,34 @@ let SubmissionsAndCommentsCardComponent = props => {
       bodyClass = styles.bodyLoading;
       body = <Loader color="blue" size="medium" />;
     }
+
+    if (!bountyBelongsToLoggedInUser) {
+      bodyClass = styles.bodyLoading;
+      body = (
+        <div className={styles.zeroState}>
+          <ZeroState
+            title={'Submissions are private'}
+            text={'The submissions for this bounty have been set to private.'}
+            iconColor="blue"
+          />
+        </div>
+      );
+    }
   }
 
   if (currentTab == 'comments') {
-    const newCommentForm = currentUser ? (
+    const newCommentForm = (
       <ListGroup.ListItem className={styles.commentItem}>
         <NewCommentForm
-          onSubmit={values => postComment(bounty.id, values.text)}
+          disabled={!currentUser}
+          submitText={currentUser ? 'Post comment' : 'Sign in to post comment'}
+          onSubmit={values =>
+            initiateLoginProtection(() => postComment(bounty.id, values.text))
+          }
           loading={comments.posting}
         />
       </ListGroup.ListItem>
-    ) : null;
+    );
 
     body = (
       <ListGroup>

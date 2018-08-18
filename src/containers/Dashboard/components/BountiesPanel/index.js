@@ -1,6 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import base from '../BaseStyles.module.scss';
 import styles from './BountiesPanel.module.scss';
@@ -43,16 +44,25 @@ class BountiesPanelComponent extends React.Component {
 
       return (
         <ListGroup.ListItem hover>
-          <BountyItem
-            bountyId={id}
-            title={title}
-            submissions={fulfillment_count}
-            value={parseFloat(calculated_fulfillmentAmount).toFixed(2)}
-            currency={tokenSymbol}
-            usd_value={parseFloat(usd_price).toFixed(0)}
-            createdAt={created}
-            isDraft={this.props.currentTab === 'drafts'}
-          />
+          <Link
+            to={
+              this.props.currentTab === 'drafts'
+                ? `/bounty/draft/${id}`
+                : `/bounty/${id}`
+            }
+            className={styles.link}
+          >
+            <BountyItem
+              bountyId={id}
+              title={title}
+              submissions={fulfillment_count}
+              value={parseFloat(calculated_fulfillmentAmount).toFixed(2)}
+              currency={tokenSymbol}
+              usd_value={parseFloat(usd_price).toFixed(0)}
+              createdAt={created}
+              isDraft={this.props.currentTab === 'drafts'}
+            />
+          </Link>
         </ListGroup.ListItem>
       );
     }, list);
