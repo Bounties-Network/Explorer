@@ -56,8 +56,7 @@ function BountyPageUIReducer(state = initialState, action) {
       return {
         ...state,
         modalVisible: false,
-        modalType: '',
-        modalProps: {}
+        modalType: ''
       };
     case SET_BOUNTY_ID: {
       const { bountyId } = action;

@@ -1,6 +1,7 @@
 import request from 'utils/request';
 import { push } from 'react-router-redux';
 import { all, put, takeLatest, select } from 'redux-saga/effects';
+import { reset } from 'redux-form';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { bountyIdSelector } from './selectors';
@@ -9,7 +10,10 @@ import { actionTypes as transactionActionTypes } from 'public-modules/Transactio
 import { actionTypes as reviewActionTypes } from 'public-modules/Review';
 import { actionTypes as fulfillmentActionTypes } from 'public-modules/Fulfillment';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
-import { actions as commentsActions } from 'public-modules/Comments';
+import {
+  actions as commentsActions,
+  actionTypes as commentsActionTypes
+} from 'public-modules/Comments';
 import { actions as transactionActions } from 'public-modules/Transaction';
 import {
   actions as bountyPageActions,
@@ -24,6 +28,7 @@ const { closeModal, showModal, setRatingModal } = bountyPageActions;
 const { loadFulfillments } = fulfillmentsActions;
 const { loadComments } = commentsActions;
 const { closeWalkthrough } = transactionActions;
+const { POST_COMMENT_SUCCESS } = commentsActionTypes;
 
 export function* closeBountyModal(action) {
   yield put(closeModal());
@@ -87,6 +92,10 @@ export function* showIssueRatingModal() {
   }
 }
 
+export function* resetCommentsForm() {
+  yield put(reset('newComment'));
+}
+
 export function* watchFulfillmentLoadSuccess() {
   yield takeLatest(LOAD_FULFILLMENT_SUCCESS, showIssueRatingModal);
 }
@@ -105,4 +114,13 @@ export function* watchTabLoads() {
   );
 }
 
-export default [watchCloseModals, watchTabLoads, watchFulfillmentLoadSuccess];
+export function* watchCommentPosted() {
+  yield takeLatest(POST_COMMENT_SUCCESS, resetCommentsForm);
+}
+
+export default [
+  watchCloseModals,
+  watchTabLoads,
+  watchFulfillmentLoadSuccess,
+  watchCommentPosted
+];
