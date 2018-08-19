@@ -65,7 +65,7 @@ function SettingsReducer(state = initialState, action) {
     case SAVE_SETTINGS_FAIL: {
       return {
         ...state,
-        emailPreferences: {
+        settings: {
           saving: false,
           error: true
         }

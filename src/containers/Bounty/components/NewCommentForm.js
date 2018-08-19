@@ -17,6 +17,7 @@ const NewCommentForm = props => {
           component={FormTextInput}
           type="text"
           placeholder="Write a comment..."
+          validate={[validators.required]}
         />
         <Button disabled={disabled} loading={loading}>
           {submitText}
