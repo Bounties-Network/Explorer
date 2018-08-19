@@ -13,6 +13,7 @@ import { commentsSelector } from 'public-modules/Comments/selectors';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
 import { actions as commentsActions } from 'public-modules/Comments';
+import { actions as loginActions } from 'containers/Login/reducer';
 import { actions as bountyUIActions } from './reducer';
 
 const map = fpMap.convert({ cap: false });
@@ -21,6 +22,7 @@ let SubmissionsAndCommentsCardComponent = props => {
   const {
     initiateWalkthrough,
     initiateLoginProtection,
+    showLogin,
     showModal,
     setRatingModal,
     setActiveTab,
@@ -174,10 +176,11 @@ let SubmissionsAndCommentsCardComponent = props => {
     const newCommentForm = (
       <ListGroup.ListItem className={styles.commentItem}>
         <NewCommentForm
-          disabled={!currentUser}
-          submitText={currentUser ? 'Post comment' : 'Sign in to post comment'}
-          onSubmit={values =>
-            initiateLoginProtection(() => postComment(bounty.id, values.text))
+          signedIn={!!currentUser}
+          onSubmit={
+            !!currentUser
+              ? values => postComment(bounty.id, values.text)
+              : showLogin
           }
           loading={comments.posting}
         />
@@ -277,7 +280,8 @@ const SubmissionsAndCommentsCard = compose(
       setActiveTab: bountyUIActions.setActiveTab,
       setRatingModal: bountyUIActions.setRatingModal,
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
-      postComment: commentsActions.postComment
+      postComment: commentsActions.postComment,
+      showLogin: loginActions.showLogin
     }
   )
 )(SubmissionsAndCommentsCardComponent);

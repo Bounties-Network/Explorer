@@ -2,6 +2,7 @@
 
 .container {
   display: flex;
+  justify-content: center;
   padding: $base-spacing 0;
 
   > div {
