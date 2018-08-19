@@ -69,7 +69,7 @@ class Dropdown extends React.Component {
   render() {
     const { show } = this.state;
 
-    const { position, className } = this.props;
+    const { position, className, hideOnClick } = this.props;
 
     let contentClass = show
       ? `${styles.content} ${styles.show} ${className}`

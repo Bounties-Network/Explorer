@@ -4,7 +4,6 @@ import { actionTypes } from './reducer';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { actions as reviewsActions } from 'public-modules/Reviews';
 import {
-  actionTypes as bountiesActionTypes,
   actions as bountiesActions
 } from 'public-modules/Bounties';
 
@@ -13,7 +12,6 @@ const {
   SET_PROFILE_ADDRESS,
   TOGGLE_NETWORK_SWITCH
 } = actionTypes;
-const { RESET_FILTERS } = bountiesActionTypes;
 const { addIssuerFilter, addFulfillerFilter } = bountiesActions;
 const { loadBounties, allStageFilters, resetFilters } = bountiesActions;
 const { loadUserInfo } = userInfoActions;

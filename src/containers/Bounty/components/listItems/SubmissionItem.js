@@ -8,7 +8,6 @@ import moment from 'moment';
 const SubmissionItem = props => {
   const {
     fulfillmentId,
-    bounty,
     name,
     address,
     img,

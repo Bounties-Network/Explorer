@@ -4,8 +4,6 @@ import request from 'utils/request';
 import { LIMIT } from './constants';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import { toast as callToast } from 'react-toastify';
-import { each, get } from 'lodash';
 import { Toast } from 'components';
 import { Link } from 'react-router-dom';
 import {
@@ -91,7 +89,7 @@ export function* showNotification(action, dispatch) {
   }
 
   const {
-    notification: { bounty_title, link, notification_name, id }
+    notification: { link, notification_name, id }
   } = action;
   let postedLink = (
     <Link to={link} style={{ color: 'inherit' }}>

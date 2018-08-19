@@ -10,7 +10,7 @@ export const deserializeNotification = notificationItem => {
     from_user,
     notification_name,
     // make link relative
-    link: link.replace(/^.*\/\/[^\/]+/, ''),
+    link: link.replace(new RegExp('^.*//[^/]+'), ''),
     bounty_title,
     created,
     viewed,

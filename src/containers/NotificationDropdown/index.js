@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './NotificationDropdown.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { map } from 'lodash';
@@ -15,7 +14,6 @@ import { actions } from 'public-modules/Notification';
 import { NotificationItem } from 'explorer-components';
 import {
   Dropdown,
-  CardNotification,
   ListGroup,
   Text,
   Button,

@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ReviewItem.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Avatar, ListGroup, Card, Text } from 'components';
-import { LinkedAvatar } from 'explorer-components';
-import Pluralize from 'pluralize';
+import { Avatar, Text } from 'components';
 import moment from 'moment';
 
 const ReviewItem = props => {

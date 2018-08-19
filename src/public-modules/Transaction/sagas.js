@@ -2,8 +2,8 @@ import React from 'react';
 import request from 'utils/request';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
+import config from 'public-modules/config';
 import {
-  addressSelector,
   networkSelector
 } from 'public-modules/Client/selectors';
 import { toast as callToast } from 'react-toastify';
@@ -14,6 +14,7 @@ import {
   getTransactionSelector,
   transactionsInitiatedSelector
 } from 'public-modules/Transaction/selectors';
+import { getUserAddressSelector } from 'public-modules/Authentication/selectors';
 import { actions, actionTypes } from 'public-modules/Transaction';
 
 const {

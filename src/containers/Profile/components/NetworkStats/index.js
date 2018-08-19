@@ -1,13 +1,15 @@
 import React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { LoadComponent } from 'hocs';
 import styles from './NetworkStats.module.scss';
+import { ReviewsModal } from '../';
 import { Circle, Switch, Text } from 'components';
-import { map as fpMap, capitalize } from 'lodash';
-import { descriptionText, displayFormat, statsToShow } from './constants';
+import { capitalize } from 'lodash';
+import { descriptionText, displayFormat } from './constants';
 import { profileUISelector } from 'containers/Profile/selectors';
 import { reviewsStateSelector } from 'public-modules/Reviews/selectors';
 import { actions as reviewsActions } from 'public-modules/Reviews';
-
-const map = fpMap.convert({ cap: false });
 
 function formatInput(value, format) {
   if (format === 'fraction') {
@@ -17,8 +19,17 @@ function formatInput(value, format) {
   }
 }
 
-const NetworkStats = props => {
-  const { stats, switchValue, toggleNetworkSwitch } = props;
+const NetworkStatsComponent = props => {
+  const {
+    stats,
+    switchValue,
+    toggleNetworkSwitch,
+    reviewsState,
+    setReviewsModalVisible,
+    reviewsModalVisible,
+    loadMoreReviews
+  } = props;
+  const { loadingMore, loadingMoreError, reviews, count } = reviewsState;
 
   const renderCircle = key => {
     const text = descriptionText[switchValue][key];

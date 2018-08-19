@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { curry } from 'lodash';
@@ -66,8 +65,6 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
         resetLogoutState,
         ...rest
       } = this.props;
-
-      const { onConfirm } = this.state;
 
       return (
         <div className={config.wrapperClassName}>

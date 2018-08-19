@@ -2,10 +2,12 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import base from '../BaseStyles.module.scss';
+import styles from './ActivityPanel.module.scss';
+import { Link } from 'react-router-dom';
 import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
+import { NotificationItem } from 'explorer-components';
 import { Button, Card, ListGroup, Loader, ZeroState } from 'components';
-import { ActivityItem } from '../';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { rootActivitySelector } from 'public-modules/Activity/selectors';
 import { actions } from 'public-modules/Activity';
@@ -18,7 +20,7 @@ class ActivityPanelComponent extends React.Component {
       const { notification_name: notification_id } = notification;
 
       // strips away the host from url
-      const relative_link = link.replace(/^.*\/\/[^\/]+/, '');
+      const relative_link = link.replace(new RegExp('^.*//[^/]+'), '');
 
       return (
         <ListGroup.ListItem hover>

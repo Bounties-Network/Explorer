@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import base from '../BaseStyles.module.scss';
 import styles from './BountyItem.module.scss';
@@ -9,13 +8,11 @@ import moment from 'moment';
 
 const BountyItem = props => {
   const {
-    bountyId,
     createdAt,
     currency,
     submissions,
     title,
     usd_value,
-    isDraft,
     value
   } = props;
 

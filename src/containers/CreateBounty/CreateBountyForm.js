@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './CreateBounty.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { PageCard, FormSection } from 'explorer-components';
+import { FormSection } from 'explorer-components';
 import {
   getUploadKeySelector
 } from 'public-modules/FileUpload/selectors';

@@ -25,7 +25,7 @@ class Rating extends React.Component {
 
   renderInputs = () => {
     const { uuid, value: stateValue } = this.state;
-    const { value, defaultValue, error } = this.props;
+    const { value, defaultValue } = this.props;
 
     const checkedValue = Number(value || stateValue || defaultValue);
     const componentSet = [];
