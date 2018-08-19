@@ -64,7 +64,7 @@ class ActivityPanelComponent extends React.Component {
               'Once you start using the platform, your activity will show up here.'
             }
             iconColor="blue"
-            icon={['far', 'chart-line']}
+            icon={['fal', 'chart-line']}
           />
         </div>
       );

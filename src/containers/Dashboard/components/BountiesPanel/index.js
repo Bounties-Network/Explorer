@@ -105,7 +105,7 @@ class BountiesPanelComponent extends React.Component {
       body = (
         <div className={base.zeroState}>
           <ZeroState
-            title={`You have 0 ${currentTab} bounties`}
+            title={`You have no ${currentTab} bounties`}
             text={
               "It looks like you don't have any active bounties at the \
               moment. Enter a title for a new bounty here to get started \
@@ -115,7 +115,7 @@ class BountiesPanelComponent extends React.Component {
             actionText={'Create new bounty'}
             onActionClick={() => history.push('/createBounty')}
             iconColor="blue"
-            icon={['far', 'plus-circle']}
+            hideIcon={true}
           />
         </div>
       );
