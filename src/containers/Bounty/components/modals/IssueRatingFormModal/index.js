@@ -66,7 +66,7 @@ const IssueRatingFormModalComponent = props => {
         onClose={onClose}
         visible={true}
         fixed
-        size="small"
+        size="medium"
       >
         <Modal.Header closable={true}>
           <Modal.Message>
@@ -81,32 +81,33 @@ const IssueRatingFormModalComponent = props => {
                 <Text color="defaultGrey">{messageTemplate[type][1]}</Text>
               </div>
             </div>
-            <div className={`row ${styles.review} ${styles.centerColumn}`}>
-              <div className="col-xs-10">
-                <div className={styles.inputGroup}>
-                  <Field
-                    name="rating"
-                    component={FormRating}
-                    type="string"
-                    label="Rating"
-                    validate={[validators.required]}
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <Field
-                    name="review"
-                    component={FormTextbox}
-                    type="string"
-                    label="Mini review"
-                    validate={[validators.required]}
-                    placeholder="Enter review..."
-                  />
-                </div>
-              </div>
-            </div>
           </Modal.Description>
         </Modal.Header>
-        <Modal.Body className={styles.modalBody} />
+        <Modal.Body className={styles.modalBody}>
+          <div className={`row ${styles.review} ${styles.centerColumn}`}>
+            <div className="col-xs-10">
+              <div className={styles.inputGroup}>
+                <Field
+                  name="rating"
+                  component={FormRating}
+                  type="string"
+                  label="Rating"
+                  validate={[validators.required]}
+                />
+              </div>
+              <div className={styles.inputGroup}>
+                <Field
+                  name="review"
+                  component={FormTextbox}
+                  type="string"
+                  label="Mini review"
+                  validate={[validators.required]}
+                  placeholder="Enter review..."
+                />
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
         <Modal.Footer>
           <Button
             margin
