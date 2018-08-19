@@ -44,10 +44,12 @@ class BountyComponent extends React.Component {
       loadFulfillments,
       resetFilters,
       addBountyFilter,
-      setBountyId
+      setBountyId,
+      setActiveTab
     } = props;
 
     setBountyId(match.params.id);
+    setActiveTab('submissions');
 
     if (match.path === '/bounty/draft/:id/') {
       loadDraftBounty(match.params.id);
