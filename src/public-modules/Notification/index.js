@@ -16,15 +16,76 @@ const initialState = {
   notifications: {}
 };
 
+// These trigger calls to the server but we do not include loading, success or fail states
+// that is because the calls go asynchrounously behind the scenes. With the exception of view all,
+// the user does not know the notification is being viewed. We may want to add these states for view all
+const VIEW_ALL_NOTIFICATIONS = 'notification/VIEW_ALL_NOTIFICATIONS';
+const SET_NOTIFICATION_VIEWED = 'notification/SET_NOTIFICATION_VIEWED';
+
+function setNotificationViewed(id) {
+  return { type: SET_NOTIFICATION_VIEWED, id };
+}
+
+function viewAllNotifications() {
+  return { type: VIEW_ALL_NOTIFICATIONS };
+}
+
+function NotificationReducer(state = {}, action) {
+  switch (action.type) {
+    case SET_NOTIFICATION_VIEWED: {
+      return {
+        ...state,
+        viewed: true
+      };
+    }
+    case VIEW_ALL_NOTIFICATIONS: {
+      return {
+        ...state,
+        viewed: true
+      };
+    }
+    default:
+      return state;
+  }
+}
+
+const ADD_NOTIFICATION = 'notification/ADD_NOTIFICATION';
+
+function addNotification(notification) {
+  return { type: ADD_NOTIFICATION, notification };
+}
+
+function NotificationsReducer(state = {}, action) {
+  switch (action.type) {
+    case ADD_NOTIFICATION: {
+      const { notification } = action;
+
+      return {
+        ...state,
+        [notification.id]: notification
+      };
+    }
+    case SET_NOTIFICATION_VIEWED: {
+      const { id } = action;
+
+      return {
+        ...state,
+        [id]: NotificationReducer(state[id], action)
+      };
+    }
+    case VIEW_ALL_NOTIFICATIONS: {
+      return {
+        ...mapValues(value => NotificationReducer(value, action), state)
+      };
+    }
+    default:
+      return state;
+  }
+}
+
 const LOAD_NOTIFICATIONS = 'notifications/LOAD_NOTIFICATIONS';
 const LOAD_NOTIFICATIONS_SUCCESS = 'notifications/LOAD_NOTIFICATIONS_SUCCESS';
 const LOAD_NOTIFICATIONS_FAIL = 'notifications/LOAD_NOTIFICATIONS_FAIL';
-
-const LOAD_MORE_NOTIFICATIONS = 'notifications/LOAD_MORE_NOTIFICATIONS';
-const LOAD_MORE_NOTIFICATIONS_SUCCESS =
-  'notifications/LOAD_MORE_NOTIFICATIONS_SUCCESS';
-const LOAD_MORE_NOTIFICATIONS_FAIL =
-  'notifications/LOAD_MORE_NOTIFICATIONS_FAIL';
 
 function loadNotifications(address) {
   return { type: LOAD_NOTIFICATIONS, address };

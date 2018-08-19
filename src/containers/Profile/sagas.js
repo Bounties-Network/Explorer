@@ -4,6 +4,7 @@ import { actionTypes } from './reducer';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { actions as reviewsActions } from 'public-modules/Reviews';
 import {
+  actionTypes as bountiesActionTypes,
   actions as bountiesActions
 } from 'public-modules/Bounties';
 

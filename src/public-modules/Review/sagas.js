@@ -1,6 +1,7 @@
 import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Review';
+import config from 'public-modules/config';
 
 const { POST_REVIEW } = actionTypes;
 const { postReviewSuccess, postReviewFail } = actions;

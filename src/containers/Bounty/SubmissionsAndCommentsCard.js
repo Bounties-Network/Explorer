@@ -145,7 +145,7 @@ let SubmissionsAndCommentsCardComponent = props => {
   }
 
   if (currentTab === 'comments') {
-    const newCommentForm = currentUser ? (
+    const newCommentForm = (
       <ListGroup.ListItem className={styles.commentItem}>
         <NewCommentForm
           disabled={!currentUser}
