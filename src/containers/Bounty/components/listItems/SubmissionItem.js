@@ -32,7 +32,9 @@ const SubmissionItem = props => {
     initiateLoginProtection
   } = props;
 
-  const formattedTime = moment(created, 'YYYY-MM-DD').format('MM/DD/YYYY');
+  const formattedTime = moment
+    .utc(created, 'YYYY-MM-DDThh:mm:ssZ')
+    .format('MM/DD/YYYY');
 
   let actionButton = null;
   if (

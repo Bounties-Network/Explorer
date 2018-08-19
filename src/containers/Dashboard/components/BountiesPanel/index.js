@@ -34,7 +34,7 @@ class BountiesPanelComponent extends React.Component {
       const {
         id,
         calculated_fulfillmentAmount,
-        created,
+        bounty_created,
         fulfillment_count,
         title,
         tokenSymbol,
@@ -59,7 +59,7 @@ class BountiesPanelComponent extends React.Component {
               value={parseFloat(calculated_fulfillmentAmount).toFixed(2)}
               currency={tokenSymbol}
               usd_value={parseFloat(usd_price).toFixed(0)}
-              createdAt={created}
+              createdAt={bounty_created}
               isDraft={this.props.currentTab === 'drafts'}
             />
           </Link>
