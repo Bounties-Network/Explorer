@@ -42,9 +42,11 @@ import idCardAlt from '@fortawesome/fontawesome-pro-light/faIdCardAlt';
 import star from '@fortawesome/fontawesome-pro-regular/faStar';
 import calendarAlt from '@fortawesome/fontawesome-pro-regular/faCalendarAlt';
 import dollarSign from '@fortawesome/fontawesome-pro-regular/faDollarSign';
-import fileAlt from '@fortawesome/fontawesome-pro-regular/faFileAlt';
-import chartLine from '@fortawesome/fontawesome-pro-regular/faChartLine';
-import bolt from '@fortawesome/fontawesome-pro-solid/faBolt';
+import fileAlt from '@fortawesome/fontawesome-pro-light/faFileAlt';
+import chartLine from '@fortawesome/fontawesome-pro-light/faChartLine';
+import bolt from '@fortawesome/fontawesome-pro-light/faBolt';
+import frown from '@fortawesome/fontawesome-pro-light/faFrown';
+
 library.add(
   check,
   star,
@@ -91,5 +93,6 @@ library.add(
   dollarSign,
   fileAlt,
   chartLine,
-  bolt
+  bolt,
+  frown
 );
