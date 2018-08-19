@@ -7,7 +7,7 @@ import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
 import { actions as reviewActions } from 'public-modules/Review';
 import { actions as bountyUIActions } from '../reducer';
-import { rootBountyPageSelector } from '../selectors';
+import { rootBountyPageSelector, modalPropsSelector } from '../selectors';
 import {
   ExtendDeadlineErrorModal,
   ActivateDraftFormModal,
@@ -27,6 +27,7 @@ const ModalManagerComponent = props => {
     onExtendDeadlineError,
     modalVisible,
     modalType,
+    modalProps,
     closeModal,
     initiateWalkthrough,
 
@@ -195,6 +196,7 @@ const ModalManagerComponent = props => {
         onSubmit={reviewActions}
         onClose={closeModal}
         bounty={bounty}
+        {...modalProps}
       />
     );
   }
@@ -206,6 +208,7 @@ const ModalManagerComponent = props => {
         onSubmit={reviewActions}
         onClose={closeModal}
         bounty={bounty}
+        {...modalProps}
       />
     );
   }
@@ -213,10 +216,12 @@ const ModalManagerComponent = props => {
 
 const mapStateToProps = (state, router) => {
   const bountyPage = rootBountyPageSelector(state);
+  const modalProps = modalPropsSelector(state);
 
   return {
     modalType: bountyPage.modalType,
-    modalVisible: bountyPage.modalVisible
+    modalVisible: bountyPage.modalVisible,
+    modalProps
   };
 };
 
