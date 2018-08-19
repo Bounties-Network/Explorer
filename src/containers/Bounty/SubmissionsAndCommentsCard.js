@@ -111,7 +111,7 @@ let SubmissionsAndCommentsCardComponent = props => {
     }, comments.list);
   };
 
-  let body = <div />;
+  let body = null;
   let bodyClass = '';
 
   if (currentTab == 'submissions') {
@@ -130,16 +130,15 @@ let SubmissionsAndCommentsCardComponent = props => {
       );
     }
 
-    if (fulfillments.loading) {
-      bodyClass = styles.bodyLoading;
-      body = <Loader color="blue" size="medium" />;
-    }
-
     if (!bountyBelongsToLoggedInUser) {
-      const userFulfillments = filter(
-        ['fulfiller', currentUser.public_address],
-        fulfillments.list
-      );
+      let userFulfillments = [];
+
+      if (currentUser) {
+        userFulfillments = filter(
+          ['fulfiller', currentUser.public_address],
+          fulfillments.list
+        );
+      }
 
       body = (
         <React.Fragment>
@@ -151,7 +150,7 @@ let SubmissionsAndCommentsCardComponent = props => {
         </React.Fragment>
       );
 
-      if (!userFulfillments.length) {
+      if (!currentUser || !userFulfillments.length) {
         bodyClass = styles.bodyLoading;
         body = (
           <div className={styles.zeroState}>
@@ -163,6 +162,11 @@ let SubmissionsAndCommentsCardComponent = props => {
           </div>
         );
       }
+    }
+
+    if (fulfillments.loading) {
+      bodyClass = styles.bodyLoading;
+      body = <Loader color="blue" size="medium" />;
     }
   }
 
