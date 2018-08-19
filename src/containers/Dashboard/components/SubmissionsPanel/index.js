@@ -20,7 +20,7 @@ class SubmissionsPanelComponent extends React.Component {
       const {
         bounty_data,
         fulfiller,
-        created,
+        fulfillment_created,
         accepted,
         usd_price
       } = submission;
@@ -37,10 +37,10 @@ class SubmissionsPanelComponent extends React.Component {
           bountyId={id}
           title={title}
           fulfiller={fulfiller}
-          submissionDate={created}
+          submissionDate={fulfillment_created}
           status={accepted}
           usd={(usd_price || 0).toFixed(0)}
-          amount={(fulfillmentAmount / 10 ** tokenDecimals).toFixed(2)}
+          amount={Number(fulfillmentAmount / 10 ** tokenDecimals)}
           currency={tokenSymbol}
         />
       );
