@@ -2,7 +2,15 @@ const initialState = {
   loading: true,
   loaded: false,
   error: false,
-  fulfillment: {}
+  fulfillment: {},
+  acceptFulfillment: {
+    loading: false,
+    error: false
+  },
+  createFulfillment: {
+    loading: false,
+    error: false
+  }
 };
 
 const LOAD_FULFILLMENT = 'fulfillment/LOAD_FULFILLMENT';
@@ -19,6 +27,38 @@ function loadFulfillmentSuccess(fulfillment) {
 
 function loadFulfillmentFail(error) {
   return { type: LOAD_FULFILLMENT_FAIL, error };
+}
+
+const CREATE_FULFILLMENT = 'fulfillment/CREATE_FULFILLMENT';
+const CREATE_FULFILLMENT_SUCCESS = 'fulfillment/CREATE_FULFILLMENT_SUCCESS';
+const CREATE_FULFILLMENT_FAIL = 'fulfillment/CREATE_FULFILLMENT_FAIL';
+
+function createFulfillment(bountyId, data) {
+  return { type: CREATE_FULFILLMENT, bountyId, data };
+}
+
+function createFulfillmentSuccess() {
+  return { type: CREATE_FULFILLMENT_SUCCESS };
+}
+
+function createFulfillmentFail() {
+  return { type: CREATE_FULFILLMENT_FAIL };
+}
+
+const ACCEPT_FULFILLMENT = 'fulfillment/ACCEPT_FULFILLMENT';
+const ACCEPT_FULFILLMENT_SUCCESS = 'fulfillment/ACCEPT_FULFILLMENT_SUCCESS';
+const ACCEPT_FULFILLMENT_FAIL = 'fulfillment/ACCEPT_FULFILLMENT_FAIL';
+
+function acceptFulfillment(bountyId, fulfillmentId) {
+  return { type: ACCEPT_FULFILLMENT, bountyId, fulfillmentId };
+}
+
+function acceptFulfillmentSuccess() {
+  return { type: ACCEPT_FULFILLMENT_SUCCESS };
+}
+
+function acceptFulfillmentFail() {
+  return { type: ACCEPT_FULFILLMENT_FAIL };
 }
 
 function FulfillmentReducer(state = initialState, action) {
@@ -50,6 +90,60 @@ function FulfillmentReducer(state = initialState, action) {
         error: true
       };
     }
+    case CREATE_FULFILLMENT: {
+      return {
+        ...state,
+        createFulfillment: {
+          loading: true,
+          error: false
+        }
+      };
+    }
+    case CREATE_FULFILLMENT_SUCCESS: {
+      return {
+        ...state,
+        createFulfillment: {
+          loading: false,
+          error: false
+        }
+      };
+    }
+    case CREATE_FULFILLMENT_FAIL: {
+      return {
+        ...state,
+        createFulfillment: {
+          loading: false,
+          error: true
+        }
+      };
+    }
+    case ACCEPT_FULFILLMENT: {
+      return {
+        ...state,
+        acceptFulfillment: {
+          loading: true,
+          error: false
+        }
+      };
+    }
+    case ACCEPT_FULFILLMENT_SUCCESS: {
+      return {
+        ...state,
+        acceptFulfillment: {
+          loading: false,
+          error: false
+        }
+      };
+    }
+    case ACCEPT_FULFILLMENT_FAIL: {
+      return {
+        ...state,
+        acceptFulfillment: {
+          loading: false,
+          error: true
+        }
+      };
+    }
     default:
       return state;
   }
@@ -58,13 +152,25 @@ function FulfillmentReducer(state = initialState, action) {
 export const actions = {
   loadFulfillment,
   loadFulfillmentSuccess,
-  loadFulfillmentFail
+  loadFulfillmentFail,
+  acceptFulfillment,
+  acceptFulfillmentSuccess,
+  acceptFulfillmentFail,
+  createFulfillment,
+  createFulfillmentSuccess,
+  createFulfillmentFail
 };
 
 export const actionTypes = {
   LOAD_FULFILLMENT,
   LOAD_FULFILLMENT_SUCCESS,
-  LOAD_FULFILLMENT_FAIL
+  LOAD_FULFILLMENT_FAIL,
+  ACCEPT_FULFILLMENT,
+  ACCEPT_FULFILLMENT_SUCCESS,
+  ACCEPT_FULFILLMENT_FAIL,
+  CREATE_FULFILLMENT,
+  CREATE_FULFILLMENT_SUCCESS,
+  CREATE_FULFILLMENT_FAIL
 };
 
 export default FulfillmentReducer;

@@ -4,6 +4,7 @@ import styles from './SubmissionItem.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Button, Card, ListGroup, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
+import { ACTIVE } from 'public-modules/Bounty/constants';
 import moment from 'moment';
 
 const SubmissionItem = props => {
@@ -34,7 +35,11 @@ const SubmissionItem = props => {
   const formattedTime = moment(created, 'YYYY-MM-DD').format('MM/DD/YYYY');
 
   let actionButton = null;
-  if (bountyBelongsToLoggedInUser && !accepted) {
+  if (
+    bountyBelongsToLoggedInUser &&
+    bounty.bountyStage === ACTIVE &&
+    !accepted
+  ) {
     actionButton = (
       <Button
         type="action"
