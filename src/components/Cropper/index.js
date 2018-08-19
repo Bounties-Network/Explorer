@@ -162,7 +162,7 @@ class Cropper extends React.Component {
                 type="file"
                 accept="image/*"
                 onChange={this.onInputChange}
-                className={inputStyle}
+                className={`upload ${inputStyle}`}
                 ref={this.croppieInput}
                 disabled={disabledState}
               />

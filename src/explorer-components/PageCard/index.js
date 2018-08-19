@@ -8,7 +8,7 @@ const Title = props => {
   const { children, className } = props;
   return (
     <Text
-      className={className ? className : styles.title}
+      className={`${className} ${styles.title}`}
       typeScale='h2'
       color='white'
     >
