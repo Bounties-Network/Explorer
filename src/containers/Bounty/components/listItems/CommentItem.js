@@ -21,7 +21,6 @@ const CommentItem = props => {
             img={img}
             hash={address}
             nameTextScale={'h4'}
-            to={`/profile/${address}`}
           />
         </div>
         <div className="col-xs-12 col-sm-8">

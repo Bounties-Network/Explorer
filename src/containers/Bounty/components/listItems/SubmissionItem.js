@@ -10,10 +10,9 @@ const SubmissionItem = props => {
   const {
     fulfillmentId,
     bounty,
-    fulfiller_name,
-    fulfiller_email,
-    fulfiller_address,
-    fulfiller_img,
+    name,
+    address,
+    img,
     url,
     email,
     description,
@@ -27,7 +26,6 @@ const SubmissionItem = props => {
     submissionBelongsToLoggedInUser,
     acceptFulfillment,
     showModal,
-    setRatingModal,
     initiateLoginProtection
   } = props;
 
@@ -53,15 +51,11 @@ const SubmissionItem = props => {
         className={styles.reactivateButton}
         icon={['far', 'star']}
         onClick={() =>
-          initiateLoginProtection(() => {
-            setRatingModal(fulfillmentId, {
-              name: fulfiller_name,
-              address: fulfiller_address,
-              img: fulfiller_img
-            });
-
-            showModal('issueRatingForFulfiller');
-          })
+          initiateLoginProtection(() =>
+            showModal('issueRatingForFulfiller', {
+              fulfillmentId
+            })
+          )
         }
       >
         Rate fulfiller
@@ -75,15 +69,11 @@ const SubmissionItem = props => {
         className={styles.reactivateButton}
         icon={['far', 'star']}
         onClick={() =>
-          initiateLoginProtection(() => {
-            const { name, public_address, profile_image } = bounty.user;
-            setRatingModal(fulfillmentId, {
-              name,
-              address: public_address,
-              img: profile_image
-            });
-            showModal('issueRatingForIssuer');
-          })
+          initiateLoginProtection(() =>
+            showModal('issueRatingForIssuer', {
+              fulfillmentId
+            })
+          )
         }
       >
         Rate issuer
@@ -99,18 +89,18 @@ const SubmissionItem = props => {
         }`}
       >
         <LinkedAvatar
-          name={fulfiller_name}
-          address={fulfiller_address}
-          img={fulfiller_img}
-          hash={fulfiller_address}
-          to={`/profile/${fulfiller_address}`}
+          name={name}
+          address={address}
+          img={img}
+          hash={address}
+          to={`/profile/${address}`}
           nameTextScale={'h4'}
           nameTextColor="black"
         />
         <div className={`${styles.labelGroup} ${styles.contactInfo}`}>
           <Text inputLabel>Contact</Text>
-          <Text link src={`mailto:${fulfiller_email}`}>
-            {fulfiller_email}
+          <Text link src={`mailto:${email}`}>
+            {email}
           </Text>
         </div>
 
