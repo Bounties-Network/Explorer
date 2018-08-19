@@ -115,6 +115,7 @@ class BountiesPanelComponent extends React.Component {
             actionText={'Create new bounty'}
             onActionClick={() => history.push('/createBounty')}
             iconColor="blue"
+            icon={['far', 'plus']}
           />
         </div>
       );
