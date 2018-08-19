@@ -4,10 +4,13 @@ const initialState = {
   modalVisible: false,
   modalProps: {},
   currentTab: 'submissions',
-  reviewee: {
-    name: '',
-    address: '',
-    img: ''
+  ratingModal: {
+    fulfillmentId: -1,
+    reviewee: {
+      name: '',
+      address: '',
+      img: ''
+    }
   }
 };
 
@@ -15,7 +18,7 @@ const SHOW_MODAL = 'BountyPage/SHOW_MODAL';
 const CLOSE_MODAL = 'BountyPage/CLOSE_MODAL';
 const SET_BOUNTY_ID = 'BountyPage/SET_BOUNTY_ID';
 const SET_ACTIVE_TAB = 'BountyPage/SET_ACTIVE_TAB';
-const SET_REVIEWEE = 'BountyPage/SET_REVIEWEE';
+const SET_RATING_MODAL = 'BountyPage/SET_RATING_MODAL';
 
 function showModal(modalType, modalProps = {}) {
   return { type: SHOW_MODAL, modalType, modalProps };
@@ -33,8 +36,8 @@ function setActiveTab(tabKey) {
   return { type: SET_ACTIVE_TAB, tabKey };
 }
 
-function setReviewee(reviewee) {
-  return { type: SET_REVIEWEE, reviewee };
+function setRatingModal(fulfillmentId, reviewee) {
+  return { type: SET_RATING_MODAL, fulfillmentId, reviewee };
 }
 
 function BountyPageUIReducer(state = initialState, action) {
@@ -73,12 +76,15 @@ function BountyPageUIReducer(state = initialState, action) {
         currentTab: tabKey
       };
     }
-    case SET_REVIEWEE: {
-      const { reviewee } = action;
+    case SET_RATING_MODAL: {
+      const { fulfillmentId, reviewee } = action;
 
       return {
         ...state,
-        reviewee
+        ratingModal: {
+          fulfillmentId,
+          reviewee
+        }
       };
     }
     default:
@@ -91,7 +97,7 @@ export const actions = {
   closeModal,
   setBountyId,
   setActiveTab,
-  setReviewee
+  setRatingModal
 };
 
 export const actionTypes = {
@@ -99,7 +105,7 @@ export const actionTypes = {
   CLOSE_MODAL,
   SET_BOUNTY_ID,
   SET_ACTIVE_TAB,
-  SET_REVIEWEE
+  SET_RATING_MODAL
 };
 
 export default BountyPageUIReducer;

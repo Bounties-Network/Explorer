@@ -20,7 +20,7 @@ const { INITIATE_WALKTHROUGH } = transactionActionTypes;
 const { SET_ACTIVE_TAB } = bountyPageActionTypes;
 const { POST_REVIEW_SUCCESS } = reviewActionTypes;
 const { LOAD_FULFILLMENT_SUCCESS } = fulfillmentActionTypes;
-const { closeModal, showModal, setReviewee } = bountyPageActions;
+const { closeModal, showModal, setRatingModal } = bountyPageActions;
 const { loadFulfillments } = fulfillmentsActions;
 const { loadComments } = commentsActions;
 const { closeWalkthrough } = transactionActions;
@@ -51,6 +51,7 @@ export function* showIssueRatingModal() {
   );
 
   const {
+    fulfillment_id,
     bounty_data,
     fulfiller,
     fulfiller_review,
@@ -63,13 +64,25 @@ export function* showIssueRatingModal() {
     // fulfiller to rate issuer
     const { name, profile_image } = bounty_data.user;
 
-    yield put(setReviewee({ name, address: issuer, img: profile_image }));
+    yield put(
+      setRatingModal(fulfillment_id, {
+        name,
+        address: issuer,
+        img: profile_image
+      })
+    );
     yield put(showModal('issueRatingForIssuer'));
   } else if (issuer === current_address && !fulfiller_review) {
     // issuer to rate fulfiller
     const { name, profile_image } = fulfillment.user;
 
-    yield put(setReviewee({ name, address: fulfiller, img: profile_image }));
+    yield put(
+      setRatingModal(fulfillment_id, {
+        name,
+        address: fulfiller,
+        img: profile_image
+      })
+    );
     yield put(showModal('issueRatingForFulfiller'));
   }
 }

@@ -12,7 +12,7 @@ export const bountyIdSelector = createSelector(
   rootBounty => rootBounty.bountyId
 );
 
-export const revieweeSelector = createSelector(
+export const ratingModalSelector = createSelector(
   bountyPageSelector,
-  bountyPage => bountyPage.reviewee
+  bountyPage => bountyPage.ratingModal
 );

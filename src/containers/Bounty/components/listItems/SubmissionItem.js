@@ -27,7 +27,7 @@ const SubmissionItem = props => {
     submissionBelongsToLoggedInUser,
     acceptFulfillment,
     showModal,
-    setReviewee,
+    setRatingModal,
     initiateLoginProtection
   } = props;
 
@@ -54,7 +54,7 @@ const SubmissionItem = props => {
         icon={['far', 'star']}
         onClick={() =>
           initiateLoginProtection(() => {
-            setReviewee({
+            setRatingModal(fulfillmentId, {
               name: fulfiller_name,
               address: fulfiller_address,
               img: fulfiller_img
@@ -77,7 +77,7 @@ const SubmissionItem = props => {
         onClick={() =>
           initiateLoginProtection(() => {
             const { name, public_address, profile_image } = bounty.user;
-            setReviewee({
+            setRatingModal(fulfillmentId, {
               name,
               address: public_address,
               img: profile_image

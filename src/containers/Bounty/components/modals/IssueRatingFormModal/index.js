@@ -8,7 +8,7 @@ import validators from 'utils/validators';
 import { FormTextbox, FormRating } from 'form-components';
 import { actions as reviewActions } from 'public-modules/Review';
 import { rootReviewSelector } from 'public-modules/Review/selectors';
-import { revieweeSelector } from 'containers/Bounty/selectors';
+import { ratingModalSelector } from 'containers/Bounty/selectors';
 import BountyDetails from './BountyDetails';
 
 const messageTemplate = {
@@ -142,11 +142,11 @@ const IssueRatingFormModalComponent = props => {
 
 const mapStateToProps = (state, ownProps) => {
   const reviewState = rootReviewSelector(state);
-  const reviewee = revieweeSelector(state);
-  const { bounty, fulfillmentId, type } = ownProps;
+  const ratingModal = ratingModalSelector(state);
 
   return {
-    reviewee,
+    fulfillmentId: ratingModal.fulfillmentId,
+    reviewee: ratingModal.reviewee,
     loading: false,
     error: false,
     posting: reviewState.posting,

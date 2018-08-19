@@ -22,7 +22,7 @@ let SubmissionsAndCommentsCardComponent = props => {
     initiateWalkthrough,
     initiateLoginProtection,
     showModal,
-    setReviewee,
+    setRatingModal,
     setActiveTab,
     currentTab,
     fulfillments,
@@ -85,7 +85,7 @@ let SubmissionsAndCommentsCardComponent = props => {
             }
             initiateLoginProtection={initiateLoginProtection}
             showModal={showModal}
-            setReviewee={setReviewee}
+            setRatingModal={setRatingModal}
           />
         </ListGroup.ListItem>
       );
@@ -271,7 +271,7 @@ const SubmissionsAndCommentsCard = compose(
     {
       showModal: bountyUIActions.showModal,
       setActiveTab: bountyUIActions.setActiveTab,
-      setReviewee: bountyUIActions.setReviewee,
+      setRatingModal: bountyUIActions.setRatingModal,
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
       postComment: commentsActions.postComment
     }
