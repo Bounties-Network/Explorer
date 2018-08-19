@@ -12,7 +12,9 @@ import { reviewsStateSelector } from 'public-modules/Reviews/selectors';
 import { actions as reviewsActions } from 'public-modules/Reviews';
 
 function formatInput(value, format) {
-  if (format === 'fraction') {
+  if (value === null) {
+    return 'N/A';
+  } else if (format === 'fraction') {
     return `${Number(value.toFixed(0))}/5`;
   } else {
     return `${Number(value * 100).toFixed(0)}%`;

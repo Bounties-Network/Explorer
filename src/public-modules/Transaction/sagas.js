@@ -3,9 +3,7 @@ import request from 'utils/request';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import config from 'public-modules/config';
-import {
-  networkSelector
-} from 'public-modules/Client/selectors';
+import { networkSelector } from 'public-modules/Client/selectors';
 import { toast as callToast } from 'react-toastify';
 import { Toast } from 'components';
 import { Link } from 'react-router-dom';
@@ -43,7 +41,9 @@ export function* loadTransactionsSaga(action) {
       return null;
     }
     const currentTransactions = yield select(transactionsSelector);
-    const endpoint = `notification/transaction/user/${address}/`;
+    const endpoint = `notification/transaction/user/${address}/?platform=${
+      config.postingPlatform
+    }`;
     const response = yield call(request, endpoint, 'GET');
     const transactions = response.results;
     for (let key in transactions) {

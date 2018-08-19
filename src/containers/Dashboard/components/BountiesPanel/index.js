@@ -39,16 +39,25 @@ class BountiesPanelComponent extends React.Component {
 
       return (
         <ListGroup.ListItem hover>
-          <BountyItem
-            bountyId={id}
-            title={title}
-            submissions={fulfillment_count}
-            value={parseFloat(calculated_fulfillmentAmount).toFixed(2)}
-            currency={tokenSymbol}
-            usd_value={parseFloat(usd_price).toFixed(0)}
-            createdAt={created}
-            isDraft={this.props.currentTab === 'drafts'}
-          />
+          <Link
+            to={
+              this.props.currentTab === 'drafts'
+                ? `/bounty/draft/${id}`
+                : `/bounty/${id}`
+            }
+            className={styles.link}
+          >
+            <BountyItem
+              bountyId={id}
+              title={title}
+              submissions={fulfillment_count}
+              value={parseFloat(calculated_fulfillmentAmount).toFixed(2)}
+              currency={tokenSymbol}
+              usd_value={parseFloat(usd_price).toFixed(0)}
+              createdAt={created}
+              isDraft={this.props.currentTab === 'drafts'}
+            />
+          </Link>
         </ListGroup.ListItem>
       );
     }, list);
@@ -89,9 +98,11 @@ class BountiesPanelComponent extends React.Component {
         <div className={base.zeroState}>
           <ZeroState
             title={`You have 0 ${currentTab} bounties`}
-            text={`It looks like you don't have any active bounties at the
+            text={
+              `It looks like you don't have any active bounties at the
               moment. Enter a title for a new bounty here to get started
-              creating one!`}
+              creating one!`
+            }
             action
             actionText='Create new bounty'
             onActionClick={() => history.push('/createBounty')}
