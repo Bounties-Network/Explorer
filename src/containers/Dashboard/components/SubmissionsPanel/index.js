@@ -19,7 +19,7 @@ class SubmissionsPanelComponent extends React.Component {
     return map(submission => {
       const {
         bounty_data,
-        fulfiller,
+        user,
         fulfillment_created,
         accepted,
         usd_price
@@ -28,19 +28,22 @@ class SubmissionsPanelComponent extends React.Component {
         id,
         title,
         tokenSymbol,
-        tokenDecimals,
-        fulfillmentAmount
+        calculated_fulfillmentAmount,
+        bountyStage
       } = bounty_data;
+      const { public_address, profile_image } = user;
 
       return (
         <SubmissionItem
           bountyId={id}
+          bountyStage={bountyStage}
           title={title}
-          fulfiller={fulfiller}
+          fulfiller={public_address}
+          fulfiller_img={profile_image}
           submissionDate={fulfillment_created}
           status={accepted}
           usd={(usd_price || 0).toFixed(0)}
-          amount={Number(fulfillmentAmount / 10 ** tokenDecimals)}
+          amount={Number(calculated_fulfillmentAmount)}
           currency={tokenSymbol}
         />
       );
