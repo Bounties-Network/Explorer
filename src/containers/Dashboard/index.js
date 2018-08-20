@@ -5,7 +5,7 @@ import {
   BountiesPanel,
   SubmissionsPanel,
   UserStats
-} from './components';
+} from 'containers';
 
 const Dashboard = props => {
   return (
@@ -17,15 +17,15 @@ const Dashboard = props => {
       </div>
       <div className="row center-xs">
         <div className="col-xs-5">
-          <BountiesPanel />
+          <BountiesPanel className={styles.bountiesPanel} />
         </div>
         <div className="col-xs-5">
-          <ActivityPanel />
+          <ActivityPanel className={styles.activityPanel} />
         </div>
       </div>
-      <div className={`row center-xs ${styles.submissionsFlex}`}>
+      <div className="row center-xs">
         <div className="col-xs-10">
-          <SubmissionsPanel className={styles.submissionsContainer} />
+          <SubmissionsPanel className={styles.submissionsPanel} />
         </div>
       </div>
     </div>

@@ -1,19 +1,10 @@
 @import "~styles/variables.scss";
 
-.alignLeft {
-  text-align: left;
-}
-
-.cardContainer {
-  text-align: left;
-}
-
 .card {
+  height: 100%;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 27vh;
-  min-height: 25rem;
 }
 
 .listGroup {

@@ -1,20 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import base from '../BaseStyles.module.scss';
 import styles from './BountyItem.module.scss';
 import { Text } from 'components';
 import Pluralize from 'pluralize';
 import moment from 'moment';
 
 const BountyItem = props => {
-  const {
-    createdAt,
-    currency,
-    submissions,
-    title,
-    usd_value,
-    value
-  } = props;
+  const { createdAt, currency, submissions, title, usd_value, value } = props;
 
   const formattedTime = moment.utc(createdAt, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
 
@@ -27,19 +19,13 @@ const BountyItem = props => {
   return (
     <div className={`row ${styles.container}`}>
       <div className="col-xs-10">
-        <div className={base.alignLeft}>
-          <Text typeScale="Body" weight="fontWeight-medium">
-            {title}
-          </Text>
+        <Text align="alignLeft" typeScale="Body" weight="fontWeight-medium">
+          {title}
+        </Text>
 
-          <Text
-            typeScale="Small"
-            color="defaultGrey"
-            className={styles.details}
-          >
-            {`Created ${formattedTime} ${submissionsText}`}
-          </Text>
-        </div>
+        <Text typeScale="Small" color="defaultGrey" className={styles.details}>
+          {`Created ${formattedTime} ${submissionsText}`}
+        </Text>
       </div>
       <div className="col-xs-2">
         <div className={styles.value}>
