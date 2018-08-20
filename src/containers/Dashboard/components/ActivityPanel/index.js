@@ -15,9 +15,12 @@ import { actions } from 'public-modules/Activity';
 class ActivityPanelComponent extends React.Component {
   renderActivity = list => {
     return map(activity => {
-      const { created, data, notification } = activity;
+      const { data, notification } = activity;
       const { bounty_title, link } = data;
-      const { notification_name: notification_id } = notification;
+      const {
+        notification_name: notification_id,
+        notification_created: created
+      } = notification;
 
       // strips away the host from url
       const relative_link = link.replace(/^.*\/\/[^\/]+/, '');
