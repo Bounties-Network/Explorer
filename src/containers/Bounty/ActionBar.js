@@ -65,7 +65,7 @@ const ActionBar = props => {
               initiateLoginProtection(() => showModal('activateDead'))
             }
           >
-            Re-Activate Bounty
+            Re-activate Bounty
           </Button>
         ) : (
           <Button
@@ -74,7 +74,20 @@ const ActionBar = props => {
             fitWidth
             onClick={() => initiateLoginProtection(() => showModal('kill'))}
           >
-            Kill bounty
+            De-activate bounty
+          </Button>
+        )}
+
+        {bounty.bountyStage !== DEAD && (
+          <Button
+            onClick={() =>
+              initiateLoginProtection(() => showModal('increasePayout'))
+            }
+            icon={['far', 'arrow-up']}
+            fitWidth
+            className={styles.buttonGroup}
+          >
+            Increase Prize
           </Button>
         )}
         {bounty.bountyStage !== DEAD && (
@@ -97,7 +110,7 @@ const ActionBar = props => {
             initiateLoginProtection(() => showModal('extendDeadline'))
           }
         >
-          Change deadline
+          Extend deadline
         </Button>
         <Button
           icon={['far', 'user-alt']}
@@ -108,16 +121,6 @@ const ActionBar = props => {
           }
         >
           Transfer Ownership
-        </Button>
-        <Button
-          onClick={() =>
-            initiateLoginProtection(() => showModal('increasePayout'))
-          }
-          icon={['far', 'dollar-sign']}
-          fitWidth
-          className={styles.buttonGroup}
-        >
-          Increase Prize
         </Button>
       </div>
     );
