@@ -24,6 +24,7 @@ import unlock from '@fortawesome/fontawesome-pro-light/faUnlock';
 import addressCard from '@fortawesome/fontawesome-pro-light/faAddressCard';
 import briefcase from '@fortawesome/fontawesome-pro-regular/faBriefcase';
 import comments from '@fortawesome/fontawesome-pro-regular/faComments';
+import commentsLight from '@fortawesome/fontawesome-pro-light/faComments';
 import comment from '@fortawesome/fontawesome-pro-regular/faComment';
 import infoCircle from '@fortawesome/fontawesome-pro-regular/faInfoCircle';
 import ellipsisH from '@fortawesome/fontawesome-pro-regular/faEllipsisH';
@@ -56,6 +57,7 @@ library.add(
   globe,
   comment,
   comments,
+  commentsLight,
   briefcase,
   faBell,
   plus,

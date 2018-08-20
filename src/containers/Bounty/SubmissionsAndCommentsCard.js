@@ -127,6 +127,7 @@ let SubmissionsAndCommentsCardComponent = props => {
             title={'There are 0 submissions'}
             text={'Submissions to this bounty will appear here.'}
             iconColor="blue"
+            icon={['fal', 'file-alt']}
           />
         </div>
       );
@@ -203,6 +204,7 @@ let SubmissionsAndCommentsCardComponent = props => {
               title={'There are 0 comments'}
               text={'Submit a comment using the form above.'}
               iconColor="blue"
+              icon={['fal', 'comments']}
             />
           </ListGroup.ListItem>
         </ListGroup>
