@@ -78,7 +78,7 @@ export const notification_template = {
     icon: level_up
   },
   [NOTIFICATION_ID.BOUNTY_ACTIVATED]: {
-    message: 'You posted a new bounty',
+    message: 'You activated a bounty',
     icon: plus
   },
   [NOTIFICATION_ID.FULFILLMENT_ACCEPTED]: {
