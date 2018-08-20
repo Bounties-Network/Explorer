@@ -11,19 +11,23 @@ const Elsewhere = props => {
   const renderSocialMedia = () => {
     return map(key => {
       return (
-        <div className="row">
-          <div className="col-xs-1">
-            <FontAwesomeIcon
-              icon={key === 'website' ? ['far', 'globe'] : ['fab', key]}
-              className={styles.icon}
-            />
-          </div>
-          <div className="col-xs-10">
-            <Text typeScale="h5" color="defaultGrey">
-              {props[key] || 'N/A'}
-            </Text>
-          </div>
-        </div>
+        <React.Fragment>
+          {props[key] && (
+            <div className="row">
+              <div className="col-xs-1">
+                <FontAwesomeIcon
+                  icon={key === 'website' ? ['far', 'globe'] : ['fab', key]}
+                  className={styles.icon}
+                />
+              </div>
+              <div className="col-xs-10">
+                <Text typeScale="h5" color="defaultGrey">
+                  {props[key]}
+                </Text>
+              </div>
+            </div>
+          )}
+        </React.Fragment>
       );
     }, dataKeys);
   };
