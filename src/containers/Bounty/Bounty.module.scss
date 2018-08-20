@@ -138,7 +138,7 @@
   }
 
   .labelGroup {
-    width: 50%;
+    width: 40%;
     margin: 0;
     padding-bottom: $xl-spacing;
     padding-right: $xl-spacing;
@@ -146,6 +146,11 @@
     @media only screen and (min-width: 35em) {
       padding-right: 0;
       width: 100%;
+    }
+
+    &:nth-of-type(even) {
+      padding-right: 0;
+      width: 60%;
     }
   }
 }
