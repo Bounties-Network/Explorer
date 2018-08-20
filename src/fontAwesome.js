@@ -31,7 +31,6 @@ import ellipsisH from '@fortawesome/fontawesome-pro-regular/faEllipsisH';
 import checkCircle from '@fortawesome/fontawesome-pro-regular/faCheckCircle';
 import check from '@fortawesome/fontawesome-pro-regular/faCheck';
 import exclamationTriangle from '@fortawesome/fontawesome-pro-regular/faExclamationTriangle';
-import meh from '@fortawesome/fontawesome-pro-light/faMeh';
 import twitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import facebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import reddit from '@fortawesome/fontawesome-free-brands/faReddit';
@@ -49,9 +48,11 @@ import bolt from '@fortawesome/fontawesome-pro-light/faBolt';
 import frown from '@fortawesome/fontawesome-pro-light/faFrown';
 import lock from '@fortawesome/fontawesome-pro-light/faLock';
 import arrow from '@fortawesome/fontawesome-pro-regular/faArrowUp';
+import angleDoubleUp from '@fortawesome/fontawesome-pro-light/faAngleDoubleUp';
 
 library.add(
   arrow,
+  angleDoubleUp,
   check,
   star,
   idCardAlt,
@@ -88,7 +89,6 @@ library.add(
   twitter,
   facebook,
   reddit,
-  meh,
   eye,
   clock,
   levelUp,
