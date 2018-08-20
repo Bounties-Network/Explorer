@@ -66,7 +66,7 @@ const PendingReceipt = props => {
       <Modal.Body>{text}</Modal.Body>
       <Modal.Footer>
         <Button type="primary" onClick={toDashboard}>
-          Go to Dasbhoard
+          Go to Dashboard
         </Button>
       </Modal.Footer>
     </Modal>
