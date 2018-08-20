@@ -48,8 +48,10 @@ import chartLine from '@fortawesome/fontawesome-pro-light/faChartLine';
 import bolt from '@fortawesome/fontawesome-pro-light/faBolt';
 import frown from '@fortawesome/fontawesome-pro-light/faFrown';
 import lock from '@fortawesome/fontawesome-pro-light/faLock';
+import arrow from '@fortawesome/fontawesome-pro-regular/faArrowUp';
 
 library.add(
+  arrow,
   check,
   star,
   idCardAlt,
