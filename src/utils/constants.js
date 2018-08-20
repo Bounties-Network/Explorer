@@ -102,19 +102,19 @@ export const notification_template = {
     icon: general
   },
   [NOTIFICATION_ID.CONTRIBUTION_ADDED]: {
-    message: 'You made a contribution',
+    message: 'You made a contribution to',
     icon: level_up
   },
   [NOTIFICATION_ID.DEADLINE_EXTENDED]: {
-    message: 'You extended the deadline',
+    message: 'You extended the deadline on',
     icon: general
   },
   [NOTIFICATION_ID.BOUNTY_CHANGED]: {
-    message: 'You updated a draft',
+    message: 'You updated your draft bounty',
     icon: general
   },
   [NOTIFICATION_ID.ISSUER_TRANSFERRED]: {
-    message: 'You transferred ownernship',
+    message: 'You transferred ownernship of the bounty',
     icon: general
   },
   [NOTIFICATION_ID.TRANSFER_RECIPIENT]: {
@@ -122,7 +122,7 @@ export const notification_template = {
     icon: plus
   },
   [NOTIFICATION_ID.PAYOUT_INCREASED]: {
-    message: 'You increased the payout',
+    message: 'You increased the payout on',
     icon: general
   },
   [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED]: {
@@ -138,11 +138,11 @@ export const notification_template = {
     icon: level_up
   },
   [NOTIFICATION_ID.FULFILLMENT_UPDATED_ISSUER]: {
-    message: 'A submission for your bounty was updated',
+    message: 'A submission was updated for your bounty',
     icon: general
   },
   [NOTIFICATION_ID.RATING_ISSUED]: {
-    message: 'You wrote a review:',
+    message: 'You wrote a review on',
     icon: star
   },
   [NOTIFICATION_ID.RATING_RECEIVED]: {
@@ -154,7 +154,7 @@ export const notification_template = {
     icon: level_up
   },
   [NOTIFICATION_ID.COMMENT_ISSUED]: {
-    message: 'You wrote a comment',
+    message: 'You wrote a comment on',
     icon: comment
   }
 };

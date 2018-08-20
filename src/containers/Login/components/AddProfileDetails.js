@@ -43,14 +43,6 @@ class AddProfileDetails extends React.Component {
                   Add some profile details about yourself, so that others on the
                   platform have an idea of your background and skillset, and can
                   find you elsewhere online.
-                  <br />
-                  <br />
-                  We recommend you fill out as many details as possible, since
-                  you&#39;ll need to submit a small transaction each time you
-                  change in order for them to be kept on-chain.
-                  <br />
-                  <br />
-                  FAQ: Why are my profile details kept on-chain
                 </div>
               </div>
             </div>
@@ -80,14 +72,6 @@ class AddProfileDetails extends React.Component {
             Before you get started, we encourage you to add some profile details
             about yourself, so that others on the platform have an idea of your
             background and skillset.
-            <br />
-            <br />
-            In order to add details to your profile, you&#39;ll be required to
-            approve a small transaction. This is so we can keep your profile
-            information securely on-chain.
-            <br />
-            <br />
-            FAQ: Why are my profile details kept on-chain?
           </Text>
         </Modal.Body>
         <Modal.Footer>

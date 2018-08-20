@@ -96,6 +96,7 @@ class SubmissionsPanelComponent extends React.Component {
             title={`You have ${currentTab} 0 submissions`}
             text={`It looks like you don\'t have any submissions. Come back after you have ${currentTab} a fulfillment!`}
             iconColor="blue"
+            icon={['fal', 'file-alt']}
           />
         </div>
       );

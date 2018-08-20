@@ -130,6 +130,7 @@ const NotificationDropdown = props => {
                     'Once you start using the platform, notifications will show here.'
                   }
                   iconColor="blue"
+                  icon={['fal', 'bolt']}
                 />
               </div>
             )}

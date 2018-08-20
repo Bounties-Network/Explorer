@@ -19,10 +19,10 @@ const KillBountyFormModal = props => {
       >
         <Modal.Header closable={true}>
           <Modal.Message>
-            Are you sure you want to kill your bounty?
+            Are you sure you want to de-activate your bounty?
           </Modal.Message>
           <Modal.Description>
-            If you change your mind, you can always re-activate it.
+            If you change your mind, you can always re-activate it again later.
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody} />
@@ -36,7 +36,7 @@ const KillBountyFormModal = props => {
           >
             Cancel
           </Button>
-          <Button type="destructive">Kill</Button>
+          <Button type="destructive">De-activate</Button>
         </Modal.Footer>
       </Modal>
     </form>

@@ -35,11 +35,14 @@ const ZeroState = props => {
 
   return (
     <div className={`${styles.zeroState} ${className}`}>
-      <div className={styles.icon}>
-        <Text typeScale="h1" color={iconColor}>
-          <FontAwesomeIcon icon={icon} className={styles.iconStyles} />
-        </Text>
-      </div>
+      {icon ? (
+        <div className={styles.icon}>
+          <Text typeScale="h1" color={iconColor}>
+            <FontAwesomeIcon icon={icon} className={styles.iconStyles} />
+          </Text>
+        </div>
+      ) : null}
+
       <div className={styles.title}>
         <Text typeScale="h3" color={titleTextColor}>
           {title}
@@ -77,7 +80,6 @@ ZeroState.propTypes = {
 
 ZeroState.defaultProps = {
   iconColor: 'lightGrey',
-  icon: ['fal', 'meh'],
   onActionClick: () => {}
 };
 

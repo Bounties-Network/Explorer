@@ -127,6 +127,7 @@ let SubmissionsAndCommentsCardComponent = props => {
             title={'There are 0 submissions'}
             text={'Submissions to this bounty will appear here.'}
             iconColor="blue"
+            icon={['fal', 'file-alt']}
           />
         </div>
       );
@@ -142,15 +143,29 @@ let SubmissionsAndCommentsCardComponent = props => {
         );
       }
 
-      body = (
-        <React.Fragment>
-          <ListGroup>{renderFulfillments(userFulfillments)}</ListGroup>
-          <Text alignment="align-center" color="defaultGrey" typeScale="Small">
-            Submissions to this bounty are hidden. Your submissions are only
-            visible to you.
-          </Text>
-        </React.Fragment>
-      );
+      if (userFulfillments.length) {
+        body = (
+          <React.Fragment>
+            <ListGroup>{renderFulfillments(userFulfillments)}</ListGroup>
+            <Text alignment="align-center" color="defaultGrey" typeScale="Small">
+              Submissions to this bounty are hidden. Your submissions are only
+              visible to you.
+            </Text>
+          </React.Fragment>
+        );
+      } else {
+        body = (
+          <div className={styles.zeroState}>
+            <ZeroState
+              title={'Submissions are private'}
+              text={'The submissions for this bounty have been set to private.'}
+              iconColor="blue"
+              icon={['fal', 'lock']}
+            />
+          </div>
+        );
+      }
+
 
       if (!currentUser || !userFulfillments.length) {
         bodyClass = styles.bodyLoading;
@@ -203,6 +218,7 @@ let SubmissionsAndCommentsCardComponent = props => {
               title={'There are 0 comments'}
               text={'Submit a comment using the form above.'}
               iconColor="blue"
+              icon={['fal', 'comments']}
             />
           </ListGroup.ListItem>
         </ListGroup>
