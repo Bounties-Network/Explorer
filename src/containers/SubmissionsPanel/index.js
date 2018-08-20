@@ -51,6 +51,7 @@ class SubmissionsPanelComponent extends React.Component {
   render() {
     const {
       className,
+      bodyClass,
       setActiveTab,
       currentTab,
       list,
@@ -63,7 +64,7 @@ class SubmissionsPanelComponent extends React.Component {
       total_submitted
     } = this.props;
 
-    let bodyClass;
+    let zeroStateClass;
     let body = (
       <React.Fragment>
         <Table>
@@ -87,7 +88,7 @@ class SubmissionsPanelComponent extends React.Component {
     );
 
     if (count <= 0) {
-      bodyClass = styles.bodyLoading;
+      zeroStateClass = styles.bodyLoading;
       body = (
         <div className={styles.zeroState}>
           <ZeroState
@@ -101,12 +102,12 @@ class SubmissionsPanelComponent extends React.Component {
     }
 
     if (loading) {
-      bodyClass = styles.bodyLoading;
+      zeroStateClass = styles.bodyLoading;
       body = <Loader color="blue" size="medium" />;
     }
 
     if (error) {
-      bodyClass = styles.bodyLoading;
+      zeroStateClass = styles.bodyLoading;
       body = (
         <div className={styles.zeroState}>
           <ZeroState
@@ -144,7 +145,7 @@ class SubmissionsPanelComponent extends React.Component {
             </Tabs.Tab>
           </Card.HeaderTabs>
         </Card.Header>
-        <Card.Body className={`${styles.listGroup} ${bodyClass}`}>
+        <Card.Body className={`${bodyClass} ${zeroStateClass}`}>
           {body}
         </Card.Body>
       </Card>

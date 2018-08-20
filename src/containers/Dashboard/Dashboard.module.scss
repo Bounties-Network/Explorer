@@ -11,29 +11,61 @@
 }
 
 .bountiesPanel {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  height: 27vh;
-  min-height: 25rem;
+  height: 91.5vh;
+  width: 100vw;
+  overflow-y: scroll;
+
+  @media only screen and (min-width: 48em) {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 27vh;
+    min-height: 25rem;
+  }
+}
+
+.bodyClass {
+  height: 70vh;
+  width: 100vw;
+  overflow-y: scroll;
+
+  @media only screen and (min-width: 48em) {
+  }
 }
 
 .activityPanel {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  height: 27vh;
-  min-height: 25rem;
+  @media only screen and (min-width: 48em) {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 27vh;
+    min-height: 25rem;
+  }
+}
+
+.activityPanelBody {
+  height: 80vh;
+  width: 100vw;
+  overflow-y: scroll;
+
+  @media only screen and (min-width: 48em) {
+  }
 }
 
 .submissionsPanel {
-  margin-bottom: $xxl-spacing;
-  height: 100%;
-  margin-top: $m-spacing;
-  min-height: 25rem;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  height: 27vh;
-  text-align: left;
+  height: 90vh;
+  width: 100vw;
+  overflow-y: scroll;
+
+  @media only screen and (min-width: 48em) {
+    margin-bottom: $xxl-spacing;
+    height: 100%;
+    margin-top: $m-spacing;
+    min-height: 25rem;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    height: 27vh;
+    text-align: left;
+  }
 }

@@ -60,6 +60,7 @@ class BountiesPanelComponent extends React.Component {
   render() {
     const {
       className,
+      bodyClass,
       tabData,
       activeCount,
       currentTab,
@@ -70,7 +71,7 @@ class BountiesPanelComponent extends React.Component {
 
     const { list, count, loading, loadingMore, error } = tabData;
 
-    let bodyClass;
+    let zeroStateClass;
     let body = (
       <React.Fragment>
         <ListGroup>{this.renderBounties(list)}</ListGroup>
@@ -88,14 +89,14 @@ class BountiesPanelComponent extends React.Component {
     );
 
     if (count <= 0) {
-      bodyClass = styles.bodyLoading;
+      zeroStateClass = styles.bodyLoading;
       body = (
         <div className={styles.zeroState}>
           <ZeroState
             title={`You have no ${currentTab} bounties`}
-            text={`It looks like you don't have any active bounties at the
+            text="It looks like you don't have any active bounties at the
               moment. Enter a title for a new bounty here to get started
-              creating one!`}
+              creating one!"
             action
             actionText="Create new bounty"
             onActionClick={() => history.push('/createBounty')}
@@ -106,12 +107,12 @@ class BountiesPanelComponent extends React.Component {
     }
 
     if (loading) {
-      bodyClass = styles.bodyLoading;
+      zeroStateClass = styles.bodyLoading;
       body = <Loader color="blue" size="medium" />;
     }
 
     if (error) {
-      bodyClass = styles.bodyLoading;
+      zeroStateClass = styles.bodyLoading;
       body = (
         <div className={styles.zeroState}>
           <ZeroState
@@ -141,7 +142,7 @@ class BountiesPanelComponent extends React.Component {
             </Tabs.Tab>
           </Card.HeaderTabs>
         </Card.Header>
-        <Card.Body className={`${styles.listGroup} ${bodyClass}`}>
+        <Card.Body className={`${bodyClass} ${zeroStateClass}`}>
           {body}
         </Card.Body>
       </Card>

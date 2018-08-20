@@ -1,5 +1,8 @@
 import React from 'react';
 import styles from './Dashboard.module.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 import {
   ActivityPanel,
   BountiesPanel,
@@ -32,4 +35,26 @@ const Dashboard = props => {
   );
 };
 
-export default Dashboard;
+class MobileDashboard extends React.Component {
+  render() {
+    var settings = {
+      dots: false,
+      arrows: false
+    };
+    return (
+      <Slider {...settings}>
+        <div>
+          <BountiesPanel bodyClass={styles.bodyClass} />
+        </div>
+        <div>
+          <ActivityPanel bodyClass={styles.bodyClass} />
+        </div>
+        <div>
+          <SubmissionsPanel bodyClass={styles.bodyClass} />
+        </div>
+      </Slider>
+    );
+  }
+}
+
+export default MobileDashboard;
