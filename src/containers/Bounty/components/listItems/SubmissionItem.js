@@ -3,14 +3,17 @@ import styles from './SubmissionItem.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Button, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
+import { ACTIVE } from 'public-modules/Bounty/constants';
 import moment from 'moment';
 
 const SubmissionItem = props => {
   const {
     fulfillmentId,
-    name,
-    address,
-    img,
+    bounty,
+    fulfiller_name,
+    fulfiller_email,
+    fulfiller_address,
+    fulfiller_img,
     url,
     email,
     description,
@@ -24,13 +27,18 @@ const SubmissionItem = props => {
     submissionBelongsToLoggedInUser,
     acceptFulfillment,
     showModal,
+    setRatingModal,
     initiateLoginProtection
   } = props;
 
-  const formattedTime = moment(created, 'YYYY-MM-DD').format('MM/DD/YYYY');
+  const { bountyStage } = bounty;
+
+  const formattedTime = moment
+    .utc(created, 'YYYY-MM-DDThh:mm:ssZ')
+    .format('MM/DD/YYYY');
 
   let actionButton = null;
-  if (bountyBelongsToLoggedInUser && !accepted) {
+  if (bountyBelongsToLoggedInUser && bountyStage === ACTIVE && !accepted) {
     actionButton = (
       <Button
         type="action"
@@ -49,11 +57,15 @@ const SubmissionItem = props => {
         className={styles.reactivateButton}
         icon={['far', 'star']}
         onClick={() =>
-          initiateLoginProtection(() =>
-            showModal('issueRatingForFulfiller', {
-              fulfillmentId
-            })
-          )
+          initiateLoginProtection(() => {
+            setRatingModal(fulfillmentId, {
+              name: fulfiller_name,
+              address: fulfiller_address,
+              img: fulfiller_img
+            });
+
+            showModal('issueRatingForFulfiller');
+          })
         }
       >
         Rate fulfiller
@@ -67,11 +79,15 @@ const SubmissionItem = props => {
         className={styles.reactivateButton}
         icon={['far', 'star']}
         onClick={() =>
-          initiateLoginProtection(() =>
-            showModal('issueRatingForIssuer', {
-              fulfillmentId
-            })
-          )
+          initiateLoginProtection(() => {
+            const { name, public_address, profile_image } = bounty.user;
+            setRatingModal(fulfillmentId, {
+              name,
+              address: public_address,
+              img: profile_image
+            });
+            showModal('issueRatingForIssuer');
+          })
         }
       >
         Rate issuer
@@ -87,18 +103,18 @@ const SubmissionItem = props => {
         }`}
       >
         <LinkedAvatar
-          name={name}
-          address={address}
-          img={img}
-          hash={address}
-          to={`/profile/${address}`}
+          name={fulfiller_name}
+          address={fulfiller_address}
+          img={fulfiller_img}
+          hash={fulfiller_address}
+          to={`/profile/${fulfiller_address}`}
           nameTextScale={'h4'}
           nameTextColor="black"
         />
         <div className={`${styles.labelGroup} ${styles.contactInfo}`}>
           <Text inputLabel>Contact</Text>
-          <Text link src={`mailto:${email}`}>
-            {email}
+          <Text link src={`mailto:${fulfiller_email}`}>
+            {fulfiller_email}
           </Text>
         </div>
 
@@ -142,6 +158,7 @@ const SubmissionItem = props => {
         <FulfillmentStagePill
           className={styles.fulfillmentStage}
           accepted={accepted}
+          bountyStage={bountyStage}
         />
         {actionButton}
       </div>

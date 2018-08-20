@@ -3,14 +3,12 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import styles from './IssueRatingFormModal.module.scss';
 import { Avatar, Button, Modal, Text, Loader } from 'components';
-import { LoadComponent } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
 import { FormTextbox, FormRating } from 'form-components';
 import { actions as reviewActions } from 'public-modules/Review';
-import { actions as revieweeActions } from './reducer';
-import { rootRevieweeSelector } from './selectors';
 import { rootReviewSelector } from 'public-modules/Review/selectors';
+import { ratingModalSelector } from 'containers/Bounty/selectors';
 import BountyDetails from './BountyDetails';
 
 const messageTemplate = {
@@ -68,7 +66,7 @@ const IssueRatingFormModalComponent = props => {
         onClose={onClose}
         visible={true}
         fixed
-        size="small"
+        size="medium"
       >
         <Modal.Header closable={true}>
           <Modal.Message>
@@ -83,32 +81,33 @@ const IssueRatingFormModalComponent = props => {
                 <Text color="defaultGrey">{messageTemplate[type][1]}</Text>
               </div>
             </div>
-            <div className={`row ${styles.review} ${styles.centerColumn}`}>
-              <div className="col-xs-10">
-                <div className={styles.inputGroup}>
-                  <Field
-                    name="rating"
-                    component={FormRating}
-                    type="string"
-                    label="Rating"
-                    validate={[validators.required]}
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <Field
-                    name="review"
-                    component={FormTextbox}
-                    type="string"
-                    label="Mini review"
-                    validate={[validators.required]}
-                    placeholder="Enter review..."
-                  />
-                </div>
-              </div>
-            </div>
           </Modal.Description>
         </Modal.Header>
-        <Modal.Body className={styles.modalBody} />
+        <Modal.Body className={styles.modalBody}>
+          <div className={`row ${styles.review} ${styles.centerColumn}`}>
+            <div className="col-xs-10">
+              <div className={styles.inputGroup}>
+                <Field
+                  name="rating"
+                  component={FormRating}
+                  type="string"
+                  label="Rating"
+                  validate={[validators.required]}
+                />
+              </div>
+              <div className={styles.inputGroup}>
+                <Field
+                  name="review"
+                  component={FormTextbox}
+                  type="string"
+                  label="Mini review"
+                  validate={[validators.required]}
+                  placeholder="Enter review..."
+                />
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
         <Modal.Footer>
           <Button
             margin
@@ -144,21 +143,15 @@ const IssueRatingFormModalComponent = props => {
 
 const mapStateToProps = (state, ownProps) => {
   const reviewState = rootReviewSelector(state);
-  const revieweeState = rootRevieweeSelector(state);
-  const { bounty, fulfillmentId, type } = ownProps;
+  const ratingModal = ratingModalSelector(state);
 
   return {
-    reviewee: revieweeState.reviewee,
-    loading: revieweeState.loading,
-    error: revieweeState.error,
+    fulfillmentId: ratingModal.fulfillmentId,
+    reviewee: ratingModal.reviewee,
+    loading: false,
+    error: false,
     posting: reviewState.posting,
-    postingError: reviewState.postingError,
-
-    identifiers: {
-      bountyId: bounty.id,
-      fulfillmentId,
-      type
-    }
+    postingError: reviewState.postingError
   };
 };
 
@@ -166,12 +159,10 @@ const IssueRatingFormModal = compose(
   connect(
     mapStateToProps,
     {
-      load: revieweeActions.loadReviewee,
       postReview: reviewActions.postReview
     }
   ),
-  reduxForm({ form: 'issueRating' }),
-  LoadComponent('identifiers')
+  reduxForm({ form: 'issueRating' })
 )(IssueRatingFormModalComponent);
 
 export default IssueRatingFormModal;

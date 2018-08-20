@@ -30,12 +30,15 @@ class BountiesPanelComponent extends React.Component {
       const {
         id,
         calculated_fulfillmentAmount,
+        bounty_created,
         created,
         fulfillment_count,
         title,
         tokenSymbol,
         usd_price
       } = bounty;
+
+      const isDraft = this.props.currentTab === 'drafts';
 
       return (
         <ListGroup.ListItem hover>
@@ -51,11 +54,11 @@ class BountiesPanelComponent extends React.Component {
               bountyId={id}
               title={title}
               submissions={fulfillment_count}
-              value={parseFloat(calculated_fulfillmentAmount).toFixed(2)}
+              value={Number(calculated_fulfillmentAmount)}
               currency={tokenSymbol}
               usd_value={parseFloat(usd_price).toFixed(0)}
-              createdAt={created}
-              isDraft={this.props.currentTab === 'drafts'}
+              createdAt={isDraft ? created : bounty_created}
+              isDraft={isDraft}
             />
           </Link>
         </ListGroup.ListItem>
@@ -97,7 +100,7 @@ class BountiesPanelComponent extends React.Component {
       body = (
         <div className={base.zeroState}>
           <ZeroState
-            title={`You have 0 ${currentTab} bounties`}
+            title={`You have no ${currentTab} bounties`}
             text={
               `It looks like you don't have any active bounties at the
               moment. Enter a title for a new bounty here to get started

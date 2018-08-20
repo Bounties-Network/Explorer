@@ -5,21 +5,31 @@ import { Field, reduxForm } from 'redux-form';
 import { FormTextInput } from 'form-components';
 
 const NewCommentForm = props => {
-  const { disabled, handleSubmit, loading, submitText } = props;
+  const { showLogin, signedIn, handleSubmit, loading, submitText } = props;
+
+  if (signedIn) {
+    return (
+      <form onSubmit={handleSubmit}>
+        <div className={styles.container}>
+          <Field
+            name="text"
+            component={FormTextInput}
+            type="text"
+            placeholder="Write a comment..."
+            validate={[validators.required]}
+          />
+          <Button disabled={loading} loading={loading}>
+            Post comment
+          </Button>
+        </div>
+      </form>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.container}>
-        <Field
-          disabled={disabled}
-          name="text"
-          component={FormTextInput}
-          type="text"
-          placeholder="Write a comment..."
-        />
-        <Button disabled={disabled} loading={loading}>
-          {submitText}
-        </Button>
+        <Button type="action">Sign in to post comment</Button>
       </div>
     </form>
   );

@@ -39,7 +39,7 @@ const IncreasePayoutFormModal = props => {
                   Number(values.fulfillmentAmount || 0) >
                   Number(minimumBalance) + Number(balance || 0)
                 ) {
-                  return 'Your total deposited amount must be greaater than the payout amount.';
+                  return 'The balance of your bounty must be greater than the payout amount.';
                 }
               }
             ]}

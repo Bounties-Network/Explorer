@@ -24,13 +24,13 @@ import unlock from '@fortawesome/fontawesome-pro-light/faUnlock';
 import addressCard from '@fortawesome/fontawesome-pro-light/faAddressCard';
 import briefcase from '@fortawesome/fontawesome-pro-regular/faBriefcase';
 import comments from '@fortawesome/fontawesome-pro-regular/faComments';
+import commentsLight from '@fortawesome/fontawesome-pro-light/faComments';
 import comment from '@fortawesome/fontawesome-pro-regular/faComment';
 import infoCircle from '@fortawesome/fontawesome-pro-regular/faInfoCircle';
 import ellipsisH from '@fortawesome/fontawesome-pro-regular/faEllipsisH';
 import checkCircle from '@fortawesome/fontawesome-pro-regular/faCheckCircle';
 import check from '@fortawesome/fontawesome-pro-regular/faCheck';
 import exclamationTriangle from '@fortawesome/fontawesome-pro-regular/faExclamationTriangle';
-import meh from '@fortawesome/fontawesome-pro-light/faMeh';
 import twitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import facebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import reddit from '@fortawesome/fontawesome-free-brands/faReddit';
@@ -42,8 +42,17 @@ import idCardAlt from '@fortawesome/fontawesome-pro-light/faIdCardAlt';
 import star from '@fortawesome/fontawesome-pro-regular/faStar';
 import calendarAlt from '@fortawesome/fontawesome-pro-regular/faCalendarAlt';
 import dollarSign from '@fortawesome/fontawesome-pro-regular/faDollarSign';
+import fileAlt from '@fortawesome/fontawesome-pro-light/faFileAlt';
+import chartLine from '@fortawesome/fontawesome-pro-light/faChartLine';
+import bolt from '@fortawesome/fontawesome-pro-light/faBolt';
+import frown from '@fortawesome/fontawesome-pro-light/faFrown';
+import lock from '@fortawesome/fontawesome-pro-light/faLock';
+import arrow from '@fortawesome/fontawesome-pro-regular/faArrowUp';
+import angleDoubleUp from '@fortawesome/fontawesome-pro-light/faAngleDoubleUp';
 
 library.add(
+  arrow,
+  angleDoubleUp,
   check,
   star,
   idCardAlt,
@@ -52,6 +61,8 @@ library.add(
   globe,
   comment,
   comments,
+  commentsLight,
+  lock,
   briefcase,
   faBell,
   plus,
@@ -78,7 +89,6 @@ library.add(
   twitter,
   facebook,
   reddit,
-  meh,
   eye,
   clock,
   levelUp,
@@ -86,5 +96,9 @@ library.add(
   unlock,
   addressCard,
   calendarAlt,
-  dollarSign
+  dollarSign,
+  fileAlt,
+  chartLine,
+  bolt,
+  frown
 );

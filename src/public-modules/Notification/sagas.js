@@ -77,7 +77,7 @@ export function* loadMoreNotifications(action) {
   }
 }
 
-export function* showNotification(action, dispatch) {
+export function* showNotification(dispatch, action) {
   const { loaded } = yield select(rootNotificationSelector);
   const address = yield select(getUserAddressSelector);
 
@@ -98,9 +98,9 @@ export function* showNotification(action, dispatch) {
   );
   const postedMessage = notification_template[notification_name].message;
   const toastType = Toast.TYPE.NOTIFICATION;
-  yield call(Toast, toastType, postedMessage, postedLink, () =>
-    dispatch(setNotificationViewed(id))
-  );
+  yield call(Toast, toastType, postedMessage, postedLink, () => {
+    dispatch(setNotificationViewed(id));
+  });
 }
 
 export function* setNotificationViewedSaga(action) {
@@ -116,8 +116,8 @@ export function* viewAllNotifications(action) {
   yield call(request, endpoint, 'GET');
 }
 
-export function* watchForNotificationToasts() {
-  yield takeLatest([ADD_NOTIFICATION], showNotification);
+export function* watchForNotificationToasts(dispatch) {
+  yield takeLatest([ADD_NOTIFICATION], showNotification, dispatch);
 }
 
 export function* watchNotifications() {

@@ -59,11 +59,12 @@ class ActivityPanelComponent extends React.Component {
       body = (
         <div className={base.zeroState}>
           <ZeroState
-            title={'You have no activity'}
+            title={'You have no activity yet'}
             text={
               'Once you start using the platform, your activity will show up here.'
             }
             iconColor="blue"
+            icon={['fal', 'chart-line']}
           />
         </div>
       );

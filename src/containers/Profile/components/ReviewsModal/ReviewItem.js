@@ -7,7 +7,7 @@ import moment from 'moment';
 const ReviewItem = props => {
   const { rating, review, name, address, img, created } = props;
   const color = rating >= 4 ? 'green' : rating >= 3 ? 'orange' : 'red';
-  const formattedTime = moment(created, 'YYYY-MM-DD').fromNow();
+  const formattedTime = moment.utc(created, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
 
   return (
     <div className={`${styles.container}`}>

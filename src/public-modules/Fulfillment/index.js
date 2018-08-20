@@ -2,13 +2,13 @@ const initialState = {
   loading: true,
   loaded: false,
   error: false,
-  currentFulfillment: {},
-  createFulfillment: {
-    pending: false,
+  fulfillment: {},
+  acceptFulfillment: {
+    loading: false,
     error: false
   },
-  acceptFulfillment: {
-    pending: false,
+  createFulfillment: {
+    loading: false,
     error: false
   }
 };
@@ -17,12 +17,12 @@ const LOAD_FULFILLMENT = 'fulfillment/LOAD_FULFILLMENT';
 const LOAD_FULFILLMENT_SUCCESS = 'fulfillment/LOAD_FULFILLMENT_SUCCESS';
 const LOAD_FULFILLMENT_FAIL = 'fulfillment/LOAD_FULFILLMENT_FAIL';
 
-function loadFulfillment(id) {
-  return { type: LOAD_FULFILLMENT, id };
+function loadFulfillment(bountyId, fulfillmentId) {
+  return { type: LOAD_FULFILLMENT, bountyId, fulfillmentId };
 }
 
 function loadFulfillmentSuccess(fulfillment) {
-  return { type: LOAD_FULFILLMENT_SUCCESS, currentFulfillment: fulfillment };
+  return { type: LOAD_FULFILLMENT_SUCCESS, fulfillment };
 }
 
 function loadFulfillmentFail(error) {
@@ -68,19 +68,18 @@ function FulfillmentReducer(state = initialState, action) {
         ...state,
         loading: true,
         loaded: false,
-        count: 0,
         error: false
       };
     }
     case LOAD_FULFILLMENT_SUCCESS: {
-      const { currentFulfillment } = action;
+      const { fulfillment } = action;
 
       return {
         ...state,
         loading: false,
         loaded: true,
         error: false,
-        currentFulfillment
+        fulfillment
       };
     }
     case LOAD_FULFILLMENT_FAIL: {
@@ -95,8 +94,7 @@ function FulfillmentReducer(state = initialState, action) {
       return {
         ...state,
         createFulfillment: {
-          ...state.createFulfillment,
-          pending: true,
+          loading: true,
           error: false
         }
       };
@@ -105,8 +103,8 @@ function FulfillmentReducer(state = initialState, action) {
       return {
         ...state,
         createFulfillment: {
-          ...state.createFulfillment,
-          pending: false
+          loading: false,
+          error: false
         }
       };
     }
@@ -114,8 +112,7 @@ function FulfillmentReducer(state = initialState, action) {
       return {
         ...state,
         createFulfillment: {
-          ...state.createFulfillment,
-          pending: false,
+          loading: false,
           error: true
         }
       };
@@ -124,8 +121,7 @@ function FulfillmentReducer(state = initialState, action) {
       return {
         ...state,
         acceptFulfillment: {
-          ...state.acceptFulfillment,
-          pending: true,
+          loading: true,
           error: false
         }
       };
@@ -134,8 +130,8 @@ function FulfillmentReducer(state = initialState, action) {
       return {
         ...state,
         acceptFulfillment: {
-          ...state.acceptFulfillment,
-          pending: false
+          loading: false,
+          error: false
         }
       };
     }
@@ -143,8 +139,7 @@ function FulfillmentReducer(state = initialState, action) {
       return {
         ...state,
         acceptFulfillment: {
-          ...state.acceptFulfillment,
-          pending: false,
+          loading: false,
           error: true
         }
       };
@@ -158,24 +153,24 @@ export const actions = {
   loadFulfillment,
   loadFulfillmentSuccess,
   loadFulfillmentFail,
-  createFulfillment,
-  createFulfillmentSuccess,
-  createFulfillmentFail,
   acceptFulfillment,
   acceptFulfillmentSuccess,
-  acceptFulfillmentFail
+  acceptFulfillmentFail,
+  createFulfillment,
+  createFulfillmentSuccess,
+  createFulfillmentFail
 };
 
 export const actionTypes = {
   LOAD_FULFILLMENT,
   LOAD_FULFILLMENT_SUCCESS,
   LOAD_FULFILLMENT_FAIL,
-  CREATE_FULFILLMENT,
-  CREATE_FULFILLMENT_SUCCESS,
-  CREATE_FULFILLMENT_FAIL,
   ACCEPT_FULFILLMENT,
   ACCEPT_FULFILLMENT_SUCCESS,
-  ACCEPT_FULFILLMENT_FAIL
+  ACCEPT_FULFILLMENT_FAIL,
+  CREATE_FULFILLMENT,
+  CREATE_FULFILLMENT_SUCCESS,
+  CREATE_FULFILLMENT_FAIL
 };
 
 export default FulfillmentReducer;
