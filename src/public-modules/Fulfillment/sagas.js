@@ -39,7 +39,7 @@ export function* loadFulfillment(action) {
   };
 
   try {
-    let endpoint = `fulfillment/`;
+    let endpoint = 'fulfillment/';
     const fulfillments = yield call(request, endpoint, 'GET', { params });
     yield put(loadFulfillmentSuccess(fulfillments.results[0]));
   } catch (e) {
@@ -53,7 +53,7 @@ export function* acceptFulfillment(action) {
   yield put(setPendingWalletConfirm());
 
   const userAddress = yield select(addressSelector);
-  const { web3 } = yield call(getWeb3Client);
+  yield call(getWeb3Client);
 
   const { standardBounties } = yield call(getContractClient);
   try {

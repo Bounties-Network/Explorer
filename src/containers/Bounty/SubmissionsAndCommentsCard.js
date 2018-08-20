@@ -3,8 +3,6 @@ import styles from './SubmissionsAndCommentsCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { map as fpMap, filter } from 'lodash';
-import { PageCard, FormSection } from 'explorer-components';
-import { Field, reduxForm } from 'redux-form';
 import { SubmissionItem, NewCommentForm, CommentItem } from './components';
 import { ListGroup, Loader, Tabs, Text, ZeroState } from 'components';
 import { rootBountyPageSelector } from './selectors';
@@ -115,7 +113,7 @@ let SubmissionsAndCommentsCardComponent = props => {
   let body = null;
   let bodyClass = '';
 
-  if (currentTab == 'submissions') {
+  if (currentTab === 'submissions') {
     body = <ListGroup>{renderFulfillments(fulfillments.list)}</ListGroup>;
 
     if (!fulfillments.list.length) {

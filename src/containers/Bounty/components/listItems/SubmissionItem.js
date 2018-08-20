@@ -15,7 +15,6 @@ const SubmissionItem = props => {
     fulfiller_address,
     fulfiller_img,
     url,
-    email,
     description,
     dataHash,
     dataFileName,

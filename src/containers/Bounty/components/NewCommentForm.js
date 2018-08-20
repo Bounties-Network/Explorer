@@ -2,10 +2,11 @@ import React from 'react';
 import styles from './NewCommentForm.module.scss';
 import { Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
+import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 
 const NewCommentForm = props => {
-  const { showLogin, signedIn, handleSubmit, loading, submitText } = props;
+  const { signedIn, handleSubmit, loading } = props;
 
   if (signedIn) {
     return (

@@ -1,8 +1,10 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import base from '../BaseStyles.module.scss';
+import styles from './BountiesPanel.module.scss';
 import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
 import {
