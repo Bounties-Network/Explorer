@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { actions as loginActions } from 'containers/Login/reducer';
 import { actions as authActions } from 'public-modules/Authentication';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
@@ -24,7 +24,9 @@ const HeaderComponent = props => {
   return (
     <div className={`${styles.header}`}>
       <div className={`${styles.iconArea}`}>
-        <BeeLogo />
+        <Link to="/">
+          <BeeLogo />
+        </Link>
       </div>
       {network !== 'unknown' ? (
         <Network network={network} className={styles.network} />
