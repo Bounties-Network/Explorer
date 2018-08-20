@@ -90,23 +90,24 @@ const NotificationDropdown = props => {
             >
               Notifications
             </Text>
-            {!!notifications.length && (
-              <Text
-                link
-                className={styles.headlineLink}
-                src="#"
-                onMouseDown={e => {
-                  e.preventDefault();
-                  return false;
-                }}
-                onClick={e => {
-                  e.preventDefault();
-                  viewAllNotifications();
-                }}
-              >
-                Mark all as read
-              </Text>
-            )}
+            {!!notifications.length &&
+              hasUnread && (
+                <Text
+                  link
+                  className={styles.headlineLink}
+                  src="#"
+                  onMouseDown={e => {
+                    e.preventDefault();
+                    return false;
+                  }}
+                  onClick={e => {
+                    e.preventDefault();
+                    viewAllNotifications();
+                  }}
+                >
+                  Mark all as read
+                </Text>
+              )}
           </div>
           {error && (
             <ZeroState
