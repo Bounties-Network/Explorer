@@ -47,6 +47,7 @@ import fileAlt from '@fortawesome/fontawesome-pro-light/faFileAlt';
 import chartLine from '@fortawesome/fontawesome-pro-light/faChartLine';
 import bolt from '@fortawesome/fontawesome-pro-light/faBolt';
 import frown from '@fortawesome/fontawesome-pro-light/faFrown';
+import lock from '@fortawesome/fontawesome-pro-light/faLock';
 
 library.add(
   check,
@@ -58,6 +59,7 @@ library.add(
   comment,
   comments,
   commentsLight,
+  lock,
   briefcase,
   faBell,
   plus,
