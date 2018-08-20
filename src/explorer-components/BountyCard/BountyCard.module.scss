@@ -1,10 +1,21 @@
 @import "~styles/variables.scss";
 
 .bountyCard {
+  border-radius: 0;
   margin-bottom: $base-spacing;
+
+  @media only screen and (min-width: 48em) {
+    border-radius: $base-border-radius;
+  }
 
   @media only screen and (min-width: 65em) {
     margin-bottom: $m-spacing;
+  }
+
+  &:hover {
+    .titleText {
+      color: $brand-blue;
+    }
   }
 }
 
@@ -23,13 +34,17 @@
 }
 
 .titleText {
-  margin-bottom: $m-spacing;
+  padding-bottom: $m-spacing;
   width: 100%;
-  line-height: 1.25;
+  line-height: 1.4;
   display: inline-block;
 
   @media only screen and (min-width: 48em) {
-    margin-bottom: $s-spacing;
+    padding-bottom: $m-spacing;
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 }
 
@@ -89,9 +104,12 @@
 
 .bountyPrize {
   order: 2;
+  padding-left: 0;
+  text-align: right;
 
   @media only screen and (min-width: 48em) {
     order: 3;
+    padding-left: 1rem;
   }
 }
 
@@ -103,5 +121,11 @@
 }
 
 .usd {
+  font-size: $h3-font-size;
   margin-bottom: $base-spacing;
+  text-align: right;
+
+  @media only screen and (min-width: 62em) {
+    font-size: $h2-font-size;
+  }
 }
