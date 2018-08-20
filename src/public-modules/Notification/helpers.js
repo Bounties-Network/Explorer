@@ -1,9 +1,8 @@
 export const deserializeNotification = notificationItem => {
   const {
-    notification: { from_user, notification_name },
+    notification: { from_user, notification_name, notification_created },
     data: { link, bounty_title },
     viewed,
-    created,
     id
   } = notificationItem;
   return {
@@ -12,7 +11,7 @@ export const deserializeNotification = notificationItem => {
     // make link relative
     link: link.replace(/^.*\/\/[^\/]+/, ''),
     bounty_title,
-    created,
+    created: notification_created,
     viewed,
     id
   };
