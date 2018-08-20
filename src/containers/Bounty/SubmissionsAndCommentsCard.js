@@ -143,29 +143,15 @@ let SubmissionsAndCommentsCardComponent = props => {
         );
       }
 
-      if (userFulfillments.length) {
-        body = (
-          <React.Fragment>
-            <ListGroup>{renderFulfillments(userFulfillments)}</ListGroup>
-            <Text alignment="align-center" color="defaultGrey" typeScale="Small">
-              Submissions to this bounty are hidden. Your submissions are only
-              visible to you.
-            </Text>
-          </React.Fragment>
-        );
-      } else {
-        body = (
-          <div className={styles.zeroState}>
-            <ZeroState
-              title={'Submissions are private'}
-              text={'The submissions for this bounty have been set to private.'}
-              iconColor="blue"
-              icon={['fal', 'lock']}
-            />
-          </div>
-        );
-      }
-
+      body = (
+        <React.Fragment>
+          <ListGroup>{renderFulfillments(userFulfillments)}</ListGroup>
+          <Text alignment="align-center" color="defaultGrey" typeScale="Small">
+            Submissions to this bounty are hidden. Your submissions are only
+            visible to you.
+          </Text>
+        </React.Fragment>
+      );
 
       if (!currentUser || !userFulfillments.length) {
         bodyClass = styles.bodyLoading;
@@ -175,6 +161,7 @@ let SubmissionsAndCommentsCardComponent = props => {
               title={'Submissions are private'}
               text={'The submissions for this bounty have been set to private.'}
               iconColor="blue"
+              icon={['fal', 'lock']}
             />
           </div>
         );
