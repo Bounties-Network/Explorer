@@ -61,15 +61,22 @@ const ProfileDetailsComponent = props => {
         <div
           className={`col-xs-12 row ${styles.details} ${styles.centerContent}`}
         >
-          <div className="col-xs-2">
-            <About
-              organization={user.organization}
-              languages={user.languages}
-            />
-          </div>
-          <div className="col-xs-2">
-            <Skills skills={user.skills} />
-          </div>
+          {user.organization &&
+            user.languages.length && (
+              <div className="col-xs-2">
+                <About
+                  organization={user.organization}
+                  languages={user.languages}
+                />
+              </div>
+            )}
+
+          {!!user.skills &&
+            !!user.skills.length && (
+              <div className="col-xs-2">
+                <Skills skills={user.skills} />
+              </div>
+            )}
           <div className="col-xs-4">
             <NetworkStats
               stats={userStats}
@@ -79,14 +86,16 @@ const ProfileDetailsComponent = props => {
               setReviewsModalVisible={setReviewsModalVisible}
             />
           </div>
-          <div className="col-xs-2">
-            <Elsewhere
-              website={user.website}
-              twitter={user.twitter}
-              github={user.github}
-              linkedin={user.linkedin}
-            />
-          </div>
+          {(user.website || user.twitter || user.github || user.linkedin) && (
+            <div className="col-xs-2">
+              <Elsewhere
+                website={user.website}
+                twitter={user.twitter}
+                github={user.github}
+                linkedin={user.linkedin}
+              />
+            </div>
+          )}
         </div>
       </div>
       <div className="row">

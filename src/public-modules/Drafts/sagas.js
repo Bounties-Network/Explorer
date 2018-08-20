@@ -1,8 +1,10 @@
 import request from 'utils/request';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { toLower } from 'lodash';
 import { actionTypes, actions } from 'public-modules/Drafts';
-import { LIMIT } from './constants';
+import { addressSelector } from 'public-modules/Client/selectors';
 import { draftsSelector } from './selectors';
+import { LIMIT } from './constants';
 
 const { LOAD_DRAFTS, LOAD_MORE_DRAFTS } = actionTypes;
 const {
@@ -13,8 +15,10 @@ const {
 } = actions;
 
 export function* loadDrafts(action) {
+  const address = yield select(addressSelector);
+
   try {
-    const endpoint = `bounty/draft/?limit=${LIMIT}`;
+    const endpoint = `bounty/draft/?issuer=${toLower(address)}&limit=${LIMIT}`;
     const drafts = yield call(request, endpoint, 'GET');
     yield put(loadDraftsSuccess(drafts));
   } catch (e) {

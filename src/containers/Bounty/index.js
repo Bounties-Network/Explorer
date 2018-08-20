@@ -3,6 +3,7 @@ import styles from './Bounty.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions as bountyActions } from 'public-modules/Bounty';
+import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
 import { actions as bountyUIActions } from './reducer';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
@@ -24,6 +25,7 @@ import { rootBountyPageSelector } from './selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
 import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
+import { queryStringToObject } from 'utils/helpers';
 
 showdown.setOption('simpleLineBreaks', true);
 const converter = new showdown.Converter();
@@ -35,15 +37,19 @@ class BountyComponent extends React.Component {
 
     const {
       match,
+      location,
       loadBounty,
       loadDraftBounty,
+      loadFulfillment,
       loadFulfillments,
       resetFilters,
       addBountyFilter,
-      setBountyId
+      setBountyId,
+      setActiveTab
     } = props;
 
     setBountyId(match.params.id);
+    setActiveTab('submissions');
 
     if (match.path === '/bounty/draft/:id/') {
       loadDraftBounty(match.params.id);
@@ -55,6 +61,12 @@ class BountyComponent extends React.Component {
       resetFilters();
       addBountyFilter(match.params.id);
       loadFulfillments(match.params.id);
+
+      const values = queryStringToObject(location.search);
+
+      if (values.rating) {
+        loadFulfillment(match.params.id, values.fulfillment_id);
+      }
     }
   }
 
@@ -315,6 +327,7 @@ const Bounty = compose(
       loadBounty: bountyActions.getBounty,
       loadDraftBounty: bountyActions.getDraft,
       loadFulfillments: fulfillmentsActions.loadFulfillments,
+      loadFulfillment: fulfillmentActions.loadFulfillment,
       addBountyFilter: fulfillmentsActions.addBountyFilter,
       resetFilters: fulfillmentsActions.resetFilters
     }

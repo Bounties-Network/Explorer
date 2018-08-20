@@ -1,10 +1,21 @@
 import React from 'react';
 import styles from './IssueRatingFormModal.module.scss';
+import moment from 'moment';
 import { Text } from 'components';
 import { FulfillmentStagePill } from 'explorer-components';
 
 const BountyDetails = props => {
   const { bounty } = props;
+  const {
+    calculated_fulfillmentAmount,
+    title,
+    tokenSymbol,
+    usd_price
+  } = bounty;
+
+  const created = moment
+    .utc(bounty.bounty_created, 'YYYY-MM-DDThh:mm:ssZ')
+    .fromNow();
 
   return (
     <div className={styles.bountyInfoContainer}>
@@ -14,7 +25,7 @@ const BountyDetails = props => {
             <FulfillmentStagePill className={styles.pill} accepted={true} />
             <div className={`${styles.rowText} ${styles.detailsGroup}`}>
               <Text inline typeScale="h5" weight="fontWeight-medium">
-                {bounty.title}
+                {title}
               </Text>
               <Text
                 inline
@@ -23,7 +34,7 @@ const BountyDetails = props => {
                 weight="fontWeight-medium"
                 className={styles.usd}
               >
-                ${bounty.usd_price.toFixed(0)}
+                ${usd_price.toFixed(0)}
               </Text>
             </div>
             <div className={styles.rowText}>
@@ -33,7 +44,7 @@ const BountyDetails = props => {
                 color="defaultGrey"
                 className={styles.details}
               >
-                {`Created bleh`}
+                {`Created ${created}`}
               </Text>
               <Text
                 inline
@@ -41,7 +52,7 @@ const BountyDetails = props => {
                 typeScale="Small"
                 className={styles.usd}
               >
-                {`500 ETH`}
+                {`${Number(calculated_fulfillmentAmount)} ${tokenSymbol}`}
               </Text>
             </div>
           </div>

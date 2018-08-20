@@ -34,6 +34,7 @@ class BountiesPanelComponent extends React.Component {
       const {
         id,
         calculated_fulfillmentAmount,
+        bounty_created,
         created,
         fulfillment_count,
         title,
@@ -41,6 +42,8 @@ class BountiesPanelComponent extends React.Component {
         usd_price,
         bountyStage
       } = bounty;
+
+      const isDraft = this.props.currentTab === 'drafts';
 
       return (
         <ListGroup.ListItem hover>
@@ -56,11 +59,11 @@ class BountiesPanelComponent extends React.Component {
               bountyId={id}
               title={title}
               submissions={fulfillment_count}
-              value={parseFloat(calculated_fulfillmentAmount).toFixed(2)}
+              value={Number(calculated_fulfillmentAmount)}
               currency={tokenSymbol}
               usd_value={parseFloat(usd_price).toFixed(0)}
-              createdAt={created}
-              isDraft={this.props.currentTab === 'drafts'}
+              createdAt={isDraft ? created : bounty_created}
+              isDraft={isDraft}
             />
           </Link>
         </ListGroup.ListItem>

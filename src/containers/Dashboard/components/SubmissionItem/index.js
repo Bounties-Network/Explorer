@@ -10,8 +10,10 @@ import moment from 'moment';
 const SubmissionItem = props => {
   const {
     bountyId,
+    bountyStage,
     title,
     fulfiller,
+    fulfiller_img,
     submissionDate,
     status,
     usd,
@@ -19,7 +21,9 @@ const SubmissionItem = props => {
     currency
   } = props;
 
-  const formattedTime = moment(submissionDate, 'YYYY-MM-DD').format('M/D/YYYY');
+  const formattedTime = moment
+    .utc(submissionDate, 'YYYY-MM-DDThh:mm:ssZ')
+    .format('M/D/YYYY');
 
   return (
     <Table.Row>
@@ -32,6 +36,7 @@ const SubmissionItem = props => {
       </Table.Cell>
       <Table.Cell headerText="Fulfiller" flexGrow={3}>
         <LinkedAvatar
+          img={fulfiller_img}
           address={fulfiller}
           hash={fulfiller}
           to={`profile/${fulfiller}`}
@@ -42,7 +47,7 @@ const SubmissionItem = props => {
         {formattedTime}
       </Table.Cell>
       <Table.Cell headerText="Status" flexGrow={2}>
-        <FulfillmentStagePill accepted={status} />
+        <FulfillmentStagePill bountyStage={bountyStage} accepted={status} />
       </Table.Cell>
       <Table.Cell headerText="Payment amount" flexGrow={2}>
         <div className={styles.value}>
