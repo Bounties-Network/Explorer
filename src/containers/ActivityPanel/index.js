@@ -36,10 +36,18 @@ class ActivityPanelComponent extends React.Component {
   };
 
   render() {
-    const { className, list, count, loading, loadingMore, error } = this.props;
+    const {
+      className,
+      bodyClass,
+      list,
+      count,
+      loading,
+      loadingMore,
+      error
+    } = this.props;
     const loadMore = () => this.props.loadMore(this.props.public_address);
 
-    let bodyClass;
+    let zeroStateClass;
     let body = (
       <React.Fragment>
         <ListGroup>{this.renderActivity(list)}</ListGroup>
@@ -54,7 +62,7 @@ class ActivityPanelComponent extends React.Component {
     );
 
     if (count <= 0) {
-      bodyClass = styles.bodyLoading;
+      zeroStateClass = styles.bodyLoading;
       body = (
         <div className={styles.zeroState}>
           <ZeroState
@@ -70,12 +78,12 @@ class ActivityPanelComponent extends React.Component {
     }
 
     if (loading) {
-      bodyClass = styles.bodyLoading;
+      zeroStateClass = styles.bodyLoading;
       body = <Loader color="blue" size="medium" />;
     }
 
     if (error) {
-      bodyClass = styles.bodyLoading;
+      zeroStateClass = styles.bodyLoading;
       body = (
         <div className={styles.zeroState}>
           <ZeroState
@@ -93,7 +101,7 @@ class ActivityPanelComponent extends React.Component {
         <Card.Header>
           <Card.HeaderTitle>My Activity</Card.HeaderTitle>
         </Card.Header>
-        <Card.Body className={`${styles.listGroup} ${bodyClass}`}>
+        <Card.Body className={`${bodyClass} ${zeroStateClass}`}>
           {body}
         </Card.Body>
       </Card>

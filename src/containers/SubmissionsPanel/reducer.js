@@ -16,11 +16,6 @@ const setActiveTab = tabKey => {
 
 function submissionsPanelReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_SUBMISSIONS_PANEL: {
-      return {
-        ...state
-      };
-    }
     case SET_ACTIVE_TAB: {
       const { tabKey } = action;
 
