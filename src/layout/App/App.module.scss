@@ -1,6 +1,7 @@
 @import "~styles/variables.scss";
 
 .app {
+  background-color: $brand-nearWhite;
   height: 100%;
   width: 100%;
 }
@@ -9,7 +10,6 @@
   padding-top: $header-height-sm;
   height: 100%;
   box-sizing: border-box;
-  background-color: $brand-nearWhite;
   -webkit-overflow-scrolling: touch;
 
   @media only screen and (min-width: 48em) {
