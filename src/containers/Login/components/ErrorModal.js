@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, ZeroState, Button } from 'components';
+import { Modal, Button } from 'components';
 
 const ErrorModal = props => {
   const { visible, onClose } = props;

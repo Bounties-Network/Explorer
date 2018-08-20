@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { uniqueId, range, map } from 'lodash';
+import { uniqueId } from 'lodash';
 import { Text } from 'components';
 import styles from './Rating.module.scss';
 
@@ -25,7 +25,7 @@ class Rating extends React.Component {
 
   renderInputs = () => {
     const { uuid, value: stateValue } = this.state;
-    const { value, defaultValue, error } = this.props;
+    const { value, defaultValue } = this.props;
 
     const checkedValue = Number(value || stateValue || defaultValue);
     const componentSet = [];

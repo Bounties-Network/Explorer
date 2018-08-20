@@ -4,13 +4,13 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import styles from './Banner.module.scss';
-import { Switch, Text } from 'components';
+import { Switch } from 'components';
 import { PageCard } from 'explorer-components';
 import { rootLeaderboardUISelector } from './selectors';
 import { actions } from './reducer';
 
 const BannerComponent = props => {
-  const { toggleValue, leaderboardToggle, loading } = props;
+  const { toggleValue, leaderboardToggle } = props;
 
   return (
     <div className={styles.headerWrapper}>
@@ -19,7 +19,7 @@ const BannerComponent = props => {
         onChange={leaderboardToggle}
         onValue={'Top Issuer'}
         offValue={'Top Earners'}
-        value={toggleValue == 'issuer' ? 'Top Issuer' : 'Top Earners'}
+        value={toggleValue === 'issuer' ? 'Top Issuer' : 'Top Earners'}
         selectedColor="white"
         unselectedColor="lightGrey"
         backgroundColor="purple"

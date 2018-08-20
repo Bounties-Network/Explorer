@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './DatePicker.module.scss';
 import Datetime from 'react-datepicker';
 import moment from 'moment';
 
-import { Button, Text } from 'components';
-
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faCalendarAlt from '@fortawesome/fontawesome-pro-light/faCalendarAlt';
+import { Text } from 'components';
 
 import '../../styles/DatePicker.scss';
 
-const today = moment().utc();
 const tomorrow = moment()
   .add(1, 'days')
   .utc();
@@ -31,7 +26,6 @@ class DatePicker extends React.Component {
 
   render() {
     const {
-      className,
       minDate,
       showTimeSelect,
       label,

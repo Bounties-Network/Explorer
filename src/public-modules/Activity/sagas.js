@@ -3,9 +3,6 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { LIMIT } from './constants';
 import { rootActivitySelector } from './selectors';
 import { actionTypes, actions } from 'public-modules/Activity';
-import { actionTypes as clientActionTypes } from 'public-modules/Client';
-
-const { SET_ADDRESS } = clientActionTypes;
 
 const { LOAD_ACTIVITY, LOAD_MORE_ACTIVITY } = actionTypes;
 const {

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Croppie } from 'croppie/croppie';
 import '../../styles/Croppie.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -161,10 +160,9 @@ class Cropper extends React.Component {
               <input
                 key={nonce}
                 type="file"
-                className="upload"
                 accept="image/*"
                 onChange={this.onInputChange}
-                className={inputStyle}
+                className={`upload ${inputStyle}`}
                 ref={this.croppieInput}
                 disabled={disabledState}
               />

@@ -1,6 +1,3 @@
-import { LIMIT } from './constants';
-import { concat } from 'lodash';
-
 const initialState = {
   loading: true,
   loadingMore: false,

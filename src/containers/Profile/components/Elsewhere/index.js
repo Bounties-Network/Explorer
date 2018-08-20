@@ -1,8 +1,7 @@
 import React from 'react';
-import baseStyles from '../BaseStyles.module.scss';
 import styles from './Elsewhere.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Avatar, FullAddressBar, Table, Text } from 'components';
+import { Text } from 'components';
 import { map } from 'lodash';
 
 const Elsewhere = props => {

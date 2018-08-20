@@ -5,13 +5,11 @@ import { addressSelector } from 'public-modules/Client/selectors';
 import { actionTypes, actions } from 'public-modules/Authentication';
 import { actionTypes as clientActionTypes } from 'public-modules/Client';
 import { getWeb3Client } from 'public-modules/Client/sagas';
-import { promisify } from 'public-modules/Utilities/helpers';
 import { get } from 'lodash';
 
 const { SET_INITIALIZED } = clientActionTypes;
-const { LOGIN, LOGOUT, GET_CURRENT_USER } = actionTypes;
+const { LOGIN, LOGOUT } = actionTypes;
 const {
-  getCurrentUser: getCurrentUserAction,
   getCurrentUserSuccess,
   getCurrentUserFail,
   loginSuccess,
@@ -35,7 +33,6 @@ export function* getCurrentUser(action) {
 }
 
 export function* login(action) {
-  let signature;
   const address = yield select(addressSelector);
   const nonceEndpoint = `auth/${address}/nonce/`;
   const loginEndpoint = 'auth/login/';

@@ -2,16 +2,14 @@ import React from 'react';
 import styles from './CreateBounty.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { PageCard, FormSection } from 'explorer-components';
+import { FormSection } from 'explorer-components';
 import {
-  rootUploadSelector,
   getUploadKeySelector
 } from 'public-modules/FileUpload/selectors';
 import { formValueSelector } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as categoryActions } from 'public-modules/Categories';
 import { actions as bountyActions } from 'public-modules/Bounty';
-import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { TransactionWalkthrough } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
@@ -19,12 +17,9 @@ import { BigNumber } from 'bignumber.js';
 import {
   stdBountyStateSelector,
   createDraftStateSelector,
-  getDraftStateSelector,
   getDraftBountySelector
 } from 'public-modules/Bounty/selectors';
 import validators from 'utils/validators';
-import moment from 'moment';
-import { DEFAULT_MARKDOWN } from 'utils/constants';
 import { FileUpload, Button, Text } from 'components';
 import {
   FormTextInput,
@@ -39,7 +34,6 @@ import {
   PAYOUT_OPTIONS,
   ACTIVATE_OPTIONS,
   UPLOAD_KEY,
-  DRAFT_DIFFICULTY_MAPPINGS
 } from './constants';
 
 const formSelector = formValueSelector('createBounty');
@@ -397,7 +391,6 @@ class CreateBountyFormComponent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const rootUpload = rootUploadSelector(state);
   const uploadedFile = getUploadKeySelector(UPLOAD_KEY)(state);
   const draftState = createDraftStateSelector(state);
   const bountyState = stdBountyStateSelector(state);

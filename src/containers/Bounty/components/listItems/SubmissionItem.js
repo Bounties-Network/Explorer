@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './SubmissionItem.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Button, Card, ListGroup, Text } from 'components';
+import { Button, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE } from 'public-modules/Bounty/constants';
 import moment from 'moment';
@@ -16,7 +15,6 @@ const SubmissionItem = props => {
     fulfiller_address,
     fulfiller_img,
     url,
-    email,
     description,
     dataHash,
     dataFileName,

@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { map } from 'lodash';
 
 export const rootCommentsSelector = state => state.comments;
 

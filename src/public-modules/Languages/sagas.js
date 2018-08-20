@@ -1,11 +1,9 @@
 import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { actionTypes, actions } from 'public-modules/Languages';
-import { searchQueryBuilder } from '../Utilities/helpers';
+import { actions } from 'public-modules/Languages';
 import { actionTypes as clientActionTypes } from 'public-modules/Client';
 
 const { SET_INITIALIZED } = clientActionTypes;
-const { LOAD_CATEGORIES } = actionTypes;
 const { loadLanguagesFail, loadLanguagesSuccess } = actions;
 
 export function* loadLanguages(action) {

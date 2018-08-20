@@ -5,12 +5,10 @@ import { delay } from 'redux-saga';
 import config from 'public-modules/config';
 import { networkSelector } from 'public-modules/Client/selectors';
 import { toast as callToast } from 'react-toastify';
-import { each, get } from 'lodash';
 import { Toast } from 'components';
 import { Link } from 'react-router-dom';
 import {
   transactionsSelector,
-  walkthroughVisibleSelector,
   getTransactionSelector,
   transactionsInitiatedSelector
 } from 'public-modules/Transaction/selectors';
@@ -33,7 +31,6 @@ const {
   POST_TRANSACTION,
   SET_PENDING_RECEIPT,
   ADD_TRANSACTION,
-  CLOSE_WALKTHROUGH,
   SET_TRANSACTION_COMPLETED
 } = actionTypes;
 

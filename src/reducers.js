@@ -7,7 +7,6 @@ import bountyPageUIReducer from 'containers/Bounty/reducer';
 const reducers = {
   loginContainer: loginReducer,
   leaderboardUI: leaderboardUIReducer,
-  profileUI: profileUIReducer,
   ...dashboardReducer,
   bountyPageUI: bountyPageUIReducer,
   profileUI: profileUIReducer

@@ -1,7 +1,4 @@
-import React from 'react';
-import request from 'utils/request';
-import { all, call, put, takeLatest, select } from 'redux-saga/effects';
-import { Link } from 'react-router-dom';
+import { call, takeLatest } from 'redux-saga/effects';
 import { toast as callToast } from 'react-toastify';
 import { Toast } from 'components';
 import { actionTypes } from 'public-modules/Settings';

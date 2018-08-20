@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './TextInput.module.scss';
 import { Text } from 'components';
 
-const debounceTimer = 300;
-
 class TextInput extends React.Component {
   state = {
     text: ''
@@ -18,7 +16,6 @@ class TextInput extends React.Component {
 
   render() {
     const {
-      className,
       label,
       disabled,
       error,

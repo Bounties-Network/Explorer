@@ -30,8 +30,6 @@ const FilterNavComponent = props => {
     toggleDifficultyFilter,
     stageFilters,
     difficultyFilters,
-    anyStageFiltersSelected,
-    anyDifficultyFiltersSelected,
     categories,
     categoryFilters,
     addCategoryFilter,

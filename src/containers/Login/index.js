@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Login.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { Modal } from 'components';
 import {
   WalletRequired,
   UnlockWallet,
   SignIn,
   SigningIn,
-  AddressMismatch,
   ErrorModal,
   AddProfileDetails
 } from './components';
@@ -33,16 +30,9 @@ const LoginComponent = props => {
     stage,
     hasWallet,
     walletLocked,
-    walletAddress,
-    userAddress,
-    userName,
-    userEmail,
-    img,
     showLogin,
     login,
-    logout,
     signingIn,
-    loggingOut,
     resetLoginState,
     resetLogoutState,
     loginError,

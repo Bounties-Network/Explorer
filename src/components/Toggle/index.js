@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Toggle.module.scss';
 import { Text } from 'components';
 import ToggleComponent from 'react-toggle';
 import '../../styles/Toggle.scss';

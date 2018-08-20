@@ -1,22 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import base from '../BaseStyles.module.scss';
 import styles from './BountyItem.module.scss';
-import { ListGroup, Card, Text } from 'components';
-import { LinkedAvatar } from 'explorer-components';
+import { Text } from 'components';
 import Pluralize from 'pluralize';
 import moment from 'moment';
 
 const BountyItem = props => {
   const {
-    bountyId,
     createdAt,
     currency,
     submissions,
     title,
     usd_value,
-    isDraft,
     value
   } = props;
 

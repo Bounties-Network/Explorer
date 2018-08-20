@@ -5,8 +5,7 @@ import base from '../BaseStyles.module.scss';
 import styles from './SubmissionsPanel.module.scss';
 import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
-import { FULFILLER_KEY, ISSUER_KEY } from './constants';
-import { Button, Card, Table, Loader, Tabs, Text, ZeroState } from 'components';
+import { Button, Card, Table, Loader, Tabs, ZeroState } from 'components';
 import { SubmissionItem } from '../';
 import { loadedUserStatsSelector } from 'public-modules/UserInfo/selectors';
 import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
@@ -94,7 +93,7 @@ class SubmissionsPanelComponent extends React.Component {
         <div className={base.zeroState}>
           <ZeroState
             title={`You have ${currentTab} 0 submissions`}
-            text={`It looks like you don\'t have any submissions. Come back after you have ${currentTab} a fulfillment!`}
+            text={`It looks like you don't have any submissions. Come back after you have ${currentTab} a fulfillment!`}
             iconColor="blue"
             icon={['fal', 'file-alt']}
           />

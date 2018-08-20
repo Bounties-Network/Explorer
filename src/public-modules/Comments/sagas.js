@@ -1,8 +1,7 @@
 import request from 'utils/request';
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Comments';
 import { LIMIT } from './constants';
-import { commentsSelector } from './selectors';
 
 const { LOAD_COMMENTS, LOAD_MORE_COMMENTS, POST_COMMENT } = actionTypes;
 const {

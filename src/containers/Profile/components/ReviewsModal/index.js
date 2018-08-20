@@ -1,9 +1,7 @@
 import React from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
 import styles from './ReviewModal.module.scss';
 import { map } from 'lodash';
-import { Button, ListGroup, Modal, Text, ZeroState } from 'components';
+import { Button, ListGroup, Modal, ZeroState } from 'components';
 import ReviewItem from './ReviewItem';
 
 let ReviewsModal = props => {
@@ -13,7 +11,6 @@ let ReviewsModal = props => {
     reviewType,
     loadMore,
     loadingMore,
-    loadingMoreError,
     reviews,
     count
   } = props;

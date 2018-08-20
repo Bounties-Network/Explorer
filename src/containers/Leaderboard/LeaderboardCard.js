@@ -2,15 +2,13 @@ import React from 'react';
 import styles from './LeaderboardCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import { ListGroup, Card, Text, Loader, ZeroState, Button } from 'components';
+import { ListGroup, Loader, ZeroState, Button } from 'components';
 import { LoadComponent } from 'hocs';
 import { LeaderItem } from './components';
 import { map as fpMap } from 'lodash';
 import { rootLeaderboardSelector } from 'public-modules/Leaderboard/selectors';
 import { rootLeaderboardUISelector } from './selectors';
 import { actions } from 'public-modules/Leaderboard';
-import { LIMIT } from 'public-modules/Leaderboard/constants';
 
 const map = fpMap.convert({ cap: false });
 
@@ -30,7 +28,7 @@ const LeaderboardCardComponent = props => {
 
   const renderLeaders = () => {
     return map((leader, index) => {
-      const { name, address, profile_image, total, total_usd } = leader;
+      const { name, address, profile_image, total_usd } = leader;
 
       return (
         <ListGroup.ListItem hover>

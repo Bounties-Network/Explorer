@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './FullAddressBar.module.scss';
 
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faCut from '@fortawesome/fontawesome-pro-light/faCut';
-
-import { Text, Button } from 'components';
+import { Text } from 'components';
 
 const DEFAULT_TEXT = 'Copy to clipboard';
 const COPIED_TEXT = 'Copied';
@@ -28,7 +25,7 @@ class FullAddressBarComponent extends React.Component {
   };
 
   render() {
-    const { address, copyButton } = this.props;
+    const { address } = this.props;
 
     return (
       <div

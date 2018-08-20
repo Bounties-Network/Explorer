@@ -19,7 +19,6 @@ let FulfillBountyFormModalComponent = props => {
 
     // upload state
     uploading,
-    error,
     ipfsHash,
     fileName
   } = props;

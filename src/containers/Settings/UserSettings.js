@@ -1,12 +1,9 @@
 import React from 'react';
 import styles from './Settings.module.scss';
-import EmailPreferences from './EmailPreferences';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { get } from 'lodash';
 import { PageCard, FormSection } from 'explorer-components';
 import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
-import { formValueSelector } from 'redux-form';
 import { TransactionWalkthrough } from 'hocs';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as skillActions } from 'public-modules/Skills';
@@ -19,24 +16,13 @@ import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
 import { ipfsToHttp } from 'utils/helpers';
 import { Cropper, Button, Text } from 'components';
-import { FormToggle } from './components';
 import {
   FormTextInput,
-  FormMarkdownEditor,
   FormSearchSelect,
-  FormRadioGroup,
-  FormNumberInput,
-  FormDatePicker
 } from 'form-components';
 import {
-  EMAIL_NOTIFICATION_OPTIONS,
-  DIFFICULTY_OPTIONS,
-  PAYOUT_OPTIONS,
-  ACTIVATE_OPTIONS,
   UPLOAD_KEY
 } from './constants';
-
-const formSelector = formValueSelector('createBounty');
 
 class UserSettingsComponent extends React.Component {
   constructor(props) {
@@ -47,7 +33,6 @@ class UserSettingsComponent extends React.Component {
     const {
       uploadFile,
       uploading,
-      uploaded,
       addSkill,
       skills,
       languages,

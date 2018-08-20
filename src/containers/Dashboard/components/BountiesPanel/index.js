@@ -13,12 +13,10 @@ import {
   ListGroup,
   Loader,
   Tabs,
-  Text,
   ZeroState
 } from 'components';
 import { BountyItem } from '../';
 import {
-  bountiesPanelSelector,
   tabDataSelector,
   currentTabSelector
 } from './selectors';
@@ -39,8 +37,7 @@ class BountiesPanelComponent extends React.Component {
         fulfillment_count,
         title,
         tokenSymbol,
-        usd_price,
-        bountyStage
+        usd_price
       } = bounty;
 
       const isDraft = this.props.currentTab === 'drafts';
@@ -107,14 +104,14 @@ class BountiesPanelComponent extends React.Component {
           <ZeroState
             title={`You have no ${currentTab} bounties`}
             text={
-              "It looks like you don't have any active bounties at the \
-              moment. Enter a title for a new bounty here to get started \
-              creating one!"
+              `It looks like you don't have any active bounties at the
+              moment. Enter a title for a new bounty here to get started
+              creating one!`
             }
             action
-            actionText={'Create new bounty'}
+            actionText='Create new bounty'
             onActionClick={() => history.push('/createBounty')}
-            iconColor="blue"
+            iconColor='blue'
           />
         </div>
       );
@@ -122,7 +119,7 @@ class BountiesPanelComponent extends React.Component {
 
     if (loading) {
       bodyClass = base.bodyLoading;
-      body = <Loader color="blue" size="medium" />;
+      body = <Loader color='blue' size='medium' />;
     }
 
     if (error) {
@@ -130,9 +127,9 @@ class BountiesPanelComponent extends React.Component {
       body = (
         <div className={base.zeroState}>
           <ZeroState
-            type="error"
-            text={'Something went wrong. Try again later.'}
-            iconColor="red"
+            type='error'
+            text='Something went wrong. Try again later.'
+            iconColor='red'
             icon={['far', 'exclamation-triangle']}
           />
         </div>
@@ -150,16 +147,16 @@ class BountiesPanelComponent extends React.Component {
               defaultActiveKey={currentTab}
             >
               <Tabs.Tab
-                tabColor="green"
+                tabColor='green'
                 tabCount={activeCount}
-                eventKey={'active'}
+                eventKey='active'
               >
                 Active
               </Tabs.Tab>
               <Tabs.Tab
-                tabColor="blue"
+                tabColor='blue'
                 tabCount={draftsCount}
-                eventKey={'drafts'}
+                eventKey='drafts'
               >
                 Drafts
               </Tabs.Tab>

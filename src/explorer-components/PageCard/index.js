@@ -8,10 +8,9 @@ const Title = props => {
   const { children, className } = props;
   return (
     <Text
-      className={className}
-      className={styles.title}
-      typeScale="h2"
-      color="white"
+      className={`${className} ${styles.title}`}
+      typeScale='h2'
+      color='white'
     >
       {children}
     </Text>
@@ -60,10 +59,10 @@ const PageCard = props => {
   return (
     <div className={styles.pageCard}>
       <div className={noBanner ? null : styles.headerWrapper}>
-        <div className="pageWrapper">{header}</div>
+        <div className='pageWrapper'>{header}</div>
       </div>
       <div className={styles.contentWrapper}>
-        <div className="pageWrapper">{content}</div>
+        <div className='pageWrapper'>{content}</div>
       </div>
     </div>
   );

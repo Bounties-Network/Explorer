@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './NotificationItem.module.scss';
 import { notification_template } from 'utils/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { ListGroup, Card, Text } from 'components';
+import { Text } from 'components';
 import { LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
 

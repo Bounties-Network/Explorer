@@ -1,10 +1,8 @@
-import request from 'utils/request';
-import { all, call, put, takeLatest, select } from 'redux-saga/effects';
-import { LOCATION_CHANGE } from 'react-router-redux';
 import { currentRouteSelector } from 'utils/helpers';
+import { LOCATION_CHANGE } from 'react-router-redux';
+import { put, takeLatest, select } from 'redux-saga/effects';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { actionTypes, actions } from './reducer';
-import { FULFILLER_KEY, ISSUER_KEY } from './constants';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
 
 const { LOAD_SUBMISSIONS_PANEL, SET_ACTIVE_TAB } = actionTypes;
@@ -12,8 +10,7 @@ const { setActiveTab } = actions;
 const {
   addFulfillerFilter,
   addIssuerFilter,
-  loadFulfillments,
-  resetFilters
+  loadFulfillments
 } = fulfillmentsActions;
 
 export function* locationChanged(action) {
@@ -25,7 +22,7 @@ export function* locationChanged(action) {
 }
 
 export function* loadSubmissionsPanel(action) {
-  const { public_address } = yield select(getCurrentUserSelector);
+  yield select(getCurrentUserSelector);
   yield put(setActiveTab('received'));
 }
 
@@ -33,9 +30,9 @@ export function* loadActiveTab(action) {
   const { public_address } = yield select(getCurrentUserSelector);
   const { tabKey } = action;
 
-  if (tabKey == 'received') {
+  if (tabKey === 'received') {
     yield put(addIssuerFilter(public_address));
-  } else if (tabKey == 'submitted') {
+  } else if (tabKey === 'submitted') {
     yield put(addFulfillerFilter(public_address));
   }
 

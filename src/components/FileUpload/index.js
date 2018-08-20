@@ -35,14 +35,12 @@ class FileUpload extends React.Component {
   };
 
   render() {
-    const { file, disabled, loading, filesize, filename } = this.props;
+    const { disabled, loading, filesize, filename } = this.props;
     const { filesize: filesizeDefault, filename: filenameDefault } = this.state;
     const disabledState = loading || disabled;
 
-    let uploadStyles = styles.fileUpload;
     let iconClass = styles.icon;
     if (disabledState) {
-      uploadStyles += ` ${styles.disabled}`;
       iconClass += ` ${styles.iconDisabled}`;
     }
 

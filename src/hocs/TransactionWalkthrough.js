@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { curry } from 'lodash';
@@ -39,7 +38,6 @@ function TransactionWalkthroughHOC(config, WrappedComponent) {
         stage,
         history,
         onClose,
-        onDismiss,
         transaction
       } = this.props;
 

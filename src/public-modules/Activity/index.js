@@ -5,7 +5,6 @@ const initialState = {
   loadingMore: false,
   loadingMoreError: false,
   offset: 0,
-  count: 0,
   activity: []
 };
 
@@ -86,7 +85,7 @@ function ActivityReducer(state = initialState, action) {
       };
     }
     case LOAD_MORE_ACTIVITY_SUCCESS: {
-      const { activity, count } = action;
+      const { activity } = action;
 
       return {
         ...state,

@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
-import { BigNumber } from 'bignumber.js';
 import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 

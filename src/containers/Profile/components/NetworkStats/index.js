@@ -1,26 +1,20 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import baseStyles from '../BaseStyles.module.scss';
-import styles from './NetworkStats.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { LoadComponent } from 'hocs';
+import styles from './NetworkStats.module.scss';
 import { ReviewsModal } from '../';
-import { Circle, Pill, Switch, Text } from 'components';
-import { map as fpMap, capitalize } from 'lodash';
-import { descriptionText, displayFormat, statsToShow } from './constants';
+import { Circle, Switch, Text } from 'components';
+import { capitalize } from 'lodash';
+import { descriptionText, displayFormat } from './constants';
 import { profileUISelector } from 'containers/Profile/selectors';
 import { reviewsStateSelector } from 'public-modules/Reviews/selectors';
 import { actions as reviewsActions } from 'public-modules/Reviews';
 
-const map = fpMap.convert({ cap: false });
-
 function formatInput(value, format) {
-  if (value == null) {
+  if (value === null) {
     return 'N/A';
-  }
-
-  if (format == 'fraction') {
+  } else if (format === 'fraction') {
     return `${Number(value.toFixed(0))}/5`;
   } else {
     return `${Number(value * 100).toFixed(0)}%`;
@@ -37,9 +31,7 @@ const NetworkStatsComponent = props => {
     reviewsModalVisible,
     loadMoreReviews
   } = props;
-
-  const { loadingMore, loadingMoreError, error, reviews, count } = reviewsState;
-  const { issuer, fulfiller } = stats;
+  const { loadingMore, loadingMoreError, reviews, count } = reviewsState;
 
   const renderCircle = key => {
     const text = descriptionText[switchValue][key];

@@ -1,6 +1,4 @@
-import request from 'utils/request';
-import { push } from 'react-router-redux';
-import { all, put, takeLatest, select } from 'redux-saga/effects';
+import { put, takeLatest, select } from 'redux-saga/effects';
 import { reset } from 'redux-form';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
@@ -41,7 +39,7 @@ export function* closeBountyModal(action) {
 export function* loadTab(action) {
   const { tabKey = 'submissions' } = action;
 
-  if (tabKey == 'submissions') {
+  if (tabKey === 'submissions') {
     yield put(loadFulfillments());
   } else {
     const bountyId = yield select(bountyIdSelector);

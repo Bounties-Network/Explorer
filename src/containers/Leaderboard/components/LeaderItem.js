@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './LeaderItem.module.scss';
-import { ListGroup, Card, Text } from 'components';
+import { Text } from 'components';
 import { LinkedAvatar } from 'explorer-components';
 
 const LeaderItem = props => {

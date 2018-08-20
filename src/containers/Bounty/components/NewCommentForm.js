@@ -6,7 +6,7 @@ import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 
 const NewCommentForm = props => {
-  const { showLogin, signedIn, handleSubmit, loading, submitText } = props;
+  const { signedIn, handleSubmit, loading } = props;
 
   if (signedIn) {
     return (

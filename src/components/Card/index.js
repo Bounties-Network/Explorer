@@ -14,11 +14,7 @@ const HeaderTitle = props => (
   </Text>
 );
 
-const HeaderTabs = props => {
-  const { top } = props;
-
-  return <Tabs {...props}>{props.children}</Tabs>;
-};
+const HeaderTabs = props => <Tabs {...props}>{props.children}</Tabs>;
 
 HeaderTabs.propTypes = {
   top: PropTypes.bool
