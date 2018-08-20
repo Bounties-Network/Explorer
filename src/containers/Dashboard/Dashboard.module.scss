@@ -5,16 +5,23 @@
   margin-bottom: 2 * $xxl-spacing;
 }
 
-.submissionsFlex {
-  display: flex;
-  flex-grow: 1 !important;
+.desktopContainer {
+  display: none;
+
+  @media only screen and (min-width: 48em) {
+    display: block;
+  }
+}
+
+.mobileContainer {
+  display: none;
+
+  @media only screen and (max-width: 48em) {
+    display: block;
+  }
 }
 
 .bountiesPanel {
-  height: 91.5vh;
-  width: 100vw;
-  overflow-y: scroll;
-
   @media only screen and (min-width: 48em) {
     display: flex;
     flex-direction: column;
@@ -25,11 +32,12 @@
 }
 
 .bodyClass {
-  height: 70vh;
-  width: 100vw;
   overflow-y: scroll;
 
-  @media only screen and (min-width: 48em) {
+  @media only screen and (max-width: 48em) {
+    height: 70vh;
+    width: 100vw;
+    overflow-y: scroll;
   }
 }
 
@@ -37,26 +45,12 @@
   @media only screen and (min-width: 48em) {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     height: 27vh;
     min-height: 25rem;
   }
 }
 
-.activityPanelBody {
-  height: 80vh;
-  width: 100vw;
-  overflow-y: scroll;
-
-  @media only screen and (min-width: 48em) {
-  }
-}
-
 .submissionsPanel {
-  height: 90vh;
-  width: 100vw;
-  overflow-y: scroll;
-
   @media only screen and (min-width: 48em) {
     margin-bottom: $xxl-spacing;
     height: 100%;

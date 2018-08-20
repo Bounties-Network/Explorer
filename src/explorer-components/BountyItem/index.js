@@ -19,11 +19,20 @@ const BountyItem = props => {
   return (
     <div className={`row ${styles.container}`}>
       <div className="col-xs-10">
-        <Text align="alignLeft" typeScale="Body" weight="fontWeight-medium">
+        <Text
+          alignment="align-left"
+          typeScale="Body"
+          weight="fontWeight-medium"
+        >
           {title}
         </Text>
 
-        <Text typeScale="Small" color="defaultGrey" className={styles.details}>
+        <Text
+          alignment="align-left"
+          typeScale="Small"
+          color="defaultGrey"
+          className={styles.details}
+        >
           {`Created ${formattedTime} ${submissionsText}`}
         </Text>
       </div>
