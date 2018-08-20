@@ -180,10 +180,10 @@
 
 .submissionsAndCommentsCard {
   border-radius: 0;
-  margin-bottom: $xxl-spacing;
 
   @media only screen and (min-width: 48em) {
     border-radius: $base-border-radius;
+    margin-bottom: $xxl-spacing;
   }
 
   > div {

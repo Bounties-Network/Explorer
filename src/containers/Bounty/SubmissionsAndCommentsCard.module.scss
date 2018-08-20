@@ -3,8 +3,13 @@
 .tabsContainer {
   padding: 1px 0;
   position: relative;
-  margin-left: -$l-spacing;
-  margin-right: -$l-spacing;
+  margin-left: -$m-spacing;
+  margin-right: -$m-spacing;
+
+  @media only screen and (min-width: 35em) {
+    margin-left: -$l-spacing;
+    margin-right: -$l-spacing;
+  }
 
   &:not(:last-child):after {
     position: absolute;
