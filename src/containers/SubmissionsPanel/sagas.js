@@ -25,7 +25,7 @@ export function* locationChanged(action) {
 
 export function* loadSubmissionsPanel(action) {
   const address = yield select(getUserAddressSelector);
-  console.log('loading...', address);
+
   yield put(loadUserInfo(address));
   yield put(setActiveTab('received'));
 }
