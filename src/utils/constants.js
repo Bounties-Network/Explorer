@@ -52,7 +52,7 @@ export const NOTIFICATION_ID = {
   BOUNTY_EXPIRED: 14,
   // ^^^ using this one for now since that is how the api is coding them
   // definitely need to fix this at some point :-)
-  BOUNTY_COMMENT: 15,
+  BOUNTY_COMMENT_RECEIVED: 15,
   BOUNTY_ISSUED_ACTIVATED: 16,
   FULFILLMENT_UPDATED: 17,
   FULFILLMENT_UPDATED_ISSUER: 18,
@@ -125,7 +125,7 @@ export const notification_template = {
     message: 'You increased the payout',
     icon: general
   },
-  [NOTIFICATION_ID.BOUNTY_COMMENT]: {
+  [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED]: {
     message: 'You received a comment',
     icon: comment
   },
