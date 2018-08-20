@@ -76,9 +76,10 @@ class ProfileComponent extends React.Component {
         <div className={`fullHeight ${styles.zeroStateCentered}`}>
           <ZeroState
             className={styles.centeredItem}
-            iconColor="black"
+            iconColor="blue"
             title="No User Found"
-            text="Check the address is correct and try again"
+            text="Check that the address is correct and try again"
+            icon={['fal', 'bolt']}
           />
         </div>
       );
@@ -92,6 +93,7 @@ class ProfileComponent extends React.Component {
             iconColor="red"
             title="Error"
             text="Please try again"
+            icon={['fal', 'bolt']}
           />
         </div>
       );

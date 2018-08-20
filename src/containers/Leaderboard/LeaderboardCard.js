@@ -72,6 +72,7 @@ const LeaderboardCardComponent = props => {
         iconColor="blue"
         title="No Results Yet"
         text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
+        icon={['fal', 'bolt']}
       />
     );
   }
