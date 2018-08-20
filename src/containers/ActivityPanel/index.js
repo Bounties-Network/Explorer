@@ -1,7 +1,6 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import base from '../BaseStyles.module.scss';
 import styles from './ActivityPanel.module.scss';
 import { Link } from 'react-router-dom';
 import { LoadComponent } from 'hocs';
@@ -37,7 +36,7 @@ class ActivityPanelComponent extends React.Component {
   };
 
   render() {
-    const { list, count, loading, loadingMore, error } = this.props;
+    const { className, list, count, loading, loadingMore, error } = this.props;
     const loadMore = () => this.props.loadMore(this.props.public_address);
 
     let bodyClass;
@@ -45,7 +44,7 @@ class ActivityPanelComponent extends React.Component {
       <React.Fragment>
         <ListGroup>{this.renderActivity(list)}</ListGroup>
         {list.length < count && (
-          <div className={base.loadMoreButton}>
+          <div className={styles.loadMoreButton}>
             <Button loading={loadingMore} onClick={loadMore}>
               Load More
             </Button>
@@ -55,9 +54,9 @@ class ActivityPanelComponent extends React.Component {
     );
 
     if (count <= 0) {
-      bodyClass = base.bodyLoading;
+      bodyClass = styles.bodyLoading;
       body = (
-        <div className={base.zeroState}>
+        <div className={styles.zeroState}>
           <ZeroState
             title={'You have no activity yet'}
             text={
@@ -71,14 +70,14 @@ class ActivityPanelComponent extends React.Component {
     }
 
     if (loading) {
-      bodyClass = base.bodyLoading;
+      bodyClass = styles.bodyLoading;
       body = <Loader color="blue" size="medium" />;
     }
 
     if (error) {
-      bodyClass = base.bodyLoading;
+      bodyClass = styles.bodyLoading;
       body = (
-        <div className={base.zeroState}>
+        <div className={styles.zeroState}>
           <ZeroState
             type="error"
             text={'Something went wrong. Try again later.'}
@@ -90,16 +89,14 @@ class ActivityPanelComponent extends React.Component {
     }
 
     return (
-      <div className={base.cardContainer}>
-        <Card className={base.card}>
-          <Card.Header>
-            <Card.HeaderTitle>My Activity</Card.HeaderTitle>
-          </Card.Header>
-          <Card.Body className={`${base.listGroup} ${bodyClass}`}>
-            {body}
-          </Card.Body>
-        </Card>
-      </div>
+      <Card className={className}>
+        <Card.Header>
+          <Card.HeaderTitle>My Activity</Card.HeaderTitle>
+        </Card.Header>
+        <Card.Body className={`${styles.listGroup} ${bodyClass}`}>
+          {body}
+        </Card.Body>
+      </Card>
     );
   }
 }

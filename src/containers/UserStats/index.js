@@ -1,7 +1,6 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import base from '../BaseStyles.module.scss';
 import styles from './UserStats.module.scss';
 import { Text } from 'components';
 import { LinkedAvatar } from 'explorer-components';
@@ -65,7 +64,7 @@ class UserStatsComponent extends React.Component {
               : profile_image
           }
           to={`/profile/${public_address}`}
-          className={base.alignLeft}
+          className={styles.alignLeft}
         />
 
         {loading ? null : (

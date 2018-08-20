@@ -5,14 +5,35 @@
   margin-bottom: 2 * $xxl-spacing;
 }
 
-.submissionsContainer {
+.submissionsFlex {
+  display: flex;
+  flex-grow: 1 !important;
+}
+
+.bountiesPanel {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 27vh;
+  min-height: 25rem;
+}
+
+.activityPanel {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 27vh;
+  min-height: 25rem;
+}
+
+.submissionsPanel {
   margin-bottom: $xxl-spacing;
   height: 100%;
   margin-top: $m-spacing;
   min-height: 25rem;
-}
-
-.submissionsFlex {
   display: flex;
-  flex-grow: 1 !important;
+  flex-grow: 1;
+  flex-direction: column;
+  height: 27vh;
+  text-align: left;
 }

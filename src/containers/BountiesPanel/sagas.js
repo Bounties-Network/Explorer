@@ -1,9 +1,7 @@
 import { put, takeLatest, select } from 'redux-saga/effects';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { actionTypes } from './reducer';
-import {
-  actions as bountiesActions
-} from 'public-modules/Bounties';
+import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as draftsActions } from 'public-modules/Drafts';
 import { SORT_CREATED } from 'public-modules/Bounties/constants';
 
