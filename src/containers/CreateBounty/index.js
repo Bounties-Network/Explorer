@@ -105,6 +105,7 @@ const mapStateToProps = (state, router) => {
       activateNow: true,
       issuer_email: draftBounty.issuer_email || user.email || '',
       issuer_name: draftBounty.issuer_name || user.name || '',
+      activateNow: !isDraftPage,
       deadline: draftBounty.deadline
         ? moment(draftBounty.deadline)
         : moment()
