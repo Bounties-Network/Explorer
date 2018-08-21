@@ -68,7 +68,7 @@ $modal-padding-large: $l-spacing;
 .iconHeader {
   color: $brand-purple;
   margin: $xxl-spacing 0;
-  font-size: 3em;
+  font-size: 2.5rem;
 }
 
 .loadingHeader {
@@ -128,6 +128,8 @@ $modal-padding-large: $l-spacing;
 .description {
   padding: $xl-spacing 0 $xxl-spacing;
   text-align: center;
+  margin: 0 auto;
+  max-width: 38rem;
 }
 
 .body {

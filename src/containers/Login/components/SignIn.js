@@ -8,14 +8,14 @@ const SignIn = props => {
   return (
     <Modal visible={visible} size="small" dismissable onClose={onClose}>
       <Modal.Header closable icon={['fal', 'sign-in']}>
-        <Modal.Heading>Sign in and verify address</Modal.Heading>
+        <Modal.Message>Sign in and verify address</Modal.Message>
       </Modal.Header>
       <Modal.Body>
-        <Text>
+        <Modal.Description>
           After clicking "Continue", a wallet dialogue will prompt you to verify
           your unique address. Once you verify, you&#39;ll be signed in to the
           network.
-        </Text>
+        </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
         <Button type="primary" onClick={signIn}>
