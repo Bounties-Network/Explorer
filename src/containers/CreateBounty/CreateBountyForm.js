@@ -3,9 +3,7 @@ import styles from './CreateBounty.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { FormSection } from 'explorer-components';
-import {
-  getUploadKeySelector
-} from 'public-modules/FileUpload/selectors';
+import { getUploadKeySelector } from 'public-modules/FileUpload/selectors';
 import { formValueSelector } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as categoryActions } from 'public-modules/Categories';
@@ -20,6 +18,7 @@ import {
   getDraftBountySelector
 } from 'public-modules/Bounty/selectors';
 import validators from 'utils/validators';
+import normalizers from 'utils/normalizers';
 import { FileUpload, Button, Text } from 'components';
 import {
   FormTextInput,
@@ -33,7 +32,7 @@ import {
   DIFFICULTY_OPTIONS,
   PAYOUT_OPTIONS,
   ACTIVATE_OPTIONS,
-  UPLOAD_KEY,
+  UPLOAD_KEY
 } from './constants';
 
 const formSelector = formValueSelector('createBounty');
@@ -89,6 +88,7 @@ class CreateBountyFormComponent extends React.Component {
       submittingBounty,
       filename,
       resetUpload,
+      deleteUploadKey,
       bountyId
     } = this.props;
 
@@ -119,19 +119,18 @@ class CreateBountyFormComponent extends React.Component {
               />
             </FormSection.InputGroup>
             <FormSection.InputGroup>
-              <div className={styles.markdownEditor}>
-                <Field
-                  disabled={submittingBounty}
-                  name="description"
-                  component={FormMarkdownEditor}
-                  label="Description"
-                  validate={[
-                    validators.required,
-                    validators.minLength(2),
-                    validators.maxLength(120000)
-                  ]}
-                />
-              </div>
+              <Field
+                disabled={submittingBounty}
+                name="description"
+                component={FormMarkdownEditor}
+                label="Description"
+                textBoxClassName={styles.markdownEditor}
+                validate={[
+                  validators.required,
+                  validators.minLength(2),
+                  validators.maxLength(120000)
+                ]}
+              />
             </FormSection.InputGroup>
           </FormSection.Section>
           <FormSection.Section title="CONTACT">
@@ -242,6 +241,7 @@ class CreateBountyFormComponent extends React.Component {
                     ? uploadFile('createBounty', file)
                     : resetUpload('createBounty')
                 }
+                onUnmount={() => deleteUploadKey('createBounty')}
                 loading={uploadLoading}
                 filename={filename}
               />
@@ -292,11 +292,10 @@ class CreateBountyFormComponent extends React.Component {
                     name="fulfillmentAmount"
                     disabled={submittingBounty}
                     component={FormTextInput}
-                    type="number"
-                    min="0"
-                    step=".00001"
+                    type="text"
+                    normalize={normalizers.number}
                     label="Payout amount (ETH or whole tokens)"
-                    validate={[validators.required]}
+                    validate={[validators.required, validators.minValue(0)]}
                     placeholder="Enter amount..."
                   />
                 </div>
@@ -346,9 +345,6 @@ class CreateBountyFormComponent extends React.Component {
                       name="balance"
                       disabled={submittingBounty}
                       component={FormTextInput}
-                      type="number"
-                      min="0"
-                      step=".00001"
                       label="Deposit amount (ETH or whole tokens)"
                       validate={[
                         validators.required,
@@ -361,8 +357,10 @@ class CreateBountyFormComponent extends React.Component {
                           ) {
                             return 'Deposit amount must at least match the payout amount.';
                           }
-                        }
+                        },
+                        validators.minValue(0)
                       ]}
+                      normalize={normalizers.number}
                       placeholder="Enter amount..."
                     />
                   ) : null}
@@ -423,7 +421,8 @@ const CreateBountyForm = compose(
       createDraft: bountyActions.createDraft,
       updateDraft: bountyActions.updateDraft,
       createBounty: bountyActions.createBounty,
-      resetUpload: uploadActions.resetUpload
+      resetUpload: uploadActions.resetUpload,
+      deleteUploadKey: uploadActions.deleteUploadKey
     }
   ),
   reduxForm({

@@ -130,7 +130,7 @@ export function* showTransactionNotification(action) {
         ? 'https://etherscan.io/tx/'
         : 'https://rinkeby.etherscan.io/tx/';
     postedLink = (
-      <a href={baseUrl + txHash} style={{ color: 'inherit' }}>
+      <a href={baseUrl + txHash} target="_blank" style={{ color: 'inherit' }}>
         View on etherscan
       </a>
     );
