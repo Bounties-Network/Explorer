@@ -48,6 +48,7 @@ class Dashboard extends React.Component {
           </div>
         </div>
         <div className={styles.mobileContainer}>
+          <UserStats className={styles.statsContainer} />
           <Slider {...settings}>
             <div>
               <BountiesPanel bodyClass={styles.bodyClass} />

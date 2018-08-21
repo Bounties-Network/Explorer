@@ -51,30 +51,36 @@ class UserStatsComponent extends React.Component {
     };
 
     return (
-      <div className={`${styles.container} ${className}`}>
-        <LinkedAvatar
-          size="large"
-          border
-          name={name}
-          address={public_address}
-          hash={public_address}
-          img={
-            is_profile_image_dirty
-              ? ipfsToHttp(profileDirectoryHash, profileFileName)
-              : profile_image
-          }
-          to={`/profile/${public_address}`}
-          className={styles.alignLeft}
-        />
-
-        {loading ? null : (
-          <div className={styles.stats}>
-            {renderStat(stats.issuer.total, 'Bounties issued')}
-            {renderStat(stats.fulfiller.total, 'Bounties completed')}
-            {renderStat(`$${awarded.toFixed(0)}`, 'Awarded')}
-            {renderStat(`$${earned.toFixed(0)}`, 'Earned')}
+      <div className={`container-fluid ${className}`}>
+        <div className={`row ${styles.mobileStyles}`}>
+          <div>
+            <LinkedAvatar
+              size="large"
+              border
+              name={name}
+              address={public_address}
+              hash={public_address}
+              img={
+                is_profile_image_dirty
+                  ? ipfsToHttp(profileDirectoryHash, profileFileName)
+                  : profile_image
+              }
+              to={`/profile/${public_address}`}
+              className={styles.alignLeft}
+            />
           </div>
-        )}
+
+          <div className={styles.statsContainer}>
+            {loading ? null : (
+              <div className={styles.stats}>
+                {renderStat(stats.issuer.total, 'Bounties issued')}
+                {renderStat(stats.fulfiller.total, 'Bounties completed')}
+                {renderStat(`$${awarded.toFixed(0)}`, 'Awarded')}
+                {renderStat(`$${earned.toFixed(0)}`, 'Earned')}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     );
   }
