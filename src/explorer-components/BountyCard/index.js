@@ -129,7 +129,7 @@ const BountyCard = props => {
                 {submissions || 0}
               </Text>
               <Text inline color="defaultGrey" className={styles.detailLabel}>
-                submissions
+                {submissions === 1 ? 'submission' : 'submissions'}
               </Text>
             </div>
           </div>
