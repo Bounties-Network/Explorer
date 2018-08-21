@@ -12,7 +12,8 @@ export const notificationsListSelector = createSelector(
   rootNotificationSelector,
   rootNotification => {
     return (
-      orderBy(['id'], ['desc'], values(rootNotification.notifications)) || []
+      orderBy(['created'], ['desc'], values(rootNotification.notifications)) ||
+      []
     );
   }
 );
