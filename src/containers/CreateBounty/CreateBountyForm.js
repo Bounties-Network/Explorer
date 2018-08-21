@@ -241,6 +241,7 @@ class CreateBountyFormComponent extends React.Component {
                     ? uploadFile('createBounty', file)
                     : resetUpload('createBounty')
                 }
+                onUnmount={() => resetUpload('createBounty')}
                 loading={uploadLoading}
                 filename={filename}
               />
