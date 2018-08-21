@@ -25,7 +25,13 @@ class CreateBountyComponent extends React.Component {
   }
 
   render() {
-    const { draftLoading, formInitialValues, draftError } = this.props;
+    const {
+      draftLoading,
+      formInitialValues,
+      draftError,
+      match,
+      isDraftPage
+    } = this.props;
 
     if (draftLoading) {
       return (
@@ -52,7 +58,9 @@ class CreateBountyComponent extends React.Component {
     return (
       <PageCard>
         <PageCard.Header className={styles.createBountyHeader}>
-          <PageCard.Title>Create Bounty</PageCard.Title>
+          <PageCard.Title>
+            {isDraftPage ? 'Edit Bounty' : 'Create Bounty'}
+          </PageCard.Title>
         </PageCard.Header>
         <PageCard.Content className={styles.cardContent}>
           <CreateBountyForm initialValues={formInitialValues} />
@@ -67,6 +75,8 @@ const mapStateToProps = (state, router) => {
   const getDraftState = getDraftStateSelector(state);
   let draftBounty = getDraftBountySelector(state) || {};
   let fulfillmentAmount = draftBounty.calculated_fulfillmentAmount;
+  let isDraftPage = true;
+
   if (typeof fulfillmentAmount === 'string') {
     fulfillmentAmount = BigNumber(
       draftBounty.calculated_fulfillmentAmount,
@@ -75,9 +85,11 @@ const mapStateToProps = (state, router) => {
   }
   if (router.match.path === '/createBounty') {
     draftBounty = {};
+    isDraftPage = false;
   }
 
   return {
+    isDraftPage: isDraftPage,
     draftError: getDraftState.error,
     draftLoading: getDraftState.loading,
     formInitialValues: {

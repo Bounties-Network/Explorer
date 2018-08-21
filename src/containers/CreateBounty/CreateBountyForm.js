@@ -119,19 +119,18 @@ class CreateBountyFormComponent extends React.Component {
               />
             </FormSection.InputGroup>
             <FormSection.InputGroup>
-              <div className={styles.markdownEditor}>
-                <Field
-                  disabled={submittingBounty}
-                  name="description"
-                  component={FormMarkdownEditor}
-                  label="Description"
-                  validate={[
-                    validators.required,
-                    validators.minLength(2),
-                    validators.maxLength(120000)
-                  ]}
-                />
-              </div>
+              <Field
+                disabled={submittingBounty}
+                name="description"
+                component={FormMarkdownEditor}
+                label="Description"
+                textBoxClassName={styles.markdownEditor}
+                validate={[
+                  validators.required,
+                  validators.minLength(2),
+                  validators.maxLength(120000)
+                ]}
+              />
             </FormSection.InputGroup>
           </FormSection.Section>
           <FormSection.Section title="CONTACT">
