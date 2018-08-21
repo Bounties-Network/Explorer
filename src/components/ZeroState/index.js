@@ -35,14 +35,14 @@ const ZeroState = props => {
     <div className={`${styles.zeroState} ${className}`}>
       {icon ? (
         <div className={styles.icon}>
-          <Text typeScale="h1" color={iconColor}>
+          <Text typeScale="h2" color={iconColor}>
             <FontAwesomeIcon icon={icon} className={styles.iconStyles} />
           </Text>
         </div>
       ) : null}
 
       <div className={styles.title}>
-        <Text typeScale="h3" color={titleTextColor}>
+        <Text typeScale="h4" weight="fontWeight-medium" color={titleTextColor}>
           {title}
         </Text>
       </div>
