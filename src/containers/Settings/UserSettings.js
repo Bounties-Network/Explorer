@@ -66,11 +66,7 @@ class UserSettingsComponent extends React.Component {
     const ipfsProfilePhoto = ipfsHash ? ipfsToHttp(ipfsHash, fileName) : '';
 
     return (
-      <form
-        onSubmit={handleSubmit(values =>
-          initiateWalkthrough(() => handleSaveSettings(values))
-        )}
-      >
+      <form onSubmit={handleSubmit(values => handleSaveSettings(values))}>
         <FormSection>
           <FormSection.Section title="PROFILE PHOTO">
             <FormSection.InputGroup>
@@ -270,9 +266,6 @@ const mapStateToProps = state => {
 UserSettingsComponent = reduxForm({ form: 'settings' })(UserSettingsComponent);
 
 const UserSettings = compose(
-  TransactionWalkthrough({
-    dismissable: false
-  }),
   connect(
     mapStateToProps,
     {

@@ -3,13 +3,8 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Settings';
 import { actions as transactionActions } from 'public-modules/Transaction';
 import { addJSON } from 'public-modules/Utilities/ipfsClient';
-import {
-  addressSelector
-} from 'public-modules/Client/selectors';
-import {
-  getContractClient,
-  getWeb3Client
-} from 'public-modules/Client/sagas';
+import { addressSelector } from 'public-modules/Client/selectors';
+import { getContractClient, getWeb3Client } from 'public-modules/Client/sagas';
 import { promisifyContractCall } from 'public-modules/Utilities/helpers';
 
 const { SAVE_SETTINGS, SAVE_EMAIL_PREFERENCES } = actionTypes;
@@ -42,12 +37,7 @@ export function* saveSettings(action) {
     ipfsHash: profileImageIpfsHash
   } = values;
 
-  yield put(setPendingWalletConfirm());
-
-  const userAddress = yield select(addressSelector);
-  yield call(getWeb3Client);
-
-  const settings = {
+  const data = {
     name,
     email,
     languages,
@@ -66,16 +56,8 @@ export function* saveSettings(action) {
     }
   };
 
-  const ipfsHash = yield call(addJSON, settings);
-
-  const { ethProfiles } = yield call(getContractClient);
   try {
-    const txHash = yield call(
-      promisifyContractCall(ethProfiles.addProfile, { from: userAddress }),
-      ipfsHash
-    );
-
-    yield put(setPendingReceipt(txHash));
+    yield call(request, 'user/settings/', 'POST', { data });
     yield put(saveSettingsSuccess());
   } catch (e) {
     console.log(e);
