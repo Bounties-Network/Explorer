@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
+import { BigNumber } from 'bignumber.js';
+import normalizers from 'utils/normalizers';
 import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 
@@ -28,14 +30,12 @@ const ActivateDraftFormModal = props => {
           <Field
             name="balance"
             component={FormTextInput}
-            type="number"
-            min="0"
-            step=".00001"
             label="Deposit amount (ETH or whole tokens)"
+            normalize={normalizers.number}
             validate={[
               validators.required,
               balance => {
-                if (Number(balance) < Number(minimumBalance)) {
+                if (BigNumber(balance, 10).isLessThan(minimumBalance)) {
                   return 'Deposit amount must at least match the payout amount.';
                 }
               }
