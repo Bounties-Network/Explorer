@@ -91,8 +91,6 @@ class CreateBountyFormComponent extends React.Component {
       bountyId
     } = this.props;
 
-    console.log(normalizers.number);
-
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
         <FormSection>
@@ -296,7 +294,7 @@ class CreateBountyFormComponent extends React.Component {
                     type="text"
                     normalize={normalizers.number}
                     label="Payout amount (ETH or whole tokens)"
-                    validate={[validators.required]}
+                    validate={[validators.required, validators.minValue(0)]}
                     placeholder="Enter amount..."
                   />
                 </div>
@@ -358,7 +356,8 @@ class CreateBountyFormComponent extends React.Component {
                           ) {
                             return 'Deposit amount must at least match the payout amount.';
                           }
-                        }
+                        },
+                        validators.minValue(0)
                       ]}
                       normalize={normalizers.number}
                       placeholder="Enter amount..."

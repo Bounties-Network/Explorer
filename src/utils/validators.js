@@ -1,4 +1,5 @@
 import web3 from 'public-modules/Utilities/Web3Client';
+import { BigNumber } from 'bignumber.js';
 
 const required = value => {
   if (Array.isArray(value)) {
@@ -10,6 +11,13 @@ const maxLength = max => value =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined;
 const minLength = min => value =>
   value && value.length < min ? `Must be ${min} characters or more` : undefined;
+const minValue = min => value => {
+  if (value) {
+    return BigNumber(value).isGreaterThan(min)
+      ? undefined
+      : `Must be greater than ${min}`;
+  }
+};
 const totalLength = length => value =>
   value && value.length !== length ? `Must be ${length} characters` : undefined;
 const isWeb3Address = value =>
@@ -27,6 +35,7 @@ const alphaNumeric = value =>
 
 export default {
   required,
+  minValue,
   maxLength,
   minLength,
   number,
