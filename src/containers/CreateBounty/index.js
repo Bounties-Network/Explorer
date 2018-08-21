@@ -66,6 +66,13 @@ const mapStateToProps = (state, router) => {
   const user = getCurrentUserSelector(state) || {};
   const getDraftState = getDraftStateSelector(state);
   let draftBounty = getDraftBountySelector(state) || {};
+  let fulfillmentAmount = draftBounty.calculated_fulfillmentAmount;
+  if (typeof fulfillmentAmount === 'string') {
+    fulfillmentAmount = BigNumber(
+      draftBounty.calculated_fulfillmentAmount,
+      10
+    ).toString();
+  }
   if (router.match.path === '/createBounty') {
     draftBounty = {};
   }
@@ -82,10 +89,7 @@ const mapStateToProps = (state, router) => {
       revisions: draftBounty.revisions || 3,
       paysTokens: draftBounty.paysTokens || false,
       tokenContract: draftBounty.tokenContract,
-      fulfillmentAmount: BigNumber(
-        draftBounty.calculated_fulfillmentAmount,
-        10
-      ).toString(),
+      fulfillmentAmount: fulfillmentAmount,
       activateNow: true,
       issuer_email: user.email || '',
       issuer_name: user.name || '',

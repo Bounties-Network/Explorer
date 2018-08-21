@@ -3,9 +3,7 @@ import styles from './CreateBounty.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { FormSection } from 'explorer-components';
-import {
-  getUploadKeySelector
-} from 'public-modules/FileUpload/selectors';
+import { getUploadKeySelector } from 'public-modules/FileUpload/selectors';
 import { formValueSelector } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as categoryActions } from 'public-modules/Categories';
@@ -20,6 +18,7 @@ import {
   getDraftBountySelector
 } from 'public-modules/Bounty/selectors';
 import validators from 'utils/validators';
+import normalizers from 'utils/normalizers';
 import { FileUpload, Button, Text } from 'components';
 import {
   FormTextInput,
@@ -33,7 +32,7 @@ import {
   DIFFICULTY_OPTIONS,
   PAYOUT_OPTIONS,
   ACTIVATE_OPTIONS,
-  UPLOAD_KEY,
+  UPLOAD_KEY
 } from './constants';
 
 const formSelector = formValueSelector('createBounty');
@@ -91,6 +90,8 @@ class CreateBountyFormComponent extends React.Component {
       resetUpload,
       bountyId
     } = this.props;
+
+    console.log(normalizers.number);
 
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
@@ -292,9 +293,8 @@ class CreateBountyFormComponent extends React.Component {
                     name="fulfillmentAmount"
                     disabled={submittingBounty}
                     component={FormTextInput}
-                    type="number"
-                    min="0"
-                    step=".00001"
+                    type="text"
+                    normalize={normalizers.number}
                     label="Payout amount (ETH or whole tokens)"
                     validate={[validators.required]}
                     placeholder="Enter amount..."
@@ -346,9 +346,6 @@ class CreateBountyFormComponent extends React.Component {
                       name="balance"
                       disabled={submittingBounty}
                       component={FormTextInput}
-                      type="number"
-                      min="0"
-                      step=".00001"
                       label="Deposit amount (ETH or whole tokens)"
                       validate={[
                         validators.required,
@@ -363,6 +360,7 @@ class CreateBountyFormComponent extends React.Component {
                           }
                         }
                       ]}
+                      normalize={normalizers.number}
                       placeholder="Enter amount..."
                     />
                   ) : null}

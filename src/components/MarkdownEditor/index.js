@@ -25,7 +25,9 @@ class MarkdownEditor extends React.Component {
   };
 
   onChange = value => {
-    this.setState({ value });
+    if (typeof this.props.value !== 'string') {
+      this.setState({ value });
+    }
     this.props.onChange(value);
   };
 
