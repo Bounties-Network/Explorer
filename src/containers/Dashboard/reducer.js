@@ -1,5 +1,5 @@
-import bountiesPanelReducer from './components/BountiesPanel/reducer';
-import submissionsPanelReducer from './components/SubmissionsPanel/reducer';
+import bountiesPanelReducer from 'containers/BountiesPanel/reducer';
+import submissionsPanelReducer from 'containers/SubmissionsPanel/reducer';
 
 const reducers = {
   bountiesPanel: bountiesPanelReducer,
