@@ -1,0 +1,61 @@
+@import "~styles/variables.scss";
+
+.centerAvatar {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.statsContainer {
+
+  @media only screen and (min-width: 48em) {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0 !important;
+  }
+}
+
+.mobileStyles {
+  @media only screen and (max-width: 48em) {
+    justify-content: center;
+
+    > div:first-of-type {
+      margin-bottom: $m-spacing;
+    }
+  }
+}
+
+.stats {
+  display: flex;
+
+  > .stat:not(:last-child) {
+    padding-right: $m-spacing;
+    border-right: $base-border-width solid $brand-grey;
+  }
+
+  > .stat:not(:first-child) {
+    margin-left: $base-spacing;
+
+    @media only screen and (min-width: 48em) {
+      margin-left: $m-spacing
+    }
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  p:not(:last-child) {
+    margin-bottom: $s-spacing;
+    min-width: 5rem;
+  }
+}
+
+.alignLeft {
+  text-align: left;
+}

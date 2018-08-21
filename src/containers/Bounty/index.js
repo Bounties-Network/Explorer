@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Bounty.module.scss';
+import { BigNumber } from 'bignumber.js';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions as bountyActions } from 'public-modules/Bounty';
@@ -145,9 +146,9 @@ class BountyComponent extends React.Component {
                   color="white"
                   typeScale="Body"
                   className={styles.currency}
-                >{`${Number(bounty.calculated_fulfillmentAmount)} ${
-                  bounty.tokenSymbol
-                }`}</Text>
+                >{`${BigNumber(
+                  bounty.calculated_fulfillmentAmount
+                ).toString()} ${bounty.tokenSymbol}`}</Text>
               </div>
               <div className={styles.bountyHeader}>
                 <PageCard.Title>{bounty.title}</PageCard.Title>

@@ -1,6 +1,6 @@
 import { PAGE_SIZE, SORT_CREATED } from './constants';
 
-const default_filters = {
+const defaultFilters = {
   search: '',
   stageFilters: {
     drafts: false,
@@ -21,6 +21,11 @@ const default_filters = {
   categoryFilters: new Set([])
 };
 
+const defaultSort = {
+  sort: SORT_CREATED,
+  sortOrder: 'asc'
+};
+
 const initialState = {
   loading: true,
   loadingMore: false,
@@ -29,10 +34,9 @@ const initialState = {
   error: false,
   offset: 0,
   count: 0,
-  sort: SORT_CREATED,
-  sortOrder: 'asc',
   bounties: [],
-  ...default_filters
+  ...defaultFilters,
+  ...defaultSort
 };
 
 const LOAD_BOUNTIES = 'bounties/LOAD_BOUNTIES';
@@ -227,15 +231,14 @@ function BountiesReducer(state = initialState, action) {
     }
     case RESET_FILTERS: {
       return {
-        ...state,
-        ...default_filters,
-        count: 0
+        ...initialState,
+        loaded: state.loaded
       };
     }
     case RESET_FILTERS_EXCEPT_ADDRESS: {
       return {
-        ...state,
-        ...default_filters,
+        ...initialState,
+        loaded: state.loaded,
         addressFilters: state.addressFilters
       };
     }
@@ -264,6 +267,7 @@ function BountiesReducer(state = initialState, action) {
     case LOAD_BOUNTIES: {
       return {
         ...state,
+        count: 0,
         loading: true,
         loaded: false,
         error: false

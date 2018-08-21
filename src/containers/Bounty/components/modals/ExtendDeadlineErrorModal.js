@@ -12,7 +12,7 @@ const ExtendDeadlineErrorModal = props => {
         </Modal.Message>
       </Modal.Header>
       <Modal.Footer>
-        <Button margin onClick={onClose}>
+        <Button margin onClick={onClose} buttonType="button">
           Cancel
         </Button>
         <Button type="primary" submit onClick={onExtendDeadline}>

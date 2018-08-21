@@ -20,6 +20,12 @@ class FileUpload extends React.Component {
     this.props.onChange(file);
   };
 
+  componentWillUnmount() {
+    if (this.props.onUnmount) {
+      this.props.onUnmount();
+    }
+  }
+
   removeFile = e => {
     const { disabled, loading } = this.props;
 
@@ -112,7 +118,8 @@ FileUpload.props = {
   loading: PropTypes.bool,
   filename: PropTypes.string,
   filesize: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  onUnmount: PropTypes.func
 };
 
 FileUpload.defaultProps = {};

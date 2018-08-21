@@ -25,7 +25,13 @@ class CreateBountyComponent extends React.Component {
   }
 
   render() {
-    const { draftLoading, formInitialValues, draftError } = this.props;
+    const {
+      draftLoading,
+      formInitialValues,
+      draftError,
+      match,
+      isDraftPage
+    } = this.props;
 
     if (draftLoading) {
       return (
@@ -52,7 +58,9 @@ class CreateBountyComponent extends React.Component {
     return (
       <PageCard>
         <PageCard.Header className={styles.createBountyHeader}>
-          <PageCard.Title>Create Bounty</PageCard.Title>
+          <PageCard.Title>
+            {isDraftPage ? 'Edit Bounty' : 'Create Bounty'}
+          </PageCard.Title>
         </PageCard.Header>
         <PageCard.Content className={styles.cardContent}>
           <CreateBountyForm initialValues={formInitialValues} />
@@ -66,11 +74,22 @@ const mapStateToProps = (state, router) => {
   const user = getCurrentUserSelector(state) || {};
   const getDraftState = getDraftStateSelector(state);
   let draftBounty = getDraftBountySelector(state) || {};
+  let fulfillmentAmount = draftBounty.calculated_fulfillmentAmount;
+  let isDraftPage = true;
+
+  if (typeof fulfillmentAmount === 'string') {
+    fulfillmentAmount = BigNumber(
+      draftBounty.calculated_fulfillmentAmount,
+      10
+    ).toString();
+  }
   if (router.match.path === '/createBounty') {
     draftBounty = {};
+    isDraftPage = false;
   }
 
   return {
+    isDraftPage: isDraftPage,
     draftError: getDraftState.error,
     draftLoading: getDraftState.loading,
     formInitialValues: {
@@ -82,13 +101,11 @@ const mapStateToProps = (state, router) => {
       revisions: draftBounty.revisions || 3,
       paysTokens: draftBounty.paysTokens || false,
       tokenContract: draftBounty.tokenContract,
-      fulfillmentAmount: BigNumber(
-        draftBounty.calculated_fulfillmentAmount,
-        10
-      ).toString(),
+      fulfillmentAmount: fulfillmentAmount,
       activateNow: true,
-      issuer_email: user.email || '',
-      issuer_name: user.name || '',
+      issuer_email: draftBounty.issuer_email || user.email || '',
+      issuer_name: draftBounty.issuer_name || user.name || '',
+      activateNow: !isDraftPage,
       deadline: draftBounty.deadline
         ? moment(draftBounty.deadline)
         : moment()

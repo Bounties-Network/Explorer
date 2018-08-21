@@ -5,7 +5,7 @@
   display: none; /*Temporary to test responsive views w/o sidebar*/
   height: 100%; /* 100% Full-height */
   float: left;
-  padding-top: $header-height-lg * 2;
+  padding-top: $header-height-sm;
   position: fixed;
   width: $sidebar-width-sm;
 
@@ -15,6 +15,7 @@
 
   @media only screen and (min-width: 65em) {
     width: $sidebar-width-lg;
+    padding-top: $header-height-lg;
   }
 }
 

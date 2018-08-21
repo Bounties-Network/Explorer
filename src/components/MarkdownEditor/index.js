@@ -25,7 +25,9 @@ class MarkdownEditor extends React.Component {
   };
 
   onChange = value => {
-    this.setState({ value });
+    if (typeof this.props.value !== 'string') {
+      this.setState({ value });
+    }
     this.props.onChange(value);
   };
 
@@ -38,11 +40,13 @@ class MarkdownEditor extends React.Component {
       onBlur,
       onFocus,
       defaultValue,
-      value
+      value,
+      textBoxClassName
     } = this.props;
 
     const textValue =
       typeof value === 'string' ? value : stateValue || defaultValue;
+    const textBoxClass = `${styles.textArea} ${textBoxClassName}`;
 
     return (
       <div className={styles.markdownEditor}>
@@ -69,7 +73,7 @@ class MarkdownEditor extends React.Component {
           value={textValue}
           disabled={disabled}
           onChange={this.onChange}
-          textAreaClass={styles.textArea}
+          textAreaClass={textBoxClass}
           onFocus={onFocus}
           onBlur={onBlur}
           overlay={

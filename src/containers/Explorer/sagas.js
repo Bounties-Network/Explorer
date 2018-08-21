@@ -7,9 +7,7 @@ const { resetFilters } = actions;
 export function* locationChanged(action) {
   const { pathname } = action.payload;
 
-  if (currentRouteSelector(pathname) === 'profile') {
-    yield put(resetFilters());
-  }
+  yield put(resetFilters());
 }
 
 export function* watchRouter() {

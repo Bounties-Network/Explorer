@@ -3,6 +3,7 @@ import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
+import normalizers from 'utils/normalizers';
 import { FormTextInput } from 'form-components';
 
 const ContributeFormModal = props => {
@@ -27,11 +28,9 @@ const ContributeFormModal = props => {
           <Field
             name="contribution"
             component={FormTextInput}
-            type="number"
-            min="0"
-            step=".00001"
+            normalize={normalizers.number}
             label="Deposit amount (ETH or whole tokens)"
-            validate={[validators.required]}
+            validate={[validators.required, validators.minValue(0)]}
             placeholder="Enter amount..."
           />
         </Modal.Body>
@@ -42,6 +41,7 @@ const ContributeFormModal = props => {
               e.preventDefault();
               onClose();
             }}
+            buttonType="button"
           >
             Cancel
           </Button>

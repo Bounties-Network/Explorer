@@ -1,18 +1,69 @@
 @import "~styles/variables.scss";
 
 .statsContainer {
-  margin-top: 1.5 * $xxl-spacing;
-  margin-bottom: 2 * $xxl-spacing;
+  margin: $m-spacing;
+
+  @media only screen and (min-width: 48em) {
+    margin-top: 1.5 * $xxl-spacing;
+    margin-bottom: 2 * $xxl-spacing;
+  }
 }
 
-.submissionsContainer {
-  margin-bottom: $xxl-spacing;
-  height: 100%;
-  margin-top: $m-spacing;
-  min-height: 25rem;
+.desktopContainer {
+  display: none;
+
+  @media only screen and (min-width: 48em) {
+    display: block;
+  }
 }
 
-.submissionsFlex {
-  display: flex;
-  flex-grow: 1 !important;
+.mobileContainer {
+  display: none;
+
+  @media only screen and (max-width: 48em) {
+    display: block;
+  }
+}
+
+.bountiesPanel {
+  @media only screen and (min-width: 48em) {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 27vh;
+    min-height: 25rem;
+  }
+}
+
+.bodyClass {
+  overflow-y: scroll;
+
+  @media only screen and (max-width: 48em) {
+    height: 40vh;
+    width: 100vw;
+    overflow-y: scroll;
+  }
+}
+
+.activityPanel {
+  @media only screen and (min-width: 48em) {
+    display: flex;
+    flex-direction: column;
+    height: 27vh;
+    min-height: 25rem;
+  }
+}
+
+.submissionsPanel {
+  @media only screen and (min-width: 48em) {
+    margin-bottom: $xxl-spacing;
+    height: 100%;
+    margin-top: $m-spacing;
+    min-height: 25rem;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    height: 27vh;
+    text-align: left;
+  }
 }

@@ -89,7 +89,7 @@ const ExplorerBodyComponent = props => {
             {count}
           </Text>
           <Text color="defaultGrey" inline>
-            bounties
+            {count === 1 ? 'bounty' : 'bounties'}
           </Text>
         </div>
         <div className={styles.sortGroup}>

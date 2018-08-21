@@ -1,12 +1,11 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import base from '../BaseStyles.module.scss';
 import styles from './SubmissionsPanel.module.scss';
 import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
 import { Button, Card, Table, Loader, Tabs, ZeroState } from 'components';
-import { SubmissionItem } from '../';
+import { SubmissionItem } from 'explorer-components';
 import { loadedUserStatsSelector } from 'public-modules/UserInfo/selectors';
 import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
 import { submissionsPanelSelector } from './selectors';
@@ -52,6 +51,7 @@ class SubmissionsPanelComponent extends React.Component {
   render() {
     const {
       className,
+      bodyClass,
       setActiveTab,
       currentTab,
       list,
@@ -64,7 +64,7 @@ class SubmissionsPanelComponent extends React.Component {
       total_submitted
     } = this.props;
 
-    let bodyClass;
+    let zeroStateClass;
     let body = (
       <React.Fragment>
         <Table>
@@ -78,7 +78,7 @@ class SubmissionsPanelComponent extends React.Component {
           {this.renderSubmissions(list)}
         </Table>
         {list.length < count ? (
-          <div className={base.loadMoreButton}>
+          <div className={styles.loadMoreButton}>
             <Button loading={loadingMore} onClick={loadMore}>
               Load More
             </Button>
@@ -88,9 +88,9 @@ class SubmissionsPanelComponent extends React.Component {
     );
 
     if (count <= 0) {
-      bodyClass = base.bodyLoading;
+      zeroStateClass = styles.bodyLoading;
       body = (
-        <div className={base.zeroState}>
+        <div className={styles.zeroState}>
           <ZeroState
             title={`You have ${currentTab} 0 submissions`}
             text={`It looks like you don't have any submissions. Come back after you have ${currentTab} a fulfillment!`}
@@ -102,14 +102,14 @@ class SubmissionsPanelComponent extends React.Component {
     }
 
     if (loading) {
-      bodyClass = base.bodyLoading;
+      zeroStateClass = styles.bodyLoading;
       body = <Loader color="blue" size="medium" />;
     }
 
     if (error) {
-      bodyClass = base.bodyLoading;
+      zeroStateClass = styles.bodyLoading;
       body = (
-        <div className={base.zeroState}>
+        <div className={styles.zeroState}>
           <ZeroState
             type="error"
             text={'Something went wrong. Try again later.'}
@@ -121,36 +121,34 @@ class SubmissionsPanelComponent extends React.Component {
     }
 
     return (
-      <div className={`${className} ${base.cardContainer}`}>
-        <Card className={styles.card}>
-          <Card.Header>
-            <Card.HeaderTitle>Submissions</Card.HeaderTitle>
-            <Card.HeaderTabs
-              onSelect={setActiveTab}
-              activeKey={currentTab}
-              defaultActiveKey={currentTab}
+      <Card className={className}>
+        <Card.Header>
+          <Card.HeaderTitle>Submissions</Card.HeaderTitle>
+          <Card.HeaderTabs
+            onSelect={setActiveTab}
+            activeKey={currentTab}
+            defaultActiveKey={currentTab}
+          >
+            <Tabs.Tab
+              tabColor="blue"
+              tabCount={total_received}
+              eventKey={'received'}
             >
-              <Tabs.Tab
-                tabColor="blue"
-                tabCount={total_received}
-                eventKey={'received'}
-              >
-                Received
-              </Tabs.Tab>
-              <Tabs.Tab
-                tabColor="green"
-                tabCount={total_submitted}
-                eventKey={'submitted'}
-              >
-                Submitted
-              </Tabs.Tab>
-            </Card.HeaderTabs>
-          </Card.Header>
-          <Card.Body className={`${base.listGroup} ${bodyClass}`}>
-            {body}
-          </Card.Body>
-        </Card>
-      </div>
+              Received
+            </Tabs.Tab>
+            <Tabs.Tab
+              tabColor="green"
+              tabCount={total_submitted}
+              eventKey={'submitted'}
+            >
+              Submitted
+            </Tabs.Tab>
+          </Card.HeaderTabs>
+        </Card.Header>
+        <Card.Body className={`${bodyClass} ${zeroStateClass}`}>
+          {body}
+        </Card.Body>
+      </Card>
     );
   }
 }

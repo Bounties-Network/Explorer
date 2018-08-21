@@ -14,7 +14,8 @@ const Button = props => {
     icon,
     fitWidth,
     margin,
-    onMouseDown
+    onMouseDown,
+    buttonType
   } = props;
 
   const onClickHandler = e => {
@@ -57,6 +58,7 @@ const Button = props => {
       onClick={onClickHandler}
       disabled={disabled}
       onMouseDown={onMouseDown}
+      type={buttonType}
     >
       <div className={childwrapper}>
         {icon ? <FontAwesomeIcon icon={icon} className={styles.icon} /> : null}

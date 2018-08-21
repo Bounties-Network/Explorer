@@ -1,12 +1,14 @@
 import { currentRouteSelector } from 'utils/helpers';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { put, takeLatest, select } from 'redux-saga/effects';
-import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
+import { getUserAddressSelector } from 'public-modules/Authentication/selectors';
 import { actionTypes, actions } from './reducer';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
+import { actions as userInfoActions } from 'public-modules/UserInfo';
 
 const { LOAD_SUBMISSIONS_PANEL, SET_ACTIVE_TAB } = actionTypes;
 const { setActiveTab } = actions;
+const { loadUserInfo } = userInfoActions;
 const {
   addFulfillerFilter,
   addIssuerFilter,
@@ -22,12 +24,14 @@ export function* locationChanged(action) {
 }
 
 export function* loadSubmissionsPanel(action) {
-  yield select(getCurrentUserSelector);
+  const address = yield select(getUserAddressSelector);
+
+  yield put(loadUserInfo(address));
   yield put(setActiveTab('received'));
 }
 
 export function* loadActiveTab(action) {
-  const { public_address } = yield select(getCurrentUserSelector);
+  const public_address = yield select(getUserAddressSelector);
   const { tabKey } = action;
 
   if (tabKey === 'received') {

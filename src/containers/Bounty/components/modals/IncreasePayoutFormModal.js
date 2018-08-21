@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
+import { BigNumber } from 'bignumber.js';
+import normalizers from 'utils/normalizers';
 import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 
@@ -29,15 +31,17 @@ const IncreasePayoutFormModal = props => {
           <Field
             name="balance"
             component={FormTextInput}
-            type="number"
-            min="0"
-            step=".00001"
             label="Deposit amount (ETH or whole tokens)"
+            normalize={normalizers.number}
             validate={[
+              validators.minValue(0),
               (balance, values) => {
                 if (
-                  Number(values.fulfillmentAmount || 0) >
-                  Number(minimumBalance) + Number(balance || 0)
+                  BigNumber(values.fulfillmentAmount || 0, 10).isGreaterThan(
+                    BigNumber(minimumBalance, 10).plus(
+                      BigNumber(balance || 0, 10)
+                    )
+                  )
                 ) {
                   return 'The balance of your bounty must be greater than the payout amount.';
                 }
@@ -49,16 +53,16 @@ const IncreasePayoutFormModal = props => {
             <Field
               name="fulfillmentAmount"
               component={FormTextInput}
-              type="number"
-              min="0"
-              step=".00001"
               label="New prize amount (ETH or whole tokens)"
+              normalize={normalizers.number}
               validate={[
                 validators.required,
+                validators.minValue(0),
                 (fulfillmentAmount, values) => {
                   if (
-                    Number(minimumPayout || 0) >
-                    Number(values.fulfillmentAmount || 0)
+                    BigNumber(minimumPayout || 0).isGreaterThanOrEqualTo(
+                      BigNumber(values.fulfillmentAmount || 0, 10)
+                    )
                   ) {
                     return 'Your payout amount must be greater than the previous payout amount.';
                   }
@@ -75,6 +79,7 @@ const IncreasePayoutFormModal = props => {
               e.preventDefault();
               onClose();
             }}
+            buttonType="button"
           >
             Cancel
           </Button>
