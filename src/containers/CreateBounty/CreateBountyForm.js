@@ -88,6 +88,7 @@ class CreateBountyFormComponent extends React.Component {
       submittingBounty,
       filename,
       resetUpload,
+      deleteUploadKey,
       bountyId
     } = this.props;
 
@@ -241,7 +242,7 @@ class CreateBountyFormComponent extends React.Component {
                     ? uploadFile('createBounty', file)
                     : resetUpload('createBounty')
                 }
-                onUnmount={() => resetUpload('createBounty')}
+                onUnmount={() => deleteUploadKey('createBounty')}
                 loading={uploadLoading}
                 filename={filename}
               />
@@ -421,7 +422,8 @@ const CreateBountyForm = compose(
       createDraft: bountyActions.createDraft,
       updateDraft: bountyActions.updateDraft,
       createBounty: bountyActions.createBounty,
-      resetUpload: uploadActions.resetUpload
+      resetUpload: uploadActions.resetUpload,
+      deleteUploadKey: uploadActions.deleteUploadKey
     }
   ),
   reduxForm({

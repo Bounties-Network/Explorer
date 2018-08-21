@@ -91,8 +91,8 @@ const mapStateToProps = (state, router) => {
       tokenContract: draftBounty.tokenContract,
       fulfillmentAmount: fulfillmentAmount,
       activateNow: true,
-      issuer_email: user.email || '',
-      issuer_name: user.name || '',
+      issuer_email: draftBounty.issuer_email || user.email || '',
+      issuer_name: draftBounty.issuer_name || user.name || '',
       deadline: draftBounty.deadline
         ? moment(draftBounty.deadline)
         : moment()
