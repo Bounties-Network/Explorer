@@ -20,6 +20,7 @@ const UnlockWallet = props => {
         <Modal.Description>
           You&#39;ll need to log in to your secure wallet account (e.g.
           <Text weight="fontWeight-bold" inline>
+            {' '}
             MetaMask
           </Text>
           ) in order to access {pageLevel ? 'parts of the ' : ''}the Bounties
