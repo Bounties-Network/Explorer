@@ -7,15 +7,29 @@
   align-items: center;
 }
 
-.container {
-  display: flex;
-  align-items: center;
+.statsContainer {
+
+  @media only screen and (min-width: 48em) {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0 !important;
+  }
+}
+
+.mobileStyles {
+  @media only screen and (max-width: 48em) {
+    justify-content: center;
+
+    > div:first-of-type {
+      margin-bottom: $m-spacing;
+    }
+  }
 }
 
 .stats {
   display: flex;
-  flex-direction: row;
-  margin-left: auto;
 
   > .stat:not(:last-child) {
     padding-right: $m-spacing;
@@ -23,7 +37,11 @@
   }
 
   > .stat:not(:first-child) {
-    margin-left: $m-spacing
+    margin-left: $base-spacing;
+
+    @media only screen and (min-width: 48em) {
+      margin-left: $m-spacing
+    }
   }
 }
 

@@ -1,8 +1,12 @@
 @import "~styles/variables.scss";
 
 .statsContainer {
-  margin-top: 1.5 * $xxl-spacing;
-  margin-bottom: 2 * $xxl-spacing;
+  margin: $m-spacing;
+
+  @media only screen and (min-width: 48em) {
+    margin-top: 1.5 * $xxl-spacing;
+    margin-bottom: 2 * $xxl-spacing;
+  }
 }
 
 .desktopContainer {
@@ -35,7 +39,7 @@
   overflow-y: scroll;
 
   @media only screen and (max-width: 48em) {
-    height: 70vh;
+    height: 40vh;
     width: 100vw;
     overflow-y: scroll;
   }
