@@ -26,9 +26,16 @@
   justify-content: center;
   padding-top: 0;
   padding-bottom: $m-spacing;
+  margin-right: 0;
 
   @media only screen and (min-width: 35em) {
     padding-bottom: $l-spacing;
+  }
+}
+
+.tabText {
+  @media only screen and (min-width: 35em) {
+    font-size: $h3-font-size;
   }
 }
 

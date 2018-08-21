@@ -230,7 +230,9 @@ let SubmissionsAndCommentsCardComponent = props => {
             tabCount={fulfillments.list.length}
             eventKey={'submissions'}
           >
-            <Text typeScale="h3">Submissions</Text>
+            <Text typeScale="h4" className={styles.tabText}>
+              Submissions
+            </Text>
           </Tabs.Tab>
           <Tabs.Tab
             tabClassName={styles.tab}
@@ -240,7 +242,9 @@ let SubmissionsAndCommentsCardComponent = props => {
             }
             eventKey={'comments'}
           >
-            <Text typeScale="h3">Comments</Text>
+            <Text typeScale="h4" className={styles.tabText}>
+              Comments
+            </Text>
           </Tabs.Tab>
         </Tabs>
       </div>
