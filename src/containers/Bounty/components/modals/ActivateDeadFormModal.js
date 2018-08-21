@@ -50,6 +50,7 @@ const ActivateDeadFormModal = props => {
               e.preventDefault();
               onClose();
             }}
+            buttonType="button"
           >
             Cancel
           </Button>

@@ -38,6 +38,7 @@ const ExtendDeadlineFormModal = props => {
               e.preventDefault();
               onClose();
             }}
+            buttonType="button"
           >
             Cancel
           </Button>
