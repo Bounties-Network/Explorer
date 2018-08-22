@@ -1,27 +1,36 @@
 @import "~styles/variables.scss";
 
+$switch-height-small: $l-spacing;
+$switch-height-large: $xl-spacing;
+
+$switch-width-small: 120px;
+$switch-width-large: 240px;
+
 .switch {
   position: relative;
-  height: 26px;
-  width: 120px;
-  border-radius: 3px;
+  height: $switch-height-small;
+  width: $switch-width-small;
+  border-radius: $base-border-radius;
+
   &.large {
-    height: 32.5px;
-    width: 240px;
+    height: $switch-height-large;
+    width: $switch-width-large;
   }
+
   &.curved {
-    border-radius: 18px;
+    border-radius: $switch-height-large;
   }
-  &.purple {
-    background: $brand-purple;
+
+  &.dark {
+    background: rgba(black, 0.25);
   }
 
   &.nearWhite {
     background: $brand-nearWhite;
   }
 
-  &.purpleWhite {
-    background: $brand-purpleWhite;
+  &.transparentWhite {
+    background: rgba(white, 0.3);
   }
 
   &.blue {
@@ -65,15 +74,15 @@
   position: relative;
   z-index: 2;
   float: left;
-  width: 58px;
-  line-height: 26px;
-  font-size: 11px;
+  width: $switch-width-small / 2;
+  line-height: $switch-height-small;
+  font-size: $body-small-font-size;;
   text-align: center;
   cursor: pointer;
   .large & {
-    width: 116px;
-    line-height: 32.5px;
-    font-size: 15px;
+    width: $switch-width-large / 2;
+    line-height: $switch-height-large;
+    font-size: $body-font-size;
   }
   &.purple {
     color: $brand-purple;
@@ -87,8 +96,8 @@
     color: $brand-nearWhite;
   }
 
-  &.purpleWhite {
-    color: $brand-purpleWhite;
+  &.transparentWhite {
+    color: rgba(white, 0.3);
   }
 
   &.orange {
@@ -137,6 +146,7 @@
 
 .switchLabelOn {
   padding-right: 2px;
+
   .large & {
     padding-right: 4px;
   }
@@ -148,6 +158,7 @@
 
 .switchInput:checked + .switchLabel {
   transition: 0.15s ease-out;
+
   &.purple {
     color: $brand-purple;
   }
@@ -180,8 +191,8 @@
     color: $brand-nearWhite;
   }
 
-  &.purpleWhite {
-    color: $brand-purpleWhite;
+  &.transparentWhite {
+    color: rgba(white, 0.3);
   }
 
   &.grey {
@@ -199,9 +210,10 @@
 
 .switchInput:checked + .switchLabelOn ~ .switchSelection {
   /* Note: left: 50% doesn't transition in WebKit */
-  left: 60px;
+  left: $switch-width-small / 2;
+
   .large & {
-    left: 120px;
+    left: $switch-width-large / 2;
   }
 }
 
@@ -211,15 +223,15 @@
   z-index: 1;
   top: 2px;
   left: 2px;
-  width: 58px;
-  height: 22px;
-  border-radius: 3px;
+  width: calc((#{$switch-width-small} / 2) - 2px);
+  height: calc(#{$switch-height-small} - 4px);
+  border-radius: $base-border-radius;
   transition: left 0.15s ease-out;
   .large & {
     top: 2.5px;
     left: 4px;
-    width: 116px;
-    height: 27.5px;
+    width: calc((#{$switch-width-large} / 2) - 4px);
+    height: calc(#{$switch-height-large} - 6px);
   }
   .curved & {
     border-radius: 12px;
@@ -256,8 +268,8 @@
     background: $brand-nearWhite;
   }
 
-  &.purpleWhite {
-    background: $brand-purpleWhite;
+  &.transparentWhite {
+    background: rgba(white, 0.3);
   }
 
   &.grey {
@@ -272,4 +284,3 @@
     background: white;
   }
 }
-
