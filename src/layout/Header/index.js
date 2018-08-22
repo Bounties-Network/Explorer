@@ -70,6 +70,7 @@ const HeaderComponent = props => {
               </DropdownTrigger>
               <DropdownContent className={styles.profileDropdown}>
                 <MenuItem
+                  key="settings"
                   icon={['fal', 'cog']}
                   onClick={() => {
                     history.push('/settings');
@@ -77,7 +78,11 @@ const HeaderComponent = props => {
                 >
                   Account Settings
                 </MenuItem>
-                <MenuItem icon={['fal', 'sign-out']} onClick={logout}>
+                <MenuItem
+                  icon={['fal', 'sign-out']}
+                  onClick={logout}
+                  key="logout"
+                >
                   Sign Out
                 </MenuItem>
               </DropdownContent>

@@ -18,7 +18,10 @@ class MenuItem extends React.Component {
     ) : null;
 
     return (
-      <li className={`${className} ${styles.menuItem}`} onClick={onClick}>
+      <li
+        className={`${className} ${styles.menuItem}`}
+        onClick={() => onClick()}
+      >
         {iconBlock}
         {children}
       </li>
