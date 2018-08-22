@@ -1,5 +1,8 @@
 @import "~styles/variables.scss";
 
+.listGroup {
+}
+
 .cardBodyLoading {
   height: 100%;
   min-height: 25rem;
@@ -9,8 +12,19 @@
 }
 
 .loadMoreButton {
-  margin-top: $m-spacing;
-  margin-bottom: $m-spacing;
-  width: 100%;
+  margin-top: $xl-spacing;
+  padding: $m-spacing;
+  position: relative;
   text-align: center;
+  z-index: 999;
+
+  @media only screen and (min-width: 35em) {
+    padding: 0;
+  }
+
+  button {
+    position: relative;
+    width: 100%;
+    z-index: 999;
+  }
 }
