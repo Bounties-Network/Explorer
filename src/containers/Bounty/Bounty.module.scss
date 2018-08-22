@@ -1,18 +1,24 @@
 @import "~styles/variables.scss";
 
-.header {
-  display: flex;
-  flex-wrap: wrap;
+.bountyPageCardHeader {
   padding: $m-spacing;
-  position: relative;
 
   @media only screen and (min-width: 35em) {
-    flex-wrap: nowrap;
     padding: $l-spacing;
   }
 
   @media only screen and (min-width: 48em) {
     padding: $xl-spacing 0;
+  }
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  @media only screen and (min-width: 35em) {
+    flex-wrap: nowrap;
   }
 }
 
@@ -60,8 +66,8 @@
 
 .stage {
   position: absolute;
-  right: $m-spacing;
-  top: $m-spacing;
+  right: 0;
+  top: 0;
 
   @media only screen and (min-width: 35em) {
     position: relative;
