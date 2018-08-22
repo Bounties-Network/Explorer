@@ -127,6 +127,7 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={activateDraftBounty}
         minimumBalance={minimumBalance}
+        initialValues={{ balance: minimumBalance }}
       />
     );
   }
@@ -165,6 +166,7 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={activateBounty}
         minimumBalance={minimumBalance}
+        initialValues={{ balance: minimumBalance }}
       />
     );
   }

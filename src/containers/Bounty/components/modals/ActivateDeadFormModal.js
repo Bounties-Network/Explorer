@@ -35,10 +35,8 @@ const ActivateDeadFormModal = props => {
             validate={[
               validators.required,
               balance => {
-                if (
-                  BigNumber(balance, 10).isLessThanOrEqualTo(minimumBalance)
-                ) {
-                  return 'Deposit amount must be greater than the existing payout amount.';
+                if (BigNumber(balance, 10).isLessThan(minimumBalance)) {
+                  return 'At minimum, your initial deposit must match your payout amount.';
                 }
               }
             ]}
