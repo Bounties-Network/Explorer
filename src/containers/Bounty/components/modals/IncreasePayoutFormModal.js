@@ -8,7 +8,13 @@ import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 
 const IncreasePayoutFormModal = props => {
-  const { onClose, minimumBalance, minimumPayout, handleSubmit } = props;
+  const {
+    onClose,
+    minimumBalance,
+    minimumPayout,
+    handleSubmit,
+    tokenSymbol
+  } = props;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -24,14 +30,16 @@ const IncreasePayoutFormModal = props => {
           <Modal.Description>
             Indicate the amount you would like to increase the payout to. You
             may include an additional balance to cover the costs. Your total
-            balance must be greater than the new prize amount.
+            balance must be greater than the new prize amount ({tokenSymbol}).
+            The current balance is: {`${minimumBalance} ${tokenSymbol}`}. The
+            current payout amount is: {`${minimumPayout} ${tokenSymbol}`}.
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
           <Field
             name="balance"
             component={FormTextInput}
-            label="Deposit amount (ETH or whole tokens)"
+            label={`Deposit amount (${tokenSymbol})`}
             normalize={normalizers.number}
             validate={[
               validators.minValue(0),
@@ -53,7 +61,7 @@ const IncreasePayoutFormModal = props => {
             <Field
               name="fulfillmentAmount"
               component={FormTextInput}
-              label="New prize amount (ETH or whole tokens)"
+              label={`New prize amount (${tokenSymbol})`}
               normalize={normalizers.number}
               validate={[
                 validators.required,

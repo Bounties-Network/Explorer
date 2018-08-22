@@ -7,7 +7,7 @@ import normalizers from 'utils/normalizers';
 import { FormTextInput } from 'form-components';
 
 const ContributeFormModal = props => {
-  const { onClose, handleSubmit } = props;
+  const { onClose, handleSubmit, tokenSymbol } = props;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -21,7 +21,8 @@ const ContributeFormModal = props => {
         <Modal.Header closable={true}>
           <Modal.Message>Contribute to the bounty</Modal.Message>
           <Modal.Description>
-            Indicate the amount you would like to contribute towards the bounty.
+            Indicate the amount you would like to contribute towards the bounty
+            ({tokenSymbol}).
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
@@ -29,7 +30,7 @@ const ContributeFormModal = props => {
             name="contribution"
             component={FormTextInput}
             normalize={normalizers.number}
-            label="Deposit amount (ETH or whole tokens)"
+            label={`Deposit amount ${tokenSymbol}`}
             validate={[validators.required, validators.minValue(0)]}
             placeholder="Enter amount..."
           />
