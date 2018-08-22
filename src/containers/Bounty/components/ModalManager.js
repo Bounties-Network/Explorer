@@ -132,19 +132,20 @@ const ModalManagerComponent = props => {
   }
 
   if (modalType === 'extendDeadline') {
-    const tomorrow = moment()
-      .add(1, 'days')
-      .utc();
-    const currentDeadline = moment(bounty.deadline).utc();
+    const tomorrow = moment().add(1, 'days');
+    const currentDeadline = moment.utc(bounty.deadline);
 
     const minimumDeadline =
-      currentDeadline > tomorrow ? currentDeadline : tomorrow;
+      currentDeadline > tomorrow
+        ? currentDeadline.add(1, 'days').local()
+        : tomorrow;
 
     return (
       <ExtendDeadlineFormModal
         onClose={closeModal}
         onSubmit={extendDeadline}
         minimumDeadline={minimumDeadline}
+        initialValues={{ deadline: minimumDeadline }}
       />
     );
   }
