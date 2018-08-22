@@ -17,7 +17,7 @@ import BeeLogo from '../../styles/logo.js';
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
 const HeaderComponent = props => {
-  const { user, network, showLogin, logout, history } = props;
+  const { user, network, showLogin, logout, history, match } = props;
 
   const loginStatus = !!user;
 
@@ -33,17 +33,18 @@ const HeaderComponent = props => {
       ) : null}
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
-          {history.location.pathname !== '/createBounty' && (
-            <Button
-              type="primary"
-              onClick={() => {
-                history.push('/createBounty');
-              }}
-              className={styles.button}
-            >
-              Create New Bounty
-            </Button>
-          )}
+          {history.location.pathname !== '/createBounty' &&
+            match.path !== '/createBounty/draft/:id/' && (
+              <Button
+                type="primary"
+                onClick={() => {
+                  history.push('/createBounty');
+                }}
+                className={styles.button}
+              >
+                Create New Bounty
+              </Button>
+            )}
           <div className={styles.notification}>
             <NotificationDropdown />
           </div>
