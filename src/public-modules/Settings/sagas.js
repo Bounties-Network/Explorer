@@ -23,6 +23,7 @@ const {
 
 export function* saveSettings(action) {
   const { values } = action;
+  const address = yield select(addressSelector);
   const {
     name,
     email,
@@ -43,21 +44,17 @@ export function* saveSettings(action) {
     languages,
     organization,
     skills,
-    social: {
-      personalWebsite: website,
-      github,
-      twitter,
-      linkedin
-      //dribbble: string
-    },
-    profilePhoto: {
-      fileDirectoryHash: profileImageIpfsHash,
-      fileName: fileName
-    }
+    website,
+    github,
+    twitter,
+    linkedin,
+    //dribbble,
+    profileDirectoryHash: profileImageIpfsHash,
+    profileFileName: fileName
   };
 
   try {
-    yield call(request, 'user/settings/', 'POST', { data });
+    yield call(request, `user/${address}/profile/`, 'POST', { data });
     yield put(saveSettingsSuccess());
   } catch (e) {
     console.log(e);
