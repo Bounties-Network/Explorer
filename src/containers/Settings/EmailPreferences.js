@@ -30,15 +30,13 @@ let EmailPreferencesComponent = props => {
   const renderToggles = () => {
     return map(
       (value, key) => (
-        <div className={`col-xs-12 ${styles.emailToggle}`}>
-          <Field
-            form='emailPreferences'
-            disabled={saving}
-            name={key}
-            component={PreferencesToggle}
-            label={value}
-          />
-        </div>
+        <Field
+          form="emailPreferences"
+          disabled={saving}
+          name={key}
+          component={PreferencesToggle}
+          label={value}
+        />
       ),
       EMAIL_NOTIFICATION_OPTIONS
     );
@@ -47,7 +45,7 @@ let EmailPreferencesComponent = props => {
   return (
     <form onSubmit={handleSubmit(handleSaveEmailPreferences)}>
       <FormSection>
-        <FormSection.Section title='EMAIL NOTIFICATIONS'>
+        <FormSection.Section title="EMAIL NOTIFICATIONS">
           <FormSection.Description>
             What notifications would you like to receive via email?
           </FormSection.Description>
@@ -56,22 +54,19 @@ let EmailPreferencesComponent = props => {
             recommend sticking with the default settings so that you can be
             informed of important activity relevant to you on the network.
           </FormSection.SubText>
-          <FormSection.InputGroup>
-            <div className='row'>{renderToggles()}</div>
-          </FormSection.InputGroup>
+          <FormSection.InputGroup>{renderToggles()}</FormSection.InputGroup>
         </FormSection.Section>
       </FormSection>
-      <PageCard.Break />
-      <div className={styles.buttons}>
+      <div className={styles.buttonContainer}>
         <Button
-          type='primary'
+          type="primary"
           disabled={saving || (submitFailed && invalid)}
           loading={saving}
         >
           Save Email Preferences
         </Button>
         {submitFailed && invalid ? (
-          <Text inputLabel color='red' className={styles.submitError}>
+          <Text inputLabel color="red" className={styles.submitError}>
             Fix errors before submitting.
           </Text>
         ) : null}

@@ -2,19 +2,24 @@
 
 .body {
   border-radius: $base-border-radius;
-  background: $brand-nearWhite;
+  background: $base-input-background;
 }
 
-.rowContainer {
-  padding: $base-spacing 0;
-}
-
-.text {
-  display: flex;
+.toggleContainer {
   align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: $base-spacing;
+  padding: $base-spacing $m-spacing;
+}
+
+.toggleLabel {
+  line-height: $base-line-height;
 }
 
 .toggle {
   display: flex;
   justify-content: flex-end;
+  padding-left: $m-spacing;
 }

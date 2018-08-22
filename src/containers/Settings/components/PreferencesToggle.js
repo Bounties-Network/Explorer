@@ -8,14 +8,14 @@ const PreferencesToggle = props => {
   const { value, label, onChange, className } = props;
 
   return (
-    <div className={`container-fluid ${styles.body} ${className}`}>
-      <div className={`row ${styles.rowContainer}`}>
-        <div className={`col-xs-10 ${styles.text}`}>
-          <Text color="darkGrey" typeScale="h4">
+    <div className={`${styles.body} ${className}`}>
+      <div className={`${styles.toggleContainer}`}>
+        <div className={`${styles.toggleLabel}`}>
+          <Text color="darkGrey" typeScale="Body">
             {label}
           </Text>
         </div>
-        <div className={`col-xs-2 ${styles.toggle}`}>
+        <div className={`${styles.toggle}`}>
           <Toggle value={value} onChange={onChange} />
         </div>
       </div>
