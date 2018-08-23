@@ -49,10 +49,10 @@ const ProfileDetailsComponent = props => {
         }
         className={styles.profileAvatar}
       />
-      <div className={`${styles.details} ${styles.centerContent}`}>
+      <div className={styles.details}>
         {user.organization &&
           user.languages.length && (
-            <div className={styles.detailsSection}>
+            <div className={`${styles.detailsSection} ${styles.detailsAbout}`}>
               <About
                 organization={user.organization}
                 languages={user.languages}
@@ -61,11 +61,11 @@ const ProfileDetailsComponent = props => {
           )}
         {!!user.skills &&
           !!user.skills.length && (
-            <div className={styles.detailsSection}>
+            <div className={`${styles.detailsSection} ${styles.detailsSkills}`}>
               <Skills skills={user.skills} />
             </div>
           )}
-        <div className={styles.detailsSection}>
+        <div className={`${styles.detailsSection} ${styles.detailsStats}`}>
           <NetworkStats
             stats={userStats}
             switchValue={switchValue}
@@ -75,7 +75,9 @@ const ProfileDetailsComponent = props => {
           />
         </div>
         {(user.website || user.twitter || user.github || user.linkedin) && (
-          <div className={styles.detailsSection}>
+          <div
+            className={`${styles.detailsSection} ${styles.detailsElsewhere}`}
+          >
             <Elsewhere
               website={user.website}
               twitter={user.twitter}

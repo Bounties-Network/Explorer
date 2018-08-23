@@ -21,7 +21,8 @@
 
 .networkStatsContainer {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
 }
 
 .networkStatCircle {
@@ -29,7 +30,7 @@
   flex-direction: column;
   padding: 0 $base-spacing;
   align-items: center;
-  width: 110px;
+  width: 33%;
 
   &Label {
     padding-top: $m-spacing;

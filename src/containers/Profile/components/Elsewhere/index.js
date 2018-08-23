@@ -12,18 +12,14 @@ const Elsewhere = props => {
       return (
         <React.Fragment>
           {props[key] && (
-            <div className="row">
-              <div className="col-xs-1">
-                <FontAwesomeIcon
-                  icon={key === 'website' ? ['far', 'globe'] : ['fab', key]}
-                  className={styles.icon}
-                />
-              </div>
-              <div className="col-xs-10">
-                <Text typeScale="h5" color="defaultGrey">
-                  {props[key]}
-                </Text>
-              </div>
+            <div className={styles.bulletPoint}>
+              <FontAwesomeIcon
+                icon={key === 'website' ? ['far', 'globe'] : ['fab', key]}
+                className={styles.icon}
+              />
+              <Text inline typeScale="h5" color="defaultGrey">
+                {props[key]}
+              </Text>
             </div>
           )}
         </React.Fragment>
