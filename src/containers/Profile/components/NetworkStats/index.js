@@ -13,7 +13,7 @@ import { actions as reviewsActions } from 'public-modules/Reviews';
 
 function formatInput(value, format) {
   if (value === null) {
-    return 'N/A';
+    return '--';
   } else if (format === 'fraction') {
     return `${Number(value.toFixed(0))}/5`;
   } else {
@@ -45,7 +45,7 @@ const NetworkStatsComponent = props => {
     let input = formatInput(value, displayFormat[key]);
 
     if (value == null) {
-      color = 'lightGrey';
+      color = 'nearWhite';
     }
 
     return (
