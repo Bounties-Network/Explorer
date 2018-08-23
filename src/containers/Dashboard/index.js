@@ -1,4 +1,6 @@
 import React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import styles from './Dashboard.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -10,7 +12,19 @@ import {
   UserStats
 } from 'containers';
 
-class Dashboard extends React.Component {
+import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
+import { actions as activityActions } from 'public-modules/Activity';
+import { actions as bountiesPanelActions } from 'containers/BountiesPanel/reducer';
+import { actions as submissionsPanelActions } from 'containers/SubmissionsPanel/reducer';
+
+class DashboardComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    props.loadActivityPanel(props.public_address);
+    props.loadBountiesPanel();
+    props.loadSubmissionsPanel();
+  }
+
   render() {
     var settings = {
       dots: true,
@@ -65,5 +79,25 @@ class Dashboard extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  const currentUser = getCurrentUserSelector(state);
+  const { public_address } = currentUser;
+
+  return {
+    public_address
+  };
+};
+
+const Dashboard = compose(
+  connect(
+    mapStateToProps,
+    {
+      loadSubmissionsPanel: submissionsPanelActions.loadSubmissionsPanel,
+      loadBountiesPanel: bountiesPanelActions.loadBountiesPanel,
+      loadActivityPanel: activityActions.loadActivity
+    }
+  )
+)(DashboardComponent);
 
 export default Dashboard;
