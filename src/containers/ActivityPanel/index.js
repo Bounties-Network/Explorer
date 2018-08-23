@@ -135,8 +135,7 @@ const ActivityPanel = compose(
       load: actions.loadActivity,
       loadMore: actions.loadMoreActivity
     }
-  ),
-  LoadComponent('public_address')
+  )
 )(ActivityPanelComponent);
 
 export default ActivityPanel;

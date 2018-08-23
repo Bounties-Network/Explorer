@@ -174,8 +174,7 @@ const BountiesPanel = compose(
       activeLoadMore: bountiesActions.loadMoreBounties,
       draftsLoadMore: draftsActions.loadMoreDrafts
     }
-  ),
-  LoadComponent('')
+  )
 )(BountiesPanelComponent);
 
 export default BountiesPanel;

@@ -177,8 +177,7 @@ const SubmissionsPanel = compose(
       loadMore: fulfillmentActions.loadMoreFulfillments,
       setActiveTab: actions.setActiveTab
     }
-  ),
-  LoadComponent('')
+  )
 )(SubmissionsPanelComponent);
 
 export default SubmissionsPanel;
