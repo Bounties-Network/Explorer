@@ -63,12 +63,19 @@ const NetworkStatsComponent = props => {
             typeScale="Small"
             alignment="align-center"
             color="defaultGrey"
-            className={styles.reviewsModalLink}
+            className={`${styles.reviewsModalLink} ${
+              styles.networkStatCircleLabel
+            }`}
           >
             {text}
           </Text>
         ) : (
-          <Text typeScale="Small" alignment="align-center" color="defaultGrey">
+          <Text
+            className={styles.networkStatCircleLabel}
+            typeScale="Small"
+            alignment="align-center"
+            color="defaultGrey"
+          >
             {text}
           </Text>
         )}
@@ -89,7 +96,7 @@ const NetworkStatsComponent = props => {
         loadingMoreError={loadingMoreError}
       />
       <div className={styles.networkStatsHeader}>
-        <Text typeScale="h3" color="black">
+        <Text typeScale="h4" color="black" weight="fontWeight-medium">
           Network Stats
         </Text>
 

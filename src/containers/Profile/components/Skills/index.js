@@ -20,7 +20,7 @@ const Skills = props => {
 
   return (
     <div className={styles.skills}>
-      <Text typeScale="h3" color="black">
+      <Text typeScale="h4" color="black" weight="fontWeight-medium">
         Skills
       </Text>
 

@@ -7,11 +7,26 @@ const ProfileAvatar = props => {
 
   return (
     <div className={`${styles.centerAvatar} ${className}`}>
-      <Avatar size="large" border hash={address} img={img} />
-      <Text typeScale="h1" color="black" weight="fontWeight-bold">
+      <Avatar
+        className={styles.profileAvatar}
+        size="large"
+        border
+        hash={address}
+        img={img}
+      />
+      <Text
+        className={styles.profileName}
+        typeScale="h2"
+        color="black"
+        weight="fontWeight-bold"
+      >
         {name}
       </Text>
-      <FullAddressBar address={address} copyButton />
+      <FullAddressBar
+        className={styles.profileAddress}
+        address={address}
+        copyButton
+      />
     </div>
   );
 };

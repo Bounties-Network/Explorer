@@ -27,10 +27,16 @@
 .networkStatCircle {
   display: flex;
   flex-direction: column;
+  padding: 0 $base-spacing;
   align-items: center;
+  width: 110px;
 
   > div {
     margin-bottom: $m-spacing;
+  }
+
+  &Label {
+    line-height: $base-line-height / 1.5;
   }
 }
 

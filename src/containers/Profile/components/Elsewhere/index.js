@@ -33,7 +33,7 @@ const Elsewhere = props => {
 
   return (
     <div className={styles.elsewhere}>
-      <Text typeScale="h3" color="black">
+      <Text typeScale="h4" color="black" weight="fontWeight-medium">
         Elsewhere
       </Text>
 
