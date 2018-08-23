@@ -1,23 +1,28 @@
 @import "~styles/variables.scss";
 
 .profileContainer {
-  display: flex;
-  flex-flow: column;
+  height: 100%;
 }
 
 .profileDetails {
   background: $brand-white;
 }
 
-.profileBounties {
-  background: $brand-nearWhite;
+.profileBountiesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
 }
 
-.filterNav {
-  margin: $xxl-spacing;
-  background: $brand-white;
-  max-width: 14.3rem;
-  min-width: 14.3rem;
+.profileBounties {
+  align-items: stretch;
+  background: $brand-nearWhite;
+  border-top: $base-border;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  height: 100%;
 }
 
 .zeroStateCentered {

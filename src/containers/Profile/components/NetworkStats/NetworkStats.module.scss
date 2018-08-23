@@ -31,11 +31,8 @@
   align-items: center;
   width: 110px;
 
-  > div {
-    margin-bottom: $m-spacing;
-  }
-
   &Label {
+    padding-top: $m-spacing;
     line-height: $base-line-height / 1.5;
   }
 }

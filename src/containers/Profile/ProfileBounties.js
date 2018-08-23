@@ -77,13 +77,13 @@ const ProfileBountiesComponent = props => {
   }
 
   return (
-    <div className={className}>
+    <div className={styles.explorerBody}>
       <div className={styles.bodyHeading}>
         <div>
           <Text
             inline
             color="purple"
-            typeScale="h3"
+            typeScale="h2"
             className={styles.bountyNumber}
           >
             {count}

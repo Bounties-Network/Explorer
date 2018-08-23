@@ -2,12 +2,12 @@
 
 .details {
   display: flex;
+  margin: ($xxl-spacing * 2) 0;
   padding: 0 $xl-spacing;
   justify-content: center;
 }
 
 .detailsSection {
-  margin: ($xxl-spacing * 2) 0;
 
   &:not(:last-child) {
     margin-right: $l-spacing;
