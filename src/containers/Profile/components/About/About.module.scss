@@ -16,17 +16,13 @@
 
 .icon {
   color: $brand-grey;
-  margin-top: -$s-spacing / 2;
+  margin-top: -$s-spacing;
   margin-right: $base-spacing;
 }
 
 .bulletPoint {
   display: flex;
   flex-direction: row;
-
-  p:not(:last-child) {
-    margin-bottom: $m-spacing;
-  }
 }
 
 .bulletPointText {

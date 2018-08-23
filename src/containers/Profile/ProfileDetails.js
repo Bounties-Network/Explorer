@@ -39,60 +39,51 @@ const ProfileDetailsComponent = props => {
 
   let body = (
     <React.Fragment>
-      <div className="row">
-        <div className="col-xs-12">
-          <ProfileAvatar
-            name={user.name}
-            address={user.public_address}
-            img={
-              user.is_profile_image_dirty
-                ? ipfsToHttp(user.profileDirectoryHash, user.profileFileName)
-                : user.profile_image
-            }
-            className={styles.profileAvatar}
-          />
-        </div>
-      </div>
-      <div className={`row ${styles.marginBottom}`}>
-        <div
-          className={`col-xs-12 row ${styles.details} ${styles.centerContent}`}
-        >
-          {user.organization &&
-            user.languages.length && (
-              <div className="col-xs-2">
-                <About
-                  organization={user.organization}
-                  languages={user.languages}
-                />
-              </div>
-            )}
-
-          {!!user.skills &&
-            !!user.skills.length && (
-              <div className="col-xs-2">
-                <Skills skills={user.skills} />
-              </div>
-            )}
-          <div className="col-xs-4">
-            <NetworkStats
-              stats={userStats}
-              switchValue={switchValue}
-              toggleNetworkSwitch={toggleNetworkSwitch}
-              address={user.public_address}
-              setReviewsModalVisible={setReviewsModalVisible}
-            />
-          </div>
-          {(user.website || user.twitter || user.github || user.linkedin) && (
-            <div className="col-xs-2">
-              <Elsewhere
-                website={user.website}
-                twitter={user.twitter}
-                github={user.github}
-                linkedin={user.linkedin}
+      <ProfileAvatar
+        name={user.name}
+        address={user.public_address}
+        img={
+          user.is_profile_image_dirty
+            ? ipfsToHttp(user.profileDirectoryHash, user.profileFileName)
+            : user.profile_image
+        }
+        className={styles.profileAvatar}
+      />
+      <div className={`${styles.details} ${styles.centerContent}`}>
+        {user.organization &&
+          user.languages.length && (
+            <div className={styles.detailsSection}>
+              <About
+                organization={user.organization}
+                languages={user.languages}
               />
             </div>
           )}
+        {!!user.skills &&
+          !!user.skills.length && (
+            <div className={styles.detailsSection}>
+              <Skills skills={user.skills} />
+            </div>
+          )}
+        <div className={styles.detailsSection}>
+          <NetworkStats
+            stats={userStats}
+            switchValue={switchValue}
+            toggleNetworkSwitch={toggleNetworkSwitch}
+            address={user.public_address}
+            setReviewsModalVisible={setReviewsModalVisible}
+          />
         </div>
+        {(user.website || user.twitter || user.github || user.linkedin) && (
+          <div className={styles.detailsSection}>
+            <Elsewhere
+              website={user.website}
+              twitter={user.twitter}
+              github={user.github}
+              linkedin={user.linkedin}
+            />
+          </div>
+        )}
       </div>
       <div className="row">
         <div className="col-xs-12">

@@ -1,30 +1,22 @@
 @import "~styles/variables.scss";
 
 .details {
-  > div:not(:last-child) {
-    border-right: $base-border;
-  }
+  display: flex;
+  justify-content: center;
+}
 
-  > div:not(:first-child) {
-    margin-left: $xl-spacing
+.detailsSection {
+  margin: ($xxl-spacing * 2) 0;
+
+  &:not(:last-child) {
+    margin-right: $l-spacing;
+    padding-right: $l-spacing;
+    border-right: $base-border;
   }
 }
 
 .profileAvatar {
-  padding: $xxl-spacing 0;
-
-  > div, > p {
-    margin-bottom: $base-spacing;
-  }
-}
-
-.marginBottom {
-  margin-bottom: $xxl-spacing;
-}
-
-.centerContent {
-  display: flex;
-  justify-content: center;
+  padding-top: $xxl-spacing;
 }
 
 .bodyLoading {
