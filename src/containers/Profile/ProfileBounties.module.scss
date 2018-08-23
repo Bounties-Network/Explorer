@@ -25,6 +25,11 @@
   flex-direction: column;
 }
 
+.bodyInnerContainer {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
 .bodyHeading {
   width: 100%;
   display: flex;
