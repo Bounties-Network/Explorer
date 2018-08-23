@@ -8,7 +8,7 @@ import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 
 const ActivateDraftFormModal = props => {
-  const { onClose, minimumBalance, handleSubmit } = props;
+  const { onClose, minimumBalance, handleSubmit, tokenSymbol } = props;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -23,14 +23,15 @@ const ActivateDraftFormModal = props => {
           <Modal.Message>Activate your bounty</Modal.Message>
           <Modal.Description>
             Indicate an amount for your initial deposit to activate the bounty.
-            At minimum, your initial deposit must match your payout amount.
+            At minimum, your initial deposit must match your payout amount{' '}
+            {`(${minimumBalance} ${tokenSymbol}).`}
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
           <Field
             name="balance"
             component={FormTextInput}
-            label="Deposit amount (ETH or whole tokens)"
+            label={`Deposit amount (${tokenSymbol}).`}
             normalize={normalizers.number}
             validate={[
               validators.required,

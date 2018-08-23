@@ -107,10 +107,8 @@ const mapStateToProps = (state, router) => {
       issuer_name: draftBounty.issuer_name || user.name || '',
       activateNow: !isDraftPage,
       deadline: draftBounty.deadline
-        ? moment(draftBounty.deadline)
-        : moment()
-            .add(3, 'days')
-            .utc()
+        ? moment.utc(draftBounty.deadline).local()
+        : moment().add(3, 'days')
     }
   };
 };

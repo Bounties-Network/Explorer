@@ -18,7 +18,7 @@ export function* loadFulfillments() {
   const params = yield select(fulfillmentsQuerySelector);
 
   try {
-    let endpoint = 'fulfillment';
+    let endpoint = 'fulfillment/';
     const fulfillments = yield call(request, endpoint, 'GET', { params });
     const { results, count } = fulfillments;
     yield put(loadFulfillmentsSuccess(results, count));
@@ -34,7 +34,7 @@ export function* loadMoreFulfillments() {
   params['offset'] = offset;
 
   try {
-    let endpoint = 'fulfillment';
+    let endpoint = 'fulfillment/';
     const fulfillments = yield call(request, endpoint, 'GET', { params });
     const { results, count } = fulfillments;
     yield put(loadMoreFulfillmentsSuccess(results, count));

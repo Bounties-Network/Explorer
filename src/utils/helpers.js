@@ -1,3 +1,13 @@
+export function getTimezone() {
+  if (Intl && Intl.DateTimeFormat) {
+    const dateTimeFormat = Intl.DateTimeFormat();
+    if (dateTimeFormat.resolvedOptions) {
+      return dateTimeFormat.resolvedOptions().timeZone;
+    }
+  }
+  return '';
+}
+
 export function shortenAddress(address) {
   return address.slice(0, 6) + '...' + address.slice(-4);
 }

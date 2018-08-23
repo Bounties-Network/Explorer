@@ -11,7 +11,9 @@ import { actions as bountyActions } from 'public-modules/Bounty';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { TransactionWalkthrough } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
+import { getTimezone } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
+import moment from 'moment';
 import {
   stdBountyStateSelector,
   createDraftStateSelector,
@@ -89,6 +91,7 @@ class CreateBountyFormComponent extends React.Component {
       filename,
       resetUpload,
       deleteUploadKey,
+      minDate,
       bountyId
     } = this.props;
 
@@ -252,8 +255,9 @@ class CreateBountyFormComponent extends React.Component {
               When will this bounty be due?
             </FormSection.Description>
             <FormSection.SubText>
-              Enter the date and time for this bounty's deadline (Timezone is in
-              UTC)
+              Enter the date and time for this bounty's deadline{getTimezone()
+                ? ` (timezone ${getTimezone()}).`
+                : '.'}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -262,6 +266,7 @@ class CreateBountyFormComponent extends React.Component {
                     disabled={submittingBounty}
                     name="deadline"
                     component={FormDatePicker}
+                    minDate={minDate}
                     showTimeSelect
                   />
                 </div>
@@ -403,6 +408,9 @@ const mapStateToProps = state => {
     uid: draftBounty.uid,
     bountyId: draftBounty.id,
     filename: uploadedFile ? uploadedFile.fileName : draftBounty.sourceFileName,
+    minDate: draftBounty.deadline
+      ? moment.utc(draftBounty.deadline)
+      : moment().add(1, 'days'),
     fileHash: uploadedFile
       ? uploadedFile.ipfsHash
       : draftBounty.sourceDirectoryHash

@@ -224,9 +224,9 @@ class BountyComponent extends React.Component {
                     {bounty.bountyStage === EXPIRED ? 'Expired' : 'Deadline'}
                   </Text>
                   <Text>
-                    {moment(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ').fromNow(
-                      true
-                    )}
+                    {moment
+                      .utc(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ')
+                      .fromNow(true)}
                   </Text>
                 </div>
                 <div className={styles.labelGroup}>

@@ -18,20 +18,14 @@ class DatePicker extends React.Component {
 
   onDateChange = e => {
     if (moment(e).isValid()) {
-      this.setState({ date: e.utc() }, () => {
-        this.props.onChange(e.utc());
+      this.setState({ date: e }, () => {
+        this.props.onChange(e);
       });
     }
   };
 
   render() {
-    const {
-      minDate,
-      showTimeSelect,
-      label,
-      disabled,
-      value
-    } = this.props;
+    const { minDate, showTimeSelect, label, disabled, value } = this.props;
     const { date: stateDate } = this.state;
 
     const dateValue = value || stateDate;
@@ -51,7 +45,7 @@ class DatePicker extends React.Component {
         <Datetime
           disabled={disabled}
           onChange={this.onDateChange}
-          selected={this.state.date}
+          selected={dateValue}
           minDate={minDate}
           showTimeSelect={showTimeSelect}
           value={dateValue.format(format)}

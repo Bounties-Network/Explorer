@@ -174,12 +174,8 @@ export function* createBounty(action) {
       'ether'
     );
   }
-  const deadline = parseInt(
-    moment(values.deadline)
-      .utc()
-      .toDate()
-      .getTime() / 1000
-  );
+
+  const deadline = parseInt(moment(values.deadline).unix());
 
   const issuedData = {
     payload: {
@@ -388,12 +384,7 @@ export function* extendDeadline(action) {
   const { id, deadline } = action;
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
-  const formattedDeadline = parseInt(
-    moment(deadline)
-      .utc()
-      .toDate()
-      .getTime() / 1000
-  );
+  const formattedDeadline = parseInt(moment(deadline).unix());
 
   try {
     const { standardBounties } = yield call(getContractClient);

@@ -105,7 +105,13 @@ const ModalManagerComponent = props => {
     initiateWalkthrough(() => fulfillBountyAction(bounty.id, values));
 
   if (modalType === 'contribute') {
-    return <ContributeFormModal onClose={closeModal} onSubmit={contribute} />;
+    return (
+      <ContributeFormModal
+        onClose={closeModal}
+        onSubmit={contribute}
+        tokenSymbol={bounty.tokenSymbol}
+      />
+    );
   }
 
   if (modalType === 'deadlineWarning') {
@@ -127,24 +133,27 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={activateDraftBounty}
         minimumBalance={minimumBalance}
+        tokenSymbol={bounty.tokenSymbol}
+        initialValues={{ balance: minimumBalance }}
       />
     );
   }
 
   if (modalType === 'extendDeadline') {
-    const tomorrow = moment()
-      .add(1, 'days')
-      .utc();
-    const currentDeadline = moment(bounty.deadline).utc();
+    const tomorrow = moment().add(1, 'days');
+    const currentDeadline = moment.utc(bounty.deadline);
 
     const minimumDeadline =
-      currentDeadline > tomorrow ? currentDeadline : tomorrow;
+      currentDeadline > tomorrow
+        ? currentDeadline.add(1, 'days').local()
+        : tomorrow;
 
     return (
       <ExtendDeadlineFormModal
         onClose={closeModal}
         onSubmit={extendDeadline}
         minimumDeadline={minimumDeadline}
+        initialValues={{ deadline: minimumDeadline }}
       />
     );
   }
@@ -164,6 +173,8 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={activateBounty}
         minimumBalance={minimumBalance}
+        tokenSymbol={bounty.tokenSymbol}
+        initialValues={{ balance: minimumBalance }}
       />
     );
   }
@@ -177,6 +188,7 @@ const ModalManagerComponent = props => {
           bounty.calculated_fulfillmentAmount,
           10
         ).toString()}
+        tokenSymbol={bounty.tokenSymbol}
         minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}
       />
     );
