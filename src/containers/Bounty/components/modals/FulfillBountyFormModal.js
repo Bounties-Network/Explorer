@@ -123,7 +123,7 @@ let FulfillBountyFormModalComponent = props => {
           >
             Cancel
           </Button>
-          <Button disabled={uploading} type="primary" buttonType="button">
+          <Button disabled={uploading} type="primary" buttonType="submit">
             Submit
           </Button>
         </Modal.Footer>
