@@ -19,20 +19,22 @@ const WalletRequired = props => {
         </Modal.Message>
       </Modal.Header>
       <Modal.Body>
-        <Text inline>In order to use </Text>
-        <Text weight="fontWeight-bold" inline>
-          bounties.network
-        </Text>
-        <Text inline>, please install a secure wallet such as </Text>
-        <Text inline link src="https://metamask.io/">
-          MetaMask.{' '}
-        </Text>
-        <Text inline>
+        <Modal.Description>
+          In order to use
+          <Text weight="fontWeight-bold" inline>
+            {' '}
+            bounties.network
+          </Text>
+          , please install a secure wallet such as
+          <Text inline link src="https://metamask.io/">
+            {' '}
+            MetaMask.{' '}
+          </Text>
           If you&#39;d like help getting set up, take a look at our{' '}
-        </Text>
-        <Text inline link src="https://bounties.network/gettingStarted">
-          Getting Started Guide
-        </Text>
+          <Text link src="https://bounties.network/gettingStarted">
+            Getting Started Guide.
+          </Text>
+        </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
         {closable ? (

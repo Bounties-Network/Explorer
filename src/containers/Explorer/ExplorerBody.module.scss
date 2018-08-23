@@ -2,17 +2,18 @@
 
 .explorerBody {
   margin-left: 0;
-  padding: $l-spacing $base-spacing;
+  padding: $l-spacing 0;
   width: 100%;
   height: 100%;
+  overflow: auto;
 
   @media only screen and (min-width: 48em) {
-    padding: $xl-spacing $m-spacing $xl-spacing calc(#{$filterNav-width-fluid} + #{$xl-spacing});
+    padding: $xl-spacing $base-spacing $xl-spacing calc(#{$filterNav-width-fluid} + #{$l-spacing});
   }
 
   @media only screen and (min-width: 65em) {
-    padding-left: $filterNav-width-fixed + $l-spacing;
-    padding-right: $l-spacing;
+    padding-left: $filterNav-width-fixed + $m-spacing;
+    padding-right: $m-spacing;
   }
 }
 
@@ -43,6 +44,11 @@
 
 .bountyNumber {
   margin-right: $s-spacing;
+  margin-left: $m-spacing;
+
+  @media only screen and (min-width: 48em) {
+    margin-left: 0;
+  }
 }
 
 .sortGroup {

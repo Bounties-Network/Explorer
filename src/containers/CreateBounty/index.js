@@ -57,7 +57,7 @@ class CreateBountyComponent extends React.Component {
 
     return (
       <PageCard>
-        <PageCard.Header className={styles.createBountyHeader}>
+        <PageCard.Header>
           <PageCard.Title>
             {isDraftPage ? 'Edit Bounty' : 'Create Bounty'}
           </PageCard.Title>

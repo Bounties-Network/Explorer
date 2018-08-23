@@ -3,10 +3,6 @@
 .createBounty {
 }
 
-.createBountyHeader {
-  padding: $xxl-spacing 0;
-}
-
 .centeredBody {
   height: 100%;
   display: flex;
@@ -42,15 +38,16 @@
   display: block;
   border-top: $base-border;
   text-align: center;
-  margin-left: -$l-spacing;
-  margin-right: -$l-spacing;
+  margin-left: -$m-spacing;
+  margin-right: -$m-spacing;
   padding-top: $xl-spacing;
   padding-bottom: $xl-spacing;
-  margin-bottom: -$l-spacing;
+  margin-bottom: -$m-spacing;
 
   @media only screen and (min-width: 48em) {
     margin-left: -($xxl-spacing + $m-spacing);
     margin-right: -($xxl-spacing + $m-spacing);
+    margin-bottom: -$l-spacing;
     padding-bottom: 0;
   }
 }

@@ -21,6 +21,10 @@ input, textarea {
   overflow: hidden;
 }
 
+.page-body {
+  overflow: auto;
+}
+
 body {
   height: 100%;
   width: 100%;

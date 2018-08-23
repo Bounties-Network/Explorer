@@ -3,8 +3,13 @@
 .tabsContainer {
   padding: 1px 0;
   position: relative;
-  margin-left: -$l-spacing;
-  margin-right: -$l-spacing;
+  margin-left: -$m-spacing;
+  margin-right: -$m-spacing;
+
+  @media only screen and (min-width: 35em) {
+    margin-left: -$l-spacing;
+    margin-right: -$l-spacing;
+  }
 
   &:not(:last-child):after {
     position: absolute;
@@ -21,9 +26,16 @@
   justify-content: center;
   padding-top: 0;
   padding-bottom: $m-spacing;
+  margin-right: 0;
 
   @media only screen and (min-width: 35em) {
     padding-bottom: $l-spacing;
+  }
+}
+
+.tabText {
+  @media only screen and (min-width: 35em) {
+    font-size: $h3-font-size;
   }
 }
 
@@ -51,7 +63,7 @@
 }
 
 .commentItem {
-  padding: $m-spacing $m-spacing;
+  padding: $l-spacing 0;
   position: relative;
   border-radius: $base-border-radius;
   margin-top: -$base-border-width;
@@ -60,10 +72,14 @@
     position: absolute;
     content: '';
     border-bottom: $base-border-width solid $brand-lightGrey;
-    width: calc(100% + 3rem);
+    width: calc(100% + 2rem);
     padding: 0 $m-spacing;
     bottom: 0;
     transform: translateX(-50%);
     left: 50%;
+
+    @media only screen and (min-width: 35em) {
+      width: calc(100% + 3rem);
+    }
   }
 }

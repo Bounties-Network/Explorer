@@ -16,13 +16,8 @@ import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
 import { ipfsToHttp } from 'utils/helpers';
 import { Cropper, Button, Text } from 'components';
-import {
-  FormTextInput,
-  FormSearchSelect,
-} from 'form-components';
-import {
-  UPLOAD_KEY
-} from './constants';
+import { FormTextInput, FormSearchSelect } from 'form-components';
+import { UPLOAD_KEY } from './constants';
 
 class UserSettingsComponent extends React.Component {
   constructor(props) {
@@ -98,7 +93,7 @@ class UserSettingsComponent extends React.Component {
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-6">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={savingSettings}
                     name="name"
@@ -108,7 +103,7 @@ class UserSettingsComponent extends React.Component {
                     validate={[validators.maxLength(128)]}
                   />
                 </div>
-                <div className="col-xs-6">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={savingSettings}
                     name="email"
@@ -122,7 +117,7 @@ class UserSettingsComponent extends React.Component {
             </FormSection.InputGroup>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-6">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={savingSettings}
                     name="languages"
@@ -134,7 +129,7 @@ class UserSettingsComponent extends React.Component {
                     valueKey="normalized_name"
                   />
                 </div>
-                <div className="col-xs-6">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={savingSettings}
                     name="organization"
@@ -158,7 +153,7 @@ class UserSettingsComponent extends React.Component {
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-6">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={savingSettings}
                     name="skills"
@@ -181,7 +176,7 @@ class UserSettingsComponent extends React.Component {
             </FormSection.Description>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-6">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={savingSettings}
                     name="website"
@@ -191,7 +186,7 @@ class UserSettingsComponent extends React.Component {
                     validate={[validators.maxLength(128)]}
                   />
                 </div>
-                <div className="col-xs-6">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={savingSettings}
                     name="twitter"
@@ -205,7 +200,7 @@ class UserSettingsComponent extends React.Component {
             </FormSection.InputGroup>
             <FormSection.InputGroup>
               <div className="row">
-                <div className="col-xs-6">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={savingSettings}
                     name="github"
@@ -215,7 +210,7 @@ class UserSettingsComponent extends React.Component {
                     validate={[validators.maxLength(128)]}
                   />
                 </div>
-                <div className="col-xs-6">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={savingSettings}
                     name="linkedin"
@@ -229,8 +224,7 @@ class UserSettingsComponent extends React.Component {
             </FormSection.InputGroup>
           </FormSection.Section>
         </FormSection>
-        <PageCard.Break />
-        <div className={styles.buttons}>
+        <div className={styles.buttonContainer}>
           <Button
             type="primary"
             disabled={uploading || (submitFailed && invalid)}

@@ -136,7 +136,7 @@ class BountyComponent extends React.Component {
     return (
       <div>
         <PageCard>
-          <PageCard.Header>
+          <PageCard.Header className={styles.bountyPageCardHeader}>
             <div className={styles.header}>
               <div className={styles.ethBox}>
                 <Text color="white" typeScale="h2" className={styles.usd}>

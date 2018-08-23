@@ -1,18 +1,39 @@
 @import "~styles/variables.scss";
 
+.leaderboardItem {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
 .avatar {
+  flex: 3;
   text-align: left;
+
+  p {
+    text-overflow: ellipsis;
+
+    @media only screen and (min-width: 35em) {
+      font-size: $h3-font-size;
+    }
+  }
 }
 
 .place {
   text-align: left;
-  margin-top: $s-spacing
+  margin-right: $l-spacing;
+
+  @media only screen and (min-width: 35em) {
+    font-size: $h3-font-size;
+  }
 }
 
 .price {
-  text-align: right;
+  padding-left: $m-spacing;
 }
 
 .usd {
-  margin-top: $base-spacing
+  @media only screen and (min-width: 35em) {
+    font-size: $h3-font-size;
+  }
 }

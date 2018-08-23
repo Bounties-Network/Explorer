@@ -31,7 +31,7 @@ const LeaderboardCardComponent = props => {
       const { name, address, profile_image, total_usd } = leader;
 
       return (
-        <ListGroup.ListItem hover>
+        <ListGroup.ListItem>
           <LeaderItem
             key={index + 1}
             place={index + 1}

@@ -2,7 +2,24 @@
 
 .cardContent {
   text-align: left;
-  margin-bottom: $xxl-spacing;
+  padding: 0;
+
+  &:not(:first-of-type) {
+    margin-bottom: 0;
+  }
+
+  @media only screen and (min-width: 48em) {
+    margin-bottom: $xxl-spacing;
+    padding: $xl-spacing;
+  }
+}
+
+.input:not(:last-child) {
+  padding-bottom: $l-spacing;
+
+  @media only screen and (min-width: 48em) {
+    padding-bottom: 0;
+  }
 }
 
 .markdownEditor {
@@ -13,10 +30,20 @@
   margin-top: $base-spacing;
 }
 
-.buttons {
+.buttonContainer {
+  display: block;
+  border-top: $base-border;
   text-align: center;
-}
+  margin-left: -$m-spacing;
+  margin-right: -$m-spacing;
+  padding-top: $xl-spacing;
+  padding-bottom: $xl-spacing;
+  margin-bottom: -$m-spacing;
 
-.emailToggle {
-  margin-bottom: $base-spacing;
+  @media only screen and (min-width: 48em) {
+    margin-left: -($xxl-spacing + $m-spacing);
+    margin-right: -($xxl-spacing + $m-spacing);
+    margin-bottom: -$l-spacing;
+    padding-bottom: 0;
+  }
 }

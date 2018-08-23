@@ -8,23 +8,34 @@
 }
 
 .hover {
-  border-left: 1px solid $brand-white;
   box-shadow: none;
 }
 
 .hover:hover {
-  box-shadow: $base-box-shadow, -3px 0 0 0 $brand-purple;
+  box-shadow: $base-box-shadow;
 }
 
 .header {
   border-bottom: $base-border;
-  padding: 0 $l-spacing;
+  padding: 0 $m-spacing;
+
+  @media only screen and (min-width: 48em) {
+    padding: 0 $l-spacing;
+  }
 }
 
 .headerTitle {
-  padding: $l-spacing 0;
+  padding: $m-spacing 0;
+
+  @media only screen and (min-width: 48em) {
+    padding: $l-spacing 0;
+  }
 }
 
 .body {
-  padding: $l-spacing;
+  padding: $m-spacing;
+
+  @media only screen and (min-width: 48em) {
+    padding: $l-spacing;
+  }
 }

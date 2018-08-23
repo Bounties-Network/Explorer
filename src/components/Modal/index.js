@@ -257,11 +257,13 @@ class Modal extends React.Component {
             onClick={this.modalClick}
           >
             <ModalContext.Provider value={{ onClose: this.onClose }}>
-              {this.renderHeader(header)}
-              {this.renderHeading(heading)}
-              {this.renderMessage(message)}
-              {this.renderDescription(description)}
-              {this.renderBody(body)}
+              <main className={styles.modalMain}>
+                {this.renderHeader(header)}
+                {this.renderHeading(heading)}
+                {this.renderMessage(message)}
+                {this.renderDescription(description)}
+                {this.renderBody(body)}
+              </main>
               {this.renderFooter(footer)}
             </ModalContext.Provider>
           </div>

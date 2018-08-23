@@ -1,5 +1,8 @@
 @import "~styles/variables.scss";
 
+$modal-padding-small: $m-spacing;
+$modal-padding-large: $l-spacing;
+
 .hidden {
   display: none;
 }
@@ -21,13 +24,18 @@
 }
 
 .modal {
-  max-height: 100%;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
   border-radius: $base-border-radius;
   box-shadow: $base-box-shadow;
   position: relative;
   background: $brand-white;
-  padding: $l-spacing;
+  padding: $modal-padding-small;
+
+  @media only screen and (min-width: 48em) {
+    padding: $modal-padding-large;
+  }
 }
 
 .closeIcon {
@@ -41,10 +49,26 @@
   }
 }
 
+.modalMain {
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-left: -$modal-padding-small;
+  margin-right: -$modal-padding-small;
+  padding-left: $modal-padding-small;
+  padding-right: $modal-padding-small;
+
+  @media only screen and (min-width: 48em) {
+    margin-left: -$modal-padding-large;
+    margin-right: -$modal-padding-large;
+    padding-left: $modal-padding-large;
+    padding-right: $modal-padding-large;
+  }
+}
+
 .iconHeader {
   color: $brand-purple;
   margin: $xxl-spacing 0;
-  font-size: 3em;
+  font-size: 2.5rem;
 }
 
 .loadingHeader {
@@ -58,7 +82,8 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  padding-top: $header-height-sm + $s-spacing;
+  margin-top: $s-spacing;
+  margin-bottom: $s-spacing;
 }
 
 .small, .medium, .large {
@@ -83,9 +108,6 @@
   max-height: 95%;
 }
 
-.header {
-}
-
 .headerContent {
   line-height: $base-line-height;
   padding: $xxl-spacing 0 0 0;
@@ -106,6 +128,8 @@
 .description {
   padding: $xl-spacing 0 $xxl-spacing;
   text-align: center;
+  margin: 0 auto;
+  max-width: 38rem;
 }
 
 .body {
@@ -117,11 +141,28 @@
 }
 
 .footer {
-  margin: $xxl-spacing (-$l-spacing) 0;
-  border-top: $base-border;
-  text-align: right;
-  padding: $l-spacing $l-spacing 0;
+  display: flex;
+  flex-direction: row;
+
+  @media only screen and (min-width: 35em) {
+    display: block;
+    text-align: right;
+  }
+
+  button {
+    flex: 1;
+  }
 }
 
 .footerWrapper {
+  border-top: $base-border;
+  padding: $modal-padding-small $modal-padding-small 0;
+  margin-left: -$modal-padding-small;
+  margin-right: -$modal-padding-small;
+
+  @media only screen and (min-width: 48em) {
+    padding: $modal-padding-large $modal-padding-large 0;
+    margin-left: -$modal-padding-large;
+    margin-right: -$modal-padding-large;
+  }
 }
