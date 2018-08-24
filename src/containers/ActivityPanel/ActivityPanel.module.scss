@@ -9,7 +9,13 @@
 }
 
 .listGroup {
-  margin: -$m-spacing;
+  margin: -$base-spacing;
+  margin-right: calc((#{$base-spacing} + 8px) * -1);
+
+  @media only screen and (min-width: 48em) {
+    margin: -$m-spacing;
+    margin-right: calc((#{$m-spacing} + 8px) * -1);
+  }
 }
 
 .activityListItem {

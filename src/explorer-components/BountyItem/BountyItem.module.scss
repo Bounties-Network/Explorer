@@ -6,7 +6,7 @@
 }
 
 .details {
-  margin-top: $m-spacing
+  margin-top: $base-spacing * 1.5;
 }
 
 .value {
@@ -14,6 +14,6 @@
   text-align: right;
 }
 
-.usd {
-  margin-top: $base-spacing
+.eth {
+  margin-top: $base-spacing * 1.5;
 }

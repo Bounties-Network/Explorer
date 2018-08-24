@@ -18,16 +18,21 @@
 }
 
 .mobileContainer {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  //overflow-x: hidden;
+  height: calc(100vh - #{$header-height-sm});
 
-  @media only screen and (max-width: 48em) {
-    display: block;
+  @media only screen and (min-width: 48em) {
+    display: none;
   }
 }
 
 .panelContainer {
   display: flex;
   flex-wrap: wrap;
+  height: 100vh;
 }
 
 .bountiesPanel {
