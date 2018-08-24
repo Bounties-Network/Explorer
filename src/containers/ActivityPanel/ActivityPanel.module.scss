@@ -8,6 +8,15 @@
   }
 }
 
+.listGroup {
+  margin: -$m-spacing;
+}
+
+.activityListItem {
+  padding-top: $base-spacing * 1.5;
+  padding-bottom: $base-spacing * 1.5;
+}
+
 .loadMoreButton {
   text-align: center;
 }

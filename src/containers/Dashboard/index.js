@@ -32,33 +32,25 @@ class DashboardComponent extends React.Component {
     };
     return (
       <div>
-        <div className={`container-fluid ${styles.desktopContainer}`}>
-          <div className="row center-xs">
-            <div className="col-xs-10">
+        <div className={`pageWrapper-large ${styles.desktopContainer}`}>
+          <div className="row">
+            <div className="col-xs-12">
               <UserStats className={styles.statsContainer} />
             </div>
           </div>
-          <div className="row center-xs">
-            <div className="col-xs-5">
-              <BountiesPanel
-                className={styles.bountiesPanel}
-                bodyClass={styles.bodyClass}
-              />
-            </div>
-            <div className="col-xs-5">
-              <ActivityPanel
-                className={styles.activityPanel}
-                bodyClass={styles.bodyClass}
-              />
-            </div>
-          </div>
-          <div className="row center-xs">
-            <div className="col-xs-10">
-              <SubmissionsPanel
-                className={styles.submissionsPanel}
-                bodyClass={styles.bodyClass}
-              />
-            </div>
+          <div className={styles.panelContainer}>
+            <BountiesPanel
+              className={styles.bountiesPanel}
+              bodyClass={styles.bodyClass}
+            />
+            <ActivityPanel
+              className={styles.activityPanel}
+              bodyClass={styles.bodyClass}
+            />
+            <SubmissionsPanel
+              className={styles.submissionsPanel}
+              bodyClass={styles.bodyClass}
+            />
           </div>
         </div>
         <div className={styles.mobileContainer}>

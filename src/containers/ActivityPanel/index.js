@@ -25,7 +25,7 @@ class ActivityPanelComponent extends React.Component {
       const relative_link = link.replace(new RegExp('^.*//[^/]+'), '');
 
       return (
-        <ListGroup.ListItem hover>
+        <ListGroup.ListItem className={styles.activityListItem} hover>
           <Link to={relative_link} className={styles.link}>
             <NotificationItem
               type={notification_id}
@@ -53,7 +53,9 @@ class ActivityPanelComponent extends React.Component {
     let zeroStateClass;
     let body = (
       <React.Fragment>
-        <ListGroup>{this.renderActivity(list)}</ListGroup>
+        <ListGroup className={styles.listGroup}>
+          {this.renderActivity(list)}
+        </ListGroup>
         {list.length < count && (
           <div className={styles.loadMoreButton}>
             <Button loading={loadingMore} onClick={loadMore}>

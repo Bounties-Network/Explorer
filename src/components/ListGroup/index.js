@@ -7,15 +7,14 @@ class ListItem extends React.Component {
     const { hover, className } = this.props;
 
     let itemClass = styles.listItem;
-    if (className) {
-      itemClass = className;
-    }
 
     if (hover) {
       itemClass += ` ${styles.itemHover}`;
     }
 
-    return <li className={itemClass}>{this.props.children}</li>;
+    return (
+      <li className={`${className} ${itemClass}`}>{this.props.children}</li>
+    );
   }
 }
 
@@ -26,7 +25,13 @@ ListItem.propTypes = {
 
 class ListGroup extends React.Component {
   render() {
-    return <ul className={styles.listGroup}>{this.props.children}</ul>;
+    const { className } = this.props;
+
+    return (
+      <ul className={`${className} ${styles.listGroup}`}>
+        {this.props.children}
+      </ul>
+    );
   }
 }
 

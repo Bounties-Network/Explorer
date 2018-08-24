@@ -27,10 +27,10 @@ const NotificationItem = props => {
         )}
       </div>
       <div className={styles.text}>
-        <Text color="black" inline>
+        <Text color="black" typeScale="Small" inline>
           {message}
         </Text>
-        <Text color="black" weight="fontWeight-medium" inline>
+        <Text color="black" weight="fontWeight-medium" typeScale="Small" inline>
           {' ' + title}
         </Text>
       </div>
