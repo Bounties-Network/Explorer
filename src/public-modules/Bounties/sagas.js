@@ -6,6 +6,7 @@ import {
   bountiesQuerySelector,
   rootBountiesSelector
 } from 'public-modules/Bounties/selectors';
+import { queryStringToObject } from 'utils/locationHelpers';
 
 const {
   LOAD_BOUNTIES,
@@ -28,13 +29,59 @@ const {
   loadBountiesFail,
   loadBountiesSuccess,
   loadMoreBountiesFail,
-  loadMoreBountiesSuccess
+  loadMoreBountiesSuccess,
+  setSearch,
+  toggleStageFilter,
+  toggleDifficultyFilter,
+  addCategoryFilter,
+  removeCategoryFilter
 } = actions;
 
+export function* initializeFiltersFromQuery() {
+  const params = queryStringToObject(window.location.search);
+
+  const { search, bountyStage, difficulty, category } = params;
+
+  if (search) {
+    yield put(setSearch(search, false));
+  }
+
+  if (difficulty) {
+    const difficulties = difficulty.split(',');
+    for (let i = 0; i < difficulties.length; i++) {
+      yield put(toggleDifficultyFilter(difficulties[i], false));
+    }
+  }
+
+  if (bountyStage === '') {
+    yield put(toggleStageFilter('active', false));
+  }
+
+  if (bountyStage) {
+    const stages = bountyStage.split(',');
+    for (let i = 0; i < stages.length; i++) {
+      yield put(toggleStageFilter(stages[i], false));
+    }
+  }
+
+  if (category) {
+    const categories = category.split(',');
+    for (let i = 0; i < categories.length; i++) {
+      yield put(addCategoryFilter(categories[i], false));
+    }
+  }
+}
+
 export function* loadBounties(action) {
-  if (action.type !== LOAD_BOUNTIES) {
+  const { triggerLoad, initializeFromQuery } = action;
+  if (action.type !== LOAD_BOUNTIES && triggerLoad) {
     return yield put(loadBountiesAction());
   }
+
+  if (action.type === LOAD_BOUNTIES && initializeFromQuery) {
+    yield call(initializeFiltersFromQuery);
+  }
+
   let params = yield select(bountiesQuerySelector);
   try {
     let endpoint = 'bounty/';
@@ -64,7 +111,6 @@ export function* loadMoreBounties(action) {
 export function* watchBounties() {
   yield takeLatest(
     [
-      LOAD_BOUNTIES,
       SET_SORT,
       RESET_FILTERS,
       RESET_FILTERS_EXCEPT_ADDRESS,
@@ -81,8 +127,12 @@ export function* watchBounties() {
   );
 }
 
+export function* watchLoadBounties() {
+  yield takeLatest([LOAD_BOUNTIES], loadBounties);
+}
+
 export function* watchLoadMoreBounties() {
   yield takeLatest([LOAD_MORE_BOUNTIES], loadMoreBounties);
 }
 
-export default [watchBounties, watchLoadMoreBounties];
+export default [watchLoadBounties, watchBounties, watchLoadMoreBounties];
