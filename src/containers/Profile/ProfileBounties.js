@@ -77,73 +77,79 @@ const ProfileBountiesComponent = props => {
   }
 
   return (
-    <div className={className}>
-      <div className={styles.bodyHeading}>
-        <div>
-          <Text
-            inline
-            color="purple"
-            typeScale="h3"
-            className={styles.bountyNumber}
-          >
-            {count}
-          </Text>
-          <Text color="defaultGrey" inline>
-            bounties
-          </Text>
+    <div className={styles.explorerBody}>
+      <div className={styles.bodyInnerContainer}>
+        <div className={styles.bodyHeading}>
+          <div>
+            <Text
+              inline
+              color="purple"
+              typeScale="h2"
+              className={styles.bountyNumber}
+            >
+              {count}
+            </Text>
+            <Text color="defaultGrey" inline>
+              bounties
+            </Text>
+          </div>
+          <div className={styles.sortGroup}>
+            <Text
+              inline
+              weight="fontWeight-bold"
+              color="black"
+              typeScale="Body"
+              className={styles.sortByText}
+            >
+              Sort By
+            </Text>
+            <Sort
+              className={styles.sortBy}
+              active={sort === SORT_VALUE}
+              onSort={sortOrder => setSort(SORT_VALUE, sortOrder)}
+            >
+              Value
+            </Sort>
+            <Sort
+              className={styles.sortBy}
+              active={sort === SORT_CREATED}
+              onSort={sortOrder => {
+                setSort(SORT_CREATED, sortOrder);
+              }}
+            >
+              Creation Date
+            </Sort>
+            <Sort
+              className={styles.sortBy}
+              active={sort === SORT_EXPIRY}
+              onSort={sortOrder => setSort(SORT_EXPIRY, sortOrder)}
+            >
+              Expiry
+            </Sort>
+          </div>
         </div>
-        <div className={styles.sortGroup}>
-          <Text
-            inline
-            weight="fontWeight-bold"
-            color="black"
-            typeScale="Body"
-            className={styles.sortByText}
-          >
-            Sort By
-          </Text>
-          <Sort
-            className={styles.sortBy}
-            active={sort === SORT_VALUE}
-            onSort={sortOrder => setSort(SORT_VALUE, sortOrder)}
-          >
-            Value
-          </Sort>
-          <Sort
-            className={styles.sortBy}
-            active={sort === SORT_CREATED}
-            onSort={sortOrder => {
-              setSort(SORT_CREATED, sortOrder);
-            }}
-          >
-            Creation Date
-          </Sort>
-          <Sort
-            className={styles.sortBy}
-            active={sort === SORT_EXPIRY}
-            onSort={sortOrder => setSort(SORT_EXPIRY, sortOrder)}
-          >
-            Expiry
-          </Sort>
-        </div>
+        {loading ? (
+          <div className={styles.bountyListCentered}>
+            <Loader
+              size="medium"
+              color="blue"
+              className={styles.centeredItem}
+            />
+          </div>
+        ) : null}
+        {!loading && bounties.length !== 0 ? (
+          <div className={styles.bountyList}>
+            {renderBounties()}
+            {offset + PAGE_SIZE < count ? (
+              <div className={styles.loadMoreButton}>
+                <Button loading={loadingMore} onClick={loadMoreBounties}>
+                  Load More
+                </Button>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
       </div>
-      {loading ? (
-        <div className={styles.bountyListCentered}>
-          <Loader size="medium" className={styles.centeredItem} />
-        </div>
-      ) : null}
-      {!loading && bounties.length !== 0 ? (
-        <div className={styles.bountyList}>
-          {renderBounties()}
-          {offset + PAGE_SIZE < count ? (
-            <div className={styles.loadMoreButton}>
-              <Button loading={loadingMore} onClick={loadMoreBounties}>
-                Load More
-              </Button>
-            </div>
-          ) : null}
-        </div>
-      ) : null}
       {!loading && !error && bounties.length === 0 ? (
         <div className={styles.bountyListCentered}>
           <ZeroState

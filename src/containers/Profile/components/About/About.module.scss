@@ -7,25 +7,30 @@
 
 .bulletPointContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
-  > div:not(:last-child) {
-    margin-bottom: $l-spacing;
+  @media only screen and (min-width: 35em) {
+    flex-direction: column;
+
+    > div:not(:last-child) {
+      margin-bottom: $l-spacing;
+    }
   }
 }
 
 .icon {
   color: $brand-grey;
-  margin-top: -$s-spacing / 2;
+  margin-top: -$s-spacing;
   margin-right: $base-spacing;
 }
 
 .bulletPoint {
   display: flex;
   flex-direction: row;
+  width: 50%;
 
-  p:not(:last-child) {
-    margin-bottom: $m-spacing;
+  @media only screen and (min-width: 35em) {
+    width: 100%;
   }
 }
 

@@ -6,7 +6,7 @@
   position: relative;
   border: $base-border-width solid transparent;
   border-radius: $base-border-radius;
-  background-color: lighten($brand-purple, 40%);
+  background-color: lighten($brand-purple, 45%);
 
   &:hover {
     border: $base-border-width solid $brand-purple;

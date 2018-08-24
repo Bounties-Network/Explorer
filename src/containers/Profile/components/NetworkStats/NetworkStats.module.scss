@@ -21,16 +21,20 @@
 
 .networkStatsContainer {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
 }
 
 .networkStatCircle {
   display: flex;
   flex-direction: column;
+  padding: 0 $base-spacing;
   align-items: center;
+  width: 33%;
 
-  > div {
-    margin-bottom: $m-spacing;
+  &Label {
+    padding-top: $m-spacing;
+    line-height: $base-line-height / 1.5;
   }
 }
 

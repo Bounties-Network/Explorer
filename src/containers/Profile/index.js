@@ -6,9 +6,7 @@ import ProfileBounties from './ProfileBounties';
 import FilterNav from './FilterNav';
 import styles from './Profile.module.scss';
 import { ZeroState } from 'components';
-import {
-  userInfoSelector,
-} from 'public-modules/UserInfo/selectors';
+import { userInfoSelector } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { actions } from './reducer';
 
@@ -32,37 +30,16 @@ class ProfileComponent extends React.Component {
     const { error, loaded, user } = this.props;
 
     let body = (
-      <div className='fullHeight'>
+      <div className={styles.profileContainer}>
         <div className={`${styles.profileDetails}`}>
           <ProfileDetails />
         </div>
-        <StickyContainer>
+        <div className={styles.profileBountiesContainer}>
           <div className={styles.profileBounties}>
-            <div className='container-fluid'>
-              <div className={`row fullHeight ${styles.clearMargins}`}>
-                <div className={'col-xs-3 fullHeight'}>
-                  <Sticky topOffset={-50}>
-                    {({ style }) => (
-                      <div
-                        className={styles.filterNav}
-                        style={{
-                          transform: style.transform,
-                          position: style.position,
-                          top: 50
-                        }}
-                      >
-                        <FilterNav />
-                      </div>
-                    )}
-                  </Sticky>
-                </div>
-                <div className={`col-xs-9 ${styles.explorerBody}`}>
-                  <ProfileBounties />
-                </div>
-              </div>
-            </div>
+            <FilterNav />
+            <ProfileBounties />
           </div>
-        </StickyContainer>
+        </div>
       </div>
     );
 

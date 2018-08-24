@@ -12,11 +12,14 @@ const InitiateWalkthrough = props => {
         <Modal.Message>Your wallet will take it from here!</Modal.Message>
       </Modal.Header>
       <Modal.Body>
-        <Text className={styles.textBreak}>
-          After clicking &quot;OK &quot;, a wallet dialogue will prompt you to
-          confirm your transaction and pay a small amount of ETH (for gas fees).
-        </Text>
-        <Text>A default gas limit and price will be set for you.</Text>
+        <Modal.Description>
+          <Text className={styles.textBreak}>
+            After clicking &quot;OK &quot;, a wallet dialogue will prompt you to
+            confirm your transaction and pay a small amount of ETH (for gas
+            fees).
+          </Text>
+          <Text>A default gas limit and price will be set for you.</Text>
+        </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
         <Button margin onClick={onClose}>
@@ -62,7 +65,9 @@ const PendingReceipt = props => {
           Waiting for your transaction to be cofirmed on the blockchain...
         </Modal.Message>
       </Modal.Header>
-      <Modal.Body>{text}</Modal.Body>
+      <Modal.Body>
+        <Modal.Description>{text}</Modal.Description>
+      </Modal.Body>
       <Modal.Footer>
         <Button type="primary" onClick={toDashboard}>
           Go to Dashboard
@@ -102,15 +107,16 @@ const WalkthroughSuccess = props => {
 
   return (
     <Modal fixed size="small" visible={visible}>
-      <Modal.Header icon={['far', 'check-circle']}>
+      <Modal.Header icon={['far', 'check-circle']} />
+      <Modal.Body>
         <Modal.Message>Your transaction has been confirmed!</Modal.Message>
-      </Modal.Header>
+      </Modal.Body>
       <Modal.Footer>
-        <Button margin onClick={toDashboard} type="primary">
+        <Button margin onClick={toDashboard}>
           To Dashboard
         </Button>
         <a href={successLink}>
-          <Button type="action">{buttonText}</Button>
+          <Button type="primary">{buttonText}</Button>
         </a>
       </Modal.Footer>
     </Modal>

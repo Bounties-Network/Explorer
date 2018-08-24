@@ -8,7 +8,7 @@ const About = props => {
 
   return (
     <div className={styles.about}>
-      <Text typeScale="h3" color="black">
+      <Text typeScale="h4" color="black" weight="fontWeight-medium">
         About
       </Text>
 
@@ -20,10 +20,8 @@ const About = props => {
               className={styles.icon}
             />
             <div className={styles.bulletPointText}>
-              <Text typeScale="h5" color="defaultGrey">
-                Oranization
-              </Text>
-              <Text typeScale="h4" color="black">
+              <Text inputLabel>Oranization</Text>
+              <Text typeScale="Body" color="black">
                 {organization}
               </Text>
             </div>
@@ -37,10 +35,8 @@ const About = props => {
               className={styles.icon}
             />
             <div className={styles.bulletPointText}>
-              <Text typeScale="h5" color="defaultGrey">
-                Languages spoken
-              </Text>
-              <Text typeScale="h4" color="black">
+              <Text inputLabel>Languages spoken</Text>
+              <Text typeScale="Body" color="black">
                 {languages ? languages.join(', ') : 'N/A'}
               </Text>
             </div>
