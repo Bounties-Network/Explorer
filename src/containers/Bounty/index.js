@@ -25,7 +25,7 @@ import { addressSelector } from 'public-modules/Client/selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
 import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
-import { queryStringToObject } from 'utils/helpers';
+import { queryStringToObject } from 'utils/locationHelpers';
 
 showdown.setOption('simpleLineBreaks', true);
 const converter = new showdown.Converter();
