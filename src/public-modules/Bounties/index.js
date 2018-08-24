@@ -4,7 +4,7 @@ const defaultFilters = {
   search: '',
   stageFilters: {
     drafts: false,
-    active: true,
+    active: false,
     completed: false,
     expired: false,
     dead: false
@@ -45,9 +45,14 @@ const LOAD_MORE_BOUNTIES_SUCCESS = 'bounties/LOAD_MORE_BOUNTIES_SUCCESS';
 const LOAD_BOUNTIES_SUCCESS = 'bounties/LOAD_BOUNTIES_SUCCESS';
 const LOAD_MORE_BOUNTIES_FAIL = 'bounties/LOAD_MORE_BOUNTIES_FAIL';
 const LOAD_BOUNTIES_FAIL = 'bounties/LOAD_BOUNTIES_FAIL';
+const RESET_STATE = 'bounties/RESET_STATE';
 
-function loadBounties() {
-  return { type: LOAD_BOUNTIES };
+function resetState() {
+  return { type: RESET_STATE };
+}
+
+function loadBounties(initializeFromQuery = false) {
+  return { type: LOAD_BOUNTIES, initializeFromQuery };
 }
 
 function loadMoreBounties() {
@@ -90,56 +95,61 @@ const ADD_ISSUER_FILTER = 'bounties/ADD_ISSUER_FILTER';
 const ADD_FULFILLER_FILTER = 'bounties/ADD_FULFILLER_FILTER';
 const REMOVE_CATEGORY_FILTER = 'bounties/REMOVE_CATEGORY_FILTER';
 
-function setSort(sort, sortOrder) {
-  return { type: SET_SORT, sort, sortOrder };
+function setSort(sort, sortOrder, triggerLoad = true) {
+  return { type: SET_SORT, sort, sortOrder, triggerLoad };
 }
 
-function resetFilters() {
-  return { type: RESET_FILTERS };
+function resetFilters(triggerLoad = true) {
+  return { type: RESET_FILTERS, triggerLoad };
 }
 
-function resetFiltersExceptAddress() {
-  return { type: RESET_FILTERS_EXCEPT_ADDRESS };
+function resetFiltersExceptAddress(triggerLoad = true) {
+  return { type: RESET_FILTERS_EXCEPT_ADDRESS, triggerLoad };
 }
 
-function setSearch(search) {
-  return { type: SET_SEARCH, search };
+function setSearch(search, triggerLoad = true) {
+  return { type: SET_SEARCH, search, triggerLoad };
 }
 
-function toggleStageFilter(stage) {
-  return { type: TOGGLE_STAGE_FILTER, stage };
+function toggleStageFilter(stage, triggerLoad = true) {
+  return { type: TOGGLE_STAGE_FILTER, stage, triggerLoad };
 }
 
-function allStageFilters() {
-  return { type: ALL_STAGE_FILTERS };
+function allStageFilters(triggerLoad = true) {
+  return { type: ALL_STAGE_FILTERS, triggerLoad };
 }
 
-function toggleDifficultyFilter(difficulty) {
-  return { type: TOGGLE_DIFFICULTY_FILTER, difficulty };
+function toggleDifficultyFilter(difficulty, triggerLoad = true) {
+  return { type: TOGGLE_DIFFICULTY_FILTER, difficulty, triggerLoad };
 }
 
-function toggleCategoryFilter(category) {
-  return { type: TOGGLE_CATEGORY_FILTER, category };
+function toggleCategoryFilter(category, triggerLoad = true) {
+  return { type: TOGGLE_CATEGORY_FILTER, category, triggerLoad };
 }
 
-function addCategoryFilter(category) {
-  return { type: ADD_CATEGORY_FILTER, category };
+function addCategoryFilter(category, triggerLoad = true) {
+  return { type: ADD_CATEGORY_FILTER, category, triggerLoad };
 }
 
-function addIssuerFilter(address) {
-  return { type: ADD_ISSUER_FILTER, address };
+function addIssuerFilter(address, triggerLoad = true) {
+  return { type: ADD_ISSUER_FILTER, address, triggerLoad };
 }
 
-function addFulfillerFilter(address) {
-  return { type: ADD_FULFILLER_FILTER, address };
+function addFulfillerFilter(address, triggerLoad = true) {
+  return { type: ADD_FULFILLER_FILTER, address, triggerLoad };
 }
 
-function removeCategoryFilter(category) {
-  return { type: REMOVE_CATEGORY_FILTER, category };
+function removeCategoryFilter(category, triggerLoad = true) {
+  return { type: REMOVE_CATEGORY_FILTER, category, triggerLoad };
 }
 
 function BountiesReducer(state = initialState, action) {
   switch (action.type) {
+    case RESET_STATE: {
+      return {
+        ...initialState
+      };
+    }
     case TOGGLE_CATEGORY_FILTER: {
       const { category } = action;
 
@@ -269,7 +279,6 @@ function BountiesReducer(state = initialState, action) {
         ...state,
         count: 0,
         loading: true,
-        loaded: false,
         error: false
       };
     }
@@ -333,7 +342,8 @@ export const actions = {
   loadBountiesFail,
   loadMoreBounties,
   loadMoreBountiesSuccess,
-  loadMoreBountiesFail
+  loadMoreBountiesFail,
+  resetState
 };
 
 export const actionTypes = {
