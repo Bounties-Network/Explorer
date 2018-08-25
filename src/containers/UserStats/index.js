@@ -43,7 +43,11 @@ class UserStatsComponent extends React.Component {
           <Text typeScale="h1" color="purple">
             {value}
           </Text>
-          <Text typeScale="Small" color="grey">
+          <Text
+            className={styles.statLabel}
+            typeScale="Small"
+            color="defaultGrey"
+          >
             {label}
           </Text>
         </div>
@@ -51,35 +55,35 @@ class UserStatsComponent extends React.Component {
     };
 
     return (
-      <div className={`container-fluid ${className}`}>
-        <div className={`row ${styles.mobileStyles}`}>
-          <div>
-            <LinkedAvatar
-              size="large"
-              border
-              name={name}
-              address={public_address}
-              hash={public_address}
-              img={
-                is_profile_image_dirty
-                  ? ipfsToHttp(profileDirectoryHash, profileFileName)
-                  : profile_image
-              }
-              to={`/profile/${public_address}`}
-              className={styles.alignLeft}
-            />
-          </div>
+      <div className={styles.dashboardHeader}>
+        <div className={styles.dashboardAvatar}>
+          <LinkedAvatar
+            size="large"
+            border
+            name={name}
+            nameTextScale="h2"
+            nameTextWeight="fontWeight-bold"
+            address={public_address}
+            hash={public_address}
+            img={
+              is_profile_image_dirty
+                ? ipfsToHttp(profileDirectoryHash, profileFileName)
+                : profile_image
+            }
+            to={`/profile/${public_address}`}
+            className={styles.alignLeft}
+          />
+        </div>
 
-          <div className={styles.statsContainer}>
-            {loading ? null : (
-              <div className={styles.stats}>
-                {renderStat(stats.issuer.total, 'Bounties issued')}
-                {renderStat(stats.fulfiller.total, 'Bounties completed')}
-                {renderStat(`$${awarded.toFixed(0)}`, 'Awarded')}
-                {renderStat(`$${earned.toFixed(0)}`, 'Earned')}
-              </div>
-            )}
-          </div>
+        <div className={styles.statsContainer}>
+          {loading ? null : (
+            <div className={styles.stats}>
+              {renderStat(stats.issuer.total, 'Bounties issued')}
+              {renderStat(stats.fulfiller.total, 'Bounties completed')}
+              {renderStat(`$${awarded.toFixed(0)}`, 'Awarded')}
+              {renderStat(`$${earned.toFixed(0)}`, 'Earned')}
+            </div>
+          )}
         </div>
       </div>
     );

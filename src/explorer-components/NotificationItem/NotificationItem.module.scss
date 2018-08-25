@@ -8,7 +8,7 @@
 .text {
   text-align: left;
   line-height: 1.4;
-  margin: 0 $m-spacing;
+  padding: 0 $base-spacing;
   flex-grow: 1;
 }
 
@@ -30,6 +30,7 @@
 }
 
 .notifier {
+  min-width: $l-spacing;
 }
 
 .iconStyles {

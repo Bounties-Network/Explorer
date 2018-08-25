@@ -36,14 +36,19 @@
 }
 
 .bountiesPanel {
+  width: 100%;
+
   @media only screen and (min-width: 48em) {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     height: 27vh;
-    width: calc(50% - #{$base-spacing});
-    margin-right: $base-spacing;
     min-height: 30rem;
+  }
+
+  @media only screen and (min-width: 60em) {
+    margin-right: $base-spacing;
+    width: calc(50% - #{$base-spacing});
   }
 }
 
@@ -69,13 +74,20 @@
 }
 
 .activityPanel {
+  margin-top: $m-spacing;
+  width: 100%;
+
   @media only screen and (min-width: 48em) {
     display: flex;
     flex-direction: column;
     height: 27vh;
-    width: calc(50% - #{$base-spacing});
-    margin-left: $base-spacing;
     min-height: 30rem;
+  }
+
+  @media only screen and (min-width: 60em) {
+    margin-top: 0;
+    margin-left: $base-spacing;
+    width: calc(50% - #{$base-spacing});
   }
 }
 
