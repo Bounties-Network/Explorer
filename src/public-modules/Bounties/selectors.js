@@ -4,6 +4,7 @@ import {
   STAGE_MAPPING,
   PAGE_SIZE
 } from 'public-modules/Bounties/constants';
+import config from 'public-modules/config';
 import { reduce as reduceFunction, every, negate } from 'lodash';
 const reduce = reduceFunction.convert({ cap: false });
 
@@ -19,7 +20,8 @@ export const bountiesStateSelector = createSelector(
   rootBounty => ({
     loading: rootBounty.loading,
     loaded: rootBounty.loaded,
-    error: rootBounty.error
+    error: rootBounty.error,
+    batch: rootBounty.batch
   })
 );
 
@@ -53,7 +55,7 @@ export const bountiesQuerySelector = createSelector(
     if (rootBounty.sortOrder === 'desc') {
       orderPrefix += '-';
     }
-    query['platform__in'] = 'gitcoin,bounties-network';
+    query['platform__in'] = config.platform;
     query['bountyStage__in'] = reduce(
       (result, value, key) => {
         if (value) {

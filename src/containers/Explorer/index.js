@@ -11,11 +11,9 @@ import styles from './Explorer.module.scss';
 class Explorer extends React.Component {
   constructor(props) {
     super(props);
-    const { resetState, history, location, load } = props;
+    const { resetState, history, location, load, toggleStageFilter } = props;
     resetState();
-    if (!location.search) {
-      history.push(toggleFromParam(location.search, 'bountyStage', 'active'));
-    }
+    toggleStageFilter('active');
     load(true);
   }
 
@@ -32,7 +30,11 @@ class Explorer extends React.Component {
 export default compose(
   connect(
     () => ({}),
-    { resetState: actions.resetState, load: actions.loadBounties }
+    {
+      resetState: actions.resetState,
+      load: actions.loadBounties,
+      toggleStageFilter: actions.toggleStageFilter
+    }
   ),
   withRouter
 )(Explorer);

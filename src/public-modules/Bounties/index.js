@@ -1,23 +1,31 @@
 import { PAGE_SIZE, SORT_CREATED } from './constants';
 
+const defaultSearch = '';
+
+const defaultStageFilters = {
+  drafts: false,
+  active: false,
+  completed: false,
+  expired: false,
+  dead: false
+};
+
+const defaultDifficultyFilters = {
+  beginner: false,
+  intermediate: false,
+  advanced: false
+};
+
+const defaultAddressFilters = {
+  issuer: '',
+  fulfiller: ''
+};
+
 const defaultFilters = {
-  search: '',
-  stageFilters: {
-    drafts: false,
-    active: false,
-    completed: false,
-    expired: false,
-    dead: false
-  },
-  difficultyFilters: {
-    beginner: false,
-    intermediate: false,
-    advanced: false
-  },
-  addressFilters: {
-    issuer: '',
-    fulfiller: ''
-  },
+  search: defaultSearch,
+  stageFilters: { ...defaultStageFilters },
+  difficultyFilters: { ...defaultDifficultyFilters },
+  addressFilters: { ...defaultAddressFilters },
   categoryFilters: new Set([])
 };
 
@@ -27,6 +35,7 @@ const defaultSort = {
 };
 
 const initialState = {
+  batch: false,
   loading: true,
   loadingMore: false,
   loadingMoreError: false,
@@ -82,65 +91,85 @@ function loadMoreBountiesFail(error) {
   return { type: LOAD_MORE_BOUNTIES_FAIL, error };
 }
 
+const SET_BATCH = 'bounties/SET_BATCH';
 const SET_SORT = 'bounties/SET_SORT';
 const RESET_FILTERS = 'bounties/RESET_FILTERS';
+const RESET_FILTER = 'bounties/RESET_FILTER';
 const RESET_FILTERS_EXCEPT_ADDRESS = 'bounties/RESET_FILTERS_EXCEPT_ADDRESS';
 const SET_SEARCH = 'bounties/SET_SEARCH';
 const TOGGLE_STAGE_FILTER = 'bounties/TOGGLE_STAGE_FILTER';
 const ALL_STAGE_FILTERS = 'bounties/ALL_STAGE_FILTERS';
+const SET_DIFFICULTY_FILTER = 'bounties/SET_DIFFICULTY_FILTER';
 const TOGGLE_DIFFICULTY_FILTER = 'bounties/TOGGLE_DIFFICULTY_FILTER';
 const TOGGLE_CATEGORY_FILTER = 'bounties/TOGGLE_CATEGORY_FILTER';
+const SET_STAGE_FILTER = 'bounties/SET_STAGE_FILTER';
 const ADD_CATEGORY_FILTER = 'bounties/SET_CATEGORY_FILTER';
 const ADD_ISSUER_FILTER = 'bounties/ADD_ISSUER_FILTER';
 const ADD_FULFILLER_FILTER = 'bounties/ADD_FULFILLER_FILTER';
 const REMOVE_CATEGORY_FILTER = 'bounties/REMOVE_CATEGORY_FILTER';
 
-function setSort(sort, sortOrder, triggerLoad = true) {
-  return { type: SET_SORT, sort, sortOrder, triggerLoad };
+function batch(isBatch) {
+  return { type: SET_BATCH, isBatch };
 }
 
-function resetFilters(triggerLoad = true) {
-  return { type: RESET_FILTERS, triggerLoad };
+function setSort(sort, sortOrder) {
+  return { type: SET_SORT, sort, sortOrder };
 }
 
-function resetFiltersExceptAddress(triggerLoad = true) {
-  return { type: RESET_FILTERS_EXCEPT_ADDRESS, triggerLoad };
+function resetFilters() {
+  return { type: RESET_FILTERS };
 }
 
-function setSearch(search, triggerLoad = true) {
-  return { type: SET_SEARCH, search, triggerLoad };
+function resetFilter(filter) {
+  return { type: RESET_FILTER, filter };
 }
 
-function toggleStageFilter(stage, triggerLoad = true) {
-  return { type: TOGGLE_STAGE_FILTER, stage, triggerLoad };
+function resetFiltersExceptAddress() {
+  return { type: RESET_FILTERS_EXCEPT_ADDRESS };
 }
 
-function allStageFilters(triggerLoad = true) {
-  return { type: ALL_STAGE_FILTERS, triggerLoad };
+function setSearch(search) {
+  return { type: SET_SEARCH, search };
 }
 
-function toggleDifficultyFilter(difficulty, triggerLoad = true) {
-  return { type: TOGGLE_DIFFICULTY_FILTER, difficulty, triggerLoad };
+function setStageFilter(stage, isSet) {
+  return { type: SET_STAGE_FILTER, stage, isSet };
 }
 
-function toggleCategoryFilter(category, triggerLoad = true) {
-  return { type: TOGGLE_CATEGORY_FILTER, category, triggerLoad };
+function toggleStageFilter(stage) {
+  return { type: TOGGLE_STAGE_FILTER, stage };
 }
 
-function addCategoryFilter(category, triggerLoad = true) {
-  return { type: ADD_CATEGORY_FILTER, category, triggerLoad };
+function allStageFilters() {
+  return { type: ALL_STAGE_FILTERS };
 }
 
-function addIssuerFilter(address, triggerLoad = true) {
-  return { type: ADD_ISSUER_FILTER, address, triggerLoad };
+function toggleDifficultyFilter(difficulty) {
+  return { type: TOGGLE_DIFFICULTY_FILTER, difficulty };
 }
 
-function addFulfillerFilter(address, triggerLoad = true) {
-  return { type: ADD_FULFILLER_FILTER, address, triggerLoad };
+function setDifficultyFilter(difficulty, isSet) {
+  return { type: SET_DIFFICULTY_FILTER, difficulty };
 }
 
-function removeCategoryFilter(category, triggerLoad = true) {
-  return { type: REMOVE_CATEGORY_FILTER, category, triggerLoad };
+function toggleCategoryFilter(category) {
+  return { type: TOGGLE_CATEGORY_FILTER, category };
+}
+
+function addCategoryFilter(category) {
+  return { type: ADD_CATEGORY_FILTER, category };
+}
+
+function addIssuerFilter(address) {
+  return { type: ADD_ISSUER_FILTER, address };
+}
+
+function addFulfillerFilter(address) {
+  return { type: ADD_FULFILLER_FILTER, address };
+}
+
+function removeCategoryFilter(category) {
+  return { type: REMOVE_CATEGORY_FILTER, category };
 }
 
 function BountiesReducer(state = initialState, action) {
@@ -217,6 +246,16 @@ function BountiesReducer(state = initialState, action) {
         }
       };
     }
+    case SET_DIFFICULTY_FILTER: {
+      const { difficulty, isSet } = action;
+      return {
+        ...state,
+        difficultyFilters: {
+          ...state.difficultyFilters,
+          [difficulty]: isSet
+        }
+      };
+    }
     case TOGGLE_STAGE_FILTER: {
       const { stage } = action;
       return {
@@ -224,6 +263,16 @@ function BountiesReducer(state = initialState, action) {
         stageFilters: {
           ...state.stageFilters,
           [stage]: !state.stageFilters[stage]
+        }
+      };
+    }
+    case SET_STAGE_FILTER: {
+      const { stage, isSet } = action;
+      return {
+        ...state,
+        stageFilters: {
+          ...state.stageFilters,
+          [stage]: isSet
         }
       };
     }
@@ -241,9 +290,32 @@ function BountiesReducer(state = initialState, action) {
     }
     case RESET_FILTERS: {
       return {
-        ...initialState,
-        loaded: state.loaded
+        ...state,
+        ...defaultFilters
       };
+    }
+    case RESET_FILTER: {
+      const { filter } = action;
+
+      if (filter === 'search') {
+        return { ...state, search: defaultSearch };
+      }
+
+      if (filter === 'stage') {
+        return { ...state, stageFilters: { ...defaultStageFilters } };
+      }
+
+      if (filter === 'difficulty') {
+        return { ...state, difficultyFilters: { ...defaultDifficultyFilters } };
+      }
+
+      if (filter === 'address') {
+        return { ...state, addressFilters: { ...defaultAddressFilters } };
+      }
+
+      if (filter === 'category') {
+        return { ...state, categoryFilters: new Set([]) };
+      }
     }
     case RESET_FILTERS_EXCEPT_ADDRESS: {
       return {
@@ -265,6 +337,14 @@ function BountiesReducer(state = initialState, action) {
         ...state,
         sort,
         sortOrder
+      };
+    }
+    case SET_BATCH: {
+      const { isBatch } = action;
+
+      return {
+        ...state,
+        batch: isBatch
       };
     }
     case LOAD_MORE_BOUNTIES: {
@@ -326,12 +406,15 @@ function BountiesReducer(state = initialState, action) {
 
 export const actions = {
   setSort,
+  resetFilter,
   resetFilters,
   resetFiltersExceptAddress,
   setSearch,
   toggleStageFilter,
+  setStageFilter,
   allStageFilters,
   toggleDifficultyFilter,
+  setDifficultyFilter,
   addCategoryFilter,
   addIssuerFilter,
   addFulfillerFilter,
@@ -343,11 +426,14 @@ export const actions = {
   loadMoreBounties,
   loadMoreBountiesSuccess,
   loadMoreBountiesFail,
+  batch,
   resetState
 };
 
 export const actionTypes = {
+  SET_BATCH,
   SET_SORT,
+  RESET_FILTER,
   RESET_FILTERS,
   RESET_FILTERS_EXCEPT_ADDRESS,
   SET_SEARCH,

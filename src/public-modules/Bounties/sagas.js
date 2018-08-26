@@ -4,7 +4,8 @@ import { actionTypes, actions } from 'public-modules/Bounties';
 import { PAGE_SIZE } from 'public-modules/Bounties/constants';
 import {
   bountiesQuerySelector,
-  rootBountiesSelector
+  rootBountiesSelector,
+  bountiesStateSelector
 } from 'public-modules/Bounties/selectors';
 import { queryStringToObject } from 'utils/locationHelpers';
 
@@ -12,6 +13,7 @@ const {
   LOAD_BOUNTIES,
   LOAD_MORE_BOUNTIES,
   SET_SORT,
+  SET_BATCH,
   RESET_FILTERS,
   RESET_FILTERS_EXCEPT_ADDRESS,
   SET_SEARCH,
@@ -32,9 +34,12 @@ const {
   loadMoreBountiesSuccess,
   setSearch,
   toggleStageFilter,
+  setStageFilter,
   toggleDifficultyFilter,
+  setDifficultyFilter,
   addCategoryFilter,
-  removeCategoryFilter
+  removeCategoryFilter,
+  resetFilter
 } = actions;
 
 export function* initializeFiltersFromQuery() {
@@ -43,38 +48,58 @@ export function* initializeFiltersFromQuery() {
   const { search, bountyStage, difficulty, category } = params;
 
   if (search) {
-    yield put(setSearch(search, false));
+    yield put(resetFilter('search'));
+    yield put(setSearch(search));
+  }
+
+  if (difficulty === '') {
+    yield put(resetFilter('difficulty'));
   }
 
   if (difficulty) {
+    yield put(resetFilter('difficulty'));
     const difficulties = difficulty.split(',');
     for (let i = 0; i < difficulties.length; i++) {
-      yield put(toggleDifficultyFilter(difficulties[i], false));
+      yield put(toggleDifficultyFilter(difficulties[i]));
     }
   }
 
   if (bountyStage === '') {
-    yield put(toggleStageFilter('active', false));
+    yield put(resetFilter('stage'));
   }
 
   if (bountyStage) {
+    yield put(resetFilter('stage'));
     const stages = bountyStage.split(',');
     for (let i = 0; i < stages.length; i++) {
-      yield put(toggleStageFilter(stages[i], false));
+      yield put(toggleStageFilter(stages[i]));
     }
   }
 
+  if (category === '') {
+    yield put(resetFilter('category'));
+  }
+
   if (category) {
+    yield put(resetFilter('category'));
     const categories = category.split(',');
     for (let i = 0; i < categories.length; i++) {
-      yield put(addCategoryFilter(categories[i], false));
+      yield put(addCategoryFilter(categories[i]));
     }
   }
 }
 
 export function* loadBounties(action) {
-  const { triggerLoad, initializeFromQuery } = action;
-  if (action.type !== LOAD_BOUNTIES && triggerLoad) {
+  const { initializeFromQuery } = action;
+  const bountiesState = yield select(bountiesStateSelector);
+  const loaded = bountiesState.loaded;
+  const batch = bountiesState.batch;
+
+  if (action.type !== LOAD_BOUNTIES && (!loaded || batch)) {
+    return null;
+  }
+
+  if (action.type !== LOAD_BOUNTIES) {
     return yield put(loadBountiesAction());
   }
 
@@ -121,7 +146,8 @@ export function* watchBounties() {
       SET_ALL_STAGE_FILTERS,
       ADD_CATEGORY_FILTER,
       REMOVE_CATEGORY_FILTER,
-      TOGGLE_CATEGORY_FILTER
+      TOGGLE_CATEGORY_FILTER,
+      SET_BATCH
     ],
     loadBounties
   );

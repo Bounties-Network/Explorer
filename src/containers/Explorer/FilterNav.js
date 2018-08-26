@@ -25,7 +25,8 @@ const {
   toggleStageFilter,
   toggleDifficultyFilter,
   addCategoryFilter,
-  removeCategoryFilter
+  removeCategoryFilter,
+  batch
 } = actions;
 
 const FilterNavComponent = props => {
@@ -42,12 +43,16 @@ const FilterNavComponent = props => {
     addCategoryFilter,
     removeCategoryFilter,
     history,
-    location
+    location,
+    batch
   } = props;
+
+  const rootLocationParams = location.search || '?bountyStage=active';
 
   const toggleStageFilterAction = stage => {
     const queryParams =
-      toggleFromParam(location.search, 'bountyStage', stage) || '?bountyStage=';
+      toggleFromParam(rootLocationParams, 'bountyStage', stage) ||
+      '?bountyStage=';
     history.push(location.pathname + queryParams);
     toggleStageFilter(stage);
   };
@@ -55,35 +60,39 @@ const FilterNavComponent = props => {
   const toggleDifficultyFilterAction = difficulty => {
     history.push(
       location.pathname +
-        toggleFromParam(location.search, 'difficulty', difficulty)
+        toggleFromParam(rootLocationParams, 'difficulty', difficulty)
     );
     toggleDifficultyFilter(difficulty);
   };
 
   const addCategoryFilterAction = category => {
     history.push(
-      location.pathname + pushToParam(location.search, 'category', category)
+      location.pathname + pushToParam(rootLocationParams, 'category', category)
     );
     addCategoryFilter(category);
   };
 
   const removeCategoryFilterAction = category => {
     history.push(
-      location.pathname + removeFromParam(location.search, 'category', category)
+      location.pathname +
+        removeFromParam(rootLocationParams, 'category', category)
     );
     removeCategoryFilter(category);
   };
 
   const setSearchAction = throttle(300, searchValue => {
     history.push(
-      location.pathname + setParam(location.search, 'search', searchValue)
+      location.pathname + setParam(rootLocationParams, 'search', searchValue)
     );
     setSearch(searchValue);
   });
 
   const resetFilterAction = () => {
     history.push(location.pathname);
+    batch(true);
     resetFilters();
+    toggleStageFilter('active');
+    batch(false);
   };
 
   return (
@@ -195,7 +204,8 @@ const FilterNav = compose(
       toggleDifficultyFilter,
       addCategoryFilter,
       removeCategoryFilter,
-      resetFilters
+      resetFilters,
+      batch
     }
   )
 )(FilterNavComponent);
