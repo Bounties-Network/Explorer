@@ -33,11 +33,7 @@ class DashboardComponent extends React.Component {
     return (
       <div>
         <div className={`pageWrapper-large ${styles.desktopContainer}`}>
-          <div className="row">
-            <div className="col-xs-12">
-              <UserStats className={styles.statsContainer} />
-            </div>
-          </div>
+          <UserStats className={styles.statsContainer} />
           <div className={styles.panelContainer}>
             <BountiesPanel
               className={styles.bountiesPanel}

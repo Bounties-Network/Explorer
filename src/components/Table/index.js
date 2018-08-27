@@ -6,13 +6,14 @@ import { Text } from 'components';
 
 class HeaderCell extends React.Component {
   render() {
-    const { flexGrow, flexBasis } = this.props;
+    const { flexGrow, flexBasis, contentType } = this.props;
 
     return (
-      <div className={styles.cell} style={{ flexGrow, flexBasis }}>
-        <Text type="body" color="defaultGrey">
-          {this.props.children}
-        </Text>
+      <div
+        className={`${styles.cell} ${styles[contentType]}`}
+        style={{ flexGrow, flexBasis }}
+      >
+        <Text inputLabel>{this.props.children}</Text>
       </div>
     );
   }
@@ -20,7 +21,12 @@ class HeaderCell extends React.Component {
 
 HeaderCell.propTypes = {
   flexBasis: PropTypes.string,
-  flexGrow: PropTypes.number
+  flexGrow: PropTypes.number,
+  contentType: PropTypes.oneOf(['nonNumerical', 'numerical'])
+};
+
+HeaderCell.defaultProps = {
+  contentType: 'nonNumerical'
 };
 
 class Header extends React.Component {
@@ -47,11 +53,17 @@ Header.propTypes = {
 
 class Cell extends React.Component {
   render() {
-    const { headerText, flexGrow, flexBasis } = this.props;
+    const {
+      headerText,
+      contentType,
+      flexGrow,
+      flexBasis,
+      className
+    } = this.props;
 
     return (
       <div
-        className={styles.cell}
+        className={`${styles.cell} ${className} ${styles[contentType]}`}
         data-header={headerText}
         style={{ flexGrow, flexBasis }}
       >
@@ -60,6 +72,14 @@ class Cell extends React.Component {
     );
   }
 }
+
+Cell.propTypes = {
+  contentType: PropTypes.oneOf(['nonNumerical', 'numerical'])
+};
+
+Cell.defaultProps = {
+  contentType: 'nonNumerical'
+};
 
 class Row extends React.Component {
   render() {

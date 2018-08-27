@@ -5,8 +5,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex-shrink: 0;
   padding: $xl-spacing 0;
-  flex-wrap: wrap;
 
   @media only screen and (min-width: 52em) {
     padding-bottom: ($xxl-spacing * 2);

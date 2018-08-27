@@ -21,11 +21,9 @@ const FulfillmentStagePill = props => {
   }
 
   return (
-    <div className={className}>
-      <Pill textColor={textColor} backgroundColor={backgroundColor} noBorder>
-        {text}
-      </Pill>
-    </div>
+    <Pill textColor={textColor} backgroundColor={backgroundColor} noBorder>
+      {text}
+    </Pill>
   );
 };
 

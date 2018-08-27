@@ -1,7 +1,7 @@
 @import "~styles/variables.scss";
 
 .cellWrapper {
-  width: 70%;
+  //width: 70%;
 }
 
 .table {
@@ -9,35 +9,20 @@
   flex-flow: column nowrap;
   justify-content: space-between;
   font-size: 1rem;
-  margin: 0.5rem;
   line-height: 1.5;
 
   // .Table-row
   .row {
     width: 100%;
     display: flex;
-    flex-flow: row nowrap;
-    border-bottom: 1px solid $base-border-color;
+    border-bottom: $light-border;
+    align-items: center;
+    flex-direction: row;
+
     @media only screen and (max-width: 500px) {
       width: 100%;
       display: block;
-    }
-    .cell {
-      display: flex;
-      flex-flow: row nowrap;
-      flex-grow: 1;
-      flex-basis: 0;
-      padding: 0.5em;
-      word-break: break-word;
-      padding: 0.5em;
-      &:before { content: none; }
-      @media only screen and (max-width: 500px) {
-        &:before {
-          content: attr(data-header);
-          width: 30%;
-          color: #949494;
-        }
-      }
+      justify-content: space-between;
     }
   }
   .row.rowHover:hover {
@@ -53,5 +38,30 @@
     @media only screen and (max-width: 500px) {
       display: none;
     }
+  }
+}
+
+.cell {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: $base-spacing;
+  word-break: break-word;
+
+  &:before { content: none; }
+
+  @media only screen and (max-width: 500px) {
+    &:before {
+      content: attr(data-header);
+      width: 30%;
+      color: #949494;
+    }
+  }
+}
+
+.numerical {
+  text-align: right;
+
+  &:not(:last-child) {
+    padding-right: $xl-spacing;
   }
 }
