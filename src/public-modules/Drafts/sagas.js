@@ -33,14 +33,18 @@ export function* loadDrafts(action) {
 }
 
 export function* loadMoreDrafts(action) {
+  const address = yield select(addressSelector);
   const drafts_list = yield select(draftsSelector);
-  const offset = drafts_list.length;
+  const params = {
+    issuer: toLower(address),
+    platform__in: config.platform,
+    offset: drafts_list.length,
+    limit: LIMIT
+  };
 
   try {
     const endpoint = 'bounty/draft';
-    const drafts = yield call(request, endpoint, 'GET', {
-      params: { limit: LIMIT, offset }
-    });
+    const drafts = yield call(request, endpoint, 'GET', { params });
     yield put(loadMoreDraftsSuccess(drafts));
   } catch (e) {
     yield put(loadMoreDraftsFail(e));
