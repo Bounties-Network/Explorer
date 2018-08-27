@@ -9,7 +9,7 @@ const { loadCategoriesFail, loadCategoriesSuccess } = actions;
 
 export function* loadCategories(action) {
   try {
-    const params = { limit: 2000, platform__in: config.platform };
+    const params = { limit: 2000, platform: config.categoryPlatform };
     const endpoint = 'category/';
     const categories = yield call(request, endpoint, 'GET', { params });
     yield put(loadCategoriesSuccess(categories));
