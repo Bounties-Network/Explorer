@@ -29,7 +29,7 @@ const number = value =>
   value && isNaN(Number(value)) ? 'Must be a number' : undefined;
 
 const email = value =>
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+  !value || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
     ? 'Invalid email address'
     : undefined;
 
@@ -39,15 +39,15 @@ const alphaNumeric = value =>
     : undefined;
 
 const isTwitterHandle = value =>
-  value && /^@?(\w){1,15}$/i.test(value) ? undefined : 'Invalid Twitter handle';
+  !value || /^@(\w){1,15}$/i.test(value) ? undefined : 'Invalid Twitter handle';
 
 const isGithubHandle = value =>
-  value && /^@?[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(value)
+  !value || /^@[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(value)
     ? undefined
     : 'Invalid Github handle';
 
 const isURL = value =>
-  value &&
+  !value ||
   /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/i.test(
     value
   )

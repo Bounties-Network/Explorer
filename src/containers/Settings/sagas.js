@@ -15,7 +15,7 @@ export function* sendProfileUpdatedToast(action) {
   let postedMessage = 'Profile saved successfully';
   let toastType = Toast.TYPE.SUCCESS;
 
-  if (action.type === SAVE_EMAIL_PREFERENCES_FAIL) {
+  if (action.type === SAVE_SETTINGS_FAIL) {
     postedMessage = 'Something went wrong. Please try again.';
     toastType = Toast.TYPE.ERROR;
   }

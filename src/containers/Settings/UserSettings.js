@@ -247,7 +247,11 @@ const mapStateToProps = state => {
   return {
     initialValues: {
       ...currentUser,
-      languages: currentUser.languages
+      languages: currentUser.languages,
+
+      // stored in db w/o @ symbol
+      twitter: currentUser.twitter ? '@' + currentUser.twitter : '',
+      github: currentUser.github ? '@' + currentUser.github : ''
     },
     uploading: uploadState.uploading || false,
     uploaded: uploadState.uploaded || false,

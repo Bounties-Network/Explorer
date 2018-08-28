@@ -45,8 +45,8 @@ export function* saveSettings(action) {
     organization,
     skills,
     website,
-    github,
-    twitter,
+    github: github.substr(1), // remove @ symbol from handle
+    twitter: twitter.substr(1), // remove @ symbol from handle
     linkedin,
     //dribbble,
     profileDirectoryHash: profileImageIpfsHash,
@@ -58,7 +58,6 @@ export function* saveSettings(action) {
     yield put(saveSettingsSuccess());
   } catch (e) {
     console.log(e);
-    yield put(setTransactionError());
     yield put(saveSettingsFail());
   }
 }
