@@ -22,6 +22,13 @@ class ProfileComponent extends React.Component {
     let address = match.params.address;
     if (!address) {
       address = currentUser.public_address;
+
+      // This anti-pattern is here in the constructor in order to simplify the
+      // routing logic. We were unable to use a react-router-dom redirect
+      // because the user needs to still hit the /profile page if they aren't
+      // logged in. Even if they were to hit that page and login it wouldn't
+      // have correctly redirect because not LOCATION_CHANGED event would be
+      // dispatched after logging through the login hoc.
       history.replace(`/profile/${address}/`);
     }
 
