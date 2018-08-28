@@ -62,7 +62,7 @@ const SubmissionItem = props => {
           <Text color="purple" typeScale="h4" className={styles.usd}>
             ${usd}
           </Text>
-          <Text color="defaultGrey" typeScale="Small" className={styles.usd}>
+          <Text color="defaultGrey" typeScale="Small">
             {`${amount} ${currency}`}
           </Text>
         </div>

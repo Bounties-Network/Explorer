@@ -8,8 +8,6 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  font-size: 1rem;
-  line-height: 1.5;
 
   // .Table-row
   .row {
@@ -42,18 +40,30 @@
 }
 
 .cell {
+  display: flex;
+  flex-direction: row;
   flex-grow: 1;
   flex-basis: 0;
+  flex-shrink: 0;
   padding: $base-spacing;
+  justify-content: space-between;
+  align-items: center;
   word-break: break-word;
 
-  &:before { content: none; }
+  @media only screen and (min-width: 65em) {
+    display: block;
+  }
 
-  @media only screen and (max-width: 500px) {
+  &:before {
+    content: attr(data-header);
+    font-size: $body-small-font-size;
+    color: $brand-grey;
+    color: #949494;
+  }
+
+  @media only screen and (min-width: 65em) {
     &:before {
-      content: attr(data-header);
-      width: 30%;
-      color: #949494;
+      content: none;
     }
   }
 }
@@ -61,7 +71,9 @@
 .numerical {
   text-align: right;
 
-  &:not(:last-child) {
-    padding-right: $xl-spacing;
+  @media only screen and (min-width: 65em) {
+    &:not(:last-child) {
+      padding-right: $xl-spacing;
+    }
   }
 }
