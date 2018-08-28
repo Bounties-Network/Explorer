@@ -85,7 +85,6 @@ class Sidebar extends React.Component {
       ? this.props.children
       : [this.props.children];
     each(child => {
-      console.log(child);
       if (!child) {
         return null;
       }

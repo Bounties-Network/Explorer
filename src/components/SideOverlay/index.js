@@ -55,6 +55,13 @@ class SideOverlay extends React.Component {
   }
 }
 
+SideOverlay.propTypes = {
+  theme: PropTypes.oneOf(['light', 'dark']),
+  position: PropTypes.oneOf(['left', 'right']),
+  onClose: PropTypes.func,
+  hasMask: PropTypes.bool
+};
+
 SideOverlay.defaultProps = {
   theme: 'dark',
   position: 'left'
