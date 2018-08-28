@@ -7,6 +7,7 @@ import { actionTypes, actions } from 'public-modules/Bounty';
 import { actions as transactionActions } from 'public-modules/Transaction';
 import { BigNumber } from 'bignumber.js';
 import { addressSelector } from 'public-modules/Client/selectors';
+import siteConfig from 'public-modules/config';
 import {
   calculateDecimals,
   promisifyContractCall
@@ -205,9 +206,9 @@ export function* createBounty(action) {
       symbol: tokenSymbol
     },
     meta: {
-      platform: 'bounties-network',
-      schemaVersion: '0.1',
-      schemaName: 'standardSchema'
+      platform: siteConfig.postingPlatform,
+      schemaVersion: siteConfig.postingPlatform,
+      schemaName: siteConfig.postingSchema
     }
   };
   const ipfsHash = yield call(addJSON, issuedData);

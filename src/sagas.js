@@ -1,4 +1,3 @@
-import explorerSagas from 'containers/Explorer/sagas';
 import profileSagas from 'containers/Profile/sagas';
 import bountySagas from 'containers/CreateBounty/sagas';
 import bountyPageUISagas from 'containers/Bounty/sagas';
@@ -11,7 +10,6 @@ import submissionsPanelSagas from 'containers/SubmissionsPanel/sagas';
 // Sagas not from public-modules
 const sagaWatchers = [
   ...profileSagas,
-  ...explorerSagas,
   ...bountySagas,
   ...dashboardSagas,
   ...bountyPageUISagas,

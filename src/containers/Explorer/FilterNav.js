@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './FilterNav.module.scss';
 import { Search, Text, Button, Checkbox, SearchSelect } from 'components';
+import { withRouter } from 'react-router-dom';
 import {
   rootBountiesSelector,
   bountiesCategoryFiltersSelector,
@@ -12,13 +13,20 @@ import { throttle } from 'lodash';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions } from 'public-modules/Bounties';
+import {
+  toggleFromParam,
+  pushToParam,
+  removeFromParam,
+  setParam
+} from 'utils/locationHelpers';
 const {
   resetFilters,
   setSearch,
   toggleStageFilter,
   toggleDifficultyFilter,
   addCategoryFilter,
-  removeCategoryFilter
+  removeCategoryFilter,
+  batch
 } = actions;
 
 const FilterNavComponent = props => {
@@ -33,13 +41,64 @@ const FilterNavComponent = props => {
     categories,
     categoryFilters,
     addCategoryFilter,
-    removeCategoryFilter
+    removeCategoryFilter,
+    history,
+    location,
+    batch
   } = props;
+
+  const rootLocationParams = location.search || '?bountyStage=active';
+
+  const toggleStageFilterAction = stage => {
+    const queryParams =
+      toggleFromParam(rootLocationParams, 'bountyStage', stage) ||
+      '?bountyStage=';
+    history.push(location.pathname + queryParams);
+    toggleStageFilter(stage);
+  };
+
+  const toggleDifficultyFilterAction = difficulty => {
+    history.push(
+      location.pathname +
+        toggleFromParam(rootLocationParams, 'difficulty', difficulty)
+    );
+    toggleDifficultyFilter(difficulty);
+  };
+
+  const addCategoryFilterAction = category => {
+    history.push(
+      location.pathname + pushToParam(rootLocationParams, 'category', category)
+    );
+    addCategoryFilter(category);
+  };
+
+  const removeCategoryFilterAction = category => {
+    history.push(
+      location.pathname +
+        removeFromParam(rootLocationParams, 'category', category)
+    );
+    removeCategoryFilter(category);
+  };
+
+  const setSearchAction = throttle(300, searchValue => {
+    history.push(
+      location.pathname + setParam(rootLocationParams, 'search', searchValue)
+    );
+    setSearch(searchValue);
+  });
+
+  const resetFilterAction = () => {
+    history.push(location.pathname);
+    batch(true);
+    resetFilters();
+    toggleStageFilter('active');
+    batch(false);
+  };
 
   return (
     <div className={styles.filterNav}>
       <div className={styles.searchWrapper}>
-        <Search value={search} onChange={throttle(300, setSearch)} />
+        <Search value={search} onChange={setSearchAction} />
       </div>
       <div className={styles.refineWrapper}>
         <Text inline typeScale="h3" weight="fontWeight-medium">
@@ -48,7 +107,7 @@ const FilterNavComponent = props => {
         <Button
           type="link"
           className={styles.clearButton}
-          onClick={resetFilters}
+          onClick={resetFilterAction}
         >
           Reset Filters
         </Button>
@@ -59,22 +118,24 @@ const FilterNavComponent = props => {
         </Text>
         <Checkbox
           label="Active"
-          onChange={() => toggleStageFilter('active')}
+          onChange={() => {
+            toggleStageFilterAction('active');
+          }}
           checked={stageFilters.active}
         />
         <Checkbox
           label="Completed"
-          onChange={() => toggleStageFilter('completed')}
+          onChange={() => toggleStageFilterAction('completed')}
           checked={stageFilters.completed}
         />
         <Checkbox
           label="Expired"
-          onChange={() => toggleStageFilter('expired')}
+          onChange={() => toggleStageFilterAction('expired')}
           checked={stageFilters.expired}
         />
         <Checkbox
           label="Dead"
-          onChange={() => toggleStageFilter('dead')}
+          onChange={() => toggleStageFilterAction('dead')}
           checked={stageFilters.dead}
         />
       </div>
@@ -84,17 +145,17 @@ const FilterNavComponent = props => {
         </Text>
         <Checkbox
           label="Beginner"
-          onChange={() => toggleDifficultyFilter('beginner')}
+          onChange={() => toggleDifficultyFilterAction('beginner')}
           checked={difficultyFilters.beginner}
         />
         <Checkbox
           label="Intermediate"
-          onChange={() => toggleDifficultyFilter('intermediate')}
+          onChange={() => toggleDifficultyFilterAction('intermediate')}
           checked={difficultyFilters.intermediate}
         />
         <Checkbox
           label="Advanced"
-          onChange={() => toggleDifficultyFilter('advanced')}
+          onChange={() => toggleDifficultyFilterAction('advanced')}
           checked={difficultyFilters.advanced}
         />
       </div>
@@ -107,8 +168,12 @@ const FilterNavComponent = props => {
           value={categoryFilters}
           labelKey="name"
           valueKey="normalized_name"
-          onChange={values => addCategoryFilter(values[values.length - 1])}
-          onClose={removeCategoryFilter}
+          onChange={values => {
+            if (values.length > categoryFilters.length) {
+              addCategoryFilterAction(values[values.length - 1]);
+            }
+          }}
+          onClose={removeCategoryFilterAction}
         />
       </div>
     </div>
@@ -130,6 +195,7 @@ const mapStateToProps = state => {
 };
 
 const FilterNav = compose(
+  withRouter,
   connect(
     mapStateToProps,
     {
@@ -138,7 +204,8 @@ const FilterNav = compose(
       toggleDifficultyFilter,
       addCategoryFilter,
       removeCategoryFilter,
-      resetFilters
+      resetFilters,
+      batch
     }
   )
 )(FilterNavComponent);

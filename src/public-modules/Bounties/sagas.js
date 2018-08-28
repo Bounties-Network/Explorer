@@ -4,13 +4,16 @@ import { actionTypes, actions } from 'public-modules/Bounties';
 import { PAGE_SIZE } from 'public-modules/Bounties/constants';
 import {
   bountiesQuerySelector,
-  rootBountiesSelector
+  rootBountiesSelector,
+  bountiesStateSelector
 } from 'public-modules/Bounties/selectors';
+import { queryStringToObject } from 'utils/locationHelpers';
 
 const {
   LOAD_BOUNTIES,
   LOAD_MORE_BOUNTIES,
   SET_SORT,
+  SET_BATCH,
   RESET_FILTERS,
   RESET_FILTERS_EXCEPT_ADDRESS,
   SET_SEARCH,
@@ -28,13 +31,82 @@ const {
   loadBountiesFail,
   loadBountiesSuccess,
   loadMoreBountiesFail,
-  loadMoreBountiesSuccess
+  loadMoreBountiesSuccess,
+  setSearch,
+  toggleStageFilter,
+  setStageFilter,
+  toggleDifficultyFilter,
+  setDifficultyFilter,
+  addCategoryFilter,
+  removeCategoryFilter,
+  resetFilter
 } = actions;
 
+export function* initializeFiltersFromQuery() {
+  const params = queryStringToObject(window.location.search);
+
+  const { search, bountyStage, difficulty, category } = params;
+
+  if (search) {
+    yield put(resetFilter('search'));
+    yield put(setSearch(search));
+  }
+
+  if (difficulty === '') {
+    yield put(resetFilter('difficulty'));
+  }
+
+  if (difficulty) {
+    yield put(resetFilter('difficulty'));
+    const difficulties = difficulty.split(',');
+    for (let i = 0; i < difficulties.length; i++) {
+      yield put(toggleDifficultyFilter(difficulties[i]));
+    }
+  }
+
+  if (bountyStage === '') {
+    yield put(resetFilter('stage'));
+  }
+
+  if (bountyStage) {
+    yield put(resetFilter('stage'));
+    const stages = bountyStage.split(',');
+    for (let i = 0; i < stages.length; i++) {
+      yield put(toggleStageFilter(stages[i]));
+    }
+  }
+
+  if (category === '') {
+    yield put(resetFilter('category'));
+  }
+
+  if (category) {
+    yield put(resetFilter('category'));
+    const categories = category.split(',');
+    for (let i = 0; i < categories.length; i++) {
+      yield put(addCategoryFilter(categories[i]));
+    }
+  }
+}
+
 export function* loadBounties(action) {
+  const { initializeFromQuery } = action;
+  const bountiesState = yield select(bountiesStateSelector);
+  const loaded = bountiesState.loaded;
+  const batch = bountiesState.batch;
+
+  if (action.type !== LOAD_BOUNTIES && (!loaded || batch)) {
+    return null;
+  }
+
   if (action.type !== LOAD_BOUNTIES) {
     return yield put(loadBountiesAction());
   }
+
+  if (action.type === LOAD_BOUNTIES && initializeFromQuery) {
+    yield call(initializeFiltersFromQuery);
+  }
+
   let params = yield select(bountiesQuerySelector);
   try {
     let endpoint = 'bounty/';
@@ -64,7 +136,6 @@ export function* loadMoreBounties(action) {
 export function* watchBounties() {
   yield takeLatest(
     [
-      LOAD_BOUNTIES,
       SET_SORT,
       RESET_FILTERS,
       RESET_FILTERS_EXCEPT_ADDRESS,
@@ -75,14 +146,19 @@ export function* watchBounties() {
       SET_ALL_STAGE_FILTERS,
       ADD_CATEGORY_FILTER,
       REMOVE_CATEGORY_FILTER,
-      TOGGLE_CATEGORY_FILTER
+      TOGGLE_CATEGORY_FILTER,
+      SET_BATCH
     ],
     loadBounties
   );
+}
+
+export function* watchLoadBounties() {
+  yield takeLatest([LOAD_BOUNTIES], loadBounties);
 }
 
 export function* watchLoadMoreBounties() {
   yield takeLatest([LOAD_MORE_BOUNTIES], loadMoreBounties);
 }
 
-export default [watchBounties, watchLoadMoreBounties];
+export default [watchLoadBounties, watchBounties, watchLoadMoreBounties];

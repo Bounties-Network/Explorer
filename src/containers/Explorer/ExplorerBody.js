@@ -190,13 +190,11 @@ const ExplorerBody = compose(
   connect(
     mapStateToProps,
     {
-      load: actions.loadBounties,
       setSort: actions.setSort,
       loadMoreBounties: actions.loadMoreBounties,
       toggleCategoryFilter: actions.toggleCategoryFilter
     }
-  ),
-  LoadComponent('')
+  )
 )(ExplorerBodyComponent);
 
 export default ExplorerBody;
