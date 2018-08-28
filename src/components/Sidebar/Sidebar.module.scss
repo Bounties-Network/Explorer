@@ -1,16 +1,19 @@
 @import "~styles/variables.scss";
 
 .sidebar {
-  background-color: $sidebar-color;
-  display: none; /*Temporary to test responsive views w/o sidebar*/
   height: 100%; /* 100% Full-height */
-  float: left;
+  width: fit-content;
   padding-top: $header-height-sm;
-  position: fixed;
-  width: $sidebar-width-sm;
+  padding-right: $xl-spacing;
+  display: flex;
+  flex-direction: column;
 
   @media only screen and (min-width: 48em) {
-    display: block;
+    background-color: $sidebar-color;
+    float: left;
+    width: $sidebar-width-sm;
+    position: fixed;
+    padding-right: 0;
   }
 
   @media only screen and (min-width: 65em) {
@@ -19,10 +22,25 @@
   }
 }
 
+.mobileSideNav {
+  @media only screen and (min-width: 48em) {
+    display: none;
+  }
+}
+
+.desktopSideNav {
+  display: none;
+  @media only screen and (min-width: 48em) {
+    display: block;
+  }
+}
+
+.icons {
+  flex: 1;
+}
+
 .iconTab {
   display: flex;
-  justify-content: center;
-  text-align: center;
   align-items: center;
   font-size: 1.3rem;
   padding: $base-spacing $l-spacing;
@@ -33,6 +51,20 @@
 
   &:hover {
     opacity: 1;
+    text-decoration: none;
+  }
+
+  @media only screen and (min-width: 48em) {
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+.navText {
+  text-decoration: none;
+  margin-left: $l-spacing;
+  @media only screen and (min-width: 48em) {
+    display: none;
   }
 }
 

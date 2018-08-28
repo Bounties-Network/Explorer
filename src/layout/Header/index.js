@@ -6,10 +6,11 @@ import { withRouter, Link } from 'react-router-dom';
 import { actions as loginActions } from 'containers/Login/reducer';
 import { actions as authActions } from 'public-modules/Authentication';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { ipfsToHttp } from 'utils/helpers';
 import styles from './Header.module.scss';
 
-import { Button, Avatar, Dropdown, Network } from 'components';
+import { Button, Avatar, Dropdown, Network, Text } from 'components';
 
 import { NotificationDropdown } from 'containers';
 import BeeLogo from '../../styles/logo.js';
@@ -17,7 +18,7 @@ import BeeLogo from '../../styles/logo.js';
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
 const HeaderComponent = props => {
-  const { user, network, showLogin, logout, history, match } = props;
+  const { user, network, showLogin, logout, history, match, onShowNav } = props;
 
   const loginStatus = !!user;
 
@@ -31,6 +32,11 @@ const HeaderComponent = props => {
       {network !== 'unknown' ? (
         <Network network={network} className={styles.network} />
       ) : null}
+      <div className={styles.sideNavTrigger} onClick={onShowNav}>
+        <Text typeScale="h2" color="blue">
+          <FontAwesomeIcon icon={['far', 'bars']} />
+        </Text>
+      </div>
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
           {history.location.pathname !== '/createBounty' &&
@@ -42,7 +48,16 @@ const HeaderComponent = props => {
                 }}
                 className={styles.button}
               >
-                Create New Bounty
+                <div>
+                  <div className={styles.desktopButtonText}>
+                    Create New Bounty
+                  </div>
+                  <div className={styles.mobileButtonText}>
+                    <Text weight="fontWeight-bold">
+                      <FontAwesomeIcon icon={['far', 'plus']} />
+                    </Text>
+                  </div>
+                </div>
               </Button>
             )}
           <div className={styles.notification}>

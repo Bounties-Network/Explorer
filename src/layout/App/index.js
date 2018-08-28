@@ -17,7 +17,7 @@ import {
   Settings
 } from 'containers';
 import { RequireLoginComponent } from 'hocs';
-import { Sidebar, Loader, ToastContainer } from 'components';
+import { Sidebar, Loader, ToastContainer, Network } from 'components';
 import { Header } from 'layout';
 import { actions as authActions } from 'public-modules/Authentication';
 import { actions as categoryActions } from 'public-modules/Categories';
@@ -35,6 +35,10 @@ class AppComponent extends React.Component {
     props.history.listen(
       () => this.body && this.body.current && this.body.current.scrollTo(0, 0)
     );
+
+    this.state = {
+      showMobileSidebar: false
+    };
   }
 
   renderSideNavItems() {
@@ -49,7 +53,14 @@ class AppComponent extends React.Component {
   };
 
   render() {
-    const { loadingUser, clientInitialized, userFail, history } = this.props;
+    const {
+      loadingUser,
+      clientInitialized,
+      userFail,
+      history,
+      network
+    } = this.props;
+    const { showMobileSidebar } = this.state;
     const isPageLoading = loadingUser || !clientInitialized;
 
     return (
@@ -68,14 +79,26 @@ class AppComponent extends React.Component {
         ) : null}
         {!isPageLoading && !userFail
           ? [
-              <Header />,
+              <Header
+                onShowNav={() => this.setState({ showMobileSidebar: true })}
+              />,
               <Sidebar
                 activeTab={currentRouteSelector(this.props.location.pathname)}
                 defaultActiveTab="dashboard"
                 className={styles.sideNav}
-                onTabClick={history.push}
+                onTabClick={route => {
+                  history.push(route);
+                  this.setState({ showMobileSidebar: false });
+                }}
+                mobileVisible={showMobileSidebar}
+                onMobileHide={() => this.setState({ showMobileSidebar: false })}
               >
-                {this.renderSideNavItems()}
+                <Sidebar.TabGroup>{this.renderSideNavItems()}</Sidebar.TabGroup>
+                <Sidebar.Footer>
+                  <div className={styles.network}>
+                    <Network network={network} theme="light" />
+                  </div>
+                </Sidebar.Footer>
               </Sidebar>,
               <div className={`${styles.body} page-body`} ref={this.body}>
                 <Switch>
@@ -126,7 +149,8 @@ const mapStateToProps = state => {
   return {
     clientInitialized: initializedSelector(state),
     loadingUser: currentUserState.loading || !currentUserState.loaded,
-    userFail: currentUserState.error
+    userFail: currentUserState.error,
+    network: state.client.network
   };
 };
 

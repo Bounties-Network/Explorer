@@ -47,8 +47,22 @@
   }
 }
 
+.sideNavTrigger {
+  cursor: pointer;
+  display: block;
+  margin-left: $l-spacing;
+  @media only screen and (min-width: 48em) {
+    display: none;
+  }
+}
+
 .button {
   margin-right: $base-spacing;
+  padding: 0 $m-spacing;
+
+  @media only screen and (min-width: 48em) {
+    padding: 0 $l-spacing;
+  }
 
   @media only screen and (min-width: 65em) {
     margin-right: $l-spacing;
@@ -61,6 +75,20 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.desktopButtonText {
+  display: none;
+  @media only screen and (min-width: 48em) {
+    display: block;
+  }
+}
+
+.mobileButtonText {
+  display: block;
+  @media only screen and (min-width: 48em) {
+    display: none;
+  }
 }
 
 .notification {

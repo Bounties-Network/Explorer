@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Sidebar.module.scss';
+import { each } from 'lodash';
+import { SideOverlay, Text } from 'components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const ModalContext = React.createContext({});
@@ -10,7 +12,7 @@ class TabIcon extends React.Component {
     return (
       <ModalContext.Consumer>
         {({ activeTab, onTabClick }) => {
-          const { icon, tabKey } = this.props;
+          const { icon, tabKey, title } = this.props;
           let tabStyle = styles.iconTab;
 
           if (activeTab === tabKey) {
@@ -20,11 +22,36 @@ class TabIcon extends React.Component {
           return (
             <a className={tabStyle} onClick={() => onTabClick(tabKey)}>
               <FontAwesomeIcon icon={icon} />
+              <div className={styles.navText}>
+                <Text typeScale="h3">{title}</Text>
+              </div>
             </a>
           );
         }}
       </ModalContext.Consumer>
     );
+  }
+}
+
+class TabGroup extends React.Component {
+  render() {
+    return this.props.children;
+  }
+}
+
+TabGroup.propTypes = {
+  children: PropTypes.arrayOf(function(propValue, key) {
+    for (let i = 0; i < propValue.length; i++) {
+      if (propValue[i].type.name !== TabIcon.name) {
+        return new Error('Children Must Be an Instance of TabIcon');
+      }
+    }
+  })
+};
+
+class Footer extends React.Component {
+  render() {
+    return this.props.children;
   }
 }
 
@@ -45,11 +72,36 @@ class Sidebar extends React.Component {
 
   render() {
     const { activeTab: activeTabState } = this.state;
-    const { defaultActiveTab, className, activeTab } = this.props;
+    const {
+      defaultActiveTab,
+      className,
+      activeTab,
+      mobileVisible,
+      onMobileHide
+    } = this.props;
+
+    let footer, tabGroup;
+    const children = Array.isArray(this.props.children)
+      ? this.props.children
+      : [this.props.children];
+    each(child => {
+      if (!child) {
+        return null;
+      }
+
+      const childName = child.type.name;
+      if (childName === Footer.name) {
+        footer = child;
+      }
+
+      if (childName === TabGroup.name) {
+        tabGroup = child;
+      }
+    }, children);
 
     const currentTab = activeTab || activeTabState || defaultActiveTab;
 
-    return (
+    const sidebarBody = (
       <ModalContext.Provider
         value={{
           activeTab: currentTab,
@@ -57,9 +109,21 @@ class Sidebar extends React.Component {
         }}
       >
         <div className={`${styles.sidebar} ${className}`}>
-          {this.props.children}
+          <div className={styles.icons}>{tabGroup}</div>
+          <div className={styles.footer}>{footer}</div>
         </div>
       </ModalContext.Provider>
+    );
+
+    return (
+      <div>
+        <div className={styles.mobileSideNav}>
+          <SideOverlay visible={mobileVisible} onClose={onMobileHide}>
+            {sidebarBody}
+          </SideOverlay>
+        </div>
+        <div className={styles.desktopSideNav}>{sidebarBody}</div>
+      </div>
     );
   }
 }
@@ -67,8 +131,11 @@ class Sidebar extends React.Component {
 Sidebar.propTypes = {
   children: PropTypes.arrayOf(function(propValue, key) {
     for (let i = 0; i < propValue.length; i++) {
-      if (propValue[i].type.name !== TabIcon.name) {
-        return new Error('Children Must Be an Instance of TabIcon');
+      if (
+        propValue[i].type.name !== TabGroup.name &&
+        propValue[i].type.name !== Footer.name
+      ) {
+        return new Error('Children Must Be an Instance of TabGroup or Footer');
       }
     }
   }),
@@ -77,6 +144,8 @@ Sidebar.propTypes = {
 };
 
 Sidebar.defaultProps = {};
+Sidebar.TabGroup = TabGroup;
+Sidebar.Footer = Footer;
 Sidebar.TabIcon = TabIcon;
 
 export default Sidebar;

@@ -1,0 +1,44 @@
+@import "~styles/variables.scss";
+
+.sideOverlay {
+  height: 100%;
+  position: fixed;
+  z-index: 15;
+  top: 0;
+  overflow-x: hidden;
+  opacity: 0.95;
+  &:focus {
+    outline-color: transparent;
+    outline-style: none;
+  }
+}
+
+.dark {
+  background-color: $sidebar-color;
+}
+
+.light {
+  background-color: $brand-white;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.mask {
+  overflow: hidden;
+  z-index: 14;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.activeMask {
+  background-color: $overlay-background;
+}
