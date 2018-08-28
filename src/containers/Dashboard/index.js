@@ -11,18 +11,49 @@ import {
   SubmissionsPanel,
   UserStats
 } from 'containers';
-
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { actions as activityActions } from 'public-modules/Activity';
-import { actions as bountiesPanelActions } from 'containers/BountiesPanel/reducer';
+import { actions as bountiesActions } from 'public-modules/Bounties';
+import { actions as draftsActions } from 'public-modules/Drafts';
+import { actions as userInfoActions } from 'public-modules/UserInfo';
+import { SORT_CREATED } from 'public-modules/Bounties/constants';
+
 import { actions as submissionsPanelActions } from 'containers/SubmissionsPanel/reducer';
 
 class DashboardComponent extends React.Component {
   constructor(props) {
     super(props);
-    props.loadActivityPanel(props.public_address);
-    props.loadBountiesPanel();
-    props.loadSubmissionsPanel();
+
+    const {
+      // general loaders
+      loadActivity,
+      loadBounties,
+      loadDrafts,
+      loadUserInfo,
+
+      // bounties panel helpers
+      resetState,
+      addIssuerFilter,
+      setSort,
+      public_address,
+
+      // submissions panel helpers
+      setActiveSubmissionsTab
+    } = props;
+
+    // load bounties panel
+    resetState();
+    addIssuerFilter(public_address);
+    setSort(SORT_CREATED, 'desc');
+    loadBounties(true);
+    loadDrafts();
+
+    // load activity panel
+    loadActivity(public_address);
+
+    // load submissions panel
+    loadUserInfo(public_address);
+    setActiveSubmissionsTab('received');
   }
 
   render() {
@@ -84,9 +115,17 @@ const Dashboard = compose(
   connect(
     mapStateToProps,
     {
-      loadSubmissionsPanel: submissionsPanelActions.loadSubmissionsPanel,
-      loadBountiesPanel: bountiesPanelActions.loadBountiesPanel,
-      loadActivityPanel: activityActions.loadActivity
+      loadActivity: activityActions.loadActivity,
+      loadBounties: bountiesActions.loadBounties,
+      loadDrafts: draftsActions.loadDrafts,
+      loadUserInfo: userInfoActions.loadUserInfo,
+      resetState: bountiesActions.resetState,
+      addIssuerFilter: bountiesActions.addIssuerFilter,
+      setSort: bountiesActions.setSort,
+      setActiveSubmissionsTab: submissionsPanelActions.setActiveTab,
+
+      activeLoadMore: bountiesActions.loadMoreBounties,
+      draftsLoadMore: draftsActions.loadMoreDrafts
     }
   )
 )(DashboardComponent);
