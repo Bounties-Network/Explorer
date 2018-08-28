@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Sidebar.module.scss';
+import { SideOverlay, Text } from 'components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const ModalContext = React.createContext({});
@@ -10,7 +11,7 @@ class TabIcon extends React.Component {
     return (
       <ModalContext.Consumer>
         {({ activeTab, onTabClick }) => {
-          const { icon, tabKey } = this.props;
+          const { icon, tabKey, title } = this.props;
           let tabStyle = styles.iconTab;
 
           if (activeTab === tabKey) {
@@ -20,6 +21,9 @@ class TabIcon extends React.Component {
           return (
             <a className={tabStyle} onClick={() => onTabClick(tabKey)}>
               <FontAwesomeIcon icon={icon} />
+              <div className={styles.navText}>
+                <Text typeScale="h3">{title}</Text>
+              </div>
             </a>
           );
         }}
@@ -49,7 +53,7 @@ class Sidebar extends React.Component {
 
     const currentTab = activeTab || activeTabState || defaultActiveTab;
 
-    return (
+    const sidebarBody = (
       <ModalContext.Provider
         value={{
           activeTab: currentTab,
@@ -60,6 +64,15 @@ class Sidebar extends React.Component {
           {this.props.children}
         </div>
       </ModalContext.Provider>
+    );
+
+    return (
+      <div>
+        <div className={styles.mobileSideNav}>
+          <SideOverlay>{sidebarBody}</SideOverlay>
+        </div>
+        <div className={styles.desktopSideNav}>{sidebarBody}</div>
+      </div>
     );
   }
 }
