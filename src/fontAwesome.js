@@ -1,6 +1,8 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import faBell from '@fortawesome/fontawesome-pro-light/faBell';
 import plus from '@fortawesome/fontawesome-pro-regular/faPlus';
+import bars from '@fortawesome/fontawesome-pro-regular/faBars';
+import slidersH from '@fortawesome/fontawesome-pro-regular/faSlidersH';
 import plusCircle from '@fortawesome/fontawesome-pro-regular/faPlusCircle';
 import clock from '@fortawesome/fontawesome-pro-regular/faClock';
 import levelUp from '@fortawesome/fontawesome-pro-regular/faLevelUp';
@@ -100,5 +102,7 @@ library.add(
   fileAlt,
   chartLine,
   bolt,
-  frown
+  frown,
+  bars,
+  slidersH
 );

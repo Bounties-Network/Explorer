@@ -6,6 +6,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions } from 'public-modules/Bounties';
 import { toggleFromParam } from 'utils/locationHelpers';
+import { SideOverlay } from 'components';
 import styles from './Explorer.module.scss';
 
 class Explorer extends React.Component {
@@ -15,13 +16,31 @@ class Explorer extends React.Component {
     resetState();
     toggleStageFilter('active');
     load(true);
+    this.state = {
+      mobileFilterVisible: false
+    };
   }
 
   render() {
     return (
       <div className={`${styles.explorerContainer}`}>
-        <FilterNav />
-        <ExplorerBody />
+        <div className={styles.desktopFilter}>
+          <FilterNav />
+        </div>
+        <div className={styles.mobileFilter}>
+          <SideOverlay
+            hasMask
+            visible={this.state.mobileFilterVisible}
+            theme="light"
+            position="right"
+            onClose={() => this.setState({ mobileFilterVisible: false })}
+          >
+            <FilterNav />
+          </SideOverlay>
+        </div>
+        <ExplorerBody
+          onOpenFilters={() => this.setState({ mobileFilterVisible: true })}
+        />
       </div>
     );
   }

@@ -4,3 +4,17 @@
   display: flex;
   height: 100%;
 }
+
+.desktopFilter {
+  display: none;
+  @media only screen and (min-width: 48em) {
+    display: block;
+  }
+}
+
+.mobileFilter {
+  display: block;
+  @media only screen and (min-width: 48em) {
+    display: none;
+  }
+}

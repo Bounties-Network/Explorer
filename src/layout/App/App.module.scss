@@ -24,6 +24,16 @@
   }
 }
 
+.network {
+  margin-bottom: $m-spacing;
+  width: 100;
+  display: flex;
+  justify-content: center;
+  @media only screen and (min-width: 48em) {
+    display: none;
+  }
+}
+
 .loadingBody {
   height: 100%;
   width: 100%;

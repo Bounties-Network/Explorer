@@ -18,7 +18,7 @@ import BeeLogo from '../../styles/logo.js';
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
 const HeaderComponent = props => {
-  const { user, network, showLogin, logout, history, match } = props;
+  const { user, network, showLogin, logout, history, match, onShowNav } = props;
 
   const loginStatus = !!user;
 
@@ -32,6 +32,11 @@ const HeaderComponent = props => {
       {network !== 'unknown' ? (
         <Network network={network} className={styles.network} />
       ) : null}
+      <div className={styles.sideNavTrigger} onClick={onShowNav}>
+        <Text typeScale="h2" color="blue">
+          <FontAwesomeIcon icon={['far', 'bars']} />
+        </Text>
+      </div>
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
           {history.location.pathname !== '/createBounty' &&

@@ -31,7 +31,8 @@ const ExplorerBodyComponent = props => {
     loadingMore,
     toggleCategoryFilter,
     categoryFilters,
-    error
+    error,
+    onOpenFilters
   } = props;
 
   const renderBounties = () => {
@@ -92,39 +93,10 @@ const ExplorerBodyComponent = props => {
             {count === 1 ? 'bounty' : 'bounties'}
           </Text>
         </div>
-        <div className={styles.sortGroup}>
-          <Text
-            inline
-            weight="fontWeight-bold"
-            color="black"
-            typeScale="Body"
-            className={styles.sortByText}
-          >
-            Sort By
-          </Text>
-          <Sort
-            className={styles.sortBy}
-            active={sort === SORT_VALUE}
-            onSort={sortOrder => setSort(SORT_VALUE, sortOrder)}
-          >
-            Value
-          </Sort>
-          <Sort
-            className={styles.sortBy}
-            active={sort === SORT_CREATED}
-            onSort={sortOrder => {
-              setSort(SORT_CREATED, sortOrder);
-            }}
-          >
-            Creation Date
-          </Sort>
-          <Sort
-            className={styles.sortBy}
-            active={sort === SORT_EXPIRY}
-            onSort={sortOrder => setSort(SORT_EXPIRY, sortOrder)}
-          >
-            Expiry
-          </Sort>
+        <div className={styles.filterNav}>
+          <Button icon={['far', 'sliders-h']} onClick={onOpenFilters}>
+            Filter
+          </Button>
         </div>
       </div>
       {loading ? (

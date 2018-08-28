@@ -26,6 +26,7 @@ import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
 import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
+import { locationNonceSelector } from 'layout/App/selectors';
 
 showdown.setOption('simpleLineBreaks', true);
 const converter = new showdown.Converter();
@@ -73,6 +74,7 @@ class BountyComponent extends React.Component {
   componentDidUpdate(prevProps) {
     const {
       match,
+      locationNonce,
       loadBounty,
       loadDraftBounty,
       loadFulfillments,
@@ -81,7 +83,7 @@ class BountyComponent extends React.Component {
       setBountyId
     } = this.props;
 
-    if (prevProps.match !== match) {
+    if (prevProps.locationNonce !== locationNonce) {
       setBountyId(match.params.id);
 
       if (match.path === '/bounty/draft/:id/') {
@@ -306,7 +308,8 @@ const mapStateToProps = (state, router) => {
     user: getCurrentUserSelector(state),
     walletAddress: addressSelector(state),
     loading: bountyState.loading,
-    error: bountyState.error
+    error: bountyState.error,
+    locationNonce: locationNonceSelector(state)
   };
 };
 

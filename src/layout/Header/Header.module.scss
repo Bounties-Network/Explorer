@@ -47,6 +47,15 @@
   }
 }
 
+.sideNavTrigger {
+  cursor: pointer;
+  display: block;
+  margin-left: $l-spacing;
+  @media only screen and (min-width: 48em) {
+    display: none;
+  }
+}
+
 .button {
   margin-right: $base-spacing;
   padding: 0 $m-spacing;

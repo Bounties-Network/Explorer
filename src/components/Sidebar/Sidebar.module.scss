@@ -5,6 +5,8 @@
   width: fit-content;
   padding-top: $header-height-sm;
   padding-right: $xl-spacing;
+  display: flex;
+  flex-direction: column;
 
   @media only screen and (min-width: 48em) {
     background-color: $sidebar-color;
@@ -31,6 +33,10 @@
   @media only screen and (min-width: 48em) {
     display: block;
   }
+}
+
+.icons {
+  flex: 1;
 }
 
 .iconTab {
