@@ -6,10 +6,11 @@ import { withRouter, Link } from 'react-router-dom';
 import { actions as loginActions } from 'containers/Login/reducer';
 import { actions as authActions } from 'public-modules/Authentication';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { ipfsToHttp } from 'utils/helpers';
 import styles from './Header.module.scss';
 
-import { Button, Avatar, Dropdown, Network } from 'components';
+import { Button, Avatar, Dropdown, Network, Text } from 'components';
 
 import { NotificationDropdown } from 'containers';
 import BeeLogo from '../../styles/logo.js';
@@ -42,7 +43,16 @@ const HeaderComponent = props => {
                 }}
                 className={styles.button}
               >
-                Create New Bounty
+                <div>
+                  <div className={styles.desktopButtonText}>
+                    Create New Bounty
+                  </div>
+                  <div className={styles.mobileButtonText}>
+                    <Text weight="fontWeight-bold">
+                      <FontAwesomeIcon icon={['far', 'plus']} />
+                    </Text>
+                  </div>
+                </div>
               </Button>
             )}
           <div className={styles.notification}>
