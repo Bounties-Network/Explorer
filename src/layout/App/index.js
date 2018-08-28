@@ -86,7 +86,10 @@ class AppComponent extends React.Component {
                 activeTab={currentRouteSelector(this.props.location.pathname)}
                 defaultActiveTab="dashboard"
                 className={styles.sideNav}
-                onTabClick={history.push}
+                onTabClick={route => {
+                  history.push(route);
+                  this.setState({ showMobileSidebar: false });
+                }}
                 mobileVisible={showMobileSidebar}
                 onMobileHide={() => this.setState({ showMobileSidebar: false })}
               >
