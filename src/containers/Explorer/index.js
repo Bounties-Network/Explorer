@@ -23,7 +23,14 @@ class Explorer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { batch, locationNonce, history, resetFilters, load } = this.props;
+    const {
+      batch,
+      locationNonce,
+      history,
+      resetFilters,
+      load,
+      toggleStageFilter
+    } = this.props;
 
     if (prevProps.locationNonce !== locationNonce && history.action === 'POP') {
       batch(true);
