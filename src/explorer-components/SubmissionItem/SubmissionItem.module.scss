@@ -1,17 +1,13 @@
 @import "~styles/variables.scss";
 
-.container {
-  display: flex;
-  align-items: center;
-}
-
 .details {
   margin-top: $m-spacing;
 }
 
 .value {
-  margin-left: -1rem;
   word-break: normal !important;
+  text-align: right;
+  justify-content: flex-end;
 }
 
 .usd {

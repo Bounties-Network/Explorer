@@ -26,14 +26,14 @@ const SubmissionItem = props => {
 
   return (
     <Table.Row>
-      <Table.Cell headerText="Bounty title" flexGrow={5}>
+      <Table.Cell flexBasis="40%" headerText="Bounty title">
         <Link to={`/bounty/${bountyId}`} className={styles.link}>
           <Text typeScale="h5" weight="fontWeight-medium">
             {title}
           </Text>
         </Link>
       </Table.Cell>
-      <Table.Cell headerText="Fulfiller" flexGrow={2}>
+      <Table.Cell flexBasis="16%" headerText="Fulfiller">
         <LinkedAvatar
           img={fulfiller_img}
           address={fulfiller}
@@ -43,20 +43,19 @@ const SubmissionItem = props => {
         />
       </Table.Cell>
       <Table.Cell
-        className={styles.num}
+        flexBasis="15%"
         contentType="numerical"
         headerText="Submission date"
-        flexGrow={2}
       >
         <Text typeScale="Body">{formattedTime}</Text>
       </Table.Cell>
-      <Table.Cell headerText="Status" flexGrow={2}>
+      <Table.Cell flexBasis="16%" headerText="Status">
         <FulfillmentStagePill bountyStage={bountyStage} accepted={status} />
       </Table.Cell>
       <Table.Cell
+        flexBasis="13%"
         headerText="Payment amount"
         contentType="numerical"
-        flexGrow={2}
       >
         <div className={styles.value}>
           <Text color="purple" typeScale="h4" className={styles.usd}>
