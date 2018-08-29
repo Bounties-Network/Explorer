@@ -80,14 +80,15 @@
 .desktopButtonText {
   display: none;
   @media only screen and (min-width: 48em) {
-    display: block;
+    display: inline-block;
   }
 }
 
 .mobileButtonText {
-  display: block;
+  display: inline-block;
+
   @media only screen and (min-width: 48em) {
-    display: none;
+    padding-right: $base-spacing;
   }
 }
 
