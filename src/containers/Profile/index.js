@@ -44,13 +44,37 @@ class ProfileComponent extends React.Component {
       // have correctly redirect because not LOCATION_CHANGED event would be
       // dispatched after logging through the login hoc.
       history.replace(`/profile/${address}/`);
-      return;
     }
 
     resetState();
     loadUserInfo(address.toLowerCase());
     setProfileAddress(address.toLowerCase());
     setActiveTab('issued');
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      currentUser,
+      history,
+      match,
+      loadUserInfo,
+      setActiveTab,
+      setProfileAddress,
+      resetState
+    } = this.props;
+
+    let address = match.params.address;
+    if (prevProps.match.params.address !== address) {
+      if (!address) {
+        address = currentUser.public_address;
+        history.replace(`/profile/${address}/`);
+      }
+
+      resetState();
+      loadUserInfo(address.toLowerCase());
+      setProfileAddress(address.toLowerCase());
+      setActiveTab('issued');
+    }
   }
 
   render() {
