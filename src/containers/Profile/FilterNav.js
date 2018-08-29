@@ -24,10 +24,10 @@ const {
 const { loadCategories } = categoryActions;
 
 const FilterNavComponent = props => {
-  const { resetFilters, toggleStageFilter, stageFilters } = props;
+  const { resetFilters, toggleStageFilter, stageFilters, position } = props;
 
   return (
-    <div className={styles.filterNav}>
+    <div className={`${styles.filterNav} ${styles[position || 'relative']}`}>
       <div className={styles.refineWrapper}>
         <Text inline typeScale="h3" weight="fontWeight-medium">
           Refine By

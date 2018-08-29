@@ -23,7 +23,7 @@ const HeaderComponent = props => {
   const loginStatus = !!user;
 
   return (
-    <div className={`${styles.header}`}>
+    <div className={`${styles.header} page-header`}>
       <div className={`${styles.iconArea}`}>
         <Link to="/">
           <BeeLogo />
