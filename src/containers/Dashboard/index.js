@@ -2,8 +2,8 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import styles from './Dashboard.module.scss';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import '../../styles/slick.scss';
+import '../../styles/slick-theme.scss';
 import Slider from 'react-slick';
 import {
   ActivityPanel,
@@ -52,15 +52,18 @@ class DashboardComponent extends React.Component {
         <div className={styles.mobileContainer}>
           <UserStats className={styles.statsContainer} />
           <Slider {...settings}>
-            <div>
-              <BountiesPanel bodyClass={styles.bodyClass} />
-            </div>
-            <div>
-              <ActivityPanel bodyClass={styles.bodyClass} />
-            </div>
-            <div>
-              <SubmissionsPanel bodyClass={styles.bodyClass} />
-            </div>
+            <BountiesPanel
+              className={styles.bountiesPanel}
+              bodyClass={styles.bodyClass}
+            />
+            <ActivityPanel
+              className={styles.activityPanel}
+              bodyClass={styles.bodyClass}
+            />
+            <SubmissionsPanel
+              className={styles.submissionsPanel}
+              bodyClass={styles.bodyClass}
+            />
           </Slider>
         </div>
       </div>
