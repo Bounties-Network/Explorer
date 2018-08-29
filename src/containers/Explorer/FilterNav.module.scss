@@ -4,13 +4,16 @@
   background: $brand-white;
   padding: $l-spacing;
   margin-top: 0;
-  width: $filterNav-width-fixed;
   overflow-y: scroll;
   top: 0;
   bottom: 0;
   position: default;
+  max-width: $filterNav-width-fixed;
+  width: 70vw;
+  height: 100%;
 
   @media only screen and (min-width: 48em) {
+    height: auto;
     margin-top: $header-height-sm;
     padding: $m-spacing;
     width: $filterNav-width-fluid;
