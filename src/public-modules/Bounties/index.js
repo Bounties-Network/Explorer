@@ -95,7 +95,6 @@ const SET_BATCH = 'bounties/SET_BATCH';
 const SET_SORT = 'bounties/SET_SORT';
 const RESET_FILTERS = 'bounties/RESET_FILTERS';
 const RESET_FILTER = 'bounties/RESET_FILTER';
-const RESET_FILTERS_EXCEPT_ADDRESS = 'bounties/RESET_FILTERS_EXCEPT_ADDRESS';
 const SET_SEARCH = 'bounties/SET_SEARCH';
 const TOGGLE_STAGE_FILTER = 'bounties/TOGGLE_STAGE_FILTER';
 const ALL_STAGE_FILTERS = 'bounties/ALL_STAGE_FILTERS';
@@ -122,10 +121,6 @@ function resetFilters() {
 
 function resetFilter(filter) {
   return { type: RESET_FILTER, filter };
-}
-
-function resetFiltersExceptAddress() {
-  return { type: RESET_FILTERS_EXCEPT_ADDRESS };
 }
 
 function setSearch(search) {
@@ -317,13 +312,6 @@ function BountiesReducer(state = initialState, action) {
         return { ...state, categoryFilters: new Set([]) };
       }
     }
-    case RESET_FILTERS_EXCEPT_ADDRESS: {
-      return {
-        ...initialState,
-        loaded: state.loaded,
-        addressFilters: state.addressFilters
-      };
-    }
     case SET_SEARCH: {
       const { search } = action;
       return {
@@ -409,7 +397,6 @@ export const actions = {
   setSort,
   resetFilter,
   resetFilters,
-  resetFiltersExceptAddress,
   setSearch,
   toggleStageFilter,
   setStageFilter,
@@ -436,7 +423,6 @@ export const actionTypes = {
   SET_SORT,
   RESET_FILTER,
   RESET_FILTERS,
-  RESET_FILTERS_EXCEPT_ADDRESS,
   SET_SEARCH,
   TOGGLE_STAGE_FILTER,
   ALL_STAGE_FILTERS,

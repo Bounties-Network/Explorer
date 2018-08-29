@@ -3,10 +3,11 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
-import ProfileBounties from './ProfileBounties';
-import FilterNav from './FilterNav';
+import { ExplorerBody } from 'containers';
+import FilterNav from 'containers/FilterNav';
 import styles from './Profile.module.scss';
 import { ZeroState } from 'components';
+import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { userInfoSelector } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { actions } from './reducer';
@@ -17,7 +18,14 @@ class ProfileComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    const { currentUser, history, match, setProfileAddress } = this.props;
+    const {
+      currentUser,
+      history,
+      match,
+      loadUserInfo,
+      setActiveTab,
+      setProfileAddress
+    } = this.props;
 
     let address = match.params.address;
     if (!address) {
@@ -30,16 +38,12 @@ class ProfileComponent extends React.Component {
       // have correctly redirect because not LOCATION_CHANGED event would be
       // dispatched after logging through the login hoc.
       history.replace(`/profile/${address}/`);
+      return;
     }
 
+    loadUserInfo(address.toLowerCase());
     setProfileAddress(address.toLowerCase());
-  }
-
-  componentDidUpdate(prevProps) {
-    const currentAddress = this.props.match.params.address;
-    if (prevProps.match !== this.props.match) {
-      this.props.setProfileAddress(currentAddress.toLowerCase());
-    }
+    setActiveTab('issued');
   }
 
   render() {
@@ -52,8 +56,22 @@ class ProfileComponent extends React.Component {
         </div>
         <div className={styles.profileBountiesContainer}>
           <div className={styles.profileBounties}>
-            <FilterNav />
-            <ProfileBounties />
+            <FilterNav
+              config={{
+                search: false,
+                stage: true,
+                difficulty: false,
+                category: false
+              }}
+              resetFilters={{
+                address: false,
+                search: true,
+                stage: true,
+                difficulty: true,
+                category: true
+              }}
+            />
+            <ExplorerBody />
           </div>
         </div>
       </div>
@@ -108,7 +126,11 @@ const Profile = compose(
   withRouter,
   connect(
     mapStateToProps,
-    { setProfileAddress: actions.setProfileAddress }
+    {
+      loadUserInfo: userInfoActions.loadUserInfo,
+      setActiveTab: actions.setActiveTab,
+      setProfileAddress: actions.setProfileAddress
+    }
   )
 )(ProfileComponent);
 

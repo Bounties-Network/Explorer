@@ -17,13 +17,20 @@
     margin-top: $header-height-sm;
     padding: $m-spacing;
     width: $filterNav-width-fluid;
-    position: fixed;
   }
 
   @media only screen and (min-width: 65em) {
     width: $filterNav-width-fixed;
     margin-top: $header-height-lg;
     padding: $l-spacing;
+  }
+}
+
+.filterNavFixed {
+  @extend .filterNav;
+
+  @media only screen and (min-width: 48em) {
+    position: fixed;
   }
 }
 

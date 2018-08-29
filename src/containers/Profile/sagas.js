@@ -3,9 +3,7 @@ import { profileUISelector } from './selectors';
 import { actionTypes } from './reducer';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { actions as reviewsActions } from 'public-modules/Reviews';
-import {
-  actions as bountiesActions
-} from 'public-modules/Bounties';
+import { actions as bountiesActions } from 'public-modules/Bounties';
 
 const {
   SET_ACTIVE_TAB,
@@ -35,17 +33,6 @@ export function* networkSwitchChanged(action) {
   yield put(loadReviewsReceived({ address, reviewType: switchValue }));
 }
 
-export function* loadUser(action) {
-  const { address } = action;
-  const { currentTab } = yield select(profileUISelector);
-
-  yield put(loadUserInfo(address));
-  yield put(resetFilters());
-  yield put(allStageFilters());
-
-  yield loadProfileBounties({ tabKey: currentTab });
-}
-
 export function* watchNetworkSwitch() {
   yield takeLatest(TOGGLE_NETWORK_SWITCH, networkSwitchChanged);
 }
@@ -54,8 +41,4 @@ export function* watchProfileTab() {
   yield takeLatest(SET_ACTIVE_TAB, loadProfileBounties);
 }
 
-export function* watchProfileAddress() {
-  yield takeLatest(SET_PROFILE_ADDRESS, loadUser);
-}
-
-export default [watchProfileTab, watchProfileAddress, watchNetworkSwitch];
+export default [watchProfileTab, watchNetworkSwitch];

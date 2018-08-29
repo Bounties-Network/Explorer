@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './FilterNav.module.scss';
+import PropTypes from 'prop-types';
 import { Search, Text, Button, Checkbox, SearchSelect } from 'components';
 import { withRouter } from 'react-router-dom';
 import {
@@ -9,7 +10,7 @@ import {
   anyDifficultyFiltersSelected
 } from 'public-modules/Bounties/selectors';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
-import { throttle } from 'lodash';
+import { map as fpMap, throttle } from 'lodash';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions } from 'public-modules/Bounties';
@@ -19,8 +20,9 @@ import {
   removeFromParam,
   setParam
 } from 'utils/locationHelpers';
+const map = fpMap.convert({ cap: false });
 const {
-  resetFilters,
+  resetFilter,
   setSearch,
   toggleStageFilter,
   toggleDifficultyFilter,
@@ -33,6 +35,7 @@ const FilterNavComponent = props => {
   const {
     search,
     resetFilters,
+    resetFilter,
     setSearch,
     toggleStageFilter,
     toggleDifficultyFilter,
@@ -44,7 +47,10 @@ const FilterNavComponent = props => {
     removeCategoryFilter,
     history,
     location,
-    batch
+    batch,
+
+    config,
+    fixed
   } = props;
 
   const rootLocationParams = location.search || '?bountyStage=active';
@@ -90,16 +96,24 @@ const FilterNavComponent = props => {
   const resetFilterAction = () => {
     history.push(location.pathname);
     batch(true);
-    resetFilters();
+    map((value, key) => {
+      if (value) {
+        resetFilter(key);
+      }
+    }, resetFilters);
     toggleStageFilter('active');
     batch(false);
   };
 
+  const filterNavStyles = fixed ? styles.filterNavFixed : styles.filterNav;
+
   return (
-    <div className={styles.filterNav}>
-      <div className={styles.searchWrapper}>
-        <Search value={search} onChange={setSearchAction} />
-      </div>
+    <div className={filterNavStyles}>
+      {config.search && (
+        <div className={styles.searchWrapper}>
+          <Search value={search} onChange={setSearchAction} />
+        </div>
+      )}
       <div className={styles.refineWrapper}>
         <Text inline typeScale="h3" weight="fontWeight-medium">
           Refine By
@@ -112,70 +126,76 @@ const FilterNavComponent = props => {
           Reset Filters
         </Button>
       </div>
-      <div className={styles.stageFilter}>
-        <Text weight="fontWeight-medium" className={styles.groupText}>
-          Stage
-        </Text>
-        <Checkbox
-          label="Active"
-          onChange={() => {
-            toggleStageFilterAction('active');
-          }}
-          checked={stageFilters.active}
-        />
-        <Checkbox
-          label="Completed"
-          onChange={() => toggleStageFilterAction('completed')}
-          checked={stageFilters.completed}
-        />
-        <Checkbox
-          label="Expired"
-          onChange={() => toggleStageFilterAction('expired')}
-          checked={stageFilters.expired}
-        />
-        <Checkbox
-          label="Dead"
-          onChange={() => toggleStageFilterAction('dead')}
-          checked={stageFilters.dead}
-        />
-      </div>
-      <div className={styles.difficultyFilter}>
-        <Text weight="fontWeight-medium" className={styles.groupText}>
-          Difficulty
-        </Text>
-        <Checkbox
-          label="Beginner"
-          onChange={() => toggleDifficultyFilterAction('beginner')}
-          checked={difficultyFilters.beginner}
-        />
-        <Checkbox
-          label="Intermediate"
-          onChange={() => toggleDifficultyFilterAction('intermediate')}
-          checked={difficultyFilters.intermediate}
-        />
-        <Checkbox
-          label="Advanced"
-          onChange={() => toggleDifficultyFilterAction('advanced')}
-          checked={difficultyFilters.advanced}
-        />
-      </div>
-      <div className={styles.categoryFilter}>
-        <Text weight="fontWeight-medium" className={styles.groupText}>
-          Category
-        </Text>
-        <SearchSelect
-          options={categories}
-          value={categoryFilters}
-          labelKey="name"
-          valueKey="normalized_name"
-          onChange={values => {
-            if (values.length > categoryFilters.length) {
-              addCategoryFilterAction(values[values.length - 1]);
-            }
-          }}
-          onClose={removeCategoryFilterAction}
-        />
-      </div>
+      {config.stage && (
+        <div className={styles.stageFilter}>
+          <Text weight="fontWeight-medium" className={styles.groupText}>
+            Stage
+          </Text>
+          <Checkbox
+            label="Active"
+            onChange={() => {
+              toggleStageFilterAction('active');
+            }}
+            checked={stageFilters.active}
+          />
+          <Checkbox
+            label="Completed"
+            onChange={() => toggleStageFilterAction('completed')}
+            checked={stageFilters.completed}
+          />
+          <Checkbox
+            label="Expired"
+            onChange={() => toggleStageFilterAction('expired')}
+            checked={stageFilters.expired}
+          />
+          <Checkbox
+            label="Dead"
+            onChange={() => toggleStageFilterAction('dead')}
+            checked={stageFilters.dead}
+          />
+        </div>
+      )}
+      {config.difficulty && (
+        <div className={styles.difficultyFilter}>
+          <Text weight="fontWeight-medium" className={styles.groupText}>
+            Difficulty
+          </Text>
+          <Checkbox
+            label="Beginner"
+            onChange={() => toggleDifficultyFilterAction('beginner')}
+            checked={difficultyFilters.beginner}
+          />
+          <Checkbox
+            label="Intermediate"
+            onChange={() => toggleDifficultyFilterAction('intermediate')}
+            checked={difficultyFilters.intermediate}
+          />
+          <Checkbox
+            label="Advanced"
+            onChange={() => toggleDifficultyFilterAction('advanced')}
+            checked={difficultyFilters.advanced}
+          />
+        </div>
+      )}
+      {config.category && (
+        <div className={styles.categoryFilter}>
+          <Text weight="fontWeight-medium" className={styles.groupText}>
+            Category
+          </Text>
+          <SearchSelect
+            options={categories}
+            value={categoryFilters}
+            labelKey="name"
+            valueKey="normalized_name"
+            onChange={values => {
+              if (values.length > categoryFilters.length) {
+                addCategoryFilterAction(values[values.length - 1]);
+              }
+            }}
+            onClose={removeCategoryFilterAction}
+          />
+        </div>
+      )}
     </div>
   );
 };
@@ -204,10 +224,27 @@ const FilterNav = compose(
       toggleDifficultyFilter,
       addCategoryFilter,
       removeCategoryFilter,
-      resetFilters,
+      resetFilter,
       batch
     }
   )
 )(FilterNavComponent);
+
+FilterNav.propTypes = {
+  fixed: PropTypes.bool,
+  config: PropTypes.array
+};
+
+FilterNav.defaultProps = {
+  fixed: false,
+  resetFilters: {
+    address: true,
+    search: true,
+    stage: true,
+    difficulty: true,
+    category: true
+  },
+  config: { search: true, stage: true, difficulty: true, category: true }
+};
 
 export default FilterNav;
