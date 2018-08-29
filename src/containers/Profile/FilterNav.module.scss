@@ -4,7 +4,7 @@
   background: $brand-white;
   display: none;
   padding: $l-spacing;
-  position: relative;
+  position: absolute;
   width: $filterNav-width-fixed;
   overflow-y: scroll;
   top: 0;
@@ -19,6 +19,17 @@
   @media only screen and (min-width: 65em) {
     width: $filterNav-width-fixed;
     padding: $l-spacing;
+  }
+}
+
+.fixed {
+  position: fixed;
+  @media only screen and (min-width: 48em) {
+    top: $header-height-sm;
+  }
+
+  @media only screen and (min-width: 65em) {
+    top: $header-height-lg;
   }
 }
 

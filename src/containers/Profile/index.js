@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import ProfileDetails from './ProfileDetails';
@@ -13,10 +14,24 @@ import { actions } from './reducer';
 import { StickyContainer, Sticky } from 'react-sticky';
 
 class ProfileComponent extends React.Component {
+  state = {
+    position: 'relative'
+  };
+
+  componentDidMount() {
+    const body = document.getElementsByClassName('page-body')[0];
+    body.addEventListener('scroll', this.onScroll);
+  }
+
   componentWillMount() {
     const address =
       this.props.match.params.address || this.props.currentUser.public_address;
     this.props.setProfileAddress(address.toLowerCase() || '');
+  }
+
+  componentWillUnmount() {
+    const body = document.getElementsByClassName('page-body')[0];
+    body.removeEventListener('scroll', this.onScroll);
   }
 
   componentDidUpdate(prevProps) {
@@ -26,8 +41,27 @@ class ProfileComponent extends React.Component {
     }
   }
 
+  onScroll = () => {
+    const { position } = this.state;
+
+    const headerHeight = document
+      .getElementsByClassName('page-header')[0]
+      .getBoundingClientRect().height;
+    const top = document
+      .getElementsByClassName('explorer-body')[0]
+      .getBoundingClientRect().top;
+    if (top < headerHeight && position === 'relative') {
+      this.setState({ position: 'fixed' });
+    }
+
+    if (top > headerHeight && position === 'fixed') {
+      this.setState({ position: 'relative' });
+    }
+  };
+
   render() {
     const { error, loaded, user } = this.props;
+    const { position } = this.state;
 
     let body = (
       <div className={styles.profileContainer}>
@@ -36,7 +70,7 @@ class ProfileComponent extends React.Component {
         </div>
         <div className={styles.profileBountiesContainer}>
           <div className={styles.profileBounties}>
-            <FilterNav />
+            <FilterNav position={position} />
             <ProfileBounties />
           </div>
         </div>

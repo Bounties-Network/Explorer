@@ -77,7 +77,7 @@ const ProfileBountiesComponent = props => {
   }
 
   return (
-    <div className={styles.explorerBody}>
+    <div className={`${styles.explorerBody} explorer-body`}>
       <div className={styles.bodyInnerContainer}>
         <div className={styles.bodyHeading}>
           <div>
