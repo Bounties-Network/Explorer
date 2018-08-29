@@ -357,6 +357,7 @@ function BountiesReducer(state = initialState, action) {
     case LOAD_BOUNTIES: {
       return {
         ...state,
+        batch: false,
         count: 0,
         loading: true,
         error: false

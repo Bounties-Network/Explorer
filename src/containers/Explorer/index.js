@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { actions } from 'public-modules/Bounties';
 import { toggleFromParam } from 'utils/locationHelpers';
 import { SideOverlay } from 'components';
+import { locationNonceSelector } from 'layout/App/selectors';
 import styles from './Explorer.module.scss';
 
 class Explorer extends React.Component {
@@ -19,6 +20,17 @@ class Explorer extends React.Component {
     this.state = {
       mobileFilterVisible: false
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    const { batch, locationNonce, history, resetFilters, load } = this.props;
+
+    if (prevProps.locationNonce !== locationNonce && history.action === 'POP') {
+      batch(true);
+      resetFilters();
+      toggleStageFilter('active');
+      load(true);
+    }
   }
 
   render() {
@@ -46,13 +58,19 @@ class Explorer extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  locationNonce: locationNonceSelector(state)
+});
+
 export default compose(
   connect(
-    () => ({}),
+    mapStateToProps,
     {
       resetState: actions.resetState,
       load: actions.loadBounties,
-      toggleStageFilter: actions.toggleStageFilter
+      toggleStageFilter: actions.toggleStageFilter,
+      resetFilters: actions.resetFilters,
+      batch: actions.batch
     }
   ),
   withRouter
