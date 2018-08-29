@@ -25,7 +25,7 @@ export function* loadProfileBounties(action) {
     yield put(addFulfillerFilter(address));
   }
 
-  yield put(loadBounties());
+  yield put(loadBounties(true));
 }
 
 export function* networkSwitchChanged(action) {

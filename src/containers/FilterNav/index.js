@@ -10,7 +10,7 @@ import {
   anyDifficultyFiltersSelected
 } from 'public-modules/Bounties/selectors';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
-import { map as fpMap, throttle } from 'lodash';
+import { map as fpMap, reduce as fpReduce, throttle } from 'lodash';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions } from 'public-modules/Bounties';
@@ -21,6 +21,7 @@ import {
   setParam
 } from 'utils/locationHelpers';
 const map = fpMap.convert({ cap: false });
+const reduce = fpReduce.convert({ cap: false });
 const {
   resetFilter,
   setSearch,
@@ -40,6 +41,7 @@ const FilterNavComponent = props => {
     toggleStageFilter,
     toggleDifficultyFilter,
     stageFilters,
+    defaultStageFilters,
     difficultyFilters,
     categories,
     categoryFilters,
@@ -53,7 +55,16 @@ const FilterNavComponent = props => {
     fixed
   } = props;
 
-  const rootLocationParams = location.search || '?bountyStage=active';
+  const stages = reduce(
+    (acc, value, key) => {
+      if (value) acc.push(key);
+      return acc;
+    },
+    [],
+    defaultStageFilters
+  ).join('%2C');
+
+  const rootLocationParams = location.search || `?bountyStage=${stages}`;
 
   const toggleStageFilterAction = stage => {
     const queryParams =
@@ -94,15 +105,19 @@ const FilterNavComponent = props => {
   });
 
   const resetFilterAction = () => {
-    history.push(location.pathname);
     batch(true);
     map((value, key) => {
       if (value) {
         resetFilter(key);
       }
     }, resetFilters);
-    toggleStageFilter('active');
+    map((value, key) => {
+      if (value) {
+        toggleStageFilterAction(key);
+      }
+    }, defaultStageFilters);
     batch(false);
+    history.push(location.pathname);
   };
 
   const filterNavStyles = fixed ? styles.filterNavFixed : styles.filterNav;
@@ -232,19 +247,27 @@ const FilterNav = compose(
 
 FilterNav.propTypes = {
   fixed: PropTypes.bool,
-  config: PropTypes.array
+  config: PropTypes.array,
+  stageFilters: PropTypes.object,
+  resetFilters: PropTypes.object
 };
 
 FilterNav.defaultProps = {
   fixed: false,
+  config: { search: true, stage: true, difficulty: true, category: true },
+  defaultStageFilters: {
+    active: true,
+    completed: false,
+    expired: false,
+    dead: false
+  },
   resetFilters: {
     address: true,
     search: true,
     stage: true,
     difficulty: true,
     category: true
-  },
-  config: { search: true, stage: true, difficulty: true, category: true }
+  }
 };
 
 export default FilterNav;

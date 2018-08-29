@@ -21,6 +21,7 @@ import { actions } from 'public-modules/Bounties';
 
 const ExplorerBodyComponent = props => {
   const {
+    className,
     bounties,
     count,
     sort,
@@ -32,7 +33,8 @@ const ExplorerBodyComponent = props => {
     toggleCategoryFilter,
     categoryFilters,
     error,
-    onOpenFilters
+    onOpenFilters,
+    noPadding
   } = props;
 
   const renderBounties = () => {
@@ -72,13 +74,17 @@ const ExplorerBodyComponent = props => {
     }, bounties);
   };
 
-  let className = styles.explorerBody;
+  let bodyClass = styles.explorerBody;
   if (loading || bounties.length === 0) {
-    className += ` ${styles.centeredBody}`;
+    bodyClass += ` ${styles.centeredBody}`;
+  }
+
+  if (className) {
+    bodyClass += ` ${className}`;
   }
 
   return (
-    <div className={className}>
+    <div className={bodyClass}>
       <div className={styles.bodyHeading}>
         <div>
           <Text

@@ -6,7 +6,8 @@ import ProfileDetails from './ProfileDetails';
 import { ExplorerBody } from 'containers';
 import FilterNav from 'containers/FilterNav';
 import styles from './Profile.module.scss';
-import { ZeroState } from 'components';
+import { SideOverlay, ZeroState } from 'components';
+import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { userInfoSelector } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
@@ -18,13 +19,18 @@ class ProfileComponent extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      mobileFilterVisible: false
+    };
+
     const {
       currentUser,
       history,
       match,
       loadUserInfo,
       setActiveTab,
-      setProfileAddress
+      setProfileAddress,
+      resetState
     } = this.props;
 
     let address = match.params.address;
@@ -41,6 +47,7 @@ class ProfileComponent extends React.Component {
       return;
     }
 
+    resetState();
     loadUserInfo(address.toLowerCase());
     setProfileAddress(address.toLowerCase());
     setActiveTab('issued');
@@ -49,6 +56,30 @@ class ProfileComponent extends React.Component {
   render() {
     const { error, loaded, user } = this.props;
 
+    const profileFilterNav = (
+      <FilterNav
+        config={{
+          search: false,
+          stage: true,
+          difficulty: false,
+          category: false
+        }}
+        resetFilters={{
+          address: false,
+          search: true,
+          stage: true,
+          difficulty: true,
+          category: true
+        }}
+        defaultStageFilters={{
+          active: false,
+          completed: false,
+          expired: false,
+          dead: false
+        }}
+      />
+    );
+
     let body = (
       <div className={styles.profileContainer}>
         <div className={`${styles.profileDetails}`}>
@@ -56,22 +87,23 @@ class ProfileComponent extends React.Component {
         </div>
         <div className={styles.profileBountiesContainer}>
           <div className={styles.profileBounties}>
-            <FilterNav
-              config={{
-                search: false,
-                stage: true,
-                difficulty: false,
-                category: false
-              }}
-              resetFilters={{
-                address: false,
-                search: true,
-                stage: true,
-                difficulty: true,
-                category: true
-              }}
+            <div className={styles.desktopFilter}>{profileFilterNav}</div>
+            <div className={styles.mobileFilter}>
+              <SideOverlay
+                hasMask
+                visible={this.state.mobileFilterVisible}
+                theme="light"
+                position="right"
+                onClose={() => this.setState({ mobileFilterVisible: false })}
+              >
+                {profileFilterNav}
+              </SideOverlay>
+            </div>
+
+            <ExplorerBody
+              className={styles.explorerBody}
+              onOpenFilters={() => this.setState({ mobileFilterVisible: true })}
             />
-            <ExplorerBody />
           </div>
         </div>
       </div>
@@ -127,6 +159,7 @@ const Profile = compose(
   connect(
     mapStateToProps,
     {
+      resetState: bountiesActions.resetState,
       loadUserInfo: userInfoActions.loadUserInfo,
       setActiveTab: actions.setActiveTab,
       setProfileAddress: actions.setProfileAddress

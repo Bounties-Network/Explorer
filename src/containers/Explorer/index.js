@@ -57,6 +57,7 @@ class Explorer extends React.Component {
           </SideOverlay>
         </div>
         <ExplorerBody
+          className={styles.explorerBody}
           onOpenFilters={() => this.setState({ mobileFilterVisible: true })}
         />
       </div>
