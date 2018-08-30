@@ -18,7 +18,7 @@ const BountyItem = props => {
 
   return (
     <div className={`row ${styles.container}`}>
-      <div className="col-xs-10">
+      <div className="col-xs-9">
         <Text
           alignment="align-left"
           typeScale="Body"
@@ -36,12 +36,17 @@ const BountyItem = props => {
           {`Created ${formattedTime} ${submissionsText}`}
         </Text>
       </div>
-      <div className="col-xs-2">
+      <div className="col-xs-3">
         <div className={styles.value}>
-          <Text color="purple" typeScale="h3" className={styles.usd}>
+          <Text
+            color="purple"
+            typeScale="h4"
+            weight="fontWeight-medium"
+            className={styles.usd}
+          >
             ${usd_value}
           </Text>
-          <Text color="defaultGrey" typeScale="Small" className={styles.usd}>
+          <Text color="defaultGrey" typeScale="Small" className={styles.eth}>
             {`${value} ${currency}`}
           </Text>
         </div>

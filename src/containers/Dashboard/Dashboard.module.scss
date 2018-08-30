@@ -1,5 +1,7 @@
 @import "~styles/variables.scss";
 
+$slider-height: calc(100vh - #{$header-height-sm});
+
 .statsContainer {
   margin: $m-spacing;
 
@@ -18,52 +20,107 @@
 }
 
 .mobileContainer {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow-x: hidden;
+  min-height: $slider-height;
 
-  @media only screen and (max-width: 48em) {
-    display: block;
+  @media only screen and (min-width: 48em) {
+    display: none;
+  }
+}
+
+.panelContainer {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: $slider-height;
+  height: 100%;
+}
+
+.bountiesPanel,
+.activityPanel,
+.submissionsPanel {
+  box-shadow: none;
+  border-radius: 0;
+
+  @media only screen and (min-width: 48em) {
+    box-shadow: $base-box-shadow;
+    border-radius: $base-border-radius;
   }
 }
 
 .bountiesPanel {
+  min-height: $slider-height;
+  height: 100%;
+  width: 100%;
+
   @media only screen and (min-width: 48em) {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    height: 27vh;
-    min-height: 25rem;
+    min-height: 0;
+    height: 30rem;
+  }
+
+  @media only screen and (min-width: 60em) {
+    margin-right: $base-spacing;
+    width: calc(50% - #{$base-spacing});
   }
 }
 
 .bodyClass {
-  overflow-y: scroll;
+  height: 100%;
 
-  @media only screen and (max-width: 48em) {
-    height: 40vh;
-    width: 100vw;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: 3px solid white;
+    background-clip: padding-box;
+    -webkit-border-radius: 7px;
+    background-color: $brand-lightGrey;
+  }
+
+  @media only screen and (min-width: 48em) {
     overflow-y: scroll;
   }
 }
 
 .activityPanel {
+  min-height: $slider-height;
+  height: 100%;
+  width: 100%;
+
   @media only screen and (min-width: 48em) {
+    margin-top: $m-spacing;
     display: flex;
     flex-direction: column;
-    height: 27vh;
-    min-height: 25rem;
+    min-height: 0;
+    height: 30rem;
+  }
+
+  @media only screen and (min-width: 60em) {
+    margin-top: 0;
+    margin-left: $base-spacing;
+    width: calc(50% - #{$base-spacing});
   }
 }
 
 .submissionsPanel {
+  min-height: $slider-height;
+  height: 100%;
+
   @media only screen and (min-width: 48em) {
-    margin-bottom: $xxl-spacing;
-    height: 100%;
+    margin-bottom: $xxl-spacing * 3;
     margin-top: $m-spacing;
     min-height: 25rem;
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-    height: 27vh;
+    height: 25rem;
+    width: 100%;
     text-align: left;
   }
 }

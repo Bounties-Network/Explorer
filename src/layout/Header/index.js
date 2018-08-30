@@ -43,21 +43,18 @@ const HeaderComponent = props => {
             match.path !== '/createBounty/draft/:id/' && (
               <Button
                 type="primary"
+                //icon={['far', 'plus']}
                 onClick={() => {
                   history.push('/createBounty');
                 }}
                 className={styles.button}
               >
-                <div>
-                  <div className={styles.desktopButtonText}>
-                    Create New Bounty
-                  </div>
-                  <div className={styles.mobileButtonText}>
-                    <Text weight="fontWeight-bold">
-                      <FontAwesomeIcon icon={['far', 'plus']} />
-                    </Text>
-                  </div>
-                </div>
+                <Text className={styles.mobileButtonText}>
+                  <FontAwesomeIcon icon={['far', 'plus']} />
+                </Text>
+                <Text className={styles.desktopButtonText}>
+                  Create New Bounty
+                </Text>
               </Button>
             )}
           <div className={styles.notification}>

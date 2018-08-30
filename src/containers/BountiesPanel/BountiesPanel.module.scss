@@ -9,11 +9,19 @@
 }
 
 .listGroup {
-  overflow-y: scroll;
+  margin: -$base-spacing;
+  margin-right: calc((#{$base-spacing} + 8px) * -1);
+
+  @media only screen and (min-width: 48em) {
+    margin: -$m-spacing;
+    margin-right: calc((#{$m-spacing} + 8px) * -1);
+  }
 }
 
-.loadMoreButton {
+.loadMoreButton button {
+  margin-top: $l-spacing;
   text-align: center;
+  width: 100%;
 }
 
 .bodyLoading {
@@ -25,5 +33,5 @@
 
 .zeroState {
   max-width: 25rem;
-  padding: 0 $xxl-spacing;
+  padding: $xxl-spacing;
 }

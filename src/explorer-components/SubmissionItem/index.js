@@ -26,14 +26,14 @@ const SubmissionItem = props => {
 
   return (
     <Table.Row>
-      <Table.Cell headerText="Bounty title" flexGrow={4}>
+      <Table.Cell flexBasis="40%" headerText="Bounty title">
         <Link to={`/bounty/${bountyId}`} className={styles.link}>
-          <Text typeScale="h4" weight="fontWeight-medium">
+          <Text typeScale="h5" weight="fontWeight-medium">
             {title}
           </Text>
         </Link>
       </Table.Cell>
-      <Table.Cell headerText="Fulfiller" flexGrow={3}>
+      <Table.Cell flexBasis="16%" headerText="Fulfiller">
         <LinkedAvatar
           img={fulfiller_img}
           address={fulfiller}
@@ -42,18 +42,26 @@ const SubmissionItem = props => {
           size="small"
         />
       </Table.Cell>
-      <Table.Cell headerText="Submission date" flexGrow={2}>
-        {formattedTime}
+      <Table.Cell
+        flexBasis="15%"
+        contentType="numerical"
+        headerText="Submission date"
+      >
+        <Text typeScale="Body">{formattedTime}</Text>
       </Table.Cell>
-      <Table.Cell headerText="Status" flexGrow={2}>
+      <Table.Cell flexBasis="16%" headerText="Status">
         <FulfillmentStagePill bountyStage={bountyStage} accepted={status} />
       </Table.Cell>
-      <Table.Cell headerText="Payment amount" flexGrow={2}>
+      <Table.Cell
+        flexBasis="13%"
+        headerText="Payment amount"
+        contentType="numerical"
+      >
         <div className={styles.value}>
-          <Text color="purple" typeScale="h3" className={styles.usd}>
+          <Text color="purple" typeScale="h4" className={styles.usd}>
             ${usd}
           </Text>
-          <Text color="defaultGrey" typeScale="Small" className={styles.usd}>
+          <Text color="defaultGrey" typeScale="Small">
             {`${amount} ${currency}`}
           </Text>
         </div>

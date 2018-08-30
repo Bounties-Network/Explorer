@@ -23,6 +23,7 @@ export function* loadActivity(action) {
   try {
     let endpoint = `notification/activity/user/${address.toLowerCase()}`;
     const activity = yield call(request, endpoint, 'GET', { params });
+    
     const { results, count } = activity;
 
     yield put(loadActivitySuccess(results, count));

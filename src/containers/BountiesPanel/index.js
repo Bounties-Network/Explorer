@@ -74,7 +74,9 @@ class BountiesPanelComponent extends React.Component {
     let zeroStateClass;
     let body = (
       <React.Fragment>
-        <ListGroup>{this.renderBounties(list)}</ListGroup>
+        <ListGroup className={styles.listGroup}>
+          {this.renderBounties(list)}
+        </ListGroup>
         {list.length < count && (
           <div className={styles.loadMoreButton}>
             <Button

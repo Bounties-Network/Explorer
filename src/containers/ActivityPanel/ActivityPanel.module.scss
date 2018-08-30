@@ -8,8 +8,25 @@
   }
 }
 
-.loadMoreButton {
+.listGroup {
+  margin: -$base-spacing;
+  margin-right: calc((#{$base-spacing} + 8px) * -1);
+
+  @media only screen and (min-width: 48em) {
+    margin: -$m-spacing;
+    margin-right: calc((#{$m-spacing} + 8px) * -1);
+  }
+}
+
+.activityListItem {
+  padding-top: $base-spacing * 1.5;
+  padding-bottom: $base-spacing * 1.5;
+}
+
+.loadMoreButton button {
+  margin-top: $l-spacing;
   text-align: center;
+  width: 100%;
 }
 
 .bodyLoading {
@@ -21,5 +38,5 @@
 
 .zeroState {
   max-width: 25rem;
-  padding: 0 $xxl-spacing;
+  padding: $xxl-spacing;
 }

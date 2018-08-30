@@ -6,7 +6,8 @@
   padding-right: 1rem;
 }
 
-.pageWrapper {
+.pageWrapper,
+.pageWrapper-large {
   box-sizing: border-box;
 }
 
@@ -258,6 +259,12 @@
 
   .pageWrapper {
     max-width: 65rem;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .pageWrapper-large {
+    max-width: 70rem;
     margin: 0 auto;
     padding: 0 24px;
   }

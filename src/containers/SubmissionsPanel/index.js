@@ -69,11 +69,15 @@ class SubmissionsPanelComponent extends React.Component {
       <React.Fragment>
         <Table>
           <Table.Header>
-            <Table.HeaderCell flexGrow={4}>Bounty title</Table.HeaderCell>
-            <Table.HeaderCell flexGrow={3}>Fulfiller</Table.HeaderCell>
-            <Table.HeaderCell flexGrow={2}>Submission date</Table.HeaderCell>
-            <Table.HeaderCell flexGrow={2}>Status</Table.HeaderCell>
-            <Table.HeaderCell flexGrow={2}>Payment amount</Table.HeaderCell>
+            <Table.HeaderCell flexBasis="40%">Bounty title</Table.HeaderCell>
+            <Table.HeaderCell flexBasis="16%">Fulfiller</Table.HeaderCell>
+            <Table.HeaderCell flexBasis="15%" contentType="numerical">
+              Submission date
+            </Table.HeaderCell>
+            <Table.HeaderCell flexBasis="16%">Status</Table.HeaderCell>
+            <Table.HeaderCell flexBasis="13%" contentType="numerical">
+              Payment amount
+            </Table.HeaderCell>
           </Table.Header>
           {this.renderSubmissions(list)}
         </Table>
