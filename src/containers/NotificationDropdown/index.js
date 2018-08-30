@@ -74,8 +74,14 @@ const NotificationDropdown = props => {
   return (
     <Dropdown position="left" className={styles.customDropdown}>
       <DropdownTrigger>
-        <Text typeScale="h4" className={hasUnread ? styles.notification : ''}>
-          <FontAwesomeIcon icon={['fal', 'bell']} />
+        <Text
+          typeScale="h3"
+          color="defaultGrey"
+          className={`{hasUnread ? styles.notification : ''} ${
+            styles.notificationTrigger
+          }`}
+        >
+          <FontAwesomeIcon icon={['far', 'bell']} />
         </Text>
       </DropdownTrigger>
       <DropdownContent>

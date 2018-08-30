@@ -43,7 +43,6 @@ const HeaderComponent = props => {
             match.path !== '/createBounty/draft/:id/' && (
               <Button
                 type="primary"
-                //icon={['far', 'plus']}
                 onClick={() => {
                   history.push('/createBounty');
                 }}

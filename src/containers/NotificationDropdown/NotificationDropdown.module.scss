@@ -1,5 +1,10 @@
 @import "~styles/variables.scss";
 
+.notificationTrigger {
+  position: relative;
+  transform: rotate(25deg);
+}
+
 .notificationBox {
   box-shadow: $base-box-shadow;
   background-color: $brand-white;
@@ -13,16 +18,17 @@
 }
 
 .notification:after {
-  position:absolute;
-  left: 25%;
-  top: 15%;
+  border: 2px solid white;
+  border-radius: 10px;
+  content: '';
+  display: block;
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  right: -4px;
+  top: -3px;
   z-index: 1000;
-  content: ' \25CF';
-  font-size: .5em;
-  line-height: .75em;
-  text-align: right;
-  color: $brand-red;
-  font-weight:bold;
+  background-color: red;
 }
 
 .customDropdown {
