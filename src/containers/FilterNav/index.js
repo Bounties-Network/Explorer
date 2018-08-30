@@ -154,24 +154,14 @@ const FilterNavComponent = props => {
   });
 
   const setSortAction = sort => {
+    const sortOrder = sort === 'usd_price' ? 'desc' : 'ascd';
+
     history.push(
-      location.pathname + setParam(rootLocationParams, 'sort', sort)
+      location.pathname +
+        setParam(rootLocationParams, 'sort', [sort, sortOrder].join(','))
     );
 
-    switch (sort) {
-      case 'usd_price': {
-        setSort('usd_price', 'desc');
-        break;
-      }
-      case 'bounty_created': {
-        setSort('bounty_created', 'ascd');
-        break;
-      }
-      case 'deadline': {
-        setSort('deadline', 'ascd');
-        break;
-      }
-    }
+    setSort(sort, sortOrder);
   };
 
   const resetFilterAction = () => {

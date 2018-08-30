@@ -1,5 +1,5 @@
 import request from 'utils/request';
-import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Bounties';
 import { PAGE_SIZE } from 'public-modules/Bounties/constants';
 import {
@@ -35,6 +35,7 @@ const {
   loadMoreBountiesFail,
   loadMoreBountiesSuccess,
   setSearch,
+  setSort,
   toggleStageFilter,
   setStageFilter,
   toggleDifficultyFilter,
@@ -80,17 +81,15 @@ export function* initializeFiltersFromQuery() {
     }
   }
 
-  // if (sort === '') {
-  //   yield put(resetFilter('sort'));
-  // }
-  //
-  // if (sort) {
-  //   yield put(resetFilter('sort'));
-  //   const sort = category.split(',');
-  //   for (let i = 0; i < categories.length; i++) {
-  //     yield put(addCategoryFilter(categories[i]));
-  //   }
-  // }
+  if (sort === '') {
+    yield put(resetFilter('sort'));
+  }
+
+  if (sort) {
+    yield put(resetFilter('sort'));
+    const [sortType, sortOrder] = sort.split(',');
+    yield put(setSort(sortType, sortOrder));
+  }
 
   if (category === '') {
     yield put(resetFilter('sort'));
@@ -99,6 +98,7 @@ export function* initializeFiltersFromQuery() {
   if (category) {
     yield put(resetFilter('category'));
     const categories = category.split(',');
+    console.log(categories);
     for (let i = 0; i < categories.length; i++) {
       yield put(addCategoryFilter(categories[i]));
     }
@@ -162,7 +162,7 @@ export function* loadMoreBounties(action) {
 }
 
 export function* watchBounties() {
-  yield takeLatest(
+  yield takeEvery(
     [
       SET_SORT,
       RESET_FILTERS,
