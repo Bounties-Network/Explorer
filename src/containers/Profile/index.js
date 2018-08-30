@@ -12,6 +12,7 @@ import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { userInfoSelector } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
+import { locationNonceSelector } from 'layout/App/selectors';
 import { actions } from './reducer';
 
 import { StickyContainer, Sticky } from 'react-sticky';
@@ -59,11 +60,21 @@ class ProfileComponent extends React.Component {
       currentUser,
       history,
       match,
+      batch,
+      loadBounties,
       loadUserInfo,
+      locationNonce,
       setActiveTab,
       setProfileAddress,
-      resetState
+      resetState,
+      resetFilters
     } = this.props;
+
+    if (prevProps.locationNonce !== locationNonce && history.action === 'POP') {
+      batch(true);
+      resetFilters();
+      loadBounties(true);
+    }
 
     let address = match.params.address;
     if (prevProps.match.params.address !== address) {
@@ -207,7 +218,8 @@ const mapStateToProps = state => {
     user: userInfo.loadedUser.user,
     loading: userInfo.loading,
     loaded: userInfo.loaded,
-    error: userInfo.error
+    error: userInfo.error,
+    locationNonce: locationNonceSelector(state)
   };
 };
 
@@ -216,7 +228,10 @@ const Profile = compose(
   connect(
     mapStateToProps,
     {
+      loadBounties: bountiesActions.loadBounties,
+      batch: bountiesActions.batch,
       resetState: bountiesActions.resetState,
+      resetFilters: bountiesActions.resetFilters,
       loadUserInfo: userInfoActions.loadUserInfo,
       setActiveTab: actions.setActiveTab,
       setProfileAddress: actions.setProfileAddress

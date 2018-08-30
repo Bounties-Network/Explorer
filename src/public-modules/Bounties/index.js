@@ -338,7 +338,8 @@ function BountiesReducer(state = initialState, action) {
     case RESET_FILTERS: {
       return {
         ...state,
-        ...defaultFilters
+        ...defaultFilters,
+        ...defaultSort
       };
     }
     case RESET_FILTER: {
