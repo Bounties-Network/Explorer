@@ -49,7 +49,7 @@ const {
 export function* initializeFiltersFromQuery() {
   const params = queryStringToObject(window.location.search);
 
-  const { search, bountyStage, difficulty, category, platform } = params;
+  const { search, bountyStage, difficulty, category, platform, sort } = params;
 
   if (search) {
     yield put(resetFilter('search'));
@@ -80,8 +80,20 @@ export function* initializeFiltersFromQuery() {
     }
   }
 
+  // if (sort === '') {
+  //   yield put(resetFilter('sort'));
+  // }
+  //
+  // if (sort) {
+  //   yield put(resetFilter('sort'));
+  //   const sort = category.split(',');
+  //   for (let i = 0; i < categories.length; i++) {
+  //     yield put(addCategoryFilter(categories[i]));
+  //   }
+  // }
+
   if (category === '') {
-    yield put(resetFilter('category'));
+    yield put(resetFilter('sort'));
   }
 
   if (category) {

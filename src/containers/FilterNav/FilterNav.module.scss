@@ -4,28 +4,19 @@
   background: $brand-white;
   padding: $l-spacing;
   margin-top: 0;
+  max-width: $filterNav-width-fixed;
+  width: 70vw;
   overflow-y: scroll;
   top: 0;
   bottom: 0;
-<<<<<<< HEAD
-  position: default;
-  max-width: $filterNav-width-fixed;
-  width: 70vw;
-  height: 100%;
-=======
   position: absolute;
->>>>>>> integrate will's sticky filter nav into refactor
 
   @media only screen and (min-width: 48em) {
-    height: auto;
-    margin-top: $header-height-sm;
-    padding: $m-spacing;
     width: $filterNav-width-fluid;
   }
 
   @media only screen and (min-width: 65em) {
     width: $filterNav-width-fixed;
-    margin-top: $header-height-lg;
     padding: $l-spacing;
   }
 }
@@ -33,10 +24,10 @@
 .fixed {
   position: fixed;
   @media only screen and (min-width: 48em) {
-    // top: $header-height-sm;
+    top: $header-height-sm;
   }
    @media only screen and (min-width: 65em) {
-    // top: $header-height-lg;
+    top: $header-height-lg;
   }
 }
 

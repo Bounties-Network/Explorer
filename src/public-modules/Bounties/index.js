@@ -367,6 +367,10 @@ function BountiesReducer(state = initialState, action) {
       if (filter === 'platform') {
         return { ...state, platformFilters: new Set([]) };
       }
+
+      if (filter === 'sort') {
+        return { ...state, ...defaultSort };
+      }
     }
     case SET_SEARCH: {
       const { search } = action;

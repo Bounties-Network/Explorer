@@ -30,6 +30,11 @@ export const bountiesCountSelector = createSelector(
   rootBounties => rootBounties.count
 );
 
+export const bountiesSortFilterSelector = createSelector(
+  rootBountiesSelector,
+  rootBounty => rootBounty.sort
+);
+
 // We make this a selector to manage the set -> array conversion
 export const bountiesCategoryFiltersSelector = createSelector(
   rootBountiesSelector,

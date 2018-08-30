@@ -125,7 +125,8 @@ class ProfileComponent extends React.Component {
           search: true,
           stage: true,
           difficulty: true,
-          category: true
+          category: true,
+          platform: true
         }}
         defaultStageFilters={{
           active: false,
@@ -152,7 +153,7 @@ class ProfileComponent extends React.Component {
                 position="right"
                 onClose={() => this.setState({ mobileFilterVisible: false })}
               >
-                {profileFilterNav}
+                <div className={styles.filterWrapper}>{profileFilterNav}</div>
               </SideOverlay>
             </div>
 

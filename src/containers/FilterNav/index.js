@@ -1,12 +1,20 @@
 import React from 'react';
 import styles from './FilterNav.module.scss';
 import PropTypes from 'prop-types';
-import { Search, Text, Button, Checkbox, SearchSelect } from 'components';
+import {
+  Search,
+  Text,
+  Button,
+  Checkbox,
+  RadioGroup,
+  SearchSelect
+} from 'components';
 import { withRouter } from 'react-router-dom';
 import {
   rootBountiesSelector,
   bountiesCategoryFiltersSelector,
   bountiesPlatformFiltersSelector,
+  bountiesSortFilterSelector,
   anyStageFiltersSelected,
   anyDifficultyFiltersSelected
 } from 'public-modules/Bounties/selectors';
@@ -28,6 +36,7 @@ const reduce = fpReduce.convert({ cap: false });
 const {
   resetFilter,
   setSearch,
+  setSort,
   toggleStageFilter,
   toggleDifficultyFilter,
   addCategoryFilter,
@@ -43,6 +52,8 @@ const FilterNavComponent = props => {
     resetFilters,
     resetFilter,
     setSearch,
+    setSort,
+    sortFilter,
     toggleStageFilter,
     toggleDifficultyFilter,
     stageFilters,
@@ -62,6 +73,12 @@ const FilterNavComponent = props => {
     config,
     position
   } = props;
+
+  const sortOptions = [
+    { value: 'usd_price', label: 'Value: High to Low' },
+    { value: 'bounty_created', label: 'Most Recent' },
+    { value: 'deadline', label: 'Expiry' }
+  ];
 
   const platforms = reduce(
     (acc, key) => {
@@ -136,6 +153,27 @@ const FilterNavComponent = props => {
     setSearch(searchValue);
   });
 
+  const setSortAction = sort => {
+    history.push(
+      location.pathname + setParam(rootLocationParams, 'sort', sort)
+    );
+
+    switch (sort) {
+      case 'usd_price': {
+        setSort('usd_price', 'desc');
+        break;
+      }
+      case 'bounty_created': {
+        setSort('bounty_created', 'ascd');
+        break;
+      }
+      case 'deadline': {
+        setSort('deadline', 'ascd');
+        break;
+      }
+    }
+  };
+
   const resetFilterAction = () => {
     batch(true);
     map((value, key) => {
@@ -174,6 +212,18 @@ const FilterNavComponent = props => {
           Reset Filters
         </Button>
       </div>
+      {config.sort && (
+        <div className={styles.stageFilter}>
+          <Text weight="fontWeight-medium" className={styles.groupText}>
+            Sort by
+          </Text>
+          <RadioGroup
+            onChange={setSortAction}
+            options={sortOptions}
+            value={sortFilter}
+          />
+        </div>
+      )}
       {config.stage && (
         <div className={styles.stageFilter}>
           <Text weight="fontWeight-medium" className={styles.groupText}>
@@ -244,7 +294,6 @@ const FilterNavComponent = props => {
           />
         </div>
       )}
-
       {config.platform && (
         <div className={styles.categoryFilter}>
           <Text weight="fontWeight-medium" className={styles.groupText}>
@@ -278,6 +327,7 @@ const mapStateToProps = state => {
     difficultyFilters: bountyState.difficultyFilters,
     categoryFilters: bountiesCategoryFiltersSelector(state),
     platformFilters: bountiesPlatformFiltersSelector(state),
+    sortFilter: bountiesSortFilterSelector(state),
     categories: categoriesSelector(state),
     search: bountyState.search
   };
@@ -289,6 +339,7 @@ const FilterNav = compose(
     mapStateToProps,
     {
       setSearch,
+      setSort,
       toggleStageFilter,
       toggleDifficultyFilter,
       addCategoryFilter,
@@ -315,7 +366,8 @@ FilterNav.defaultProps = {
     stage: true,
     difficulty: true,
     category: true,
-    platform: true
+    platform: true,
+    sort: true
   },
   defaultStageFilters: {
     active: true,
@@ -329,7 +381,8 @@ FilterNav.defaultProps = {
     stage: true,
     difficulty: true,
     category: true,
-    platform: true
+    platform: true,
+    sort: true
   }
 };
 
