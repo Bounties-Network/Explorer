@@ -62,7 +62,7 @@ a {
   h1, h2, h3, h4, h5 {
     color: $brand-black;
     font-weight: 500;
-
+    
     &:not(:first-child) {
       padding-top: $m-spacing;
     }
@@ -70,6 +70,7 @@ a {
 
   h1 {
     font-size: $h2-font-size;
+    line-height: $line-height-large;
     padding-bottom: $m-spacing;
   }
 
