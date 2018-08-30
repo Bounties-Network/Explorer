@@ -767,30 +767,6 @@
         ],
         "name": "PayoutIncreased",
         "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "_draftId",
-            "type": "uint256"
-          }
-        ],
-        "name": "DraftCreated",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "_draftId",
-            "type": "uint256"
-          }
-        ],
-        "name": "DraftUpdated",
-        "type": "event"
       }
     ],
     "HumanStandardToken": [
