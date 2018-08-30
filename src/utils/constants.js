@@ -57,7 +57,9 @@ export const NOTIFICATION_ID = {
   RATING_ISSUED: 19,
   RATING_RECEIVED: 20,
   PROFILE_UPDATED: 21,
-  COMMENT_ISSUED: 22
+  COMMENT_ISSUED: 22,
+  DRAFT_CREATED: 23,
+  DRAFT_UPDATED: 24
 };
 
 const plus = ['far', 'plus-circle'];
@@ -154,5 +156,13 @@ export const notification_template = {
   [NOTIFICATION_ID.COMMENT_ISSUED]: {
     message: 'You wrote a comment on',
     icon: comment
+  },
+  [NOTIFICATION_ID.DRAFT_CREATED]: {
+    message: 'You created a draft',
+    icon: plus
+  },
+  [NOTIFICATION_ID.DRAFT_UPDATED]: {
+    message: 'You updated a draft',
+    icon: plus
   }
 };
