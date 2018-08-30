@@ -67,12 +67,13 @@ class ProfileComponent extends React.Component {
       setActiveTab,
       setProfileAddress,
       resetState,
-      resetFilters
+      resetFilter
     } = this.props;
 
     if (prevProps.locationNonce !== locationNonce && history.action === 'POP') {
       batch(true);
-      resetFilters();
+      resetFilter('platform');
+      resetFilter('stage');
       loadBounties(true);
     }
 
@@ -231,7 +232,7 @@ const Profile = compose(
       loadBounties: bountiesActions.loadBounties,
       batch: bountiesActions.batch,
       resetState: bountiesActions.resetState,
-      resetFilters: bountiesActions.resetFilters,
+      resetFilter: bountiesActions.resetFilter,
       loadUserInfo: userInfoActions.loadUserInfo,
       setActiveTab: actions.setActiveTab,
       setProfileAddress: actions.setProfileAddress
