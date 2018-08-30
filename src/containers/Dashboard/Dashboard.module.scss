@@ -1,5 +1,7 @@
 @import "~styles/variables.scss";
 
+$slider-height: calc(100vh - #{$header-height-sm});
+
 .statsContainer {
   margin: $m-spacing;
 
@@ -22,7 +24,7 @@
   flex-direction: column;
   align-items: stretch;
   overflow-x: hidden;
-  height: 100vh;
+  min-height: $slider-height;
 
   @media only screen and (min-width: 48em) {
     display: none;
@@ -32,10 +34,24 @@
 .panelContainer {
   display: flex;
   flex-wrap: wrap;
-  height: 100vh;
+  min-height: $slider-height;
+  height: 100%;
+}
+
+.bountiesPanel,
+.activityPanel,
+.submissionsPanel {
+  box-shadow: none;
+  border-radius: 0;
+
+  @media only screen and (min-width: 48em) {
+    box-shadow: $base-box-shadow;
+    border-radius: $base-border-radius;
+  }
 }
 
 .bountiesPanel {
+  min-height: $slider-height;
   height: 100%;
   width: 100%;
 
@@ -43,6 +59,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    min-height: 0;
     height: 30rem;
   }
 
@@ -72,6 +89,7 @@
 }
 
 .activityPanel {
+  min-height: $slider-height;
   height: 100%;
   width: 100%;
 
@@ -79,6 +97,7 @@
     margin-top: $m-spacing;
     display: flex;
     flex-direction: column;
+    min-height: 0;
     height: 30rem;
   }
 
@@ -90,10 +109,11 @@
 }
 
 .submissionsPanel {
+  min-height: $slider-height;
   height: 100%;
 
   @media only screen and (min-width: 48em) {
-    margin-bottom: $xxl-spacing;
+    margin-bottom: $xxl-spacing * 3;
     margin-top: $m-spacing;
     min-height: 25rem;
     display: flex;

@@ -15,7 +15,7 @@ const {
 export function* loadActivity(action) {
   const { address } = action;
   try {
-    let endpoint = `notification/activity/user/${address.toLowerCase()}`;
+    let endpoint = `notification/activity/user/${address.toLowerCase()}/?limit=${LIMIT}`;
     const activity = yield call(request, endpoint, 'GET');
     const { results, count } = activity;
 

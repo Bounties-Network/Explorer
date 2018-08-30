@@ -23,8 +23,10 @@
   padding-bottom: $base-spacing * 1.5;
 }
 
-.loadMoreButton {
+.loadMoreButton button {
+  margin-top: $l-spacing;
   text-align: center;
+  width: 100%;
 }
 
 .bodyLoading {
@@ -36,5 +38,5 @@
 
 .zeroState {
   max-width: 25rem;
-  padding: 0 $xxl-spacing;
+  padding: $xxl-spacing;
 }

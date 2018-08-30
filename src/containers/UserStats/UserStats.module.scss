@@ -8,8 +8,11 @@
   flex-shrink: 0;
   padding-top: $xl-spacing;
 
-  @media only screen and (min-width: 52em) {
+  @media only screen and (min-width: 48em) {
     padding-bottom: ($xxl-spacing * 2);
+  }
+
+  @media only screen and (min-width: 52em) {
     justify-content: space-between;
     flex-direction: row;
   }
@@ -40,7 +43,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin: $l-spacing 0;
+  margin-top: $l-spacing;
   padding: 0 $l-spacing;
 
   &:not(:last-child) {
@@ -56,6 +59,14 @@
 
   &:not(:first-child) {
     padding-left: $l-spacing;
+  }
+
+  &Value {
+    font-size: $h2-font-size;
+
+    @media only screen and (min-width: 48em) {
+      font-size: $h1-font-size;
+    }
   }
 
   &Label {
