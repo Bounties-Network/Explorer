@@ -84,7 +84,7 @@ const ExplorerBodyComponent = props => {
   }
 
   return (
-    <div className={bodyClass}>
+    <div className={`${bodyClass} explorer-body`}>
       <div className={styles.bodyHeading}>
         <div>
           <Text

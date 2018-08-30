@@ -37,11 +37,11 @@
 
 .explorerBody {
   @media only screen and (min-width: 48em) {
-    padding: $l-spacing $base-spacing $xl-spacing $l-spacing;
+    padding: $xl-spacing $base-spacing $xl-spacing calc(#{$filterNav-width-fluid} + #{$l-spacing});
   }
 
   @media only screen and (min-width: 65em) {
-    padding-left: $m-spacing;
+    padding-left: $filterNav-width-fixed + $m-spacing;
     padding-right: $m-spacing;
   }
 }

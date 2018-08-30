@@ -52,7 +52,7 @@ const FilterNavComponent = props => {
     batch,
 
     config,
-    fixed
+    position
   } = props;
 
   const stages = reduce(
@@ -120,10 +120,11 @@ const FilterNavComponent = props => {
     history.push(location.pathname);
   };
 
-  const filterNavStyles = fixed ? styles.filterNavFixed : styles.filterNav;
-
   return (
-    <div className={filterNavStyles}>
+    <div
+      className={`${styles.filterNav} ${position === 'fixed' &&
+        styles['fixed']}`}
+    >
       {config.search && (
         <div className={styles.searchWrapper}>
           <Search value={search} onChange={setSearchAction} />
@@ -246,14 +247,14 @@ const FilterNav = compose(
 )(FilterNavComponent);
 
 FilterNav.propTypes = {
-  fixed: PropTypes.bool,
+  position: PropTypes.bool,
   config: PropTypes.array,
   stageFilters: PropTypes.object,
   resetFilters: PropTypes.object
 };
 
 FilterNav.defaultProps = {
-  fixed: false,
+  position: 'relative',
   config: { search: true, stage: true, difficulty: true, category: true },
   defaultStageFilters: {
     active: true,

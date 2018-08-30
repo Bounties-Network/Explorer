@@ -7,10 +7,14 @@
   overflow-y: scroll;
   top: 0;
   bottom: 0;
+<<<<<<< HEAD
   position: default;
   max-width: $filterNav-width-fixed;
   width: 70vw;
   height: 100%;
+=======
+  position: absolute;
+>>>>>>> integrate will's sticky filter nav into refactor
 
   @media only screen and (min-width: 48em) {
     height: auto;
@@ -26,13 +30,16 @@
   }
 }
 
-.filterNavFixed {
-  @extend .filterNav;
-
+.fixed {
+  position: fixed;
   @media only screen and (min-width: 48em) {
-    position: fixed;
+    // top: $header-height-sm;
+  }
+   @media only screen and (min-width: 65em) {
+    // top: $header-height-lg;
   }
 }
+
 
 .searchWrapper {
   padding-bottom: $l-spacing;
