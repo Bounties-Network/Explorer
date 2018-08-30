@@ -18,7 +18,7 @@ input, textarea {
 }
 
 .modal-open {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 .page-body {
@@ -62,7 +62,7 @@ a {
   h1, h2, h3, h4, h5 {
     color: $brand-black;
     font-weight: 500;
-    
+
     &:not(:first-child) {
       padding-top: $m-spacing;
     }
