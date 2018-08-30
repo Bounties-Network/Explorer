@@ -1,4 +1,3 @@
-
 import React from 'react';
 import request from 'utils/request';
 import { LIMIT } from './constants';
@@ -15,6 +14,7 @@ import { getUserAddressSelector } from 'public-modules/Authentication/selectors'
 import { actions, actionTypes } from 'public-modules/Notification';
 import { notification_template } from 'utils/constants';
 import { deserializeNotification } from './helpers';
+import config from 'public-modules/config';
 
 const {
   loadNotifications,
@@ -41,8 +41,9 @@ export function* loadNotificationsSaga(action) {
       return null;
     }
     const currentNotifications = yield select(notificationsSelector);
+    const params = { notification__platform__in: config.platform };
     const endpoint = `notification/push/user/${address}/`;
-    const response = yield call(request, endpoint, 'GET');
+    const response = yield call(request, endpoint, 'GET', { params });
     const notifications = response.results;
     for (let i = 0; i < notifications.length; i++) {
       const notificationItem = notifications[i];
@@ -67,9 +68,12 @@ export function* loadMoreNotifications(action) {
     return null;
   }
   try {
-    const currentOffset = offset + LIMIT;
-    const endpoint = `notification/push/user/${address}/?offset=${currentOffset}`;
-    const response = yield call(request, endpoint, 'GET');
+    const params = {
+      notification__platform__in: config.platform,
+      offset: offset + LIMIT
+    };
+    const endpoint = `notification/push/user/${address}/`;
+    const response = yield call(request, endpoint, 'GET', { params });
     const notifications = response.results;
     yield put(loadMoreNotificationsSuccess(notifications));
   } catch (e) {

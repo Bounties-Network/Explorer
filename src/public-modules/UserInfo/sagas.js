@@ -10,9 +10,7 @@ export function* loadUserInfo(action) {
   const { address } = action;
 
   try {
-    let endpoint = `user/${address}/profile/?platform=${
-      config.postingPlatform
-    }`;
+    let endpoint = `user/${address}/profile/?platform__in=${config.platform}`;
     const userInfo = yield call(request, endpoint, 'GET');
     yield put(loadUserInfoSuccess(userInfo));
   } catch (e) {
