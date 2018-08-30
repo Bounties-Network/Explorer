@@ -4,12 +4,33 @@ import { Toast } from 'components';
 import { actionTypes } from 'public-modules/Settings';
 
 const {
+  SAVE_SETTINGS_SUCCESS,
+  SAVE_SETTINGS_FAIL,
   SAVE_EMAIL_PREFERENCES_SUCCESS,
   SAVE_EMAIL_PREFERENCES_FAIL
 } = actionTypes;
 
-let lastToast;
-export function* sendEmailSettingsToast(action) {
+let lastProfileToast;
+export function* sendProfileUpdatedToast(action) {
+  let postedMessage = 'Profile saved successfully';
+  let toastType = Toast.TYPE.SUCCESS;
+
+  if (action.type === SAVE_SETTINGS_FAIL) {
+    postedMessage = 'Something went wrong. Please try again.';
+    toastType = Toast.TYPE.ERROR;
+  }
+
+  const id = yield call(Toast, toastType, postedMessage, null);
+
+  if (lastProfileToast) {
+    callToast.dismiss(lastProfileToast);
+  }
+
+  lastProfileToast = id;
+}
+
+let lastEmailToast;
+export function* sendEmailSettingsUpdatedToast(action) {
   let postedMessage = 'Email preferences saved successfully';
   let toastType = Toast.TYPE.SUCCESS;
 
@@ -20,18 +41,25 @@ export function* sendEmailSettingsToast(action) {
 
   const id = yield call(Toast, toastType, postedMessage, null);
 
-  if (lastToast) {
-    callToast.dismiss(lastToast);
+  if (lastEmailToast) {
+    callToast.dismiss(lastEmailToast);
   }
 
-  lastToast = id;
+  lastEmailToast = id;
+}
+
+export function* watchSaveProfile() {
+  yield takeLatest(
+    [SAVE_SETTINGS_SUCCESS, SAVE_SETTINGS_FAIL],
+    sendProfileUpdatedToast
+  );
 }
 
 export function* watchSetEmailSettings() {
   yield takeLatest(
     [SAVE_EMAIL_PREFERENCES_SUCCESS, SAVE_EMAIL_PREFERENCES_FAIL],
-    sendEmailSettingsToast
+    sendEmailSettingsUpdatedToast
   );
 }
 
-export default [watchSetEmailSettings];
+export default [watchSaveProfile, watchSetEmailSettings];

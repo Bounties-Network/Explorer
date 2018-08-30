@@ -9,47 +9,12 @@
     "rinkeby": "https://rinkeby.api.bounties.network"
   },
   "mainNet": {
-    "standardBountiesAddress": "0x2af47a65da8CD66729b4209C22017d6A5C2d2400",
-    "ethProfilesAddress": "0x40244fd09743f9d6c257171010e5f38a055b4778"
+    "standardBountiesAddress": "0x2af47a65da8CD66729b4209C22017d6A5C2d2400"
   },
   "rinkeby": {
-    "standardBountiesAddress": "0xDd1636B88e9071507e859e61991ed4be6647F420",
-    "ethProfilesAddress": "0x40244fd09743f9d6c257171010e5f38a055b4778"
+    "standardBountiesAddress": "0xDd1636B88e9071507e859e61991ed4be6647F420"
   },
   "interfaces": {
-    "ETHProfiles": [
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "user",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "_profile",
-            "type": "string"
-          }
-        ],
-        "name": "profileUpdated",
-        "type": "event"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_profile",
-            "type": "string"
-          }
-        ],
-        "name": "addProfile",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      }
-    ],
     "StandardBounties": [
       {
         "constant": false,

@@ -66,11 +66,7 @@ class UserSettingsComponent extends React.Component {
     const ipfsProfilePhoto = ipfsHash ? ipfsToHttp(ipfsHash, fileName) : '';
 
     return (
-      <form
-        onSubmit={handleSubmit(values =>
-          initiateWalkthrough(() => handleSaveSettings(values))
-        )}
-      >
+      <form onSubmit={handleSubmit(values => handleSaveSettings(values))}>
         <FormSection>
           <FormSection.Section title="PROFILE PHOTO">
             <FormSection.InputGroup>
@@ -183,7 +179,7 @@ class UserSettingsComponent extends React.Component {
                     component={FormTextInput}
                     label="Personal website"
                     placeholder="https://example.com"
-                    validate={[validators.maxLength(128)]}
+                    validate={[validators.isURL, validators.maxLength(128)]}
                   />
                 </div>
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
@@ -193,7 +189,7 @@ class UserSettingsComponent extends React.Component {
                     component={FormTextInput}
                     label="Twitter"
                     placeholder="@ethBounties"
-                    validate={[validators.maxLength(128)]}
+                    validate={[validators.isTwitterHandle]}
                   />
                 </div>
               </div>
@@ -207,7 +203,7 @@ class UserSettingsComponent extends React.Component {
                     component={FormTextInput}
                     label="Github"
                     placeholder="@vbuterin"
-                    validate={[validators.maxLength(128)]}
+                    validate={[validators.isGithubHandle]}
                   />
                 </div>
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
@@ -217,7 +213,7 @@ class UserSettingsComponent extends React.Component {
                     component={FormTextInput}
                     label="LinkedIn"
                     placeholder="https://linkedin.com/in/vbuterin"
-                    validate={[validators.maxLength(128)]}
+                    validate={[validators.isURL, validators.maxLength(128)]}
                   />
                 </div>
               </div>
@@ -251,7 +247,11 @@ const mapStateToProps = state => {
   return {
     initialValues: {
       ...currentUser,
-      languages: currentUser.languages
+      languages: currentUser.languages,
+
+      // stored in db w/o @ symbol
+      twitter: currentUser.twitter ? '@' + currentUser.twitter : '',
+      github: currentUser.github ? '@' + currentUser.github : ''
     },
     uploading: uploadState.uploading || false,
     uploaded: uploadState.uploaded || false,
@@ -270,9 +270,6 @@ const mapStateToProps = state => {
 UserSettingsComponent = reduxForm({ form: 'settings' })(UserSettingsComponent);
 
 const UserSettings = compose(
-  TransactionWalkthrough({
-    dismissable: false
-  }),
   connect(
     mapStateToProps,
     {
