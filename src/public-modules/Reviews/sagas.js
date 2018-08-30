@@ -16,12 +16,15 @@ const {
 export function* loadReviews(action) {
   const { data } = action;
   const { address, reviewType, role } = data;
+  const params = {
+    review_type: reviewType,
+    limit: LIMIT,
+    platform__in: config.platform
+  };
 
   try {
-    let endpoint = `reviews/?${role}__public_address=${address}&review_type=${reviewType}&limit=${LIMIT}&platform=${
-      config.postingPlatform
-    }`;
-    const reviews = yield call(request, endpoint, 'GET');
+    let endpoint = `reviews/?${role}__public_address=${address}`;
+    const reviews = yield call(request, endpoint, 'GET', { params });
     yield put(loadReviewsSuccess(reviews.results, reviews.count));
   } catch (e) {
     console.log(e);
@@ -32,11 +35,16 @@ export function* loadReviews(action) {
 export function* loadMoreReviews(action) {
   const { reviewType } = action;
   const { address, role, reviews } = yield select(reviewsStateSelector);
-  const offset = reviews.length;
+  const params = {
+    review_type: reviewType,
+    limit: LIMIT,
+    offset: reviews.length,
+    platform__in: config.platform
+  };
 
   try {
-    let endpoint = `reviews/?${role}__public_address=${address}&review_type=${reviewType}&offset=${offset}&limit=${LIMIT}`;
-    const reviews = yield call(request, endpoint, 'GET');
+    let endpoint = `reviews/?${role}__public_address=${address}`;
+    const reviews = yield call(request, endpoint, 'GET', { params });
     yield put(loadMoreReviewsSuccess(reviews.results));
   } catch (e) {
     console.log(e);

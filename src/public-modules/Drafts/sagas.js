@@ -5,6 +5,7 @@ import { actionTypes, actions } from 'public-modules/Drafts';
 import { addressSelector } from 'public-modules/Client/selectors';
 import { draftsSelector } from './selectors';
 import { LIMIT } from './constants';
+import config from 'public-modules/config';
 
 const { LOAD_DRAFTS, LOAD_MORE_DRAFTS } = actionTypes;
 const {
@@ -16,10 +17,15 @@ const {
 
 export function* loadDrafts(action) {
   const address = yield select(addressSelector);
+  const params = {
+    issuer: toLower(address),
+    platform__in: config.platform,
+    limit: LIMIT
+  };
 
   try {
-    const endpoint = `bounty/draft/?issuer=${toLower(address)}&limit=${LIMIT}`;
-    const drafts = yield call(request, endpoint, 'GET');
+    const endpoint = 'bounty/draft/';
+    const drafts = yield call(request, endpoint, 'GET', { params });
     yield put(loadDraftsSuccess(drafts));
   } catch (e) {
     yield put(loadDraftsFail(e));
@@ -27,14 +33,18 @@ export function* loadDrafts(action) {
 }
 
 export function* loadMoreDrafts(action) {
+  const address = yield select(addressSelector);
   const drafts_list = yield select(draftsSelector);
-  const offset = drafts_list.length;
+  const params = {
+    issuer: toLower(address),
+    platform__in: config.platform,
+    offset: drafts_list.length,
+    limit: LIMIT
+  };
 
   try {
     const endpoint = 'bounty/draft';
-    const drafts = yield call(request, endpoint, 'GET', {
-      params: { limit: LIMIT, offset }
-    });
+    const drafts = yield call(request, endpoint, 'GET', { params });
     yield put(loadMoreDraftsSuccess(drafts));
   } catch (e) {
     yield put(loadMoreDraftsFail(e));
