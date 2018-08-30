@@ -1,6 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
 import ProfileBounties from './ProfileBounties';
 import FilterNav from './FilterNav';
@@ -13,10 +14,25 @@ import { actions } from './reducer';
 import { StickyContainer, Sticky } from 'react-sticky';
 
 class ProfileComponent extends React.Component {
-  componentWillMount() {
-    const address =
-      this.props.match.params.address || this.props.currentUser.public_address;
-    this.props.setProfileAddress(address.toLowerCase() || '');
+  constructor(props) {
+    super(props);
+
+    const { currentUser, history, match, setProfileAddress } = this.props;
+
+    let address = match.params.address;
+    if (!address) {
+      address = currentUser.public_address;
+
+      // This anti-pattern is here in the constructor in order to simplify the
+      // routing logic. We were unable to use a react-router-dom redirect
+      // because the user needs to still hit the /profile page if they aren't
+      // logged in. Even if they were to hit that page and login it wouldn't
+      // have correctly redirect because not LOCATION_CHANGED event would be
+      // dispatched after logging through the login hoc.
+      history.replace(`/profile/${address}/`);
+    }
+
+    setProfileAddress(address.toLowerCase());
   }
 
   componentDidUpdate(prevProps) {
@@ -89,6 +105,7 @@ const mapStateToProps = state => {
 };
 
 const Profile = compose(
+  withRouter,
   connect(
     mapStateToProps,
     { setProfileAddress: actions.setProfileAddress }

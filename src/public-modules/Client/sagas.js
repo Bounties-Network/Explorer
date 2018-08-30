@@ -100,10 +100,6 @@ export function* getContractClient() {
       standardBounties: new web3.eth.Contract(
         config.interfaces.StandardBounties,
         config[network].standardBountiesAddress
-      ).methods,
-      ethProfiles: new web3.eth.Contract(
-        config.interfaces.ETHProfiles,
-        config[network].ethProfilesAddress
       ).methods
     };
   }
