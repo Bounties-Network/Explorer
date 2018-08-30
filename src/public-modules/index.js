@@ -5,7 +5,6 @@ import bountiesReducer from 'public-modules/Bounties';
 import draftsReducer from 'public-modules/Drafts';
 import leaderboardReducer from 'public-modules/Leaderboard';
 import userInfoReducer from 'public-modules/UserInfo';
-import statsReducer from 'public-modules/Stats';
 import categoriesReducer from 'public-modules/Categories';
 import skillsReducer from 'public-modules/Skills';
 import languagesReducer from 'public-modules/Languages';
@@ -28,7 +27,6 @@ export const reducers = {
   drafts: draftsReducer,
   leaderboard: leaderboardReducer,
   userInfo: userInfoReducer,
-  stats: statsReducer,
   categories: categoriesReducer,
   skills: skillsReducer,
   languages: languagesReducer,
@@ -51,7 +49,6 @@ import bountiesSagas from 'public-modules/Bounties/sagas';
 import draftsSagas from 'public-modules/Drafts/sagas';
 import leaderboardSagas from 'public-modules/Leaderboard/sagas';
 import userInfoSagas from 'public-modules/UserInfo/sagas';
-import statsSagas from 'public-modules/Stats/sagas';
 import categoriesSagas from 'public-modules/Categories/sagas';
 import skillsSagas from 'public-modules/Skills/sagas';
 import languagesSagas from 'public-modules/Languages/sagas';
@@ -74,7 +71,6 @@ export const sagaWatchers = [
   ...bountiesSagas,
   ...draftsSagas,
   ...userInfoSagas,
-  ...statsSagas,
   ...categoriesSagas,
   ...skillsSagas,
   ...languagesSagas,

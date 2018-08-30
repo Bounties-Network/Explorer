@@ -29,3 +29,8 @@
     display: none;
   }
 }
+
+.filterWrapper {
+  max-width: $filterNav-width-fixed;
+  width: 70vw;
+}

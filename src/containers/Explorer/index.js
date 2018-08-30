@@ -53,7 +53,9 @@ class Explorer extends React.Component {
             position="right"
             onClose={() => this.setState({ mobileFilterVisible: false })}
           >
-            <FilterNav position="fixed" />
+            <div className={styles.filterWrapper}>
+              <FilterNav position="fixed" />
+            </div>
           </SideOverlay>
         </div>
         <ExplorerBody
