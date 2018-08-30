@@ -11,7 +11,7 @@ import { actions as bountyActions } from 'public-modules/Bounty';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { TransactionWalkthrough } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
-import { getTimezone } from 'utils/helpers';
+import { getTimezone, isMobile } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
 import moment from 'moment';
 import {
@@ -91,8 +91,8 @@ class CreateBountyFormComponent extends React.Component {
       filename,
       resetUpload,
       deleteUploadKey,
-      minDate,
-      bountyId
+      bountyId,
+      minDate
     } = this.props;
 
     return (
@@ -267,6 +267,10 @@ class CreateBountyFormComponent extends React.Component {
                     name="deadline"
                     component={FormDatePicker}
                     minDate={minDate}
+                    validate={[
+                      validators.required,
+                      validators.minDate(minDate)
+                    ]}
                     showTimeSelect
                   />
                 </div>
@@ -408,9 +412,7 @@ const mapStateToProps = state => {
     uid: draftBounty.uid,
     bountyId: draftBounty.id,
     filename: uploadedFile ? uploadedFile.fileName : draftBounty.sourceFileName,
-    minDate: draftBounty.deadline
-      ? moment.utc(draftBounty.deadline)
-      : moment().add(1, 'days'),
+    minDate: moment().add(1, 'days'),
     fileHash: uploadedFile
       ? uploadedFile.ipfsHash
       : draftBounty.sourceDirectoryHash

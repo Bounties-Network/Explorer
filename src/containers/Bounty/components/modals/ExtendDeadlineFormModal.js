@@ -3,6 +3,7 @@ import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import { FormDatePicker } from 'form-components';
+import validators from 'utils/validators';
 import { getTimezone } from 'utils/helpers';
 
 const ExtendDeadlineFormModal = props => {
@@ -30,6 +31,10 @@ const ExtendDeadlineFormModal = props => {
             component={FormDatePicker}
             showTimeSelect
             minDate={minimumDeadline}
+            validate={[
+              validators.required,
+              validators.minDate(minimumDeadline)
+            ]}
           />
         </Modal.Body>
         <Modal.Footer>
