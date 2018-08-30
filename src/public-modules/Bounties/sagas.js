@@ -21,8 +21,11 @@ const {
   SET_ALL_STAGE_FILTERS,
   SET_ALL_DIFFICULTY_FILTERS,
   ADD_CATEGORY_FILTER,
+  ADD_PLATFORM_FILTER,
   REMOVE_CATEGORY_FILTER,
-  TOGGLE_CATEGORY_FILTER
+  REMOVE_PLATFORM_FILTER,
+  TOGGLE_CATEGORY_FILTER,
+  TOGGLE_PLATFORM_FILTER
 } = actionTypes;
 
 const {
@@ -38,13 +41,15 @@ const {
   setDifficultyFilter,
   addCategoryFilter,
   removeCategoryFilter,
+  addPlatformFilter,
+  removePlatformFilter,
   resetFilter
 } = actions;
 
 export function* initializeFiltersFromQuery() {
   const params = queryStringToObject(window.location.search);
 
-  const { search, bountyStage, difficulty, category } = params;
+  const { search, bountyStage, difficulty, category, platform } = params;
 
   if (search) {
     yield put(resetFilter('search'));
@@ -84,6 +89,18 @@ export function* initializeFiltersFromQuery() {
     const categories = category.split(',');
     for (let i = 0; i < categories.length; i++) {
       yield put(addCategoryFilter(categories[i]));
+    }
+  }
+
+  if (platform === '') {
+    yield put(resetFilter('platform'));
+  }
+
+  if (platform) {
+    yield put(resetFilter('platform'));
+    const platforms = platform.split(',');
+    for (let i = 0; i < platforms.length; i++) {
+      yield put(addPlatformFilter(platforms[i]));
     }
   }
 }
@@ -145,6 +162,9 @@ export function* watchBounties() {
       ADD_CATEGORY_FILTER,
       REMOVE_CATEGORY_FILTER,
       TOGGLE_CATEGORY_FILTER,
+      ADD_PLATFORM_FILTER,
+      REMOVE_PLATFORM_FILTER,
+      TOGGLE_PLATFORM_FILTER,
       SET_BATCH
     ],
     loadBounties

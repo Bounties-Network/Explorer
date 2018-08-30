@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import {
   rootBountiesSelector,
   bountiesCategoryFiltersSelector,
+  bountiesPlatformFiltersSelector,
   anyStageFiltersSelected,
   anyDifficultyFiltersSelected
 } from 'public-modules/Bounties/selectors';
@@ -20,6 +21,8 @@ import {
   removeFromParam,
   setParam
 } from 'utils/locationHelpers';
+import appConfig from 'public-modules/config';
+
 const map = fpMap.convert({ cap: false });
 const reduce = fpReduce.convert({ cap: false });
 const {
@@ -28,7 +31,9 @@ const {
   toggleStageFilter,
   toggleDifficultyFilter,
   addCategoryFilter,
+  addPlatformFilter,
   removeCategoryFilter,
+  removePlatformFilter,
   batch
 } = actions;
 
@@ -45,8 +50,11 @@ const FilterNavComponent = props => {
     difficultyFilters,
     categories,
     categoryFilters,
+    platformFilters,
     addCategoryFilter,
+    addPlatformFilter,
     removeCategoryFilter,
+    removePlatformFilter,
     history,
     location,
     batch,
@@ -54,6 +62,15 @@ const FilterNavComponent = props => {
     config,
     position
   } = props;
+
+  const platforms = reduce(
+    (acc, key) => {
+      acc[key] = { name: key };
+      return acc;
+    },
+    {},
+    appConfig.platform.split(',')
+  );
 
   const stages = reduce(
     (acc, value, key) => {
@@ -95,6 +112,21 @@ const FilterNavComponent = props => {
         removeFromParam(rootLocationParams, 'category', category)
     );
     removeCategoryFilter(category);
+  };
+
+  const addPlatformFilterAction = platform => {
+    history.push(
+      location.pathname + pushToParam(rootLocationParams, 'platform', platform)
+    );
+    addPlatformFilter(platform);
+  };
+
+  const removePlatformFilterAction = platform => {
+    history.push(
+      location.pathname +
+        removeFromParam(rootLocationParams, 'platform', platform)
+    );
+    removePlatformFilter(platform);
   };
 
   const setSearchAction = throttle(300, searchValue => {
@@ -212,6 +244,26 @@ const FilterNavComponent = props => {
           />
         </div>
       )}
+
+      {config.platform && (
+        <div className={styles.categoryFilter}>
+          <Text weight="fontWeight-medium" className={styles.groupText}>
+            Platform
+          </Text>
+          <SearchSelect
+            options={platforms}
+            value={platformFilters}
+            labelKey="name"
+            valueKey="name"
+            onChange={values => {
+              if (values.length > platformFilters.length) {
+                addPlatformFilterAction(values[values.length - 1]);
+              }
+            }}
+            onClose={removePlatformFilterAction}
+          />
+        </div>
+      )}
     </div>
   );
 };
@@ -225,6 +277,7 @@ const mapStateToProps = state => {
     anyDifficultyFiltersSelected: anyDifficultyFiltersSelected(state),
     difficultyFilters: bountyState.difficultyFilters,
     categoryFilters: bountiesCategoryFiltersSelector(state),
+    platformFilters: bountiesPlatformFiltersSelector(state),
     categories: categoriesSelector(state),
     search: bountyState.search
   };
@@ -239,7 +292,9 @@ const FilterNav = compose(
       toggleStageFilter,
       toggleDifficultyFilter,
       addCategoryFilter,
+      addPlatformFilter,
       removeCategoryFilter,
+      removePlatformFilter,
       resetFilter,
       batch
     }
@@ -255,7 +310,13 @@ FilterNav.propTypes = {
 
 FilterNav.defaultProps = {
   position: 'relative',
-  config: { search: true, stage: true, difficulty: true, category: true },
+  config: {
+    search: true,
+    stage: true,
+    difficulty: true,
+    category: true,
+    platform: true
+  },
   defaultStageFilters: {
     active: true,
     completed: false,
@@ -267,7 +328,8 @@ FilterNav.defaultProps = {
     search: true,
     stage: true,
     difficulty: true,
-    category: true
+    category: true,
+    platform: true
   }
 };
 

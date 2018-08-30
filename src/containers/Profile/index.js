@@ -117,7 +117,8 @@ class ProfileComponent extends React.Component {
           search: false,
           stage: true,
           difficulty: false,
-          category: false
+          category: false,
+          platform: true
         }}
         resetFilters={{
           address: false,

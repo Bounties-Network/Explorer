@@ -1,3 +1,4 @@
+import config from 'public-modules/config';
 import { PAGE_SIZE, SORT_CREATED } from './constants';
 
 const defaultSearch = '';
@@ -26,7 +27,8 @@ const defaultFilters = {
   stageFilters: { ...defaultStageFilters },
   difficultyFilters: { ...defaultDifficultyFilters },
   addressFilters: { ...defaultAddressFilters },
-  categoryFilters: new Set([])
+  categoryFilters: new Set([]),
+  platformFilters: new Set([])
 };
 
 const defaultSort = {
@@ -101,11 +103,14 @@ const ALL_STAGE_FILTERS = 'bounties/ALL_STAGE_FILTERS';
 const SET_DIFFICULTY_FILTER = 'bounties/SET_DIFFICULTY_FILTER';
 const TOGGLE_DIFFICULTY_FILTER = 'bounties/TOGGLE_DIFFICULTY_FILTER';
 const TOGGLE_CATEGORY_FILTER = 'bounties/TOGGLE_CATEGORY_FILTER';
+const TOGGLE_PLATFORM_FILTER = 'bounties/TOGGLE_PLATFORM_FILTER';
 const SET_STAGE_FILTER = 'bounties/SET_STAGE_FILTER';
 const ADD_CATEGORY_FILTER = 'bounties/SET_CATEGORY_FILTER';
+const ADD_PLATFORM_FILTER = 'bounties/ADD_PLATFORM_FILTER';
 const ADD_ISSUER_FILTER = 'bounties/ADD_ISSUER_FILTER';
 const ADD_FULFILLER_FILTER = 'bounties/ADD_FULFILLER_FILTER';
 const REMOVE_CATEGORY_FILTER = 'bounties/REMOVE_CATEGORY_FILTER';
+const REMOVE_PLATFORM_FILTER = 'bounties/REMOVE_PLATFORM_FILTER';
 
 function batch(isBatch) {
   return { type: SET_BATCH, isBatch };
@@ -151,8 +156,16 @@ function toggleCategoryFilter(category) {
   return { type: TOGGLE_CATEGORY_FILTER, category };
 }
 
+function togglePlatformFilter(platform) {
+  return { type: TOGGLE_PLATFORM_FILTER, platform };
+}
+
 function addCategoryFilter(category) {
   return { type: ADD_CATEGORY_FILTER, category };
+}
+
+function addPlatformFilter(platform) {
+  return { type: ADD_PLATFORM_FILTER, platform };
 }
 
 function addIssuerFilter(address) {
@@ -165,6 +178,10 @@ function addFulfillerFilter(address) {
 
 function removeCategoryFilter(category) {
   return { type: REMOVE_CATEGORY_FILTER, category };
+}
+
+function removePlatformFilter(platform) {
+  return { type: REMOVE_PLATFORM_FILTER, platform };
 }
 
 function BountiesReducer(state = initialState, action) {
@@ -189,6 +206,21 @@ function BountiesReducer(state = initialState, action) {
         categoryFilters: updated_filters
       };
     }
+    case TOGGLE_PLATFORM_FILTER: {
+      const { platform } = action;
+
+      const updated_filters = new Set(state.platformFilters);
+      if (updated_filters.has(platform)) {
+        updated_filters.delete(platform);
+      } else {
+        updated_filters.add(platform);
+      }
+
+      return {
+        ...state,
+        platformFilters: updated_filters
+      };
+    }
     case ADD_CATEGORY_FILTER: {
       const { category } = action;
       const updated_filters = new Set(state.categoryFilters);
@@ -197,6 +229,16 @@ function BountiesReducer(state = initialState, action) {
       return {
         ...state,
         categoryFilters: updated_filters
+      };
+    }
+    case ADD_PLATFORM_FILTER: {
+      const { platform } = action;
+      const updated_filters = new Set(state.platformFilters);
+      updated_filters.add(platform);
+
+      return {
+        ...state,
+        platformFilters: updated_filters
       };
     }
     case ADD_ISSUER_FILTER: {
@@ -229,6 +271,16 @@ function BountiesReducer(state = initialState, action) {
       return {
         ...state,
         categoryFilters: updated_filters
+      };
+    }
+    case REMOVE_PLATFORM_FILTER: {
+      const { platform } = action;
+      const updated_filters = new Set(state.platformFilters);
+      updated_filters.delete(platform);
+
+      return {
+        ...state,
+        platformFilters: updated_filters
       };
     }
     case TOGGLE_DIFFICULTY_FILTER: {
@@ -310,6 +362,10 @@ function BountiesReducer(state = initialState, action) {
 
       if (filter === 'category') {
         return { ...state, categoryFilters: new Set([]) };
+      }
+
+      if (filter === 'platform') {
+        return { ...state, platformFilters: new Set([]) };
       }
     }
     case SET_SEARCH: {
@@ -404,10 +460,13 @@ export const actions = {
   toggleDifficultyFilter,
   setDifficultyFilter,
   addCategoryFilter,
+  addPlatformFilter,
   addIssuerFilter,
   addFulfillerFilter,
   removeCategoryFilter,
+  removePlatformFilter,
   toggleCategoryFilter,
+  togglePlatformFilter,
   loadBounties,
   loadBountiesSuccess,
   loadBountiesFail,
@@ -428,10 +487,13 @@ export const actionTypes = {
   ALL_STAGE_FILTERS,
   TOGGLE_DIFFICULTY_FILTER,
   ADD_CATEGORY_FILTER,
+  ADD_PLATFORM_FILTER,
   ADD_ISSUER_FILTER,
   ADD_FULFILLER_FILTER,
   REMOVE_CATEGORY_FILTER,
+  REMOVE_PLATFORM_FILTER,
   TOGGLE_CATEGORY_FILTER,
+  TOGGLE_PLATFORM_FILTER,
   LOAD_BOUNTIES,
   LOAD_BOUNTIES_SUCCESS,
   LOAD_BOUNTIES_FAIL,
