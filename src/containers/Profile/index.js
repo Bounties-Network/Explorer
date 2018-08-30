@@ -1,14 +1,18 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
-import ProfileBounties from './ProfileBounties';
-import FilterNav from './FilterNav';
+import { ExplorerBody } from 'containers';
+import FilterNav from 'containers/FilterNav';
 import styles from './Profile.module.scss';
-import { ZeroState } from 'components';
+import { SideOverlay, ZeroState } from 'components';
+import { actions as bountiesActions } from 'public-modules/Bounties';
+import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { userInfoSelector } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
+import { locationNonceSelector } from 'layout/App/selectors';
 import { actions } from './reducer';
 
 import { StickyContainer, Sticky } from 'react-sticky';
@@ -17,7 +21,20 @@ class ProfileComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    const { currentUser, history, match, setProfileAddress } = this.props;
+    this.state = {
+      mobileFilterVisible: false,
+      position: 'relative'
+    };
+
+    const {
+      currentUser,
+      history,
+      match,
+      loadUserInfo,
+      setActiveTab,
+      setProfileAddress,
+      resetState
+    } = this.props;
 
     let address = match.params.address;
     if (!address) {
@@ -32,18 +49,105 @@ class ProfileComponent extends React.Component {
       history.replace(`/profile/${address}/`);
     }
 
+    resetState();
+    loadUserInfo(address.toLowerCase());
     setProfileAddress(address.toLowerCase());
+    setActiveTab('issued');
   }
 
   componentDidUpdate(prevProps) {
-    const currentAddress = this.props.match.params.address;
-    if (prevProps.match !== this.props.match) {
-      this.props.setProfileAddress(currentAddress.toLowerCase());
+    const {
+      currentUser,
+      history,
+      match,
+      batch,
+      loadBounties,
+      loadUserInfo,
+      locationNonce,
+      setActiveTab,
+      setProfileAddress,
+      resetState,
+      resetFilter
+    } = this.props;
+
+    if (prevProps.locationNonce !== locationNonce && history.action === 'POP') {
+      batch(true);
+      resetFilter('platform');
+      resetFilter('stage');
+      loadBounties(true);
+    }
+
+    let address = match.params.address;
+    if (prevProps.match.params.address !== address) {
+      if (!address) {
+        address = currentUser.public_address;
+        history.replace(`/profile/${address}/`);
+      }
+
+      resetState();
+      loadUserInfo(address.toLowerCase());
+      setProfileAddress(address.toLowerCase());
+      setActiveTab('issued');
     }
   }
 
+  componentDidMount() {
+    const body = document.getElementsByClassName('page-body')[0];
+    body.addEventListener('scroll', this.onScroll);
+  }
+
+  componentWillUnmount() {
+    const body = document.getElementsByClassName('page-body')[0];
+    body.removeEventListener('scroll', this.onScroll);
+  }
+
+  onScroll = () => {
+    const { position } = this.state;
+    const headerHeight = document
+      .getElementsByClassName('page-header')[0]
+      .getBoundingClientRect().height;
+    const top = document
+      .getElementsByClassName('explorer-body')[0]
+      .getBoundingClientRect().top;
+
+    if (top < headerHeight && position === 'relative') {
+      this.setState({ position: 'fixed' });
+    }
+    if (top > headerHeight && position === 'fixed') {
+      this.setState({ position: 'relative' });
+    }
+  };
+
   render() {
     const { error, loaded, user } = this.props;
+    const { position } = this.state;
+
+    const profileFilterNav = (
+      <FilterNav
+        position={position}
+        config={{
+          search: false,
+          stage: true,
+          difficulty: false,
+          category: false,
+          platform: true
+        }}
+        resetFilters={{
+          address: false,
+          search: true,
+          stage: true,
+          difficulty: true,
+          category: true,
+          platform: true
+        }}
+        defaultStageFilters={{
+          active: false,
+          completed: false,
+          expired: false,
+          dead: false
+        }}
+      />
+    );
 
     let body = (
       <div className={styles.profileContainer}>
@@ -52,8 +156,23 @@ class ProfileComponent extends React.Component {
         </div>
         <div className={styles.profileBountiesContainer}>
           <div className={styles.profileBounties}>
-            <FilterNav />
-            <ProfileBounties />
+            <div className={styles.desktopFilter}>{profileFilterNav}</div>
+            <div className={styles.mobileFilter}>
+              <SideOverlay
+                hasMask
+                visible={this.state.mobileFilterVisible}
+                theme="light"
+                position="right"
+                onClose={() => this.setState({ mobileFilterVisible: false })}
+              >
+                <div className={styles.filterWrapper}>{profileFilterNav}</div>
+              </SideOverlay>
+            </div>
+
+            <ExplorerBody
+              className={styles.explorerBody}
+              onOpenFilters={() => this.setState({ mobileFilterVisible: true })}
+            />
           </div>
         </div>
       </div>
@@ -100,7 +219,8 @@ const mapStateToProps = state => {
     user: userInfo.loadedUser.user,
     loading: userInfo.loading,
     loaded: userInfo.loaded,
-    error: userInfo.error
+    error: userInfo.error,
+    locationNonce: locationNonceSelector(state)
   };
 };
 
@@ -108,7 +228,15 @@ const Profile = compose(
   withRouter,
   connect(
     mapStateToProps,
-    { setProfileAddress: actions.setProfileAddress }
+    {
+      loadBounties: bountiesActions.loadBounties,
+      batch: bountiesActions.batch,
+      resetState: bountiesActions.resetState,
+      resetFilter: bountiesActions.resetFilter,
+      loadUserInfo: userInfoActions.loadUserInfo,
+      setActiveTab: actions.setActiveTab,
+      setProfileAddress: actions.setProfileAddress
+    }
   )
 )(ProfileComponent);
 

@@ -106,10 +106,7 @@ export function* watchCloseModals() {
 }
 
 export function* watchTabLoads() {
-  yield takeLatest(
-    [SET_ACTIVE_TAB, POST_REVIEW_SUCCESS, LOCATION_CHANGE],
-    loadTab
-  );
+  yield takeLatest([SET_ACTIVE_TAB, POST_REVIEW_SUCCESS], loadTab);
 }
 
 export function* watchCommentPosted() {

@@ -30,10 +30,20 @@ export const bountiesCountSelector = createSelector(
   rootBounties => rootBounties.count
 );
 
+export const bountiesSortFilterSelector = createSelector(
+  rootBountiesSelector,
+  rootBounty => rootBounty.sort
+);
+
 // We make this a selector to manage the set -> array conversion
 export const bountiesCategoryFiltersSelector = createSelector(
   rootBountiesSelector,
   rootBounty => [...rootBounty.categoryFilters]
+);
+
+export const bountiesPlatformFiltersSelector = createSelector(
+  rootBountiesSelector,
+  rootBounty => [...rootBounty.platformFilters]
 );
 
 export const anyStageFiltersSelected = createSelector(
@@ -49,13 +59,16 @@ export const anyDifficultyFiltersSelected = createSelector(
 export const bountiesQuerySelector = createSelector(
   rootBountiesSelector,
   bountiesCategoryFiltersSelector,
-  (rootBounty, categories) => {
+  bountiesPlatformFiltersSelector,
+  (rootBounty, categories, platforms) => {
     const query = {};
     let orderPrefix = '';
     if (rootBounty.sortOrder === 'desc') {
       orderPrefix += '-';
     }
-    query['platform__in'] = config.platform;
+    query['platform__in'] = platforms.length
+      ? platforms.join(',')
+      : config.platform;
     query['bountyStage__in'] = reduce(
       (result, value, key) => {
         if (value) {

@@ -34,3 +34,33 @@
 .centeredItem {
   margin: 0 auto;
 }
+
+.explorerBody {
+  @media only screen and (min-width: 48em) {
+    padding: $xl-spacing $base-spacing $xl-spacing calc(#{$filterNav-width-fluid} + #{$l-spacing});
+  }
+
+  @media only screen and (min-width: 65em) {
+    padding-left: $filterNav-width-fixed + $m-spacing;
+    padding-right: $m-spacing;
+  }
+}
+
+.desktopFilter {
+  display: none;
+  @media only screen and (min-width: 48em) {
+    display: block;
+  }
+}
+
+.mobileFilter {
+  display: block;
+  @media only screen and (min-width: 48em) {
+    display: none;
+  }
+}
+
+.filterWrapper {
+  max-width: $filterNav-width-fixed;
+  width: 70vw;
+}

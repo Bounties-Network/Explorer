@@ -1,6 +1,5 @@
 import React from 'react';
-import FilterNav from './FilterNav';
-import ExplorerBody from './ExplorerBody';
+import { ExplorerBody, FilterNav } from 'containers';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -44,7 +43,7 @@ class Explorer extends React.Component {
     return (
       <div className={`${styles.explorerContainer}`}>
         <div className={styles.desktopFilter}>
-          <FilterNav />
+          <FilterNav position="fixed" />
         </div>
         <div className={styles.mobileFilter}>
           <SideOverlay
@@ -54,10 +53,13 @@ class Explorer extends React.Component {
             position="right"
             onClose={() => this.setState({ mobileFilterVisible: false })}
           >
-            <FilterNav />
+            <div className={styles.filterWrapper}>
+              <FilterNav position="fixed" />
+            </div>
           </SideOverlay>
         </div>
         <ExplorerBody
+          className={styles.explorerBody}
           onOpenFilters={() => this.setState({ mobileFilterVisible: true })}
         />
       </div>

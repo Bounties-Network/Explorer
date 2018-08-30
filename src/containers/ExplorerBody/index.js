@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ProfileBounties.module.scss';
+import styles from './ExplorerBody.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -19,8 +19,9 @@ import {
 } from 'public-modules/Bounties/selectors';
 import { actions } from 'public-modules/Bounties';
 
-const ProfileBountiesComponent = props => {
+const ExplorerBodyComponent = props => {
   const {
+    className,
     bounties,
     count,
     sort,
@@ -31,7 +32,9 @@ const ProfileBountiesComponent = props => {
     loadingMore,
     toggleCategoryFilter,
     categoryFilters,
-    error
+    error,
+    onOpenFilters,
+    noPadding
   } = props;
 
   const renderBounties = () => {
@@ -60,96 +63,65 @@ const ProfileBountiesComponent = props => {
           experienceLevel={experienceLevel}
           submissions={fulfillment_count}
           deadline={moment.utc(deadline, 'YYYY-MM-DDThh:mm:ssZ').fromNow(true)}
-          value={Number(calculated_fulfillmentAmount).toFixed(2)}
-          usd={Number(usd_price).toFixed(0)}
+          value={Number(calculated_fulfillmentAmount)}
+          usd={Number(usd_price).toFixed(2)}
           currency={tokenSymbol}
           onPillClick={toggleCategoryFilter}
-          stage={bountyStage}
           selectedCategories={categoryFilters}
+          stage={bountyStage}
         />
       );
     }, bounties);
   };
 
-  let className = styles.explorerBody;
+  let bodyClass = styles.explorerBody;
   if (loading || bounties.length === 0) {
-    className += ` ${styles.centeredBody}`;
+    bodyClass += ` ${styles.centeredBody}`;
+  }
+
+  if (className) {
+    bodyClass += ` ${className}`;
   }
 
   return (
-    <div className={styles.explorerBody}>
-      <div className={styles.bodyInnerContainer}>
-        <div className={styles.bodyHeading}>
-          <div>
-            <Text
-              inline
-              color="purple"
-              typeScale="h2"
-              className={styles.bountyNumber}
-            >
-              {count}
-            </Text>
-            <Text color="defaultGrey" inline>
-              bounties
-            </Text>
-          </div>
-          <div className={styles.sortGroup}>
-            <Text
-              inline
-              weight="fontWeight-bold"
-              color="black"
-              typeScale="Body"
-              className={styles.sortByText}
-            >
-              Sort By
-            </Text>
-            <Sort
-              className={styles.sortBy}
-              active={sort === SORT_VALUE}
-              onSort={sortOrder => setSort(SORT_VALUE, sortOrder)}
-            >
-              Value
-            </Sort>
-            <Sort
-              className={styles.sortBy}
-              active={sort === SORT_CREATED}
-              onSort={sortOrder => {
-                setSort(SORT_CREATED, sortOrder);
-              }}
-            >
-              Creation Date
-            </Sort>
-            <Sort
-              className={styles.sortBy}
-              active={sort === SORT_EXPIRY}
-              onSort={sortOrder => setSort(SORT_EXPIRY, sortOrder)}
-            >
-              Expiry
-            </Sort>
-          </div>
+    <div className={`${bodyClass} explorer-body`}>
+      <div className={styles.bodyHeading}>
+        <div>
+          <Text
+            inline
+            color="purple"
+            typeScale="h2"
+            className={styles.bountyNumber}
+          >
+            {count}
+          </Text>
+          <Text color="defaultGrey" inline>
+            {count === 1 ? 'bounty' : 'bounties'}
+          </Text>
         </div>
-        {loading ? (
-          <div className={styles.bountyListCentered}>
-            <Loader
-              size="medium"
-              color="blue"
-              className={styles.centeredItem}
-            />
-          </div>
-        ) : null}
-        {!loading && bounties.length !== 0 ? (
-          <div className={styles.bountyList}>
-            {renderBounties()}
-            {offset + PAGE_SIZE < count ? (
-              <div className={styles.loadMoreButton}>
-                <Button loading={loadingMore} onClick={loadMoreBounties}>
-                  Load More
-                </Button>
-              </div>
-            ) : null}
-          </div>
-        ) : null}
+        <div className={styles.filterNav}>
+          <Button icon={['far', 'sliders-h']} onClick={onOpenFilters}>
+            Filter
+          </Button>
+        </div>
       </div>
+      {loading ? (
+        <div className={styles.bountyListCentered}>
+          <Loader size="medium" color="blue" className={styles.centeredItem} />
+        </div>
+      ) : null}
+      {!loading && bounties.length !== 0 ? (
+        <div className={styles.bountyList}>
+          {renderBounties()}
+          {offset + PAGE_SIZE < count ? (
+            <div className={styles.loadMoreButton}>
+              <Button loading={loadingMore} onClick={loadMoreBounties}>
+                Load More
+              </Button>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
       {!loading && !error && bounties.length === 0 ? (
         <div className={styles.bountyListCentered}>
           <ZeroState
@@ -192,17 +164,15 @@ const mapStateToProps = state => {
   };
 };
 
-const ProfileBounties = compose(
+const ExplorerBody = compose(
   connect(
     mapStateToProps,
     {
-      load: actions.loadBounties,
       setSort: actions.setSort,
       loadMoreBounties: actions.loadMoreBounties,
       toggleCategoryFilter: actions.toggleCategoryFilter
     }
-  ),
-  LoadComponent('')
-)(ProfileBountiesComponent);
+  )
+)(ExplorerBodyComponent);
 
-export default ProfileBounties;
+export default ExplorerBody;

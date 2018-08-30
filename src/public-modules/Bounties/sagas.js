@@ -1,5 +1,5 @@
 import request from 'utils/request';
-import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Bounties';
 import { PAGE_SIZE } from 'public-modules/Bounties/constants';
 import {
@@ -15,15 +15,17 @@ const {
   SET_SORT,
   SET_BATCH,
   RESET_FILTERS,
-  RESET_FILTERS_EXCEPT_ADDRESS,
   SET_SEARCH,
   TOGGLE_STAGE_FILTER,
   TOGGLE_DIFFICULTY_FILTER,
   SET_ALL_STAGE_FILTERS,
   SET_ALL_DIFFICULTY_FILTERS,
   ADD_CATEGORY_FILTER,
+  ADD_PLATFORM_FILTER,
   REMOVE_CATEGORY_FILTER,
-  TOGGLE_CATEGORY_FILTER
+  REMOVE_PLATFORM_FILTER,
+  TOGGLE_CATEGORY_FILTER,
+  TOGGLE_PLATFORM_FILTER
 } = actionTypes;
 
 const {
@@ -33,19 +35,22 @@ const {
   loadMoreBountiesFail,
   loadMoreBountiesSuccess,
   setSearch,
+  setSort,
   toggleStageFilter,
   setStageFilter,
   toggleDifficultyFilter,
   setDifficultyFilter,
   addCategoryFilter,
   removeCategoryFilter,
+  addPlatformFilter,
+  removePlatformFilter,
   resetFilter
 } = actions;
 
 export function* initializeFiltersFromQuery() {
   const params = queryStringToObject(window.location.search);
 
-  const { search, bountyStage, difficulty, category } = params;
+  const { search, bountyStage, difficulty, category, platform, sort } = params;
 
   if (search) {
     yield put(resetFilter('search'));
@@ -76,15 +81,38 @@ export function* initializeFiltersFromQuery() {
     }
   }
 
+  if (sort === '') {
+    yield put(resetFilter('sort'));
+  }
+
+  if (sort) {
+    yield put(resetFilter('sort'));
+    const [sortType, sortOrder] = sort.split(',');
+    yield put(setSort(sortType, sortOrder));
+  }
+
   if (category === '') {
-    yield put(resetFilter('category'));
+    yield put(resetFilter('sort'));
   }
 
   if (category) {
     yield put(resetFilter('category'));
     const categories = category.split(',');
+    console.log(categories);
     for (let i = 0; i < categories.length; i++) {
       yield put(addCategoryFilter(categories[i]));
+    }
+  }
+
+  if (platform === '') {
+    yield put(resetFilter('platform'));
+  }
+
+  if (platform) {
+    yield put(resetFilter('platform'));
+    const platforms = platform.split(',');
+    for (let i = 0; i < platforms.length; i++) {
+      yield put(addPlatformFilter(platforms[i]));
     }
   }
 }
@@ -134,11 +162,10 @@ export function* loadMoreBounties(action) {
 }
 
 export function* watchBounties() {
-  yield takeLatest(
+  yield takeEvery(
     [
       SET_SORT,
       RESET_FILTERS,
-      RESET_FILTERS_EXCEPT_ADDRESS,
       SET_SEARCH,
       TOGGLE_STAGE_FILTER,
       TOGGLE_DIFFICULTY_FILTER,
@@ -147,6 +174,9 @@ export function* watchBounties() {
       ADD_CATEGORY_FILTER,
       REMOVE_CATEGORY_FILTER,
       TOGGLE_CATEGORY_FILTER,
+      ADD_PLATFORM_FILTER,
+      REMOVE_PLATFORM_FILTER,
+      TOGGLE_PLATFORM_FILTER,
       SET_BATCH
     ],
     loadBounties
