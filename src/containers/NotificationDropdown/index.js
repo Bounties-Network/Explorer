@@ -49,13 +49,13 @@ const NotificationDropdown = props => {
       } = notification;
 
       return (
-        <ListGroup.ListItem hover>
-          <div className={viewed ? styles.transparent : ''}>
-            <Link
-              to={link}
-              className={styles.link}
-              onClick={() => setNotificationViewed(id)}
-            >
+        <Link
+          to={link}
+          className={styles.link}
+          onClick={() => setNotificationViewed(id)}
+        >
+          <ListGroup.ListItem hover>
+            <div className={viewed ? styles.transparent : ''}>
               <NotificationItem
                 type={notification_name}
                 title={bounty_title}
@@ -64,9 +64,9 @@ const NotificationDropdown = props => {
                 userAddress={from_user && from_user.public_address}
                 profileImg={from_user && from_user.profile_image}
               />
-            </Link>
-          </div>
-        </ListGroup.ListItem>
+            </div>
+          </ListGroup.ListItem>
+        </Link>
       );
     }, notifications);
   };
