@@ -98,7 +98,7 @@ let SubmissionsAndCommentsCardComponent = props => {
       const { name, profile_image, public_address } = user;
 
       return (
-        <ListGroup.ListItem className={styles.commentItem} hover>
+        <ListGroup.ListItem className={styles.commentItem}>
           <CommentItem
             name={name}
             address={public_address}
