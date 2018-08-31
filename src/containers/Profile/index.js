@@ -70,7 +70,7 @@ class ProfileComponent extends React.Component {
       resetFilter
     } = this.props;
 
-    if (prevProps.locationNonce !== locationNonce && history.action === 'POP') {
+    if (prevProps.locationNonce !== locationNonce) {
       batch(true);
       resetFilter('sort');
       resetFilter('stage');

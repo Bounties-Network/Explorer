@@ -42,7 +42,7 @@ class Explorer extends React.Component {
       toggleStageFilter
     } = this.props;
 
-    if (prevProps.locationNonce !== locationNonce && history.action === 'POP') {
+    if (prevProps.locationNonce !== locationNonce) {
       batch(true);
       resetFilters();
       toggleStageFilter('active');
