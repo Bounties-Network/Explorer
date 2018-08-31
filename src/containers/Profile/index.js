@@ -72,7 +72,7 @@ class ProfileComponent extends React.Component {
 
     if (prevProps.locationNonce !== locationNonce && history.action === 'POP') {
       batch(true);
-      resetFilter('platform');
+      resetFilter('sort');
       resetFilter('stage');
       loadBounties(true);
     }
@@ -126,11 +126,12 @@ class ProfileComponent extends React.Component {
       <FilterNav
         position={position}
         config={{
+          sort: true,
           search: false,
           stage: true,
           difficulty: false,
           category: false,
-          platform: true
+          platform: false
         }}
         resetFilters={{
           address: false,
