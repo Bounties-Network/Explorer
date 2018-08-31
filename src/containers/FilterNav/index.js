@@ -19,7 +19,7 @@ import {
   anyDifficultyFiltersSelected
 } from 'public-modules/Bounties/selectors';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
-import { map as fpMap, reduce as fpReduce, throttle } from 'lodash';
+import { each, map as fpMap, reduce as fpReduce, throttle } from 'lodash';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions } from 'public-modules/Bounties';
@@ -58,6 +58,7 @@ const FilterNavComponent = props => {
     toggleDifficultyFilter,
     stageFilters,
     defaultStageFilters,
+    defaultPlatforms,
     difficultyFilters,
     categories,
     categoryFilters,
@@ -98,7 +99,9 @@ const FilterNavComponent = props => {
     defaultStageFilters
   ).join('%2C');
 
-  const rootLocationParams = location.search || `?bountyStage=${stages}`;
+  const rootLocationParams =
+    location.search ||
+    `?bountyStage=${stages}&platform=${defaultPlatforms.join(',')}`;
 
   const toggleStageFilterAction = stage => {
     const queryParams =
@@ -176,6 +179,7 @@ const FilterNavComponent = props => {
         toggleStageFilterAction(key);
       }
     }, defaultStageFilters);
+    each(platform => addPlatformFilter(platform), defaultPlatforms);
     batch(false);
     history.push(location.pathname);
   };
@@ -365,6 +369,7 @@ FilterNav.defaultProps = {
     expired: false,
     dead: false
   },
+  defaultPlatforms: appConfig.platform.split(','),
   resetFilters: {
     address: true,
     search: true,
