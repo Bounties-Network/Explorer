@@ -92,7 +92,7 @@ TextInput.propTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   value: PropTypes.string,
-  type: PropTypes.oneOf(['number', 'text'])
+  type: PropTypes.oneOf(['number', 'text', 'datetime-local'])
 };
 
 TextInput.defaultProps = {

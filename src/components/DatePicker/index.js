@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Datetime from 'react-datepicker';
 import moment from 'moment';
 
-import { Text } from 'components';
+import { Text, TextInput } from 'components';
+import { isMobile } from 'utils/helpers';
 
 import '../../styles/DatePicker.scss';
 
@@ -25,7 +26,18 @@ class DatePicker extends React.Component {
   };
 
   render() {
-    const { minDate, showTimeSelect, label, disabled, value } = this.props;
+    const {
+      minDate,
+      showTimeSelect,
+      label,
+      disabled,
+      value,
+      onChange,
+      onBlur,
+      onFocus,
+      error,
+      placeholder
+    } = this.props;
     const { date: stateDate } = this.state;
 
     const dateValue = value || stateDate;
@@ -33,6 +45,23 @@ class DatePicker extends React.Component {
     let format = 'MM/DD/YYYY';
     if (showTimeSelect) {
       format = 'MM/DD/YYYY HH:mm';
+    }
+
+    if (isMobile()) {
+      return (
+        <TextInput
+          label={label}
+          disabled={disabled}
+          onChange={onChange}
+          type="datetime-local"
+          placeholder="enter date..."
+          onBlur={onBlur}
+          onFocus={onFocus}
+          error={error}
+          value={moment(value).format('YYYY-MM-DD[T]HH:mm')}
+          min={moment(minDate).format('YYYY-MM-DD[T]HH:mm')}
+        />
+      );
     }
 
     return (
