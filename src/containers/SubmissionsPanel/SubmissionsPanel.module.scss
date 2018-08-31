@@ -13,8 +13,13 @@
 
 .loadMoreButton button {
   margin-top: $l-spacing;
+  margin-bottom: $xxl-spacing * 3;
   text-align: center;
   width: 100%;
+
+  @media only screen and (min-width: 48em) {
+    margin-bottom: 0;
+  }
 }
 
 .bodyLoading {
@@ -26,5 +31,9 @@
 
 .zeroState {
   max-width: 25rem;
-  padding: $xxl-spacing;
+  margin-bottom: $xxl-spacing * 3;
+
+  @media only screen and (min-width: 48em) {
+    margin-bottom: 0;
+  }
 }

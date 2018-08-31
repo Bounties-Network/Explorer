@@ -43,9 +43,7 @@ const alphaNumeric = value =>
     : undefined;
 
 const isTwitterHandle = value =>
-  !value || /^@(\w){1,15}$/i.test(value)
-    ? undefined
-    : '* Invalid Twitter handle';
+  !value || /^@(\w){1,15}$/i.test(value) ? undefined : 'Invalid Twitter handle';
 
 const isGithubHandle = value =>
   !value || /^@[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(value)
