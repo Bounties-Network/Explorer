@@ -8,7 +8,9 @@ function LinkedComponentHOC(WrappedComponent) {
     const handler = e => {
       e.preventDefault();
       history.push(to);
-      onClick(e);
+      if (onClick) {
+        onClick(e);
+      }
     };
 
     return <WrappedComponent {...props} onClick={handler} />;
