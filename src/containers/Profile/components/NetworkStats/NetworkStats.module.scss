@@ -28,7 +28,7 @@
 .networkStatCircle {
   display: flex;
   flex-direction: column;
-  padding: 0 $base-spacing;
+  padding: 0 $s-spacing;
   align-items: center;
   width: 33%;
 
@@ -41,4 +41,8 @@
 .reviewsModalLink {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.icon {
+  padding-left: $s-spacing / 2;
 }

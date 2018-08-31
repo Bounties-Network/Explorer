@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { LoadComponent } from 'hocs';
 import styles from './NetworkStats.module.scss';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { ReviewsModal } from '../';
 import { Circle, Switch, Text } from 'components';
 import { capitalize } from 'lodash';
@@ -68,6 +69,10 @@ const NetworkStatsComponent = props => {
             }`}
           >
             {text}
+            <FontAwesomeIcon
+              icon={['far', 'external-link']}
+              className={styles.icon}
+            />
           </Text>
         ) : (
           <Text

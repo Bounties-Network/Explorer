@@ -51,8 +51,10 @@ import frown from '@fortawesome/fontawesome-pro-light/faFrown';
 import lock from '@fortawesome/fontawesome-pro-light/faLock';
 import arrow from '@fortawesome/fontawesome-pro-regular/faArrowUp';
 import angleDoubleUp from '@fortawesome/fontawesome-pro-light/faAngleDoubleUp';
+import externalLink from '@fortawesome/fontawesome-pro-regular/faExternalLink';
 
 library.add(
+  externalLink,
   arrow,
   angleDoubleUp,
   check,
