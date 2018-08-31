@@ -51,7 +51,7 @@ class Cropper extends React.Component {
     this.croppie
       .result({
         type: 'blob',
-        size: 'viewport',
+        size: { width: 300, height: 300 },
         quality: 0.75,
         circle: true
       })
