@@ -39,7 +39,7 @@ const NetworkStatsComponent = props => {
     let value = stats[switchValue][key];
     let color = value >= 0.8 ? 'green' : value >= 0.5 ? 'orange' : 'red';
 
-    if (value > 1) {
+    if (value >= 1) {
       color = value >= 4 ? 'green' : value >= 3 ? 'orange' : 'red';
     }
 
