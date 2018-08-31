@@ -267,7 +267,11 @@ const mapStateToProps = state => {
   };
 };
 
-UserSettingsComponent = reduxForm({ form: 'settings' })(UserSettingsComponent);
+UserSettingsComponent = reduxForm({
+  form: 'settings',
+  enableReinitialize: true,
+  destroyOnUnmount: false
+})(UserSettingsComponent);
 
 const UserSettings = compose(
   connect(
