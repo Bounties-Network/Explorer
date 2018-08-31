@@ -27,8 +27,8 @@ class Header extends React.Component {
             ) : null}
             <div className={children ? styles.headerContent : ''}>
               {icon && !loadingIcon ? (
-                <div>
-                  <FontAwesomeIcon icon={icon} className={styles.iconHeader} />
+                <div className={styles.iconHeader}>
+                  <FontAwesomeIcon icon={icon} />
                 </div>
               ) : null}
               {loadingIcon ? (

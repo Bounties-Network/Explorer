@@ -139,6 +139,7 @@ $modal-padding-large: $l-spacing;
   color: $brand-purple;
   margin: $xxl-spacing auto;
   font-size: 2.5rem;
+  text-align: center;
 }
 
 .loadingHeader {
@@ -180,6 +181,7 @@ $modal-padding-large: $l-spacing;
 
 .headerContent {
   line-height: $base-line-height;
+  margin: 0 auto;
   padding: $xxl-spacing 0 0 0;
   text-align: center;
 }
