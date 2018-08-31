@@ -4,9 +4,9 @@ import { BigNumber } from 'bignumber.js';
 
 const required = value => {
   if (Array.isArray(value)) {
-    return value.length ? undefined : 'Required';
+    return value.length ? undefined : '* Required';
   }
-  return value || typeof value === 'number' ? undefined : 'Required';
+  return value || typeof value === 'number' ? undefined : '* Required';
 };
 const maxLength = max => value =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined;
@@ -43,7 +43,9 @@ const alphaNumeric = value =>
     : undefined;
 
 const isTwitterHandle = value =>
-  !value || /^@(\w){1,15}$/i.test(value) ? undefined : 'Invalid Twitter handle';
+  !value || /^@(\w){1,15}$/i.test(value)
+    ? undefined
+    : '* Invalid Twitter handle';
 
 const isGithubHandle = value =>
   !value || /^@[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(value)
