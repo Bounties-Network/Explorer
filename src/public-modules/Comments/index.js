@@ -131,7 +131,7 @@ function CommentsReducer(state = initialState, action) {
       return {
         ...state,
         posting: false,
-        comments: [...state.comments, comment]
+        comments: [comment, ...state.comments]
       };
     }
     case POST_COMMENT_FAIL: {
