@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { map as fpMap, filter } from 'lodash';
 import { SubmissionItem, NewCommentForm, CommentItem } from './components';
-import { ListGroup, Loader, Tabs, Text, ZeroState } from 'components';
+import { Button, ListGroup, Loader, Tabs, Text, ZeroState } from 'components';
 import { rootBountyPageSelector } from './selectors';
 import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
 import { commentsSelector } from 'public-modules/Comments/selectors';
@@ -29,7 +29,8 @@ let SubmissionsAndCommentsCardComponent = props => {
     bounty,
     currentUser,
     acceptFulfillment,
-    postComment
+    postComment,
+    loadMoreComments
   } = props;
 
   const bountyBelongsToLoggedInUser =
@@ -97,7 +98,7 @@ let SubmissionsAndCommentsCardComponent = props => {
       const { name, profile_image, public_address } = user;
 
       return (
-        <ListGroup.ListItem className={styles.commentItem} hover>
+        <ListGroup.ListItem className={styles.commentItem}>
           <CommentItem
             name={name}
             address={public_address}
@@ -190,6 +191,13 @@ let SubmissionsAndCommentsCardComponent = props => {
       <ListGroup>
         {newCommentForm}
         {renderComments()}
+        {comments.list.length < comments.count && (
+          <div className={styles.loadMoreButton}>
+            <Button loading={comments.loadingMore} onClick={loadMoreComments}>
+              Load More
+            </Button>
+          </div>
+        )}
       </ListGroup>
     );
 
@@ -285,6 +293,7 @@ const SubmissionsAndCommentsCard = compose(
       setRatingModal: bountyUIActions.setRatingModal,
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
       postComment: commentsActions.postComment,
+      loadMoreComments: commentsActions.loadMoreComments,
       showLogin: loginActions.showLogin
     }
   )

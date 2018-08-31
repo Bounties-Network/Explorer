@@ -1,6 +1,7 @@
 import request from 'utils/request';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Comments';
+import { commentsSelector } from 'public-modules/Comments/selectors';
 import { LIMIT } from './constants';
 
 const { LOAD_COMMENTS, LOAD_MORE_COMMENTS, POST_COMMENT } = actionTypes;
@@ -20,22 +21,26 @@ export function* loadComments(action) {
     const endpoint = `bounty/${bountyId}/comment/?limit=${LIMIT}`;
     const comments = yield call(request, endpoint, 'GET');
 
-    yield put(loadCommentsSuccess(comments, comments.length));
+    yield put(loadCommentsSuccess(comments.results, comments.count));
   } catch (e) {
     yield put(loadCommentsFail(e));
   }
 }
 
 export function* loadMoreComments(action) {
-  // const drafts_list = yield select(draftsSelector);
-  const offset = 0;
+  const { comments: currentComments, bountyId } = yield select(
+    commentsSelector
+  );
+
+  const params = {
+    limit: LIMIT,
+    offset: currentComments.length
+  };
 
   try {
-    const endpoint = 'bounty/draft';
-    const drafts = yield call(request, endpoint, 'GET', {
-      params: { limit: LIMIT, offset }
-    });
-    yield put(loadMoreCommentsSuccess(drafts));
+    const endpoint = `bounty/${bountyId}/comment/`;
+    const comments = yield call(request, endpoint, 'GET', { params });
+    yield put(loadMoreCommentsSuccess(comments.results));
   } catch (e) {
     console.log(e);
     yield put(loadMoreCommentsFail(e));

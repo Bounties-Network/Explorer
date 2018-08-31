@@ -10,6 +10,12 @@ const initialState = {
   comments: []
 };
 
+const RESET_STATE = 'comments/RESET_STATE';
+
+function resetState() {
+  return { type: RESET_STATE };
+}
+
 const LOAD_COMMENTS = 'comments/LOAD_COMMENTS';
 const LOAD_COMMENTS_SUCCESS = 'comments/LOAD_COMMENTS_SUCCESS';
 const LOAD_COMMENTS_FAIL = 'comments/LOAD_COMMENTS_FAIL';
@@ -35,10 +41,7 @@ function loadMoreComments() {
 }
 
 function loadMoreCommentsSuccess(comments) {
-  return {
-    type: LOAD_MORE_COMMENTS_SUCCESS,
-    comments: comments.results
-  };
+  return { type: LOAD_MORE_COMMENTS_SUCCESS, comments };
 }
 
 function loadMoreCommentsFail(error) {
@@ -128,7 +131,7 @@ function CommentsReducer(state = initialState, action) {
       return {
         ...state,
         posting: false,
-        comments: [...state.comments, comment]
+        comments: [comment, ...state.comments]
       };
     }
     case POST_COMMENT_FAIL: {
@@ -137,6 +140,9 @@ function CommentsReducer(state = initialState, action) {
         posting: false,
         postingError: true
       };
+    }
+    case RESET_STATE: {
+      return initialState;
     }
     default:
       return state;
@@ -152,7 +158,8 @@ export const actions = {
   loadMoreCommentsFail,
   postComment,
   postCommentSuccess,
-  postCommentFail
+  postCommentFail,
+  resetState
 };
 
 export const actionTypes = {
@@ -164,7 +171,8 @@ export const actionTypes = {
   LOAD_MORE_COMMENTS_FAIL,
   POST_COMMENT,
   POST_COMMENT_SUCCESS,
-  POST_COMMENT_FAIL
+  POST_COMMENT_FAIL,
+  RESET_STATE
 };
 
 export default CommentsReducer;
