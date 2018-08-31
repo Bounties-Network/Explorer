@@ -35,10 +35,7 @@ function loadMoreComments() {
 }
 
 function loadMoreCommentsSuccess(comments) {
-  return {
-    type: LOAD_MORE_COMMENTS_SUCCESS,
-    comments: comments.results
-  };
+  return { type: LOAD_MORE_COMMENTS_SUCCESS, comments };
 }
 
 function loadMoreCommentsFail(error) {
