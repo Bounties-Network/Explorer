@@ -4,11 +4,16 @@ import { push } from 'react-router-redux';
 import { addressSelector } from 'public-modules/Client/selectors';
 import { actionTypes, actions } from 'public-modules/Authentication';
 import { actionTypes as clientActionTypes } from 'public-modules/Client';
+import { actionTypes as settingsActionTypes } from 'public-modules/Settings';
 import { getWeb3Client } from 'public-modules/Client/sagas';
 import { get } from 'lodash';
 
 const { SET_INITIALIZED } = clientActionTypes;
 const { LOGIN, LOGOUT } = actionTypes;
+const {
+  SAVE_SETTINGS_SUCCESS,
+  SAVE_EMAIL_PREFERENCES_SUCCESS
+} = settingsActionTypes;
 const {
   getCurrentUserSuccess,
   getCurrentUserFail,
@@ -75,7 +80,10 @@ export function* logout(action) {
 }
 
 export function* watchGetCurrentUser() {
-  yield takeLatest(SET_INITIALIZED, getCurrentUser);
+  yield takeLatest(
+    [SET_INITIALIZED, SAVE_SETTINGS_SUCCESS, SAVE_EMAIL_PREFERENCES_SUCCESS],
+    getCurrentUser
+  );
 }
 
 export function* watchLogin() {
