@@ -134,6 +134,7 @@ export function* createBounty(action) {
     paysTokens,
     sourceDirectoryHash,
     sourceFileName,
+    webReferenceURL,
     uid
   } = values;
 
@@ -186,7 +187,7 @@ export function* createBounty(action) {
       sourceFileHash: '',
       sourceDirectoryHash,
       sourceFileName,
-      webReferenceUrl: '',
+      webReferenceURL,
       categories,
       created: parseInt(new Date().getTime() / 1000) | 0,
       tokenAddress: tokenContract || '',

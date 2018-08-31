@@ -240,7 +240,7 @@ class BountyComponent extends React.Component {
                   </Text>
                   <Text>{DIFFICULTY_MAPPINGS[bounty.experienceLevel]}</Text>
                 </div>
-                {bounty.sourceDirectoryHash ? (
+                {bounty.sourceDirectoryHash && (
                   <div className={styles.labelGroup}>
                     <Text inputLabel className={styles.label}>
                       Associated Files
@@ -254,7 +254,17 @@ class BountyComponent extends React.Component {
                       {bounty.sourceFileName}
                     </Text>
                   </div>
-                ) : null}
+                )}
+                {bounty.webReferenceURL && (
+                  <div className={styles.labelGroup}>
+                    <Text inputLabel className={styles.label}>
+                      Link
+                    </Text>
+                    <Text link src={`${bounty.webReferenceURL}`}>
+                      {bounty.webReferenceURL}
+                    </Text>
+                  </div>
+                )}
                 <div className={styles.social}>
                   <Social />
                 </div>

@@ -105,7 +105,7 @@ class FileUpload extends React.Component {
             type="file"
             onChange={this.handleChange}
           />
-          Upload File
+          Upload file
         </Button>
       </div>
     );
