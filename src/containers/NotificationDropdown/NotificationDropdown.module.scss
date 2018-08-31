@@ -1,20 +1,78 @@
 @import "~styles/variables.scss";
 
+.customDropdown {
+  position: absolute;
+  top: $header-height-sm - $base-spacing;
+  right: 0;
+
+  @media only screen and (min-width: 48em) {
+    top: $header-height-lg - $base-spacing;
+  }
+}
+
 .notificationTrigger {
+  padding: $base-spacing;
   position: relative;
+}
+
+.notificationTriggerIcon {
   transform: rotate(25deg);
 }
 
 .notificationBox {
   box-shadow: $base-box-shadow;
   background-color: $brand-white;
+  border: $base-border;
   border-radius: $base-border-radius;
-  min-height: 200px;
-  height: 40vh;
-  min-width: 500px;
+  height: 25rem;
+  width: 100vw;
+  margin: 0 $m-spacing;
   overflow: scroll;
+  position: absolute;
   display: flex;
   flex-direction: column;
+  right: calc(-4.25rem - #{$m-spacing});
+
+  @media only screen and (min-width: 48em) {
+    width: 35rem;
+    right: -$l-spacing;
+  }
+}
+
+.notificationListGroup {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.notificationListItem {
+  border-radius: 0;
+  padding: $base-spacing $m-spacing;
+  padding-left: $xl-spacing;
+  position: relative;
+
+  &:before {
+    border-radius: 6px;
+    content: '';
+    height: 6px;
+    width: 6px;
+    background-color: $brand-red;
+    top: 50%;
+    transform: translateY(-50%);
+    left: $m-spacing;
+    position: absolute;
+  }
+
+  &.viewed {
+    opacity: 0.5;
+
+    &:before {
+      display: none;
+    }
+  }
+}
+
+.notification {
+  margin-right: 0;
 }
 
 .notification:after {
@@ -25,33 +83,27 @@
   position: absolute;
   height: 12px;
   width: 12px;
-  right: -4px;
-  top: -3px;
+  right: 1px;
+  top: 10px;
   z-index: 1000;
-  background-color: red;
+  background-color: $brand-red;
 }
 
-.customDropdown {
-  top: 45px;
-}
-
-.headline {
-  padding: $m-spacing;
+.heading {
   border-bottom: $base-border;
   display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
   align-items: center;
 }
 
-.headlineTitle {
+.headingTitle {
+  padding: $m-spacing $m-spacing;
   flex-grow: 1;
 }
 
-.transparent {
-  opacity: .4;
-}
-
-.headlineLink {
-  margin-right: $m-spacing;
+.headingLink {
+  padding-right: $m-spacing;
 }
 
 .link:hover, .link:visited, .link:link, .link:active {
@@ -68,4 +120,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: ($xxl-spacing * 3) $xxl-spacing;
 }

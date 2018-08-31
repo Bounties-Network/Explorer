@@ -16,28 +16,25 @@ const NotificationItem = props => {
     <div className={styles.container}>
       <div className={styles.notifier}>
         {userAddress ? (
-          <LinkedAvatar
-            address={userAddress}
-            img={profileImage}
-            hash={userAddress}
-            to={`/profile/${userAddress}`}
-          />
+          <LinkedAvatar img={profileImage} />
         ) : (
           <FontAwesomeIcon icon={icon} className={styles.iconStyles} />
         )}
       </div>
-      <div className={styles.text}>
-        <Text color="black" typeScale="Small" inline>
-          {message}
-        </Text>
-        <Text color="black" weight="fontWeight-bold" typeScale="Small" inline>
-          {' ' + title}
-        </Text>
-      </div>
-      <div className={styles.time}>
-        <Text color="defaultGrey" typeScale="Small">
-          {formattedTime}
-        </Text>
+      <div className={styles.notificationMain}>
+        <div className={styles.text}>
+          <Text color="black" typeScale="Small" inline>
+            {message}
+          </Text>
+          <Text color="black" weight="fontWeight-bold" typeScale="Small" inline>
+            {' ' + title}
+          </Text>
+        </div>
+        <div className={styles.time}>
+          <Text color="defaultGrey" typeScale="Small">
+            {formattedTime}
+          </Text>
+        </div>
       </div>
     </div>
   );
