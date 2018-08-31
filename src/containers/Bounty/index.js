@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
+import { actions as commentsActions } from 'public-modules/Comments';
 import { actions as bountyUIActions } from './reducer';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import showdown from 'showdown';
@@ -44,11 +45,13 @@ class BountyComponent extends React.Component {
       loadFulfillment,
       loadFulfillments,
       resetFilters,
+      resetCommentsState,
       addBountyFilter,
       setBountyId,
       setActiveTab
     } = props;
 
+    resetCommentsState();
     setBountyId(match.params.id);
     setActiveTab('submissions');
 
@@ -332,7 +335,8 @@ const Bounty = compose(
       loadFulfillments: fulfillmentsActions.loadFulfillments,
       loadFulfillment: fulfillmentActions.loadFulfillment,
       addBountyFilter: fulfillmentsActions.addBountyFilter,
-      resetFilters: fulfillmentsActions.resetFilters
+      resetFilters: fulfillmentsActions.resetFilters,
+      resetCommentsState: commentsActions.resetState
     }
   )
 )(BountyComponent);
