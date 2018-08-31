@@ -74,6 +74,9 @@ const BountyCard = props => {
                 address={address}
                 hash={address}
                 to={`/profile/${address}`}
+                onClick={() =>
+                  document.getElementsByClassName('page-body')[0].scrollTo(0, 0)
+                }
                 size="small"
               />
             </div>
