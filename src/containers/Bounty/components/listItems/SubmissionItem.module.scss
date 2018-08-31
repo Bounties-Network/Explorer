@@ -20,9 +20,6 @@
   }
 }
 
-.detailsContainer {
-}
-
 .filter {
   text-align: left;
 }
@@ -35,6 +32,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+
+  span:not(:last-child) {
+    margin-bottom: $m-spacing;
+  }
 }
 
 .submissionContents {
