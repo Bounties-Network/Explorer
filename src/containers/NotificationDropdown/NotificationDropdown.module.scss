@@ -25,13 +25,13 @@
   border: $base-border;
   border-radius: $base-border-radius;
   height: 25rem;
-  width: 100vw;
+  width: calc(100vw - #{$s-spacing});
   margin: 0 $m-spacing;
   overflow: scroll;
   position: absolute;
   display: flex;
   flex-direction: column;
-  right: calc(-4.25rem - #{$m-spacing});
+  right: calc(-4.2rem - #{$m-spacing});
 
   @media only screen and (min-width: 48em) {
     width: 35rem;

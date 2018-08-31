@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import styles from './Dropdown.module.scss';
 
+import { Text } from 'components';
+
 class DropdownTrigger extends React.Component {
   render() {
     return this.props.children;
@@ -14,7 +16,7 @@ class MenuItem extends React.Component {
     const { icon, children, className, onClick } = this.props;
 
     const iconBlock = icon ? (
-      <FontAwesomeIcon icon={icon} className={styles.faIcon} />
+      <FontAwesomeIcon icon={icon} color="grey" className={styles.faIcon} />
     ) : null;
 
     return (
@@ -23,7 +25,7 @@ class MenuItem extends React.Component {
         onClick={() => onClick()}
       >
         {iconBlock}
-        {children}
+        <Text inline>{children}</Text>
       </li>
     );
   }
