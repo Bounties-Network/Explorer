@@ -58,6 +58,11 @@ class DashboardComponent extends React.Component {
     setActiveSubmissionsTab('received');
   }
 
+  componentDidMount() {
+    // ensure dashboard is scrolled to the top on mount
+    document.getElementsByClassName('page-body')[0].scrollTo(0, 0);
+  }
+
   render() {
     var settings = {
       dots: true,
