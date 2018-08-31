@@ -7,14 +7,14 @@ import normalizers from 'utils/normalizers';
 import { FormTextInput } from 'form-components';
 
 const ContributeFormModal = props => {
-  const { onClose, handleSubmit, tokenSymbol } = props;
+  const { onClose, handleSubmit, tokenSymbol, visible } = props;
 
   return (
     <form onSubmit={handleSubmit}>
       <Modal
         dismissable={true}
         onClose={onClose}
-        visible={true}
+        visible={visible}
         fixed
         size="small"
       >

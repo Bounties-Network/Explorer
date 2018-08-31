@@ -36,7 +36,8 @@ const IssueRatingFormModalComponent = props => {
     loading,
     error,
     posting,
-    postingError
+    postingError,
+    visible
   } = props;
 
   const { name, address, img } = reviewee;
@@ -64,7 +65,7 @@ const IssueRatingFormModalComponent = props => {
       <Modal
         dismissable={true}
         onClose={onClose}
-        visible={true}
+        visible={visible}
         fixed
         size="medium"
       >

@@ -2,11 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import {
-  UnlockWallet,
-  AddressMismatch,
-  ErrorModal
-} from './components';
+import { UnlockWallet, AddressMismatch, ErrorModal } from './components';
 import { actions as authActions } from 'public-modules/Authentication';
 import {
   getCurrentUserSelector,
@@ -30,32 +26,42 @@ const LoginLockComponent = props => {
     error
   } = props;
 
+  const config = {
+    showUnlockWallet: false,
+    showError: false,
+    showMismatch: false
+  };
+
   if (walletLocked || !walletAddress) {
-    return <UnlockWallet visible={true} pageLevel closable={false} />;
-  }
-
-  if (error) {
-    return <ErrorModal visible={true} onClose={resetLogoutState} />;
-  }
-
-  if (
+    config.showUnlockWallet = true;
+  } else if (error) {
+    config.showError = true;
+  } else if (
     userAddress &&
     userAddress.toLowerCase() !== walletAddress.toLowerCase()
   ) {
-    return (
+    config.showMismatch = true;
+  }
+
+  return (
+    <React.Fragment>
+      <UnlockWallet
+        visible={config.showUnlockWallet}
+        pageLevel
+        closable={false}
+      />
+      <ErrorModal visible={config.showError} onClose={resetLogoutState} />
       <AddressMismatch
         closable={false}
-        visible={true}
+        visible={config.showMismatch}
         currentAddress={walletAddress}
         previousAddress={userAddress}
         img={img}
         logout={logout}
         loggingOut={loggingOut}
       />
-    );
-  }
-
-  return null;
+    </React.Fragment>
+  );
 };
 
 const mapStateToProps = state => {

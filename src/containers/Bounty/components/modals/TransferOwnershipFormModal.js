@@ -6,14 +6,14 @@ import { FormTextInput } from 'form-components';
 import validators from 'utils/validators';
 
 const TransferOwnershipFormModal = props => {
-  const { onClose, handleSubmit } = props;
+  const { onClose, handleSubmit, visible } = props;
 
   return (
     <form onSubmit={handleSubmit}>
       <Modal
         dismissable={true}
         onClose={onClose}
-        visible={true}
+        visible={visible}
         fixed
         size="small"
       >

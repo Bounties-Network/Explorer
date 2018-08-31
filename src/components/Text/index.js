@@ -28,6 +28,7 @@ const Text = props => {
     return (
       <span
         onMouseDown={onMouseDown}
+        onClick={onClick}
         className={`text ${className} ${styles[typeScale]} ${
           styles[lineHeight]
         } ${styles[color]} ${styles[weight]} ${styles[alignment]} ${
@@ -66,6 +67,7 @@ const Text = props => {
 
     return (
       <p
+        onClick={onClick}
         onMouseDown={onMouseDown}
         className={`text ${className} ${styles[lineHeight]} ${styles[color]} ${
           styles[weight]

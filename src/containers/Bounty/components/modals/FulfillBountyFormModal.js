@@ -20,7 +20,8 @@ let FulfillBountyFormModalComponent = props => {
     // upload state
     uploading,
     ipfsHash,
-    fileName
+    fileName,
+    visible
   } = props;
 
   const submitFulfillment = values => {
@@ -37,7 +38,7 @@ let FulfillBountyFormModalComponent = props => {
       <Modal
         dismissable={true}
         onClose={closeAndReset}
-        visible={true}
+        visible={visible}
         fixed
         size="medium"
       >

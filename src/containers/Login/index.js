@@ -36,40 +36,60 @@ const LoginComponent = props => {
     resetLoginState,
     resetLogoutState,
     loginError,
-    logoutError
+    logoutError,
+    loggedIn
   } = props;
 
-  if (!hasWallet) {
-    return (
-      <WalletRequired visible={visible} onClose={() => showLogin(false)} />
-    );
-  }
+  const config = {
+    showWalletRequired: false,
+    showUnlockWallet: false,
+    showErrorModal: false,
+    showSigningIn: false,
+    showProfileDetails: false,
+    showSignIn: false
+  };
 
-  if (walletLocked) {
-    return <UnlockWallet visible={visible} onClose={() => showLogin(false)} />;
-  }
-
-  if (loginError || logoutError) {
-    return (
-      <ErrorModal
-        visible={visible}
-        onClose={loginError ? resetLoginState : resetLogoutState}
-      />
-    );
-  }
-
-  if (signingIn) {
-    return <SigningIn visible={visible} />;
-  }
-
-  if (stage === 'profile') {
-    return (
-      <AddProfileDetails visible={visible} onClose={() => showLogin(false)} />
-    );
+  if (visible) {
+    if (!hasWallet) {
+      config.showWalletRequired = true;
+    } else if (walletLocked) {
+      config.showUnlockWallet = true;
+    } else if (loginError || logoutError) {
+      config.showErrorModal = true;
+    } else if (stage === 'profile') {
+      config.showProfileDetails = true;
+    } else if (signingIn || loggedIn) {
+      config.showSigningIn = true;
+    } else {
+      config.showSignIn = true;
+    }
   }
 
   return (
-    <SignIn visible={visible} onClose={() => showLogin(false)} signIn={login} />
+    <React.Fragment>
+      <WalletRequired
+        visible={config.showWalletRequired}
+        onClose={() => showLogin(false)}
+      />
+      <UnlockWallet
+        visible={config.showUnlockWallet}
+        onClose={() => showLogin(false)}
+      />
+      <ErrorModal
+        visible={config.showErrorModal}
+        onClose={loginError ? resetLoginState : resetLogoutState}
+      />
+      <SigningIn visible={config.showSigningIn} />
+      <AddProfileDetails
+        visible={config.showProfileDetails}
+        onClose={() => showLogin(false)}
+      />
+      <SignIn
+        visible={config.showSignIn}
+        onClose={() => showLogin(false)}
+        signIn={login}
+      />
+    </React.Fragment>
   );
 };
 
@@ -84,6 +104,7 @@ const mapStateToProps = state => {
     walletLocked: walletLockedSelector(state),
     walletAddress: addressSelector(state),
     userAddress: user && user.public_address,
+    loggedIn: !!user,
     userName: user && user.name,
     userEmail: user && user.email,
     visible: rootLogin.visible,
