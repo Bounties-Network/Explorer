@@ -62,7 +62,7 @@ const PendingReceipt = props => {
     <Modal visible={visible} fixed size="small">
       <Modal.Header loadingIcon>
         <Modal.Message>
-          Waiting for your transaction to be cofirmed on the blockchain...
+          Waiting for your transaction to be confirmed on the blockchain...
         </Modal.Message>
       </Modal.Header>
       <Modal.Body>
