@@ -260,6 +260,8 @@ class Modal extends React.Component {
     let baseClass = `${styles.overlay} modal-visible`;
     if (fixed) {
       baseClass += ` ${styles.fixed}`;
+    } else {
+      baseClass += ` ${styles.unfixed}`;
     }
 
     let rootModal;
