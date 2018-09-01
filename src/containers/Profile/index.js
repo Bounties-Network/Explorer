@@ -59,6 +59,7 @@ class ProfileComponent extends React.Component {
     const {
       currentUser,
       history,
+      location,
       match,
       batch,
       loadBounties,
@@ -70,7 +71,10 @@ class ProfileComponent extends React.Component {
       resetFilter
     } = this.props;
 
-    if (prevProps.locationNonce !== locationNonce) {
+    if (
+      prevProps.locationNonce !== locationNonce &&
+      (history.action === 'POP' || location.search === '')
+    ) {
       batch(true);
       resetFilter('sort');
       resetFilter('stage');

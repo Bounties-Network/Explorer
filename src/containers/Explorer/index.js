@@ -36,13 +36,17 @@ class Explorer extends React.Component {
       batch,
       locationNonce,
       history,
+      location,
       resetFilters,
       load,
       addPlatformFilter,
       toggleStageFilter
     } = this.props;
 
-    if (prevProps.locationNonce !== locationNonce) {
+    if (
+      prevProps.locationNonce !== locationNonce &&
+      (history.action === 'POP' || location.search === '')
+    ) {
       batch(true);
       resetFilters();
       toggleStageFilter('active');
