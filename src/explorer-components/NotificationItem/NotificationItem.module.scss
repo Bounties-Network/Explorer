@@ -34,7 +34,12 @@
 }
 
 .notifier {
-  min-width: $xxl-spacing;
+  &.small {
+    min-width: $l-spacing;
+  }
+  &.large {
+    min-width: $xxl-spacing;
+  }
 }
 
 .iconStyles {

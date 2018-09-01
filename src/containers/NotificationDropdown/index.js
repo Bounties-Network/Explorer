@@ -65,6 +65,7 @@ const NotificationDropdown = props => {
               title={bounty_title}
               transparent
               createdAt={created}
+              notifierWidth="large"
               userAddress={from_user && from_user.public_address}
               profileImg={from_user && from_user.profile_image}
             />
