@@ -11,7 +11,7 @@
   position: relative;
   height: 100%;
   box-sizing: border-box;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch; //PSA: This currently causes stacking context bugs.
 
   @media only screen and (min-width: 48em) {
     margin-left: $sidebar-width-sm;
