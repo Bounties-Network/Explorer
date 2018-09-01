@@ -7,14 +7,14 @@ import validators from 'utils/validators';
 import { getTimezone } from 'utils/helpers';
 
 const ExtendDeadlineFormModal = props => {
-  const { onClose, handleSubmit, minimumDeadline } = props;
+  const { onClose, handleSubmit, minimumDeadline, visible } = props;
 
   return (
     <form onSubmit={handleSubmit}>
       <Modal
         dismissable={true}
         onClose={onClose}
-        visible={true}
+        visible={visible}
         fixed
         size="small"
       >

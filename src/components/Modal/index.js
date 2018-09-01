@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import styles from './Modal.module.scss';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Text, Loader } from 'components';
 import { includes, each } from 'lodash';
 
@@ -133,30 +134,46 @@ class Modal extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const wasVisible = prevProps.visible;
-    const { visible: isVisible } = this.props;
+  triggerEnter = () => {
+    document.body.classList.add('entering');
+  };
 
-    if (isVisible === wasVisible) {
+  triggerEntered = () => {
+    document.body.classList.remove('entering');
+    document.body.classList.add('entered');
+  };
+
+  triggerExit = () => {
+    document.body.classList.remove('entered');
+    document.body.classList.add('exiting');
+  };
+
+  triggerEntering = () => {
+    document.body.classList.add('modal-open');
+    const pageBody = document.getElementsByClassName('page-body')[0];
+    if (pageBody) {
+      pageBody.classList.add('modal-open');
+    }
+  };
+
+  triggerExited = () => {
+    document.body.classList.remove('exiting');
+    const currentModals = document.getElementsByClassName('modal-visible');
+    if (currentModals && currentModals.length > 1) {
       return null;
     }
-
-    if (isVisible) {
-      document.body.classList.add('modal-open');
-      const pageBody = document.getElementsByClassName('page-body')[0];
-      if (pageBody) {
-        pageBody.classList.add('modal-open');
-      }
-    } else {
-      document.body.className = '';
-      const pageBody = document.getElementsByClassName('page-body')[0];
-      if (pageBody) {
-        pageBody.classList.remove('modal-open');
-      }
+    document.body.classList.remove('modal-open');
+    const pageBody = document.getElementsByClassName('page-body')[0];
+    if (pageBody) {
+      pageBody.classList.remove('modal-open');
     }
-  }
+  };
 
   componentWillUnmount() {
+    const currentModals = document.getElementsByClassName('modal-visible');
+    if (currentModals && currentModals.length) {
+      return null;
+    }
     document.body.className = '';
     const pageBody = document.getElementsByClassName('page-body')[0];
     if (pageBody) {
@@ -240,36 +257,53 @@ class Modal extends React.Component {
       }
     }, children);
 
-    let baseClass = styles.overlay;
+    let baseClass = `${styles.overlay} modal-visible`;
     if (fixed) {
       baseClass += ` ${styles.fixed}`;
     }
 
-    if (!visible) {
-      baseClass += ` ${styles.hidden}`;
+    let rootModal;
+    if (visible) {
+      rootModal = (
+        <CSSTransition
+          key="1"
+          timeout={600}
+          onEnter={this.triggerEnter}
+          onEntered={this.triggerEntered}
+          onEntering={this.triggerEntering}
+          onExited={this.triggerExited}
+          onExit={this.triggerExit}
+          classNames={{
+            enter: styles.enter,
+            enterActive: styles.enterActive,
+            exit: styles.exit,
+            exitActive: styles.exitActive
+          }}
+        >
+          <div className={baseClass} onClick={this.dismiss}>
+            <div className={`${styles.modalWrapper}`}>
+              <div
+                className={`${styles.modal} ${styles[size]}`}
+                onClick={this.modalClick}
+              >
+                <ModalContext.Provider value={{ onClose: this.onClose }}>
+                  <main className={styles.modalMain}>
+                    {this.renderHeader(header)}
+                    {this.renderHeading(heading)}
+                    {this.renderMessage(message)}
+                    {this.renderDescription(description)}
+                    {this.renderBody(body)}
+                  </main>
+                  {this.renderFooter(footer)}
+                </ModalContext.Provider>
+              </div>
+            </div>
+          </div>
+        </CSSTransition>
+      );
     }
 
-    return (
-      <div className={baseClass} onClick={this.dismiss}>
-        <div className={`${styles.modalWrapper}`}>
-          <div
-            className={`${styles.modal} ${styles[size]}`}
-            onClick={this.modalClick}
-          >
-            <ModalContext.Provider value={{ onClose: this.onClose }}>
-              <main className={styles.modalMain}>
-                {this.renderHeader(header)}
-                {this.renderHeading(heading)}
-                {this.renderMessage(message)}
-                {this.renderDescription(description)}
-                {this.renderBody(body)}
-              </main>
-              {this.renderFooter(footer)}
-            </ModalContext.Provider>
-          </div>
-        </div>
-      </div>
-    );
+    return <TransitionGroup>{rootModal}</TransitionGroup>;
   }
 }
 

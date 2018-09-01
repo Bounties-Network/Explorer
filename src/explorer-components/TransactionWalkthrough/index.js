@@ -40,10 +40,10 @@ InitiateWalkthrough.propTypes = {
 };
 
 const PendingWalletConfirm = props => {
-  const { text } = props;
+  const { text, visible } = props;
 
   return (
-    <Modal visible={true} fixed size="small">
+    <Modal visible={visible} fixed size="small">
       <Modal.Header loadingIcon>
         <Modal.Message>{text}</Modal.Message>
       </Modal.Header>
@@ -136,48 +136,36 @@ const TransactionWalkthrough = props => {
     successLink
   } = props;
 
-  if (!visible) {
-    return null;
-  }
-
-  if (stage === 'initiatePrompt') {
-    return (
+  return (
+    <React.Fragment>
       <InitiateWalkthrough
         onConfirm={onConfirm}
-        visible={true}
+        visible={visible && stage === 'initiatePrompt'}
         onClose={onClose}
       />
-    );
-  }
-
-  if (stage === 'pendingWalletConfirm') {
-    return <PendingWalletConfirm text={pendingWalletText} visible={true} />;
-  }
-
-  if (stage === 'pendingReceipt' && !transaction.completed) {
-    return (
+      <PendingWalletConfirm
+        text={pendingWalletText}
+        visible={visible && stage === 'pendingWalletConfirm'}
+      />
       <PendingReceipt
         text={pendingReceiptText}
-        visible={true}
+        visible={
+          visible && !transaction.completed && stage === 'pendingReceipt'
+        }
         toDashboard={toDashboard}
       />
-    );
-  }
-
-  if (stage === 'pendingReceipt' && transaction.completed) {
-    return (
       <WalkthroughSuccess
-        visible={true}
+        visible={visible && transaction.completed && stage === 'pendingReceipt'}
         toDashboard={toDashboard}
         buttonText={transaction.linkText}
         successLink={successLink}
       />
-    );
-  }
-
-  if (stage === 'error') {
-    return <WalkthroughError onClose={onClose} visible={true} />;
-  }
+      <WalkthroughError
+        onClose={onClose}
+        visible={visible && stage === 'error'}
+      />
+    </React.Fragment>
+  );
 };
 
 TransactionWalkthrough.propTypes = {

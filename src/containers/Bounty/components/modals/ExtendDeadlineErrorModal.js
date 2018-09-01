@@ -2,10 +2,10 @@ import React from 'react';
 import { Modal, Button } from 'components';
 
 const ExtendDeadlineErrorModal = props => {
-  const { onClose, onExtendDeadline } = props;
+  const { onClose, onExtendDeadline, visible } = props;
 
   return (
-    <Modal dismissable onClose={onClose} visible={true} fixed size="small">
+    <Modal dismissable onClose={onClose} visible={visible} fixed size="small">
       <Modal.Header closable icon={['far', 'exclamation-triangle']}>
         <Modal.Message>
           The deadline must be in the future in order to activate your bounty.

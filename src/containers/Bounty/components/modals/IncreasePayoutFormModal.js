@@ -13,7 +13,8 @@ const IncreasePayoutFormModal = props => {
     minimumBalance,
     minimumPayout,
     handleSubmit,
-    tokenSymbol
+    tokenSymbol,
+    visible
   } = props;
 
   return (
@@ -21,7 +22,7 @@ const IncreasePayoutFormModal = props => {
       <Modal
         dismissable={true}
         onClose={onClose}
-        visible={true}
+        visible={visible}
         fixed
         size="small"
       >

@@ -4,14 +4,14 @@ import { Modal, Button } from 'components';
 import { reduxForm } from 'redux-form';
 
 const KillBountyFormModal = props => {
-  const { onClose, handleSubmit } = props;
+  const { onClose, handleSubmit, visible } = props;
 
   return (
     <form onSubmit={handleSubmit}>
       <Modal
         dismissable={true}
         onClose={onClose}
-        visible={true}
+        visible={visible}
         fixed
         size="small"
       >

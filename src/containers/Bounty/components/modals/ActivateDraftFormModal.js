@@ -8,14 +8,14 @@ import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 
 const ActivateDraftFormModal = props => {
-  const { onClose, minimumBalance, handleSubmit, tokenSymbol } = props;
+  const { onClose, minimumBalance, handleSubmit, tokenSymbol, visible } = props;
 
   return (
     <form onSubmit={handleSubmit}>
       <Modal
         dismissable={true}
         onClose={onClose}
-        visible={true}
+        visible={visible}
         fixed
         size="small"
       >

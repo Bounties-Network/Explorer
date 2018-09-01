@@ -42,10 +42,6 @@ const ModalManagerComponent = props => {
     /*****************/
   } = props;
 
-  if (!modalVisible) {
-    return null;
-  }
-
   const minimumBalance = BigNumber(
     bounty.calculated_fulfillmentAmount,
     10
@@ -104,83 +100,60 @@ const ModalManagerComponent = props => {
   const fulfillBounty = values =>
     initiateWalkthrough(() => fulfillBountyAction(bounty.id, values));
 
-  if (modalType === 'contribute') {
-    return (
+  const tomorrow = moment().add(1, 'days');
+  const currentDeadline = moment.utc(bounty.deadline);
+
+  const minimumDeadline =
+    currentDeadline > tomorrow
+      ? currentDeadline.add(1, 'days').local()
+      : tomorrow;
+
+  return (
+    <React.Fragment>
       <ContributeFormModal
+        visible={modalVisible && modalType === 'contribute'}
         onClose={closeModal}
         onSubmit={contribute}
         tokenSymbol={bounty.tokenSymbol}
       />
-    );
-  }
-
-  if (modalType === 'deadlineWarning') {
-    return (
       <ExtendDeadlineErrorModal
+        visible={modalVisible && modalType === 'deadlineWarning'}
         onClose={closeModal}
         onExtendDeadline={onExtendDeadlineError}
       />
-    );
-  }
-
-  if (modalType === 'kill') {
-    return <KillBountyFormModal onClose={closeModal} onSubmit={killBounty} />;
-  }
-
-  if (modalType === 'activate') {
-    return (
+      <KillBountyFormModal
+        visible={modalVisible && modalType === 'kill'}
+        onClose={closeModal}
+        onSubmit={killBounty}
+      />
       <ActivateDraftFormModal
+        visible={modalVisible && modalType === 'activate'}
         onClose={closeModal}
         onSubmit={activateDraftBounty}
         minimumBalance={minimumBalance}
         tokenSymbol={bounty.tokenSymbol}
         initialValues={{ balance: minimumBalance }}
       />
-    );
-  }
-
-  if (modalType === 'extendDeadline') {
-    const tomorrow = moment().add(1, 'days');
-    const currentDeadline = moment.utc(bounty.deadline);
-
-    const minimumDeadline =
-      currentDeadline > tomorrow
-        ? currentDeadline.add(1, 'days').local()
-        : tomorrow;
-
-    return (
       <ExtendDeadlineFormModal
+        visible={modalVisible && modalType === 'extendDeadline'}
         onClose={closeModal}
         onSubmit={extendDeadline}
         minimumDeadline={minimumDeadline}
         initialValues={{ deadline: minimumDeadline }}
       />
-    );
-  }
-
-  if (modalType === 'transferOwnership') {
-    return (
       <TransferOwnershipFormModal
+        visible={modalVisible && modalType === 'transferOwnership'}
         onClose={closeModal}
         onSubmit={transferOwnership}
       />
-    );
-  }
-
-  if (modalType === 'activateDead') {
-    return (
       <ActivateDeadFormModal
+        visible={modalVisible && modalType === 'activateDead'}
         onClose={closeModal}
         onSubmit={activateBounty}
         minimumBalance={minimumBalance}
         tokenSymbol={bounty.tokenSymbol}
         initialValues={{ balance: minimumBalance }}
       />
-    );
-  }
-
-  if (modalType === 'increasePayout') {
-    return (
       <IncreasePayoutFormModal
         onClose={closeModal}
         onSubmit={increasePayout}
@@ -188,39 +161,33 @@ const ModalManagerComponent = props => {
           bounty.calculated_fulfillmentAmount,
           10
         ).toString()}
+        visible={modalVisible && modalType === 'increasePayout'}
         tokenSymbol={bounty.tokenSymbol}
         minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}
       />
-    );
-  }
-
-  if (modalType === 'fulfillBounty') {
-    return (
-      <FulfillBountyFormModal onClose={closeModal} onSubmit={fulfillBounty} />
-    );
-  }
-
-  if (modalType === 'issueRatingForIssuer') {
-    return (
+      <FulfillBountyFormModal
+        visible={modalType === 'fulfillBounty'}
+        onClose={closeModal}
+        onSubmit={fulfillBounty}
+      />
       <IssueRatingFormModal
+        key="issuer"
         type="issuer"
+        visible={modalVisible && modalType === 'issueRatingForIssuer'}
         onSubmit={reviewActions}
         onClose={closeModal}
         bounty={bounty}
       />
-    );
-  }
-
-  if (modalType === 'issueRatingForFulfiller') {
-    return (
       <IssueRatingFormModal
+        key="fulfiller"
         type="fulfiller"
+        visible={modalVisible && modalType === 'issueRatingForFulfiller'}
         onSubmit={reviewActions}
         onClose={closeModal}
         bounty={bounty}
       />
-    );
-  }
+    </React.Fragment>
+  );
 };
 
 const mapStateToProps = (state, router) => {

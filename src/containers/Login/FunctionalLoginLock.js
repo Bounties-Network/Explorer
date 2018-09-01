@@ -28,36 +28,50 @@ const FunctionalLoginLock = props => {
     error
   } = props;
 
-  if (!visible) {
-    return null;
+  const config = {
+    showError: false,
+    showWalletRequired: false,
+    showUnlockWallet: false,
+    showMismatch: false,
+    showSigningIn: false,
+    showSignIn: false
+  };
+
+  if (visible) {
+    if (error) {
+      config.showError = true;
+    } else if (!hasWallet) {
+      config.showWalletRequired = true;
+    } else if (walletLocked) {
+      config.showUnlockWallet = true;
+    } else if (addressMismatch) {
+      config.showMismatch = true;
+    } else if (signingIn) {
+      config.showSigningIn = true;
+    } else if (!isLoggedIn) {
+      config.showSignIn = true;
+    }
   }
 
-  if (error) {
-    return (
+  return (
+    <React.Fragment>
       <ErrorModal
-        visible
+        visible={config.showError}
         onClose={() => {
           resetLogoutState();
           resetLoginState();
           hide();
         }}
       />
-    );
-  }
-
-  if (!hasWallet) {
-    return <WalletRequired visible closable onClose={hide} />;
-  }
-
-  if (walletLocked) {
-    return <UnlockWallet visible closable onClose={hide} />;
-  }
-
-  if (addressMismatch) {
-    return (
+      <WalletRequired
+        visible={config.showWalletRequired}
+        closable
+        onClose={hide}
+      />
+      <UnlockWallet visible={config.showUnlockWallet} closable onClose={hide} />
       <AddressMismatch
         closable
-        visible
+        visible={config.showMismatch}
         onClose={hide}
         currentAddress={currentAddress}
         previousAddress={previousAddress}
@@ -65,18 +79,10 @@ const FunctionalLoginLock = props => {
         logout={logout}
         loggingOut={loggingOut}
       />
-    );
-  }
-
-  if (signingIn) {
-    return <SigningIn visible />;
-  }
-
-  if (!isLoggedIn) {
-    return <SignIn visible onClose={hide} signIn={login} />;
-  }
-
-  return null;
+      <SigningIn visible={config.showSigningIn} />
+      <SignIn visible={config.showSignIn} onClose={hide} signIn={login} />
+    </React.Fragment>
+  );
 };
 
 export default FunctionalLoginLock;

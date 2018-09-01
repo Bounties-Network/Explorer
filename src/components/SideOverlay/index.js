@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SideOverlay.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const ModalContext = React.createContext({});
 
@@ -14,7 +15,7 @@ class OverlayContent extends React.Component {
     const { onClose, hasMask, theme, position } = this.props;
 
     return (
-      <div>
+      <div className={hasMask ? 'has-mask' : ''}>
         <div
           className={`${styles.sideOverlay} ${styles[theme]} ${
             styles[position]
@@ -38,20 +39,32 @@ class SideOverlay extends React.Component {
   render() {
     const { visible, onClose, theme, hasMask, position } = this.props;
 
-    if (!visible) {
-      return null;
+    let body;
+    if (visible) {
+      body = (
+        <CSSTransition
+          key="1"
+          timeout={hasMask ? 600 : 300}
+          classNames={{
+            enter: styles.enter,
+            enterActive: styles.enterActive,
+            exit: styles.exit,
+            exitActive: styles.exitActive
+          }}
+        >
+          <OverlayContent
+            onClose={onClose}
+            theme={theme}
+            hasMask={hasMask}
+            position={position}
+          >
+            {this.props.children}
+          </OverlayContent>
+        </CSSTransition>
+      );
     }
 
-    return (
-      <OverlayContent
-        onClose={onClose}
-        theme={theme}
-        hasMask={hasMask}
-        position={position}
-      >
-        {this.props.children}
-      </OverlayContent>
-    );
+    return <TransitionGroup>{body}</TransitionGroup>;
   }
 }
 
