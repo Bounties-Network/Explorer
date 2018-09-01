@@ -27,7 +27,7 @@
 
   @media only screen and (min-width: 48em) {
     top: $header-height-lg - $base-spacing;
-    right: -$m-spacing;
+    right: -$base-spacing;
   }
 }
 
@@ -101,5 +101,5 @@
 }
 
 .profile {
-  margin-right: 20px;
+  margin-right: $m-spacing;
 }
