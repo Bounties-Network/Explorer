@@ -19,7 +19,13 @@ import {
   anyDifficultyFiltersSelected
 } from 'public-modules/Bounties/selectors';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
-import { each, map as fpMap, reduce as fpReduce, throttle } from 'lodash';
+import {
+  each,
+  map as fpMap,
+  indexOf,
+  reduce as fpReduce,
+  throttle
+} from 'lodash';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions } from 'public-modules/Bounties';
@@ -39,6 +45,7 @@ const {
   setSort,
   toggleStageFilter,
   toggleDifficultyFilter,
+  togglePlatformFilter,
   addCategoryFilter,
   addPlatformFilter,
   removeCategoryFilter,
@@ -56,6 +63,7 @@ const FilterNavComponent = props => {
     sortFilter,
     toggleStageFilter,
     toggleDifficultyFilter,
+    togglePlatformFilter,
     stageFilters,
     defaultStageFilters,
     defaultPlatforms,
@@ -81,14 +89,16 @@ const FilterNavComponent = props => {
     { value: 'deadline', label: 'Expiry' }
   ];
 
-  const platforms = reduce(
-    (acc, key) => {
-      acc[key] = { name: key };
-      return acc;
-    },
-    {},
-    appConfig.platform.split(',')
-  );
+  // generates object for SearchSelect component
+  // const platforms = reduce(
+  //   (acc, key) => {
+  //     acc[key] = { name: key };
+  //     return acc;
+  //   },
+  //   {},
+  //   appConfig.platform.split(',')
+  // );
+  const platforms = appConfig.platform.split(',');
 
   const stages = reduce(
     (acc, value, key) => {
@@ -147,6 +157,13 @@ const FilterNavComponent = props => {
         removeFromParam(rootLocationParams, 'platform', platform)
     );
     removePlatformFilter(platform);
+  };
+
+  const togglePlatformFilterAction = platform => {
+    const queryParams =
+      toggleFromParam(rootLocationParams, 'platform', platform) || '?platform=';
+    history.push(location.pathname + queryParams);
+    togglePlatformFilter(platform);
   };
 
   const setSearchAction = throttle(300, searchValue => {
@@ -293,18 +310,30 @@ const FilterNavComponent = props => {
           <Text weight="fontWeight-medium" className={styles.groupText}>
             Platform
           </Text>
-          <SearchSelect
-            options={platforms}
-            value={platformFilters}
-            labelKey="name"
-            valueKey="name"
-            onChange={values => {
-              if (values.length > platformFilters.length) {
-                addPlatformFilterAction(values[values.length - 1]);
-              }
-            }}
-            onClose={removePlatformFilterAction}
-          />
+          {map(platform => {
+            return (
+              <Checkbox
+                label={platform}
+                onChange={() => togglePlatformFilterAction(platform)}
+                checked={indexOf(platform, platformFilters) != -1}
+              />
+            );
+          }, platforms)}
+
+          {
+            // <SearchSelect
+            //   options={platforms}
+            //   value={platformFilters}
+            //   labelKey="name"
+            //   valueKey="name"
+            //   onChange={values => {
+            //     if (values.length > platformFilters.length) {
+            //       addPlatformFilterAction(values[values.length - 1]);
+            //     }
+            //   }}
+            //   onClose={removePlatformFilterAction}
+            // />
+          }
         </div>
       )}
     </div>
@@ -336,6 +365,7 @@ const FilterNav = compose(
       setSort,
       toggleStageFilter,
       toggleDifficultyFilter,
+      togglePlatformFilter,
       addCategoryFilter,
       addPlatformFilter,
       removeCategoryFilter,
