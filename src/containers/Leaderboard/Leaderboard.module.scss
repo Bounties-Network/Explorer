@@ -25,17 +25,3 @@
     transform: none;
   }
 }
-
-.bodyCard::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(
-    rgba(255, 255, 255, 0.001),
-    white
-  ); /* transparent keyword is broken in Safari */
-  pointer-events: none;
-  z-index: 1;
-}
