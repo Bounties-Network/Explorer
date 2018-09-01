@@ -255,6 +255,14 @@ class BountyComponent extends React.Component {
                     </Text>
                   </div>
                 )}
+                {typeof bounty.revisions == 'number' && (
+                  <div className={styles.labelGroup}>
+                    <Text inputLabel className={styles.label}>
+                      Expected Revisions
+                    </Text>
+                    <Text>{bounty.revisions}</Text>
+                  </div>
+                )}
                 {bounty.webReferenceURL && (
                   <div className={styles.labelGroup}>
                     <Text inputLabel className={styles.label}>
