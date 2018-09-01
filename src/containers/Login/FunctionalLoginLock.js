@@ -5,7 +5,8 @@ import {
   AddressMismatch,
   ErrorModal,
   SignIn,
-  SigningIn
+  SigningIn,
+  WrongNetwork
 } from './components';
 
 const FunctionalLoginLock = props => {
@@ -25,6 +26,8 @@ const FunctionalLoginLock = props => {
     resetLoginState,
     resetLogoutState,
     loggingOut,
+    network,
+    isCorrectNetwork,
     error
   } = props;
 
@@ -34,7 +37,8 @@ const FunctionalLoginLock = props => {
     showUnlockWallet: false,
     showMismatch: false,
     showSigningIn: false,
-    showSignIn: false
+    showSignIn: false,
+    showWrongNetwork: false
   };
 
   if (visible) {
@@ -44,6 +48,8 @@ const FunctionalLoginLock = props => {
       config.showWalletRequired = true;
     } else if (walletLocked) {
       config.showUnlockWallet = true;
+    } else if (!isCorrectNetwork) {
+      config.showWrongNetwork = true;
     } else if (addressMismatch) {
       config.showMismatch = true;
     } else if (signingIn) {
@@ -62,6 +68,12 @@ const FunctionalLoginLock = props => {
           resetLoginState();
           hide();
         }}
+      />
+      <WrongNetwork
+        visible={config.showUnlockWallet}
+        pageLevel
+        network={network}
+        closable
       />
       <WalletRequired
         visible={config.showWalletRequired}

@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { UnlockWallet, AddressMismatch, ErrorModal } from './components';
+import {
+  UnlockWallet,
+  AddressMismatch,
+  ErrorModal,
+  WrongNetwork
+} from './components';
+import config from 'public-modules/config';
 import { actions as authActions } from 'public-modules/Authentication';
 import {
   getCurrentUserSelector,
@@ -23,19 +29,24 @@ const LoginLockComponent = props => {
     logout,
     loggingOut,
     resetLogoutState,
+    network,
+    isCorrectNetwork,
     error
   } = props;
 
   const config = {
     showUnlockWallet: false,
     showError: false,
-    showMismatch: false
+    showMismatch: false,
+    showWrongNetwork: false
   };
 
   if (walletLocked || !walletAddress) {
     config.showUnlockWallet = true;
   } else if (error) {
     config.showError = true;
+  } else if (!isCorrectNetwork) {
+    config.showWrongNetwork = true;
   } else if (
     userAddress &&
     userAddress.toLowerCase() !== walletAddress.toLowerCase()
@@ -48,6 +59,12 @@ const LoginLockComponent = props => {
       <UnlockWallet
         visible={config.showUnlockWallet}
         pageLevel
+        closable={false}
+      />
+      <WrongNetwork
+        visible={config.showUnlockWallet}
+        pageLevel
+        network={network}
         closable={false}
       />
       <ErrorModal visible={config.showError} onClose={resetLogoutState} />
@@ -67,12 +84,17 @@ const LoginLockComponent = props => {
 const mapStateToProps = state => {
   const user = getCurrentUserSelector(state);
   const logoutState = logoutStateSelector(state);
+  const network = state.client.network;
 
   return {
     hasWallet: hasWalletSelector(state),
     walletLocked: walletLockedSelector(state),
     walletAddress: addressSelector(state),
     userAddress: user && user.public_address,
+    network: network,
+    isCorrectNetwork: config.requiredNetwork
+      ? network === config.requiredNetwork
+      : network === 'mainnet' || network === 'rinkeby',
     img: user && user.img,
     error: logoutState.error,
     loggingOut: logoutState.loading
