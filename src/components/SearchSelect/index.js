@@ -91,6 +91,7 @@ class SearchSelect extends React.Component {
       error,
       labelKey,
       valueKey,
+      maxLength,
       optional,
       placeholder,
       creatable,
@@ -129,6 +130,7 @@ class SearchSelect extends React.Component {
             onFocus={onFocus}
             onBlur={() => onBlur(this.state.value)}
             placeholder={placeholder}
+            inputProps={{ maxLength }}
           />
         ) : (
           <Select
@@ -139,6 +141,7 @@ class SearchSelect extends React.Component {
             options={this.filterOptions()}
             onChange={this.onDropdownSelect}
             placeholder={placeholder}
+            inputProps={{ maxLength }}
           />
         )}
         {error ? (
@@ -161,6 +164,7 @@ SearchSelect.propTypes = {
   valueKey: PropTypes.string,
   options: PropTypes.array,
   onChange: PropTypes.func,
+  maxLength: PropTypes.number,
   className: PropTypes.string,
   disabled: PropTypes.bool,
   label: PropTypes.string,
@@ -178,6 +182,7 @@ SearchSelect.defaultProps = {
   labelKey: 'label',
   valueKey: 'value',
   options: [],
+  maxLength: 20,
   onClose: () => {},
   onChange: () => {},
   onFocus: () => {},
