@@ -174,7 +174,7 @@ const FilterNavComponent = props => {
   });
 
   const setSortAction = sort => {
-    const sortOrder = sort === 'usd_price' ? 'desc' : 'ascd';
+    const sortOrder = sort === 'deadline' ? 'asc' : 'desc';
 
     history.push(
       location.pathname +
