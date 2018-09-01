@@ -85,12 +85,16 @@ class Cropper extends React.Component {
         boundary: {
           width: '150',
           height: '150'
-        }
+        },
+        enableOrientation: true
       });
     }
     const reader = new FileReader();
     reader.onload = e => {
-      this.croppie.bind({ url: e.target.result });
+      this.croppie.bind({
+        url: e.target.result,
+        orientation: 1
+      });
     };
     reader.readAsDataURL(file);
   };
