@@ -22,7 +22,11 @@ import { UPLOAD_KEY } from './constants';
 class UserSettingsComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { emptyProfileImage: !props.ipfsHash };
+
+    const { ipfsHash, fileName } = props;
+    this.state = {
+      profileImage: ipfsHash ? ipfsToHttp(ipfsHash, fileName) : null
+    };
   }
   render() {
     const {
@@ -42,27 +46,25 @@ class UserSettingsComponent extends React.Component {
       initiateWalkthrough
     } = this.props;
 
-    const { emptyProfileImage } = this.state;
+    const { profileImage } = this.state;
 
     const handleSaveSettings = values => {
       saveSettings({
         ...values,
-        ipfsHash: emptyProfileImage ? '' : ipfsHash,
-        fileName: emptyProfileImage ? '' : fileName
+        ipfsHash: ipfsHash,
+        fileName: fileName
       });
     };
 
     const handleUpload = file => {
-      this.setState({ emptyProfileImage: false });
+      this.setState({ profileImage: URL.createObjectURL(file) });
       uploadFile(UPLOAD_KEY, file);
     };
 
     const handleResetUpload = () => {
-      this.setState({ emptyProfileImage: true });
+      this.setState({ profileImage: null });
       resetUpload(UPLOAD_KEY);
     };
-
-    const ipfsProfilePhoto = ipfsHash ? ipfsToHttp(ipfsHash, fileName) : '';
 
     return (
       <form onSubmit={handleSubmit(values => handleSaveSettings(values))}>
@@ -74,7 +76,7 @@ class UserSettingsComponent extends React.Component {
                 onChange={file => handleUpload(file)}
                 onDelete={handleResetUpload}
                 loading={uploading}
-                src={emptyProfileImage ? null : ipfsProfilePhoto}
+                src={profileImage}
               />
             </FormSection.InputGroup>
           </FormSection.Section>
