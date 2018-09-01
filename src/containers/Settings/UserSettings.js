@@ -38,7 +38,6 @@ class UserSettingsComponent extends React.Component {
       savingSettings,
       ipfsHash,
       fileName,
-      isProfilePhotoDirty,
       resetUpload,
       initiateWalkthrough
     } = this.props;
@@ -59,7 +58,7 @@ class UserSettingsComponent extends React.Component {
     };
 
     const handleResetUpload = () => {
-      this.setState({ emptyProfileImage: !isProfilePhotoDirty });
+      this.setState({ emptyProfileImage: true });
       resetUpload(UPLOAD_KEY);
     };
 
@@ -257,9 +256,6 @@ const mapStateToProps = state => {
     uploaded: uploadState.uploaded || false,
     ipfsHash: uploadState.ipfsHash || currentUser.profileDirectoryHash,
     fileName: uploadState.fileName || currentUser.profileFileName,
-    isProfilePhotoDirty:
-      (uploadState.ipfsHash || currentUser.profileDirectoryHash) !==
-      currentUser.profileDirectoryHash,
     skills: skillsSelector(state),
     languages: languagesSelector(state),
     savingSettings: settingsSelector(state).saving,
