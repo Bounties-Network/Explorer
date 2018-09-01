@@ -23,7 +23,7 @@
   border-radius: $base-border-radius;
   z-index: 500;
   top: $header-height-sm - $base-spacing;
-  right: calc(-#{$m-spacing} - 2px);
+  right: calc(-#{$m-spacing} + 2px);
 
   @media only screen and (min-width: 48em) {
     top: $header-height-lg - $base-spacing;
