@@ -6,11 +6,16 @@ import { Pill } from 'components';
 const Network = props => {
   const { network, className, theme } = props;
 
-  let circleStyle = styles.mainnetCircle;
-  let networkName = 'Main Ethereum Network';
+  let networkName = 'Unknown Network';
+  let circleStyle = styles.unknownCircle;
   if (network === 'rinkeby') {
     circleStyle = styles.rinkebyCircle;
     networkName = 'Rinkeby Network';
+  }
+
+  if (network === 'mainnet') {
+    networkName = 'Main Ethereum Network';
+    circleStyle = styles.mainnetCircle;
   }
 
   return (
