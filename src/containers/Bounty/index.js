@@ -53,7 +53,6 @@ class BountyComponent extends React.Component {
 
     resetCommentsState();
     setBountyId(match.params.id);
-    setActiveTab('submissions');
 
     if (match.path === '/bounty/draft/:id/') {
       loadDraftBounty(match.params.id);
@@ -62,9 +61,10 @@ class BountyComponent extends React.Component {
     if (match.path === '/bounty/:id/') {
       loadBounty(match.params.id);
 
+      // load submissions
       resetFilters();
       addBountyFilter(match.params.id);
-      loadFulfillments(match.params.id);
+      setActiveTab('submissions');
 
       const values = queryStringToObject(location.search);
 
