@@ -3,6 +3,8 @@ import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import { BigNumber } from 'bignumber.js';
+import { compose } from 'redux';
+import { ModalFormReset } from 'hocs';
 import normalizers from 'utils/normalizers';
 import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
@@ -99,4 +101,10 @@ const IncreasePayoutFormModal = props => {
   );
 };
 
-export default reduxForm({ form: 'increasePayout' })(IncreasePayoutFormModal);
+export default compose(
+  reduxForm({
+    form: 'increasePayout',
+    destroyOnUnmount: false
+  }),
+  ModalFormReset
+)(IncreasePayoutFormModal);

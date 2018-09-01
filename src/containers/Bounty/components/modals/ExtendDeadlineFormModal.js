@@ -3,6 +3,8 @@ import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import { FormDatePicker } from 'form-components';
+import { compose } from 'redux';
+import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
 import { getTimezone } from 'utils/helpers';
 
@@ -55,4 +57,10 @@ const ExtendDeadlineFormModal = props => {
   );
 };
 
-export default reduxForm({ form: 'extendDeadline' })(ExtendDeadlineFormModal);
+export default compose(
+  reduxForm({
+    form: 'extendDeadline',
+    destroyOnUnmount: false
+  }),
+  ModalFormReset
+)(ExtendDeadlineFormModal);

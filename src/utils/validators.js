@@ -20,7 +20,7 @@ const minValue = min => value => {
   }
 };
 const minDate = min => value =>
-  moment(min).diff(moment(value)) <= 0
+  moment(min) >= moment(value)
     ? undefined
     : `Date must be after ${moment(min).format('MMMM Do YYYY, h:mm:ss a')}`;
 const totalLength = length => value =>
