@@ -9,37 +9,43 @@
 
   @media only screen and (min-width: 35em) {
     padding: $xxl-spacing 0;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
   }
 
-  @media only screen and (min-width: 65em) {
-    padding: ($xxl-spacing * 3) 0;
+  @media only screen and (min-width: 55em) {
+    width: 80%;
+  }
+
+  @media only screen and (min-width: 75em) {
+    padding: ($xxl-spacing * 2) 0;
     width: 100%;
   }
 
   &About {
-    order: 1;
     width: 100%;
 
     @media only screen and (min-width: 35em) {
+      order: 1;
       width: 40%;
+      padding-right: $m-spacing;
     }
 
-    @media only screen and (min-width: 65em) {
+    @media only screen and (min-width: 75em) {
       width: auto;
     }
   }
 
   &Skills {
-    order: 3;
     width: 100%;
 
     @media only screen and (min-width: 35em) {
-      width: 40%;
+      order: 3;
+      width: 60%;
+      padding-right: $m-spacing;
     }
 
-    @media only screen and (min-width: 65em) {
+    @media only screen and (min-width: 75em) {
       flex-wrap: wrap;
       order: 2;
       width: 20%;
@@ -47,68 +53,46 @@
   }
 
   &Stats {
-    order: 2;
     width: 100%;
 
     @media only screen and (min-width: 35em) {
+      order: 2;
       width: 60%;
     }
 
-    @media only screen and (min-width: 65em) {
+    @media only screen and (min-width: 75em) {
       order: 3;
-      width: 24rem;
+      width: 25rem;
     }
   }
 
   &Elsewhere {
-    order: 4;
     width: 100%;
 
     @media only screen and (min-width: 35em) {
-      width: 60%;
+      order: 4;
+      width: 40%;
     }
 
-    @media only screen and (min-width: 65em) {
+    @media only screen and (min-width: 75em) {
+      order: 4;
       width: auto;
     }
   }
 }
 
 .detailsSection {
-  padding: $xl-spacing 0;
+  padding-top: $base-spacing;
+  padding-bottom: $base-spacing;
 
-  @media only screen and (min-width: 35em) {
-    border-bottom: none;
-    padding: $xl-spacing 0;
-  }
-
-  @media only screen and (min-width: 65em) {
+  @media only screen and (min-width: 75em) {
     padding-top: 0;
     padding-bottom: 0;
-  }
 
-  &:not(:last-child) {
-    border-bottom: $base-border;
-
-    @media only screen and (min-width: 35em) {
-      border-bottom: none;
-      padding-right: $l-spacing;
-    }
-
-    @media only screen and (min-width: 65em) {
-      border-right: $base-border;
+    &:not(:last-child) {
+      padding-right: $m-spacing;
     }
   }
-
-  &:not(:first-child) {
-    @media only screen and (min-width: 65em) {
-      padding-left: $l-spacing;
-    }
-  }
-}
-
-.profileAvatar {
-  padding-top: $xxl-spacing;
 }
 
 .bodyLoading {

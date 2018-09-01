@@ -1,6 +1,10 @@
 @import "~styles/variables.scss";
 
 @mixin statContainer() {
+  background-color: $brand-white;
+  box-shadow: $dark-box-shadow;
+  border-radius: $base-border-radius;
+  padding: $l-spacing;
   height: 100%;
 
   > p {
