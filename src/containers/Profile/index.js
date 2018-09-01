@@ -97,7 +97,6 @@ class ProfileComponent extends React.Component {
 
   componentDidMount() {
     const body = document.getElementsByClassName('page-body')[0];
-    body.scrollTo(0, 0); // ensure profile is scrolled to the top on mount
     body.addEventListener('scroll', this.onScroll);
   }
 

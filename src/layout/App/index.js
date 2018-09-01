@@ -23,7 +23,7 @@ import { actions as authActions } from 'public-modules/Authentication';
 import { actions as categoryActions } from 'public-modules/Categories';
 import { initializedSelector } from 'public-modules/Client/selectors';
 import { getCurrentUserStateSelector } from 'public-modules/Authentication/selectors';
-import { currentRouteSelector } from 'utils/helpers';
+import { currentRouteSelector, scrollToTop } from 'utils/helpers';
 
 import '../../styles/flexboxgrid.css';
 import '../../font-files/inter-ui.css';
@@ -84,6 +84,7 @@ class AppComponent extends React.Component {
                 className={styles.sideNav}
                 onTabClick={route => {
                   history.push(route);
+                  scrollToTop();
                   this.setState({ showMobileSidebar: false });
                 }}
                 mobileVisible={showMobileSidebar}

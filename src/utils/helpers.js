@@ -63,3 +63,7 @@ export function getMobileOperatingSystem() {
 
   return 'unknown';
 }
+
+export function scrollToTop() {
+  document.getElementsByClassName('page-body')[0].scrollTo(0, 0);
+}
