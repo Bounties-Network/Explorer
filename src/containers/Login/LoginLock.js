@@ -76,6 +76,7 @@ const LoginLockComponent = props => {
         img={img}
         logout={logout}
         loggingOut={loggingOut}
+        pageLevel
       />
     </React.Fragment>
   );

@@ -13,7 +13,8 @@ const AddressMismatch = props => {
     previousAddress,
     onClose,
     logout,
-    loggingOut
+    loggingOut,
+    pageLevel
   } = props;
 
   return (
@@ -23,6 +24,7 @@ const AddressMismatch = props => {
       dismissable={closable}
       closable={closable}
       onClose={onClose}
+      fixed={!pageLevel}
     >
       <Modal.Header closable={closable} icon={['fal', 'address-card']}>
         <Modal.Heading>Wallet address does not match</Modal.Heading>
