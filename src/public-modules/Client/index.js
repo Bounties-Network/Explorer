@@ -1,7 +1,7 @@
 const initialState = {
   locked: false,
   hasWallet: true,
-  network: 'unknown',
+  network: '',
   initialized: false,
   address: ''
 };
