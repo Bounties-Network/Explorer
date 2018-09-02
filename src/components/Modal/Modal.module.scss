@@ -122,9 +122,14 @@ $modal-padding-large: $l-spacing;
   z-index: 9;
 }
 
+.closeWrapper {
+  position: relative;
+  text-align: right;
+}
+
 .closeIcon {
   cursor: pointer;
-  float: right;
+  right: 0;
   color: $brand-grey;
   font-size: 1.2em;
 
