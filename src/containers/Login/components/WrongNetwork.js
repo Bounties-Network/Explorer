@@ -14,18 +14,31 @@ const WrongNetwork = props => {
       onClose={onClose}
       closable={closable}
     >
-      <Modal.Header closable={closable} icon={['fal', 'unlock']}>
-        <Modal.Message>
-          Update wallet network to{' '}
-          {config.requiredNetwork
-            ? config.requiredNetwork
-            : 'rinkeby or mainnet'}
-        </Modal.Message>
+      <Modal.Header closable={closable} icon={['fal', 'wifi']}>
+        <Modal.Message>Foreign network detected</Modal.Message>
       </Modal.Header>
       <Modal.Body>
         <Modal.Description>
-          You&#39;ll need to update your wallet network in order to access{' '}
-          {pageLevel ? 'parts of the ' : ''}the Bounties Network.
+          {config.networkName} is currently operational on
+          {config.requiredNetwork ? (
+            <Text weight="fontWeight-bold" inline>
+              {' '}
+              {config.requiredNetwork}.
+            </Text>
+          ) : (
+            <div>
+              <Text weight="fontWeight-bold" inline>
+                {' '}
+                Rinkeby
+              </Text>{' '}
+              and
+              <Text weight="fontWeight-bold" inline>
+                {' '}
+                Mainnet.
+              </Text>
+            </div>
+          )}
+          Please switch your active wallet network.
         </Modal.Description>
       </Modal.Body>
       {closable ? (

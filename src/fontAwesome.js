@@ -4,6 +4,7 @@ import plus from '@fortawesome/fontawesome-pro-regular/faPlus';
 import bars from '@fortawesome/fontawesome-pro-regular/faBars';
 import slidersH from '@fortawesome/fontawesome-pro-regular/faSlidersH';
 import plusCircle from '@fortawesome/fontawesome-pro-regular/faPlusCircle';
+import wifi from '@fortawesome/fontawesome-pro-light/faWifi';
 import clock from '@fortawesome/fontawesome-pro-regular/faClock';
 import levelUp from '@fortawesome/fontawesome-pro-regular/faLevelUp';
 import seedling from '@fortawesome/fontawesome-pro-regular/faSeedling';
@@ -87,6 +88,7 @@ library.add(
   infoCircle,
   ellipsisH,
   checkCircle,
+  wifi,
   exclamationTriangle,
   twitter,
   facebook,

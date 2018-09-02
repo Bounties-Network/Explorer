@@ -29,9 +29,7 @@ const HeaderComponent = props => {
           <BeeLogo />
         </Link>
       </div>
-      {network !== 'unknown' ? (
-        <Network network={network} className={styles.network} />
-      ) : null}
+      <Network network={network} className={styles.network} />
       <div className={styles.sideNavTrigger} onClick={onShowNav}>
         <Text typeScale="h2" color="blue">
           <FontAwesomeIcon icon={['far', 'bars']} />
