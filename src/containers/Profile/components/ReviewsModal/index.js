@@ -44,7 +44,9 @@ let ReviewsModal = props => {
   if (reviews.length) {
     body = (
       <div>
-        <ListGroup>{renderReviews()}</ListGroup>
+        <ListGroup className={styles.reviewsListGroup}>
+          {renderReviews()}
+        </ListGroup>
         {reviews.length < count && (
           <div className={styles.loadMoreButton}>
             <Button loading={loadingMore} onClick={loadMore}>
@@ -65,13 +67,9 @@ let ReviewsModal = props => {
       size="medium"
     >
       <Modal.Header closable={true}>
-        <Modal.Message>{reviewType} ratings received</Modal.Message>
+        <Modal.Heading>{reviewType} ratings received</Modal.Heading>
       </Modal.Header>
-      <Modal.Body className={styles.modalBody}>
-        <div className="row">
-          <div className="col-xs">{body}</div>
-        </div>
-      </Modal.Body>
+      <Modal.Body className={styles.modalBody}>{body}</Modal.Body>
     </Modal>
   );
 };

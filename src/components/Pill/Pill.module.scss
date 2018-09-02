@@ -9,7 +9,8 @@
   width: fit-content;
   height: fit-content;
   align-items: center;
-  
+  line-height: 1;
+
   &:not(:last-child) {
     margin-right: $s-spacing;
   }

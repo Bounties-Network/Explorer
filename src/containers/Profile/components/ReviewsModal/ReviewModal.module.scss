@@ -1,8 +1,11 @@
 @import "~styles/variables.scss";
 
 .modalBody {
+  margin-top: $xl-spacing;
   padding-bottom: 0 !important;
   max-height: 25rem;
+  margin-left: -$m-spacing;
+  margin-right: -$m-spacing;
 }
 
 .loadMoreButton {
