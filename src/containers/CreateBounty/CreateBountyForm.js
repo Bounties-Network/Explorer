@@ -370,6 +370,19 @@ class CreateBountyFormComponent extends React.Component {
                       validate={[validators.required, validators.isWeb3Address]}
                       placeholder="Enter token contract address..."
                     />
+                    <Field
+                      disabled={submittingBounty}
+                      name="tokenContract2"
+                      component={FormSearchSelect}
+                      label="Token"
+                      placeholder="Select token..."
+                      validate={[validators.required]}
+                      options={categories}
+                      single={true}
+                      clearable={true}
+                      labelKey="name"
+                      valueKey="normalized_name"
+                    />
                   </div>
                 </div>
               </FormSection.InputGroup>
