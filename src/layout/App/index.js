@@ -28,19 +28,63 @@ import { currentRouteSelector, scrollToTop } from 'utils/helpers';
 import '../../styles/flexboxgrid.css';
 import '../../font-files/inter-ui.css';
 
-class AppComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.body = React.createRef();
-    this.state = {
-      showMobileSidebar: false
-    };
-  }
+class HeaderComponent extends React.Component {
+  state = {
+    showMobileSidebar: false
+  };
 
   renderSideNavItems() {
     return map(navItem => {
       return <Sidebar.TabIcon {...navItem} key={navItem.tabKey} />;
     }, NAV_ITEMS);
+  }
+
+  render() {
+    const { showMobileSidebar } = this.state;
+    const { history, network, location } = this.props;
+
+    return (
+      <React.Fragment>
+        <Header onShowNav={() => this.setState({ showMobileSidebar: true })} />
+        <Sidebar
+          activeTab={currentRouteSelector(location.pathname)}
+          defaultActiveTab="dashboard"
+          className={styles.sideNav}
+          onTabClick={route => {
+            history.push(route);
+            scrollToTop();
+            this.setState({ showMobileSidebar: false });
+          }}
+          mobileVisible={showMobileSidebar}
+          onMobileHide={() => this.setState({ showMobileSidebar: false })}
+        >
+          <Sidebar.TabGroup>{this.renderSideNavItems()}</Sidebar.TabGroup>
+          <Sidebar.Footer>
+            <div className={styles.network}>
+              <Network network={network} theme="light" />
+            </div>
+          </Sidebar.Footer>
+        </Sidebar>
+      </React.Fragment>
+    );
+  }
+}
+
+const mapHeaderStateToProps = state => {
+  return {
+    network: state.client.network
+  };
+};
+
+const PageHeader = compose(
+  withRouter,
+  connect(mapHeaderStateToProps)
+)(HeaderComponent);
+
+class AppComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.body = React.createRef();
   }
 
   currentRouteSelector = () => {
@@ -49,14 +93,7 @@ class AppComponent extends React.Component {
   };
 
   render() {
-    const {
-      loadingUser,
-      clientInitialized,
-      userFail,
-      history,
-      network
-    } = this.props;
-    const { showMobileSidebar } = this.state;
+    const { loadingUser, clientInitialized, userFail } = this.props;
     const isPageLoading = loadingUser || !clientInitialized;
 
     return (
@@ -75,28 +112,7 @@ class AppComponent extends React.Component {
         ) : null}
         {!isPageLoading && !userFail
           ? [
-              <Header
-                onShowNav={() => this.setState({ showMobileSidebar: true })}
-              />,
-              <Sidebar
-                activeTab={currentRouteSelector(this.props.location.pathname)}
-                defaultActiveTab="dashboard"
-                className={styles.sideNav}
-                onTabClick={route => {
-                  history.push(route);
-                  scrollToTop();
-                  this.setState({ showMobileSidebar: false });
-                }}
-                mobileVisible={showMobileSidebar}
-                onMobileHide={() => this.setState({ showMobileSidebar: false })}
-              >
-                <Sidebar.TabGroup>{this.renderSideNavItems()}</Sidebar.TabGroup>
-                <Sidebar.Footer>
-                  <div className={styles.network}>
-                    <Network network={network} theme="light" />
-                  </div>
-                </Sidebar.Footer>
-              </Sidebar>,
+              <PageHeader />,
               <div className={`${styles.body} page-body`} ref={this.body}>
                 <Switch>
                   <Route exact path="/leaderboard" component={Leaderboard} />
@@ -146,8 +162,7 @@ const mapStateToProps = state => {
   return {
     clientInitialized: initializedSelector(state),
     loadingUser: currentUserState.loading || !currentUserState.loaded,
-    userFail: currentUserState.error,
-    network: state.client.network
+    userFail: currentUserState.error
   };
 };
 

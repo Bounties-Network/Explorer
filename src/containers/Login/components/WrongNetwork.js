@@ -13,6 +13,7 @@ const WrongNetwork = props => {
       dismissable={closable}
       onClose={onClose}
       closable={closable}
+      fixed={!pageLevel}
     >
       <Modal.Header closable={closable} icon={['fal', 'wifi']}>
         <Modal.Message>Foreign network detected</Modal.Message>

@@ -12,6 +12,7 @@ const UnlockWallet = props => {
       dismissable={closable}
       onClose={onClose}
       closable={closable}
+      fixed={!pageLevel}
     >
       <Modal.Header closable={closable} icon={['fal', 'unlock']}>
         <Modal.Message>Please unlock your secure wallet</Modal.Message>

@@ -1,9 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getMobileOperatingSystem } from 'utils/helpers';
 import { Modal, Text, Button } from 'components';
 
 const WalletRequired = props => {
-  const { visible, onClose, closable } = props;
+  const { visible, onClose, closable, fixed } = props;
+
+  const operatingSystem = getMobileOperatingSystem();
+  let walletName = 'MetaMask';
+  let walletLink = 'https://metamask.io';
+
+  if (operatingSystem === 'iOS') {
+    walletName = 'Coinbase Wallet';
+    walletLink =
+      'https://itunes.apple.com/us/app/coinbase-bitcoin-wallet/id886427730?mt=8';
+  }
+
+  if (operatingSystem === 'Android') {
+    walletName = 'Coinbase Wallet';
+    walletLink =
+      'https://play.google.com/store/apps/details?id=com.coinbase.android';
+  }
 
   return (
     <Modal
@@ -26,9 +43,9 @@ const WalletRequired = props => {
             bounties.network
           </Text>
           , please install a secure wallet such as
-          <Text inline link src="https://metamask.io/">
+          <Text link src={walletLink}>
             {' '}
-            MetaMask.{' '}
+            {walletName}.{' '}
           </Text>
           If you&#39;d like help getting set up, take a look at our{' '}
           <Text link src="https://bounties.network/gettingStarted">

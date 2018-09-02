@@ -157,7 +157,7 @@ const ActionBar = props => {
   return (
     <div>
       <ModalManager
-        user={user}
+        user={user || {}}
         bounty={bounty}
         onExtendDeadlineError={isDraft ? () => history.push(draftUrl) : null}
         initiateWalkthrough={initiateWalkthrough}

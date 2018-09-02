@@ -86,6 +86,9 @@ export function* getWeb3Client() {
 
   if (currentNetwork !== networkPrev) {
     yield put(setNetwork(currentNetwork));
+    if (networkPrev) {
+      window.location.reload();
+    }
   }
 
   return { web3, proxiedWeb3 };

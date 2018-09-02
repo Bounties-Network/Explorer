@@ -351,7 +351,7 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
-  fixed: false,
+  fixed: true,
   size: 'medium',
   dismissable: false
 };
