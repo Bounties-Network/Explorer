@@ -5,9 +5,23 @@
 }
 
 .inputGroup {
-  margin-top: $s-spacing;
+  margin-top: $l-spacing;
 }
 
 .fulfillmentInput {
   margin-top: $l-spacing;
+}
+
+.paragraphBreak {
+  margin-bottom: $l-spacing;
+}
+
+p {
+  em {
+    font-weight: 700;
+  }
+  
+  .textHighlight {
+    color: $brand-purple;
+  }
 }

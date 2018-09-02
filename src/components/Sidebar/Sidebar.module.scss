@@ -2,9 +2,8 @@
 
 .sidebar {
   height: 100%; /* 100% Full-height */
-  width: fit-content;
+  width: 60vw;
   padding-top: $header-height-sm;
-  padding-right: $xl-spacing;
   display: flex;
   flex-direction: column;
 
@@ -25,7 +24,7 @@
 .mobileSideNav {
   position: relative;
   z-index: 100;
-  
+
   @media only screen and (min-width: 48em) {
     display: none;
   }
@@ -61,6 +60,12 @@
     text-align: center;
     justify-content: center;
   }
+}
+
+.navIcon {
+  flex-basis: $l-spacing;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .navText {

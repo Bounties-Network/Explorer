@@ -4,9 +4,9 @@ import { BigNumber } from 'bignumber.js';
 
 const required = value => {
   if (Array.isArray(value)) {
-    return value.length ? undefined : 'Required';
+    return value.length ? undefined : '* Required';
   }
-  return value || typeof value === 'number' ? undefined : 'Required';
+  return value || typeof value === 'number' ? undefined : '* Required';
 };
 const maxLength = max => value =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined;
@@ -19,10 +19,11 @@ const minValue = min => value => {
       : `Must be greater than ${min}`;
   }
 };
-const minDate = min => value =>
-  moment(min).diff(moment(value)) <= 0
+const minDate = min => value => {
+  return moment(min) <= moment(value)
     ? undefined
     : `Date must be after ${moment(min).format('MMMM Do YYYY, h:mm:ss a')}`;
+};
 const totalLength = length => value =>
   value && value.length !== length ? `Must be ${length} characters` : undefined;
 

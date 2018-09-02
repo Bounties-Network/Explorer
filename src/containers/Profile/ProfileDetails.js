@@ -50,21 +50,6 @@ const ProfileDetailsComponent = props => {
         className={styles.profileAvatar}
       />
       <div className={styles.details}>
-        {user.organization &&
-          user.languages.length && (
-            <div className={`${styles.detailsSection} ${styles.detailsAbout}`}>
-              <About
-                organization={user.organization}
-                languages={user.languages}
-              />
-            </div>
-          )}
-        {!!user.skills &&
-          !!user.skills.length && (
-            <div className={`${styles.detailsSection} ${styles.detailsSkills}`}>
-              <Skills skills={user.skills} />
-            </div>
-          )}
         <div className={`${styles.detailsSection} ${styles.detailsStats}`}>
           <NetworkStats
             stats={userStats}
@@ -74,6 +59,21 @@ const ProfileDetailsComponent = props => {
             setReviewsModalVisible={setReviewsModalVisible}
           />
         </div>
+        {!!user.skills &&
+          !!user.skills.length && (
+            <div className={`${styles.detailsSection} ${styles.detailsSkills}`}>
+              <Skills skills={user.skills} />
+            </div>
+          )}
+        {user.organization &&
+          user.languages.length && (
+            <div className={`${styles.detailsSection} ${styles.detailsAbout}`}>
+              <About
+                organization={user.organization}
+                languages={user.languages}
+              />
+            </div>
+          )}
         {(user.website || user.twitter || user.github || user.linkedin) && (
           <div
             className={`${styles.detailsSection} ${styles.detailsElsewhere}`}

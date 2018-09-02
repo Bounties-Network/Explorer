@@ -29,25 +29,27 @@
   transition: opacity 0.25s ease, margin-left 0.25s ease;
 }
 
-.tooltip:after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 100%;
-  margin-top: -$s-spacing;
-  width: 0;
-  height: 0;
-  border-right: $s-spacing solid $brand-lightGrey;
-  border-top: $s-spacing solid transparent;
-  border-bottom: $s-spacing solid transparent;
-}
+@media only screen and (min-width: 35em) {
+  .tooltip:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -$s-spacing;
+    width: 0;
+    height: 0;
+    border-right: $s-spacing solid $brand-lightGrey;
+    border-top: $s-spacing solid transparent;
+    border-bottom: $s-spacing solid transparent;
+  }
 
-.AddressBar:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: $base-spacing;
-  z-index: 999;
+  .AddressBar:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: $base-spacing;
+    z-index: 999;
+  }
 }

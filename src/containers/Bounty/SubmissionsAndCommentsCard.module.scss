@@ -52,14 +52,16 @@
   padding: $xxl-spacing;
 }
 
+.newCommentForm {
+  position: relative;
+  margin-left: -$m-spacing;
+  margin-right: -$m-spacing;
+}
+
 .submissionItem {
   color: $brand-darkGrey;
-  padding: $xl-spacing $base-spacing $l-spacing;
+  padding: $xl-spacing 0 $l-spacing;
   position: relative;
-
-  &:not(:last-child) {
-    border-bottom: $base-border;
-  }
 }
 
 .commentItem {
@@ -67,21 +69,6 @@
   position: relative;
   border-radius: $base-border-radius;
   margin-top: -$base-border-width;
-
-  &:not(:last-child):after {
-    position: absolute;
-    content: '';
-    border-bottom: $base-border-width solid $brand-lightGrey;
-    width: calc(100% + 2rem);
-    padding: 0 $m-spacing;
-    bottom: 0;
-    transform: translateX(-50%);
-    left: 50%;
-
-    @media only screen and (min-width: 35em) {
-      width: calc(100% + 3rem);
-    }
-  }
 }
 
 .loadMoreButton {

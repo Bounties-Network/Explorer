@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   flex-shrink: 0;
-  padding-top: $xl-spacing;
+  padding-top: $xxl-spacing;
 
   @media only screen and (min-width: 48em) {
     padding-bottom: ($xxl-spacing * 2);
@@ -29,6 +29,11 @@
 .statsContainer {
   display: flex;
   align-items: center;
+  padding-bottom: $xxl-spacing;
+
+  @media only screen and (min-width: 48em) {
+    padding-bottom: 0;
+  }
 }
 
 .stats {
@@ -55,6 +60,10 @@
     &:last-child {
       padding-right: 0;
     }
+  }
+
+  @media only screen and (min-width: 52em) {
+    margin-top: 0;
   }
 
   &:not(:first-child) {

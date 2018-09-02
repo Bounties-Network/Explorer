@@ -27,8 +27,8 @@ class Header extends React.Component {
             ) : null}
             <div className={children ? styles.headerContent : ''}>
               {icon && !loadingIcon ? (
-                <div>
-                  <FontAwesomeIcon icon={icon} className={styles.iconHeader} />
+                <div className={styles.iconHeader}>
+                  <FontAwesomeIcon icon={icon} />
                 </div>
               ) : null}
               {loadingIcon ? (
@@ -170,7 +170,16 @@ class Modal extends React.Component {
   };
 
   componentWillUnmount() {
+    const { fixed } = this.props;
+
     const currentModals = document.getElementsByClassName('modal-visible');
+    if (!fixed) {
+      const pageBody = document.getElementsByClassName('page-body')[0];
+      if (pageBody) {
+        pageBody.classList.remove('modal-open');
+      }
+      document.body.classList.remove('modal-open');
+    }
     if (currentModals && currentModals.length) {
       return null;
     }
@@ -260,6 +269,8 @@ class Modal extends React.Component {
     let baseClass = `${styles.overlay} modal-visible`;
     if (fixed) {
       baseClass += ` ${styles.fixed}`;
+    } else {
+      baseClass += ` ${styles.unfixed}`;
     }
 
     let rootModal;
@@ -267,7 +278,7 @@ class Modal extends React.Component {
       rootModal = (
         <CSSTransition
           key="1"
-          timeout={600}
+          timeout={400}
           onEnter={this.triggerEnter}
           onEntered={this.triggerEntered}
           onEntering={this.triggerEntering}

@@ -1,3 +1,5 @@
+import config from 'public-modules/config';
+
 export const HTTP_200_OK = 200;
 export const HTTP_300_MULTIPLE_CHOICES = 300;
 export const HTTP_400_BAD_REQUEST = 400;
@@ -10,7 +12,7 @@ export const HTTP_422_UNKNOWN = 422;
 export const HTTP_500_INTERNAL_SERVER_ERROR = 500;
 export const HTTP_503_SERVICE_UNAVAILABLE = 503;
 
-let API_ENDPOINT = 'https://staging.api.bounties.network';
+let API_ENDPOINT = config.url.mainNet;
 //let API_ENDPOINT = 'http://localhost:8000';
 // update this to be an env passthrough
 export const apiEndpoint = {
@@ -19,16 +21,16 @@ export const apiEndpoint = {
 };
 
 export const DEFAULT_MARKDOWN = `# Description
-- Description of the bounty
-# Definition of Done
+Description of the bounty
+## Definition of Done
 - Definition 1
 - Definition 2
-# Requirements
+## Requirements
 A correct submission will:
 - requirement 1
 - requirement 2
 - requirement 3
-# Revisions
+### Revisions
 We will require at most 3 revisions for submitted work
 `;
 

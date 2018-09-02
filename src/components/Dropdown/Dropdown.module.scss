@@ -10,6 +10,7 @@
 }
 
 .content {
+  border: $base-border;
   display: none;
   position: absolute;
   background-color: $brand-white;
@@ -30,7 +31,7 @@
 }
 
 .menuItem {
-  padding: 10px 10px;
+  padding: $base-spacing;
   cursor: pointer;
   white-space: nowrap;
 }
@@ -40,7 +41,7 @@
 }
 
 .menuItems {
-  padding: 0px;
+  padding: $base-spacing;
   margin: 0px;
   display:inline-block;
   list-style-type: none;

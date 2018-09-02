@@ -16,27 +16,35 @@
 .upload {
   position: relative;
   margin-right: $m-spacing;
+  margin-bottom: $m-spacing;
 }
 
 .saveButton {
   margin-right: $m-spacing;
 }
 
+.croppieWrapper {
+  margin-right: $l-spacing;
+}
+
 .croppie {
   border-radius: $base-border-radius;
+  display: block;
+  position: relative;
   margin: 0 auto;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 }
 
 .circleContent {
   margin: 0 auto;
+  margin-bottom: $m-spacing;
 }
 
 .contentWrapper {
   display: flex;
   align-items: center;
-  height: 200px;
+  padding: $l-spacing 0 $xl-spacing;
 }
 
 .inactive {

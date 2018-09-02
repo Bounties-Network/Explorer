@@ -72,7 +72,7 @@ class TextInput extends React.Component {
               typeScale="Small"
               color={'red'}
             >
-              * {error}
+              {error}
             </Text>
           </div>
         ) : null}

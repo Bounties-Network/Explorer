@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import styles from './Dropdown.module.scss';
 
+import { Text } from 'components';
+
 class DropdownTrigger extends React.Component {
   render() {
     return this.props.children;
@@ -14,16 +16,13 @@ class MenuItem extends React.Component {
     const { icon, children, className, onClick } = this.props;
 
     const iconBlock = icon ? (
-      <FontAwesomeIcon icon={icon} className={styles.faIcon} />
+      <FontAwesomeIcon icon={icon} color="grey" className={styles.faIcon} />
     ) : null;
 
     return (
-      <li
-        className={`${className} ${styles.menuItem}`}
-        onClick={() => onClick()}
-      >
+      <li className={`${className} ${styles.menuItem}`} onClick={onClick}>
         {iconBlock}
-        {children}
+        <Text inline>{children}</Text>
       </li>
     );
   }
@@ -66,7 +65,8 @@ class Dropdown extends React.Component {
   };
 
   toggle = () => {
-    this.setState({ show: !this.state.show });
+    // I don't like this, but otherwise the click handlers don't propagate properly
+    setTimeout(() => this.setState({ show: !this.state.show }), 100);
   };
 
   render() {

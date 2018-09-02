@@ -128,8 +128,8 @@ class Cropper extends React.Component {
 
     return (
       <div className={styles.cropper}>
-        <div className={`${styles.contentWrapper} row middle-xs`}>
-          <div className="col-xs-3">
+        <div className={styles.contentWrapper}>
+          <div className={styles.croppieWrapper}>
             <div className={croppieClass} ref={this.croppieImg} />
             {src && !activeCrop && !loading ? (
               <Circle
@@ -162,7 +162,7 @@ class Cropper extends React.Component {
               />
             ) : null}
           </div>
-          <div className="col-xs-9">
+          <div className={styles.buttonWrapper}>
             <Button className={styles.upload} disabled={disabledState}>
               Upload New Photo
               <input

@@ -6,6 +6,7 @@ import { getUploadKeySelector } from 'public-modules/FileUpload/selectors';
 import { actions as fileUploadActions } from 'public-modules/FileUpload';
 import { Button, FileUpload, Modal, Text } from 'components';
 import { Field, reduxForm } from 'redux-form';
+import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
 import { FormTextInput, FormTextbox } from 'form-components';
 
@@ -52,7 +53,7 @@ let FulfillBountyFormModalComponent = props => {
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
           <div className="row">
-            <div className="col-xs">
+            <div className={`col-xs-12 col-sm ${styles.fulfillmentInput}`}>
               <Field
                 name="name"
                 component={FormTextInput}
@@ -62,7 +63,7 @@ let FulfillBountyFormModalComponent = props => {
                 placeholder="Enter name..."
               />
             </div>
-            <div className="col-xs">
+            <div className={`col-xs-12 col-sm ${styles.fulfillmentInput}`}>
               <Field
                 name="email"
                 component={FormTextInput}
@@ -133,9 +134,13 @@ let FulfillBountyFormModalComponent = props => {
   );
 };
 
-FulfillBountyFormModalComponent = reduxForm({ form: 'fulfillBounty' })(
-  FulfillBountyFormModalComponent
-);
+FulfillBountyFormModalComponent = compose(
+  reduxForm({
+    form: 'fulfillBounty',
+    destroyOnUnmount: false
+  }),
+  ModalFormReset
+)(FulfillBountyFormModalComponent);
 
 const mapStateToProps = (state, props) => {
   const { name, email } = props;

@@ -2,7 +2,9 @@ import React from 'react';
 import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
+import { compose } from 'redux';
 import { BigNumber } from 'bignumber.js';
+import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
 import normalizers from 'utils/normalizers';
 import { FormTextInput } from 'form-components';
@@ -62,4 +64,10 @@ const ActivateDeadFormModal = props => {
   );
 };
 
-export default reduxForm({ form: 'activateDead' })(ActivateDeadFormModal);
+export default compose(
+  reduxForm({
+    form: 'activateDead',
+    destroyOnUnmount: false
+  }),
+  ModalFormReset
+)(ActivateDeadFormModal);

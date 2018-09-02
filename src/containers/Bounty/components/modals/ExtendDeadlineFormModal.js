@@ -3,6 +3,8 @@ import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import { FormDatePicker } from 'form-components';
+import { compose } from 'redux';
+import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
 import { getTimezone } from 'utils/helpers';
 
@@ -22,7 +24,7 @@ const ExtendDeadlineFormModal = props => {
           <Modal.Message>Extend Deadline</Modal.Message>
           <Modal.Description>
             Indicate the time that you would like to extend the bounty deadline
-            until{getTimezone() ? ` (timezone ${getTimezone()}).` : '.'}
+            until{getTimezone() ? ` (timezone: ${getTimezone()}).` : '.'}
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
@@ -55,4 +57,10 @@ const ExtendDeadlineFormModal = props => {
   );
 };
 
-export default reduxForm({ form: 'extendDeadline' })(ExtendDeadlineFormModal);
+export default compose(
+  reduxForm({
+    form: 'extendDeadline',
+    destroyOnUnmount: false
+  }),
+  ModalFormReset
+)(ExtendDeadlineFormModal);

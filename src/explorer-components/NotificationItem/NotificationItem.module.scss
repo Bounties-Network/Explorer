@@ -3,6 +3,7 @@
 .container {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .text {
@@ -13,11 +14,14 @@
 }
 
 .time {
+  padding-left: $base-spacing;
+  padding-top: $base-spacing;
   white-space: nowrap;
+  width: 100%;
 }
 
 .details {
-  margin-top: $m-spacing
+  margin-top: $m-spacing;
 }
 
 .transparent {
@@ -30,7 +34,12 @@
 }
 
 .notifier {
-  min-width: $l-spacing;
+  &.small {
+    min-width: $l-spacing;
+  }
+  &.large {
+    min-width: $xxl-spacing;
+  }
 }
 
 .iconStyles {

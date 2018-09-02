@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from './Modals.module.scss';
-import { Modal, Button } from 'components';
+import { Modal, Button, Text } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import { BigNumber } from 'bignumber.js';
+import { compose } from 'redux';
+import { ModalFormReset } from 'hocs';
 import normalizers from 'utils/normalizers';
 import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
@@ -30,10 +32,21 @@ const IncreasePayoutFormModal = props => {
           <Modal.Message>Increase bounty payout</Modal.Message>
           <Modal.Description>
             Indicate the amount you would like to increase the payout to. You
-            may include an additional balance to cover the costs. Your total
-            balance must be greater than the new prize amount ({tokenSymbol}).
-            The current balance is: {`${minimumBalance} ${tokenSymbol}`}. The
-            current payout amount is: {`${minimumPayout} ${tokenSymbol}`}.
+            may include an additional balance to cover the costs.
+            <br />
+            <br />
+            <em>
+              Your total balance must be greater than the new prize amount ({
+                tokenSymbol
+              })
+            </em>. The current balance is:{' '}
+            <span
+              className={styles.textHighlight}
+            >{`${minimumBalance} ${tokenSymbol}`}</span>. The current payout
+            amount is:{' '}
+            <span
+              className={styles.textHighlight}
+            >{`${minimumPayout} ${tokenSymbol}`}</span>.
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
@@ -99,4 +112,10 @@ const IncreasePayoutFormModal = props => {
   );
 };
 
-export default reduxForm({ form: 'increasePayout' })(IncreasePayoutFormModal);
+export default compose(
+  reduxForm({
+    form: 'increasePayout',
+    destroyOnUnmount: false
+  }),
+  ModalFormReset
+)(IncreasePayoutFormModal);

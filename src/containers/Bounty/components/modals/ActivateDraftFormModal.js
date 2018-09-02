@@ -3,6 +3,8 @@ import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import { BigNumber } from 'bignumber.js';
+import { compose } from 'redux';
+import { ModalFormReset } from 'hocs';
 import normalizers from 'utils/normalizers';
 import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
@@ -62,4 +64,10 @@ const ActivateDraftFormModal = props => {
   );
 };
 
-export default reduxForm({ form: 'activateDraft' })(ActivateDraftFormModal);
+export default compose(
+  reduxForm({
+    form: 'activateDraft',
+    destroyOnUnmount: false
+  }),
+  ModalFormReset
+)(ActivateDraftFormModal);

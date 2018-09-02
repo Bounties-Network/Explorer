@@ -29,11 +29,16 @@
 .bodyHeading {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  padding-bottom: $s-spacing;
 }
 
 .bountyList {
-  margin-top: $m-spacing;
+  margin-top: $base-spacing;
+
+  @media only screen and (min-width: 48em) {
+    margin-top: $m-spacing;
+  }
 }
 
 .bountyListCentered {
@@ -58,6 +63,7 @@
 .filterNav {
   display: block;
   margin-left: auto;
+  padding-right: $base-spacing;
 
   @media only screen and (min-width: 48em) {
     display: none;

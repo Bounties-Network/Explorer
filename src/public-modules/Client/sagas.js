@@ -39,11 +39,11 @@ export function* getNetwork() {
   let network = 'unknown';
   if (networkID === 1) {
     network = 'mainNet';
-    apiEndpoint.set('https://staging.api.bounties.network');
+    apiEndpoint.set(config.url.mainNet);
   }
   if (networkID === 4) {
     network = 'rinkeby';
-    apiEndpoint.set('https://rinkebystaging.api.bounties.network');
+    apiEndpoint.set(config.url.rinkeby);
   }
 
   return network;
