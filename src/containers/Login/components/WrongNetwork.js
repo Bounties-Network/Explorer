@@ -39,6 +39,7 @@ const WrongNetwork = props => {
               </Text>
             </div>
           )}
+          <br />
           Please switch your active wallet network.
         </Modal.Description>
       </Modal.Body>

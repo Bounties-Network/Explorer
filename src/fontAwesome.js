@@ -7,10 +7,12 @@ import plusCircle from '@fortawesome/fontawesome-pro-regular/faPlusCircle';
 import wifi from '@fortawesome/fontawesome-pro-light/faWifi';
 import clock from '@fortawesome/fontawesome-pro-regular/faClock';
 import levelUp from '@fortawesome/fontawesome-pro-regular/faLevelUp';
+import levelDown from '@fortawesome/fontawesome-pro-regular/faLevelDown';
 import seedling from '@fortawesome/fontawesome-pro-regular/faSeedling';
 import cog from '@fortawesome/fontawesome-pro-light/faCog';
 import search from '@fortawesome/fontawesome-pro-regular/faSearch';
 import faTimes from '@fortawesome/fontawesome-pro-light/faTimes';
+import timesCircle from '@fortawesome/fontawesome-pro-regular/faTimesCircle';
 import wallet from '@fortawesome/fontawesome-pro-light/faWallet';
 import signout from '@fortawesome/fontawesome-pro-light/faSignOut';
 import signin from '@fortawesome/fontawesome-pro-light/faSignIn';
@@ -45,6 +47,7 @@ import globe from '@fortawesome/fontawesome-pro-regular/faGlobe';
 import idCardAlt from '@fortawesome/fontawesome-pro-light/faIdCardAlt';
 import star from '@fortawesome/fontawesome-pro-regular/faStar';
 import calendarAlt from '@fortawesome/fontawesome-pro-regular/faCalendarAlt';
+import calendarPlus from '@fortawesome/fontawesome-pro-regular/faCalendarPlus';
 import dollarSign from '@fortawesome/fontawesome-pro-regular/faDollarSign';
 import fileAlt from '@fortawesome/fontawesome-pro-light/faFileAlt';
 import chartLine from '@fortawesome/fontawesome-pro-light/faChartLine';
@@ -59,6 +62,10 @@ import link from '@fortawesome/fontawesome-pro-regular/faLink';
 import paperclip from '@fortawesome/fontawesome-pro-regular/faPaperclip';
 import repeat from '@fortawesome/fontawesome-pro-regular/faRepeat';
 import puzzlePiece from '@fortawesome/fontawesome-pro-regular/faPuzzlePiece';
+import calendarExclamation from '@fortawesome/fontawesome-pro-regular/faCalendarExclamation';
+import sync from '@fortawesome/fontawesome-pro-regular/faSync';
+import userFriends from '@fortawesome/fontawesome-pro-regular/faUserFriends';
+import edit from '@fortawesome/fontawesome-pro-regular/faEdit';
 
 library.add(
   externalLink,
@@ -83,6 +90,7 @@ library.add(
   signout,
   signin,
   faTimes,
+  timesCircle,
   wallet,
   tachometer,
   listAlt,
@@ -105,6 +113,7 @@ library.add(
   eye,
   clock,
   levelUp,
+  levelDown,
   seedling,
   unlock,
   addressCard,
@@ -120,5 +129,10 @@ library.add(
   link,
   paperclip,
   repeat,
-  puzzlePiece
+  puzzlePiece,
+  calendarExclamation,
+  calendarPlus,
+  sync,
+  userFriends,
+  edit
 );

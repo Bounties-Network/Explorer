@@ -45,7 +45,11 @@ const ActionBar = props => {
           Activate Bounty
         </Button>
         <Link to={draftUrl}>
-          <Button fitWidth className={styles.editBountyButton}>
+          <Button
+            icon={['far', 'edit']}
+            fitWidth
+            className={styles.editBountyButton}
+          >
             Edit Bounty
           </Button>
         </Link>
@@ -103,7 +107,7 @@ const ActionBar = props => {
           </Button>
         )}
         <Button
-          icon={['far', 'calendar-alt']}
+          icon={['far', 'calendar-plus']}
           fitWidth
           className={styles.buttonGroup}
           onClick={() =>
@@ -113,7 +117,7 @@ const ActionBar = props => {
           Extend deadline
         </Button>
         <Button
-          icon={['far', 'user-alt']}
+          icon={['far', 'user-friends']}
           fitWidth
           className={styles.buttonGroup}
           onClick={() =>

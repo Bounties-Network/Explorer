@@ -66,9 +66,20 @@ export const NOTIFICATION_ID = {
 
 const plus = ['far', 'plus-circle'];
 const level_up = ['far', 'level-up'];
+const level_down = ['far', 'level-down'];
 const star = ['far', 'star'];
 const comment = ['far', 'comment'];
 const general = ['far', 'star'];
+const check = ['far', 'check'];
+const calendar_exclamation = ['far', 'calendar-exclamation'];
+const calendar_plus = ['far', 'calendar-plus'];
+const times_circle = ['far', 'times-circle'];
+const dollar_sign = ['far', 'dollar-sign'];
+const sync = ['far', 'sync'];
+const user = ['far', 'user-alt'];
+const user_friends = ['far', 'user-friends'];
+const edit = ['far', 'edit'];
+const arrow_up = ['far', 'arrow-up'];
 
 export const notification_template = {
   [NOTIFICATION_ID.FULFILLMENT_SUBMITTED]: {
@@ -77,7 +88,7 @@ export const notification_template = {
   },
   [NOTIFICATION_ID.FULFILLMENT_SUBMITTED_ISSUER]: {
     message: 'You received a submission',
-    icon: level_up
+    icon: level_down
   },
   [NOTIFICATION_ID.BOUNTY_ACTIVATED]: {
     message: 'You activated a bounty',
@@ -85,15 +96,15 @@ export const notification_template = {
   },
   [NOTIFICATION_ID.FULFILLMENT_ACCEPTED]: {
     message: 'You accepted a submission',
-    icon: level_up
+    icon: check
   },
   [NOTIFICATION_ID.FULFILLMENT_ACCEPTED_FULFILLER]: {
     message: 'Your submission was accepted',
-    icon: level_up
+    icon: check
   },
   [NOTIFICATION_ID.BOUNTY_EXPIRED]: {
     message: 'Your bounty expired',
-    icon: general
+    icon: calendar_exclamation
   },
   [NOTIFICATION_ID.BOUNTY_ISSUED]: {
     message: 'You issued a new bounty',
@@ -101,31 +112,31 @@ export const notification_template = {
   },
   [NOTIFICATION_ID.BOUNTY_KILLED]: {
     message: 'You killed a bounty',
-    icon: general
+    icon: times_circle
   },
   [NOTIFICATION_ID.CONTRIBUTION_ADDED]: {
     message: 'You made a contribution to',
-    icon: level_up
+    icon: dollar_sign
   },
   [NOTIFICATION_ID.DEADLINE_EXTENDED]: {
     message: 'You extended the deadline on',
-    icon: general
+    icon: calendar_plus
   },
   [NOTIFICATION_ID.BOUNTY_CHANGED]: {
     message: 'You updated your draft bounty',
-    icon: general
+    icon: sync
   },
   [NOTIFICATION_ID.ISSUER_TRANSFERRED]: {
     message: 'You transferred ownernship of the bounty',
-    icon: general
+    icon: user_friends
   },
   [NOTIFICATION_ID.TRANSFER_RECIPIENT]: {
     message: 'A bounty was transferred to you',
-    icon: plus
+    icon: user_friends
   },
   [NOTIFICATION_ID.PAYOUT_INCREASED]: {
     message: 'You increased the payout on',
-    icon: general
+    icon: arrow_up
   },
   [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED]: {
     message: 'You received a comment',
@@ -137,11 +148,11 @@ export const notification_template = {
   },
   [NOTIFICATION_ID.FULFILLMENT_UPDATED]: {
     message: 'You updated your submission to',
-    icon: level_up
+    icon: sync
   },
   [NOTIFICATION_ID.FULFILLMENT_UPDATED_ISSUER]: {
     message: 'A submission was updated for your bounty',
-    icon: general
+    icon: sync
   },
   [NOTIFICATION_ID.RATING_ISSUED]: {
     message: 'You wrote a review on',
@@ -153,7 +164,7 @@ export const notification_template = {
   },
   [NOTIFICATION_ID.PROFILE_UPDATED]: {
     message: 'You updated your profile',
-    icon: level_up
+    icon: user
   },
   [NOTIFICATION_ID.COMMENT_ISSUED]: {
     message: 'You wrote a comment on',
@@ -161,10 +172,10 @@ export const notification_template = {
   },
   [NOTIFICATION_ID.DRAFT_CREATED]: {
     message: 'You created a draft',
-    icon: plus
+    icon: edit
   },
   [NOTIFICATION_ID.DRAFT_UPDATED]: {
     message: 'You updated a draft',
-    icon: plus
+    icon: sync
   }
 };

@@ -23,6 +23,7 @@
 }
 
 .icon {
+  color: $brand-grey;
   margin-right: 10px;
 }
 
@@ -46,6 +47,10 @@
     background-color: lighten($brand-blue, 33%);
     border-color: $brand-blue;
     color: $brand-blue;
+
+    .icon {
+      color: $brand-blue;
+    }
   }
 
   &.disabled{
@@ -85,6 +90,10 @@
     background-color: $brand-blue;
     cursor: default;
   }
+
+  .icon {
+    color: $brand-white;
+  }
 }
 
 .destructive {
@@ -107,6 +116,10 @@
     background-color: $brand-destructive;
     cursor: default;
   }
+
+  .icon {
+    color: $brand-white;
+  }
 }
 
 .action {
@@ -128,6 +141,10 @@
   &.buttonLoading:hover {
     background-color: $brand-green;
     cursor: default;
+  }
+
+  .icon {
+    color: $brand-white;
   }
 }
 
