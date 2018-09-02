@@ -23,6 +23,7 @@ const BountyItem = props => {
           alignment="align-left"
           typeScale="Body"
           weight="fontWeight-medium"
+          lineHeight="lineHeight-small"
         >
           {title}
         </Text>

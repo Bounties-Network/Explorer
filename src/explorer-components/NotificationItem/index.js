@@ -8,45 +8,54 @@ import { LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
 
 const NotificationItem = props => {
-  const { createdAt, title, type, userAddress, profileImage } = props;
+  const {
+    createdAt,
+    title,
+    type,
+    userAddress,
+    profileImage,
+    notifierWidth
+  } = props;
   const { message, icon } = notification_template[type];
   const formattedTime = moment.utc(createdAt, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
 
+  let notifierClass = `${styles[notifierWidth]} ${styles.notifier}`;
+
   return (
     <div className={styles.container}>
-      <div className={styles.notifier}>
+      <div className={notifierClass}>
         {userAddress ? (
-          <LinkedAvatar
-            address={userAddress}
-            img={profileImage}
-            hash={userAddress}
-            to={`/profile/${userAddress}`}
-          />
+          <LinkedAvatar img={profileImage} />
         ) : (
           <FontAwesomeIcon icon={icon} className={styles.iconStyles} />
         )}
       </div>
-      <div className={styles.text}>
-        <Text color="black" typeScale="Small" inline>
-          {message}
-        </Text>
-        <Text color="black" weight="fontWeight-bold" typeScale="Small" inline>
-          {' ' + title}
-        </Text>
-      </div>
-      <div className={styles.time}>
-        <Text color="defaultGrey" typeScale="Small">
-          {formattedTime}
-        </Text>
+      <div className={styles.notificationMain}>
+        <div className={styles.text}>
+          <Text color="black" typeScale="Small" inline>
+            {message}
+          </Text>
+          <Text color="black" weight="fontWeight-bold" typeScale="Small" inline>
+            {' ' + title}
+          </Text>
+        </div>
+        <div className={styles.time}>
+          <Text color="defaultGrey" typeScale="Small">
+            {formattedTime}
+          </Text>
+        </div>
       </div>
     </div>
   );
 };
 
 NotificationItem.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  notifierWidth: PropTypes.oneOf(['small', 'large'])
 };
 
-NotificationItem.defaultProps = {};
+NotificationItem.defaultProps = {
+  notifierWidth: 'small'
+};
 
 export default NotificationItem;

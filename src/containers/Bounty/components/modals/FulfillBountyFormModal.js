@@ -52,7 +52,7 @@ let FulfillBountyFormModalComponent = props => {
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
           <div className="row">
-            <div className="col-xs">
+            <div className={`col-xs-12 col-sm ${styles.fulfillmentInput}`}>
               <Field
                 name="name"
                 component={FormTextInput}
@@ -62,7 +62,7 @@ let FulfillBountyFormModalComponent = props => {
                 placeholder="Enter name..."
               />
             </div>
-            <div className="col-xs">
+            <div className={`col-xs-12 col-sm ${styles.fulfillmentInput}`}>
               <Field
                 name="email"
                 component={FormTextInput}

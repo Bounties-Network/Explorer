@@ -21,6 +21,14 @@
   box-shadow: $base-box-shadow;
   background-color: $brand-white;
   border-radius: $base-border-radius;
+  z-index: 500;
+  top: $header-height-sm - $base-spacing;
+  right: calc(-#{$m-spacing} + 2px);
+
+  @media only screen and (min-width: 48em) {
+    top: $header-height-lg - $base-spacing;
+    right: -$base-spacing;
+  }
 }
 
 .iconArea {
@@ -28,9 +36,13 @@
   font-size: 40px;
   height: $header-height-sm;
   width: $header-height-sm;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (min-width: 48em) {
+    display: flex;
+  }
 
   @media only screen and (min-width: 65em) {
     height: $header-height-lg;
@@ -50,23 +62,15 @@
 .sideNavTrigger {
   cursor: pointer;
   display: block;
-  margin-left: $l-spacing;
+  margin-left: $m-spacing;
   @media only screen and (min-width: 48em) {
     display: none;
   }
 }
 
 .button {
-  margin-right: $base-spacing;
+  margin-right: $m-spacing;
   padding: 0 $m-spacing;
-
-  @media only screen and (min-width: 48em) {
-    padding: 0 $l-spacing;
-  }
-
-  @media only screen and (min-width: 65em) {
-    margin-right: $l-spacing;
-  }
 }
 
 .buttonArea {
@@ -93,13 +97,9 @@
 }
 
 .notification {
-  margin-right: 20px;
+  margin-right: $m-spacing;
 }
 
 .profile {
-  margin-right: 20px;
-}
-
-.profileDropdown {
-  top: 52px;
+  margin-right: $m-spacing;
 }

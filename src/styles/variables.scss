@@ -32,6 +32,8 @@ $h2-font-size: 1.563rem; // 25px
 $h1-font-size: 1.938rem; // 31px
 
 $base-line-height: 1.5rem;
+$line-height-small: 1.3rem;
+$line-height-large: 1.875rem;
 $line-height-reset: 1;
 
 // COLORS
@@ -76,6 +78,7 @@ $sidebar-color: $brand-dark-purple;
 
 // BOX SHADOWS
 $base-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.075);
+$dark-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.125);
 $m-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 $brand-chip-box-shadow: 0 2px 7px $brand-lightGrey;
 $brand-card-box-shadow: 0 0 10px $brand-lightGrey;

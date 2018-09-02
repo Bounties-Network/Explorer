@@ -6,11 +6,28 @@
   position: relative;
 }
 
-.notLoggedIn {
+.notLoggedInWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
-  width: 100%;
+}
+
+.notLoggedIn {
+  margin: $s-spacing;
+  max-width: 38rem;;
+}
+
+.notLoggedInCard {
+  padding: $l-spacing;
+
+  button {
+    @media only screen and (min-width: 48em) {
+      width: auto;
+    }
+  }
 }
 
 .subText {
-  margin-top: $m-spacing;
+  margin: $l-spacing;
 }

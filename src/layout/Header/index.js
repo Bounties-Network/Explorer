@@ -33,7 +33,7 @@ const HeaderComponent = props => {
         <Network network={network} className={styles.network} />
       ) : null}
       <div className={styles.sideNavTrigger} onClick={onShowNav}>
-        <Text typeScale="h2" color="blue">
+        <Text typeScale="h3" color="blue">
           <FontAwesomeIcon icon={['far', 'bars']} />
         </Text>
       </div>
@@ -43,7 +43,6 @@ const HeaderComponent = props => {
             match.path !== '/createBounty/draft/:id/' && (
               <Button
                 type="primary"
-                //icon={['far', 'plus']}
                 onClick={() => {
                   history.push('/createBounty');
                 }}
@@ -81,6 +80,15 @@ const HeaderComponent = props => {
                 />
               </DropdownTrigger>
               <DropdownContent className={styles.profileDropdown}>
+                <MenuItem
+                  key="profile"
+                  icon={['fal', 'user-alt']}
+                  onClick={() => {
+                    history.push('/profile');
+                  }}
+                >
+                  Profile
+                </MenuItem>
                 <MenuItem
                   key="settings"
                   icon={['fal', 'cog']}

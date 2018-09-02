@@ -1,5 +1,5 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
-import faBell from '@fortawesome/fontawesome-pro-light/faBell';
+import faBell from '@fortawesome/fontawesome-pro-regular/faBell';
 import plus from '@fortawesome/fontawesome-pro-regular/faPlus';
 import bars from '@fortawesome/fontawesome-pro-regular/faBars';
 import slidersH from '@fortawesome/fontawesome-pro-regular/faSlidersH';
@@ -17,6 +17,7 @@ import tachometer from '@fortawesome/fontawesome-pro-regular/faTachometer';
 import listAlt from '@fortawesome/fontawesome-pro-regular/faListAlt';
 import trophyAlt from '@fortawesome/fontawesome-pro-regular/faTrophyAlt';
 import userAlt from '@fortawesome/fontawesome-pro-regular/faUserAlt';
+import userAltLight from '@fortawesome/fontawesome-pro-light/faUserAlt';
 import chevronUp from '@fortawesome/fontawesome-pro-regular/faChevronUp';
 import chevronDown from '@fortawesome/fontawesome-pro-regular/faChevronDown';
 import fileArchive from '@fortawesome/fontawesome-pro-light/faFileArchive';
@@ -30,9 +31,9 @@ import commentsLight from '@fortawesome/fontawesome-pro-light/faComments';
 import comment from '@fortawesome/fontawesome-pro-regular/faComment';
 import infoCircle from '@fortawesome/fontawesome-pro-regular/faInfoCircle';
 import ellipsisH from '@fortawesome/fontawesome-pro-regular/faEllipsisH';
-import checkCircle from '@fortawesome/fontawesome-pro-regular/faCheckCircle';
+import checkCircle from '@fortawesome/fontawesome-pro-light/faCheckCircle';
 import check from '@fortawesome/fontawesome-pro-regular/faCheck';
-import exclamationTriangle from '@fortawesome/fontawesome-pro-regular/faExclamationTriangle';
+import exclamationTriangle from '@fortawesome/fontawesome-pro-light/faExclamationTriangle';
 import twitter from '@fortawesome/fontawesome-free-brands/faTwitter';
 import facebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import reddit from '@fortawesome/fontawesome-free-brands/faReddit';
@@ -79,6 +80,7 @@ library.add(
   listAlt,
   trophyAlt,
   userAlt,
+  userAltLight,
   chevronUp,
   chevronDown,
   fileArchive,

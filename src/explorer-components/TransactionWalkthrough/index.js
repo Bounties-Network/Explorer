@@ -88,9 +88,10 @@ const WalkthroughError = props => {
 
   return (
     <Modal dismissable onClose={onClose} fixed size="small" visible={visible}>
-      <Modal.Header icon={['far', 'exclamation-triangle']} closable>
+      <Modal.Header icon={['fal', 'exclamation-triangle']} closable />
+      <Modal.Body>
         <Modal.Message>Something happened. Try again later.</Modal.Message>
-      </Modal.Header>
+      </Modal.Body>
       <Modal.Footer>
         <Button onClick={onClose}>Close</Button>
       </Modal.Footer>
@@ -107,7 +108,7 @@ const WalkthroughSuccess = props => {
 
   return (
     <Modal fixed size="small" visible={visible}>
-      <Modal.Header icon={['far', 'check-circle']} />
+      <Modal.Header icon={['fal', 'check-circle']} />
       <Modal.Body>
         <Modal.Message>Your transaction has been confirmed!</Modal.Message>
       </Modal.Body>

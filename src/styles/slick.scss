@@ -7,7 +7,7 @@ $slider-height: calc(100vh - #{$header-height-sm});
   position: relative;
   display: block;
   box-sizing: border-box;
-  min-height: $slider-height;
+  height: $slider-height;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -25,8 +25,7 @@ $slider-height: calc(100vh - #{$header-height-sm});
   display: block;
   margin: 0;
   padding: 0;
-  padding-top: $header-height-sm;
-  min-height: $slider-height;
+  height: $slider-height;
 
   &:focus {
     outline: none;
@@ -44,7 +43,7 @@ $slider-height: calc(100vh - #{$header-height-sm});
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    min-height: $slider-height;
+    height: $slider-height;
 }
 
 .slick-track {
@@ -54,7 +53,7 @@ $slider-height: calc(100vh - #{$header-height-sm});
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    min-height: $slider-height;
+    height: $slider-height;
 
     &:before,
     &:after {
@@ -71,7 +70,7 @@ $slider-height: calc(100vh - #{$header-height-sm});
     }
 }
 .slick-slide {
-    min-height: $slider-height;
+    height: $slider-height;
 
     > div {
       height: 100%;

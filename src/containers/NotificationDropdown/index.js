@@ -49,23 +49,27 @@ const NotificationDropdown = props => {
       } = notification;
 
       return (
-        <ListGroup.ListItem hover>
-          <div className={viewed ? styles.transparent : ''}>
-            <Link
-              to={link}
-              className={styles.link}
-              onClick={() => setNotificationViewed(id)}
-            >
-              <NotificationItem
-                type={notification_name}
-                title={bounty_title}
-                transparent
-                createdAt={created}
-                userAddress={from_user && from_user.public_address}
-                profileImg={from_user && from_user.profile_image}
-              />
-            </Link>
-          </div>
+        <ListGroup.ListItem
+          className={`${styles.notificationListItem} ${
+            viewed ? styles.viewed : ''
+          }`}
+          hover
+        >
+          <Link
+            to={link}
+            className={styles.link}
+            onClick={() => setNotificationViewed(id)}
+          >
+            <NotificationItem
+              type={notification_name}
+              title={bounty_title}
+              transparent
+              createdAt={created}
+              notifierWidth="large"
+              userAddress={from_user && from_user.public_address}
+              profileImg={from_user && from_user.profile_image}
+            />
+          </Link>
         </ListGroup.ListItem>
       );
     }, notifications);
@@ -74,17 +78,26 @@ const NotificationDropdown = props => {
   return (
     <Dropdown position="left" className={styles.customDropdown}>
       <DropdownTrigger>
-        <Text typeScale="h4" className={hasUnread ? styles.notification : ''}>
-          <FontAwesomeIcon icon={['fal', 'bell']} />
+        <Text
+          typeScale="h3"
+          color="defaultGrey"
+          className={`${hasUnread ? styles.notification : ''} ${
+            styles.notificationTrigger
+          }`}
+        >
+          <FontAwesomeIcon
+            icon={['far', 'bell']}
+            className={styles.notificationTriggerIcon}
+          />
         </Text>
       </DropdownTrigger>
       <DropdownContent>
         <div className={styles.notificationBox}>
-          <div className={styles.headline}>
+          <div className={styles.heading}>
             <Text
               typeScale="h4"
               weight="fontWeight-medium"
-              className={styles.headlineTitle}
+              className={styles.headingTitle}
             >
               Notifications
             </Text>
@@ -92,7 +105,7 @@ const NotificationDropdown = props => {
               hasUnread && (
                 <Text
                   link
-                  className={styles.headlineLink}
+                  className={styles.headingLink}
                   src="#"
                   onMouseDown={e => {
                     e.preventDefault();
@@ -133,7 +146,11 @@ const NotificationDropdown = props => {
                 />
               </div>
             )}
-          {loaded && <ListGroup>{renderNotifications()}</ListGroup>}
+          {loaded && (
+            <ListGroup className={styles.notificationListGroup}>
+              {renderNotifications()}
+            </ListGroup>
+          )}
           {count > notifications.length && (
             <div className={styles.loadMore}>
               <Button

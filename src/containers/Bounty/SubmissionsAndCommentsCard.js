@@ -174,7 +174,7 @@ let SubmissionsAndCommentsCardComponent = props => {
 
   if (currentTab === 'comments') {
     const newCommentForm = (
-      <ListGroup.ListItem className={styles.commentItem}>
+      <ListGroup.ListItem className={styles.newCommentForm}>
         <NewCommentForm
           signedIn={!!currentUser}
           onSubmit={

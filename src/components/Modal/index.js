@@ -27,8 +27,8 @@ class Header extends React.Component {
             ) : null}
             <div className={children ? styles.headerContent : ''}>
               {icon && !loadingIcon ? (
-                <div>
-                  <FontAwesomeIcon icon={icon} className={styles.iconHeader} />
+                <div className={styles.iconHeader}>
+                  <FontAwesomeIcon icon={icon} />
                 </div>
               ) : null}
               {loadingIcon ? (
@@ -267,7 +267,7 @@ class Modal extends React.Component {
       rootModal = (
         <CSSTransition
           key="1"
-          timeout={600}
+          timeout={400}
           onEnter={this.triggerEnter}
           onEntered={this.triggerEntered}
           onEntering={this.triggerEntering}

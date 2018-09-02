@@ -21,10 +21,10 @@ class TabIcon extends React.Component {
 
           return (
             <a className={tabStyle} onClick={() => onTabClick(tabKey)}>
-              <FontAwesomeIcon icon={icon} />
-              <div className={styles.navText}>
-                <Text typeScale="h3">{title}</Text>
-              </div>
+              <FontAwesomeIcon icon={icon} className={styles.navIcon} />
+              <Text className={styles.navText} typeScale="h4">
+                {title}
+              </Text>
             </a>
           );
         }}

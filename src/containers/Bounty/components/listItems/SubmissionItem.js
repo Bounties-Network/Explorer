@@ -122,7 +122,7 @@ const SubmissionItem = props => {
           <Text>{formattedTime}</Text>
         </div>
       </div>
-      <div className={`col-xs-12 col-sm-7 ${styles.filter}`}>
+      <div className={`col-xs-12 col-sm-6 ${styles.filter}`}>
         {url ? (
           <div className={styles.labelGroup}>
             <Text inputLabel>Web link</Text>
@@ -153,7 +153,7 @@ const SubmissionItem = props => {
           </div>
         ) : null}
       </div>
-      <div className={`col-sm-2 ${styles.actionColumn}`}>
+      <div className={`col-sm-3 ${styles.actionColumn}`}>
         <FulfillmentStagePill
           className={styles.fulfillmentStage}
           accepted={accepted}

@@ -104,7 +104,7 @@
 
 .bountyPrize {
   order: 2;
-  padding-left: 0;
+  padding-left: 0 !important; //Override flexboxgrid in this instance to prevent text from leaking outside of the container on mobile
   text-align: right;
 
   @media only screen and (min-width: 48em) {

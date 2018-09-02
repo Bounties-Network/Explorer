@@ -143,7 +143,11 @@ class SearchSelect extends React.Component {
         )}
         {error ? (
           <div>
-            <Text type="FormLabel" color={'red'}>
+            <Text
+              className={styles.inputHelpText}
+              typeScale="Small"
+              color="red"
+            >
               {error}
             </Text>
           </div>

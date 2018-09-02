@@ -22,7 +22,7 @@ const ExtendDeadlineFormModal = props => {
           <Modal.Message>Extend Deadline</Modal.Message>
           <Modal.Description>
             Indicate the time that you would like to extend the bounty deadline
-            until{getTimezone() ? ` (timezone ${getTimezone()}).` : '.'}
+            until{getTimezone() ? ` (timezone: ${getTimezone()}).` : '.'}
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
