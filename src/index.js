@@ -14,7 +14,6 @@ import { reducers, sagaWatchers } from 'public-modules';
 import explorerSagas from './sagas';
 import baseReducers from './reducers';
 import { App } from 'layout';
-import registerServiceWorker from './registerServiceWorker';
 import 'styles/index.scss';
 import 'styles/flexboxgrid.css';
 import 'font-files/inter-ui.css';
@@ -49,4 +48,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-registerServiceWorker();
