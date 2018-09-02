@@ -170,7 +170,16 @@ class Modal extends React.Component {
   };
 
   componentWillUnmount() {
+    const { fixed } = this.props;
+
     const currentModals = document.getElementsByClassName('modal-visible');
+    if (!fixed) {
+      const pageBody = document.getElementsByClassName('page-body')[0];
+      if (pageBody) {
+        pageBody.classList.remove('modal-open');
+      }
+      document.body.classList.remove('modal-open');
+    }
     if (currentModals && currentModals.length) {
       return null;
     }
