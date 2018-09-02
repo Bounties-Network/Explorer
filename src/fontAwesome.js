@@ -54,6 +54,11 @@ import lock from '@fortawesome/fontawesome-pro-light/faLock';
 import arrow from '@fortawesome/fontawesome-pro-regular/faArrowUp';
 import angleDoubleUp from '@fortawesome/fontawesome-pro-light/faAngleDoubleUp';
 import externalLink from '@fortawesome/fontawesome-pro-regular/faExternalLink';
+import envelope from '@fortawesome/fontawesome-pro-regular/faEnvelope';
+import link from '@fortawesome/fontawesome-pro-regular/faLink';
+import paperclip from '@fortawesome/fontawesome-pro-regular/faPaperclip';
+import repeat from '@fortawesome/fontawesome-pro-regular/faRepeat';
+import puzzlePiece from '@fortawesome/fontawesome-pro-regular/faPuzzlePiece';
 
 library.add(
   externalLink,
@@ -110,5 +115,10 @@ library.add(
   bolt,
   frown,
   bars,
-  slidersH
+  slidersH,
+  envelope,
+  link,
+  paperclip,
+  repeat,
+  puzzlePiece
 );
