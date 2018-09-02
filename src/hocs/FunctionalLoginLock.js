@@ -64,6 +64,7 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
         logout,
         resetLoginState,
         resetLogoutState,
+        isCorrectNetwork,
         ...rest
       } = this.props;
 
@@ -82,6 +83,7 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
             previousAddress={previousAddress}
             addressMismatch={addressMismatch}
             isLoggedIn={isLoggedIn}
+            isCorrectNetwork={isCorrectNetwork}
             userImg={userImg}
             signingIn={signingIn}
             error={error}
@@ -111,7 +113,7 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
     const network = state.client.network;
     const isCorrectNetwork = config.requiredNetwork
       ? network === config.requiredNetwork
-      : network === 'mainnet' || network === 'rinkeby';
+      : network === 'mainNet' || network === 'rinkeby';
     const callbackCanTrigger =
       hasWallet &&
       !walletLocked &&

@@ -62,7 +62,7 @@ const LoginLockComponent = props => {
         closable={false}
       />
       <WrongNetwork
-        visible={config.showUnlockWallet}
+        visible={config.showWrongNetwork}
         pageLevel
         network={network}
         closable={false}
@@ -94,7 +94,7 @@ const mapStateToProps = state => {
     network: network,
     isCorrectNetwork: config.requiredNetwork
       ? network === config.requiredNetwork
-      : network === 'mainnet' || network === 'rinkeby',
+      : network === 'mainNet' || network === 'rinkeby',
     img: user && user.img,
     error: logoutState.error,
     loggingOut: logoutState.loading

@@ -70,9 +70,9 @@ const FunctionalLoginLock = props => {
         }}
       />
       <WrongNetwork
-        visible={config.showUnlockWallet}
-        pageLevel
+        visible={config.showWrongNetwork}
         network={network}
+        onClose={hide}
         closable
       />
       <WalletRequired
