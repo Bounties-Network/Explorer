@@ -2,10 +2,11 @@
 
 .dropdownSearch {
   width: 100%;
+  margin-bottom: -$base-spacing;
 }
 
 .pillBar {
-  margin-top: 15px;
+  padding-top: $base-spacing;
   display: flex;
   flex-wrap: wrap;
 }

@@ -266,6 +266,25 @@ const FilterNavComponent = props => {
           }
         </div>
       )}
+      {config.category && (
+        <div className={styles.categoryFilter}>
+          <Text weight="fontWeight-medium" className={styles.groupText}>
+            Category
+          </Text>
+          <SearchSelect
+            options={categories}
+            value={categoryFilters}
+            labelKey="name"
+            valueKey="normalized_name"
+            onChange={values => {
+              if (values.length > categoryFilters.length) {
+                addCategoryFilterAction(values[values.length - 1]);
+              }
+            }}
+            onClose={removeCategoryFilterAction}
+          />
+        </div>
+      )}
       {config.stage && (
         <div className={styles.stageFilter}>
           <Text weight="fontWeight-medium" className={styles.groupText}>
@@ -314,25 +333,6 @@ const FilterNavComponent = props => {
             label="Advanced"
             onChange={() => toggleDifficultyFilterAction('advanced')}
             checked={difficultyFilters.advanced}
-          />
-        </div>
-      )}
-      {config.category && (
-        <div className={styles.categoryFilter}>
-          <Text weight="fontWeight-medium" className={styles.groupText}>
-            Category
-          </Text>
-          <SearchSelect
-            options={categories}
-            value={categoryFilters}
-            labelKey="name"
-            valueKey="normalized_name"
-            onChange={values => {
-              if (values.length > categoryFilters.length) {
-                addCategoryFilterAction(values[values.length - 1]);
-              }
-            }}
-            onClose={removeCategoryFilterAction}
           />
         </div>
       )}
