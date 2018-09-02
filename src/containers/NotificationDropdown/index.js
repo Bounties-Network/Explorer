@@ -54,7 +54,6 @@ const NotificationDropdown = props => {
           className={styles.link}
           onClick={() => {
             setNotificationViewed(id);
-            document.body.click();
           }}
         >
           <ListGroup.ListItem
@@ -79,7 +78,7 @@ const NotificationDropdown = props => {
   };
 
   return (
-    <Dropdown position="left" className={styles.customDropdown}>
+    <Dropdown position="left" className={styles.customDropdown} hideOnClick>
       <DropdownTrigger>
         <Text
           typeScale="h3"
@@ -96,7 +95,16 @@ const NotificationDropdown = props => {
       </DropdownTrigger>
       <DropdownContent>
         <div className={styles.notificationBox}>
-          <div className={styles.heading}>
+          <div
+            className={styles.heading}
+            onMouseDown={e => {
+              e.preventDefault();
+              return false;
+            }}
+            onClick={e => {
+              e.preventDefault();
+            }}
+          >
             <Text
               typeScale="h4"
               weight="fontWeight-medium"
