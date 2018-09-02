@@ -8,10 +8,6 @@
 .bulletPointContainer {
   display: flex;
   flex-direction: column;
-
-  > div:not(:last-child) {
-    margin-bottom: $m-spacing;
-  }
 }
 
 .icon {
@@ -24,8 +20,12 @@
   display: flex;
   flex-direction: row;
 
-  p:not(:last-child) {
+  &:not(:last-child) {
+    margin-bottom: $base-spacing;
+
+  @media only screen and (min-width: 35em) {
     margin-bottom: $m-spacing;
+  }
   }
 }
 

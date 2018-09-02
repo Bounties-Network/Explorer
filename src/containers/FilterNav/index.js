@@ -84,8 +84,8 @@ const FilterNavComponent = props => {
   } = props;
 
   const sortOptions = [
-    { value: 'usd_price', label: 'Value: High to Low' },
     { value: 'bounty_created', label: 'Most Recent' },
+    { value: 'usd_price', label: 'Value: High to Low' },
     { value: 'deadline', label: 'Expiry' }
   ];
 
@@ -220,19 +220,50 @@ const FilterNavComponent = props => {
           className={styles.clearButton}
           onClick={resetFilterAction}
         >
-          Reset Filters
+          Reset
         </Button>
       </div>
       {config.sort && (
         <div className={styles.stageFilter}>
           <Text weight="fontWeight-medium" className={styles.groupText}>
-            Sort by
+            Sort
           </Text>
           <RadioGroup
             onChange={setSortAction}
             options={sortOptions}
             value={sortFilter}
           />
+        </div>
+      )}
+      {config.platform && (
+        <div className={styles.categoryFilter}>
+          <Text weight="fontWeight-medium" className={styles.groupText}>
+            Platform
+          </Text>
+          {map(platform => {
+            return (
+              <Checkbox
+                label={platform}
+                onChange={() => togglePlatformFilterAction(platform)}
+                checked={indexOf(platform, platformFilters) != -1}
+              />
+            );
+          }, platforms)}
+
+          {
+            // <SearchSelect
+            //   options={platforms}
+            //   value={platformFilters}
+            //   labelKey="name"
+            //   valueKey="name"
+            //   onChange={values => {
+            //     if (values.length > platformFilters.length) {
+            //       addPlatformFilterAction(values[values.length - 1]);
+            //     }
+            //   }}
+            //   onClose={removePlatformFilterAction}
+            // />
+          }
         </div>
       )}
       {config.stage && (
@@ -303,37 +334,6 @@ const FilterNavComponent = props => {
             }}
             onClose={removeCategoryFilterAction}
           />
-        </div>
-      )}
-      {config.platform && (
-        <div className={styles.categoryFilter}>
-          <Text weight="fontWeight-medium" className={styles.groupText}>
-            Platform
-          </Text>
-          {map(platform => {
-            return (
-              <Checkbox
-                label={platform}
-                onChange={() => togglePlatformFilterAction(platform)}
-                checked={indexOf(platform, platformFilters) != -1}
-              />
-            );
-          }, platforms)}
-
-          {
-            // <SearchSelect
-            //   options={platforms}
-            //   value={platformFilters}
-            //   labelKey="name"
-            //   valueKey="name"
-            //   onChange={values => {
-            //     if (values.length > platformFilters.length) {
-            //       addPlatformFilterAction(values[values.length - 1]);
-            //     }
-            //   }}
-            //   onClose={removePlatformFilterAction}
-            // />
-          }
         </div>
       )}
     </div>
