@@ -20,10 +20,7 @@ class MenuItem extends React.Component {
     ) : null;
 
     return (
-      <li
-        className={`${className} ${styles.menuItem}`}
-        onClick={() => onClick()}
-      >
+      <li className={`${className} ${styles.menuItem}`} onClick={onClick}>
         {iconBlock}
         <Text inline>{children}</Text>
       </li>
@@ -68,7 +65,8 @@ class Dropdown extends React.Component {
   };
 
   toggle = () => {
-    this.setState({ show: !this.state.show });
+    // I don't like this, but otherwise the click handlers don't propagate properly
+    setTimeout(() => this.setState({ show: !this.state.show }), 100);
   };
 
   render() {

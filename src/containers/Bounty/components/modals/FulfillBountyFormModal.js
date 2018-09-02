@@ -6,6 +6,7 @@ import { getUploadKeySelector } from 'public-modules/FileUpload/selectors';
 import { actions as fileUploadActions } from 'public-modules/FileUpload';
 import { Button, FileUpload, Modal, Text } from 'components';
 import { Field, reduxForm } from 'redux-form';
+import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
 import { FormTextInput, FormTextbox } from 'form-components';
 
@@ -133,9 +134,13 @@ let FulfillBountyFormModalComponent = props => {
   );
 };
 
-FulfillBountyFormModalComponent = reduxForm({ form: 'fulfillBounty' })(
-  FulfillBountyFormModalComponent
-);
+FulfillBountyFormModalComponent = compose(
+  reduxForm({
+    form: 'fulfillBounty',
+    destroyOnUnmount: false
+  }),
+  ModalFormReset
+)(FulfillBountyFormModalComponent);
 
 const mapStateToProps = (state, router) => {
   const uploadState = getUploadKeySelector('fulfillment')(state);

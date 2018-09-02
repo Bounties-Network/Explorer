@@ -2,6 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { curry } from 'lodash';
+import config from 'public-modules/config';
 import FunctionalLoginLock from 'containers/Login/FunctionalLoginLock';
 import { actions as authActions } from 'public-modules/Authentication';
 import { actions } from 'containers/Login/reducer';
@@ -63,6 +64,7 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
         logout,
         resetLoginState,
         resetLogoutState,
+        isCorrectNetwork,
         ...rest
       } = this.props;
 
@@ -81,6 +83,7 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
             previousAddress={previousAddress}
             addressMismatch={addressMismatch}
             isLoggedIn={isLoggedIn}
+            isCorrectNetwork={isCorrectNetwork}
             userImg={userImg}
             signingIn={signingIn}
             error={error}
@@ -107,8 +110,17 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
       user && addressSelector(state).toLowerCase() !== user.public_address;
     const visible = rootLogin.functionalVisible;
     const isLoggedIn = !!user;
+    const network = state.client.network;
+    const isCorrectNetwork = config.requiredNetwork
+      ? network === config.requiredNetwork
+      : network === 'mainNet' || network === 'rinkeby';
     const callbackCanTrigger =
-      hasWallet && !walletLocked && isLoggedIn && !addressMismatch && visible;
+      hasWallet &&
+      !walletLocked &&
+      isLoggedIn &&
+      !addressMismatch &&
+      isCorrectNetwork &&
+      visible;
 
     return {
       hasWallet,
@@ -118,6 +130,8 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
       isLoggedIn,
       visible,
       callbackCanTrigger,
+      network,
+      isCorrectNetwork,
       previousAddress: user && user.public_address,
       userImg: user && user.img,
       signingIn: loginState.loading,

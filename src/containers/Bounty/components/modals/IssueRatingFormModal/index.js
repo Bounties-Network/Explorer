@@ -5,6 +5,7 @@ import styles from './IssueRatingFormModal.module.scss';
 import { Avatar, Button, Modal, Text, Loader } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
+import { ModalFormReset } from 'hocs';
 import { FormTextbox, FormRating } from 'form-components';
 import { actions as reviewActions } from 'public-modules/Review';
 import { rootReviewSelector } from 'public-modules/Review/selectors';
@@ -163,7 +164,8 @@ const IssueRatingFormModal = compose(
       postReview: reviewActions.postReview
     }
   ),
-  reduxForm({ form: 'issueRating' })
+  reduxForm({ form: 'issueRating', enableReinitialize: true }),
+  ModalFormReset
 )(IssueRatingFormModalComponent);
 
 export default IssueRatingFormModal;

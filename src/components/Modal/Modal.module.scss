@@ -95,6 +95,7 @@ $modal-padding-large: $l-spacing;
 
 .fixed {
   position: fixed;
+
 }
 
 .modal {
@@ -109,6 +110,12 @@ $modal-padding-large: $l-spacing;
 
   @media only screen and (min-width: 48em) {
     padding: $modal-padding-large;
+  }
+}
+
+.unfixed {
+  .modal {
+    max-height: 100%;
   }
 }
 

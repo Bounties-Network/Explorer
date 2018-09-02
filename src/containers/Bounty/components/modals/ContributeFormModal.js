@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
+import { compose } from 'redux';
+import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
 import normalizers from 'utils/normalizers';
 import { FormTextInput } from 'form-components';
@@ -53,4 +55,10 @@ const ContributeFormModal = props => {
   );
 };
 
-export default reduxForm({ form: 'bountyContribute' })(ContributeFormModal);
+export default compose(
+  reduxForm({
+    form: 'bountyContribute',
+    destroyOnUnmount: false
+  }),
+  ModalFormReset
+)(ContributeFormModal);

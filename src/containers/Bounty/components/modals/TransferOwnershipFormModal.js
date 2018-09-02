@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './Modals.module.scss';
 import { Modal, Button } from 'components';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, Form } from 'redux-form';
+import { compose } from 'redux';
+import { ModalFormReset } from 'hocs';
 import { FormTextInput } from 'form-components';
 import validators from 'utils/validators';
 
@@ -9,7 +11,7 @@ const TransferOwnershipFormModal = props => {
   const { onClose, handleSubmit, visible } = props;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Modal
         dismissable={true}
         onClose={onClose}
@@ -46,10 +48,14 @@ const TransferOwnershipFormModal = props => {
           <Button type="action">Transfer Ownership</Button>
         </Modal.Footer>
       </Modal>
-    </form>
+    </Form>
   );
 };
 
-export default reduxForm({ form: 'transferOwnership' })(
-  TransferOwnershipFormModal
-);
+export default compose(
+  reduxForm({
+    form: 'transferOwnership',
+    destroyOnUnmount: false
+  }),
+  ModalFormReset
+)(TransferOwnershipFormModal);
