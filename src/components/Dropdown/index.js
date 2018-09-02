@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styles from './Dropdown.module.scss';
 
 import { Text } from 'components';
@@ -61,12 +62,15 @@ class Dropdown extends React.Component {
 
   hide = () => {
     // I don't like this, but otherwise the click handlers don't propagate properly
-    setTimeout(() => this.setState({ show: false }), 100);
+    setTimeout(() => this.setState({ show: false }), 150);
   };
 
   toggle = () => {
     // I don't like this, but otherwise the click handlers don't propagate properly
-    setTimeout(() => this.setState({ show: !this.state.show }), 100);
+    if (this.state.show) {
+      return setTimeout(() => this.setState({ show: !this.state.show }), 150);
+    }
+    return this.setState({ show: !this.state.show });
   };
 
   render() {
@@ -80,6 +84,22 @@ class Dropdown extends React.Component {
 
     if (position === 'left') {
       contentClass += ` ${styles.contentLeft}`;
+    }
+
+    let content;
+    if (show) {
+      content = (
+        <CSSTransition
+          key="1"
+          timeout={{ enter: 200, exit: 0 }}
+          classNames={{
+            enter: styles.enter,
+            enterActive: styles.enterActive
+          }}
+        >
+          <div className={contentClass}>{this.props.children[1]}</div>
+        </CSSTransition>
+      );
     }
 
     return (
@@ -96,7 +116,7 @@ class Dropdown extends React.Component {
         >
           {this.props.children[0]}
         </div>
-        <div className={contentClass}>{this.props.children[1]}</div>
+        <TransitionGroup>{content}</TransitionGroup>
       </div>
     );
   }

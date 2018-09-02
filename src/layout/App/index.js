@@ -85,9 +85,6 @@ class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     this.body = React.createRef();
-    this.state = {
-      showMobileSidebar: false
-    };
   }
 
   currentRouteSelector = () => {
@@ -96,14 +93,7 @@ class AppComponent extends React.Component {
   };
 
   render() {
-    const {
-      loadingUser,
-      clientInitialized,
-      userFail,
-      history,
-      network
-    } = this.props;
-    const { showMobileSidebar } = this.state;
+    const { loadingUser, clientInitialized, userFail } = this.props;
     const isPageLoading = loadingUser || !clientInitialized;
 
     return (
@@ -172,12 +162,12 @@ const mapStateToProps = state => {
   return {
     clientInitialized: initializedSelector(state),
     loadingUser: currentUserState.loading || !currentUserState.loaded,
-    userFail: currentUserState.error,
-    network: state.client.network
+    userFail: currentUserState.error
   };
 };
 
 const App = compose(
+  hot(module),
   withRouter,
   connect(
     mapStateToProps,
