@@ -3,6 +3,7 @@ import { ExplorerBody, FilterNav } from 'containers';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { actions as appActions } from 'layout/App/reducer';
 import { actions } from 'public-modules/Bounties';
 import { toggleFromParam } from 'utils/locationHelpers';
 import { SideOverlay } from 'components';
@@ -26,9 +27,6 @@ class Explorer extends React.Component {
     toggleStageFilter('active');
     addPlatformFilter('bounties-network');
     load(true);
-    this.state = {
-      mobileFilterVisible: false
-    };
   }
 
   componentDidUpdate(prevProps) {
@@ -55,28 +53,19 @@ class Explorer extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.hideFilters();
+  }
+
   render() {
     return (
       <div className={`${styles.explorerContainer}`}>
         <div className={styles.desktopFilter}>
           <FilterNav defaultPlatforms={['bounties-network']} position="fixed" />
         </div>
-        <div className={styles.mobileFilter}>
-          <SideOverlay
-            hasMask
-            visible={this.state.mobileFilterVisible}
-            theme="light"
-            position="right"
-            onClose={() => this.setState({ mobileFilterVisible: false })}
-          >
-            <div className={styles.filterWrapper}>
-              <FilterNav position="fixed" />
-            </div>
-          </SideOverlay>
-        </div>
         <ExplorerBody
           className={styles.explorerBody}
-          onOpenFilters={() => this.setState({ mobileFilterVisible: true })}
+          onOpenFilters={this.props.openFilters}
         />
       </div>
     );
@@ -96,7 +85,9 @@ export default compose(
       toggleStageFilter: actions.toggleStageFilter,
       addPlatformFilter: actions.addPlatformFilter,
       resetFilters: actions.resetFilters,
-      batch: actions.batch
+      batch: actions.batch,
+      openFilters: appActions.showFilterNav,
+      hideFilters: appActions.hideFilterNav
     }
   ),
   withRouter

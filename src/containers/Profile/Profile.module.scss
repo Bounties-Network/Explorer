@@ -52,15 +52,3 @@
     display: block;
   }
 }
-
-.mobileFilter {
-  display: block;
-  @media only screen and (min-width: 48em) {
-    display: none;
-  }
-}
-
-.filterWrapper {
-  max-width: $filterNav-width-fixed;
-  width: 70vw;
-}

@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
 import { ExplorerBody } from 'containers';
+import { filterConfig } from './constants';
 import FilterNav from 'containers/FilterNav';
 import styles from './Profile.module.scss';
 import { SideOverlay, ZeroState } from 'components';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
+import { actions as appActions } from 'layout/App/reducer';
 import { userInfoSelector } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
@@ -34,8 +36,11 @@ class ProfileComponent extends React.Component {
       loadUserInfo,
       setActiveTab,
       setProfileAddress,
-      resetState
+      resetState,
+      initializeFilterNav
     } = this.props;
+
+    initializeFilterNav(filterConfig);
 
     let address = match.params.address;
     if (!address) {
@@ -115,6 +120,7 @@ class ProfileComponent extends React.Component {
   componentWillUnmount() {
     const body = document.getElementsByClassName('page-body')[0];
     body.removeEventListener('scroll', this.onScroll);
+    this.props.hideFilters();
   }
 
   onScroll = () => {
@@ -135,34 +141,15 @@ class ProfileComponent extends React.Component {
   };
 
   render() {
-    const { error, loaded, user, loading } = this.props;
+    const { error, loaded, user, loading, showFilters } = this.props;
     const { position } = this.state;
 
     const profileFilterNav = (
       <FilterNav
         position={position}
-        config={{
-          sort: true,
-          search: false,
-          stage: true,
-          difficulty: false,
-          category: false,
-          platform: false
-        }}
-        resetFilters={{
-          address: false,
-          search: true,
-          stage: true,
-          difficulty: true,
-          category: true,
-          platform: true
-        }}
-        defaultStageFilters={{
-          active: false,
-          completed: false,
-          expired: false,
-          dead: false
-        }}
+        config={filterConfig.rootConfig}
+        resetFilters={filterConfig.resetFilters}
+        defaultStageFilters={filterConfig.defaultStageFilters}
       />
     );
 
@@ -174,23 +161,12 @@ class ProfileComponent extends React.Component {
         <div className={styles.profileBountiesContainer}>
           <div className={styles.profileBounties}>
             <div className={styles.desktopFilter}>{profileFilterNav}</div>
-            <div className={styles.mobileFilter}>
-              <SideOverlay
-                hasMask
-                visible={this.state.mobileFilterVisible}
-                theme="light"
-                position="right"
-                onClose={() => this.setState({ mobileFilterVisible: false })}
-              >
-                <div className={styles.filterWrapper}>{profileFilterNav}</div>
-              </SideOverlay>
-            </div>
             <ExplorerBody
               ref={re => {
                 this.explorerBody = re;
               }}
               className={styles.explorerBody}
-              onOpenFilters={() => this.setState({ mobileFilterVisible: true })}
+              onOpenFilters={showFilters}
             />
           </div>
         </div>
@@ -256,7 +232,10 @@ const Profile = compose(
       resetFilter: bountiesActions.resetFilter,
       loadUserInfo: userInfoActions.loadUserInfo,
       setActiveTab: actions.setActiveTab,
-      setProfileAddress: actions.setProfileAddress
+      setProfileAddress: actions.setProfileAddress,
+      showFilters: appActions.showFilterNav,
+      initializeFilterNav: appActions.initializeFilterNav,
+      hideFilters: appActions.resetFilterNav
     }
   )
 )(ProfileComponent);

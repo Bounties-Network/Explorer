@@ -9,11 +9,6 @@ const ModalContext = React.createContext({});
 class OverlayContent extends React.Component {
   componentDidMount() {
     this.overlay.focus();
-    document.getElementsByClassName('page-header')[0].style.zIndex = 0;
-  }
-
-  componentWillUnmount() {
-    document.getElementsByClassName('page-header')[0].style.zIndex = 10;
   }
 
   render() {

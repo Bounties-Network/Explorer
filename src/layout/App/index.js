@@ -17,8 +17,17 @@ import {
   Settings
 } from 'containers';
 import { RequireLoginComponent } from 'hocs';
-import { Sidebar, Loader, ToastContainer, Network } from 'components';
+import {
+  Sidebar,
+  Loader,
+  ToastContainer,
+  Network,
+  SideOverlay
+} from 'components';
+import { FilterNav } from 'containers';
 import { Header } from 'layout';
+import { rootAppSelector } from './selectors';
+import { actions as appActions } from './reducer';
 import { actions as authActions } from 'public-modules/Authentication';
 import { actions as categoryActions } from 'public-modules/Categories';
 import { initializedSelector } from 'public-modules/Client/selectors';
@@ -81,6 +90,55 @@ const PageHeader = compose(
   connect(mapHeaderStateToProps)
 )(HeaderComponent);
 
+class FilterNavComponent extends React.Component {
+  render() {
+    const { showNav, config, hideFilterNav } = this.props;
+
+    return (
+      <div className={styles.mobileFilter}>
+        <SideOverlay
+          hasMask
+          visible={showNav}
+          theme="light"
+          position="right"
+          onClose={hideFilterNav}
+        >
+          <div className={styles.filterWrapper}>
+            <FilterNav
+              config={config.rootConfig ? config.rootConfig : undefined}
+              resetFilters={
+                config.resetFilters ? config.resetFilters : undefined
+              }
+              defaultStageFilters={
+                config.defaultStageFilters
+                  ? config.defaultStageFilters
+                  : undefined
+              }
+            />
+          </div>
+        </SideOverlay>
+      </div>
+    );
+  }
+}
+
+const mapFilterNavStateToProps = state => {
+  const appState = rootAppSelector(state);
+  return {
+    config: appState.filterConfig,
+    showNav: appState.showFilterNav
+  };
+};
+
+const PageFilterNav = compose(
+  connect(
+    mapFilterNavStateToProps,
+    {
+      hideFilterNav: appActions.hideFilterNav
+    }
+  )
+)(FilterNavComponent);
+
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -113,6 +171,7 @@ class AppComponent extends React.Component {
         {!isPageLoading && !userFail
           ? [
               <PageHeader />,
+              <PageFilterNav />,
               <div className={`${styles.body} page-body`} ref={this.body}>
                 <Switch>
                   <Route exact path="/leaderboard" component={Leaderboard} />
