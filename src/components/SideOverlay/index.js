@@ -36,6 +36,23 @@ class OverlayContent extends React.Component {
 }
 
 class SideOverlay extends React.Component {
+  componentDidUpdate(prevProps) {
+    const { visible, hasMask } = this.props;
+
+    const pageBody = document.getElementsByClassName('page-body')[0];
+    if (!prevProps.visible && this.props.visible && hasMask) {
+      if (pageBody) {
+        pageBody.classList.add('mask-open');
+      }
+    }
+
+    if (prevProps.visible && !this.props.visible && hasMask) {
+      if (pageBody) {
+        pageBody.classList.remove('mask-open');
+      }
+    }
+  }
+
   render() {
     const { visible, onClose, theme, hasMask, position } = this.props;
 
