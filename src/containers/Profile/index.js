@@ -12,6 +12,7 @@ import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { userInfoSelector } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
+import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { locationNonceSelector } from 'layout/App/selectors';
 import { actions } from './reducer';
 
@@ -68,8 +69,10 @@ class ProfileComponent extends React.Component {
       setActiveTab,
       setProfileAddress,
       resetState,
-      resetFilter
+      resetFilter,
+      bountiesLoading
     } = this.props;
+    const { position } = this.state;
 
     if (
       prevProps.locationNonce !== locationNonce &&
@@ -92,6 +95,15 @@ class ProfileComponent extends React.Component {
       loadUserInfo(address.toLowerCase());
       setProfileAddress(address.toLowerCase());
       setActiveTab('issued');
+    }
+
+    if (
+      prevProps.bountiesLoading &&
+      !this.props.bountiesLoading &&
+      this.explorerBody &&
+      position === 'fixed'
+    ) {
+      ReactDOM.findDOMNode(this.explorerBody).scrollIntoView(false);
     }
   }
 
@@ -117,13 +129,13 @@ class ProfileComponent extends React.Component {
     if (top < headerHeight && position === 'relative') {
       this.setState({ position: 'fixed' });
     }
-    if (top > headerHeight && position === 'fixed') {
+    if (top > headerHeight + 1 && position === 'fixed') {
       this.setState({ position: 'relative' });
     }
   };
 
   render() {
-    const { error, loaded, user } = this.props;
+    const { error, loaded, user, loading } = this.props;
     const { position } = this.state;
 
     const profileFilterNav = (
@@ -173,8 +185,10 @@ class ProfileComponent extends React.Component {
                 <div className={styles.filterWrapper}>{profileFilterNav}</div>
               </SideOverlay>
             </div>
-
             <ExplorerBody
+              ref={re => {
+                this.explorerBody = re;
+              }}
               className={styles.explorerBody}
               onOpenFilters={() => this.setState({ mobileFilterVisible: true })}
             />
@@ -218,10 +232,12 @@ class ProfileComponent extends React.Component {
 const mapStateToProps = state => {
   const currentUser = getCurrentUserSelector(state);
   const userInfo = userInfoSelector(state);
+  const bountyState = rootBountiesSelector(state);
 
   return {
     currentUser,
     user: userInfo.loadedUser.user,
+    bountiesLoading: bountyState.loading,
     loading: userInfo.loading,
     loaded: userInfo.loaded,
     error: userInfo.error,
