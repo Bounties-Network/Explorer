@@ -91,7 +91,7 @@ class Dropdown extends React.Component {
       content = (
         <CSSTransition
           key="1"
-          timeout={{ enter: 200, exit: 0 }}
+          timeout={{ enter: 150, exit: 0 }}
           classNames={{
             enter: styles.enter,
             enterActive: styles.enterActive
