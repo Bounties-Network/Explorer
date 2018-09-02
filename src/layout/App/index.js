@@ -48,6 +48,16 @@ class HeaderComponent extends React.Component {
     }, NAV_ITEMS);
   }
 
+  componentDidUpdate(prevProps) {
+    const {
+      location: { pathname }
+    } = this.props;
+
+    if (prevProps.location.pathname !== pathname) {
+      document.getElementsByClassName('page-body')[0].scrollTo(0, 0);
+    }
+  }
+
   render() {
     const { showMobileSidebar } = this.state;
     const { history, network, location } = this.props;

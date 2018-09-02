@@ -52,7 +52,10 @@ const NotificationDropdown = props => {
         <Link
           to={link}
           className={styles.link}
-          onClick={() => setNotificationViewed(id)}
+          onClick={() => {
+            setNotificationViewed(id);
+            document.body.click();
+          }}
         >
           <ListGroup.ListItem
             className={`${styles.notificationListItem} ${
