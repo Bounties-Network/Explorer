@@ -52,7 +52,9 @@ const NotificationDropdown = props => {
         <Link
           to={link}
           className={styles.link}
-          onClick={() => setNotificationViewed(id)}
+          onClick={() => {
+            setNotificationViewed(id);
+          }}
         >
           <ListGroup.ListItem
             className={`${styles.notificationListItem} ${
@@ -76,7 +78,7 @@ const NotificationDropdown = props => {
   };
 
   return (
-    <Dropdown position="left" className={styles.customDropdown}>
+    <Dropdown position="left" className={styles.customDropdown} hideOnClick>
       <DropdownTrigger>
         <Text
           typeScale="h3"
@@ -93,7 +95,16 @@ const NotificationDropdown = props => {
       </DropdownTrigger>
       <DropdownContent>
         <div className={styles.notificationBox}>
-          <div className={styles.heading}>
+          <div
+            className={styles.heading}
+            onMouseDown={e => {
+              e.preventDefault();
+              return false;
+            }}
+            onClick={e => {
+              e.preventDefault();
+            }}
+          >
             <Text
               typeScale="h4"
               weight="fontWeight-medium"
@@ -149,24 +160,24 @@ const NotificationDropdown = props => {
           {loaded && (
             <ListGroup className={styles.notificationListGroup}>
               {renderNotifications()}
+              {count > notifications.length && (
+                <div className={styles.loadMore}>
+                  <Button
+                    onClick={e => {
+                      e.preventDefault();
+                      loadMoreNotifications();
+                    }}
+                    onMouseDown={e => {
+                      e.preventDefault();
+                      return false;
+                    }}
+                    loading={loadingMore}
+                  >
+                    Load More
+                  </Button>
+                </div>
+              )}
             </ListGroup>
-          )}
-          {count > notifications.length && (
-            <div className={styles.loadMore}>
-              <Button
-                onClick={e => {
-                  e.preventDefault();
-                  loadMoreNotifications();
-                }}
-                onMouseDown={e => {
-                  e.preventDefault();
-                  return false;
-                }}
-                loading={loadingMore}
-              >
-                Load More
-              </Button>
-            </div>
           )}
         </div>
       </DropdownContent>

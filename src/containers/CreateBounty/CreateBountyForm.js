@@ -95,6 +95,14 @@ class CreateBountyFormComponent extends React.Component {
       minDate
     } = this.props;
 
+    let submitButtonText = 'Create Bounty';
+    if (!activateNow) {
+      submitButtonText = 'Create Draft';
+    }
+    if (bountyId && !activateNow) {
+      submitButtonText = 'Update Draft';
+    }
+
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
         <FormSection>
@@ -402,7 +410,7 @@ class CreateBountyFormComponent extends React.Component {
             disabled={uploadLoading || (submitFailed && invalid)}
             loading={submittingBounty}
           >
-            {bountyId && !activateNow ? 'Update Draft' : 'Create bounty'}
+            {submitButtonText}
           </Button>
           {submitFailed && invalid ? (
             <Text inputLabel color="red" className={styles.submitError}>
