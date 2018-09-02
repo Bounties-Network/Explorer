@@ -95,7 +95,6 @@ $modal-padding-large: $l-spacing;
 
 .fixed {
   position: fixed;
-
 }
 
 .modal {
@@ -117,6 +116,10 @@ $modal-padding-large: $l-spacing;
   .modal {
     max-height: 100%;
   }
+}
+
+.unfixed {
+  z-index: 9;
 }
 
 .closeIcon {
