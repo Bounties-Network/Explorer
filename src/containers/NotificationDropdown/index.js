@@ -160,24 +160,24 @@ const NotificationDropdown = props => {
           {loaded && (
             <ListGroup className={styles.notificationListGroup}>
               {renderNotifications()}
+              {count > notifications.length && (
+                <div className={styles.loadMore}>
+                  <Button
+                    onClick={e => {
+                      e.preventDefault();
+                      loadMoreNotifications();
+                    }}
+                    onMouseDown={e => {
+                      e.preventDefault();
+                      return false;
+                    }}
+                    loading={loadingMore}
+                  >
+                    Load More
+                  </Button>
+                </div>
+              )}
             </ListGroup>
-          )}
-          {count > notifications.length && (
-            <div className={styles.loadMore}>
-              <Button
-                onClick={e => {
-                  e.preventDefault();
-                  loadMoreNotifications();
-                }}
-                onMouseDown={e => {
-                  e.preventDefault();
-                  return false;
-                }}
-                loading={loadingMore}
-              >
-                Load More
-              </Button>
-            </div>
           )}
         </div>
       </DropdownContent>
