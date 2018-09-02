@@ -19,16 +19,16 @@ export const apiEndpoint = {
 };
 
 export const DEFAULT_MARKDOWN = `# Description
-- Description of the bounty
-# Definition of Done
+Description of the bounty
+## Definition of Done
 - Definition 1
 - Definition 2
-# Requirements
+## Requirements
 A correct submission will:
 - requirement 1
 - requirement 2
 - requirement 3
-# Revisions
+### Revisions
 We will require at most 3 revisions for submitted work
 `;
 
