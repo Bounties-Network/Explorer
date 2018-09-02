@@ -72,19 +72,7 @@
 }
 
 .loadMoreButton {
-  margin-top: $xl-spacing;
-  padding: $m-spacing;
-  position: relative;
+  width: 100%;
   text-align: center;
-  z-index: 999;
-
-  @media only screen and (min-width: 35em) {
-    padding: 0;
-  }
-
-  button {
-    position: relative;
-    width: 100%;
-    z-index: 999;
-  }
+  padding-top: $l-spacing;
 }

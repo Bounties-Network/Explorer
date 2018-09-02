@@ -33,7 +33,7 @@ const defaultFilters = {
 
 const defaultSort = {
   sort: SORT_CREATED,
-  sortOrder: 'asc'
+  sortOrder: 'desc'
 };
 
 const initialState = {

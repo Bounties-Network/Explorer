@@ -30,6 +30,12 @@ class Cropper extends React.Component {
   }
 
   onDelete = e => {
+    this.removeCroppie(e);
+    this.props.onDelete();
+    this.setState({ src: null });
+  };
+
+  removeCroppie = e => {
     e.preventDefault();
 
     if (this.croppie) {
@@ -37,10 +43,8 @@ class Cropper extends React.Component {
       this.croppie = null;
     }
 
-    this.props.onDelete();
     this.setState({
       activeCrop: false,
-      src: null,
       nonce: this.state.nonce + 1
     });
   };
@@ -51,7 +55,7 @@ class Cropper extends React.Component {
     this.croppie
       .result({
         type: 'blob',
-        size: 'viewport',
+        size: { width: 300, height: 300 },
         quality: 0.75,
         circle: true
       })
@@ -81,12 +85,16 @@ class Cropper extends React.Component {
         boundary: {
           width: '150',
           height: '150'
-        }
+        },
+        enableOrientation: true
       });
     }
     const reader = new FileReader();
     reader.onload = e => {
-      this.croppie.bind({ url: e.target.result });
+      this.croppie.bind({
+        url: e.target.result,
+        orientation: 1
+      });
     };
     reader.readAsDataURL(file);
   };
@@ -177,15 +185,25 @@ class Cropper extends React.Component {
                 Save
               </Button>
             ) : null}
-            {activeCrop || src ? (
+            {src &&
+              !activeCrop && (
+                <Button
+                  type="link-destructive"
+                  onClick={this.onDelete}
+                  disabled={disabledState}
+                >
+                  Delete
+                </Button>
+              )}
+            {activeCrop && (
               <Button
                 type="link-destructive"
-                onClick={this.onDelete}
+                onClick={this.removeCroppie}
                 disabled={disabledState}
               >
-                Delete
+                Reset
               </Button>
-            ) : null}
+            )}
           </div>
         </div>
       </div>

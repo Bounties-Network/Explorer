@@ -53,7 +53,6 @@ class BountyComponent extends React.Component {
 
     resetCommentsState();
     setBountyId(match.params.id);
-    setActiveTab('submissions');
 
     if (match.path === '/bounty/draft/:id/') {
       loadDraftBounty(match.params.id);
@@ -62,9 +61,10 @@ class BountyComponent extends React.Component {
     if (match.path === '/bounty/:id/') {
       loadBounty(match.params.id);
 
+      // load submissions
       resetFilters();
       addBountyFilter(match.params.id);
-      loadFulfillments(match.params.id);
+      setActiveTab('submissions');
 
       const values = queryStringToObject(location.search);
 
@@ -240,7 +240,7 @@ class BountyComponent extends React.Component {
                   </Text>
                   <Text>{DIFFICULTY_MAPPINGS[bounty.experienceLevel]}</Text>
                 </div>
-                {bounty.sourceDirectoryHash ? (
+                {bounty.sourceDirectoryHash && (
                   <div className={styles.labelGroup}>
                     <Text inputLabel className={styles.label}>
                       Associated Files
@@ -254,7 +254,25 @@ class BountyComponent extends React.Component {
                       {bounty.sourceFileName}
                     </Text>
                   </div>
-                ) : null}
+                )}
+                {typeof bounty.revisions == 'number' && (
+                  <div className={styles.labelGroup}>
+                    <Text inputLabel className={styles.label}>
+                      Expected Revisions
+                    </Text>
+                    <Text>{bounty.revisions}</Text>
+                  </div>
+                )}
+                {bounty.webReferenceURL && (
+                  <div className={styles.labelGroup}>
+                    <Text inputLabel className={styles.label}>
+                      Link
+                    </Text>
+                    <Text link src={`${bounty.webReferenceURL}`}>
+                      {bounty.webReferenceURL}
+                    </Text>
+                  </div>
+                )}
                 <div className={styles.social}>
                   <Social />
                 </div>

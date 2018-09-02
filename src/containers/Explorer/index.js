@@ -12,9 +12,19 @@ import styles from './Explorer.module.scss';
 class Explorer extends React.Component {
   constructor(props) {
     super(props);
-    const { resetState, history, location, load, toggleStageFilter } = props;
+
+    const {
+      resetState,
+      history,
+      location,
+      load,
+      addPlatformFilter,
+      toggleStageFilter
+    } = props;
+
     resetState();
     toggleStageFilter('active');
+    addPlatformFilter('bounties-network');
     load(true);
     this.state = {
       mobileFilterVisible: false
@@ -26,15 +36,21 @@ class Explorer extends React.Component {
       batch,
       locationNonce,
       history,
+      location,
       resetFilters,
       load,
+      addPlatformFilter,
       toggleStageFilter
     } = this.props;
 
-    if (prevProps.locationNonce !== locationNonce && history.action === 'POP') {
+    if (
+      prevProps.locationNonce !== locationNonce &&
+      (history.action === 'POP' || location.search === '')
+    ) {
       batch(true);
       resetFilters();
       toggleStageFilter('active');
+      addPlatformFilter('bounties-network');
       load(true);
     }
   }
@@ -43,7 +59,7 @@ class Explorer extends React.Component {
     return (
       <div className={`${styles.explorerContainer}`}>
         <div className={styles.desktopFilter}>
-          <FilterNav position="fixed" />
+          <FilterNav defaultPlatforms={['bounties-network']} position="fixed" />
         </div>
         <div className={styles.mobileFilter}>
           <SideOverlay
@@ -78,6 +94,7 @@ export default compose(
       resetState: actions.resetState,
       load: actions.loadBounties,
       toggleStageFilter: actions.toggleStageFilter,
+      addPlatformFilter: actions.addPlatformFilter,
       resetFilters: actions.resetFilters,
       batch: actions.batch
     }

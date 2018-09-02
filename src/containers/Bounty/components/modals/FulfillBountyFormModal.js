@@ -142,10 +142,12 @@ FulfillBountyFormModalComponent = compose(
   ModalFormReset
 )(FulfillBountyFormModalComponent);
 
-const mapStateToProps = (state, router) => {
+const mapStateToProps = (state, props) => {
+  const { name, email } = props;
   const uploadState = getUploadKeySelector('fulfillment')(state);
 
   return {
+    initialValues: { name, email },
     uploading: uploadState ? uploadState.uploading : false,
     error: uploadState ? uploadState.error : false,
     ipfsHash: uploadState ? uploadState.ipfsHash : '',

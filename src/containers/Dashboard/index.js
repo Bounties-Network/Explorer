@@ -34,6 +34,7 @@ class DashboardComponent extends React.Component {
       // bounties panel helpers
       resetState,
       addIssuerFilter,
+      toggleStageFilter,
       setSort,
       public_address,
 
@@ -44,6 +45,7 @@ class DashboardComponent extends React.Component {
     // load bounties panel
     resetState();
     addIssuerFilter(public_address);
+    toggleStageFilter('active');
     setSort(SORT_CREATED, 'desc');
     loadBounties(true);
     loadDrafts();
@@ -121,6 +123,7 @@ const Dashboard = compose(
       loadUserInfo: userInfoActions.loadUserInfo,
       resetState: bountiesActions.resetState,
       addIssuerFilter: bountiesActions.addIssuerFilter,
+      toggleStageFilter: bountiesActions.toggleStageFilter,
       setSort: bountiesActions.setSort,
       setActiveSubmissionsTab: submissionsPanelActions.setActiveTab,
 

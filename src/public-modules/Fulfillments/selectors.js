@@ -14,6 +14,7 @@ export const fulfillmentsQuerySelector = createSelector(
   fulfillmentsState => {
     const query = {
       limit: LIMIT,
+      ordering: '-fulfillment_created',
       platform__in: config.platform
     };
 

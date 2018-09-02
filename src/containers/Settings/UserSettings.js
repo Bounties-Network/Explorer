@@ -22,7 +22,11 @@ import { UPLOAD_KEY } from './constants';
 class UserSettingsComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { emptyProfileImage: !props.ipfsHash };
+
+    const { ipfsHash, fileName } = props;
+    this.state = {
+      profileImage: ipfsHash ? ipfsToHttp(ipfsHash, fileName) : null
+    };
   }
   render() {
     const {
@@ -38,32 +42,29 @@ class UserSettingsComponent extends React.Component {
       savingSettings,
       ipfsHash,
       fileName,
-      isProfilePhotoDirty,
       resetUpload,
       initiateWalkthrough
     } = this.props;
 
-    const { emptyProfileImage } = this.state;
+    const { profileImage } = this.state;
 
     const handleSaveSettings = values => {
       saveSettings({
         ...values,
-        ipfsHash: emptyProfileImage ? '' : ipfsHash,
-        fileName: emptyProfileImage ? '' : fileName
+        ipfsHash: ipfsHash,
+        fileName: fileName
       });
     };
 
     const handleUpload = file => {
-      this.setState({ emptyProfileImage: false });
+      this.setState({ profileImage: URL.createObjectURL(file) });
       uploadFile(UPLOAD_KEY, file);
     };
 
     const handleResetUpload = () => {
-      this.setState({ emptyProfileImage: !isProfilePhotoDirty });
+      this.setState({ profileImage: null });
       resetUpload(UPLOAD_KEY);
     };
-
-    const ipfsProfilePhoto = ipfsHash ? ipfsToHttp(ipfsHash, fileName) : '';
 
     return (
       <form onSubmit={handleSubmit(values => handleSaveSettings(values))}>
@@ -75,7 +76,7 @@ class UserSettingsComponent extends React.Component {
                 onChange={file => handleUpload(file)}
                 onDelete={handleResetUpload}
                 loading={uploading}
-                src={emptyProfileImage ? null : ipfsProfilePhoto}
+                src={profileImage}
               />
             </FormSection.InputGroup>
           </FormSection.Section>
@@ -257,9 +258,6 @@ const mapStateToProps = state => {
     uploaded: uploadState.uploaded || false,
     ipfsHash: uploadState.ipfsHash || currentUser.profileDirectoryHash,
     fileName: uploadState.fileName || currentUser.profileFileName,
-    isProfilePhotoDirty:
-      (uploadState.ipfsHash || currentUser.profileDirectoryHash) !==
-      currentUser.profileDirectoryHash,
     skills: skillsSelector(state),
     languages: languagesSelector(state),
     savingSettings: settingsSelector(state).saving,
@@ -267,7 +265,11 @@ const mapStateToProps = state => {
   };
 };
 
-UserSettingsComponent = reduxForm({ form: 'settings' })(UserSettingsComponent);
+UserSettingsComponent = reduxForm({
+  form: 'settings',
+  enableReinitialize: true,
+  destroyOnUnmount: false
+})(UserSettingsComponent);
 
 const UserSettings = compose(
   connect(

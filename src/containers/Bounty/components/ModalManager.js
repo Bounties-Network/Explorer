@@ -23,6 +23,7 @@ import {
 
 const ModalManagerComponent = props => {
   const {
+    user,
     bounty,
     onExtendDeadlineError,
     modalVisible,
@@ -169,6 +170,8 @@ const ModalManagerComponent = props => {
         visible={modalType === 'fulfillBounty'}
         onClose={closeModal}
         onSubmit={fulfillBounty}
+        name={user.name}
+        email={user.email}
       />
       <IssueRatingFormModal
         key="issuer"

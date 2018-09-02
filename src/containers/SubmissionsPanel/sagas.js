@@ -11,12 +11,15 @@ const { loadUserInfo } = userInfoActions;
 const {
   addFulfillerFilter,
   addIssuerFilter,
-  loadFulfillments
+  loadFulfillments,
+  resetFilters
 } = fulfillmentsActions;
 
 export function* loadActiveTab(action) {
   const public_address = yield select(getUserAddressSelector);
   const { tabKey } = action;
+
+  yield put(resetFilters());
 
   if (tabKey === 'received') {
     yield put(addIssuerFilter(public_address));

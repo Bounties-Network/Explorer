@@ -237,17 +237,35 @@ class CreateBountyFormComponent extends React.Component {
               necessary for a contributor to complete the bounty.
             </FormSection.SubText>
             <FormSection.InputGroup>
-              <FileUpload
-                disabled={submittingBounty}
-                onChange={file =>
-                  file
-                    ? uploadFile('createBounty', file)
-                    : resetUpload('createBounty')
-                }
-                onUnmount={() => deleteUploadKey('createBounty')}
-                loading={uploadLoading}
-                filename={filename}
-              />
+              <div className="row">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                  <Field
+                    name="webReferenceURL"
+                    disabled={submittingBounty}
+                    component={FormTextInput}
+                    type="text"
+                    label="Web link"
+                    validate={[validators.maxLength(256), validators.isURL]}
+                    placeholder="Enter URL..."
+                  />
+                </div>
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                  <Text inputLabel color="defaultGrey">
+                    Associated file
+                  </Text>
+                  <FileUpload
+                    disabled={submittingBounty}
+                    onChange={file =>
+                      file
+                        ? uploadFile('createBounty', file)
+                        : resetUpload('createBounty')
+                    }
+                    onUnmount={() => deleteUploadKey('createBounty')}
+                    loading={uploadLoading}
+                    filename={filename}
+                  />
+                </div>
+              </div>
             </FormSection.InputGroup>
           </FormSection.Section>
           <FormSection.Section title="DEADLINE">

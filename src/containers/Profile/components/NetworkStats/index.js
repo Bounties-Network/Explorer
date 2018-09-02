@@ -3,6 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { LoadComponent } from 'hocs';
 import styles from './NetworkStats.module.scss';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { ReviewsModal } from '../';
 import { Circle, Switch, Text } from 'components';
 import { capitalize } from 'lodash';
@@ -38,7 +39,7 @@ const NetworkStatsComponent = props => {
     let value = stats[switchValue][key];
     let color = value >= 0.8 ? 'green' : value >= 0.5 ? 'orange' : 'red';
 
-    if (value > 1) {
+    if (value >= 1) {
       color = value >= 4 ? 'green' : value >= 3 ? 'orange' : 'red';
     }
 
@@ -68,6 +69,10 @@ const NetworkStatsComponent = props => {
             }`}
           >
             {text}
+            <FontAwesomeIcon
+              icon={['far', 'external-link']}
+              className={styles.icon}
+            />
           </Text>
         ) : (
           <Text

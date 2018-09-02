@@ -132,8 +132,10 @@ export function* createBounty(action) {
     calculated_fulfillmentAmount,
     fulfillmentAmount,
     paysTokens,
+    revisions,
     sourceDirectoryHash,
     sourceFileName,
+    webReferenceURL,
     uid
   } = values;
 
@@ -186,8 +188,9 @@ export function* createBounty(action) {
       sourceFileHash: '',
       sourceDirectoryHash,
       sourceFileName,
-      webReferenceUrl: '',
+      webReferenceURL,
       categories,
+      revisions,
       created: parseInt(new Date().getTime() / 1000) | 0,
       tokenAddress: tokenContract || '',
       difficulty: experienceLevel,
