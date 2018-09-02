@@ -18,11 +18,13 @@
   resize: vertical;
   flex-grow: 1;
   width: 100%;
+  min-height: 100px;
   overflow: auto;
   background-color: $base-input-background;
   border: $base-border;
   border-radius: $base-border-radius;
   font-size: $body-font-size;
+  font-family: inherit;
   padding: $base-spacing;
 
   &::placeholder {

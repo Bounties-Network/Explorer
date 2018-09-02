@@ -18,7 +18,7 @@ $checked-color: $brand-blue;
       border-radius: 50px;;
       color: $brand-white;
       display: inline-block;
-      padding: $s-spacing ($base-spacing * 1.5);
+      padding: 0 ($base-spacing * 1.5);
       cursor: pointer;
 
       &:not(:last-child) {
