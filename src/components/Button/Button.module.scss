@@ -55,10 +55,11 @@
 
   &.disabled{
      background-color: $brand-nearWhite;
-     color: $brand-lightGrey;
+     border: 0;
+     color: lighten($brand-grey, 15%);
 
      &:hover {
-       border: $base-border;
+       border: 0;
      }
   }
 
