@@ -5,28 +5,28 @@ const initialState = {
   tokens: []
 };
 
-const LOAD_TOKENSINFO = 'tokens/LOAD_TOKENSINFO';
-const LOAD_TOKENSINFO_SUCCESS = 'tokens/LOAD_TOKENSINFO_SUCCESS';
-const LOAD_TOKENSINFO_FAIL = 'tokens/LOAD_TOKENSINFO_FAIL';
+const LOAD_TOKENS = 'tokens/LOAD_TOKENS';
+const LOAD_TOKENS_SUCCESS = 'tokens/LOAD_TOKENS_SUCCESS';
+const LOAD_TOKENS_FAIL = 'tokens/LOAD_TOKENS_FAIL';
 
-function loadTokensInfo() {
-  return { type: LOAD_TOKENSINFO };
+function loadTokens() {
+  return { type: LOAD_TOKENS };
 }
 
-function loadTokensInfoSuccess(tokens) {
+function loadTokensSuccess(tokens) {
   return {
-    type: LOAD_TOKENSINFO_SUCCESS,
+    type: LOAD_TOKENS_SUCCESS,
     tokens
   };
 }
 
-function loadTokensInfoFail(error) {
-  return { type: LOAD_TOKENSINFO_FAIL, error };
+function loadTokensFail(error) {
+  return { type: LOAD_TOKENS_FAIL, error };
 }
 
-function TokensInfoReducer(state = initialState, action) {
+function TokensReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_TOKENSINFO: {
+    case LOAD_TOKENS: {
       return {
         ...state,
         loading: true,
@@ -34,18 +34,17 @@ function TokensInfoReducer(state = initialState, action) {
         error: false
       };
     }
-    case LOAD_TOKENSINFO_SUCCESS: {
+    case LOAD_TOKENS_SUCCESS: {
       const { tokens } = action;
 
       return {
         ...state,
         loading: false,
         loaded: true,
-        error: false,
         tokens
       };
     }
-    case LOAD_TOKENSINFO_FAIL: {
+    case LOAD_TOKENS_FAIL: {
       return {
         ...state,
         loading: false,
@@ -59,15 +58,15 @@ function TokensInfoReducer(state = initialState, action) {
 }
 
 export const actions = {
-  loadTokensInfo,
-  loadTokensInfoSuccess,
-  loadTokensInfoFail
+  loadTokens,
+  loadTokensSuccess,
+  loadTokensFail
 };
 
 export const actionTypes = {
-  LOAD_TOKENSINFO,
-  LOAD_TOKENSINFO_SUCCESS,
-  LOAD_TOKENSINFO_FAIL
+  LOAD_TOKENS,
+  LOAD_TOKENS_SUCCESS,
+  LOAD_TOKENS_FAIL
 };
 
-export default TokensInfoReducer;
+export default TokensReducer;

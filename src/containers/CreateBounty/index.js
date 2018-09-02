@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { PageCard } from 'explorer-components';
 import { BigNumber } from 'bignumber.js';
 import { actions as bountyActions } from 'public-modules/Bounty';
+import { actions as tokensActions } from 'public-modules/Tokens';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import CreateBountyForm from './CreateBountyForm';
 import {
@@ -17,8 +18,11 @@ import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import config from 'public-modules/config';
 
 class CreateBountyComponent extends React.Component {
-  componentWillMount() {
-    const { match, getDraft } = this.props;
+  constructor(props) {
+    super(props);
+    const { match, getDraft, loadTokens } = props;
+
+    loadTokens();
 
     if (match.path === '/createBounty/draft/:id/') {
       getDraft(match.params.id);
@@ -119,7 +123,10 @@ const mapStateToProps = (state, router) => {
 
 const CreateBounty = connect(
   mapStateToProps,
-  { getDraft: bountyActions.getDraft }
+  {
+    getDraft: bountyActions.getDraft,
+    loadTokens: tokensActions.loadTokens
+  }
 )(CreateBountyComponent);
 
 export default CreateBounty;
