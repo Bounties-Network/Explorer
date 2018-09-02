@@ -88,5 +88,6 @@ $brand-bountyCard-box-shadow: 0 0 10px $brand-lightGrey;
 $base-border: $base-border-width solid $brand-lightGrey;
 $light-border: $base-border-width solid $brand-nearWhite;
 
-// Overlay Grey
-$overlay-background: rgba(0, 0, 0, 0.6);
+// Overlay
+$overlay-color: darken($brand-dark-purple, 15%);
+$overlay-background: rgba($overlay-color, 0.65);
