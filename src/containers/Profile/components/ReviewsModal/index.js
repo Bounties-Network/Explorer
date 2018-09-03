@@ -36,7 +36,7 @@ let ReviewsModal = props => {
     <ZeroState
       className={styles.reviewsZeroState}
       type="error"
-      icon={['fal', 'expand']}
+      icon={['fal', 'star']}
       iconColor="red"
       title="No Reviews Found"
       text="We didn't find any reviews associated with this action."

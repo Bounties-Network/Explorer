@@ -112,7 +112,11 @@
 
 .loadMore {
   text-align: center;
-  margin: $s-spacing 0;
+  padding: $l-spacing;
+
+  button {
+    width: 100%;
+  }
 }
 
 .zeroState {

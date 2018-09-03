@@ -21,6 +21,7 @@ import signin from '@fortawesome/fontawesome-pro-light/faSignIn';
 import tachometer from '@fortawesome/fontawesome-pro-regular/faTachometer';
 import listAlt from '@fortawesome/fontawesome-pro-regular/faListAlt';
 import trophyAlt from '@fortawesome/fontawesome-pro-regular/faTrophyAlt';
+import trophyAltLight from '@fortawesome/fontawesome-pro-light/faTrophyAlt';
 import userAlt from '@fortawesome/fontawesome-pro-regular/faUserAlt';
 import userAltLight from '@fortawesome/fontawesome-pro-light/faUserAlt';
 import chevronUp from '@fortawesome/fontawesome-pro-regular/faChevronUp';
@@ -48,6 +49,7 @@ import eye from '@fortawesome/fontawesome-pro-light/faEye';
 import globe from '@fortawesome/fontawesome-pro-regular/faGlobe';
 import idCardAlt from '@fortawesome/fontawesome-pro-light/faIdCardAlt';
 import star from '@fortawesome/fontawesome-pro-regular/faStar';
+import starLight from '@fortawesome/fontawesome-pro-light/faStar';
 import calendarAlt from '@fortawesome/fontawesome-pro-regular/faCalendarAlt';
 import calendarPlus from '@fortawesome/fontawesome-pro-regular/faCalendarPlus';
 import dollarSign from '@fortawesome/fontawesome-pro-regular/faDollarSign';
@@ -76,6 +78,7 @@ library.add(
   angleDoubleUp,
   check,
   star,
+  starLight,
   idCardAlt,
   linkedin,
   github,
@@ -140,5 +143,6 @@ library.add(
   sync,
   userFriends,
   edit,
-  expand
+  expand,
+  trophyAltLight
 );
