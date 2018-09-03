@@ -34,6 +34,7 @@ let EmailPreferencesComponent = props => {
           form="emailPreferences"
           disabled={saving}
           name={key}
+          className={key === 'activity' ? styles.hide : ''}
           component={PreferencesToggle}
           label={value}
         />

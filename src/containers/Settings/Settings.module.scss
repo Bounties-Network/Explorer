@@ -14,6 +14,10 @@
   }
 }
 
+.hide {
+  display: none;
+}
+
 .input:not(:last-child) {
   padding-bottom: $l-spacing;
 
