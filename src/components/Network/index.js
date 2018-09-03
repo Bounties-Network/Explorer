@@ -13,7 +13,7 @@ const Network = props => {
     networkName = 'Rinkeby Network';
   }
 
-  if (network === 'mainnet') {
+  if (network === 'mainNet') {
     networkName = 'Main Ethereum Network';
     circleStyle = styles.mainnetCircle;
   }
@@ -30,13 +30,13 @@ const Network = props => {
 };
 
 Network.propTypes = {
-  network: PropTypes.oneOf(['rinkeby', 'mainnet']),
+  network: PropTypes.oneOf(['rinkeby', 'mainNet']),
   theme: PropTypes.oneOf(['light', 'dark']),
   className: PropTypes.string
 };
 
 Network.defaultProps = {
-  network: 'mainnet',
+  network: 'mainNet',
   theme: 'dark'
 };
 

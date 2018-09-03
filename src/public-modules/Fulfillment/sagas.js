@@ -4,11 +4,9 @@ import { actionTypes, actions } from 'public-modules/Fulfillment';
 import { actions as transactionActions } from 'public-modules/Transaction';
 import { addressSelector } from 'public-modules/Client/selectors';
 import { addJSON } from 'public-modules/Utilities/ipfsClient';
+import siteConfig from 'public-modules/config';
 import { promisifyContractCall } from 'public-modules/Utilities/helpers';
-import {
-  getContractClient,
-  getWeb3Client,
-} from 'public-modules/Client/sagas';
+import { getContractClient, getWeb3Client } from 'public-modules/Client/sagas';
 
 const {
   setPendingWalletConfirm,
@@ -104,9 +102,9 @@ export function* createFulfillment(action) {
       }
     },
     meta: {
-      platform: 'bounties-network',
-      schemaVersion: '0.1',
-      schemaName: 'standardSchema'
+      platform: siteConfig.postingPlatform,
+      schemaVersion: siteConfig.postingPlatform,
+      schemaName: siteConfig.postingSchema
     }
   };
 
