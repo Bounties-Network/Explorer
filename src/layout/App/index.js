@@ -5,6 +5,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { map } from 'lodash';
+import { hasWalletSelector } from 'public-modules/Client/selectors';
 import { NAV_ITEMS } from './constants';
 import {
   Explorer,
@@ -60,7 +61,7 @@ class HeaderComponent extends React.Component {
 
   render() {
     const { showMobileSidebar } = this.state;
-    const { history, network, location } = this.props;
+    const { history, network, location, hasWallet } = this.props;
 
     return (
       <React.Fragment>
@@ -78,11 +79,13 @@ class HeaderComponent extends React.Component {
           onMobileHide={() => this.setState({ showMobileSidebar: false })}
         >
           <Sidebar.TabGroup>{this.renderSideNavItems()}</Sidebar.TabGroup>
-          <Sidebar.Footer>
-            <div className={styles.network}>
-              <Network network={network} theme="light" />
-            </div>
-          </Sidebar.Footer>
+          {hasWallet && (
+            <Sidebar.Footer>
+              <div className={styles.network}>
+                <Network network={network} theme="light" />
+              </div>
+            </Sidebar.Footer>
+          )}
         </Sidebar>
       </React.Fragment>
     );
@@ -229,6 +232,7 @@ const mapStateToProps = state => {
   const currentUserState = getCurrentUserStateSelector(state);
 
   return {
+    hasWallet: hasWalletSelector(state),
     clientInitialized: initializedSelector(state),
     loadingUser: currentUserState.loading || !currentUserState.loaded,
     userFail: currentUserState.error
