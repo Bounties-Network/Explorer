@@ -235,7 +235,7 @@ const FilterNavComponent = props => {
           />
         </div>
       )}
-      {config.platform && (
+      {config.platform && config.platform.length && (
         <div className={styles.categoryFilter}>
           <Text weight="fontWeight-medium" className={styles.groupText}>
             Platform

@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions as appActions } from 'layout/App/reducer';
 import { actions } from 'public-modules/Bounties';
+import config from 'public-modules/config';
 import { toggleFromParam } from 'utils/locationHelpers';
 import { SideOverlay } from 'components';
 import { locationNonceSelector } from 'layout/App/selectors';
@@ -25,7 +26,7 @@ class Explorer extends React.Component {
 
     resetState();
     toggleStageFilter('active');
-    addPlatformFilter('bounties-network');
+    addPlatformFilter(config.postingPlatform);
     load(true);
   }
 
@@ -48,7 +49,7 @@ class Explorer extends React.Component {
       batch(true);
       resetFilters();
       toggleStageFilter('active');
-      addPlatformFilter('bounties-network');
+      addPlatformFilter(config.postingPlatform);
       load(true);
     }
   }
@@ -61,7 +62,10 @@ class Explorer extends React.Component {
     return (
       <div className={`${styles.explorerContainer}`}>
         <div className={styles.desktopFilter}>
-          <FilterNav defaultPlatforms={['bounties-network']} position="fixed" />
+          <FilterNav
+            defaultPlatforms={[config.postingPlatform]}
+            position="fixed"
+          />
         </div>
         <ExplorerBody
           className={styles.explorerBody}
