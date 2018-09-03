@@ -95,7 +95,7 @@ class ActivityPanelComponent extends React.Component {
             type="error"
             text={'Something went wrong. Try again later.'}
             iconColor="red"
-            icon={['far', 'exclamation-triangle']}
+            icon={['fal', 'exclamation-triangle']}
           />
         </div>
       );

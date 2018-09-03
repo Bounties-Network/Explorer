@@ -58,7 +58,12 @@ const SubmissionItem = props => {
         contentType="numerical"
       >
         <div className={styles.value}>
-          <Text color="purple" typeScale="h4" className={styles.usd}>
+          <Text
+            color="purple"
+            typeScale="h4"
+            weight="fontWeight-medium"
+            className={styles.usd}
+          >
             ${usd}
           </Text>
           <Text color="defaultGrey" typeScale="Small">

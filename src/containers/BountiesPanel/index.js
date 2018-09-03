@@ -96,12 +96,13 @@ class BountiesPanelComponent extends React.Component {
         <div className={styles.zeroState}>
           <ZeroState
             title={`You have no ${currentTab} bounties`}
-            text="It looks like you don't have any active bounties at the
+            text={`It looks like you don't have any ${currentTab} bounties at the
               moment. Enter a title for a new bounty here to get started
-              creating one!"
+              creating one!`}
             action
             actionText="Create new bounty"
             onActionClick={() => history.push('/createBounty')}
+            icon={['fal', 'expand']}
             iconColor="blue"
           />
         </div>
@@ -121,7 +122,7 @@ class BountiesPanelComponent extends React.Component {
             type="error"
             text="Something went wrong. Try again later."
             iconColor="red"
-            icon={['far', 'exclamation-triangle']}
+            icon={['fal', 'exclamation-triangle']}
           />
         </div>
       );

@@ -8,6 +8,7 @@
   word-break: normal !important;
   text-align: right;
   justify-content: flex-end;
+  padding: $s-spacing 0;
 }
 
 .usd {
@@ -16,6 +17,7 @@
 
 .link {
   color: inherit;
+  line-height: $line-height-small;
 }
 
 .link:hover {
