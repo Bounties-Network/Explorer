@@ -65,7 +65,7 @@ class BountyComponent extends React.Component {
       // load submissions
       resetFilters();
       addBountyFilter(match.params.id);
-      setActiveTab('submissions');
+      setActiveTab('comments');
 
       const values = queryStringToObject(location.search);
 
