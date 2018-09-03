@@ -71,22 +71,24 @@ export function* saveEmailPreferences(action) {
     FulfillmentAcceptedFulfiller,
     FulfillmentSubmittedIssuer,
     FulfillmentUpdatedIssuer,
-    RatingIssued,
-    TransferRecipient
+    RatingReceived,
+    TransferRecipient,
+    ContributionReceived
   } = values;
 
   const data = {
     emails: {
       activity,
       both: {
-        RatingIssued
+        RatingReceived
       },
       issuer: {
         BountyCommentReceived,
         BountyExpired,
         TransferRecipient,
         FulfillmentUpdatedIssuer,
-        FulfillmentSubmittedIssuer
+        FulfillmentSubmittedIssuer,
+        ContributionReceived
       },
       fulfiller: {
         FulfillmentAcceptedFulfiller

@@ -81,7 +81,7 @@ const mapStateToProps = state => {
 
   return {
     initialValues: {
-      RatingIssued: preferences.both.RatingIssued,
+      RatingReceived: preferences.both.RatingReceived,
       TransferRecipient: preferences.issuer.TransferRecipient,
       BountyCommentReceived: preferences.issuer.BountyCommentReceived,
       BountyExpired: preferences.issuer.BountyExpired,
@@ -89,6 +89,7 @@ const mapStateToProps = state => {
       FulfillmentSubmittedIssuer: preferences.issuer.FulfillmentSubmittedIssuer,
       FulfillmentAcceptedFulfiller:
         preferences.fulfiller.FulfillmentAcceptedFulfiller,
+      ContributionReceived: preferences.issuer.ContributionReceived,
       activity: preferences.activity
     },
     saving: emailPreferencesSelector(state).saving,
