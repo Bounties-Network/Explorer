@@ -50,6 +50,7 @@ const NotificationDropdown = props => {
 
       return (
         <Link
+          key={id}
           to={link}
           className={styles.link}
           onClick={() => {
@@ -69,7 +70,7 @@ const NotificationDropdown = props => {
               createdAt={created}
               notifierWidth="large"
               userAddress={from_user && from_user.public_address}
-              profileImg={from_user && from_user.profile_image}
+              profileImage={from_user && from_user.profile_image}
             />
           </ListGroup.ListItem>
         </Link>
