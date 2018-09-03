@@ -14,6 +14,7 @@ import moment from 'moment';
 import { Loader, ZeroState } from 'components';
 import { DEFAULT_MARKDOWN } from 'utils/constants';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
+import config from 'public-modules/config';
 
 class CreateBountyComponent extends React.Component {
   componentWillMount() {
@@ -99,8 +100,10 @@ const mapStateToProps = (state, router) => {
       experienceLevel:
         DIFFICULTY_MAPPINGS[draftBounty.experienceLevel] || 'Beginner',
       revisions: draftBounty.revisions || 3,
-      paysTokens: draftBounty.paysTokens || false,
-      tokenContract: draftBounty.tokenContract,
+      paysTokens: draftBounty.paysTokens || !!config.defaultToken || false,
+      tokenContract:
+        draftBounty.tokenContract ||
+        (config.defaultToken && config.defaultToken.address),
       fulfillmentAmount: fulfillmentAmount,
       activateNow: true,
       issuer_email: draftBounty.issuer_email || user.email || '',
