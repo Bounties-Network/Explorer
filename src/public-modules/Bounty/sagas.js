@@ -83,7 +83,7 @@ export function* createOrUpdateDraft(action) {
     try {
       const { symbol, decimals } = yield call(getTokenData, tokenContract);
       draftBountyData.tokenSymbol = symbol;
-      draftBountyData.tokenDecimals = parseInt(decimals);
+      draftBountyData.tokenDecimals = BigNumber(decimals, 10).toString();
       draftBountyData.fulfillmentAmount = calculateDecimals(
         draftBountyData.fulfillmentAmount,
         decimals
@@ -158,7 +158,7 @@ export function* createBounty(action) {
       );
       contractBalance = calculateDecimals(
         BigNumber(balance, 10).toString(),
-        decimals
+        BigNumber(decimals, 10).toString()
       );
     } catch (e) {
       yield put(setTransactionError());
@@ -228,7 +228,7 @@ export function* createBounty(action) {
           from: userAddress
         }),
         config[network].standardBountiesAddress,
-        parseInt(contractBalance)
+        contractBalance
       );
       yield call(delay, 2000);
       const issuedBountyHash = yield call(
@@ -332,7 +332,7 @@ export function* activateBounty(action) {
   if (paysTokens) {
     contractBalance = calculateDecimals(
       BigNumber(balance, 10).toString(),
-      parseInt(decimals)
+      BigNumber(decimals, 10).toString()
     );
   } else {
     const { web3 } = yield call(getWeb3Client);
@@ -424,11 +424,11 @@ export function* increasePayout(action) {
   if (paysTokens) {
     contractFulfillmentAmount = calculateDecimals(
       BigNumber(fulfillmentAmount, 10).toString(),
-      parseInt(decimals)
+      BigNumber(decimals, 10).toString()
     );
     contractBalance = calculateDecimals(
       BigNumber(balance, 10).toString(),
-      parseInt(decimals)
+      BigNumber(decimals, 10).toString()
     );
   } else {
     const { web3 } = yield call(getWeb3Client);
@@ -438,7 +438,7 @@ export function* increasePayout(action) {
     );
     contractBalance = calculateDecimals(
       BigNumber(balance, 10).toString(),
-      parseInt(decimals)
+      BigNumber(decimals, 10).toString()
     );
   }
   try {
@@ -492,10 +492,7 @@ export function* contribute(action) {
   yield put(setPendingWalletConfirm());
   let addedBalance;
   if (paysTokens) {
-    addedBalance = calculateDecimals(
-      BigNumber(value, 10).toString(),
-      parseInt(decimals)
-    );
+    addedBalance = calculateDecimals(value, decimals);
   } else {
     const { web3 } = yield call(getWeb3Client);
     addedBalance = web3.utils.toWei(BigNumber(value, 10).toString(), 'ether');
