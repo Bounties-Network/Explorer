@@ -61,7 +61,7 @@ class SideOverlay extends React.Component {
       body = (
         <CSSTransition
           key="1"
-          timeout={hasMask ? 300 : 300}
+          timeout={hasMask ? 400 : 350}
           classNames={{
             enter: styles.enter,
             enterActive: styles.enterActive,

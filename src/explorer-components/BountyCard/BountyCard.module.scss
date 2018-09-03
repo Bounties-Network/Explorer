@@ -68,7 +68,7 @@
   order: 3;
   margin-top: $m-spacing;
   padding-top: $m-spacing;
-  padding-right: 0;
+  padding-right: 0 !important;
 
   @media only screen and (min-width: 48em) {
     border: none;
@@ -96,6 +96,7 @@
   display: inline-block;
   width: $m-spacing;
   margin-right: $s-spacing;
+  float: left;
 }
 
 .detailInput {

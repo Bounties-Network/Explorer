@@ -24,6 +24,7 @@ import {
 } from 'public-modules/Bounty/selectors';
 import { addressSelector } from 'public-modules/Client/selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
 import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
@@ -205,77 +206,132 @@ class BountyComponent extends React.Component {
                 initiateWalkthrough={initiateWalkthrough}
                 showModal={showModal}
               />
+
               <div className={styles.bountyMetadata}>
-                {isDraft ? null : (
-                  <div className={styles.labelGroup}>
-                    <Text inputLabel className={styles.label}>
-                      Total Balance
-                    </Text>
-                    <Text color="purple" weight="fontWeight-medium">{`${Number(
-                      bounty.calculated_balance
-                    )} ${bounty.tokenSymbol}`}</Text>
-                  </div>
-                )}
-                <div className={styles.labelGroup}>
-                  <Text inputLabel className={styles.label}>
-                    Issuer Contact
-                  </Text>
-                  <Text link src={`mailto:${bounty.issuer_email}`}>
-                    {bounty.issuer_email}
-                  </Text>
-                </div>
-                <div className={styles.labelGroup}>
-                  <Text inputLabel className={styles.label}>
-                    {bounty.bountyStage === EXPIRED ? 'Expired' : 'Deadline'}
-                  </Text>
-                  <Text>
-                    {moment
-                      .utc(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ')
-                      .fromNow(true)}
-                  </Text>
-                </div>
-                <div className={styles.labelGroup}>
-                  <Text inputLabel className={styles.label}>
-                    Difficulty
-                  </Text>
-                  <Text>{DIFFICULTY_MAPPINGS[bounty.experienceLevel]}</Text>
-                </div>
-                {bounty.sourceDirectoryHash && (
-                  <div className={styles.labelGroup}>
-                    <Text inputLabel className={styles.label}>
-                      Associated Files
+                <section className={styles.metadataSection}>
+                  {isDraft ? null : (
+                    <div className={styles.labelGroup}>
+                      <Text inputLabel className={styles.label}>
+                        Remaining balance
+                      </Text>
+                      <Text
+                        color="purple"
+                        weight="fontWeight-medium"
+                        typeScale="h4"
+                      >{`${Number(bounty.calculated_balance)} ${
+                        bounty.tokenSymbol
+                      }`}</Text>
+                    </div>
+                  )}
+                </section>
+
+                <section className={styles.metadataSection}>
+                  <div className={styles.metadataItem}>
+                    <i className={styles.metadataIcon}>
+                      <FontAwesomeIcon icon={['far', 'clock']} />
+                    </i>
+                    <Text
+                      inline
+                      className={styles.metadataInput}
+                      weight="fontWeight-medium"
+                    >
+                      {moment
+                        .utc(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ')
+                        .fromNow(true)}
                     </Text>
                     <Text
-                      link
-                      src={`https://ipfs.infura.io/ipfs/${
-                        bounty.sourceDirectoryHash
-                      }/${bounty.sourceFileName}`}
+                      inline
+                      color="defaultGrey"
+                      className={styles.metadataLabel}
                     >
-                      {bounty.sourceFileName}
+                      {bounty.bountyStage === EXPIRED ? 'expired' : 'remaining'}
                     </Text>
                   </div>
-                )}
-                {typeof bounty.revisions == 'number' && (
-                  <div className={styles.labelGroup}>
-                    <Text inputLabel className={styles.label}>
-                      Expected Revisions
+
+                  <div className={styles.metadataItem}>
+                    <i className={styles.metadataIcon}>
+                      <FontAwesomeIcon icon={['far', 'puzzle-piece']} />
+                    </i>
+                    <Text
+                      inline
+                      className={styles.metadataInput}
+                      weight="fontWeight-medium"
+                    >
+                      {DIFFICULTY_MAPPINGS[bounty.experienceLevel]}
                     </Text>
-                    <Text>{bounty.revisions}</Text>
+                    <Text
+                      inline
+                      color="defaultGrey"
+                      className={styles.metadataLabel}
+                    >
+                      difficulty
+                    </Text>
                   </div>
-                )}
-                {bounty.webReferenceURL && (
-                  <div className={styles.labelGroup}>
-                    <Text inputLabel className={styles.label}>
-                      Link
-                    </Text>
-                    <Text link src={`${bounty.webReferenceURL}`}>
-                      {bounty.webReferenceURL}
+
+                  {typeof bounty.revisions == 'number' && (
+                    <div className={styles.metadataItem}>
+                      <i className={styles.metadataIcon}>
+                        <FontAwesomeIcon icon={['far', 'repeat']} />
+                      </i>
+                      <Text
+                        inline
+                        weight="fontWeight-medium"
+                        className={styles.metadataInput}
+                      >
+                        {bounty.revisions + ' revisions'}
+                      </Text>
+                      <Text
+                        inline
+                        color="defaultGrey"
+                        className={styles.metadataLabel}
+                      >
+                        expected
+                      </Text>
+                    </div>
+                  )}
+                </section>
+
+                <section className={styles.metadataSection}>
+                  {bounty.sourceDirectoryHash && (
+                    <div className={styles.metadataItem}>
+                      <i className={styles.metadataIcon}>
+                        <FontAwesomeIcon icon={['far', 'paperclip']} />
+                      </i>
+                      <Text
+                        link
+                        src={`https://ipfs.infura.io/ipfs/${
+                          bounty.sourceDirectoryHash
+                        }/${bounty.sourceFileName}`}
+                      >
+                        {bounty.sourceFileName}
+                      </Text>
+                    </div>
+                  )}
+
+                  {bounty.webReferenceURL && (
+                    <div className={styles.metadataItem}>
+                      <i className={styles.metadataIcon}>
+                        <FontAwesomeIcon icon={['far', 'link']} />
+                      </i>
+                      <Text link src={`${bounty.webReferenceURL}`}>
+                        {bounty.webReferenceURL}
+                      </Text>
+                    </div>
+                  )}
+
+                  <div className={styles.metadataItem}>
+                    <i className={styles.metadataIcon}>
+                      <FontAwesomeIcon icon={['far', 'envelope']} />
+                    </i>
+                    <Text link src={`mailto:${bounty.issuer_email}`}>
+                      {bounty.issuer_email}
                     </Text>
                   </div>
-                )}
-                <div className={styles.social}>
-                  <Social />
-                </div>
+                </section>
+              </div>
+
+              <div className={styles.social}>
+                <Social />
               </div>
             </div>
             <div className={`${styles.descriptionSection}`}>

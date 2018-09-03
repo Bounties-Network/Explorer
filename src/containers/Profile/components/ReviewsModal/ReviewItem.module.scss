@@ -3,6 +3,7 @@
 .container {
   display: flex;
   align-items: flex-start;
+  padding-bottom: $base-spacing;
 }
 
 .rating {

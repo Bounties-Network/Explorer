@@ -52,9 +52,11 @@
 
 .enter {
   opacity: 0;
+  transform: translateY(-10px);
 }
 
 .enterActive {
   opacity: 1;
-  transition: all 200ms ease-out;
+  transform: translateY(0);
+  transition: all 150ms ease-in;
 }

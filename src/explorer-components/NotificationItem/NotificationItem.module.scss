@@ -34,8 +34,10 @@
 }
 
 .notifier {
+  text-align: center;
   &.small {
-    min-width: $l-spacing;
+    min-width: $m-spacing;
+    margin-right: $base-spacing;
   }
   &.large {
     min-width: $xxl-spacing;

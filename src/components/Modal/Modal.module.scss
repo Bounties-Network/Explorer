@@ -100,7 +100,7 @@ $modal-padding-large: $l-spacing;
 .modal {
   display: flex;
   flex-direction: column;
-  max-height: 100vh;
+  max-height: 99vh;
   border-radius: $base-border-radius;
   box-shadow: $base-box-shadow;
   position: relative;
@@ -122,9 +122,14 @@ $modal-padding-large: $l-spacing;
   z-index: 9;
 }
 
+.closeWrapper {
+  position: relative;
+  text-align: right;
+}
+
 .closeIcon {
   cursor: pointer;
-  float: right;
+  right: 0;
   color: $brand-grey;
   font-size: 1.2em;
 
@@ -167,8 +172,7 @@ $modal-padding-large: $l-spacing;
   justify-content: center;
   align-items: center;
   height: 100%;
-  margin-top: $s-spacing;
-  margin-bottom: $s-spacing;
+  //margin-bottom: $s-spacing;
 }
 
 .small, .medium, .large {

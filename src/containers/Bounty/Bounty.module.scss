@@ -126,44 +126,55 @@
 
   @media only screen and (min-width: 35em) {
     padding-right: $l-spacing;
-    width: 12rem;
-  }
-
-  @media only screen and (min-width: 48em) {
     width: 15rem;
   }
 }
 
 .bountyMetadata {
+  border: $base-border;
+  border-radius: $base-border-radius;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  padding-top: $m-spacing;
+  flex-direction: column;
 
-  @media only screen and (min-width: 35em) {
-    flex-direction: column;
-  }
+  .metadata {
 
-  .labelGroup {
-    width: 40%;
-    margin: 0;
-    padding-bottom: $xl-spacing;
-    padding-right: $xl-spacing;
-
-    @media only screen and (min-width: 35em) {
-      padding-right: 0;
+    &Section {
+      padding: ($m-spacing * 1.5) $m-spacing;
       width: 100%;
-    }
 
-    &:nth-of-type(even) {
-      padding-right: 0;
-      width: 60%;
-
-      @media only screen and (min-width: 35em) {
-        width: 100%;
+      &:not(:last-child) {
+        border-bottom: $base-border;
       }
     }
+
+    &Item {
+      &:not(:last-child) {
+        padding-bottom: $base-spacing;
+
+        @media only screen and (min-width: 35em) {
+          padding-bottom: $m-spacing;
+        }
+      }
+    }
+
+    &Icon {
+      color: $brand-grey;
+      padding-right: $base-spacing;
+      float: left;
+    }
+
+    &Input {
+      padding-right: $s-spacing;
+    }
+
+    &Label {
+    }
   }
+}
+
+.social {
+  margin-top: $xxl-spacing;
+  text-align: center;
 }
 
 .descriptionSection {
@@ -177,9 +188,8 @@
     margin-top: -$l-spacing;
     margin-bottom: -$l-spacing;
     margin-left: 0;
-    margin-right: 0;
-    padding: $xxl-spacing $xl-spacing $xxl-spacing $xxl-spacing;
-    border-left: $base-border;
+    margin-right: -$l-spacing;
+    padding: $xl-spacing $xl-spacing $xxl-spacing $xl-spacing;
     border-top: none;
   }
 }
@@ -190,7 +200,6 @@
 
 .labelGroup {
   word-wrap: break-word;
-  margin-bottom: $l-spacing;
   margin-right: $m-spacing;
 }
 

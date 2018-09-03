@@ -59,12 +59,13 @@
 
 .mobileFilter {
   display: block;
+  -webkit-overflow-scrolling: touch;
   @media only screen and (min-width: 48em) {
     display: none;
   }
 }
 
 .filterWrapper {
-  max-width: $filterNav-width-fixed;
+  max-width: $filterNav-width-large;
   width: 70vw;
 }

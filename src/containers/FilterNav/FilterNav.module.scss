@@ -4,7 +4,7 @@
   background: $brand-white;
   padding: $l-spacing;
   margin-top: 0;
-  max-width: $filterNav-width-fixed;
+  max-width: $filterNav-width-large;
   width: 70vw;
   overflow-y: scroll;
   top: 0;
@@ -12,11 +12,11 @@
   position: absolute;
 
   @media only screen and (min-width: 48em) {
-    width: $filterNav-width-fluid;
+    width: $filterNav-width-small;
   }
 
   @media only screen and (min-width: 65em) {
-    width: $filterNav-width-fixed;
+    width: $filterNav-width-large;
     padding: $l-spacing;
   }
 }

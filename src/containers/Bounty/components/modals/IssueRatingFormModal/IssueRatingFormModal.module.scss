@@ -5,20 +5,19 @@
 }
 
 .bountyInfoContainer {
-  margin-bottom: $xxl-spacing;
-}
-
-.centerColumn {
-  justify-content: center;
+  margin: $xl-spacing;
+  margin-bottom: $xxl-spacing * 2;
 }
 
 .bountyInfo {
   position: relative;
   padding: $m-spacing;
   border: $base-border;
+  border-radius: $base-border-radius;
   box-shadow: $base-box-shadow;
 
   .pill {
+    line-height: 1;
     position: absolute;
     top: -10px;
     left: -10px;
@@ -31,7 +30,6 @@
 }
 
 .detailsGroup {
-  margin-bottom: $base-spacing;
 }
 
 .review {
@@ -39,7 +37,7 @@
 }
 
 .avatar {
-  margin: $xxl-spacing 0;
+  margin: $xl-spacing 0;
   text-align: left;
   color: $brand-black;
   display: flex;

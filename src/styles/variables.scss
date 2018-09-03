@@ -12,8 +12,8 @@ $base-border-radius: 3px;
 $base-input-height: $xxl-spacing;
 $base-checkbox-size: $m-spacing * 1.25;
 $base-toggle-size: 1.187rem;
-$filterNav-width-fluid: 25%;
-$filterNav-width-fixed: 20rem;
+$filterNav-width-small: 14rem;
+$filterNav-width-large: 20rem;
 
 $header-height-sm: 3.5rem;
 $header-height-lg: 4rem;
@@ -88,5 +88,6 @@ $brand-bountyCard-box-shadow: 0 0 10px $brand-lightGrey;
 $base-border: $base-border-width solid $brand-lightGrey;
 $light-border: $base-border-width solid $brand-nearWhite;
 
-// Overlay Grey
-$overlay-background: rgba(0, 0, 0, 0.6);
+// Overlay
+$overlay-color: darken($brand-dark-purple, 15%);
+$overlay-background: rgba($overlay-color, 0.65);

@@ -50,7 +50,13 @@ const IssueRatingFormModalComponent = props => {
   };
 
   let revieweeAvatar = (
-    <Avatar name={name} address={address} hash={address} img={img} />
+    <Avatar
+      nameTextScale="h4"
+      name={name}
+      address={address}
+      hash={address}
+      img={img}
+    />
   );
 
   if (loading) {
@@ -71,42 +77,34 @@ const IssueRatingFormModalComponent = props => {
         size="medium"
       >
         <Modal.Header closable={true}>
-          <Modal.Message>
-            <BountyDetails bounty={bounty} />
-            <Text typeScale="h3">Rate {type}</Text>
-          </Modal.Message>
+          <BountyDetails bounty={bounty} />
+          <Modal.Heading>Rate {type}</Modal.Heading>
           <Modal.Description>
-            <div className={`row ${styles.centerColumn}`}>
-              <div className="col-xs-8">
-                <Text color="defaultGrey">{messageTemplate[type][0]}</Text>
-                <div className={styles.avatar}>{revieweeAvatar}</div>
-                <Text color="defaultGrey">{messageTemplate[type][1]}</Text>
-              </div>
-            </div>
+            {messageTemplate[type][0]}
+            <div className={styles.avatar}>{revieweeAvatar}</div>
+            {messageTemplate[type][1]}
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
-          <div className={`row ${styles.review} ${styles.centerColumn}`}>
-            <div className="col-xs-10">
-              <div className={styles.inputGroup}>
-                <Field
-                  name="rating"
-                  component={FormRating}
-                  type="string"
-                  label="Rating"
-                  validate={[validators.required]}
-                />
-              </div>
-              <div className={styles.inputGroup}>
-                <Field
-                  name="review"
-                  component={FormTextbox}
-                  type="string"
-                  label="Mini review"
-                  validate={[validators.required]}
-                  placeholder="Enter review..."
-                />
-              </div>
+          <div className={styles.review}>
+            <div className={styles.inputGroup}>
+              <Field
+                name="rating"
+                component={FormRating}
+                type="string"
+                label="Rating"
+                validate={[validators.required]}
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <Field
+                name="review"
+                component={FormTextbox}
+                type="string"
+                label="Review"
+                validate={[validators.required]}
+                placeholder="Enter review..."
+              />
             </div>
           </div>
         </Modal.Body>

@@ -87,7 +87,7 @@ const BountyCard = props => {
             <div className={styles.detailGroup}>
               <div className={styles.detailIcon}>
                 <Text inline color="defaultGrey">
-                  <FontAwesomeIcon icon={['far', 'seedling']} />
+                  <FontAwesomeIcon icon={['far', 'puzzle-piece']} />
                 </Text>
               </div>
               <Text

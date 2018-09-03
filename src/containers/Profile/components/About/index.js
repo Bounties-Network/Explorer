@@ -21,7 +21,11 @@ const About = props => {
             />
             <div className={styles.bulletPointText}>
               <Text inputLabel>Oranization</Text>
-              <Text typeScale="Body" color="black">
+              <Text
+                lineHeight="lineHeight-small"
+                typeScale="Body"
+                color="black"
+              >
                 {organization}
               </Text>
             </div>
@@ -36,7 +40,11 @@ const About = props => {
             />
             <div className={styles.bulletPointText}>
               <Text inputLabel>Languages spoken</Text>
-              <Text typeScale="Body" color="black">
+              <Text
+                lineHeight="lineHeight-small"
+                typeScale="Body"
+                color="black"
+              >
                 {languages ? languages.join(', ') : 'N/A'}
               </Text>
             </div>

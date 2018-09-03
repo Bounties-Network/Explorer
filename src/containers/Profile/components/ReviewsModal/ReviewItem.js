@@ -17,7 +17,7 @@ const ReviewItem = props => {
         </Text>
       </div>
       <div className={styles.review}>
-        <Text>{review}</Text>
+        <Text color="darkGrey">{review}</Text>
         <Avatar
           name={name}
           address={address}
@@ -27,7 +27,11 @@ const ReviewItem = props => {
         />
       </div>
       <div className={styles.created}>
-        <Text typeScale="Small" color="defaultGrey">
+        <Text
+          typeScale="Small"
+          color="defaultGrey"
+          lineHeight="lineHeight-small"
+        >
           {formattedTime}
         </Text>
       </div>

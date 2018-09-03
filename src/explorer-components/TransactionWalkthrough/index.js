@@ -15,8 +15,8 @@ const InitiateWalkthrough = props => {
         <Modal.Description>
           <Text className={styles.textBreak}>
             After clicking &quot;OK &quot;, a wallet dialogue will prompt you to
-            confirm your transaction and pay a small amount of ETH (for gas
-            fees).
+            confirm your Ethereum transaction and pay a small amount of ETH (for
+            gas fees).
           </Text>
           <Text>A default gas limit and price will be set for you.</Text>
         </Modal.Description>

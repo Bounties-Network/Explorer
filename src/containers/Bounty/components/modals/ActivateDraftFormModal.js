@@ -25,8 +25,13 @@ const ActivateDraftFormModal = props => {
           <Modal.Message>Activate your bounty</Modal.Message>
           <Modal.Description>
             Indicate an amount for your initial deposit to activate the bounty.
-            At minimum, your initial deposit must match your payout amount{' '}
-            {`(${minimumBalance} ${tokenSymbol}).`}
+            <em>
+              {' '}
+              At minimum, your initial deposit must match your payout amount of
+            </em>{' '}
+            <strong
+              className={styles.textHighlight}
+            >{`${minimumBalance} ${tokenSymbol}.`}</strong>
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
