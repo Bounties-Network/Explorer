@@ -61,7 +61,8 @@ export const NOTIFICATION_ID = {
   PROFILE_UPDATED: 21,
   COMMENT_ISSUED: 22,
   DRAFT_CREATED: 23,
-  DRAFT_UPDATED: 24
+  DRAFT_UPDATED: 24,
+  CONTRIBUTION_RECEIVED: 25
 };
 
 const plus = ['far', 'plus-circle'];
@@ -177,5 +178,9 @@ export const notification_template = {
   [NOTIFICATION_ID.DRAFT_UPDATED]: {
     message: 'You updated a draft',
     icon: sync
+  },
+  [NOTIFICATION_ID.CONTRIBUTION_RECEIVED]: {
+    message: 'You received a contribution to',
+    icon: plus
   }
 };

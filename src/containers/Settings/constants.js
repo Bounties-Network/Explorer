@@ -1,7 +1,7 @@
 export const UPLOAD_KEY = 'profilePhoto';
 
 export const EMAIL_NOTIFICATION_OPTIONS = {
-  RatingIssued: 'User issues you a rating',
+  RatingReceived: 'User issues you a rating',
   TransferRecipient: 'Bounty transfer to another user completes',
   BountyCommentReceived: 'Bounty receives a comment',
   BountyExpired: 'Bounty expires',
@@ -10,5 +10,6 @@ export const EMAIL_NOTIFICATION_OPTIONS = {
   FulfillmentSubmittedIssuer:
     'Fulfiller submits a new fulfillment to your bounty',
   FulfillmentAcceptedFulfiller: 'Issuer accepts your fulfillment',
+  ContributionReceived: 'Another user contributes funds to your bounty',
   activity: 'General activity (updated profile, created bounty, etc.)'
 };
