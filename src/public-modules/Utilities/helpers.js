@@ -5,11 +5,11 @@ import { BigNumber } from 'bignumber.js';
 const each = fpEach.convert({ cap: false });
 
 export const calculateDecimals = (amount, decimals) => {
-  const decimalPlaces = new BigNumber(parseInt(decimals), 10);
+  const decimalPlaces = new BigNumber(decimals, 10);
   const baseTen = new BigNumber(10, 10);
   const multiplyingDecimal = baseTen.pow(decimalPlaces);
   const amountBase = new BigNumber(amount, 10);
-  return amountBase.times(multiplyingDecimal).toString();
+  return amountBase.times(multiplyingDecimal, 10).toString(10);
 };
 
 export const readFile = file =>
