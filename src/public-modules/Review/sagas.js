@@ -1,6 +1,8 @@
 import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Review';
+import { toast as callToast } from 'react-toastify';
+import { Toast } from 'components';
 import config from 'public-modules/config';
 
 const { POST_REVIEW } = actionTypes;
@@ -23,6 +25,7 @@ export function* postNewReview(action) {
     });
 
     yield put(postReviewSuccess(review));
+    yield call(Toast, Toast.TYPE.SUCCESS, 'Your rating was submitted', null);
   } catch (e) {
     console.log(e);
     yield put(postReviewFail(e));
