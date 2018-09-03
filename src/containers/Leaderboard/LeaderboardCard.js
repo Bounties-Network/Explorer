@@ -9,6 +9,7 @@ import { map as fpMap } from 'lodash';
 import { rootLeaderboardSelector } from 'public-modules/Leaderboard/selectors';
 import { rootLeaderboardUISelector } from './selectors';
 import { actions } from 'public-modules/Leaderboard';
+import config from 'public-modules/config';
 
 const map = fpMap.convert({ cap: false });
 
@@ -28,7 +29,11 @@ const LeaderboardCardComponent = props => {
 
   const renderLeaders = () => {
     return map((leader, index) => {
-      const { name, address, profile_image, total_usd } = leader;
+      const { name, address, profile_image, total_usd, total } = leader;
+
+      const value = config.defaultToken
+        ? Number(total / 10 ** config.defaultToken.decimals).toFixed(2)
+        : `\$${Number(total_usd).toFixed(2)}`;
 
       return (
         <ListGroup.ListItem>
@@ -38,7 +43,8 @@ const LeaderboardCardComponent = props => {
             img={profile_image}
             name={name}
             address={address}
-            usd={Number(total_usd).toFixed(2)}
+            value={value}
+            valueLabel={config.defaultToken && config.defaultToken.symbol}
           />
         </ListGroup.ListItem>
       );

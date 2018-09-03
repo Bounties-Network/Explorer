@@ -36,6 +36,7 @@ import {
   ACTIVATE_OPTIONS,
   UPLOAD_KEY
 } from './constants';
+import config from 'public-modules/config';
 
 const formSelector = formValueSelector('createBounty');
 
@@ -314,13 +315,28 @@ class CreateBountyFormComponent extends React.Component {
             <FormSection.InputGroup>
               <div className="row">
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
-                  <Field
-                    disabled={submittingBounty}
-                    name="paysTokens"
-                    component={FormRadioGroup}
-                    label="Payout Method"
-                    options={PAYOUT_OPTIONS}
-                  />
+                  {config.defaultToken ? (
+                    <Field
+                      name="tokenContract"
+                      disabled={submittingBounty || !!config.defaultToken}
+                      component={FormTextInput}
+                      label={
+                        !config.defaultToken
+                          ? 'Token Contract Address'
+                          : `${config.defaultToken.symbol} Contract Address`
+                      }
+                      validate={[validators.required, validators.isWeb3Address]}
+                      placeholder="Enter token contract address..."
+                    />
+                  ) : (
+                    <Field
+                      disabled={submittingBounty}
+                      name="paysTokens"
+                      component={FormRadioGroup}
+                      label="Payout Method"
+                      options={PAYOUT_OPTIONS}
+                    />
+                  )}
                 </div>
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
@@ -329,22 +345,28 @@ class CreateBountyFormComponent extends React.Component {
                     component={FormTextInput}
                     type="text"
                     normalize={normalizers.number}
-                    label="Payout amount (ETH or whole tokens)"
+                    label={`Payout amount ${
+                      !config.defaultToken ? ' (ETH or whole tokens)' : ''
+                    }`}
                     validate={[validators.required, validators.minValue(0)]}
                     placeholder="Enter amount..."
                   />
                 </div>
               </div>
             </FormSection.InputGroup>
-            {paysTokens ? (
+            {paysTokens && !config.defaultToken ? (
               <FormSection.InputGroup>
                 <div className="row">
                   <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                     <Field
                       name="tokenContract"
-                      disabled={submittingBounty}
+                      disabled={submittingBounty || !!config.defaultToken}
                       component={FormTextInput}
-                      label="Token Contract Address"
+                      label={
+                        !config.defaultToken
+                          ? 'Token Contract Address'
+                          : `${config.defaultToken.symbol} Contract Address`
+                      }
                       validate={[validators.required, validators.isWeb3Address]}
                       placeholder="Enter token contract address..."
                     />
