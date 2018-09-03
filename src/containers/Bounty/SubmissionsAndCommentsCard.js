@@ -125,7 +125,7 @@ let SubmissionsAndCommentsCardComponent = props => {
             title={'There are 0 submissions'}
             text={'Submissions to this bounty will appear here.'}
             iconColor="blue"
-            icon={['fal', 'file-alt']}
+            icon={['fal', 'level-up']}
           />
         </div>
       );

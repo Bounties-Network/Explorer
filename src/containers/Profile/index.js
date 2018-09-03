@@ -181,7 +181,7 @@ class ProfileComponent extends React.Component {
             iconColor="blue"
             title="No User Found"
             text="Check that the address is correct and try again"
-            icon={['fal', 'bolt']}
+            icon={['fal', 'exclamation-triangle']}
           />
         </div>
       );
@@ -195,7 +195,7 @@ class ProfileComponent extends React.Component {
             iconColor="red"
             title="Error"
             text="Please try again"
-            icon={['fal', 'bolt']}
+            icon={['fal', 'exclamation-triangle']}
           />
         </div>
       );

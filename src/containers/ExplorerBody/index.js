@@ -129,7 +129,7 @@ const ExplorerBodyComponent = props => {
             iconColor="blue"
             title="No Bounties Found"
             text="Update your search filters to see more bounties"
-            icon={['fal', 'bolt']}
+            icon={['fal', 'expand']}
           />
         </div>
       ) : null}

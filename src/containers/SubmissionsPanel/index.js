@@ -99,7 +99,7 @@ class SubmissionsPanelComponent extends React.Component {
             title={`You have ${currentTab} 0 submissions`}
             text={`It looks like you don't have any submissions. Come back after you have ${currentTab} a fulfillment!`}
             iconColor="blue"
-            icon={['fal', 'file-alt']}
+            icon={['fal', 'level-up']}
           />
         </div>
       );
@@ -118,7 +118,7 @@ class SubmissionsPanelComponent extends React.Component {
             type="error"
             text={'Something went wrong. Try again later.'}
             iconColor="red"
-            icon={['far', 'exclamation-triangle']}
+            icon={['fal', 'exclamation-triangle']}
           />
         </div>
       );

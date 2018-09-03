@@ -137,7 +137,7 @@ const NotificationDropdown = props => {
               type="error"
               text={'Something went wrong. Try again later.'}
               iconColor="red"
-              icon={['far', 'exclamation-triangle']}
+              icon={['fal', 'exclamation-triangle']}
             />
           )}
           {!loaded && (
@@ -154,7 +154,7 @@ const NotificationDropdown = props => {
                     'Once you start using the platform, notifications will show here.'
                   }
                   iconColor="blue"
-                  icon={['fal', 'bolt']}
+                  icon={['fal', 'expand']}
                 />
               </div>
             )}

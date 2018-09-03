@@ -7,7 +7,9 @@ import plusCircle from '@fortawesome/fontawesome-pro-regular/faPlusCircle';
 import wifi from '@fortawesome/fontawesome-pro-light/faWifi';
 import clock from '@fortawesome/fontawesome-pro-regular/faClock';
 import levelUp from '@fortawesome/fontawesome-pro-regular/faLevelUp';
+import levelUpLight from '@fortawesome/fontawesome-pro-light/faLevelUp';
 import levelDown from '@fortawesome/fontawesome-pro-regular/faLevelDown';
+import levelDownLight from '@fortawesome/fontawesome-pro-light/faLevelDown';
 import seedling from '@fortawesome/fontawesome-pro-regular/faSeedling';
 import cog from '@fortawesome/fontawesome-pro-light/faCog';
 import search from '@fortawesome/fontawesome-pro-regular/faSearch';
@@ -66,6 +68,7 @@ import calendarExclamation from '@fortawesome/fontawesome-pro-regular/faCalendar
 import sync from '@fortawesome/fontawesome-pro-regular/faSync';
 import userFriends from '@fortawesome/fontawesome-pro-regular/faUserFriends';
 import edit from '@fortawesome/fontawesome-pro-regular/faEdit';
+import expand from '@fortawesome/fontawesome-pro-light/faExpand';
 
 library.add(
   externalLink,
@@ -113,7 +116,9 @@ library.add(
   eye,
   clock,
   levelUp,
+  levelUpLight,
   levelDown,
+  levelDownLight,
   seedling,
   unlock,
   addressCard,
@@ -134,5 +139,6 @@ library.add(
   calendarPlus,
   sync,
   userFriends,
-  edit
+  edit,
+  expand
 );
