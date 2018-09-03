@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 import styles from './SearchSelect.module.scss';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/lib/Creatable';
-import { reject, includes, map, find, isUndefined } from 'lodash';
+import {
+  reject,
+  includes,
+  map,
+  find,
+  isUndefined,
+  unionBy,
+  uniqBy
+} from 'lodash';
 import '../../styles/ReactSelect.scss';
 
 import { Text, Pill } from 'components';
@@ -18,13 +26,23 @@ class SearchSelect extends React.Component {
   }
 
   filterOptions = () => {
-    const { options, value, valueKey, single } = this.props;
+    const { labelKey, options, value, valueKey, single } = this.props;
     const { value: stateValue } = this.state;
 
     const selectValue = value || stateValue;
 
+    if (single && selectValue) {
+      let objectifiedSelectValue = {};
+      objectifiedSelectValue[labelKey] = selectValue;
+      objectifiedSelectValue[valueKey] = selectValue;
+
+      return unionBy(optionItem => optionItem[valueKey], options, [
+        objectifiedSelectValue
+      ]);
+    }
+
     return reject(
-      optionItem => includes(optionItem[valueKey], selectValue) && !single,
+      optionItem => includes(optionItem[valueKey], selectValue),
       options
     );
   };
@@ -41,8 +59,8 @@ class SearchSelect extends React.Component {
     const selectValue = value || stateValue;
 
     if (single) {
-      this.setState({ value: selectedValue && selectedValue.normalized_name });
-      onChange(selectedValue);
+      this.setState({ value: selectedValue && selectedValue[valueKey] });
+      onChange(selectedValue && selectedValue[valueKey]);
     } else {
       this.setState({ value: [...selectValue, selectedValue[valueKey]] });
       onChange([...selectValue, selectedValue[valueKey]]);
@@ -152,12 +170,28 @@ class SearchSelect extends React.Component {
       const { value: stateValue } = this.state;
       const selectedValue = value || stateValue;
 
-      select = (
+      select = creatable ? (
+        <CreatableSelect
+          disabled={disabled}
+          labelKey={labelKey}
+          valueKey={valueKey}
+          clearable={clearable}
+          creatable={creatable}
+          className={selectClass}
+          onChange={this.onDropdownSelect}
+          options={this.filterOptions()}
+          onFocus={onFocus}
+          onBlur={() => onBlur(this.state.value)}
+          placeholder={placeholder}
+          value={selectedValue}
+        />
+      ) : (
         <Select
           disabled={disabled}
           labelKey={labelKey}
           valueKey={valueKey}
           clearable={clearable}
+          creatable={creatable}
           className={selectClass}
           onChange={this.onDropdownSelect}
           options={this.filterOptions()}

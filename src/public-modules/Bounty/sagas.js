@@ -214,6 +214,7 @@ export function* createBounty(action) {
       schemaName: siteConfig.postingSchema
     }
   };
+
   const ipfsHash = yield call(addJSON, issuedData);
   const { standardBounties } = yield call(getContractClient);
   if (paysTokens) {
