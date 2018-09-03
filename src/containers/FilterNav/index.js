@@ -235,37 +235,38 @@ const FilterNavComponent = props => {
           />
         </div>
       )}
-      {config.platform && config.platform.length && (
-        <div className={styles.categoryFilter}>
-          <Text weight="fontWeight-medium" className={styles.groupText}>
-            Platform
-          </Text>
-          {map(platform => {
-            return (
-              <Checkbox
-                label={platform}
-                onChange={() => togglePlatformFilterAction(platform)}
-                checked={indexOf(platform, platformFilters) != -1}
-              />
-            );
-          }, platforms)}
+      {platforms &&
+        platforms.length > 1 && (
+          <div className={styles.categoryFilter}>
+            <Text weight="fontWeight-medium" className={styles.groupText}>
+              Platform
+            </Text>
+            {map(platform => {
+              return (
+                <Checkbox
+                  label={platform}
+                  onChange={() => togglePlatformFilterAction(platform)}
+                  checked={indexOf(platform, platformFilters) != -1}
+                />
+              );
+            }, platforms)}
 
-          {
-            // <SearchSelect
-            //   options={platforms}
-            //   value={platformFilters}
-            //   labelKey="name"
-            //   valueKey="name"
-            //   onChange={values => {
-            //     if (values.length > platformFilters.length) {
-            //       addPlatformFilterAction(values[values.length - 1]);
-            //     }
-            //   }}
-            //   onClose={removePlatformFilterAction}
-            // />
-          }
-        </div>
-      )}
+            {
+              // <SearchSelect
+              //   options={platforms}
+              //   value={platformFilters}
+              //   labelKey="name"
+              //   valueKey="name"
+              //   onChange={values => {
+              //     if (values.length > platformFilters.length) {
+              //       addPlatformFilterAction(values[values.length - 1]);
+              //     }
+              //   }}
+              //   onClose={removePlatformFilterAction}
+              // />
+            }
+          </div>
+        )}
       {config.category && (
         <div className={styles.categoryFilter}>
           <Text weight="fontWeight-medium" className={styles.groupText}>

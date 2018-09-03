@@ -1,5 +1,5 @@
 {
-  "platform": "bounties-network, gitcoin",
+  "platform": "bounties-network,gitcoin",
   "postingPlatform": "bounties-network",
   "postingSchema": "standardSchema",
   "postingSchemaVersion": "0.1",
