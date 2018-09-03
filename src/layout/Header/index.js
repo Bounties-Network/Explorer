@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { actions as loginActions } from 'containers/Login/reducer';
+import { hasWalletSelector } from 'public-modules/Client/selectors';
 import { actions as authActions } from 'public-modules/Authentication';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -18,7 +19,16 @@ import BeeLogo from '../../styles/logo.js';
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
 const HeaderComponent = props => {
-  const { user, network, showLogin, logout, history, match, onShowNav } = props;
+  const {
+    user,
+    network,
+    showLogin,
+    logout,
+    history,
+    match,
+    onShowNav,
+    hasWallet
+  } = props;
 
   const loginStatus = !!user;
 
@@ -29,7 +39,7 @@ const HeaderComponent = props => {
           <BeeLogo />
         </Link>
       </div>
-      <Network network={network} className={styles.network} />
+      {hasWallet && <Network network={network} className={styles.network} />}
       <div className={styles.sideNavTrigger} onClick={onShowNav}>
         <Text typeScale="h3" color="blue">
           <FontAwesomeIcon icon={['far', 'bars']} />
@@ -132,6 +142,7 @@ HeaderComponent.defaultProps = {
 };
 
 const mapStateToProps = state => ({
+  hasWallet: hasWalletSelector(state),
   network: state.client.network,
   user: getCurrentUserSelector(state)
 });
