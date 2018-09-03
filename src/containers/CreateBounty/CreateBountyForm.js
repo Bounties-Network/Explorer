@@ -315,13 +315,28 @@ class CreateBountyFormComponent extends React.Component {
             <FormSection.InputGroup>
               <div className="row">
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
-                  <Field
-                    disabled={submittingBounty || !!config.defaultToken}
-                    name="paysTokens"
-                    component={FormRadioGroup}
-                    label="Payout Method"
-                    options={PAYOUT_OPTIONS}
-                  />
+                  {config.defaultToken ? (
+                    <Field
+                      name="tokenContract"
+                      disabled={submittingBounty || !!config.defaultToken}
+                      component={FormTextInput}
+                      label={
+                        !config.defaultToken
+                          ? 'Token Contract Address'
+                          : `${config.defaultToken.symbol} Contract Address`
+                      }
+                      validate={[validators.required, validators.isWeb3Address]}
+                      placeholder="Enter token contract address..."
+                    />
+                  ) : (
+                    <Field
+                      disabled={submittingBounty}
+                      name="paysTokens"
+                      component={FormRadioGroup}
+                      label="Payout Method"
+                      options={PAYOUT_OPTIONS}
+                    />
+                  )}
                 </div>
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
@@ -339,7 +354,7 @@ class CreateBountyFormComponent extends React.Component {
                 </div>
               </div>
             </FormSection.InputGroup>
-            {paysTokens ? (
+            {paysTokens && !config.defaultToken ? (
               <FormSection.InputGroup>
                 <div className="row">
                   <div className={`col-xs-12 col-sm-6 ${styles.input}`}>

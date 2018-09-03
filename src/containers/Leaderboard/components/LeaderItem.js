@@ -5,7 +5,7 @@ import { Text } from 'components';
 import { LinkedAvatar } from 'explorer-components';
 
 const LeaderItem = props => {
-  const { place, img, name, address, usd } = props;
+  const { place, img, name, address, value, valueLabel } = props;
 
   return (
     <div className={styles.leaderboardItem}>
@@ -27,9 +27,14 @@ const LeaderItem = props => {
       </div>
 
       <div className={styles.price}>
-        <Text color="purple" typeScale="h4" className={styles.usd}>
-          ${usd}
+        <Text inline color="purple" typeScale="h4" className={styles.value}>
+          {value}
         </Text>
+        {valueLabel && (
+          <Text inline color="defaultGrey" className={styles.label}>
+            {valueLabel}
+          </Text>
+        )}
       </div>
     </div>
   );
