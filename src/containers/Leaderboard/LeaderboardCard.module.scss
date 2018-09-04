@@ -28,3 +28,12 @@
     z-index: 999;
   }
 }
+
+.zeroState {
+  max-width: 25rem;
+  margin-bottom: $xxl-spacing * 3;
+
+  @media only screen and (min-width: 48em) {
+    margin-bottom: 0;
+  }
+}
