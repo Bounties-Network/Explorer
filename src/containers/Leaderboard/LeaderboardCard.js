@@ -73,6 +73,7 @@ const LeaderboardCardComponent = props => {
   if (leaders.length === 0) {
     cardBody = (
       <ZeroState
+        className={styles.zeroState}
         iconColor="blue"
         title="No Results Yet"
         text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
@@ -88,6 +89,7 @@ const LeaderboardCardComponent = props => {
   if (error || loadingMoreError) {
     cardBody = (
       <ZeroState
+        className={styles.zeroState}
         type="error"
         iconColor="white"
         title="Uh oh, something happened"
