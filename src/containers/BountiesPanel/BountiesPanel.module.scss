@@ -42,3 +42,14 @@
     margin-bottom: 0;
   }
 }
+
+.bountiesPanelCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $l-spacing 0;
+}
+
+.decoratedLink {
+  text-decoration: underline;
+}

@@ -86,7 +86,7 @@ class Cropper extends React.Component {
           width: '150',
           height: '150'
         },
-        enableOrientation: true
+        enableExif: true
       });
     }
     const reader = new FileReader();
