@@ -238,8 +238,8 @@ class BountyComponent extends React.Component {
               />
 
               <div className={styles.bountyMetadata}>
-                <section className={styles.metadataSection}>
-                  {isDraft ? null : (
+                {isDraft ? null : (
+                  <section className={styles.metadataSection}>
                     <div className={styles.labelGroup}>
                       <Text inputLabel className={styles.label}>
                         Remaining balance
@@ -252,8 +252,8 @@ class BountyComponent extends React.Component {
                         bounty.tokenSymbol
                       }`}</Text>
                     </div>
-                  )}
-                </section>
+                  </section>
+                )}
 
                 <section className={styles.metadataSection}>
                   <div className={styles.metadataItem}>
