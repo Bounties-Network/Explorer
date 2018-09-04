@@ -94,6 +94,7 @@ class HeaderComponent extends React.Component {
 
 const mapHeaderStateToProps = state => {
   return {
+    hasWallet: hasWalletSelector(state),
     network: state.client.network
   };
 };
@@ -232,7 +233,6 @@ const mapStateToProps = state => {
   const currentUserState = getCurrentUserStateSelector(state);
 
   return {
-    hasWallet: hasWalletSelector(state),
     clientInitialized: initializedSelector(state),
     loadingUser: currentUserState.loading || !currentUserState.loaded,
     userFail: currentUserState.error
