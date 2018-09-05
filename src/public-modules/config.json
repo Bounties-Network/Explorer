@@ -4,10 +4,10 @@
   "postingSchema": "standardSchema",
   "postingSchemaVersion": "0.1",
   "categoryPlatform": "main",
-  "networkName": "staging.bounties.network",
+  "networkName": "explorer.bounties.network",
   "url": {
-    "mainNet": "https://staging.api.bounties.network",
-    "rinkeby": "https://rinkebystaging.api.bounties.network"
+    "mainNet": "https://new.api.bounties.network",
+    "rinkeby": "https://newrinkeby.api.bounties.network"
   },
   "requiredNetwork": "",
   "mainNet": {
