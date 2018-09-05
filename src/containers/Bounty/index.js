@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Bounty.module.scss';
+import { withRouter } from 'react-router-dom';
 import { BigNumber } from 'bignumber.js';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -29,6 +30,7 @@ import { Pill, Text, Social, Loader, ZeroState } from 'components';
 import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
 import { locationNonceSelector } from 'layout/App/selectors';
+import { setParam } from 'utils/locationHelpers';
 
 showdown.setOption('simpleLineBreaks', true);
 const converter = new showdown.Converter();
@@ -65,9 +67,19 @@ class BountyComponent extends React.Component {
       // load submissions
       resetFilters();
       addBountyFilter(match.params.id);
-      setActiveTab('comments');
 
       const values = queryStringToObject(location.search);
+
+      switch (values.tab) {
+        case 'submissions':
+        case 'comments': {
+          setActiveTab(values.tab);
+          break;
+        }
+        default: {
+          setActiveTab('comments');
+        }
+      }
 
       if (values.rating) {
         loadFulfillment(match.params.id, values.fulfillment_id);
@@ -78,6 +90,7 @@ class BountyComponent extends React.Component {
   componentDidUpdate(prevProps) {
     const {
       match,
+      location,
       locationNonce,
       loadBounty,
       loadDraftBounty,
@@ -87,7 +100,11 @@ class BountyComponent extends React.Component {
       setBountyId
     } = this.props;
 
-    if (prevProps.locationNonce !== locationNonce) {
+    if (
+      prevProps.locationNonce !== locationNonce &&
+      (prevProps.location.pathname != location.pathname ||
+        prevProps.location.search == location.search)
+    ) {
       setBountyId(match.params.id);
 
       if (match.path === '/bounty/draft/:id/') {
@@ -103,6 +120,19 @@ class BountyComponent extends React.Component {
       }
     }
   }
+
+  rootLocationParams = () => {
+    return this.props.location.search || `?tab=${'comments'}}`;
+  };
+
+  setActiveTabAction = tabKey => {
+    const { history, location, setActiveTab } = this.props;
+
+    history.push(
+      location.pathname + setParam(this.rootLocationParams(), 'tab', tabKey)
+    );
+    setActiveTab(tabKey);
+  };
 
   render() {
     const {
@@ -208,8 +238,8 @@ class BountyComponent extends React.Component {
               />
 
               <div className={styles.bountyMetadata}>
-                <section className={styles.metadataSection}>
-                  {isDraft ? null : (
+                {isDraft ? null : (
+                  <section className={styles.metadataSection}>
                     <div className={styles.labelGroup}>
                       <Text inputLabel className={styles.label}>
                         Remaining balance
@@ -222,8 +252,8 @@ class BountyComponent extends React.Component {
                         bounty.tokenSymbol
                       }`}</Text>
                     </div>
-                  )}
-                </section>
+                  </section>
+                )}
 
                 <section className={styles.metadataSection}>
                   <div className={styles.metadataItem}>
@@ -351,6 +381,7 @@ class BountyComponent extends React.Component {
                 bounty={bounty}
                 isDraft={isDraft}
                 currentUser={user}
+                setActiveTabAction={this.setActiveTabAction}
                 initiateLoginProtection={initiateLoginProtection}
                 initiateWalkthrough={initiateWalkthrough}
               />
@@ -391,6 +422,7 @@ const mapStateToProps = (state, router) => {
 };
 
 const Bounty = compose(
+  withRouter,
   FunctionalLoginLock({
     wrapperClassName: styles.body
   }),

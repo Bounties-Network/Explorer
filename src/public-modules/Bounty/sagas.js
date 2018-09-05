@@ -280,12 +280,14 @@ export function* createBounty(action) {
 export function* getDraft(action) {
   const { id } = action;
   const user = yield select(getCurrentUserSelector);
-  const address = user.public_address;
-  const addressFilter = address.toLowerCase();
+  const params = {
+    issuer: user.public_address.toLowerCase(),
+    platform__in: config.platform
+  };
 
   try {
-    const endpoint = `bounty/draft/${id}/?issuer=${addressFilter}`;
-    const bounty = yield call(request, endpoint, 'GET');
+    const endpoint = `bounty/draft/${id}/`;
+    const bounty = yield call(request, endpoint, 'GET', { params });
     yield put(getDraftSuccess(bounty));
   } catch (e) {
     yield put(getDraftFail(e));
@@ -294,10 +296,13 @@ export function* getDraft(action) {
 
 export function* getBounty(action) {
   const { id } = action;
+  const params = {
+    platform__in: config.platform
+  };
 
   try {
     const endpoint = `bounty/${id}/`;
-    const bounty = yield call(request, endpoint, 'GET');
+    const bounty = yield call(request, endpoint, 'GET', { params });
     yield put(getBountySuccess(bounty));
   } catch (e) {
     yield put(getBountyFail(e));

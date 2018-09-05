@@ -22,7 +22,7 @@ let SubmissionsAndCommentsCardComponent = props => {
     showLogin,
     showModal,
     setRatingModal,
-    setActiveTab,
+    setActiveTabAction,
     currentTab,
     fulfillments,
     comments,
@@ -230,7 +230,7 @@ let SubmissionsAndCommentsCardComponent = props => {
           className={styles.tabs}
           currentKey={currentTab}
           defaultActiveKey={currentTab}
-          onSelect={setActiveTab}
+          onSelect={setActiveTabAction}
         >
           <Tabs.Tab
             tabClassName={styles.tab}
@@ -289,7 +289,6 @@ const SubmissionsAndCommentsCard = compose(
     mapStateToProps,
     {
       showModal: bountyUIActions.showModal,
-      setActiveTab: bountyUIActions.setActiveTab,
       setRatingModal: bountyUIActions.setRatingModal,
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
       postComment: commentsActions.postComment,
