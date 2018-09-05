@@ -235,7 +235,7 @@ export function* createBounty(action) {
       const issuedBountyHash = yield call(
         promisifyContractCall(standardBounties.issueAndActivateBounty, {
           from: userAddress,
-          gas: 385000
+          gas: 770000
         }),
         userAddress,
         deadline,
@@ -367,7 +367,7 @@ export function* activateBounty(action) {
       txHash = yield call(
         promisifyContractCall(standardBounties.activateBounty, {
           from: userAddress,
-          gas: 123000
+          gas: 246000
         }),
         id,
         contractBalance
@@ -467,7 +467,7 @@ export function* increasePayout(action) {
       txHash = yield call(
         promisifyContractCall(standardBounties.increasePayout, {
           from: userAddress,
-          gas: 88000
+          gas: 176000
         }),
         id,
         contractFulfillmentAmount,
@@ -523,7 +523,7 @@ export function* contribute(action) {
       txHash = yield call(
         promisifyContractCall(standardBounties.contribute, {
           from: userAddress,
-          gas: 88000
+          gas: 176000
         }),
         id,
         addedBalance
