@@ -124,7 +124,7 @@ export const notification_template = {
     icon: calendar_plus
   },
   [NOTIFICATION_ID.BOUNTY_CHANGED]: {
-    message: 'You updated your draft bounty',
+    message: 'You updated your bounty',
     icon: sync
   },
   [NOTIFICATION_ID.ISSUER_TRANSFERRED]: {
