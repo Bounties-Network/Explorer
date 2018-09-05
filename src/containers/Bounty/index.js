@@ -73,6 +73,7 @@ class BountyComponent extends React.Component {
       switch (values.tab) {
         case 'submissions':
         case 'comments': {
+          loadFulfillments();
           setActiveTab(values.tab);
           break;
         }
