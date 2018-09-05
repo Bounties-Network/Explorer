@@ -311,7 +311,7 @@ class CreateBountyFormComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="FULFILLMENTS">
+          <FormSection.Section title="SUBMISSION PRIVACY">
             <FormSection.Description>
               Will submissions be visible to everyone?
             </FormSection.Description>
