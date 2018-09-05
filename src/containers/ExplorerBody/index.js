@@ -34,7 +34,8 @@ const ExplorerBodyComponent = props => {
     categoryFilters,
     error,
     onOpenFilters,
-    noPadding
+    noPadding,
+    tabToOpen
   } = props;
 
   const renderBounties = () => {
@@ -69,6 +70,7 @@ const ExplorerBodyComponent = props => {
           onPillClick={toggleCategoryFilter}
           selectedCategories={categoryFilters}
           stage={bountyStage}
+          tabToOpen={tabToOpen}
         />
       );
     }, bounties);

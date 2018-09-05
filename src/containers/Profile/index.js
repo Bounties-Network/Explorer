@@ -17,6 +17,7 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { locationNonceSelector } from 'layout/App/selectors';
 import { actions } from './reducer';
+import { profileUISelector } from './selectors';
 
 import { StickyContainer, Sticky } from 'react-sticky';
 
@@ -141,7 +142,14 @@ class ProfileComponent extends React.Component {
   };
 
   render() {
-    const { error, loaded, user, loading, showFilters } = this.props;
+    const {
+      currentTab,
+      error,
+      loaded,
+      user,
+      loading,
+      showFilters
+    } = this.props;
     const { position } = this.state;
 
     const profileFilterNav = (
@@ -167,6 +175,7 @@ class ProfileComponent extends React.Component {
               }}
               className={styles.explorerBody}
               onOpenFilters={showFilters}
+              tabToOpen={currentTab == 'fulfilled' ? 'submissions' : 'comments'}
             />
           </div>
         </div>
@@ -209,6 +218,7 @@ const mapStateToProps = state => {
   const currentUser = getCurrentUserSelector(state);
   const userInfo = userInfoSelector(state);
   const bountyState = rootBountiesSelector(state);
+  const profileUI = profileUISelector(state);
 
   return {
     currentUser,
@@ -217,7 +227,8 @@ const mapStateToProps = state => {
     loading: userInfo.loading,
     loaded: userInfo.loaded,
     error: userInfo.error,
-    locationNonce: locationNonceSelector(state)
+    locationNonce: locationNonceSelector(state),
+    currentTab: profileUI.currentTab
   };
 };
 
