@@ -47,13 +47,14 @@ class BountyComponent extends React.Component {
       loadDraftBounty,
       loadFulfillment,
       loadFulfillments,
-      resetFilters,
+      resetFulfillmentsState,
       resetCommentsState,
       addBountyFilter,
       setBountyId,
       setActiveTab
     } = props;
 
+    resetFulfillmentsState();
     resetCommentsState();
     setBountyId(match.params.id);
 
@@ -65,7 +66,6 @@ class BountyComponent extends React.Component {
       loadBounty(match.params.id);
 
       // load submissions
-      resetFilters();
       addBountyFilter(match.params.id);
 
       const values = queryStringToObject(location.search);
@@ -78,6 +78,7 @@ class BountyComponent extends React.Component {
           break;
         }
         default: {
+          loadFulfillments();
           setActiveTab('comments');
         }
       }
@@ -96,15 +97,26 @@ class BountyComponent extends React.Component {
       loadBounty,
       loadDraftBounty,
       loadFulfillments,
-      resetFilters,
+      resetFulfillmentsState,
       addBountyFilter,
-      setBountyId
+      setBountyId,
+      user
     } = this.props;
+
+    // reloads if the user changes to a new bounty, but the search stays the same
+    const pathnameChangedOrSearchDidNot =
+      prevProps.location.pathname != location.pathname ||
+      prevProps.location.search == location.search;
+
+    // avoids the case where a user may click on an already active tab
+    const pathnameAndSearchDidNotChange =
+      prevProps.location.pathname == location.pathname &&
+      prevProps.location.search == location.search;
 
     if (
       prevProps.locationNonce !== locationNonce &&
-      (prevProps.location.pathname != location.pathname ||
-        prevProps.location.search == location.search)
+      pathnameChangedOrSearchDidNot &&
+      !pathnameAndSearchDidNotChange
     ) {
       setBountyId(match.params.id);
 
@@ -115,10 +127,17 @@ class BountyComponent extends React.Component {
       if (match.path === '/bounty/:id/') {
         loadBounty(match.params.id);
 
-        resetFilters();
+        resetFulfillmentsState();
         addBountyFilter(match.params.id);
         loadFulfillments(match.params.id);
       }
+    }
+
+    // reload fulfillments after user logs in
+    if (prevProps.user !== user) {
+      resetFulfillmentsState();
+      addBountyFilter(match.params.id);
+      loadFulfillments(match.params.id);
     }
   }
 
@@ -443,6 +462,7 @@ const Bounty = compose(
       loadFulfillment: fulfillmentActions.loadFulfillment,
       addBountyFilter: fulfillmentsActions.addBountyFilter,
       resetFilters: fulfillmentsActions.resetFilters,
+      resetFulfillmentsState: fulfillmentsActions.resetState,
       resetCommentsState: commentsActions.resetState
     }
   )

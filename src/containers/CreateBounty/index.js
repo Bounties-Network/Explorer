@@ -104,6 +104,7 @@ const mapStateToProps = (state, router) => {
       experienceLevel:
         DIFFICULTY_MAPPINGS[draftBounty.experienceLevel] || 'Beginner',
       revisions: draftBounty.revisions || 3,
+      privateFulfillments: draftBounty.privateFulfillments || false,
       paysTokens: draftBounty.paysTokens || !!config.defaultToken || false,
       tokenContract:
         draftBounty.tokenContract ||

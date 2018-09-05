@@ -38,7 +38,8 @@ import {
   DIFFICULTY_OPTIONS,
   PAYOUT_OPTIONS,
   ACTIVATE_OPTIONS,
-  UPLOAD_KEY
+  UPLOAD_KEY,
+  VISIBILITY_OPTIONS
 } from './constants';
 import config from 'public-modules/config';
 
@@ -305,6 +306,27 @@ class CreateBountyFormComponent extends React.Component {
                       validators.minDate(minDate)
                     ]}
                     showTimeSelect
+                  />
+                </div>
+              </div>
+            </FormSection.InputGroup>
+          </FormSection.Section>
+          <FormSection.Section title="FULFILLMENTS">
+            <FormSection.Description>
+              Will submissions be visible to everyone?
+            </FormSection.Description>
+            <FormSection.SubText>
+              Submissions can be hidden from other users if desired.
+            </FormSection.SubText>
+            <FormSection.InputGroup>
+              <div className="row">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                  <Field
+                    disabled={submittingBounty}
+                    name="privateFulfillments"
+                    component={FormRadioGroup}
+                    label="Visibility"
+                    options={VISIBILITY_OPTIONS}
                   />
                 </div>
               </div>
