@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 import styles from './SearchSelect.module.scss';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/lib/Creatable';
-import { reject, includes, map, find, isUndefined } from 'lodash';
+import {
+  reject,
+  includes,
+  map,
+  find,
+  isUndefined,
+  unionBy,
+  uniqBy
+} from 'lodash';
 import '../../styles/ReactSelect.scss';
 
 import { Text, Pill } from 'components';
@@ -11,16 +19,28 @@ import { Text, Pill } from 'components';
 class SearchSelect extends React.Component {
   constructor(props) {
     super(props);
+    const { value, single } = this.props;
     this.state = {
-      value: this.props.value || []
+      value: value || (!single && [])
     };
   }
 
   filterOptions = () => {
-    const { options, value, valueKey } = this.props;
+    const { labelKey, options, value, valueKey, single } = this.props;
     const { value: stateValue } = this.state;
 
     const selectValue = value || stateValue;
+
+    if (single && selectValue) {
+      let objectifiedSelectValue = {};
+      objectifiedSelectValue[labelKey] = selectValue;
+      objectifiedSelectValue[valueKey] = selectValue;
+
+      return unionBy(optionItem => optionItem[valueKey], options, [
+        objectifiedSelectValue
+      ]);
+    }
+
     return reject(
       optionItem => includes(optionItem[valueKey], selectValue),
       options
@@ -33,13 +53,18 @@ class SearchSelect extends React.Component {
   };
 
   onDropdownSelect = selectedValue => {
-    const { value, valueKey } = this.props;
+    const { value, valueKey, single, onChange } = this.props;
     const { value: stateValue } = this.state;
 
     const selectValue = value || stateValue;
 
-    this.setState({ value: [...selectValue, selectedValue[valueKey]] });
-    this.props.onChange([...selectValue, selectedValue[valueKey]]);
+    if (single) {
+      this.setState({ value: selectedValue && selectedValue[valueKey] });
+      onChange(selectedValue && selectedValue[valueKey]);
+    } else {
+      this.setState({ value: [...selectValue, selectedValue[valueKey]] });
+      onChange([...selectValue, selectedValue[valueKey]]);
+    }
   };
 
   closePill = closedValue => {
@@ -58,29 +83,31 @@ class SearchSelect extends React.Component {
   };
 
   renderPills = () => {
-    const { value, options, valueKey, labelKey } = this.props;
+    const { value, options, valueKey, labelKey, single } = this.props;
     const { value: stateValue } = this.state;
 
     const selectValue = value || stateValue;
 
-    return map(valueItem => {
-      if (isUndefined(valueItem)) {
-        return null;
-      }
+    if (!single) {
+      return map(valueItem => {
+        if (isUndefined(valueItem)) {
+          return null;
+        }
 
-      const label = find(
-        optionItem => optionItem[valueKey] === valueItem,
-        options
-      );
+        const label = find(
+          optionItem => optionItem[valueKey] === valueItem,
+          options
+        );
 
-      return (
-        <div className={`${styles.pill}`} key={valueItem}>
-          <Pill close onCloseClick={() => this.closePill(valueItem)}>
-            {label ? label[labelKey] : valueItem}
-          </Pill>
-        </div>
-      );
-    }, selectValue);
+        return (
+          <div className={`${styles.pill}`} key={valueItem}>
+            <Pill close onCloseClick={() => this.closePill(valueItem)}>
+              {label ? label[labelKey] : valueItem}
+            </Pill>
+          </div>
+        );
+      }, selectValue);
+    }
   };
 
   render() {
@@ -91,10 +118,13 @@ class SearchSelect extends React.Component {
       error,
       labelKey,
       valueKey,
+      value,
       maxLength,
       optional,
       placeholder,
+      single,
       creatable,
+      clearable,
       onFocus,
       onBlur
     } = this.props;
@@ -109,42 +139,79 @@ class SearchSelect extends React.Component {
       selectClass += ` ${styles.error}`;
     }
 
+    let select = creatable ? (
+      <CreatableSelect
+        disabled={disabled}
+        labelKey={labelKey}
+        valueKey={valueKey}
+        className={selectClass}
+        options={this.filterOptions()}
+        onChange={this.onDropdownSelect}
+        onCreateOption={this.onCreateOption}
+        onFocus={onFocus}
+        onBlur={() => onBlur(this.state.value)}
+        placeholder={placeholder}
+        inputProps={{ maxLength }}
+      />
+    ) : (
+      <Select
+        disabled={disabled}
+        labelKey={labelKey}
+        valueKey={valueKey}
+        className={selectClass}
+        options={this.filterOptions()}
+        onChange={this.onDropdownSelect}
+        placeholder={placeholder}
+        inputProps={{ maxLength }}
+      />
+    );
+
+    if (single) {
+      const { value: stateValue } = this.state;
+      const selectedValue = value || stateValue;
+
+      select = creatable ? (
+        <CreatableSelect
+          disabled={disabled}
+          labelKey={labelKey}
+          valueKey={valueKey}
+          clearable={clearable}
+          creatable={creatable}
+          className={selectClass}
+          onChange={this.onDropdownSelect}
+          options={this.filterOptions()}
+          onFocus={onFocus}
+          onBlur={() => onBlur(this.state.value)}
+          placeholder={placeholder}
+          value={selectedValue}
+        />
+      ) : (
+        <Select
+          disabled={disabled}
+          labelKey={labelKey}
+          valueKey={valueKey}
+          clearable={clearable}
+          creatable={creatable}
+          className={selectClass}
+          onChange={this.onDropdownSelect}
+          options={this.filterOptions()}
+          placeholder={placeholder}
+          value={selectedValue}
+        />
+      );
+    }
+
     return (
       <div className={`${styles.dropdownSearch}`}>
-        {labelText ? (
+        {labelText && (
           <div>
             <Text inputLabel color={error ? 'red' : null}>
               {labelText}
             </Text>
           </div>
-        ) : null}
-        {creatable ? (
-          <CreatableSelect
-            disabled={disabled}
-            labelKey={labelKey}
-            valueKey={valueKey}
-            className={selectClass}
-            options={this.filterOptions()}
-            onChange={this.onDropdownSelect}
-            onCreateOption={this.onCreateOption}
-            onFocus={onFocus}
-            onBlur={() => onBlur(this.state.value)}
-            placeholder={placeholder}
-            inputProps={{ maxLength }}
-          />
-        ) : (
-          <Select
-            disabled={disabled}
-            labelKey={labelKey}
-            valueKey={valueKey}
-            className={selectClass}
-            options={this.filterOptions()}
-            onChange={this.onDropdownSelect}
-            placeholder={placeholder}
-            inputProps={{ maxLength }}
-          />
         )}
-        {error ? (
+        {select}
+        {error && (
           <div>
             <Text
               className={styles.inputHelpText}
@@ -154,9 +221,11 @@ class SearchSelect extends React.Component {
               {error}
             </Text>
           </div>
-        ) : null}
+        )}
         <div>
-          <div className={`${styles.pillBar}`}>{this.renderPills()}</div>
+          <div className={`${styles.pillBar}`}>
+            {!single && this.renderPills()}
+          </div>
         </div>
       </div>
     );
@@ -175,7 +244,9 @@ SearchSelect.propTypes = {
   error: PropTypes.string,
   optional: PropTypes.bool,
   placeholder: PropTypes.string,
+  single: PropTypes.bool,
   creatable: PropTypes.bool,
+  clearable: PropTypes.bool,
   value: PropTypes.array,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
@@ -187,6 +258,9 @@ SearchSelect.defaultProps = {
   valueKey: 'value',
   options: [],
   maxLength: 20,
+  single: false,
+  creatable: false,
+  clearable: true,
   onClose: () => {},
   onChange: () => {},
   onFocus: () => {},

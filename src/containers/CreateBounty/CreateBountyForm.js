@@ -8,11 +8,15 @@ import { formValueSelector } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as categoryActions } from 'public-modules/Categories';
 import { actions as bountyActions } from 'public-modules/Bounty';
+import { actions as tokensActions } from 'public-modules/Tokens';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
+import { rootTokensSelector } from 'public-modules/Tokens/selectors';
+import { tokensDropdownDataSelector } from './selectors';
 import { TransactionWalkthrough } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
 import { getTimezone, isMobile } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
+import { map } from 'lodash';
 import moment from 'moment';
 import {
   stdBountyStateSelector,
@@ -93,7 +97,9 @@ class CreateBountyFormComponent extends React.Component {
       resetUpload,
       deleteUploadKey,
       bountyId,
-      minDate
+      minDate,
+      tokens,
+      addToken
     } = this.props;
 
     let submitButtonText = 'Create Bounty';
@@ -357,18 +363,21 @@ class CreateBountyFormComponent extends React.Component {
             {paysTokens && !config.defaultToken ? (
               <FormSection.InputGroup>
                 <div className="row">
-                  <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                  <div className={`col-xs-12 ${styles.input}`}>
                     <Field
-                      name="tokenContract"
                       disabled={submittingBounty || !!config.defaultToken}
-                      component={FormTextInput}
-                      label={
-                        !config.defaultToken
-                          ? 'Token Contract Address'
-                          : `${config.defaultToken.symbol} Contract Address`
-                      }
+                      name="tokenContract"
+                      component={FormSearchSelect}
+                      label="Token"
+                      placeholder="Select token or enter token address..."
                       validate={[validators.required, validators.isWeb3Address]}
-                      placeholder="Enter token contract address..."
+                      options={tokens}
+                      single={true}
+                      clearable={true}
+                      creatable={true}
+                      labelKey="display"
+                      valueKey="value"
+                      isLoading={true}
                     />
                   </div>
                 </div>
@@ -450,6 +459,8 @@ const mapStateToProps = state => {
   const draftState = createDraftStateSelector(state);
   const bountyState = stdBountyStateSelector(state);
   const draftBounty = getDraftBountySelector(state) || {};
+  const rootTokens = rootTokensSelector(state);
+  const tokens = tokensDropdownDataSelector(state);
 
   return {
     uploadLoading: uploadedFile ? uploadedFile.uploading : false,
@@ -463,7 +474,10 @@ const mapStateToProps = state => {
     minDate: moment().add(1, 'days'),
     fileHash: uploadedFile
       ? uploadedFile.ipfsHash
-      : draftBounty.sourceDirectoryHash
+      : draftBounty.sourceDirectoryHash,
+    loadingTokens: rootTokens.loading,
+    errorLoadingTokens: rootTokens.error,
+    tokens
   };
 };
 
@@ -476,6 +490,7 @@ const CreateBountyForm = compose(
     {
       uploadFile: uploadActions.uploadFile,
       addCategory: categoryActions.addToCategories,
+      addToken: tokensActions.addToken,
       createDraft: bountyActions.createDraft,
       updateDraft: bountyActions.updateDraft,
       createBounty: bountyActions.createBounty,
