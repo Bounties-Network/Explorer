@@ -97,9 +97,12 @@ class BountyComponent extends React.Component {
       loadBounty,
       loadDraftBounty,
       loadFulfillments,
+      loadFulfillment,
       resetFulfillmentsState,
       addBountyFilter,
       setBountyId,
+      setActiveTab,
+      resetCommentsState,
       user
     } = this.props;
 
@@ -130,6 +133,27 @@ class BountyComponent extends React.Component {
         resetFulfillmentsState();
         addBountyFilter(match.params.id);
         loadFulfillments(match.params.id);
+
+        resetCommentsState();
+
+        const values = queryStringToObject(location.search);
+
+        switch (values.tab) {
+          case 'submissions':
+          case 'comments': {
+            loadFulfillments();
+            setActiveTab(values.tab);
+            break;
+          }
+          default: {
+            loadFulfillments();
+            setActiveTab('comments');
+          }
+        }
+
+        if (values.rating) {
+          loadFulfillment(match.params.id, values.fulfillment_id);
+        }
       }
     }
 
