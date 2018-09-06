@@ -5,7 +5,10 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { map } from 'lodash';
-import { hasWalletSelector } from 'public-modules/Client/selectors';
+import {
+  hasWalletSelector,
+  walletLockedSelector
+} from 'public-modules/Client/selectors';
 import { NAV_ITEMS } from './constants';
 import {
   Explorer,
@@ -61,7 +64,7 @@ class HeaderComponent extends React.Component {
 
   render() {
     const { showMobileSidebar } = this.state;
-    const { history, network, location, hasWallet } = this.props;
+    const { history, network, location, hasWallet, walletLocked } = this.props;
 
     return (
       <React.Fragment>
@@ -79,13 +82,14 @@ class HeaderComponent extends React.Component {
           onMobileHide={() => this.setState({ showMobileSidebar: false })}
         >
           <Sidebar.TabGroup>{this.renderSideNavItems()}</Sidebar.TabGroup>
-          {hasWallet && (
-            <Sidebar.Footer>
-              <div className={styles.network}>
-                <Network network={network} theme="light" />
-              </div>
-            </Sidebar.Footer>
-          )}
+          {hasWallet &&
+            !walletLocked && (
+              <Sidebar.Footer>
+                <div className={styles.network}>
+                  <Network network={network} theme="light" />
+                </div>
+              </Sidebar.Footer>
+            )}
         </Sidebar>
       </React.Fragment>
     );
@@ -94,6 +98,7 @@ class HeaderComponent extends React.Component {
 
 const mapHeaderStateToProps = state => {
   return {
+    walletLocked: walletLockedSelector(state),
     hasWallet: hasWalletSelector(state),
     network: state.client.network
   };
