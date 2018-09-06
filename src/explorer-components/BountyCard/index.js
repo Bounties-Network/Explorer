@@ -24,8 +24,7 @@ const BountyCard = props => {
     usd,
     currency,
     onPillClick,
-    selectedCategories,
-    tabToOpen
+    selectedCategories
   } = props;
 
   const renderCategories = () => {
@@ -59,10 +58,7 @@ const BountyCard = props => {
           <div
             className={`col-xs-9 col-sm-6 col-lg-7 ${styles.bountyPrimaryData}`}
           >
-            <Link
-              to={`/bounty/${id}/?tab=${tabToOpen}`}
-              className={styles.link}
-            >
+            <Link to={`/bounty/${id}`} className={styles.link}>
               <Text
                 typeScale="h4"
                 weight="fontWeight-medium"
@@ -169,14 +165,12 @@ BountyCard.propTypes = {
   value: PropTypes.number,
   usd: PropTypes.number,
   currency: PropTypes.string,
-  onPillClick: PropTypes.func,
-  tabToOpen: PropTypes.string
+  onPillClick: PropTypes.func
 };
 
 BountyCard.defaultProps = {
   onPillClick: () => {},
-  experienceLevel: 'Unknown',
-  tabToOpen: 'comments'
+  experienceLevel: 'Unknown'
 };
 
 export default BountyCard;
