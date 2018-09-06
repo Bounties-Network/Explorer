@@ -163,7 +163,11 @@ class Cropper extends React.Component {
             ) : null}
           </div>
           <div className={styles.buttonWrapper}>
-            <Button className={styles.upload} disabled={disabledState}>
+            <Button
+              className={styles.upload}
+              disabled={disabledState}
+              buttonType="button"
+            >
               Upload New Photo
               <input
                 key={nonce}
@@ -177,6 +181,7 @@ class Cropper extends React.Component {
             </Button>
             {activeCrop || isLoading ? (
               <Button
+                buttonType="button"
                 type="action"
                 className={styles.saveButton}
                 loading={isLoading}
@@ -188,6 +193,7 @@ class Cropper extends React.Component {
             {src &&
               !activeCrop && (
                 <Button
+                  buttonType="button"
                   type="link-destructive"
                   onClick={this.onDelete}
                   disabled={disabledState}
@@ -197,6 +203,7 @@ class Cropper extends React.Component {
               )}
             {activeCrop && (
               <Button
+                buttonType="button"
                 type="link-destructive"
                 onClick={this.removeCroppie}
                 disabled={disabledState}
