@@ -119,8 +119,8 @@ let FulfillBountyFormModalComponent = props => {
             <div className="col-xs">
               <Text style="italic" color="defaultGrey">
                 {privateFulfillments
-                  ? 'All information entered here will be stored on the public Ethereum network, and will be publicly displayed on the site.'
-                  : 'All information entered here will be stored on the public Ethereum network, but will be hidden on the site.'}
+                  ? 'All information entered here will be stored on the public Ethereum network, but will be hidden on the site.'
+                  : 'All information entered here will be stored on the public Ethereum network, and will be publicly displayed on the site.'}
               </Text>
             </div>
           </div>
