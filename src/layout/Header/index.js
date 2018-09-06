@@ -4,7 +4,10 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { actions as loginActions } from 'containers/Login/reducer';
-import { hasWalletSelector } from 'public-modules/Client/selectors';
+import {
+  hasWalletSelector,
+  walletLockedSelector
+} from 'public-modules/Client/selectors';
 import { actions as authActions } from 'public-modules/Authentication';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -27,7 +30,8 @@ const HeaderComponent = props => {
     history,
     match,
     onShowNav,
-    hasWallet
+    hasWallet,
+    walletLocked
   } = props;
 
   const loginStatus = !!user;
@@ -39,7 +43,10 @@ const HeaderComponent = props => {
           <BeeLogo />
         </Link>
       </div>
-      {hasWallet && <Network network={network} className={styles.network} />}
+      {hasWallet &&
+        !walletLocked && (
+          <Network network={network} className={styles.network} />
+        )}
       <div className={styles.sideNavTrigger} onClick={onShowNav}>
         <Text typeScale="h3" color="blue">
           <FontAwesomeIcon icon={['far', 'bars']} />
@@ -143,6 +150,7 @@ HeaderComponent.defaultProps = {
 
 const mapStateToProps = state => ({
   hasWallet: hasWalletSelector(state),
+  walletLocked: walletLockedSelector(state),
   network: state.client.network,
   user: getCurrentUserSelector(state)
 });
