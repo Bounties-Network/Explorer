@@ -523,6 +523,7 @@ export function* contribute(action) {
       txHash = yield call(
         promisifyContractCall(standardBounties.contribute, {
           from: userAddress,
+
           gas: 100000
         }),
         id,
