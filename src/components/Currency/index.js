@@ -13,10 +13,13 @@ const Currency = props => {
     primaryValue,
     primaryCurrency,
     primaryDecimals,
+    primaryTypeScale,
+    primaryWeight,
 
     secondaryValue,
     secondaryCurrency,
-    secondaryDecimals
+    secondaryDecimals,
+    secondaryTypeScale
   } = props;
 
   const generateDisplay = (value, currency, decimals) =>
@@ -29,12 +32,17 @@ const Currency = props => {
 
   return (
     <div className={[styles.container, className].join(' ')}>
-      <Text color="purple" typeScale="h2" className={primaryClassName}>
+      <Text
+        color="purple"
+        typeScale={primaryTypeScale}
+        weight={primaryWeight}
+        className={primaryClassName}
+      >
         {generateDisplay(primaryValue, primaryCurrency, primaryDecimals)}
       </Text>
       <Text
         color="defaultGrey"
-        typeScale="Small"
+        typeScale={secondaryTypeScale}
         className={secondaryClassName}
       >
         {generateDisplay(secondaryValue, secondaryCurrency, secondaryDecimals)}
@@ -50,6 +58,11 @@ Currency.propTypes = {
   primaryValue: PropTypes.number,
   primaryCurrency: PropTypes.string,
   primaryDecimals: PropTypes.string,
+  primaryWeight: PropTypes.oneOf([
+    'fontWeight-regular',
+    'fontWeight-medium',
+    'fontWeight-bold'
+  ]),
   secondaryValue: PropTypes.number,
   secondaryCurrency: PropTypes.string,
   secondaryDecimals: PropTypes.string
@@ -59,8 +72,11 @@ Currency.defaultProps = {
   primaryValue: 0,
   primaryCurrency: 'usd',
   primaryDecimals: '2',
+  primaryTypeScale: 'h2',
+  primaryWeight: 'fontWeight-regular',
   secondaryCurrency: '',
-  secondaryDecimals: 'all'
+  secondaryDecimals: 'all',
+  secondaryTypeScale: 'Small'
 };
 
 export default Currency;

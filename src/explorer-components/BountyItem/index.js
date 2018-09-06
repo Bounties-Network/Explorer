@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './BountyItem.module.scss';
-import { Text } from 'components';
+import { Currency, Text } from 'components';
 import Pluralize from 'pluralize';
 import moment from 'moment';
 
@@ -38,19 +38,17 @@ const BountyItem = props => {
         </Text>
       </div>
       <div className="col-xs-3">
-        <div className={styles.value}>
-          <Text
-            color="purple"
-            typeScale="h4"
-            weight="fontWeight-medium"
-            className={styles.usd}
-          >
-            ${usd_value}
-          </Text>
-          <Text color="defaultGrey" typeScale="Small" className={styles.eth}>
-            {`${value} ${currency}`}
-          </Text>
-        </div>
+        <Currency
+          className={styles.value}
+          primaryValue={usd_value}
+          primaryDecimals="0"
+          primaryTypeScale="h4"
+          primaryWeight="fontWeight-medium"
+          primaryClassName={styles.usd}
+          secondaryValue={value}
+          secondaryCurrency={currency}
+          secondaryClassName={styles.eth}
+        />
       </div>
     </div>
   );
