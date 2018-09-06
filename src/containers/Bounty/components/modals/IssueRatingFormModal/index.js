@@ -162,7 +162,7 @@ const IssueRatingFormModal = compose(
       postReview: reviewActions.postReview
     }
   ),
-  reduxForm({ form: 'issueRating', enableReinitialize: true }),
+  reduxForm({ form: 'issueRating', destroyOnUnmount: false }),
   ModalFormReset
 )(IssueRatingFormModalComponent);
 
