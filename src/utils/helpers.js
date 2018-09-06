@@ -67,3 +67,7 @@ export function getMobileOperatingSystem() {
 export function scrollToTop() {
   document.getElementsByClassName('page-body')[0].scrollTo(0, 0);
 }
+
+export function isNumber(n) {
+  return !isNaN(Number(n));
+}

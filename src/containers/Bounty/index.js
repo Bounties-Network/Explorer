@@ -27,7 +27,12 @@ import { addressSelector } from 'public-modules/Client/selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
-import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
+import {
+  Currency,
+  PageCard,
+  StagePill,
+  LinkedAvatar
+} from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
 import { locationNonceSelector } from 'layout/App/selectors';
 import { setParam } from 'utils/locationHelpers';
@@ -181,18 +186,17 @@ class BountyComponent extends React.Component {
         <PageCard>
           <PageCard.Header className={styles.bountyPageCardHeader}>
             <div className={styles.header}>
-              <div className={styles.ethBox}>
-                <Text color="white" typeScale="h2" className={styles.usd}>
-                  {`$${Number(bounty.usd_price).toFixed(2)}`}
-                </Text>
-                <Text
-                  color="white"
-                  typeScale="Body"
-                  className={styles.currency}
-                >{`${BigNumber(
-                  bounty.calculated_fulfillmentAmount
-                ).toString()} ${bounty.tokenSymbol}`}</Text>
-              </div>
+              <Currency
+                className={styles.ethBox}
+                primaryValue={bounty.usd_price}
+                primaryDecimals="2"
+                primaryColor="white"
+                primaryClassName={styles.usd}
+                secondaryValue={bounty.calculated_fulfillmentAmount}
+                secondaryCurrency={bounty.tokenSymbol}
+                secondaryClassName={styles.currency}
+              />
+
               <div className={styles.bountyHeader}>
                 <PageCard.Title>{bounty.title}</PageCard.Title>
                 <div className={styles.categories}>
@@ -251,13 +255,14 @@ class BountyComponent extends React.Component {
                       <Text inputLabel className={styles.label}>
                         Remaining balance
                       </Text>
-                      <Text
-                        color="purple"
-                        weight="fontWeight-medium"
-                        typeScale="h4"
-                      >{`${Number(bounty.calculated_balance)} ${
-                        bounty.tokenSymbol
-                      }`}</Text>
+                      <Currency
+                        primaryValue={bounty.calculated_balance}
+                        primaryCurrency={bounty.tokenSymbol}
+                        primaryDecimals="all"
+                        primaryTypeScale="h4"
+                        primaryWeight="fontWeight-medium"
+                        alignment="align-left"
+                      />
                     </div>
                   </section>
                 )}
