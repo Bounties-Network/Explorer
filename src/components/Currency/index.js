@@ -9,17 +9,20 @@ const Currency = props => {
     className,
     primaryClassName,
     secondaryClassName,
+    alignment,
 
     primaryValue,
     primaryCurrency,
     primaryDecimals,
     primaryTypeScale,
     primaryWeight,
+    primaryColor,
 
     secondaryValue,
     secondaryCurrency,
     secondaryDecimals,
-    secondaryTypeScale
+    secondaryTypeScale,
+    secondaryColor
   } = props;
 
   const generateDisplay = (value, currency, decimals) =>
@@ -30,29 +33,41 @@ const Currency = props => {
       currency.toLowerCase() == 'usd' ? null : currency
     ].join('');
 
+  const containerClass = alignment == 'align-left' ? styles.left : styles.right;
+
   return (
-    <div className={[styles.container, className].join(' ')}>
-      <Text
-        color="purple"
-        typeScale={primaryTypeScale}
-        weight={primaryWeight}
-        className={primaryClassName}
-      >
-        {generateDisplay(primaryValue, primaryCurrency, primaryDecimals)}
-      </Text>
-      <Text
-        color="defaultGrey"
-        typeScale={secondaryTypeScale}
-        className={secondaryClassName}
-      >
-        {generateDisplay(secondaryValue, secondaryCurrency, secondaryDecimals)}
-      </Text>
+    <div className={[containerClass, className].join(' ')}>
+      {primaryValue && (
+        <Text
+          color={primaryColor}
+          typeScale={primaryTypeScale}
+          weight={primaryWeight}
+          className={primaryClassName}
+        >
+          {generateDisplay(primaryValue, primaryCurrency, primaryDecimals)}
+        </Text>
+      )}
+
+      {secondaryValue && (
+        <Text
+          color={secondaryColor}
+          typeScale={secondaryTypeScale}
+          className={secondaryClassName}
+        >
+          {generateDisplay(
+            secondaryValue,
+            secondaryCurrency,
+            secondaryDecimals
+          )}
+        </Text>
+      )}
     </div>
   );
 };
 
 Currency.propTypes = {
   className: PropTypes.string,
+  alignment: PropTypes.oneOf(['align-left', 'align-right']),
   primaryClassName: PropTypes.string,
   secondaryClassName: PropTypes.string,
   primaryValue: PropTypes.number,
@@ -63,20 +78,25 @@ Currency.propTypes = {
     'fontWeight-medium',
     'fontWeight-bold'
   ]),
+  primaryColor: PropTypes.string,
   secondaryValue: PropTypes.number,
   secondaryCurrency: PropTypes.string,
-  secondaryDecimals: PropTypes.string
+  secondaryDecimals: PropTypes.string,
+  secondaryColor: PropTypes.string
 };
 
 Currency.defaultProps = {
+  alignment: 'align-right',
   primaryValue: 0,
   primaryCurrency: 'usd',
   primaryDecimals: '2',
   primaryTypeScale: 'h2',
   primaryWeight: 'fontWeight-regular',
+  primaryColor: 'purple',
   secondaryCurrency: '',
   secondaryDecimals: 'all',
-  secondaryTypeScale: 'Small'
+  secondaryTypeScale: 'Small',
+  secondaryColor: 'defaultGrey'
 };
 
 export default Currency;
