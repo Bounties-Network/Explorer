@@ -78,6 +78,7 @@ class BountyComponent extends React.Component {
           break;
         }
         default: {
+          loadFulfillments();
           setActiveTab('comments');
         }
       }
