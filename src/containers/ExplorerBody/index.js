@@ -64,7 +64,7 @@ const ExplorerBodyComponent = props => {
           submissions={fulfillment_count}
           deadline={moment.utc(deadline, 'YYYY-MM-DDThh:mm:ssZ').fromNow(true)}
           value={Number(calculated_fulfillmentAmount)}
-          usd={Number(usd_price).toFixed(2)}
+          usd={Number(usd_price)}
           currency={tokenSymbol}
           onPillClick={toggleCategoryFilter}
           selectedCategories={categoryFilters}

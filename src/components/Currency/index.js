@@ -7,6 +7,8 @@ import { Text } from 'components';
 const Currency = props => {
   const {
     className,
+    primaryClassName,
+    secondaryClassName,
 
     primaryValue,
     primaryCurrency,
@@ -27,10 +29,14 @@ const Currency = props => {
 
   return (
     <div className={[styles.container, className].join(' ')}>
-      <Text color="purple" typeScale="h2">
+      <Text color="purple" typeScale="h2" className={primaryClassName}>
         {generateDisplay(primaryValue, primaryCurrency, primaryDecimals)}
       </Text>
-      <Text color="defaultGrey" typeScale="Small">
+      <Text
+        color="defaultGrey"
+        typeScale="Small"
+        className={secondaryClassName}
+      >
         {generateDisplay(secondaryValue, secondaryCurrency, secondaryDecimals)}
       </Text>
     </div>
@@ -39,6 +45,8 @@ const Currency = props => {
 
 Currency.propTypes = {
   className: PropTypes.string,
+  primaryClassName: PropTypes.string,
+  secondaryClassName: PropTypes.string,
   primaryValue: PropTypes.number,
   primaryCurrency: PropTypes.string,
   primaryDecimals: PropTypes.string,

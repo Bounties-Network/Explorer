@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { REV_DIFFICULTY_MAPPING } from 'public-modules/Bounties/constants';
 import { EXPIRED } from 'public-modules/Bounty/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Card, Text, Pill } from 'components';
+import { Card, Currency, Text, Pill } from 'components';
 import { LinkedAvatar } from 'explorer-components';
 
 const BountyCard = props => {
@@ -137,16 +137,13 @@ const BountyCard = props => {
             </div>
           </div>
           <div className={`col-xs-3 col-sm-2 col-lg-2 ${styles.bountyPrize}`}>
-            <div className={styles.price}>
-              <Text color="purple" typeScale="h2" className={styles.usd}>
-                ${usd}
-              </Text>
-              <Text
-                color="defaultGrey"
-                typeScale="Small"
-                className={styles.currency}
-              >{`${value} ${currency}`}</Text>
-            </div>
+            <Currency
+              className={styles.price}
+              primaryValue={usd}
+              primaryClassName={styles.usd}
+              secondaryValue={value}
+              secondaryCurrency={currency}
+            />
           </div>
         </div>
       </Card.Body>
