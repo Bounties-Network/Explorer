@@ -47,14 +47,13 @@ class BountyComponent extends React.Component {
       loadDraftBounty,
       loadFulfillment,
       loadFulfillments,
-      resetFilters,
+      resetFulfillmentsState,
       resetCommentsState,
       addBountyFilter,
       setBountyId,
       setActiveTab
     } = props;
 
-    resetCommentsState();
     setBountyId(match.params.id);
 
     if (match.path === '/bounty/draft/:id/') {
@@ -62,25 +61,14 @@ class BountyComponent extends React.Component {
     }
 
     if (match.path === '/bounty/:id/') {
-      loadBounty(match.params.id);
+      resetFulfillmentsState();
+      resetCommentsState();
 
-      // load submissions
-      resetFilters();
+      loadBounty(match.params.id);
       addBountyFilter(match.params.id);
+      setActiveTab('comments');
 
       const values = queryStringToObject(location.search);
-
-      switch (values.tab) {
-        case 'submissions':
-        case 'comments': {
-          loadFulfillments();
-          setActiveTab(values.tab);
-          break;
-        }
-        default: {
-          setActiveTab('comments');
-        }
-      }
 
       if (values.rating) {
         loadFulfillment(match.params.id, values.fulfillment_id);
@@ -96,29 +84,47 @@ class BountyComponent extends React.Component {
       loadBounty,
       loadDraftBounty,
       loadFulfillments,
-      resetFilters,
+      loadFulfillment,
+      resetFulfillmentsState,
       addBountyFilter,
-      setBountyId
+      setBountyId,
+      setActiveTab,
+      resetCommentsState,
+      user,
+      history
     } = this.props;
 
-    if (
-      prevProps.locationNonce !== locationNonce &&
-      (prevProps.location.pathname != location.pathname ||
-        prevProps.location.search == location.search)
-    ) {
-      setBountyId(match.params.id);
+    // do this because for some reason match was stale
+    const bountyId = history.location.pathname.split('/')[2];
+
+    if (prevProps.locationNonce !== locationNonce) {
+      setBountyId(bountyId);
 
       if (match.path === '/bounty/draft/:id/') {
-        loadDraftBounty(match.params.id);
+        loadDraftBounty(bountyId);
       }
 
       if (match.path === '/bounty/:id/') {
-        loadBounty(match.params.id);
+        resetFulfillmentsState();
+        resetCommentsState();
 
-        resetFilters();
-        addBountyFilter(match.params.id);
-        loadFulfillments(match.params.id);
+        loadBounty(bountyId);
+        addBountyFilter(bountyId);
+        setActiveTab('comments');
+
+        const values = queryStringToObject(location.search);
+
+        if (values.rating) {
+          loadFulfillment(bountyId, values.fulfillment_id);
+        }
       }
+    }
+
+    // reload fulfillments after user logs in
+    if (prevProps.user !== user) {
+      resetFulfillmentsState();
+      addBountyFilter(bountyId);
+      loadFulfillments(bountyId);
     }
   }
 
@@ -127,12 +133,12 @@ class BountyComponent extends React.Component {
   };
 
   setActiveTabAction = tabKey => {
-    const { history, location, setActiveTab } = this.props;
-
-    history.push(
-      location.pathname + setParam(this.rootLocationParams(), 'tab', tabKey)
-    );
-    setActiveTab(tabKey);
+    // const { history, location, setActiveTab } = this.props;
+    //
+    // history.push(
+    //   location.pathname + setParam(this.rootLocationParams(), 'tab', tabKey)
+    // );
+    this.props.setActiveTab(tabKey);
   };
 
   render() {
@@ -443,6 +449,7 @@ const Bounty = compose(
       loadFulfillment: fulfillmentActions.loadFulfillment,
       addBountyFilter: fulfillmentsActions.addBountyFilter,
       resetFilters: fulfillmentsActions.resetFilters,
+      resetFulfillmentsState: fulfillmentsActions.resetState,
       resetCommentsState: commentsActions.resetState
     }
   )

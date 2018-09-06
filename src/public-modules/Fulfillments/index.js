@@ -52,6 +52,7 @@ const ADD_ISSUER_FILTER = 'fulfillments/ADD_ISSUER_FILTER';
 const ADD_FULFILLER_FILTER = 'fulfillments/ADD_FULFILLER_FILTER';
 const ADD_BOUNTY_FILTER = 'fulfillments/ADD_BOUNTY_FILTER';
 const RESET_FILTERS = 'fulfillments/RESET_FILTERS';
+const RESET_STATE = 'fulfillments/RESET_STATE';
 
 function addIssuerFilter(address) {
   return { type: ADD_ISSUER_FILTER, address };
@@ -67,6 +68,10 @@ function addBountyFilter(id) {
 
 function resetFilters() {
   return { type: RESET_FILTERS };
+}
+
+function resetState() {
+  return { type: RESET_STATE };
 }
 
 function FulfillmentsReducer(state = initialState, action) {
@@ -161,6 +166,9 @@ function FulfillmentsReducer(state = initialState, action) {
         filters: {}
       };
     }
+    case RESET_STATE: {
+      return initialState;
+    }
     default:
       return state;
   }
@@ -176,7 +184,8 @@ export const actions = {
   addIssuerFilter,
   addFulfillerFilter,
   addBountyFilter,
-  resetFilters
+  resetFilters,
+  resetState
 };
 
 export const actionTypes = {
@@ -189,7 +198,8 @@ export const actionTypes = {
   ADD_ISSUER_FILTER,
   ADD_FULFILLER_FILTER,
   ADD_BOUNTY_FILTER,
-  RESET_FILTERS
+  RESET_FILTERS,
+  RESET_STATE
 };
 
 export default FulfillmentsReducer;

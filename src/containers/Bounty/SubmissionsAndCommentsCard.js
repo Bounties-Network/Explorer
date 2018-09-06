@@ -131,39 +131,30 @@ let SubmissionsAndCommentsCardComponent = props => {
       );
     }
 
-    if (!bountyBelongsToLoggedInUser) {
-      let userFulfillments = [];
-
-      if (currentUser) {
-        userFulfillments = filter(
-          ['fulfiller', currentUser.public_address],
-          fulfillments.list
-        );
-      }
-
+    if (bounty.private_fulfillments && fulfillments.list.length) {
       body = (
         <React.Fragment>
-          <ListGroup>{renderFulfillments(userFulfillments)}</ListGroup>
+          <ListGroup>{renderFulfillments(fulfillments.list)}</ListGroup>
           <Text alignment="align-center" color="defaultGrey" typeScale="Small">
             Submissions to this bounty are hidden. Your submissions are only
             visible to you and the bounty issuer.
           </Text>
         </React.Fragment>
       );
+    }
 
-      if (!currentUser || !userFulfillments.length) {
-        bodyClass = styles.bodyLoading;
-        body = (
-          <div className={styles.zeroState}>
-            <ZeroState
-              title={'Submissions are private'}
-              text={'The submissions for this bounty have been set to private.'}
-              iconColor="blue"
-              icon={['fal', 'lock']}
-            />
-          </div>
-        );
-      }
+    if (bounty.private_fulfillments && !fulfillments.list.length) {
+      bodyClass = styles.bodyLoading;
+      body = (
+        <div className={styles.zeroState}>
+          <ZeroState
+            title={'Submissions are private'}
+            text={'The submissions for this bounty have been set to private.'}
+            iconColor="blue"
+            icon={['fal', 'lock']}
+          />
+        </div>
+      );
     }
 
     if (fulfillments.loading) {
@@ -235,7 +226,7 @@ let SubmissionsAndCommentsCardComponent = props => {
           <Tabs.Tab
             tabClassName={styles.tab}
             tabColor="lightGrey"
-            tabCount={fulfillments.list.length}
+            tabCount={bounty.fulfillment_count}
             eventKey={'submissions'}
           >
             <Text typeScale="h4" className={styles.tabText}>

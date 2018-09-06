@@ -16,4 +16,8 @@ export const ACTIVATE_OPTIONS = [
   { value: false, label: 'Later' }
 ];
 
+export const VISIBILITY_OPTIONS = [
+  { value: false, label: 'Public' },
+  { value: true, label: 'Private' }
+];
 export const UPLOAD_KEY = 'createBounty';

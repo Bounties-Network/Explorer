@@ -168,6 +168,7 @@ const ModalManagerComponent = props => {
       />
       <FulfillBountyFormModal
         visible={modalType === 'fulfillBounty'}
+        privateFulfillments={bounty.private_fulfillments}
         onClose={closeModal}
         onSubmit={fulfillBounty}
         name={user.name}
