@@ -37,16 +37,14 @@ const Currency = props => {
 
   return (
     <div className={[containerClass, className].join(' ')}>
-      {primaryValue && (
-        <Text
-          color={primaryColor}
-          typeScale={primaryTypeScale}
-          weight={primaryWeight}
-          className={primaryClassName}
-        >
-          {generateDisplay(primaryValue, primaryCurrency, primaryDecimals)}
-        </Text>
-      )}
+      <Text
+        color={primaryColor}
+        typeScale={primaryTypeScale}
+        weight={primaryWeight}
+        className={primaryClassName}
+      >
+        {generateDisplay(primaryValue, primaryCurrency, primaryDecimals)}
+      </Text>
 
       {secondaryValue && (
         <Text
