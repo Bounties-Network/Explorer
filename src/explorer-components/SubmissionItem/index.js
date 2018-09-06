@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SubmissionItem.module.scss';
 import { Link } from 'react-router-dom';
-import { Table, Text } from 'components';
+import { Currency, Table, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
 
@@ -57,19 +57,14 @@ const SubmissionItem = props => {
         headerText="Payment amount"
         contentType="numerical"
       >
-        <div className={styles.value}>
-          <Text
-            color="purple"
-            typeScale="h4"
-            weight="fontWeight-medium"
-            className={styles.usd}
-          >
-            ${usd}
-          </Text>
-          <Text color="defaultGrey" typeScale="Small">
-            {`${amount} ${currency}`}
-          </Text>
-        </div>
+        <Currency
+          primaryValue={usd}
+          primaryDecimals="0"
+          primaryTypeScale="h4"
+          primaryClassName={styles.usd}
+          secondaryValue={amount}
+          secondaryCurrency={currency}
+        />
       </Table.Cell>
     </Table.Row>
   );
