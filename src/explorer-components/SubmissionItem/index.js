@@ -2,8 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SubmissionItem.module.scss';
 import { Link } from 'react-router-dom';
-import { Currency, Table, Text } from 'components';
-import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
+import { Table, Text } from 'components';
+import {
+  Currency,
+  FulfillmentStagePill,
+  LinkedAvatar
+} from 'explorer-components';
 import moment from 'moment';
 
 const SubmissionItem = props => {

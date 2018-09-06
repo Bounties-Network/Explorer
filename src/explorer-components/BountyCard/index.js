@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import { REV_DIFFICULTY_MAPPING } from 'public-modules/Bounties/constants';
 import { EXPIRED } from 'public-modules/Bounty/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Card, Currency, Text, Pill } from 'components';
-import { LinkedAvatar } from 'explorer-components';
+import { Card, Text, Pill } from 'components';
+import { Currency, LinkedAvatar } from 'explorer-components';
 
 const BountyCard = props => {
   const {

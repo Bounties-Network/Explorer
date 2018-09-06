@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './BountyItem.module.scss';
-import { Currency, Text } from 'components';
+import { Text } from 'components';
+import { Currency } from 'explorer-components';
 import Pluralize from 'pluralize';
 import moment from 'moment';
 

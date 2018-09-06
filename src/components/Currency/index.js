@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Currency.module.scss';
+import { isNumber } from 'utils/helpers';
 
 import { Text } from 'components';
 
@@ -46,7 +47,7 @@ const Currency = props => {
         {generateDisplay(primaryValue, primaryCurrency, primaryDecimals)}
       </Text>
 
-      {secondaryValue && (
+      {isNumber(secondaryValue) && (
         <Text
           color={secondaryColor}
           typeScale={secondaryTypeScale}

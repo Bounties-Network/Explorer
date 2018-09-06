@@ -26,8 +26,13 @@ import {
 import { addressSelector } from 'public-modules/Client/selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Currency, Pill, Text, Social, Loader, ZeroState } from 'components';
-import { PageCard, StagePill, LinkedAvatar } from 'explorer-components';
+import { Pill, Text, Social, Loader, ZeroState } from 'components';
+import {
+  Currency,
+  PageCard,
+  StagePill,
+  LinkedAvatar
+} from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
 import { locationNonceSelector } from 'layout/App/selectors';
 import { setParam } from 'utils/locationHelpers';
