@@ -140,7 +140,7 @@ export const notification_template = {
     icon: arrow_up
   },
   [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED]: {
-    message: 'You received a comment',
+    message: 'Someone commented on',
     icon: comment
   },
   [NOTIFICATION_ID.BOUNTY_ISSUED_ACTIVATED]: {
