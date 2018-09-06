@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './LeaderItem.module.scss';
-import { Text } from 'components';
+import { Currency, Text } from 'components';
 import { LinkedAvatar } from 'explorer-components';
 
 const LeaderItem = props => {
@@ -26,16 +26,13 @@ const LeaderItem = props => {
         />
       </div>
 
-      <div className={styles.price}>
-        <Text inline color="purple" typeScale="h4" className={styles.value}>
-          {value}
-        </Text>
-        {valueLabel && (
-          <Text inline color="defaultGrey" className={styles.label}>
-            {valueLabel}
-          </Text>
-        )}
-      </div>
+      <Currency
+        className={styles.price}
+        primaryValue={value}
+        primaryCurrency={valueLabel ? valueLabel : 'usd'}
+        primaryTypeScale="h4"
+        primaryClassName={styles.value}
+      />
     </div>
   );
 };

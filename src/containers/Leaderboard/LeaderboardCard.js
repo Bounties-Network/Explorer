@@ -33,7 +33,7 @@ const LeaderboardCardComponent = props => {
 
       const value = config.defaultToken
         ? Number(total / 10 ** config.defaultToken.decimals).toFixed(2)
-        : `\$${Number(total_usd).toFixed(2)}`;
+        : total_usd;
 
       return (
         <ListGroup.ListItem>
