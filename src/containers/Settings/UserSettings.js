@@ -226,6 +226,7 @@ class UserSettingsComponent extends React.Component {
             type="primary"
             disabled={uploading || (submitFailed && invalid)}
             loading={savingSettings}
+            buttonType="submit"
           >
             Update Profile
           </Button>
