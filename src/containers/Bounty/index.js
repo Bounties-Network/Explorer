@@ -54,8 +54,6 @@ class BountyComponent extends React.Component {
       setActiveTab
     } = props;
 
-    resetFulfillmentsState();
-    resetCommentsState();
     setBountyId(match.params.id);
 
     if (match.path === '/bounty/draft/:id/') {
@@ -63,25 +61,14 @@ class BountyComponent extends React.Component {
     }
 
     if (match.path === '/bounty/:id/') {
-      loadBounty(match.params.id);
+      resetFulfillmentsState();
+      resetCommentsState();
 
-      // load submissions
+      loadBounty(match.params.id);
       addBountyFilter(match.params.id);
+      setActiveTab('comments');
 
       const values = queryStringToObject(location.search);
-
-      switch (values.tab) {
-        case 'submissions':
-        case 'comments': {
-          loadFulfillments();
-          setActiveTab(values.tab);
-          break;
-        }
-        default: {
-          loadFulfillments();
-          setActiveTab('comments');
-        }
-      }
 
       if (values.rating) {
         loadFulfillment(match.params.id, values.fulfillment_id);
@@ -103,56 +90,32 @@ class BountyComponent extends React.Component {
       setBountyId,
       setActiveTab,
       resetCommentsState,
-      user
+      user,
+      history
     } = this.props;
 
-    // reloads if the user changes to a new bounty, but the search stays the same
-    const pathnameChangedOrSearchDidNot =
-      prevProps.location.pathname != location.pathname ||
-      prevProps.location.search == location.search;
+    // do this because for some reason match was stale
+    const bountyId = history.location.pathname.split('/')[2];
 
-    // avoids the case where a user may click on an already active tab
-    const pathnameAndSearchDidNotChange =
-      prevProps.location.pathname == location.pathname &&
-      prevProps.location.search == location.search;
-
-    if (
-      prevProps.locationNonce !== locationNonce &&
-      pathnameChangedOrSearchDidNot &&
-      !pathnameAndSearchDidNotChange
-    ) {
-      setBountyId(match.params.id);
+    if (prevProps.locationNonce !== locationNonce) {
+      setBountyId(bountyId);
 
       if (match.path === '/bounty/draft/:id/') {
-        loadDraftBounty(match.params.id);
+        loadDraftBounty(bountyId);
       }
 
       if (match.path === '/bounty/:id/') {
-        loadBounty(match.params.id);
-
         resetFulfillmentsState();
-        addBountyFilter(match.params.id);
-        loadFulfillments(match.params.id);
-
         resetCommentsState();
+
+        loadBounty(bountyId);
+        addBountyFilter(bountyId);
+        setActiveTab('comments');
 
         const values = queryStringToObject(location.search);
 
-        switch (values.tab) {
-          case 'submissions':
-          case 'comments': {
-            loadFulfillments();
-            setActiveTab(values.tab);
-            break;
-          }
-          default: {
-            loadFulfillments();
-            setActiveTab('comments');
-          }
-        }
-
         if (values.rating) {
-          loadFulfillment(match.params.id, values.fulfillment_id);
+          loadFulfillment(bountyId, values.fulfillment_id);
         }
       }
     }
@@ -160,8 +123,8 @@ class BountyComponent extends React.Component {
     // reload fulfillments after user logs in
     if (prevProps.user !== user) {
       resetFulfillmentsState();
-      addBountyFilter(match.params.id);
-      loadFulfillments(match.params.id);
+      addBountyFilter(bountyId);
+      loadFulfillments(bountyId);
     }
   }
 
@@ -170,12 +133,12 @@ class BountyComponent extends React.Component {
   };
 
   setActiveTabAction = tabKey => {
-    const { history, location, setActiveTab } = this.props;
-
-    history.push(
-      location.pathname + setParam(this.rootLocationParams(), 'tab', tabKey)
-    );
-    setActiveTab(tabKey);
+    // const { history, location, setActiveTab } = this.props;
+    //
+    // history.push(
+    //   location.pathname + setParam(this.rootLocationParams(), 'tab', tabKey)
+    // );
+    this.props.setActiveTab(tabKey);
   };
 
   render() {
