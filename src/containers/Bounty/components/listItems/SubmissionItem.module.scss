@@ -4,10 +4,7 @@
   word-wrap: break-word;
   padding-left: $xl-spacing + $m-spacing;
   margin-right: $m-spacing;
-
-  &:not(:last-child) {
-    margin-bottom: $xl-spacing;
-  }
+  margin-bottom: $xl-spacing;
 
   p {
     margin-bottom: $base-spacing;
@@ -47,7 +44,7 @@
 }
 
 .submissionContents {
-  padding-top: $l-spacing;
+  //padding-top: $l-spacing;
 }
 
 .submissionDescription {
