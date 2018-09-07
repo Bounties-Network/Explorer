@@ -14,6 +14,7 @@ const SubmissionItem = props => {
   const {
     bountyId,
     bountyStage,
+    className,
     title,
     fulfiller,
     fulfiller_img,
@@ -29,7 +30,7 @@ const SubmissionItem = props => {
     .format('M/D/YYYY');
 
   return (
-    <Table.Row>
+    <Table.Row className={styles.submissionItemRow}>
       <Table.Cell flexBasis="40%" headerText="Bounty title">
         <Link to={`/bounty/${bountyId}`} className={styles.link}>
           <Text typeScale="h5" weight="fontWeight-medium">

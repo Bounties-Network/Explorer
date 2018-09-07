@@ -11,12 +11,12 @@ import { FormTextInput } from 'form-components';
 const formSelector = formValueSelector('newComment');
 
 const NewCommentForm = props => {
-  const { signedIn, handleSubmit, loading, text } = props;
+  const { signedIn, handleSubmit, loading, text, className } = props;
 
   if (signedIn) {
     return (
       <form onSubmit={handleSubmit}>
-        <div className={styles.container}>
+        <div className={`${styles.container} ${className}`}>
           <Field
             name="text"
             component={FormTextInput}
@@ -33,7 +33,7 @@ const NewCommentForm = props => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={styles.container}>
+      <div className={`${styles.container} ${className}`}>
         <Button type="action">Sign in to post comment</Button>
       </div>
     </form>

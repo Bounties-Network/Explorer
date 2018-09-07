@@ -49,13 +49,21 @@
 
 .zeroState {
   max-width: 25rem;
-  padding: $xxl-spacing;
+  margin: $xxl-spacing auto;
 }
 
 .newCommentForm {
+  border-bottom: $base-border;
   position: relative;
+  padding: $m-spacing;
   margin-left: -$m-spacing;
   margin-right: -$m-spacing;
+
+  @media only screen and (min-width: 35em) {
+    margin-left: -$l-spacing;
+    margin-right: -$l-spacing;
+    padding: $l-spacing;
+  }
 }
 
 .submissionItem {

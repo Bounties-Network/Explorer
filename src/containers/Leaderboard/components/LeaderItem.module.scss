@@ -22,9 +22,11 @@
 .place {
   text-align: left;
   margin-right: $l-spacing;
+  min-width: $m-spacing;
 
   @media only screen and (min-width: 35em) {
     font-size: $h3-font-size;
+    min-width: $l-spacing;
   }
 }
 

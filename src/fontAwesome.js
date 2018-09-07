@@ -1,5 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import faBell from '@fortawesome/fontawesome-pro-regular/faBell';
+import faBellLight from '@fortawesome/fontawesome-pro-light/faBell';
 import plus from '@fortawesome/fontawesome-pro-regular/faPlus';
 import bars from '@fortawesome/fontawesome-pro-regular/faBars';
 import slidersH from '@fortawesome/fontawesome-pro-regular/faSlidersH';
@@ -89,6 +90,7 @@ library.add(
   lock,
   briefcase,
   faBell,
+  faBellLight,
   plus,
   plusCircle,
   cog,

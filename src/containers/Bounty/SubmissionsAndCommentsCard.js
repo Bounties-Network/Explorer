@@ -167,17 +167,16 @@ let SubmissionsAndCommentsCardComponent = props => {
 
   if (currentTab === 'comments') {
     const newCommentForm = (
-      <ListGroup.ListItem className={styles.newCommentForm}>
-        <NewCommentForm
-          signedIn={!!currentUser}
-          onSubmit={
-            !!currentUser
-              ? values => postComment(bounty.id, values.text)
-              : showLogin
-          }
-          loading={comments.posting}
-        />
-      </ListGroup.ListItem>
+      <NewCommentForm
+        className={styles.newCommentForm}
+        signedIn={!!currentUser}
+        onSubmit={
+          !!currentUser
+            ? values => postComment(bounty.id, values.text)
+            : showLogin
+        }
+        loading={comments.posting}
+      />
     );
 
     body = (
@@ -198,14 +197,13 @@ let SubmissionsAndCommentsCardComponent = props => {
       body = (
         <ListGroup>
           {newCommentForm}
-          <ListGroup.ListItem className={styles.commentItem}>
-            <ZeroState
-              title={'There are 0 comments'}
-              text={'Submit a comment using the form above.'}
-              iconColor="blue"
-              icon={['fal', 'comments']}
-            />
-          </ListGroup.ListItem>
+          <ZeroState
+            className={styles.zeroState}
+            title={'There are 0 comments'}
+            text={'Submit a comment using the form above.'}
+            iconColor="blue"
+            icon={['fal', 'comments']}
+          />
         </ListGroup>
       );
     }

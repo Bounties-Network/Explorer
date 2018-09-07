@@ -29,7 +29,7 @@ const Elsewhere = props => {
               className={styles.icon}
             />
             <Text link src={`https://twitter.com/@${twitter}`} typeScale="h5">
-              @{twitter}
+              Twitter
             </Text>
           </div>
         )}
@@ -38,7 +38,7 @@ const Elsewhere = props => {
           <div className={styles.bulletPoint}>
             <FontAwesomeIcon icon={['fab', 'github']} className={styles.icon} />
             <Text link src={`https://github.com/${github}`} typeScale="h5">
-              @{github}
+              Github
             </Text>
           </div>
         )}
@@ -50,7 +50,7 @@ const Elsewhere = props => {
               className={styles.icon}
             />
             <Text link src={linkedin} typeScale="h5">
-              {linkedin}
+              LinkedIn
             </Text>
           </div>
         )}
