@@ -65,8 +65,8 @@ const ProfileDetailsComponent = props => {
               <Skills skills={user.skills} />
             </div>
           )}
-        {user.organization &&
-          user.languages.length && (
+        {!!user.organization &&
+          !!user.languages.length && (
             <div className={`${styles.detailsSection} ${styles.detailsAbout}`}>
               <About
                 organization={user.organization}
