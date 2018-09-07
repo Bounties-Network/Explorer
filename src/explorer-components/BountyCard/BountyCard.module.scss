@@ -127,3 +127,11 @@
     font-size: $h2-font-size;
   }
 }
+
+.currency {
+  font-size: $h4-font-size;
+
+  @media only screen and (min-width: 62em) {
+    font-size: $h3-font-size;
+  }
+}

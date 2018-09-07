@@ -68,6 +68,7 @@ const SubmissionItem = props => {
           primaryClassName={styles.usd}
           secondaryValue={amount}
           secondaryCurrency={currency}
+          currencyTypeScale="Small"
         />
       </Table.Cell>
     </Table.Row>

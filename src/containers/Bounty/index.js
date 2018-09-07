@@ -194,7 +194,9 @@ class BountyComponent extends React.Component {
                 primaryClassName={styles.usd}
                 secondaryValue={bounty.calculated_fulfillmentAmount}
                 secondaryCurrency={bounty.tokenSymbol}
+                secondaryTypeScale="h4"
                 secondaryClassName={styles.currency}
+                currencyColor="white"
               />
 
               <div className={styles.bountyHeader}>
@@ -262,6 +264,8 @@ class BountyComponent extends React.Component {
                         primaryTypeScale="h4"
                         primaryWeight="fontWeight-medium"
                         alignment="align-left"
+                        currencyTypeScale="h5"
+                        currencyWeight="fontWeight-medium"
                       />
                     </div>
                   </section>
