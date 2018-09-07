@@ -136,8 +136,10 @@ let SubmissionsAndCommentsCardComponent = props => {
         <React.Fragment>
           <ListGroup>{renderFulfillments(fulfillments.list)}</ListGroup>
           <Text alignment="align-center" color="defaultGrey" typeScale="Small">
-            Submissions to this bounty are hidden. Your submissions are only
-            visible to you and the bounty issuer.
+            Submissions to this bounty are hidden.
+            {currentUser && currentUser.public_address == bounty.issuer
+              ? ' The submissions are only visible to you and the fulfiller.'
+              : ' Your submissions are only visible to you and the bounty issuer.'}
           </Text>
         </React.Fragment>
       );
