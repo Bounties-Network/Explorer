@@ -49,6 +49,8 @@ const BountyItem = props => {
           secondaryValue={value}
           secondaryCurrency={currency}
           secondaryClassName={styles.eth}
+          currencyTypeScale="Small"
+          currencyWeight="fontWeight-medium"
         />
       </div>
     </div>

@@ -30,8 +30,9 @@ const LeaderItem = props => {
         className={styles.price}
         primaryValue={value}
         primaryCurrency={valueLabel ? valueLabel : 'usd'}
-        primaryTypeScale="h4"
+        primaryTypeScale="h3"
         primaryClassName={styles.value}
+        currencyTypeScale="h4"
       />
     </div>
   );

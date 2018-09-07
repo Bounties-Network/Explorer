@@ -10,6 +10,7 @@ const Currency = props => {
     className,
     primaryClassName,
     secondaryClassName,
+    currencyClass,
     alignment,
 
     primaryValue,
@@ -19,6 +20,10 @@ const Currency = props => {
     primaryWeight,
     primaryColor,
 
+    currencyTypeScale,
+    currencyWeight,
+    currencyColor,
+
     secondaryValue,
     secondaryCurrency,
     secondaryDecimals,
@@ -26,38 +31,57 @@ const Currency = props => {
     secondaryColor
   } = props;
 
-  const generateDisplay = (value, currency, decimals) =>
-    [
-      currency.toLowerCase() == 'usd' ? '$' : null,
-      decimals == 'all' ? Number(value) : Number(value).toFixed(decimals),
-      ' ',
-      currency.toLowerCase() == 'usd' ? null : currency
-    ].join('');
+  const primaryDisplay = [
+    primaryCurrency.toLowerCase() == 'usd' ? '$' : null,
+    primaryDecimals == 'all'
+      ? Number(primaryValue)
+      : Number(primaryValue).toFixed(primaryDecimals),
+    ' '
+  ].join('');
+
+  const secondaryDisplay = [
+    secondaryCurrency.toLowerCase() == 'usd' ? '$' : null,
+    secondaryDecimals == 'all'
+      ? Number(secondaryValue)
+      : Number(secondaryValue).toFixed(secondaryDecimals),
+    ' ',
+    secondaryCurrency.toLowerCase() == 'usd' ? null : secondaryCurrency
+  ].join('');
 
   const containerClass = alignment == 'align-left' ? styles.left : styles.right;
 
   return (
     <div className={[containerClass, className].join(' ')}>
-      <Text
-        color={primaryColor}
-        typeScale={primaryTypeScale}
-        weight={primaryWeight}
-        className={primaryClassName}
-      >
-        {generateDisplay(primaryValue, primaryCurrency, primaryDecimals)}
-      </Text>
+      <div className={styles.primary}>
+        <Text
+          inline
+          color={primaryColor}
+          typeScale={primaryTypeScale}
+          weight={primaryWeight}
+          className={primaryClassName}
+        >
+          {primaryDisplay}
 
+          {primaryCurrency.toLowerCase() !== 'usd' && (
+            <Text
+              inline
+              color={currencyColor}
+              typeScale={currencyTypeScale}
+              weight={currencyWeight}
+              className={currencyClass}
+            >
+              {primaryCurrency}
+            </Text>
+          )}
+        </Text>
+      </div>
       {isNumber(secondaryValue) && (
         <Text
           color={secondaryColor}
           typeScale={secondaryTypeScale}
           className={secondaryClassName}
         >
-          {generateDisplay(
-            secondaryValue,
-            secondaryCurrency,
-            secondaryDecimals
-          )}
+          {secondaryDisplay}
         </Text>
       )}
     </div>
@@ -69,6 +93,7 @@ Currency.propTypes = {
   alignment: PropTypes.oneOf(['align-left', 'align-right']),
   primaryClassName: PropTypes.string,
   secondaryClassName: PropTypes.string,
+  currencyClass: PropTypes.string,
   primaryValue: PropTypes.number,
   primaryCurrency: PropTypes.string,
   primaryDecimals: PropTypes.string,
@@ -95,7 +120,10 @@ Currency.defaultProps = {
   secondaryCurrency: '',
   secondaryDecimals: 'all',
   secondaryTypeScale: 'Small',
-  secondaryColor: 'defaultGrey'
+  secondaryColor: 'defaultGrey',
+  currencyTypeScale: 'h3',
+  currencyWeight: 'fontWeight-regular',
+  currencyColor: 'purple'
 };
 
 export default Currency;
