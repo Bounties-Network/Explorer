@@ -1,5 +1,9 @@
 @import "~styles/variables.scss";
 
+.submissionItemRow:last-child {
+  margin-bottom: $xxl-spacing * 3;
+}
+
 .details {
   margin-top: $m-spacing;
 }

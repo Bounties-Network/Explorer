@@ -83,14 +83,16 @@ Cell.defaultProps = {
 
 class Row extends React.Component {
   render() {
-    const { hover } = this.props;
+    const { hover, className } = this.props;
 
     let rowClass = styles.row;
     if (hover) {
       rowClass += ` ${styles.rowHover}`;
     }
 
-    return <div className={rowClass}>{this.props.children}</div>;
+    return (
+      <div className={`${rowClass} ${className}`}>{this.props.children}</div>
+    );
   }
 }
 
