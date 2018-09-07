@@ -67,7 +67,11 @@ export function* getTokenData(tokenAddress) {
 
 export function* createOrUpdateDraft(action) {
   const { values, bountyId } = action;
-  const draftBountyData = { ...values, platform: config.postingPlatform };
+  const draftBountyData = {
+    ...values,
+    private_fulfillments: values.privateFulfillments,
+    platform: config.postingPlatform
+  };
   draftBountyData.experienceLevel =
     DIFFICULTY_VALUES[draftBountyData.experienceLevel];
 
