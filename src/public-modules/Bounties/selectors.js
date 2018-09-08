@@ -99,7 +99,10 @@ export const bountiesQuerySelector = createSelector(
       query['fulfillments__fulfiller'] = rootBounty.addressFilters.fulfiller;
     }
     query['search'] = rootBounty.search;
-    query['ordering'] = orderPrefix + rootBounty.sort;
+    query['ordering'] =
+      rootBounty.sort === 'usd_price'
+        ? `${orderPrefix}${rootBounty.sort},-fulfillmentAmount`
+        : orderPrefix + rootBounty.sort;
     query['limit'] = PAGE_SIZE;
 
     return query;
