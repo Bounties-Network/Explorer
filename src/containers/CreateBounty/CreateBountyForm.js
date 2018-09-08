@@ -440,8 +440,9 @@ class CreateBountyFormComponent extends React.Component {
                           const valueField = allValues.fulfillmentAmount;
                           if (
                             valueField &&
-                            BigNumber(balance, 10).toString() <
-                              BigNumber(valueField, 10).toString()
+                            BigNumber(balance, 10).isLessThan(
+                              BigNumber(valueField, 10)
+                            )
                           ) {
                             return 'Deposit amount must at least match the payout amount.';
                           }
