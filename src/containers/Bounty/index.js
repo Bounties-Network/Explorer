@@ -191,7 +191,8 @@ class BountyComponent extends React.Component {
                 primaryValue={bounty.usd_price}
                 primaryDecimals="2"
                 primaryColor="white"
-                primaryClassName={styles.usd}
+                primaryClassName={styles.primary}
+                primaryContainerClass={styles.primaryContainerClass}
                 secondaryValue={bounty.calculated_fulfillmentAmount}
                 secondaryCurrency={bounty.tokenSymbol}
                 secondaryTypeScale="h4"
