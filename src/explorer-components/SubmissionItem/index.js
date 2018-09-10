@@ -14,7 +14,6 @@ const SubmissionItem = props => {
   const {
     bountyId,
     bountyStage,
-    className,
     title,
     fulfiller,
     fulfiller_img,

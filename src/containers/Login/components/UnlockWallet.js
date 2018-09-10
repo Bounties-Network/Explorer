@@ -28,11 +28,11 @@ const UnlockWallet = props => {
           Network.
         </Modal.Description>
       </Modal.Body>
-      {closable ? (
+      {closable && (
         <Modal.Footer>
           <Button onClick={onClose}>Close</Button>
         </Modal.Footer>
-      ) : null}
+      )}
     </Modal>
   );
 };

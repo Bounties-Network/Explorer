@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Table.module.scss';
-import { includes } from 'lodash';
+import { includes, some } from 'lodash';
 import { Text } from 'components';
 
 class HeaderCell extends React.Component {
@@ -118,7 +118,12 @@ class Table extends React.Component {
 Table.propTypes = {
   children: PropTypes.arrayOf(function(propValue, key) {
     for (let i = 0; i < propValue.length; i++) {
-      if (!includes(propValue[i].type.name, [Row.name, Header.name])) {
+      if (
+        some(
+          [Row.name, Header.name],
+          val => !includes(propValue[i].type.name, val)
+        )
+      ) {
         return new Error('Children Must Be an Instance of Row or Header');
       }
     }

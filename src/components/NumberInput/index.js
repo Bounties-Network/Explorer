@@ -79,6 +79,7 @@ class NumberInput extends React.Component {
           min={min}
           max={max}
           disabled={disabled}
+          onChange={() => {}}
         />
         <span className={styles.increment} onClick={this.increment}>
           +

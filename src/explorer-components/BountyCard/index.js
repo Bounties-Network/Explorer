@@ -37,9 +37,8 @@ const BountyCard = props => {
       }
 
       return (
-        <div className={styles.pill}>
+        <div key={category.normalized_name} className={styles.pill}>
           <Pill
-            key={category.normalized_name}
             onClick={() => onPillClick(category.normalized_name)}
             backgroundColor={backgroundColor}
             hoverBackgroundColor={hoverBackgroundColor}
@@ -153,7 +152,7 @@ const BountyCard = props => {
 };
 
 BountyCard.propTypes = {
-  experienceLevel: PropTypes.string,
+  experienceLevel: PropTypes.number,
   title: PropTypes.string,
   categories: PropTypes.array,
   img: PropTypes.string,

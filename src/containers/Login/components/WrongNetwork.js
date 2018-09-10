@@ -43,11 +43,11 @@ const WrongNetwork = props => {
           Please switch your active wallet network.
         </Modal.Description>
       </Modal.Body>
-      {closable ? (
+      {closable && (
         <Modal.Footer>
           <Button onClick={onClose}>Close</Button>
         </Modal.Footer>
-      ) : null}
+      )}
     </Modal>
   );
 };

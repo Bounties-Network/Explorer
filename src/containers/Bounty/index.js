@@ -167,7 +167,7 @@ class BountyComponent extends React.Component {
             iconColor="red"
             title="Could not find that bounty"
             text="Try refreshing, or make sure your url is correct"
-            icon={['far', 'exclamation-triangle']}
+            icon={['fal', 'exclamation-triangle']}
           />
         </div>
       );
@@ -189,7 +189,7 @@ class BountyComponent extends React.Component {
               <Currency
                 className={styles.ethBox}
                 primaryValue={bounty.usd_price}
-                primaryDecimals="2"
+                primaryDecimals={2}
                 primaryColor="white"
                 primaryClassName={styles.usd}
                 secondaryValue={bounty.calculated_fulfillmentAmount}
@@ -229,7 +229,7 @@ class BountyComponent extends React.Component {
                     to={`/profile/${bounty.user.public_address}`}
                     addressTextColor="white"
                     size="small"
-                    border="true"
+                    border={true}
                   />
                 </div>
               </div>
@@ -238,7 +238,7 @@ class BountyComponent extends React.Component {
               </div>
             </div>
           </PageCard.Header>
-          <PageCard.Content className={styles.pageBody}>
+          <PageCard.Content key="body" className={styles.pageBody}>
             <div className={`${styles.filter}`}>
               <ActionBar
                 bounty={bounty}
@@ -393,7 +393,10 @@ class BountyComponent extends React.Component {
         </PageCard>
         {!isDraft && (
           <PageCard noBanner>
-            <PageCard.Content className={styles.submissionsAndCommentsCard}>
+            <PageCard.Content
+              key="submissions-comments"
+              className={styles.submissionsAndCommentsCard}
+            >
               <SubmissionsAndCommentsCard
                 bounty={bounty}
                 isDraft={isDraft}

@@ -36,9 +36,8 @@ const LeaderboardCardComponent = props => {
         : total_usd;
 
       return (
-        <ListGroup.ListItem>
+        <ListGroup.ListItem key={index + 1}>
           <LeaderItem
-            key={index + 1}
             place={index + 1}
             img={profile_image}
             name={name}

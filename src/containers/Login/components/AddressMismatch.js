@@ -32,7 +32,7 @@ const AddressMismatch = props => {
       <Modal.Body>
         <Modal.Description>
           <Text inline>You were previously signed in to </Text>
-          <Text inline weight="fontweight-bold">
+          <Text inline weight="fontWeight-bold">
             bounties.network
           </Text>
           <Text inline> using the following address:</Text>

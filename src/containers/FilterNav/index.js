@@ -245,6 +245,7 @@ const FilterNavComponent = props => {
             {map(platform => {
               return (
                 <Checkbox
+                  key={platform}
                   label={platform}
                   onChange={() => togglePlatformFilterAction(platform)}
                   checked={indexOf(platform, platformFilters) != -1}
@@ -379,8 +380,8 @@ const FilterNav = compose(
 )(FilterNavComponent);
 
 FilterNav.propTypes = {
-  position: PropTypes.bool,
-  config: PropTypes.array,
+  position: PropTypes.oneOf(['relative', 'fixed']),
+  config: PropTypes.object,
   stageFilters: PropTypes.object,
   resetFilters: PropTypes.object
 };

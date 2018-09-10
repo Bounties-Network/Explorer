@@ -88,24 +88,29 @@ const Currency = props => {
   );
 };
 
+const stringAndNumber = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number
+]);
+
 Currency.propTypes = {
   className: PropTypes.string,
   alignment: PropTypes.oneOf(['align-left', 'align-right']),
   primaryClassName: PropTypes.string,
   secondaryClassName: PropTypes.string,
   currencyClass: PropTypes.string,
-  primaryValue: PropTypes.number,
+  primaryValue: stringAndNumber,
   primaryCurrency: PropTypes.string,
-  primaryDecimals: PropTypes.string,
+  primaryDecimals: stringAndNumber,
   primaryWeight: PropTypes.oneOf([
     'fontWeight-regular',
     'fontWeight-medium',
     'fontWeight-bold'
   ]),
   primaryColor: PropTypes.string,
-  secondaryValue: PropTypes.number,
+  secondaryValue: stringAndNumber,
   secondaryCurrency: PropTypes.string,
-  secondaryDecimals: PropTypes.string,
+  secondaryDecimals: stringAndNumber,
   secondaryColor: PropTypes.string
 };
 
@@ -113,7 +118,7 @@ Currency.defaultProps = {
   alignment: 'align-right',
   primaryValue: 0,
   primaryCurrency: 'usd',
-  primaryDecimals: '2',
+  primaryDecimals: 2,
   primaryTypeScale: 'h2',
   primaryWeight: 'fontWeight-regular',
   primaryColor: 'purple',

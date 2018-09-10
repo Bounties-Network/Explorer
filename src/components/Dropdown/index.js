@@ -30,7 +30,7 @@ class MenuItem extends React.Component {
 }
 
 MenuItem.propTypes = {
-  icon: PropTypes.object,
+  icon: PropTypes.array,
   onClick: PropTypes.func,
   className: PropTypes.string
 };

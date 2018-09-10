@@ -54,11 +54,11 @@ const WalletRequired = props => {
         </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
-        {closable ? (
+        {closable && (
           <Button margin onClick={onClose}>
             Cancel
           </Button>
-        ) : null}
+        )}
         <a href="https://metamask.io/">
           <Button type="primary">Visit MetaMask.io</Button>
         </a>
