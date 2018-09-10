@@ -187,47 +187,47 @@ class AppComponent extends React.Component {
             <Loader color="white" size="medium" />
           </div>
         ) : null}
-        {!isPageLoading && !userFail
-          ? [
-              <PageHeader />,
-              <PageFilterNav />,
-              <div className={`${styles.body} page-body`} ref={this.body}>
-                <Switch>
-                  <Route exact path="/leaderboard" component={Leaderboard} />
-                  <Route exact path="/explorer" component={Explorer} />
-                  <Route
-                    exact
-                    path="/createBounty"
-                    component={RequireLoginComponent(CreateBounty)}
-                  />
-                  <Route
-                    exact
-                    path="/createBounty/draft/:id/"
-                    component={RequireLoginComponent(CreateBounty)}
-                  />
-                  <Route exact path="/bounty/draft/:id/" component={Bounty} />
-                  <Route exact path="/bounty/:id/" component={Bounty} />
-                  <Route
-                    exact
-                    path="/settings"
-                    component={RequireLoginComponent(Settings)}
-                  />
-                  <Route
-                    exact
-                    path="/dashboard"
-                    component={RequireLoginComponent(Dashboard)}
-                  />
-                  <Route exact path="/profile/:address/" component={Profile} />
-                  <Route
-                    exact
-                    path="/profile/"
-                    component={RequireLoginComponent(Profile)}
-                  />
-                  <Redirect from="/" to="/explorer" />
-                </Switch>
-              </div>
-            ]
-          : null}
+        {!isPageLoading && !userFail ? (
+          <React.Fragment>
+            <PageHeader />,
+            <PageFilterNav />,
+            <div className={`${styles.body} page-body`} ref={this.body}>
+              <Switch>
+                <Route exact path="/leaderboard" component={Leaderboard} />
+                <Route exact path="/explorer" component={Explorer} />
+                <Route
+                  exact
+                  path="/createBounty"
+                  component={RequireLoginComponent(CreateBounty)}
+                />
+                <Route
+                  exact
+                  path="/createBounty/draft/:id/"
+                  component={RequireLoginComponent(CreateBounty)}
+                />
+                <Route exact path="/bounty/draft/:id/" component={Bounty} />
+                <Route exact path="/bounty/:id/" component={Bounty} />
+                <Route
+                  exact
+                  path="/settings"
+                  component={RequireLoginComponent(Settings)}
+                />
+                <Route
+                  exact
+                  path="/dashboard"
+                  component={RequireLoginComponent(Dashboard)}
+                />
+                <Route exact path="/profile/:address/" component={Profile} />
+                <Route
+                  exact
+                  path="/profile/"
+                  component={RequireLoginComponent(Profile)}
+                />
+                <Redirect from="/" to="/explorer" />
+              </Switch>
+            </div>
+          </React.Fragment>
+        ) : null}
         <Login />
       </div>
     );

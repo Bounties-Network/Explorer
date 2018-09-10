@@ -11,12 +11,12 @@ let Settings = props => {
         <PageCard.Header>
           <PageCard.Title>Account Settings</PageCard.Title>
         </PageCard.Header>
-        <PageCard.Content className={styles.cardContent}>
+        <PageCard.Content key="profile" className={styles.cardContent}>
           <UserSettings />
         </PageCard.Content>
       </PageCard>
       <PageCard noBanner>
-        <PageCard.Content className={styles.cardContent}>
+        <PageCard.Content key="email" className={styles.cardContent}>
           <EmailPreferences />
         </PageCard.Content>
       </PageCard>

@@ -18,16 +18,7 @@ const BaseToast = props => {
           {message}
         </Text>
       </div>
-      <div className={styles.linkSection}>
-        <Text
-          color="white"
-          typeScale="Body"
-          link="link"
-          className={styles.link}
-        >
-          {link}
-        </Text>
-      </div>
+      <div className={styles.linkSection}>{link}</div>
     </div>
   );
 };

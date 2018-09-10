@@ -247,7 +247,7 @@ SearchSelect.propTypes = {
   single: PropTypes.bool,
   creatable: PropTypes.bool,
   clearable: PropTypes.bool,
-  value: PropTypes.array,
+  value: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   onCreate: PropTypes.func

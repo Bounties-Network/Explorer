@@ -58,7 +58,7 @@ let FulfillBountyFormModalComponent = props => {
               <Field
                 name="name"
                 component={FormTextInput}
-                type="string"
+                type="text"
                 label="Contact name"
                 validate={[]}
                 placeholder="Enter name..."
@@ -68,7 +68,7 @@ let FulfillBountyFormModalComponent = props => {
               <Field
                 name="email"
                 component={FormTextInput}
-                type="string"
+                type="text"
                 label="Contact email"
                 validate={[validators.email]}
                 placeholder="Enter email..."
@@ -80,7 +80,7 @@ let FulfillBountyFormModalComponent = props => {
               <Field
                 name="url"
                 component={FormTextInput}
-                type="string"
+                type="text"
                 label="Web link"
                 validate={[]}
                 placeholder="Enter URL..."
@@ -107,7 +107,7 @@ let FulfillBountyFormModalComponent = props => {
               <Field
                 name="description"
                 component={FormTextbox}
-                type="string"
+                type="text"
                 label="Description"
                 validate={[validators.required]}
                 placeholder="Enter description..."

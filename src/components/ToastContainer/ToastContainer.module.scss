@@ -34,6 +34,11 @@
   display: flex;
   align-items: center;
   padding: $base-spacing;
+
+  a {
+    margin-right: 10px;
+    text-decoration: underline;
+  }
 }
 
 .messageSection {

@@ -7,7 +7,14 @@ const ModalContext = React.createContext({});
 
 class Tab extends React.Component {
   render() {
-    const { tabCount, eventKey, tabColor, tabClassName } = this.props;
+    const {
+      tabCount,
+      eventKey,
+      tabColor,
+      tabClassName,
+      tabTextClass,
+      typeScale
+    } = this.props;
 
     return (
       <ModalContext.Consumer>
@@ -33,8 +40,9 @@ class Tab extends React.Component {
             >
               <Text
                 color={active ? 'black' : 'defaultGrey'}
-                typeScale="Body"
                 weight={active ? 'fontWeight-medium' : 'fontWeight-regular'}
+                typeScale={typeScale}
+                className={tabTextClass}
               >
                 {this.props.children}
               </Text>
@@ -54,7 +62,9 @@ class Tab extends React.Component {
 Tab.propTypes = {
   tabCount: PropTypes.number,
   tabColor: PropTypes.oneOf(['blue', 'green', 'lightGrey']),
-  eventKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  eventKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  tabTextClass: PropTypes.string,
+  typeScale: PropTypes.string
 };
 
 Tab.defaultProps = {

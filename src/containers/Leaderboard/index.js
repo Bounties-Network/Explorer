@@ -12,6 +12,7 @@ const Leaderboard = props => {
         <Banner />
       </PageCard.Header>
       <PageCard.Content
+        key="leaderboard"
         className={styles.bodyCard}
         bodyClass={styles.bodyClass}
       >

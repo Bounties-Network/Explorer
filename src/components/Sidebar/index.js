@@ -132,6 +132,7 @@ Sidebar.propTypes = {
   children: PropTypes.arrayOf(function(propValue, key) {
     for (let i = 0; i < propValue.length; i++) {
       if (
+        typeof propValue[i] !== 'boolean' &&
         propValue[i].type.name !== TabGroup.name &&
         propValue[i].type.name !== Footer.name
       ) {

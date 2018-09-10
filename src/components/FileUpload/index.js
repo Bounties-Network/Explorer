@@ -51,12 +51,12 @@ class FileUpload extends React.Component {
     }
 
     let filenameTextColor = 'black';
-    let filesizeTextColor = 'grey';
+    let filesizeTextColor = 'defaultGrey';
     let iconColor = 'red';
     if (disabledState) {
-      filenameTextColor = 'grey';
+      filenameTextColor = 'lightGrey';
       filesizeTextColor = 'lightGrey';
-      iconColor = 'grey';
+      iconColor = 'lightGrey';
     }
     let bytes = '';
     const hasFileSize = filesize || filesizeDefault;
