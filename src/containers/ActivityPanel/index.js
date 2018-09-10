@@ -25,7 +25,11 @@ class ActivityPanelComponent extends React.Component {
       const relative_link = link.replace(new RegExp('^.*//[^/]+'), '');
 
       return (
-        <ListGroup.ListItem className={styles.activityListItem} hover>
+        <ListGroup.ListItem
+          key={activity.id}
+          className={styles.activityListItem}
+          hover
+        >
           <Link to={relative_link} className={styles.link}>
             <NotificationItem
               type={notification_id}

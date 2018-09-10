@@ -26,7 +26,7 @@ class Section extends React.Component {
   render() {
     const { children, title } = this.props;
 
-    return [
+    return (
       <div className={styles.section}>
         <div className="row">
           <div className="col-xs-12 col-sm-3">
@@ -42,7 +42,7 @@ class Section extends React.Component {
           <div className="col-xs-12 col-sm-9">{children}</div>
         </div>
       </div>
-    ];
+    );
   }
 }
 

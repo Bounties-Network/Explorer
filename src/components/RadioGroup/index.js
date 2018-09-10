@@ -78,7 +78,7 @@ RadioGroup.propTypes = {
   optional: PropTypes.bool,
   labelKey: PropTypes.string,
   valueKey: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
 };
 
 RadioGroup.defaultProps = {

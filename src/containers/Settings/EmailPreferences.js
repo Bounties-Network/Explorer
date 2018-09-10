@@ -31,6 +31,7 @@ let EmailPreferencesComponent = props => {
     return map(
       (value, key) => (
         <Field
+          key={key}
           form="emailPreferences"
           disabled={saving}
           name={key}

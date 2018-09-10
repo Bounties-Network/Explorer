@@ -142,7 +142,7 @@ const HeaderComponent = props => {
 
 HeaderComponent.propTypes = {
   loginStatus: PropTypes.bool,
-  network: PropTypes.oneOf(['rinkeby', 'mainnet', 'unknown'])
+  network: PropTypes.oneOf(['rinkeby', 'mainNet', 'unknown'])
 };
 
 HeaderComponent.defaultProps = {

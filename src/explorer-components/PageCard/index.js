@@ -9,8 +9,8 @@ const Title = props => {
   return (
     <Text
       className={`${className} ${styles.title}`}
-      typeScale='h2'
-      color='white'
+      typeScale="h2"
+      color="white"
     >
       {children}
     </Text>
@@ -59,10 +59,10 @@ const PageCard = props => {
   return (
     <div className={styles.pageCard}>
       <div className={noBanner ? null : styles.headerWrapper}>
-        <div className='pageWrapper'>{header}</div>
+        <div className="pageWrapper">{header}</div>
       </div>
       <div className={styles.contentWrapper}>
-        <div className='pageWrapper'>{content}</div>
+        <div className="pageWrapper">{content}</div>
       </div>
     </div>
   );
@@ -82,11 +82,11 @@ PageCard.propTypes = {
       return component.type.name;
     }, collection);
 
-    if (!includes([Header.name], childrenTypes)) {
+    if (!props.noBanner && !includes(Header.name, childrenTypes)) {
       return new Error('You must have a header child');
     }
 
-    if (!includes([Content.name], childrenTypes)) {
+    if (!includes(Content.name, childrenTypes)) {
       return new Error('You must have a content child');
     }
   },

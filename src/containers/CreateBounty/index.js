@@ -67,7 +67,7 @@ class CreateBountyComponent extends React.Component {
             {isDraftPage ? 'Edit Bounty' : 'Create Bounty'}
           </PageCard.Title>
         </PageCard.Header>
-        <PageCard.Content className={styles.cardContent}>
+        <PageCard.Content key="createBountyForm" className={styles.cardContent}>
           <CreateBountyForm initialValues={formInitialValues} />
         </PageCard.Content>
       </PageCard>

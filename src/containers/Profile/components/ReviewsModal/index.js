@@ -18,7 +18,7 @@ let ReviewsModal = props => {
   const renderReviews = () => {
     return map(review => {
       return (
-        <ListGroup.ListItem>
+        <ListGroup.ListItem key={review.id}>
           <ReviewItem
             rating={review.rating}
             review={review.review}
