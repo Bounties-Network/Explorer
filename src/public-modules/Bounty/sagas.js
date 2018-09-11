@@ -285,7 +285,6 @@ export function* createBounty(action) {
 
 export function* getDraft(action) {
   const { id, issuer } = action;
-  const user = yield select(getCurrentUserSelector);
   const params = {
     issuer,
     platform__in: config.platform

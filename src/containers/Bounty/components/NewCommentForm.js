@@ -5,7 +5,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 import { Field, reduxForm } from 'redux-form';
-import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 
 const formSelector = formValueSelector('newComment');

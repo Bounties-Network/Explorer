@@ -1,4 +1,3 @@
-import config from 'public-modules/config';
 import { PAGE_SIZE, SORT_CREATED } from './constants';
 
 const defaultSearch = '';
@@ -372,6 +371,8 @@ function BountiesReducer(state = initialState, action) {
       if (filter === 'sort') {
         return { ...state, ...defaultSort };
       }
+
+      break;
     }
     case SET_SEARCH: {
       const { search } = action;

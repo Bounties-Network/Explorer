@@ -54,7 +54,7 @@ class DatePicker extends React.Component {
           disabled={disabled}
           onChange={onChange}
           type="datetime-local"
-          placeholder="enter date..."
+          placeholder={placeholder}
           onBlur={onBlur}
           onFocus={onFocus}
           error={error}
@@ -93,12 +93,14 @@ DatePicker.propTypes = {
   showTimeSelect: PropTypes.bool,
   label: PropTypes.string,
   disabled: PropTypes.bool,
-  value: PropTypes.object
+  value: PropTypes.object,
+  placeholder: PropTypes.string
 };
 
 DatePicker.defaultProps = {
   onChange: () => {},
-  minDate: tomorrow
+  minDate: tomorrow,
+  placeholder: 'enter date...'
 };
 
 export default DatePicker;

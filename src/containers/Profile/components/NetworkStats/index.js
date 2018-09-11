@@ -44,11 +44,11 @@ const NetworkStatsComponent = props => {
     }
 
     // an acceptance of 100% should be green and 1/5 ratings should be red
-    color = key == 'acceptance' && value == 1 ? 'green' : color;
+    color = key === 'acceptance' && value === 1 ? 'green' : color;
 
     let input = formatInput(value, displayFormat[key]);
 
-    if (value == null) {
+    if (value === null) {
       color = 'nearWhite';
     }
 

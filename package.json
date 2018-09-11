@@ -149,6 +149,7 @@
     "extends": "react-app",
     "rules": {
       "no-unused-expressions": "off",
+      "no-useless-escape": "off",
       "radix": [
         2,
         "as-needed"

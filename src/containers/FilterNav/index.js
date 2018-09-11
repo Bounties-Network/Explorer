@@ -74,7 +74,6 @@ const FilterNavComponent = props => {
     addCategoryFilter,
     addPlatformFilter,
     removeCategoryFilter,
-    removePlatformFilter,
     history,
     location,
     batch,
@@ -144,20 +143,20 @@ const FilterNavComponent = props => {
     removeCategoryFilter(category);
   };
 
-  const addPlatformFilterAction = platform => {
-    history.push(
-      location.pathname + pushToParam(rootLocationParams, 'platform', platform)
-    );
-    addPlatformFilter(platform);
-  };
-
-  const removePlatformFilterAction = platform => {
-    history.push(
-      location.pathname +
-        removeFromParam(rootLocationParams, 'platform', platform)
-    );
-    removePlatformFilter(platform);
-  };
+  // const addPlatformFilterAction = platform => {
+  //   history.push(
+  //     location.pathname + pushToParam(rootLocationParams, 'platform', platform)
+  //   );
+  //   addPlatformFilter(platform);
+  // };
+  //
+  // const removePlatformFilterAction = platform => {
+  //   history.push(
+  //     location.pathname +
+  //       removeFromParam(rootLocationParams, 'platform', platform)
+  //   );
+  //   removePlatformFilter(platform);
+  // };
 
   const togglePlatformFilterAction = platform => {
     const queryParams =
@@ -248,7 +247,7 @@ const FilterNavComponent = props => {
                   key={platform}
                   label={platform}
                   onChange={() => togglePlatformFilterAction(platform)}
-                  checked={indexOf(platform, platformFilters) != -1}
+                  checked={indexOf(platform, platformFilters) !== -1}
                 />
               );
             }, platforms)}

@@ -39,7 +39,7 @@ class UserStatsComponent extends React.Component {
 
     const renderStat = (value, label) => {
       return (
-        <div className={styles.stat}>
+        <div className={[styles.stat, className].join(' ')}>
           <Text className={styles.statValue} typeScale="h1" color="purple">
             {value}
           </Text>

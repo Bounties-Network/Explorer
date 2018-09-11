@@ -37,13 +37,9 @@ const {
   setSearch,
   setSort,
   toggleStageFilter,
-  setStageFilter,
   toggleDifficultyFilter,
-  setDifficultyFilter,
   addCategoryFilter,
-  removeCategoryFilter,
   addPlatformFilter,
-  removePlatformFilter,
   resetFilter
 } = actions;
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import config from 'public-modules/config';
 import { isNumber } from 'utils/helpers';
 import { assign } from 'lodash';

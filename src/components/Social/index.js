@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Social.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Text } from 'components';
 
 const Social = props => {
   return (

@@ -3,7 +3,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import styles from './ActivityPanel.module.scss';
 import { Link } from 'react-router-dom';
-import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
 import { NotificationItem } from 'explorer-components';
 import { Button, Card, ListGroup, Loader, ZeroState } from 'components';

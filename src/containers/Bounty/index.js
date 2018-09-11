@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Bounty.module.scss';
 import { withRouter } from 'react-router-dom';
-import { BigNumber } from 'bignumber.js';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions as bountyActions } from 'public-modules/Bounty';
@@ -35,7 +34,6 @@ import {
 } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
 import { locationNonceSelector } from 'layout/App/selectors';
-import { setParam } from 'utils/locationHelpers';
 
 showdown.setOption('simpleLineBreaks', true);
 const converter = new showdown.Converter();
@@ -51,7 +49,6 @@ class BountyComponent extends React.Component {
       loadBounty,
       loadDraftBounty,
       loadFulfillment,
-      loadFulfillments,
       resetFulfillmentsState,
       resetCommentsState,
       addBountyFilter,
@@ -314,7 +311,7 @@ class BountyComponent extends React.Component {
                     </Text>
                   </div>
 
-                  {typeof bounty.revisions == 'number' && (
+                  {typeof bounty.revisions === 'number' && (
                     <div className={styles.metadataItem}>
                       <i className={styles.metadataIcon}>
                         <FontAwesomeIcon icon={['far', 'repeat']} />

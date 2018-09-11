@@ -32,23 +32,24 @@ const Currency = props => {
   } = props;
 
   const primaryDisplay = [
-    primaryCurrency.toLowerCase() == 'usd' ? '$' : null,
-    primaryDecimals == 'all'
+    primaryCurrency.toLowerCase() === 'usd' ? '$' : null,
+    primaryDecimals === 'all'
       ? Number(primaryValue)
       : Number(primaryValue).toFixed(primaryDecimals),
     ' '
   ].join('');
 
   const secondaryDisplay = [
-    secondaryCurrency.toLowerCase() == 'usd' ? '$' : null,
-    secondaryDecimals == 'all'
+    secondaryCurrency.toLowerCase() === 'usd' ? '$' : null,
+    secondaryDecimals === 'all'
       ? Number(secondaryValue)
       : Number(secondaryValue).toFixed(secondaryDecimals),
     ' ',
-    secondaryCurrency.toLowerCase() == 'usd' ? null : secondaryCurrency
+    secondaryCurrency.toLowerCase() === 'usd' ? null : secondaryCurrency
   ].join('');
 
-  const containerClass = alignment == 'align-left' ? styles.left : styles.right;
+  const containerClass =
+    alignment === 'align-left' ? styles.left : styles.right;
 
   return (
     <div className={[containerClass, className].join(' ')}>
