@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import styles from './BountiesPanel.module.scss';
-import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
 import {
   Button,

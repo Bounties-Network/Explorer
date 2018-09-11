@@ -4,7 +4,7 @@ import { getMobileOperatingSystem } from 'utils/helpers';
 import { Modal, Text, Button } from 'components';
 
 const WalletRequired = props => {
-  const { visible, onClose, closable, fixed } = props;
+  const { visible, onClose, closable } = props;
 
   const operatingSystem = getMobileOperatingSystem();
   let walletName = 'MetaMask';

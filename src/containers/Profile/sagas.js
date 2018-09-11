@@ -1,18 +1,12 @@
 import { put, takeLatest, select } from 'redux-saga/effects';
 import { profileUISelector } from './selectors';
 import { actionTypes } from './reducer';
-import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { actions as reviewsActions } from 'public-modules/Reviews';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 
-const {
-  SET_ACTIVE_TAB,
-  SET_PROFILE_ADDRESS,
-  TOGGLE_NETWORK_SWITCH
-} = actionTypes;
+const { SET_ACTIVE_TAB, TOGGLE_NETWORK_SWITCH } = actionTypes;
 const { addIssuerFilter, addFulfillerFilter } = bountiesActions;
-const { loadBounties, allStageFilters, resetFilters } = bountiesActions;
-const { loadUserInfo } = userInfoActions;
+const { loadBounties } = bountiesActions;
 const { loadReviewsReceived } = reviewsActions;
 
 export function* loadProfileBounties(action) {

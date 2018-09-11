@@ -3,15 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './SearchSelect.module.scss';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/lib/Creatable';
-import {
-  reject,
-  includes,
-  map,
-  find,
-  isUndefined,
-  unionBy,
-  uniqBy
-} from 'lodash';
+import { reject, includes, map, find, isUndefined, unionBy } from 'lodash';
 import '../../styles/ReactSelect.scss';
 
 import { Text, Pill } from 'components';

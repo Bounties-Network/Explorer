@@ -12,7 +12,6 @@ const Currency = props => {
     secondaryClassName,
     primaryContainerClass,
     currencyClass,
-    alignment,
 
     primaryValue,
     primaryCurrency,
@@ -33,20 +32,20 @@ const Currency = props => {
   } = props;
 
   const primaryDisplay = [
-    primaryCurrency.toLowerCase() == 'usd' ? '$' : null,
-    primaryDecimals == 'all'
+    primaryCurrency.toLowerCase() === 'usd' ? '$' : null,
+    primaryDecimals === 'all'
       ? Number(primaryValue)
       : Number(primaryValue).toFixed(primaryDecimals),
     ' '
   ].join('');
 
   const secondaryDisplay = [
-    secondaryCurrency.toLowerCase() == 'usd' ? '$' : null,
-    secondaryDecimals == 'all'
+    secondaryCurrency.toLowerCase() === 'usd' ? '$' : null,
+    secondaryDecimals === 'all'
       ? Number(secondaryValue)
       : Number(secondaryValue).toFixed(secondaryDecimals),
     ' ',
-    secondaryCurrency.toLowerCase() == 'usd' ? null : secondaryCurrency
+    secondaryCurrency.toLowerCase() === 'usd' ? null : secondaryCurrency
   ].join('');
 
   return (
@@ -119,7 +118,6 @@ Currency.propTypes = {
 };
 
 Currency.defaultProps = {
-  alignment: 'align-right',
   primaryValue: 0,
   primaryCurrency: 'usd',
   primaryDecimals: 2,

@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 import { actions as appActions } from 'layout/App/reducer';
 import { actions } from 'public-modules/Bounties';
 import config from 'public-modules/config';
-import { toggleFromParam } from 'utils/locationHelpers';
-import { SideOverlay } from 'components';
 import { locationNonceSelector } from 'layout/App/selectors';
 import styles from './Explorer.module.scss';
 
@@ -15,14 +13,7 @@ class Explorer extends React.Component {
   constructor(props) {
     super(props);
 
-    const {
-      resetState,
-      history,
-      location,
-      load,
-      addPlatformFilter,
-      toggleStageFilter
-    } = props;
+    const { resetState, load, addPlatformFilter, toggleStageFilter } = props;
 
     resetState();
     toggleStageFilter('active');

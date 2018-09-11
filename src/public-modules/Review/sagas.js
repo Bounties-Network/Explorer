@@ -1,7 +1,6 @@
 import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Review';
-import { toast as callToast } from 'react-toastify';
 import { Toast } from 'components';
 import config from 'public-modules/config';
 

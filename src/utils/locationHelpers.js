@@ -1,4 +1,4 @@
-import { filter, map, includes } from 'lodash';
+import { filter, includes } from 'lodash';
 
 export function objectToQueryString(object) {
   let queryString = '';
@@ -70,7 +70,6 @@ export function toggleFromParam(queryString, key, value) {
   const query = queryStringToObject(queryString);
   if (query[key]) {
     const values = query[key].split(',');
-    let newValues = [...values];
     if (includes(value, values)) {
       return removeFromParam(queryString, key, value);
     } else {

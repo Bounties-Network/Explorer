@@ -34,7 +34,6 @@ class CreateBountyComponent extends React.Component {
       draftLoading,
       formInitialValues,
       draftError,
-      match,
       isDraftPage
     } = this.props;
 
@@ -112,7 +111,6 @@ const mapStateToProps = (state, router) => {
         draftBounty.tokenContract ||
         (config.defaultToken && config.defaultToken.address),
       fulfillmentAmount: fulfillmentAmount,
-      activateNow: true,
       issuer_email: draftBounty.issuer_email || user.email || '',
       issuer_name: draftBounty.issuer_name || user.name || '',
       activateNow: !isDraftPage,

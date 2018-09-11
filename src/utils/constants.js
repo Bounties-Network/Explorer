@@ -70,7 +70,6 @@ const level_up = ['far', 'level-up'];
 const level_down = ['far', 'level-down'];
 const star = ['far', 'star'];
 const comment = ['far', 'comment'];
-const general = ['far', 'star'];
 const check = ['far', 'check'];
 const calendar_exclamation = ['far', 'calendar-exclamation'];
 const calendar_plus = ['far', 'calendar-plus'];

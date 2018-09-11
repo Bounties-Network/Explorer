@@ -13,7 +13,7 @@ const Text = props => {
     color,
     weight,
     alignment,
-    style,
+    fontStyle,
     inline,
     id,
     onClick,
@@ -32,7 +32,7 @@ const Text = props => {
         className={`text ${className} ${styles[typeScale]} ${
           styles[lineHeight]
         } ${styles[color]} ${styles[weight]} ${styles[alignment]} ${
-          styles[style]
+          styles[fontStyle]
         } ${addedClasses}`}
         id={id}
       >
@@ -50,7 +50,7 @@ const Text = props => {
         className={`text ${className} ${styles[typeScale]} ${
           styles[lineHeight]
         } ${styles[color]} ${styles[alignment]} ${
-          styles[style]
+          styles[fontStyle]
         } ${addedClasses}`}
         id={id}
         href={src}
@@ -85,7 +85,7 @@ const Text = props => {
       className={`text ${className} ${styles[typeScale]} ${
         styles[lineHeight]
       } ${styles[color]} ${styles[weight]} ${styles[alignment]} ${
-        styles[style]
+        styles[fontStyle]
       } ${addedClasses}`}
       id={id}
       onClick={onClick}
@@ -125,7 +125,12 @@ Text.propTypes = {
     'fontWeight-bold'
   ]),
   alignment: PropTypes.oneOf(['align-left', 'align-center', 'align-right']),
-  style: PropTypes.oneOf(['underline', 'noUnderline', 'italic', 'uppercase'])
+  fontStyle: PropTypes.oneOf([
+    'underline',
+    'noUnderline',
+    'italic',
+    'uppercase'
+  ])
 };
 
 Text.defaultProps = {
