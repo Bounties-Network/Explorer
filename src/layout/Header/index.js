@@ -29,7 +29,6 @@ const HeaderComponent = props => {
     showLogin,
     logout,
     history,
-    match,
     onShowNav,
     hasWallet,
     walletLocked

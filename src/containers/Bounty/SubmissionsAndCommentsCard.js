@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './SubmissionsAndCommentsCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { map as fpMap, filter } from 'lodash';
+import { map as fpMap } from 'lodash';
 import { SubmissionItem, NewCommentForm, CommentItem } from './components';
 import { Button, ListGroup, Loader, Tabs, Text, ZeroState } from 'components';
 import { rootBountyPageSelector } from './selectors';

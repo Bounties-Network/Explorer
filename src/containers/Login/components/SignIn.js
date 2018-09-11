@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Text, Button } from 'components';
+import { Modal, Button } from 'components';
 
 const SignIn = props => {
   const { visible, onClose, signIn } = props;

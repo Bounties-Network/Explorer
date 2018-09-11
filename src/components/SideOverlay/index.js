@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SideOverlay.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-
-const ModalContext = React.createContext({});
 
 class OverlayContent extends React.Component {
   componentDidMount() {
@@ -40,13 +37,13 @@ class SideOverlay extends React.Component {
     const { visible, hasMask } = this.props;
 
     const pageBody = document.getElementsByClassName('page-body')[0];
-    if (!prevProps.visible && this.props.visible && hasMask) {
+    if (!prevProps.visible && visible && hasMask) {
       if (pageBody) {
         pageBody.classList.add('mask-open');
       }
     }
 
-    if (prevProps.visible && !this.props.visible && hasMask) {
+    if (prevProps.visible && !visible && hasMask) {
       if (pageBody) {
         pageBody.classList.remove('mask-open');
       }

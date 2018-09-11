@@ -2,7 +2,6 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import styles from './SubmissionsPanel.module.scss';
-import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
 import { Button, Card, Table, Loader, Tabs, ZeroState } from 'components';
 import { SubmissionItem } from 'explorer-components';

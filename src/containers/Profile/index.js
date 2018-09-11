@@ -8,7 +8,7 @@ import { ExplorerBody } from 'containers';
 import { filterConfig } from './constants';
 import FilterNav from 'containers/FilterNav';
 import styles from './Profile.module.scss';
-import { SideOverlay, ZeroState } from 'components';
+import { ZeroState } from 'components';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { actions as appActions } from 'layout/App/reducer';
@@ -17,8 +17,6 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { locationNonceSelector } from 'layout/App/selectors';
 import { actions } from './reducer';
-
-import { StickyContainer, Sticky } from 'react-sticky';
 
 class ProfileComponent extends React.Component {
   constructor(props) {
@@ -104,7 +102,7 @@ class ProfileComponent extends React.Component {
 
     if (
       prevProps.bountiesLoading &&
-      !this.props.bountiesLoading &&
+      !bountiesLoading &&
       this.explorerBody &&
       position === 'fixed'
     ) {
@@ -141,7 +139,7 @@ class ProfileComponent extends React.Component {
   };
 
   render() {
-    const { error, loaded, user, loading, showFilters } = this.props;
+    const { error, loaded, user, showFilters } = this.props;
     const { position } = this.state;
 
     const profileFilterNav = (
@@ -214,7 +212,6 @@ const mapStateToProps = state => {
     currentUser,
     user: userInfo.loadedUser.user,
     bountiesLoading: bountyState.loading,
-    loading: userInfo.loading,
     loaded: userInfo.loaded,
     error: userInfo.error,
     locationNonce: locationNonceSelector(state)

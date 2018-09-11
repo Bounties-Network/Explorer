@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 function ModalFormReset(WrappedComponent) {
   return class ModalFormResetComponent extends Component {

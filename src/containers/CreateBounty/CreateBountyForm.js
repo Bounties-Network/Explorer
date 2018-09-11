@@ -8,15 +8,13 @@ import { formValueSelector } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as categoryActions } from 'public-modules/Categories';
 import { actions as bountyActions } from 'public-modules/Bounty';
-import { actions as tokensActions } from 'public-modules/Tokens';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { rootTokensSelector } from 'public-modules/Tokens/selectors';
 import { tokensDropdownDataSelector } from './selectors';
 import { TransactionWalkthrough } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
-import { getTimezone, isMobile } from 'utils/helpers';
+import { getTimezone } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
-import { map } from 'lodash';
 import moment from 'moment';
 import {
   stdBountyStateSelector,
@@ -54,8 +52,7 @@ class CreateBountyFormComponent extends React.Component {
       createBounty,
       createDraft,
       uid,
-      updateDraft,
-      bountyId
+      updateDraft
     } = this.props;
 
     const fileData = {
@@ -99,8 +96,7 @@ class CreateBountyFormComponent extends React.Component {
       deleteUploadKey,
       bountyId,
       minDate,
-      tokens,
-      addToken
+      tokens
     } = this.props;
 
     let submitButtonText = 'Create Bounty';
@@ -517,7 +513,6 @@ const CreateBountyForm = compose(
     {
       uploadFile: uploadActions.uploadFile,
       addCategory: categoryActions.addToCategories,
-      addToken: tokensActions.addToken,
       createDraft: bountyActions.createDraft,
       updateDraft: bountyActions.updateDraft,
       createBounty: bountyActions.createBounty,

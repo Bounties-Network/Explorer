@@ -1,11 +1,7 @@
 import request from 'utils/request';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Settings';
-import { actions as transactionActions } from 'public-modules/Transaction';
-import { addJSON } from 'public-modules/Utilities/ipfsClient';
 import { addressSelector } from 'public-modules/Client/selectors';
-import { getContractClient, getWeb3Client } from 'public-modules/Client/sagas';
-import { promisifyContractCall } from 'public-modules/Utilities/helpers';
 
 const { SAVE_SETTINGS, SAVE_EMAIL_PREFERENCES } = actionTypes;
 const {
@@ -14,12 +10,6 @@ const {
   saveEmailPreferencesSuccess,
   saveEmailPreferencesFail
 } = actions;
-
-const {
-  setPendingWalletConfirm,
-  setPendingReceipt,
-  setTransactionError
-} = transactionActions;
 
 export function* saveSettings(action) {
   const { values } = action;

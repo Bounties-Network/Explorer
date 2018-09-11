@@ -350,7 +350,7 @@ Modal.propTypes = {
     // so we have to use this ugly for loop
     for (let i = 0; i < collection.length; i++) {
       if (
-        typeof collection[i] != 'boolean' &&
+        typeof collection[i] !== 'boolean' &&
         !includes(collection[i].type.name, [
           Header.name,
           Heading.name,
