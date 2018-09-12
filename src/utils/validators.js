@@ -19,6 +19,13 @@ const minValue = min => value => {
       : `Must be greater than ${min}`;
   }
 };
+const minOrEqualsValue = min => value => {
+  if (value) {
+    return BigNumber(value).isGreaterThanOrEqualTo(min)
+      ? undefined
+      : `Must be greater than or equal to  ${min}`;
+  }
+};
 const minDate = min => value => {
   return moment(min) <= moment(value)
     ? undefined
@@ -62,6 +69,7 @@ const isURL = value =>
 export default {
   required,
   minValue,
+  minOrEqualsValue,
   maxLength,
   minLength,
   number,
