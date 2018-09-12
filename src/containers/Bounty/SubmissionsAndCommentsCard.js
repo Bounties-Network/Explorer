@@ -131,32 +131,56 @@ let SubmissionsAndCommentsCardComponent = props => {
       );
     }
 
-    if (bounty.private_fulfillments && fulfillments.list.length) {
-      body = (
-        <React.Fragment>
-          <ListGroup>{renderFulfillments(fulfillments.list)}</ListGroup>
-          <Text alignment="align-center" color="defaultGrey" typeScale="Small">
-            Submissions to this bounty are hidden.
-            {currentUser && currentUser.public_address == bounty.issuer
-              ? ' The submissions are only visible to you and the fulfiller.'
-              : ' Your submissions are only visible to you and the bounty issuer.'}
-          </Text>
-        </React.Fragment>
-      );
-    }
+    if (bounty.private_fulfillments) {
+      if (fulfillments.list.length) {
+        body = (
+          <React.Fragment>
+            <ListGroup>{renderFulfillments(fulfillments.list)}</ListGroup>
+            <Text
+              alignment="align-center"
+              color="defaultGrey"
+              typeScale="Small"
+            >
+              Submissions to this bounty are hidden.
+              {bountyBelongsToLoggedInUser
+                ? ' The submissions are only visible to you and the fulfiller.'
+                : ' Your submissions are only visible to you and the bounty issuer.'}
+            </Text>
+          </React.Fragment>
+        );
+      }
 
-    if (bounty.private_fulfillments && !fulfillments.list.length) {
-      bodyClass = styles.bodyLoading;
-      body = (
-        <div className={styles.zeroState}>
-          <ZeroState
-            title={'Submissions are private'}
-            text={'The submissions for this bounty have been set to private.'}
-            iconColor="blue"
-            icon={['fal', 'lock']}
-          />
-        </div>
-      );
+      if (!fulfillments.list.length && bountyBelongsToLoggedInUser) {
+        bodyClass = styles.bodyLoading;
+        body = (
+          <div className={styles.zeroState}>
+            <ZeroState
+              title={'There are 0 submissions'}
+              text={
+                'Submissions to this bounty will appear here and will \
+              only be visible to you. Additionally, fulfillers will be able \
+              to see the submissions that they created.'
+              }
+              iconColor="blue"
+              icon={['fal', 'lock']}
+            />
+          </div>
+        );
+      }
+
+      if (!fulfillments.list.length && !bountyBelongsToLoggedInUser) {
+        bodyClass = styles.bodyLoading;
+        body = (
+          <div className={styles.zeroState}>
+            <ZeroState
+              title={'Submissions are private'}
+              text={'The submissions for this bounty have been set to private.'}
+              iconColor="blue"
+              icon={['fal', 'lock']}
+            />
+          </div>
+        );
+      }
     }
 
     if (fulfillments.loading) {
