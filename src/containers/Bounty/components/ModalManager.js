@@ -91,7 +91,7 @@ const ModalManagerComponent = props => {
       increasePayoutAction(
         bounty.id,
         values.fulfillmentAmount,
-        values.balance,
+        values.balance || '0',
         bounty.paysTokens,
         bounty.tokenDecimals,
         bounty.tokenContract

@@ -56,7 +56,7 @@ const IncreasePayoutFormModal = props => {
             label={`Deposit amount (${tokenSymbol})`}
             normalize={normalizers.number}
             validate={[
-              validators.minValue(0),
+              validators.minOrEqualsValue(0),
               (balance, values) => {
                 if (
                   BigNumber(values.fulfillmentAmount || 0, 10).isGreaterThan(
