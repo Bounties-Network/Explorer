@@ -80,17 +80,7 @@
   margin-top: $m-spacing;
 }
 
-.primaryContainerClass {
-  display: inline-block;
-  margin-bottom: -$base-spacing;
-
-  @media only screen and (min-width: 35em) {
-    display: block;
-    margin-bottom: 0;
-  }
-}
-
-.primary {
+.usd {
   font-size: $h3-font-size;
   display: inline-block;
   padding-right: $base-spacing;

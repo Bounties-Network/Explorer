@@ -10,7 +10,6 @@ const Currency = props => {
     className,
     primaryClassName,
     secondaryClassName,
-    primaryContainerClass,
     currencyClass,
     alignment,
 
@@ -49,14 +48,11 @@ const Currency = props => {
     secondaryCurrency.toLowerCase() == 'usd' ? null : secondaryCurrency
   ].join('');
 
+  const containerClass = alignment == 'align-left' ? styles.left : styles.right;
+
   return (
-    <div className={className}>
-      <div
-        className={[
-          isNumber(secondaryValue) && styles.primary,
-          primaryContainerClass
-        ].join(' ')}
-      >
+    <div className={[containerClass, className].join(' ')}>
+      <div className={styles.primary}>
         <Text
           inline
           color={primaryColor}
@@ -79,7 +75,6 @@ const Currency = props => {
           )}
         </Text>
       </div>
-
       {isNumber(secondaryValue) && (
         <Text
           color={secondaryColor}
@@ -95,6 +90,7 @@ const Currency = props => {
 
 Currency.propTypes = {
   className: PropTypes.string,
+  alignment: PropTypes.oneOf(['align-left', 'align-right']),
   primaryClassName: PropTypes.string,
   secondaryClassName: PropTypes.string,
   currencyClass: PropTypes.string,
