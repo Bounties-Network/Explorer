@@ -54,7 +54,8 @@ class BountyComponent extends React.Component {
       resetFulfillmentsState,
       resetCommentsState,
       addBountyFilter,
-      setBountyId
+      setBountyId,
+      setActiveTab
     } = props;
 
     setBountyId(match.params.id);
@@ -74,6 +75,13 @@ class BountyComponent extends React.Component {
 
       if (values.rating) {
         loadFulfillment(match.params.id, values.fulfillment_id);
+      } else {
+        loadFulfillments(match.params.id);
+      }
+
+      const newTab = this.mostInterestingTab(this.props);
+      if (newTab) {
+        setActiveTab(newTab);
       }
     }
   }
@@ -93,7 +101,10 @@ class BountyComponent extends React.Component {
       setActiveTab,
       resetCommentsState,
       user,
-      history
+      history,
+      loaded,
+      bounty,
+      fulfillments
     } = this.props;
 
     // do this because for some reason match was stale
@@ -113,15 +124,17 @@ class BountyComponent extends React.Component {
         loadBounty(bountyId);
         addBountyFilter(bountyId);
 
-        // Bounty has loaded, we have enough information to choose tab
-        if (!prevProps.bounty && this.props.bounty) {
-          setActiveTab(this.mostInterestingTab());
-        }
-
         const values = queryStringToObject(location.search);
 
         if (values.rating) {
           loadFulfillment(bountyId, values.fulfillment_id);
+        } else {
+          loadFulfillments(bountyId);
+        }
+
+        const newTab = this.mostInterestingTab(this.props);
+        if (newTab) {
+          setActiveTab(newTab);
         }
       }
     }
@@ -135,27 +148,39 @@ class BountyComponent extends React.Component {
   }
 
   rootLocationParams = () => {
-    return this.props.location.search || `?tab=${this.mostInterestingTab()}`;
+    let newTab = this.mostInterestingTab(this.props);
+    if (!newTab) {
+      newTab = this.defaultTab();
+    }
+
+    return this.props.location.search || `?tab=${newTab}`;
   };
 
-  mostInterestingTab = () => {
-    console.log('in mostInterestingTab with');
-    const { user, bounty, fulfillments } = this.props;
-    console.log(user);
-    console.log(bounty);
-    console.log(fulfillments);
+  mostInterestingTab = ({ user, bounty, fulfillments }) => {
+    if (!user || !bounty || !fulfillments) {
+      return;
+    }
 
-    if (user && bounty && user.public_address === bounty.issuer_address) {
-      console.log('returning submissions because address matches');
+    if (user.public_address === bounty.issuer_address) {
       return 'submissions';
     }
 
-    if (bounty && !bounty.private_fulfillments && fulfillments.list.length) {
-      console.log('returns submissions because public submissions found');
+    if (fulfillments.list.find(f => user.public_address === f.fulfiller)) {
       return 'submissions';
     }
 
-    console.log('returning comments because default');
+    if (bounty.private_fulfillments) {
+      return 'comments';
+    }
+
+    if (fulfillments.list.length === 0) {
+      return 'comments';
+    }
+
+    return 'submissions';
+  };
+
+  defaultTab = () => {
     return 'comments';
   };
 
