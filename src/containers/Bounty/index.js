@@ -23,6 +23,7 @@ import {
   getBountyStateSelector
 } from 'public-modules/Bounty/selectors';
 import { addressSelector } from 'public-modules/Client/selectors';
+import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
@@ -69,7 +70,8 @@ class BountyComponent extends React.Component {
 
       loadBounty(match.params.id);
       addBountyFilter(match.params.id);
-      setActiveTab('comments');
+
+      setActiveTab(this.mostInterestingTab());
 
       const values = queryStringToObject(location.search);
 
@@ -113,7 +115,8 @@ class BountyComponent extends React.Component {
 
         loadBounty(bountyId);
         addBountyFilter(bountyId);
-        setActiveTab('comments');
+
+        setActiveTab(this.mostInterestingTab());
 
         const values = queryStringToObject(location.search);
 
@@ -132,16 +135,21 @@ class BountyComponent extends React.Component {
   }
 
   rootLocationParams = () => {
-    return this.props.location.search || `?tab=${'comments'}}`;
+    return this.props.location.search || `?tab=${this.mostInterestingTab()}`;
   };
 
-  setActiveTabAction = tabKey => {
-    // const { history, location, setActiveTab } = this.props;
-    //
-    // history.push(
-    //   location.pathname + setParam(this.rootLocationParams(), 'tab', tabKey)
-    // );
-    this.props.setActiveTab(tabKey);
+  mostInterestingTab = () => {
+    const { user, bounty, fulfillments } = this.props;
+
+    if (user && bounty && user.public_address === bounty.issuer_address) {
+      return 'submissions';
+    }
+
+    if (bounty && !bounty.private_fulfillments && fulfillments.list.length) {
+      return 'submissions';
+    }
+
+    return 'comments';
   };
 
   render() {
@@ -154,7 +162,8 @@ class BountyComponent extends React.Component {
       walletAddress,
       initiateWalkthrough,
       initiateLoginProtection,
-      showModal
+      showModal,
+      setActiveTab
     } = this.props;
 
     if (error) {
@@ -400,7 +409,7 @@ class BountyComponent extends React.Component {
                 bounty={bounty}
                 isDraft={isDraft}
                 currentUser={user}
-                setActiveTabAction={this.setActiveTabAction}
+                setActiveTabAction={setActiveTab}
                 initiateLoginProtection={initiateLoginProtection}
                 initiateWalkthrough={initiateWalkthrough}
               />
@@ -417,6 +426,7 @@ const mapStateToProps = (state, router) => {
   const getBountyState = getBountyStateSelector(state);
   const draftBounty = getDraftBountySelector(state);
   const currentBounty = getBountySelector(state);
+  const fulfillmentsState = fulfillmentsSelector(state);
 
   const { match } = router;
   let bounty = currentBounty;
@@ -431,7 +441,11 @@ const mapStateToProps = (state, router) => {
 
   return {
     isDraft,
-    bounty: bounty,
+    bounty,
+    fulfillments: {
+      ...fulfillmentsState,
+      list: fulfillmentsState.fulfillments
+    },
     user: getCurrentUserSelector(state),
     walletAddress: addressSelector(state),
     loading: bountyState.loading,
