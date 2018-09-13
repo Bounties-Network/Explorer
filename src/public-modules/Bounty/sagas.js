@@ -284,10 +284,10 @@ export function* createBounty(action) {
 }
 
 export function* getDraft(action) {
-  const { id } = action;
+  const { id, issuer } = action;
   const user = yield select(getCurrentUserSelector);
   const params = {
-    issuer: user.public_address.toLowerCase(),
+    issuer,
     platform__in: config.platform
   };
 

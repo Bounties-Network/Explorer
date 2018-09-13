@@ -7,7 +7,7 @@ const { CREATE_DRAFT_SUCCESS } = bountyActionTypes;
 export function* bountyCreated(action) {
   const { bounty } = action;
 
-  yield put(push(`/bounty/draft/${bounty.id}`));
+  yield put(push(`/bounty/draft/${bounty.uid}`));
 }
 
 export function* watchBountyCreated() {

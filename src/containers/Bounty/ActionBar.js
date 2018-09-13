@@ -23,10 +23,10 @@ const ActionBar = props => {
   const loggedOutButAddressMatches =
     !user && walletAddress && bounty.issuer === walletAddress.toLowerCase();
 
-  const draftUrl = `/createBounty/draft/${bounty.id}/`;
+  const draftUrl = `/createBounty/draft/${bounty.uid}/`;
 
   let actionOptions = null;
-  if (isDraft) {
+  if (isDraft && belongsToLoggedInUser) {
     actionOptions = (
       <div className={styles.actionBar}>
         <Button
@@ -39,7 +39,7 @@ const ActionBar = props => {
                 showModal('deadlineWarning')
               );
             }
-            showModal('activate');
+            initiateLoginProtection(() => showModal('activate'));
           }}
         >
           Activate Bounty

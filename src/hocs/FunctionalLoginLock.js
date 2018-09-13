@@ -133,7 +133,7 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
       network,
       isCorrectNetwork,
       previousAddress: user && user.public_address,
-      userImg: user && user.img,
+      userImg: user && user.profile_image,
       signingIn: loginState.loading,
       error: loginState.error || logoutState.error,
       loggingOut: logoutState.loading

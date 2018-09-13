@@ -375,10 +375,11 @@ class BountyComponent extends React.Component {
                   </div>
                 </section>
               </div>
-
-              <div className={styles.social}>
-                <Social />
-              </div>
+              {!isDraft && (
+                <div className={styles.social}>
+                  <Social />
+                </div>
+              )}
             </div>
             <div className={`${styles.descriptionSection}`}>
               <div

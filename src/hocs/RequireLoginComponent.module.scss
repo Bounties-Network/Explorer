@@ -6,6 +6,12 @@
   position: relative;
 }
 
+:global(.modal-open):global(.unfixed) {
+  .loginWrapper {
+    position: fixed;
+  }
+}
+
 .notLoggedInWrapper {
   display: flex;
   justify-content: center;

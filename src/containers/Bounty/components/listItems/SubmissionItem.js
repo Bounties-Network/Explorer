@@ -34,6 +34,7 @@ const SubmissionItem = props => {
 
   const formattedTime = moment
     .utc(created, 'YYYY-MM-DDThh:mm:ssZ')
+    .local()
     .format('MM/DD/YYYY');
 
   let actionButton = null;

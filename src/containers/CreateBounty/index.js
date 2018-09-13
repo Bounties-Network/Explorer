@@ -20,12 +20,12 @@ import config from 'public-modules/config';
 class CreateBountyComponent extends React.Component {
   constructor(props) {
     super(props);
-    const { match, getDraft, loadTokens } = props;
+    const { match, getDraft, loadTokens, public_address } = props;
 
     loadTokens();
 
     if (match.path === '/createBounty/draft/:id/') {
-      getDraft(match.params.id);
+      getDraft(match.params.id, public_address);
     }
   }
 
@@ -90,10 +90,12 @@ const mapStateToProps = (state, router) => {
   }
   if (router.match.path === '/createBounty') {
     draftBounty = {};
+    fulfillmentAmount = undefined;
     isDraftPage = false;
   }
 
   return {
+    public_address: user && user.public_address,
     isDraftPage: isDraftPage,
     draftError: getDraftState.error,
     draftLoading: getDraftState.loading,

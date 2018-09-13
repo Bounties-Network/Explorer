@@ -34,7 +34,8 @@ class BountiesPanelComponent extends React.Component {
         fulfillment_count,
         title,
         tokenSymbol,
-        usd_price
+        usd_price,
+        uid
       } = bounty;
 
       const isDraft = this.props.currentTab === 'drafts';
@@ -44,7 +45,7 @@ class BountiesPanelComponent extends React.Component {
           <Link
             to={
               this.props.currentTab === 'drafts'
-                ? `/bounty/draft/${id}`
+                ? `/bounty/draft/${uid}`
                 : `/bounty/${id}`
             }
             className={styles.link}

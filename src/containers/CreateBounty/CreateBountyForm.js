@@ -67,7 +67,7 @@ class CreateBountyFormComponent extends React.Component {
     }
 
     if (uid) {
-      return updateDraft(bountyId, { ...bountyValues, ...fileData, uid });
+      return updateDraft(uid, { ...bountyValues, ...fileData, uid });
     }
 
     return createDraft({ ...bountyValues, ...fileData });
@@ -477,11 +477,15 @@ class CreateBountyFormComponent extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, router) => {
+  let isDraft = true;
+  if (router.match.path === '/createBounty') {
+    isDraft = false;
+  }
   const uploadedFile = getUploadKeySelector(UPLOAD_KEY)(state);
   const draftState = createDraftStateSelector(state);
   const bountyState = stdBountyStateSelector(state);
-  const draftBounty = getDraftBountySelector(state) || {};
+  const draftBounty = isDraft ? getDraftBountySelector(state) || {} : {};
   const rootTokens = rootTokensSelector(state);
   const tokens = tokensDropdownDataSelector(state);
 
