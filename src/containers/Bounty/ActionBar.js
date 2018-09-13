@@ -26,7 +26,7 @@ const ActionBar = props => {
   const draftUrl = `/createBounty/draft/${bounty.uid}/`;
 
   let actionOptions = null;
-  if (isDraft) {
+  if (isDraft && belongsToLoggedInUser) {
     actionOptions = (
       <div className={styles.actionBar}>
         <Button
