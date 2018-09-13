@@ -6,7 +6,7 @@
   position: relative;
 }
 
-:global(.modal-open) {
+:global(.modal-open):global(.unfixed) {
   .loginWrapper {
     position: fixed;
   }

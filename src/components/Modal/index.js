@@ -123,13 +123,16 @@ class Modal extends React.Component {
   };
 
   componentDidMount() {
-    const { visible } = this.props;
+    const { visible, fixed } = this.props;
 
     if (visible) {
       document.body.classList.add('modal-open');
       const pageBody = document.getElementsByClassName('page-body')[0];
       if (pageBody) {
         pageBody.classList.add('modal-open');
+        if (fixed) {
+          pageBody.classList.add('unfixed');
+        }
       }
     }
   }
@@ -149,14 +152,19 @@ class Modal extends React.Component {
   };
 
   triggerEntering = () => {
+    const { fixed } = this.props;
     document.body.classList.add('modal-open');
     const pageBody = document.getElementsByClassName('page-body')[0];
     if (pageBody) {
       pageBody.classList.add('modal-open');
+      if (!fixed) {
+        pageBody.classList.add('unfixed');
+      }
     }
   };
 
   triggerExited = () => {
+    const { fixed } = this.props;
     document.body.classList.remove('exiting');
     const currentModals = document.getElementsByClassName('modal-visible');
     if (currentModals && currentModals.length > 1) {
@@ -166,6 +174,9 @@ class Modal extends React.Component {
     const pageBody = document.getElementsByClassName('page-body')[0];
     if (pageBody) {
       pageBody.classList.remove('modal-open');
+      if (!fixed) {
+        pageBody.classList.remove('unfixed');
+      }
     }
   };
 
