@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
+import { includes } from 'lodash';
 import { actions as loginActions } from 'containers/Login/reducer';
 import {
   hasWalletSelector,
@@ -55,7 +56,7 @@ const HeaderComponent = props => {
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
           {history.location.pathname !== '/createBounty' &&
-            match.path !== '/createBounty/draft/:id/' && (
+            !includes(['createBounty/draft'], history.location.pathname) && (
               <Button
                 type="primary"
                 onClick={() => {

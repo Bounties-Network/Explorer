@@ -90,6 +90,7 @@ const mapStateToProps = (state, router) => {
   }
   if (router.match.path === '/createBounty') {
     draftBounty = {};
+    fulfillmentAmount = undefined;
     isDraftPage = false;
   }
 
