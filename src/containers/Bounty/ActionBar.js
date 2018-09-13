@@ -39,7 +39,7 @@ const ActionBar = props => {
                 showModal('deadlineWarning')
               );
             }
-            showModal('activate');
+            initiateLoginProtection(() => showModal('activate'));
           }}
         >
           Activate Bounty
