@@ -54,8 +54,7 @@ class BountyComponent extends React.Component {
       resetFulfillmentsState,
       resetCommentsState,
       addBountyFilter,
-      setBountyId,
-      setActiveTab
+      setBountyId
     } = props;
 
     setBountyId(match.params.id);
@@ -70,8 +69,6 @@ class BountyComponent extends React.Component {
 
       loadBounty(match.params.id);
       addBountyFilter(match.params.id);
-
-      setActiveTab(this.mostInterestingTab());
 
       const values = queryStringToObject(location.search);
 
@@ -116,7 +113,10 @@ class BountyComponent extends React.Component {
         loadBounty(bountyId);
         addBountyFilter(bountyId);
 
-        setActiveTab(this.mostInterestingTab());
+        // Bounty has loaded, we have enough information to choose tab
+        if (!prevProps.bounty && this.props.bounty) {
+          setActiveTab(this.mostInterestingTab());
+        }
 
         const values = queryStringToObject(location.search);
 
@@ -139,16 +139,23 @@ class BountyComponent extends React.Component {
   };
 
   mostInterestingTab = () => {
+    console.log('in mostInterestingTab with');
     const { user, bounty, fulfillments } = this.props;
+    console.log(user);
+    console.log(bounty);
+    console.log(fulfillments);
 
     if (user && bounty && user.public_address === bounty.issuer_address) {
+      console.log('returning submissions because address matches');
       return 'submissions';
     }
 
     if (bounty && !bounty.private_fulfillments && fulfillments.list.length) {
+      console.log('returns submissions because public submissions found');
       return 'submissions';
     }
 
+    console.log('returning comments because default');
     return 'comments';
   };
 
