@@ -52,8 +52,16 @@
   margin: $xxl-spacing auto;
 }
 
+.borderStyle {
+  li {
+    &:after {
+      border-bottom: $base-border !important;
+      width: calc(100%) !important;
+    }
+  }
+}
+
 .newCommentForm {
-  border-bottom: $base-border;
   position: relative;
   padding: $m-spacing;
   margin-left: -$m-spacing;
@@ -62,21 +70,23 @@
   @media only screen and (min-width: 35em) {
     margin-left: -$l-spacing;
     margin-right: -$l-spacing;
-    padding: $l-spacing;
+    padding: $m-spacing $l-spacing;
   }
 }
 
-.submissionItem {
-  color: $brand-darkGrey;
-  padding: $xl-spacing 0 $l-spacing;
-  position: relative;
-}
-
-.commentItem {
-  padding: $l-spacing 0;
+.listItem {
+  padding: $l-spacing $m-spacing;
   position: relative;
   border-radius: $base-border-radius;
+  margin-left: -$l-spacing;
+  margin-right: -$l-spacing;
   margin-top: -$base-border-width;
+
+  @media only screen and (min-width: 35em) {
+    margin-left: -$l-spacing;
+    margin-right: -$l-spacing;;
+    padding: $l-spacing;
+  }
 }
 
 .loadMoreButton {

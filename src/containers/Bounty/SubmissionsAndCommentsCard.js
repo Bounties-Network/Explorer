@@ -58,10 +58,7 @@ let SubmissionsAndCommentsCardComponent = props => {
         currentUser && fulfiller === currentUser.public_address;
 
       return (
-        <ListGroup.ListItem
-          key={fulfillment_id}
-          className={styles.submissionItem}
-        >
+        <ListGroup.ListItem key={fulfillment_id} className={styles.listItem}>
           <SubmissionItem
             fulfillmentId={fulfillment_id}
             fulfiller_name={name}
@@ -101,7 +98,7 @@ let SubmissionsAndCommentsCardComponent = props => {
       const { name, profile_image, public_address } = user;
 
       return (
-        <ListGroup.ListItem key={id} className={styles.commentItem}>
+        <ListGroup.ListItem key={id} className={styles.listItem}>
           <CommentItem
             name={name}
             address={public_address}
@@ -118,7 +115,11 @@ let SubmissionsAndCommentsCardComponent = props => {
   let bodyClass = '';
 
   if (currentTab === 'submissions') {
-    body = <ListGroup>{renderFulfillments(fulfillments.list)}</ListGroup>;
+    body = (
+      <ListGroup className={styles.borderStyle}>
+        {renderFulfillments(fulfillments.list)}
+      </ListGroup>
+    );
 
     if (!fulfillments.list.length) {
       bodyClass = styles.bodyLoading;
@@ -138,7 +139,9 @@ let SubmissionsAndCommentsCardComponent = props => {
       if (fulfillments.list.length) {
         body = (
           <React.Fragment>
-            <ListGroup>{renderFulfillments(fulfillments.list)}</ListGroup>
+            <ListGroup className={styles.borderStyle}>
+              {renderFulfillments(fulfillments.list)}
+            </ListGroup>
             <Text
               alignment="align-center"
               color="defaultGrey"
@@ -209,7 +212,7 @@ let SubmissionsAndCommentsCardComponent = props => {
     );
 
     body = (
-      <ListGroup>
+      <ListGroup className={styles.borderStyle}>
         {[
           newCommentForm,
           ...renderComments(),
@@ -226,15 +229,18 @@ let SubmissionsAndCommentsCardComponent = props => {
 
     if (!comments.list.length) {
       body = (
-        <ListGroup>
-          {newCommentForm}
-          <ZeroState
-            className={styles.zeroState}
-            title={'There are 0 comments'}
-            text={'Submit a comment using the form above.'}
-            iconColor="blue"
-            icon={['fal', 'comments']}
-          />
+        <ListGroup className={styles.borderStyle}>
+          {[
+            newCommentForm,
+            <ListGroup.ListItem key="zero" className={styles.zeroState}>
+              <ZeroState
+                title={'There are 0 comments'}
+                text={'Submit a comment using the form above.'}
+                iconColor="blue"
+                icon={['fal', 'comments']}
+              />
+            </ListGroup.ListItem>
+          ]}
         </ListGroup>
       );
     }
