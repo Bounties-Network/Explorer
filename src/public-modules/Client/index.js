@@ -3,7 +3,14 @@ const initialState = {
   hasWallet: true,
   network: '',
   initialized: false,
-  address: ''
+  address: '',
+  balanceInfo: {
+    loading: false,
+    loaded: false,
+    error: false,
+    tokenAddress: '0x0000000000000000000000000000000000000000',
+    balance: 0
+  }
 };
 
 const SET_LOCKED = 'web3client/SET_LOCKED';
@@ -30,6 +37,22 @@ function setAddress(address) {
 
 function setInitialized() {
   return { type: SET_INITIALIZED };
+}
+
+const GET_TOKEN_BALANCE = 'web3client/GET_TOKEN_BALANCE';
+const GET_TOKEN_BALANCE_SUCCESS = 'web3client/GET_TOKEN_BALANCE_SUCCESS';
+const GET_TOKEN_BALANCE_FAIL = 'web3client/GET_TOKEN_BALANCE_FAIL';
+
+function getTokenBalance(address) {
+  return { type: GET_TOKEN_BALANCE, address };
+}
+
+function getTokenBalanceSuccess(balance) {
+  return { type: GET_TOKEN_BALANCE_SUCCESS, balance };
+}
+
+function getTokenBalanceFail(error) {
+  return { type: GET_TOKEN_BALANCE_FAIL, error };
 }
 
 function ClientReducer(state = initialState, action) {
@@ -68,6 +91,31 @@ function ClientReducer(state = initialState, action) {
         network: action.network
       };
     }
+    case GET_TOKEN_BALANCE: {
+      const { address } = action;
+
+      return {
+        ...state,
+        balanceInfo: {
+          ...initialState.balanceInfo,
+          loading: true,
+          address
+        }
+      };
+    }
+    case GET_TOKEN_BALANCE_SUCCESS: {
+      const { balance } = action;
+
+      return {
+        ...state,
+        balanceInfo: {
+          ...state.balanceInfo,
+          loading: false,
+          loaded: true,
+          balance
+        }
+      };
+    }
     default:
       return state;
   }
@@ -78,7 +126,10 @@ export const actions = {
   setHasWallet,
   setNetwork,
   setInitialized,
-  setAddress
+  setAddress,
+  getTokenBalance,
+  getTokenBalanceSuccess,
+  getTokenBalanceFail
 };
 
 export const actionTypes = {
@@ -86,7 +137,10 @@ export const actionTypes = {
   SET_ADDRESS,
   SET_LOCKED,
   SET_HAS_WALLET,
-  SET_NETWORK
+  SET_NETWORK,
+  GET_TOKEN_BALANCE,
+  GET_TOKEN_BALANCE_SUCCESS,
+  GET_TOKEN_BALANCE_FAIL
 };
 
 export default ClientReducer;

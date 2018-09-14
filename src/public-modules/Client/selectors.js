@@ -26,3 +26,8 @@ export const initializedSelector = createSelector(
   rootClientSelector,
   client => client.initialized
 );
+
+export const balanceInfoSelector = createSelector(
+  rootClientSelector,
+  client => client.balanceInfo
+);

@@ -22,6 +22,7 @@ import {
   getDraftBountySelector
 } from 'public-modules/Bounty/selectors';
 import validators from 'utils/validators';
+import asyncValidators from 'utils/asyncValidators';
 import normalizers from 'utils/normalizers';
 import { FileUpload, Button, Text } from 'components';
 import {
@@ -521,7 +522,15 @@ const CreateBountyForm = compose(
     }
   ),
   reduxForm({
-    form: 'createBounty'
+    form: 'createBounty',
+    asyncValidate: (values, dispatch) => {
+      return asyncValidators.tokenValidationWrapper(
+        values,
+        'fulfillmentAmount',
+        'tokenContract',
+        dispatch
+      );
+    }
   })
 )(CreateBountyFormComponent);
 

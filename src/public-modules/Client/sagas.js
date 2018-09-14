@@ -8,10 +8,10 @@ import {
   hasWalletSelector,
   initializedSelector
 } from 'public-modules/Client/selectors';
-import { call, put, select } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { apiEndpoint } from 'utils/constants';
-import { actions } from 'public-modules/Client';
+import { actions, actionTypes } from 'public-modules/Client';
 
 let proxiedWeb3;
 
@@ -20,8 +20,12 @@ const {
   setNetwork,
   setLocked,
   setAddress,
-  setInitialized
+  setInitialized,
+  getTokenBalanceSuccess,
+  getTokenBalanceFail
 } = actions;
+
+const { GET_TOKEN_BALANCE } = actionTypes;
 
 function* getWalletAddress() {
   const accounts = yield proxiedWeb3.eth.getAccounts();
@@ -124,6 +128,27 @@ export function* getTokenClient(tokenAddress) {
   return null;
 }
 
+export function* getTokenBalance(action) {
+  const { address: tokenAddress } = action;
+  const userAddress = yield call(getWalletAddress);
+
+  if (tokenAddress === '0x0000000000000000000000000000000000000000') {
+    return getTokenBalanceSuccess(0);
+  }
+
+  const { tokenContract: tokenClient } = yield call(
+    getTokenClient,
+    tokenAddress
+  );
+
+  try {
+    const balance = yield call(tokenClient.balanceOf(userAddress).call);
+    yield put(getTokenBalanceSuccess(balance));
+  } catch (e) {
+    yield put(getTokenBalanceFail(e));
+  }
+}
+
 export function* updateWalletData() {
   // every second and a half, network and wallet status is updated in the redux store
   while (true) {
@@ -136,4 +161,8 @@ export function* updateWalletData() {
   }
 }
 
-export default [updateWalletData];
+export function* watchGetTokenBalance() {
+  yield takeLatest(GET_TOKEN_BALANCE, getTokenBalance);
+}
+
+export default [updateWalletData, watchGetTokenBalance];

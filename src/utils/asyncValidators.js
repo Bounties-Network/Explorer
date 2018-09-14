@@ -1,48 +1,43 @@
 import web3 from 'public-modules/Utilities/Web3Client';
 import config from 'public-modules/config';
+import { actions } from 'layout/App/reducer';
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+const { getTokenBalance } = actions;
 
-function* stubbed() {
-	yield sleep(2000).then(() => '1');
-	yield sleep(2000).then(() => '2');
-	return sleep(2000).then(() => '3');
-}
+// take waits for success on public module
+const tokenValidation = (amount, tokenAddress, dispatch) => {
+  const handleResult = balance => {
+    console.log('in then', balance);
+    if (balance === '0') {
+      throw { tokenContract: 'You have 0 of that token' };
+    } else if (balance < amount) {
+      throw { tokenContract: 'You do not have enought' };
+    }
+  };
 
+  console.log(amount, tokenAddress);
 
-const runPoll = () => new Promise(resolve => {
-	console.log('enter promise')
+  return new Promise((resolve, reject) => {
+    dispatch(getTokenBalance(tokenAddress, resolve, reject));
+  }).then(handleResult);
+};
 
-	const poll = generator => {
-		console.log('enter poll')
-
-		if (!generator) {
-			generator = stubbed()
-		}
-
-		const p = generator.next()
-		console.log(p)
-
-		p.value.then(value => {
-			console.log(value);
-			if(!p.done) {
-				console.log('not done')
-				poll(generator)
-			} else {
-				resolve(value)
-			}
-		})
-	}
-
-	poll()
-})
-
-const tokenValidation = values => {
-	return runPoll().then(a => {
-		console.log('result', a)
-	})
-}
+const tokenValidationWrapper = (
+  values,
+  amountKey,
+  tokenContractKey,
+  dispatch
+) => {
+  return tokenValidation(
+    values[amountKey],
+    values[tokenContractKey],
+    dispatch
+  ).catch(e => {
+    console.log(e);
+  });
+};
 
 export default {
-	tokenValidation
-}
+  tokenValidation,
+  tokenValidationWrapper
+};

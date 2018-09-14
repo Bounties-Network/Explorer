@@ -14,10 +14,24 @@
   }
 }
 
+.bottomMargin {
+  margin-bottom: $xl-spacing;
+}
+
 .contactInfo {
+  margin-bottom: $xl-spacing;
+
   p:first-child {
     margin-top: $xl-spacing;
   }
+}
+
+.submitTime {
+  margin-bottom: $xl-spacing;
+
+  @media only screen and (min-width: 48em) {
+      margin-bottom: 0;
+    }
 }
 
 .detailsContainer {

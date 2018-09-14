@@ -52,6 +52,15 @@
   margin: $xxl-spacing auto;
 }
 
+.borderStyle {
+  li {
+    &:after {
+      border-bottom: $base-border !important;
+      width: calc(100%) !important;
+    }
+  }
+}
+
 .newCommentForm {
   position: relative;
   padding: $m-spacing;
