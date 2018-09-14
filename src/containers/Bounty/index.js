@@ -197,7 +197,7 @@ class BountyComponent extends React.Component {
                 secondaryCurrency={bounty.tokenSymbol}
                 secondaryTypeScale="h4"
                 secondaryClassName={styles.currency}
-                currencyColor="white"
+                secondaryColor="white"
               />
 
               <div className={styles.bountyHeader}>
