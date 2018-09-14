@@ -4,17 +4,30 @@
   word-wrap: break-word;
   padding-left: $xl-spacing + $m-spacing;
   margin-right: $m-spacing;
-  margin-bottom: $xl-spacing;
 
   p {
     margin-bottom: $base-spacing;
   }
 }
 
+.bottomMargin {
+  margin-bottom: $xl-spacing;
+}
+
 .contactInfo {
+  margin-bottom: $xl-spacing;
+
   p:first-child {
     margin-top: $xl-spacing;
   }
+}
+
+.submitTime {
+  margin-bottom: $xl-spacing;
+
+  @media only screen and (min-width: 48em) {
+      margin-bottom: 0;
+    }
 }
 
 .detailsContainer {
@@ -31,7 +44,6 @@
 
 .actionColumn {
   display: flex;
-  margin-top: $l-spacing;
   padding-left: $xl-spacing + $xl-spacing;
   flex-direction: column;
   align-items: flex-start;
@@ -40,6 +52,16 @@
     align-items: flex-end;
     margin-top: 0;
     padding-left: 0;
+  }
+}
+
+.actionButton {
+  margin-top: $xl-spacing - $base-spacing;
+  margin-bottom: $m-spacing;
+
+  @media only screen and (min-width: 48em) {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
@@ -62,16 +84,14 @@
 }
 
 .fulfillmentStage {
-  margin-bottom: $m-spacing;
   position: absolute;
-  top: $xl-spacing;
-  right: 0;
+  top: $l-spacing;
+  right: $m-spacing;
 
   @media only screen and (min-width: 48em) {
     position: relative;
+    margin-bottom: $m-spacing;
     top: 0;
+    right: 0;
   }
-}
-
-.reactivateButton {
 }
