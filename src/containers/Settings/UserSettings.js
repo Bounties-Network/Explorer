@@ -3,6 +3,7 @@ import styles from './Settings.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { FormSection } from 'explorer-components';
+import { PreferencesToggle } from './components';
 import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as skillActions } from 'public-modules/Skills';
@@ -34,6 +35,7 @@ class UserSettingsComponent extends React.Component {
       addSkill,
       skills,
       languages,
+      emailInterest,
       invalid,
       handleSubmit,
       submitFailed,
@@ -76,6 +78,29 @@ class UserSettingsComponent extends React.Component {
                 loading={uploading}
                 src={profileImage}
               />
+            </FormSection.InputGroup>
+          </FormSection.Section>
+          <FormSection.Section title="ALERTS">
+            <FormSection.Description>
+              Would you like to get relevant bounties and platform updates sent
+              to you?
+            </FormSection.Description>
+            <FormSection.SubText>
+              This network is thriving, and bounties can be completed quickly.
+              We recommend enabling these emails.
+            </FormSection.SubText>
+            <FormSection.InputGroup>
+              <div className="row">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                  <Field
+                    form="interest"
+                    name={key}
+                    className={emailInterest ? styles.hide : ''}
+                    component={PreferencesToggle}
+                    label="I'm interested in receiving emails about relevant bounties and platform updates"
+                  />
+                </div>
+              </div>
             </FormSection.InputGroup>
           </FormSection.Section>
           <FormSection.Section title="ABOUT">
