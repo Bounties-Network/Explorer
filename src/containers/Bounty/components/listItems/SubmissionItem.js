@@ -4,6 +4,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Button, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE } from 'public-modules/Bounty/constants';
+import { shortenFileName, shortenUrl } from 'utils/helpers';
 import moment from 'moment';
 
 const SubmissionItem = props => {
@@ -128,7 +129,7 @@ const SubmissionItem = props => {
           <div className={[styles.labelGroup, styles.bottomMargin].join(' ')}>
             <Text inputLabel>Web link</Text>
             <Text link src={url}>
-              {url}
+              {shortenUrl(url)}
             </Text>
           </div>
         ) : null}
@@ -149,7 +150,7 @@ const SubmissionItem = props => {
               link
               src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
             >
-              {dataFileName}
+              {shortenFileName(dataFileName)}
             </Text>
           </div>
         ) : null}
