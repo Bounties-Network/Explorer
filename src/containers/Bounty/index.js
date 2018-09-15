@@ -33,6 +33,7 @@ import {
   LinkedAvatar
 } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
+import { shortenFileName, shortenUrl } from 'utils/helpers';
 import { locationNonceSelector } from 'layout/App/selectors';
 
 showdown.setOption('simpleLineBreaks', true);
@@ -346,7 +347,7 @@ class BountyComponent extends React.Component {
                           bounty.sourceDirectoryHash
                         }/${bounty.sourceFileName}`}
                       >
-                        {bounty.sourceFileName}
+                        {shortenFileName(bounty.sourceFileName, 18)}
                       </Text>
                     </div>
                   )}
@@ -357,7 +358,7 @@ class BountyComponent extends React.Component {
                         <FontAwesomeIcon icon={['far', 'link']} />
                       </i>
                       <Text link src={`${bounty.webReferenceURL}`}>
-                        {bounty.webReferenceURL}
+                        {shortenUrl(bounty.webReferenceURL)}
                       </Text>
                     </div>
                   )}

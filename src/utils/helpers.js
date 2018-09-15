@@ -12,6 +12,26 @@ export function shortenAddress(address) {
   return address.slice(0, 6) + '...' + address.slice(-4);
 }
 
+export function shortenUrl(url) {
+  const shortUrl = url.replace(/(^\w+:|^)\/\//, '').replace(/^www./, '');
+
+  if (shortUrl.length > 25) {
+    return shortUrl.slice(0, 10) + '...' + url.slice(-6);
+  }
+
+  return shortUrl;
+}
+
+export function shortenFileName(name, maxLength = 28) {
+  const half = maxLength - 3;
+
+  if (name.length > maxLength) {
+    return name.slice(0, half / 2) + '...' + name.slice(-(half / 2));
+  }
+
+  return name;
+}
+
 export function findETHValue(ethObj) {
   const fulfillmentAmount = parseInt(ethObj.fulfillmentAmount);
   const tokenDecimals = parseInt(ethObj.tokenDecimals);
