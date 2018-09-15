@@ -62,13 +62,16 @@ const Avatar = props => {
 
   return (
     <div className={`${styles.avatar} ${className}`}>
-      <Circle
-        border={border}
-        size={size}
-        color="white"
-        input={img ? img : hash}
-        type={img ? 'img' : 'blocky'}
-      />
+      {/* empty div used to avoid stretching inside flexbox */}
+      <div>
+        <Circle
+          border={border}
+          size={size}
+          color="white"
+          input={img ? img : hash}
+          type={img ? 'img' : 'blocky'}
+        />
+      </div>
       {name || address ? (
         <div className={styles.textWrapper}>
           {renderName()}
