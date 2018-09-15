@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Elsewhere.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Text } from 'components';
+import { shortenUrl } from 'utils/helpers';
 
 const Elsewhere = props => {
   const { website, twitter, github, linkedin } = props;
@@ -17,7 +18,7 @@ const Elsewhere = props => {
           <div className={styles.bulletPoint}>
             <FontAwesomeIcon icon={['far', 'globe']} className={styles.icon} />
             <Text link src={website} typeScale="h5">
-              {website}
+              {shortenUrl(website)}
             </Text>
           </div>
         )}
