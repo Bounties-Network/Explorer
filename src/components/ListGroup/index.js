@@ -5,12 +5,18 @@ import { Link } from 'react-router-dom';
 
 class ListItem extends React.Component {
   render() {
-    const { hover, className } = this.props;
+    const { borderColor, fullBorder, hover, className } = this.props;
 
-    let itemClass = styles.listItem;
+    let itemClass = `${styles.listItem} ${styles[borderColor]}`;
 
     if (hover) {
       itemClass += ` ${styles.itemHover}`;
+    }
+
+    if (fullBorder) {
+      itemClass += ` ${styles.fullBorder}`;
+    } else {
+      itemClass += ` ${styles.shortBorder}`;
     }
 
     return (
@@ -21,7 +27,13 @@ class ListItem extends React.Component {
 
 ListItem.propTypes = {
   hover: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
+  borderColor: PropTypes.oneOf(['nearWhite', 'lightGrey']),
+  fullBorder: PropTypes.bool
+};
+
+ListItem.defaultProps = {
+  borderColor: 'nearWhite'
 };
 
 class ListGroup extends React.Component {

@@ -53,7 +53,7 @@ const Currency = props => {
 
   return (
     <div className={[containerClass, className].join(' ')}>
-      <div className={styles.primary}>
+      <div className={isNumber(secondaryValue) ? styles.primary : null}>
         <Text
           inline
           color={primaryColor}
