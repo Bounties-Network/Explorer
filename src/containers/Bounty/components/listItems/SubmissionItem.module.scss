@@ -5,33 +5,31 @@
   padding-left: $xl-spacing + $m-spacing;
   margin-right: $m-spacing;
 
+  &:not(:last-child) {
+    margin-bottom: $xl-spacing;
+  }
+
   p {
     margin-bottom: $base-spacing;
   }
 }
 
-.bottomMargin {
-  margin-bottom: $xl-spacing;
-}
-
 .contactInfo {
-  margin-bottom: $xl-spacing;
-
   p:first-child {
     margin-top: $xl-spacing;
   }
 }
 
-.submitTime {
-  margin-bottom: $xl-spacing;
-
-  @media only screen and (min-width: 48em) {
-      margin-bottom: 0;
-    }
-}
-
 .detailsContainer {
   padding-right: 0;
+
+  .labelGroup:last-child {
+    margin-bottom: $xl-spacing;
+
+    @media (min-width: 576px) {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .filter {
