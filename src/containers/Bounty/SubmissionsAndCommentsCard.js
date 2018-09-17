@@ -58,7 +58,11 @@ let SubmissionsAndCommentsCardComponent = props => {
         currentUser && fulfiller === currentUser.public_address;
 
       return (
-        <ListGroup.ListItem key={fulfillment_id} className={styles.listItem}>
+        <ListGroup.ListItem
+          key={fulfillment_id}
+          className={styles.listItem}
+          fullBorder
+        >
           <SubmissionItem
             fulfillmentId={fulfillment_id}
             fulfiller_name={name}
@@ -98,7 +102,7 @@ let SubmissionsAndCommentsCardComponent = props => {
       const { name, profile_image, public_address } = user;
 
       return (
-        <ListGroup.ListItem key={id} className={styles.listItem}>
+        <ListGroup.ListItem key={id} className={styles.listItem} fullBorder>
           <CommentItem
             name={name}
             address={public_address}
@@ -197,7 +201,12 @@ let SubmissionsAndCommentsCardComponent = props => {
 
   if (currentTab === 'comments') {
     const newCommentForm = (
-      <ListGroup.ListItem key="form" className={styles.newCommentForm}>
+      <ListGroup.ListItem
+        key="form"
+        className={styles.newCommentForm}
+        borderColor="lightGrey"
+        fullBorder
+      >
         <NewCommentForm
           className={styles.newCommentForm}
           signedIn={!!currentUser}
@@ -217,7 +226,11 @@ let SubmissionsAndCommentsCardComponent = props => {
           newCommentForm,
           ...renderComments(),
           comments.list.length < comments.count && (
-            <ListGroup.ListItem key="load" className={styles.loadMoreButton}>
+            <ListGroup.ListItem
+              key="load"
+              className={styles.loadMoreButton}
+              fullBorder
+            >
               <Button loading={comments.loadingMore} onClick={loadMoreComments}>
                 Load More
               </Button>
@@ -232,7 +245,11 @@ let SubmissionsAndCommentsCardComponent = props => {
         <ListGroup className={styles.borderStyle}>
           {[
             newCommentForm,
-            <ListGroup.ListItem key="zero" className={styles.zeroState}>
+            <ListGroup.ListItem
+              key="zero"
+              className={styles.zeroState}
+              fullBorder
+            >
               <ZeroState
                 title={'There are 0 comments'}
                 text={'Submit a comment using the form above.'}

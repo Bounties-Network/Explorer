@@ -9,12 +9,34 @@
   &:not(:last-child):after {
     position: absolute;
     content: '';
-    border-bottom: $base-border-width solid $brand-nearWhite;
-    width: calc(100% - #{$m-spacing});
     padding: 0 $m-spacing;
     bottom: 0;
     transform: translateX(-50%);
     left: 50%;
+  }
+}
+
+.nearWhite {
+  &:not(:last-child):after {
+    border-bottom: $base-border-width solid $brand-nearWhite;
+  }
+}
+
+.lightGrey {
+  &:not(:last-child):after {
+    border-bottom: $base-border-width solid $brand-lightGrey;
+  }
+}
+
+.fullBorder {
+  &:not(:last-child):after {
+    width: 100%;
+  }
+}
+
+.shortBorder {
+  &:not(:last-child):after {
+    width: calc(100% - #{$m-spacing});
   }
 }
 

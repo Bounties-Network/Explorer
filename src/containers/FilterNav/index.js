@@ -88,15 +88,6 @@ const FilterNavComponent = props => {
     { value: 'deadline', label: 'Expiry' }
   ];
 
-  // generates object for SearchSelect component
-  // const platforms = reduce(
-  //   (acc, key) => {
-  //     acc[key] = { name: key };
-  //     return acc;
-  //   },
-  //   {},
-  //   appConfig.platform.split(',')
-  // );
   const platforms = appConfig.platform.split(',');
 
   const stages = reduce(
@@ -142,21 +133,6 @@ const FilterNavComponent = props => {
     );
     removeCategoryFilter(category);
   };
-
-  // const addPlatformFilterAction = platform => {
-  //   history.push(
-  //     location.pathname + pushToParam(rootLocationParams, 'platform', platform)
-  //   );
-  //   addPlatformFilter(platform);
-  // };
-  //
-  // const removePlatformFilterAction = platform => {
-  //   history.push(
-  //     location.pathname +
-  //       removeFromParam(rootLocationParams, 'platform', platform)
-  //   );
-  //   removePlatformFilter(platform);
-  // };
 
   const togglePlatformFilterAction = platform => {
     const queryParams =
@@ -251,21 +227,6 @@ const FilterNavComponent = props => {
                 />
               );
             }, platforms)}
-
-            {
-              // <SearchSelect
-              //   options={platforms}
-              //   value={platformFilters}
-              //   labelKey="name"
-              //   valueKey="name"
-              //   onChange={values => {
-              //     if (values.length > platformFilters.length) {
-              //       addPlatformFilterAction(values[values.length - 1]);
-              //     }
-              //   }}
-              //   onClose={removePlatformFilterAction}
-              // />
-            }
           </div>
         )}
       {config.category && (

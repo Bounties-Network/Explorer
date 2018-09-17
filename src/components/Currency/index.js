@@ -49,13 +49,8 @@ const Currency = props => {
   ].join('');
 
   return (
-    <div className={className}>
-      <div
-        className={[
-          isNumber(secondaryValue) && styles.primary,
-          primaryContainerClass
-        ].join(' ')}
-      >
+    <div className={[containerClass, className].join(' ')}>
+      <div className={isNumber(secondaryValue) ? styles.primary : null}>
         <Text
           inline
           color={primaryColor}
