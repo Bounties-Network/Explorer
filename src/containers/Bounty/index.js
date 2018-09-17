@@ -14,7 +14,9 @@ import moment from 'moment';
 import { map } from 'lodash';
 import { DRAFT, EXPIRED } from 'public-modules/Bounty/constants';
 import ActionBar from './ActionBar';
-import SubmissionsAndCommentsCard from './SubmissionsAndCommentsCard';
+import SubmissionsAndCommentsCard, {
+  mostInterestingTab
+} from './SubmissionsAndCommentsCard';
 import { TransactionWalkthrough, FunctionalLoginLock } from 'hocs';
 import {
   getDraftStateSelector,
@@ -78,11 +80,6 @@ class BountyComponent extends React.Component {
       } else {
         loadFulfillments(match.params.id);
       }
-
-      const newTab = this.mostInterestingTab(this.props);
-      if (newTab) {
-        setActiveTab(newTab);
-      }
     }
   }
 
@@ -131,11 +128,6 @@ class BountyComponent extends React.Component {
         } else {
           loadFulfillments(bountyId);
         }
-
-        const newTab = this.mostInterestingTab(this.props);
-        if (newTab) {
-          setActiveTab(newTab);
-        }
       }
     }
 
@@ -148,40 +140,8 @@ class BountyComponent extends React.Component {
   }
 
   rootLocationParams = () => {
-    let newTab = this.mostInterestingTab(this.props);
-    if (!newTab) {
-      newTab = this.defaultTab();
-    }
-
-    return this.props.location.search || `?tab=${newTab}`;
-  };
-
-  mostInterestingTab = ({ user, bounty, fulfillments }) => {
-    if (!user || !bounty || !fulfillments) {
-      return;
-    }
-
-    if (user.public_address === bounty.issuer_address) {
-      return 'submissions';
-    }
-
-    if (fulfillments.list.find(f => user.public_address === f.fulfiller)) {
-      return 'submissions';
-    }
-
-    if (bounty.private_fulfillments) {
-      return 'comments';
-    }
-
-    if (fulfillments.list.length === 0) {
-      return 'comments';
-    }
-
-    return 'submissions';
-  };
-
-  defaultTab = () => {
-    return 'comments';
+    const tab = mostInterestingTab(this.props.fulfillments);
+    return this.props.location.search || `?tab=${tab}`;
   };
 
   render() {
@@ -441,7 +401,7 @@ class BountyComponent extends React.Component {
                 bounty={bounty}
                 isDraft={isDraft}
                 currentUser={user}
-                setActiveTabAction={setActiveTab}
+                setActiveTab={setActiveTab}
                 initiateLoginProtection={initiateLoginProtection}
                 initiateWalkthrough={initiateWalkthrough}
               />
