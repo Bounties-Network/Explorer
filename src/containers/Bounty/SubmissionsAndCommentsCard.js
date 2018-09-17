@@ -8,6 +8,7 @@ import { Button, ListGroup, Loader, Tabs, Text, ZeroState } from 'components';
 import { rootBountyPageSelector } from './selectors';
 import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
 import { commentsSelector } from 'public-modules/Comments/selectors';
+import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
 import { actions as commentsActions } from 'public-modules/Comments';
 import { actions as loginActions } from 'containers/Login/reducer';
@@ -30,7 +31,8 @@ let SubmissionsAndCommentsCardComponent = props => {
     currentUser,
     acceptFulfillment,
     postComment,
-    loadMoreComments
+    loadMoreComments,
+    loadMoreFulfillments
   } = props;
 
   const bountyBelongsToLoggedInUser =
@@ -121,7 +123,19 @@ let SubmissionsAndCommentsCardComponent = props => {
   if (currentTab === 'submissions') {
     body = (
       <ListGroup className={styles.borderStyle}>
-        {renderFulfillments(fulfillments.list)}
+        {[
+          ...renderFulfillments(fulfillments.list),
+          fulfillments.list.length < fulfillments.count && (
+            <ListGroup.ListItem key="load" className={styles.loadMoreButton}>
+              <Button
+                loading={fulfillments.loadingMore}
+                onClick={loadMoreFulfillments}
+              >
+                Load More
+              </Button>
+            </ListGroup.ListItem>
+          )
+        ]}
       </ListGroup>
     );
 
@@ -143,9 +157,7 @@ let SubmissionsAndCommentsCardComponent = props => {
       if (fulfillments.list.length) {
         body = (
           <React.Fragment>
-            <ListGroup className={styles.borderStyle}>
-              {renderFulfillments(fulfillments.list)}
-            </ListGroup>
+            {body}
             <Text
               alignment="align-center"
               color="defaultGrey"
@@ -338,6 +350,7 @@ const SubmissionsAndCommentsCard = compose(
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
       postComment: commentsActions.postComment,
       loadMoreComments: commentsActions.loadMoreComments,
+      loadMoreFulfillments: fulfillmentsActions.loadMoreFulfillments,
       showLogin: loginActions.showLogin
     }
   )
