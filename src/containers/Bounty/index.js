@@ -70,13 +70,12 @@ class BountyComponent extends React.Component {
 
       loadBounty(match.params.id);
       addBountyFilter(match.params.id);
+      loadFulfillments(match.params.id);
 
       const values = queryStringToObject(location.search);
 
       if (values.rating) {
         loadFulfillment(match.params.id, values.fulfillment_id);
-      } else {
-        loadFulfillments(match.params.id);
       }
     }
   }
@@ -88,8 +87,8 @@ class BountyComponent extends React.Component {
       locationNonce,
       loadBounty,
       loadDraftBounty,
-      loadFulfillments,
       loadFulfillment,
+      loadFulfillments,
       resetFulfillmentsState,
       addBountyFilter,
       setBountyId,
@@ -114,13 +113,12 @@ class BountyComponent extends React.Component {
 
         loadBounty(bountyId);
         addBountyFilter(bountyId);
+        loadFulfillments(bountyId);
 
         const values = queryStringToObject(location.search);
 
         if (values.rating) {
           loadFulfillment(bountyId, values.fulfillment_id);
-        } else {
-          loadFulfillments(bountyId);
         }
       }
     }
