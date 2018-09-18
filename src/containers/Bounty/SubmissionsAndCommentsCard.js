@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import styles from './SubmissionsAndCommentsCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -40,10 +39,19 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
     };
   }
 
-  componentDidUpdate(prevProps) {
-    console.log('in componentDidUpdate with prevProps and props');
-    console.log(prevProps);
-    console.log(this.props);
+  componentDidMount() {
+    const {
+      setActiveTabAction: setActiveTab,
+      fulfillments,
+      comments
+    } = this.props;
+
+    if (!this.state.tabLoaded && !fulfillments.loading && !comments.loading) {
+      this.setState({
+        tabLoaded: true
+      });
+      setActiveTab(mostInterestingTab(fulfillments));
+    }
   }
 
   render() {
@@ -53,7 +61,7 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
       showLogin,
       showModal,
       setRatingModal,
-      setActiveTab,
+      setActiveTabAction: setActiveTab,
       currentTab,
       fulfillments,
       comments,
@@ -271,31 +279,6 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
       }
     }
 
-    if (!this.state.tabLoaded && !fulfillments.loading && !comments.loading) {
-      console.log('inside !this.state.tabLoaded, setting mostInterestingTab');
-      console.log(mostInterestingTab(fulfillments));
-      this.state.tabLoaded = true;
-      setActiveTab(mostInterestingTab(fulfillments));
-    } else {
-      console.log('skipping mostInterestingTab because');
-      console.log('this.state.tabLoaded', this.state.tabLoaded);
-      console.log('fulfillments.loading', fulfillments.loading);
-    }
-
-    // if (fulfillments.loading || comments.loading) {
-    //   console.log('inside fulfillments.loading || comments.loading')
-    //   this.state.tabLoaded = false;
-    // } else if (!this.state.tabLoaded && !fulfillments.loading && !comments.loading) {
-    //   this.state.tabLoaded = true;
-    //   console.log('inside !this.state.tabLoaded, setting mostInterestingTab')
-    //   console.log(mostInterestingTab(fulfillments))
-    //   setActiveTab(mostInterestingTab(fulfillments));
-    // } else {
-    //   console.log('skipping mostInterestingTab because')
-    //   console.log('this.state.tabLoaded', this.state.tabLoaded)
-    //   console.log('fulfillments.loading', fulfillments.loading)
-    // }
-
     return (
       <div>
         <div className={styles.tabsContainer}>
@@ -361,7 +344,6 @@ const mapStateToProps = (state, router) => {
 };
 
 const SubmissionsAndCommentsCard = compose(
-  withRouter,
   connect(
     mapStateToProps,
     {
