@@ -35,7 +35,7 @@ class UserSettingsComponent extends React.Component {
       addSkill,
       skills,
       languages,
-      emailInterest,
+      email_interest,
       invalid,
       handleSubmit,
       submitFailed,
@@ -82,25 +82,16 @@ class UserSettingsComponent extends React.Component {
           </FormSection.Section>
           <FormSection.Section title="ALERTS">
             <FormSection.Description>
-              Would you like to get relevant bounties and platform updates sent
-              to you?
+              Would you like to get relevant bounties and platform updates
+              emailed to you?
             </FormSection.Description>
-            <FormSection.SubText>
-              This network is thriving, and bounties can be completed quickly.
-              We recommend enabling these emails.
-            </FormSection.SubText>
             <FormSection.InputGroup>
-              <div className="row">
-                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
-                  <Field
-                    form="interest"
-                    name={key}
-                    className={emailInterest ? styles.hide : ''}
-                    component={PreferencesToggle}
-                    label="I'm interested in receiving emails about relevant bounties and platform updates"
-                  />
-                </div>
-              </div>
+              <Field
+                disabled={savingSettings}
+                name="email_interest"
+                component={PreferencesToggle}
+                label="Relevant bounties and platform updates"
+              />
             </FormSection.InputGroup>
           </FormSection.Section>
           <FormSection.Section title="ABOUT">
