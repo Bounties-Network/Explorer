@@ -80,7 +80,17 @@
   margin-top: $m-spacing;
 }
 
-.usd {
+.primaryContainerClass {
+  display: inline-block;
+  margin-bottom: -$base-spacing;
+
+  @media only screen and (min-width: 35em) {
+    display: block;
+    margin-bottom: 0;
+  }
+}
+
+.primary {
   font-size: $h3-font-size;
   display: inline-block;
   padding-right: $base-spacing;
@@ -94,7 +104,7 @@
 }
 
 .currency {
-  opacity: 0.6;
+  opacity: 0.5;
   display: inline-block;
 }
 
