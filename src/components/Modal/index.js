@@ -87,15 +87,16 @@ class Message extends React.Component {
 
 class Description extends React.Component {
   render() {
-    if (this.props.children.length > 1) {
-      return <div className={styles.description}>{this.props.children}</div>;
+    // format if the child is just plain text
+    if (typeof this.props.children === 'string') {
+      return (
+        <Text className={styles.description} typeScale="Body" color="darkGrey">
+          {this.props.children}
+        </Text>
+      );
     }
 
-    return (
-      <Text className={styles.description} typeScale="Body" color="darkGrey">
-        {this.props.children}
-      </Text>
-    );
+    return <div className={styles.description}>{this.props.children}</div>;
   }
 }
 
