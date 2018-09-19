@@ -11,7 +11,7 @@ const Skills = props => {
   const renderSkills = () => {
     return map(skill => {
       return (
-        <Pill type="rectangle" className={styles.skill}>
+        <Pill key={skill} type="rectangle" className={styles.skill}>
           {skill}
         </Pill>
       );

@@ -118,7 +118,10 @@ class Table extends React.Component {
 Table.propTypes = {
   children: PropTypes.arrayOf(function(propValue, key) {
     for (let i = 0; i < propValue.length; i++) {
-      if (!includes(propValue[i].type.name, [Row.name, Header.name])) {
+      if (
+        propValue[i].type &&
+        !includes(propValue[i].type.name, [Row.name, Header.name])
+      ) {
         return new Error('Children Must Be an Instance of Row or Header');
       }
     }

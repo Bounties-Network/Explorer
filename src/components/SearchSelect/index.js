@@ -3,15 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './SearchSelect.module.scss';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/lib/Creatable';
-import {
-  reject,
-  includes,
-  map,
-  find,
-  isUndefined,
-  unionBy,
-  uniqBy
-} from 'lodash';
+import { reject, includes, map, find, isUndefined, unionBy } from 'lodash';
 import '../../styles/ReactSelect.scss';
 
 import { Text, Pill } from 'components';
@@ -247,7 +239,7 @@ SearchSelect.propTypes = {
   single: PropTypes.bool,
   creatable: PropTypes.bool,
   clearable: PropTypes.bool,
-  value: PropTypes.array,
+  value: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   onCreate: PropTypes.func

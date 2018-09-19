@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Modals.module.scss';
-import { Modal, Button, Text } from 'components';
+import { Modal, Button } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import { BigNumber } from 'bignumber.js';
 import { compose } from 'redux';

@@ -181,16 +181,17 @@ class AppComponent extends React.Component {
           hideProgressBar
           draggable
         />
-        {isPageLoading ? (
+        {isPageLoading && (
           <div className={`${styles.loadingBody}`}>
             {' '}
             <Loader color="white" size="medium" />
           </div>
-        ) : null}
-        {!isPageLoading && !userFail
-          ? [
-              <PageHeader />,
-              <PageFilterNav />,
+        )}
+        {!isPageLoading &&
+          !userFail && (
+            <React.Fragment>
+              <PageHeader />
+              <PageFilterNav />
               <div className={`${styles.body} page-body`} ref={this.body}>
                 <Switch>
                   <Route exact path="/leaderboard" component={Leaderboard} />
@@ -226,8 +227,8 @@ class AppComponent extends React.Component {
                   <Redirect from="/" to="/explorer" />
                 </Switch>
               </div>
-            ]
-          : null}
+            </React.Fragment>
+          )}
         <Login />
       </div>
     );

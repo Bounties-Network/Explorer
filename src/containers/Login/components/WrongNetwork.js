@@ -4,7 +4,7 @@ import config from 'public-modules/config';
 import { Modal, Text, Button } from 'components';
 
 const WrongNetwork = props => {
-  const { visible, onClose, pageLevel, closable, currentNetwork } = props;
+  const { visible, onClose, pageLevel, closable } = props;
 
   return (
     <Modal
@@ -43,11 +43,11 @@ const WrongNetwork = props => {
           Please switch your active wallet network.
         </Modal.Description>
       </Modal.Body>
-      {closable ? (
+      {closable && (
         <Modal.Footer>
           <Button onClick={onClose}>Close</Button>
         </Modal.Footer>
-      ) : null}
+      )}
     </Modal>
   );
 };

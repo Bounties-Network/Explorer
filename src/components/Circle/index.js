@@ -6,15 +6,7 @@ import { Text, Loader } from 'components';
 import Blockies from 'react-blockies';
 
 const Circle = props => {
-  let {
-    type,
-    input,
-    size,
-    color,
-    textColor,
-    border,
-    className
-  } = props;
+  let { type, input, size, color, textColor, border, className } = props;
 
   let textSize = 'Body';
   if (size === 'small') {
@@ -101,8 +93,15 @@ Circle.propTypes = {
   border: PropTypes.bool,
   type: PropTypes.oneOf(['text', 'img', 'blocky', 'loading']),
   input: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  size: PropTypes.oneOf(['small', 'large']),
-  color: PropTypes.oneOf(['orange', 'green', 'red', 'lightGrey']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  color: PropTypes.oneOf([
+    'orange',
+    'green',
+    'red',
+    'lightGrey',
+    'white',
+    'nearWhite'
+  ]),
   textColor: PropTypes.string
 };
 

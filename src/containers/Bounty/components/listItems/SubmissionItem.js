@@ -4,6 +4,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Button, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE } from 'public-modules/Bounty/constants';
+import { shortenFileName, shortenUrl } from 'utils/helpers';
 import moment from 'moment';
 
 const SubmissionItem = props => {
@@ -42,7 +43,7 @@ const SubmissionItem = props => {
     actionButton = (
       <Button
         type="action"
-        className={styles.reactivateButton}
+        className={styles.actionButton}
         icon={['far', 'check']}
         onClick={acceptFulfillment}
       >
@@ -54,7 +55,7 @@ const SubmissionItem = props => {
   if (bountyBelongsToLoggedInUser && accepted && !fulfiller_review) {
     actionButton = (
       <Button
-        className={styles.reactivateButton}
+        className={styles.actionButton}
         icon={['far', 'star']}
         onClick={() =>
           initiateLoginProtection(() => {
@@ -76,7 +77,7 @@ const SubmissionItem = props => {
   if (submissionBelongsToLoggedInUser && accepted && !issuer_review) {
     actionButton = (
       <Button
-        className={styles.reactivateButton}
+        className={styles.actionButton}
         icon={['far', 'star']}
         onClick={() =>
           initiateLoginProtection(() => {
@@ -111,24 +112,24 @@ const SubmissionItem = props => {
           nameTextScale={'h4'}
           nameTextColor="black"
         />
-        <div className={`${styles.labelGroup} ${styles.contactInfo}`}>
+        <div className={[styles.labelGroup, styles.contactInfo].join(' ')}>
           <Text inputLabel>Contact</Text>
           <Text link src={`mailto:${fulfiller_email}`}>
             {fulfiller_email}
           </Text>
         </div>
 
-        <div className={styles.labelGroup}>
+        <div className={[styles.labelGroup, styles.submitTime].join(' ')}>
           <Text inputLabel>Submitted</Text>
           <Text>{formattedTime}</Text>
         </div>
       </div>
       <div className={`col-xs-12 col-sm-6 ${styles.filter}`}>
         {url ? (
-          <div className={styles.labelGroup}>
+          <div className={[styles.labelGroup, styles.bottomMargin].join(' ')}>
             <Text inputLabel>Web link</Text>
             <Text link src={url}>
-              {url}
+              {shortenUrl(url)}
             </Text>
           </div>
         ) : null}
@@ -149,7 +150,7 @@ const SubmissionItem = props => {
               link
               src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
             >
-              {dataFileName}
+              {shortenFileName(dataFileName)}
             </Text>
           </div>
         ) : null}

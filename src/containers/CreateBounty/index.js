@@ -34,7 +34,6 @@ class CreateBountyComponent extends React.Component {
       draftLoading,
       formInitialValues,
       draftError,
-      match,
       isDraftPage
     } = this.props;
 
@@ -67,7 +66,7 @@ class CreateBountyComponent extends React.Component {
             {isDraftPage ? 'Edit Bounty' : 'Create Bounty'}
           </PageCard.Title>
         </PageCard.Header>
-        <PageCard.Content className={styles.cardContent}>
+        <PageCard.Content key="createBountyForm" className={styles.cardContent}>
           <CreateBountyForm initialValues={formInitialValues} />
         </PageCard.Content>
       </PageCard>
@@ -112,7 +111,6 @@ const mapStateToProps = (state, router) => {
         draftBounty.tokenContract ||
         (config.defaultToken && config.defaultToken.address),
       fulfillmentAmount: fulfillmentAmount,
-      activateNow: true,
       issuer_email: draftBounty.issuer_email || user.email || '',
       issuer_name: draftBounty.issuer_name || user.name || '',
       activateNow: !isDraftPage,

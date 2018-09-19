@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Bounty.module.scss';
 import { withRouter } from 'react-router-dom';
-import { BigNumber } from 'bignumber.js';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { actions as bountyActions } from 'public-modules/Bounty';
@@ -34,8 +33,8 @@ import {
   LinkedAvatar
 } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
+import { shortenFileName, shortenUrl } from 'utils/helpers';
 import { locationNonceSelector } from 'layout/App/selectors';
-import { setParam } from 'utils/locationHelpers';
 
 showdown.setOption('simpleLineBreaks', true);
 const converter = new showdown.Converter();
@@ -51,7 +50,6 @@ class BountyComponent extends React.Component {
       loadBounty,
       loadDraftBounty,
       loadFulfillment,
-      loadFulfillments,
       resetFulfillmentsState,
       resetCommentsState,
       addBountyFilter,
@@ -167,7 +165,7 @@ class BountyComponent extends React.Component {
             iconColor="red"
             title="Could not find that bounty"
             text="Try refreshing, or make sure your url is correct"
-            icon={['far', 'exclamation-triangle']}
+            icon={['fal', 'exclamation-triangle']}
           />
         </div>
       );
@@ -189,7 +187,7 @@ class BountyComponent extends React.Component {
               <Currency
                 className={styles.ethBox}
                 primaryValue={bounty.usd_price}
-                primaryDecimals="2"
+                primaryDecimals={2}
                 primaryColor="white"
                 primaryClassName={styles.primary}
                 primaryContainerClass={styles.primaryContainerClass}
@@ -230,7 +228,7 @@ class BountyComponent extends React.Component {
                     to={`/profile/${bounty.user.public_address}`}
                     addressTextColor="white"
                     size="small"
-                    border="true"
+                    border
                   />
                 </div>
               </div>
@@ -239,7 +237,7 @@ class BountyComponent extends React.Component {
               </div>
             </div>
           </PageCard.Header>
-          <PageCard.Content className={styles.pageBody}>
+          <PageCard.Content key="body" className={styles.pageBody}>
             <div className={`${styles.filter}`}>
               <ActionBar
                 bounty={bounty}
@@ -315,7 +313,7 @@ class BountyComponent extends React.Component {
                     </Text>
                   </div>
 
-                  {typeof bounty.revisions == 'number' && (
+                  {typeof bounty.revisions === 'number' && (
                     <div className={styles.metadataItem}>
                       <i className={styles.metadataIcon}>
                         <FontAwesomeIcon icon={['far', 'repeat']} />
@@ -350,7 +348,7 @@ class BountyComponent extends React.Component {
                           bounty.sourceDirectoryHash
                         }/${bounty.sourceFileName}`}
                       >
-                        {bounty.sourceFileName}
+                        {shortenFileName(bounty.sourceFileName, 18)}
                       </Text>
                     </div>
                   )}
@@ -361,7 +359,7 @@ class BountyComponent extends React.Component {
                         <FontAwesomeIcon icon={['far', 'link']} />
                       </i>
                       <Text link src={`${bounty.webReferenceURL}`}>
-                        {bounty.webReferenceURL}
+                        {shortenUrl(bounty.webReferenceURL)}
                       </Text>
                     </div>
                   )}
@@ -394,7 +392,10 @@ class BountyComponent extends React.Component {
         </PageCard>
         {!isDraft && (
           <PageCard noBanner>
-            <PageCard.Content className={styles.submissionsAndCommentsCard}>
+            <PageCard.Content
+              key="submissions-comments"
+              className={styles.submissionsAndCommentsCard}
+            >
               <SubmissionsAndCommentsCard
                 bounty={bounty}
                 isDraft={isDraft}

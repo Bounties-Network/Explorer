@@ -1,13 +1,9 @@
-import { currentRouteSelector } from 'utils/helpers';
 import { put, takeLatest, select } from 'redux-saga/effects';
 import { getUserAddressSelector } from 'public-modules/Authentication/selectors';
-import { actionTypes, actions } from './reducer';
+import { actionTypes } from './reducer';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
-import { actions as userInfoActions } from 'public-modules/UserInfo';
 
 const { SET_ACTIVE_TAB } = actionTypes;
-const { setActiveTab } = actions;
-const { loadUserInfo } = userInfoActions;
 const {
   addFulfillerFilter,
   addIssuerFilter,

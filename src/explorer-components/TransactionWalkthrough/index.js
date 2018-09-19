@@ -171,16 +171,18 @@ const TransactionWalkthrough = props => {
 
 TransactionWalkthrough.propTypes = {
   visible: PropTypes.bool,
-  stage:
-    PropTypes.oneOf[
-      ('initiatePrompt', 'pendingWalletConfirm', 'pendingReceipt', 'error')
-    ],
+  stage: PropTypes.oneOf([
+    'initiatePrompt',
+    'pendingWalletConfirm',
+    'pendingReceipt',
+    'error'
+  ]),
   onClose: PropTypes.func,
   onDismiss: PropTypes.func,
   onConfirm: PropTypes.func,
   toDashboard: PropTypes.func,
-  pendingReceiptText: PropTypes.text,
-  pendingWalletText: PropTypes.text
+  pendingReceiptText: PropTypes.string,
+  pendingWalletText: PropTypes.string
 };
 
 TransactionWalkthrough.defaultProps = {

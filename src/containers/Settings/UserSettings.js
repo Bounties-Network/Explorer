@@ -2,9 +2,8 @@ import React from 'react';
 import styles from './Settings.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { PageCard, FormSection } from 'explorer-components';
+import { FormSection } from 'explorer-components';
 import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
-import { TransactionWalkthrough } from 'hocs';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as skillActions } from 'public-modules/Skills';
 import { actions as settingsActions } from 'public-modules/Settings';
@@ -42,8 +41,7 @@ class UserSettingsComponent extends React.Component {
       savingSettings,
       ipfsHash,
       fileName,
-      resetUpload,
-      initiateWalkthrough
+      resetUpload
     } = this.props;
 
     const { profileImage } = this.state;

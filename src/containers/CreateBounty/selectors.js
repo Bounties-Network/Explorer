@@ -1,12 +1,10 @@
-import { createSelector } from 'reselect';
 import { map, reject } from 'lodash';
-import { tokensSelector } from 'public-modules/Tokens/selectors';
 
 export const rootCreateBountySelector = state => state.createBounty;
 
 export const tokensDropdownDataSelector = state => {
   return reject(
-    item => item.value == '0x0000000000000000000000000000000000000000',
+    item => item.value === '0x0000000000000000000000000000000000000000',
     map(value => {
       const { token, tokenContract, tokenSymbol } = value;
       const name = token.length ? token[0].name : tokenSymbol;

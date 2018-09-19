@@ -58,7 +58,7 @@ let FulfillBountyFormModalComponent = props => {
               <Field
                 name="name"
                 component={FormTextInput}
-                type="string"
+                type="text"
                 label="Contact name"
                 validate={[]}
                 placeholder="Enter name..."
@@ -68,7 +68,7 @@ let FulfillBountyFormModalComponent = props => {
               <Field
                 name="email"
                 component={FormTextInput}
-                type="string"
+                type="text"
                 label="Contact email"
                 validate={[validators.email]}
                 placeholder="Enter email..."
@@ -80,7 +80,7 @@ let FulfillBountyFormModalComponent = props => {
               <Field
                 name="url"
                 component={FormTextInput}
-                type="string"
+                type="text"
                 label="Web link"
                 validate={[]}
                 placeholder="Enter URL..."
@@ -107,7 +107,7 @@ let FulfillBountyFormModalComponent = props => {
               <Field
                 name="description"
                 component={FormTextbox}
-                type="string"
+                type="text"
                 label="Description"
                 validate={[validators.required]}
                 placeholder="Enter description..."
@@ -117,7 +117,7 @@ let FulfillBountyFormModalComponent = props => {
 
           <div className={`row ${styles.fulfillmentInput}`}>
             <div className="col-xs">
-              <Text style="italic" color="defaultGrey">
+              <Text fontStyle="italic" color="defaultGrey">
                 {privateFulfillments
                   ? 'All information entered here will be stored on the public Ethereum network, but will be hidden on the site.'
                   : 'All information entered here will be stored on the public Ethereum network, and will be publicly displayed on the site.'}

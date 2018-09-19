@@ -2,12 +2,13 @@ import React from 'react';
 import styles from './SubmissionsAndCommentsCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { map as fpMap, filter } from 'lodash';
+import { map as fpMap } from 'lodash';
 import { SubmissionItem, NewCommentForm, CommentItem } from './components';
 import { Button, ListGroup, Loader, Tabs, Text, ZeroState } from 'components';
 import { rootBountyPageSelector } from './selectors';
 import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
 import { commentsSelector } from 'public-modules/Comments/selectors';
+import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
 import { actions as commentsActions } from 'public-modules/Comments';
 import { actions as loginActions } from 'containers/Login/reducer';
@@ -30,7 +31,8 @@ let SubmissionsAndCommentsCardComponent = props => {
     currentUser,
     acceptFulfillment,
     postComment,
-    loadMoreComments
+    loadMoreComments,
+    loadMoreFulfillments
   } = props;
 
   const bountyBelongsToLoggedInUser =
@@ -58,7 +60,11 @@ let SubmissionsAndCommentsCardComponent = props => {
         currentUser && fulfiller === currentUser.public_address;
 
       return (
-        <ListGroup.ListItem className={styles.submissionItem}>
+        <ListGroup.ListItem
+          key={fulfillment_id}
+          className={styles.listItem}
+          fullBorder
+        >
           <SubmissionItem
             fulfillmentId={fulfillment_id}
             fulfiller_name={name}
@@ -94,11 +100,11 @@ let SubmissionsAndCommentsCardComponent = props => {
 
   const renderComments = () => {
     return map(comment => {
-      const { text, user, created } = comment;
+      const { id, text, user, created } = comment;
       const { name, profile_image, public_address } = user;
 
       return (
-        <ListGroup.ListItem className={styles.commentItem}>
+        <ListGroup.ListItem key={id} className={styles.listItem} fullBorder>
           <CommentItem
             name={name}
             address={public_address}
@@ -115,7 +121,23 @@ let SubmissionsAndCommentsCardComponent = props => {
   let bodyClass = '';
 
   if (currentTab === 'submissions') {
-    body = <ListGroup>{renderFulfillments(fulfillments.list)}</ListGroup>;
+    body = (
+      <ListGroup className={styles.borderStyle}>
+        {[
+          ...renderFulfillments(fulfillments.list),
+          fulfillments.list.length < fulfillments.count && (
+            <ListGroup.ListItem key="load" className={styles.loadMoreButton}>
+              <Button
+                loading={fulfillments.loadingMore}
+                onClick={loadMoreFulfillments}
+              >
+                Load More
+              </Button>
+            </ListGroup.ListItem>
+          )
+        ]}
+      </ListGroup>
+    );
 
     if (!fulfillments.list.length) {
       bodyClass = styles.bodyLoading;
@@ -135,7 +157,7 @@ let SubmissionsAndCommentsCardComponent = props => {
       if (fulfillments.list.length) {
         body = (
           <React.Fragment>
-            <ListGroup>{renderFulfillments(fulfillments.list)}</ListGroup>
+            {body}
             <Text
               alignment="align-center"
               color="defaultGrey"
@@ -191,43 +213,63 @@ let SubmissionsAndCommentsCardComponent = props => {
 
   if (currentTab === 'comments') {
     const newCommentForm = (
-      <NewCommentForm
+      <ListGroup.ListItem
+        key="form"
         className={styles.newCommentForm}
-        signedIn={!!currentUser}
-        onSubmit={
-          !!currentUser
-            ? values => postComment(bounty.id, values.text)
-            : showLogin
-        }
-        loading={comments.posting}
-      />
+        borderColor="lightGrey"
+        fullBorder
+      >
+        <NewCommentForm
+          className={styles.newCommentForm}
+          signedIn={!!currentUser}
+          onSubmit={
+            !!currentUser
+              ? values => postComment(bounty.id, values.text)
+              : showLogin
+          }
+          loading={comments.posting}
+        />
+      </ListGroup.ListItem>
     );
 
     body = (
-      <ListGroup>
-        {newCommentForm}
-        {renderComments()}
-        {comments.list.length < comments.count && (
-          <div className={styles.loadMoreButton}>
-            <Button loading={comments.loadingMore} onClick={loadMoreComments}>
-              Load More
-            </Button>
-          </div>
-        )}
+      <ListGroup className={styles.borderStyle}>
+        {[
+          newCommentForm,
+          ...renderComments(),
+          comments.list.length < comments.count && (
+            <ListGroup.ListItem
+              key="load"
+              className={styles.loadMoreButton}
+              fullBorder
+            >
+              <Button loading={comments.loadingMore} onClick={loadMoreComments}>
+                Load More
+              </Button>
+            </ListGroup.ListItem>
+          )
+        ]}
       </ListGroup>
     );
 
     if (!comments.list.length) {
       body = (
-        <ListGroup>
-          {newCommentForm}
-          <ZeroState
-            className={styles.zeroState}
-            title={'There are 0 comments'}
-            text={'Submit a comment using the form above.'}
-            iconColor="blue"
-            icon={['fal', 'comments']}
-          />
+        <ListGroup className={styles.borderStyle}>
+          {[
+            newCommentForm,
+            <ListGroup.ListItem
+              key="zero"
+              className={styles.zeroState}
+              fullBorder
+            >
+              <ZeroState
+                title={'There are 0 comments'}
+                text={'Submit a comment using the form above.'}
+                iconColor="blue"
+                icon={['fal', 'comments']}
+              />
+            </ListGroup.ListItem>
+          ]}
         </ListGroup>
       );
     }
@@ -252,10 +294,10 @@ let SubmissionsAndCommentsCardComponent = props => {
             tabColor="lightGrey"
             tabCount={bounty.fulfillment_count}
             eventKey={'submissions'}
+            typeScale="h4"
+            tabTextClass={styles.tabText}
           >
-            <Text typeScale="h4" className={styles.tabText}>
-              Submissions
-            </Text>
+            Submissions
           </Tabs.Tab>
           <Tabs.Tab
             tabClassName={styles.tab}
@@ -264,10 +306,10 @@ let SubmissionsAndCommentsCardComponent = props => {
               comments.list.length ? comments.list.length : bounty.comment_count
             }
             eventKey={'comments'}
+            typeScale="h4"
+            tabTextClass={styles.tabText}
           >
-            <Text typeScale="h4" className={styles.tabText}>
-              Comments
-            </Text>
+            Comments
           </Tabs.Tab>
         </Tabs>
       </div>
@@ -308,6 +350,7 @@ const SubmissionsAndCommentsCard = compose(
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
       postComment: commentsActions.postComment,
       loadMoreComments: commentsActions.loadMoreComments,
+      loadMoreFulfillments: fulfillmentsActions.loadMoreFulfillments,
       showLogin: loginActions.showLogin
     }
   )

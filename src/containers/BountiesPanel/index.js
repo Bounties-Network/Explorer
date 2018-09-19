@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import styles from './BountiesPanel.module.scss';
-import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
 import {
   Button,
@@ -41,7 +40,7 @@ class BountiesPanelComponent extends React.Component {
       const isDraft = this.props.currentTab === 'drafts';
 
       return (
-        <ListGroup.ListItem hover>
+        <ListGroup.ListItem key={id} hover>
           <Link
             to={
               this.props.currentTab === 'drafts'
@@ -145,7 +144,7 @@ class BountiesPanelComponent extends React.Component {
               My Bounties
             </Text>
             <Link to="/profile">
-              <Text link typeScale="Small" className={styles.decoratedLink}>
+              <Text typeScale="Small" className={styles.decoratedLink}>
                 View All
               </Text>
             </Link>

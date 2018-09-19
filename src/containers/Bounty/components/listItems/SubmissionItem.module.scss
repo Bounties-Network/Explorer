@@ -4,7 +4,10 @@
   word-wrap: break-word;
   padding-left: $xl-spacing + $m-spacing;
   margin-right: $m-spacing;
-  margin-bottom: $xl-spacing;
+
+  &:not(:last-child) {
+    margin-bottom: $xl-spacing;
+  }
 
   p {
     margin-bottom: $base-spacing;
@@ -19,6 +22,14 @@
 
 .detailsContainer {
   padding-right: 0;
+
+  .labelGroup:last-child {
+    margin-bottom: $xl-spacing;
+
+    @media (min-width: 576px) {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .filter {
@@ -31,7 +42,6 @@
 
 .actionColumn {
   display: flex;
-  margin-top: $l-spacing;
   padding-left: $xl-spacing + $xl-spacing;
   flex-direction: column;
   align-items: flex-start;
@@ -43,12 +53,23 @@
   }
 }
 
+.actionButton {
+  margin-top: $xl-spacing - $base-spacing;
+  margin-bottom: $m-spacing;
+
+  @media only screen and (min-width: 48em) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
 .submissionContents {
   //padding-top: $l-spacing;
 }
 
 .submissionDescription {
   line-height: $base-line-height;
+  white-space: pre-wrap;
 }
 
 .fileIcon {
@@ -62,16 +83,14 @@
 }
 
 .fulfillmentStage {
-  margin-bottom: $m-spacing;
   position: absolute;
-  top: $xl-spacing;
-  right: 0;
+  top: $l-spacing;
+  right: $m-spacing;
 
   @media only screen and (min-width: 48em) {
     position: relative;
+    margin-bottom: $m-spacing;
     top: 0;
+    right: 0;
   }
-}
-
-.reactivateButton {
 }

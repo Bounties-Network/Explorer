@@ -74,7 +74,6 @@ const FilterNavComponent = props => {
     addCategoryFilter,
     addPlatformFilter,
     removeCategoryFilter,
-    removePlatformFilter,
     history,
     location,
     batch,
@@ -89,15 +88,6 @@ const FilterNavComponent = props => {
     { value: 'deadline', label: 'Expiry' }
   ];
 
-  // generates object for SearchSelect component
-  // const platforms = reduce(
-  //   (acc, key) => {
-  //     acc[key] = { name: key };
-  //     return acc;
-  //   },
-  //   {},
-  //   appConfig.platform.split(',')
-  // );
   const platforms = appConfig.platform.split(',');
 
   const stages = reduce(
@@ -142,21 +132,6 @@ const FilterNavComponent = props => {
         removeFromParam(rootLocationParams, 'category', category)
     );
     removeCategoryFilter(category);
-  };
-
-  const addPlatformFilterAction = platform => {
-    history.push(
-      location.pathname + pushToParam(rootLocationParams, 'platform', platform)
-    );
-    addPlatformFilter(platform);
-  };
-
-  const removePlatformFilterAction = platform => {
-    history.push(
-      location.pathname +
-        removeFromParam(rootLocationParams, 'platform', platform)
-    );
-    removePlatformFilter(platform);
   };
 
   const togglePlatformFilterAction = platform => {
@@ -245,27 +220,13 @@ const FilterNavComponent = props => {
             {map(platform => {
               return (
                 <Checkbox
+                  key={platform}
                   label={platform}
                   onChange={() => togglePlatformFilterAction(platform)}
-                  checked={indexOf(platform, platformFilters) != -1}
+                  checked={indexOf(platform, platformFilters) !== -1}
                 />
               );
             }, platforms)}
-
-            {
-              // <SearchSelect
-              //   options={platforms}
-              //   value={platformFilters}
-              //   labelKey="name"
-              //   valueKey="name"
-              //   onChange={values => {
-              //     if (values.length > platformFilters.length) {
-              //       addPlatformFilterAction(values[values.length - 1]);
-              //     }
-              //   }}
-              //   onClose={removePlatformFilterAction}
-              // />
-            }
           </div>
         )}
       {config.category && (
@@ -379,8 +340,8 @@ const FilterNav = compose(
 )(FilterNavComponent);
 
 FilterNav.propTypes = {
-  position: PropTypes.bool,
-  config: PropTypes.array,
+  position: PropTypes.oneOf(['relative', 'fixed']),
+  config: PropTypes.object,
   stageFilters: PropTypes.object,
   resetFilters: PropTypes.object
 };

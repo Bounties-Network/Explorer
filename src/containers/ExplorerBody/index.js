@@ -3,16 +3,10 @@ import styles from './ExplorerBody.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Text, Sort, Loader, ZeroState, Button } from 'components';
-import { LoadComponent } from 'hocs';
+import { Text, Loader, ZeroState, Button } from 'components';
 import { BountyCard } from 'explorer-components';
 import { map } from 'lodash';
-import {
-  SORT_VALUE,
-  SORT_CREATED,
-  SORT_EXPIRY,
-  PAGE_SIZE
-} from 'public-modules/Bounties/constants';
+import { PAGE_SIZE } from 'public-modules/Bounties/constants';
 import {
   rootBountiesSelector,
   bountiesCategoryFiltersSelector
@@ -24,8 +18,6 @@ const ExplorerBodyComponent = props => {
     className,
     bounties,
     count,
-    sort,
-    setSort,
     loading,
     loadMoreBounties,
     offset,
@@ -33,8 +25,7 @@ const ExplorerBodyComponent = props => {
     toggleCategoryFilter,
     categoryFilters,
     error,
-    onOpenFilters,
-    noPadding
+    onOpenFilters
   } = props;
 
   const renderBounties = () => {

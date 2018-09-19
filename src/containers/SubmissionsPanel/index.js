@@ -2,7 +2,6 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import styles from './SubmissionsPanel.module.scss';
-import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
 import { Button, Card, Table, Loader, Tabs, ZeroState } from 'components';
 import { SubmissionItem } from 'explorer-components';
@@ -16,6 +15,7 @@ class SubmissionsPanelComponent extends React.Component {
   renderSubmissions = list => {
     return map(submission => {
       const {
+        id: submission_id,
         bounty_data,
         user,
         fulfillment_created,
@@ -33,6 +33,7 @@ class SubmissionsPanelComponent extends React.Component {
 
       return (
         <SubmissionItem
+          key={submission_id}
           bountyId={id}
           bountyStage={bountyStage}
           title={title}
@@ -81,13 +82,13 @@ class SubmissionsPanelComponent extends React.Component {
           </Table.Header>
           {this.renderSubmissions(list)}
         </Table>
-        {list.length < count ? (
+        {list.length < count && (
           <div className={styles.loadMoreButton}>
             <Button loading={loadingMore} onClick={loadMore}>
               Load More
             </Button>
           </div>
-        ) : null}
+        )}
       </React.Fragment>
     );
 

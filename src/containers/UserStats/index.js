@@ -26,7 +26,7 @@ class UserStatsComponent extends React.Component {
   }
 
   render() {
-    const { loading, user, stats, className } = this.props;
+    const { loading, user, stats } = this.props;
     const {
       name,
       public_address,

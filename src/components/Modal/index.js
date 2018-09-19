@@ -87,11 +87,16 @@ class Message extends React.Component {
 
 class Description extends React.Component {
   render() {
-    return (
-      <Text className={styles.description} typeScale="Body" color="darkGrey">
-        {this.props.children}
-      </Text>
-    );
+    // format if the child is just plain text
+    if (typeof this.props.children === 'string') {
+      return (
+        <Text className={styles.description} typeScale="Body" color="darkGrey">
+          {this.props.children}
+        </Text>
+      );
+    }
+
+    return <div className={styles.description}>{this.props.children}</div>;
   }
 }
 
@@ -346,6 +351,7 @@ Modal.propTypes = {
     // so we have to use this ugly for loop
     for (let i = 0; i < collection.length; i++) {
       if (
+        typeof collection[i] !== 'boolean' &&
         !includes(collection[i].type.name, [
           Header.name,
           Heading.name,

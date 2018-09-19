@@ -3,7 +3,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import styles from './ActivityPanel.module.scss';
 import { Link } from 'react-router-dom';
-import { LoadComponent } from 'hocs';
 import { map } from 'lodash';
 import { NotificationItem } from 'explorer-components';
 import { Button, Card, ListGroup, Loader, ZeroState } from 'components';
@@ -25,7 +24,11 @@ class ActivityPanelComponent extends React.Component {
       const relative_link = link.replace(new RegExp('^.*//[^/]+'), '');
 
       return (
-        <ListGroup.ListItem className={styles.activityListItem} hover>
+        <ListGroup.ListItem
+          key={activity.id}
+          className={styles.activityListItem}
+          hover
+        >
           <Link to={relative_link} className={styles.link}>
             <NotificationItem
               type={notification_id}

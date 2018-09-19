@@ -4,7 +4,7 @@ import { getMobileOperatingSystem } from 'utils/helpers';
 import { Modal, Text, Button } from 'components';
 
 const WalletRequired = props => {
-  const { visible, onClose, closable, fixed } = props;
+  const { visible, onClose, closable } = props;
 
   const operatingSystem = getMobileOperatingSystem();
   let walletName = 'MetaMask';
@@ -54,11 +54,11 @@ const WalletRequired = props => {
         </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
-        {closable ? (
+        {closable && (
           <Button margin onClick={onClose}>
             Cancel
           </Button>
-        ) : null}
+        )}
         <a href="https://metamask.io/">
           <Button type="primary">Visit MetaMask.io</Button>
         </a>
