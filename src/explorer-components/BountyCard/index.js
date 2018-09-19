@@ -142,7 +142,7 @@ const BountyCard = props => {
               primaryClassName={styles.usd}
               secondaryValue={value}
               secondaryCurrency={currency}
-              secondaryTypeScale="Body"
+              secondaryTypeScale="Small"
               currencyClass={styles.currency}
             />
           </div>
