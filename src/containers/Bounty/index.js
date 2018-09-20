@@ -52,6 +52,7 @@ class BountyComponent extends React.Component {
       loadBounty,
       loadDraftBounty,
       loadFulfillment,
+      loadFulfillments,
       resetFulfillmentsState,
       resetCommentsState,
       addBountyFilter,
