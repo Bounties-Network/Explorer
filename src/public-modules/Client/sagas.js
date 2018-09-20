@@ -142,6 +142,9 @@ export function* getTokenBalance(action) {
   );
 
   try {
+    // verify tokenAddress is a valid ERC-20 contract client, throw if not
+    yield call(tokenClient.symbol().call);
+
     const balance = yield call(tokenClient.balanceOf(userAddress).call);
     yield put(getTokenBalanceSuccess(balance));
   } catch (e) {

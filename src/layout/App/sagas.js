@@ -16,8 +16,9 @@ export function* getTokenBalance(action) {
   ]);
   console.log('got result', result);
 
-  if (result === GET_TOKEN_BALANCE_FAIL) {
-    reject();
+  if (result.type === GET_TOKEN_BALANCE_FAIL) {
+    console.log('error');
+    reject(result.error);
     return;
   }
 

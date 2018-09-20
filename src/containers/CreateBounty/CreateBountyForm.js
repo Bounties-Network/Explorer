@@ -526,11 +526,12 @@ const CreateBountyForm = compose(
     asyncValidate: (values, dispatch) => {
       return asyncValidators.tokenValidationWrapper(
         values,
-        'fulfillmentAmount',
+        'balance',
         'tokenContract',
         dispatch
       );
-    }
+    },
+    asyncBlurFields: ['balance', 'tokenContract']
   })
 )(CreateBountyFormComponent);
 
