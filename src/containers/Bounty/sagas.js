@@ -37,7 +37,7 @@ export function* closeBountyModal(action) {
 }
 
 export function* loadTab(action) {
-  const { tabKey = 'submissions' } = action;
+  const { tabKey = 'comments' } = action;
 
   if (tabKey === 'submissions') {
     yield put(loadFulfillments());

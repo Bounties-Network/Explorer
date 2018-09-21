@@ -3,7 +3,7 @@ const initialState = {
   modalType: '',
   modalVisible: false,
   modalProps: {},
-  currentTab: 'submissions',
+  currentTab: 'comments',
   ratingModal: {
     fulfillmentId: -1,
     reviewee: {

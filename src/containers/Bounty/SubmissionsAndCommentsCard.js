@@ -39,19 +39,29 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const {
-      setActiveTabAction: setActiveTab,
-      fulfillments,
-      comments
-    } = this.props;
+  setMostInterestingTab() {
+    if (!this.state.tabLoaded) {
+      const {
+        setActiveTabAction: setActiveTab,
+        fulfillments,
+        comments
+      } = this.props;
 
-    if (!this.state.tabLoaded && !fulfillments.loading && !comments.loading) {
-      this.setState({
-        tabLoaded: true
-      });
-      setActiveTab(mostInterestingTab(fulfillments));
+      if (!fulfillments.loading && !comments.loading) {
+        this.setState({
+          tabLoaded: true
+        });
+        setActiveTab(mostInterestingTab(fulfillments));
+      }
     }
+  }
+
+  componentDidUpdate() {
+    this.setMostInterestingTab();
+  }
+
+  componentDidMount() {
+    this.setMostInterestingTab();
   }
 
   render() {
