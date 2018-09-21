@@ -87,8 +87,13 @@ class Message extends React.Component {
 
 class Description extends React.Component {
   render() {
+    const { children } = this.props;
+
     // format if the child is just plain text
-    if (typeof this.props.children === 'string') {
+    if (
+      typeof children === 'string' ||
+      (typeof children === 'object' && typeof children[0] === 'string')
+    ) {
       return (
         <Text className={styles.description} typeScale="Body" color="darkGrey">
           {this.props.children}
