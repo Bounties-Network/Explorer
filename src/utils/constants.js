@@ -30,8 +30,6 @@ A correct submission will:
 - requirement 1
 - requirement 2
 - requirement 3
-### Revisions
-We will require at most 3 revisions for submitted work
 `;
 
 export const NOTIFICATION_ID = {
