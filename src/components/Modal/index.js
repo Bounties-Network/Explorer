@@ -4,7 +4,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import styles from './Modal.module.scss';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Text, Loader } from 'components';
-import { includes, each } from 'lodash';
+import { includes, each, some, map } from 'lodash';
 
 const ModalContext = React.createContext({});
 
@@ -92,7 +92,8 @@ class Description extends React.Component {
     // format if the child is just plain text
     if (
       typeof children === 'string' ||
-      (typeof children === 'object' && typeof children[0] === 'string')
+      (typeof children === 'object' &&
+        !some(false, map(child => typeof child === 'string')))
     ) {
       return (
         <Text className={styles.description} typeScale="Body" color="darkGrey">
