@@ -3,7 +3,7 @@ import styles from './Settings.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { FormSection } from 'explorer-components';
-import { PreferencesToggle } from './components';
+import { Checkbox } from 'components';
 import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as skillActions } from 'public-modules/Skills';
@@ -43,7 +43,9 @@ class UserSettingsComponent extends React.Component {
       savingSettings,
       ipfsHash,
       fileName,
-      resetUpload
+      resetUpload,
+      onboarding,
+      onClose
     } = this.props;
 
     const { profileImage } = this.state;
@@ -77,20 +79,6 @@ class UserSettingsComponent extends React.Component {
                 onDelete={handleResetUpload}
                 loading={uploading}
                 src={profileImage}
-              />
-            </FormSection.InputGroup>
-          </FormSection.Section>
-          <FormSection.Section title="ALERTS">
-            <FormSection.Description>
-              Would you like to get relevant bounties and platform updates
-              emailed to you?
-            </FormSection.Description>
-            <FormSection.InputGroup>
-              <Field
-                disabled={savingSettings}
-                name="email_interest"
-                component={PreferencesToggle}
-                label="Relevant bounties and platform updates"
               />
             </FormSection.InputGroup>
           </FormSection.Section>
@@ -234,15 +222,35 @@ class UserSettingsComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
+          <FormSection.Section title="EMAIL UPDATES">
+            <FormSection.Description>
+              Would you like to get relevant bounties and platform updates
+              emailed to you?
+            </FormSection.Description>
+            <FormSection.InputGroup>
+              <Field
+                disabled={savingSettings}
+                name="email_interest"
+                component={Checkbox}
+                label="Relevant bounties and platform updates"
+                checked={email_interest}
+              />
+            </FormSection.InputGroup>
+          </FormSection.Section>
         </FormSection>
         <div className={styles.buttonContainer}>
+          {onboarding && (
+            <Button onClick={onClose} margin>
+              Cancel
+            </Button>
+          )}
           <Button
             type="primary"
             disabled={uploading || (submitFailed && invalid)}
             loading={savingSettings}
             buttonType="submit"
           >
-            Update Profile
+            {onboarding ? 'Submit Details' : 'Update Profile'}
           </Button>
           {submitFailed && invalid ? (
             <Text inputLabel color="red" className={styles.submitError}>

@@ -44,7 +44,7 @@ class AddProfileDetails extends React.Component {
 
             <PageCard.Break />
             <div className={styles.alignLeft}>
-              <UserSettings />
+              <UserSettings onboarding={true} onClose={this.onClose} />
             </div>
           </Modal.Body>
         </Modal>
