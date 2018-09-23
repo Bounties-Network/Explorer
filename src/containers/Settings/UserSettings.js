@@ -67,6 +67,20 @@ class UserSettingsComponent extends React.Component {
       resetUpload(UPLOAD_KEY);
     };
 
+    const emailInterestElement = (
+      <Field
+        disabled={savingSettings}
+        name="email_interest"
+        component={FormCheckbox}
+        label={
+          onboarding
+            ? 'I would like to receive relevant bounties and platform updates via email'
+            : 'Relevant bounties and platform updates'
+        }
+        defaultChecked={initialValues.email_interest}
+      />
+    );
+
     return (
       <form onSubmit={handleSubmit(values => handleSaveSettings(values))}>
         <FormSection>
@@ -221,21 +235,19 @@ class UserSettingsComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="EMAIL UPDATES">
-            <FormSection.Description>
-              Would you like to get relevant bounties and platform updates
-              emailed to you?
-            </FormSection.Description>
-            <FormSection.InputGroup>
-              <Field
-                disabled={savingSettings}
-                name="email_interest"
-                component={FormCheckbox}
-                label="Relevant bounties and platform updates"
-                defaultChecked={initialValues.email_interest}
-              />
-            </FormSection.InputGroup>
-          </FormSection.Section>
+          {onboarding ? (
+            <FormSection.Section>{emailInterestElement}</FormSection.Section>
+          ) : (
+            <FormSection.Section title="EMAIL UPDATES">
+              <FormSection.Description>
+                Would you like to receive relevant bounties and platform updates
+                emailed to you?
+              </FormSection.Description>
+              <FormSection.InputGroup>
+                {emailInterestElement}
+              </FormSection.InputGroup>
+            </FormSection.Section>
+          )}
         </FormSection>
         <div className={styles.buttonContainer}>
           {onboarding && (
