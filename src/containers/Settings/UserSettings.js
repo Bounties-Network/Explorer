@@ -3,7 +3,6 @@ import styles from './Settings.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { FormSection } from 'explorer-components';
-import { Checkbox } from 'components';
 import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as skillActions } from 'public-modules/Skills';
@@ -16,7 +15,7 @@ import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
 import { ipfsToHttp } from 'utils/helpers';
 import { Cropper, Button, Text } from 'components';
-import { FormTextInput, FormSearchSelect } from 'form-components';
+import { FormTextInput, FormSearchSelect, FormCheckbox } from 'form-components';
 import { UPLOAD_KEY } from './constants';
 
 class UserSettingsComponent extends React.Component {
@@ -35,7 +34,6 @@ class UserSettingsComponent extends React.Component {
       addSkill,
       skills,
       languages,
-      email_interest,
       invalid,
       handleSubmit,
       submitFailed,
@@ -45,7 +43,8 @@ class UserSettingsComponent extends React.Component {
       fileName,
       resetUpload,
       onboarding,
-      onClose
+      onClose,
+      initialValues
     } = this.props;
 
     const { profileImage } = this.state;
@@ -231,9 +230,9 @@ class UserSettingsComponent extends React.Component {
               <Field
                 disabled={savingSettings}
                 name="email_interest"
-                component={Checkbox}
+                component={FormCheckbox}
                 label="Relevant bounties and platform updates"
-                checked={email_interest}
+                defaultChecked={initialValues.email_interest}
               />
             </FormSection.InputGroup>
           </FormSection.Section>
@@ -271,8 +270,6 @@ const mapStateToProps = state => {
   return {
     initialValues: {
       ...currentUser,
-      languages: currentUser.languages,
-
       // stored in db w/o @ symbol
       twitter: currentUser.twitter ? '@' + currentUser.twitter : '',
       github: currentUser.github ? '@' + currentUser.github : ''
