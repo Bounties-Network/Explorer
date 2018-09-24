@@ -1,5 +1,4 @@
-import config from 'public-modules/config';
-import { call, put, select, take, takeLatest } from 'redux-saga/effects';
+import { take, takeLatest } from 'redux-saga/effects';
 import { actionTypes } from 'layout/App/reducer';
 import { actionTypes as clientActionTypes } from 'public-modules/Client';
 

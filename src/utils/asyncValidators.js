@@ -1,5 +1,3 @@
-import web3 from 'public-modules/Utilities/Web3Client';
-import config from 'public-modules/config';
 import { actions } from 'layout/App/reducer';
 import { includes } from 'lodash';
 

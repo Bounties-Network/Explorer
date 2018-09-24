@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Table.module.scss';
-import { includes, some } from 'lodash';
+import { includes } from 'lodash';
 import { Text } from 'components';
 
 class HeaderCell extends React.Component {
