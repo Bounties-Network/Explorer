@@ -32,7 +32,7 @@ const About = props => {
           </div>
         )}
 
-        {languages.length && (
+        {!!languages.length && (
           <div className={styles.bulletPoint}>
             <FontAwesomeIcon
               icon={['far', 'comments']}
