@@ -33,7 +33,7 @@ export const SEOHeader = () => {
       <meta property="og:type" content="article" />
       <meta property="og:url" content="https://explorer.bounties.network/" />
       <meta
-        property="og:image"
+        property="og:image:secure_url"
         content="https://bounties.network/img/twitter.png"
       />
       <meta

@@ -23,7 +23,7 @@ const SEOHeader = props => {
       <meta property="og:type" content="profile" />
       <meta property="og:url" content={window.location.href} />
       <meta property="og:title" content={title} />
-      <meta property="og:image" content={user.page_preview} />
+      <meta property="og:image:secure_url" content={user.page_preview} />
       <meta property="og:profile:username" content={user.name} />
     </Helmet>
   );
