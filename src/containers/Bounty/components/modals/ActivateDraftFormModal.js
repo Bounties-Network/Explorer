@@ -8,6 +8,7 @@ import { ModalFormReset } from 'hocs';
 import normalizers from 'utils/normalizers';
 import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
+import asyncValidators from 'utils/asyncValidators';
 
 const ActivateDraftFormModal = props => {
   const { onClose, minimumBalance, handleSubmit, tokenSymbol, visible } = props;
@@ -72,7 +73,16 @@ const ActivateDraftFormModal = props => {
 export default compose(
   reduxForm({
     form: 'activateDraft',
-    destroyOnUnmount: false
+    destroyOnUnmount: false,
+    asyncValidate: (values, dispatch, props) => {
+      return asyncValidators.tokenValidationWrapper(
+        { ...values, tokenContract: props.tokenContract },
+        'balance',
+        'tokenContract',
+        dispatch
+      );
+    },
+    asyncBlurFields: ['balance']
   }),
   ModalFormReset
 )(ActivateDraftFormModal);

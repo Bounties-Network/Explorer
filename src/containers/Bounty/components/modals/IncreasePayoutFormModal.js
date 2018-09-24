@@ -8,6 +8,7 @@ import { ModalFormReset } from 'hocs';
 import normalizers from 'utils/normalizers';
 import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
+import asyncValidators from 'utils/asyncValidators';
 
 const IncreasePayoutFormModal = props => {
   const {
@@ -115,7 +116,16 @@ const IncreasePayoutFormModal = props => {
 export default compose(
   reduxForm({
     form: 'increasePayout',
-    destroyOnUnmount: false
+    destroyOnUnmount: false,
+    asyncValidate: (values, dispatch, props) => {
+      return asyncValidators.tokenValidationWrapper(
+        { ...values, tokenContract: props.tokenContract },
+        'balance',
+        'tokenContract',
+        dispatch
+      );
+    },
+    asyncBlurFields: ['balance']
   }),
   ModalFormReset
 )(IncreasePayoutFormModal);

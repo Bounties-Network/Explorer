@@ -133,7 +133,16 @@ export function* getTokenBalance(action) {
   const userAddress = yield call(getWalletAddress);
 
   if (tokenAddress === '0x0000000000000000000000000000000000000000') {
-    return getTokenBalanceSuccess(0);
+    try {
+      const { web3 } = yield call(getWeb3Client);
+      const balanceWei = yield call(web3.eth.getBalance, userAddress);
+      const balanceEther = yield call(web3.utils.fromWei, balanceWei, 'ether');
+      yield put(getTokenBalanceSuccess(balanceEther));
+    } catch (e) {
+      yield put(getTokenBalanceFail(e));
+    }
+
+    return;
   }
 
   const { tokenContract: tokenClient } = yield call(

@@ -46,6 +46,8 @@ const tokenValidationWrapper = (
   tokenContractKey,
   dispatch
 ) => {
+  if (!values[amountKey] || !values[tokenContractKey]) return Promise.resolve();
+
   return tokenValidation(
     values[amountKey],
     values[tokenContractKey],

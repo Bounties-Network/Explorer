@@ -8,6 +8,7 @@ import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
 import normalizers from 'utils/normalizers';
 import { FormTextInput } from 'form-components';
+import asyncValidators from 'utils/asyncValidators';
 
 const ActivateDeadFormModal = props => {
   const { onClose, minimumBalance, handleSubmit, tokenSymbol, visible } = props;
@@ -67,7 +68,16 @@ const ActivateDeadFormModal = props => {
 export default compose(
   reduxForm({
     form: 'activateDead',
-    destroyOnUnmount: false
+    destroyOnUnmount: false,
+    asyncValidate: (values, dispatch, props) => {
+      return asyncValidators.tokenValidationWrapper(
+        { ...values, tokenContract: props.tokenContract },
+        'balance',
+        'tokenContract',
+        dispatch
+      );
+    },
+    asyncBlurFields: ['balance']
   }),
   ModalFormReset
 )(ActivateDeadFormModal);
