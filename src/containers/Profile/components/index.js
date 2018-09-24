@@ -5,6 +5,7 @@ import Skills from './Skills';
 import ProfileAvatar from './ProfileAvatar';
 import ProfileTabs from './ProfileTabs';
 import ReviewsModal from './ReviewsModal';
+import SEOHeader from './SEOHeader';
 
 export {
   About,
@@ -13,5 +14,6 @@ export {
   ProfileAvatar,
   ProfileTabs,
   ReviewsModal,
-  Skills
+  Skills,
+  SEOHeader
 };
