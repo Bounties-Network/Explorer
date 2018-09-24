@@ -65,15 +65,15 @@ const ProfileDetailsComponent = props => {
               <Skills skills={user.skills} />
             </div>
           )}
-        {!!user.organization &&
-          !!user.languages.length && (
-            <div className={`${styles.detailsSection} ${styles.detailsAbout}`}>
-              <About
-                organization={user.organization}
-                languages={user.languages}
-              />
-            </div>
-          )}
+        {(!!user.organization ||
+          (user.languages && !!user.languages.length)) && (
+          <div className={`${styles.detailsSection} ${styles.detailsAbout}`}>
+            <About
+              organization={user.organization}
+              languages={user.languages}
+            />
+          </div>
+        )}
         {(user.website || user.twitter || user.github || user.linkedin) && (
           <div
             className={`${styles.detailsSection} ${styles.detailsElsewhere}`}
