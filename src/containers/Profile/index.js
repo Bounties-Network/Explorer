@@ -16,6 +16,7 @@ import { userInfoSelector } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { locationNonceSelector } from 'layout/App/selectors';
+import { SEOHeader } from './components';
 import { actions } from './reducer';
 
 class ProfileComponent extends React.Component {
@@ -153,6 +154,7 @@ class ProfileComponent extends React.Component {
 
     let body = (
       <div className={styles.profileContainer}>
+        <SEOHeader user={user} />
         <div className={`${styles.profileDetails}`}>
           <ProfileDetails />
         </div>

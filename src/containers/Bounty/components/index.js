@@ -12,6 +12,7 @@ import ContributeFormModal from './modals/ContributeFormModal';
 import NewCommentForm from './NewCommentForm';
 import CommentItem from './listItems/CommentItem';
 import IssueRatingFormModal from './modals/IssueRatingFormModal';
+import SEOHeader from './SEOHeader';
 
 export {
   ExtendDeadlineErrorModal,
@@ -27,5 +28,6 @@ export {
   ContributeFormModal,
   NewCommentForm,
   CommentItem,
-  IssueRatingFormModal
+  IssueRatingFormModal,
+  SEOHeader
 };

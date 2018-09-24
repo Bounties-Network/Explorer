@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './App.module.scss';
 import { hot } from 'react-hot-loader';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { SEOHeader } from './SEOHeader';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { map } from 'lodash';
@@ -68,6 +69,7 @@ class HeaderComponent extends React.Component {
 
     return (
       <React.Fragment>
+        <SEOHeader />
         <Header onShowNav={() => this.setState({ showMobileSidebar: true })} />
         <Sidebar
           activeTab={currentRouteSelector(location.pathname)}
