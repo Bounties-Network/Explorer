@@ -140,11 +140,20 @@ const ActionBar = props => {
         <Button
           type="action"
           fitWidth
-          onClick={() =>
-            initiateLoginProtection(() => showModal('fulfillBounty'))
+          onClick={
+            bounty.platform === 'gitcoin'
+              ? () =>
+                  (window.location = `https://gitcoin.co/issue/fulfill?sb_id=${
+                    bounty.id
+                  }`)
+              : () => initiateLoginProtection(() => showModal('fulfillBounty'))
           }
         >
-          {user ? 'Fulfill' : 'Sign in to fulfill'}
+          {bounty.platform === 'gitcoin'
+            ? 'Fulfill on Gitcoin'
+            : user
+              ? 'Fulfill'
+              : 'Sign in to fulfill'}
         </Button>
         <Button
           icon={['far', 'dollar-sign']}
