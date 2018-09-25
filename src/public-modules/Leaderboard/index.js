@@ -15,8 +15,8 @@ const LOAD_MORE_LEADERBOARD_SUCCESS =
   'leaderboard/LOAD_MORE_LEADERBOARD_SUCCESS';
 const LOAD_LEADERBOARD_FAIL = 'leaderboard/LOAD_LEADERBOARD_FAIL';
 
-function loadLeaderboard() {
-  return { type: LOAD_LEADERBOARD };
+function loadLeaderboard(platform) {
+  return { type: LOAD_LEADERBOARD, platform };
 }
 
 function loadMoreLeaderboard() {
@@ -45,11 +45,14 @@ function loadLeaderboardFail(error) {
 function LeaderboardReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_LEADERBOARD: {
+      const { platform } = action;
+
       return {
         ...state,
         loading: true,
         loaded: false,
-        error: false
+        error: false,
+        platform
       };
     }
     case LOAD_MORE_LEADERBOARD: {

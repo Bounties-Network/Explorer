@@ -121,7 +121,7 @@ const LeaderboardCard = compose(
   connect(
     mapStateToProps,
     {
-      load: actions.loadLeaderboard,
+      load: () => actions.loadLeaderboard(config.platform),
       loadMore: actions.loadMoreLeaderboard
     }
   ),
