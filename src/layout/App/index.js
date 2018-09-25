@@ -29,7 +29,7 @@ import {
   Network,
   SideOverlay
 } from 'components';
-import { FilterNav } from 'containers';
+import { ExplorerFilterNav } from 'containers/FilterNav';
 import { Header } from 'layout';
 import { rootAppSelector } from './selectors';
 import { actions as appActions } from './reducer';
@@ -125,7 +125,7 @@ class FilterNavComponent extends React.Component {
           onClose={hideFilterNav}
         >
           <div className={styles.filterWrapper}>
-            <FilterNav
+            <ExplorerFilterNav
               config={config.rootConfig ? config.rootConfig : undefined}
               resetFilters={
                 config.resetFilters ? config.resetFilters : undefined

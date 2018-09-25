@@ -7,7 +7,7 @@ import ProfileDetails from './ProfileDetails';
 import { ExplorerBody } from 'containers';
 import { FilterNavManager } from 'hocs';
 import { filterConfig } from './constants';
-import FilterNav from 'containers/FilterNav';
+import { FilterNav } from 'explorer-components';
 import styles from './Profile.module.scss';
 import { ZeroState } from 'components';
 import { actions as bountiesActions } from 'public-modules/Bounties';
