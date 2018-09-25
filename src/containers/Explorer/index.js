@@ -53,7 +53,7 @@ class Explorer extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.hideFilters();
+    this.props.hideFilterNav();
   }
 
   render() {

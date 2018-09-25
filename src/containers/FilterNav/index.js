@@ -14,9 +14,7 @@ import {
   rootBountiesSelector,
   bountiesCategoryFiltersSelector,
   bountiesPlatformFiltersSelector,
-  bountiesSortFilterSelector,
-  anyStageFiltersSelected,
-  anyDifficultyFiltersSelected
+  bountiesSortFilterSelector
 } from 'public-modules/Bounties/selectors';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
 import {
@@ -55,31 +53,38 @@ const {
 
 const FilterNavComponent = props => {
   const {
-    search,
-    resetFilters,
-    resetFilter,
+    // user props
+    resetableFilters,
+    config,
+    position,
+
+    // current state
+    currentDifficultyFilters,
+    currentPlatformFilters,
+    currentSearchValue,
+    currentSortFilter,
+    currentStageFilter,
+    currentSelectedCategories,
+
+    availableCategories,
+
+    // defaults
+    defaultStageFilters,
+    defaultPlatforms,
+
+    // actions
+    addCategoryFilter,
+    filterReseter, // dispatches action to reset a specific filter
     setSearch,
     setSort,
-    sortFilter,
     toggleStageFilter,
     toggleDifficultyFilter,
     togglePlatformFilter,
-    stageFilters,
-    defaultStageFilters,
-    defaultPlatforms,
-    difficultyFilters,
-    categories,
-    categoryFilters,
-    platformFilters,
-    addCategoryFilter,
-    addPlatformFilter,
     removeCategoryFilter,
+
     history,
     location,
-    batch,
-
-    config,
-    position
+    batch
   } = props;
 
   const sortOptions = [
@@ -165,7 +170,7 @@ const FilterNavComponent = props => {
       if (value) {
         resetFilter(key);
       }
-    }, resetFilters);
+    }, resetableFilters);
     map((value, key) => {
       if (value) {
         toggleStageFilterAction(key);
@@ -183,7 +188,7 @@ const FilterNavComponent = props => {
     >
       {config.search && (
         <div className={styles.searchWrapper}>
-          <Search value={search} onChange={setSearchAction} />
+          <Search value={currentSearchValue} onChange={setSearchAction} />
         </div>
       )}
       <div className={styles.refineWrapper}>
@@ -206,7 +211,7 @@ const FilterNavComponent = props => {
           <RadioGroup
             onChange={setSortAction}
             options={sortOptions}
-            value={sortFilter}
+            value={currentSortFilter}
           />
         </div>
       )}
@@ -223,7 +228,7 @@ const FilterNavComponent = props => {
                   key={platform}
                   label={platform}
                   onChange={() => togglePlatformFilterAction(platform)}
-                  checked={indexOf(platform, platformFilters) !== -1}
+                  checked={indexOf(platform, currentPlatformFilters) !== -1}
                 />
               );
             }, platforms)}
@@ -235,12 +240,12 @@ const FilterNavComponent = props => {
             Category
           </Text>
           <SearchSelect
-            options={categories}
-            value={categoryFilters}
+            options={availableCategories}
+            value={currentSelectedCategories}
             labelKey="name"
             valueKey="normalized_name"
             onChange={values => {
-              if (values.length > categoryFilters.length) {
+              if (values.length > currentSelectedCategories.length) {
                 addCategoryFilterAction(values[values.length - 1]);
               }
             }}
@@ -258,22 +263,22 @@ const FilterNavComponent = props => {
             onChange={() => {
               toggleStageFilterAction('active');
             }}
-            checked={stageFilters.active}
+            checked={currentStageFilter.active}
           />
           <Checkbox
             label="Completed"
             onChange={() => toggleStageFilterAction('completed')}
-            checked={stageFilters.completed}
+            checked={currentStageFilter.completed}
           />
           <Checkbox
             label="Expired"
             onChange={() => toggleStageFilterAction('expired')}
-            checked={stageFilters.expired}
+            checked={currentStageFilter.expired}
           />
           <Checkbox
             label="Dead"
             onChange={() => toggleStageFilterAction('dead')}
-            checked={stageFilters.dead}
+            checked={currentStageFilter.dead}
           />
         </div>
       )}
@@ -285,17 +290,17 @@ const FilterNavComponent = props => {
           <Checkbox
             label="Beginner"
             onChange={() => toggleDifficultyFilterAction('beginner')}
-            checked={difficultyFilters.beginner}
+            checked={currentDifficultyFilters.beginner}
           />
           <Checkbox
             label="Intermediate"
             onChange={() => toggleDifficultyFilterAction('intermediate')}
-            checked={difficultyFilters.intermediate}
+            checked={currentDifficultyFilters.intermediate}
           />
           <Checkbox
             label="Advanced"
             onChange={() => toggleDifficultyFilterAction('advanced')}
-            checked={difficultyFilters.advanced}
+            checked={currentDifficultyFilters.advanced}
           />
         </div>
       )}
@@ -307,15 +312,14 @@ const mapStateToProps = state => {
   const bountyState = rootBountiesSelector(state);
 
   return {
-    stageFilters: bountyState.stageFilters,
-    anyStageFiltersSelected: anyStageFiltersSelected(state),
-    anyDifficultyFiltersSelected: anyDifficultyFiltersSelected(state),
-    difficultyFilters: bountyState.difficultyFilters,
-    categoryFilters: bountiesCategoryFiltersSelector(state),
-    platformFilters: bountiesPlatformFiltersSelector(state),
-    sortFilter: bountiesSortFilterSelector(state),
-    categories: categoriesSelector(state),
-    search: bountyState.search
+    availableCategories: categoriesSelector(state),
+
+    currentDifficultyFilters: bountyState.difficultyFilters,
+    currentPlatformFilters: bountiesPlatformFiltersSelector(state),
+    currentSearchValue: bountyState.search,
+    currentSelectedCategories: bountiesCategoryFiltersSelector(state),
+    currentSortFilter: bountiesSortFilterSelector(state),
+    currentStageFilter: bountyState.stageFilters
   };
 };
 
@@ -343,7 +347,7 @@ FilterNav.propTypes = {
   position: PropTypes.oneOf(['relative', 'fixed']),
   config: PropTypes.object,
   stageFilters: PropTypes.object,
-  resetFilters: PropTypes.object
+  resetableFilters: PropTypes.object
 };
 
 FilterNav.defaultProps = {
@@ -363,7 +367,7 @@ FilterNav.defaultProps = {
     dead: false
   },
   defaultPlatforms: appConfig.platform.split(','),
-  resetFilters: {
+  resetableFilters: {
     address: true,
     search: true,
     stage: true,
