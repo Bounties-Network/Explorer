@@ -1,9 +1,9 @@
 import React from 'react';
 import { ExplorerBody, FilterNav } from 'containers';
+import { FilterNavManager } from 'hocs';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { actions as appActions } from 'layout/App/reducer';
 import { actions } from 'public-modules/Bounties';
 import config from 'public-modules/config';
 import { locationNonceSelector } from 'layout/App/selectors';
@@ -67,7 +67,7 @@ class Explorer extends React.Component {
         </div>
         <ExplorerBody
           className={styles.explorerBody}
-          onOpenFilters={this.props.openFilters}
+          onOpenFilters={this.props.showFilterNav}
         />
       </div>
     );
@@ -79,6 +79,7 @@ const mapStateToProps = state => ({
 });
 
 export default compose(
+  FilterNavManager,
   connect(
     mapStateToProps,
     {
@@ -87,10 +88,7 @@ export default compose(
       toggleStageFilter: actions.toggleStageFilter,
       addPlatformFilter: actions.addPlatformFilter,
       resetFilters: actions.resetFilters,
-      batch: actions.batch,
-      openFilters: appActions.showFilterNav,
-      hideFilters: appActions.hideFilterNav,
-      resetFilterNav: appActions.resetFilterNav
+      batch: actions.batch
     }
   ),
   withRouter

@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ProfileDetails from './ProfileDetails';
 import { ExplorerBody } from 'containers';
+import { FilterNavManager } from 'hocs';
 import { filterConfig } from './constants';
 import FilterNav from 'containers/FilterNav';
 import styles from './Profile.module.scss';
 import { ZeroState } from 'components';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
-import { actions as appActions } from 'layout/App/reducer';
 import { userInfoSelector } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
@@ -36,10 +36,10 @@ class ProfileComponent extends React.Component {
       setActiveTab,
       setProfileAddress,
       resetState,
-      initializeFilterNav
+      initFilterNav
     } = this.props;
 
-    initializeFilterNav(filterConfig);
+    initFilterNav(filterConfig);
 
     let address = match.params.address;
     if (!address) {
@@ -119,7 +119,7 @@ class ProfileComponent extends React.Component {
   componentWillUnmount() {
     const body = document.getElementsByClassName('page-body')[0];
     body.removeEventListener('scroll', this.onScroll);
-    this.props.hideFilters();
+    this.props.hideFilterNav();
   }
 
   onScroll = () => {
@@ -140,7 +140,7 @@ class ProfileComponent extends React.Component {
   };
 
   render() {
-    const { error, loaded, user, showFilters } = this.props;
+    const { error, loaded, user, showFilterNav } = this.props;
     const { position } = this.state;
 
     const profileFilterNav = (
@@ -166,7 +166,7 @@ class ProfileComponent extends React.Component {
                 this.explorerBody = re;
               }}
               className={styles.explorerBody}
-              onOpenFilters={showFilters}
+              onOpenFilters={showFilterNav}
             />
           </div>
         </div>
@@ -222,6 +222,7 @@ const mapStateToProps = state => {
 
 const Profile = compose(
   withRouter,
+  FilterNavManager,
   connect(
     mapStateToProps,
     {
@@ -231,10 +232,7 @@ const Profile = compose(
       resetFilter: bountiesActions.resetFilter,
       loadUserInfo: userInfoActions.loadUserInfo,
       setActiveTab: actions.setActiveTab,
-      setProfileAddress: actions.setProfileAddress,
-      showFilters: appActions.showFilterNav,
-      initializeFilterNav: appActions.initializeFilterNav,
-      hideFilters: appActions.hideFilterNav
+      setProfileAddress: actions.setProfileAddress
     }
   )
 )(ProfileComponent);
