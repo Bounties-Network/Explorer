@@ -1,3 +1,5 @@
+/* eslint no-throw-literal: 0 */
+
 import { actions } from 'layout/App/reducer';
 import { includes } from 'lodash';
 
@@ -10,28 +12,24 @@ const CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR =
 const UNKNOWN_ERROR = 'UNKNOWN_ERROR';
 
 const tokenValidation = (amount, tokenAddress, dispatch) => {
-  const handleResult = balance => {
+  const handleResult = ([balance, symbol]) => {
     balance = Number(balance);
     amount = Number(amount);
 
-    console.log('in then', balance, amount, balance < amount);
-
     if (balance === 0) {
-      throw Error(ZERO_BALANCE_ERROR);
+      throw { error: ZERO_BALANCE_ERROR, balance, symbol };
     } else if (balance < amount) {
-      throw Error(INSUFFICIENT_BALANCE_ERROR);
+      throw { error: INSUFFICIENT_BALANCE_ERROR, balance, symbol };
     }
   };
 
   const handleRejection = e => {
     if (includes('convertible string', e.message)) {
-      throw Error(CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR);
+      throw { error: CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR };
     }
 
-    throw Error(UNKNOWN_ERROR);
+    throw { error: UNKNOWN_ERROR };
   };
-
-  console.log(amount, tokenAddress);
 
   return new Promise((resolve, reject) => {
     dispatch(getTokenBalance(tokenAddress, resolve, reject));
@@ -51,17 +49,20 @@ const tokenValidationWrapper = (
     values[tokenContractKey],
     dispatch
   ).catch(e => {
+    const { error, balance, symbol } = e;
     let formError = {};
 
-    console.log(e);
+    const validationMessage = `Insufficient funds — balance: ${balance.toFixed(
+      2
+    )} ${symbol}`;
 
-    switch (e.message) {
+    switch (error) {
       case ZERO_BALANCE_ERROR:
-        formError[tokenContractKey] = 'You do not have any of that token.';
-        formError[amountKey] = formError[tokenContractKey];
+        formError[tokenContractKey] = validationMessage;
+        formError[amountKey] = validationMessage;
         break;
       case INSUFFICIENT_BALANCE_ERROR:
-        formError[amountKey] = 'You do not have enough of that token';
+        formError[amountKey] = validationMessage;
         break;
       case CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR:
         formError[tokenContractKey] =
@@ -70,7 +71,7 @@ const tokenValidationWrapper = (
         break;
       default:
         formError[tokenContractKey] = 'Something went wrong.';
-        formError[amountKey] = formError[tokenContractKey];
+        formError[amountKey] = 'Something went wrong.';
     }
 
     throw formError;

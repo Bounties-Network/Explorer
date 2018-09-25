@@ -47,8 +47,8 @@ function getTokenBalance(address) {
   return { type: GET_TOKEN_BALANCE, address };
 }
 
-function getTokenBalanceSuccess(balance) {
-  return { type: GET_TOKEN_BALANCE_SUCCESS, balance };
+function getTokenBalanceSuccess(balance, symbol) {
+  return { type: GET_TOKEN_BALANCE_SUCCESS, balance, symbol };
 }
 
 function getTokenBalanceFail(error) {

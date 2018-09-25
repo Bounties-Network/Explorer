@@ -525,9 +525,9 @@ const CreateBountyForm = compose(
     form: 'createBounty',
     asyncValidate: (values, dispatch) => {
       return asyncValidators.tokenValidationWrapper(
-        values,
+        { ...values, ethAddress: '0x0000000000000000000000000000000000000000' },
         'balance',
-        'tokenContract',
+        values.paysTokens ? 'tokenContract' : 'ethAddress',
         dispatch
       );
     },

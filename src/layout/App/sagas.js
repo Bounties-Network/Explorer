@@ -8,20 +8,17 @@ const { GET_TOKEN_BALANCE_SUCCESS, GET_TOKEN_BALANCE_FAIL } = clientActionTypes;
 export function* getTokenBalance(action) {
   const { resolve, reject } = action;
 
-  console.log('waiting');
   const result = yield take([
     GET_TOKEN_BALANCE_SUCCESS,
     GET_TOKEN_BALANCE_FAIL
   ]);
-  console.log('got result', result);
 
   if (result.type === GET_TOKEN_BALANCE_FAIL) {
-    console.log('error');
     reject(result.error);
     return;
   }
 
-  resolve(result.balance);
+  resolve(result.balance, result.symbol);
 }
 
 export function* watchGetTokenBalance() {

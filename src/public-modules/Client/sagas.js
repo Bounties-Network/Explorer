@@ -137,7 +137,7 @@ export function* getTokenBalance(action) {
       const { web3 } = yield call(getWeb3Client);
       const balanceWei = yield call(web3.eth.getBalance, userAddress);
       const balanceEther = yield call(web3.utils.fromWei, balanceWei, 'ether');
-      yield put(getTokenBalanceSuccess(balanceEther));
+      yield put(getTokenBalanceSuccess([balanceEther, 'ether']));
     } catch (e) {
       yield put(getTokenBalanceFail(e));
     }
@@ -152,10 +152,14 @@ export function* getTokenBalance(action) {
 
   try {
     // verify tokenAddress is a valid ERC-20 contract client, throw if not
-    yield call(tokenClient.symbol().call);
+    const symbol = yield call(tokenClient.symbol().call);
+    const decimals = yield call(tokenClient.decimals().call);
 
     const balance = yield call(tokenClient.balanceOf(userAddress).call);
-    yield put(getTokenBalanceSuccess(balance));
+
+    yield put(
+      getTokenBalanceSuccess([Number(balance) / 10 ** Number(decimals), symbol])
+    );
   } catch (e) {
     yield put(getTokenBalanceFail(e));
   }
