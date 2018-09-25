@@ -6,6 +6,7 @@
   padding-top: $header-height-sm;
   display: flex;
   flex-direction: column;
+  z-index: 5;
 
   @media only screen and (min-width: 48em) {
     background-color: $sidebar-color;
@@ -46,10 +47,16 @@
   align-items: center;
   font-size: 1.3rem;
   padding: $base-spacing $l-spacing;
+  position: relative;
   margin: $m-spacing 0;
   cursor: pointer;
   color: $brand-white;
   opacity: 0.5;
+  word-break: normal;
+  word-wrap: normal;
+  hyphens: none;
+  overflow-wrap: none;
+  transition: opacity 250ms ease-in-out;
 
   &:hover {
     opacity: 1;
@@ -59,6 +66,13 @@
   @media only screen and (min-width: 48em) {
     text-align: center;
     justify-content: center;
+
+    &:hover .navText {
+      display: block;
+      max-width: 150px;
+      opacity: 1;
+      padding-right: 19px;
+    }
   }
 }
 
@@ -71,8 +85,22 @@
 .navText {
   text-decoration: none;
   margin-left: $l-spacing;
+
   @media only screen and (min-width: 48em) {
-    display: none;
+    border-top-right-radius: $base-border-radius;
+    border-bottom-right-radius: $base-border-radius;
+    overflow: hidden;
+    position: absolute;
+    left: $sidebar-width-sm;
+    margin-left: 0;
+    max-width: 0px;
+    opacity: 0;
+    padding: 19px;
+    padding-left: 19px;
+    padding-right: 0;
+    background-color: $sidebar-color;
+    text-align: left;
+    transition: all 250ms ease-in-out;
   }
 }
 
