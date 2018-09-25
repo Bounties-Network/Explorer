@@ -1,3 +1,4 @@
+/* eslint max-len: 0 */
 import React from 'react';
 import styles from './FilterNav.module.scss';
 import PropTypes from 'prop-types';
@@ -18,6 +19,7 @@ import {
 } from 'public-modules/Bounties/selectors';
 import { categoriesSelector } from 'public-modules/Categories/selectors';
 import {
+  curry,
   each,
   map as fpMap,
   indexOf,
@@ -38,7 +40,7 @@ import appConfig from 'public-modules/config';
 const map = fpMap.convert({ cap: false });
 const reduce = fpReduce.convert({ cap: false });
 const {
-  resetFilter,
+  resetFilter: filterReseter,
   setSearch,
   setSort,
   toggleStageFilter,
@@ -108,67 +110,33 @@ const FilterNavComponent = props => {
     location.search ||
     `?bountyStage=${stages}&platform=${defaultPlatforms.join(',')}`;
 
-  const toggleStageFilterAction = stage => {
-    const queryParams =
-      toggleFromParam(rootLocationParams, 'bountyStage', stage) ||
-      '?bountyStage=';
+  const baseAction = curry((queryModifier, key, value, action) => {
+    value = Array.isArray(value) ? value : [value];
+    const queryParams = queryModifier(rootLocationParams, key, value.join(','));
     history.push(location.pathname + queryParams);
-    toggleStageFilter(stage);
-  };
-
-  const toggleDifficultyFilterAction = difficulty => {
-    history.push(
-      location.pathname +
-        toggleFromParam(rootLocationParams, 'difficulty', difficulty)
-    );
-    toggleDifficultyFilter(difficulty);
-  };
-
-  const addCategoryFilterAction = category => {
-    history.push(
-      location.pathname + pushToParam(rootLocationParams, 'category', category)
-    );
-    addCategoryFilter(category);
-  };
-
-  const removeCategoryFilterAction = category => {
-    history.push(
-      location.pathname +
-        removeFromParam(rootLocationParams, 'category', category)
-    );
-    removeCategoryFilter(category);
-  };
-
-  const togglePlatformFilterAction = platform => {
-    const queryParams =
-      toggleFromParam(rootLocationParams, 'platform', platform) || '?platform=';
-    history.push(location.pathname + queryParams);
-    togglePlatformFilter(platform);
-  };
-
-  const setSearchAction = throttle(300, searchValue => {
-    history.push(
-      location.pathname + setParam(rootLocationParams, 'search', searchValue)
-    );
-    setSearch(searchValue);
+    action(...value);
   });
 
-  const setSortAction = sort => {
-    const sortOrder = sort === 'deadline' ? 'asc' : 'desc';
+  const toggleAction = baseAction(toggleFromParam);
+  const pushAction = baseAction(pushToParam);
+  const removeAction = baseAction(removeFromParam);
+  const setAction = baseAction(setParam);
 
-    history.push(
-      location.pathname +
-        setParam(rootLocationParams, 'sort', [sort, sortOrder].join(','))
-    );
+  const toggleStageFilterAction = stage => toggleAction('bountyStage', stage, toggleStageFilter); // prettier-ignore
+  const toggleDifficultyFilterAction = difficulty => toggleAction('difficulty', difficulty, toggleDifficultyFilter); // prettier-ignore
+  const togglePlatformFilterAction = platform => toggleAction('platform', platform, togglePlatformFilter); // prettier-ignore
 
-    setSort(sort, sortOrder);
-  };
+  const addCategoryFilterAction = category => pushAction('category', category, addCategoryFilter); // prettier-ignore
+  const removeCategoryFilterAction = category => removeAction('category', category, removeCategoryFilter); // prettier-ignore
+
+  const setSearchAction = throttle(300, search => setAction('search', search, setSearch)); // prettier-ignore
+  const setSortAction = sort => setAction('sort', [sort, sort === 'deadline' ? 'asc' : 'desc'], setSort); // prettier-ignore
 
   const resetFilterAction = () => {
     batch(true);
     map((value, key) => {
       if (value) {
-        resetFilter(key);
+        filterReseter(key);
       }
     }, resetableFilters);
     map((value, key) => {
@@ -337,7 +305,7 @@ const FilterNav = compose(
       addPlatformFilter,
       removeCategoryFilter,
       removePlatformFilter,
-      resetFilter,
+      filterReseter,
       batch
     }
   )
