@@ -22,6 +22,10 @@
     margin-left: $sidebar-width-lg;
     padding-top: $header-height-lg;
   }
+
+  @media only screen and (min-width: 88em) {
+    margin-left: $sidebar-width-xl;
+  }
 }
 
 .network {

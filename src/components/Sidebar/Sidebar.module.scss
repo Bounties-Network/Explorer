@@ -20,6 +20,10 @@
     width: $sidebar-width-lg;
     padding-top: $header-height-lg + $base-spacing;
   }
+
+  @media only screen and (min-width: 88em) {
+    width: $sidebar-width-xl;
+  }
 }
 
 .mobileSideNav {
@@ -33,6 +37,7 @@
 
 .desktopSideNav {
   display: none;
+  
   @media only screen and (min-width: 48em) {
     display: block;
   }
@@ -77,6 +82,16 @@
       padding-left: $m-spacing;
     }
   }
+
+  @media only screen and (min-width: 88em) {
+    text-align: left;
+    justify-content: flex-start;
+
+    &:hover .navText {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
 }
 
 .navIcon {
@@ -112,6 +127,17 @@
     transition:
       all 150ms ease-in-out,
   }
+
+  @media only screen and (min-width: 88em) {
+    background-color: transparent;
+    max-width: 100%;
+    opacity: 0.5;
+    left: 0;
+    overflow: auto;
+    margin-left: $l-spacing;
+    padding: 0;
+    position: relative;
+  }
 }
 
 .active {
@@ -128,7 +154,8 @@
     left: 0;
   }
 
-  .navIcon {
+  .navIcon,
+  .navText {
     opacity: 1;
   }
 }
@@ -142,6 +169,10 @@
 
   @media only screen and (min-width: 48em) {
     display: none;
+  }
+
+  @media only screen and (min-width: 88em) {
+    display: block;
   }
 }
 
