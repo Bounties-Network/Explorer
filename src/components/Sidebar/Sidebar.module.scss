@@ -39,7 +39,7 @@
 }
 
 .icons {
-  flex: 1;
+  //flex: 1;
 }
 
 .iconTab {
@@ -130,5 +130,26 @@
 
   .navIcon {
     opacity: 1;
+  }
+}
+
+.subNav {
+  border-top: 1px solid rgba($brand-white, 0.25);
+  flex: 1;
+  margin-top: $m-spacing;
+  padding: $l-spacing;
+  padding-top: $xl-spacing;
+
+  @media only screen and (min-width: 48em) {
+    display: none;
+  }
+}
+
+.subNavLink {
+  display: block;
+  opacity: 0.5;
+
+  &:not(:last-child) {
+    margin-bottom: $l-spacing;
   }
 }

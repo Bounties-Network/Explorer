@@ -84,6 +84,7 @@ class HeaderComponent extends React.Component {
           onMobileHide={() => this.setState({ showMobileSidebar: false })}
         >
           <Sidebar.TabGroup>{this.renderSideNavItems()}</Sidebar.TabGroup>
+          <Sidebar.SubNav />
           {hasWallet &&
             !walletLocked && (
               <Sidebar.Footer>

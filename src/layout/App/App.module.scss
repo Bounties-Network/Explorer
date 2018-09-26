@@ -25,7 +25,8 @@
 }
 
 .network {
-  margin-bottom: $m-spacing;
+  align-self: flex-end;
+  margin-bottom: $l-spacing;
   width: 100;
   display: flex;
   justify-content: center;
