@@ -67,20 +67,6 @@ class UserSettingsComponent extends React.Component {
       resetUpload(UPLOAD_KEY);
     };
 
-    const emailInterestElement = (
-      <Field
-        disabled={savingSettings}
-        name="email_interest"
-        component={FormCheckbox}
-        label={
-          onboarding
-            ? 'I would like to receive relevant bounties and platform updates via email'
-            : 'Relevant bounties and platform updates'
-        }
-        defaultChecked={initialValues.email_interest}
-      />
-    );
-
     return (
       <form onSubmit={handleSubmit(values => handleSaveSettings(values))}>
         <FormSection>
@@ -118,11 +104,11 @@ class UserSettingsComponent extends React.Component {
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={savingSettings}
-                    name="email"
+                    name="organization"
                     component={FormTextInput}
-                    label="Contact email"
-                    placeholder="Enter email..."
-                    validate={[validators.maxLength(128), validators.email]}
+                    label="Organization"
+                    placeholder="Enter organization..."
+                    validate={[validators.maxLength(128)]}
                   />
                 </div>
               </div>
@@ -139,16 +125,6 @@ class UserSettingsComponent extends React.Component {
                     options={languages}
                     labelKey="name"
                     valueKey="normalized_name"
-                  />
-                </div>
-                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
-                  <Field
-                    disabled={savingSettings}
-                    name="organization"
-                    component={FormTextInput}
-                    label="Organization"
-                    placeholder="Enter organization..."
-                    validate={[validators.maxLength(128)]}
                   />
                 </div>
               </div>
@@ -235,19 +211,35 @@ class UserSettingsComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          {onboarding ? (
-            <FormSection.Section>{emailInterestElement}</FormSection.Section>
-          ) : (
-            <FormSection.Section title="EMAIL UPDATES">
-              <FormSection.Description>
-                Would you like to receive relevant bounties and platform updates
-                emailed to you?
-              </FormSection.Description>
-              <FormSection.InputGroup>
-                {emailInterestElement}
-              </FormSection.InputGroup>
-            </FormSection.Section>
-          )}
+          <FormSection.Section title="CONTACT">
+            <FormSection.Description>
+              Where would you like to receive status notifications about your
+              bounties and fulfillments?
+            </FormSection.Description>
+            <FormSection.InputGroup>
+              <div className="row">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                  <Field
+                    disabled={savingSettings}
+                    name="email"
+                    component={FormTextInput}
+                    label="Contact email"
+                    placeholder="Enter email..."
+                    validate={[validators.maxLength(128), validators.email]}
+                  />
+                </div>
+              </div>
+            </FormSection.InputGroup>
+            <FormSection.InputGroup>
+              <Field
+                disabled={savingSettings}
+                name="email_interest"
+                component={FormCheckbox}
+                label="I would also like to receive relevant bounty suggestions and platform updates"
+                defaultChecked={initialValues.email_interest}
+              />
+            </FormSection.InputGroup>
+          </FormSection.Section>
         </FormSection>
         <div className={styles.buttonContainer}>
           {onboarding && (
