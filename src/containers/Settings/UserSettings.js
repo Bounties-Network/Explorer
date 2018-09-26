@@ -135,7 +135,7 @@ class UserSettingsComponent extends React.Component {
                     name="languages"
                     component={FormSearchSelect}
                     label="Languages"
-                    placeholder="Choose a languages..."
+                    placeholder="Choose languages..."
                     options={languages}
                     labelKey="name"
                     valueKey="normalized_name"
