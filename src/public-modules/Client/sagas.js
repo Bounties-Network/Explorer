@@ -113,14 +113,14 @@ export function* getContractClient() {
   return null;
 }
 
-export function* getTokenClient(tokenAddress) {
+export function* getTokenClient(tokenAddress, type = 'HumanStandardToken') {
   const { web3 } = yield call(getWeb3Client);
   const network = yield select(networkSelector);
 
   if (network !== 'unknown') {
     return {
       tokenContract: new web3.eth.Contract(
-        config.interfaces.HumanStandardToken,
+        config.interfaces[type],
         tokenAddress
       ).methods
     };
@@ -131,6 +131,7 @@ export function* getTokenClient(tokenAddress) {
 export function* getTokenBalance(action) {
   const { address: tokenAddress } = action;
   const userAddress = yield call(getWalletAddress);
+  const { web3 } = yield call(getWeb3Client);
 
   if (tokenAddress === '0x0000000000000000000000000000000000000000') {
     try {
@@ -145,17 +146,24 @@ export function* getTokenBalance(action) {
     return;
   }
 
-  const { tokenContract: tokenClient } = yield call(
-    getTokenClient,
-    tokenAddress
-  );
-
   try {
     // verify tokenAddress is a valid ERC-20 contract client, throw if not
-    const symbol = yield call(tokenClient.symbol().call);
-    const decimals = yield call(tokenClient.decimals().call);
-
-    const balance = yield call(tokenClient.balanceOf(userAddress).call);
+    let symbol, decimals, balance;
+    try {
+      const token = yield call(getTokenClient, tokenAddress);
+      const { tokenContract: tokenClient } = token;
+      symbol = yield call(tokenClient.symbol().call);
+      decimals = yield call(tokenClient.decimals().call);
+      balance = yield call(tokenClient.balanceOf(userAddress).call);
+    } catch (e) {
+      // if it fails, it may be because the token uses a slightly
+      // different abi (DAI does this for example) and symbol is a bytes32
+      const token = yield call(getTokenClient, tokenAddress, 'DSToken');
+      const { tokenContract: tokenClient } = token;
+      symbol = web3.utils.hexToAscii(yield call(tokenClient.symbol().call));
+      decimals = yield call(tokenClient.decimals().call);
+      balance = yield call(tokenClient.balanceOf(userAddress).call);
+    }
 
     yield put(
       getTokenBalanceSuccess([Number(balance) / 10 ** Number(decimals), symbol])

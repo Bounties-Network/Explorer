@@ -24,7 +24,7 @@ const tokenValidation = (amount, tokenAddress, dispatch) => {
   };
 
   const handleRejection = e => {
-    if (includes('convertible string', e.message)) {
+    if (includes('decode bytes32 from ABI', e.message)) {
       throw { error: CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR };
     }
 
@@ -42,19 +42,18 @@ const tokenValidationWrapper = (
   tokenContractKey,
   dispatch
 ) => {
-  if (!values[amountKey] || !values[tokenContractKey]) return Promise.resolve();
+  if (!values[tokenContractKey]) return Promise.resolve();
 
   return tokenValidation(
     values[amountKey],
     values[tokenContractKey],
     dispatch
   ).catch(e => {
-    const { error, balance, symbol } = e;
+    const { error, balance = 0, symbol } = e;
     let formError = {};
 
-    const validationMessage = `Insufficient funds — balance: ${balance.toFixed(
-      2
-    )} ${symbol}`;
+    const validationMessage = `Insufficient funds — balance: \
+      ${balance.toFixed(2)} ${symbol}`;
 
     switch (error) {
       case ZERO_BALANCE_ERROR:
