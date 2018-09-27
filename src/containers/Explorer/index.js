@@ -1,6 +1,6 @@
 import React from 'react';
 import { ExplorerBody } from 'containers';
-import { ExplorerFilterNav } from 'containers/FilterNav';
+import { BountyFilterNav } from 'containers/FilterNav';
 import { FilterNavManager } from 'hocs';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
@@ -61,7 +61,7 @@ class Explorer extends React.Component {
     return (
       <div className={`${styles.explorerContainer}`}>
         <div className={styles.desktopFilter}>
-          <ExplorerFilterNav
+          <BountyFilterNav
             defaultPlatforms={[config.postingPlatform]}
             position="fixed"
           />

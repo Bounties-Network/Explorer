@@ -16,7 +16,7 @@ function FilterNavComponentHOC(WrappedComponent, config) {
   let mapDispatchToProps = null;
 
   switch (config.type) {
-    case 'explorer':
+    case 'bounty':
     default: {
       mapStateToProps = state => {
         const bountyState = rootBountiesSelector(state);

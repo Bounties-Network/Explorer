@@ -3,4 +3,4 @@ import { FilterNav } from 'explorer-components';
 
 const LinkedFilterNav = FilterNavHOC(FilterNav);
 
-export const ExplorerFilterNav = LinkedFilterNav({ type: 'explorer' });
+export const BountyFilterNav = LinkedFilterNav({ type: 'bounty' });

@@ -7,7 +7,7 @@ import ProfileDetails from './ProfileDetails';
 import { ExplorerBody } from 'containers';
 import { FilterNavManager } from 'hocs';
 import { filterConfig } from './constants';
-import { FilterNav } from 'explorer-components';
+import { BountyFilterNav } from 'containers/FilterNav';
 import styles from './Profile.module.scss';
 import { ZeroState } from 'components';
 import { actions as bountiesActions } from 'public-modules/Bounties';
@@ -144,7 +144,7 @@ class ProfileComponent extends React.Component {
     const { position } = this.state;
 
     const profileFilterNav = (
-      <FilterNav
+      <BountyFilterNav
         position={position}
         config={filterConfig.rootConfig}
         resetFilters={filterConfig.resetFilters}
