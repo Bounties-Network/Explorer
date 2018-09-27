@@ -1,6 +1,7 @@
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 const defaultConfig = {
+  type: null,
   rootConfig: null,
   resetFilters: null,
   defaultStageFilters: null

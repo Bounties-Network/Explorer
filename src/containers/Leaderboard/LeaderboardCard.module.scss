@@ -37,3 +37,21 @@
     margin-bottom: 0;
   }
 }
+
+.platformSelect {
+  margin-left: auto;
+  margin-bottom: $m-spacing;
+
+  @media only screen and (max-width: 48em) {
+    margin: $s-spacing;
+  }
+
+  @media only screen and (min-width: 48em) {
+    width: 40%;
+  }
+
+  @media only screen and (min-width: 65em) {
+    width: 25%;
+
+  }
+}

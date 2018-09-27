@@ -108,6 +108,7 @@ class SearchSelect extends React.Component {
       disabled,
       label,
       error,
+      loading,
       labelKey,
       valueKey,
       value,
@@ -189,6 +190,7 @@ class SearchSelect extends React.Component {
           options={this.filterOptions()}
           placeholder={placeholder}
           value={selectedValue}
+          isLoading={loading}
         />
       );
     }

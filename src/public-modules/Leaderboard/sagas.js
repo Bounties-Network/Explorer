@@ -4,14 +4,25 @@ import { actionTypes, actions } from 'public-modules/Leaderboard';
 import { leaderboardQuerySelector, leaderboardSelector } from './selectors';
 import { rootLeaderboardUISelector } from 'containers/Leaderboard/selectors';
 
-const { LOAD_LEADERBOARD, LOAD_MORE_LEADERBOARD } = actionTypes;
 const {
+  LOAD_LEADERBOARD,
+  LOAD_MORE_LEADERBOARD,
+  SET_PLATFORM_FILTER,
+  ADD_PLATFORM_FILTER,
+  REMOVE_PLATFORM_FILTER
+} = actionTypes;
+const {
+  loadLeaderboard: loadLeaderboardAction,
   loadLeaderboardFail,
   loadLeaderboardSuccess,
   loadMoreLeaderboardSuccess
 } = actions;
 
-export function* loadLeaderboard() {
+export function* loadLeaderboard(action) {
+  if (action.type !== LOAD_LEADERBOARD) {
+    return yield put(loadLeaderboardAction());
+  }
+
   const params = yield select(leaderboardQuerySelector);
 
   try {
@@ -61,7 +72,15 @@ export function* loadMoreLeaderboard() {
 }
 
 export function* watchLeaderboard() {
-  yield takeLatest(LOAD_LEADERBOARD, loadLeaderboard);
+  yield takeLatest(
+    [
+      LOAD_LEADERBOARD,
+      SET_PLATFORM_FILTER,
+      ADD_PLATFORM_FILTER,
+      REMOVE_PLATFORM_FILTER
+    ],
+    loadLeaderboard
+  );
 }
 
 export function* watchLoadMoreLeaderboard() {

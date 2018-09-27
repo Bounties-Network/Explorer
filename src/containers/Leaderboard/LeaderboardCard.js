@@ -2,11 +2,14 @@ import React from 'react';
 import styles from './LeaderboardCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { ListGroup, Loader, ZeroState, Button } from 'components';
+import { ListGroup, Loader, ZeroState, Button, SearchSelect } from 'components';
 import { LoadComponent } from 'hocs';
 import { LeaderItem } from './components';
 import { map as fpMap } from 'lodash';
-import { rootLeaderboardSelector } from 'public-modules/Leaderboard/selectors';
+import {
+  leaderboardPlatformFiltersSelector,
+  rootLeaderboardSelector
+} from 'public-modules/Leaderboard/selectors';
 import { rootLeaderboardUISelector } from './selectors';
 import { actions } from 'public-modules/Leaderboard';
 import config from 'public-modules/config';
@@ -22,7 +25,10 @@ const LeaderboardCardComponent = props => {
     count,
     loadMore,
     loadingMore,
-    loadingMoreError
+    loadingMoreError,
+    selectedPlatforms,
+    setPlatformFilter,
+    removePlatformFilter
   } = props;
 
   const leaders = leaderboard[toggleValue] || [];
@@ -51,12 +57,31 @@ const LeaderboardCardComponent = props => {
   };
 
   let cardBodyClass;
-  if (loading || leaders.length === 0) {
+  if ((loading && !leaders.length) || leaders.length === 0) {
     cardBodyClass = styles.cardBodyLoading;
   }
 
   let cardBody = (
     <div className={cardBodyClass}>
+      <div className={styles.platformSelect}>
+        <SearchSelect
+          single
+          options={map(
+            platform => ({
+              label: platform,
+              value: platform
+            }),
+            config.platform.split(',')
+          )}
+          value={selectedPlatforms[0]}
+          labelKey="label"
+          valueKey="value"
+          onChange={setPlatformFilter}
+          onClose={removePlatformFilter}
+          loading={loading}
+        />
+      </div>
+
       <ListGroup>{renderLeaders()}</ListGroup>
 
       {leaderboard[toggleValue].length < count[toggleValue] ? (
@@ -81,7 +106,7 @@ const LeaderboardCardComponent = props => {
     );
   }
 
-  if (loading) {
+  if (loading && !leaders.length) {
     cardBody = <Loader color="blue" size="medium" />;
   }
 
@@ -113,7 +138,8 @@ const mapStateToProps = state => {
     error: leaderboardState.error,
     loadingMore: leaderboardState.loadingMore,
     toggleValue: leaderboardUIState.toggleValue,
-    key: leaderboardUIState.toggleValue
+    key: leaderboardUIState.toggleValue,
+    selectedPlatforms: leaderboardPlatformFiltersSelector(state)
   };
 };
 
@@ -122,7 +148,9 @@ const LeaderboardCard = compose(
     mapStateToProps,
     {
       load: () => actions.loadLeaderboard(config.platform),
-      loadMore: actions.loadMoreLeaderboard
+      loadMore: actions.loadMoreLeaderboard,
+      setPlatformFilter: actions.setPlatformFilter,
+      removePlatformFilter: actions.removePlatformFilter
     }
   ),
   LoadComponent('')

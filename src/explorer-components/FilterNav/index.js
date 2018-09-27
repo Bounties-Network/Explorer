@@ -1,4 +1,3 @@
-/* eslint max-len: 0 */
 import React from 'react';
 import styles from './FilterNav.module.scss';
 import PropTypes from 'prop-types';

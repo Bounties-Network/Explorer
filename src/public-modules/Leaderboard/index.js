@@ -1,3 +1,5 @@
+import config from 'public-modules/config';
+
 const initialState = {
   loading: true,
   loadingMore: false,
@@ -5,7 +7,8 @@ const initialState = {
   loaded: false,
   error: false,
   count: { issuer: 0, fulfiller: 0 },
-  leaderboard: { issuer: [], fulfiller: [] }
+  leaderboard: { issuer: [], fulfiller: [] },
+  platformFilters: new Set([config.postingPlatform])
 };
 
 const LOAD_LEADERBOARD = 'leaderboard/LOAD_LEADERBOARD';
@@ -40,6 +43,22 @@ function loadMoreLeaderboardSuccess(leaderboard) {
 
 function loadLeaderboardFail(error) {
   return { type: LOAD_LEADERBOARD_FAIL, error };
+}
+
+const SET_PLATFORM_FILTER = 'leaderboard/SET_PLATFORM_FILTER';
+const ADD_PLATFORM_FILTER = 'leaderboard/ADD_PLATFORM_FILTER';
+const REMOVE_PLATFORM_FILTER = 'leaderboard/REMOVE_PLATFORM_FILTER';
+
+function setPlatformFilter(platform) {
+  return { type: SET_PLATFORM_FILTER, platform };
+}
+
+function addPlatformFilter(platform) {
+  return { type: ADD_PLATFORM_FILTER, platform };
+}
+
+function removePlatformFilter(platform) {
+  return { type: REMOVE_PLATFORM_FILTER, platform };
 }
 
 function LeaderboardReducer(state = initialState, action) {
@@ -103,6 +122,35 @@ function LeaderboardReducer(state = initialState, action) {
         error: true
       };
     }
+    case SET_PLATFORM_FILTER: {
+      const { platform } = action;
+      const updated_filters = new Set([platform]);
+
+      return {
+        ...state,
+        platformFilters: updated_filters
+      };
+    }
+    case ADD_PLATFORM_FILTER: {
+      const { platform } = action;
+      const updated_filters = new Set(state.platformFilters);
+      updated_filters.add(platform);
+
+      return {
+        ...state,
+        platformFilters: updated_filters
+      };
+    }
+    case REMOVE_PLATFORM_FILTER: {
+      const { platform } = action;
+      const updated_filters = new Set(state.platformFilters);
+      updated_filters.delete(platform);
+
+      return {
+        ...state,
+        platformFilters: updated_filters
+      };
+    }
     default:
       return state;
   }
@@ -113,7 +161,10 @@ export const actions = {
   loadMoreLeaderboard,
   loadLeaderboardSuccess,
   loadMoreLeaderboardSuccess,
-  loadLeaderboardFail
+  loadLeaderboardFail,
+  setPlatformFilter,
+  addPlatformFilter,
+  removePlatformFilter
 };
 
 export const actionTypes = {
@@ -121,7 +172,10 @@ export const actionTypes = {
   LOAD_MORE_LEADERBOARD,
   LOAD_LEADERBOARD_SUCCESS,
   LOAD_MORE_LEADERBOARD_SUCCESS,
-  LOAD_LEADERBOARD_FAIL
+  LOAD_LEADERBOARD_FAIL,
+  SET_PLATFORM_FILTER,
+  ADD_PLATFORM_FILTER,
+  REMOVE_PLATFORM_FILTER
 };
 
 export default LeaderboardReducer;
