@@ -10,14 +10,14 @@ const Social = props => {
           window.location.href
         )}`}
       >
-        <FontAwesomeIcon icon={['fab', 'twitter']} className={styles.icon} />
+        <FontAwesomeIcon icon={['fab', 'facebook']} className={styles.icon} />
       </a>
       <a
         href={`https://twitter.com/home?status=${encodeURIComponent(
           window.location.href
         )}`}
       >
-        <FontAwesomeIcon icon={['fab', 'facebook']} className={styles.icon} />
+        <FontAwesomeIcon icon={['fab', 'twitter']} className={styles.icon} />
       </a>
       <a
         href={`http://reddit.com/submit?url=${encodeURIComponent(
