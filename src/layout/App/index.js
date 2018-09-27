@@ -186,7 +186,7 @@ class AppComponent extends React.Component {
         {isPageLoading && (
           <div className={`${styles.loadingBody}`}>
             {' '}
-            <Loader color="white" size="medium" />
+            <Loader size="medium" />
           </div>
         )}
         {!isPageLoading &&
