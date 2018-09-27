@@ -186,15 +186,15 @@
   width: 16px;
 }
 .Select-loading {
-  -webkit-animation: Select-animation-spin 400ms infinite linear;
-  -o-animation: Select-animation-spin 400ms infinite linear;
-  animation: Select-animation-spin 400ms infinite linear;
+  -webkit-animation: Select-animation-spin 1.1s infinite linear;
+  -o-animation: Select-animation-spin 1.1s infinite linear;
+  animation: Select-animation-spin 1.1s infinite linear;
   width: 16px;
   height: 16px;
   box-sizing: border-box;
   border-radius: 50%;
   border: 2px solid #ccc;
-  border-right-color: #333;
+  border-right-color: #4A93FF;
   display: inline-block;
   position: relative;
   vertical-align: middle;

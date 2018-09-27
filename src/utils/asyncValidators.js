@@ -52,7 +52,7 @@ const tokenValidationWrapper = (
     const { error, balance = 0, symbol } = e;
     let formError = {};
 
-    const validationMessage = `Insufficient funds — balance: \
+    const validationMessage = `Insufficient funds in wallet — balance: \
       ${balance.toFixed(2)} ${symbol}`;
 
     switch (error) {
