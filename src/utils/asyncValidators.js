@@ -2,6 +2,7 @@
 
 import { actions } from 'layout/App/reducer';
 import { includes } from 'lodash';
+import { promisifyDebounce } from 'utils/helpers';
 
 const { getTokenBalance } = actions;
 
@@ -79,5 +80,5 @@ const tokenValidationWrapper = (
 
 export default {
   tokenValidation,
-  tokenValidationWrapper
+  tokenValidationWrapper: promisifyDebounce(tokenValidationWrapper, 500)
 };

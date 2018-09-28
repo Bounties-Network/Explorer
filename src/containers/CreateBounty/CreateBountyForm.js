@@ -543,7 +543,7 @@ const CreateBountyForm = compose(
         dispatch
       );
     },
-    asyncBlurFields: ['balance', 'tokenContract']
+    asyncChangeFields: ['balance', 'tokenContract']
   })
 )(CreateBountyFormComponent);
 

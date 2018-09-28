@@ -4,18 +4,22 @@ function FormInputHOC(WrappedComponent) {
   return props => {
     const {
       meta: { touched, error, asyncValidating },
-      input
+      input,
+      loading
     } = props;
-    let componentError = '';
-    if (error && touched) {
+    let componentError,
+      componentLoading = '';
+    if (touched) {
       componentError = error;
+      componentLoading = asyncValidating;
     }
+
     return (
       <WrappedComponent
         {...props}
         {...input}
         error={componentError}
-        loading={asyncValidating}
+        loading={componentLoading}
       />
     );
   };
