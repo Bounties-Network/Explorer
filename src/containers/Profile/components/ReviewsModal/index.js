@@ -24,7 +24,7 @@ let ReviewsModal = props => {
             review={review.review}
             name={review.reviewer.name}
             address={review.reviewer.public_address}
-            img={review.reviewer.profile_image}
+            img={review.reviewer.small_profile_image_url}
             created={review.created}
           />
         </ListGroup.ListItem>

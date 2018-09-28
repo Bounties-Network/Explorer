@@ -74,14 +74,7 @@ const HeaderComponent = props => {
               <DropdownTrigger>
                 <Avatar
                   size="small"
-                  img={
-                    user.is_profile_image_dirty
-                      ? ipfsToHttp(
-                          user.profileDirectoryHash,
-                          user.profileFileName
-                        )
-                      : user.profile_image
-                  }
+                  img={user.small_profile_image_url}
                   hash={user.public_address}
                 />
               </DropdownTrigger>

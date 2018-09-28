@@ -32,7 +32,13 @@ const LeaderboardCardComponent = props => {
 
   const renderLeaders = () => {
     return map((leader, index) => {
-      const { name, address, profile_image, total_usd, total } = leader;
+      const {
+        name,
+        address,
+        small_profile_image_url,
+        total_usd,
+        total
+      } = leader;
 
       const value = config.defaultToken
         ? Number(total / 10 ** config.defaultToken.decimals).toFixed(2)
@@ -42,7 +48,7 @@ const LeaderboardCardComponent = props => {
         <ListGroup.ListItem key={index + 1}>
           <LeaderItem
             place={index + 1}
-            img={profile_image}
+            img={small_profile_image_url}
             name={name}
             address={address}
             value={value}

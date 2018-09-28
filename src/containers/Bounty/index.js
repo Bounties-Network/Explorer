@@ -219,7 +219,7 @@ class BountyComponent extends React.Component {
                 </div>
                 <div className={styles.avatar}>
                   <LinkedAvatar
-                    img={bounty.user.profile_image}
+                    img={bounty.user.small_profile_image_url}
                     address={bounty.user.public_address}
                     hash={bounty.user.public_address}
                     to={`/profile/${bounty.user.public_address}`}

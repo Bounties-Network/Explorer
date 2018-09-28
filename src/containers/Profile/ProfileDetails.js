@@ -42,11 +42,7 @@ const ProfileDetailsComponent = props => {
       <ProfileAvatar
         name={user.name}
         address={user.public_address}
-        img={
-          user.is_profile_image_dirty
-            ? ipfsToHttp(user.profileDirectoryHash, user.profileFileName)
-            : user.profile_image
-        }
+        img={user.large_profile_image_url}
         className={styles.profileAvatar}
       />
       <div className={styles.details}>

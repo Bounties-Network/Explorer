@@ -43,7 +43,7 @@ class UserSettingsComponent extends React.Component {
       saveSettings,
       savingSettings,
       onboarding,
-      onClose
+      onClose,
       smallProfileImageUrl,
       largeProfileImageUrl
     } = this.props;
