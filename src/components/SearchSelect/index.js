@@ -177,6 +177,7 @@ class SearchSelect extends React.Component {
           onBlur={() => onBlur(this.state.value)}
           placeholder={placeholder}
           value={selectedValue}
+          isLoading={loading}
         />
       ) : (
         <Select

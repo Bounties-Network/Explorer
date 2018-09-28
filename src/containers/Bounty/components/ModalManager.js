@@ -116,6 +116,7 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={contribute}
         tokenSymbol={bounty.tokenSymbol}
+        tokenContract={bounty.tokenContract}
       />
       <ExtendDeadlineErrorModal
         visible={modalVisible && modalType === 'deadlineWarning'}
@@ -133,6 +134,7 @@ const ModalManagerComponent = props => {
         onSubmit={activateDraftBounty}
         minimumBalance={minimumBalance}
         tokenSymbol={bounty.tokenSymbol}
+        tokenContract={bounty.tokenContract}
         initialValues={{ balance: minimumBalance }}
       />
       <ExtendDeadlineFormModal
@@ -153,6 +155,7 @@ const ModalManagerComponent = props => {
         onSubmit={activateBounty}
         minimumBalance={minimumBalance}
         tokenSymbol={bounty.tokenSymbol}
+        tokenContract={bounty.tokenContract}
         initialValues={{ balance: minimumBalance }}
       />
       <IncreasePayoutFormModal
@@ -164,6 +167,7 @@ const ModalManagerComponent = props => {
         ).toString()}
         visible={modalVisible && modalType === 'increasePayout'}
         tokenSymbol={bounty.tokenSymbol}
+        tokenContract={bounty.tokenContract}
         minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}
       />
       <FulfillBountyFormModal

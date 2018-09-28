@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './TextInput.module.scss';
-import { Text } from 'components';
+import { Loader, Text } from 'components';
 
 class TextInput extends React.Component {
   state = {
@@ -21,6 +21,7 @@ class TextInput extends React.Component {
       label,
       disabled,
       error,
+      loading,
       optional,
       onBlur,
       onFocus,
@@ -48,24 +49,27 @@ class TextInput extends React.Component {
 
     return (
       <div>
-        {labelText ? (
+        {labelText && (
           <div>
             <Text inputLabel color={error ? 'red' : null}>
               {labelText}
             </Text>
           </div>
-        ) : null}
-        <input
-          placeholder={placeholder}
-          disabled={disabled}
-          className={inputClass}
-          type={type}
-          value={textValue}
-          onChange={this.onTextChange}
-          onBlur={onBlur}
-          onFocus={onFocus}
-        />
-        {error ? (
+        )}
+        <div className={styles.container}>
+          {loading && <Loader className={styles.loader} color="blue" />}
+          <input
+            placeholder={placeholder}
+            disabled={disabled}
+            className={inputClass}
+            type={type}
+            value={textValue}
+            onChange={this.onTextChange}
+            onBlur={onBlur}
+            onFocus={onFocus}
+          />
+        </div>
+        {error && (
           <div>
             <Text
               className={styles.inputHelpText}
@@ -75,7 +79,7 @@ class TextInput extends React.Component {
               {error}
             </Text>
           </div>
-        ) : null}
+        )}
       </div>
     );
   }

@@ -1,5 +1,15 @@
 @import "~styles/variables.scss";
 
+.container {
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+}
+
 .textInput {
   height: $base-input-height;
   background-color: $base-input-background;
