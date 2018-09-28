@@ -3,8 +3,6 @@ import styles from './Settings.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { FormSection } from 'explorer-components';
-import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
-import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as skillActions } from 'public-modules/Skills';
 import { actions as settingsActions } from 'public-modules/Settings';
 import { skillsSelector } from 'public-modules/Skills/selectors';
@@ -16,10 +14,8 @@ import {
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
-import { ipfsToHttp } from 'utils/helpers';
 import { Cropper, Button, Text } from 'components';
-import { FormTextInput, FormSearchSelect, FormCheckbox } from 'form-components';
-import { UPLOAD_KEY } from './constants';
+import { FormCheckbox, FormTextInput, FormSearchSelect } from 'form-components';
 
 class UserSettingsComponent extends React.Component {
   constructor(props) {
@@ -33,7 +29,6 @@ class UserSettingsComponent extends React.Component {
     const {
       uploadProfileImage,
       uploading,
-      uploadingError,
       addSkill,
       skills,
       languages,
@@ -276,7 +271,6 @@ class UserSettingsComponent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const rootUpload = rootUploadSelector(state);
   const uploadState = profileImageUploadStateSelector(state);
   const currentUser = getCurrentUserSelector(state);
 

@@ -18,7 +18,6 @@ import {
   loadedUserSelector,
   loadedUserStatsSelector
 } from 'public-modules/UserInfo/selectors';
-import { ipfsToHttp } from 'utils/helpers';
 import { profileUISelector } from './selectors';
 import { actions } from './reducer';
 

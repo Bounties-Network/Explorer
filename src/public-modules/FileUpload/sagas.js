@@ -1,4 +1,3 @@
-import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/FileUpload';
 import { readFile } from 'public-modules/Utilities/helpers';

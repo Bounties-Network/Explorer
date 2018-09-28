@@ -11,7 +11,6 @@ import {
   loadedUserStatsSelector
 } from 'public-modules/UserInfo/selectors';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
-import { ipfsToHttp } from 'utils/helpers';
 
 const { loadUserInfo } = userInfoActions;
 
