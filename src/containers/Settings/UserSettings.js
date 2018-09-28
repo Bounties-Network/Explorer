@@ -15,7 +15,7 @@ import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
 import { ipfsToHttp } from 'utils/helpers';
 import { Cropper, Button, Text } from 'components';
-import { FormTextInput, FormSearchSelect } from 'form-components';
+import { FormTextInput, FormSearchSelect, FormCheckbox } from 'form-components';
 import { UPLOAD_KEY } from './constants';
 
 class UserSettingsComponent extends React.Component {
@@ -41,7 +41,10 @@ class UserSettingsComponent extends React.Component {
       savingSettings,
       ipfsHash,
       fileName,
-      resetUpload
+      resetUpload,
+      onboarding,
+      onClose,
+      initialValues
     } = this.props;
 
     const { profileImage } = this.state;
@@ -101,11 +104,11 @@ class UserSettingsComponent extends React.Component {
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={savingSettings}
-                    name="email"
+                    name="organization"
                     component={FormTextInput}
-                    label="Contact email"
-                    placeholder="Enter email..."
-                    validate={[validators.maxLength(128), validators.email]}
+                    label="Organization"
+                    placeholder="Enter organization..."
+                    validate={[validators.maxLength(128)]}
                   />
                 </div>
               </div>
@@ -118,20 +121,10 @@ class UserSettingsComponent extends React.Component {
                     name="languages"
                     component={FormSearchSelect}
                     label="Languages"
-                    placeholder="Choose a languages..."
+                    placeholder="Choose languages..."
                     options={languages}
                     labelKey="name"
                     valueKey="normalized_name"
-                  />
-                </div>
-                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
-                  <Field
-                    disabled={savingSettings}
-                    name="organization"
-                    component={FormTextInput}
-                    label="Organization"
-                    placeholder="Enter organization..."
-                    validate={[validators.maxLength(128)]}
                   />
                 </div>
               </div>
@@ -218,15 +211,49 @@ class UserSettingsComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
+          <FormSection.Section title="CONTACT">
+            <FormSection.Description>
+              Where would you like to receive status notifications about your
+              bounties and fulfillments?
+            </FormSection.Description>
+            <FormSection.InputGroup>
+              <div className="row">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                  <Field
+                    disabled={savingSettings}
+                    name="email"
+                    component={FormTextInput}
+                    label="Contact email"
+                    placeholder="Enter email..."
+                    validate={[validators.maxLength(128), validators.email]}
+                  />
+                </div>
+              </div>
+            </FormSection.InputGroup>
+            <FormSection.InputGroup>
+              <Field
+                disabled={savingSettings}
+                name="email_interest"
+                component={FormCheckbox}
+                label="I would also like to receive relevant bounty suggestions and platform updates"
+                defaultChecked={initialValues.email_interest}
+              />
+            </FormSection.InputGroup>
+          </FormSection.Section>
         </FormSection>
         <div className={styles.buttonContainer}>
+          {onboarding && (
+            <Button onClick={onClose} margin>
+              Cancel
+            </Button>
+          )}
           <Button
             type="primary"
             disabled={uploading || (submitFailed && invalid)}
             loading={savingSettings}
             buttonType="submit"
           >
-            Update Profile
+            {onboarding ? 'Submit Details' : 'Update Profile'}
           </Button>
           {submitFailed && invalid ? (
             <Text inputLabel color="red" className={styles.submitError}>
@@ -247,8 +274,6 @@ const mapStateToProps = state => {
   return {
     initialValues: {
       ...currentUser,
-      languages: currentUser.languages,
-
       // stored in db w/o @ symbol
       twitter: currentUser.twitter ? '@' + currentUser.twitter : '',
       github: currentUser.github ? '@' + currentUser.github : ''
