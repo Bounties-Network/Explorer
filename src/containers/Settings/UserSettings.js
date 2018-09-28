@@ -233,10 +233,10 @@ class UserSettingsComponent extends React.Component {
             <FormSection.InputGroup>
               <Field
                 disabled={savingSettings}
-                name="email_interest"
+                name="wants_marketing_emails"
                 component={FormCheckbox}
                 label="I would also like to receive relevant bounty suggestions and platform updates"
-                defaultChecked={initialValues.email_interest}
+                defaultChecked={initialValues.wants_marketing_emails}
               />
             </FormSection.InputGroup>
           </FormSection.Section>
