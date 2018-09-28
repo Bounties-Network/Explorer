@@ -1,0 +1,19 @@
+{
+  "platform": "bounties-network,gitcoin",
+  "postingPlatform": "bounties-network",
+  "postingSchema": "standardSchema",
+  "postingSchemaVersion": "0.1",
+  "categoryPlatform": "main",
+  "networkName": "staging.bounties.network",
+  "url": {
+    "mainNet": "https://staging.api.bounties.network",
+    "rinkeby": "https://rinkebystaging.api.bounties.network"
+  },
+  "requiredNetwork": "",
+  "mainNet": {
+    "standardBountiesAddress": "0x2af47a65da8CD66729b4209C22017d6A5C2d2400"
+  },
+  "rinkeby": {
+    "standardBountiesAddress": "0xdd1636b88e9071507e859e61991ed4be6647f420"
+  }
+}
