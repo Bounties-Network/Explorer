@@ -20,12 +20,19 @@ export const leaderboardStateSelector = createSelector(
   })
 );
 
+export const leaderboardPlatformFiltersSelector = createSelector(
+  leaderboardSelector,
+  rootLeaderboard => [...rootLeaderboard.platformFilters]
+);
+
 export const leaderboardQuerySelector = createSelector(
-  rootLeaderboardSelector,
+  leaderboardSelector,
   rootLeaderboard => {
     const query = {
       limit: LIMIT,
-      platform__in: config.platform
+      platform__in: rootLeaderboard.platformFilters.size
+        ? [...rootLeaderboard.platformFilters].join(',')
+        : config.platform
     };
 
     return query;
