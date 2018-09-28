@@ -9,7 +9,10 @@ import { actions as skillActions } from 'public-modules/Skills';
 import { actions as settingsActions } from 'public-modules/Settings';
 import { skillsSelector } from 'public-modules/Skills/selectors';
 import { languagesSelector } from 'public-modules/Languages/selectors';
-import { settingsSelector } from 'public-modules/Settings/selectors';
+import {
+  profileImageUploadStateSelector,
+  settingsSelector
+} from 'public-modules/Settings/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
@@ -22,15 +25,15 @@ class UserSettingsComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    const { ipfsHash, fileName } = props;
     this.state = {
-      profileImage: ipfsHash ? ipfsToHttp(ipfsHash, fileName) : null
+      profileImage: props.initialValues.largeProfileImageUrl
     };
   }
   render() {
     const {
-      uploadFile,
+      uploadProfileImage,
       uploading,
+      uploadingError,
       addSkill,
       skills,
       languages,
@@ -39,11 +42,10 @@ class UserSettingsComponent extends React.Component {
       submitFailed,
       saveSettings,
       savingSettings,
-      ipfsHash,
-      fileName,
-      resetUpload,
       onboarding,
       onClose
+      smallProfileImageUrl,
+      largeProfileImageUrl
     } = this.props;
 
     const { profileImage } = this.state;
@@ -51,19 +53,18 @@ class UserSettingsComponent extends React.Component {
     const handleSaveSettings = values => {
       saveSettings({
         ...values,
-        ipfsHash: ipfsHash,
-        fileName: fileName
+        smallProfileImageUrl,
+        largeProfileImageUrl
       });
     };
 
-    const handleUpload = file => {
-      this.setState({ profileImage: URL.createObjectURL(file) });
-      uploadFile(UPLOAD_KEY, file);
+    const handleUpload = (smallImage, largeImage) => {
+      this.setState({ profileImage: URL.createObjectURL(largeImage) });
+      uploadProfileImage(smallImage, largeImage);
     };
 
     const handleResetUpload = () => {
       this.setState({ profileImage: null });
-      resetUpload(UPLOAD_KEY);
     };
 
     const validatorGroups = {
@@ -83,7 +84,7 @@ class UserSettingsComponent extends React.Component {
             <FormSection.InputGroup>
               <Cropper
                 disabled={savingSettings}
-                onChange={file => handleUpload(file)}
+                onChange={handleUpload}
                 onDelete={handleResetUpload}
                 loading={uploading}
                 src={profileImage}
@@ -276,7 +277,7 @@ class UserSettingsComponent extends React.Component {
 
 const mapStateToProps = state => {
   const rootUpload = rootUploadSelector(state);
-  const uploadState = rootUpload[UPLOAD_KEY] || {};
+  const uploadState = profileImageUploadStateSelector(state);
   const currentUser = getCurrentUserSelector(state);
 
   return {
@@ -284,12 +285,14 @@ const mapStateToProps = state => {
       ...currentUser,
       // stored in db w/o @ symbol
       twitter: currentUser.twitter ? '@' + currentUser.twitter : '',
-      github: currentUser.github ? '@' + currentUser.github : ''
+      github: currentUser.github ? '@' + currentUser.github : '',
+      smallProfileImageUrl: currentUser.small_profile_image_url,
+      largeProfileImageUrl: currentUser.large_profile_image_url
     },
-    uploading: uploadState.uploading || false,
-    uploaded: uploadState.uploaded || false,
-    ipfsHash: uploadState.ipfsHash || currentUser.profileDirectoryHash,
-    fileName: uploadState.fileName || currentUser.profileFileName,
+    uploading: uploadState.uploading,
+    uploadingError: uploadState.error,
+    smallProfileImageUrl: uploadState.smallUrl,
+    largeProfileImageUrl: uploadState.largeUrl,
     skills: skillsSelector(state),
     languages: languagesSelector(state),
     savingSettings: settingsSelector(state).saving,
@@ -307,8 +310,7 @@ const UserSettings = compose(
   connect(
     mapStateToProps,
     {
-      uploadFile: uploadActions.uploadFile,
-      resetUpload: uploadActions.resetUpload,
+      uploadProfileImage: settingsActions.uploadProfileImage,
       addSkill: skillActions.addToSkills,
       saveSettings: settingsActions.saveSettings
     }

@@ -52,24 +52,35 @@ class Cropper extends React.Component {
   save = e => {
     e.preventDefault();
 
-    this.croppie
-      .result({
-        type: 'blob',
-        size: { width: 300, height: 300 },
-        quality: 0.75,
-        circle: true
-      })
-      .then(blob => {
-        blob.name = this.state.file.name;
-        this.props.onChange(blob);
+    const small = this.croppie.result({
+      type: 'blob',
+      size: { width: 64, height: 64 },
+      quality: 0.5,
+      format: 'png',
+      circle: true
+    });
 
-        if (this.croppie) {
-          this.croppie.destroy();
-          this.croppie = null;
-        }
+    const large = this.croppie.result({
+      type: 'blob',
+      size: { width: 300, height: 300 },
+      quality: 0.75,
+      format: 'png',
+      circle: true
+    });
 
-        this.setState({ activeCrop: false });
-      });
+    Promise.all([small, large]).then(([smallBlob, largeBlob]) => {
+      smallBlob.name = this.state.file.name;
+      largeBlob.name = this.state.file.name;
+
+      this.props.onChange(smallBlob, largeBlob);
+
+      if (this.croppie) {
+        this.croppie.destroy();
+        this.croppie = null;
+      }
+
+      this.setState({ activeCrop: false });
+    });
   };
 
   readFile = () => {

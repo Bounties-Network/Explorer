@@ -2,13 +2,22 @@ import request from 'utils/request';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Settings';
 import { addressSelector } from 'public-modules/Client/selectors';
+import { readFile } from 'public-modules/Utilities/helpers';
+import { Buffer } from 'buffer';
 
-const { SAVE_SETTINGS, SAVE_EMAIL_PREFERENCES } = actionTypes;
+const {
+  SAVE_SETTINGS,
+  SAVE_EMAIL_PREFERENCES,
+  UPLOAD_PROFILE_IMAGE
+} = actionTypes;
+
 const {
   saveSettingsSuccess,
   saveSettingsFail,
   saveEmailPreferencesSuccess,
-  saveEmailPreferencesFail
+  saveEmailPreferencesFail,
+  uploadProfileImageSuccess,
+  uploadProfileImageFail
 } = actions;
 
 export function* saveSettings(action) {
@@ -25,8 +34,8 @@ export function* saveSettings(action) {
     twitter,
     github,
     linkedin,
-    fileName,
-    ipfsHash: profileImageIpfsHash
+    smallProfileImageUrl,
+    largeProfileImageUrl
   } = values;
 
   const data = {
@@ -41,8 +50,8 @@ export function* saveSettings(action) {
     twitter: twitter.substr(1), // remove @ symbol from handle
     linkedin,
     //dribbble,
-    profileDirectoryHash: profileImageIpfsHash,
-    profileFileName: fileName
+    small_profile_image_url: smallProfileImageUrl || '',
+    large_profile_image_url: largeProfileImageUrl || ''
   };
 
   try {
@@ -97,6 +106,43 @@ export function* saveEmailPreferences(action) {
   }
 }
 
+export function* uploadProfileImage(action) {
+  const { smallImage, largeImage } = action;
+
+  const sm_reader = yield call(readFile, smallImage);
+  const lg_reader = yield call(readFile, largeImage);
+
+  const sm_buffer = Buffer.from(sm_reader.result);
+  const lg_buffer = Buffer.from(lg_reader.result);
+
+  try {
+    const { sm_put_url, lg_put_url, sm_url, lg_url } = yield call(
+      request,
+      'user/requestProfileImageUploadURL',
+      'GET'
+    );
+
+    yield call(request, sm_put_url, 'PUT', {
+      headers: { 'content-type': 'image/png' },
+      data: sm_buffer
+    });
+
+    yield call(request, lg_put_url, 'PUT', {
+      headers: { 'content-type': 'image/png' },
+      data: lg_buffer
+    });
+
+    yield put(uploadProfileImageSuccess(sm_url, lg_url));
+  } catch (e) {
+    console.log(e);
+    yield put(uploadProfileImageFail());
+  }
+}
+
+export function* watchUploadProfileImage() {
+  yield takeLatest(UPLOAD_PROFILE_IMAGE, uploadProfileImage);
+}
+
 export function* watchSaveEmailPreferences() {
   yield takeLatest(SAVE_EMAIL_PREFERENCES, saveEmailPreferences);
 }
@@ -105,4 +151,8 @@ export function* watchSaveSettings() {
   yield takeLatest(SAVE_SETTINGS, saveSettings);
 }
 
-export default [watchSaveSettings, watchSaveEmailPreferences];
+export default [
+  watchSaveSettings,
+  watchSaveEmailPreferences,
+  watchUploadProfileImage
+];

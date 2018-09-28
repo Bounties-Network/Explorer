@@ -6,6 +6,12 @@ const initialState = {
   emailPreferences: {
     saving: false,
     error: false
+  },
+  uploadState: {
+    uploading: false,
+    error: false,
+    smallUrl: null,
+    largeUrl: null
   }
 };
 
@@ -23,6 +29,22 @@ function saveSettingsSuccess() {
 
 function saveSettingsFail(error) {
   return { type: SAVE_SETTINGS_FAIL, error };
+}
+
+const UPLOAD_PROFILE_IMAGE = 'settings/UPLOAD_PROFILE_IMAGE';
+const UPLOAD_PROFILE_IMAGE_SUCCESS = 'settings/UPLOAD_PROFILE_IMAGE_SUCCESS';
+const UPLOAD_PROFILE_IMAGE_FAIL = 'settings/UPLOAD_PROFILE_IMAGE_FAIL';
+
+function uploadProfileImage(smallImage, largeImage) {
+  return { type: UPLOAD_PROFILE_IMAGE, smallImage, largeImage };
+}
+
+function uploadProfileImageSuccess(smallUrl, largeUrl) {
+  return { type: UPLOAD_PROFILE_IMAGE_SUCCESS, smallUrl, largeUrl };
+}
+
+function uploadProfileImageFail() {
+  return { type: UPLOAD_PROFILE_IMAGE_FAIL };
 }
 
 const SAVE_EMAIL_PREFERENCES = 'settings/SAVE_EMAIL_PREFERENCES';
@@ -71,6 +93,37 @@ function SettingsReducer(state = initialState, action) {
         }
       };
     }
+    case UPLOAD_PROFILE_IMAGE: {
+      return {
+        ...state,
+        uploadState: {
+          uploading: true,
+          error: false
+        }
+      };
+    }
+    case UPLOAD_PROFILE_IMAGE_SUCCESS: {
+      const { smallUrl, largeUrl } = action;
+
+      return {
+        ...state,
+        uploadState: {
+          ...state.uploadState,
+          uploading: false,
+          smallUrl,
+          largeUrl
+        }
+      };
+    }
+    case UPLOAD_PROFILE_IMAGE_FAIL: {
+      return {
+        ...state,
+        uploadState: {
+          uploading: false,
+          error: true
+        }
+      };
+    }
     case SAVE_EMAIL_PREFERENCES: {
       return {
         ...state,
@@ -109,7 +162,10 @@ export const actions = {
   saveSettingsFail,
   saveEmailPreferences,
   saveEmailPreferencesSuccess,
-  saveEmailPreferencesFail
+  saveEmailPreferencesFail,
+  uploadProfileImage,
+  uploadProfileImageSuccess,
+  uploadProfileImageFail
 };
 
 export const actionTypes = {
@@ -118,7 +174,10 @@ export const actionTypes = {
   SAVE_SETTINGS_FAIL,
   SAVE_EMAIL_PREFERENCES,
   SAVE_EMAIL_PREFERENCES_SUCCESS,
-  SAVE_EMAIL_PREFERENCES_FAIL
+  SAVE_EMAIL_PREFERENCES_FAIL,
+  UPLOAD_PROFILE_IMAGE,
+  UPLOAD_PROFILE_IMAGE_SUCCESS,
+  UPLOAD_PROFILE_IMAGE_FAIL
 };
 
 export default SettingsReducer;
