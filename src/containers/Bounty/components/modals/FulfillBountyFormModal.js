@@ -35,6 +35,17 @@ let FulfillBountyFormModalComponent = props => {
     onClose();
   };
 
+  const validatorGroups = {
+    name: [validators.required, validators.maxLength(128)],
+    email: [validators.email],
+    url: [validators.maxLength(256), validators.isURL],
+    description: [
+      validators.required,
+      validators.minLength(2),
+      validators.maxLength(120000)
+    ]
+  };
+
   return (
     <form onSubmit={handleSubmit(values => submitFulfillment(values))}>
       <Modal
@@ -60,7 +71,7 @@ let FulfillBountyFormModalComponent = props => {
                 component={FormTextInput}
                 type="text"
                 label="Contact name"
-                validate={[]}
+                validate={validatorGroups.name}
                 placeholder="Enter name..."
               />
             </div>
@@ -70,7 +81,7 @@ let FulfillBountyFormModalComponent = props => {
                 component={FormTextInput}
                 type="text"
                 label="Contact email"
-                validate={[validators.email]}
+                validate={validatorGroups.email}
                 placeholder="Enter email..."
               />
             </div>
@@ -82,7 +93,7 @@ let FulfillBountyFormModalComponent = props => {
                 component={FormTextInput}
                 type="text"
                 label="Web link"
-                validate={[]}
+                validate={validatorGroups.url}
                 placeholder="Enter URL..."
               />
             </div>
@@ -109,7 +120,7 @@ let FulfillBountyFormModalComponent = props => {
                 component={FormTextbox}
                 type="text"
                 label="Description"
-                validate={[validators.required]}
+                validate={validatorGroups.description}
                 placeholder="Enter description..."
               />
             </div>

@@ -12,6 +12,8 @@ import asyncValidators from 'utils/asyncValidators';
 const ContributeFormModal = props => {
   const { onClose, handleSubmit, tokenSymbol, visible } = props;
 
+  const fieldValidators = [validators.required, validators.minValue(0)];
+
   return (
     <form onSubmit={handleSubmit}>
       <Modal
@@ -34,7 +36,7 @@ const ContributeFormModal = props => {
             component={FormTextInput}
             normalize={normalizers.number}
             label={`Deposit amount ${tokenSymbol}`}
-            validate={[validators.required, validators.minValue(0)]}
+            validate={fieldValidators}
             placeholder="Enter amount..."
           />
         </Modal.Body>

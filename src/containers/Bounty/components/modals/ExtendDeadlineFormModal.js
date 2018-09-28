@@ -11,6 +11,11 @@ import { getTimezone } from 'utils/helpers';
 const ExtendDeadlineFormModal = props => {
   const { onClose, handleSubmit, minimumDeadline, visible } = props;
 
+  const fieldValidators = [
+    validators.required,
+    validators.minDate(minimumDeadline)
+  ];
+
   return (
     <form onSubmit={handleSubmit}>
       <Modal
@@ -33,10 +38,7 @@ const ExtendDeadlineFormModal = props => {
             component={FormDatePicker}
             showTimeSelect
             minDate={minimumDeadline}
-            validate={[
-              validators.required,
-              validators.minDate(minimumDeadline)
-            ]}
+            validate={fieldValidators}
           />
         </Modal.Body>
         <Modal.Footer>

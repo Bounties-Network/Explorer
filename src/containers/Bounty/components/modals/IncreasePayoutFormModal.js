@@ -20,6 +20,34 @@ const IncreasePayoutFormModal = props => {
     visible
   } = props;
 
+  const validatorGroups = {
+    balance: [
+      validators.minOrEqualsValue(0),
+      (balance, values) => {
+        if (
+          BigNumber(values.fulfillmentAmount || 0, 10).isGreaterThan(
+            BigNumber(minimumBalance, 10).plus(BigNumber(balance || 0, 10))
+          )
+        ) {
+          return 'The balance of your bounty must be greater than the payout amount.';
+        }
+      }
+    ],
+    fulfillmentAmount: [
+      validators.required,
+      validators.minValue(0),
+      (fulfillmentAmount, values) => {
+        if (
+          BigNumber(minimumPayout || 0).isGreaterThanOrEqualTo(
+            BigNumber(values.fulfillmentAmount || 0, 10)
+          )
+        ) {
+          return 'Your payout amount must be greater than the previous payout amount.';
+        }
+      }
+    ]
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <Modal
@@ -56,20 +84,7 @@ const IncreasePayoutFormModal = props => {
             component={FormTextInput}
             label={`Deposit amount (${tokenSymbol})`}
             normalize={normalizers.number}
-            validate={[
-              validators.minOrEqualsValue(0),
-              (balance, values) => {
-                if (
-                  BigNumber(values.fulfillmentAmount || 0, 10).isGreaterThan(
-                    BigNumber(minimumBalance, 10).plus(
-                      BigNumber(balance || 0, 10)
-                    )
-                  )
-                ) {
-                  return 'The balance of your bounty must be greater than the payout amount.';
-                }
-              }
-            ]}
+            validate={validatorGroups.balance}
             placeholder="Enter amount..."
           />
           <div className={styles.inputGroup}>
@@ -78,19 +93,7 @@ const IncreasePayoutFormModal = props => {
               component={FormTextInput}
               label={`New prize amount (${tokenSymbol})`}
               normalize={normalizers.number}
-              validate={[
-                validators.required,
-                validators.minValue(0),
-                (fulfillmentAmount, values) => {
-                  if (
-                    BigNumber(minimumPayout || 0).isGreaterThanOrEqualTo(
-                      BigNumber(values.fulfillmentAmount || 0, 10)
-                    )
-                  ) {
-                    return 'Your payout amount must be greater than the previous payout amount.';
-                  }
-                }
-              ]}
+              validate={validatorGroups.fulfillmentAmount}
               placeholder="Enter amount..."
             />
           </div>

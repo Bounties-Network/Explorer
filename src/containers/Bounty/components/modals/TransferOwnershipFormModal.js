@@ -10,6 +10,8 @@ import validators from 'utils/validators';
 const TransferOwnershipFormModal = props => {
   const { onClose, handleSubmit, visible } = props;
 
+  const fieldValidators = [validators.required, validators.isWeb3Address];
+
   return (
     <Form onSubmit={handleSubmit}>
       <Modal
@@ -30,7 +32,7 @@ const TransferOwnershipFormModal = props => {
           <Field
             name="newOwner"
             component={FormTextInput}
-            validate={[validators.required, validators.isWeb3Address]}
+            validate={fieldValidators}
             placeholder="Enter wallet address..."
           />
         </Modal.Body>

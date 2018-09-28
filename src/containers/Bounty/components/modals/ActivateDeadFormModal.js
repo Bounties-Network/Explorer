@@ -13,6 +13,15 @@ import asyncValidators from 'utils/asyncValidators';
 const ActivateDeadFormModal = props => {
   const { onClose, minimumBalance, handleSubmit, tokenSymbol, visible } = props;
 
+  const fieldValidators = [
+    validators.required,
+    balance => {
+      if (BigNumber(balance, 10).isLessThan(minimumBalance)) {
+        return 'At minimum, your initial deposit must match your payout amount.';
+      }
+    }
+  ];
+
   return (
     <form onSubmit={handleSubmit}>
       <Modal
@@ -36,14 +45,7 @@ const ActivateDeadFormModal = props => {
             component={FormTextInput}
             label={`Deposit amount in ${tokenSymbol}`}
             normalize={normalizers.number}
-            validate={[
-              validators.required,
-              balance => {
-                if (BigNumber(balance, 10).isLessThan(minimumBalance)) {
-                  return 'At minimum, your initial deposit must match your payout amount.';
-                }
-              }
-            ]}
+            validate={fieldValidators}
             placeholder="Enter amount..."
           />
         </Modal.Body>
