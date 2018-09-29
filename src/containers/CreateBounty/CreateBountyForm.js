@@ -535,11 +535,13 @@ const CreateBountyForm = compose(
   ),
   reduxForm({
     form: 'createBounty',
-    asyncValidate: (values, dispatch) => {
+    asyncValidate: (values, dispatch, props, field) => {
       return asyncValidators.tokenValidationWrapper(
         { ...values, ethAddress: '0x0000000000000000000000000000000000000000' },
         'balance',
         values.paysTokens ? 'tokenContract' : 'ethAddress',
+        props.asyncValidating,
+        field,
         dispatch
       );
     },

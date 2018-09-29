@@ -92,11 +92,12 @@ export function isNumber(n) {
   return !isNaN(Number(n));
 }
 
-export function promisifyDebounce(inner, ms = 0) {
+export function promisifyDebounce(inner) {
   let timer = null;
   let resolves = [];
 
-  return function(...args) {
+  return function(ms, ...args) {
+    console.log(ms, resolves, timer);
     // Run the function after a certain amount of time
     clearTimeout(timer);
     timer = setTimeout(() => {

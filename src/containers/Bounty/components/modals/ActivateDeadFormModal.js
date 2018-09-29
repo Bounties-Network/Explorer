@@ -71,15 +71,17 @@ export default compose(
   reduxForm({
     form: 'activateDead',
     destroyOnUnmount: false,
-    asyncValidate: (values, dispatch, props) => {
+    asyncValidate: (values, dispatch, props, field) => {
       return asyncValidators.tokenValidationWrapper(
         { ...values, tokenContract: props.tokenContract },
         'balance',
         'tokenContract',
+        props.asyncValidating,
+        field,
         dispatch
       );
     },
-    asyncBlurFields: ['balance']
+    asyncChangeFields: ['balance']
   }),
   ModalFormReset
 )(ActivateDeadFormModal);

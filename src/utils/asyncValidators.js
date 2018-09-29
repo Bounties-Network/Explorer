@@ -41,15 +41,21 @@ const tokenValidationWrapper = (
   values,
   amountKey,
   tokenContractKey,
+  asyncValidating,
+  field,
   dispatch
 ) => {
+  console.log(asyncValidating, field, values.asyncErrors);
+  // submit immediately if no async errors
+  if (!field && !values.asyncErrors && !asyncValidating)
+    return Promise.resolve();
+
   if (!values[tokenContractKey]) return Promise.resolve();
 
-  return tokenValidation(
-    values[amountKey],
-    values[tokenContractKey],
-    dispatch
-  ).catch(e => {
+  // if triggered by submit, don't debounce
+  const fn = !field ? tokenValidation : promisifyDebounce(tokenValidation, 500);
+
+  return fn(values[amountKey], values[tokenContractKey], dispatch).catch(e => {
     const { error, balance = 0, symbol } = e;
     let formError = {};
 
@@ -80,5 +86,5 @@ const tokenValidationWrapper = (
 
 export default {
   tokenValidation,
-  tokenValidationWrapper: promisifyDebounce(tokenValidationWrapper, 500)
+  tokenValidationWrapper
 };

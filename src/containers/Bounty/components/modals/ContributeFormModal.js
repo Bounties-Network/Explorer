@@ -62,15 +62,18 @@ export default compose(
   reduxForm({
     form: 'bountyContribute',
     destroyOnUnmount: false,
-    asyncValidate: (values, dispatch, props) => {
+    asyncValidate: (values, dispatch, props, field) => {
+      console.log(props);
       return asyncValidators.tokenValidationWrapper(
         { ...values, tokenContract: props.tokenContract },
         'contribution',
         'tokenContract',
+        props.asyncValidating,
+        field,
         dispatch
       );
     },
-    asyncBlurFields: ['contribution']
+    asyncChangeFields: ['contribution']
   }),
   ModalFormReset
 )(ContributeFormModal);
