@@ -43,8 +43,7 @@ class UserSettingsComponent extends React.Component {
       fileName,
       resetUpload,
       onboarding,
-      onClose,
-      initialValues
+      onClose
     } = this.props;
 
     const { profileImage } = this.state;
@@ -246,7 +245,6 @@ class UserSettingsComponent extends React.Component {
                 name="wants_marketing_emails"
                 component={FormCheckbox}
                 label="I would also like to receive relevant bounty suggestions and platform updates"
-                defaultChecked={initialValues.wants_marketing_emails}
               />
             </FormSection.InputGroup>
           </FormSection.Section>
