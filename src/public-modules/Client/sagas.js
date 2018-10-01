@@ -77,8 +77,9 @@ export function* getWeb3Client() {
     return null;
   }
 
+  currentNetwork = yield call(getNetwork);
+
   if (!isLocked) {
-    currentNetwork = yield call(getNetwork);
     currentAddress = yield call(getWalletAddress);
   }
   if (isLocked !== wasLocked) {
