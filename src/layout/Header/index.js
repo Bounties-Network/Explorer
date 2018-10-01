@@ -43,10 +43,7 @@ const HeaderComponent = props => {
           <BeeLogo />
         </Link>
       </div>
-      {hasWallet &&
-        !walletLocked && (
-          <Network network={network} className={styles.network} />
-        )}
+      {hasWallet && <Network network={network} className={styles.network} />}
       <div className={styles.sideNavTrigger} onClick={onShowNav}>
         <Text typeScale="h3" color="blue">
           <FontAwesomeIcon icon={['far', 'bars']} />
