@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Modals.module.scss';
-import { Modal, Button } from 'components';
+import { Button, Modal, Text } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import { BigNumber } from 'bignumber.js';
 import { compose } from 'redux';
@@ -11,7 +11,15 @@ import { FormTextInput } from 'form-components';
 import asyncValidators from 'utils/asyncValidators';
 
 const ActivateDraftFormModal = props => {
-  const { onClose, minimumBalance, handleSubmit, tokenSymbol, visible } = props;
+  const {
+    onClose,
+    minimumBalance,
+    handleSubmit,
+    tokenSymbol,
+    visible,
+    submitFailed,
+    invalid
+  } = props;
 
   const fieldValidator = [
     validators.required,
@@ -55,6 +63,12 @@ const ActivateDraftFormModal = props => {
           />
         </Modal.Body>
         <Modal.Footer>
+          {submitFailed &&
+            invalid && (
+              <Text inputLabel color="red">
+                Fix errors before submitting.
+              </Text>
+            )}
           <Button
             margin
             onClick={e => {
@@ -65,7 +79,9 @@ const ActivateDraftFormModal = props => {
           >
             Cancel
           </Button>
-          <Button type="action">Activate</Button>
+          <Button type="action" disabled={submitFailed && invalid}>
+            Activate
+          </Button>
         </Modal.Footer>
       </Modal>
     </form>
