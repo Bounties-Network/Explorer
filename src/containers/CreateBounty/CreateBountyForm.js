@@ -80,6 +80,45 @@ class CreateBountyFormComponent extends React.Component {
     this.handleCreateBounty(values);
   };
 
+  // due to how redux-form renders in 7.4.2, all validators must be defined
+  // outside the props of the field component
+  validatorGroups = {
+    title: [
+      validators.required,
+      validators.minLength(2),
+      validators.maxLength(256)
+    ],
+    description: [
+      validators.required,
+      validators.minLength(2),
+      validators.maxLength(120000)
+    ],
+    issuer_name: [validators.required, validators.maxLength(128)],
+    issuer_email: [
+      validators.required,
+      validators.maxLength(128),
+      validators.email
+    ],
+    categories: [validators.required],
+    webReferenceURL: [validators.maxLength(256), validators.isURL],
+    deadline: [validators.required, validators.minDate(this.props.minDate)],
+    tokenContract: [validators.required, validators.isWeb3Address],
+    fulfillmentAmount: [validators.required, validators.minValue(0)],
+    balance: [
+      validators.required,
+      validators.minValue(0),
+      (balance, allValues) => {
+        const valueField = allValues.fulfillmentAmount;
+        if (
+          valueField &&
+          BigNumber(balance, 10).isLessThan(BigNumber(valueField, 10))
+        ) {
+          return 'Deposit amount must at least match the payout amount.';
+        }
+      }
+    ]
+  };
+
   render() {
     const {
       uploadFile,
@@ -99,6 +138,8 @@ class CreateBountyFormComponent extends React.Component {
       minDate,
       tokens
     } = this.props;
+
+    const { validatorGroups } = this;
 
     let submitButtonText = 'Create Bounty';
     if (!activateNow) {
@@ -127,11 +168,7 @@ class CreateBountyFormComponent extends React.Component {
                 component={FormTextInput}
                 label="Title"
                 placeholder="Enter title..."
-                validate={[
-                  validators.required,
-                  validators.minLength(2),
-                  validators.maxLength(256)
-                ]}
+                validate={validatorGroups.title}
               />
             </FormSection.InputGroup>
             <FormSection.InputGroup>
@@ -141,11 +178,7 @@ class CreateBountyFormComponent extends React.Component {
                 component={FormMarkdownEditor}
                 label="Description"
                 textBoxClassName={styles.markdownEditor}
-                validate={[
-                  validators.required,
-                  validators.minLength(2),
-                  validators.maxLength(120000)
-                ]}
+                validate={validatorGroups.description}
               />
             </FormSection.InputGroup>
           </FormSection.Section>
@@ -163,7 +196,7 @@ class CreateBountyFormComponent extends React.Component {
                     component={FormTextInput}
                     label="Contact name"
                     placeholder="Enter name..."
-                    validate={[validators.required, validators.maxLength(128)]}
+                    validate={validatorGroups.issuer_name}
                   />
                 </div>
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
@@ -173,11 +206,7 @@ class CreateBountyFormComponent extends React.Component {
                     component={FormTextInput}
                     label="Contact email"
                     placeholder="Enter email..."
-                    validate={[
-                      validators.required,
-                      validators.maxLength(128),
-                      validators.email
-                    ]}
+                    validate={validatorGroups.issuer_email}
                   />
                 </div>
               </div>
@@ -201,7 +230,7 @@ class CreateBountyFormComponent extends React.Component {
                     component={FormSearchSelect}
                     label="Bounty category"
                     placeholder="Create or Select category..."
-                    validate={[validators.required]}
+                    validate={validatorGroups.categories}
                     onCreateOption={addCategory}
                     options={categories}
                     labelKey="name"
@@ -258,7 +287,7 @@ class CreateBountyFormComponent extends React.Component {
                     component={FormTextInput}
                     type="text"
                     label="Web link"
-                    validate={[validators.maxLength(256), validators.isURL]}
+                    validate={validatorGroups.webReferenceURL}
                     placeholder="Enter URL..."
                   />
                 </div>
@@ -298,10 +327,7 @@ class CreateBountyFormComponent extends React.Component {
                     name="deadline"
                     component={FormDatePicker}
                     minDate={minDate}
-                    validate={[
-                      validators.required,
-                      validators.minDate(minDate)
-                    ]}
+                    validate={validatorGroups.deadline}
                     showTimeSelect
                   />
                 </div>
@@ -350,7 +376,7 @@ class CreateBountyFormComponent extends React.Component {
                           ? 'Token Contract Address'
                           : `${config.defaultToken.symbol} Contract Address`
                       }
-                      validate={[validators.required, validators.isWeb3Address]}
+                      validate={validatorGroups.tokenContract}
                       placeholder="Enter token contract address..."
                     />
                   ) : (
@@ -373,7 +399,7 @@ class CreateBountyFormComponent extends React.Component {
                     label={`Payout amount ${
                       !config.defaultToken ? ' (ETH or whole tokens)' : ''
                     }`}
-                    validate={[validators.required, validators.minValue(0)]}
+                    validate={validatorGroups.fulfillmentAmount}
                     placeholder="Enter amount..."
                   />
                 </div>
@@ -389,7 +415,7 @@ class CreateBountyFormComponent extends React.Component {
                       component={FormSearchSelect}
                       label="Token"
                       placeholder="Select token or enter token address..."
-                      validate={[validators.required, validators.isWeb3Address]}
+                      validate={validatorGroups.tokenContract}
                       options={tokens}
                       single={true}
                       clearable={true}
@@ -431,21 +457,7 @@ class CreateBountyFormComponent extends React.Component {
                       disabled={submittingBounty}
                       component={FormTextInput}
                       label="Deposit amount (ETH or whole tokens)"
-                      validate={[
-                        validators.required,
-                        (balance, allValues) => {
-                          const valueField = allValues.fulfillmentAmount;
-                          if (
-                            valueField &&
-                            BigNumber(balance, 10).isLessThan(
-                              BigNumber(valueField, 10)
-                            )
-                          ) {
-                            return 'Deposit amount must at least match the payout amount.';
-                          }
-                        },
-                        validators.minValue(0)
-                      ]}
+                      validate={validatorGroups.balance}
                       normalize={normalizers.number}
                       placeholder="Enter amount..."
                     />
@@ -523,15 +535,17 @@ const CreateBountyForm = compose(
   ),
   reduxForm({
     form: 'createBounty',
-    asyncValidate: (values, dispatch) => {
+    asyncValidate: (values, dispatch, props, field) => {
       return asyncValidators.tokenValidationWrapper(
         { ...values, ethAddress: '0x0000000000000000000000000000000000000000' },
         'balance',
         values.paysTokens ? 'tokenContract' : 'ethAddress',
+        props.asyncValidating,
+        field,
         dispatch
       );
     },
-    asyncBlurFields: ['balance', 'tokenContract']
+    asyncChangeFields: ['balance', 'tokenContract']
   })
 )(CreateBountyFormComponent);
 

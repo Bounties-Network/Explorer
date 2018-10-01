@@ -73,7 +73,7 @@
     "react-toggle": "^4.0.2",
     "react-transition-group": "^2.4.0",
     "redux": "^3.7.2",
-    "redux-form": "6.8.0",
+    "redux-form": "^7.4.2",
     "redux-saga": "^0.16.0",
     "remarkable": "^1.7.1",
     "reselect": "^3.0.1",

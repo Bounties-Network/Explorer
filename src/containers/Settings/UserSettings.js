@@ -43,8 +43,7 @@ class UserSettingsComponent extends React.Component {
       fileName,
       resetUpload,
       onboarding,
-      onClose,
-      initialValues
+      onClose
     } = this.props;
 
     const { profileImage } = this.state;
@@ -65,6 +64,16 @@ class UserSettingsComponent extends React.Component {
     const handleResetUpload = () => {
       this.setState({ profileImage: null });
       resetUpload(UPLOAD_KEY);
+    };
+
+    const validatorGroups = {
+      name: [validators.maxLength(128)],
+      email: [validators.maxLength(128), validators.email],
+      organization: [validators.maxLength(128)],
+      website: [validators.isURL, validators.maxLength(128)],
+      twitter: [validators.isTwitterHandle],
+      github: [validators.isGithubHandle],
+      linkedin: [validators.isURL, validators.maxLength(128)]
     };
 
     return (
@@ -98,7 +107,7 @@ class UserSettingsComponent extends React.Component {
                     component={FormTextInput}
                     label="Name"
                     placeholder="Enter name..."
-                    validate={[validators.maxLength(128)]}
+                    validate={validatorGroups.name}
                   />
                 </div>
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
@@ -108,7 +117,7 @@ class UserSettingsComponent extends React.Component {
                     component={FormTextInput}
                     label="Organization"
                     placeholder="Enter organization..."
-                    validate={[validators.maxLength(128)]}
+                    validate={validatorGroups.organization}
                   />
                 </div>
               </div>
@@ -171,7 +180,7 @@ class UserSettingsComponent extends React.Component {
                     component={FormTextInput}
                     label="Personal website"
                     placeholder="https://example.com"
-                    validate={[validators.isURL, validators.maxLength(128)]}
+                    validate={validatorGroups.website}
                   />
                 </div>
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
@@ -181,7 +190,7 @@ class UserSettingsComponent extends React.Component {
                     component={FormTextInput}
                     label="Twitter"
                     placeholder="@ethBounties"
-                    validate={[validators.isTwitterHandle]}
+                    validate={validatorGroups.twitter}
                   />
                 </div>
               </div>
@@ -195,7 +204,7 @@ class UserSettingsComponent extends React.Component {
                     component={FormTextInput}
                     label="Github"
                     placeholder="@vbuterin"
-                    validate={[validators.isGithubHandle]}
+                    validate={validatorGroups.github}
                   />
                 </div>
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
@@ -205,7 +214,7 @@ class UserSettingsComponent extends React.Component {
                     component={FormTextInput}
                     label="LinkedIn"
                     placeholder="https://linkedin.com/in/vbuterin"
-                    validate={[validators.isURL, validators.maxLength(128)]}
+                    validate={validatorGroups.linkedin}
                   />
                 </div>
               </div>
@@ -225,7 +234,7 @@ class UserSettingsComponent extends React.Component {
                     component={FormTextInput}
                     label="Contact email"
                     placeholder="Enter email..."
-                    validate={[validators.maxLength(128), validators.email]}
+                    validate={validatorGroups.email}
                   />
                 </div>
               </div>
@@ -236,7 +245,6 @@ class UserSettingsComponent extends React.Component {
                 name="wants_marketing_emails"
                 component={FormCheckbox}
                 label="I would also like to receive relevant bounty suggestions and platform updates"
-                defaultChecked={initialValues.wants_marketing_emails}
               />
             </FormSection.InputGroup>
           </FormSection.Section>

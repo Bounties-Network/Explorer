@@ -18,6 +18,8 @@ let FulfillBountyFormModalComponent = props => {
     uploadFile,
     resetUpload,
     privateFulfillments,
+    submitFailed,
+    invalid,
 
     // upload state
     uploading,
@@ -33,6 +35,17 @@ let FulfillBountyFormModalComponent = props => {
   const closeAndReset = () => {
     resetUpload('fulfillment');
     onClose();
+  };
+
+  const validatorGroups = {
+    name: [validators.required, validators.maxLength(128)],
+    email: [validators.email],
+    url: [validators.maxLength(256), validators.isURL],
+    description: [
+      validators.required,
+      validators.minLength(2),
+      validators.maxLength(120000)
+    ]
   };
 
   return (
@@ -60,7 +73,7 @@ let FulfillBountyFormModalComponent = props => {
                 component={FormTextInput}
                 type="text"
                 label="Contact name"
-                validate={[]}
+                validate={validatorGroups.name}
                 placeholder="Enter name..."
               />
             </div>
@@ -70,7 +83,7 @@ let FulfillBountyFormModalComponent = props => {
                 component={FormTextInput}
                 type="text"
                 label="Contact email"
-                validate={[validators.email]}
+                validate={validatorGroups.email}
                 placeholder="Enter email..."
               />
             </div>
@@ -82,7 +95,7 @@ let FulfillBountyFormModalComponent = props => {
                 component={FormTextInput}
                 type="text"
                 label="Web link"
-                validate={[]}
+                validate={validatorGroups.url}
                 placeholder="Enter URL..."
               />
             </div>
@@ -109,7 +122,7 @@ let FulfillBountyFormModalComponent = props => {
                 component={FormTextbox}
                 type="text"
                 label="Description"
-                validate={[validators.required]}
+                validate={validatorGroups.description}
                 placeholder="Enter description..."
               />
             </div>
@@ -126,6 +139,12 @@ let FulfillBountyFormModalComponent = props => {
           </div>
         </Modal.Body>
         <Modal.Footer>
+          {submitFailed &&
+            invalid && (
+              <Text inputLabel color="red">
+                Fix errors before submitting.
+              </Text>
+            )}
           <Button
             margin
             disabled={uploading}
@@ -136,7 +155,11 @@ let FulfillBountyFormModalComponent = props => {
           >
             Cancel
           </Button>
-          <Button disabled={uploading} type="primary" buttonType="submit">
+          <Button
+            type="primary"
+            buttonType="submit"
+            disabled={uploading || (submitFailed && invalid)}
+          >
             Submit
           </Button>
         </Modal.Footer>

@@ -44,6 +44,8 @@ const IssueRatingFormModalComponent = props => {
 
   const { name, address, img } = reviewee;
 
+  const fieldValidators = [validators.required];
+
   const handleReview = values => {
     const { rating, review } = values;
 
@@ -95,7 +97,7 @@ const IssueRatingFormModalComponent = props => {
                 component={FormRating}
                 type="string"
                 label="Rating"
-                validate={[validators.required]}
+                validate={fieldValidators}
               />
             </div>
             <div className={styles.inputGroup}>
@@ -104,7 +106,7 @@ const IssueRatingFormModalComponent = props => {
                 component={FormTextbox}
                 type="string"
                 label="Review"
-                validate={[validators.required]}
+                validate={fieldValidators}
                 placeholder="Enter review..."
               />
             </div>
