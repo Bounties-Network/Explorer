@@ -75,7 +75,7 @@ const LeaderboardCardComponent = props => {
     )
   ];
 
-  const platformDropdown = (
+  const platformDropdown = config.platform.split(',').length > 1 && (
     <div className={styles.platformSelect}>
       <SearchSelect
         single
