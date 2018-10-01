@@ -78,7 +78,6 @@ export default compose(
     form: 'bountyContribute',
     destroyOnUnmount: false,
     asyncValidate: (values, dispatch, props, field) => {
-      console.log(props);
       return asyncValidators.tokenValidationWrapper(
         { ...values, tokenContract: props.tokenContract },
         'contribution',

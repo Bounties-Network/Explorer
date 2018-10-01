@@ -45,7 +45,6 @@ const tokenValidationWrapper = (
   field,
   dispatch
 ) => {
-  console.log(asyncValidating, field, values.asyncErrors);
   // submit immediately if no async errors
   if (!field && !values.asyncErrors && !asyncValidating)
     return Promise.resolve();
