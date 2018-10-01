@@ -19,7 +19,8 @@ const IncreasePayoutFormModal = props => {
     tokenSymbol,
     visible,
     submitFailed,
-    invalid
+    invalid,
+    asyncValidating
   } = props;
 
   const validatorGroups = {
@@ -117,7 +118,11 @@ const IncreasePayoutFormModal = props => {
           >
             Cancel
           </Button>
-          <Button type="action" disabled={submitFailed && invalid}>
+          <Button
+            type="action"
+            disabled={submitFailed && invalid}
+            loading={asyncValidating && typeof asyncValidating === 'boolean'}
+          >
             Increase Payout
           </Button>
         </Modal.Footer>

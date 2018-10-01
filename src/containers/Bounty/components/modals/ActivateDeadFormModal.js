@@ -18,7 +18,8 @@ const ActivateDeadFormModal = props => {
     tokenSymbol,
     visible,
     submitFailed,
-    invalid
+    invalid,
+    asyncValidating
   } = props;
 
   const fieldValidators = [
@@ -74,7 +75,11 @@ const ActivateDeadFormModal = props => {
           >
             Cancel
           </Button>
-          <Button type="action" disabled={submitFailed && invalid}>
+          <Button
+            type="action"
+            disabled={submitFailed && invalid}
+            loading={asyncValidating && typeof asyncValidating === 'boolean'}
+          >
             Re-Activate
           </Button>
         </Modal.Footer>

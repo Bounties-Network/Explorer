@@ -37,6 +37,12 @@ const tokenValidation = (amount, tokenAddress, dispatch) => {
   }).then(handleResult, handleRejection);
 };
 
+// There will be an issue if trying to validate more than one thing and a user
+// quickly jumps to the next field. The previous promise will be cancelled and
+// the new field will be validated. In the current case this is okay because
+// we're only worried about the user's balance.
+const debouncedTokenValidation = promisifyDebounce(tokenValidation, 500);
+
 const tokenValidationWrapper = (
   values,
   amountKey,
@@ -52,7 +58,7 @@ const tokenValidationWrapper = (
   if (!values[tokenContractKey]) return Promise.resolve();
 
   // if triggered by submit, don't debounce
-  const fn = !field ? tokenValidation : promisifyDebounce(tokenValidation, 500);
+  const fn = !field ? tokenValidation : debouncedTokenValidation;
 
   return fn(values[amountKey], values[tokenContractKey], dispatch).catch(e => {
     const { error, balance = 0, symbol } = e;

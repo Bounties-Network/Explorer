@@ -16,7 +16,8 @@ const ContributeFormModal = props => {
     tokenSymbol,
     visible,
     submitFailed,
-    invalid
+    invalid,
+    asyncValidating
   } = props;
 
   const fieldValidators = [validators.required, validators.minValue(0)];
@@ -64,7 +65,11 @@ const ContributeFormModal = props => {
           >
             Cancel
           </Button>
-          <Button type="action" disabled={invalid}>
+          <Button
+            type="action"
+            disabled={submitFailed && invalid}
+            loading={asyncValidating && typeof asyncValidating === 'boolean'}
+          >
             Contribute
           </Button>
         </Modal.Footer>

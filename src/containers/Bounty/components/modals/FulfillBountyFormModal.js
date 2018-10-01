@@ -18,6 +18,8 @@ let FulfillBountyFormModalComponent = props => {
     uploadFile,
     resetUpload,
     privateFulfillments,
+    submitFailed,
+    invalid,
 
     // upload state
     uploading,
@@ -137,6 +139,12 @@ let FulfillBountyFormModalComponent = props => {
           </div>
         </Modal.Body>
         <Modal.Footer>
+          {submitFailed &&
+            invalid && (
+              <Text inputLabel color="red">
+                Fix errors before submitting.
+              </Text>
+            )}
           <Button
             margin
             disabled={uploading}
@@ -147,7 +155,11 @@ let FulfillBountyFormModalComponent = props => {
           >
             Cancel
           </Button>
-          <Button disabled={uploading} type="primary" buttonType="submit">
+          <Button
+            type="primary"
+            buttonType="submit"
+            disabled={uploading || (submitFailed && invalid)}
+          >
             Submit
           </Button>
         </Modal.Footer>

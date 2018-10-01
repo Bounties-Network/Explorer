@@ -18,7 +18,8 @@ const ActivateDraftFormModal = props => {
     tokenSymbol,
     visible,
     submitFailed,
-    invalid
+    invalid,
+    asyncValidating
   } = props;
 
   const fieldValidator = [
@@ -79,7 +80,11 @@ const ActivateDraftFormModal = props => {
           >
             Cancel
           </Button>
-          <Button type="action" disabled={submitFailed && invalid}>
+          <Button
+            type="action"
+            disabled={submitFailed && invalid}
+            loading={asyncValidating && typeof asyncValidating === 'boolean'}
+          >
             Activate
           </Button>
         </Modal.Footer>

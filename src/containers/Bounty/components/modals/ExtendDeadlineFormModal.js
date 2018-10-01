@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Modals.module.scss';
-import { Modal, Button } from 'components';
+import { Modal, Button, Text } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import { FormDatePicker } from 'form-components';
 import { compose } from 'redux';
@@ -9,7 +9,14 @@ import validators from 'utils/validators';
 import { getTimezone } from 'utils/helpers';
 
 const ExtendDeadlineFormModal = props => {
-  const { onClose, handleSubmit, minimumDeadline, visible } = props;
+  const {
+    onClose,
+    handleSubmit,
+    minimumDeadline,
+    visible,
+    submitFailed,
+    invalid
+  } = props;
 
   const fieldValidators = [
     validators.required,
@@ -42,6 +49,12 @@ const ExtendDeadlineFormModal = props => {
           />
         </Modal.Body>
         <Modal.Footer>
+          {submitFailed &&
+            invalid && (
+              <Text inputLabel color="red">
+                Fix errors before submitting.
+              </Text>
+            )}
           <Button
             margin
             onClick={e => {

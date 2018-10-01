@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Modals.module.scss';
-import { Modal, Button } from 'components';
+import { Modal, Button, Text } from 'components';
 import { Field, reduxForm, Form } from 'redux-form';
 import { compose } from 'redux';
 import { ModalFormReset } from 'hocs';
@@ -8,7 +8,7 @@ import { FormTextInput } from 'form-components';
 import validators from 'utils/validators';
 
 const TransferOwnershipFormModal = props => {
-  const { onClose, handleSubmit, visible } = props;
+  const { onClose, handleSubmit, visible, submitFailed, invalid } = props;
 
   const fieldValidators = [validators.required, validators.isWeb3Address];
 
@@ -37,6 +37,12 @@ const TransferOwnershipFormModal = props => {
           />
         </Modal.Body>
         <Modal.Footer>
+          {submitFailed &&
+            invalid && (
+              <Text inputLabel color="red">
+                Fix errors before submitting.
+              </Text>
+            )}
           <Button
             margin
             onClick={e => {
