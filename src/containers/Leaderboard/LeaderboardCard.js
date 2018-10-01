@@ -57,69 +57,98 @@ const LeaderboardCardComponent = props => {
   };
 
   let cardBodyClass;
-  if ((loading && !leaders.length) || leaders.length === 0) {
+  if ((loading && !leaders.length) || leaders.length === 0 || error) {
     cardBodyClass = styles.cardBodyLoading;
   }
 
+  const platformOptions = [
+    {
+      label: 'All Platforms',
+      value: config.platform
+    },
+    ...map(
+      platform => ({
+        label: platform,
+        value: platform
+      }),
+      config.platform.split(',')
+    )
+  ];
+
+  const platformDropdown = (
+    <div className={styles.platformSelect}>
+      <SearchSelect
+        single
+        label="Platform"
+        options={platformOptions}
+        value={selectedPlatforms[0]}
+        labelKey="label"
+        valueKey="value"
+        onChange={setPlatformFilter}
+        onClose={removePlatformFilter}
+        clearable={false}
+        loading={loading}
+      />
+    </div>
+  );
+
   let cardBody = (
     <div className={cardBodyClass}>
-      <div className={styles.platformSelect}>
-        <SearchSelect
-          single
-          options={map(
-            platform => ({
-              label: platform,
-              value: platform
-            }),
-            config.platform.split(',')
-          )}
-          value={selectedPlatforms[0]}
-          labelKey="label"
-          valueKey="value"
-          onChange={setPlatformFilter}
-          onClose={removePlatformFilter}
-          loading={loading}
-        />
-      </div>
-
+      {platformDropdown}
       <ListGroup>{renderLeaders()}</ListGroup>
-
-      {leaderboard[toggleValue].length < count[toggleValue] ? (
+      {leaderboard[toggleValue].length < count[toggleValue] && (
         <div className={styles.loadMoreButton}>
           <Button loading={loadingMore} onClick={loadMore}>
             Load More
           </Button>
         </div>
-      ) : null}
+      )}
     </div>
   );
 
   if (leaders.length === 0) {
     cardBody = (
-      <ZeroState
-        className={styles.zeroState}
-        iconColor="blue"
-        title="No Results Yet"
-        text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
-        icon={['fal', 'trophy-alt']}
-      />
+      <React.Fragment>
+        {platformDropdown}
+        <div className={styles.zeroStateWrapper}>
+          <ZeroState
+            className={styles.zeroState}
+            iconColor="blue"
+            title="No Results Yet"
+            text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
+            icon={['fal', 'trophy-alt']}
+          />
+        </div>
+      </React.Fragment>
     );
   }
 
   if (loading && !leaders.length) {
-    cardBody = <Loader color="blue" size="medium" />;
+    cardBody = (
+      <React.Fragment>
+        {platformDropdown}
+        <div className={styles.zeroStateWrapper}>
+          <Loader color="blue" size="medium" />
+        </div>
+      </React.Fragment>
+    );
   }
 
   if (error || loadingMoreError) {
     cardBody = (
-      <ZeroState
-        className={styles.zeroState}
-        type="error"
-        iconColor="white"
-        title="Uh oh, something happened"
-        text="Try to refresh the page and try again"
-        icon={['fal', 'exclamation-triangle']}
-      />
+      <React.Fragment>
+        {platformDropdown}
+        <div className={styles.zeroStateWrapper}>
+          <ZeroState
+            className={styles.zeroState}
+            type="error"
+            iconColor="white"
+            title="Uh oh, something happened"
+            text="Try to refresh the page and try again"
+            icon={['fal', 'exclamation-triangle']}
+          />
+        </div>
+      </React.Fragment>
     );
   }
 
