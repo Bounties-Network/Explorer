@@ -6,8 +6,8 @@
   "categoryPlatform": "main",
   "networkName": "explorer.bounties.network",
   "url": {
-    "mainNet": "https://rinkebystaging.api.bounties.network",
-    "rinkeby": "https://rinkebystaging.api.bounties.network"
+    "mainNet": "https://new.api.bounties.network",
+    "rinkeby": "https://new.api.bounties.network"
   },
   "requiredNetwork": "mainNet",
   "mainNet": {
