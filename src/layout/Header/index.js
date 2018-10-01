@@ -14,12 +14,10 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { ipfsToHttp } from 'utils/helpers';
 import styles from './Header.module.scss';
-
 import { Button, Avatar, Dropdown, Network, Text } from 'components';
-
 import { NotificationDropdown } from 'containers';
-import BeeLogo from '../../styles/logo.js';
 
+const BeeLogo = require(`../../styles/${process.env.APP_LOGO}.js`).default;
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
 const HeaderComponent = props => {

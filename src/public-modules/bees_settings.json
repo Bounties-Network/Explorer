@@ -1,0 +1,24 @@
+{
+  "platform": "pollenbees",
+  "postingPlatform": "pollenbees",
+  "postingSchema": "standardSchema",
+  "postingSchemaVersion": "0.1",
+  "categoryPlatform": "pollenbees",
+  "networkName": "bees.bounties.network",
+  "url": {
+    "mainNet": "https://newrinkeby.api.bounties.network",
+    "rinkeby": "https://newrinkeby.api.bounties.network"
+  },
+  "defaultToken": {
+    "symbol": "POLLEN",
+    "address": "0x3c4fa8f5fd31501d816f20062468187b7815bd8b",
+    "decimals": 18
+  },
+  "requiredNetwork": "rinkeby",
+  "mainNet": {
+    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+  },
+  "rinkeby": {
+    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+  }
+}
