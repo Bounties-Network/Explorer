@@ -10,88 +10,92 @@ import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 import asyncValidators from 'utils/asyncValidators';
 
-const ActivateDraftFormModal = props => {
-  const {
-    onClose,
-    minimumBalance,
-    handleSubmit,
-    tokenSymbol,
-    visible,
-    submitFailed,
-    invalid,
-    asyncValidating
-  } = props;
-
-  const fieldValidator = [
+class ActivateDraftFormModal extends React.Component {
+  fieldValidators = [
     validators.required,
     balance => {
-      if (BigNumber(balance, 10).isLessThan(minimumBalance)) {
-        return 'Deposit amount must at least match the payout amount.';
+      if (BigNumber(balance, 10).isLessThan(this.props.minimumBalance)) {
+        return 'At minimum, your initial deposit must match your payout amount.';
       }
     }
   ];
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <Modal
-        dismissable={true}
-        onClose={onClose}
-        visible={visible}
-        fixed
-        size="small"
-      >
-        <Modal.Header closable={true}>
-          <Modal.Message>Activate your bounty</Modal.Message>
-          <Modal.Description>
-            Indicate an amount for your initial deposit to activate the bounty.
-            <em>
-              {' '}
-              At minimum, your initial deposit must match your payout amount of
-            </em>{' '}
-            <strong
-              className={styles.textHighlight}
-            >{`${minimumBalance} ${tokenSymbol}.`}</strong>
-          </Modal.Description>
-        </Modal.Header>
-        <Modal.Body className={styles.modalBody}>
-          <Field
-            name="balance"
-            component={FormTextInput}
-            label={`Deposit amount (${tokenSymbol}).`}
-            normalize={normalizers.number}
-            validate={fieldValidator}
-            placeholder="Enter amount..."
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          {submitFailed &&
-            invalid && (
-              <Text inputLabel color="red">
-                Fix errors before submitting.
-              </Text>
-            )}
-          <Button
-            margin
-            onClick={e => {
-              e.preventDefault();
-              onClose();
-            }}
-            buttonType="button"
-          >
-            Cancel
-          </Button>
-          <Button
-            type="action"
-            disabled={submitFailed && invalid}
-            loading={asyncValidating && typeof asyncValidating === 'boolean'}
-          >
-            Activate
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </form>
-  );
-};
+  render() {
+    const {
+      onClose,
+      minimumBalance,
+      handleSubmit,
+      tokenSymbol,
+      visible,
+      submitFailed,
+      invalid,
+      asyncValidating
+    } = this.props;
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <Modal
+          dismissable={true}
+          onClose={onClose}
+          visible={visible}
+          fixed
+          size="small"
+        >
+          <Modal.Header closable={true}>
+            <Modal.Message>Activate your bounty</Modal.Message>
+            <Modal.Description>
+              Indicate an amount for your initial deposit to activate the
+              bounty.
+              <em>
+                {' '}
+                At minimum, your initial deposit must match your payout amount
+                of
+              </em>{' '}
+              <strong
+                className={styles.textHighlight}
+              >{`${minimumBalance} ${tokenSymbol}.`}</strong>
+            </Modal.Description>
+          </Modal.Header>
+          <Modal.Body className={styles.modalBody}>
+            <Field
+              name="balance"
+              component={FormTextInput}
+              label={`Deposit amount (${tokenSymbol}).`}
+              normalize={normalizers.number}
+              validate={this.fieldValidators}
+              placeholder="Enter amount..."
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            {submitFailed &&
+              invalid && (
+                <Text inputLabel color="red">
+                  Fix errors before submitting.
+                </Text>
+              )}
+            <Button
+              margin
+              onClick={e => {
+                e.preventDefault();
+                onClose();
+              }}
+              buttonType="button"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="action"
+              disabled={submitFailed && invalid}
+              loading={asyncValidating && typeof asyncValidating === 'boolean'}
+            >
+              Activate
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </form>
+    );
+  }
+}
 
 export default compose(
   reduxForm({
