@@ -28,8 +28,7 @@ const HeaderComponent = props => {
     logout,
     history,
     onShowNav,
-    hasWallet,
-    walletLocked
+    hasWallet
   } = props;
 
   const loginStatus = !!user;
