@@ -193,7 +193,7 @@ class Cropper extends React.Component {
                 loading={isLoading}
                 onClick={this.save}
               >
-                Save
+                Crop
               </Button>
             ) : null}
             {src &&
