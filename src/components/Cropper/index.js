@@ -3,6 +3,7 @@ import { Croppie } from 'croppie/croppie';
 import '../../styles/Croppie.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Circle, Button } from 'components';
+import buttonStyles from 'components/Button/Button.module.scss';
 import styles from './Cropper.module.scss';
 
 class Cropper extends React.Component {
@@ -169,10 +170,13 @@ class Cropper extends React.Component {
             ) : null}
           </div>
           <div className={styles.buttonWrapper}>
-            <Button
-              className={styles.upload}
-              disabled={disabledState}
-              buttonType="button"
+            <span
+              className={[
+                styles.upload,
+                buttonStyles.button,
+                buttonStyles.default,
+                disabledState ? buttonStyles.disabled : null
+              ].join(' ')}
             >
               Upload New Photo
               <input
@@ -184,7 +188,7 @@ class Cropper extends React.Component {
                 ref={this.croppieInput}
                 disabled={disabledState}
               />
-            </Button>
+            </span>
             {activeCrop || isLoading ? (
               <Button
                 buttonType="button"
