@@ -30,6 +30,10 @@ class UserSettingsComponent extends React.Component {
     setProfileImageUrls(smallProfileImageUrl, largeProfileImageUrl);
   }
 
+  componentWillUnmount() {
+    this.props.resetProfileImageUrls();
+  }
+
   render() {
     const {
       uploadProfileImage,
