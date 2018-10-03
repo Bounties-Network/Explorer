@@ -61,40 +61,39 @@ const LeaderboardCardComponent = props => {
     cardBodyClass = styles.cardBodyLoading;
   }
 
-  const platformOptions = [
-    {
-      label: 'All Platforms',
-      value: config.platform
-    },
-    ...map(
-      platform => ({
-        label: platform,
-        value: platform
-      }),
-      config.platform.split(',')
-    )
-  ];
+  // const platformOptions = [
+  //   {
+  //     label: 'All Platforms',
+  //     value: config.platform
+  //   },
+  //   ...map(
+  //     platform => ({
+  //       label: platform,
+  //       value: platform
+  //     }),
+  //     config.platform.split(',')
+  //   )
+  // ];
 
-  const platformDropdown = config.platform.split(',').length > 1 && (
-    <div className={styles.platformSelect}>
-      <SearchSelect
-        single
-        label="Platform"
-        options={platformOptions}
-        value={selectedPlatforms[0]}
-        labelKey="label"
-        valueKey="value"
-        onChange={setPlatformFilter}
-        onClose={removePlatformFilter}
-        clearable={false}
-        loading={loading}
-      />
-    </div>
-  );
+  // const platformDropdown = config.platform.split(',').length > 1 && (
+  //   <div className={styles.platformSelect}>
+  //     <SearchSelect
+  //       single
+  //       label="Platform"
+  //       options={platformOptions}
+  //       value={selectedPlatforms[0]}
+  //       labelKey="label"
+  //       valueKey="value"
+  //       onChange={setPlatformFilter}
+  //       onClose={removePlatformFilter}
+  //       clearable={false}
+  //       loading={loading}
+  //     />
+  //   </div>
+  // );
 
   let cardBody = (
     <div className={cardBodyClass}>
-      {platformDropdown}
       <ListGroup>{renderLeaders()}</ListGroup>
       {leaderboard[toggleValue].length < count[toggleValue] && (
         <div className={styles.loadMoreButton}>
@@ -109,7 +108,6 @@ const LeaderboardCardComponent = props => {
   if (leaders.length === 0) {
     cardBody = (
       <React.Fragment>
-        {platformDropdown}
         <div className={styles.zeroStateWrapper}>
           <ZeroState
             className={styles.zeroState}
@@ -126,7 +124,6 @@ const LeaderboardCardComponent = props => {
   if (loading && !leaders.length) {
     cardBody = (
       <React.Fragment>
-        {platformDropdown}
         <div className={styles.zeroStateWrapper}>
           <Loader color="blue" size="medium" />
         </div>
@@ -137,7 +134,6 @@ const LeaderboardCardComponent = props => {
   if (error || loadingMoreError) {
     cardBody = (
       <React.Fragment>
-        {platformDropdown}
         <div className={styles.zeroStateWrapper}>
           <ZeroState
             className={styles.zeroState}
