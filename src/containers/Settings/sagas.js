@@ -1,14 +1,18 @@
-import { call, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { toast as callToast } from 'react-toastify';
 import { Toast } from 'components';
-import { actionTypes } from 'public-modules/Settings';
+import { actions as settingsUIActions } from './reducer';
+import { actionTypes as settingsActionTypes } from 'public-modules/Settings';
 
 const {
   SAVE_SETTINGS_SUCCESS,
   SAVE_SETTINGS_FAIL,
   SAVE_EMAIL_PREFERENCES_SUCCESS,
-  SAVE_EMAIL_PREFERENCES_FAIL
-} = actionTypes;
+  SAVE_EMAIL_PREFERENCES_FAIL,
+  UPLOAD_PROFILE_IMAGE_SUCCESS
+} = settingsActionTypes;
+
+const { setProfileImageUrls, resetProfileImageUrls } = settingsUIActions;
 
 let lastProfileToast;
 export function* sendProfileUpdatedToast(action) {
@@ -48,6 +52,13 @@ export function* sendEmailSettingsUpdatedToast(action) {
   lastEmailToast = id;
 }
 
+export function* uploadProfileImageSuccess(action) {
+  const { smallUrl, largeUrl } = action;
+
+  yield put(resetProfileImageUrls());
+  yield put(setProfileImageUrls(smallUrl, largeUrl));
+}
+
 export function* watchSaveProfile() {
   yield takeLatest(
     [SAVE_SETTINGS_SUCCESS, SAVE_SETTINGS_FAIL],
@@ -62,4 +73,12 @@ export function* watchSetEmailSettings() {
   );
 }
 
-export default [watchSaveProfile, watchSetEmailSettings];
+export function* watchUploadProfileImageSuccess() {
+  yield takeLatest(UPLOAD_PROFILE_IMAGE_SUCCESS, uploadProfileImageSuccess);
+}
+
+export default [
+  watchSaveProfile,
+  watchSetEmailSettings,
+  watchUploadProfileImageSuccess
+];

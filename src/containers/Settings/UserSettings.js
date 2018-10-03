@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { FormSection } from 'explorer-components';
 import { actions as skillActions } from 'public-modules/Skills';
 import { actions as settingsActions } from 'public-modules/Settings';
+import { actions as settingsUIActions } from './reducer';
+import { settingsUISelector } from './selectors';
 import { skillsSelector } from 'public-modules/Skills/selectors';
 import { languagesSelector } from 'public-modules/Languages/selectors';
 import {
@@ -21,14 +23,18 @@ class UserSettingsComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      profileImage: props.initialValues.largeProfileImageUrl
-    };
+    const { initialValues, setProfileImageUrls } = props;
+
+    const { smallProfileImageUrl, largeProfileImageUrl } = initialValues;
+
+    setProfileImageUrls(smallProfileImageUrl, largeProfileImageUrl);
   }
+
   render() {
     const {
       uploadProfileImage,
       uploading,
+      uploadingError,
       addSkill,
       skills,
       languages,
@@ -40,10 +46,9 @@ class UserSettingsComponent extends React.Component {
       onboarding,
       onClose,
       smallProfileImageUrl,
-      largeProfileImageUrl
+      largeProfileImageUrl,
+      resetProfileImageUrls
     } = this.props;
-
-    const { profileImage } = this.state;
 
     const handleSaveSettings = values => {
       saveSettings({
@@ -54,12 +59,11 @@ class UserSettingsComponent extends React.Component {
     };
 
     const handleUpload = (smallImage, largeImage) => {
-      this.setState({ profileImage: URL.createObjectURL(largeImage) });
       uploadProfileImage(smallImage, largeImage);
     };
 
     const handleResetUpload = () => {
-      this.setState({ profileImage: null });
+      resetProfileImageUrls();
     };
 
     const validatorGroups = {
@@ -82,8 +86,13 @@ class UserSettingsComponent extends React.Component {
                 onChange={handleUpload}
                 onDelete={handleResetUpload}
                 loading={uploading}
-                src={profileImage}
+                src={largeProfileImageUrl}
               />
+              {uploadingError && (
+                <Text inputLabel color="red">
+                  Image upload failed, please try again.
+                </Text>
+              )}
             </FormSection.InputGroup>
           </FormSection.Section>
           <FormSection.Section title="ABOUT">
@@ -285,8 +294,8 @@ const mapStateToProps = state => {
     },
     uploading: uploadState.uploading,
     uploadingError: uploadState.error,
-    smallProfileImageUrl: uploadState.smallUrl,
-    largeProfileImageUrl: uploadState.largeUrl,
+    smallProfileImageUrl: settingsUISelector(state).smallProfileImageUrl,
+    largeProfileImageUrl: settingsUISelector(state).largeProfileImageUrl,
     skills: skillsSelector(state),
     languages: languagesSelector(state),
     savingSettings: settingsSelector(state).saving,
@@ -306,7 +315,9 @@ const UserSettings = compose(
     {
       uploadProfileImage: settingsActions.uploadProfileImage,
       addSkill: skillActions.addToSkills,
-      saveSettings: settingsActions.saveSettings
+      saveSettings: settingsActions.saveSettings,
+      setProfileImageUrls: settingsUIActions.setProfileImageUrls,
+      resetProfileImageUrls: settingsUIActions.resetProfileImageUrls
     }
   )
 )(UserSettingsComponent);

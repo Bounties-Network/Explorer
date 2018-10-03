@@ -3,6 +3,7 @@ import leaderboardUIReducer from 'containers/Leaderboard/reducer';
 import profileUIReducer from 'containers/Profile/reducer';
 import dashboardReducer from 'containers/Dashboard/reducer';
 import bountyPageUIReducer from 'containers/Bounty/reducer';
+import settingsUIReducer from 'containers/Settings/reducer';
 import appReducer from 'layout/App/reducer';
 
 const reducers = {
@@ -11,6 +12,7 @@ const reducers = {
   ...dashboardReducer,
   bountyPageUI: bountyPageUIReducer,
   profileUI: profileUIReducer,
+  settingsUI: settingsUIReducer,
   app: appReducer
 };
 
