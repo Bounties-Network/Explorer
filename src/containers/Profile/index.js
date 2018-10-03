@@ -18,6 +18,7 @@ import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { locationNonceSelector } from 'layout/App/selectors';
 import { SEOHeader } from './components';
 import { actions } from './reducer';
+import { queryStringToObject } from 'utils/locationHelpers';
 
 class ProfileComponent extends React.Component {
   constructor(props) {
@@ -32,11 +33,13 @@ class ProfileComponent extends React.Component {
       currentUser,
       history,
       match,
+      location,
       loadUserInfo,
       setActiveTab,
       setProfileAddress,
       resetState,
-      initFilterNav
+      initFilterNav,
+      setReviewsModalVisible
     } = this.props;
 
     initFilterNav(filterConfig);
@@ -58,6 +61,12 @@ class ProfileComponent extends React.Component {
     loadUserInfo(address.toLowerCase());
     setProfileAddress(address.toLowerCase());
     setActiveTab('issued');
+
+    const values = queryStringToObject(location.search);
+
+    if (values.reviews) {
+      setReviewsModalVisible(true);
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -232,7 +241,8 @@ const Profile = compose(
       resetFilter: bountiesActions.resetFilter,
       loadUserInfo: userInfoActions.loadUserInfo,
       setActiveTab: actions.setActiveTab,
-      setProfileAddress: actions.setProfileAddress
+      setProfileAddress: actions.setProfileAddress,
+      setReviewsModalVisible: actions.setReviewsModalVisible
     }
   )
 )(ProfileComponent);
