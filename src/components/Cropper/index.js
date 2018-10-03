@@ -51,6 +51,7 @@ class Cropper extends React.Component {
 
   save = e => {
     e.preventDefault();
+    e.persist();
 
     const small = this.croppie.result({
       type: 'blob',
@@ -73,13 +74,7 @@ class Cropper extends React.Component {
       largeBlob.name = this.state.file.name;
 
       this.props.onChange(smallBlob, largeBlob);
-
-      if (this.croppie) {
-        this.croppie.destroy();
-        this.croppie = null;
-      }
-
-      this.setState({ activeCrop: false });
+      this.removeCroppie(e);
     });
   };
 
