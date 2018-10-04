@@ -1,6 +1,6 @@
-export let web3 = {};
-
 import config from 'public-modules/config';
+
+export let web3 = {};
 
 let API_ENDPOINT = config.url.mainNet;
 //let API_ENDPOINT = 'http://localhost:8000';

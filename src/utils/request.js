@@ -1,13 +1,14 @@
 import axios from 'axios';
 
 import {
-  apiEndpoint,
   HTTP_401_UNAUTHORIZED,
   HTTP_200_OK,
   HTTP_403_FORBIDDEN,
   HTTP_500_INTERNAL_SERVER_ERROR,
   HTTP_300_MULTIPLE_CHOICES
 } from './constants';
+
+import { apiEndpoint } from './global';
 
 import rollbar from 'lib/rollbar';
 
