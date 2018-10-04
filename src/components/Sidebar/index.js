@@ -20,11 +20,16 @@ class TabIcon extends React.Component {
           }
 
           return (
-            <a className={tabStyle} onClick={() => onTabClick(tabKey)}>
+            <a
+              className={tabStyle}
+              onClick={() => (tabKey ? onTabClick(tabKey) : null)}
+            >
               <FontAwesomeIcon icon={icon} className={styles.navIcon} />
-              <Text className={styles.navText} typeScale="h4">
-                {title}
-              </Text>
+              {title && (
+                <Text className={styles.navText} typeScale="h4">
+                  {title}
+                </Text>
+              )}
             </a>
           );
         }}
@@ -100,7 +105,6 @@ class Sidebar extends React.Component {
     }, children);
 
     const currentTab = activeTab || activeTabState || defaultActiveTab;
-
     const sidebarBody = (
       <ModalContext.Provider
         value={{

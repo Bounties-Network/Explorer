@@ -6,6 +6,7 @@
   padding-top: $header-height-sm;
   display: flex;
   flex-direction: column;
+  z-index: 5;
 
   @media only screen and (min-width: 48em) {
     background-color: $sidebar-color;
@@ -18,6 +19,10 @@
   @media only screen and (min-width: 65em) {
     width: $sidebar-width-lg;
     padding-top: $header-height-lg + $base-spacing;
+  }
+
+  @media only screen and (min-width: 110em) {
+    width: $sidebar-width-xl;
   }
 }
 
@@ -32,6 +37,7 @@
 
 .desktopSideNav {
   display: none;
+  
   @media only screen and (min-width: 48em) {
     display: block;
   }
@@ -46,19 +52,48 @@
   align-items: center;
   font-size: 1.3rem;
   padding: $base-spacing $l-spacing;
+  position: relative;
   margin: $m-spacing 0;
   cursor: pointer;
   color: $brand-white;
-  opacity: 0.5;
+  word-break: normal;
+  word-wrap: normal;
+  hyphens: none;
+  overflow-wrap: none;
+  transition: opacity 250ms ease-in-out;
 
   &:hover {
+    text-decoration: none;
+  }
+
+  &:hover .navIcon,
+  &:hover .navText {
     opacity: 1;
     text-decoration: none;
+    font-size: inhert;
   }
 
   @media only screen and (min-width: 48em) {
     text-align: center;
     justify-content: center;
+
+    &:hover .navText {
+      max-width: 9.3rem;
+      padding-right: $m-spacing;
+      padding-left: $m-spacing;
+      font-size: $h5-font-size;
+    }
+  }
+
+  @media only screen and (min-width: 110em) {
+    text-align: left;
+    justify-content: flex-start;
+
+    &:hover .navText {
+      padding-right: 0;
+      padding-left: 0;
+      font-size: inherit;
+    }
   }
 }
 
@@ -66,20 +101,51 @@
   flex-basis: $l-spacing;
   flex-grow: 0;
   flex-shrink: 0;
+  opacity: 0.5;
+  transition:
+    opacity 150ms ease-in-out;
 }
 
 .navText {
   text-decoration: none;
   margin-left: $l-spacing;
+  opacity: 0.5;
+  transition: opacity 250ms ease-in-out;
+
   @media only screen and (min-width: 48em) {
-    display: none;
+    border-top-right-radius: $base-border-radius;
+    border-bottom-right-radius: $base-border-radius;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: absolute;
+    left: $sidebar-width-sm;
+    margin-left: 0;
+    max-width: 0px;
+    opacity: 0;
+    padding: $m-spacing;
+    padding-right: 0px;
+    padding-left: 0px;
+    background-color: $sidebar-color;
+    text-align: left;
+    transition:
+      all 150ms ease-in-out,
+  }
+
+  @media only screen and (min-width: 110em) {
+    background-color: transparent;
+    max-width: 100%;
+    opacity: 0.5;
+    left: 0;
+    overflow: auto;
+    margin-left: $l-spacing;
+    padding: 0;
+    position: relative;
   }
 }
 
 .active {
   color: $brand-white;
   position: relative;
-  opacity: 1;
 
   &:before {
     position: absolute;
@@ -89,5 +155,10 @@
     width: $s-spacing;
     height: 100%;
     left: 0;
+  }
+
+  .navIcon,
+  .navText {
+    opacity: 1;
   }
 }
