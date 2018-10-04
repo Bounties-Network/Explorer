@@ -12,41 +12,52 @@ storiesOf('Table', module).add('Table', () => (
     <div style={{ marginTop: '10px' }} />
     <Table>
       <Table.Header>
-        <Table.HeaderCell flexGrow={2}>Header 1</Table.HeaderCell>
-        <Table.HeaderCell>Header 2</Table.HeaderCell>
-        <Table.HeaderCell flexGrow={3}>Header 3</Table.HeaderCell>
-        <Table.HeaderCell>Header 4</Table.HeaderCell>
+        <Table.HeaderCell flexBasis="30%">Header 1</Table.HeaderCell>
+        <Table.HeaderCell flexBasis="15%">Header 2</Table.HeaderCell>
+        <Table.HeaderCell flexBasis="40%">Header 3</Table.HeaderCell>
+        <Table.HeaderCell flexBasis="15%">Header 4</Table.HeaderCell>
       </Table.Header>
       <Table.Row hover>
-        <Table.Cell headerText="Header 1" flexGrow={2}>
+        <Table.Cell headerText="Header 1" flexBasis="30%">
           Cell 1
         </Table.Cell>
-        <Table.Cell headerText="Header 2">Cell 2</Table.Cell>
-        <Table.Cell headerText="Header 3" flexGrow={3}>
+        <Table.Cell headerText="Header 2" flexBasis="15%">
+          Cell 2
+        </Table.Cell>
+        <Table.Cell headerText="Header 3" flexBasis="40%">
           Cell 3
         </Table.Cell>
-        <Table.Cell headerText="Header 4">Cell 4</Table.Cell>
+        <Table.Cell headerText="Header 4" flexBasis="15%">
+          Cell 4
+        </Table.Cell>
       </Table.Row>
       <Table.Row hover>
-        <Table.Cell headerText="Header 1" flexGrow={2}>
-          This is a flexgrow 2 field. It will grow faster than other columns.
+        <Table.Cell headerText="Header 1" flexBasis="30%">
+          This is a flexgrow 2 field.
         </Table.Cell>
-        <Table.Cell headerText="Header 2">Cell 2</Table.Cell>
-        <Table.Cell headerText="Header 3" flexGrow={3}>
-          This is a flexgrow 3 field. It will grow faster than other columns,
-          particularly faster than the flexgrow2 field.
+        <Table.Cell headerText="Header 2" flexBasis="15%">
+          Cell 2
         </Table.Cell>
-        <Table.Cell headerText="Header 4">Cell 4</Table.Cell>
+        <Table.Cell headerText="Header 3" flexBasis="40%">
+          This is a flexgrow 3 field.
+        </Table.Cell>
+        <Table.Cell headerText="Header 4" flexBasis="15%">
+          Cell 4
+        </Table.Cell>
       </Table.Row>
       <Table.Row hover>
-        <Table.Cell headerText="Header 1" flexGrow={2}>
+        <Table.Cell headerText="Header 1" flexBasis="30%">
           Cell 1
         </Table.Cell>
-        <Table.Cell headerText="Header 2">Cell 2</Table.Cell>
-        <Table.Cell headerText="Header 3" flexGrow={3}>
+        <Table.Cell headerText="Header 2" flexBasis="15%">
+          Cell 2
+        </Table.Cell>
+        <Table.Cell headerText="Header 3" flexBasis="40%">
           Cell 3
         </Table.Cell>
-        <Table.Cell headerText="Header 4">Cell 4</Table.Cell>
+        <Table.Cell headerText="Header 4" flexBasis="15%">
+          Cell 4
+        </Table.Cell>
       </Table.Row>
     </Table>
   </div>
