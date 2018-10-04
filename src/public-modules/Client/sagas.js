@@ -10,7 +10,7 @@ import {
 } from 'public-modules/Client/selectors';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import { apiEndpoint } from 'utils/constants';
+import { apiEndpoint } from 'utils/global';
 import { actions, actionTypes } from 'public-modules/Client';
 
 let proxiedWeb3;
