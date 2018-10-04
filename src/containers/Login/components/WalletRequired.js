@@ -17,9 +17,9 @@ const WalletRequired = props => {
   }
 
   if (operatingSystem === 'Android') {
-    walletName = 'Coinbase Wallet';
+    walletName = 'Status Wallet';
     walletLink =
-      'https://play.google.com/store/apps/details?id=com.coinbase.android';
+      'https://play.google.com/store/apps/details?id=im.status.ethereum';
   }
 
   return (
@@ -59,8 +59,8 @@ const WalletRequired = props => {
             Cancel
           </Button>
         )}
-        <a href="https://metamask.io/">
-          <Button type="primary">Visit MetaMask.io</Button>
+        <a href={walletLink}>
+          <Button type="primary">Visit {walletName}</Button>
         </a>
       </Modal.Footer>
     </Modal>
