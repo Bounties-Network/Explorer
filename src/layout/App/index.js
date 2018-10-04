@@ -27,10 +27,12 @@ import {
   Loader,
   ToastContainer,
   Network,
-  SideOverlay
+  SideOverlay,
+  Dropdown,
+  Text
 } from 'components';
 import { FilterNav } from 'containers';
-import { Header } from 'layout';
+import { Header, Privacy, TOS } from 'layout';
 import { rootAppSelector } from './selectors';
 import { actions as appActions } from './reducer';
 import { actions as authActions } from 'public-modules/Authentication';
@@ -41,6 +43,8 @@ import { currentRouteSelector, scrollToTop } from 'utils/helpers';
 
 import '../../styles/flexboxgrid.css';
 import '../../font-files/inter-ui.css';
+
+const { DropdownTrigger, DropdownContent, MenuItem } = Dropdown;
 
 class HeaderComponent extends React.Component {
   state = {
@@ -84,15 +88,54 @@ class HeaderComponent extends React.Component {
           onMobileHide={() => this.setState({ showMobileSidebar: false })}
         >
           <Sidebar.TabGroup>{this.renderSideNavItems()}</Sidebar.TabGroup>
-          <Sidebar.SubNav />
-          {hasWallet &&
-            !walletLocked && (
-              <Sidebar.Footer>
+          <Sidebar.Footer>
+            {hasWallet &&
+              !walletLocked && (
                 <div className={styles.network}>
                   <Network network={network} theme="light" />
                 </div>
-              </Sidebar.Footer>
-            )}
+              )}
+            <div className={styles.subNav}>
+              <Text
+                link
+                color="white"
+                className={styles.subNavLink}
+                typeScale="h5"
+                onClick={() => history.push('/privacy')}
+              >
+                Privacy policy
+              </Text>
+              <Text
+                link
+                color="white"
+                className={styles.subNavLink}
+                typeScale="h5"
+                onClick={() => history.push('/tos')}
+              >
+                Terms of service
+              </Text>
+            </div>
+            <div className={styles.tosDropdownWrapper}>
+              <Dropdown
+                position="right"
+                hideOnClick
+                hoverTrigger
+                className={styles.tosDropdown}
+              >
+                <DropdownTrigger>
+                  <Sidebar.TabIcon icon={['far', 'info-circle']} />
+                </DropdownTrigger>
+                <DropdownContent className={styles.tosDropdown}>
+                  <MenuItem onClick={() => history.push('/privacy')}>
+                    Privacy Policy
+                  </MenuItem>
+                  <MenuItem onClick={() => history.push('/tos')}>
+                    Terms of Service
+                  </MenuItem>
+                </DropdownContent>
+              </Dropdown>
+            </div>
+          </Sidebar.Footer>
         </Sidebar>
       </React.Fragment>
     );
@@ -227,6 +270,8 @@ class AppComponent extends React.Component {
                     path="/profile/"
                     component={RequireLoginComponent(Profile)}
                   />
+                  <Route exact path="/privacy" component={Privacy} />
+                  <Route exact path="/tos" component={TOS} />
                   <Redirect from="/" to="/explorer" />
                 </Switch>
               </div>

@@ -54,7 +54,7 @@ class DropdownContent extends React.Component {
 class Dropdown extends React.Component {
   constructor(props) {
     super(props);
-
+    this.trigger = React.createRef();
     this.state = {
       show: false
     };
@@ -71,6 +71,18 @@ class Dropdown extends React.Component {
       return setTimeout(() => this.setState({ show: !this.state.show }), 150);
     }
     return this.setState({ show: !this.state.show });
+  };
+
+  onMouseEnter = () => {
+    const { show } = this.state;
+    const { hoverTrigger } = this.props;
+
+    if (!show && hoverTrigger) {
+      this.trigger.current.focus();
+      this.toggle();
+    }
+
+    return null;
   };
 
   render() {
@@ -111,7 +123,9 @@ class Dropdown extends React.Component {
         <div
           className={styles.trigger}
           onClick={this.toggle}
+          onMouseEnter={this.onMouseEnter}
           tabIndex={hideOnClick ? '0' : null}
+          ref={this.trigger}
           onBlur={hideOnClick ? this.hide : () => {}}
         >
           {this.props.children[0]}
@@ -124,6 +138,7 @@ class Dropdown extends React.Component {
 
 Dropdown.propTypes = {
   position: PropTypes.oneOf(['left', 'right']),
+  hoverTrigger: PropTypes.bool,
   className: PropTypes.string,
   children: PropTypes.arrayOf(function(propValue, key) {
     if (key > 1) {

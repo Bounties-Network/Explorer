@@ -137,7 +137,7 @@ Text.defaultProps = {
   typeScale: 'Body',
   onClick: () => {},
   onMouseDown: () => {},
-  src: '',
+  src: null,
   link: false,
   weight: 'fontWeight-regular',
   id: ''

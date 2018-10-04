@@ -23,7 +23,7 @@
     padding-top: $header-height-lg;
   }
 
-  @media only screen and (min-width: 88em) {
+  @media only screen and (min-width: 110em) {
     margin-left: $sidebar-width-xl;
   }
 }
@@ -33,7 +33,7 @@
   margin-bottom: $l-spacing;
   width: 100;
   display: flex;
-  justify-content: center;
+  margin-left: $l-spacing;
   @media only screen and (min-width: 48em) {
     display: none;
   }
@@ -53,6 +53,50 @@
   @media only screen and (min-width: 48em) {
     display: none;
   }
+}
+
+.subNav {
+  border-top: 1px solid rgba($brand-white, 0.25);
+  flex: 1;
+  margin-top: $m-spacing;
+  padding: $l-spacing;
+  padding-top: $xl-spacing;
+
+  @media only screen and (min-width: 48em) {
+    display: none;
+  }
+
+  @media only screen and (min-width: 110em) {
+    display: block;
+  }
+}
+
+.subNavLink {
+  display: block;
+  opacity: 0.5;
+
+  &:not(:last-child) {
+    margin-bottom: $l-spacing;
+  }
+}
+
+.tosDropdownWrapper {
+  display: none;
+  @media only screen and (min-width: 48em) {
+    display: block;
+  }
+  @media only screen and (min-width: 110em) {
+    display: none;
+  }
+}
+
+.tosDropdown {
+  bottom: $s-spacing;
+  left: $sidebar-width-lg + $m-spacing;
+  box-shadow: $base-box-shadow;
+  background-color: $brand-white;
+  border-radius: $base-border-radius;
+  z-index: 500;
 }
 
 .desktopSideNav {

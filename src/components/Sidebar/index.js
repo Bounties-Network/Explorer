@@ -20,11 +20,16 @@ class TabIcon extends React.Component {
           }
 
           return (
-            <a className={tabStyle} onClick={() => onTabClick(tabKey)}>
+            <a
+              className={tabStyle}
+              onClick={() => (tabKey ? onTabClick(tabKey) : null)}
+            >
               <FontAwesomeIcon icon={icon} className={styles.navIcon} />
-              <Text className={styles.navText} typeScale="h4">
-                {title}
-              </Text>
+              {title && (
+                <Text className={styles.navText} typeScale="h4">
+                  {title}
+                </Text>
+              )}
             </a>
           );
         }}
@@ -48,33 +53,6 @@ TabGroup.propTypes = {
     }
   })
 };
-
-class SubNav extends React.Component {
-  render() {
-    return (
-      <div className={styles.subNavGroup}>
-        <Text
-          link
-          color="white"
-          className={styles.subNavLink}
-          typeScale="h5"
-          href=""
-        >
-          Privacy policy
-        </Text>
-        <Text
-          link
-          color="white"
-          className={styles.subNavLink}
-          typeScale="h5"
-          href=""
-        >
-          Terms of service
-        </Text>
-      </div>
-    );
-  }
-}
 
 class Footer extends React.Component {
   render() {
@@ -107,7 +85,7 @@ class Sidebar extends React.Component {
       onMobileHide
     } = this.props;
 
-    let footer, tabGroup, subNav;
+    let footer, tabGroup;
     const children = Array.isArray(this.props.children)
       ? this.props.children
       : [this.props.children];
@@ -124,14 +102,9 @@ class Sidebar extends React.Component {
       if (childName === TabGroup.name) {
         tabGroup = child;
       }
-
-      if (childName === SubNav.name) {
-        subNav = child;
-      }
     }, children);
 
     const currentTab = activeTab || activeTabState || defaultActiveTab;
-    console.log(subNav);
     const sidebarBody = (
       <ModalContext.Provider
         value={{
@@ -141,7 +114,6 @@ class Sidebar extends React.Component {
       >
         <div className={`${styles.sidebar} ${className}`}>
           <div className={styles.icons}>{tabGroup}</div>
-          <div className={styles.subNav}>{subNav}</div>
           <div className={styles.footer}>{footer}</div>
         </div>
       </ModalContext.Provider>
@@ -168,7 +140,6 @@ Sidebar.propTypes = {
         // an expression that should not be displayed at this time
         typeof propValue[i] !== 'boolean' &&
         propValue[i].type.name !== TabGroup.name &&
-        propValue[i].type.name !== SubNav.name &&
         propValue[i].type.name !== Footer.name
       ) {
         return new Error('Children Must Be an Instance of TabGroup or Footer');
@@ -181,7 +152,6 @@ Sidebar.propTypes = {
 
 Sidebar.defaultProps = {};
 Sidebar.TabGroup = TabGroup;
-Sidebar.SubNav = SubNav;
 Sidebar.Footer = Footer;
 Sidebar.TabIcon = TabIcon;
 

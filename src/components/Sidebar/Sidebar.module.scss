@@ -21,7 +21,7 @@
     padding-top: $header-height-lg + $base-spacing;
   }
 
-  @media only screen and (min-width: 88em) {
+  @media only screen and (min-width: 110em) {
     width: $sidebar-width-xl;
   }
 }
@@ -44,7 +44,7 @@
 }
 
 .icons {
-  //flex: 1;
+  flex: 1;
 }
 
 .iconTab {
@@ -70,6 +70,7 @@
   &:hover .navText {
     opacity: 1;
     text-decoration: none;
+    font-size: inhert;
   }
 
   @media only screen and (min-width: 48em) {
@@ -80,16 +81,18 @@
       max-width: 9.3rem;
       padding-right: $m-spacing;
       padding-left: $m-spacing;
+      font-size: $h5-font-size;
     }
   }
 
-  @media only screen and (min-width: 88em) {
+  @media only screen and (min-width: 110em) {
     text-align: left;
     justify-content: flex-start;
 
     &:hover .navText {
       padding-right: 0;
       padding-left: 0;
+      font-size: inherit;
     }
   }
 }
@@ -128,7 +131,7 @@
       all 150ms ease-in-out,
   }
 
-  @media only screen and (min-width: 88em) {
+  @media only screen and (min-width: 110em) {
     background-color: transparent;
     max-width: 100%;
     opacity: 0.5;
@@ -157,30 +160,5 @@
   .navIcon,
   .navText {
     opacity: 1;
-  }
-}
-
-.subNav {
-  border-top: 1px solid rgba($brand-white, 0.25);
-  flex: 1;
-  margin-top: $m-spacing;
-  padding: $l-spacing;
-  padding-top: $xl-spacing;
-
-  @media only screen and (min-width: 48em) {
-    display: none;
-  }
-
-  @media only screen and (min-width: 88em) {
-    display: block;
-  }
-}
-
-.subNavLink {
-  display: block;
-  opacity: 0.5;
-
-  &:not(:last-child) {
-    margin-bottom: $l-spacing;
   }
 }
