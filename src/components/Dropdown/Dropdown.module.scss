@@ -55,6 +55,16 @@
   transform: translateY(-10px);
 }
 
+.enterRight {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.enterActiveRight {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
 .enterActive {
   opacity: 1;
   transform: translateY(0);

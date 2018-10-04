@@ -2,7 +2,7 @@
 
 .sidebar {
   height: 100%; /* 100% Full-height */
-  width: 60vw;
+  width: 17em;
   padding-top: $header-height-sm;
   display: flex;
   flex-direction: column;
@@ -111,6 +111,7 @@
   margin-left: $l-spacing;
   opacity: 0.5;
   transition: opacity 250ms ease-in-out;
+  font-size: inherit;
 
   @media only screen and (min-width: 48em) {
     border-top-right-radius: $base-border-radius;
@@ -126,6 +127,7 @@
     padding-right: 0px;
     padding-left: 0px;
     background-color: $sidebar-color;
+    font-size: $h5-font-size;
     text-align: left;
     transition:
       all 150ms ease-in-out,
@@ -140,6 +142,7 @@
     margin-left: $l-spacing;
     padding: 0;
     position: relative;
+    font-size: inherit;
   }
 }
 

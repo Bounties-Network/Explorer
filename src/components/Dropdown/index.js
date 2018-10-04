@@ -88,7 +88,14 @@ class Dropdown extends React.Component {
   render() {
     const { show } = this.state;
 
-    const { position, className, hideOnClick } = this.props;
+    const {
+      position,
+      className,
+      hideOnClick,
+      containerClass,
+      hoverTrigger,
+      animateDirection
+    } = this.props;
 
     let contentClass = show
       ? `${styles.content} ${styles.show} ${className}`
@@ -105,8 +112,12 @@ class Dropdown extends React.Component {
           key="1"
           timeout={{ enter: 150, exit: 0 }}
           classNames={{
-            enter: styles.enter,
-            enterActive: styles.enterActive
+            enter:
+              animateDirection === 'right' ? styles.enterRight : styles.enter,
+            enterActive:
+              animateDirection === 'right'
+                ? styles.enterActiveRight
+                : styles.enterActive
           }}
         >
           <div className={contentClass}>{this.props.children[1]}</div>
@@ -116,17 +127,18 @@ class Dropdown extends React.Component {
 
     return (
       <div
-        className={styles.container}
+        className={`${styles.container} ${containerClass}`}
         tabIndex={hideOnClick ? null : '0'}
         onBlur={hideOnClick ? () => {} : this.hide}
+        onMouseLeave={hoverTrigger ? this.hide : () => {}}
       >
         <div
           className={styles.trigger}
           onClick={this.toggle}
-          onMouseEnter={this.onMouseEnter}
           tabIndex={hideOnClick ? '0' : null}
           ref={this.trigger}
           onBlur={hideOnClick ? this.hide : () => {}}
+          onMouseEnter={this.onMouseEnter}
         >
           {this.props.children[0]}
         </div>
@@ -140,6 +152,8 @@ Dropdown.propTypes = {
   position: PropTypes.oneOf(['left', 'right']),
   hoverTrigger: PropTypes.bool,
   className: PropTypes.string,
+  containerClass: PropTypes.string,
+  animateDirection: PropTypes.oneOf(['down', 'right']),
   children: PropTypes.arrayOf(function(propValue, key) {
     if (key > 1) {
       return new Error('Children Must Be DropdownTrigger and DropdownContent');
@@ -154,6 +168,7 @@ Dropdown.propTypes = {
 };
 
 Dropdown.defaultProps = {
+  animateDirection: 'down',
   position: 'right'
 };
 

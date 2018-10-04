@@ -121,6 +121,7 @@ class HeaderComponent extends React.Component {
                 hideOnClick
                 hoverTrigger
                 className={styles.tosDropdown}
+                containerClass={styles.dropdownContainer}
               >
                 <DropdownTrigger>
                   <Sidebar.TabIcon icon={['far', 'info-circle']} />
