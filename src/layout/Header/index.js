@@ -5,10 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { includes } from 'lodash';
 import { actions as loginActions } from 'containers/Login/reducer';
-import {
-  hasWalletSelector,
-  walletLockedSelector
-} from 'public-modules/Client/selectors';
+import { hasWalletSelector } from 'public-modules/Client/selectors';
 import { actions as authActions } from 'public-modules/Authentication';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -144,7 +141,6 @@ HeaderComponent.defaultProps = {
 
 const mapStateToProps = state => ({
   hasWallet: hasWalletSelector(state),
-  walletLocked: walletLockedSelector(state),
   network: state.client.network,
   user: getCurrentUserSelector(state)
 });
