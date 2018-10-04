@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './LeaderboardCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { ListGroup, Loader, ZeroState, Button, SearchSelect } from 'components';
+import { ListGroup, Loader, ZeroState, Button } from 'components';
 import { LoadComponent } from 'hocs';
 import { LeaderItem } from './components';
 import { map as fpMap } from 'lodash';
@@ -25,10 +25,7 @@ const LeaderboardCardComponent = props => {
     count,
     loadMore,
     loadingMore,
-    loadingMoreError,
-    selectedPlatforms,
-    setPlatformFilter,
-    removePlatformFilter
+    loadingMoreError
   } = props;
 
   const leaders = leaderboard[toggleValue] || [];
