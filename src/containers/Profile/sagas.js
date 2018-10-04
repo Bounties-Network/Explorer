@@ -4,7 +4,11 @@ import { actionTypes } from './reducer';
 import { actions as reviewsActions } from 'public-modules/Reviews';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 
-const { SET_ACTIVE_TAB, TOGGLE_NETWORK_SWITCH } = actionTypes;
+const {
+  SET_ACTIVE_TAB,
+  TOGGLE_NETWORK_SWITCH,
+  SET_ACTIVE_NETWORK_SWITCH
+} = actionTypes;
 const { addIssuerFilter, addFulfillerFilter } = bountiesActions;
 const { loadBounties } = bountiesActions;
 const { loadReviewsReceived } = reviewsActions;
@@ -28,7 +32,10 @@ export function* networkSwitchChanged(action) {
 }
 
 export function* watchNetworkSwitch() {
-  yield takeLatest(TOGGLE_NETWORK_SWITCH, networkSwitchChanged);
+  yield takeLatest(
+    [TOGGLE_NETWORK_SWITCH, SET_ACTIVE_NETWORK_SWITCH],
+    networkSwitchChanged
+  );
 }
 
 export function* watchProfileTab() {

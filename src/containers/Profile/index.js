@@ -33,13 +33,11 @@ class ProfileComponent extends React.Component {
       currentUser,
       history,
       match,
-      location,
       loadUserInfo,
       setActiveTab,
       setProfileAddress,
       resetState,
-      initFilterNav,
-      setReviewsModalVisible
+      initFilterNav
     } = this.props;
 
     initFilterNav(filterConfig);
@@ -61,12 +59,6 @@ class ProfileComponent extends React.Component {
     loadUserInfo(address.toLowerCase());
     setProfileAddress(address.toLowerCase());
     setActiveTab('issued');
-
-    const values = queryStringToObject(location.search);
-
-    if (values.reviews) {
-      setReviewsModalVisible(true);
-    }
   }
 
   componentDidUpdate(prevProps) {
@@ -123,6 +115,21 @@ class ProfileComponent extends React.Component {
   componentDidMount() {
     const body = document.getElementsByClassName('page-body')[0];
     body.addEventListener('scroll', this.onScroll);
+
+    const {
+      location,
+      setReviewsModalVisible,
+      setActiveNetworkSwitch
+    } = this.props;
+    const { reviews, fulfiller } = queryStringToObject(location.search);
+
+    if (fulfiller) {
+      setActiveNetworkSwitch('fulfiller');
+    }
+
+    if (reviews) {
+      setReviewsModalVisible(true);
+    }
   }
 
   componentWillUnmount() {
@@ -242,7 +249,8 @@ const Profile = compose(
       loadUserInfo: userInfoActions.loadUserInfo,
       setActiveTab: actions.setActiveTab,
       setProfileAddress: actions.setProfileAddress,
-      setReviewsModalVisible: actions.setReviewsModalVisible
+      setReviewsModalVisible: actions.setReviewsModalVisible,
+      setActiveNetworkSwitch: actions.setActiveNetworkSwitch
     }
   )
 )(ProfileComponent);
