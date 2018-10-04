@@ -66,7 +66,7 @@ class DashboardComponent extends React.Component {
     return (
       <div>
         <div className={`pageWrapper-large ${styles.desktopContainer}`}>
-          <UserStats className={styles.statsContainer} />
+          <UserStats />
           <div className={styles.panelContainer}>
             <BountiesPanel
               className={styles.bountiesPanel}
@@ -83,7 +83,7 @@ class DashboardComponent extends React.Component {
           </div>
         </div>
         <div className={styles.mobileContainer}>
-          <UserStats className={styles.statsContainer} />
+          <UserStats />
           <Slider {...settings}>
             <BountiesPanel
               className={styles.bountiesPanel}

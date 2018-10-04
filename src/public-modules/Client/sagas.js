@@ -8,10 +8,10 @@ import {
   hasWalletSelector,
   initializedSelector
 } from 'public-modules/Client/selectors';
-import { call, put, select } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { apiEndpoint } from 'utils/constants';
-import { actions } from 'public-modules/Client';
+import { actions, actionTypes } from 'public-modules/Client';
 
 let proxiedWeb3;
 
@@ -20,8 +20,12 @@ const {
   setNetwork,
   setLocked,
   setAddress,
-  setInitialized
+  setInitialized,
+  getTokenBalanceSuccess,
+  getTokenBalanceFail
 } = actions;
+
+const { GET_TOKEN_BALANCE } = actionTypes;
 
 function* getWalletAddress() {
   const accounts = yield proxiedWeb3.eth.getAccounts();
@@ -73,8 +77,9 @@ export function* getWeb3Client() {
     return null;
   }
 
+  currentNetwork = yield call(getNetwork);
+
   if (!isLocked) {
-    currentNetwork = yield call(getNetwork);
     currentAddress = yield call(getWalletAddress);
   }
   if (isLocked !== wasLocked) {
@@ -109,19 +114,61 @@ export function* getContractClient() {
   return null;
 }
 
-export function* getTokenClient(tokenAddress) {
+export function* getTokenClient(tokenAddress, type = 'HumanStandardToken') {
   const { web3 } = yield call(getWeb3Client);
   const network = yield select(networkSelector);
 
   if (network !== 'unknown') {
     return {
       tokenContract: new web3.eth.Contract(
-        config.interfaces.HumanStandardToken,
+        config.interfaces[type],
         tokenAddress
       ).methods
     };
   }
   return null;
+}
+
+export function* getTokenBalance(action) {
+  const { address: tokenAddress } = action;
+  const userAddress = yield call(getWalletAddress);
+  const { web3 } = yield call(getWeb3Client);
+
+  if (tokenAddress === '0x0000000000000000000000000000000000000000') {
+    try {
+      const balanceWei = yield call(web3.eth.getBalance, userAddress);
+      const balanceEther = yield call(web3.utils.fromWei, balanceWei, 'ether');
+      return yield put(getTokenBalanceSuccess([balanceEther, 'ether']));
+    } catch (e) {
+      return yield put(getTokenBalanceFail(e));
+    }
+  }
+
+  try {
+    // verify tokenAddress is a valid ERC-20 contract client, throw if not
+    let symbol, decimals, balance;
+    try {
+      const token = yield call(getTokenClient, tokenAddress);
+      const { tokenContract: tokenClient } = token;
+      symbol = yield call(tokenClient.symbol().call);
+      decimals = yield call(tokenClient.decimals().call);
+      balance = yield call(tokenClient.balanceOf(userAddress).call);
+    } catch (e) {
+      // if it fails, it may be because the token uses a slightly
+      // different abi (DAI does this for example) and symbol is a bytes32
+      const token = yield call(getTokenClient, tokenAddress, 'DSToken');
+      const { tokenContract: tokenClient } = token;
+      symbol = web3.utils.hexToAscii(yield call(tokenClient.symbol().call));
+      decimals = yield call(tokenClient.decimals().call);
+      balance = yield call(tokenClient.balanceOf(userAddress).call);
+    }
+
+    yield put(
+      getTokenBalanceSuccess([Number(balance) / 10 ** Number(decimals), symbol])
+    );
+  } catch (e) {
+    yield put(getTokenBalanceFail(e));
+  }
 }
 
 export function* updateWalletData() {
@@ -136,4 +183,8 @@ export function* updateWalletData() {
   }
 }
 
-export default [updateWalletData];
+export function* watchGetTokenBalance() {
+  yield takeLatest(GET_TOKEN_BALANCE, getTokenBalance);
+}
+
+export default [updateWalletData, watchGetTokenBalance];

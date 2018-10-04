@@ -1,6 +1,8 @@
 import { LOCATION_CHANGE } from 'react-router-redux';
+import { actionTypes as clientActionTypes } from 'public-modules/Client';
 
 const defaultConfig = {
+  type: null,
   rootConfig: null,
   resetFilters: null,
   defaultStageFilters: null
@@ -31,6 +33,17 @@ function hideFilterNav() {
 
 function resetFilterNav() {
   return { type: RESET_FILTER_NAV };
+}
+
+/* In order to do async validation within redux forms, we must return a
+promise that resolves once the saga has completed the validation. To keep the
+public modules clean we are hijacking the GET_TOKEN_BALANCE action and passing
+the promise's resolve and reject to the saga to be completed as soon as the
+success action is dispatched. */
+const { GET_TOKEN_BALANCE } = clientActionTypes;
+
+function getTokenBalance(address, resolve, reject) {
+  return { type: GET_TOKEN_BALANCE, address, resolve, reject };
 }
 
 function AppReducer(state = initialState, action) {
@@ -78,14 +91,16 @@ export const actionTypes = {
   INITIALIZE_FILTER_NAV,
   SHOW_FILTER_NAV,
   HIDE_FILTER_NAV,
-  RESET_FILTER_NAV
+  RESET_FILTER_NAV,
+  GET_TOKEN_BALANCE
 };
 
 export const actions = {
   initializeFilterNav,
   hideFilterNav,
   showFilterNav,
-  resetFilterNav
+  resetFilterNav,
+  getTokenBalance
 };
 
 export default AppReducer;

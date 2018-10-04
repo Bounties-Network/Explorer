@@ -14,7 +14,9 @@ import moment from 'moment';
 import { map } from 'lodash';
 import { DRAFT, EXPIRED } from 'public-modules/Bounty/constants';
 import ActionBar from './ActionBar';
-import SubmissionsAndCommentsCard from './SubmissionsAndCommentsCard';
+import SubmissionsAndCommentsCard, {
+  mostInterestingTab
+} from './SubmissionsAndCommentsCard';
 import { TransactionWalkthrough, FunctionalLoginLock } from 'hocs';
 import {
   getDraftStateSelector,
@@ -51,11 +53,11 @@ class BountyComponent extends React.Component {
       loadBounty,
       loadDraftBounty,
       loadFulfillment,
+      loadFulfillments,
       resetFulfillmentsState,
       resetCommentsState,
       addBountyFilter,
-      setBountyId,
-      setActiveTab
+      setBountyId
     } = props;
 
     setBountyId(match.params.id);
@@ -70,7 +72,7 @@ class BountyComponent extends React.Component {
 
       loadBounty(match.params.id);
       addBountyFilter(match.params.id);
-      setActiveTab('comments');
+      loadFulfillments(match.params.id);
 
       const values = queryStringToObject(location.search);
 
@@ -87,12 +89,11 @@ class BountyComponent extends React.Component {
       locationNonce,
       loadBounty,
       loadDraftBounty,
-      loadFulfillments,
       loadFulfillment,
+      loadFulfillments,
       resetFulfillmentsState,
       addBountyFilter,
       setBountyId,
-      setActiveTab,
       resetCommentsState,
       user,
       history
@@ -114,7 +115,7 @@ class BountyComponent extends React.Component {
 
         loadBounty(bountyId);
         addBountyFilter(bountyId);
-        setActiveTab('comments');
+        loadFulfillments(bountyId);
 
         const values = queryStringToObject(location.search);
 
@@ -133,16 +134,8 @@ class BountyComponent extends React.Component {
   }
 
   rootLocationParams = () => {
-    return this.props.location.search || `?tab=${'comments'}}`;
-  };
-
-  setActiveTabAction = tabKey => {
-    // const { history, location, setActiveTab } = this.props;
-    //
-    // history.push(
-    //   location.pathname + setParam(this.rootLocationParams(), 'tab', tabKey)
-    // );
-    this.props.setActiveTab(tabKey);
+    const tab = mostInterestingTab(this.props.fulfillments);
+    return this.props.location.search || `?tab=${tab}`;
   };
 
   render() {
@@ -155,7 +148,8 @@ class BountyComponent extends React.Component {
       walletAddress,
       initiateWalkthrough,
       initiateLoginProtection,
-      showModal
+      showModal,
+      setActiveTab
     } = this.props;
 
     if (error) {
@@ -403,7 +397,7 @@ class BountyComponent extends React.Component {
                 bounty={bounty}
                 isDraft={isDraft}
                 currentUser={user}
-                setActiveTabAction={this.setActiveTabAction}
+                setActiveTabAction={setActiveTab}
                 initiateLoginProtection={initiateLoginProtection}
                 initiateWalkthrough={initiateWalkthrough}
               />
@@ -434,7 +428,7 @@ const mapStateToProps = (state, router) => {
 
   return {
     isDraft,
-    bounty: bounty,
+    bounty,
     user: getCurrentUserSelector(state),
     walletAddress: addressSelector(state),
     loading: bountyState.loading,

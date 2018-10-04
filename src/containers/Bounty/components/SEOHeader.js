@@ -42,7 +42,7 @@ const SEOHeader = props => {
       <meta property="og:title" content={bounty.title} />
       <meta property="og:type" content="article" />
       <meta property="og:url" content={window.location.href} />
-      <meta property="og:image" content={bounty.image_preview} />
+      <meta property="og:image:secure_url" content={bounty.image_preview} />
       <meta property="og:description" content={description} />
     </Helmet>
   );

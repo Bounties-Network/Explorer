@@ -1,48 +1,95 @@
-import web3 from 'public-modules/Utilities/Web3Client';
-import config from 'public-modules/config';
+/* eslint no-throw-literal: 0 */
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+import { actions } from 'layout/App/reducer';
+import { includes } from 'lodash';
+import { promisifyDebounce } from 'utils/helpers';
 
-function* stubbed() {
-	yield sleep(2000).then(() => '1');
-	yield sleep(2000).then(() => '2');
-	return sleep(2000).then(() => '3');
-}
+const { getTokenBalance } = actions;
 
+const ZERO_BALANCE_ERROR = 'ZERO_BALANCE_ERROR';
+const INSUFFICIENT_BALANCE_ERROR = 'INSUFFICIENT_BALANCE_ERROR';
+const CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR =
+  'CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR';
+const UNKNOWN_ERROR = 'UNKNOWN_ERROR';
 
-const runPoll = () => new Promise(resolve => {
-	console.log('enter promise')
+const tokenValidation = (amount, tokenAddress, dispatch) => {
+  const handleResult = ([balance, symbol]) => {
+    balance = Number(balance);
+    amount = Number(amount);
 
-	const poll = generator => {
-		console.log('enter poll')
+    if (balance === 0) {
+      throw { error: ZERO_BALANCE_ERROR, balance, symbol };
+    } else if (balance < amount) {
+      throw { error: INSUFFICIENT_BALANCE_ERROR, balance, symbol };
+    }
+  };
 
-		if (!generator) {
-			generator = stubbed()
-		}
+  const handleRejection = e => {
+    if (includes('decode bytes32 from ABI', e.message)) {
+      throw { error: CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR };
+    }
 
-		const p = generator.next()
-		console.log(p)
+    throw { error: UNKNOWN_ERROR };
+  };
 
-		p.value.then(value => {
-			console.log(value);
-			if(!p.done) {
-				console.log('not done')
-				poll(generator)
-			} else {
-				resolve(value)
-			}
-		})
-	}
+  return new Promise((resolve, reject) => {
+    dispatch(getTokenBalance(tokenAddress, resolve, reject));
+  }).then(handleResult, handleRejection);
+};
 
-	poll()
-})
+// There will be an issue if trying to validate more than one thing and a user
+// quickly jumps to the next field. The previous promise will be cancelled and
+// the new field will be validated. In the current case this is okay because
+// we're only worried about the user's balance.
+const debouncedTokenValidation = promisifyDebounce(tokenValidation, 500);
 
-const tokenValidation = values => {
-	return runPoll().then(a => {
-		console.log('result', a)
-	})
-}
+const tokenValidationWrapper = (
+  values,
+  amountKey,
+  tokenContractKey,
+  asyncValidating,
+  field,
+  dispatch
+) => {
+  // submit immediately if no async errors
+  if (!field && !values.asyncErrors && !asyncValidating)
+    return Promise.resolve();
+
+  if (!values[tokenContractKey]) return Promise.resolve();
+
+  // if triggered by submit, don't debounce
+  const fn = !field ? tokenValidation : debouncedTokenValidation;
+
+  return fn(values[amountKey], values[tokenContractKey], dispatch).catch(e => {
+    const { error, balance = 0, symbol } = e;
+    let formError = {};
+
+    const validationMessage = `Insufficient funds in wallet — balance: \
+      ${balance.toFixed(2)} ${symbol}`;
+
+    switch (error) {
+      case ZERO_BALANCE_ERROR:
+        formError[tokenContractKey] = validationMessage;
+        formError[amountKey] = validationMessage;
+        break;
+      case INSUFFICIENT_BALANCE_ERROR:
+        formError[amountKey] = validationMessage;
+        break;
+      case CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR:
+        formError[tokenContractKey] =
+          'Address provided does not conform to ERC-20 standards.';
+        formError[amountKey] = formError[tokenContractKey];
+        break;
+      default:
+        formError[tokenContractKey] = 'Something went wrong.';
+        formError[amountKey] = 'Something went wrong.';
+    }
+
+    throw formError;
+  });
+};
 
 export default {
-	tokenValidation
-}
+  tokenValidation,
+  tokenValidationWrapper
+};

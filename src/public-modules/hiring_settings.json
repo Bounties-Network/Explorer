@@ -1,0 +1,19 @@
+{
+  "platform": "hiring",
+  "postingPlatform": "hiring",
+  "postingSchema": "standardSchema",
+  "postingSchemaVersion": "0.1",
+  "categoryPlatform": "hiring",
+  "networkName": "hiring.bounties.network",
+  "url": {
+    "mainNet": "https://newrinkeby.api.bounties.network",
+    "rinkeby": "https://newrinkeby.api.bounties.network"
+  },
+  "requiredNetwork": "rinkeby",
+  "mainNet": {
+    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+  },
+  "rinkeby": {
+    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+  }
+}

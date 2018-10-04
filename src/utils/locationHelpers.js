@@ -56,9 +56,6 @@ export function removeFromParam(queryString, key, value) {
   if (query[key]) {
     const values = query[key].split(',');
     const newValues = filter(queryValue => queryValue !== value, values);
-    if (!newValues.length) {
-      return removeParam(queryString, key, value);
-    }
     query[key] = newValues.join(',');
     return objectToQueryString(query);
   }

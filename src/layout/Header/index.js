@@ -14,12 +14,10 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { ipfsToHttp } from 'utils/helpers';
 import styles from './Header.module.scss';
-
 import { Button, Avatar, Dropdown, Network, Text } from 'components';
-
 import { NotificationDropdown } from 'containers';
-import BeeLogo from '../../styles/logo.js';
 
+const BeeLogo = require(`../../styles/${process.env.APP_LOGO}.js`).default;
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
 
 const HeaderComponent = props => {
@@ -30,8 +28,7 @@ const HeaderComponent = props => {
     logout,
     history,
     onShowNav,
-    hasWallet,
-    walletLocked
+    hasWallet
   } = props;
 
   const loginStatus = !!user;
@@ -43,10 +40,7 @@ const HeaderComponent = props => {
           <BeeLogo />
         </Link>
       </div>
-      {hasWallet &&
-        !walletLocked && (
-          <Network network={network} className={styles.network} />
-        )}
+      {hasWallet && <Network network={network} className={styles.network} />}
       <div className={styles.sideNavTrigger} onClick={onShowNav}>
         <Text typeScale="h3" color="blue">
           <FontAwesomeIcon icon={['far', 'bars']} />

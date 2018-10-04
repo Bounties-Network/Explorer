@@ -2,11 +2,14 @@ import React from 'react';
 import styles from './LeaderboardCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { ListGroup, Loader, ZeroState, Button } from 'components';
+import { ListGroup, Loader, ZeroState, Button, SearchSelect } from 'components';
 import { LoadComponent } from 'hocs';
 import { LeaderItem } from './components';
 import { map as fpMap } from 'lodash';
-import { rootLeaderboardSelector } from 'public-modules/Leaderboard/selectors';
+import {
+  leaderboardPlatformFiltersSelector,
+  rootLeaderboardSelector
+} from 'public-modules/Leaderboard/selectors';
 import { rootLeaderboardUISelector } from './selectors';
 import { actions } from 'public-modules/Leaderboard';
 import config from 'public-modules/config';
@@ -22,7 +25,10 @@ const LeaderboardCardComponent = props => {
     count,
     loadMore,
     loadingMore,
-    loadingMoreError
+    loadingMoreError,
+    selectedPlatforms,
+    setPlatformFilter,
+    removePlatformFilter
   } = props;
 
   const leaders = leaderboard[toggleValue] || [];
@@ -51,50 +57,94 @@ const LeaderboardCardComponent = props => {
   };
 
   let cardBodyClass;
-  if (loading || leaders.length === 0) {
+  if ((loading && !leaders.length) || leaders.length === 0 || error) {
     cardBodyClass = styles.cardBodyLoading;
   }
+
+  // const platformOptions = [
+  //   {
+  //     label: 'All Platforms',
+  //     value: config.platform
+  //   },
+  //   ...map(
+  //     platform => ({
+  //       label: platform,
+  //       value: platform
+  //     }),
+  //     config.platform.split(',')
+  //   )
+  // ];
+
+  // const platformDropdown = config.platform.split(',').length > 1 && (
+  //   <div className={styles.platformSelect}>
+  //     <SearchSelect
+  //       single
+  //       label="Platform"
+  //       options={platformOptions}
+  //       value={selectedPlatforms[0]}
+  //       labelKey="label"
+  //       valueKey="value"
+  //       onChange={setPlatformFilter}
+  //       onClose={removePlatformFilter}
+  //       clearable={false}
+  //       loading={loading}
+  //     />
+  //   </div>
+  // );
 
   let cardBody = (
     <div className={cardBodyClass}>
       <ListGroup>{renderLeaders()}</ListGroup>
-
-      {leaderboard[toggleValue].length < count[toggleValue] ? (
+      {leaderboard[toggleValue].length < count[toggleValue] && (
         <div className={styles.loadMoreButton}>
           <Button loading={loadingMore} onClick={loadMore}>
             Load More
           </Button>
         </div>
-      ) : null}
+      )}
     </div>
   );
 
   if (leaders.length === 0) {
     cardBody = (
-      <ZeroState
-        className={styles.zeroState}
-        iconColor="blue"
-        title="No Results Yet"
-        text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
-        icon={['fal', 'trophy-alt']}
-      />
+      <React.Fragment>
+        <div className={styles.zeroStateWrapper}>
+          <ZeroState
+            className={styles.zeroState}
+            iconColor="blue"
+            title="No Results Yet"
+            text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
+            icon={['fal', 'trophy-alt']}
+          />
+        </div>
+      </React.Fragment>
     );
   }
 
-  if (loading) {
-    cardBody = <Loader color="blue" size="medium" />;
+  if (loading && !leaders.length) {
+    cardBody = (
+      <React.Fragment>
+        <div className={styles.zeroStateWrapper}>
+          <Loader color="blue" size="medium" />
+        </div>
+      </React.Fragment>
+    );
   }
 
   if (error || loadingMoreError) {
     cardBody = (
-      <ZeroState
-        className={styles.zeroState}
-        type="error"
-        iconColor="white"
-        title="Uh oh, something happened"
-        text="Try to refresh the page and try again"
-        icon={['fal', 'exclamation-triangle']}
-      />
+      <React.Fragment>
+        <div className={styles.zeroStateWrapper}>
+          <ZeroState
+            className={styles.zeroState}
+            type="error"
+            iconColor="white"
+            title="Uh oh, something happened"
+            text="Try to refresh the page and try again"
+            icon={['fal', 'exclamation-triangle']}
+          />
+        </div>
+      </React.Fragment>
     );
   }
 
@@ -113,7 +163,8 @@ const mapStateToProps = state => {
     error: leaderboardState.error,
     loadingMore: leaderboardState.loadingMore,
     toggleValue: leaderboardUIState.toggleValue,
-    key: leaderboardUIState.toggleValue
+    key: leaderboardUIState.toggleValue,
+    selectedPlatforms: leaderboardPlatformFiltersSelector(state)
   };
 };
 
@@ -121,8 +172,10 @@ const LeaderboardCard = compose(
   connect(
     mapStateToProps,
     {
-      load: actions.loadLeaderboard,
-      loadMore: actions.loadMoreLeaderboard
+      load: () => actions.loadLeaderboard(config.platform),
+      loadMore: actions.loadMoreLeaderboard,
+      setPlatformFilter: actions.setPlatformFilter,
+      removePlatformFilter: actions.removePlatformFilter
     }
   ),
   LoadComponent('')

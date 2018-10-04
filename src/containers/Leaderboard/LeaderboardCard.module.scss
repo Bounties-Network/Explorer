@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .loadMoreButton {
@@ -29,11 +30,33 @@
   }
 }
 
+.zeroStateWrapper {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .zeroState {
   max-width: 25rem;
   margin-bottom: $xxl-spacing * 3;
 
   @media only screen and (min-width: 48em) {
     margin-bottom: 0;
+  }
+}
+
+.platformSelect {
+  margin-left: auto;
+  margin-bottom: $m-spacing;
+  width: 100%;
+
+  @media only screen and (min-width: 48em) {
+    width: 40%;
+  }
+
+  @media only screen and (min-width: 65em) {
+    width: 25%;
+
   }
 }

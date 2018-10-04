@@ -17,6 +17,7 @@ export function* saveSettings(action) {
   const {
     name,
     email,
+    wants_marketing_emails,
     languages,
     organization,
     skills,
@@ -31,6 +32,7 @@ export function* saveSettings(action) {
   const data = {
     name,
     email,
+    wants_marketing_emails,
     languages,
     organization,
     skills,
