@@ -3,7 +3,7 @@
   "postingPlatform": "hiring",
   "postingSchema": "standardSchema",
   "postingSchemaVersion": "0.1",
-  "categoryPlatform": "hiring",
+  "tagPlatform": "hiring",
   "networkName": "hiring.bounties.network",
   "url": {
     "mainNet": "https://newrinkeby.api.bounties.network",

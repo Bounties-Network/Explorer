@@ -197,24 +197,20 @@ class BountyComponent extends React.Component {
 
               <div className={styles.bountyHeader}>
                 <PageCard.Title>{bounty.title}</PageCard.Title>
-                <div className={styles.categories}>
+                <div className={styles.tags}>
                   {map(
-                    category => (
+                    tag => (
                       <Pill
                         className={styles.pill}
                         textColor="white"
                         key={
-                          typeof category === 'object'
-                            ? category.normalized_name
-                            : category
+                          typeof tag === 'object' ? tag.normalized_name : tag
                         }
                       >
-                        {typeof category === 'object'
-                          ? category.name
-                          : category}
+                        {typeof tag === 'object' ? tag.name : tag}
                       </Pill>
                     ),
-                    bounty.categories
+                    bounty.tags
                   )}
                 </div>
                 <div className={styles.avatar}>

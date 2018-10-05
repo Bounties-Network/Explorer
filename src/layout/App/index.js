@@ -36,7 +36,7 @@ import { Header, Privacy, TOS } from 'layout';
 import { rootAppSelector } from './selectors';
 import { actions as appActions } from './reducer';
 import { actions as authActions } from 'public-modules/Authentication';
-import { actions as categoryActions } from 'public-modules/Categories';
+import { actions as tagActions } from 'public-modules/Tags';
 import { initializedSelector } from 'public-modules/Client/selectors';
 import { getCurrentUserStateSelector } from 'public-modules/Authentication/selectors';
 import { currentRouteSelector, scrollToTop } from 'utils/helpers';
@@ -302,7 +302,7 @@ const App = compose(
     mapStateToProps,
     {
       getCurrentUser: authActions.getCurrentUser,
-      loadCategories: categoryActions.loadCategories
+      loadTags: tagActions.loadTags
     }
   )
 )(AppComponent);

@@ -6,9 +6,9 @@ import { FormSection } from 'explorer-components';
 import { getUploadKeySelector } from 'public-modules/FileUpload/selectors';
 import { formValueSelector } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
-import { actions as categoryActions } from 'public-modules/Categories';
+import { actions as tagActions } from 'public-modules/Tags';
 import { actions as bountyActions } from 'public-modules/Bounty';
-import { categoriesSelector } from 'public-modules/Categories/selectors';
+import { tagsSelector } from 'public-modules/Tags/selectors';
 import { rootTokensSelector } from 'public-modules/Tokens/selectors';
 import { tokensDropdownDataSelector } from './selectors';
 import { TransactionWalkthrough } from 'hocs';
@@ -99,7 +99,7 @@ class CreateBountyFormComponent extends React.Component {
       validators.maxLength(128),
       validators.email
     ],
-    categories: [validators.required],
+    tags: [validators.required],
     webReferenceURL: [validators.maxLength(256), validators.isURL],
     deadline: [validators.required, validators.minDate(this.props.minDate)],
     tokenContract: [validators.required, validators.isWeb3Address],
@@ -124,8 +124,8 @@ class CreateBountyFormComponent extends React.Component {
       uploadFile,
       uploadLoading,
       activateNow,
-      addCategory,
-      categories,
+      addTag,
+      tags,
       invalid,
       handleSubmit,
       submitFailed,
@@ -217,7 +217,7 @@ class CreateBountyFormComponent extends React.Component {
               How should this bounty be classified?
             </FormSection.Description>
             <FormSection.SubText>
-              Enter the categories and difficulty level for the bounty. Since
+              Enter the tags and difficulty level for the bounty. Since
               difficulty can be fairly subjective, it is helpful to provide more
               details around required experience within your bounty description.
             </FormSection.SubText>
@@ -226,13 +226,13 @@ class CreateBountyFormComponent extends React.Component {
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={submittingBounty}
-                    name="categories"
+                    name="tags"
                     component={FormSearchSelect}
-                    label="Bounty category"
-                    placeholder="Create or Select category..."
-                    validate={validatorGroups.categories}
-                    onCreateOption={addCategory}
-                    options={categories}
+                    label="Bounty tag"
+                    placeholder="Create or Select tag..."
+                    validate={validatorGroups.tags}
+                    onCreateOption={addTag}
+                    options={tags}
                     labelKey="name"
                     valueKey="normalized_name"
                     creatable
@@ -502,7 +502,7 @@ const mapStateToProps = (state, router) => {
     uploadLoading: uploadedFile ? uploadedFile.uploading : false,
     activateNow: formSelector(state, 'activateNow'),
     paysTokens: formSelector(state, 'paysTokens'),
-    categories: categoriesSelector(state),
+    tags: tagsSelector(state),
     submittingBounty: draftState.creating || bountyState.pending,
     uid: draftBounty.uid,
     bountyId: draftBounty.id,
@@ -525,7 +525,7 @@ const CreateBountyForm = compose(
     mapStateToProps,
     {
       uploadFile: uploadActions.uploadFile,
-      addCategory: categoryActions.addToCategories,
+      addTag: tagActions.addToTags,
       createDraft: bountyActions.createDraft,
       updateDraft: bountyActions.updateDraft,
       createBounty: bountyActions.createBounty,

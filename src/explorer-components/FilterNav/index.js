@@ -41,16 +41,16 @@ const FilterNav = props => {
     currentSearchValue,
     currentSortFilter,
     currentStageFilter,
-    currentSelectedCategories,
+    currentSelectedTags,
 
-    availableCategories,
+    availableTags,
 
     // defaults
     defaultStageFilters,
     defaultPlatforms,
 
     // actions
-    addCategoryFilter,
+    addTagFilter,
     addPlatformFilter,
     filterReseter, // dispatches action to reset a specific filter
     setSearch,
@@ -58,7 +58,7 @@ const FilterNav = props => {
     toggleStageFilter,
     toggleDifficultyFilter,
     togglePlatformFilter,
-    removeCategoryFilter,
+    removeTagFilter,
 
     history,
     location,
@@ -102,8 +102,8 @@ const FilterNav = props => {
   const toggleDifficultyFilterAction = difficulty => toggleAction('difficulty', difficulty, toggleDifficultyFilter); // prettier-ignore
   const togglePlatformFilterAction = platform => toggleAction('platform', platform, togglePlatformFilter); // prettier-ignore
 
-  const addCategoryFilterAction = category => pushAction('category', category, addCategoryFilter); // prettier-ignore
-  const removeCategoryFilterAction = category => removeAction('category', category, removeCategoryFilter); // prettier-ignore
+  const addTagFilterAction = tag => pushAction('tag', tag, addTagFilter); // prettier-ignore
+  const removeTagFilterAction = tag => removeAction('tag', tag, removeTagFilter); // prettier-ignore
 
   const setSearchAction = throttle(300, search => setAction('search', search, setSearch)); // prettier-ignore
   const setSortAction = sort => setAction('sort', [sort, sort === 'deadline' ? 'asc' : 'desc'], setSort); // prettier-ignore
@@ -162,7 +162,7 @@ const FilterNav = props => {
       {config.platform &&
         platforms &&
         platforms.length > 1 && (
-          <div className={styles.categoryFilter}>
+          <div className={styles.tagFilter}>
             <Text weight="fontWeight-medium" className={styles.groupText}>
               Platform
             </Text>
@@ -178,22 +178,22 @@ const FilterNav = props => {
             }, platforms)}
           </div>
         )}
-      {config.category && (
-        <div className={styles.categoryFilter}>
+      {config.tag && (
+        <div className={styles.tagFilter}>
           <Text weight="fontWeight-medium" className={styles.groupText}>
-            Category
+            Tag
           </Text>
           <SearchSelect
-            options={availableCategories}
-            value={currentSelectedCategories}
+            options={availableTags}
+            value={currentSelectedTags}
             labelKey="name"
             valueKey="normalized_name"
             onChange={values => {
-              if (values.length > currentSelectedCategories.length) {
-                addCategoryFilterAction(values[values.length - 1]);
+              if (values.length > currentSelectedTags.length) {
+                addTagFilterAction(values[values.length - 1]);
               }
             }}
-            onClose={removeCategoryFilterAction}
+            onClose={removeTagFilterAction}
           />
         </div>
       )}
@@ -265,7 +265,7 @@ FilterNav.defaultProps = {
     search: true,
     stage: true,
     difficulty: true,
-    category: true,
+    tag: true,
     platform: true,
     sort: true
   },
@@ -281,7 +281,7 @@ FilterNav.defaultProps = {
     search: true,
     stage: true,
     difficulty: true,
-    category: true,
+    tag: true,
     platform: true,
     sort: true
   }

@@ -4,7 +4,7 @@ export const filterConfig = {
     search: false,
     stage: true,
     difficulty: false,
-    category: false,
+    tag: false,
     platform: false
   },
   resetFilters: {
@@ -12,7 +12,7 @@ export const filterConfig = {
     search: true,
     stage: true,
     difficulty: true,
-    category: true,
+    tag: true,
     platform: true
   },
   defaultStageFilters: {

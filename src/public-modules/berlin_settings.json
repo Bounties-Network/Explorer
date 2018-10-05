@@ -3,7 +3,7 @@
   "postingPlatform": "berlin",
   "postingSchema": "standardSchema",
   "postingSchemaVersion": "0.1",
-  "categoryPlatform": "berlin",
+  "tagPlatform": "berlin",
   "networkName": "berlin.bounties.network",
   "url": {
     "mainNet": "https://new.api.bounties.network",
