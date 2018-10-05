@@ -1,5 +1,8 @@
 {
   "platform": "bounties-network,gitcoin",
+  "subPlatforms": {
+    "bounties-network": ["sf", "berlin"]
+  },
   "postingPlatform": "bounties-network",
   "postingSchema": "standardSchema",
   "postingSchemaVersion": "0.1",

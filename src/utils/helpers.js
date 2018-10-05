@@ -1,3 +1,6 @@
+import config from 'public-modules/config';
+import { flatten, map } from 'lodash';
+
 export function getTimezone() {
   if (Intl && Intl.DateTimeFormat) {
     const dateTimeFormat = Intl.DateTimeFormat();
@@ -114,3 +117,14 @@ export function promisifyDebounce(inner, ms = 0) {
 export function hasImageExtension(filename) {
   return /\.(gif|jpg|jpeg|tiff|png)$/i.test(filename);
 }
+
+export const expandPlatforms = platforms => {
+  if (!config.subPlatforms) return platforms;
+
+  return flatten(
+    map(platform => {
+      const subPlatforms = config.subPlatforms[platform];
+      return subPlatforms ? [platform, ...subPlatforms] : platform;
+    }, platforms)
+  );
+};
