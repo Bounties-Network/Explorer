@@ -123,12 +123,20 @@ export function* uploadProfileImage(action) {
     );
 
     yield call(request, sm_put_url, 'PUT', {
-      headers: { 'content-type': 'image/png' },
+      headers: {
+        'content-type': 'image/png',
+        'cache-control': 'max-age=31536000',
+        'content-disposition': `attachment; filename="${smallImage.name}"`
+      },
       data: sm_buffer
     });
 
     yield call(request, lg_put_url, 'PUT', {
-      headers: { 'content-type': 'image/png' },
+      headers: {
+        'content-type': 'image/png',
+        'cache-control': 'max-age=31536000',
+        'content-disposition': `attachment; filename="${largeImage.name}"`
+      },
       data: lg_buffer
     });
 
