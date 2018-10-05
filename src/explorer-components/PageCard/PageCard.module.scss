@@ -35,6 +35,10 @@
 
 .title {
   line-height: $base-line-height * 1.25;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .content {
