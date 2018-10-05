@@ -50,7 +50,7 @@ const Avatar = props => {
         <Text
           typeScale={addressTextScale}
           color={addressTextColor}
-          src={src}
+          src={src ? src : '/profile/' + address}
           onClick={onClick}
           link
         >
