@@ -169,7 +169,7 @@ const LeaderboardCard = compose(
   connect(
     mapStateToProps,
     {
-      load: () => actions.loadLeaderboard(config.platform),
+      load: actions.loadLeaderboard,
       loadMore: actions.loadMoreLeaderboard,
       setPlatformFilter: actions.setPlatformFilter,
       removePlatformFilter: actions.removePlatformFilter

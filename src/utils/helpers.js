@@ -1,3 +1,6 @@
+import config from 'public-modules/config';
+import { flatten, map } from 'lodash';
+
 export function getTimezone() {
   if (Intl && Intl.DateTimeFormat) {
     const dateTimeFormat = Intl.DateTimeFormat();
@@ -110,3 +113,6 @@ export function promisifyDebounce(inner, ms = 0) {
     return new Promise(r => resolves.push(r));
   };
 }
+
+export const expandPlatforms = platforms =>
+  flatten(map(platform => config.platforms[platform], platforms)).join(',');

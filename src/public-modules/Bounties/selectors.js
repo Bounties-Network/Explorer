@@ -5,6 +5,7 @@ import {
   PAGE_SIZE
 } from 'public-modules/Bounties/constants';
 import config from 'public-modules/config';
+import { expandPlatforms } from 'utils/helpers';
 import { reduce as reduceFunction, every, negate } from 'lodash';
 const reduce = reduceFunction.convert({ cap: false });
 
@@ -66,9 +67,11 @@ export const bountiesQuerySelector = createSelector(
     if (rootBounty.sortOrder === 'desc') {
       orderPrefix += '-';
     }
+
     query['platform__in'] = platforms.length
-      ? platforms.join(',')
+      ? expandPlatforms(platforms)
       : config.platform;
+
     query['bountyStage__in'] = reduce(
       (result, value, key) => {
         if (value) {
@@ -79,6 +82,7 @@ export const bountiesQuerySelector = createSelector(
       [],
       rootBounty.stageFilters
     ).join(',');
+
     query['experienceLevel__in'] = reduce(
       (result, value, key) => {
         if (value) {
