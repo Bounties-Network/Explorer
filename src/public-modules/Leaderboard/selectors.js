@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { LIMIT } from './constants';
+import { expandPlatforms } from 'utils/helpers';
 import config from 'public-modules/config';
 
 export const rootLeaderboardSelector = state => state.leaderboard;
@@ -31,7 +32,7 @@ export const leaderboardQuerySelector = createSelector(
     const query = {
       limit: LIMIT,
       platform__in: rootLeaderboard.platformFilters.size
-        ? [...rootLeaderboard.platformFilters].join(',')
+        ? expandPlatforms([...rootLeaderboard.platformFilters])
         : config.platform
     };
 

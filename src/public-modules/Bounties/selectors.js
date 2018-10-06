@@ -69,8 +69,8 @@ export const bountiesQuerySelector = createSelector(
     }
 
     query['platform__in'] = platforms.length
-      ? expandPlatforms(platforms).join(',')
-      : expandPlatforms(config.platform.split(',')).join(',');
+      ? expandPlatforms(platforms)
+      : config.platform;
 
     query['bountyStage__in'] = reduce(
       (result, value, key) => {

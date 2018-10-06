@@ -71,7 +71,7 @@ const FilterNav = props => {
     { value: 'deadline', label: 'Expiry' }
   ];
 
-  const platforms = appConfig.platform.split(',');
+  const platforms = appConfig.displayPlatforms;
 
   const stages = reduce(
     (acc, value, key) => {

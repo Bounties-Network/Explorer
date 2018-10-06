@@ -114,13 +114,5 @@ export function promisifyDebounce(inner, ms = 0) {
   };
 }
 
-export const expandPlatforms = platforms => {
-  if (!config.subPlatforms) return platforms;
-
-  return flatten(
-    map(platform => {
-      const subPlatforms = config.subPlatforms[platform];
-      return subPlatforms ? [platform, ...subPlatforms] : platform;
-    }, platforms)
-  );
-};
+export const expandPlatforms = platforms =>
+  flatten(map(platform => config.platforms[platform], platforms)).join(',');
