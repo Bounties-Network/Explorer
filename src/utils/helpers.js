@@ -118,13 +118,5 @@ export function hasImageExtension(filename) {
   return /\.(gif|jpg|jpeg|tiff|png)$/i.test(filename);
 }
 
-export const expandPlatforms = platforms => {
-  if (!config.subPlatforms) return platforms;
-
-  return flatten(
-    map(platform => {
-      const subPlatforms = config.subPlatforms[platform];
-      return subPlatforms ? [platform, ...subPlatforms] : platform;
-    }, platforms)
-  );
-};
+export const expandPlatforms = platforms =>
+  flatten(map(platform => config.platforms[platform], platforms)).join(',');
