@@ -80,7 +80,8 @@ export function* saveEmailPreferences(action) {
         TransferRecipient,
         FulfillmentUpdatedIssuer,
         FulfillmentSubmittedIssuer,
-        ContributionReceived
+        ContributionReceived,
+        BountyCompleted
       },
       fulfiller: {
         FulfillmentAcceptedFulfiller

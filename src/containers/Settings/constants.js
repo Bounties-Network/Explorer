@@ -11,5 +11,6 @@ export const EMAIL_NOTIFICATION_OPTIONS = {
     'Fulfiller submits a new fulfillment to your bounty',
   FulfillmentAcceptedFulfiller: 'Issuer accepts your fulfillment',
   ContributionReceived: 'Another user contributes funds to your bounty',
+  BountyCompleted: 'Bounty no longer has enough funds to pay out',
   activity: 'General activity (updated profile, created bounty, etc.)'
 };
