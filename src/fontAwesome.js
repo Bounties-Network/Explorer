@@ -5,6 +5,7 @@ import plus from '@fortawesome/fontawesome-pro-regular/faPlus';
 import bars from '@fortawesome/fontawesome-pro-regular/faBars';
 import slidersH from '@fortawesome/fontawesome-pro-regular/faSlidersH';
 import plusCircle from '@fortawesome/fontawesome-pro-regular/faPlusCircle';
+import minusCircle from '@fortawesome/fontawesome-pro-regular/faMinusCircle';
 import wifi from '@fortawesome/fontawesome-pro-light/faWifi';
 import clock from '@fortawesome/fontawesome-pro-regular/faClock';
 import levelUp from '@fortawesome/fontawesome-pro-regular/faLevelUp';
@@ -93,6 +94,7 @@ library.add(
   faBellLight,
   plus,
   plusCircle,
+  minusCircle,
   cog,
   search,
   signout,
