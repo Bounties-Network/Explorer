@@ -12,6 +12,7 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 import { apiEndpoint } from 'utils/global';
 import { actions, actionTypes } from 'public-modules/Client';
+import { BigNumber } from 'bignumber.js';
 
 let proxiedWeb3;
 
@@ -163,8 +164,14 @@ export function* getTokenBalance(action) {
       balance = yield call(tokenClient.balanceOf(userAddress).call);
     }
 
+    const balanceBN = BigNumber(balance, 10);
+    const decimalsBN = BigNumber(decimals, 10);
+
     yield put(
-      getTokenBalanceSuccess([Number(balance) / 10 ** Number(decimals), symbol])
+      getTokenBalanceSuccess([
+        balanceBN.dividedBy(BigNumber(10).exponentiatedBy(decimalsBN)),
+        symbol
+      ])
     );
   } catch (e) {
     yield put(getTokenBalanceFail(e));

@@ -41,6 +41,7 @@ import {
   VISIBILITY_OPTIONS
 } from './constants';
 import config from 'public-modules/config';
+import defaultShouldAsyncValidate from 'redux-form/es/defaultShouldAsyncValidate';
 
 const formSelector = formValueSelector('createBounty');
 
@@ -545,7 +546,18 @@ const CreateBountyForm = compose(
         dispatch
       );
     },
-    asyncChangeFields: ['balance', 'tokenContract']
+    asyncChangeFields: ['balance', 'tokenContract'],
+
+    // there is a bug in redux-form where shouldAsyncValidate is called before
+    // the sync validation errors are remove from the store and therefore the
+    // async validator is not called on the first change after a sync error.
+    // https://github.com/erikras/redux-form/issues/3944
+    shouldAsyncValidate: params => {
+      return defaultShouldAsyncValidate({
+        ...params,
+        syncValidationPasses: true
+      });
+    }
   })
 )(CreateBountyFormComponent);
 

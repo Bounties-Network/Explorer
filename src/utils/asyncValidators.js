@@ -3,6 +3,7 @@
 import { actions } from 'layout/App/reducer';
 import { includes } from 'lodash';
 import { promisifyDebounce } from 'utils/helpers';
+import { BigNumber } from 'bignumber.js';
 
 const { getTokenBalance } = actions;
 
@@ -14,12 +15,12 @@ const UNKNOWN_ERROR = 'UNKNOWN_ERROR';
 
 const tokenValidation = (amount, tokenAddress, dispatch) => {
   const handleResult = ([balance, symbol]) => {
-    balance = Number(balance);
-    amount = Number(amount);
+    balance = BigNumber(balance, 10);
+    amount = BigNumber(amount, 10);
 
-    if (balance === 0) {
+    if (balance.isEqualTo(0)) {
       throw { error: ZERO_BALANCE_ERROR, balance, symbol };
-    } else if (balance < amount) {
+    } else if (balance.isLessThanOrEqualTo(amount)) {
       throw { error: INSUFFICIENT_BALANCE_ERROR, balance, symbol };
     }
   };
