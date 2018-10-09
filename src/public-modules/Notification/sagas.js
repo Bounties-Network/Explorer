@@ -12,7 +12,7 @@ import {
 } from 'public-modules/Notification/selectors';
 import { getUserAddressSelector } from 'public-modules/Authentication/selectors';
 import { actions, actionTypes } from 'public-modules/Notification';
-import { notification_template } from 'utils/constants';
+import { notification_template, NOTIFICATION_ID } from 'utils/constants';
 import { deserializeNotification } from './helpers';
 import config from 'public-modules/config';
 
@@ -95,9 +95,16 @@ export function* showNotification(dispatch, action) {
   const {
     notification: { link, notification_name, id }
   } = action;
+
+  let linkText = 'View Bounty';
+
+  if (notification_name === NOTIFICATION_ID.RATING_RECEIVED) {
+    linkText = 'View Rating';
+  }
+
   let postedLink = (
     <Link to={link} style={{ color: 'inherit' }}>
-      View Bounty
+      {linkText}
     </Link>
   );
   const postedMessage = notification_template[notification_name].message;

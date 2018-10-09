@@ -18,6 +18,7 @@ import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { locationNonceSelector } from 'layout/App/selectors';
 import { SEOHeader } from './components';
 import { actions } from './reducer';
+import { queryStringToObject } from 'utils/locationHelpers';
 
 class ProfileComponent extends React.Component {
   constructor(props) {
@@ -114,6 +115,21 @@ class ProfileComponent extends React.Component {
   componentDidMount() {
     const body = document.getElementsByClassName('page-body')[0];
     body.addEventListener('scroll', this.onScroll);
+
+    const {
+      location,
+      setReviewsModalVisible,
+      setActiveNetworkSwitch
+    } = this.props;
+    const { reviews, fulfiller } = queryStringToObject(location.search);
+
+    if (fulfiller) {
+      setActiveNetworkSwitch('fulfiller');
+    }
+
+    if (reviews) {
+      setReviewsModalVisible(true);
+    }
   }
 
   componentWillUnmount() {
@@ -232,7 +248,9 @@ const Profile = compose(
       resetFilter: bountiesActions.resetFilter,
       loadUserInfo: userInfoActions.loadUserInfo,
       setActiveTab: actions.setActiveTab,
-      setProfileAddress: actions.setProfileAddress
+      setProfileAddress: actions.setProfileAddress,
+      setReviewsModalVisible: actions.setReviewsModalVisible,
+      setActiveNetworkSwitch: actions.setActiveNetworkSwitch
     }
   )
 )(ProfileComponent);
