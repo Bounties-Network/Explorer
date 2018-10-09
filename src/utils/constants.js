@@ -55,6 +55,7 @@ export const NOTIFICATION_ID = {
 };
 
 const plus = ['far', 'plus-circle'];
+const minus = ['far', 'minus-circle'];
 const level_up = ['far', 'level-up'];
 const level_down = ['far', 'level-down'];
 const star = ['far', 'star'];
@@ -173,6 +174,6 @@ export const notification_template = {
   },
   [NOTIFICATION_ID.BOUNTY_COMPLETED]: {
     message: 'Your bounty ran out of funds',
-    icon: plus
+    icon: minus
   }
 };
