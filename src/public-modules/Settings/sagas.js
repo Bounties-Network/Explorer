@@ -65,7 +65,8 @@ export function* saveEmailPreferences(action) {
     FulfillmentUpdatedIssuer,
     RatingReceived,
     TransferRecipient,
-    ContributionReceived
+    ContributionReceived,
+    BountyCompleted
   } = values;
 
   const data = {
