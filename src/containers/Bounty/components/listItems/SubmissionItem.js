@@ -4,7 +4,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Button, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE } from 'public-modules/Bounty/constants';
-import { shortenFileName, shortenUrl } from 'utils/helpers';
+import { hasImageExtension, shortenFileName, shortenUrl } from 'utils/helpers';
 import moment from 'moment';
 
 const SubmissionItem = props => {
@@ -156,6 +156,12 @@ const SubmissionItem = props => {
             >
               {shortenFileName(dataFileName)}
             </Text>
+            {hasImageExtension(dataFileName) && (
+              <img
+                src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                class={styles.image}
+              />
+            )}
           </div>
         ) : null}
       </div>

@@ -110,3 +110,7 @@ export function promisifyDebounce(inner, ms = 0) {
     return new Promise(r => resolves.push(r));
   };
 }
+
+export function hasImageExtension(filename) {
+  return /\.(gif|jpg|jpeg|tiff|png)$/i.test(filename);
+}
