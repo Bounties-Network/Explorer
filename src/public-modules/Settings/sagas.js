@@ -126,7 +126,7 @@ export function* uploadProfileImage(action) {
       headers: {
         'content-type': 'image/png',
         'cache-control': 'max-age=31536000',
-        'content-disposition': `attachment; filename="${smallImage.name}"`
+        'content-disposition': `inline; filename="${smallImage.name}"`
       },
       data: sm_buffer
     });
@@ -135,7 +135,7 @@ export function* uploadProfileImage(action) {
       headers: {
         'content-type': 'image/png',
         'cache-control': 'max-age=31536000',
-        'content-disposition': `attachment; filename="${largeImage.name}"`
+        'content-disposition': `inline; filename="${largeImage.name}"`
       },
       data: lg_buffer
     });
