@@ -16,6 +16,7 @@ import { userInfoSelector } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { locationNonceSelector } from 'layout/App/selectors';
+import { reviewsStateSelector } from 'public-modules/Reviews/selectors';
 import { SEOHeader } from './components';
 import { actions } from './reducer';
 import { queryStringToObject } from 'utils/locationHelpers';
@@ -75,9 +76,13 @@ class ProfileComponent extends React.Component {
       setProfileAddress,
       resetState,
       resetFilter,
-      bountiesLoading
+      bountiesLoading,
+      reviewCount,
+      reviewsLoading,
+      setActiveNetworkSwitch,
+      setReviewsModalVisible
     } = this.props;
-    const { position } = this.state;
+    const { position, networkSwitchSet } = this.state;
 
     if (
       prevProps.locationNonce !== locationNonce &&
@@ -109,6 +114,24 @@ class ProfileComponent extends React.Component {
       position === 'fixed'
     ) {
       ReactDOM.findDOMNode(this.explorerBody).scrollIntoView(false);
+    }
+
+    if (prevProps.reviewsLoading && !reviewsLoading && !networkSwitchSet) {
+      this.setState({
+        networkSwitchSet: true
+      });
+
+      const { reviews, fulfiller, issuer } = queryStringToObject(
+        location.search
+      );
+
+      if (!issuer && (fulfiller || reviewCount === 0)) {
+        setActiveNetworkSwitch('fulfiller');
+      }
+
+      if (reviews) {
+        setReviewsModalVisible(true);
+      }
     }
   }
 
@@ -225,6 +248,7 @@ const mapStateToProps = state => {
   const currentUser = getCurrentUserSelector(state);
   const userInfo = userInfoSelector(state);
   const bountyState = rootBountiesSelector(state);
+  const reviewsState = reviewsStateSelector(state);
 
   return {
     currentUser,
@@ -232,7 +256,9 @@ const mapStateToProps = state => {
     bountiesLoading: bountyState.loading,
     loaded: userInfo.loaded,
     error: userInfo.error,
-    locationNonce: locationNonceSelector(state)
+    locationNonce: locationNonceSelector(state),
+    reviewCount: reviewsState.count,
+    reviewsLoading: reviewsState.loading
   };
 };
 
