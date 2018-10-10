@@ -26,7 +26,7 @@ const defaultFilters = {
   stageFilters: { ...defaultStageFilters },
   difficultyFilters: { ...defaultDifficultyFilters },
   addressFilters: { ...defaultAddressFilters },
-  categoryFilters: new Set([]),
+  tagFilters: new Set([]),
   platformFilters: new Set([])
 };
 
@@ -101,14 +101,14 @@ const TOGGLE_STAGE_FILTER = 'bounties/TOGGLE_STAGE_FILTER';
 const ALL_STAGE_FILTERS = 'bounties/ALL_STAGE_FILTERS';
 const SET_DIFFICULTY_FILTER = 'bounties/SET_DIFFICULTY_FILTER';
 const TOGGLE_DIFFICULTY_FILTER = 'bounties/TOGGLE_DIFFICULTY_FILTER';
-const TOGGLE_CATEGORY_FILTER = 'bounties/TOGGLE_CATEGORY_FILTER';
+const TOGGLE_TAG_FILTER = 'bounties/TOGGLE_TAG_FILTER';
 const TOGGLE_PLATFORM_FILTER = 'bounties/TOGGLE_PLATFORM_FILTER';
 const SET_STAGE_FILTER = 'bounties/SET_STAGE_FILTER';
-const ADD_CATEGORY_FILTER = 'bounties/SET_CATEGORY_FILTER';
+const ADD_TAG_FILTER = 'bounties/SET_TAG_FILTER';
 const ADD_PLATFORM_FILTER = 'bounties/ADD_PLATFORM_FILTER';
 const ADD_ISSUER_FILTER = 'bounties/ADD_ISSUER_FILTER';
 const ADD_FULFILLER_FILTER = 'bounties/ADD_FULFILLER_FILTER';
-const REMOVE_CATEGORY_FILTER = 'bounties/REMOVE_CATEGORY_FILTER';
+const REMOVE_TAG_FILTER = 'bounties/REMOVE_TAG_FILTER';
 const REMOVE_PLATFORM_FILTER = 'bounties/REMOVE_PLATFORM_FILTER';
 
 function batch(isBatch) {
@@ -151,16 +151,16 @@ function setDifficultyFilter(difficulty, isSet) {
   return { type: SET_DIFFICULTY_FILTER, difficulty };
 }
 
-function toggleCategoryFilter(category) {
-  return { type: TOGGLE_CATEGORY_FILTER, category };
+function toggleTagFilter(tag) {
+  return { type: TOGGLE_TAG_FILTER, tag };
 }
 
 function togglePlatformFilter(platform) {
   return { type: TOGGLE_PLATFORM_FILTER, platform };
 }
 
-function addCategoryFilter(category) {
-  return { type: ADD_CATEGORY_FILTER, category };
+function addTagFilter(tag) {
+  return { type: ADD_TAG_FILTER, tag };
 }
 
 function addPlatformFilter(platform) {
@@ -175,8 +175,8 @@ function addFulfillerFilter(address) {
   return { type: ADD_FULFILLER_FILTER, address };
 }
 
-function removeCategoryFilter(category) {
-  return { type: REMOVE_CATEGORY_FILTER, category };
+function removeTagFilter(tag) {
+  return { type: REMOVE_TAG_FILTER, tag };
 }
 
 function removePlatformFilter(platform) {
@@ -190,19 +190,19 @@ function BountiesReducer(state = initialState, action) {
         ...initialState
       };
     }
-    case TOGGLE_CATEGORY_FILTER: {
-      const { category } = action;
+    case TOGGLE_TAG_FILTER: {
+      const { tag } = action;
 
-      const updated_filters = new Set(state.categoryFilters);
-      if (updated_filters.has(category)) {
-        updated_filters.delete(category);
+      const updated_filters = new Set(state.tagFilters);
+      if (updated_filters.has(tag)) {
+        updated_filters.delete(tag);
       } else {
-        updated_filters.add(category);
+        updated_filters.add(tag);
       }
 
       return {
         ...state,
-        categoryFilters: updated_filters
+        tagFilters: updated_filters
       };
     }
     case TOGGLE_PLATFORM_FILTER: {
@@ -220,14 +220,14 @@ function BountiesReducer(state = initialState, action) {
         platformFilters: updated_filters
       };
     }
-    case ADD_CATEGORY_FILTER: {
-      const { category } = action;
-      const updated_filters = new Set(state.categoryFilters);
-      updated_filters.add(category);
+    case ADD_TAG_FILTER: {
+      const { tag } = action;
+      const updated_filters = new Set(state.tagFilters);
+      updated_filters.add(tag);
 
       return {
         ...state,
-        categoryFilters: updated_filters
+        tagFilters: updated_filters
       };
     }
     case ADD_PLATFORM_FILTER: {
@@ -262,14 +262,14 @@ function BountiesReducer(state = initialState, action) {
         }
       };
     }
-    case REMOVE_CATEGORY_FILTER: {
-      const { category } = action;
-      const updated_filters = new Set(state.categoryFilters);
-      updated_filters.delete(category);
+    case REMOVE_TAG_FILTER: {
+      const { tag } = action;
+      const updated_filters = new Set(state.tagFilters);
+      updated_filters.delete(tag);
 
       return {
         ...state,
-        categoryFilters: updated_filters
+        tagFilters: updated_filters
       };
     }
     case REMOVE_PLATFORM_FILTER: {
@@ -360,8 +360,8 @@ function BountiesReducer(state = initialState, action) {
         return { ...state, addressFilters: { ...defaultAddressFilters } };
       }
 
-      if (filter === 'category') {
-        return { ...state, categoryFilters: new Set([]) };
+      if (filter === 'tag') {
+        return { ...state, tagFilters: new Set([]) };
       }
 
       if (filter === 'platform') {
@@ -465,13 +465,13 @@ export const actions = {
   allStageFilters,
   toggleDifficultyFilter,
   setDifficultyFilter,
-  addCategoryFilter,
+  addTagFilter,
   addPlatformFilter,
   addIssuerFilter,
   addFulfillerFilter,
-  removeCategoryFilter,
+  removeTagFilter,
   removePlatformFilter,
-  toggleCategoryFilter,
+  toggleTagFilter,
   togglePlatformFilter,
   loadBounties,
   loadBountiesSuccess,
@@ -492,13 +492,13 @@ export const actionTypes = {
   TOGGLE_STAGE_FILTER,
   ALL_STAGE_FILTERS,
   TOGGLE_DIFFICULTY_FILTER,
-  ADD_CATEGORY_FILTER,
+  ADD_TAG_FILTER,
   ADD_PLATFORM_FILTER,
   ADD_ISSUER_FILTER,
   ADD_FULFILLER_FILTER,
-  REMOVE_CATEGORY_FILTER,
+  REMOVE_TAG_FILTER,
   REMOVE_PLATFORM_FILTER,
-  TOGGLE_CATEGORY_FILTER,
+  TOGGLE_TAG_FILTER,
   TOGGLE_PLATFORM_FILTER,
   LOAD_BOUNTIES,
   LOAD_BOUNTIES_SUCCESS,

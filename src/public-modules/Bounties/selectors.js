@@ -36,9 +36,9 @@ export const bountiesSortFilterSelector = createSelector(
 );
 
 // We make this a selector to manage the set -> array conversion
-export const bountiesCategoryFiltersSelector = createSelector(
+export const bountiesTagFiltersSelector = createSelector(
   rootBountiesSelector,
-  rootBounty => [...rootBounty.categoryFilters]
+  rootBounty => [...rootBounty.tagFilters]
 );
 
 export const bountiesPlatformFiltersSelector = createSelector(
@@ -58,9 +58,9 @@ export const anyDifficultyFiltersSelected = createSelector(
 
 export const bountiesQuerySelector = createSelector(
   rootBountiesSelector,
-  bountiesCategoryFiltersSelector,
+  bountiesTagFiltersSelector,
   bountiesPlatformFiltersSelector,
-  (rootBounty, categories, platforms) => {
+  (rootBounty, tags, platforms) => {
     const query = {};
     let orderPrefix = '';
     if (rootBounty.sortOrder === 'desc') {
@@ -89,8 +89,8 @@ export const bountiesQuerySelector = createSelector(
       [],
       rootBounty.difficultyFilters
     ).join(',');
-    if (categories.length) {
-      query['categories__normalized_name__in'] = categories.join(',');
+    if (tags.length) {
+      query['tags__normalized_name__in'] = tags.join(',');
     }
     if (rootBounty.addressFilters.issuer) {
       query['issuer'] = rootBounty.addressFilters.issuer;

@@ -20,11 +20,11 @@ const {
   TOGGLE_DIFFICULTY_FILTER,
   SET_ALL_STAGE_FILTERS,
   SET_ALL_DIFFICULTY_FILTERS,
-  ADD_CATEGORY_FILTER,
+  ADD_TAG_FILTER,
   ADD_PLATFORM_FILTER,
-  REMOVE_CATEGORY_FILTER,
+  REMOVE_TAG_FILTER,
   REMOVE_PLATFORM_FILTER,
-  TOGGLE_CATEGORY_FILTER,
+  TOGGLE_TAG_FILTER,
   TOGGLE_PLATFORM_FILTER
 } = actionTypes;
 
@@ -38,7 +38,7 @@ const {
   setSort,
   toggleStageFilter,
   toggleDifficultyFilter,
-  addCategoryFilter,
+  addTagFilter,
   addPlatformFilter,
   resetFilter
 } = actions;
@@ -46,7 +46,7 @@ const {
 export function* initializeFiltersFromQuery() {
   const params = queryStringToObject(window.location.search);
 
-  const { search, bountyStage, difficulty, category, platform, sort } = params;
+  const { search, bountyStage, difficulty, tag, platform, sort } = params;
 
   if (search) {
     yield put(resetFilter('search'));
@@ -87,16 +87,16 @@ export function* initializeFiltersFromQuery() {
     yield put(setSort(sortType, sortOrder));
   }
 
-  if (category === '') {
+  if (tag === '') {
     yield put(resetFilter('sort'));
   }
 
-  if (category) {
-    yield put(resetFilter('category'));
-    const categories = category.split(',');
-    console.log(categories);
-    for (let i = 0; i < categories.length; i++) {
-      yield put(addCategoryFilter(categories[i]));
+  if (tag) {
+    yield put(resetFilter('tag'));
+    const tags = tag.split(',');
+    console.log(tags);
+    for (let i = 0; i < tags.length; i++) {
+      yield put(addTagFilter(tags[i]));
     }
   }
 
@@ -167,9 +167,9 @@ export function* watchBounties() {
       TOGGLE_DIFFICULTY_FILTER,
       SET_ALL_DIFFICULTY_FILTERS,
       SET_ALL_STAGE_FILTERS,
-      ADD_CATEGORY_FILTER,
-      REMOVE_CATEGORY_FILTER,
-      TOGGLE_CATEGORY_FILTER,
+      ADD_TAG_FILTER,
+      REMOVE_TAG_FILTER,
+      TOGGLE_TAG_FILTER,
       ADD_PLATFORM_FILTER,
       REMOVE_PLATFORM_FILTER,
       TOGGLE_PLATFORM_FILTER,

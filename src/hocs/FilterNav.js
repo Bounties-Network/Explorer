@@ -5,11 +5,11 @@ import { curry } from 'lodash';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 import {
   rootBountiesSelector,
-  bountiesCategoryFiltersSelector,
+  bountiesTagFiltersSelector,
   bountiesPlatformFiltersSelector,
   bountiesSortFilterSelector
 } from 'public-modules/Bounties/selectors';
-import { categoriesSelector } from 'public-modules/Categories/selectors';
+import { tagsSelector } from 'public-modules/Tags/selectors';
 
 function FilterNavComponentHOC(WrappedComponent, config) {
   let mapStateToProps = null;
@@ -22,11 +22,11 @@ function FilterNavComponentHOC(WrappedComponent, config) {
         const bountyState = rootBountiesSelector(state);
 
         return {
-          availableCategories: categoriesSelector(state),
+          availableTags: tagsSelector(state),
           currentDifficultyFilters: bountyState.difficultyFilters,
           currentPlatformFilters: bountiesPlatformFiltersSelector(state),
           currentSearchValue: bountyState.search,
-          currentSelectedCategories: bountiesCategoryFiltersSelector(state),
+          currentSelectedTags: bountiesTagFiltersSelector(state),
           currentSortFilter: bountiesSortFilterSelector(state),
           currentStageFilter: bountyState.stageFilters
         };
@@ -38,9 +38,9 @@ function FilterNavComponentHOC(WrappedComponent, config) {
         toggleStageFilter: bountiesActions.toggleStageFilter,
         toggleDifficultyFilter: bountiesActions.toggleDifficultyFilter,
         togglePlatformFilter: bountiesActions.togglePlatformFilter,
-        addCategoryFilter: bountiesActions.addCategoryFilter,
+        addTagFilter: bountiesActions.addTagFilter,
         addPlatformFilter: bountiesActions.addPlatformFilter,
-        removeCategoryFilter: bountiesActions.removeCategoryFilter,
+        removeTagFilter: bountiesActions.removeTagFilter,
         filterReseter: bountiesActions.resetFilter,
         batch: bountiesActions.batch
       };

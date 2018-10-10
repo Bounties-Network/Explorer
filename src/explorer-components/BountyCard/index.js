@@ -13,7 +13,7 @@ const BountyCard = props => {
   const {
     id,
     title,
-    categories,
+    tags,
     img,
     address,
     experienceLevel,
@@ -24,30 +24,30 @@ const BountyCard = props => {
     usd,
     currency,
     onPillClick,
-    selectedCategories
+    selectedTags
   } = props;
 
-  const renderCategories = () => {
-    return map(category => {
+  const renderTags = () => {
+    return map(tag => {
       let backgroundColor = 'white';
       let hoverBackgroundColor = 'nearWhite';
-      if (includes(category.normalized_name, selectedCategories)) {
+      if (includes(tag.normalized_name, selectedTags)) {
         backgroundColor = 'nearWhite';
         hoverBackgroundColor = 'white';
       }
 
       return (
-        <div key={category.normalized_name} className={styles.pill}>
+        <div key={tag.normalized_name} className={styles.pill}>
           <Pill
-            onClick={() => onPillClick(category.normalized_name)}
+            onClick={() => onPillClick(tag.normalized_name)}
             backgroundColor={backgroundColor}
             hoverBackgroundColor={hoverBackgroundColor}
           >
-            {category.name}
+            {tag.name}
           </Pill>
         </div>
       );
-    }, categories);
+    }, tags);
   };
 
   return (
@@ -66,7 +66,7 @@ const BountyCard = props => {
                 {title}
               </Text>
             </Link>
-            <div className={styles.categoryList}>{renderCategories()}</div>
+            <div className={styles.tagList}>{renderTags()}</div>
             <div className={styles.avatar}>
               <LinkedAvatar
                 img={img}
@@ -155,7 +155,7 @@ const BountyCard = props => {
 BountyCard.propTypes = {
   experienceLevel: PropTypes.number,
   title: PropTypes.string,
-  categories: PropTypes.array,
+  tags: PropTypes.array,
   img: PropTypes.string,
   address: PropTypes.string,
   submissions: PropTypes.number,

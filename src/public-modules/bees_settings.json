@@ -3,7 +3,7 @@
   "postingPlatform": "pollenbees",
   "postingSchema": "standardSchema",
   "postingSchemaVersion": "0.1",
-  "categoryPlatform": "pollenbees",
+  "tagPlatform": "pollenbees",
   "networkName": "bees.bounties.network",
   "url": {
     "mainNet": "https://newrinkeby.api.bounties.network",

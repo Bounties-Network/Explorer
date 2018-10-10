@@ -100,7 +100,7 @@ const mapStateToProps = (state, router) => {
     draftLoading: getDraftState.loading,
     formInitialValues: {
       title: draftBounty.title,
-      categories: draftBounty.categories,
+      tags: draftBounty.tags,
       description: draftBounty.description || DEFAULT_MARKDOWN,
       experienceLevel:
         DIFFICULTY_MAPPINGS[draftBounty.experienceLevel] || 'Beginner',

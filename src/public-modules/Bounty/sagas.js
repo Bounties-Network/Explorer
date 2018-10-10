@@ -139,7 +139,7 @@ export function* createBounty(action) {
   const {
     title,
     description,
-    categories,
+    tags,
     tokenContract,
     experienceLevel,
     issuer_email,
@@ -205,7 +205,7 @@ export function* createBounty(action) {
       sourceDirectoryHash,
       sourceFileName,
       webReferenceURL,
-      categories,
+      tags,
       revisions,
       privateFulfillments,
       created: parseInt(new Date().getTime() / 1000) | 0,

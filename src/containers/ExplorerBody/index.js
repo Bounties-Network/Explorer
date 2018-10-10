@@ -9,7 +9,7 @@ import { map } from 'lodash';
 import { PAGE_SIZE } from 'public-modules/Bounties/constants';
 import {
   rootBountiesSelector,
-  bountiesCategoryFiltersSelector
+  bountiesTagFiltersSelector
 } from 'public-modules/Bounties/selectors';
 import { actions } from 'public-modules/Bounties';
 
@@ -22,8 +22,8 @@ const ExplorerBodyComponent = props => {
     loadMoreBounties,
     offset,
     loadingMore,
-    toggleCategoryFilter,
-    categoryFilters,
+    toggleTagFilter,
+    tagFilters,
     error,
     onOpenFilters
   } = props;
@@ -33,7 +33,7 @@ const ExplorerBodyComponent = props => {
       const {
         id,
         title,
-        categories,
+        tags,
         user,
         experienceLevel,
         fulfillment_count,
@@ -48,7 +48,7 @@ const ExplorerBodyComponent = props => {
           key={id}
           id={id}
           title={title}
-          categories={categories}
+          tags={tags}
           img={user.small_profile_image_url}
           address={user.public_address}
           experienceLevel={experienceLevel}
@@ -57,8 +57,8 @@ const ExplorerBodyComponent = props => {
           value={Number(calculated_fulfillmentAmount)}
           usd={Number(usd_price)}
           currency={tokenSymbol}
-          onPillClick={toggleCategoryFilter}
-          selectedCategories={categoryFilters}
+          onPillClick={toggleTagFilter}
+          selectedCategories={tagFilters}
           stage={bountyStage}
         />
       );
@@ -151,7 +151,7 @@ const mapStateToProps = state => {
     loading: bountyState.loading,
     loadingMore: bountyState.loadingMore,
     error: bountyState.error,
-    categoryFilters: bountiesCategoryFiltersSelector(state)
+    tagFilters: bountiesTagFiltersSelector(state)
   };
 };
 
@@ -161,7 +161,7 @@ const ExplorerBody = compose(
     {
       setSort: actions.setSort,
       loadMoreBounties: actions.loadMoreBounties,
-      toggleCategoryFilter: actions.toggleCategoryFilter
+      toggleTagFilter: actions.toggleTagFilter
     }
   )
 )(ExplorerBodyComponent);

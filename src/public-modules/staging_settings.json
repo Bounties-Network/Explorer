@@ -3,7 +3,7 @@
   "postingPlatform": "bounties-network",
   "postingSchema": "standardSchema",
   "postingSchemaVersion": "0.1",
-  "categoryPlatform": "main",
+  "tagPlatform": "main",
   "networkName": "staging.bounties.network",
   "url": {
     "mainNet": "https://staging.api.bounties.network",

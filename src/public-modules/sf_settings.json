@@ -3,7 +3,7 @@
   "postingPlatform": "sf",
   "postingSchema": "standardSchema",
   "postingSchemaVersion": "0.1",
-  "categoryPlatform": "sf",
+  "tagPlatform": "sf",
   "networkName": "sf.bounties.network",
   "url": {
     "mainNet": "https://new.api.bounties.network",
