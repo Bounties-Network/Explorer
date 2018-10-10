@@ -117,6 +117,7 @@ class ProfileComponent extends React.Component {
       ReactDOM.findDOMNode(this.explorerBody).scrollIntoView(false);
     }
 
+    console.log(userStats);
     if (!networkSwitchSet) {
       this.setState({
         networkSwitchSet: true
@@ -126,11 +127,15 @@ class ProfileComponent extends React.Component {
         location.search
       );
 
-      // We start on the issuer tab, so only check if we need to switch:
+      // We start on the issuer tab, so only check for reasons to switch:
       if (!issuer && fulfiller) {
         setActiveNetworkSwitch('fulfiller');
       } else {
-        if (userStats.fulfiller.total > userStats.issuer.total) {
+        if (userStats.fulfiller.total === 0 && userStats.issuer.total === 0) {
+          if (userStats.fulfiller.acceptance > userStats.issuer.acceptance) {
+            setActiveNetworkSwitch('fulfiller');
+          }
+        } else if (userStats.fulfiller.total > userStats.issuer.total) {
           setActiveNetworkSwitch('fulfiller');
         }
       }
