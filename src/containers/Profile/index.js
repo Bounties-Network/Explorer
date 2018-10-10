@@ -12,11 +12,13 @@ import styles from './Profile.module.scss';
 import { ZeroState } from 'components';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
-import { userInfoSelector } from 'public-modules/UserInfo/selectors';
+import {
+  userInfoSelector,
+  loadedUserStatsSelector
+} from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { locationNonceSelector } from 'layout/App/selectors';
-import { reviewsStateSelector } from 'public-modules/Reviews/selectors';
 import { SEOHeader } from './components';
 import { actions } from './reducer';
 import { queryStringToObject } from 'utils/locationHelpers';
@@ -77,10 +79,9 @@ class ProfileComponent extends React.Component {
       resetState,
       resetFilter,
       bountiesLoading,
-      reviewCount,
-      reviewsLoading,
       setActiveNetworkSwitch,
-      setReviewsModalVisible
+      setReviewsModalVisible,
+      userStats
     } = this.props;
     const { position, networkSwitchSet } = this.state;
 
@@ -116,7 +117,7 @@ class ProfileComponent extends React.Component {
       ReactDOM.findDOMNode(this.explorerBody).scrollIntoView(false);
     }
 
-    if (prevProps.reviewsLoading && !reviewsLoading && !networkSwitchSet) {
+    if (!networkSwitchSet) {
       this.setState({
         networkSwitchSet: true
       });
@@ -125,8 +126,13 @@ class ProfileComponent extends React.Component {
         location.search
       );
 
-      if (!issuer && (fulfiller || reviewCount === 0)) {
+      // We start on the issuer tab, so only check if we need to switch:
+      if (!issuer && fulfiller) {
         setActiveNetworkSwitch('fulfiller');
+      } else {
+        if (userStats.fulfiller.total > userStats.issuer.total) {
+          setActiveNetworkSwitch('fulfiller');
+        }
       }
 
       if (reviews) {
@@ -248,7 +254,7 @@ const mapStateToProps = state => {
   const currentUser = getCurrentUserSelector(state);
   const userInfo = userInfoSelector(state);
   const bountyState = rootBountiesSelector(state);
-  const reviewsState = reviewsStateSelector(state);
+  const userStats = loadedUserStatsSelector(state);
 
   return {
     currentUser,
@@ -257,8 +263,7 @@ const mapStateToProps = state => {
     loaded: userInfo.loaded,
     error: userInfo.error,
     locationNonce: locationNonceSelector(state),
-    reviewCount: reviewsState.count,
-    reviewsLoading: reviewsState.loading
+    userStats
   };
 };
 
