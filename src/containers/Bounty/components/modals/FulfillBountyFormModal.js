@@ -124,7 +124,6 @@ let FulfillBountyFormModalComponent = props => {
                 label="Description"
                 validate={validatorGroups.description}
                 placeholder="Enter description..."
-                textAreaClass={styles.rowTextArea}
               />
             </div>
           </div>
