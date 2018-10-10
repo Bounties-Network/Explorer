@@ -18,7 +18,6 @@ import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { locationNonceSelector } from 'layout/App/selectors';
 import { SEOHeader } from './components';
 import { actions } from './reducer';
-import { queryStringToObject } from 'utils/locationHelpers';
 
 class ProfileComponent extends React.Component {
   constructor(props) {
@@ -26,7 +25,8 @@ class ProfileComponent extends React.Component {
 
     this.state = {
       mobileFilterVisible: false,
-      position: 'relative'
+      position: 'relative',
+      showBanner: true
     };
 
     const {
@@ -115,21 +115,6 @@ class ProfileComponent extends React.Component {
   componentDidMount() {
     const body = document.getElementsByClassName('page-body')[0];
     body.addEventListener('scroll', this.onScroll);
-
-    const {
-      location,
-      setReviewsModalVisible,
-      setActiveNetworkSwitch
-    } = this.props;
-    const { reviews, fulfiller } = queryStringToObject(location.search);
-
-    if (fulfiller) {
-      setActiveNetworkSwitch('fulfiller');
-    }
-
-    if (reviews) {
-      setReviewsModalVisible(true);
-    }
   }
 
   componentWillUnmount() {
@@ -155,6 +140,14 @@ class ProfileComponent extends React.Component {
     }
   };
 
+  onEditProfile = () => {
+    this.props.history.push('/settings');
+  };
+
+  onCloseProgressBar = () => {
+    this.setState({ showBanner: false });
+  };
+
   render() {
     const { error, loaded, user, showFilterNav } = this.props;
     const { position } = this.state;
@@ -172,7 +165,11 @@ class ProfileComponent extends React.Component {
       <div className={styles.profileContainer}>
         <SEOHeader user={user} />
         <div className={`${styles.profileDetails}`}>
-          <ProfileDetails />
+          <ProfileDetails
+            onEdit={this.onEditProfile}
+            onCloseProgressBar={this.onCloseProgressBar}
+            showBanner={this.state.showBanner}
+          />
         </div>
         <div className={styles.profileBountiesContainer}>
           <div className={styles.profileBounties}>
@@ -248,9 +245,7 @@ const Profile = compose(
       resetFilter: bountiesActions.resetFilter,
       loadUserInfo: userInfoActions.loadUserInfo,
       setActiveTab: actions.setActiveTab,
-      setProfileAddress: actions.setProfileAddress,
-      setReviewsModalVisible: actions.setReviewsModalVisible,
-      setActiveNetworkSwitch: actions.setActiveNetworkSwitch
+      setProfileAddress: actions.setProfileAddress
     }
   )
 )(ProfileComponent);

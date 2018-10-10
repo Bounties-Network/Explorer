@@ -12,6 +12,8 @@ import {
   Skills
 } from './components';
 
+import { Button, PageBanner, ProgressBar } from 'components';
+
 import {
   userInfoSelector,
   loadedUserInfoSelector,
@@ -21,6 +23,46 @@ import {
 import { ipfsToHttp } from 'utils/helpers';
 import { profileUISelector } from './selectors';
 import { actions } from './reducer';
+
+const isEmptyProperty = property => {
+  return (
+    property === undefined ||
+    property === null ||
+    (typeof property === 'object' && Object.keys(property).length === 0) ||
+    (typeof property === 'string' && property.trim().length === 0)
+  );
+};
+
+const getProfileCompletePercent = user => {
+  const userElsewhereInfo = {
+    github: user.github,
+    linkedin: user.linkedin,
+    twitter: user.twitter,
+    website: user.website
+  };
+
+  const userElsewhereValues = Object.values(userElsewhereInfo).filter(
+    value => value
+  ).length;
+
+  const userMinRequiredInfo = {
+    name: user.name,
+    organization: user.organization,
+    languages: user.languages,
+    skills: user.skills,
+    email: user.email,
+    elsewhere: userElsewhereValues > 0 ? userElsewhereValues : undefined
+  };
+
+  const keys = Object.keys(userMinRequiredInfo).length;
+  const nonEmptyValues = Object.values(userMinRequiredInfo).filter(
+    value => !isEmptyProperty(value)
+  ).length;
+
+  console.log(keys, nonEmptyValues);
+
+  return Math.round((nonEmptyValues / keys) * 100);
+};
 
 const ProfileDetailsComponent = props => {
   const {
@@ -32,10 +74,39 @@ const ProfileDetailsComponent = props => {
     toggleNetworkSwitch,
     currentTab,
     setActiveTab,
-    setReviewsModalVisible
+    setReviewsModalVisible,
+    onEdit,
+    onCloseProgressBar,
+    showBanner
   } = props;
 
   let bodyClass;
+
+  const percentageComplete = getProfileCompletePercent(user);
+
+  const pageBanner = (
+    <React.Fragment>
+      <PageBanner>
+        <span style={{ width: '50px' }} />
+        <ProgressBar
+          heading="Profile Strength"
+          percentage={percentageComplete}
+        />
+        <span style={{ width: '20px' }} />
+        <span className="width-stretch">
+          <Button onClick={onEdit} type="link">
+            Edit Profile
+          </Button>
+          <span style={{ float: 'right' }}>
+            <Button onClick={onCloseProgressBar} type="link">
+              x
+            </Button>
+            <span style={{ width: '30px' }} />
+          </span>
+        </span>
+      </PageBanner>
+    </React.Fragment>
+  );
 
   let body = (
     <React.Fragment>
@@ -105,10 +176,15 @@ const ProfileDetailsComponent = props => {
     body = <Loader color="blue" size="medium" />;
   }
 
-  return <div className={`col-xs-12 fullHeight ${bodyClass}`}>{body}</div>;
+  return (
+    <div>
+      {showBanner && percentageComplete < 100 && pageBanner}
+      <div className={`col-xs-12 fullHeight ${bodyClass}`}>{body}</div>
+    </div>
+  );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
   const userInfo = userInfoSelector(state);
   const loadedUserInfo = loadedUserInfoSelector(state);
   const loadedUser = loadedUserSelector(state);
@@ -121,7 +197,8 @@ const mapStateToProps = state => {
     userStats,
     switchValue: profileUI.switchValue,
     currentTab: profileUI.currentTab,
-    loadedUserInfo
+    loadedUserInfo,
+    onEditProfile: props.onEditProfile
   };
 };
 
