@@ -119,8 +119,9 @@ export default function(url, method, options, customErrorHandler) {
       bakedOptions = GET_OPTIONS;
   }
 
+  const requestUrl = url.slice(0, 4) === 'http' ? url : `${endpoint}/${url}`;
   return axios
-    .request(`${endpoint}/${url}`, { ...bakedOptions, ...options })
+    .request(requestUrl, { ...bakedOptions, ...options })
     .then(checkRequestStatus)
     .catch(handleError);
 }

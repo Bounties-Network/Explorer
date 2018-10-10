@@ -65,25 +65,25 @@ export function* showIssueRatingModal() {
 
   if (fulfiller === current_address && !issuer_review) {
     // fulfiller to rate issuer
-    const { name, profile_image } = bounty_data.user;
+    const { name, small_profile_image_url } = bounty_data.user;
 
     yield put(
       setRatingModal(fulfillment_id, {
         name,
         address: issuer,
-        img: profile_image
+        img: small_profile_image_url
       })
     );
     yield put(showModal('issueRatingForIssuer'));
   } else if (issuer === current_address && !fulfiller_review) {
     // issuer to rate fulfiller
-    const { name, profile_image } = fulfillment.user;
+    const { name, small_profile_image_url } = fulfillment.user;
 
     yield put(
       setRatingModal(fulfillment_id, {
         name,
         address: fulfiller,
-        img: profile_image
+        img: small_profile_image_url
       })
     );
     yield put(showModal('issueRatingForFulfiller'));

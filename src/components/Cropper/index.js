@@ -3,6 +3,7 @@ import { Croppie } from 'croppie/croppie';
 import '../../styles/Croppie.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Circle, Button } from 'components';
+import buttonStyles from 'components/Button/Button.module.scss';
 import styles from './Cropper.module.scss';
 
 class Cropper extends React.Component {
@@ -51,25 +52,31 @@ class Cropper extends React.Component {
 
   save = e => {
     e.preventDefault();
+    e.persist();
 
-    this.croppie
-      .result({
-        type: 'blob',
-        size: { width: 300, height: 300 },
-        quality: 0.75,
-        circle: true
-      })
-      .then(blob => {
-        blob.name = this.state.file.name;
-        this.props.onChange(blob);
+    const small = this.croppie.result({
+      type: 'blob',
+      size: { width: 64, height: 64 },
+      quality: 0.5,
+      format: 'png',
+      circle: true
+    });
 
-        if (this.croppie) {
-          this.croppie.destroy();
-          this.croppie = null;
-        }
+    const large = this.croppie.result({
+      type: 'blob',
+      size: { width: 300, height: 300 },
+      quality: 0.75,
+      format: 'png',
+      circle: true
+    });
 
-        this.setState({ activeCrop: false });
-      });
+    Promise.all([small, large]).then(([smallBlob, largeBlob]) => {
+      smallBlob.name = this.state.file.name;
+      largeBlob.name = this.state.file.name;
+
+      this.props.onChange(smallBlob, largeBlob);
+      this.removeCroppie(e);
+    });
   };
 
   readFile = () => {
@@ -163,10 +170,13 @@ class Cropper extends React.Component {
             ) : null}
           </div>
           <div className={styles.buttonWrapper}>
-            <Button
-              className={styles.upload}
-              disabled={disabledState}
-              buttonType="button"
+            <span
+              className={[
+                styles.upload,
+                buttonStyles.button,
+                buttonStyles.default,
+                disabledState ? buttonStyles.disabled : null
+              ].join(' ')}
             >
               Upload New Photo
               <input
@@ -178,7 +188,7 @@ class Cropper extends React.Component {
                 ref={this.croppieInput}
                 disabled={disabledState}
               />
-            </Button>
+            </span>
             {activeCrop || isLoading ? (
               <Button
                 buttonType="button"
@@ -187,7 +197,7 @@ class Cropper extends React.Component {
                 loading={isLoading}
                 onClick={this.save}
               >
-                Save
+                Crop
               </Button>
             ) : null}
             {src &&

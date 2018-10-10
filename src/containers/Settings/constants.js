@@ -1,5 +1,3 @@
-export const UPLOAD_KEY = 'profilePhoto';
-
 export const EMAIL_NOTIFICATION_OPTIONS = {
   RatingReceived: 'User issues you a rating',
   TransferRecipient: 'Bounty transfer to another user completes',

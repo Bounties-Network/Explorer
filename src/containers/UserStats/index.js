@@ -11,7 +11,6 @@ import {
   loadedUserStatsSelector
 } from 'public-modules/UserInfo/selectors';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
-import { ipfsToHttp } from 'utils/helpers';
 
 const { loadUserInfo } = userInfoActions;
 
@@ -27,14 +26,7 @@ class UserStatsComponent extends React.Component {
 
   render() {
     const { loading, user, stats } = this.props;
-    const {
-      name,
-      public_address,
-      is_profile_image_dirty,
-      profile_image,
-      profileDirectoryHash,
-      profileFileName
-    } = user;
+    const { name, public_address, large_profile_image_url } = user;
     const { awarded, earned } = stats;
 
     const renderStat = (value, label) => {
@@ -65,11 +57,7 @@ class UserStatsComponent extends React.Component {
             nameTextWeight="fontWeight-bold"
             address={public_address}
             hash={public_address}
-            img={
-              is_profile_image_dirty
-                ? ipfsToHttp(profileDirectoryHash, profileFileName)
-                : profile_image
-            }
+            img={large_profile_image_url}
             to={`/profile/${public_address}`}
             className={styles.alignLeft}
           />

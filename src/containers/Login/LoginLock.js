@@ -96,7 +96,7 @@ const mapStateToProps = state => {
     isCorrectNetwork: config.requiredNetwork
       ? network === config.requiredNetwork
       : network === 'mainNet' || network === 'rinkeby',
-    img: user && user.profile_image,
+    img: user && user.small_profile_image_url,
     error: logoutState.error,
     loggingOut: logoutState.loading
   };

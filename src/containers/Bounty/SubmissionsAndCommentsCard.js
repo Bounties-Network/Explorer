@@ -103,7 +103,8 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
           issuer_review
         } = fulfillment;
 
-        const { name, profile_image } = user;
+        const { name, small_profile_image_url } = user;
+
         const submissionBelongsToLoggedInUser =
           currentUser && fulfiller === currentUser.public_address;
 
@@ -118,7 +119,7 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
               fulfiller_name={name}
               fulfiller_email={fulfiller_email}
               fulfiller_address={fulfiller}
-              fulfiller_img={profile_image}
+              fulfiller_img={small_profile_image_url}
               bounty={bounty}
               url={url}
               description={description}
@@ -149,14 +150,14 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
     const renderComments = () => {
       return map(comment => {
         const { id, text, user, created } = comment;
-        const { name, profile_image, public_address } = user;
+        const { name, public_address, small_profile_image_url } = user;
 
         return (
           <ListGroup.ListItem key={id} className={styles.listItem} fullBorder>
             <CommentItem
               name={name}
               address={public_address}
-              img={profile_image}
+              img={small_profile_image_url}
               text={text}
               created={created}
             />

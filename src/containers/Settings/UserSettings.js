@@ -3,34 +3,42 @@ import styles from './Settings.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { FormSection } from 'explorer-components';
-import { rootUploadSelector } from 'public-modules/FileUpload/selectors';
-import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as skillActions } from 'public-modules/Skills';
 import { actions as settingsActions } from 'public-modules/Settings';
+import { actions as settingsUIActions } from './reducer';
+import { settingsUISelector } from './selectors';
 import { skillsSelector } from 'public-modules/Skills/selectors';
 import { languagesSelector } from 'public-modules/Languages/selectors';
-import { settingsSelector } from 'public-modules/Settings/selectors';
+import {
+  profileImageUploadStateSelector,
+  settingsSelector
+} from 'public-modules/Settings/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
-import { ipfsToHttp } from 'utils/helpers';
 import { Cropper, Button, Text } from 'components';
-import { FormTextInput, FormSearchSelect, FormCheckbox } from 'form-components';
-import { UPLOAD_KEY } from './constants';
+import { FormCheckbox, FormTextInput, FormSearchSelect } from 'form-components';
 
 class UserSettingsComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    const { ipfsHash, fileName } = props;
-    this.state = {
-      profileImage: ipfsHash ? ipfsToHttp(ipfsHash, fileName) : null
-    };
+    const { initialValues, setProfileImageUrls } = props;
+
+    const { smallProfileImageUrl, largeProfileImageUrl } = initialValues;
+
+    setProfileImageUrls(smallProfileImageUrl, largeProfileImageUrl);
   }
+
+  componentWillUnmount() {
+    this.props.resetProfileImageUrls();
+  }
+
   render() {
     const {
-      uploadFile,
+      uploadProfileImage,
       uploading,
+      uploadingError,
       addSkill,
       skills,
       languages,
@@ -39,31 +47,27 @@ class UserSettingsComponent extends React.Component {
       submitFailed,
       saveSettings,
       savingSettings,
-      ipfsHash,
-      fileName,
-      resetUpload,
       onboarding,
-      onClose
+      onClose,
+      smallProfileImageUrl,
+      largeProfileImageUrl,
+      resetProfileImageUrls
     } = this.props;
-
-    const { profileImage } = this.state;
 
     const handleSaveSettings = values => {
       saveSettings({
         ...values,
-        ipfsHash: ipfsHash,
-        fileName: fileName
+        smallProfileImageUrl,
+        largeProfileImageUrl
       });
     };
 
-    const handleUpload = file => {
-      this.setState({ profileImage: URL.createObjectURL(file) });
-      uploadFile(UPLOAD_KEY, file);
+    const handleUpload = (smallImage, largeImage) => {
+      uploadProfileImage(smallImage, largeImage);
     };
 
     const handleResetUpload = () => {
-      this.setState({ profileImage: null });
-      resetUpload(UPLOAD_KEY);
+      resetProfileImageUrls();
     };
 
     const validatorGroups = {
@@ -83,11 +87,16 @@ class UserSettingsComponent extends React.Component {
             <FormSection.InputGroup>
               <Cropper
                 disabled={savingSettings}
-                onChange={file => handleUpload(file)}
+                onChange={handleUpload}
                 onDelete={handleResetUpload}
                 loading={uploading}
-                src={profileImage}
+                src={largeProfileImageUrl}
               />
+              {uploadingError && (
+                <Text inputLabel color="red">
+                  Image upload failed, please try again.
+                </Text>
+              )}
             </FormSection.InputGroup>
           </FormSection.Section>
           <FormSection.Section title="ABOUT">
@@ -275,8 +284,7 @@ class UserSettingsComponent extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const rootUpload = rootUploadSelector(state);
-  const uploadState = rootUpload[UPLOAD_KEY] || {};
+  const uploadState = profileImageUploadStateSelector(state);
   const currentUser = getCurrentUserSelector(state);
 
   return {
@@ -284,12 +292,14 @@ const mapStateToProps = state => {
       ...currentUser,
       // stored in db w/o @ symbol
       twitter: currentUser.twitter ? '@' + currentUser.twitter : '',
-      github: currentUser.github ? '@' + currentUser.github : ''
+      github: currentUser.github ? '@' + currentUser.github : '',
+      smallProfileImageUrl: currentUser.small_profile_image_url,
+      largeProfileImageUrl: currentUser.large_profile_image_url
     },
-    uploading: uploadState.uploading || false,
-    uploaded: uploadState.uploaded || false,
-    ipfsHash: uploadState.ipfsHash || currentUser.profileDirectoryHash,
-    fileName: uploadState.fileName || currentUser.profileFileName,
+    uploading: uploadState.uploading,
+    uploadingError: uploadState.error,
+    smallProfileImageUrl: settingsUISelector(state).smallProfileImageUrl,
+    largeProfileImageUrl: settingsUISelector(state).largeProfileImageUrl,
     skills: skillsSelector(state),
     languages: languagesSelector(state),
     savingSettings: settingsSelector(state).saving,
@@ -307,10 +317,11 @@ const UserSettings = compose(
   connect(
     mapStateToProps,
     {
-      uploadFile: uploadActions.uploadFile,
-      resetUpload: uploadActions.resetUpload,
+      uploadProfileImage: settingsActions.uploadProfileImage,
       addSkill: skillActions.addToSkills,
-      saveSettings: settingsActions.saveSettings
+      saveSettings: settingsActions.saveSettings,
+      setProfileImageUrls: settingsUIActions.setProfileImageUrls,
+      resetProfileImageUrls: settingsUIActions.resetProfileImageUrls
     }
   )
 )(UserSettingsComponent);

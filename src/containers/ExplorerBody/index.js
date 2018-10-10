@@ -49,7 +49,7 @@ const ExplorerBodyComponent = props => {
           id={id}
           title={title}
           categories={categories}
-          img={user.profile_image}
+          img={user.small_profile_image_url}
           address={user.public_address}
           experienceLevel={experienceLevel}
           submissions={fulfillment_count}

@@ -81,11 +81,15 @@ const SubmissionItem = props => {
         icon={['far', 'star']}
         onClick={() =>
           initiateLoginProtection(() => {
-            const { name, public_address, profile_image } = bounty.user;
+            const {
+              name,
+              public_address,
+              small_profile_image_url
+            } = bounty.user;
             setRatingModal(fulfillmentId, {
               name,
               address: public_address,
-              img: profile_image
+              img: small_profile_image_url
             });
             showModal('issueRatingForIssuer');
           })

@@ -9,7 +9,6 @@ import { hasWalletSelector } from 'public-modules/Client/selectors';
 import { actions as authActions } from 'public-modules/Authentication';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { ipfsToHttp } from 'utils/helpers';
 import styles from './Header.module.scss';
 import { Button, Avatar, Dropdown, Network, Text } from 'components';
 import { NotificationDropdown } from 'containers';
@@ -74,14 +73,7 @@ const HeaderComponent = props => {
               <DropdownTrigger>
                 <Avatar
                   size="small"
-                  img={
-                    user.is_profile_image_dirty
-                      ? ipfsToHttp(
-                          user.profileDirectoryHash,
-                          user.profileFileName
-                        )
-                      : user.profile_image
-                  }
+                  img={user.small_profile_image_url}
                   hash={user.public_address}
                 />
               </DropdownTrigger>

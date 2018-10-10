@@ -11,3 +11,8 @@ export const emailPreferencesSelector = createSelector(
   rootSettingsSelector,
   rootSettings => rootSettings.emailPreferences
 );
+
+export const profileImageUploadStateSelector = createSelector(
+  rootSettingsSelector,
+  rootSettings => rootSettings.uploadState
+);

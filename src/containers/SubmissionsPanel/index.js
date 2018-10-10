@@ -29,7 +29,7 @@ class SubmissionsPanelComponent extends React.Component {
         calculated_fulfillmentAmount,
         bountyStage
       } = bounty_data;
-      const { public_address, profile_image } = user;
+      const { public_address, small_profile_image_url } = user;
 
       return (
         <SubmissionItem
@@ -38,7 +38,7 @@ class SubmissionsPanelComponent extends React.Component {
           bountyStage={bountyStage}
           title={title}
           fulfiller={public_address}
-          fulfiller_img={profile_image}
+          fulfiller_img={small_profile_image_url}
           submissionDate={fulfillment_created}
           status={accepted}
           usd={(usd_price || 0).toFixed(0)}
