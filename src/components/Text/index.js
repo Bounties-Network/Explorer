@@ -60,6 +60,7 @@ const Text = props => {
         href={absolute ? forceAbsolute(src) : src}
         onClick={onClick}
         download={download}
+        target={absolute ? 'target="_blank"' : ''}
       >
         {props.children}
       </a>

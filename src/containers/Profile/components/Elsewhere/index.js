@@ -60,7 +60,7 @@ const Elsewhere = props => {
               icon={['fab', 'linkedin']}
               className={styles.icon}
             />
-            <Text link src={linkedin} typeScale="h5">
+            <Text link absolute src={linkedin} typeScale="h5">
               LinkedIn
             </Text>
           </div>
