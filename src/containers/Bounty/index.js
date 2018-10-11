@@ -57,7 +57,9 @@ class BountyComponent extends React.Component {
       resetFulfillmentsState,
       resetCommentsState,
       addBountyFilter,
-      setBountyId
+      setBountyId,
+      initiateLoginProtection,
+      showModal
     } = props;
 
     setBountyId(match.params.id);
@@ -78,6 +80,10 @@ class BountyComponent extends React.Component {
 
       if (values.rating) {
         loadFulfillment(match.params.id, values.fulfillment_id);
+      }
+
+      if (values.contribute) {
+        initiateLoginProtection(() => showModal('contribute'));
       }
     }
   }

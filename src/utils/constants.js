@@ -50,10 +50,12 @@ export const NOTIFICATION_ID = {
   COMMENT_ISSUED: 22,
   DRAFT_CREATED: 23,
   DRAFT_UPDATED: 24,
-  CONTRIBUTION_RECEIVED: 25
+  CONTRIBUTION_RECEIVED: 25,
+  BOUNTY_COMPLETED: 26
 };
 
 const plus = ['far', 'plus-circle'];
+const minus = ['far', 'minus-circle'];
 const level_up = ['far', 'level-up'];
 const level_down = ['far', 'level-down'];
 const star = ['far', 'star'];
@@ -169,5 +171,9 @@ export const notification_template = {
   [NOTIFICATION_ID.CONTRIBUTION_RECEIVED]: {
     message: 'You received a contribution to',
     icon: plus
+  },
+  [NOTIFICATION_ID.BOUNTY_COMPLETED]: {
+    message: 'Your bounty ran out of funds',
+    icon: minus
   }
 };

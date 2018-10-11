@@ -74,7 +74,8 @@ export function* saveEmailPreferences(action) {
     FulfillmentUpdatedIssuer,
     RatingReceived,
     TransferRecipient,
-    ContributionReceived
+    ContributionReceived,
+    BountyCompleted
   } = values;
 
   const data = {
@@ -89,7 +90,8 @@ export function* saveEmailPreferences(action) {
         TransferRecipient,
         FulfillmentUpdatedIssuer,
         FulfillmentSubmittedIssuer,
-        ContributionReceived
+        ContributionReceived,
+        BountyCompleted
       },
       fulfiller: {
         FulfillmentAcceptedFulfiller
