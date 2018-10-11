@@ -132,7 +132,7 @@ const SubmissionItem = props => {
         {url ? (
           <div className={[styles.labelGroup, styles.bottomMargin].join(' ')}>
             <Text inputLabel>Web link</Text>
-            <Text link src={url}>
+            <Text link absolute src={url}>
               {shortenUrl(url)}
             </Text>
           </div>

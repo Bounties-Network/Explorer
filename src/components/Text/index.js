@@ -18,7 +18,8 @@ const Text = props => {
     id,
     onClick,
     download,
-    onMouseDown
+    onMouseDown,
+    absolute
   } = props;
 
   let addedClasses = '';
@@ -44,6 +45,9 @@ const Text = props => {
   if (link) {
     addedClasses += ` ${styles.Link}`;
 
+    const forceAbsolute = src =>
+      src.slice(0, 4) === 'http' ? src : `//${src}`;
+
     return (
       <a
         onMouseDown={onMouseDown}
@@ -53,7 +57,7 @@ const Text = props => {
           styles[fontStyle]
         } ${addedClasses}`}
         id={id}
-        href={src}
+        href={absolute ? forceAbsolute(src) : src}
         onClick={onClick}
         download={download}
       >
@@ -106,6 +110,7 @@ Text.propTypes = {
   inline: PropTypes.bool,
   src: PropTypes.string,
   link: PropTypes.bool,
+  absolute: PropTypes.bool,
   onClick: PropTypes.func,
   color: PropTypes.oneOf([
     'purple',
@@ -139,6 +144,7 @@ Text.defaultProps = {
   onMouseDown: () => {},
   src: null,
   link: false,
+  absolute: false,
   weight: 'fontWeight-regular',
   id: ''
 };
