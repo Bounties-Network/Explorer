@@ -12,7 +12,10 @@ import styles from './Profile.module.scss';
 import { ZeroState } from 'components';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
-import { userInfoSelector } from 'public-modules/UserInfo/selectors';
+import {
+  userInfoSelector,
+  loadedUserStatsSelector
+} from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { locationNonceSelector } from 'layout/App/selectors';
@@ -75,9 +78,12 @@ class ProfileComponent extends React.Component {
       setProfileAddress,
       resetState,
       resetFilter,
-      bountiesLoading
+      bountiesLoading,
+      setActiveNetworkSwitch,
+      setReviewsModalVisible,
+      userStats
     } = this.props;
-    const { position } = this.state;
+    const { position, networkSwitchSet } = this.state;
 
     if (
       prevProps.locationNonce !== locationNonce &&
@@ -109,6 +115,34 @@ class ProfileComponent extends React.Component {
       position === 'fixed'
     ) {
       ReactDOM.findDOMNode(this.explorerBody).scrollIntoView(false);
+    }
+
+    console.log(userStats);
+    if (!networkSwitchSet) {
+      this.setState({
+        networkSwitchSet: true
+      });
+
+      const { reviews, fulfiller, issuer } = queryStringToObject(
+        location.search
+      );
+
+      // We start on the issuer tab, so only check for reasons to switch:
+      if (!issuer && fulfiller) {
+        setActiveNetworkSwitch('fulfiller');
+      } else {
+        if (userStats.fulfiller.total === 0 && userStats.issuer.total === 0) {
+          if (userStats.fulfiller.acceptance > userStats.issuer.acceptance) {
+            setActiveNetworkSwitch('fulfiller');
+          }
+        } else if (userStats.fulfiller.total > userStats.issuer.total) {
+          setActiveNetworkSwitch('fulfiller');
+        }
+      }
+
+      if (reviews) {
+        setReviewsModalVisible(true);
+      }
     }
   }
 
@@ -225,6 +259,7 @@ const mapStateToProps = state => {
   const currentUser = getCurrentUserSelector(state);
   const userInfo = userInfoSelector(state);
   const bountyState = rootBountiesSelector(state);
+  const userStats = loadedUserStatsSelector(state);
 
   return {
     currentUser,
@@ -232,7 +267,8 @@ const mapStateToProps = state => {
     bountiesLoading: bountyState.loading,
     loaded: userInfo.loaded,
     error: userInfo.error,
-    locationNonce: locationNonceSelector(state)
+    locationNonce: locationNonceSelector(state),
+    userStats
   };
 };
 
