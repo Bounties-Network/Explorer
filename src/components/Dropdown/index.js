@@ -127,7 +127,9 @@ class Dropdown extends React.Component {
 
     return (
       <div
-        className={`${styles.container} ${containerClass}`}
+        className={`${styles.container} ${containerClass} ${
+          show ? 'expanded' : 'closed'
+        }`}
         tabIndex={hideOnClick ? null : '0'}
         onBlur={hideOnClick ? () => {} : this.hide}
         onMouseLeave={hoverTrigger ? this.hide : () => {}}

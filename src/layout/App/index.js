@@ -119,6 +119,7 @@ class HeaderComponent extends React.Component {
             <div className={styles.tosDropdownWrapper}>
               <Dropdown
                 position="right"
+                animateDirection="right"
                 hideOnClick
                 hoverTrigger
                 className={styles.tosDropdown}

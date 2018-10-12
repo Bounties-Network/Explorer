@@ -126,3 +126,7 @@
   padding-top: $m-spacing;
   width: 100%;
 }
+
+:global(.closed).dropdownContainer {
+  padding-right: 0em;
+}
