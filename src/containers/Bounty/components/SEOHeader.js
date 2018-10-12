@@ -10,9 +10,14 @@ const SEOHeader = props => {
     return null;
   }
 
-  const description = bounty.description
+  let description = bounty.description
     .replace('# Description', '')
-    .substring(0, 199);
+    .substring(0, 196);
+
+  if (bounty.description.replace('# Description', '').length > 196) {
+    description += '...';
+  }
+
   const fulfillmentAmount = Number(bounty.calculated_fulfillmentAmount).toFixed(
     2
   );
