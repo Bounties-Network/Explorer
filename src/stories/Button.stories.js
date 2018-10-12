@@ -170,7 +170,7 @@ storiesOf('Button', module).add('All Buttons', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The <code>fitWidth</code> prop will cause the button to span teh
+      The <code>fitWidth</code> prop will cause the button to span the
       full-width of its parent container.
     </Text>
 
