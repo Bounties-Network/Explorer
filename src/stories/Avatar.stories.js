@@ -51,4 +51,4 @@ storiesOf('Avatar', module)
       addressTextScale={text('address size', 'Small')}
       addressTextWeight={text('address weight', 'fontWeight-medium')}
     />
-  ));
+  ))
