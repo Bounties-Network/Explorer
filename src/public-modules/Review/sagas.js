@@ -2,13 +2,12 @@ import request from 'utils/request';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Review';
 import { Toast } from 'components';
-import config from 'public-modules/config';
 
 const { POST_REVIEW } = actionTypes;
 const { postReviewSuccess, postReviewFail } = actions;
 
 export function* postNewReview(action) {
-  const { bountyId, fulfillmentId, rating, review } = action;
+  const { bountyId, bountyPlatform, fulfillmentId, rating, review } = action;
 
   // for some reason, this only works when I pass a copy of review
   const _review = review;
@@ -19,7 +18,7 @@ export function* postNewReview(action) {
       data: {
         rating,
         review: _review,
-        platform: config.postingPlatform
+        platform: bountyPlatform
       }
     });
 

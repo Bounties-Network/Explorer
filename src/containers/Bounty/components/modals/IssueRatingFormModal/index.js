@@ -49,7 +49,7 @@ const IssueRatingFormModalComponent = props => {
   const handleReview = values => {
     const { rating, review } = values;
 
-    postReview(bounty.id, fulfillmentId, rating, review);
+    postReview(bounty.id, bounty.platform, fulfillmentId, rating, review);
   };
 
   let revieweeAvatar = (

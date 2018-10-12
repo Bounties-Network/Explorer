@@ -73,7 +73,7 @@ export function* acceptFulfillment(action) {
 }
 
 export function* createFulfillment(action) {
-  const { bountyId, data } = action;
+  const { bountyId, bountyPlatform, data } = action;
   const {
     name,
     email,
@@ -102,9 +102,9 @@ export function* createFulfillment(action) {
       }
     },
     meta: {
-      platform: siteConfig.postingPlatform,
-      schemaVersion: siteConfig.postingPlatform,
-      schemaName: siteConfig.postingSchema
+      platform: bountyPlatform,
+      schemaVersion: bountyPlatform,
+      schemaName: bountyPlatform
     }
   };
 
