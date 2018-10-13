@@ -34,7 +34,7 @@ const PageBanner = props => {
   const pageBanner = (
     <div
       className={`
-      ${styles.pageBanner} ${styles[background]}
+      ${styles.pageBanner} ${styles[background] ? styles[background] : ''}
       ${marginClass ? styles[marginClass] : ''} 
       ${sizeClass ? styles[sizeClass] : ''} 
       ${heightClass ? styles[heightClass] : ''} 
