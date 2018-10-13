@@ -1,12 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import ProgressBar from '../components/ProgressBar';
+import styles from '../components/ProgressBar/ProgressBar.module.scss';
 import PageBanner from '../components/PageBanner';
 import { Text } from 'components';
 
 storiesOf('ProgressBar', module).add('with Edit Profile', () => (
   <div>
-    <p className="progressBarMarginsMediaum" />
+    <p className={styles.progressBarMarginMedium} />
     <Text type="H3">
       Small Margin/Size Progress Bar With Heading and Percent
     </Text>
@@ -17,7 +18,7 @@ storiesOf('ProgressBar', module).add('with Edit Profile', () => (
       size="small"
       width="small"
     />
-    <p className="progressBarMarginsMediaum" />
+    <p className={styles.progressBarMarginMedium} />
     <Text type="H3">
       Medium Margin/Size Progress Bar With Heading and Percent
     </Text>
@@ -28,7 +29,7 @@ storiesOf('ProgressBar', module).add('with Edit Profile', () => (
       margin="medium"
       size="medium"
     />
-    <p className="progressBarMarginsMediaum" />
+    <p className={styles.progressBarMarginMedium} />
     <Text type="H3">
       Large Margin/Size Progress Bar Without Heading and Percent
     </Text>
@@ -38,9 +39,9 @@ storiesOf('ProgressBar', module).add('with Edit Profile', () => (
       margin="large"
       size="large"
     />
-    <p className="progressBarMarginsMediaum" />
+    <p className={styles.progressBarMarginMedium} />
     <Text type="H3">Profile Progress Bar using PageBanner</Text>
-    <PageBanner>
+    <PageBanner margin="medium">
       <ProgressBar
         heading="Profile Stength"
         percentage={60}

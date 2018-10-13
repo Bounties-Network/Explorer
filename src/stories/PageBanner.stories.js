@@ -8,7 +8,7 @@ import { Text, Button, ProgressBar } from 'components';
 storiesOf('PageBanner', module).add('with ProgressBar', () => (
   <div>
     <Text type="H3">PageBanner With ProgressBar, Edit and Close Buttons</Text>
-    <p class={styles.pageBannerMarginMedium} />
+    <p className={styles.pageBannerMarginMedium} />
     <PageBanner onClose={action('Close clicked')}>
       <ProgressBar
         heading="Profile Strength"
@@ -20,7 +20,7 @@ storiesOf('PageBanner', module).add('with ProgressBar', () => (
         Edit Profile
       </Button>
     </PageBanner>
-    <p class={styles.pageBannerMarginMedium} />
+    <p className={styles.pageBannerMarginMedium} />
     <Text type="H3">
       Medium Margin PageBanner With ProgressBar, Edit and Close Buttons
     </Text>
@@ -36,7 +36,7 @@ storiesOf('PageBanner', module).add('with ProgressBar', () => (
       </Button>
     </PageBanner>
     <Text type="H3">
-      Small Margin and Small Hight PageBanner With ProgressBar, Edit and Close
+      Small Margin and Small Height PageBanner With ProgressBar, Edit and Close
       Buttons
     </Text>
     <PageBanner onClose={action('Close clicked')} margin="small" height="small">
