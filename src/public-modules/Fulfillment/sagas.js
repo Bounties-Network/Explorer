@@ -104,7 +104,7 @@ export function* createFulfillment(action) {
     meta: {
       platform: bountyPlatform,
       schemaVersion: bountyPlatform,
-      schemaName: siteConfig.postingSchema
+      schemaName: bountyPlatform
     }
   };
 
