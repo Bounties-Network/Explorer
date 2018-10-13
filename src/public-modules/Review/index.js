@@ -8,10 +8,11 @@ const POST_REVIEW = 'review/POST_REVIEW';
 const POST_REVIEW_SUCCESS = 'review/POST_REVIEW_SUCCESS';
 const POST_REVIEW_FAIL = 'review/POST_REVIEW_FAIL';
 
-function postReview(bountyId, fulfillmentId, rating, review) {
+function postReview(bountyId, bountyPlatform, fulfillmentId, rating, review) {
   return {
     type: POST_REVIEW,
     bountyId,
+    bountyPlatform,
     fulfillmentId,
     rating,
     review

@@ -99,7 +99,9 @@ const ModalManagerComponent = props => {
     );
 
   const fulfillBounty = values =>
-    initiateWalkthrough(() => fulfillBountyAction(bounty.id, values));
+    initiateWalkthrough(() =>
+      fulfillBountyAction(bounty.id, bounty.platform, values)
+    );
 
   const tomorrow = moment().add(1, 'days');
   const currentDeadline = moment.utc(bounty.deadline);
