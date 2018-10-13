@@ -144,7 +144,7 @@ class ProfileComponent extends React.Component {
     this.props.history.push('/settings');
   };
 
-  onCloseProgressBar = () => {
+  onClosePageBanner = () => {
     this.setState({ showBanner: false });
   };
 
@@ -167,7 +167,7 @@ class ProfileComponent extends React.Component {
         <div className={`${styles.profileDetails}`}>
           <ProfileDetails
             onEdit={this.onEditProfile}
-            onCloseProgressBar={this.onCloseProgressBar}
+            onClosePageBanner={this.onClosePageBanner}
             showBanner={this.state.showBanner}
           />
         </div>

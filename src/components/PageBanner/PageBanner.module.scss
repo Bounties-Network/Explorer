@@ -1,0 +1,109 @@
+@import "~styles/variables.scss";
+
+.pageBanner {
+  width: 100%;
+  height: 2em;
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+  border-style: solid;
+  border-radius: 0;
+  border-color: $brand-grey;
+  background-color: $brand-lightGrey;
+  overflow: hidden;
+  display: flex;
+  box-shadow: $base-box-shadow;
+  align-items: center;
+}
+
+.pageBanner .pageBannerCloseButton:last-child {
+  margin-left: auto;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+}
+
+.pageBannerCloseButton {
+  display: flex;
+  align-content: center;
+  margin-right: 1rem; 
+}
+
+.pageBannerMarginSmall {
+  margin: 0.5em 0;
+}
+
+.pageBannerMarginMedium {
+  margin: 1em 0;
+}
+
+.pageBannerMarginLarge {
+  margin: 1.5em 0;
+}
+
+.pageBannerSizeSmall {
+  width: 30em;
+}
+
+.pageBannerSizeMedium {
+  width: 35em;
+}
+
+.pageBannerSizeLarge {
+  width: 40em;
+}
+
+.pageBannerHeightSmall {
+  height: 1.5em;
+}
+
+.pageBannerHeightMedium {
+  height: 2.5em;
+}
+
+.pageBannerHeightLarge {
+  height: 3em;
+}
+
+.purple {
+  background-color: $brand-purple;
+}
+
+.blue {
+  background-color: $brand-blue;
+}
+
+.lightBlue {
+  background-color: lightblue;
+}
+
+.orange {
+  background-color: $brand-orange;
+}
+
+.green {
+  background-color: $brand-green;
+}
+
+.red {
+  background-color: $brand-red;
+}
+
+.black {
+  background-color: $brand-black;
+}
+
+.lightGrey {
+  background-color: $brand-lightGrey;
+}
+
+.defaultGrey {
+  background-color: $brand-grey;
+}
+
+.darkGrey {
+  background-color: $brand-darkGrey;
+}
+
+.white {
+  background-color: white;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './ProfileDetails.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { size, values } from 'lodash';
 import { Loader } from 'components';
 import {
   About,
@@ -28,7 +29,7 @@ const isEmptyProperty = property => {
   return (
     property === undefined ||
     property === null ||
-    (typeof property === 'object' && Object.keys(property).length === 0) ||
+    (typeof property === 'object' && size(property) === 0) ||
     (typeof property === 'string' && property.trim().length === 0)
   );
 };
@@ -41,8 +42,8 @@ const getProfileCompletePercent = user => {
     website: user.website
   };
 
-  const userElsewhereValues = Object.values(userElsewhereInfo).filter(
-    value => value
+  const userElsewhereValues = values(userElsewhereInfo).filter(
+    value => !isEmptyProperty(value)
   ).length;
 
   const userMinRequiredInfo = {
@@ -54,14 +55,12 @@ const getProfileCompletePercent = user => {
     elsewhere: userElsewhereValues > 0 ? userElsewhereValues : undefined
   };
 
-  const keys = Object.keys(userMinRequiredInfo).length;
-  const nonEmptyValues = Object.values(userMinRequiredInfo).filter(
+  const userKeys = size(userMinRequiredInfo);
+  const nonEmptyValues = values(userMinRequiredInfo).filter(
     value => !isEmptyProperty(value)
   ).length;
 
-  console.log(keys, nonEmptyValues);
-
-  return Math.round((nonEmptyValues / keys) * 100);
+  return Math.round((nonEmptyValues / userKeys) * 100);
 };
 
 const ProfileDetailsComponent = props => {
@@ -76,7 +75,7 @@ const ProfileDetailsComponent = props => {
     setActiveTab,
     setReviewsModalVisible,
     onEdit,
-    onCloseProgressBar,
+    onClosePageBanner,
     showBanner
   } = props;
 
@@ -86,24 +85,16 @@ const ProfileDetailsComponent = props => {
 
   const pageBanner = (
     <React.Fragment>
-      <PageBanner>
-        <span style={{ width: '50px' }} />
+      <PageBanner onClose={onClosePageBanner}>
         <ProgressBar
           heading="Profile Strength"
           percentage={percentageComplete}
+          onClose={onClosePageBanner}
+          margin="medium"
         />
-        <span style={{ width: '20px' }} />
-        <span className="width-stretch">
-          <Button onClick={onEdit} type="link">
-            Edit Profile
-          </Button>
-          <span style={{ float: 'right' }}>
-            <Button onClick={onCloseProgressBar} type="link">
-              x
-            </Button>
-            <span style={{ width: '30px' }} />
-          </span>
-        </span>
+        <Button onClick={onEdit} type="link">
+          Edit Profile
+        </Button>
       </PageBanner>
     </React.Fragment>
   );

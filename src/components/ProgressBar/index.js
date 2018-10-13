@@ -1,38 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { startCase } from 'lodash';
 
-import './ProgressBar.css';
+import styles from './ProgressBar.module.scss';
 
 const ProgressBar = props => {
-  const { heading, percentage, showPct, width } = props;
+  const { heading, percentage, showPercent, margin, size, customClass } = props;
+
+  const marginClass =
+    margin === 'default' ? '' : 'progressBarMargin' + startCase(margin);
+  const sizeClass =
+    size === 'default' ? '' : 'progressBarSize' + startCase(size);
 
   return (
-    <div className="progress-bar-all">
-      {heading && <span className="progress-bar-hdr">{heading}</span>}
-      <div className="progress-bar" style={{ width: width }}>
+    <div
+      className={`
+      ${styles.progressBarAll} 
+      ${styles[marginClass]} 
+      ${styles[sizeClass]}
+      ${customClass ? customClass : ''}
+    `}
+    >
+      {heading && <span className={styles.progressBarHdr}>{heading}</span>}
+      <div className={styles.progressBar}>
         <Filler percentage={percentage} />
       </div>
-      {showPct && <span className="progress-bar-pct">{percentage}%</span>}
+      {showPercent && (
+        <span className={styles.progressBarPct}>{percentage}%</span>
+      )}
     </div>
   );
 };
 
 const Filler = ({ percentage }) => {
   return (
-    <div className="progress-bar-filler" style={{ width: `${percentage}%` }} />
+    <div
+      className={styles.progressBarFiller}
+      style={{ width: `${percentage}%` }}
+    />
   );
 };
 
 ProgressBar.propTypes = {
   heading: PropTypes.string,
   percentage: PropTypes.number.isRequired,
-  showPct: PropTypes.bool,
-  width: PropTypes.string
+  showPercent: PropTypes.bool,
+  margin: PropTypes.oneOf(['default', 'small', 'medium', 'large']),
+  size: PropTypes.oneOf(['default', 'small', 'medium', 'large']),
+  customClass: PropTypes.string
 };
 
 ProgressBar.defaultProps = {
-  showPct: true,
-  width: '350px'
+  showPercent: true,
+  margin: 'default',
+  size: 'default'
 };
 
 export default ProgressBar;

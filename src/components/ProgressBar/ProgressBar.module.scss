@@ -1,0 +1,66 @@
+@import "~styles/variables.scss";
+
+.progressBarAll {
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: nowrap; 
+}
+
+.progressBar {
+  position: relative;
+  height: 0.3em;
+  width: 30em;
+  flex: 1 1 auto;
+  margin-top: 0.3em;
+  border-radius: 50px;
+  border: 1px solid #333;
+  color: white;
+}
+
+.progressBarFiller {
+  position: absolute;
+  background: #1da598;
+  border-radius: inherit;
+  height: inherit;
+  transition: width 0.2s ease-in;
+}
+
+.progressBarHdr {
+  flex: 0 0 auto;
+  font-size: small;
+  margin-right: 1em;
+  color: black;
+}
+
+.progressBarPct {
+  flex: 0 0 auto;
+  font-size: small;
+  width: fit-content;
+  margin-left: 1em;
+  color: black;
+}
+
+.progressBarMarginSmall {
+  margin: 0.5em;
+}
+
+.progressBarMarginMedium {
+  margin: 1em;
+}
+
+.progressBarMarginLarge {
+  margin: 1.5em;
+}
+
+.progressBarSizeSmall {
+  width: 30em;
+}
+
+.progressBarSizeMedium {
+  width: 35em;
+}
+
+.progressBarSizeLarge {
+  width: 40em;
+}
