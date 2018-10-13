@@ -10,3 +10,8 @@
     padding-right: $base-spacing;
   }
 }
+
+.growingTextArea {
+  min-height: $base-input-height;
+  resize: none;
+}
