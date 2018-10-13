@@ -31,7 +31,7 @@ class ProfileDetailsComponent extends React.Component {
     this.networkSwitchAlreadySet = undefined;
   }
 
-  mostInterestingTab() {
+  mostInterestingStats() {
     const { userStats, switchValue, switchValueOverride } = this.props;
 
     if (switchValueOverride) {
@@ -59,12 +59,12 @@ class ProfileDetailsComponent extends React.Component {
         toggleNetworkSwitch
       } = this.props;
 
-      const mostInterestingTab = this.mostInterestingTab();
-      if (mostInterestingTab !== switchValue) {
-        this.networkSwitchAlreadySet = mostInterestingTab;
+      const mostInterestingStats = this.mostInterestingStats();
+      if (mostInterestingStats !== switchValue) {
+        this.networkSwitchAlreadySet = mostInterestingStats;
         toggleNetworkSwitch();
       } else if (switchValueOverride) {
-        this.networkSwitchAlreadySet = mostInterestingTab;
+        this.networkSwitchAlreadySet = mostInterestingStats;
       }
     }
   }
@@ -84,7 +84,7 @@ class ProfileDetailsComponent extends React.Component {
 
     let newSwitchValue = switchValue;
     if (!this.networkSwitchAlreadySet) {
-      newSwitchValue = this.mostInterestingTab();
+      newSwitchValue = this.mostInterestingStats();
     }
 
     let bodyClass;
