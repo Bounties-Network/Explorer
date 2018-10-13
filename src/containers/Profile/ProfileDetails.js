@@ -76,7 +76,6 @@ class ProfileDetailsComponent extends React.Component {
       userStats,
       loadedUserInfo,
       switchValue,
-      switchValueOverride,
       toggleNetworkSwitch,
       currentTab,
       setActiveTab,

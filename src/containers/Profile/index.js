@@ -12,10 +12,7 @@ import styles from './Profile.module.scss';
 import { ZeroState } from 'components';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
-import {
-  userInfoSelector,
-  loadedUserStatsSelector
-} from 'public-modules/UserInfo/selectors';
+import { userInfoSelector } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { locationNonceSelector } from 'layout/App/selectors';
@@ -78,8 +75,7 @@ class ProfileComponent extends React.Component {
       setProfileAddress,
       resetState,
       resetFilter,
-      bountiesLoading,
-      setReviewsModalVisible
+      bountiesLoading
     } = this.props;
     const { position } = this.state;
 
