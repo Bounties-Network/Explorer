@@ -103,8 +103,8 @@ export function* createFulfillment(action) {
     },
     meta: {
       platform: bountyPlatform,
-      schemaVersion: bountyPlatform,
-      schemaName: bountyPlatform
+      schemaVersion: siteConfig.postingSchemaVersion,
+      schemaName: siteConfig.postingSchema
     }
   };
 
