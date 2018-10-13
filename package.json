@@ -69,6 +69,7 @@
     "react-slick": "^0.23.1",
     "react-sticky": "^6.0.3",
     "react-switch": "^3.0.2",
+    "react-textarea-autosize": "^7.0.4",
     "react-toastify": "^4.1.0",
     "react-toggle": "^4.0.2",
     "react-transition-group": "^2.4.0",
