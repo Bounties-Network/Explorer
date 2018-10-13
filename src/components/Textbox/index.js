@@ -30,8 +30,7 @@ class Textbox extends React.Component {
       overlay,
       value,
       onFocus,
-      onBlur,
-      rows
+      onBlur
     } = this.props;
 
     const { text: textStateValue } = this.state;
@@ -73,7 +72,6 @@ class Textbox extends React.Component {
             onBlur={onBlur}
             value={textValue}
             onChange={this.onTextareaChange}
-            rows={rows}
           />
           {overlay ? <div className={styles.overlay}>{overlay}</div> : null}
         </div>

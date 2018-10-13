@@ -5,7 +5,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 import { Field, reduxForm } from 'redux-form';
-import { FormTextbox } from 'form-components';
+import { FormTextInput } from 'form-components';
 
 const formSelector = formValueSelector('newComment');
 
@@ -18,11 +18,9 @@ const NewCommentForm = props => {
         <div className={`${styles.container} ${className}`}>
           <Field
             name="text"
-            component={FormTextbox}
+            component={FormTextInput}
             type="text"
             placeholder="Write a comment..."
-            rows={3}
-            textAreaClass={styles.rowTextArea}
           />
           <Button disabled={loading || text.length === 0} loading={loading}>
             Post comment
