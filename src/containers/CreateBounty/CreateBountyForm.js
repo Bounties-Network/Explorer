@@ -463,6 +463,19 @@ class CreateBountyFormComponent extends React.Component {
                       placeholder="Enter amount..."
                     />
                   ) : null}
+                  {/* this hidden field is added as a duplicate to the above
+                    balance field because when a field is unregistered in
+                    redux-form it is possible to submit invalid info.
+                    https://github.com/erikras/redux-form/issues/4235 */}
+                  <div className={styles.hidden}>
+                    <Field
+                      name="balance"
+                      disabled={submittingBounty}
+                      component={FormTextInput}
+                      validate={validatorGroups.balance}
+                      normalize={normalizers.number}
+                    />
+                  </div>
                 </div>
               </div>
             </FormSection.InputGroup>
