@@ -13,5 +13,6 @@
 
 .growingTextArea {
   min-height: $base-input-height;
+  max-height: $base-input-height * 5;
   resize: none;
 }
