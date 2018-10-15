@@ -180,6 +180,11 @@ class BountyComponent extends React.Component {
       );
     }
 
+    let usd_price = bounty.usd_price;
+    if (bounty.tokenSymbol === 'PROCN' && usd_price === 0) {
+      usd_price = Number(bounty.calculated_fulfillmentAmount) * 0.23;
+    }
+
     return (
       <div>
         <SEOHeader bounty={bounty} />
@@ -188,7 +193,7 @@ class BountyComponent extends React.Component {
             <div className={styles.header}>
               <Currency
                 className={styles.ethBox}
-                primaryValue={bounty.usd_price}
+                primaryValue={usd_price}
                 primaryDecimals={2}
                 primaryColor="white"
                 primaryClassName={styles.primary}
