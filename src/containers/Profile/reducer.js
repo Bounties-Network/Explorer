@@ -7,7 +7,6 @@ const initialState = {
 
 const SET_PROFILE_ADDRESS = 'profileUI/SET_PROFILE_ADDRESS';
 const TOGGLE_NETWORK_SWITCH = 'profileUI/TOGGLE_NETWORK_SWITCH';
-const SET_ACTIVE_NETWORK_SWITCH = 'profileUI/SET_ACTIVE_NETWORK_SWITCH';
 const SET_ACTIVE_TAB = 'profileUI/SET_ACTIVE_TAB';
 const SET_REVIEWS_MODAL_VISIBLE = 'profileUI/SET_REVIEWS_MODAL_VISIBLE';
 
@@ -17,10 +16,6 @@ function setProfileAddress(address) {
 
 function toggleNetworkSwitch() {
   return { type: TOGGLE_NETWORK_SWITCH };
-}
-
-function setActiveNetworkSwitch(switchValue) {
-  return { type: SET_ACTIVE_NETWORK_SWITCH, switchValue };
 }
 
 function setActiveTab(tabKey) {
@@ -45,14 +40,6 @@ function profileUIReducer(state = initialState, action) {
       return {
         ...state,
         switchValue: state.switchValue === 'issuer' ? 'fulfiller' : 'issuer'
-      };
-    }
-    case SET_ACTIVE_NETWORK_SWITCH: {
-      const { switchValue } = action;
-
-      return {
-        ...state,
-        switchValue
       };
     }
     case SET_PROFILE_ADDRESS: {
@@ -80,7 +67,6 @@ function profileUIReducer(state = initialState, action) {
 export const actions = {
   setProfileAddress,
   toggleNetworkSwitch,
-  setActiveNetworkSwitch,
   setActiveTab,
   setReviewsModalVisible
 };
@@ -88,7 +74,6 @@ export const actions = {
 export const actionTypes = {
   SET_PROFILE_ADDRESS,
   TOGGLE_NETWORK_SWITCH,
-  SET_ACTIVE_NETWORK_SWITCH,
   SET_ACTIVE_TAB,
   SET_REVIEWS_MODAL_VISIBLE
 };

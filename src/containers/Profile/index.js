@@ -12,10 +12,7 @@ import styles from './Profile.module.scss';
 import { ZeroState } from 'components';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
-import {
-  userInfoSelector,
-  loadedUserStatsSelector
-} from 'public-modules/UserInfo/selectors';
+import { userInfoSelector } from 'public-modules/UserInfo/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { rootBountiesSelector } from 'public-modules/Bounties/selectors';
 import { locationNonceSelector } from 'layout/App/selectors';
@@ -78,12 +75,9 @@ class ProfileComponent extends React.Component {
       setProfileAddress,
       resetState,
       resetFilter,
-      bountiesLoading,
-      setActiveNetworkSwitch,
-      setReviewsModalVisible,
-      userStats
+      bountiesLoading
     } = this.props;
-    const { position, networkSwitchSet } = this.state;
+    const { position } = this.state;
 
     if (
       prevProps.locationNonce !== locationNonce &&
@@ -116,49 +110,24 @@ class ProfileComponent extends React.Component {
     ) {
       ReactDOM.findDOMNode(this.explorerBody).scrollIntoView(false);
     }
-
-    console.log(userStats);
-    if (!networkSwitchSet) {
-      this.setState({
-        networkSwitchSet: true
-      });
-
-      const { reviews, fulfiller, issuer } = queryStringToObject(
-        location.search
-      );
-
-      // We start on the issuer tab, so only check for reasons to switch:
-      if (!issuer && fulfiller) {
-        setActiveNetworkSwitch('fulfiller');
-      } else {
-        if (userStats.fulfiller.total === 0 && userStats.issuer.total === 0) {
-          if (userStats.fulfiller.acceptance > userStats.issuer.acceptance) {
-            setActiveNetworkSwitch('fulfiller');
-          }
-        } else if (userStats.fulfiller.total > userStats.issuer.total) {
-          setActiveNetworkSwitch('fulfiller');
-        }
-      }
-
-      if (reviews) {
-        setReviewsModalVisible(true);
-      }
-    }
   }
 
   componentDidMount() {
     const body = document.getElementsByClassName('page-body')[0];
     body.addEventListener('scroll', this.onScroll);
 
-    const {
-      location,
-      setReviewsModalVisible,
-      setActiveNetworkSwitch
-    } = this.props;
-    const { reviews, fulfiller } = queryStringToObject(location.search);
+    const { location, setReviewsModalVisible } = this.props;
 
-    if (fulfiller) {
-      setActiveNetworkSwitch('fulfiller');
+    const { reviews, fulfiller, issuer } = queryStringToObject(location.search);
+
+    if (fulfiller && !issuer) {
+      this.setState({
+        switchValueOverride: 'fulfiller'
+      });
+    } else if (issuer) {
+      this.setState({
+        switchValueOverride: 'issuer'
+      });
     }
 
     if (reviews) {
@@ -191,7 +160,7 @@ class ProfileComponent extends React.Component {
 
   render() {
     const { error, loaded, user, showFilterNav } = this.props;
-    const { position } = this.state;
+    const { position, switchValueOverride } = this.state;
 
     const profileFilterNav = (
       <BountyFilterNav
@@ -206,7 +175,7 @@ class ProfileComponent extends React.Component {
       <div className={styles.profileContainer}>
         <SEOHeader user={user} />
         <div className={`${styles.profileDetails}`}>
-          <ProfileDetails />
+          <ProfileDetails switchValueOverride={switchValueOverride} />
         </div>
         <div className={styles.profileBountiesContainer}>
           <div className={styles.profileBounties}>
@@ -259,7 +228,6 @@ const mapStateToProps = state => {
   const currentUser = getCurrentUserSelector(state);
   const userInfo = userInfoSelector(state);
   const bountyState = rootBountiesSelector(state);
-  const userStats = loadedUserStatsSelector(state);
 
   return {
     currentUser,
@@ -267,8 +235,7 @@ const mapStateToProps = state => {
     bountiesLoading: bountyState.loading,
     loaded: userInfo.loaded,
     error: userInfo.error,
-    locationNonce: locationNonceSelector(state),
-    userStats
+    locationNonce: locationNonceSelector(state)
   };
 };
 
@@ -285,8 +252,7 @@ const Profile = compose(
       loadUserInfo: userInfoActions.loadUserInfo,
       setActiveTab: actions.setActiveTab,
       setProfileAddress: actions.setProfileAddress,
-      setReviewsModalVisible: actions.setReviewsModalVisible,
-      setActiveNetworkSwitch: actions.setActiveNetworkSwitch
+      setReviewsModalVisible: actions.setReviewsModalVisible
     }
   )
 )(ProfileComponent);
