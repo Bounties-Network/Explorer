@@ -54,7 +54,12 @@ storiesOf('PageBanner', module).add('with ProgressBar', () => (
       Large Margin and Medium Size PageBanner With ProgressBar, Edit and Close
       Buttons
     </Text>
-    <PageBanner onClose={action('Close clicked')} margin="large" size="medium">
+    <PageBanner
+      onClose={action('Close clicked')}
+      margin="large"
+      size="medium"
+      height="medium"
+    >
       <ProgressBar
         heading="Profile Strength"
         percentage={75}

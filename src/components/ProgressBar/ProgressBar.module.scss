@@ -5,16 +5,16 @@
   overflow: hidden;
   display: flex;
   flex-wrap: nowrap; 
+  align-items: center;
 }
 
 .progressBar {
   position: relative;
-  height: 0.3em;
+  height: $base-line-height / 5;
   width: 30em;
   flex: 1 1 auto;
-  margin-top: 0.3em;
   border-radius: 50px;
-  border: 1px solid #333;
+  border: $base-border-width solid #333;
   color: white;
 }
 
@@ -26,31 +26,24 @@
   transition: width 0.2s ease-in;
 }
 
-.progressBarHdr {
-  flex: 0 0 auto;
-  font-size: small;
-  margin-right: 1em;
-  color: black;
+.ProgressBarMarginLeft {
+  margin-left: $m_spacing;
 }
 
-.progressBarPct {
-  flex: 0 0 auto;
-  font-size: small;
-  width: fit-content;
-  margin-left: 1em;
-  color: black;
+.ProgressBarMarginRight {
+  margin-right: $m_spacing;
 }
 
 .progressBarMarginSmall {
-  margin: 0.5em;
+  margin: $s_spacing;
 }
 
 .progressBarMarginMedium {
-  margin: 1em;
+  margin: $m_spacing;
 }
 
 .progressBarMarginLarge {
-  margin: 1.5em;
+  margin: $l_spacing;
 }
 
 .progressBarSizeSmall {

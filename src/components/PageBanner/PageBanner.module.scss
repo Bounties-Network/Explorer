@@ -2,7 +2,7 @@
 
 .pageBanner {
   width: 100%;
-  height: 2em;
+  height: $base-line-height + 0.5rem;
   margin: 0;
   padding: 0;
   border-width: 0;
@@ -18,26 +18,26 @@
 
 .pageBanner .pageBannerCloseButton:last-child {
   margin-left: auto;
-  padding-right: 0.5em;
-  padding-left: 0.5em;
+  padding-right: $base_spacing;
+  padding-left: $base_spacing;
 }
 
 .pageBannerCloseButton {
   display: flex;
   align-content: center;
-  margin-right: 1rem; 
+  margin-right: $s_spacing; 
 }
 
 .pageBannerMarginSmall {
-  margin: 0.5em 0;
+  margin: $base_spacing 0;
 }
 
 .pageBannerMarginMedium {
-  margin: 1em 0;
+  margin: $s_spacing 0;
 }
 
 .pageBannerMarginLarge {
-  margin: 1.5em 0;
+  margin: $m_spacing 0;
 }
 
 .pageBannerSizeSmall {
@@ -53,15 +53,15 @@
 }
 
 .pageBannerHeightSmall {
-  height: 1.5em;
+  height: $base-line-height;
 }
 
 .pageBannerHeightMedium {
-  height: 2.5em;
+  height: $base-line-height + 1rem;
 }
 
 .pageBannerHeightLarge {
-  height: 3em;
+  height: $base-line-height * 2;
 }
 
 .purple {

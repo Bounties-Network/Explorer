@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { startCase } from 'lodash';
+import { Text } from 'components';
 
 import styles from './ProgressBar.module.scss';
 
@@ -21,13 +22,17 @@ const ProgressBar = props => {
       ${customClass ? customClass : ''}
     `}
     >
-      {heading && <span className={styles.progressBarHdr}>{heading}</span>}
-      <div className={styles.progressBar}>
+      {heading && <Text typeScale="Small">{heading}</Text>}
+      <div
+        className={`
+         ${styles.progressBar}
+         ${heading ? styles.ProgressBarMarginLeft : ''} 
+         ${showPercent ? styles.ProgressBarMarginRight : ''} 
+      `}
+      >
         <Filler percentage={percentage} />
       </div>
-      {showPercent && (
-        <span className={styles.progressBarPct}>{percentage}%</span>
-      )}
+      {showPercent && <Text typeScale="Small">{percentage}%</Text>}
     </div>
   );
 };

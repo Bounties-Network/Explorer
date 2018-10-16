@@ -7,8 +7,8 @@ import { Text } from 'components';
 
 storiesOf('ProgressBar', module).add('with Edit Profile', () => (
   <div>
-    <p className={styles.progressBarMarginMedium} />
-    <Text type="H3">
+    {/* <p className={styles.progressBarMarginMedium} /> */}
+    <Text typeScale="Body">
       Small Margin/Size Progress Bar With Heading and Percent
     </Text>
     <ProgressBar
