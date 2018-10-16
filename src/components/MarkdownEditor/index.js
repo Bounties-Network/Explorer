@@ -7,7 +7,15 @@ import { DEFAULT_MARKDOWN } from 'utils/constants';
 import { Textbox, Modal, Text } from 'components';
 
 showdown.setOption('simpleLineBreaks', true);
-const converter = new showdown.Converter();
+showdown.extension('targetBlank', () => [
+  {
+    type: 'output',
+    regex: '<a(.*?)>',
+    replace: (_, content) => '<a target="_blank"' + content + '>'
+  }
+]);
+
+const converter = new showdown.Converter({ extensions: ['targetBlank'] });
 converter.setFlavor('github');
 
 class MarkdownEditor extends React.Component {
