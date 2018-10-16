@@ -1,0 +1,50 @@
+@import "~styles/variables.scss";
+
+.pageBanner {
+  background-color: $brand-lightGrey;
+  overflow: hidden;
+  transition: height 0.2s ease-out;
+}
+
+.pageBannerWrapper,
+.pageBannerWrapper-large {
+  position: relative;
+  padding: $m-spacing 0;
+  padding-right: calc(2rem + 12px);
+  padding-left: 1rem;
+  margin: 0 auto;
+}
+
+// reusing some from Modal, maybe close button should be its own component?
+.closeIcon {
+  position: absolute;
+  top: $m-spacing;
+  right: 1rem;
+  cursor: pointer;
+  color: $brand-grey;
+  font-size: 1.2em;
+
+  &:hover {
+    color: $brand-blue;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .pageBannerWrapper,
+  .pageBannerWrapper-large {
+    padding-right: 36px;
+    padding-left: 24px;
+  }
+
+  .pageBannerWrapper {
+    max-width: 65rem;
+  }
+
+  .pageBannerWrapper-large {
+    max-width: 70rem;
+  }
+
+  .closeIcon {
+    right: 24px;
+  }
+}

@@ -11,7 +11,9 @@ import {
   SubmissionsPanel,
   UserStats
 } from 'containers';
+import { Text, PageBanner } from 'components';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
+import { profileStrengthSelector } from 'containers/Profile/selectors';
 import { actions as activityActions } from 'public-modules/Activity';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as draftsActions } from 'public-modules/Drafts';
@@ -59,12 +61,28 @@ class DashboardComponent extends React.Component {
   }
 
   render() {
+    const { profileStrength } = this.props;
+
     var settings = {
       dots: true,
       arrows: false
     };
+
+    const profileStrengthBanner =
+      50 === 100 ? null : (
+        <PageBanner size="large">
+          <Text typeScale="Small" color="defaultGrey" inline>
+            Profile strength - {profileStrength} {/* hard number for now */}
+          </Text>
+          <Text src={'asdf'} fontStyle="underline" link>
+            Edit profile
+          </Text>
+        </PageBanner>
+      );
+
     return (
       <div>
+        {profileStrengthBanner}
         <div className={`pageWrapper-large ${styles.desktopContainer}`}>
           <UserStats />
           <div className={styles.panelContainer}>
@@ -108,8 +126,11 @@ const mapStateToProps = state => {
   const currentUser = getCurrentUserSelector(state);
   const { public_address } = currentUser;
 
+  console.log('CURRENT USER', currentUser);
+
   return {
-    public_address
+    public_address,
+    profileStrength: profileStrengthSelector(state)
   };
 };
 
