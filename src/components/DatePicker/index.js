@@ -47,6 +47,22 @@ class DatePicker extends React.Component {
       format = 'MM/DD/YYYY HH:mm';
     }
 
+    let minTime;
+    let maxTime;
+
+    if (showTimeSelect && minDate) {
+      minTime = minDate.isSame(dateValue, 'day')
+        ? moment()
+            .hours(dateValue.hours())
+            .minutes(dateValue.minute())
+        : moment()
+            .hours(0)
+            .minutes(0);
+      maxTime = moment()
+        .hours(23)
+        .minutes(59);
+    }
+
     if (isMobile()) {
       return (
         <TextInput
@@ -76,6 +92,8 @@ class DatePicker extends React.Component {
           onChange={this.onDateChange}
           selected={dateValue}
           minDate={minDate}
+          minTime={minTime}
+          maxTime={maxTime}
           showTimeSelect={showTimeSelect}
           value={dateValue.format(format)}
           timeFormat="HH:mm"
