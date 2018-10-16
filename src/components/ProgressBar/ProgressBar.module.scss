@@ -1,0 +1,91 @@
+@import "~styles/variables.scss";
+
+$progress-bar-height: $base-spacing * 0.75;
+
+.progressBarWrapper {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  min-width: 100px;
+}
+
+.progressBar {
+  overflow: hidden;
+  background-color: $brand-grey;
+  height: $progress-bar-height;
+  border-radius: $progress-bar-height / 2;
+  flex: 1;
+}
+
+// non-visible element is the actual progress percentage but allows the fill element to animate on load
+// this will also animate if the percentage changed after component mount
+.progressBarFillWidth {
+  height: 100%;
+  transition: width 0.2s ease-out;
+}
+
+.progressBarFill {
+  height: 100%;
+  width: 100%;
+  background-color: currentColor;
+  border-radius: $progress-bar-height / 2;
+  -webkit-animation: progress-bar-in 0.4s ease-out;
+  animation: progress-bar-in 0.4s ease-out;
+}
+
+.percentage {
+  margin-left: $base-spacing;
+  color: currentColor;
+}
+
+@-webkit-keyframes progress-bar-in {
+  0%   { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes progress-bar-in {
+  0%   { width: 0%; }
+  100% { width: 100%; }
+}
+
+
+// Matches color prop for Text component. Perhaps global?
+.purple {
+  color: $brand-purple;
+}
+
+.blue {
+  color: $brand-blue;
+}
+
+.orange {
+  color: $brand-orange;
+}
+
+.green {
+  color: $brand-green;
+}
+
+.red {
+  color: $brand-red;
+}
+
+.black {
+  color: $brand-black;
+}
+
+.lightGrey {
+  color: $brand-lightGrey;
+}
+
+.defaultGrey {
+  color: $brand-grey;
+}
+
+.darkGrey {
+  color: $brand-darkGrey;
+}
+
+.white {
+  color: white;
+}

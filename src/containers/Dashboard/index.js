@@ -11,7 +11,7 @@ import {
   SubmissionsPanel,
   UserStats
 } from 'containers';
-import { Text, PageBanner } from 'components';
+import { Text, PageBanner, ProgressBar } from 'components';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { profileStrengthSelector } from 'containers/Profile/selectors';
 import { actions as activityActions } from 'public-modules/Activity';
@@ -71,18 +71,25 @@ class DashboardComponent extends React.Component {
     const profileStrengthBanner =
       50 === 100 ? null : (
         <PageBanner wrapClass="pageWrapper-large">
-          <Text typeScale="Small" color="defaultGrey" inline>
-            Profile strength - {profileStrength} {/* hard number for now */}
-          </Text>
-          <Text
-            link
-            fontStyle="underline"
-            onClick={() => {
-              history.push('/settings');
-            }}
-          >
-            Edit profile
-          </Text>
+          <div className={`${styles.profileStrength}`}>
+            <Text typeScale="Small" color="defaultGrey" inline>
+              Profile strength
+            </Text>
+            <ProgressBar
+              className={`${styles.profileStrengthProgress}`}
+              color="purple"
+              percent={25}
+            />
+            <Text
+              link
+              fontStyle="underline"
+              onClick={() => {
+                history.push('/settings');
+              }}
+            >
+              Edit profile
+            </Text>
+          </div>
         </PageBanner>
       );
 
