@@ -152,6 +152,7 @@ const SubmissionItem = props => {
             />
             <Text
               link
+              absolute
               src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
             >
               {shortenFileName(dataFileName)}
