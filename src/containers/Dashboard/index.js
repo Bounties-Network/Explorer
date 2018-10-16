@@ -68,30 +68,29 @@ class DashboardComponent extends React.Component {
       arrows: false
     };
 
-    const profileStrengthBanner =
-      50 === 100 ? null : (
-        <PageBanner wrapClass="pageWrapper-large">
-          <div className={`${styles.profileStrength}`}>
-            <Text typeScale="Small" color="defaultGrey" inline>
-              Profile strength
-            </Text>
-            <ProgressBar
-              className={`${styles.profileStrengthProgress}`}
-              color="purple"
-              percent={25}
-            />
-            <Text
-              link
-              fontStyle="underline"
-              onClick={() => {
-                history.push('/settings');
-              }}
-            >
-              Edit profile
-            </Text>
-          </div>
-        </PageBanner>
-      );
+    const profileStrengthBanner = profileStrength < 100 && (
+      <PageBanner wrapClass="pageWrapper-large">
+        <div className={`${styles.profileStrength}`}>
+          <Text typeScale="Small" color="defaultGrey" inline>
+            Profile strength
+          </Text>
+          <ProgressBar
+            className={`${styles.profileStrengthProgress}`}
+            color="purple"
+            percent={profileStrength}
+          />
+          <Text
+            link
+            fontStyle="underline"
+            onClick={() => {
+              history.push('/settings');
+            }}
+          >
+            Edit profile
+          </Text>
+        </div>
+      </PageBanner>
+    );
 
     return (
       <div>
@@ -138,6 +137,7 @@ class DashboardComponent extends React.Component {
 const mapStateToProps = state => {
   const currentUser = getCurrentUserSelector(state);
   const { public_address } = currentUser;
+  console.log(currentUser);
 
   return {
     public_address,
