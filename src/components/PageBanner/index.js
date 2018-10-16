@@ -1,23 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styles from './PageBanner.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
-class PageBanner extends Component {
-  static propTypes = {
-    dismissable: PropTypes.bool,
-    onClose: PropTypes.func,
-    // These sizes correspond to pageWrapper and pageWrapper-large
-    size: PropTypes.oneOf(['default', 'large'])
-  };
+const PageBanner = props => {
+  const { children, wrapClass } = props;
 
-  static defaultProps = {
-    dismissable: true,
-    size: 'default'
-  };
-
-  onClose = () => {
+  const onClose = () => {
     const node = ReactDOM.findDOMNode(this);
     const height = node.getBoundingClientRect
       ? node.getBoundingClientRect().height
@@ -29,30 +19,34 @@ class PageBanner extends Component {
       node.style.height = '0px';
     });
 
-    if (this.props.onClose) this.props.onClose();
+    if (props.onClose) props.onClose();
   };
 
-  render() {
-    const { children, size } = this.props;
-    return (
-      <div className={`${styles.pageBanner}`}>
-        <div
-          className={
-            size === 'default'
-              ? styles.pageBannerWrapper
-              : styles['pageBannerWrapper-large']
-          }
-        >
-          {children}
+  return (
+    <div className={`${styles.pageBanner}`}>
+      <div className={`${wrapClass}`}>
+        <div className={`${styles.pageBannerWrapper}`}>
+          <div className={`${styles.pageBannerContent}`}>{children}</div>
           <FontAwesomeIcon
             icon={['fal', 'times']}
             className={styles.closeIcon}
-            onClick={this.onClose}
+            onClick={onClose}
           />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+PageBanner.propTypes = {
+  dismissable: PropTypes.bool,
+  onClose: PropTypes.func,
+  wrapClass: PropTypes.string
+};
+
+PageBanner.defaultProps = {
+  dismissable: true,
+  wrapClass: 'pageBannerWrapper'
+};
 
 export default PageBanner;

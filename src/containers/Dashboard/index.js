@@ -61,7 +61,7 @@ class DashboardComponent extends React.Component {
   }
 
   render() {
-    const { profileStrength } = this.props;
+    const { profileStrength, history } = this.props;
 
     var settings = {
       dots: true,
@@ -70,11 +70,17 @@ class DashboardComponent extends React.Component {
 
     const profileStrengthBanner =
       50 === 100 ? null : (
-        <PageBanner size="large">
+        <PageBanner wrapClass="pageWrapper-large">
           <Text typeScale="Small" color="defaultGrey" inline>
             Profile strength - {profileStrength} {/* hard number for now */}
           </Text>
-          <Text src={'asdf'} fontStyle="underline" link>
+          <Text
+            link
+            fontStyle="underline"
+            onClick={() => {
+              history.push('/settings');
+            }}
+          >
             Edit profile
           </Text>
         </PageBanner>
@@ -125,8 +131,6 @@ class DashboardComponent extends React.Component {
 const mapStateToProps = state => {
   const currentUser = getCurrentUserSelector(state);
   const { public_address } = currentUser;
-
-  console.log('CURRENT USER', currentUser);
 
   return {
     public_address,
