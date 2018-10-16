@@ -5,7 +5,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { isFunction } from 'lodash';
 
 const PageBanner = props => {
-  const { children, wrapClass } = props;
+  const { children, wrapClass, className } = props;
 
   let elemRef = React.createRef();
 
@@ -24,7 +24,7 @@ const PageBanner = props => {
   };
 
   return (
-    <div className={`${styles.pageBanner}`} ref={elemRef}>
+    <div className={`${className} ${styles.pageBanner}`} ref={elemRef}>
       <div className={`${wrapClass}`}>
         <div className={`${styles.pageBannerWrapper}`}>
           <div className={`${styles.pageBannerContent}`}>{children}</div>
@@ -40,6 +40,7 @@ const PageBanner = props => {
 };
 
 PageBanner.propTypes = {
+  className: PropTypes.string,
   dismissable: PropTypes.bool,
   onClose: PropTypes.func,
   wrapClass: PropTypes.string
