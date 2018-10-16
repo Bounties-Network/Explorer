@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Textarea from 'react-textarea-autosize';
 import styles from './Textbox.module.scss';
 
 import { Text } from 'components';
@@ -30,8 +31,7 @@ class Textbox extends React.Component {
       overlay,
       value,
       onFocus,
-      onBlur,
-      rows
+      onBlur
     } = this.props;
 
     const { text: textStateValue } = this.state;
@@ -57,15 +57,15 @@ class Textbox extends React.Component {
 
     return (
       <div className={`${styles.wrapper} ${className}`}>
-        {labelText ? (
+        {labelText && (
           <div>
             <Text inputLabel color={error ? 'red' : null}>
               {labelText}
             </Text>
           </div>
-        ) : null}
+        )}
         <div className={styles.textareaWrapper}>
-          <textarea
+          <Textarea
             className={`${inputClass} ${textAreaClass}`}
             placeholder={placeholder}
             disabled={disabled}
@@ -73,11 +73,10 @@ class Textbox extends React.Component {
             onBlur={onBlur}
             value={textValue}
             onChange={this.onTextareaChange}
-            rows={rows}
           />
           {overlay ? <div className={styles.overlay}>{overlay}</div> : null}
         </div>
-        {error ? (
+        {error && (
           <div>
             <Text
               className={styles.inputHelpText}
@@ -87,7 +86,7 @@ class Textbox extends React.Component {
               {error}
             </Text>
           </div>
-        ) : null}
+        )}
       </div>
     );
   }
