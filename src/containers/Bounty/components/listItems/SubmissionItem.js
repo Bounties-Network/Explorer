@@ -161,6 +161,7 @@ const SubmissionItem = props => {
               <img
                 src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
                 class={styles.image}
+                alt={dataFileName}
               />
             )}
           </div>

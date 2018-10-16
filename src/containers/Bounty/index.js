@@ -35,12 +35,13 @@ import {
   LinkedAvatar
 } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
-import { shortenFileName, shortenUrl } from 'utils/helpers';
+import { newTabExtension, shortenFileName, shortenUrl } from 'utils/helpers';
 import { locationNonceSelector } from 'layout/App/selectors';
 import { SEOHeader } from './components';
 
 showdown.setOption('simpleLineBreaks', true);
-const converter = new showdown.Converter();
+showdown.extension('targetBlank', newTabExtension);
+const converter = new showdown.Converter({ extensions: ['targetBlank'] });
 converter.setFlavor('github');
 
 class BountyComponent extends React.Component {
