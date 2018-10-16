@@ -120,3 +120,11 @@ export function hasImageExtension(filename) {
 
 export const expandPlatforms = platforms =>
   flatten(map(platform => config.platforms[platform], platforms)).join(',');
+
+export const newTabExtension = () => [
+  {
+    type: 'output',
+    regex: '<a(.*?)>',
+    replace: (_, content) => '<a target="_blank"' + content + '>'
+  }
+];

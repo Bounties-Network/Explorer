@@ -5,15 +5,10 @@ import styles from './MarkdownEditor.module.scss';
 import showdown from 'showdown';
 import { DEFAULT_MARKDOWN } from 'utils/constants';
 import { Textbox, Modal, Text } from 'components';
+import { newTabExtension } from 'utils/helpers';
 
 showdown.setOption('simpleLineBreaks', true);
-showdown.extension('targetBlank', () => [
-  {
-    type: 'output',
-    regex: '<a(.*?)>',
-    replace: (_, content) => '<a target="_blank"' + content + '>'
-  }
-]);
+showdown.extension('targetBlank', newTabExtension);
 
 const converter = new showdown.Converter({ extensions: ['targetBlank'] });
 converter.setFlavor('github');
