@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './FileUpload.module.scss';
 import buttonStyles from 'components/Button/Button.module.scss';
-import { Button, Loader, Text } from 'components';
+import { Loader, Text } from 'components';
 import { bytesToSize } from 'utils/helpers';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
