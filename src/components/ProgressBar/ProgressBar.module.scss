@@ -6,7 +6,7 @@ $progress-bar-height: $base-spacing * 0.75;
   display: inline-flex;
   align-items: center;
   width: 100%;
-  min-width: 100px;
+  min-width: $base-spacing * 12;
 }
 
 .progressBar {

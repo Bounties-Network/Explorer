@@ -5,7 +5,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { isFunction } from 'lodash';
 
 const PageBanner = props => {
-  const { children, wrapClass, className } = props;
+  const { children, wrapClass, className, dismissable } = props;
 
   let elemRef = React.createRef();
 
@@ -27,12 +27,20 @@ const PageBanner = props => {
     <div className={`${className} ${styles.pageBanner}`} ref={elemRef}>
       <div className={`${wrapClass}`}>
         <div className={`${styles.pageBannerWrapper}`}>
-          <div className={`${styles.pageBannerContent}`}>{children}</div>
-          <FontAwesomeIcon
-            icon={['fal', 'times']}
-            className={styles.closeIcon}
-            onClick={onClose}
-          />
+          {dismissable ? (
+            <React.Fragment>
+              <div className={`${styles.pageBannerContent}`}>{children}</div>
+              <div className={`${styles.pageBannerClose}`}>
+                <FontAwesomeIcon
+                  icon={['fal', 'times']}
+                  className={styles.closeIcon}
+                  onClick={onClose}
+                />
+              </div>
+            </React.Fragment>
+          ) : (
+            children
+          )}
         </div>
       </div>
     </div>
@@ -48,7 +56,7 @@ PageBanner.propTypes = {
 
 PageBanner.defaultProps = {
   dismissable: true,
-  wrapClass: 'pageBannerWrapper'
+  wrapClass: 'pageWrapper'
 };
 
 export default PageBanner;
