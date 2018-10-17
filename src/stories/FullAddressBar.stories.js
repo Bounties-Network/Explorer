@@ -37,7 +37,7 @@ storiesOf('FullAddressBar', module).add('FullAddressBar', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The <code>address</code> prop will be address represented by the
+      The <code>address</code> prop will be the address represented by the
       component.
     </Text>
 
@@ -45,35 +45,6 @@ storiesOf('FullAddressBar', module).add('FullAddressBar', () => (
       <FullAddressBar
         address={'0x1234567891011121314151617181920212223242'}
         copyButton
-      />
-    </div>
-
-    <Text
-      className={'sb-component-group-subheading'}
-      typeScale="h3"
-      weight="fontWeight-bold"
-    >
-      copyButton
-    </Text>
-    <Text
-      className={'sb-component-group-description'}
-      typeScale="Body"
-      lineHeight="lineHeight-default"
-    >
-      The <code>copyButton</code> prop will determine if the button to copy the
-      address will be displayed. The default value is <code>true</code>.
-    </Text>
-
-    <div className="sb-component-group sb-button-group">
-      <FullAddressBar
-        address={'0x1234567891011121314151617181920212223242'}
-        copyButton
-      />
-      <br />
-      <br />
-      <FullAddressBar
-        address={'0x1234567891011121314151617181920212223242'}
-        copyButton={false}
       />
     </div>
   </div>

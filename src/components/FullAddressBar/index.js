@@ -47,8 +47,7 @@ FullAddressBarComponent.propTypes = {
 };
 
 FullAddressBarComponent.defaultProps = {
-  address: '0x0000000000000000000000000000000000000000',
-  copyButton: true
+  address: '0x0000000000000000000000000000000000000000'
 };
 
 export default FullAddressBarComponent;
