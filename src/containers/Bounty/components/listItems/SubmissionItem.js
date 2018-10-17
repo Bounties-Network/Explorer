@@ -132,7 +132,7 @@ const SubmissionItem = props => {
         {url ? (
           <div className={[styles.labelGroup, styles.bottomMargin].join(' ')}>
             <Text inputLabel>Web link</Text>
-            <Text link src={url}>
+            <Text link absolute src={url}>
               {shortenUrl(url)}
             </Text>
           </div>
@@ -152,6 +152,7 @@ const SubmissionItem = props => {
             />
             <Text
               link
+              absolute
               src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
             >
               {shortenFileName(dataFileName)}
@@ -160,6 +161,7 @@ const SubmissionItem = props => {
               <img
                 src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
                 class={styles.image}
+                alt={dataFileName}
               />
             )}
           </div>

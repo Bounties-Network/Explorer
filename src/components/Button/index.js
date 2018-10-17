@@ -61,12 +61,10 @@ const Button = props => {
       type={buttonType}
     >
       <div className={childwrapper}>
-        {icon ? <FontAwesomeIcon icon={icon} className={styles.icon} /> : null}
+        {icon && <FontAwesomeIcon icon={icon} className={styles.icon} />}
         {props.children}
       </div>
-      {loading ? (
-        <Loader className={styles.loader} color={loaderColor} />
-      ) : null}
+      {loading && <Loader className={styles.loader} color={loaderColor} />}
     </button>
   );
 };

@@ -5,9 +5,12 @@ import styles from './MarkdownEditor.module.scss';
 import showdown from 'showdown';
 import { DEFAULT_MARKDOWN } from 'utils/constants';
 import { Textbox, Modal, Text } from 'components';
+import { newTabExtension } from 'utils/helpers';
 
 showdown.setOption('simpleLineBreaks', true);
-const converter = new showdown.Converter();
+showdown.extension('targetBlank', newTabExtension);
+
+const converter = new showdown.Converter({ extensions: ['targetBlank'] });
 converter.setFlavor('github');
 
 class MarkdownEditor extends React.Component {

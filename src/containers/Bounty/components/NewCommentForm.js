@@ -21,8 +21,7 @@ const NewCommentForm = props => {
             component={FormTextbox}
             type="text"
             placeholder="Write a comment..."
-            rows={3}
-            textAreaClass={styles.rowTextArea}
+            textAreaClass={styles.growingTextArea}
           />
           <Button disabled={loading || text.length === 0} loading={loading}>
             Post comment

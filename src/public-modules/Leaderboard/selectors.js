@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { LIMIT } from './constants';
-import { expandPlatforms } from 'utils/helpers';
+import { expandPlatforms } from 'utils/global';
 import config from 'public-modules/config';
 
 export const rootLeaderboardSelector = state => state.leaderboard;

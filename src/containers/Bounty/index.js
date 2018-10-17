@@ -35,12 +35,13 @@ import {
   LinkedAvatar
 } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
-import { shortenFileName, shortenUrl } from 'utils/helpers';
+import { newTabExtension, shortenFileName, shortenUrl } from 'utils/helpers';
 import { locationNonceSelector } from 'layout/App/selectors';
 import { SEOHeader } from './components';
 
 showdown.setOption('simpleLineBreaks', true);
-const converter = new showdown.Converter();
+showdown.extension('targetBlank', newTabExtension);
+const converter = new showdown.Converter({ extensions: ['targetBlank'] });
 converter.setFlavor('github');
 
 class BountyComponent extends React.Component {
@@ -347,6 +348,7 @@ class BountyComponent extends React.Component {
                       </i>
                       <Text
                         link
+                        absolute
                         src={`https://ipfs.infura.io/ipfs/${
                           bounty.sourceDirectoryHash
                         }/${bounty.sourceFileName}`}
@@ -361,7 +363,7 @@ class BountyComponent extends React.Component {
                       <i className={styles.metadataIcon}>
                         <FontAwesomeIcon icon={['far', 'link']} />
                       </i>
-                      <Text link src={`${bounty.webReferenceURL}`}>
+                      <Text link absolute src={`${bounty.webReferenceURL}`}>
                         {shortenUrl(bounty.webReferenceURL)}
                       </Text>
                     </div>

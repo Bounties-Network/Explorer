@@ -17,7 +17,7 @@ const Elsewhere = props => {
         {website && (
           <div className={styles.bulletPoint}>
             <FontAwesomeIcon icon={['far', 'globe']} className={styles.icon} />
-            <Text link src={website} typeScale="h5">
+            <Text link absolute src={website} typeScale="h5">
               {shortenUrl(website)}
             </Text>
           </div>
@@ -29,7 +29,12 @@ const Elsewhere = props => {
               icon={['fab', 'twitter']}
               className={styles.icon}
             />
-            <Text link src={`https://twitter.com/@${twitter}`} typeScale="h5">
+            <Text
+              link
+              absolute
+              src={`https://twitter.com/@${twitter}`}
+              typeScale="h5"
+            >
               Twitter
             </Text>
           </div>
@@ -38,7 +43,12 @@ const Elsewhere = props => {
         {github && (
           <div className={styles.bulletPoint}>
             <FontAwesomeIcon icon={['fab', 'github']} className={styles.icon} />
-            <Text link src={`https://github.com/${github}`} typeScale="h5">
+            <Text
+              link
+              absolute
+              src={`https://github.com/${github}`}
+              typeScale="h5"
+            >
               Github
             </Text>
           </div>
@@ -50,7 +60,7 @@ const Elsewhere = props => {
               icon={['fab', 'linkedin']}
               className={styles.icon}
             />
-            <Text link src={linkedin} typeScale="h5">
+            <Text link absolute src={linkedin} typeScale="h5">
               LinkedIn
             </Text>
           </div>

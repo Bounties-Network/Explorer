@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './FileUpload.module.scss';
-import { Text, Button } from 'components';
+import buttonStyles from 'components/Button/Button.module.scss';
+import { Loader, Text } from 'components';
 import { bytesToSize } from 'utils/helpers';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
@@ -98,15 +99,25 @@ class FileUpload extends React.Component {
               : null}
           </div>
         </div>
-        <Button className={styles.button} disabled={disabled} loading={loading}>
+        <span
+          className={[
+            styles.button,
+            buttonStyles.button,
+            buttonStyles.default,
+            disabled ? buttonStyles.disabled : null
+          ].join(' ')}
+        >
+          <div className={loading && buttonStyles.childwrapper}>
+            Upload file
+          </div>
+          {loading && <Loader className={buttonStyles.loader} />}
+
           <input
-            disabled={disabledState}
-            className={styles.fileInput}
             type="file"
             onChange={this.handleChange}
+            className={styles.fileInput}
           />
-          Upload file
-        </Button>
+        </span>
       </div>
     );
   }

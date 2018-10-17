@@ -69,6 +69,7 @@
     "react-slick": "^0.23.1",
     "react-sticky": "^6.0.3",
     "react-switch": "^3.0.2",
+    "react-textarea-autosize": "^7.0.4",
     "react-toastify": "^4.1.0",
     "react-toggle": "^4.0.2",
     "react-transition-group": "^2.4.0",
@@ -117,7 +118,7 @@
     "deploy-prague": "APP_SETTINGS_FILE=prague_settings APP_LOGO=logo npm run build && aws s3 sync build/. s3://prague.bounties.network --acl public-read --exclude index.html --cache-control max-age=31536000 && aws s3 cp build/index.html s3://prague.bounties.network --acl public-read --cache-control 'no-cache, no-store, must-revalidate'",
     "deploy-staging": "APP_SETTINGS_FILE=staging_settings APP_LOGO=logo npm run build && aws s3 sync build/. s3://staging.bounties.network --acl public-read --exclude index.html --cache-control max-age=31536000 && aws s3 cp build/index.html s3://staging.bounties.network --acl public-read --cache-control 'no-cache, no-store, must-revalidate'",
     "deploy-production": "APP_SETTINGS_FILE=production_settings APP_LOGO=logo npm run build && aws s3 sync build/. s3://explorer.bounties.network --acl public-read --exclude index.html --cache-control max-age=31536000 && aws s3 cp build/index.html s3://explorer.bounties.network --acl public-read --cache-control 'no-cache, no-store, must-revalidate'",
-    "deploy-all": "npm run deploy-berlin && npm run deploy-hiring && npm run deploy-bees && npm run deploy-staging && npm run deploy-production && npm run deploy-sf"
+    "deploy-all": "npm run deploy-berlin && npm run deploy-hiring && npm run deploy-bees && npm run deploy-staging && npm run deploy-production && npm run deploy-sf && npm run deploy-prague"
   },
   "jest": {
     "collectCoverageFrom": [
