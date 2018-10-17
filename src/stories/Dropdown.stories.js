@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Dropdown, Text } from 'components';
 
 storiesOf('Dropdown', module).add('Dropdown', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -70,7 +70,7 @@ storiesOf('Dropdown', module).add('Dropdown', () => (
       or <code>left</code>. The default is <code>right</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Dropdown position="right">
         <Dropdown.DropdownTrigger>Click me</Dropdown.DropdownTrigger>
         <Dropdown.DropdownContent>
@@ -112,7 +112,7 @@ storiesOf('Dropdown', module).add('Dropdown', () => (
       is <code>down</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Dropdown animateDirection="right">
         <Dropdown.DropdownTrigger>Click me</Dropdown.DropdownTrigger>
         <Dropdown.DropdownContent>
@@ -154,7 +154,7 @@ storiesOf('Dropdown', module).add('Dropdown', () => (
       <code>false</code>
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Dropdown hoverTrigger>
         <Dropdown.DropdownTrigger>Click me</Dropdown.DropdownTrigger>
         <Dropdown.DropdownContent>
@@ -183,7 +183,7 @@ storiesOf('Dropdown', module).add('Dropdown', () => (
       the user clicks on an item. The default value is <code>false</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Dropdown hideOnClick>
         <Dropdown.DropdownTrigger>Click me</Dropdown.DropdownTrigger>
         <Dropdown.DropdownContent>
@@ -212,7 +212,7 @@ storiesOf('Dropdown', module).add('Dropdown', () => (
       whenever that element is clicked.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Dropdown>
         <Dropdown.DropdownTrigger>Click me</Dropdown.DropdownTrigger>
         <Dropdown.DropdownContent>

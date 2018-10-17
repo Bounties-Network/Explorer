@@ -12,7 +12,7 @@ const options = [
 ];
 
 storiesOf('Select', module).add('Select', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -52,7 +52,7 @@ storiesOf('Select', module).add('Select', () => (
       default value is <code>value</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Select options={options} />
     </div>
 
@@ -72,7 +72,7 @@ storiesOf('Select', module).add('Select', () => (
       The <code>label</code> prop will determine the label of the select input.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Select options={options} label="I am the label" />
     </div>
 
@@ -93,7 +93,7 @@ storiesOf('Select', module).add('Select', () => (
       input.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Select
         options={options}
         label="I am the label"
@@ -118,7 +118,7 @@ storiesOf('Select', module).add('Select', () => (
       state of the input.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Select options={options} placeholder="Select one" disabled />
     </div>
 
@@ -139,7 +139,7 @@ storiesOf('Select', module).add('Select', () => (
       display an error message.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Select
         options={options}
         placeholder="Select one"
@@ -163,7 +163,7 @@ storiesOf('Select', module).add('Select', () => (
       The <code>optional</code> prop will sufix your label with "(Optional)"
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Select
         options={options}
         placeholder="Select one"
@@ -189,7 +189,7 @@ storiesOf('Select', module).add('Select', () => (
       user selects an option. The selected value will be passed as an argument.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Select
         options={options}
         placeholder="Select one"

@@ -12,7 +12,7 @@ const options = [
 ];
 
 storiesOf('SearchSelect', module).add('SearchSelect', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -53,7 +53,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       default value is <code>value</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <SearchSelect options={options} />
     </div>
 
@@ -73,7 +73,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       The <code>label</code> prop will determine the label of the select input.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <SearchSelect options={options} label="I am the label" />
     </div>
 
@@ -94,7 +94,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       select input.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <SearchSelect
         options={options}
         label="I am the label"
@@ -119,7 +119,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       It should be an array of values. This can only be changed programatically.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <SearchSelect
         options={options}
         placeholder="e.g React"
@@ -144,7 +144,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       input. The default value is <code>20</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <SearchSelect options={options} placeholder="e.g React" maxLength="5" />
     </div>
 
@@ -165,7 +165,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       state of the select input
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <SearchSelect options={options} placeholder="e.g React" disabled />
     </div>
 
@@ -186,7 +186,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       display an error message.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <SearchSelect
         options={options}
         placeholder="e.g React"
@@ -211,7 +211,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       than one value. The default value is <code>false</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <SearchSelect options={options} placeholder="e.g React" single={true} />
     </div>
 
@@ -232,7 +232,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       values. The default value is <code>false</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <SearchSelect
         options={options}
         placeholder="e.g React"
@@ -256,7 +256,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       The <code>optional</code> prop will prefix your label with "(Optional)"
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <SearchSelect
         options={options}
         placeholder="e.g React"
@@ -283,7 +283,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
       an array.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <SearchSelect
         options={options}
         placeholder="e.g React"

@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { ZeroState, Text, Card } from 'components';
 
 storiesOf('Card', module).add('ZeroState', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -43,7 +43,7 @@ storiesOf('Card', module).add('ZeroState', () => (
       <code>text</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Card>
         <Card.Body>
           <div style={{ padding: '20px 50px' }}>
@@ -76,7 +76,7 @@ storiesOf('Card', module).add('ZeroState', () => (
       <code>zero</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Card>
         <Card.Body>
           <div style={{ padding: '20px 50px' }}>
@@ -110,7 +110,7 @@ storiesOf('Card', module).add('ZeroState', () => (
       <code>['['fal', 'trophy-alt']</code>).
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Card>
         <Card.Body>
           <div style={{ padding: '20px 50px' }}>
@@ -144,7 +144,7 @@ storiesOf('Card', module).add('ZeroState', () => (
       <code>['fal', 'trophy-alt']</code>).
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Card>
         <Card.Body>
           <div style={{ padding: '20px 50px' }}>
@@ -179,7 +179,7 @@ storiesOf('Card', module).add('ZeroState', () => (
       <code>actionText</code> will be the action to be made.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Card>
         <Card.Body>
           <div style={{ padding: '20px 50px' }}>
@@ -215,7 +215,7 @@ storiesOf('Card', module).add('ZeroState', () => (
       whenever the user clicks on the action.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Card>
         <Card.Body>
           <div style={{ padding: '20px 50px' }}>

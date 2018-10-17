@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Card, Text, Tabs } from 'components';
 
 storiesOf('Card', module).add('Card', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"

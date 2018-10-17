@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Network, Text } from 'components';
 
 storiesOf('Network', module).add('Network', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -42,7 +42,7 @@ storiesOf('Network', module).add('Network', () => (
       The default value is <code>mainNet</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Network />
       <br />
       <Network network="rinkeby" />
@@ -67,7 +67,7 @@ storiesOf('Network', module).add('Network', () => (
     </Text>
 
     <div
-      class="sb-component-group sb-button-group"
+      className="sb-component-group sb-button-group"
       style={{ backgroundColor: '#f44262' }}
     >
       <Network theme="light" />

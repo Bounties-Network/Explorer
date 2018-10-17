@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Table, Text } from 'components';
 
 storiesOf('Table', module).add('Table', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -48,7 +48,7 @@ storiesOf('Table', module).add('Table', () => (
       subcomponent.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Table>
         <Table.Header>
           <Table.HeaderCell flexBasis="30%">Header 1</Table.HeaderCell>
@@ -119,7 +119,7 @@ storiesOf('Table', module).add('Table', () => (
       Inside, it must contain several <code>Table.HeaderCell</code> elements.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Table>
         <Table.Header>
           <Table.HeaderCell>Header 1</Table.HeaderCell>
@@ -138,7 +138,7 @@ storiesOf('Table', module).add('Table', () => (
       The <code>flexBasis</code> prop will determine the CSS flex-basis property
       of that specific cell.
     </Text>
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Table>
         <Table.Header>
           <Table.HeaderCell flexBasis="20%">Header 1 (20%)</Table.HeaderCell>
@@ -157,7 +157,7 @@ storiesOf('Table', module).add('Table', () => (
       The <code>flexGrow</code> prop will determine the CSS flex-grow property
       of that specific cell.
     </Text>
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Table>
         <Table.Header>
           <Table.HeaderCell flexGrow="20%">Header 1 (20%)</Table.HeaderCell>
@@ -177,7 +177,7 @@ storiesOf('Table', module).add('Table', () => (
       cell. It must be either <code>numerical</code> or{' '}
       <code>nonNumerical</code>. The default value is <code>nonNumerical</code>.
     </Text>
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Table>
         <Table.Header>
           <Table.HeaderCell flexGrow="25%">Text</Table.HeaderCell>
@@ -209,7 +209,7 @@ storiesOf('Table', module).add('Table', () => (
       <code>Table.Cell</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Table>
         <Table.Row>
           <Table.Cell>Cell</Table.Cell>
@@ -241,7 +241,7 @@ storiesOf('Table', module).add('Table', () => (
       when the user hovers it. The default value is <code>false</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Table>
         <Table.Row hover>
           <Table.Cell>Cell</Table.Cell>
@@ -290,7 +290,7 @@ storiesOf('Table', module).add('Table', () => (
       of that specific cell.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Table>
         <Table.Row>
           <Table.Cell flexBasis="20%">Cell 1 (20%)</Table.Cell>
@@ -309,7 +309,7 @@ storiesOf('Table', module).add('Table', () => (
       The <code>flexGrow</code> prop will determine the CSS flex-grow property
       of that specific cell.
     </Text>
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Table>
         <Table.Row>
           <Table.Cell flexGrow="20%">Cell 1 (20%)</Table.Cell>
@@ -329,7 +329,7 @@ storiesOf('Table', module).add('Table', () => (
       cell. It must be either <code>numerical</code> or{' '}
       <code>nonNumerical</code>. The default value is <code>nonNumerical</code>.
     </Text>
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Table>
         <Table.Row>
           <Table.Cell contentType="numerical">1</Table.Cell>
@@ -348,7 +348,7 @@ storiesOf('Table', module).add('Table', () => (
       The <code>headerText</code> prop will specify the header under which this
       cell appears.
     </Text>
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Table>
         <Table.Header>
           <Table.HeaderCell>Header 1</Table.HeaderCell>

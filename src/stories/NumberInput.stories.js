@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { NumberInput, Text } from 'components';
 
 storiesOf('NumberInput', module).add('NumberInput', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -42,7 +42,7 @@ storiesOf('NumberInput', module).add('NumberInput', () => (
       <code>0</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <NumberInput defaultValue={5} />
     </div>
 
@@ -63,7 +63,7 @@ storiesOf('NumberInput', module).add('NumberInput', () => (
       can only be changed programatically.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <NumberInput value={5} />
     </div>
 
@@ -83,7 +83,7 @@ storiesOf('NumberInput', module).add('NumberInput', () => (
       The <code>label</code> prop will determine the label of the input.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <NumberInput value={5} label="I am the label" />
     </div>
 
@@ -104,7 +104,7 @@ storiesOf('NumberInput', module).add('NumberInput', () => (
       the state of the input or not.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <NumberInput value={5} disabled />
     </div>
 
@@ -125,7 +125,7 @@ storiesOf('NumberInput', module).add('NumberInput', () => (
       can accept. The default value is <code>0</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <NumberInput defaultValue={5} min={3} />
     </div>
 
@@ -146,7 +146,7 @@ storiesOf('NumberInput', module).add('NumberInput', () => (
       can accept. The default value is <code>10</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <NumberInput defaultValue={5} max={7} />
     </div>
 
@@ -168,7 +168,7 @@ storiesOf('NumberInput', module).add('NumberInput', () => (
       input will be sent as an argument.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <NumberInput defaultValue={5} onChange={action('changed')} />
     </div>
   </div>

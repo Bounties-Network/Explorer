@@ -7,7 +7,7 @@ import moment from 'moment';
 import { DatePicker, Text } from 'components';
 
 storiesOf('DatePicker', module).add('DatePicker', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -42,7 +42,7 @@ storiesOf('DatePicker', module).add('DatePicker', () => (
       a time or not. The default value is <code>false</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <DatePicker showTimeSelect />
       <br />
       <DatePicker />
@@ -64,7 +64,7 @@ storiesOf('DatePicker', module).add('DatePicker', () => (
       The <code>label</code> prop determines the label of the DatePicker
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <DatePicker label="I am the label" />
     </div>
 
@@ -86,7 +86,7 @@ storiesOf('DatePicker', module).add('DatePicker', () => (
       current date + 1 day.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <DatePicker value={moment()} />
       <br />
       <DatePicker />
@@ -109,7 +109,7 @@ storiesOf('DatePicker', module).add('DatePicker', () => (
       allowed to pick. This has to be a <code>moment</code> instance.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <DatePicker value={moment().subtract(5, 'd')} value={moment()} />
     </div>
 
@@ -130,7 +130,7 @@ storiesOf('DatePicker', module).add('DatePicker', () => (
       DatePicker can be changed or not.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <DatePicker disabled />
     </div>
 
@@ -150,7 +150,7 @@ storiesOf('DatePicker', module).add('DatePicker', () => (
       The <code>error</code> prop will show an error message on mobile devices.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <DatePicker error="I am the error" />
     </div>
 
@@ -171,7 +171,7 @@ storiesOf('DatePicker', module).add('DatePicker', () => (
       user focuses on the DatePicker. This only works for mobile devices.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <DatePicker onFocus={action('focused')} />
     </div>
 
@@ -192,7 +192,7 @@ storiesOf('DatePicker', module).add('DatePicker', () => (
       user taps outside of the DatePicker. This only works for mobile devices.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <DatePicker onBlur={action('blurred')} />
     </div>
 
@@ -214,7 +214,7 @@ storiesOf('DatePicker', module).add('DatePicker', () => (
       as an argument.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <DatePicker onChange={action('changed')} />
     </div>
 

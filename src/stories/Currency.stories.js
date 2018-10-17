@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Currency, Text } from 'components';
 
 storiesOf('Currency', module).add('Currency', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -43,7 +43,7 @@ storiesOf('Currency', module).add('Currency', () => (
       <code>0</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency />
     </div>
 
@@ -65,7 +65,7 @@ storiesOf('Currency', module).add('Currency', () => (
       with the dollar sign ($).
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency primaryValue={10.35} primaryCurrency="usd" />
       <Currency primaryValue={10.35} primaryCurrency="€" />
     </div>
@@ -88,7 +88,7 @@ storiesOf('Currency', module).add('Currency', () => (
       decimals. The default value is <code>2</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency primaryValue={10.353635} primaryCurrency="usd" />
       <Currency
         primaryValue={10.353635}
@@ -116,7 +116,7 @@ storiesOf('Currency', module).add('Currency', () => (
       or <code>Small</code>. The default is <code>h2</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency primaryValue={10.353635} primaryCurrency="usd" />
       <br />
       <Currency
@@ -153,7 +153,7 @@ storiesOf('Currency', module).add('Currency', () => (
       default is <code>fontWeight-regular</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency
         primaryValue={10.353635}
         primaryCurrency="usd"
@@ -195,7 +195,7 @@ storiesOf('Currency', module).add('Currency', () => (
       <code>purple</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency
         primaryValue={10.353635}
         primaryCurrency="usd"
@@ -242,7 +242,7 @@ storiesOf('Currency', module).add('Currency', () => (
       the currency.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency
         primaryValue={10.353635}
         primaryCurrency="euros"
@@ -285,7 +285,7 @@ storiesOf('Currency', module).add('Currency', () => (
       default is <code>fontWeight-regular</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency
         primaryValue={10.353635}
         primaryCurrency="euros"
@@ -333,7 +333,7 @@ storiesOf('Currency', module).add('Currency', () => (
       <code>purple</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency
         primaryValue={10.353635}
         primaryCurrency="euros"
@@ -393,7 +393,7 @@ storiesOf('Currency', module).add('Currency', () => (
       value below the primary one. By default, there is no secondary value.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency
         primaryValue={10.353635}
         primaryCurrency="euros"
@@ -422,7 +422,7 @@ storiesOf('Currency', module).add('Currency', () => (
       secondary value.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency
         primaryValue={10.353635}
         primaryCurrency="euros"
@@ -453,7 +453,7 @@ storiesOf('Currency', module).add('Currency', () => (
       display all decimals. The default value is <code>all</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency
         primaryValue={10.353635}
         primaryCurrency="euros"
@@ -485,7 +485,7 @@ storiesOf('Currency', module).add('Currency', () => (
       or <code>Small</code>. The default is <code>Small</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency
         primaryValue={10.353635}
         primaryCurrency="euros"
@@ -541,7 +541,7 @@ storiesOf('Currency', module).add('Currency', () => (
       <code>defaultGrey</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Currency
         primaryValue={10.353635}
         primaryCurrency="euros"

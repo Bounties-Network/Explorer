@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Checkbox, Text } from 'components';
 
 storiesOf('Checkbox', module).add('Checkbox', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -40,7 +40,7 @@ storiesOf('Checkbox', module).add('Checkbox', () => (
       The <code>label</code> prop will determine the label of the checkbox.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Checkbox label="This is a label" />
     </div>
 
@@ -62,7 +62,7 @@ storiesOf('Checkbox', module).add('Checkbox', () => (
       checkbox later.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Checkbox
         label="This checkbox is checked by default"
         defaultChecked={true}
@@ -91,7 +91,7 @@ storiesOf('Checkbox', module).add('Checkbox', () => (
       programatically.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Checkbox label="This checkbox is checked" checked={true} />
       <Checkbox label="This checkbox is unchecked" checked={false} />
     </div>
@@ -113,7 +113,7 @@ storiesOf('Checkbox', module).add('Checkbox', () => (
       not the user can change the state of the checkbox.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Checkbox label="This is a disabled checkbox" disabled={true} />
     </div>
   </div>

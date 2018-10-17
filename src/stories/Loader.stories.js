@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react';
 import { Loader, Text } from 'components';
 
 storiesOf('Loader', module).add('Loader', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -40,7 +40,7 @@ storiesOf('Loader', module).add('Loader', () => (
       can be <code>small</code> or <code>medium</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Loader size="small" />
       <br />
       <Loader size="medium" />
@@ -64,7 +64,7 @@ storiesOf('Loader', module).add('Loader', () => (
     </Text>
 
     <div
-      class="sb-component-group sb-button-group"
+      className="sb-component-group sb-button-group"
       style={{ backgroundColor: '#ccc' }}
     >
       <Loader color="blue" />

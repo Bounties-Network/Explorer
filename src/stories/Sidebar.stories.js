@@ -15,7 +15,7 @@ storiesOf('Sidebar', module).add('Sidebar', () => (
         <Sidebar.TabIcon icon={['far', 'user-alt']} tabKey="profile" />
       </Sidebar.TabGroup>
     </Sidebar>
-    <div class="sb-page-wrapper">
+    <div className="sb-page-wrapper">
       <Text
         className={'sb-component-group-heading'}
         typeScale="h1"

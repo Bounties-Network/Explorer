@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { FullAddressBar, Button, Text } from 'components';
 
 storiesOf('FullAddressBar', module).add('FullAddressBar', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -41,7 +41,7 @@ storiesOf('FullAddressBar', module).add('FullAddressBar', () => (
       component.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <FullAddressBar
         address={'0x1234567891011121314151617181920212223242'}
         copyButton
@@ -64,7 +64,7 @@ storiesOf('FullAddressBar', module).add('FullAddressBar', () => (
       address will be displayed. The default value is <code>true</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <FullAddressBar
         address={'0x1234567891011121314151617181920212223242'}
         copyButton

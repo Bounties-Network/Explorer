@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Pill, Text } from 'components';
 
 storiesOf('Pill', module).add('All Pills', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -40,7 +40,10 @@ storiesOf('Pill', module).add('All Pills', () => (
       The content of the pills will go inside their inner HTML.
     </Text>
 
-    <div class="sb-component-group sb-button-group" style={{ display: 'flex' }}>
+    <div
+      className="sb-component-group sb-button-group"
+      style={{ display: 'flex' }}
+    >
       <Pill>HTML</Pill>
       <Pill>CSS</Pill>
       <Pill>Javascript</Pill>
@@ -64,7 +67,7 @@ storiesOf('Pill', module).add('All Pills', () => (
       <code>round</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <div style={{ display: 'flex', marginBottom: 10 }}>
         <Pill>HTML</Pill>
         <Pill>CSS</Pill>
@@ -95,7 +98,7 @@ storiesOf('Pill', module).add('All Pills', () => (
     </Text>
 
     <div
-      class="sb-component-group sb-button-group"
+      className="sb-component-group sb-button-group"
       style={{ display: 'flex', marginBottom: 10 }}
     >
       <Pill close>HTML</Pill>
@@ -129,7 +132,7 @@ storiesOf('Pill', module).add('All Pills', () => (
       border. The default value is <code>false</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <div style={{ display: 'flex', marginBottom: 10 }}>
         <Pill>HTML</Pill>
         <Pill>CSS</Pill>
@@ -160,7 +163,7 @@ storiesOf('Pill', module).add('All Pills', () => (
     </Text>
 
     <div
-      class="sb-component-group sb-button-group"
+      className="sb-component-group sb-button-group"
       style={{ display: 'flex', marginBottom: 10 }}
     >
       <Pill backgroundColor="purple" textColor="black">
@@ -202,7 +205,7 @@ storiesOf('Pill', module).add('All Pills', () => (
     </Text>
 
     <div
-      class="sb-component-group sb-button-group"
+      className="sb-component-group sb-button-group"
       style={{ display: 'flex', marginBottom: 10 }}
     >
       <Pill textColor="black" hoverBackgroundColor="nearWhite">
@@ -243,7 +246,7 @@ storiesOf('Pill', module).add('All Pills', () => (
     </Text>
 
     <div
-      class="sb-component-group sb-button-group"
+      className="sb-component-group sb-button-group"
       style={{ display: 'flex', marginBottom: 10 }}
     >
       <Pill textColor="purple">purple</Pill>
@@ -276,7 +279,7 @@ storiesOf('Pill', module).add('All Pills', () => (
     </Text>
 
     <div
-      class="sb-component-group sb-button-group"
+      className="sb-component-group sb-button-group"
       style={{ display: 'flex', marginBottom: 10, backgroundColor: '#212121' }}
     >
       <Pill borderColor="lightGrey" textColor="white">
@@ -317,7 +320,7 @@ storiesOf('Pill', module).add('All Pills', () => (
     </Text>
 
     <div
-      class="sb-component-group sb-button-group"
+      className="sb-component-group sb-button-group"
       style={{ display: 'flex', marginBottom: 10 }}
     >
       <Pill onClick={action('clicked')}>C</Pill>
@@ -347,7 +350,7 @@ storiesOf('Pill', module).add('All Pills', () => (
     </Text>
 
     <div
-      class="sb-component-group sb-button-group"
+      className="sb-component-group sb-button-group"
       style={{ display: 'flex', marginBottom: 10 }}
     >
       <Pill close onClick={action('clicked')}>

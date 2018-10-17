@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { Text, Button, ToastContainer, Toast } from 'components';
 
 storiesOf('Toast', module).add('Toast', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <ToastContainer />
 
     <Text
@@ -104,7 +104,7 @@ storiesOf('Toast', module).add('Toast', () => (
       user clicks on the close button.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Button
         onClick={() =>
           Toast(

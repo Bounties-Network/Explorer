@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Search, Text } from 'components';
 
 storiesOf('Search', module).add('Search', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -42,7 +42,7 @@ storiesOf('Search', module).add('Search', () => (
       component. This value can only be changed programatically.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Search value="Who let the dogs out" />
     </div>
 
@@ -64,7 +64,7 @@ storiesOf('Search', module).add('Search', () => (
       passed as an argument.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Search onChange={action('typed')} />
     </div>
   </div>

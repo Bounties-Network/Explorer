@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { CardNotification, Text } from 'components';
 
 storiesOf('Card', module).add('CardNotification', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"

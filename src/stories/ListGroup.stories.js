@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { ListGroup, Text } from 'components';
 
 storiesOf('ListGroup', module).add('ListGroup', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -40,7 +40,7 @@ storiesOf('ListGroup', module).add('ListGroup', () => (
       subcomponents.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <ListGroup>
         <ListGroup.ListItem hover>List Item 1</ListGroup.ListItem>
         <ListGroup.ListItem hover>List Item 2</ListGroup.ListItem>
@@ -66,7 +66,7 @@ storiesOf('ListGroup', module).add('ListGroup', () => (
       <code>false</code>
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <ListGroup>
         <ListGroup.ListItem hover>List Item 1</ListGroup.ListItem>
         <ListGroup.ListItem>List Item 2</ListGroup.ListItem>

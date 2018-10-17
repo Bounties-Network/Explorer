@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Sort, Text } from 'components';
 
 storiesOf('Sort', module).add('Sort', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -41,7 +41,7 @@ storiesOf('Sort', module).add('Sort', () => (
       A regular Sort component displays a sort icon next to its inner HTML.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Sort>Name</Sort>
     </div>
 
@@ -62,7 +62,7 @@ storiesOf('Sort', module).add('Sort', () => (
       the column being sorted. The default value is <code>false</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Sort active>Name</Sort>
     </div>
 
@@ -83,7 +83,10 @@ storiesOf('Sort', module).add('Sort', () => (
       either ascending (<code>asc</code>) or descending (<code>desc</code>).
     </Text>
 
-    <div class="sb-component-group sb-button-group" style={{ display: 'flex' }}>
+    <div
+      className="sb-component-group sb-button-group"
+      style={{ display: 'flex' }}
+    >
       <Sort defaultSort="asc">Name</Sort>
       <Sort defaultSort="desc">Last name</Sort>
     </div>
@@ -106,7 +109,10 @@ storiesOf('Sort', module).add('Sort', () => (
       argument.
     </Text>
 
-    <div class="sb-component-group sb-button-group" style={{ display: 'flex' }}>
+    <div
+      className="sb-component-group sb-button-group"
+      style={{ display: 'flex' }}
+    >
       <Sort onSort={action('sorted')}>Name</Sort>
     </div>
   </div>

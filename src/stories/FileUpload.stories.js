@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { FileUpload, Text } from 'components';
 
 storiesOf('FileUpload', module).add('FileUpload', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -40,7 +40,7 @@ storiesOf('FileUpload', module).add('FileUpload', () => (
       A regular FileUpload with no props will render an input for files.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <FileUpload />
     </div>
 
@@ -61,7 +61,7 @@ storiesOf('FileUpload', module).add('FileUpload', () => (
       the state of the input or not.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <FileUpload disabled />
     </div>
 
@@ -83,7 +83,7 @@ storiesOf('FileUpload', module).add('FileUpload', () => (
       bytes).
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <FileUpload disabled filename="File.jpg" filesize={31245} />
     </div>
 
@@ -104,7 +104,7 @@ storiesOf('FileUpload', module).add('FileUpload', () => (
       or not.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <FileUpload loading filename="File.jpg" filesize={31245} />
     </div>
 
@@ -125,7 +125,7 @@ storiesOf('FileUpload', module).add('FileUpload', () => (
       the user changes the state of the input.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <FileUpload onChange={action('changed')} />
     </div>
 
@@ -146,7 +146,7 @@ storiesOf('FileUpload', module).add('FileUpload', () => (
       the user removes the current file.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <FileUpload
         onRemove={action('removed')}
         filename="removeMe.png"
