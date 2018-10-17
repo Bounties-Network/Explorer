@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Avatar, Text } from 'components';
 
 storiesOf('Avatar', module).add('Avatar', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -41,7 +41,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       The <code>img</code> prop will determine the image to be displayed.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group">
       <Avatar size="large" img="https://i.imgur.com/lhTwRZY.png" />
     </div>
 
@@ -53,7 +53,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       The <code>hash</code> prop will create an image based on the hash.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group">
       <Avatar size="large" hash="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r" />
     </div>
 
@@ -67,7 +67,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       is <code>small</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group">
       <Avatar size="small" img="https://i.imgur.com/lhTwRZY.png" />
       <br />
       <Avatar size="medium" img="https://i.imgur.com/lhTwRZY.png" />
@@ -84,10 +84,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       image will have a border or not. The default value is <code>false</code>.
     </Text>
 
-    <div
-      class="sb-component-group sb-button-group"
-      style={{ backgroundColor: '#EEE' }}
-    >
+    <div className="sb-component-group" style={{ backgroundColor: '#EEE' }}>
       <Avatar
         size="medium"
         img="https://i.imgur.com/lhTwRZY.png"
@@ -118,7 +115,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       represented in the avatar.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group">
       <Avatar
         size="large"
         img="https://i.imgur.com/lhTwRZY.png"
@@ -136,7 +133,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       or <code>Small</code>. The default value is <code>h3</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group">
       <Avatar
         size="small"
         img="https://i.imgur.com/lhTwRZY.png"
@@ -171,7 +168,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       <code>darkGrey</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group">
       <Avatar
         size="small"
         img="https://i.imgur.com/lhTwRZY.png"
@@ -208,7 +205,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       default value is <code>fontWeight-bold</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group">
       <Avatar
         size="large"
         img="https://i.imgur.com/lhTwRZY.png"
@@ -247,7 +244,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       represented in the avatar.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group">
       <Avatar
         size="large"
         img="https://i.imgur.com/lhTwRZY.png"
@@ -267,7 +264,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       <code>Body</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group">
       <Avatar
         size="small"
         img="https://i.imgur.com/lhTwRZY.png"
@@ -308,7 +305,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       <code>lightGrey</code> or <code>darkGrey</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group">
       <Avatar
         size="large"
         img="https://i.imgur.com/lhTwRZY.png"
@@ -343,7 +340,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       passed, it will link to <code>{'profile/{address}'}</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group">
       <Avatar
         size="large"
         img="https://i.imgur.com/lhTwRZY.png"
@@ -369,7 +366,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       address is clicked.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group">
       <Avatar
         size="large"
         img="https://i.imgur.com/lhTwRZY.png"
