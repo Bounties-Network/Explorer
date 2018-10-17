@@ -20,7 +20,12 @@
 
 .pageBannerContent {
   flex: 1;
-  padding-right: $m-spacing;
+}
+
+.pageBanner-dismissable {
+  .pageBannerContent {
+    padding-right: $m-spacing;
+  }
 }
 
 .pageBannerClose {
