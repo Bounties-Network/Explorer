@@ -103,7 +103,7 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
           issuer_review
         } = fulfillment;
 
-        const { name, small_profile_image_url } = user;
+        const { name, small_profile_image_url, ens_domain } = user;
 
         const submissionBelongsToLoggedInUser =
           currentUser && fulfiller === currentUser.public_address;
@@ -118,6 +118,7 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
               fulfillmentId={fulfillment_id}
               fulfiller_name={name}
               fulfiller_email={fulfiller_email}
+              fulfiller_ensDomain={ens_domain}
               fulfiller_address={fulfiller}
               fulfiller_img={small_profile_image_url}
               bounty={bounty}

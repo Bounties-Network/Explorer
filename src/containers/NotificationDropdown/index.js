@@ -70,6 +70,7 @@ const NotificationDropdown = props => {
               createdAt={created}
               notifierWidth="large"
               userAddress={from_user && from_user.public_address}
+              ensDomain={from_user && from_user.ens_domain}
               profileImage={from_user && from_user.small_profile_image_url}
             />
           </ListGroup.ListItem>

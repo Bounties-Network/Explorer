@@ -25,6 +25,7 @@ let ReviewsModal = props => {
             name={review.reviewer.name}
             address={review.reviewer.public_address}
             img={review.reviewer.small_profile_image_url}
+            ensDomain={review.reviewer.ens_domain}
             created={review.created}
           />
         </ListGroup.ListItem>

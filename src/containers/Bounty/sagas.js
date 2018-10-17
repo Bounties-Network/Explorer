@@ -65,13 +65,14 @@ export function* showIssueRatingModal() {
 
   if (fulfiller === current_address && !issuer_review) {
     // fulfiller to rate issuer
-    const { name, small_profile_image_url } = bounty_data.user;
+    const { name, small_profile_image_url, ens_domain } = bounty_data.user;
 
     yield put(
       setRatingModal(fulfillment_id, {
         name,
         address: issuer,
-        img: small_profile_image_url
+        img: small_profile_image_url,
+        ens_domain
       })
     );
     yield put(showModal('issueRatingForIssuer'));
