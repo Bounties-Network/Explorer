@@ -116,6 +116,7 @@ Avatar.propTypes = {
   nameTextWeight: PropTypes.string,
   addressTextScale: PropTypes.string,
   addressTextColor: PropTypes.string,
+  ensDomain: PropTypes.string,
   src: PropTypes.string,
   onClick: PropTypes.func
 };
