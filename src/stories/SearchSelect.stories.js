@@ -145,7 +145,7 @@ storiesOf('SearchSelect', module).add('SearchSelect', () => (
     </Text>
 
     <div className="sb-component-group sb-button-group">
-      <SearchSelect options={options} placeholder="e.g React" maxLength="5" />
+      <SearchSelect options={options} placeholder="e.g React" maxLength={5} />
     </div>
 
     <Text
