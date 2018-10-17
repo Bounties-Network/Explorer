@@ -83,7 +83,7 @@ const Avatar = props => {
 };
 
 Avatar.propTypes = {
-  size: PropTypes.oneOf(['small', 'large']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   img: PropTypes.string,
   border: PropTypes.bool,
   name: PropTypes.string,
