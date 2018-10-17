@@ -179,5 +179,30 @@ storiesOf('Button', module).add('All Buttons', () => (
         Full-width button
       </Button>
     </div>
+
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      margin
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>margin</code> prop will add a 1rem margin to the button.
+    </Text>
+
+    <div class="sb-component-group sb-button-group">
+      <Button margin type="primary">
+        Button with extra margin
+      </Button>
+      <Button margin type="primary">
+        Button with extra margin
+      </Button>
+    </div>
   </div>
 ));
