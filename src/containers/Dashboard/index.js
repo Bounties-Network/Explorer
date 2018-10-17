@@ -137,7 +137,6 @@ class DashboardComponent extends React.Component {
 const mapStateToProps = state => {
   const currentUser = getCurrentUserSelector(state);
   const { public_address } = currentUser;
-  console.log(currentUser);
 
   return {
     public_address,
