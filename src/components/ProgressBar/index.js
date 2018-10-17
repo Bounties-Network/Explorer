@@ -19,9 +19,11 @@ const ProgressBar = props => {
           <div className={`${styles.progressBarFill}`} />
         </div>
       </div>
-      <Text className={`${styles.percentage}`} weight="fontWeight-medium">
-        {`${percent}%`}
-      </Text>
+      {displayPercent && (
+        <Text className={`${styles.percentage}`} weight="fontWeight-medium">
+          {`${percent}%`}
+        </Text>
+      )}
     </div>
   );
 };
@@ -45,7 +47,8 @@ ProgressBar.propTypes = {
 };
 
 ProgressBar.defaultProps = {
-  percent: 0
+  percent: 0,
+  color: 'purple'
 };
 
 export default ProgressBar;

@@ -1,7 +1,5 @@
 @import "~styles/variables.scss";
 
-$x-button-width: 12px;
-
 .pageBanner {
   background-color: $brand-lightGrey;
   overflow: hidden;
@@ -23,6 +21,12 @@ $x-button-width: 12px;
 .pageBannerContent {
   flex: 1;
   padding-right: $m-spacing;
+}
+
+.pageBannerClose {
+  display: flex;
+  align-items: center;
+  height: $body-font-size;
 }
 
 // reusing some from Modal, maybe close button should be its own component?

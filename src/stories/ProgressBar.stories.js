@@ -22,7 +22,10 @@ storiesOf('ProgressBar', module).add('ProgressBar', () => (
     >
       ProgressBar component takes <code>percent</code> as its primary prop to
       display an animated bar. It can also choose to display the percent
-      numerically, and is color configurable.
+      numerically, and is color configurable. The ProgressBar component will
+      fill the available width of its container and thus can be width controlled
+      with a parent container class or attaching a width-override class directly
+      with the <code>className</code> prop.
     </Text>
 
     <Text
@@ -77,7 +80,7 @@ storiesOf('ProgressBar', module).add('ProgressBar', () => (
     </Text>
 
     <div class="sb-component-group">
-      <ProgressBar displayPercent={false} percent={0} />
+      <ProgressBar displayPercent={false} percent={50} />
     </div>
 
     <Text
@@ -95,10 +98,10 @@ storiesOf('ProgressBar', module).add('ProgressBar', () => (
     >
       The <code>color</code> prop determines the color of the progress bar. It's
       values match those used elsewhere and can be one of the following
-      <code>
-        'purple', 'blue', 'orange', 'green', 'red', 'black', 'white',
-        'defaultGrey', 'lightGrey', 'darkGrey'
-      </code>
+      <code>'purple'</code> <code>'blue'</code> <code>'orange'</code>
+      <code>'green'</code> <code>'red'</code> <code>'black'</code>
+      <code>'white'</code> <code>'defaultGrey'</code> <code>'lightGrey'</code>
+      <code>'darkGrey'</code>
       The default value is <code>'purple'</code>
     </Text>
 
@@ -114,6 +117,30 @@ storiesOf('ProgressBar', module).add('ProgressBar', () => (
       </div>
       <div class="sb-component-container">
         <ProgressBar percent={50} color={'darkGrey'} />
+      </div>
+    </div>
+
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      Controlling Width
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The component fills the available space but can be controlled with a
+      parent container width/max-width or a width-override class using the
+      <code>className</code> prop. The ProgressBar has a minimum width of 6rem.
+    </Text>
+
+    <div class="sb-component-group">
+      <div class="sb-component-container" style={{ width: '75%' }}>
+        <ProgressBar percent={50} />
       </div>
     </div>
   </div>
