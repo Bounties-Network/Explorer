@@ -217,20 +217,5 @@ storiesOf('DatePicker', module).add('DatePicker', () => (
     <div className="sb-component-group sb-button-group">
       <DatePicker onChange={action('changed')} />
     </div>
-
-    <div style={{ marginTop: '10px' }} />
-    <DatePicker showTimeSelect />
-    <div style={{ marginTop: '10px' }} />
-    <Text type="BodySmall">Disabled</Text>
-    <div style={{ marginTop: '10px' }} />
-    <DatePicker showTimeSelect disabled />
-    <div style={{ marginTop: '10px' }} />
-    <Text type="BodySmall">No Timeframe</Text>
-    <div style={{ marginTop: '10px' }} />
-    <DatePicker />
-    <div style={{ marginTop: '10px' }} />
-    <Text type="BodySmall">Label</Text>
-    <div style={{ marginTop: '10px' }} />
-    <DatePicker showTimeSelect label="Filter 1" />
   </div>
 ));
