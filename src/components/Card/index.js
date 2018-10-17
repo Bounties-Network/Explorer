@@ -14,7 +14,7 @@ const HeaderTitle = props => (
   </Text>
 );
 
-const HeaderTabs = props => <Tabs>{props.children}</Tabs>;
+const HeaderTabs = props => <Tabs {...props}>{props.children}</Tabs>;
 
 class Header extends React.Component {
   render() {
