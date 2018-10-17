@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Circle, Text } from 'components';
 
 storiesOf('Circle', module).add('All Circles', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -42,7 +42,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       <code>loading</code>. The default value is <code>text</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Circle
         type="text"
         size="medium"
@@ -80,7 +80,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       default value is <code>small</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Circle
         type="text"
         size="small"
@@ -125,7 +125,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       <code>blocky</code> and <code>loading</code>, this is not required.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Circle
         type="text"
         size="large"
@@ -155,7 +155,7 @@ storiesOf('Circle', module).add('All Circles', () => (
     </Text>
 
     <div
-      class="sb-component-group sb-button-group"
+      className="sb-component-group sb-button-group"
       style={{ backgroundColor: '#EEE' }}
     >
       <Circle
@@ -199,7 +199,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       <code>white</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Circle
         type="text"
         color="orange"
@@ -246,7 +246,7 @@ storiesOf('Circle', module).add('All Circles', () => (
       <code>black</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Circle
         type="text"
         color="nearWhite"

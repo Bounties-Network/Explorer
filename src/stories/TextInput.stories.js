@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { TextInput, Text } from 'components';
 
 storiesOf('TextInput', module).add('TextInput', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -40,7 +40,7 @@ storiesOf('TextInput', module).add('TextInput', () => (
       A regular TextInput with no props will render a simple input for text.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <TextInput />
     </div>
 
@@ -62,7 +62,7 @@ storiesOf('TextInput', module).add('TextInput', () => (
       default value is <code>text</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <TextInput
         placeholder="Insert your username"
         label="Username"
@@ -95,7 +95,7 @@ storiesOf('TextInput', module).add('TextInput', () => (
       changed programatically.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <TextInput value="I am the value" />
     </div>
 
@@ -115,7 +115,7 @@ storiesOf('TextInput', module).add('TextInput', () => (
       The <code>label</code> prop will determine whether the input's label.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <TextInput label="Username" />
     </div>
 
@@ -135,7 +135,7 @@ storiesOf('TextInput', module).add('TextInput', () => (
       The <code>placeholder</code> prop will set the input's placeholder.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <TextInput label="Username" placeholder="Insert your username" />
     </div>
 
@@ -156,7 +156,7 @@ storiesOf('TextInput', module).add('TextInput', () => (
       the state of the input or not.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <TextInput placeholder="Insert your username" label="Username" disabled />
     </div>
 
@@ -177,7 +177,7 @@ storiesOf('TextInput', module).add('TextInput', () => (
       error message.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <TextInput
         placeholder="Insert your username"
         label="Username"
@@ -201,7 +201,7 @@ storiesOf('TextInput', module).add('TextInput', () => (
       The <code>optional</code> prop will sufix the label with "(Optional)".
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <TextInput placeholder="Insert your username" label="Username" optional />
     </div>
 
@@ -223,7 +223,7 @@ storiesOf('TextInput', module).add('TextInput', () => (
       argument.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <TextInput
         placeholder="Insert your username"
         label="Username"
@@ -248,7 +248,7 @@ storiesOf('TextInput', module).add('TextInput', () => (
       the user clicks inside the textbox to start writing.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <TextInput
         placeholder="Insert your username"
         label="Username"
@@ -273,7 +273,7 @@ storiesOf('TextInput', module).add('TextInput', () => (
       user clicks outside the after previously clicking in.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <TextInput
         placeholder="Insert your username"
         label="Username"

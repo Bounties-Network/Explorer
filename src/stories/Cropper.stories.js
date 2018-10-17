@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { Cropper, Text } from 'components';
 
 storiesOf('Cropper', module).add('Cropper', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -40,7 +40,7 @@ storiesOf('Cropper', module).add('Cropper', () => (
       crop it.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Cropper />
     </div>
 
@@ -61,7 +61,7 @@ storiesOf('Cropper', module).add('Cropper', () => (
       the user's current picture.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Cropper src="https://i.imgur.com/lhTwRZY.png" />
     </div>
 
@@ -82,7 +82,7 @@ storiesOf('Cropper', module).add('Cropper', () => (
       can upload an image or change the actual one.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Cropper disabled={true} />
       <Cropper src="https://i.imgur.com/lhTwRZY.png" disabled={true} />
     </div>
@@ -104,7 +104,7 @@ storiesOf('Cropper', module).add('Cropper', () => (
       loading. This can be set to true while the image is being uploaded.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Cropper loading={true} />
     </div>
 
@@ -126,7 +126,7 @@ storiesOf('Cropper', module).add('Cropper', () => (
       <code>src</code> prop.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Cropper
         src="https://i.imgur.com/lhTwRZY.png"
         onDelete={action('clicked')}
@@ -152,7 +152,7 @@ storiesOf('Cropper', module).add('Cropper', () => (
       The format is png.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Cropper
         src="https://i.imgur.com/lhTwRZY.png"
         onChange={action('clicked')}

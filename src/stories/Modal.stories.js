@@ -19,7 +19,7 @@ class ModalDemo extends React.Component {
 
   render() {
     return (
-      <div class="sb-page-wrapper">
+      <div className="sb-page-wrapper">
         <Text
           className={'sb-component-group-heading'}
           typeScale="h1"
@@ -66,7 +66,7 @@ class ModalDemo extends React.Component {
           footer.
         </Text>
 
-        <div class="sb-component-group sb-button-group">
+        <div className="sb-component-group sb-button-group">
           <Button
             onClick={() => {
               this.openModal('original');
@@ -117,7 +117,7 @@ class ModalDemo extends React.Component {
           <code>false</code>.
         </Text>
 
-        <div class="sb-component-group sb-button-group">
+        <div className="sb-component-group sb-button-group">
           <Button
             onClick={() => {
               this.openModal('dismissable');
@@ -154,7 +154,7 @@ class ModalDemo extends React.Component {
           <code>Modal.Header</code> element.
         </Text>
 
-        <div class="sb-component-group sb-button-group">
+        <div className="sb-component-group sb-button-group">
           <Button
             onClick={() => {
               this.openModal('loading');
@@ -195,7 +195,7 @@ class ModalDemo extends React.Component {
           default value is <code>medium</code>.
         </Text>
 
-        <div class="sb-component-group sb-button-group">
+        <div className="sb-component-group sb-button-group">
           <Button
             onClick={() => {
               this.openModal('small');
@@ -298,7 +298,7 @@ class ModalDemo extends React.Component {
           <br />
         </Text>
 
-        <div class="sb-component-group sb-button-group">
+        <div className="sb-component-group sb-button-group">
           <Button
             onClick={() => {
               this.openModal('closable');
@@ -337,7 +337,7 @@ class ModalDemo extends React.Component {
           <br />
         </Text>
 
-        <div class="sb-component-group sb-button-group">
+        <div className="sb-component-group sb-button-group">
           <Button
             onClick={() => {
               this.openModal('icon');
@@ -379,7 +379,7 @@ class ModalDemo extends React.Component {
           <code>Modal.Body</code> in order to display a centered message.
         </Text>
 
-        <div class="sb-component-group sb-button-group">
+        <div className="sb-component-group sb-button-group">
           <Button
             onClick={() => {
               this.openModal('message');

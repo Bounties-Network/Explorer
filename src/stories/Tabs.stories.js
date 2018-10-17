@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Tabs, Text } from 'components';
 
 storiesOf('Tabs', module).add('Tabs', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -42,7 +42,7 @@ storiesOf('Tabs', module).add('Tabs', () => (
       <code>Tabs.Tab</code> subcomponents inside.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Tabs onSelect={() => {}} defaultActiveKey={1}>
         <Tabs.Tab tabColor="blue" eventKey={1}>
           Active
@@ -71,7 +71,7 @@ storiesOf('Tabs', module).add('Tabs', () => (
       user may switch to another tab.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Tabs onSelect={() => {}} defaultActiveKey={2}>
         <Tabs.Tab tabColor="blue" eventKey={1}>
           Active
@@ -92,7 +92,7 @@ storiesOf('Tabs', module).add('Tabs', () => (
       changed programatically.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Tabs onSelect={() => {}} activeKey={3}>
         <Tabs.Tab tabColor="blue" eventKey={1}>
           Active
@@ -114,7 +114,7 @@ storiesOf('Tabs', module).add('Tabs', () => (
       specific tab will be passed as an argument.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Tabs onSelect={action('selected')} defaultActiveKey={1}>
         <Tabs.Tab tabColor="blue" eventKey={1}>
           Active
@@ -153,7 +153,7 @@ storiesOf('Tabs', module).add('Tabs', () => (
       <code>lightGrey</code>. The default value is <code>lightGrey</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Tabs onSelect={action('selected')} defaultActiveKey={1}>
         <Tabs.Tab tabColor="blue" eventKey={1}>
           Blue
@@ -175,7 +175,7 @@ storiesOf('Tabs', module).add('Tabs', () => (
       appear.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Tabs onSelect={action('selected')} defaultActiveKey={1}>
         <Tabs.Tab tabColor="blue" eventKey={1} tabCount={1}>
           Blue
@@ -200,7 +200,7 @@ storiesOf('Tabs', module).add('Tabs', () => (
       <code>Body</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Tabs onSelect={action('selected')} defaultActiveKey={1}>
         <Tabs.Tab tabColor="blue" eventKey={1} tabCount={1} typeScale="h1">
           Blue

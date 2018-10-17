@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Social, Text } from 'components';
 
 storiesOf('Social', module).add('Social', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -42,7 +42,7 @@ storiesOf('Social', module).add('Social', () => (
       current page URL.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Social />
     </div>
   </div>

@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react';
 import { Loading, Text } from 'components';
 
 storiesOf('Loading', module).add('Loading', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -23,7 +23,7 @@ storiesOf('Loading', module).add('Loading', () => (
       Loading components will render a simple loading animation.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Loading />
     </div>
   </div>

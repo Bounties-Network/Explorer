@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { Text } from 'components';
 
 storiesOf('Text', module).add('All Texts', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -51,32 +51,32 @@ storiesOf('Text', module).add('All Texts', () => (
       component based on our typographic scale.
     </Text>
 
-    <div class="sb-component-group">
-      <div class="sb-component-container">
+    <div className="sb-component-group">
+      <div className="sb-component-container">
         <Text typeScale="h1">Heading 1</Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="h2">Heading 2</Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="h3">Heading 3</Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="h4">Heading 4</Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="h4">Heading 5</Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="Body">Body copy & Large labels</Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="Small">Metadata & small labels</Text>
       </div>
     </div>
@@ -98,26 +98,26 @@ storiesOf('Text', module).add('All Texts', () => (
       component based on our brands color variables.
     </Text>
 
-    <div class="sb-component-group">
-      <div class="sb-component-container">
+    <div className="sb-component-group">
+      <div className="sb-component-container">
         <Text typeScale="h3" color="black">
           black
         </Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="Body" color="darkGrey">
           darkGrey
         </Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="Body" color="blue">
           blue
         </Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="Body" color="red">
           red
         </Text>
@@ -142,20 +142,20 @@ storiesOf('Text', module).add('All Texts', () => (
       and bold.
     </Text>
 
-    <div class="sb-component-group">
-      <div class="sb-component-container">
+    <div className="sb-component-group">
+      <div className="sb-component-container">
         <Text typeScale="Body" weight="fontWeight-regular">
           Regular
         </Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="Body" weight="fontWeight-medium">
           Medium
         </Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="Body" weight="fontWeight-bold">
           Bold
         </Text>
@@ -179,20 +179,20 @@ storiesOf('Text', module).add('All Texts', () => (
       text-alignment for the given text component.
     </Text>
 
-    <div class="sb-component-group">
-      <div class="sb-component-container">
+    <div className="sb-component-group">
+      <div className="sb-component-container">
         <Text typeScale="Body" alignment="align-left">
           Left align
         </Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="Body" alignment="align-center">
           Center align
         </Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="Body" alignment="align-right">
           Right align
         </Text>
@@ -218,20 +218,20 @@ storiesOf('Text', module).add('All Texts', () => (
       individual text components.
     </Text>
 
-    <div class="sb-component-group">
-      <div class="sb-component-container">
+    <div className="sb-component-group">
+      <div className="sb-component-container">
         <Text typeScale="Body" style="underline">
           Underline
         </Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="Body" style="italic">
           Italic
         </Text>
       </div>
 
-      <div class="sb-component-container">
+      <div className="sb-component-container">
         <Text typeScale="Body" style="uppercase">
           Uppercase
         </Text>

@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { MarkdownEditor, Text } from 'components';
 
 storiesOf('MarkdownEditor', module).add('MarkdownEditor', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -41,7 +41,10 @@ storiesOf('MarkdownEditor', module).add('MarkdownEditor', () => (
       A regular MarkdownEditor will render the input with the preview button.
     </Text>
 
-    <div class="sb-component-group sb-button-group" style={{ height: '320px' }}>
+    <div
+      className="sb-component-group sb-button-group"
+      style={{ height: '320px' }}
+    >
       <MarkdownEditor />
     </div>
 
@@ -62,7 +65,7 @@ storiesOf('MarkdownEditor', module).add('MarkdownEditor', () => (
       editor. The user may change this value later.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <MarkdownEditor defaultValue="I am the default value" />
     </div>
 
@@ -83,7 +86,7 @@ storiesOf('MarkdownEditor', module).add('MarkdownEditor', () => (
       value can only be changed programatically.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <MarkdownEditor value="I am the value" />
     </div>
 
@@ -104,7 +107,7 @@ storiesOf('MarkdownEditor', module).add('MarkdownEditor', () => (
       this prop is not passed, no label will be displayed.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <MarkdownEditor
         defaultValue="I am the default value"
         label="I am the label"
@@ -128,7 +131,7 @@ storiesOf('MarkdownEditor', module).add('MarkdownEditor', () => (
       the text of the editor or not.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <MarkdownEditor
         defaultValue="I am the default value"
         label="I am the label"
@@ -153,7 +156,7 @@ storiesOf('MarkdownEditor', module).add('MarkdownEditor', () => (
       its lines red.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <MarkdownEditor
         defaultValue="I am the default value"
         label="I am the label"
@@ -178,7 +181,7 @@ storiesOf('MarkdownEditor', module).add('MarkdownEditor', () => (
       user clicks/taps inside the editor.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <MarkdownEditor
         defaultValue="I am the default value"
         label="I am the label"
@@ -203,7 +206,7 @@ storiesOf('MarkdownEditor', module).add('MarkdownEditor', () => (
       user clicks/taps outside of the editor, after previously clicking inside.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <MarkdownEditor
         defaultValue="I am the default value"
         label="I am the label"
@@ -229,7 +232,7 @@ storiesOf('MarkdownEditor', module).add('MarkdownEditor', () => (
       be passed as an argument.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <MarkdownEditor
         defaultValue="I am the default value"
         label="I am the label"

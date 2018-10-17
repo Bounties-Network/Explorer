@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Toggle, Text } from 'components';
 
 storiesOf('Toggle', module).add('Toggle', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -41,7 +41,7 @@ storiesOf('Toggle', module).add('Toggle', () => (
       The <code>label</code> prop will describe the toggle.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Toggle label="Off / On" />
     </div>
 
@@ -62,7 +62,7 @@ storiesOf('Toggle', module).add('Toggle', () => (
       only be changed programatically.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Toggle label="Off / On" defaultValue={false} />
     </div>
 
@@ -83,7 +83,7 @@ storiesOf('Toggle', module).add('Toggle', () => (
       state of the Toggle component.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Toggle label="Off / On" disabled />
     </div>
 
@@ -105,7 +105,7 @@ storiesOf('Toggle', module).add('Toggle', () => (
       argument.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Toggle label="Off / On" onChange={action('changed')} />
     </div>
   </div>

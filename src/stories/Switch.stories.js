@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Switch, Text } from 'components';
 
 storiesOf('Switch', module).add('Switch', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -42,7 +42,7 @@ storiesOf('Switch', module).add('Switch', () => (
       <code>onValue</code> for the right and left state respectively.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Switch onValue={'Fulfiller'} offValue={'Issuer'} />
     </div>
 
@@ -62,7 +62,7 @@ storiesOf('Switch', module).add('Switch', () => (
       The <code>value</code> prop will determine the value of the switch.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Switch onValue={'Fulfiller'} offValue={'Issuer'} value="Issuer" />
       <br />
       <Switch onValue={'Fulfiller'} offValue={'Issuer'} value="Fulfiller" />
@@ -85,7 +85,7 @@ storiesOf('Switch', module).add('Switch', () => (
       round shape or not. The default value is <code>false</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Switch onValue={'Fulfiller'} offValue={'Issuer'} curved />
     </div>
 
@@ -106,7 +106,7 @@ storiesOf('Switch', module).add('Switch', () => (
       be <code>small</code> or <code>large</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Switch onValue={'Fulfiller'} offValue={'Issuer'} curved size="small" />
       <br />
       <Switch onValue={'Fulfiller'} offValue={'Issuer'} curved size="large" />
@@ -134,7 +134,7 @@ storiesOf('Switch', module).add('Switch', () => (
       <code>lightGrey</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Switch
         onValue={'Fulfiller'}
         offValue={'Issuer'}
@@ -241,7 +241,7 @@ storiesOf('Switch', module).add('Switch', () => (
       <code>white</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Switch
         onValue={'Fulfiller'}
         offValue={'Issuer'}
@@ -335,7 +335,7 @@ storiesOf('Switch', module).add('Switch', () => (
       <code>grey</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Switch
         onValue={'Fulfiller'}
         offValue={'Issuer'}
@@ -451,7 +451,7 @@ storiesOf('Switch', module).add('Switch', () => (
       argument.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Switch
         onValue={'Fulfiller'}
         offValue={'Issuer'}

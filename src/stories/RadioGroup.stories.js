@@ -11,7 +11,7 @@ const data = [
 ];
 
 storiesOf('RadioGroup', module).add('RadioGroup', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -48,7 +48,7 @@ storiesOf('RadioGroup', module).add('RadioGroup', () => (
       <code>label</code> and <code>data</code>.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <RadioGroup options={data} />
     </div>
 
@@ -69,7 +69,7 @@ storiesOf('RadioGroup', module).add('RadioGroup', () => (
       radio buttons.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <RadioGroup options={data} label="Currency type" />
     </div>
 
@@ -90,7 +90,7 @@ storiesOf('RadioGroup', module).add('RadioGroup', () => (
       been checked. You must pass its value.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <RadioGroup options={data} label="Currency type" value="eth" />
     </div>
 
@@ -111,7 +111,7 @@ storiesOf('RadioGroup', module).add('RadioGroup', () => (
       the state of the radio group or not.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <RadioGroup options={data} label="Currency type" value="eth" disabled />
     </div>
 
@@ -133,7 +133,7 @@ storiesOf('RadioGroup', module).add('RadioGroup', () => (
       argument.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <RadioGroup
         options={data}
         label="Currency type"

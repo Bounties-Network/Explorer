@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Rating, Text } from 'components';
 
 storiesOf('Rating', module).add('Rating', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -41,7 +41,7 @@ storiesOf('Rating', module).add('Rating', () => (
       Rating component. The user may change this value later.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Rating defaultValue={4} />
     </div>
 
@@ -62,7 +62,7 @@ storiesOf('Rating', module).add('Rating', () => (
       component. This can only be changed programatically.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Rating value={4} />
     </div>
 
@@ -82,7 +82,7 @@ storiesOf('Rating', module).add('Rating', () => (
       The <code>label</code> prop will the label of the rating.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Rating label="Rate me" />
     </div>
 
@@ -102,7 +102,7 @@ storiesOf('Rating', module).add('Rating', () => (
       The <code>error</code> prop will show the error below the rating.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Rating label="Rate me" error="Something went wrong" />
     </div>
 
@@ -124,7 +124,7 @@ storiesOf('Rating', module).add('Rating', () => (
       as an argument.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Rating label="Rate me" onChange={action('changed')} />
     </div>
   </div>
