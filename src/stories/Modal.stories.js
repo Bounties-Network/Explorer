@@ -294,7 +294,7 @@ class ModalDemo extends React.Component {
           <br />
           <br />
           The <code>closable</code> prop will determine if a close icon will
-          appear on the header.<br />
+          appear in the header.<br />
           <br />
         </Text>
 
