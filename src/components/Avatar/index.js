@@ -19,6 +19,7 @@ const Avatar = props => {
     hash,
     className,
     src,
+    ensDomain,
     onClick
   } = props;
 
@@ -35,6 +36,26 @@ const Avatar = props => {
           color={nameTextColor}
         >
           {name}
+        </Text>
+      </div>
+    );
+  };
+
+  const renderENSDomain = () => {
+    if (!ensDomain) {
+      return null;
+    }
+
+    return (
+      <div className={styles.addressText}>
+        <Text
+          typeScale={addressTextScale}
+          color={addressTextColor}
+          src={src ? src : '/profile/' + address}
+          onClick={onClick}
+          link
+        >
+          {ensDomain}
         </Text>
       </div>
     );
@@ -75,7 +96,7 @@ const Avatar = props => {
       {name || address ? (
         <div className={styles.textWrapper}>
           {renderName()}
-          {renderAddress()}
+          {ensDomain ? renderENSDomain() : renderAddress()}
         </div>
       ) : null}
     </div>
