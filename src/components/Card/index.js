@@ -14,15 +14,7 @@ const HeaderTitle = props => (
   </Text>
 );
 
-const HeaderTabs = props => <Tabs {...props}>{props.children}</Tabs>;
-
-HeaderTabs.propTypes = {
-  top: PropTypes.bool
-};
-
-HeaderTabs.defaultProps = {
-  top: false
-};
+const HeaderTabs = props => <Tabs>{props.children}</Tabs>;
 
 class Header extends React.Component {
   render() {
