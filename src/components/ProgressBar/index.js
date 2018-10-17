@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ProgressBar.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Text } from 'components';
 
 const ProgressBar = props => {
@@ -47,6 +46,7 @@ ProgressBar.propTypes = {
 };
 
 ProgressBar.defaultProps = {
+  displayPercent: true,
   percent: 0,
   color: 'purple'
 };

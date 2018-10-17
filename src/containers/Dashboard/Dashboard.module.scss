@@ -101,13 +101,12 @@ $slider-height: calc(100vh - #{$header-height-sm});
 }
 
 .profileStrength {
-  min-height: $base-spacing * 2.5;
   display: flex;
   align-items: center;
   white-space: nowrap;
 }
 
 .profileStrengthProgress {
-  max-width: 300px;
+  max-width: $base-spacing * 36;
   margin: 0 $l-spacing 0 $m-spacing;
 }
