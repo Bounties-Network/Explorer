@@ -1,4 +1,5 @@
 import config from 'public-modules/config';
+import { flatten, map } from 'lodash';
 
 export let web3 = {};
 
@@ -9,3 +10,6 @@ export const apiEndpoint = {
   set: endpoint => (API_ENDPOINT = endpoint),
   get: () => API_ENDPOINT
 };
+
+export const expandPlatforms = platforms =>
+  flatten(map(platform => config.platforms[platform], platforms)).join(',');
