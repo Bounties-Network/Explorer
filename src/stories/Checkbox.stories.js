@@ -116,5 +116,27 @@ storiesOf('Checkbox', module).add('Checkbox', () => (
     <div className="sb-component-group sb-button-group">
       <Checkbox label="This is a disabled checkbox" disabled={true} />
     </div>
+
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      onChange
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>onChange</code> prop is a function that will be fired whenever
+      the user checks or unchecks the checkbox. The new state of the checkbox
+      will be passed as an argument.
+    </Text>
+
+    <div className="sb-component-group sb-button-group">
+      <Checkbox label="Check me" onChange={action('changed')} />
+    </div>
   </div>
 ));
