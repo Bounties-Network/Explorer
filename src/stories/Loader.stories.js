@@ -36,8 +36,9 @@ storiesOf('Loader', module).add('Loader', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The <code>size</code> prop will be determine the size of the loader. It
-      can be <code>small</code> or <code>medium</code>.
+      The <code>size</code> prop will determine the size of the loader. It can
+      be <code>small</code> or <code>medium</code>. The default value is{' '}
+      <code>small</code>.
     </Text>
 
     <div className="sb-component-group sb-button-group">
@@ -59,8 +60,9 @@ storiesOf('Loader', module).add('Loader', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The <code>color</code> prop will be determine the color of the loader. It
-      can be <code>blue</code> or <code>white</code>.
+      The <code>color</code> prop will determine the color of the loader. It can
+      be <code>blue</code> or <code>white</code>. The default value is{' '}
+      <code>blue</code>.
     </Text>
 
     <div
