@@ -62,7 +62,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The <code>size</code> prop will determine the size of the image. It can be{' '}
+      The <code>size</code> prop will determine the size of the image. It can be
       <code>small</code>, <code>medium</code> or <code>large</code>. The default
       is <code>small</code>.
     </Text>
@@ -81,7 +81,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
       lineHeight="lineHeight-default"
     >
       The <code>border</code> prop is a boolean that will determine whether the
-      image will have a border or not. The default is <code>false</code>.
+      image will have a border or not. The default value is <code>false</code>.
     </Text>
 
     <div
@@ -132,8 +132,8 @@ storiesOf('Avatar', module).add('Avatar', () => (
       lineHeight="lineHeight-default"
     >
       The <code>nameTextScale</code> prop will determine the size of the name.
-      It can go from <code>h1</code> to <code>h6</code> or be <code>Body</code>{' '}
-      or <code>Small</code>. The default is <code>h3</code>.
+      It can go from <code>h1</code> to <code>h5</code> or be <code>Body</code>
+      or <code>Small</code>. The default value is <code>h3</code>.
     </Text>
 
     <div class="sb-component-group sb-button-group">
@@ -165,9 +165,9 @@ storiesOf('Avatar', module).add('Avatar', () => (
       lineHeight="lineHeight-default"
     >
       The <code>nameTextColor</code> prop will determine the color of the name.
-      It can be <code>purple</code>, <code>blue</code>, <code>orange</code>,{' '}
-      <code>green</code>, <code>red</code>, <code>black</code>,{' '}
-      <code>white</code>, <code>defaultGrey</code>, <code>lightGrey</code> or{' '}
+      It can be <code>purple</code>, <code>blue</code>, <code>orange</code>,
+      <code>green</code>, <code>red</code>, <code>black</code>,
+      <code>white</code>, <code>defaultGrey</code>, <code>lightGrey</code> or
       <code>darkGrey</code>.
     </Text>
 
@@ -203,9 +203,9 @@ storiesOf('Avatar', module).add('Avatar', () => (
       lineHeight="lineHeight-default"
     >
       The <code>nameTextWeight</code> prop will determine the weight of the text
-      in the name. It can be <code>fontWeight-regular</code>,{' '}
+      in the name. It can be <code>fontWeight-regular</code>,
       <code>fontWeight-medium</code> or <code>fontWeight-bold</code>. The
-      default is <code>fontWeight-bold</code>.
+      default value is <code>fontWeight-bold</code>.
     </Text>
 
     <div class="sb-component-group sb-button-group">
@@ -262,8 +262,9 @@ storiesOf('Avatar', module).add('Avatar', () => (
       lineHeight="lineHeight-default"
     >
       The <code>addressTextScale</code> prop will determine the size of the
-      address. It can go from <code>h1</code> to <code>h6</code> or be{' '}
-      <code>Body</code> or <code>Small</code>. The default is <code>Body</code>.
+      address. It can go from <code>h1</code> to <code>h5</code> or be
+      <code>Body</code> or <code>Small</code>. The default is value{' '}
+      <code>Body</code>.
     </Text>
 
     <div class="sb-component-group sb-button-group">
@@ -301,9 +302,9 @@ storiesOf('Avatar', module).add('Avatar', () => (
       lineHeight="lineHeight-default"
     >
       The <code>addressTextColor</code> prop will determine the color of the
-      address. It can be <code>purple</code>, <code>blue</code>,{' '}
-      <code>orange</code>, <code>green</code>, <code>red</code>,{' '}
-      <code>black</code>, <code>white</code>, <code>defaultGrey</code>,{' '}
+      address. It can be <code>purple</code>, <code>blue</code>,
+      <code>orange</code>, <code>green</code>, <code>red</code>,
+      <code>black</code>, <code>white</code>, <code>defaultGrey</code>,
       <code>lightGrey</code> or <code>darkGrey</code>.
     </Text>
 
@@ -374,9 +375,7 @@ storiesOf('Avatar', module).add('Avatar', () => (
         img="https://i.imgur.com/lhTwRZY.png"
         name="Simona Pop"
         address="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
-        onClick={() => {
-          alert('You clicked me!');
-        }}
+        onClick={action('clicked')}
       />
     </div>
 
