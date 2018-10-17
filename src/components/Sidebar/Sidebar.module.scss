@@ -6,7 +6,7 @@
   padding-top: $header-height-sm;
   display: flex;
   flex-direction: column;
-  z-index: 5;
+  z-index: 16;
 
   @media only screen and (min-width: 48em) {
     background-color: $sidebar-color;
