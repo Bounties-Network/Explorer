@@ -24,22 +24,23 @@ const PageBanner = props => {
   };
 
   return (
-    <div className={`${className} ${styles.pageBanner}`} ref={elemRef}>
+    <div
+      className={`${className} ${styles.pageBanner} ${
+        styles[dismissable ? 'pageBanner-dismissable' : '']
+      }`}
+      ref={elemRef}
+    >
       <div className={`${wrapClass}`}>
         <div className={`${styles.pageBannerWrapper}`}>
-          {dismissable ? (
-            <React.Fragment>
-              <div className={`${styles.pageBannerContent}`}>{children}</div>
-              <div className={`${styles.pageBannerClose}`}>
-                <FontAwesomeIcon
-                  icon={['fal', 'times']}
-                  className={styles.closeIcon}
-                  onClick={onClose}
-                />
-              </div>
-            </React.Fragment>
-          ) : (
-            children
+          <div className={`${styles.pageBannerContent}`}>{children}</div>
+          {dismissable && (
+            <div className={`${styles.pageBannerClose}`}>
+              <FontAwesomeIcon
+                icon={['fal', 'times']}
+                className={styles.closeIcon}
+                onClick={onClose}
+              />
+            </div>
           )}
         </div>
       </div>
