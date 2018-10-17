@@ -43,7 +43,7 @@ ProgressBar.propTypes = {
     'defaultGrey',
     'lightGrey',
     'darkGrey'
-  ]).isRequired
+  ])
 };
 
 ProgressBar.defaultProps = {
