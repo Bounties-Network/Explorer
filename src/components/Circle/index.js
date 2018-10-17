@@ -55,6 +55,8 @@ const Circle = props => {
       return null;
     }
 
+    const { input } = props;
+
     let blockySize = 15;
     let blockyScale = 5;
 

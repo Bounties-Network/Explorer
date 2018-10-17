@@ -57,7 +57,11 @@ storiesOf('Circle', module).add('All Circles', () => (
         input="https://i.imgur.com/lhTwRZY.png"
       />
       <br />
-      <Circle type="blocky" size="medium" />
+      <Circle
+        type="blocky"
+        size="medium"
+        input="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
+      />
       <br />
       <Circle type="loading" color="orange" size="medium" />
     </div>
@@ -120,9 +124,9 @@ storiesOf('Circle', module).add('All Circles', () => (
       lineHeight="lineHeight-default"
     >
       The <code>input</code> prop will determine the content inside the circle.
-      For <code>text</code> circles, this will be the text. For{' '}
-      <code>images</code>, this will be the image source or link. For{' '}
-      <code>blocky</code> and <code>loading</code>, this is not required.
+      For <code>text</code> circles, this will be the text. For <code>img</code>,
+      this will be the image source or link. For <code>blocky</code>, this will
+      be the address. For <code>loading</code>, this is not required.
     </Text>
 
     <div className="sb-component-group sb-button-group">
@@ -135,6 +139,12 @@ storiesOf('Circle', module).add('All Circles', () => (
       />
       <br />
       <Circle type="img" size="large" input="https://i.imgur.com/lhTwRZY.png" />
+      <br />
+      <Circle
+        type="blocky"
+        size="large"
+        input="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
+      />
     </div>
 
     <Text
@@ -174,7 +184,12 @@ storiesOf('Circle', module).add('All Circles', () => (
         border={true}
       />
       <br />
-      <Circle type="blocky" size="medium" border={true} />
+      <Circle
+        type="blocky"
+        size="medium"
+        input="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
+        border={true}
+      />
       <br />
       <Circle type="loading" color="orange" size="medium" border={true} />
     </div>

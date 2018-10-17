@@ -12,7 +12,7 @@ const CardNotification = props => {
     <div className={`${styles.cardNotificationContainer}`}>
       <div className={`${styles.leftColumn}`}>
         <div className={`${styles.profilePic}`}>
-          <Circle type="blocky" size="small" />
+          <Circle type="blocky" size="small" input={address} />
         </div>
         <div className={`${styles.textArea}`}>
           <div className={`${styles.textCell}`}>
