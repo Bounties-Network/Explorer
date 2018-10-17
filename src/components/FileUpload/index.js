@@ -37,7 +37,14 @@ class FileUpload extends React.Component {
       filename: null,
       filesize: null
     });
-    this.props.onChange(null);
+
+    if (this.props.onChange) {
+      this.props.onChange(null);
+    }
+
+    if (this.props.onRemove) {
+      this.props.onRemove();
+    }
   };
 
   render() {
