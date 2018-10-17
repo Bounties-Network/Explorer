@@ -79,7 +79,7 @@ storiesOf('Cropper', module).add('Cropper', () => (
       lineHeight="lineHeight-default"
     >
       The <code>disabled</code> prop is a boolean that determines if the user
-      can upload an image or change the actual one.
+      can upload an image or change the current one.
     </Text>
 
     <div className="sb-component-group sb-button-group">
@@ -100,8 +100,8 @@ storiesOf('Cropper', module).add('Cropper', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The <code>loading</code> prop is a boolean that determines if the image is
-      loading. This can be set to true while the image is being uploaded.
+      The <code>loading</code> prop will determine if the cropper is loading.
+      The default value is <code>false</code>.
     </Text>
 
     <div className="sb-component-group sb-button-group">
@@ -122,8 +122,8 @@ storiesOf('Cropper', module).add('Cropper', () => (
       lineHeight="lineHeight-default"
     >
       The <code>onDelete</code> prop is a function that will be fired when the
-      user clicks on delete. To delete the image, you can modify the{' '}
-      <code>src</code> prop.
+      user clicks on delete. To delete the image, the <code>src</code> prop must
+      be removed.
     </Text>
 
     <div className="sb-component-group sb-button-group">
