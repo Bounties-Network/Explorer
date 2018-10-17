@@ -5,7 +5,7 @@ import {
   PAGE_SIZE
 } from 'public-modules/Bounties/constants';
 import config from 'public-modules/config';
-import { expandPlatforms } from 'utils/helpers';
+import { expandPlatforms } from 'utils/global';
 import { reduce as reduceFunction, every, negate } from 'lodash';
 const reduce = reduceFunction.convert({ cap: false });
 
