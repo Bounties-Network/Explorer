@@ -3,7 +3,7 @@ import styles from './ProfileAvatar.module.scss';
 import { Avatar, FullAddressBar, Text } from 'components';
 
 const ProfileAvatar = props => {
-  const { address, img, name, className } = props;
+  const { address, img, name, className, ensDomain } = props;
 
   return (
     <div className={`${styles.centerAvatar} ${className}`}>
@@ -13,6 +13,7 @@ const ProfileAvatar = props => {
         border
         hash={address}
         img={img}
+        ensDomain={ensDomain}
       />
       <Text
         className={styles.profileName}

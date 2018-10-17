@@ -94,6 +94,7 @@ class ProfileDetailsComponent extends React.Component {
         <ProfileAvatar
           name={user.name}
           address={user.public_address}
+          ensDomain={user.ens_domain}
           img={user.large_profile_image_url}
           className={styles.profileAvatar}
         />

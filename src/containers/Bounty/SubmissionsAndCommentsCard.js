@@ -150,7 +150,12 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
     const renderComments = () => {
       return map(comment => {
         const { id, text, user, created } = comment;
-        const { name, public_address, small_profile_image_url } = user;
+        const {
+          name,
+          public_address,
+          small_profile_image_url,
+          ens_domain
+        } = user;
 
         return (
           <ListGroup.ListItem key={id} className={styles.listItem} fullBorder>
@@ -160,6 +165,7 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
               img={small_profile_image_url}
               text={text}
               created={created}
+              ensDomain={ens_domain}
             />
           </ListGroup.ListItem>
         );

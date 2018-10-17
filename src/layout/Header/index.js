@@ -75,6 +75,7 @@ const HeaderComponent = props => {
                   size="small"
                   img={user.small_profile_image_url}
                   hash={user.public_address}
+                  ensDomain={user.ens_domain}
                 />
               </DropdownTrigger>
               <DropdownContent className={styles.profileDropdown}>

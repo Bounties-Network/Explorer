@@ -229,6 +229,7 @@ class BountyComponent extends React.Component {
                     img={bounty.user.small_profile_image_url}
                     address={bounty.user.public_address}
                     hash={bounty.user.public_address}
+                    ensDomain={bounty.user.ens_domain}
                     to={`/profile/${bounty.user.public_address}`}
                     addressTextColor="white"
                     size="small"

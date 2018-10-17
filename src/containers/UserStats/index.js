@@ -26,7 +26,7 @@ class UserStatsComponent extends React.Component {
 
   render() {
     const { loading, user, stats } = this.props;
-    const { name, public_address, large_profile_image_url } = user;
+    const { name, public_address, large_profile_image_url, ens_domain } = user;
     const { awarded, earned } = stats;
 
     const renderStat = (value, label) => {
@@ -60,6 +60,7 @@ class UserStatsComponent extends React.Component {
             img={large_profile_image_url}
             to={`/profile/${public_address}`}
             className={styles.alignLeft}
+            ensDomain={ens_domain}
           />
         </div>
 

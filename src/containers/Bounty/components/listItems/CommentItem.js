@@ -5,7 +5,7 @@ import { LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
 
 const CommentItem = props => {
-  const { name, address, img, text, created } = props;
+  const { name, address, img, text, created, ensDomain } = props;
 
   const formattedTime = moment.utc(created, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
 
@@ -17,6 +17,7 @@ const CommentItem = props => {
             className={styles.labelGroup}
             name={name}
             address={address}
+            ensDomain={ensDomain}
             img={img}
             hash={address}
             nameTextScale={'h4'}

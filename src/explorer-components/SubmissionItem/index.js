@@ -17,6 +17,7 @@ const SubmissionItem = props => {
     title,
     fulfiller,
     fulfiller_img,
+    fulfiller_ensDomain,
     submissionDate,
     status,
     usd,
@@ -41,6 +42,7 @@ const SubmissionItem = props => {
         <LinkedAvatar
           img={fulfiller_img}
           address={fulfiller}
+          ensDomain={fulfiller_ensDomain}
           hash={fulfiller}
           to={`profile/${fulfiller}`}
           size="small"

@@ -42,7 +42,7 @@ const IssueRatingFormModalComponent = props => {
     visible
   } = props;
 
-  const { name, address, img } = reviewee;
+  const { name, address, img, ensDomain } = reviewee;
 
   const fieldValidators = [validators.required];
 
@@ -59,6 +59,7 @@ const IssueRatingFormModalComponent = props => {
       address={address}
       hash={address}
       img={img}
+      ensDomain={ensDomain}
       to={`/profile/${address}`}
     />
   );

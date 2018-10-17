@@ -14,7 +14,8 @@ const NotificationItem = props => {
     type,
     userAddress,
     profileImage,
-    notifierWidth
+    notifierWidth,
+    ensDomain
   } = props;
   const { message, icon } = notification_template[type];
   const formattedTime = moment.utc(createdAt, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
@@ -25,7 +26,11 @@ const NotificationItem = props => {
     <div className={styles.container}>
       <div className={notifierClass}>
         {userAddress ? (
-          <LinkedAvatar img={profileImage} hash={userAddress} />
+          <LinkedAvatar
+            img={profileImage}
+            hash={userAddress}
+            ensDomain={ensDomain}
+          />
         ) : (
           <FontAwesomeIcon icon={icon} className={styles.iconStyles} />
         )}

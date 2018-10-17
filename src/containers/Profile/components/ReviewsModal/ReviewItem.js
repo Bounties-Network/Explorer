@@ -5,7 +5,7 @@ import { Avatar, Text } from 'components';
 import moment from 'moment';
 
 const ReviewItem = props => {
-  const { rating, review, name, address, img, created } = props;
+  const { rating, review, name, address, img, created, ensDomain } = props;
   const color = rating >= 4 ? 'green' : rating >= 3 ? 'orange' : 'red';
   const formattedTime = moment.utc(created, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
 
@@ -21,6 +21,7 @@ const ReviewItem = props => {
         <Avatar
           name={name}
           address={address}
+          ensDomain={ensDomain}
           hash={address}
           img={img}
           nameTextScale={'h4'}
