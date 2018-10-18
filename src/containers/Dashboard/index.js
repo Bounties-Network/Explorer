@@ -44,6 +44,10 @@ class DashboardComponent extends React.Component {
       setActiveSubmissionsTab
     } = props;
 
+    this.state = {
+      profileStrengthBannerOpen: true
+    };
+
     // load bounties panel
     resetState();
     addIssuerFilter(public_address);
@@ -69,7 +73,11 @@ class DashboardComponent extends React.Component {
     };
 
     const profileStrengthBanner = profileStrength < 100 && (
-      <PageBanner wrapClass="pageWrapper-large">
+      <PageBanner
+        wrapClass="pageWrapper-large"
+        visible={this.state.profileStrengthBannerOpen}
+        onClose={() => this.setState({ profileStrengthBannerOpen: false })}
+      >
         <div className={`${styles.profileStrength}`}>
           <Text typeScale="Small" color="defaultGrey" inline>
             Profile strength

@@ -26,12 +26,11 @@ storiesOf('PageBanner', module).add('PageBanner', () => (
         dismissable section. The banner can be configured to not be dismissable.
         A wrapping class can be provided in order to match the content's width
         to the wrapper of the page's content. The banner will always fill the
-        available width. Once a banner is dismissed it cannot be brought back.
-        The containing page can determine whether the banner shows at all by
-        conditionally rendering the component, but otherwise the open "state" of
-        the banner is managed by the component itself. The parent page can
-        perform actions when the banner is closed by using the
-        <code>onClose</code> prop.
+        available width. The parent page can perform actions when the banner is
+        closed by using the <code>onClose</code> prop. The banner close button
+        by itself does not dismiss, but requires the <code>visible</code> prop
+        to be set to false. Once a banner is dismissed it cannot be brought
+        back.
       </Text>
 
       <Text
@@ -123,7 +122,9 @@ storiesOf('PageBanner', module).add('PageBanner', () => (
         lineHeight="lineHeight-default"
       >
         The <code>onClose</code> prop takes a function that will be called when
-        the user dismisses the banner.
+        the user dismisses the banner. A parent component can use this callback
+        in order to set the <code>visible</code> prop to <code>false</code>
+        in order to dismiss the banner visually.
       </Text>
     </div>
 
