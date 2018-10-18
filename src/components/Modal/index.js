@@ -192,7 +192,7 @@ class Modal extends React.Component {
   };
 
   componentWillUnmount() {
-    const { fixed } = this.props;
+    const { fixed, visible } = this.props;
 
     const currentModals = document.getElementsByClassName('modal-visible');
     if (!fixed) {
@@ -202,7 +202,7 @@ class Modal extends React.Component {
       }
       document.body.classList.remove('modal-open');
     }
-    if (currentModals && currentModals.length) {
+    if (currentModals && currentModals.length > 1 && visible) {
       return null;
     }
     document.body.className = '';
