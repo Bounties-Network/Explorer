@@ -27,16 +27,11 @@ const PageBanner = props => {
     });
   };
 
-  // const onExiting = node => {
-  //   node.style.height = '0px';
-  // }
-
   return (
     <Transition
       in={visible}
       enter={false}
       onExit={onExit}
-      // onExiting={onExiting}
       unmountOnExit={true}
       timeout={200}
     >

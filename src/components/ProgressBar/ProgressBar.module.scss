@@ -29,18 +29,12 @@ $progress-bar-height: $base-spacing * 0.75;
   width: 100%;
   background-color: currentColor;
   border-radius: $progress-bar-height / 2;
-  -webkit-animation: progress-bar-in 0.4s ease-out;
   animation: progress-bar-in 0.4s ease-out;
 }
 
 .percentage {
   margin-left: $base-spacing;
   color: currentColor;
-}
-
-@-webkit-keyframes progress-bar-in {
-  0%   { width: 0%; }
-  100% { width: 100%; }
 }
 
 @keyframes progress-bar-in {
