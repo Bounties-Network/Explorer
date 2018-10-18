@@ -15,10 +15,6 @@
       "libraryDirectory": "",
       "camel2DashComponentName": false,
     }, {
-      "libraryName": "components",
-      "libraryDirectory": "",
-      "camel2DashComponentName": false,
-    }, {
       "libraryName": "explorer-components",
       "libraryDirectory": "",
       "camel2DashComponentName": false,
