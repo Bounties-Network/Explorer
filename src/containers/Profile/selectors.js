@@ -18,7 +18,6 @@ export const profileStrengthSelector = createSelector(
     return Math.round(
       (reduce(
         (sectionsFilled, sectionFields) => {
-          console.log(profileSections, sectionFields, sectionsFilled);
           return (
             sectionsFilled +
             (reduce(
