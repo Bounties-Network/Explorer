@@ -63,7 +63,7 @@ class HeaderComponent extends React.Component {
     } = this.props;
 
     if (prevProps.location.pathname !== pathname) {
-      document.getElementsByClassName('page-body')[0].scrollTo(0, 0);
+      scrollToTop();
       this.setState({ showMobileSidebar: false });
     }
   }
