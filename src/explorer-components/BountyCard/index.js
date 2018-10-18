@@ -8,6 +8,7 @@ import { EXPIRED } from 'public-modules/Bounty/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Card, Text, Pill } from 'components';
 import { Currency, LinkedAvatar } from 'explorer-components';
+import { scrollToTop } from 'utils/helpers';
 
 const BountyCard = props => {
   const {
@@ -73,9 +74,7 @@ const BountyCard = props => {
                 address={address}
                 hash={address}
                 to={`/profile/${address}`}
-                onClick={() =>
-                  document.getElementsByClassName('page-body')[0].scrollTo(0, 0)
-                }
+                onClick={() => scrollToTop()}
                 size="small"
               />
             </div>

@@ -85,7 +85,12 @@ export function getMobileOperatingSystem() {
 }
 
 export function scrollToTop() {
-  document.getElementsByClassName('page-body')[0].scrollTo(0, 0);
+  const pageBody = document.getElementsByClassName('page-body')[0];
+  if (pageBody.scrollTo) {
+    pageBody.scrollTo(0, 0);
+  } else {
+    pageBody.scrollTop = 0;
+  }
 }
 
 export function isNumber(n) {
