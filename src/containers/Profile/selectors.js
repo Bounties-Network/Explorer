@@ -1,11 +1,10 @@
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { createSelector } from 'reselect';
-import { isEmpty } from 'lodash';
+import { isEmpty, reduce } from 'lodash';
 
 export const profileUISelector = state => state.profileUI;
 
 const profileSections = [
-  // would there be a difference here between small and large for determining whether they've uploaded a profile pic?
   ['small_profile_image_url'],
   ['name', 'organization', 'languages'],
   ['skills'],
@@ -17,18 +16,24 @@ export const profileStrengthSelector = createSelector(
   getCurrentUserSelector,
   currentUser => {
     return Math.round(
-      (profileSections.reduce((sectionsFilled, sectionFields) => {
-        return (
-          sectionsFilled +
-          (sectionFields.reduce(
-            (fieldsFilled, field) =>
-              !isEmpty(currentUser[field]) || fieldsFilled,
-            false
-          )
-            ? 1
-            : 0)
-        );
-      }, 0) /
+      (reduce(
+        (sectionsFilled, sectionFields) => {
+          console.log(profileSections, sectionFields, sectionsFilled);
+          return (
+            sectionsFilled +
+            (reduce(
+              (fieldsFilled, field) =>
+                !isEmpty(currentUser[field]) || fieldsFilled,
+              false,
+              sectionFields
+            )
+              ? 1
+              : 0)
+          );
+        },
+        0,
+        profileSections
+      ) /
         profileSections.length) *
         100
     );
