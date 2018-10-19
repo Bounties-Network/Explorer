@@ -43,7 +43,8 @@ class FullAddressBarComponent extends React.Component {
 }
 
 FullAddressBarComponent.propTypes = {
-  address: PropTypes.string
+  address: PropTypes.string,
+  ensDomain: PropTypes.string
 };
 
 FullAddressBarComponent.defaultProps = {
