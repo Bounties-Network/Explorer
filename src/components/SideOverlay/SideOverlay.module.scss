@@ -51,7 +51,7 @@
   height: 100%;
   width: auto;
   position: fixed;
-  z-index: 15;
+  z-index: 30;
   top: 0;
   overflow-x: hidden;
   opacity: 0.95;
@@ -80,7 +80,7 @@
 
 .mask {
   overflow: hidden;
-  z-index: 14;
+  z-index: 29;
   position: fixed;
   top: 0;
   left: 0;
