@@ -51,6 +51,7 @@ const ExplorerBodyComponent = props => {
           categories={categories}
           img={user.small_profile_image_url}
           address={user.public_address}
+          ensDomain={user.ens_domain}
           experienceLevel={experienceLevel}
           submissions={fulfillment_count}
           deadline={moment.utc(deadline, 'YYYY-MM-DDThh:mm:ssZ').fromNow(true)}

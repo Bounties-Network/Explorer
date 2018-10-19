@@ -5,7 +5,7 @@ import { Currency, Text } from 'components';
 import { LinkedAvatar } from 'explorer-components';
 
 const LeaderItem = props => {
-  const { place, img, name, address, value, valueLabel } = props;
+  const { place, img, name, address, value, valueLabel, ensDomain } = props;
 
   return (
     <div className={styles.leaderboardItem}>
@@ -20,6 +20,7 @@ const LeaderItem = props => {
           nameTextScale="h4"
           nameTextWeight="fontWeight-medium"
           address={address}
+          ensDomain={ensDomain}
           hash={address}
           to={`profile/${address}`}
           size="small"

@@ -16,6 +16,7 @@ const BountyCard = props => {
     categories,
     img,
     address,
+    ensDomain,
     experienceLevel,
     submissions,
     deadline,
@@ -72,6 +73,7 @@ const BountyCard = props => {
                 img={img}
                 address={address}
                 hash={address}
+                ensDomain={ensDomain}
                 to={`/profile/${address}`}
                 onClick={() =>
                   document.getElementsByClassName('page-body')[0].scrollTo(0, 0)

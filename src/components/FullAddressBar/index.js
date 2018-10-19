@@ -25,16 +25,16 @@ class FullAddressBarComponent extends React.Component {
   };
 
   render() {
-    const { address } = this.props;
+    const { address, ensDomain } = this.props;
 
     return (
       <div
         className={`${styles.AddressBar}`}
-        onClick={e => this.copyToClipboard(address)}
+        onClick={e => this.copyToClipboard(ensDomain ? ensDomain : address)}
         onMouseLeave={this.resetText}
       >
         <Text color="purple" typeScale="Body" id="ethAddress">
-          {address}
+          {ensDomain ? ensDomain : address}
         </Text>
         <span className={`${styles.tooltip}`}>{this.state.tooltipText}</span>
       </div>

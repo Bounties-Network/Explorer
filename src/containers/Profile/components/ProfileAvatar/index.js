@@ -26,6 +26,7 @@ const ProfileAvatar = props => {
       <FullAddressBar
         className={styles.profileAddress}
         address={address}
+        ensDomain={ensDomain}
         copyButton
       />
     </div>
