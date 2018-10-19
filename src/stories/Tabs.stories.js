@@ -148,30 +148,8 @@ storiesOf('Tabs', module).add('Tabs', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The <code>tabColor</code> prop is the color if the indicator of each tab
-      when it's active. It can be <code>blue</code>, <code>green</code> or{' '}
-      <code>lightGrey</code>. The default value is <code>lightGrey</code>.
-    </Text>
-
-    <div className="sb-component-group sb-button-group">
-      <Tabs onSelect={action('selected')} defaultActiveKey={1}>
-        <Tabs.Tab tabColor="blue" eventKey={1}>
-          Blue
-        </Tabs.Tab>
-        <Tabs.Tab tabColor="green" eventKey={2}>
-          Green
-        </Tabs.Tab>
-        <Tabs.Tab eventKey={3}>lightGrey</Tabs.Tab>
-      </Tabs>
-    </div>
-
-    <Text
-      className={'sb-component-group-description'}
-      typeScale="Body"
-      lineHeight="lineHeight-default"
-    >
-      The <code>tabCount</code> prop is a number that will appear in the
-      indicator. This is useful for notifications. By default, no number will
+      The <code>tabCount</code> prop is a number that will appear next to the
+      tab title. This is useful for notifications. By default, no number will
       appear.
     </Text>
 
@@ -186,6 +164,28 @@ storiesOf('Tabs', module).add('Tabs', () => (
         <Tabs.Tab eventKey={3} tabCount={3}>
           lightGrey
         </Tabs.Tab>
+      </Tabs>
+    </div>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>tabColor</code> prop will determine the background of the
+      counter. It can be <code>blue</code>, <code>green</code> or
+      <code>lightGrey</code>. The default value is <code>lightGrey</code>.
+    </Text>
+
+    <div className="sb-component-group sb-button-group">
+      <Tabs onSelect={action('selected')} defaultActiveKey={1}>
+        <Tabs.Tab tabColor="blue" eventKey={1} tabCount={1}>
+          Blue
+        </Tabs.Tab>
+        <Tabs.Tab tabColor="green" eventKey={2} tabCount={2}>
+          Green
+        </Tabs.Tab>
+        <Tabs.Tab eventKey={3}>lightGrey</Tabs.Tab>
       </Tabs>
     </div>
 
