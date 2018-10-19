@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ReviewItem.module.scss';
-import { Avatar, Text } from 'components';
+import { Text } from 'components';
+import { LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
 
 const ReviewItem = props => {
@@ -18,11 +19,12 @@ const ReviewItem = props => {
       </div>
       <div className={styles.review}>
         <Text color="darkGrey">{review}</Text>
-        <Avatar
+        <LinkedAvatar
           name={name}
           address={address}
           hash={address}
           img={img}
+          to={`/profile/${address}`}
           nameTextScale={'h4'}
         />
       </div>
