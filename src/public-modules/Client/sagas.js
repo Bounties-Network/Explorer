@@ -69,7 +69,7 @@ export function* getWeb3Client() {
     yield put(setHasWallet(hasWallet));
   }
   if (hasWallet) {
-    web3.setProvider(window.web3.currentProvider);
+    web3.setProvider(window.ethereum || window.web3.currentProvider);
     proxiedWeb3 = new Proxy(web3, proxiedWeb3Handler);
     isLocked = yield call(isWalletLocked);
   }
