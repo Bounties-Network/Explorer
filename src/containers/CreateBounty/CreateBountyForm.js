@@ -467,15 +467,17 @@ class CreateBountyFormComponent extends React.Component {
                     balance field because when a field is unregistered in
                     redux-form it is possible to submit invalid info.
                     https://github.com/erikras/redux-form/issues/4235 */}
-                  <div className={styles.hidden}>
-                    <Field
-                      name="balance"
-                      disabled={submittingBounty}
-                      component={FormTextInput}
-                      validate={validatorGroups.balance}
-                      normalize={normalizers.number}
-                    />
-                  </div>
+                  {activateNow ? (
+                    <div className={styles.hidden}>
+                      <Field
+                        name="balance"
+                        disabled={submittingBounty}
+                        component={FormTextInput}
+                        validate={validatorGroups.balance}
+                        normalize={normalizers.number}
+                      />
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </FormSection.InputGroup>
