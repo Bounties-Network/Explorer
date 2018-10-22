@@ -22,7 +22,9 @@ import {
 
 class LoginLockComponent extends Component {
   componentDidMount() {
-    window.ethereum.enable();
+    if (window.ethereum) {
+      window.ethereum.enable();
+    }
   }
 
   render() {

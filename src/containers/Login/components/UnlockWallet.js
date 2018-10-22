@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import config from 'public-modules/config';
 import { Modal, Text, Button } from 'components';
 
 const UnlockWallet = props => {
@@ -15,17 +16,18 @@ const UnlockWallet = props => {
       fixed={!pageLevel}
     >
       <Modal.Header closable={closable} icon={['fal', 'unlock']}>
-        <Modal.Message>Please unlock your secure wallet</Modal.Message>
+        <Modal.Message>Secure Wallet Access</Modal.Message>
       </Modal.Header>
       <Modal.Body>
         <Modal.Description>
-          You&#39;ll need to log in to your secure wallet account (e.g.
+          You&#39;ll need to log in and/or grant access to your secure wallet
+          (e.g.
           <Text weight="fontWeight-bold" inline>
             {' '}
             MetaMask
           </Text>
-          ) in order to access {pageLevel ? 'parts of the ' : ''}the Bounties
-          Network.
+          ) in order to use {pageLevel ? 'parts of ' : ''}
+          {config.networkName}
         </Modal.Description>
       </Modal.Body>
       {closable && (
