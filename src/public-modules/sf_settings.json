@@ -6,8 +6,8 @@
   "categoryPlatform": "sf",
   "networkName": "sf.bounties.network",
   "url": {
-    "mainNet": "https://new.api.bounties.network",
-    "rinkeby": "https://new.api.bounties.network"
+    "mainNet": "https://api.bounties.network",
+    "rinkeby": "https://api.bounties.network"
   },
   "requiredNetwork": "mainNet",
   "mainNet": {
