@@ -36,6 +36,15 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
     };
 
     componentDidUpdate(prevProps) {
+      if (
+        !prevProps.visible &&
+        this.props.visible &&
+        this.props.walletLocked &&
+        window.ethereum
+      ) {
+        window.ethereum.enable();
+      }
+
       if (!prevProps.callbackCanTrigger && this.props.callbackCanTrigger) {
         this.props.showFunctionalLock(false);
         this.state.onConfirm();
