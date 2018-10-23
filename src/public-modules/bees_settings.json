@@ -6,8 +6,8 @@
   "categoryPlatform": "pollenbees",
   "networkName": "bees.bounties.network",
   "url": {
-    "mainNet": "https://newrinkeby.api.bounties.network",
-    "rinkeby": "https://newrinkeby.api.bounties.network"
+    "mainNet": "https://rinkeby.api.bounties.network",
+    "rinkeby": "https://rinkeby.api.bounties.network"
   },
   "defaultToken": {
     "symbol": "POLLEN",
