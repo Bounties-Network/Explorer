@@ -20,7 +20,7 @@ const tokenValidation = (amount, tokenAddress, dispatch) => {
 
     if (balance.isEqualTo(0)) {
       throw { error: ZERO_BALANCE_ERROR, balance, symbol };
-    } else if (balance.isLessThanOrEqualTo(amount)) {
+    } else if (balance.isLessThan(amount)) {
       throw { error: INSUFFICIENT_BALANCE_ERROR, balance, symbol };
     }
   };
