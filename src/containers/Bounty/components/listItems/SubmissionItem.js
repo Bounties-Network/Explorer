@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './SubmissionItem.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { includes } from 'lodash';
 import { Button, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
-import { ACTIVE } from 'public-modules/Bounty/constants';
+import { ACTIVE, EXPIRED } from 'public-modules/Bounty/constants';
 import { hasImageExtension, shortenFileName, shortenUrl } from 'utils/helpers';
 import moment from 'moment';
 
@@ -39,7 +40,11 @@ const SubmissionItem = props => {
     .format('MM/DD/YYYY');
 
   let actionButton = null;
-  if (bountyBelongsToLoggedInUser && bountyStage === ACTIVE && !accepted) {
+  if (
+    bountyBelongsToLoggedInUser &&
+    includes(bountyStage, [ACTIVE, EXPIRED]) &&
+    !accepted
+  ) {
     actionButton = (
       <Button
         type="action"
