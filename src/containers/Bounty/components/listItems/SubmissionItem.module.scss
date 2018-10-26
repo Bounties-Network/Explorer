@@ -58,23 +58,23 @@
   display: flex;
   padding-left: $xl-spacing + $xl-spacing;
   flex-direction: column;
-  align-items: flex-start;
+  position: absolute;
+  top: $l-spacing;
+  right: $m-spacing;
 
   @media only screen and (min-width: 48em) {
     align-items: flex-end;
     margin-top: 0;
     padding-left: 0;
+    position: relative;
+    top: 0;
+    right: 0;
   }
 }
 
 .actionButton {
-  margin-top: $xl-spacing - $base-spacing;
+  margin-top: $m-spacing;
   margin-bottom: $m-spacing;
-
-  @media only screen and (min-width: 48em) {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
 }
 
 .submissionContents {
@@ -94,19 +94,6 @@
   position: absolute;
   top: $xl-spacing;
   right: 0;
-}
-
-.fulfillmentStage {
-  position: absolute;
-  top: $l-spacing;
-  right: $m-spacing;
-
-  @media only screen and (min-width: 48em) {
-    position: relative;
-    margin-bottom: $m-spacing;
-    top: 0;
-    right: 0;
-  }
 }
 
 .image {
