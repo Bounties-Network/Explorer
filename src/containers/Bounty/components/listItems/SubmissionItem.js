@@ -173,11 +173,7 @@ const SubmissionItem = props => {
         ) : null}
       </div>
       <div className={`col-sm-3 ${styles.actionColumn}`}>
-        <FulfillmentStagePill
-          className={styles.fulfillmentStage}
-          accepted={accepted}
-          bountyStage={bountyStage}
-        />
+        <FulfillmentStagePill accepted={accepted} bountyStage={bountyStage} />
         {actionButton}
       </div>
     </div>
