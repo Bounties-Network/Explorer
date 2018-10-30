@@ -62,8 +62,9 @@ export function* getWeb3Client() {
   const prevAddress = yield select(addressSelector);
   const hadWallet = yield select(hasWalletSelector);
   const hasWallet =
-    typeof window.web3 !== 'undefined' &&
-    typeof window.web3.currentProvider !== 'undefined';
+    typeof window.ethereum !== 'undefined' ||
+    (typeof window.web3 !== 'undefined' &&
+      typeof window.web3.currentProvider !== 'undefined');
   const networkPrev = yield select(networkSelector);
   if (hasWallet !== hadWallet) {
     yield put(setHasWallet(hasWallet));
