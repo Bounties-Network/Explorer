@@ -19,7 +19,8 @@ export function* loadReviews(action) {
   const params = {
     review_type: reviewType,
     limit: LIMIT,
-    platform__in: config.platform
+    platform__in: config.platform,
+    ordering: '-created'
   };
 
   try {
@@ -39,7 +40,8 @@ export function* loadMoreReviews(action) {
     review_type: reviewType,
     limit: LIMIT,
     offset: reviews.length,
-    platform__in: config.platform
+    platform__in: config.platform,
+    ordering: '-created'
   };
 
   try {
