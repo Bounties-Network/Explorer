@@ -20,7 +20,7 @@ const About = props => {
               className={styles.icon}
             />
             <div className={styles.bulletPointText}>
-              <Text inputLabel>Oranization</Text>
+              <Text inputLabel>Organization</Text>
               <Text
                 lineHeight="lineHeight-small"
                 typeScale="Body"
