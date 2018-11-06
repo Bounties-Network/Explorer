@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import { Button } from 'components';
-import { DEAD, ACTIVE } from 'public-modules/Bounty/constants';
+import { DEAD, ACTIVE, COMPLETED } from 'public-modules/Bounty/constants';
+import { includes } from 'lodash';
 import { ModalManager } from './components';
 
 const ActionBar = props => {
@@ -71,7 +72,9 @@ const ActionBar = props => {
           >
             Re-activate Bounty
           </Button>
-        ) : (
+        ) : null}
+
+        {!includes(bounty.bountyStage, [COMPLETED, DEAD]) ? (
           <Button
             type="destructive"
             className={styles.killButton}
@@ -80,7 +83,7 @@ const ActionBar = props => {
           >
             De-activate bounty
           </Button>
-        )}
+        ) : null}
 
         {bounty.bountyStage !== DEAD && (
           <Button
