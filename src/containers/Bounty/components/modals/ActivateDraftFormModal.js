@@ -8,7 +8,7 @@ import { ModalFormReset } from 'hocs';
 import normalizers from 'utils/normalizers';
 import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
-import asyncValidators from 'utils/asyncValidators';
+// import asyncValidators from 'utils/asyncValidators';
 
 class ActivateDraftFormModal extends React.Component {
   fieldValidators = [
@@ -100,18 +100,18 @@ class ActivateDraftFormModal extends React.Component {
 export default compose(
   reduxForm({
     form: 'activateDraft',
-    destroyOnUnmount: false,
-    asyncValidate: (values, dispatch, props, field) => {
-      return asyncValidators.tokenValidationWrapper(
-        { ...values, tokenContract: props.tokenContract },
-        'balance',
-        'tokenContract',
-        props.asyncValidating,
-        field,
-        dispatch
-      );
-    },
-    asyncChangeFields: ['balance']
+    destroyOnUnmount: false
+    // asyncValidate: (values, dispatch, props, field) => {
+    //   return asyncValidators.tokenValidationWrapper(
+    //     { ...values, tokenContract: props.tokenContract },
+    //     'balance',
+    //     'tokenContract',
+    //     props.asyncValidating,
+    //     field,
+    //     dispatch
+    //   );
+    // },
+    // asyncChangeFields: ['balance']
   }),
   ModalFormReset
 )(ActivateDraftFormModal);

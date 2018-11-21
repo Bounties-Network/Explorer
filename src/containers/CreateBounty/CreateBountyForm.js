@@ -22,7 +22,7 @@ import {
   getDraftBountySelector
 } from 'public-modules/Bounty/selectors';
 import validators from 'utils/validators';
-import asyncValidators from 'utils/asyncValidators';
+// import asyncValidators from 'utils/asyncValidators';
 import normalizers from 'utils/normalizers';
 import { FileUpload, Button, Text } from 'components';
 import {
@@ -41,7 +41,7 @@ import {
   VISIBILITY_OPTIONS
 } from './constants';
 import config from 'public-modules/config';
-import defaultShouldAsyncValidate from 'redux-form/es/defaultShouldAsyncValidate';
+// import defaultShouldAsyncValidate from 'redux-form/es/defaultShouldAsyncValidate';
 
 const formSelector = formValueSelector('createBounty');
 
@@ -550,29 +550,29 @@ const CreateBountyForm = compose(
     }
   ),
   reduxForm({
-    form: 'createBounty',
-    asyncValidate: (values, dispatch, props, field) => {
-      return asyncValidators.tokenValidationWrapper(
-        { ...values, ethAddress: '0x0000000000000000000000000000000000000000' },
-        'balance',
-        values.paysTokens ? 'tokenContract' : 'ethAddress',
-        props.asyncValidating,
-        field,
-        dispatch
-      );
-    },
-    asyncChangeFields: ['balance', 'tokenContract'],
+    form: 'createBounty'
+    // asyncValidate: (values, dispatch, props, field) => {
+    //   return asyncValidators.tokenValidationWrapper(
+    //     { ...values, ethAddress: '0x0000000000000000000000000000000000000000' },
+    //     'balance',
+    //     values.paysTokens ? 'tokenContract' : 'ethAddress',
+    //     props.asyncValidating,
+    //     field,
+    //     dispatch
+    //   );
+    // },
+    // asyncChangeFields: ['balance', 'tokenContract'],
 
-    // there is a bug in redux-form where shouldAsyncValidate is called before
-    // the sync validation errors are remove from the store and therefore the
-    // async validator is not called on the first change after a sync error.
-    // https://github.com/erikras/redux-form/issues/3944
-    shouldAsyncValidate: params => {
-      return defaultShouldAsyncValidate({
-        ...params,
-        syncValidationPasses: true
-      });
-    }
+    // // there is a bug in redux-form where shouldAsyncValidate is called before
+    // // the sync validation errors are remove from the store and therefore the
+    // // async validator is not called on the first change after a sync error.
+    // // https://github.com/erikras/redux-form/issues/3944
+    // shouldAsyncValidate: params => {
+    //   return defaultShouldAsyncValidate({
+    //     ...params,
+    //     syncValidationPasses: true
+    //   });
+    // }
   })
 )(CreateBountyFormComponent);
 
