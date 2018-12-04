@@ -19,9 +19,10 @@ class Checkbox extends React.Component {
 
   render() {
     const { selected } = this.state;
-    const { checked, label, disabled } = this.props;
+    const { checked, label, disabled, value } = this.props;
 
     const checkedPropExists = typeof checked === 'boolean';
+    const valuePropExists = typeof value === 'boolean';
 
     return (
       <label className={`${styles.checkboxContainer}`}>
@@ -30,7 +31,9 @@ class Checkbox extends React.Component {
           className={styles.checkbox}
           value
           disabled={disabled}
-          checked={checkedPropExists ? checked : selected}
+          checked={
+            checkedPropExists ? checked : valuePropExists ? value : selected
+          }
           onChange={this.toggleState}
         />
         <span className={`${styles.customCheckbox}`} />
@@ -50,6 +53,7 @@ class Checkbox extends React.Component {
 
 Checkbox.propTypes = {
   checked: PropTypes.bool,
+  value: PropTypes.bool,
   disabled: PropTypes.bool,
   className: PropTypes.string,
   label: PropTypes.string
