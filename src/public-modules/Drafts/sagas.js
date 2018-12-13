@@ -2,7 +2,7 @@ import request from 'utils/request';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { toLower } from 'lodash';
 import { actionTypes, actions } from 'public-modules/Drafts';
-import { addressSelector } from 'public-modules/Client/selectors';
+import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { draftsSelector } from './selectors';
 import { LIMIT } from './constants';
 import config from 'public-modules/config';
@@ -16,9 +16,10 @@ const {
 } = actions;
 
 export function* loadDrafts(action) {
-  const address = yield select(addressSelector);
+  const user = yield select(getCurrentUserSelector);
+
   const params = {
-    issuer: toLower(address),
+    issuer: toLower(user.public_address),
     platform__in: config.platform,
     limit: LIMIT
   };
@@ -33,10 +34,10 @@ export function* loadDrafts(action) {
 }
 
 export function* loadMoreDrafts(action) {
-  const address = yield select(addressSelector);
+  const user = yield select(getCurrentUserSelector);
   const drafts_list = yield select(draftsSelector);
   const params = {
-    issuer: toLower(address),
+    issuer: toLower(user.public_address),
     platform__in: config.platform,
     offset: drafts_list.length,
     limit: LIMIT
