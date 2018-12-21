@@ -119,6 +119,8 @@ export default function(url, method, options, customErrorHandler) {
       bakedOptions = GET_OPTIONS;
   }
 
+  bakedOptions.headers['HAS_WALLET'] = window.web3 || window.ethereum;
+
   const requestUrl = url.slice(0, 4) === 'http' ? url : `${endpoint}/${url}`;
   return axios
     .request(requestUrl, { ...bakedOptions, ...options })
