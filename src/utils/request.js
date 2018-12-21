@@ -50,7 +50,8 @@ const OPTIONS_OPTIONS = {
 
 const GET_OPTIONS = {
   method: 'GET',
-  withCredentials: true
+  withCredentials: true,
+  headers: {}
 };
 
 function handleError(err) {
@@ -119,9 +120,14 @@ export default function(url, method, options, customErrorHandler) {
       bakedOptions = GET_OPTIONS;
   }
 
-  bakedOptions.headers['HAS_WALLET'] = window.web3 || window.ethereum;
+  const isCustomUrl = url.slice(0, 4) === 'http';
 
-  const requestUrl = url.slice(0, 4) === 'http' ? url : `${endpoint}/${url}`;
+  if (!isCustomUrl) {
+    bakedOptions.headers['HAS_WALLET'] = window.web3 || window.ethereum;
+  }
+
+  const requestUrl = isCustomUrl ? url : `${endpoint}/${url}`;
+
   return axios
     .request(requestUrl, { ...bakedOptions, ...options })
     .then(checkRequestStatus)
