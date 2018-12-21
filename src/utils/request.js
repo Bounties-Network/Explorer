@@ -123,7 +123,9 @@ export default function(url, method, options, customErrorHandler) {
   const isCustomUrl = url.slice(0, 4) === 'http';
 
   if (!isCustomUrl) {
-    bakedOptions.headers['HAS_WALLET'] = !!(window.web3 || window.ethereum);
+    bakedOptions.headers['haswallet'] = !!(
+      window.web3 || window.ethereum
+    ).toString();
   }
 
   const requestUrl = isCustomUrl ? url : `${endpoint}/${url}`;
