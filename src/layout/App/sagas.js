@@ -13,8 +13,13 @@ export function* issuePageView(action) {
   const location = action.payload;
   const lastLocation = yield select(lastLocationSelector);
 
-  if (lastLocation == null || location.pathname !== lastLocation.pathname) {
-    yield call(request, 'analytics/recordPageView/', 'GET');
+  if (
+    lastLocation == null ||
+    (location.pathname !== lastLocation.pathname &&
+      location.pathname !== '/' &&
+      location.pathname !== '/profile')
+  ) {
+    yield call(request, 'analytics/ping/', 'GET');
   }
 
   yield put(setLastLocation(action.payload));
