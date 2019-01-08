@@ -10,6 +10,7 @@ const defaultConfig = {
 
 const initialState = {
   locationNonce: 0,
+  lastLocation: null,
   showFilterNav: false,
   filterConfig: { ...defaultConfig }
 };
@@ -18,6 +19,7 @@ const INITIALIZE_FILTER_NAV = 'app/INITIALIZE_FILTER_NAV';
 const SHOW_FILTER_NAV = 'app/SHOW_FILTER_NAV';
 const HIDE_FILTER_NAV = 'app/HIDE_FILTER_NAV';
 const RESET_FILTER_NAV = 'app/RESET_FILTER_NAV';
+const SET_LAST_LOCATION = 'app/SET_LAST_LOCATION';
 
 function initializeFilterNav(config) {
   return { type: INITIALIZE_FILTER_NAV, config };
@@ -33,6 +35,10 @@ function hideFilterNav() {
 
 function resetFilterNav() {
   return { type: RESET_FILTER_NAV };
+}
+
+function setLastLocation(location) {
+  return { type: SET_LAST_LOCATION, location };
 }
 
 /* In order to do async validation within redux forms, we must return a
@@ -82,6 +88,12 @@ function AppReducer(state = initialState, action) {
         locationNonce: state.locationNonce + 1
       };
     }
+    case SET_LAST_LOCATION: {
+      return {
+        ...state,
+        lastLocation: action.location
+      };
+    }
     default:
       return state;
   }
@@ -92,7 +104,8 @@ export const actionTypes = {
   SHOW_FILTER_NAV,
   HIDE_FILTER_NAV,
   RESET_FILTER_NAV,
-  GET_TOKEN_BALANCE
+  GET_TOKEN_BALANCE,
+  SET_LAST_LOCATION
 };
 
 export const actions = {
@@ -100,7 +113,8 @@ export const actions = {
   hideFilterNav,
   showFilterNav,
   resetFilterNav,
-  getTokenBalance
+  getTokenBalance,
+  setLastLocation
 };
 
 export default AppReducer;
