@@ -1,6 +1,6 @@
 {
   "platforms": {
-    "bounties-network": ["bounties-network", "sf", "prague"],
+    "bounties-network": ["bounties-network", "sf", "prague", "colorado"],
     "gitcoin": ["gitcoin"]
   },
   "postingPlatform": "bounties-network",
