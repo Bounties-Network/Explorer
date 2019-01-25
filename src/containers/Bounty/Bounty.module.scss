@@ -45,7 +45,6 @@
 
   @media only screen and (min-width: 35em) {
     padding: $l-spacing;
-    margin-right: $l-spacing;
   }
 }
 
@@ -67,12 +66,16 @@
 
 .stage {
   position: absolute;
-  left: 30%;
+  left: 50%;
   top: -0.6rem;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 
 .stageAndPayoutContainer {
   position: relative;
+  margin-right: $l-spacing;
 }
 
 .avatar {
