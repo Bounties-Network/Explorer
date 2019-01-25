@@ -38,9 +38,10 @@
   padding: $m-spacing;
   background-color: $brand-purple-hover;
   border-radius: $base-border-radius;
-  text-align: center;
+  text-align: left;
   height: fit-content;
   white-space: nowrap;
+  border-radius: 5%;
 
   @media only screen and (min-width: 35em) {
     padding: $l-spacing;
@@ -66,14 +67,12 @@
 
 .stage {
   position: absolute;
-  right: 0;
-  top: 0;
+  left: 30%;
+  top: -0.6rem;
+}
 
-  @media only screen and (min-width: 35em) {
-    position: relative;
-    right: 0;
-    top: 0;
-  }
+.stageAndPayoutContainer {
+  position: relative;
 }
 
 .avatar {
@@ -100,6 +99,7 @@
     font-size: $h2-font-size;
     padding: 0;
     padding-bottom: $base-spacing;
+    padding-top: $base-spacing;
   }
 }
 

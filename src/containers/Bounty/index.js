@@ -30,6 +30,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
 import {
   Currency,
+  BountyPayoutData,
   PageCard,
   StagePill,
   LinkedAvatar
@@ -187,21 +188,32 @@ class BountyComponent extends React.Component {
         <PageCard>
           <PageCard.Header className={styles.bountyPageCardHeader}>
             <div className={styles.header}>
-              <Currency
-                className={styles.ethBox}
-                primaryValue={bounty.usd_price}
-                primaryDecimals={2}
-                primaryColor="white"
-                primaryClassName={styles.primary}
-                primaryContainerClass={styles.primaryContainerClass}
-                currencyColor="white"
-                secondaryValue={bounty.calculated_fulfillmentAmount}
-                secondaryCurrency={bounty.tokenSymbol}
-                secondaryTypeScale="h4"
-                secondaryClassName={styles.currency}
-                secondaryColor="white"
-              />
 
+            <div className={styles.stageAndPayoutContainer}>
+
+              <div className={styles.stage}>
+                <StagePill stage={isDraft ? DRAFT : bounty.bountyStage} />
+              </div>
+
+                <BountyPayoutData
+                  className={styles.ethBox}
+                  containerClass={styles.primaryContainerClass}
+
+                  payoutPrimaryClassName={styles.primary}
+                  payoutSecondaryClassName={styles.currency}
+                  payoutPrimaryValue={bounty.calculated_fulfillmentAmount}
+                  payoutPrimaryCurrency={bounty.tokenSymbol}
+                  payoutSecondaryValue={bounty.usd_price}
+                  payoutSecondaryCurrency="usd"
+
+                  balancePrimaryClassName={styles.primary}
+                  balanceSecondaryClassName={styles.currency}
+                  balancePrimaryValue={bounty.calculated_balance}
+                  balancePrimaryCurrency={bounty.tokenSymbol}
+                  balanceSecondaryValue={bounty.calculated_balance / bounty.calculated_fulfillmentAmount * bounty.usd_price}
+                  balanceSecondaryCurrency="usd"
+                />
+              </div>
               <div className={styles.bountyHeader}>
                 <PageCard.Title>{bounty.title}</PageCard.Title>
                 <div className={styles.categories}>
@@ -235,9 +247,6 @@ class BountyComponent extends React.Component {
                     border
                   />
                 </div>
-              </div>
-              <div className={styles.stage}>
-                <StagePill stage={isDraft ? DRAFT : bounty.bountyStage} />
               </div>
             </div>
           </PageCard.Header>
@@ -351,7 +360,7 @@ class BountyComponent extends React.Component {
                         absolute
                         src={`https://ipfs.infura.io/ipfs/${
                           bounty.sourceDirectoryHash
-                        }/${bounty.sourceFileName}`}
+                          }/${bounty.sourceFileName}`}
                       >
                         {shortenFileName(bounty.sourceFileName, 18)}
                       </Text>
