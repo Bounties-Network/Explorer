@@ -40,7 +40,7 @@ const BountyPayoutData = props => {
           primaryContainerClass={containerClass}
 
           primaryValue={payoutPrimaryValue}
-          primaryDecimals={4}
+          primaryDecimals="all"
           primaryCurrency={payoutPrimaryCurrency}
           primaryColor="white"
           currencyColor="white"
@@ -69,7 +69,7 @@ const BountyPayoutData = props => {
           primaryContainerClass={containerClass}
 
           primaryValue={balancePrimaryValue}
-          primaryDecimals={4}
+          primaryDecimals="all"
           primaryCurrency={balancePrimaryCurrency}
           primaryColor="white"
           currencyColor="white"
