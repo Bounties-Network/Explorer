@@ -12,7 +12,7 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import showdown from 'showdown';
 import moment from 'moment';
 import { map } from 'lodash';
-import { DRAFT, EXPIRED } from 'public-modules/Bounty/constants';
+import { EXPIRED } from 'public-modules/Bounty/constants';
 import ActionBar from './ActionBar';
 import SubmissionsAndCommentsCard, {
   mostInterestingTab
@@ -29,10 +29,8 @@ import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
 import {
-  Currency,
-  BountyPayoutData,
+  BountyEssentials,
   PageCard,
-  StagePill,
   LinkedAvatar
 } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
@@ -188,32 +186,20 @@ class BountyComponent extends React.Component {
         <PageCard>
           <PageCard.Header className={styles.bountyPageCardHeader}>
             <div className={styles.header}>
+              <BountyEssentials
+                isDraft={isDraft}
+                bountyStage={bounty.bountyStage}
 
-            <div className={styles.stageAndPayoutContainer}>
+                payoutPrimaryValue={bounty.calculated_fulfillmentAmount}
+                payoutPrimaryCurrency={bounty.tokenSymbol}
+                payoutSecondaryValue={bounty.usd_price}
+                payoutSecondaryCurrency="usd"
 
-              <div className={styles.stage}>
-                <StagePill stage={isDraft ? DRAFT : bounty.bountyStage} />
-              </div>
-
-                <BountyPayoutData
-                  className={styles.ethBox}
-                  containerClass={styles.primaryContainerClass}
-
-                  payoutPrimaryClassName={styles.primary}
-                  payoutSecondaryClassName={styles.currency}
-                  payoutPrimaryValue={bounty.calculated_fulfillmentAmount}
-                  payoutPrimaryCurrency={bounty.tokenSymbol}
-                  payoutSecondaryValue={bounty.usd_price}
-                  payoutSecondaryCurrency="usd"
-
-                  balancePrimaryClassName={styles.primary}
-                  balanceSecondaryClassName={styles.currency}
-                  balancePrimaryValue={bounty.calculated_balance}
-                  balancePrimaryCurrency={bounty.tokenSymbol}
-                  balanceSecondaryValue={bounty.calculated_balance / bounty.calculated_fulfillmentAmount * bounty.usd_price}
-                  balanceSecondaryCurrency="usd"
-                />
-              </div>
+                balancePrimaryValue={bounty.calculated_balance}
+                balancePrimaryCurrency={bounty.tokenSymbol}
+                balanceSecondaryValue={bounty.calculated_balance ? bounty.calculated_balance / bounty.calculated_fulfillmentAmount * bounty.usd_price : 0}
+                balanceSecondaryCurrency="usd"
+              />
               <div className={styles.bountyHeader}>
                 <PageCard.Title>{bounty.title}</PageCard.Title>
                 <div className={styles.categories}>
@@ -261,28 +247,7 @@ class BountyComponent extends React.Component {
                 initiateWalkthrough={initiateWalkthrough}
                 showModal={showModal}
               />
-
               <div className={styles.bountyMetadata}>
-                {isDraft ? null : (
-                  <section className={styles.metadataSection}>
-                    <div className={styles.labelGroup}>
-                      <Text inputLabel className={styles.label}>
-                        Remaining balance
-                      </Text>
-                      <Currency
-                        primaryValue={bounty.calculated_balance}
-                        primaryCurrency={bounty.tokenSymbol}
-                        primaryDecimals="all"
-                        primaryTypeScale="h4"
-                        primaryWeight="fontWeight-medium"
-                        alignment="align-left"
-                        currencyTypeScale="h5"
-                        currencyWeight="fontWeight-medium"
-                      />
-                    </div>
-                  </section>
-                )}
-
                 <section className={styles.metadataSection}>
                   <div className={styles.metadataItem}>
                     <i className={styles.metadataIcon}>
