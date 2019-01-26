@@ -13,7 +13,7 @@ const WalletRequired = props => {
   if (operatingSystem === 'iOS') {
     walletName = 'Coinbase Wallet';
     walletLink =
-      'https://itunes.apple.com/us/app/coinbase-bitcoin-wallet/id886427730?mt=8';
+      'https://itunes.apple.com/us/app/coinbase-wallet/id1278383455?mt=8';
   }
 
   if (operatingSystem === 'Android') {
