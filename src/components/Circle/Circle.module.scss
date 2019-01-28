@@ -44,18 +44,18 @@
 }
 
 .small {
-  height: $xl-spacing;
-  width: $xl-spacing;
+  height: $circle-sm;
+  width: $circle-sm;
 }
 
 .medium {
-  height: $xl-spacing * 2;
-  width: $xl-spacing * 2;
+  height: $circle-md;
+  width: $circle-md;
 }
 
 .large {
-  height: $xxl-spacing * 2;
-  width: $xxl-spacing * 2;
+  height: $circle-lg;
+  width: $circle-lg;
 }
 
 .hasBorder {

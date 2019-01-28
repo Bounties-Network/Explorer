@@ -10,6 +10,7 @@ import {
   routerMiddleware
 } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
+import { ThemeProvider } from 'styled-components';
 import { reducers, sagaWatchers } from 'public-modules';
 import explorerSagas from './sagas';
 import baseReducers from './reducers';
@@ -20,6 +21,9 @@ import 'font-files/inter-ui.css';
 import 'styles/index.scss';
 import 'fontAwesome';
 import 'styles/Toastify.scss';
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!./styles/variables.scss');
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -41,10 +45,12 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>,
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>
+  </ThemeProvider>,
   document.getElementById('root')
 );
