@@ -6,7 +6,6 @@ import centered from '@storybook/addon-centered';
 import { Avatar, Text } from 'components';
 
 addDecorator(centered);
-console.log('hello', Text.propTypes);
 
 storiesOf('Avatar', module)
   .addDecorator(withKnobs)
