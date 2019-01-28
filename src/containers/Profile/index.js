@@ -75,7 +75,8 @@ class ProfileComponent extends React.Component {
       setProfileAddress,
       resetState,
       resetFilter,
-      bountiesLoading
+      bountiesLoading,
+      addIssuerFilter
     } = this.props;
     const { position } = this.state;
 
@@ -86,6 +87,7 @@ class ProfileComponent extends React.Component {
       batch(true);
       resetFilter('sort');
       resetFilter('stage');
+      addIssuerFilter(currentUser.public_address);
       loadBounties(true);
     }
 
@@ -249,6 +251,7 @@ const Profile = compose(
       batch: bountiesActions.batch,
       resetState: bountiesActions.resetState,
       resetFilter: bountiesActions.resetFilter,
+      addIssuerFilter: bountiesActions.addIssuerFilter,
       loadUserInfo: userInfoActions.loadUserInfo,
       setActiveTab: actions.setActiveTab,
       setProfileAddress: actions.setProfileAddress,
