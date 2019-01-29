@@ -46,7 +46,7 @@ class Tab extends React.Component {
               >
                 {this.props.children}
               </Text>
-              {tabCount && (
+              {tabCount !== null && (
                 <span className={countStyles}>
                   <Text typeScale="Small" color={tabTextColor}>
                     {tabCount}
