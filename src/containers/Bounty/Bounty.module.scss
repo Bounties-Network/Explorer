@@ -34,20 +34,6 @@
   justify-content: center;
 }
 
-.ethBox {
-  padding: $m-spacing;
-  background-color: $brand-purple-hover;
-  border-radius: $base-border-radius;
-  text-align: center;
-  height: fit-content;
-  white-space: nowrap;
-
-  @media only screen and (min-width: 35em) {
-    padding: $l-spacing;
-    margin-right: $l-spacing;
-  }
-}
-
 .bountyHeader {
   padding-top: $l-spacing;
   text-align: left;
@@ -64,48 +50,8 @@
   flex-wrap: wrap;
 }
 
-.stage {
-  position: absolute;
-  right: 0;
-  top: 0;
-
-  @media only screen and (min-width: 35em) {
-    position: relative;
-    right: 0;
-    top: 0;
-  }
-}
-
 .avatar {
   margin-top: $m-spacing;
-}
-
-.primaryContainerClass {
-  display: inline-block;
-  margin-bottom: -$base-spacing;
-
-  @media only screen and (min-width: 35em) {
-    display: block;
-    margin-bottom: 0;
-  }
-}
-
-.primary {
-  font-size: $h3-font-size;
-  display: inline-block;
-  padding-right: $base-spacing;
-
-  @media only screen and (min-width: 35em) {
-    display: block;
-    font-size: $h2-font-size;
-    padding: 0;
-    padding-bottom: $base-spacing;
-  }
-}
-
-.currency {
-  opacity: 0.5;
-  display: inline-block;
 }
 
 .pill {
@@ -175,9 +121,6 @@
 
     &Input {
       padding-right: $s-spacing;
-    }
-
-    &Label {
     }
   }
 }

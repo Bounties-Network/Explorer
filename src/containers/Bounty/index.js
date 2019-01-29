@@ -12,7 +12,7 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import showdown from 'showdown';
 import moment from 'moment';
 import { map } from 'lodash';
-import { DRAFT, EXPIRED } from 'public-modules/Bounty/constants';
+import { EXPIRED } from 'public-modules/Bounty/constants';
 import ActionBar from './ActionBar';
 import SubmissionsAndCommentsCard, {
   mostInterestingTab
@@ -29,9 +29,8 @@ import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
 import {
-  Currency,
+  BountyEssentials,
   PageCard,
-  StagePill,
   LinkedAvatar
 } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
@@ -187,21 +186,20 @@ class BountyComponent extends React.Component {
         <PageCard>
           <PageCard.Header className={styles.bountyPageCardHeader}>
             <div className={styles.header}>
-              <Currency
-                className={styles.ethBox}
-                primaryValue={bounty.usd_price}
-                primaryDecimals={2}
-                primaryColor="white"
-                primaryClassName={styles.primary}
-                primaryContainerClass={styles.primaryContainerClass}
-                currencyColor="white"
-                secondaryValue={bounty.calculated_fulfillmentAmount}
-                secondaryCurrency={bounty.tokenSymbol}
-                secondaryTypeScale="h4"
-                secondaryClassName={styles.currency}
-                secondaryColor="white"
-              />
+              <BountyEssentials
+                isDraft={isDraft}
+                bountyStage={bounty.bountyStage}
 
+                payoutPrimaryValue={bounty.calculated_fulfillmentAmount}
+                payoutPrimaryCurrency={bounty.tokenSymbol}
+                payoutSecondaryValue={bounty.usd_price}
+                payoutSecondaryCurrency="usd"
+
+                balancePrimaryValue={bounty.calculated_balance}
+                balancePrimaryCurrency={bounty.tokenSymbol}
+                balanceSecondaryValue={bounty.calculated_balance ? bounty.calculated_balance / bounty.calculated_fulfillmentAmount * bounty.usd_price : 0}
+                balanceSecondaryCurrency="usd"
+              />
               <div className={styles.bountyHeader}>
                 <PageCard.Title>{bounty.title}</PageCard.Title>
                 <div className={styles.categories}>
@@ -236,9 +234,6 @@ class BountyComponent extends React.Component {
                   />
                 </div>
               </div>
-              <div className={styles.stage}>
-                <StagePill stage={isDraft ? DRAFT : bounty.bountyStage} />
-              </div>
             </div>
           </PageCard.Header>
           <PageCard.Content key="body" className={styles.pageBody}>
@@ -252,28 +247,7 @@ class BountyComponent extends React.Component {
                 initiateWalkthrough={initiateWalkthrough}
                 showModal={showModal}
               />
-
               <div className={styles.bountyMetadata}>
-                {isDraft ? null : (
-                  <section className={styles.metadataSection}>
-                    <div className={styles.labelGroup}>
-                      <Text inputLabel className={styles.label}>
-                        Remaining balance
-                      </Text>
-                      <Currency
-                        primaryValue={bounty.calculated_balance}
-                        primaryCurrency={bounty.tokenSymbol}
-                        primaryDecimals="all"
-                        primaryTypeScale="h4"
-                        primaryWeight="fontWeight-medium"
-                        alignment="align-left"
-                        currencyTypeScale="h5"
-                        currencyWeight="fontWeight-medium"
-                      />
-                    </div>
-                  </section>
-                )}
-
                 <section className={styles.metadataSection}>
                   <div className={styles.metadataItem}>
                     <i className={styles.metadataIcon}>
@@ -351,7 +325,7 @@ class BountyComponent extends React.Component {
                         absolute
                         src={`https://ipfs.infura.io/ipfs/${
                           bounty.sourceDirectoryHash
-                        }/${bounty.sourceFileName}`}
+                          }/${bounty.sourceFileName}`}
                       >
                         {shortenFileName(bounty.sourceFileName, 18)}
                       </Text>
