@@ -112,7 +112,7 @@ class FileUpload extends React.Component {
             disabled ? buttonStyles.disabled : null
           ].join(' ')}
         >
-          <div className={loading && buttonStyles.childwrapper}>
+          <div className={loading ? buttonStyles.childwrapper : ''}>
             Upload file
           </div>
           {loading && <Loader className={buttonStyles.loader} />}

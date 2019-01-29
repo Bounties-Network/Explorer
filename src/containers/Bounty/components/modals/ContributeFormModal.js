@@ -92,6 +92,10 @@ export default compose(
         dispatch
       );
     },
+    shouldAsyncValidate: params => {
+      const { pristine, initialized } = params;
+      return !pristine || !initialized;
+    },
     asyncChangeFields: ['contribution']
   }),
   ModalFormReset
