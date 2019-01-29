@@ -85,16 +85,14 @@ class FileUpload extends React.Component {
             </Text>
             {filenameDefault || filename
               ? [
-                  ((
-                    <Text
-                      typeScale="Body"
-                      className={styles.sizeText}
-                      color={filesizeTextColor}
-                      key={1}
-                    >
-                      {bytes ? `(${bytes})` : ''}
-                    </Text>
-                  ): null),
+                  <Text
+                    typeScale="Body"
+                    className={styles.sizeText}
+                    color={filesizeTextColor}
+                    key={1}
+                  >
+                    {bytes ? `(${bytes})` : ''}
+                  </Text>,
                   <Text typeScale="Body" color={iconColor} key={2}>
                     <FontAwesomeIcon
                       icon={['fal', 'times']}
