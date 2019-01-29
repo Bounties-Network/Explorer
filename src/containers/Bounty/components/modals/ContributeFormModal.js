@@ -7,7 +7,7 @@ import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
 import normalizers from 'utils/normalizers';
 import { FormTextInput } from 'form-components';
-// import asyncValidators from 'utils/asyncValidators';
+import asyncValidators from 'utils/asyncValidators';
 
 const ContributeFormModal = props => {
   const {
@@ -81,18 +81,22 @@ const ContributeFormModal = props => {
 export default compose(
   reduxForm({
     form: 'bountyContribute',
-    destroyOnUnmount: false
-    // asyncValidate: (values, dispatch, props, field) => {
-    //   return asyncValidators.tokenValidationWrapper(
-    //     { ...values, tokenContract: props.tokenContract },
-    //     'contribution',
-    //     'tokenContract',
-    //     props.asyncValidating,
-    //     field,
-    //     dispatch
-    //   );
-    // },
-    // asyncChangeFields: ['contribution']
+    destroyOnUnmount: false,
+    asyncValidate: (values, dispatch, props, field) => {
+      return asyncValidators.tokenValidationWrapper(
+        { ...values, tokenContract: props.tokenContract },
+        'contribution',
+        'tokenContract',
+        props.asyncValidating,
+        field,
+        dispatch
+      );
+    },
+    shouldAsyncValidate: params => {
+      const { pristine, initialized } = params;
+      return !pristine || !initialized;
+    },
+    asyncChangeFields: ['contribution']
   }),
   ModalFormReset
 )(ContributeFormModal);
