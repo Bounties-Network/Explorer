@@ -49,13 +49,7 @@ Toggle.propTypes = {
 
 Toggle.defaultProps = {
   onChange: () => {},
-  defaultValue: false,
-  backgroundColor: 'lightGrey',
-  switchColor: 'white',
-  selectedColor: 'grey',
-  unselectedColor: 'grey',
-  size: 'small',
-  curved: false
+  defaultValue: false
 };
 
 export default Toggle;

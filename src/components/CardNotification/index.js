@@ -6,17 +6,13 @@ import { Circle, Text } from 'components';
 
 const CardNotification = props => {
   const { notificationData } = props;
-  const {
-    address = '',
-    action = '',
-    date = '',
-  } = notificationData;
+  const { address = '', action = '', date = '' } = notificationData;
 
   return (
     <div className={`${styles.cardNotificationContainer}`}>
       <div className={`${styles.leftColumn}`}>
         <div className={`${styles.profilePic}`}>
-          <Circle type="image" size="mini" />
+          <Circle type="blocky" size="small" input={address} />
         </div>
         <div className={`${styles.textArea}`}>
           <div className={`${styles.textCell}`}>
@@ -31,7 +27,7 @@ const CardNotification = props => {
       </div>
 
       <div className={`${styles.rightColumn}`}>
-        <Text type="H4" color="grey">
+        <Text type="H4" color="darkGrey">
           {date}
         </Text>
       </div>

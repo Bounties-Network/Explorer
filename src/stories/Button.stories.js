@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Button, Text } from 'components';
 
 storiesOf('Button', module).add('All Buttons', () => (
-  <div class="sb-page-wrapper">
+  <div className="sb-page-wrapper">
     <Text
       className={'sb-component-group-heading'}
       typeScale="h1"
@@ -42,7 +42,7 @@ storiesOf('Button', module).add('All Buttons', () => (
       to an instance.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Button onClick={action('clicked')}>Default</Button>
 
       <Button onClick={action('clicked')} type="primary">
@@ -83,7 +83,7 @@ storiesOf('Button', module).add('All Buttons', () => (
       icon.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Button onClick={action('clicked')} type="primary" icon={['far', 'plus']}>
         Create new bounty
       </Button>
@@ -106,7 +106,7 @@ storiesOf('Button', module).add('All Buttons', () => (
       unclickable.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Button onClick={action('should not fire')} disabled>
         Default
       </Button>
@@ -141,7 +141,7 @@ storiesOf('Button', module).add('All Buttons', () => (
       useful for displaying upon submission of forms or inputs.
     </Text>
 
-    <div class="sb-component-group sb-button-group">
+    <div className="sb-component-group sb-button-group">
       <Button loading>Default</Button>
 
       <Button loading type="primary" icon={['fal', 'bell']}>
@@ -170,13 +170,38 @@ storiesOf('Button', module).add('All Buttons', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The <code>fitWidth</code> prop will cause the button to span teh
+      The <code>fitWidth</code> prop will cause the button to span the
       full-width of its parent container.
     </Text>
 
-    <div class="sb-component-group">
+    <div className="sb-component-group">
       <Button fitWidth type="primary">
         Full-width button
+      </Button>
+    </div>
+
+    <Text
+      className={'sb-component-group-subheading'}
+      typeScale="h3"
+      weight="fontWeight-bold"
+    >
+      margin
+    </Text>
+
+    <Text
+      className={'sb-component-group-description'}
+      typeScale="Body"
+      lineHeight="lineHeight-default"
+    >
+      The <code>margin</code> prop will add a 1rem margin to the button.
+    </Text>
+
+    <div className="sb-component-group sb-button-group">
+      <Button margin type="primary">
+        Button with extra margin
+      </Button>
+      <Button margin type="primary">
+        Button with extra margin
       </Button>
     </div>
   </div>

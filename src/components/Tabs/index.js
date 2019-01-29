@@ -46,11 +46,13 @@ class Tab extends React.Component {
               >
                 {this.props.children}
               </Text>
-              <span className={countStyles}>
-                <Text typeScale="Small" color={tabTextColor}>
-                  {tabCount}
-                </Text>
-              </span>
+              {tabCount && (
+                <span className={countStyles}>
+                  <Text typeScale="Small" color={tabTextColor}>
+                    {tabCount}
+                  </Text>
+                </span>
+              )}
             </div>
           );
         }}
