@@ -166,7 +166,7 @@ class ProfileComponent extends React.Component {
       <BountyFilterNav
         position={position}
         config={filterConfig.rootConfig}
-        resetFilters={filterConfig.resetFilters}
+        resetableFilters={filterConfig.resetFilters}
         defaultStageFilters={filterConfig.defaultStageFilters}
       />
     );
