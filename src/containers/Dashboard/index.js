@@ -11,7 +11,9 @@ import {
   SubmissionsPanel,
   UserStats
 } from 'containers';
+import { Text, PageBanner, ProgressBar } from 'components';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
+import { profileStrengthSelector } from 'containers/Profile/selectors';
 import { actions as activityActions } from 'public-modules/Activity';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as draftsActions } from 'public-modules/Drafts';
@@ -42,6 +44,10 @@ class DashboardComponent extends React.Component {
       setActiveSubmissionsTab
     } = props;
 
+    this.state = {
+      profileStrengthBannerOpen: true
+    };
+
     // load bounties panel
     resetState();
     addIssuerFilter(public_address);
@@ -59,12 +65,50 @@ class DashboardComponent extends React.Component {
   }
 
   render() {
+    const { profileStrength, history } = this.props;
+
     var settings = {
       dots: true,
       arrows: false
     };
+
+    const profileStrengthBanner = profileStrength < 100 && (
+      <PageBanner
+        wrapClass="pageWrapper-large"
+        visible={this.state.profileStrengthBannerOpen}
+        onClose={() => this.setState({ profileStrengthBannerOpen: false })}
+      >
+        <div className={`${styles.profileStrength}`}>
+          <Text
+            inline
+            typeScale="Small"
+            weight="fontWeight-medium"
+            color="defaultGrey"
+          >
+            Profile strength
+          </Text>
+          <ProgressBar
+            className={`${styles.profileStrengthProgress}`}
+            color="purple"
+            percent={profileStrength}
+          />
+          <Text
+            link
+            typeScale="Small"
+            fontStyle="underline"
+            onClick={() => {
+              history.push('/settings');
+            }}
+          >
+            Edit profile
+          </Text>
+        </div>
+      </PageBanner>
+    );
+
     return (
       <div>
+        {profileStrengthBanner}
         <div className={`pageWrapper-large ${styles.desktopContainer}`}>
           <UserStats />
           <div className={styles.panelContainer}>
@@ -109,7 +153,8 @@ const mapStateToProps = state => {
   const { public_address } = currentUser;
 
   return {
-    public_address
+    public_address,
+    profileStrength: profileStrengthSelector(state)
   };
 };
 

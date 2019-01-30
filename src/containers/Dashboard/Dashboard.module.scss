@@ -99,3 +99,14 @@ $slider-height: calc(100vh - #{$header-height-sm});
     text-align: left;
   }
 }
+
+.profileStrength {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.profileStrengthProgress {
+  max-width: $base-spacing * 36;
+  margin: 0 $l-spacing 0 $m-spacing;
+}

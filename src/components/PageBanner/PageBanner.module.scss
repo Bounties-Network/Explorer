@@ -1,0 +1,46 @@
+@import "~styles/variables.scss";
+
+.pageBanner {
+  background-color: #e5e5e7;
+  overflow: hidden;
+  transition: height 0.2s ease-out;
+}
+
+.pageBannerWrapper {
+  display: flex;
+
+  // on mobile side spacing defaults to 1rem like most components
+  padding: $m-spacing;
+
+  // on desktop, the wrapClass prop drives edge padding and max width
+  @media only screen and (min-width: 48em) {
+    padding: $m-spacing 0;
+  }
+}
+
+.pageBannerContent {
+  flex: 1;
+}
+
+.pageBanner-dismissable {
+  .pageBannerContent {
+    padding-right: $m-spacing;
+  }
+}
+
+.pageBannerClose {
+  display: flex;
+  align-items: center;
+  height: $body-font-size;
+}
+
+.closeIcon {
+  top: $m-spacing;
+  cursor: pointer;
+  color: $brand-grey;
+  font-size: 1.2em;
+
+  &:hover {
+    color: $brand-blue;
+  }
+}
