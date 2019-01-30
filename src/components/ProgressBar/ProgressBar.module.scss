@@ -11,7 +11,7 @@ $progress-bar-height: $base-spacing * 0.75;
 
 .progressBar {
   overflow: hidden;
-  background-color: $brand-grey;
+  background-color: $brand-nearWhite;
   height: $progress-bar-height;
   border-radius: $progress-bar-height / 2;
   flex: 1;

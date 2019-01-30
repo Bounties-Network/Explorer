@@ -79,7 +79,12 @@ class DashboardComponent extends React.Component {
         onClose={() => this.setState({ profileStrengthBannerOpen: false })}
       >
         <div className={`${styles.profileStrength}`}>
-          <Text typeScale="Small" color="defaultGrey" inline>
+          <Text
+            inline
+            typeScale="Small"
+            weight="fontWeight-medium"
+            color="defaultGrey"
+          >
             Profile strength
           </Text>
           <ProgressBar
@@ -89,6 +94,7 @@ class DashboardComponent extends React.Component {
           />
           <Text
             link
+            typeScale="Small"
             fontStyle="underline"
             onClick={() => {
               history.push('/settings');
