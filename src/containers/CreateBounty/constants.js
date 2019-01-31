@@ -20,4 +20,10 @@ export const VISIBILITY_OPTIONS = [
   { value: false, label: 'Public' },
   { value: true, label: 'Private' }
 ];
+
+export const APPROVAL_OPTIONS = [
+  { value: true, label: 'Yes' },
+  { value: false, label: 'No' }
+];
+
 export const UPLOAD_KEY = 'createBounty';

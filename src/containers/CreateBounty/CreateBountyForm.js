@@ -38,7 +38,8 @@ import {
   PAYOUT_OPTIONS,
   ACTIVATE_OPTIONS,
   UPLOAD_KEY,
-  VISIBILITY_OPTIONS
+  VISIBILITY_OPTIONS,
+  APPROVAL_OPTIONS
 } from './constants';
 import config from 'public-modules/config';
 import defaultShouldAsyncValidate from 'redux-form/es/defaultShouldAsyncValidate';
@@ -330,6 +331,29 @@ class CreateBountyFormComponent extends React.Component {
                     minDate={minDate}
                     validate={validatorGroups.deadline}
                     showTimeSelect
+                  />
+                </div>
+              </div>
+            </FormSection.InputGroup>
+          </FormSection.Section>
+          <FormSection.Section title="USER VERIFICATION">
+            <FormSection.Description>
+              Should users be approved before beginning work?
+            </FormSection.Description>
+            <FormSection.SubText>
+              Requiring approval give you the opportunity to determine a user's
+              competence before they begin work and avoids situtiations where
+              multiple users complete the same task.
+            </FormSection.SubText>
+            <FormSection.InputGroup>
+              <div className="row">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                  <Field
+                    disabled={submittingBounty}
+                    name="fulfillers_need_approval"
+                    component={FormRadioGroup}
+                    label="Pre-approval Required"
+                    options={APPROVAL_OPTIONS}
                   />
                 </div>
               </div>

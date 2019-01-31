@@ -61,6 +61,7 @@
     "lint": "prettier --single-quote --write \"src/**/*.{js,jsx,json,css}\"",
     "precommit": "lint-staged",
     "start": "APP_SETTINGS_FILE=staging_settings APP_LOGO=logo node scripts/start.js",
+    "start-local": "APP_SETTINGS_FILE=local_settings APP_LOGO=logo node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "storybook": "start-storybook -p 6006",
