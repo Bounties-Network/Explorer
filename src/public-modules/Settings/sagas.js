@@ -168,7 +168,7 @@ export function* incrementDismissBannerCounter(action) {
   const address = yield select(addressSelector);
 
   try {
-    yield call(request, `user/${address}/dismissed_profile_banner/`, 'POST');
+    yield call(request, `user/${address}/dismiss_profile_banner/`, 'POST');
     yield put(incrementDismissBannerSuccess());
   } catch (e) {
     console.log(e);
