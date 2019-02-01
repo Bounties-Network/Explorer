@@ -57,7 +57,6 @@ const GET_OPTIONS = {
 function handleError(err) {
   const error = new Error();
   error.errorStatus = '';
-
   if (err.response) {
     const response = err.response;
     if (
@@ -65,7 +64,7 @@ function handleError(err) {
       response.status === HTTP_403_FORBIDDEN
     ) {
       rollbar.warning('User session expired: relogin');
-      throw error;
+      // include redirect-type logic in here
     }
 
     if (response.status >= HTTP_500_INTERNAL_SERVER_ERROR) {
