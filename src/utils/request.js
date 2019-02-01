@@ -64,6 +64,7 @@ function handleError(err) {
       response.status === HTTP_403_FORBIDDEN
     ) {
       rollbar.warning('User session expired: relogin');
+      return;
       // include redirect-type logic in here
     }
 
