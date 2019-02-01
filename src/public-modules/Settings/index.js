@@ -64,6 +64,25 @@ function saveEmailPreferencesFail(error) {
   return { type: SAVE_EMAIL_PREFERENCES_FAIL, error };
 }
 
+const INCREMENT_DISMISS_BANNER_COUNTER =
+  'authentication/INCREMENT_DISMISS_BANNER_COUNTER';
+const INCREMENT_DISMISS_BANNER_COUNTER_SUCCESS =
+  'authentication/INCREMENT_DISMISS_BANNER_COUNTER_SUCCESS';
+const INCREMENT_DISMISS_BANNER_COUNTER_FAIL =
+  'authentication/INCREMENT_DISMISS_BANNER_COUNTER_FAIL';
+
+function incrementDismissBannerCounter() {
+  return { type: INCREMENT_DISMISS_BANNER_COUNTER };
+}
+
+function incrementDismissBannerSuccess() {
+  return { type: INCREMENT_DISMISS_BANNER_COUNTER_SUCCESS };
+}
+
+function incrementDismissBannerFail(error) {
+  return { type: INCREMENT_DISMISS_BANNER_COUNTER_FAIL, error };
+}
+
 function SettingsReducer(state = initialState, action) {
   switch (action.type) {
     case SAVE_SETTINGS: {
@@ -165,7 +184,10 @@ export const actions = {
   saveEmailPreferencesFail,
   uploadProfileImage,
   uploadProfileImageSuccess,
-  uploadProfileImageFail
+  uploadProfileImageFail,
+  incrementDismissBannerCounter,
+  incrementDismissBannerSuccess,
+  incrementDismissBannerFail
 };
 
 export const actionTypes = {
@@ -177,7 +199,10 @@ export const actionTypes = {
   SAVE_EMAIL_PREFERENCES_FAIL,
   UPLOAD_PROFILE_IMAGE,
   UPLOAD_PROFILE_IMAGE_SUCCESS,
-  UPLOAD_PROFILE_IMAGE_FAIL
+  UPLOAD_PROFILE_IMAGE_FAIL,
+  INCREMENT_DISMISS_BANNER_COUNTER,
+  INCREMENT_DISMISS_BANNER_COUNTER_SUCCESS,
+  INCREMENT_DISMISS_BANNER_COUNTER_FAIL
 };
 
 export default SettingsReducer;
