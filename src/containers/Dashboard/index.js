@@ -72,46 +72,47 @@ class DashboardComponent extends React.Component {
   };
 
   render() {
-    const { profileStrength, history } = this.props;
+    const { profileStrength, history, dismissed_banner_count } = this.props;
 
     var settings = {
       dots: true,
       arrows: false
     };
 
-    const profileStrengthBanner = profileStrength < 100 && (
-      <PageBanner
-        wrapClass="pageWrapper-large"
-        visible={this.state.profileStrengthBannerOpen}
-        onClose={this.closeBanner}
-      >
-        <div className={`${styles.profileStrength}`}>
-          <Text
-            inline
-            typeScale="Small"
-            weight="fontWeight-medium"
-            color="defaultGrey"
-          >
-            Profile strength
-          </Text>
-          <ProgressBar
-            className={`${styles.profileStrengthProgress}`}
-            color="purple"
-            percent={profileStrength}
-          />
-          <Text
-            link
-            typeScale="Small"
-            fontStyle="underline"
-            onClick={() => {
-              history.push('/settings');
-            }}
-          >
-            Edit profile
-          </Text>
-        </div>
-      </PageBanner>
-    );
+    const profileStrengthBanner = dismissed_banner_count < 5 &&
+      profileStrength < 100 && (
+        <PageBanner
+          wrapClass="pageWrapper-large"
+          visible={this.state.profileStrengthBannerOpen}
+          onClose={this.closeBanner}
+        >
+          <div className={`${styles.profileStrength}`}>
+            <Text
+              inline
+              typeScale="Small"
+              weight="fontWeight-medium"
+              color="defaultGrey"
+            >
+              Profile strength
+            </Text>
+            <ProgressBar
+              className={`${styles.profileStrengthProgress}`}
+              color="purple"
+              percent={profileStrength}
+            />
+            <Text
+              link
+              typeScale="Small"
+              fontStyle="underline"
+              onClick={() => {
+                history.push('/settings');
+              }}
+            >
+              Edit profile
+            </Text>
+          </div>
+        </PageBanner>
+      );
 
     return (
       <div>
@@ -157,10 +158,11 @@ class DashboardComponent extends React.Component {
 
 const mapStateToProps = state => {
   const currentUser = getCurrentUserSelector(state);
-  const { public_address } = currentUser;
+  const { public_address, dismissed_banner_count } = currentUser;
 
   return {
     public_address,
+    dismissed_banner_count,
     profileStrength: profileStrengthSelector(state)
   };
 };
