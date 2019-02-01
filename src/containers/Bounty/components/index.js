@@ -6,6 +6,7 @@ import ActivateDeadFormModal from './modals/ActivateDeadFormModal';
 import IncreasePayoutFormModal from './modals/IncreasePayoutFormModal';
 import SubmissionItem from './listItems/SubmissionItem';
 import FulfillBountyFormModal from './modals/FulfillBountyFormModal';
+import FulfillerApplicationFormModal from './modals/FulfillerApplicationFormModal';
 import KillBountyFormModal from './modals/KillBountyFormModal';
 import TransferOwnershipFormModal from './modals/TransferOwnershipFormModal';
 import ContributeFormModal from './modals/ContributeFormModal';
@@ -23,6 +24,7 @@ export {
   IncreasePayoutFormModal,
   SubmissionItem,
   FulfillBountyFormModal,
+  FulfillerApplicationFormModal,
   KillBountyFormModal,
   TransferOwnershipFormModal,
   ContributeFormModal,

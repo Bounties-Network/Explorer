@@ -33,7 +33,8 @@ const {
   EXTEND_DEADLINE,
   INCREASE_PAYOUT,
   CONTRIBUTE,
-  TRANSFER_OWNERSHIP
+  TRANSFER_OWNERSHIP,
+  CREATE_FULFILLER_APPLICATION
 } = actionTypes;
 const {
   getBountySuccess,
@@ -43,7 +44,9 @@ const {
   stdBountySuccess,
   stdBountyFail,
   getDraftSuccess,
-  getDraftFail
+  getDraftFail,
+  createFulfillerApplicationSuccess,
+  createFulfillerApplicationFail
 } = actions;
 
 const {
@@ -586,6 +589,24 @@ export function* transferIssuer(action) {
   }
 }
 
+export function* createFulfillerApplication(action) {
+  const { bountyId, message, callback = () => {} } = action;
+
+  let endpoint = `bounty/${bountyId}/application/`;
+  let methodType = 'POST';
+
+  try {
+    const response = yield call(request, endpoint, methodType, {
+      data: { message }
+    });
+    yield put(createFulfillerApplicationSuccess());
+  } catch (e) {
+    yield put(createFulfillerApplicationFail(e));
+  }
+
+  callback();
+}
+
 export function* watchCreateDraft() {
   yield takeLatest([CREATE_DRAFT, UPDATE_DRAFT], createOrUpdateDraft);
 }
@@ -626,6 +647,10 @@ export function* watchContribute() {
   yield takeLatest(CONTRIBUTE, contribute);
 }
 
+export function* watchCreateFulfillerApplication() {
+  yield takeLatest(CREATE_FULFILLER_APPLICATION, createFulfillerApplication);
+}
+
 export default [
   watchGetDraft,
   watchCreateDraft,
@@ -636,5 +661,6 @@ export default [
   watchExtendDeadline,
   watchIncreasePayout,
   watchTransferIssuer,
-  watchContribute
+  watchContribute,
+  watchCreateFulfillerApplication
 ];
