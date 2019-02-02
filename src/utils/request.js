@@ -5,7 +5,9 @@ import {
   HTTP_200_OK,
   HTTP_403_FORBIDDEN,
   HTTP_500_INTERNAL_SERVER_ERROR,
-  HTTP_300_MULTIPLE_CHOICES
+  HTTP_300_MULTIPLE_CHOICES,
+  HTTP_404_NOT_FOUND,
+  HTTP_404_MOD_NOT_FOUND
 } from './constants';
 
 import { apiEndpoint } from './global';
@@ -72,6 +74,14 @@ function handleError(err) {
       error.errorStatus = response.status;
       error.errorMessage = response.statusText;
       rollbar.error(`API Error: ${response.status}`, error);
+      throw error;
+    }
+
+    if (
+      response.status === HTTP_404_NOT_FOUND ||
+      response.status === HTTP_404_MOD_NOT_FOUND
+    ) {
+      rollbar.warning('Accessing non-existent resource');
       throw error;
     }
 
