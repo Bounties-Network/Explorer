@@ -8,7 +8,8 @@ import { Buffer } from 'buffer';
 const {
   SAVE_SETTINGS,
   SAVE_EMAIL_PREFERENCES,
-  UPLOAD_PROFILE_IMAGE
+  UPLOAD_PROFILE_IMAGE,
+  INCREMENT_DISMISS_BANNER_COUNTER
 } = actionTypes;
 
 const {
@@ -17,7 +18,9 @@ const {
   saveEmailPreferencesSuccess,
   saveEmailPreferencesFail,
   uploadProfileImageSuccess,
-  uploadProfileImageFail
+  uploadProfileImageFail,
+  incrementDismissBannerSuccess,
+  incrementDismissBannerFail
 } = actions;
 
 export function* saveSettings(action) {
@@ -161,8 +164,28 @@ export function* watchSaveSettings() {
   yield takeLatest(SAVE_SETTINGS, saveSettings);
 }
 
+export function* incrementDismissBannerCounter(action) {
+  const address = yield select(addressSelector);
+
+  try {
+    yield call(request, `user/${address}/dismiss_profile_banner/`, 'POST');
+    yield put(incrementDismissBannerSuccess());
+  } catch (e) {
+    console.log(e);
+    yield put(incrementDismissBannerFail(e));
+  }
+}
+
+export function* watchIncrementDismissBannerCounter() {
+  yield takeLatest(
+    INCREMENT_DISMISS_BANNER_COUNTER,
+    incrementDismissBannerCounter
+  );
+}
+
 export default [
   watchSaveSettings,
   watchSaveEmailPreferences,
-  watchUploadProfileImage
+  watchUploadProfileImage,
+  watchIncrementDismissBannerCounter
 ];
