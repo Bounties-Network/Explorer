@@ -61,6 +61,10 @@ function handleError(err) {
   error.errorStatus = '';
   if (err.response) {
     const response = err.response;
+
+    error.errorStatus = response.status;
+    error.errorMessage = response.statusText;
+
     if (
       response.status === HTTP_401_UNAUTHORIZED ||
       response.status === HTTP_403_FORBIDDEN
@@ -70,22 +74,19 @@ function handleError(err) {
       // include redirect-type logic in here
     }
 
-    if (response.status >= HTTP_500_INTERNAL_SERVER_ERROR) {
-      error.errorStatus = response.status;
-      error.errorMessage = response.statusText;
-      rollbar.error(`API Error: ${response.status}`, error);
-      throw error;
-    }
-
     if (
-      response.status === HTTP_404_NOT_FOUND ||
-      response.status === HTTP_404_MOD_NOT_FOUND
+      response.request &&
+      (response.status === HTTP_404_NOT_FOUND ||
+        response.status === HTTP_404_MOD_NOT_FOUND)
     ) {
-      rollbar.warning('Accessing non-existent resource');
+      rollbar.warning(`Received 404 from ${response.request.responseURL}`);
       throw error;
     }
 
-    error.errorStatus = response.status;
+    if (response.status >= HTTP_500_INTERNAL_SERVER_ERROR) {
+      rollbar.error(`Internal server error: ${response.status}`, error);
+      throw error;
+    }
   }
 
   error.errorMessage = err.message;
