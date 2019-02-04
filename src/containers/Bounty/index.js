@@ -28,11 +28,7 @@ import { addressSelector } from 'public-modules/Client/selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Pill, Text, Social, Loader, ZeroState } from 'components';
-import {
-  BountyEssentials,
-  PageCard,
-  LinkedAvatar
-} from 'explorer-components';
+import { BountyEssentials, PageCard, LinkedAvatar } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
 import { newTabExtension, shortenFileName, shortenUrl } from 'utils/helpers';
 import { locationNonceSelector } from 'layout/App/selectors';
@@ -189,15 +185,19 @@ class BountyComponent extends React.Component {
               <BountyEssentials
                 isDraft={isDraft}
                 bountyStage={bounty.bountyStage}
-
                 payoutPrimaryValue={bounty.calculated_fulfillmentAmount}
                 payoutPrimaryCurrency={bounty.tokenSymbol}
                 payoutSecondaryValue={bounty.usd_price}
                 payoutSecondaryCurrency="usd"
-
                 balancePrimaryValue={bounty.calculated_balance}
                 balancePrimaryCurrency={bounty.tokenSymbol}
-                balanceSecondaryValue={bounty.calculated_balance ? bounty.calculated_balance / bounty.calculated_fulfillmentAmount * bounty.usd_price : 0}
+                balanceSecondaryValue={
+                  bounty.calculated_balance
+                    ? (bounty.calculated_balance /
+                        bounty.calculated_fulfillmentAmount) *
+                      bounty.usd_price
+                    : 0
+                }
                 balanceSecondaryCurrency="usd"
               />
               <div className={styles.bountyHeader}>
@@ -237,6 +237,14 @@ class BountyComponent extends React.Component {
             </div>
           </PageCard.Header>
           <PageCard.Content key="body" className={styles.pageBody}>
+            <div className={`${styles.descriptionSection}`}>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: converter.makeHtml(bounty.description)
+                }}
+                className="markdownContent"
+              />
+            </div>
             <div className={`${styles.filter}`}>
               <ActionBar
                 bounty={bounty}
@@ -325,7 +333,7 @@ class BountyComponent extends React.Component {
                         absolute
                         src={`https://ipfs.infura.io/ipfs/${
                           bounty.sourceDirectoryHash
-                          }/${bounty.sourceFileName}`}
+                        }/${bounty.sourceFileName}`}
                       >
                         {shortenFileName(bounty.sourceFileName, 18)}
                       </Text>
@@ -358,14 +366,6 @@ class BountyComponent extends React.Component {
                   <Social />
                 </div>
               )}
-            </div>
-            <div className={`${styles.descriptionSection}`}>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: converter.makeHtml(bounty.description)
-                }}
-                className="markdownContent"
-              />
             </div>
           </PageCard.Content>
         </PageCard>
