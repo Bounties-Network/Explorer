@@ -1,4 +1,5 @@
 import { FormInput } from 'hocs';
-import { TextInput } from 'components';
+import { Textbox, TextInput } from 'components';
 
 export const FormTextInput = FormInput(TextInput, 'formik');
+export const FormTextbox = FormInput(Textbox, 'formik');

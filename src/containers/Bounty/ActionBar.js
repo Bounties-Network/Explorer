@@ -156,7 +156,7 @@ const ActionBar = props => {
             initiateLoginProtection(() => showModal('fulfillerApplication'))
           }
         >
-          {user ? 'Submit application' : 'Sign in to apply'}
+          {user ? 'Apply to bounty' : 'Sign in to apply'}
         </Button>
       );
     }
