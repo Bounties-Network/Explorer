@@ -81,9 +81,8 @@
   text-align: left;
 
   @media only screen and (min-width: 35em) {
-    padding-right: $l-spacing;
     padding-left: $l-spacing;
-    width: 16rem;
+    width: 15rem;
   }
 }
 
@@ -137,13 +136,14 @@
   margin-left: -$m-spacing;
   margin-right: -$m-spacing;
   padding: $l-spacing $m-spacing;
+  flex-grow: 1;
 
   @media only screen and (min-width: 35em) {
     margin-top: -$l-spacing;
     margin-bottom: -$l-spacing;
     margin-left: 0;
-    margin-right: $l-spacing;
-    padding: $xl-spacing $xl-spacing $xxl-spacing $xl-spacing;
+    margin-right: 0;
+    padding: $xl-spacing $xl-spacing $xxl-spacing $m-spacing;
     border-top: none;
     border-right: $base-border;
   }
