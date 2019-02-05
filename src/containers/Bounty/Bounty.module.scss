@@ -61,7 +61,7 @@
 
 .pageBody > div {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   padding: $m-spacing;
 
   @media only screen and (min-width: 35em) {
@@ -82,7 +82,8 @@
 
   @media only screen and (min-width: 35em) {
     padding-right: $l-spacing;
-    width: 15rem;
+    padding-left: $l-spacing;
+    width: 16rem;
   }
 }
 
@@ -141,10 +142,10 @@
     margin-top: -$l-spacing;
     margin-bottom: -$l-spacing;
     margin-left: 0;
-    margin-right: -$l-spacing;
+    margin-right: $l-spacing;
     padding: $xl-spacing $xl-spacing $xxl-spacing $xl-spacing;
     border-top: none;
-    border-left: $base-border;
+    border-right: $base-border;
   }
 }
 

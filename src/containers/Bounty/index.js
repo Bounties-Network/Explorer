@@ -237,6 +237,14 @@ class BountyComponent extends React.Component {
             </div>
           </PageCard.Header>
           <PageCard.Content key="body" className={styles.pageBody}>
+            <div className={`${styles.descriptionSection}`}>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: converter.makeHtml(bounty.description)
+                }}
+                className="markdownContent"
+              />
+            </div>
             <div className={`${styles.filter}`}>
               <ActionBar
                 bounty={bounty}
@@ -358,14 +366,6 @@ class BountyComponent extends React.Component {
                   <Social utm_campaign={`bounty_${bounty.id}`} />
                 </div>
               )}
-            </div>
-            <div className={`${styles.descriptionSection}`}>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: converter.makeHtml(bounty.description)
-                }}
-                className="markdownContent"
-              />
             </div>
           </PageCard.Content>
         </PageCard>
