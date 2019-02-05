@@ -61,7 +61,7 @@
 
 .pageBody > div {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   padding: $m-spacing;
 
   @media only screen and (min-width: 35em) {
