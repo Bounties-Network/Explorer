@@ -79,7 +79,9 @@ function handleError(err) {
       (response.status === HTTP_404_NOT_FOUND ||
         response.status === HTTP_404_MOD_NOT_FOUND)
     ) {
-      rollbar.warning(`Received 404 from ${response.request.responseURL}`);
+      rollbar.warning(
+        `Received 404 while accessing: ${response.request.responseURL}`
+      );
       throw error;
     }
 
