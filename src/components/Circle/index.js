@@ -57,8 +57,8 @@ const Circle = props => {
 
     const { input } = props;
 
-    let blockySize = 15;
-    let blockyScale = 5;
+    let blockySize = 8;
+    let blockyScale = 20;
 
     return <Blockies seed={input} size={blockySize} scale={blockyScale} />;
   };
