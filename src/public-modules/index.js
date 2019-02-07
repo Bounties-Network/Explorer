@@ -16,6 +16,7 @@ import settingsReducer from 'public-modules/Settings';
 import transactionReducer from 'public-modules/Transaction';
 import activityReducer from 'public-modules/Activity';
 import NotificationReducer from 'public-modules/Notification';
+import fulfillerApplicationReducer from 'public-modules/FulfillerApplication';
 import fulfillmentsReducer from 'public-modules/Fulfillments';
 import fulfillmentReducer from 'public-modules/Fulfillment';
 import commentsReducer from 'public-modules/Comments';
@@ -38,6 +39,7 @@ export const reducers = {
   settings: settingsReducer,
   activity: activityReducer,
   notification: NotificationReducer,
+  fulfillerApplication: fulfillerApplicationReducer,
   fulfillments: fulfillmentsReducer,
   fulfillment: fulfillmentReducer,
   transaction: transactionReducer,
@@ -62,6 +64,7 @@ import settingsSagas from 'public-modules/Settings/sagas';
 import transactionSagas from 'public-modules/Transaction/sagas';
 import activitySagas from 'public-modules/Activity/sagas';
 import notificationSagas from 'public-modules/Notification/sagas';
+import fulfillerApplicationSagas from 'public-modules/FulfillerApplication/sagas';
 import fulfillmentsSagas from 'public-modules/Fulfillments/sagas';
 import fulfillmentSagas from 'public-modules/Fulfillment/sagas';
 import commentsSagas from 'public-modules/Comments/sagas';
@@ -85,6 +88,7 @@ export const sagaWatchers = [
   ...transactionSagas,
   ...activitySagas,
   ...notificationSagas,
+  ...fulfillerApplicationSagas,
   ...fulfillmentsSagas,
   ...fulfillmentSagas,
   ...commentsSagas,

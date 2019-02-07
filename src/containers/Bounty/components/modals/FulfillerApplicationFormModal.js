@@ -5,6 +5,8 @@ import { FormTextbox } from 'form-components/formik';
 import { Form, Field, withFormik } from 'formik';
 import { size } from 'lodash';
 
+const MAX_MESSAGE_LENGTH = 500;
+
 let FulfillerApplicationModalComponent = props => {
   const {
     onClose,
@@ -42,6 +44,7 @@ let FulfillerApplicationModalComponent = props => {
             type="text"
             name="message"
             label="Application"
+            maxLength={MAX_MESSAGE_LENGTH}
             placeholder="Enter message..."
             component={FormTextbox}
           />
@@ -82,6 +85,10 @@ const FulfillerApplicationModal = withFormik({
 
     if (!values.message) {
       errors.message = '* Required';
+    }
+
+    if (values.message && values.message.length > MAX_MESSAGE_LENGTH) {
+      errors.message = 'Too long';
     }
 
     return errors;

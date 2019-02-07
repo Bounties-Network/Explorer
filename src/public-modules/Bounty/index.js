@@ -18,17 +18,11 @@ const defaultGetDraftState = {
   error: false
 };
 
-const defaultCreateFulfillerApplicationState = {
-  loading: false,
-  error: false
-};
-
 const initialState = {
   getBountyState: { ...defaultGetBountyState },
   createDraftState: { ...defaultCreateDraftState },
   getDraftState: { ...defaultGetDraftState },
-  stdBountyState: { ...defaultStdBountyState },
-  createFulfilerApplicationState: { ...defaultCreateFulfillerApplicationState }
+  stdBountyState: { ...defaultStdBountyState }
 };
 
 const GET_BOUNTY = 'bounty/GET_BOUNTY';
@@ -112,24 +106,6 @@ function extendDeadline(id, deadline) {
 
 function contribute(id, value, paysTokens, decimals, tokenContract) {
   return { type: CONTRIBUTE, id, value, paysTokens, decimals, tokenContract };
-}
-
-const CREATE_FULFILLER_APPLICATION = 'bounty/CREATE_FULFILLER_APPLICATION';
-const CREATE_FULFILLER_APPLICATION_SUCCESS =
-  'bounty/CREATE_FULFILLER_APPLICATION_SUCCESS';
-const CREATE_FULFILLER_APPLICATION_FAIL =
-  'bounty/CREATE_FULFILLER_APPLICATION_FAIL';
-
-function createFulfillerApplication(bountyId, message, callback) {
-  return { type: CREATE_FULFILLER_APPLICATION, bountyId, message, callback };
-}
-
-function createFulfillerApplicationSuccess(response) {
-  return { type: CREATE_FULFILLER_APPLICATION_SUCCESS, response };
-}
-
-function createFulfillerApplicationFail(error) {
-  return { type: CREATE_FULFILLER_APPLICATION_FAIL, error };
 }
 
 function increasePayout(
@@ -312,35 +288,6 @@ function BountyReducer(state = initialState, action) {
         }
       };
     }
-    case CREATE_FULFILLER_APPLICATION: {
-      return {
-        ...state,
-        createFulfillerApplicationState: {
-          ...state.createFulfillerApplicationState,
-          loading: true,
-          error: false
-        }
-      };
-    }
-    case CREATE_FULFILLER_APPLICATION_SUCCESS: {
-      return {
-        ...state,
-        createFulfillerApplicationState: {
-          ...state.createFulfillerApplicationState,
-          loading: false
-        }
-      };
-    }
-    case CREATE_FULFILLER_APPLICATION_FAIL: {
-      return {
-        ...state,
-        createFulfillerApplicationState: {
-          ...state.createFulfillerApplicationState,
-          loading: false,
-          error: true
-        }
-      };
-    }
 
     default:
       return state;
@@ -366,10 +313,7 @@ export const actions = {
   updateDraft,
   createDraft,
   createDraftSuccess,
-  createDraftFail,
-  createFulfillerApplication,
-  createFulfillerApplicationSuccess,
-  createFulfillerApplicationFail
+  createDraftFail
 };
 
 export const actionTypes = {
@@ -391,10 +335,7 @@ export const actionTypes = {
   CREATE_DRAFT_SUCCESS,
   CREATE_DRAFT_FAIL,
   STD_BOUNTY_SUCCESS,
-  STD_BOUNTY_FAIL,
-  CREATE_FULFILLER_APPLICATION,
-  CREATE_FULFILLER_APPLICATION_SUCCESS,
-  CREATE_FULFILLER_APPLICATION_FAIL
+  STD_BOUNTY_FAIL
 };
 
 export default BountyReducer;

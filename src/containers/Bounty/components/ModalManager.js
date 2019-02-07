@@ -5,6 +5,7 @@ import { BigNumber } from 'bignumber.js';
 import moment from 'moment';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
+import { actions as fulfillerApplicationActions } from 'public-modules/FulfillerApplication';
 import { actions as reviewActions } from 'public-modules/Review';
 import { actions as bountyUIActions } from '../reducer';
 import { rootBountyPageSelector } from '../selectors';
@@ -234,7 +235,8 @@ const ModalManager = compose(
       fulfillBountyAction: fulfillmentActions.createFulfillment,
       transferOwnershipAction: bountyActions.transferOwnership,
       contributeAction: bountyActions.contribute,
-      createFulfillerApplicationAction: bountyActions.createFulfillerApplication
+      createFulfillerApplicationAction:
+        fulfillerApplicationActions.createFulfillerApplication
     }
   )
 )(ModalManagerComponent);
