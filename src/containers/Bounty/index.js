@@ -27,7 +27,7 @@ import {
 import { addressSelector } from 'public-modules/Client/selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Pill, Text, Social, Loader, ZeroState } from 'components';
+import { Pill, Text, Social, Loader, Tooltip, ZeroState } from 'components';
 import { BountyEssentials, PageCard, LinkedAvatar } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
 import { newTabExtension, shortenFileName, shortenUrl } from 'utils/helpers';
@@ -256,6 +256,48 @@ class BountyComponent extends React.Component {
                 showModal={showModal}
               />
               <div className={styles.bountyMetadata}>
+                {bounty.fulfillers_need_approval && (
+                  <div
+                    className={[
+                      styles.metadataItem,
+                      styles.applicationRequiredBounty
+                    ].join(' ')}
+                  >
+                    <i className={styles.metadataIcon}>
+                      <FontAwesomeIcon icon={['far', 'lock-alt']} />
+                    </i>
+                    <Text
+                      inline
+                      className={styles.metadataInput}
+                      weight="fontWeight-medium"
+                    >
+                      Private
+                    </Text>
+                    <Text
+                      inline
+                      color="defaultGrey"
+                      className={styles.metadataLabel}
+                    >
+                      bounty
+                    </Text>
+
+                    <Tooltip
+                      align="right"
+                      className={styles.metadataTooltip}
+                      width="200px"
+                    >
+                      <Text
+                        typeScale="Small"
+                        alignment="align-left"
+                        lineHeight="lineHeight-small"
+                      >
+                        Private bounties require that users apply to fulfill the
+                        bounty. Once approved by the issuer, you may submit a
+                        bounty fulfillment.
+                      </Text>
+                    </Tooltip>
+                  </div>
+                )}
                 <section className={styles.metadataSection}>
                   <div className={styles.metadataItem}>
                     <i className={styles.metadataIcon}>
