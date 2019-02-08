@@ -12,6 +12,7 @@ import {
   actions as commentsActions,
   actionTypes as commentsActionTypes
 } from 'public-modules/Comments';
+import { actions as applicantsActions } from 'public-modules/Applicants';
 import { actions as transactionActions } from 'public-modules/Transaction';
 import {
   actions as bountyPageActions,
@@ -25,6 +26,7 @@ const { LOAD_FULFILLMENT_SUCCESS } = fulfillmentActionTypes;
 const { closeModal, showModal, setRatingModal } = bountyPageActions;
 const { loadFulfillments } = fulfillmentsActions;
 const { loadComments } = commentsActions;
+const { loadApplicants } = applicantsActions;
 const { closeWalkthrough } = transactionActions;
 const { POST_COMMENT_SUCCESS } = commentsActionTypes;
 
@@ -41,9 +43,12 @@ export function* loadTab(action) {
 
   if (tabKey === 'submissions') {
     yield put(loadFulfillments());
-  } else {
+  } else if (tabKey === 'comments') {
     const bountyId = yield select(bountyIdSelector);
     yield put(loadComments(bountyId));
+  } else if (tabKey === 'applicants') {
+    const bountyId = yield select(bountyIdSelector);
+    yield put(loadApplicants(bountyId));
   }
 }
 

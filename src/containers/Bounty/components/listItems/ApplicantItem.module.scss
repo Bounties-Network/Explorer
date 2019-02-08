@@ -1,0 +1,104 @@
+@import "~styles/variables.scss";
+
+.labelGroup {
+  word-wrap: break-word;
+  padding-left: $xl-spacing + $m-spacing;
+  margin-right: $m-spacing;
+
+  &:not(:last-child) {
+    margin-bottom: $xl-spacing;
+  }
+
+  p {
+    margin-bottom: $base-spacing;
+  }
+}
+
+.bottomMargin {
+  margin-bottom: $xl-spacing;
+}
+
+.contactInfo {
+  margin-bottom: $xl-spacing;
+
+  p:first-child {
+    margin-top: $xl-spacing;
+  }
+}
+
+.submitTime {
+  margin-bottom: $xl-spacing;
+
+  @media only screen and (min-width: 48em) {
+      margin-bottom: 0;
+    }
+}
+
+.detailsContainer {
+  padding-right: 0;
+
+  .labelGroup:last-child {
+    margin-bottom: $xl-spacing;
+
+    @media (min-width: 576px) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.filter {
+  text-align: left;
+}
+
+.avatarLabel {
+  padding-top: $base-spacing;
+}
+
+.actionColumn {
+  display: flex;
+  padding-left: $xl-spacing + $xl-spacing;
+  flex-direction: column;
+  position: absolute;
+  top: $l-spacing;
+  right: $m-spacing;
+
+  @media only screen and (min-width: 48em) {
+    align-items: flex-end;
+    margin-top: 0;
+    padding-left: 0;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+}
+
+.actionButton {
+  margin-top: $m-spacing;
+  margin-bottom: $m-spacing;
+}
+
+.submissionContents {
+  //padding-top: $l-spacing;
+}
+
+.submissionDescription {
+  line-height: $base-line-height;
+  white-space: pre-wrap;
+}
+
+.fileIcon {
+  margin-right: $base-spacing;
+}
+
+.label {
+  position: absolute;
+  top: $xl-spacing;
+  right: 0;
+}
+
+.image {
+  margin-top: 0.5rem;
+  max-width: 25rem;
+  max-height: 15rem;
+  display: block;
+}
