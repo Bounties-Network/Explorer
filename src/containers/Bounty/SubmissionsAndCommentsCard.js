@@ -159,7 +159,7 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
       }, list);
     };
 
-    const renderApplicants = list => {
+    const renderMyApplication = list => {
       return map(applicant_item => {
         const { id, message, created, state, applicant } = applicant_item;
 
@@ -169,37 +169,96 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
           currentUser &&
           applicant.public_address === currentUser.public_address;
 
-        return (
-          <ListGroup.ListItem key={id} className={styles.listItem} fullBorder>
-            <ApplicantItem
-              applicationId={id}
-              applicant_name={name}
-              applicant_address={applicant.public_address}
-              applicant_img={small_profile_image_url}
-              bounty={bounty}
-              state={state}
-              description={message}
-              created={created}
-              bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
-              applicationBelongsToLoggedInUser={
-                applicationBelongsToLoggedInUser
-              }
-              acceptApplicant={() =>
-                initiateLoginProtection(() =>
-                  initiateWalkthrough(() => acceptFulfillment(bounty.id, id))
-                )
-              }
-              rejectApplicant={() =>
-                initiateLoginProtection(() =>
-                  initiateWalkthrough(() => acceptFulfillment(bounty.id, id))
-                )
-              }
-              initiateLoginProtection={initiateLoginProtection}
-              showModal={showModal}
-              setRatingModal={setRatingModal}
-            />
-          </ListGroup.ListItem>
-        );
+        if (applicationBelongsToLoggedInUser) {
+          return (
+            <div>
+              <ListGroup.ListItem
+                key={id}
+                className={styles.listItem}
+                fullBorder
+              >
+                <ApplicantItem
+                  applicationId={id}
+                  applicant_name={name}
+                  applicant_address={applicant.public_address}
+                  applicant_img={small_profile_image_url}
+                  bounty={bounty}
+                  state={state}
+                  description={message}
+                  created={created}
+                  bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
+                  acceptApplicant={() =>
+                    initiateLoginProtection(() =>
+                      initiateWalkthrough(() =>
+                        acceptFulfillment(bounty.id, id)
+                      )
+                    )
+                  }
+                  rejectApplicant={() =>
+                    initiateLoginProtection(() =>
+                      initiateWalkthrough(() =>
+                        acceptFulfillment(bounty.id, id)
+                      )
+                    )
+                  }
+                  initiateLoginProtection={initiateLoginProtection}
+                  showModal={showModal}
+                  setRatingModal={setRatingModal}
+                />
+              </ListGroup.ListItem>
+              <Text
+                alignment="align-center"
+                color="defaultGrey"
+                typeScale="Small"
+              >
+                Your application status is only visible to you
+              </Text>
+            </div>
+          );
+        }
+      }, list);
+    };
+
+    const renderApplicantsButMe = list => {
+      return map(applicant_item => {
+        const { id, message, created, state, applicant } = applicant_item;
+
+        const { name, small_profile_image_url } = applicant;
+
+        const applicationBelongsToLoggedInUser =
+          currentUser &&
+          applicant.public_address === currentUser.public_address;
+
+        if (!applicationBelongsToLoggedInUser && state !== 'R') {
+          return (
+            <ListGroup.ListItem key={id} className={styles.listItem} fullBorder>
+              <ApplicantItem
+                applicationId={id}
+                applicant_name={name}
+                applicant_address={applicant.public_address}
+                applicant_img={small_profile_image_url}
+                bounty={bounty}
+                state={state}
+                description={message}
+                created={created}
+                bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
+                acceptApplicant={() =>
+                  initiateLoginProtection(() =>
+                    initiateWalkthrough(() => acceptFulfillment(bounty.id, id))
+                  )
+                }
+                rejectApplicant={() =>
+                  initiateLoginProtection(() =>
+                    initiateWalkthrough(() => acceptFulfillment(bounty.id, id))
+                  )
+                }
+                initiateLoginProtection={initiateLoginProtection}
+                showModal={showModal}
+                setRatingModal={setRatingModal}
+              />
+            </ListGroup.ListItem>
+          );
+        }
       }, list);
     };
 
@@ -242,7 +301,8 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
         body = (
           <ListGroup className={styles.borderStyle}>
             {[
-              ...renderApplicants(applicants.list),
+              renderMyApplication(applicants.list),
+              ...renderApplicantsButMe(applicants.list),
               applicants.list.length < applicants.count && (
                 <ListGroup.ListItem
                   key="load"

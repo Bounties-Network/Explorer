@@ -15,7 +15,6 @@ const ApplicantItem = props => {
     state,
     created,
     bountyBelongsToLoggedInUser,
-    applicationBelongsToLoggedInUser,
     acceptApplicant,
     rejectApplicant,
     showModal,
@@ -32,12 +31,11 @@ const ApplicantItem = props => {
 
   let actionsOrStatus = [];
 
-  if (bountyBelongsToLoggedInUser) {
+  if (bountyBelongsToLoggedInUser && state === 'P') {
     actionsOrStatus.push(
       <Button
         type="action"
-        className={styles.actionButton}
-        icon={['far', 'check']}
+        className={styles.applicantsActionsButton}
         onClick={acceptApplicant}
       >
         Accept
@@ -45,18 +43,13 @@ const ApplicantItem = props => {
     );
     actionsOrStatus.push(
       <Button
-        type="action"
-        className={styles.actionButton}
-        icon={['far', 'check']}
+        type="default"
+        className={styles.applicantsActionsButton}
         onClick={rejectApplicant}
       >
         Reject
       </Button>
     );
-  }
-
-  if (applicationBelongsToLoggedInUser) {
-    actionsOrStatus.push(<ApplicantStagePill applicationStatus={state} />);
   } else {
     actionsOrStatus.push(<ApplicantStagePill applicationStatus={state} />);
   }
@@ -92,7 +85,9 @@ const ApplicantItem = props => {
           </Text>
         </div>
       </div>
-      <div className={`col-sm-3 ${styles.actionColumn}`}>{actionsOrStatus}</div>
+      <div className={`col-sm-3 ${styles.applicantsActions}`}>
+        {actionsOrStatus}
+      </div>
     </div>
   );
 };
