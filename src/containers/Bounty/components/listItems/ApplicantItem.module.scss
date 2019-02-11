@@ -77,32 +77,6 @@
   margin-bottom: $m-spacing;
 }
 
-.applicantsActions {
-  display: flex;
-  padding-left: $xl-spacing + $xl-spacing;
-  flex-direction: row-reverse;
-  position: absolute;
-  top: $xxl-spacing;
-  right: $m-spacing;
-
-  @media only screen and (min-width: 48em) {
-    align-items: flex-start;
-    margin-top: 0;
-    padding-left: 0;
-    position: relative;
-    top: 0;
-    right: 0;
-  }
-}
-
-.applicantsActionsButton {
-  margin-left: $m-spacing;
-  font-size: $body-font-size;
-  padding: $base-spacing $m-spacing;
-  line-height: 0;
-  height: $line-height-large;
-}
-
 .submissionContents {
   //padding-top: $l-spacing;
 }

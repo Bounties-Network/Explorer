@@ -5,6 +5,7 @@ import ExtendDeadlineFormModal from './modals/ExtendDeadlineFormModal';
 import ActivateDeadFormModal from './modals/ActivateDeadFormModal';
 import IncreasePayoutFormModal from './modals/IncreasePayoutFormModal';
 import SubmissionItem from './listItems/SubmissionItem';
+import ApplicantItem from './listItems/ApplicantItem';
 import FulfillBountyFormModal from './modals/FulfillBountyFormModal';
 import FulfillerApplicationFormModal from './modals/FulfillerApplicationFormModal';
 import KillBountyFormModal from './modals/KillBountyFormModal';
@@ -23,6 +24,7 @@ export {
   ActivateDeadFormModal,
   IncreasePayoutFormModal,
   SubmissionItem,
+  ApplicantItem,
   FulfillBountyFormModal,
   FulfillerApplicationFormModal,
   KillBountyFormModal,

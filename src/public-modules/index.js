@@ -20,6 +20,7 @@ import fulfillerApplicationReducer from 'public-modules/FulfillerApplication';
 import fulfillmentsReducer from 'public-modules/Fulfillments';
 import fulfillmentReducer from 'public-modules/Fulfillment';
 import commentsReducer from 'public-modules/Comments';
+import applicantsReducer from 'public-modules/Applicants';
 import reviewReducer from 'public-modules/Review';
 import reviewsReducer from 'public-modules/Reviews';
 import tokensReducer from 'public-modules/Tokens';
@@ -44,6 +45,7 @@ export const reducers = {
   fulfillment: fulfillmentReducer,
   transaction: transactionReducer,
   comments: commentsReducer,
+  applicants: applicantsReducer,
   review: reviewReducer,
   reviews: reviewsReducer,
   tokens: tokensReducer
@@ -66,6 +68,7 @@ import activitySagas from 'public-modules/Activity/sagas';
 import notificationSagas from 'public-modules/Notification/sagas';
 import fulfillerApplicationSagas from 'public-modules/FulfillerApplication/sagas';
 import fulfillmentsSagas from 'public-modules/Fulfillments/sagas';
+import applicantsSagas from 'public-modules/Applicants/sagas';
 import fulfillmentSagas from 'public-modules/Fulfillment/sagas';
 import commentsSagas from 'public-modules/Comments/sagas';
 import reviewSagas from 'public-modules/Review/sagas';
@@ -92,6 +95,7 @@ export const sagaWatchers = [
   ...fulfillmentsSagas,
   ...fulfillmentSagas,
   ...commentsSagas,
+  ...applicantsSagas,
   ...reviewSagas,
   ...reviewsSagas,
   ...tokensSagas
