@@ -4,15 +4,23 @@ import { actionTypes, actions } from 'public-modules/Applicants';
 import { applicantsSelector } from 'public-modules/Applicants/selectors';
 import { LIMIT } from './constants';
 
-const { LOAD_APPLICANTS, LOAD_MORE_APPLICANTS } = actionTypes;
 const {
+  LOAD_APPLICANTS,
+  LOAD_MORE_APPLICANTS,
+  CHANGE_APPLICATION_STATE,
+  CHANGE_APPLICATION_STATE_SUCCESS
+} = actionTypes;
+const {
+  loadApplicants,
   loadApplicantsFail,
   loadApplicantsSuccess,
   loadMoreApplicantsFail,
-  loadMoreApplicantsSuccess
+  loadMoreApplicantsSuccess,
+  changeApplicationStateSuccess,
+  changeApplicationStateFail
 } = actions;
 
-export function* loadApplicants(action) {
+export function* loadApplicantsSaga(action) {
   const { bountyId } = action;
 
   try {
@@ -25,8 +33,8 @@ export function* loadApplicants(action) {
   }
 }
 
-export function* loadMoreApplicants(action) {
-  const { comments: currentApplicants, bountyId } = yield select(
+export function* loadMoreApplicants() {
+  const { applicants: currentApplicants, bountyId } = yield select(
     applicantsSelector
   );
 
@@ -45,12 +53,49 @@ export function* loadMoreApplicants(action) {
   }
 }
 
+export function* changeApplicationState(action) {
+  const { applicationId, state } = action;
+
+  const data = {
+    state: state
+  };
+
+  try {
+    let endpoint = `application/${applicationId}/`;
+    yield call(request, endpoint, 'PUT', { data });
+    yield put(changeApplicationStateSuccess());
+  } catch (e) {
+    yield put(changeApplicationStateFail(e));
+  }
+}
+
+export function* changeApplicationStateSuccessSaga() {
+  const { bountyId } = yield select(applicantsSelector);
+  yield put(loadApplicants(bountyId));
+}
+
 export function* watchApplicants() {
-  yield takeLatest(LOAD_APPLICANTS, loadApplicants);
+  yield takeLatest(LOAD_APPLICANTS, loadApplicantsSaga);
 }
 
 export function* watchLoadMoreApplicants() {
   yield takeLatest(LOAD_MORE_APPLICANTS, loadMoreApplicants);
 }
 
-export default [watchApplicants, watchLoadMoreApplicants];
+export function* watchChangeApplicationStateSaga() {
+  yield takeLatest(CHANGE_APPLICATION_STATE, changeApplicationState);
+}
+
+export function* watchChangeApplicationStateSuccessSaga() {
+  yield takeLatest(
+    CHANGE_APPLICATION_STATE_SUCCESS,
+    changeApplicationStateSuccessSaga
+  );
+}
+
+export default [
+  watchApplicants,
+  watchLoadMoreApplicants,
+  watchChangeApplicationStateSaga,
+  watchChangeApplicationStateSuccessSaga
+];

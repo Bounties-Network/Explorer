@@ -86,14 +86,12 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
       bounty,
       currentUser,
       acceptFulfillment,
+      changeApplicationState,
       postComment,
       loadMoreComments,
       loadMoreFulfillments,
       loadMoreApplicants
     } = this.props;
-
-    const userAppliedToBounty = false;
-    const fulfillersNeedApproval = true;
 
     const bountyBelongsToLoggedInUser =
       currentUser && bounty.issuer === currentUser.public_address;
@@ -178,41 +176,27 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
                 fullBorder
               >
                 <ApplicantItem
-                  applicationId={id}
                   applicant_name={name}
                   applicant_address={applicant.public_address}
                   applicant_img={small_profile_image_url}
-                  bounty={bounty}
                   state={state}
                   description={message}
                   created={created}
                   bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
-                  acceptApplicant={() =>
-                    initiateLoginProtection(() =>
-                      initiateWalkthrough(() =>
-                        acceptFulfillment(bounty.id, id)
-                      )
-                    )
-                  }
-                  rejectApplicant={() =>
-                    initiateLoginProtection(() =>
-                      initiateWalkthrough(() =>
-                        acceptFulfillment(bounty.id, id)
-                      )
-                    )
-                  }
-                  initiateLoginProtection={initiateLoginProtection}
-                  showModal={showModal}
-                  setRatingModal={setRatingModal}
+                  acceptApplicant={() => changeApplicationState(id, 'A')}
+                  rejectApplicant={() => changeApplicationState(id, 'R')}
                 />
               </ListGroup.ListItem>
-              <Text
-                alignment="align-center"
-                color="defaultGrey"
-                typeScale="Small"
-              >
-                Your application status is only visible to you
-              </Text>
+              {state === 'R' ? (
+                <Text
+                  className={styles.declinedNoteText}
+                  alignment="align-center"
+                  color="defaultGrey"
+                  typeScale="Small"
+                >
+                  Your declined application status is only visible to you
+                </Text>
+              ) : null}
             </div>
           );
         }
@@ -233,28 +217,15 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
           return (
             <ListGroup.ListItem key={id} className={styles.listItem} fullBorder>
               <ApplicantItem
-                applicationId={id}
                 applicant_name={name}
                 applicant_address={applicant.public_address}
                 applicant_img={small_profile_image_url}
-                bounty={bounty}
                 state={state}
                 description={message}
                 created={created}
                 bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
-                acceptApplicant={() =>
-                  initiateLoginProtection(() =>
-                    initiateWalkthrough(() => acceptFulfillment(bounty.id, id))
-                  )
-                }
-                rejectApplicant={() =>
-                  initiateLoginProtection(() =>
-                    initiateWalkthrough(() => acceptFulfillment(bounty.id, id))
-                  )
-                }
-                initiateLoginProtection={initiateLoginProtection}
-                showModal={showModal}
-                setRatingModal={setRatingModal}
+                acceptApplicant={() => changeApplicationState(id, 'A')}
+                rejectApplicant={() => changeApplicationState(id, 'R')}
               />
             </ListGroup.ListItem>
           );
@@ -493,12 +464,12 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
     }
 
     let tabs = [];
-    if (fulfillersNeedApproval) {
+    if (bounty.fulfillers_need_approval) {
       tabs.push(
         <Tabs.Tab
           tabClassName={styles.tab}
           tabColor="lightGrey"
-          tabCount={applicants.list.length}
+          tabCount={bounty.application_count}
           eventKey={'applicants'}
           typeScale="h4"
           tabTextClass={styles.tabText}
@@ -585,6 +556,7 @@ const SubmissionsAndCommentsCard = compose(
       showModal: bountyUIActions.showModal,
       setRatingModal: bountyUIActions.setRatingModal,
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
+      changeApplicationState: applicantsActions.changeApplicationState,
       postComment: commentsActions.postComment,
       loadMoreComments: commentsActions.loadMoreComments,
       loadMoreFulfillments: fulfillmentsActions.loadMoreFulfillments,

@@ -6,8 +6,6 @@ import moment from 'moment';
 
 const ApplicantItem = props => {
   const {
-    applicationId,
-    bounty,
     applicant_name,
     applicant_address,
     applicant_img,
@@ -16,13 +14,8 @@ const ApplicantItem = props => {
     created,
     bountyBelongsToLoggedInUser,
     acceptApplicant,
-    rejectApplicant,
-    showModal,
-    setRatingModal,
-    initiateLoginProtection
+    rejectApplicant
   } = props;
-
-  const { bountyStage } = bounty;
 
   const formattedTime = moment
     .utc(created, 'YYYY-MM-DDThh:mm:ssZ')

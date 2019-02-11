@@ -85,3 +85,11 @@
   text-align: center;
   padding-top: $l-spacing;
 }
+
+.declinedNoteText {
+  background-color: $brand-nearWhite;
+  position: relative;
+  margin-right: -$l-spacing;
+  margin-left: -$l-spacing;
+  padding: $base-spacing;
+}
