@@ -13,6 +13,7 @@ const ApplicantItem = props => {
     state,
     created,
     bountyBelongsToLoggedInUser,
+    applicationBelongsToLoggedInUser,
     acceptApplicant,
     rejectApplicant
   } = props;
@@ -20,9 +21,17 @@ const ApplicantItem = props => {
   const formattedTime = moment
     .utc(created, 'YYYY-MM-DDThh:mm:ssZ')
     .local()
-    .format('MM/DD/YYYY');
+    .fromNow();
 
   let actionsOrStatus = [];
+
+  if (
+    state === 'R' &&
+    !bountyBelongsToLoggedInUser &&
+    !applicationBelongsToLoggedInUser
+  ) {
+    return null;
+  }
 
   if (bountyBelongsToLoggedInUser && state === 'P') {
     actionsOrStatus.push(
@@ -66,7 +75,7 @@ const ApplicantItem = props => {
 
         {bountyBelongsToLoggedInUser ? (
           <div>
-            <div className={`col-xs-12 col-sm-6 ${styles.filter}`}>
+            <div className={`col-xs-12 col-sm-10 ${styles.filter}`}>
               <div
                 className={`${styles.labelGroup} ${styles.submissionContents}`}
               >

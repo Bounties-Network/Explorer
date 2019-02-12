@@ -189,6 +189,9 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
                   description={message}
                   created={created}
                   bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
+                  applicationBelongsToLoggedInUser={
+                    applicationBelongsToLoggedInUser
+                  }
                   acceptApplicant={() =>
                     changeApplicationState(applicationId, 'A')
                   }
@@ -229,7 +232,7 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
           currentUser &&
           applicant.public_address === currentUser.public_address;
 
-        if (!applicationBelongsToLoggedInUser && state !== 'R') {
+        if (!applicationBelongsToLoggedInUser) {
           return (
             <ListGroup.ListItem
               key={applicationId}
@@ -244,6 +247,9 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
                 description={message}
                 created={created}
                 bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
+                applicationBelongsToLoggedInUser={
+                  applicationBelongsToLoggedInUser
+                }
                 acceptApplicant={() =>
                   changeApplicationState(applicationId, 'A')
                 }
