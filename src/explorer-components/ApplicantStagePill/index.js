@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Pill } from 'components';
-import { DEAD, COMPLETED } from 'public-modules/Bounty/constants';
 
 const ApplicantStagePill = props => {
   const { applicationStatus, className } = props;

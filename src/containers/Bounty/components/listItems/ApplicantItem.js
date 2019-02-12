@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './SubmissionItem.module.scss';
+import styles from './ApplicantItem.module.scss';
 import { Button, Text } from 'components';
 import { ApplicantStagePill, LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
@@ -50,7 +50,7 @@ const ApplicantItem = props => {
   return (
     <div className="row">
       <div
-        className={`col-xs-12 col-sm-3 ${styles.detailsContainer} ${
+        className={`col-xs-12 col-sm-10 ${styles.detailsContainer} ${
           styles.filter
         }`}
       >
@@ -64,21 +64,25 @@ const ApplicantItem = props => {
           nameTextColor="black"
         />
 
-        <div className={[styles.labelGroup, styles.submitTime].join(' ')}>
-          <Text inputLabel>Submitted</Text>
-          <Text>{formattedTime}</Text>
-        </div>
-      </div>
+        {bountyBelongsToLoggedInUser ? (
+          <div>
+            <div className={`col-xs-12 col-sm-6 ${styles.filter}`}>
+              <div
+                className={`${styles.labelGroup} ${styles.submissionContents}`}
+              >
+                <Text className={styles.submissionDescription}>
+                  {description || 'N/A'}
+                </Text>
+              </div>
+            </div>
 
-      <div className={`col-xs-12 col-sm-6 ${styles.filter}`}>
-        <div className={`${styles.labelGroup} ${styles.submissionContents}`}>
-          <Text inputLabel>Description</Text>
-          <Text className={styles.submissionDescription}>
-            {description || 'N/A'}
-          </Text>
-        </div>
+            <div className={[styles.labelGroup, styles.submitTime].join(' ')}>
+              <Text>{formattedTime}</Text>
+            </div>
+          </div>
+        ) : null}
       </div>
-      <div className={`col-sm-3 ${styles.applicantsActions}`}>
+      <div className={`col-sm-2 ${styles.applicantsActions}`}>
         {actionsOrStatus}
       </div>
     </div>

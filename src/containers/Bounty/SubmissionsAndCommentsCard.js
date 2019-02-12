@@ -159,7 +159,13 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
 
     const renderMyApplication = list => {
       return map(applicant_item => {
-        const { id, message, created, state, applicant } = applicant_item;
+        const {
+          applicationId,
+          message,
+          created,
+          state,
+          applicant
+        } = applicant_item;
 
         const { name, small_profile_image_url } = applicant;
 
@@ -171,7 +177,7 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
           return (
             <div>
               <ListGroup.ListItem
-                key={id}
+                key={applicationId}
                 className={styles.listItem}
                 fullBorder
               >
@@ -183,8 +189,12 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
                   description={message}
                   created={created}
                   bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
-                  acceptApplicant={() => changeApplicationState(id, 'A')}
-                  rejectApplicant={() => changeApplicationState(id, 'R')}
+                  acceptApplicant={() =>
+                    changeApplicationState(applicationId, 'A')
+                  }
+                  rejectApplicant={() =>
+                    changeApplicationState(applicationId, 'R')
+                  }
                 />
               </ListGroup.ListItem>
               {state === 'R' ? (
@@ -205,7 +215,13 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
 
     const renderApplicantsButMe = list => {
       return map(applicant_item => {
-        const { id, message, created, state, applicant } = applicant_item;
+        const {
+          applicationId,
+          message,
+          created,
+          state,
+          applicant
+        } = applicant_item;
 
         const { name, small_profile_image_url } = applicant;
 
@@ -215,7 +231,11 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
 
         if (!applicationBelongsToLoggedInUser && state !== 'R') {
           return (
-            <ListGroup.ListItem key={id} className={styles.listItem} fullBorder>
+            <ListGroup.ListItem
+              key={applicationId}
+              className={styles.listItem}
+              fullBorder
+            >
               <ApplicantItem
                 applicant_name={name}
                 applicant_address={applicant.public_address}
@@ -224,8 +244,12 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
                 description={message}
                 created={created}
                 bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
-                acceptApplicant={() => changeApplicationState(id, 'A')}
-                rejectApplicant={() => changeApplicationState(id, 'R')}
+                acceptApplicant={() =>
+                  changeApplicationState(applicationId, 'A')
+                }
+                rejectApplicant={() =>
+                  changeApplicationState(applicationId, 'R')
+                }
               />
             </ListGroup.ListItem>
           );
