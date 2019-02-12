@@ -10,7 +10,6 @@ const MAX_MESSAGE_LENGTH = 500;
 let FulfillerApplicationModalComponent = props => {
   const {
     onClose,
-    onSubmit,
     resetForm,
     isSubmitting,
     errors,
@@ -20,7 +19,8 @@ let FulfillerApplicationModalComponent = props => {
   } = props;
 
   const onCloseAndReset = () => {
-    resetForm(), onClose();
+    resetForm();
+    onClose();
   };
 
   return (

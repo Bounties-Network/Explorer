@@ -135,7 +135,7 @@ class Textbox extends React.Component {
         <TextareaInfo>
           {label && (
             <LabelText inputLabel error={!!error}>
-              {optional ? label + ' ' + '(Optional)' : label}
+              {optional ? label + ' (Optional)' : label}
             </LabelText>
           )}
           {maxLength && (
