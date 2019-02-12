@@ -27,7 +27,7 @@
 }
 
 .submitTime {
-  margin-top: $xl-spacing;
+  margin-top: $s-spacing;
   color: $brand-lightGrey;
 
   @media only screen and (min-width: 48em) {
@@ -87,6 +87,7 @@
   margin-top: $l-spacing;
   line-height: $base-line-height;
   white-space: pre-wrap;
+  margin-left: -$m-spacing;
 }
 
 .applicantsActions {
