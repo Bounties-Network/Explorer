@@ -209,7 +209,9 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
                 >
                   Your declined application status is only visible to you
                 </Text>
-              ) : null}
+              ) : (
+                <div className={styles.bottomBorder} />
+              )}
             </div>
           );
         }
@@ -300,7 +302,7 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
         );
       } else {
         body = (
-          <ListGroup className={styles.borderStyle}>
+          <ListGroup className={styles.applicantsTab}>
             {[
               renderMyApplication(applicants.list),
               ...renderApplicantsButMe(applicants.list),

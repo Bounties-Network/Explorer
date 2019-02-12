@@ -25,14 +25,6 @@ const ApplicantItem = props => {
 
   let actionsOrStatus = [];
 
-  if (
-    state === 'R' &&
-    !bountyBelongsToLoggedInUser &&
-    !applicationBelongsToLoggedInUser
-  ) {
-    return null;
-  }
-
   if (bountyBelongsToLoggedInUser && state === 'P') {
     actionsOrStatus.push(
       <Button
@@ -53,7 +45,13 @@ const ApplicantItem = props => {
       </Button>
     );
   } else {
-    actionsOrStatus.push(<ApplicantStagePill applicationStatus={state} />);
+    if (
+      (applicationBelongsToLoggedInUser && state === 'R') ||
+      bountyBelongsToLoggedInUser ||
+      state === 'A'
+    ) {
+      actionsOrStatus.push(<ApplicantStagePill applicationStatus={state} />);
+    }
   }
 
   return (
