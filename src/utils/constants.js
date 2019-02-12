@@ -51,7 +51,9 @@ export const NOTIFICATION_ID = {
   DRAFT_CREATED: 23,
   DRAFT_UPDATED: 24,
   CONTRIBUTION_RECEIVED: 25,
-  BOUNTY_COMPLETED: 26
+  BOUNTY_COMPLETED: 26,
+  APPLICATION_CREATED: 27,
+  APPLICATION_RECEIVED: 28
 };
 
 const plus = ['far', 'plus-circle'];
@@ -175,5 +177,13 @@ export const notification_template = {
   [NOTIFICATION_ID.BOUNTY_COMPLETED]: {
     message: 'Your bounty ran out of funds',
     icon: minus
+  },
+  [NOTIFICATION_ID.APPLICATION_CREATED]: {
+    message: 'Your submitted an application to',
+    icon: star
+  },
+  [NOTIFICATION_ID.APPLICATION_RECEIVED]: {
+    message: 'You received a new application for',
+    icon: star
   }
 };
