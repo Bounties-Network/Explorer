@@ -17,6 +17,9 @@ function FormInputHOC(WrappedComponent, type = 'redux-form') {
           onChange={v =>
             field.onChange({ target: { id: field.name, value: v, type: '' } })
           }
+          onBlur={v =>
+            field.onBlur({ target: { id: field.name, value: v, type: '' } })
+          }
           error={errors[field.name]}
           loading={loading}
         />

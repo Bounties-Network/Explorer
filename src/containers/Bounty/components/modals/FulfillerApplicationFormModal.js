@@ -14,6 +14,7 @@ let FulfillerApplicationModalComponent = props => {
     resetForm,
     isSubmitting,
     errors,
+    status,
 
     visible
   } = props;
@@ -55,8 +56,14 @@ let FulfillerApplicationModalComponent = props => {
               Fix errors before submitting.
             </Text>
           )}
+          {status === 'api error' && (
+            <Text inputLabel color="red">
+              Internal error, please try again.
+            </Text>
+          )}
           <Button
             margin
+            disabled={isSubmitting}
             onClick={e => {
               e.preventDefault();
               onCloseAndReset();
@@ -67,6 +74,7 @@ let FulfillerApplicationModalComponent = props => {
           <Button
             type="primary"
             buttonType="submit"
+            loading={isSubmitting}
             disabled={isSubmitting || !!size(errors)}
           >
             Submit
@@ -94,8 +102,19 @@ const FulfillerApplicationModal = withFormik({
     return errors;
   },
 
-  handleSubmit: (values, { props, setSubmitting }) => {
-    props.onSubmit(values, () => setSubmitting(false));
+  handleSubmit: (values, { props, setSubmitting, setStatus }) => {
+    const callback = error => {
+      setSubmitting(false);
+
+      if (error) {
+        setStatus('api error');
+        return;
+      }
+
+      props.onClose();
+    };
+
+    props.onSubmit(values, callback);
   }
 })(FulfillerApplicationModalComponent);
 

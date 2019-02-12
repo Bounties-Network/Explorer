@@ -159,6 +159,14 @@ const ActionBar = props => {
           {user ? 'Apply to bounty' : 'Sign in to apply'}
         </Button>
       );
+
+      if (bounty.user_has_applied) {
+        mainActionButton = (
+          <Button type="action" fitWidth disabled>
+            Apply to bounty
+          </Button>
+        );
+      }
     }
 
     if (bounty.platform === 'gitcoin') {

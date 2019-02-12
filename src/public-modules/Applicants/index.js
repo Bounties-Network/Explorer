@@ -1,5 +1,5 @@
 const initialState = {
-  loading: true,
+  loading: false,
   loaded: false,
   loadingMore: false,
   loadingMoreError: false,
@@ -80,7 +80,6 @@ function ApplicantsReducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        loaded: false,
         bountyId,
         error: false
       };

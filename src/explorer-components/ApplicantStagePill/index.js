@@ -38,7 +38,7 @@ const ApplicantStagePill = props => {
 };
 
 ApplicantStagePill.propTypes = {
-  applicationStatus: PropTypes.number,
+  applicationStatus: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   className: PropTypes.string
 };
 

@@ -467,10 +467,11 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
     if (bounty.fulfillers_need_approval) {
       tabs.push(
         <Tabs.Tab
+          key={'applicants'}
+          eventKey={'applicants'}
           tabClassName={styles.tab}
           tabColor="lightGrey"
           tabCount={bounty.application_count}
-          eventKey={'applicants'}
           typeScale="h4"
           tabTextClass={styles.tabText}
         >
@@ -480,22 +481,24 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
     }
     tabs.push(
       <Tabs.Tab
+        key={'submission'}
+        eventKey={'submissions'}
         tabClassName={styles.tab}
         tabColor="lightGrey"
         tabCount={bounty.fulfillment_count}
-        eventKey={'submissions'}
         typeScale="h4"
         tabTextClass={styles.tabText}
       >
         Submissions
       </Tabs.Tab>,
       <Tabs.Tab
+        key={'comments'}
+        eventKey={'comments'}
         tabClassName={styles.tab}
         tabColor="lightGrey"
         tabCount={
           comments.list.length ? comments.list.length : bounty.comment_count
         }
-        eventKey={'comments'}
         typeScale="h4"
         tabTextClass={styles.tabText}
       >
