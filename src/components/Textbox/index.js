@@ -146,6 +146,7 @@ class Textbox extends React.Component {
         </TextareaInfo>
         <TextareaContainer>
           <Textarea
+            className={textAreaClass}
             // style related props
             error={error}
             resizable={resizable.toString()}
