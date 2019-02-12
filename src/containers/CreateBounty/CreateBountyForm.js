@@ -336,14 +336,15 @@ class CreateBountyFormComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="USER VERIFICATION">
+          <FormSection.Section title="PRIVACY">
             <FormSection.Description>
-              Should users be approved before beginning work?
+              Does your bounty require approval of fulfillers before they can
+              submit?
             </FormSection.Description>
             <FormSection.SubText>
-              Requiring approval give you the opportunity to determine a user's
-              competence before they begin work and avoids situtiations where
-              multiple users complete the same task.
+              If you require approval, you will be notified when a user
+              indicates their intent to submit, and will be required to approve
+              them before they are allowed to complete your bounty.
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -358,8 +359,6 @@ class CreateBountyFormComponent extends React.Component {
                 </div>
               </div>
             </FormSection.InputGroup>
-          </FormSection.Section>
-          <FormSection.Section title="SUBMISSION PRIVACY">
             <FormSection.Description>
               Will submissions be visible to everyone?
             </FormSection.Description>

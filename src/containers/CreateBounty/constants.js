@@ -18,7 +18,7 @@ export const ACTIVATE_OPTIONS = [
 
 export const VISIBILITY_OPTIONS = [
   { value: false, label: 'Public' },
-  { value: true, label: 'Private' }
+  { value: true, label: 'Hidden' }
 ];
 
 export const APPROVAL_OPTIONS = [
