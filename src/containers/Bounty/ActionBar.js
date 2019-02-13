@@ -147,7 +147,7 @@ const ActionBar = props => {
       </Button>
     );
 
-    if (bounty.fulfillers_need_approval) {
+    if (bounty.fulfillers_need_approval && !bounty.user_can_fulfill) {
       mainActionButton = (
         <Button
           type="action"

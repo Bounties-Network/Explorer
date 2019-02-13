@@ -338,8 +338,7 @@ class CreateBountyFormComponent extends React.Component {
           </FormSection.Section>
           <FormSection.Section title="PRIVACY">
             <FormSection.Description>
-              Does your bounty require approval of fulfillers before they can
-              submit?
+              Do you want to approve people before they can fulfill your bounty?
             </FormSection.Description>
             <FormSection.SubText>
               If you require approval, you will be notified when a user
