@@ -14,18 +14,6 @@
   }
 }
 
-.bottomMargin {
-  margin-bottom: $xl-spacing;
-}
-
-.contactInfo {
-  margin-bottom: $xl-spacing;
-
-  p:first-child {
-    margin-top: $xl-spacing;
-  }
-}
-
 .submitTime {
   margin-top: $s-spacing;
   color: $brand-lightGrey;
@@ -78,10 +66,6 @@
   margin-bottom: $m-spacing;
 }
 
-.submissionContents {
-  //padding-top: $l-spacing;
-}
-
 .submissionDescription {
   color: $brand-darkGrey;
   margin-top: $l-spacing;
@@ -114,10 +98,6 @@
   padding: $base-spacing $m-spacing;
   line-height: 0;
   height: $line-height-large;
-}
-
-.fileIcon {
-  margin-right: $base-spacing;
 }
 
 .label {

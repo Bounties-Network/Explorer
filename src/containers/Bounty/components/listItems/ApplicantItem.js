@@ -74,9 +74,7 @@ const ApplicantItem = props => {
         {bountyBelongsToLoggedInUser ? (
           <div>
             <div className={`col-xs-12 col-sm-10 ${styles.filter}`}>
-              <div
-                className={`${styles.labelGroup} ${styles.submissionContents}`}
-              >
+              <div className={`${styles.labelGroup}`}>
                 <Text className={styles.submissionDescription}>
                   {description || 'N/A'}
                 </Text>
