@@ -60,7 +60,7 @@ const Textarea = styled(PlainTextarea)`
     props.error &&
     `
     border-color: transparent;
-    box-shadow: 0 0 0 2px ${props.theme.brandDestructive};
+    box-shadow: ${props.theme.brandInputBoxDestructiveShadow};
     outline: none
   `} ${props =>
     props.disabled &&
@@ -81,7 +81,7 @@ const Textarea = styled(PlainTextarea)`
   &:focus {
     border-color: transparent;
     background: ${props => props.theme.brandWhite};
-    box-shadow: 0 0 0 2px ${props => props.theme.brandBlue};
+    box-shadow: ${props => props.theme.brandInputBoxShadow};
     outline: none;
   }
 `;

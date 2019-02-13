@@ -23,7 +23,7 @@
   &:focus {
     border-color: transparent;
     background: $brand-white;
-    box-shadow: 0 0 0 2px $brand-blue;
+    box-shadow: $brand-input-box-shadow;
     outline: none;
   }
 
@@ -43,7 +43,7 @@
 
 .error {
   border-color: transparent;
-  box-shadow: 0 0 0 2px $brand-destructive;
+  box-shadow: $brand-input-box-destructive-shadow;
   outline: none;
 }
 
