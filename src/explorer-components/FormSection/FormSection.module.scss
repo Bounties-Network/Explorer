@@ -20,7 +20,7 @@
 
 .description {
   line-height: $base-line-height;
-  margin-bottom: $m-spacing;
+  margin-bottom: $s-spacing;
 }
 
 .subText {
@@ -29,5 +29,9 @@
 }
 
 .inputGroup {
-  padding-top: $xl-spacing;
+  padding-top: $m-spacing;
+
+  &:not(:last-child) {
+    padding-bottom: 2 * $xl-spacing;
+  }
 }

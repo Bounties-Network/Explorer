@@ -95,7 +95,7 @@
   .metadata {
 
     &Section {
-      padding: ($m-spacing * 1.5) $m-spacing;
+      padding: $m-spacing;
       width: 100%;
 
       &:not(:last-child) {
@@ -115,13 +115,28 @@
 
     &Icon {
       color: $brand-grey;
-      padding-right: $base-spacing;
+      padding-right: $m-spacing;
       float: left;
     }
 
     &Input {
       padding-right: $s-spacing;
     }
+  }
+}
+
+.applicationRequiredBounty {
+  display: flex;
+  padding: $m-spacing $m-spacing;
+  border-bottom: $base-border;
+  background: $brand-nearWhite;
+
+  .metadataInput {
+    color: $brand-red;
+  }
+
+  .metadataTooltip {
+    margin-left: $m-spacing;
   }
 }
 

@@ -288,6 +288,7 @@ function BountyReducer(state = initialState, action) {
         }
       };
     }
+
     default:
       return state;
   }

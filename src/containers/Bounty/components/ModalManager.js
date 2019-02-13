@@ -5,6 +5,7 @@ import { BigNumber } from 'bignumber.js';
 import moment from 'moment';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
+import { actions as fulfillerApplicationActions } from 'public-modules/FulfillerApplication';
 import { actions as reviewActions } from 'public-modules/Review';
 import { actions as bountyUIActions } from '../reducer';
 import { rootBountyPageSelector } from '../selectors';
@@ -15,6 +16,7 @@ import {
   ActivateDeadFormModal,
   IncreasePayoutFormModal,
   FulfillBountyFormModal,
+  FulfillerApplicationFormModal,
   KillBountyFormModal,
   ContributeFormModal,
   TransferOwnershipFormModal,
@@ -39,7 +41,9 @@ const ModalManagerComponent = props => {
     increasePayoutAction,
     fulfillBountyAction,
     transferOwnershipAction,
-    contributeAction
+    contributeAction,
+
+    createFulfillerApplicationAction
     /*****************/
   } = props;
 
@@ -102,6 +106,9 @@ const ModalManagerComponent = props => {
     initiateWalkthrough(() =>
       fulfillBountyAction(bounty.id, bounty.platform, values)
     );
+
+  const createFulfillerApplication = (values, callback) =>
+    createFulfillerApplicationAction(bounty.id, values.message, callback);
 
   const tomorrow = moment().add(1, 'days');
   const currentDeadline = moment.utc(bounty.deadline);
@@ -180,6 +187,11 @@ const ModalManagerComponent = props => {
         name={user.name}
         email={user.email}
       />
+      <FulfillerApplicationFormModal
+        visible={modalType === 'fulfillerApplication'}
+        onClose={closeModal}
+        onSubmit={createFulfillerApplication}
+      />
       <IssueRatingFormModal
         key="issuer"
         type="issuer"
@@ -222,7 +234,9 @@ const ModalManager = compose(
       increasePayoutAction: bountyActions.increasePayout,
       fulfillBountyAction: fulfillmentActions.createFulfillment,
       transferOwnershipAction: bountyActions.transferOwnership,
-      contributeAction: bountyActions.contribute
+      contributeAction: bountyActions.contribute,
+      createFulfillerApplicationAction:
+        fulfillerApplicationActions.createFulfillerApplication
     }
   )
 )(ModalManagerComponent);

@@ -3,12 +3,19 @@ import styles from './SubmissionsAndCommentsCard.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { map as fpMap } from 'lodash';
-import { SubmissionItem, NewCommentForm, CommentItem } from './components';
+import {
+  SubmissionItem,
+  ApplicantItem,
+  NewCommentForm,
+  CommentItem
+} from './components';
 import { Button, ListGroup, Loader, Tabs, Text, ZeroState } from 'components';
 import { rootBountyPageSelector } from './selectors';
 import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
+import { applicantsSelector } from 'public-modules/Applicants/selectors';
 import { commentsSelector } from 'public-modules/Comments/selectors';
 import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
+import { actions as applicantsActions } from 'public-modules/Applicants';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
 import { actions as commentsActions } from 'public-modules/Comments';
 import { actions as loginActions } from 'containers/Login/reducer';
@@ -74,13 +81,16 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
       setActiveTabAction: setActiveTab,
       currentTab,
       fulfillments,
+      applicants,
       comments,
       bounty,
       currentUser,
       acceptFulfillment,
+      changeApplicationState,
       postComment,
       loadMoreComments,
-      loadMoreFulfillments
+      loadMoreFulfillments,
+      loadMoreApplicants
     } = this.props;
 
     const bountyBelongsToLoggedInUser =
@@ -147,6 +157,114 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
       }, list);
     };
 
+    const renderMyApplication = list => {
+      return map(applicant_item => {
+        const {
+          applicationId,
+          message,
+          created,
+          state,
+          applicant
+        } = applicant_item;
+
+        const { name, small_profile_image_url } = applicant;
+
+        const applicationBelongsToLoggedInUser =
+          currentUser &&
+          applicant.public_address === currentUser.public_address;
+
+        if (applicationBelongsToLoggedInUser) {
+          return (
+            <div>
+              <ListGroup.ListItem
+                key={applicationId}
+                className={styles.listItem}
+                fullBorder
+              >
+                <ApplicantItem
+                  applicant_name={name}
+                  applicant_address={applicant.public_address}
+                  applicant_img={small_profile_image_url}
+                  state={state}
+                  description={message}
+                  created={created}
+                  bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
+                  applicationBelongsToLoggedInUser={
+                    applicationBelongsToLoggedInUser
+                  }
+                  acceptApplicant={() =>
+                    changeApplicationState(applicationId, 'A')
+                  }
+                  rejectApplicant={() =>
+                    changeApplicationState(applicationId, 'R')
+                  }
+                />
+              </ListGroup.ListItem>
+              {state === 'R' ? (
+                <Text
+                  className={styles.declinedNoteText}
+                  alignment="align-center"
+                  color="defaultGrey"
+                  typeScale="Small"
+                >
+                  Your declined application status is only visible to you
+                </Text>
+              ) : (
+                <div className={styles.bottomBorder} />
+              )}
+            </div>
+          );
+        }
+      }, list);
+    };
+
+    const renderApplicantsButMe = list => {
+      return map(applicant_item => {
+        const {
+          applicationId,
+          message,
+          created,
+          state,
+          applicant
+        } = applicant_item;
+
+        const { name, small_profile_image_url } = applicant;
+
+        const applicationBelongsToLoggedInUser =
+          currentUser &&
+          applicant.public_address === currentUser.public_address;
+
+        if (!applicationBelongsToLoggedInUser) {
+          return (
+            <ListGroup.ListItem
+              key={applicationId}
+              className={styles.listItem}
+              fullBorder
+            >
+              <ApplicantItem
+                applicant_name={name}
+                applicant_address={applicant.public_address}
+                applicant_img={small_profile_image_url}
+                state={state}
+                description={message}
+                created={created}
+                bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
+                applicationBelongsToLoggedInUser={
+                  applicationBelongsToLoggedInUser
+                }
+                acceptApplicant={() =>
+                  changeApplicationState(applicationId, 'A')
+                }
+                rejectApplicant={() =>
+                  changeApplicationState(applicationId, 'R')
+                }
+              />
+            </ListGroup.ListItem>
+          );
+        }
+      }, list);
+    };
+
     const renderComments = () => {
       return map(comment => {
         const { id, text, user, created } = comment;
@@ -168,6 +286,49 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
 
     let body = null;
     let bodyClass = '';
+
+    if (currentTab === 'applicants') {
+      if (!applicants.list.length) {
+        bodyClass = styles.bodyLoading;
+        body = (
+          <div className={styles.zeroState}>
+            <ZeroState
+              title={'There are 0 applicants'}
+              text={'Applicants to this bounty will appear here.'}
+              iconColor="blue"
+              icon={['fal', 'level-up']}
+            />
+          </div>
+        );
+      } else {
+        body = (
+          <ListGroup className={styles.applicantsTab}>
+            {[
+              renderMyApplication(applicants.list),
+              ...renderApplicantsButMe(applicants.list),
+              applicants.list.length < applicants.count && (
+                <ListGroup.ListItem
+                  key="load"
+                  className={styles.loadMoreButton}
+                >
+                  <Button
+                    loading={applicants.loadingMore}
+                    onClick={loadMoreApplicants}
+                  >
+                    Load More
+                  </Button>
+                </ListGroup.ListItem>
+              )
+            ]}
+          </ListGroup>
+        );
+      }
+
+      if (applicants.loading) {
+        bodyClass = styles.bodyLoading;
+        body = <Loader color="blue" size="medium" />;
+      }
+    }
 
     if (currentTab === 'submissions') {
       body = (
@@ -334,6 +495,49 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
       }
     }
 
+    let tabs = [];
+    if (bounty.fulfillers_need_approval) {
+      tabs.push(
+        <Tabs.Tab
+          key={'applicants'}
+          eventKey={'applicants'}
+          tabClassName={styles.tab}
+          tabColor="lightGrey"
+          tabCount={bounty.application_count}
+          typeScale="h4"
+          tabTextClass={styles.tabText}
+        >
+          Applicants
+        </Tabs.Tab>
+      );
+    }
+    tabs.push(
+      <Tabs.Tab
+        key={'submission'}
+        eventKey={'submissions'}
+        tabClassName={styles.tab}
+        tabColor="lightGrey"
+        tabCount={bounty.fulfillment_count}
+        typeScale="h4"
+        tabTextClass={styles.tabText}
+      >
+        Submissions
+      </Tabs.Tab>,
+      <Tabs.Tab
+        key={'comments'}
+        eventKey={'comments'}
+        tabClassName={styles.tab}
+        tabColor="lightGrey"
+        tabCount={
+          comments.list.length ? comments.list.length : bounty.comment_count
+        }
+        typeScale="h4"
+        tabTextClass={styles.tabText}
+      >
+        Comments
+      </Tabs.Tab>
+    );
+
     return (
       <div>
         <div className={styles.tabsContainer}>
@@ -343,30 +547,7 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
             defaultActiveKey={currentTab}
             onSelect={setActiveTab}
           >
-            <Tabs.Tab
-              tabClassName={styles.tab}
-              tabColor="lightGrey"
-              tabCount={bounty.fulfillment_count}
-              eventKey={'submissions'}
-              typeScale="h4"
-              tabTextClass={styles.tabText}
-            >
-              Submissions
-            </Tabs.Tab>
-            <Tabs.Tab
-              tabClassName={styles.tab}
-              tabColor="lightGrey"
-              tabCount={
-                comments.list.length
-                  ? comments.list.length
-                  : bounty.comment_count
-              }
-              eventKey={'comments'}
-              typeScale="h4"
-              tabTextClass={styles.tabText}
-            >
-              Comments
-            </Tabs.Tab>
+            {tabs}
           </Tabs>
         </div>
         <div className={bodyClass}>{body}</div>
@@ -378,6 +559,7 @@ class SubmissionsAndCommentsCardComponent extends React.Component {
 const mapStateToProps = (state, router) => {
   const bountyPage = rootBountyPageSelector(state);
   const fulfillmentsState = fulfillmentsSelector(state);
+  const applicantsState = applicantsSelector(state);
   const commentsState = commentsSelector(state);
 
   return {
@@ -390,6 +572,10 @@ const mapStateToProps = (state, router) => {
     fulfillments: {
       ...fulfillmentsState,
       list: fulfillmentsState.fulfillments
+    },
+    applicants: {
+      ...applicantsState,
+      list: applicantsState.applicants
     },
     comments: {
       ...commentsState,
@@ -405,9 +591,11 @@ const SubmissionsAndCommentsCard = compose(
       showModal: bountyUIActions.showModal,
       setRatingModal: bountyUIActions.setRatingModal,
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
+      changeApplicationState: applicantsActions.changeApplicationState,
       postComment: commentsActions.postComment,
       loadMoreComments: commentsActions.loadMoreComments,
       loadMoreFulfillments: fulfillmentsActions.loadMoreFulfillments,
+      loadMoreApplicants: applicantsActions.loadMoreApplicants,
       showLogin: loginActions.showLogin
     }
   )

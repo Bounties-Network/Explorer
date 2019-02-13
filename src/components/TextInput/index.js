@@ -13,6 +13,7 @@ class TextInput extends React.Component {
     if (typeof this.props.value !== 'string') {
       this.setState({ text: value });
     }
+
     this.props.onChange(value);
   };
 
@@ -26,6 +27,7 @@ class TextInput extends React.Component {
       onBlur,
       onFocus,
       value,
+      name,
       placeholder,
       type
     } = this.props;
@@ -59,6 +61,7 @@ class TextInput extends React.Component {
         <div className={styles.container}>
           {loading && <Loader className={styles.loader} color="blue" />}
           <input
+            id={name}
             placeholder={placeholder}
             disabled={disabled}
             className={inputClass}

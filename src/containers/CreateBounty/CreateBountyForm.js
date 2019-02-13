@@ -38,7 +38,8 @@ import {
   PAYOUT_OPTIONS,
   ACTIVATE_OPTIONS,
   UPLOAD_KEY,
-  VISIBILITY_OPTIONS
+  VISIBILITY_OPTIONS,
+  APPROVAL_OPTIONS
 } from './constants';
 import config from 'public-modules/config';
 import defaultShouldAsyncValidate from 'redux-form/es/defaultShouldAsyncValidate';
@@ -335,7 +336,28 @@ class CreateBountyFormComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="SUBMISSION PRIVACY">
+          <FormSection.Section title="PRIVACY">
+            <FormSection.Description>
+              Do you want to approve people before they can fulfill your bounty?
+            </FormSection.Description>
+            <FormSection.SubText>
+              If you require approval, you will be notified when a user
+              indicates their intent to submit, and will be required to approve
+              them before they are allowed to complete your bounty.
+            </FormSection.SubText>
+            <FormSection.InputGroup>
+              <div className="row">
+                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                  <Field
+                    disabled={submittingBounty}
+                    name="fulfillers_need_approval"
+                    component={FormRadioGroup}
+                    label="Pre-approval Required"
+                    options={APPROVAL_OPTIONS}
+                  />
+                </div>
+              </div>
+            </FormSection.InputGroup>
             <FormSection.Description>
               Will submissions be visible to everyone?
             </FormSection.Description>

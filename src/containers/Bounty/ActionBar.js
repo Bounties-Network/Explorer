@@ -135,26 +135,59 @@ const ActionBar = props => {
     !loggedOutButAddressMatches &&
     bounty.bountyStage === ACTIVE
   ) {
-    actionOptions = (
-      <div className={styles.actionBar}>
+    let mainActionButton = (
+      <Button
+        type="action"
+        fitWidth
+        onClick={() =>
+          initiateLoginProtection(() => showModal('fulfillBounty'))
+        }
+      >
+        {user ? 'Fulfill' : 'Sign in to fulfill'}
+      </Button>
+    );
+
+    if (bounty.fulfillers_need_approval && !bounty.user_can_fulfill) {
+      mainActionButton = (
+        <Button
+          type="action"
+          fitWidth
+          onClick={() =>
+            initiateLoginProtection(() => showModal('fulfillerApplication'))
+          }
+        >
+          {user ? 'Apply to bounty' : 'Sign in to apply'}
+        </Button>
+      );
+
+      if (bounty.user_has_applied) {
+        mainActionButton = (
+          <Button type="action" fitWidth disabled>
+            Apply to bounty
+          </Button>
+        );
+      }
+    }
+
+    if (bounty.platform === 'gitcoin') {
+      mainActionButton = (
         <Button
           type="action"
           fitWidth
           onClick={
-            bounty.platform === 'gitcoin'
-              ? () =>
-                  (window.location = `https://gitcoin.co/issue/fulfill?sb_id=${
-                    bounty.id
-                  }`)
-              : () => initiateLoginProtection(() => showModal('fulfillBounty'))
+            (window.location = `https://gitcoin.co/issue/fulfill?sb_id=${
+              bounty.id
+            }`)
           }
         >
-          {bounty.platform === 'gitcoin'
-            ? 'Fulfill on Gitcoin'
-            : user
-              ? 'Fulfill'
-              : 'Sign in to fulfill'}
+          Fulfill on Gitcoin
         </Button>
+      );
+    }
+
+    actionOptions = (
+      <div className={styles.actionBar}>
+        {mainActionButton}
         <Button
           icon={['far', 'dollar-sign']}
           className={styles.buttonGroup}

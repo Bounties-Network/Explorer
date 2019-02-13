@@ -14,20 +14,9 @@
   }
 }
 
-.bottomMargin {
-  margin-bottom: $xl-spacing;
-}
-
-.contactInfo {
-  margin-bottom: $xl-spacing;
-
-  p:first-child {
-    margin-top: $xl-spacing;
-  }
-}
-
 .submitTime {
-  margin-bottom: $xl-spacing;
+  margin-top: $s-spacing;
+  color: $brand-lightGrey;
 
   @media only screen and (min-width: 48em) {
       margin-bottom: 0;
@@ -76,17 +65,39 @@
   margin-top: $m-spacing;
   margin-bottom: $m-spacing;
 }
-.submissionContents {
-  //padding-top: $l-spacing;
-}
 
 .submissionDescription {
+  color: $brand-darkGrey;
+  margin-top: $l-spacing;
   line-height: $base-line-height;
   white-space: pre-wrap;
+  margin-left: -$m-spacing;
 }
 
-.fileIcon {
-  margin-right: $base-spacing;
+.applicantsActions {
+  display: flex;
+  padding-left: $xl-spacing + $xl-spacing;
+  flex-direction: row-reverse;
+  position: absolute;
+  top: $xxl-spacing;
+  right: $m-spacing;
+
+  @media only screen and (min-width: 48em) {
+    align-items: flex-start;
+    margin-top: 0;
+    padding-left: 0;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+}
+
+.applicantsActionsButton {
+  margin-left: $m-spacing;
+  font-size: $body-font-size;
+  padding: $base-spacing $m-spacing;
+  line-height: 0;
+  height: $line-height-large;
 }
 
 .label {

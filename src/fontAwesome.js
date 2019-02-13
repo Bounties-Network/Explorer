@@ -60,6 +60,7 @@ import chartLine from '@fortawesome/fontawesome-pro-light/faChartLine';
 import bolt from '@fortawesome/fontawesome-pro-light/faBolt';
 import frown from '@fortawesome/fontawesome-pro-light/faFrown';
 import lock from '@fortawesome/fontawesome-pro-light/faLock';
+import lockAlt from '@fortawesome/fontawesome-pro-regular/faLockAlt';
 import arrow from '@fortawesome/fontawesome-pro-regular/faArrowUp';
 import angleDoubleUp from '@fortawesome/fontawesome-pro-light/faAngleDoubleUp';
 import externalLink from '@fortawesome/fontawesome-pro-regular/faExternalLink';
@@ -73,6 +74,7 @@ import sync from '@fortawesome/fontawesome-pro-regular/faSync';
 import userFriends from '@fortawesome/fontawesome-pro-regular/faUserFriends';
 import edit from '@fortawesome/fontawesome-pro-regular/faEdit';
 import expand from '@fortawesome/fontawesome-pro-light/faExpand';
+import lightQuestionCircle from '@fortawesome/fontawesome-pro-light/faQuestionCircle';
 
 library.add(
   externalLink,
@@ -148,5 +150,7 @@ library.add(
   userFriends,
   edit,
   expand,
-  trophyAltLight
+  trophyAltLight,
+  lightQuestionCircle,
+  lockAlt
 );

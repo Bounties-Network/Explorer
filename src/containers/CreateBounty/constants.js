@@ -18,6 +18,12 @@ export const ACTIVATE_OPTIONS = [
 
 export const VISIBILITY_OPTIONS = [
   { value: false, label: 'Public' },
-  { value: true, label: 'Private' }
+  { value: true, label: 'Hidden' }
 ];
+
+export const APPROVAL_OPTIONS = [
+  { value: true, label: 'Yes' },
+  { value: false, label: 'No' }
+];
+
 export const UPLOAD_KEY = 'createBounty';

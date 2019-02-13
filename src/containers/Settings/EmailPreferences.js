@@ -92,6 +92,7 @@ const mapStateToProps = state => {
         preferences.fulfiller.FulfillmentAcceptedFulfiller,
       ContributionReceived: preferences.issuer.ContributionReceived,
       BountyCompleted: preferences.issuer.BountyCompleted,
+      ApplicationReceived: preferences.issuer.ApplicationReceived,
       activity: preferences.activity
     },
     saving: emailPreferencesSelector(state).saving,

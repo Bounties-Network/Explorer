@@ -85,3 +85,22 @@
   text-align: center;
   padding-top: $l-spacing;
 }
+
+.declinedNoteText {
+  background-color: $brand-nearWhite;
+  position: relative;
+  margin-right: -$l-spacing;
+  margin-left: -$l-spacing;
+  padding: $base-spacing;
+}
+
+.bottomBorder {
+  border-bottom: 0 solid $brand-nearWhite;
+  position: relative;
+  margin-right: -$l-spacing;
+  margin-left: -$l-spacing;
+}
+
+.applicantsTab {
+  margin-bottom: -$l-spacing;
+}
