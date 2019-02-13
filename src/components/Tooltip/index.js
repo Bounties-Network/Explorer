@@ -49,14 +49,15 @@ const Icon = styled(FontAwesomeIcon)`
 const TooltipContainer = styled.div`
   position: absolute;
   padding: ${props => props.theme.mSpacing};
-  border-radius: 6px;
+  border-radius: ${props => props.theme.baseBorderRadius};
 
   visibility: hidden;
   text-align: center;
 
   width: ${props => props.width};
 
-  background-color: #d1e3fe;
+  /* background color should be lighten($brand-blue, 33%) */
+  background-color: #f2f7ff;
   color: ${props => props.theme.brandBlue};
 
   z-index: 1;

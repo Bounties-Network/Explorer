@@ -284,7 +284,7 @@ class BountyComponent extends React.Component {
                     <Tooltip
                       align="right"
                       className={styles.metadataTooltip}
-                      width="200px"
+                      width="215px"
                     >
                       <Text
                         typeScale="Small"
@@ -292,8 +292,8 @@ class BountyComponent extends React.Component {
                         lineHeight="lineHeight-small"
                       >
                         Private bounties require that users apply to fulfill the
-                        bounty. Once approved by the issuer, you may submit a
-                        bounty fulfillment.
+                        bounty. Once you are approved by the issuer, you may
+                        submit a fulfillment for this bounty.
                       </Text>
                     </Tooltip>
                   </div>

@@ -43,7 +43,11 @@ const Textarea = styled(PlainTextarea)`
   resize: ${props => (props.resizable === 'true' ? 'vertical' : 'none')};
   flex-grow: 1;
   width: 100%;
-  min-height: 100px;
+
+  ${({ minHeight }) => minHeight && `min-height: ${minHeight};`} ${({
+    maxHeight
+  }) => maxHeight && `max-height: ${maxHeight};`}
+
   overflow: auto;
   background-color: ${props => props.theme.baseInputBackground};
   border: ${props => props.theme.baseBorder};
@@ -56,7 +60,7 @@ const Textarea = styled(PlainTextarea)`
     props.error &&
     `
     border-color: transparent;
-    box-shadow: 0 0 0 2px ${props.theme.brandDestructive};
+    box-shadow: ${props.theme.brandInputBoxDestructiveShadow};
     outline: none
   `} ${props =>
     props.disabled &&
@@ -77,7 +81,7 @@ const Textarea = styled(PlainTextarea)`
   &:focus {
     border-color: transparent;
     background: ${props => props.theme.brandWhite};
-    box-shadow: 0 0 0 2px ${props => props.theme.brandBlue};
+    box-shadow: ${props => props.theme.brandInputBoxShadow};
     outline: none;
   }
 `;
@@ -115,11 +119,12 @@ class Textbox extends React.Component {
       className,
       error,
       resizable,
+      maxHeight,
+      minHeight,
       optional,
       label,
       disabled,
       placeholder,
-      textAreaClass,
       overlay,
       value,
       maxLength,
@@ -135,7 +140,7 @@ class Textbox extends React.Component {
         <TextareaInfo>
           {label && (
             <LabelText inputLabel error={!!error}>
-              {optional ? label + ' ' + '(Optional)' : label}
+              {optional ? label + ' (Optional)' : label}
             </LabelText>
           )}
           {maxLength && (
@@ -146,10 +151,11 @@ class Textbox extends React.Component {
         </TextareaInfo>
         <TextareaContainer>
           <Textarea
-            className={textAreaClass}
             // style related props
             error={error}
             resizable={resizable.toString()}
+            maxHeight={maxHeight}
+            minHeight={minHeight}
             // regular props
             placeholder={placeholder}
             disabled={disabled}
@@ -178,14 +184,17 @@ Textbox.propTypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   value: PropTypes.string,
-  maxLength: PropTypes.number
+  maxLength: PropTypes.number,
+  maxHeight: PropTypes.string,
+  minHeight: PropTypes.string
 };
 
 Textbox.defaultProps = {
   onChange: () => {},
   onBlur: () => {},
   onFocus: () => {},
-  resizable: true
+  resizable: true,
+  minHeight: '100px'
 };
 
 export default Textbox;
