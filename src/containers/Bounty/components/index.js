@@ -4,6 +4,9 @@ import ActivateDraftFormModal from './modals/ActivateDraftFormModal';
 import ExtendDeadlineFormModal from './modals/ExtendDeadlineFormModal';
 import ActivateDeadFormModal from './modals/ActivateDeadFormModal';
 import IncreasePayoutFormModal from './modals/IncreasePayoutFormModal';
+import ApplicantsCard from './cards/ApplicantsCard';
+import CommentsCard from './cards/CommentsCard';
+import SubmissionsCard from './cards/SubmissionsCard';
 import SubmissionItem from './listItems/SubmissionItem';
 import ApplicantItem from './listItems/ApplicantItem';
 import FulfillBountyFormModal from './modals/FulfillBountyFormModal';
@@ -17,6 +20,9 @@ import IssueRatingFormModal from './modals/IssueRatingFormModal';
 import SEOHeader from './SEOHeader';
 
 export {
+  ApplicantsCard,
+  CommentsCard,
+  SubmissionsCard,
   ExtendDeadlineErrorModal,
   ModalManager,
   ActivateDraftFormModal,
