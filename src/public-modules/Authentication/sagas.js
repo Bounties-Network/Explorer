@@ -73,7 +73,6 @@ export function* logout(action) {
   try {
     yield call(request, endpoint, 'GET');
     yield put(logoutSuccess());
-    yield put(push('/explorer'));
   } catch (e) {
     yield put(logoutFail(e));
   }
