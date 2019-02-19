@@ -105,6 +105,7 @@ export function* pendingReceiptSaga(action) {
 }
 
 let pendingToasts = {};
+let pendingToastsIDs = [];
 export function* showTransactionNotification(action) {
   const { txHash } = action;
   const transactionsInitiated = yield select(transactionsInitiatedSelector);
@@ -141,8 +142,21 @@ export function* showTransactionNotification(action) {
   if (prevToastID) {
     callToast.dismiss(prevToastID);
   }
+
+  if (pendingToastsIDs.length >= 3) {
+    while (
+      pendingToastsIDs.length &&
+      !callToast.isActive(pendingToastsIDs[0])
+    ) {
+      pendingToasts.shift();
+    }
+
+    callToast.dismiss(pendingToastsIDs.shift());
+  }
+
   const id = yield call(Toast, toastType, postedMessage, postedLink);
   pendingToasts[txHash] = id;
+  pendingToastsIDs.push(id);
 }
 
 export function* watchForTransactionToasts() {
