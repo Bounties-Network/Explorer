@@ -408,6 +408,7 @@ function BountiesReducer(state = initialState, action) {
       return {
         ...state,
         count: 0,
+        offset: 0,
         loading: true,
         error: false
       };
