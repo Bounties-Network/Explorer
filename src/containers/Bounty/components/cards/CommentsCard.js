@@ -34,7 +34,6 @@ const CommentsCard = props => {
     }, comments.list);
   };
 
-  let body = null;
   let bodyClass = '';
 
   const newCommentForm = (
@@ -57,7 +56,7 @@ const CommentsCard = props => {
     </ListGroup.ListItem>
   );
 
-  body = (
+  let body = (
     <ListGroup className={styles.borderStyle}>
       {[
         newCommentForm,

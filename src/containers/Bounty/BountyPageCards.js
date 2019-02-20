@@ -17,16 +17,16 @@ import { actions as bountyUIActions } from './reducer';
 
 export const defaultTab = 'comments';
 
-export const mostInterestingTab = fulfillments => {
-  if (!fulfillments) {
-    return defaultTab;
-  }
-
-  if (fulfillments.list.length > 0) {
+export const mostInterestingTab = (bounty, comments) => {
+  if (bounty.fulfillment_count > 0) {
     return 'submissions';
+  } else if (comments.list.length > 0) {
+    return 'comments';
+  } else if (bounty.application_count > 0) {
+    return 'applicants';
+  } else {
+    return 'comments';
   }
-
-  return defaultTab;
 };
 
 class BountyPageCardsComponent extends React.Component {
@@ -43,14 +43,16 @@ class BountyPageCardsComponent extends React.Component {
       const {
         setActiveTabAction: setActiveTab,
         fulfillments,
-        comments
+        applicants,
+        comments,
+        bounty
       } = this.props;
 
-      if (!fulfillments.loading && !comments.loading) {
+      if (!fulfillments.loading && !comments.loading && !applicants.loading) {
         this.setState({
           tabLoaded: true
         });
-        setActiveTab(mostInterestingTab(fulfillments));
+        setActiveTab(mostInterestingTab(bounty, comments));
       }
     }
   }

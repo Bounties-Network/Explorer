@@ -14,7 +14,7 @@ import moment from 'moment';
 import { map } from 'lodash';
 import { EXPIRED } from 'public-modules/Bounty/constants';
 import ActionBar from './ActionBar';
-import BountyPageCards, { mostInterestingTab } from './BountyPageCards';
+import BountyPageCards from './BountyPageCards';
 import { TransactionWalkthrough, FunctionalLoginLock } from 'hocs';
 import {
   getDraftStateSelector,
@@ -132,11 +132,6 @@ class BountyComponent extends React.Component {
       loadFulfillments(bountyId);
     }
   }
-
-  rootLocationParams = () => {
-    const tab = mostInterestingTab(this.props.fulfillments);
-    return this.props.location.search || `?tab=${tab}`;
-  };
 
   render() {
     const {
