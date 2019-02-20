@@ -3,7 +3,7 @@
 .container {
   display: flex;
   justify-content: center;
-  padding: $base-spacing 0;
+  padding: $l-spacing;
 
   > div {
     flex: 1;

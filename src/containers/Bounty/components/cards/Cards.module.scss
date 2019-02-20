@@ -1,44 +1,5 @@
 @import "~styles/variables.scss";
 
-.tabsContainer {
-  padding: 1px 0;
-  position: relative;
-  margin-left: -$m-spacing;
-  margin-right: -$m-spacing;
-
-  @media only screen and (min-width: 35em) {
-    margin-left: -$l-spacing;
-    margin-right: -$l-spacing;
-  }
-
-  &:not(:last-child):after {
-    position: absolute;
-    content: '';
-    border-bottom: $base-border-width solid $brand-lightGrey;
-    width: 100%;
-    transform: translateX(-50%);
-    left: 50%;
-  }
-}
-
-.tab {
-  flex: 1;
-  justify-content: center;
-  padding-top: 0;
-  padding-bottom: $m-spacing;
-  margin-right: 0;
-
-  @media only screen and (min-width: 35em) {
-    padding-bottom: $l-spacing;
-  }
-}
-
-.tabText {
-  @media only screen and (min-width: 35em) {
-    font-size: $h3-font-size;
-  }
-}
-
 .bodyLoading {
   display: flex;
   flex-grow: 1;

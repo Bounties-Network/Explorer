@@ -28,6 +28,7 @@ const ApplicantItem = props => {
   if (bountyBelongsToLoggedInUser && state === 'P') {
     actionsOrStatus.push(
       <Button
+        key="accept"
         type="action"
         className={styles.applicantsActionsButton}
         onClick={acceptApplicant}
@@ -37,6 +38,7 @@ const ApplicantItem = props => {
     );
     actionsOrStatus.push(
       <Button
+        key="reject"
         type="default"
         className={styles.applicantsActionsButton}
         onClick={rejectApplicant}
@@ -50,7 +52,9 @@ const ApplicantItem = props => {
       bountyBelongsToLoggedInUser ||
       state === 'A'
     ) {
-      actionsOrStatus.push(<ApplicantStagePill applicationStatus={state} />);
+      actionsOrStatus.push(
+        <ApplicantStagePill key="pill" applicationStatus={state} />
+      );
     }
   }
 

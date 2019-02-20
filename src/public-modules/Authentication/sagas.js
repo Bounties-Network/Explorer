@@ -1,6 +1,5 @@
 import request from 'utils/request';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
 import { addressSelector } from 'public-modules/Client/selectors';
 import { actionTypes, actions } from 'public-modules/Authentication';
 import { actionTypes as clientActionTypes } from 'public-modules/Client';

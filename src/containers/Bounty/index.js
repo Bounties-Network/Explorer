@@ -14,9 +14,7 @@ import moment from 'moment';
 import { map } from 'lodash';
 import { EXPIRED } from 'public-modules/Bounty/constants';
 import ActionBar from './ActionBar';
-import SubmissionsAndCommentsCard, {
-  mostInterestingTab
-} from './SubmissionsAndCommentsCard';
+import BountyPageCards from './BountyPageCards';
 import { TransactionWalkthrough, FunctionalLoginLock } from 'hocs';
 import {
   getDraftStateSelector,
@@ -134,11 +132,6 @@ class BountyComponent extends React.Component {
       loadFulfillments(bountyId);
     }
   }
-
-  rootLocationParams = () => {
-    const tab = mostInterestingTab(this.props.fulfillments);
-    return this.props.location.search || `?tab=${tab}`;
-  };
 
   render() {
     const {
@@ -415,9 +408,9 @@ class BountyComponent extends React.Component {
           <PageCard noBanner>
             <PageCard.Content
               key="submissions-comments"
-              className={styles.submissionsAndCommentsCard}
+              className={styles.bountyPageCards}
             >
-              <SubmissionsAndCommentsCard
+              <BountyPageCards
                 bounty={bounty}
                 isDraft={isDraft}
                 currentUser={user}
