@@ -53,7 +53,11 @@ export const NOTIFICATION_ID = {
   CONTRIBUTION_RECEIVED: 25,
   BOUNTY_COMPLETED: 26,
   APPLICATION_CREATED: 27,
-  APPLICATION_RECEIVED: 28
+  APPLICATION_RECEIVED: 28,
+  APPLICATION_ACCEPTED_APPLICANT: 29,
+  APPLICATION_ACCEPTED_ISSUER: 30,
+  APPLICATION_REJECTED_APPLICANT: 31,
+  APPLICATION_REJECTED_ISSUER: 32
 };
 
 const plus = ['far', 'plus-circle'];
@@ -179,11 +183,27 @@ export const notification_template = {
     icon: minus
   },
   [NOTIFICATION_ID.APPLICATION_CREATED]: {
-    message: 'Your submitted an application to',
+    message: 'You submitted an application to',
     icon: star
   },
   [NOTIFICATION_ID.APPLICATION_RECEIVED]: {
     message: 'You received a new application for',
+    icon: star
+  },
+  [NOTIFICATION_ID.APPLICATION_ACCEPTED_APPLICANT]: {
+    message: 'Your application was accepted',
+    icon: level_up
+  },
+  [NOTIFICATION_ID.APPLICATION_ACCEPTED_ISSUER]: {
+    message: 'You accepted an application for',
+    icon: level_up
+  },
+  [NOTIFICATION_ID.APPLICATION_REJECTED_APPLICANT]: {
+    message: 'Your application was rejected',
+    icon: star
+  },
+  [NOTIFICATION_ID.APPLICATION_REJECTED_ISSUER]: {
+    message: 'You rejected an application for',
     icon: star
   }
 };
