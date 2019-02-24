@@ -20,8 +20,6 @@ const ActionBar = props => {
   } = props;
 
   const belongsToLoggedInUser = user && bounty.issuer === user.public_address;
-  const loggedOutButAddressMatches =
-    !user && walletAddress && bounty.issuer === walletAddress.toLowerCase();
 
   const draftUrl = `/createBounty/draft/${bounty.uid}/`;
 
@@ -57,7 +55,7 @@ const ActionBar = props => {
     );
   }
 
-  if (!isDraft && (belongsToLoggedInUser || loggedOutButAddressMatches)) {
+  if (!isDraft && belongsToLoggedInUser) {
     actionOptions = (
       <div className={styles.actionBar}>
         {bounty.bountyStage === DEAD ? (
@@ -130,11 +128,7 @@ const ActionBar = props => {
     );
   }
 
-  if (
-    !belongsToLoggedInUser &&
-    !loggedOutButAddressMatches &&
-    bounty.bountyStage === ACTIVE
-  ) {
+  if (!belongsToLoggedInUser && bounty.bountyStage === ACTIVE) {
     let mainActionButton = (
       <Button
         type="action"
