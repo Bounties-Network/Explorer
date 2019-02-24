@@ -80,21 +80,32 @@ let EmailPreferencesComponent = props => {
 const mapStateToProps = state => {
   const preferences = getCurrentUserSelector(state).settings.emails;
 
+  // proxy handler to default any unknown key to false
+  const handler = {
+    get: (target, name) => (target.hasOwnProperty(name) ? target[name] : false)
+  };
+
+  const initialValues = {
+    RatingReceived: preferences.both.RatingReceived,
+    TransferRecipient: preferences.issuer.TransferRecipient,
+    BountyCommentReceived: preferences.issuer.BountyCommentReceived,
+    BountyExpired: preferences.issuer.BountyExpired,
+    FulfillmentUpdatedIssuer: preferences.issuer.FulfillmentUpdatedIssuer,
+    FulfillmentSubmittedIssuer: preferences.issuer.FulfillmentSubmittedIssuer,
+    FulfillmentAcceptedFulfiller:
+      preferences.fulfiller.FulfillmentAcceptedFulfiller,
+    ContributionReceived: preferences.issuer.ContributionReceived,
+    BountyCompleted: preferences.issuer.BountyCompleted,
+    ApplicationReceived: preferences.issuer.ApplicationReceived,
+    ApplicationAcceptedApplicant:
+      preferences.fulfiller.ApplicationAcceptedApplicant,
+    ApplicationRejectedApplicant:
+      preferences.fulfiller.ApplicationRejectedApplicant,
+    activity: preferences.activity
+  };
+
   return {
-    initialValues: {
-      RatingReceived: preferences.both.RatingReceived,
-      TransferRecipient: preferences.issuer.TransferRecipient,
-      BountyCommentReceived: preferences.issuer.BountyCommentReceived,
-      BountyExpired: preferences.issuer.BountyExpired,
-      FulfillmentUpdatedIssuer: preferences.issuer.FulfillmentUpdatedIssuer,
-      FulfillmentSubmittedIssuer: preferences.issuer.FulfillmentSubmittedIssuer,
-      FulfillmentAcceptedFulfiller:
-        preferences.fulfiller.FulfillmentAcceptedFulfiller,
-      ContributionReceived: preferences.issuer.ContributionReceived,
-      BountyCompleted: preferences.issuer.BountyCompleted,
-      ApplicationReceived: preferences.issuer.ApplicationReceived,
-      activity: preferences.activity
-    },
+    initialValues: new Proxy(initialValues, handler),
     saving: emailPreferencesSelector(state).saving,
     error: emailPreferencesSelector(state).error
   };

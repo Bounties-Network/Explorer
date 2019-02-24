@@ -11,5 +11,7 @@ export const EMAIL_NOTIFICATION_OPTIONS = {
   ContributionReceived: 'Another user contributes funds to your bounty',
   BountyCompleted: 'Bounty no longer has enough funds to pay out',
   ApplicationReceived: 'New worker applies to bounty',
+  ApplicationAcceptedApplicant: 'Issuer accepts your application',
+  ApplicationRejectedApplicant: 'Issuer rejects your application',
   activity: 'General activity (updated profile, created bounty, etc.)'
 };

@@ -79,7 +79,9 @@ export function* saveEmailPreferences(action) {
     TransferRecipient,
     ContributionReceived,
     BountyCompleted,
-    ApplicationReceived
+    ApplicationReceived,
+    ApplicationAcceptedApplicant,
+    ApplicationRejectedApplicant
   } = values;
 
   const data = {
@@ -99,7 +101,9 @@ export function* saveEmailPreferences(action) {
         ApplicationReceived
       },
       fulfiller: {
-        FulfillmentAcceptedFulfiller
+        FulfillmentAcceptedFulfiller,
+        ApplicationAcceptedApplicant,
+        ApplicationRejectedApplicant
       }
     }
   };
