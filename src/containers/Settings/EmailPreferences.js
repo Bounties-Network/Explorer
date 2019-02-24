@@ -82,7 +82,7 @@ const mapStateToProps = state => {
 
   // proxy handler to default any unknown key to false
   const handler = {
-    get: (target, name) => (target.hasOwnProperty(name) ? target[name] : false)
+    get: (target, name) => (target[name] ? target[name] : false)
   };
 
   const initialValues = {
