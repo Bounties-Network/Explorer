@@ -11,6 +11,7 @@ import {
 } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import { ThemeProvider } from 'styled-components';
+import { BigNumber } from 'bignumber.js';
 import { reducers, sagaWatchers } from 'public-modules';
 import explorerSagas from './sagas';
 import baseReducers from './reducers';
@@ -24,6 +25,9 @@ import 'styles/Toastify.scss';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!./styles/variables.scss');
+
+// never return number formated as exponential
+BigNumber.config({ EXPONENTIAL_AT: 1e9 });
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
