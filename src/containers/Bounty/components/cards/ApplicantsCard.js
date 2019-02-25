@@ -15,8 +15,11 @@ const ApplicantsCard = props => {
     loadMoreApplicants
   } = props;
 
-  const renderMyApplication = list => {
-    return map(applicant_item => {
+  const renderApplicants = list => {
+    let applications = [];
+    let renderFirst = [];
+
+    map(applicant_item => {
       const {
         applicationId,
         message,
@@ -30,8 +33,40 @@ const ApplicantsCard = props => {
       const applicationBelongsToLoggedInUser =
         currentUser && applicant.public_address === currentUser.public_address;
 
-      if (applicationBelongsToLoggedInUser) {
-        return (
+      if (!applicationBelongsToLoggedInUser) {
+        const item = (
+          <ListGroup.ListItem
+            key={applicationId}
+            className={styles.listItem}
+            fullBorder
+          >
+            <ApplicantItem
+              applicant_name={name}
+              applicant_address={applicant.public_address}
+              applicant_img={small_profile_image_url}
+              state={state}
+              description={message}
+              created={created}
+              bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
+              applicationBelongsToLoggedInUser={
+                applicationBelongsToLoggedInUser
+              }
+              acceptApplicant={() => changeApplicationState(applicationId, 'A')}
+              rejectApplicant={() => changeApplicationState(applicationId, 'R')}
+            />
+          </ListGroup.ListItem>
+        );
+
+        if (!bountyBelongsToLoggedInUser) {
+          if (state === 'A') applications.unshift(item);
+          else applications.push(item);
+        } else {
+          if (state === 'P') renderFirst.unshift(item);
+          else if (state === 'A') applications.unshift(item);
+          else applications.push(item);
+        }
+      } else {
+        renderFirst.push(
           <div>
             <ListGroup.ListItem
               key={applicationId}
@@ -73,48 +108,8 @@ const ApplicantsCard = props => {
         );
       }
     }, list);
-  };
 
-  const renderApplicantsButMe = list => {
-    return map(applicant_item => {
-      const {
-        applicationId,
-        message,
-        created,
-        state,
-        applicant
-      } = applicant_item;
-
-      const { name, small_profile_image_url } = applicant;
-
-      const applicationBelongsToLoggedInUser =
-        currentUser && applicant.public_address === currentUser.public_address;
-
-      if (!applicationBelongsToLoggedInUser) {
-        return (
-          <ListGroup.ListItem
-            key={applicationId}
-            className={styles.listItem}
-            fullBorder
-          >
-            <ApplicantItem
-              applicant_name={name}
-              applicant_address={applicant.public_address}
-              applicant_img={small_profile_image_url}
-              state={state}
-              description={message}
-              created={created}
-              bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
-              applicationBelongsToLoggedInUser={
-                applicationBelongsToLoggedInUser
-              }
-              acceptApplicant={() => changeApplicationState(applicationId, 'A')}
-              rejectApplicant={() => changeApplicationState(applicationId, 'R')}
-            />
-          </ListGroup.ListItem>
-        );
-      }
-    }, list);
+    return [...renderFirst, ...applications];
   };
 
   let bodyClass = '';
@@ -136,8 +131,7 @@ const ApplicantsCard = props => {
     body = (
       <ListGroup className={styles.applicantsTab}>
         {[
-          renderMyApplication(applicants.list),
-          ...renderApplicantsButMe(applicants.list),
+          ...renderApplicants(applicants.list),
           applicants.list.length < applicants.count && (
             <ListGroup.ListItem key="load" className={styles.loadMoreButton}>
               <Button

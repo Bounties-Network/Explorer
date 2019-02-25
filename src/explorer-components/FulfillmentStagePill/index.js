@@ -6,18 +6,18 @@ import { DEAD, COMPLETED } from 'public-modules/Bounty/constants';
 const FulfillmentStagePill = props => {
   const { bountyStage, accepted, className } = props;
 
-  let text = 'Pending acceptance';
+  let text;
+  let backgroundColor;
   let textColor = 'white';
-  let backgroundColor = 'orange';
 
   if (accepted) {
     text = 'Accepted';
     backgroundColor = 'green';
-  }
-
-  if (!accepted && (bountyStage === COMPLETED || bountyStage === DEAD)) {
+  } else if (!accepted && (bountyStage === COMPLETED || bountyStage === DEAD)) {
     text = 'Not Accepted';
     backgroundColor = 'orange';
+  } else {
+    return null;
   }
 
   return (
