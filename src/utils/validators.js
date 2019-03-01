@@ -8,10 +8,25 @@ const required = value => {
   }
   return value || typeof value === 'number' ? undefined : '* Required';
 };
+
 const maxLength = max => value =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined;
+
 const minLength = min => value =>
   value && value.length < min ? `Must be ${min} characters or more` : undefined;
+
+const maxDecimals = max => value => {
+  const arr = value.split('.');
+
+  if (arr.length < 2) {
+    return undefined;
+  }
+
+  return arr[1].length <= max
+    ? undefined
+    : `Must be ${max} decimal places or less`;
+};
+
 const minValue = min => value => {
   if (value) {
     return BigNumber(value).isGreaterThan(min)
@@ -19,6 +34,7 @@ const minValue = min => value => {
       : `Must be greater than ${min}`;
   }
 };
+
 const minOrEqualsValue = min => value => {
   if (value) {
     return BigNumber(value).isGreaterThanOrEqualTo(min)
@@ -26,11 +42,13 @@ const minOrEqualsValue = min => value => {
       : `Must be greater than or equal to  ${min}`;
   }
 };
+
 const minDate = min => value => {
   return moment(min) <= moment(value)
     ? undefined
     : `Date must be after ${moment(min).format('MMMM Do YYYY, h:mm:ss a')}`;
 };
+
 const totalLength = length => value =>
   value && value.length !== length ? `Must be ${length} characters` : undefined;
 
@@ -72,6 +90,7 @@ export default {
   minOrEqualsValue,
   maxLength,
   minLength,
+  maxDecimals,
   number,
   email,
   alphaNumeric,

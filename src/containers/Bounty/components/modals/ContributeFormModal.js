@@ -14,13 +14,18 @@ const ContributeFormModal = props => {
     onClose,
     handleSubmit,
     tokenSymbol,
+    tokenDecimals,
     visible,
     submitFailed,
     invalid,
     asyncValidating
   } = props;
 
-  const fieldValidators = [validators.required, validators.minValue(0)];
+  const fieldValidators = [
+    validators.required,
+    validators.minValue(0),
+    validators.maxDecimals(tokenDecimals)
+  ];
 
   return (
     <form onSubmit={handleSubmit}>

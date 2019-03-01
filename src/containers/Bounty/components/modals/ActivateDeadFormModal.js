@@ -13,6 +13,7 @@ import asyncValidators from 'utils/asyncValidators';
 class ActivateDeadFormModal extends React.Component {
   fieldValidators = [
     validators.required,
+    validators.maxDecimals(this.props.tokenDecimals),
     balance => {
       if (BigNumber(balance, 10).isLessThan(this.props.minimumBalance)) {
         return 'At minimum, your initial deposit must match your payout amount.';
