@@ -62,7 +62,7 @@ $slider-height: calc(100vh - #{$header-height-sm});
 
 .bodyClass {
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .activityPanel {
