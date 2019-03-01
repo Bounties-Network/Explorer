@@ -10,26 +10,18 @@ import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 import asyncValidators from 'utils/asyncValidators';
 
-const IncreasePayoutFormModal = props => {
-  const {
-    onClose,
-    minimumBalance,
-    minimumPayout,
-    handleSubmit,
-    tokenSymbol,
-    visible,
-    submitFailed,
-    invalid,
-    asyncValidating
-  } = props;
-
-  const validatorGroups = {
+class IncreasePayoutFormModal extends React.Component {
+  validatorGroups = {
     balance: [
       validators.minOrEqualsValue(0),
+      validators.maxDecimals(this.props.tokenDecimals),
+      validators.maxDecimals(this.props.tokenDecimals),
       (balance, values) => {
         if (
           BigNumber(values.fulfillmentAmount || 0, 10).isGreaterThan(
-            BigNumber(minimumBalance, 10).plus(BigNumber(balance || 0, 10))
+            BigNumber(this.props.minimumBalance, 10).plus(
+              BigNumber(balance || 0, 10)
+            )
           )
         ) {
           return 'The balance of your bounty must be greater than the payout amount.';
@@ -38,10 +30,11 @@ const IncreasePayoutFormModal = props => {
     ],
     fulfillmentAmount: [
       validators.required,
+      validators.maxDecimals(this.props.tokenDecimals),
       validators.minValue(0),
       (fulfillmentAmount, values) => {
         if (
-          BigNumber(minimumPayout || 0).isGreaterThanOrEqualTo(
+          BigNumber(this.minimumPayout || 0).isGreaterThanOrEqualTo(
             BigNumber(values.fulfillmentAmount || 0, 10)
           )
         ) {
@@ -51,85 +44,99 @@ const IncreasePayoutFormModal = props => {
     ]
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <Modal
-        dismissable={true}
-        onClose={onClose}
-        visible={visible}
-        fixed
-        size="small"
-      >
-        <Modal.Header closable={true}>
-          <Modal.Message>Increase bounty payout</Modal.Message>
-          <Modal.Description>
-            Indicate the amount you would like to increase the payout to. You
-            may include an additional balance to cover the costs.
-            <br />
-            <br />
-            <em>
-              Your total balance must be greater than the new prize amount ({
-                tokenSymbol
-              })
-            </em>. The current balance is:{' '}
-            <span
-              className={styles.textHighlight}
-            >{`${minimumBalance} ${tokenSymbol}`}</span>. The current payout
-            amount is:{' '}
-            <span
-              className={styles.textHighlight}
-            >{`${minimumPayout} ${tokenSymbol}`}</span>.
-          </Modal.Description>
-        </Modal.Header>
-        <Modal.Body className={styles.modalBody}>
-          <Field
-            name="balance"
-            component={FormTextInput}
-            label={`Deposit amount (${tokenSymbol})`}
-            normalize={normalizers.number}
-            validate={validatorGroups.balance}
-            placeholder="Enter amount..."
-          />
-          <div className={styles.inputGroup}>
+  render() {
+    const {
+      onClose,
+      minimumBalance,
+      minimumPayout,
+      handleSubmit,
+      tokenSymbol,
+      visible,
+      submitFailed,
+      invalid,
+      asyncValidating
+    } = this.props;
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <Modal
+          dismissable={true}
+          onClose={onClose}
+          visible={visible}
+          fixed
+          size="small"
+        >
+          <Modal.Header closable={true}>
+            <Modal.Message>Increase bounty payout</Modal.Message>
+            <Modal.Description>
+              Indicate the amount you would like to increase the payout to. You
+              may include an additional balance to cover the costs.
+              <br />
+              <br />
+              <em>
+                Your total balance must be greater than the new prize amount ({
+                  tokenSymbol
+                })
+              </em>. The current balance is:{' '}
+              <span
+                className={styles.textHighlight}
+              >{`${minimumBalance} ${tokenSymbol}`}</span>. The current payout
+              amount is:{' '}
+              <span
+                className={styles.textHighlight}
+              >{`${minimumPayout} ${tokenSymbol}`}</span>.
+            </Modal.Description>
+          </Modal.Header>
+          <Modal.Body className={styles.modalBody}>
             <Field
-              name="fulfillmentAmount"
+              name="balance"
               component={FormTextInput}
-              label={`New prize amount (${tokenSymbol})`}
+              label={`Deposit amount (${tokenSymbol})`}
               normalize={normalizers.number}
-              validate={validatorGroups.fulfillmentAmount}
+              validate={this.validatorGroups.balance}
               placeholder="Enter amount..."
             />
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          {submitFailed &&
-            invalid && (
-              <Text inputLabel color="red">
-                Fix errors before submitting.
-              </Text>
-            )}
-          <Button
-            margin
-            onClick={e => {
-              e.preventDefault();
-              onClose();
-            }}
-            buttonType="button"
-          >
-            Cancel
-          </Button>
-          <Button
-            type="action"
-            disabled={submitFailed && invalid}
-            loading={asyncValidating && typeof asyncValidating === 'boolean'}
-          >
-            Increase Payout
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </form>
-  );
-};
+            <div className={styles.inputGroup}>
+              <Field
+                name="fulfillmentAmount"
+                component={FormTextInput}
+                label={`New prize amount (${tokenSymbol})`}
+                normalize={normalizers.number}
+                validate={this.validatorGroups.fulfillmentAmount}
+                placeholder="Enter amount..."
+              />
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            {submitFailed &&
+              invalid && (
+                <Text inputLabel color="red">
+                  Fix errors before submitting.
+                </Text>
+              )}
+            <Button
+              margin
+              onClick={e => {
+                e.preventDefault();
+                onClose();
+              }}
+              buttonType="button"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="action"
+              disabled={submitFailed && invalid}
+              loading={asyncValidating && typeof asyncValidating === 'boolean'}
+            >
+              Increase Payout
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </form>
+    );
+  }
+}
 
 export default compose(
   reduxForm({
