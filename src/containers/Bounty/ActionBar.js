@@ -168,11 +168,17 @@ const ActionBar = props => {
         <Button
           type="action"
           fitWidth
-          onClick={
-            (window.location = `https://gitcoin.co/issue/fulfill?sb_id=${
-              bounty.id
-            }`)
-          }
+          onClick={() => {
+            const gitcoinUrlInfo = bounty.webReferenceURL
+              .split('https://github.com/')
+              .join('')
+              .split('/');
+            window.location.replace(
+              `https://gitcoin.co/issue/${gitcoinUrlInfo[0]}/${
+                gitcoinUrlInfo[1]
+              }/${gitcoinUrlInfo[3]}/${bounty.id}`
+            );
+          }}
         >
           Fulfill on Gitcoin
         </Button>
