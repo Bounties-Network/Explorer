@@ -15,8 +15,7 @@ const ActionBar = props => {
     initiateLoginProtection,
     isDraft,
     showModal,
-    user,
-    walletAddress
+    user
   } = props;
 
   const belongsToLoggedInUser = user && bounty.issuer === user.public_address;
