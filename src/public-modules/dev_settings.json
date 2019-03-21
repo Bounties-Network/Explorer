@@ -1,0 +1,22 @@
+{
+  "platforms": {
+    "bounties-network": ["bounties-network", "sf", "berlin", "fora"],
+    "gitcoin": ["gitcoin"]
+  },
+  "postingPlatform": "fora",
+  "postingSchema": "standardSchema",
+  "postingSchemaVersion": "0.1",
+  "categoryPlatform": "main",
+  "networkName": "dev.openfora.co",
+  "url": {
+    "mainNet": "https://dev.api.openfora.co",
+    "rinkeby": "https://dev.api.openfora.co"
+  },
+  "requiredNetwork": "rinkeby",
+  "mainNet": {
+    "standardBountiesAddress": "0x2af47a65da8CD66729b4209C22017d6A5C2d2400"
+  },
+  "rinkeby": {
+    "standardBountiesAddress": "0xf1c785a5b66c522aed038a82077a34d0b23799fc"
+  }
+}
