@@ -247,7 +247,7 @@ export function* createBounty(action) {
         promisifyContractCall(tokenContractClient.approve, {
           from: userAddress
         }),
-        config[network].standardBountiesAddress,
+        config[network].StandardBountiesV2,
         contractBalance
       );
       yield call(delay, 2000);
@@ -275,17 +275,17 @@ export function* createBounty(action) {
 
   try {
     const txHash = yield call(
-      promisifyContractCall(standardBounties.issueAndActivateBounty, {
+      promisifyContractCall(standardBounties.issueBounty, {
         from: userAddress,
         value: contractBalance
       }),
       userAddress,
-      `${deadline}`,
+      [userAddress],
+      [userAddress],
       ipfsHash,
-      contractFulfillmentAmount,
+      `${deadline}`,
       0x0,
-      paysTokens,
-      tokenContract || 0x0,
+      0,
       contractBalance
     );
     yield put(setPendingReceipt(txHash));

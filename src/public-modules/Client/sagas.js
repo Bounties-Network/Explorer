@@ -103,15 +103,15 @@ export function* getWeb3Client() {
   return { web3, proxiedWeb3 };
 }
 
-export function* getContractClient() {
+export function* getContractClient(contract_version = 2) {
   const { web3 } = yield call(getWeb3Client);
   const network = yield select(networkSelector);
 
   if (network !== 'unknown') {
     return {
       standardBounties: new web3.eth.Contract(
-        config.interfaces.StandardBounties,
-        config[network].standardBountiesAddress
+        config.interfaces[`StandardBountiesV${contract_version}`],
+        config[network][`standardBountiesAddressV${contract_version}`]
       ).methods
     };
   }
