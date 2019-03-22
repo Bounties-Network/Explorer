@@ -82,11 +82,13 @@ const ModalManagerComponent = props => {
   const contribute = values =>
     initiateWalkthrough(() =>
       contributeAction(
-        bounty.id,
+        bounty.bounty_id,
         values.contribution,
-        bounty.paysTokens,
-        bounty.tokenDecimals,
-        bounty.tokenContract
+        bounty.token_version,
+        bounty.token_decimals,
+        bounty.token_contract,
+        user.public_address,
+        bounty.contract_version
       )
     );
 

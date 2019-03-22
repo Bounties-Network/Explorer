@@ -177,7 +177,7 @@ class BountyComponent extends React.Component {
             <div className={styles.header}>
               <BountyEssentials
                 isDraft={isDraft}
-                bountyStage={bounty.bountyStage}
+                bountyStage={bounty.bounty_stage}
                 payoutPrimaryValue={bounty.calculated_fulfillmentAmount}
                 payoutPrimaryCurrency={bounty.tokenSymbol}
                 payoutSecondaryValue={bounty.usd_price}
@@ -323,7 +323,9 @@ class BountyComponent extends React.Component {
                       className={styles.metadataInput}
                       weight="fontWeight-medium"
                     >
-                      {DIFFICULTY_MAPPINGS[bounty.experienceLevel]}
+                      {bounty.experience_level
+                        ? DIFFICULTY_MAPPINGS[bounty.experience_level]
+                        : DIFFICULTY_MAPPINGS[0]}
                     </Text>
                     <Text
                       inline
@@ -390,8 +392,8 @@ class BountyComponent extends React.Component {
                     <i className={styles.metadataIcon}>
                       <FontAwesomeIcon icon={['far', 'envelope']} />
                     </i>
-                    <Text link src={`mailto:${bounty.issuer_email}`}>
-                      {bounty.issuer_email}
+                    <Text link src={`mailto:${bounty.user.email}`}>
+                      {bounty.user.email}
                     </Text>
                   </div>
                 </section>

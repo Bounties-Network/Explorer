@@ -104,8 +104,25 @@ function extendDeadline(id, deadline) {
   return { type: EXTEND_DEADLINE, id, deadline };
 }
 
-function contribute(id, value, paysTokens, decimals, tokenContract) {
-  return { type: CONTRIBUTE, id, value, paysTokens, decimals, tokenContract };
+function contribute(
+  id,
+  value,
+  paysTokens,
+  decimals,
+  tokenContract,
+  user_address,
+  contract_version
+) {
+  return {
+    type: CONTRIBUTE,
+    id,
+    value,
+    paysTokens,
+    decimals,
+    tokenContract,
+    user_address,
+    contract_version
+  };
 }
 
 function increasePayout(

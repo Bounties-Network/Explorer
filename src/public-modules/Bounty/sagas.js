@@ -511,7 +511,15 @@ export function* increasePayout(action) {
 }
 
 export function* contribute(action) {
-  const { id, value, paysTokens, decimals, tokenContract } = action;
+  const {
+    id,
+    value,
+    paysTokens,
+    decimals,
+    tokenContract,
+    user_address,
+    contract_version
+  } = action;
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
   let addedBalance;
@@ -524,6 +532,10 @@ export function* contribute(action) {
   try {
     const { standardBounties } = yield call(getContractClient);
     let txHash;
+    let args =
+      contract_version === 1
+        ? [id, addedBalance]
+        : [user_address, id, addedBalance];
     if (paysTokens) {
       const { tokenContract: tokenContractClient } = yield call(
         getTokenClient,
@@ -534,7 +546,7 @@ export function* contribute(action) {
         promisifyContractCall(tokenContractClient.approve, {
           from: userAddress
         }),
-        config[network].standardBountiesAddress,
+        config[network][`standardBountiesAddressV${contract_version}`],
         addedBalance
       );
       yield call(delay, 2000);
@@ -543,8 +555,7 @@ export function* contribute(action) {
           from: userAddress,
           gas: 200000
         }),
-        id,
-        addedBalance
+        ...args
       );
     } else {
       txHash = yield call(
@@ -552,8 +563,7 @@ export function* contribute(action) {
           from: userAddress,
           value: addedBalance
         }),
-        id,
-        addedBalance
+        ...args
       );
     }
     yield put(stdBountySuccess());
