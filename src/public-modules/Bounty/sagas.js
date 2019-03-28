@@ -225,7 +225,8 @@ export function* createBounty(action) {
           name: issuer_name
         }
       ],
-      symbol: tokenSymbol
+      symbol: tokenSymbol,
+      contractFulfillmentAmount: contractFulfillmentAmount
     },
     meta: {
       platform: siteConfig.postingPlatform,
@@ -252,17 +253,17 @@ export function* createBounty(action) {
       );
       yield call(delay, 2000);
       const issuedBountyHash = yield call(
-        promisifyContractCall(standardBounties.issueAndActivateBounty, {
+        promisifyContractCall(standardBounties.issueBounty, {
           from: userAddress,
           gas: 400000
         }),
         userAddress,
-        deadline,
+        [userAddress],
+        [userAddress],
         ipfsHash,
-        contractFulfillmentAmount,
-        0x0,
-        paysTokens,
+        deadline,
         tokenContract || 0x0,
+        20,
         contractBalance
       );
       yield put(setPendingReceipt(issuedBountyHash));
