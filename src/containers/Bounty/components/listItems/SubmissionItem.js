@@ -32,7 +32,7 @@ const SubmissionItem = props => {
     initiateLoginProtection
   } = props;
 
-  const { bountyStage } = bounty;
+  const { bounty_stage } = bounty;
 
   const formattedTime = moment
     .utc(created, 'YYYY-MM-DDThh:mm:ssZ')
@@ -42,7 +42,7 @@ const SubmissionItem = props => {
   let actionButton = null;
   if (
     bountyBelongsToLoggedInUser &&
-    includes(bountyStage, [ACTIVE, EXPIRED]) &&
+    includes(bounty_stage, [ACTIVE, EXPIRED]) &&
     !accepted
   ) {
     actionButton = (
@@ -173,7 +173,7 @@ const SubmissionItem = props => {
         ) : null}
       </div>
       <div className={`col-sm-3 ${styles.actionColumn}`}>
-        <FulfillmentStagePill accepted={accepted} bountyStage={bountyStage} />
+        <FulfillmentStagePill accepted={accepted} bountyStage={bounty_stage} />
         {actionButton}
       </div>
     </div>

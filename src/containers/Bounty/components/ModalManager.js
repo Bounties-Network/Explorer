@@ -106,7 +106,12 @@ const ModalManagerComponent = props => {
 
   const fulfillBounty = values =>
     initiateWalkthrough(() =>
-      fulfillBountyAction(bounty.id, bounty.platform, values)
+      fulfillBountyAction(
+        bounty.id,
+        bounty.contract_version,
+        bounty.platform,
+        values
+      )
     );
 
   const createFulfillerApplication = (values, callback) =>
