@@ -81,6 +81,8 @@ export function* acceptFulfillment(action) {
         approverId,
         tokenAmounts
       );
+    } else {
+      throw new Error(`contract version ${contract_version} invalid.`);
     }
 
     yield put(setPendingReceipt(txHash));
@@ -142,6 +144,11 @@ export function* createFulfillment(action) {
         ipfsHash
       );
     } else if (contract_version === 2) {
+      console.log({
+        userAddress,
+        bountyId,
+        ipfsHash
+      });
       txHash = yield call(
         promisifyContractCall(standardBounties.fulfillBounty, {
           from: userAddress
@@ -152,7 +159,7 @@ export function* createFulfillment(action) {
         ipfsHash
       );
     } else {
-      throw `contract version ${contract_version} invalid`;
+      throw new Error(`contract version ${contract_version} invalid`);
     }
 
     yield put(setPendingReceipt(txHash));

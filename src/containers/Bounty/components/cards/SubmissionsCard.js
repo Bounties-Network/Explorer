@@ -41,7 +41,7 @@ const SubmissionsCard = props => {
 
       const submissionBelongsToLoggedInUser =
         currentUser && fulfiller === currentUser.public_address;
-
+      console.log({ amount: bounty.fulfillment_amount });
       return (
         <ListGroup.ListItem
           key={fulfillment_id}
