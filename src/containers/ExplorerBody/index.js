@@ -35,13 +35,13 @@ const ExplorerBodyComponent = props => {
         title,
         categories,
         user,
-        experienceLevel,
+        experience_level,
         fulfillment_count,
         deadline,
-        calculated_fulfillmentAmount,
+        calculated_fulfillment_amount,
         usd_price,
-        tokenSymbol,
-        bountyStage
+        token_symbol,
+        bounty_stage
       } = bounty;
       return (
         <BountyCard
@@ -51,15 +51,15 @@ const ExplorerBodyComponent = props => {
           categories={categories}
           img={user.small_profile_image_url}
           address={user.public_address}
-          experienceLevel={experienceLevel}
+          experienceLevel={experience_level}
           submissions={fulfillment_count}
           deadline={moment.utc(deadline, 'YYYY-MM-DDThh:mm:ssZ').fromNow(true)}
-          value={Number(calculated_fulfillmentAmount)}
+          value={Number(calculated_fulfillment_amount)}
           usd={Number(usd_price)}
-          currency={tokenSymbol}
+          currency={token_symbol}
           onPillClick={toggleCategoryFilter}
           selectedCategories={categoryFilters}
-          stage={bountyStage}
+          stage={bounty_stage}
         />
       );
     }, bounties);
