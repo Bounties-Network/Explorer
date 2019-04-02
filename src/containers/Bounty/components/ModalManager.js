@@ -53,7 +53,9 @@ const ModalManagerComponent = props => {
   ).toString();
 
   const killBounty = () =>
-    initiateWalkthrough(() => killBountyAction(bounty.id));
+    initiateWalkthrough(() =>
+      killBountyAction(bounty.bounty_id, bounty.contract_version)
+    );
 
   const activateDraftBounty = values =>
     initiateWalkthrough(() =>
@@ -61,17 +63,27 @@ const ModalManagerComponent = props => {
     );
 
   const extendDeadline = values =>
-    initiateWalkthrough(() => extendDeadlineAction(bounty.id, values.deadline));
+    initiateWalkthrough(() =>
+      extendDeadlineAction(
+        bounty.bounty_id,
+        bounty.contract_version,
+        values.deadline
+      )
+    );
 
   const transferOwnership = values =>
     initiateWalkthrough(() =>
-      transferOwnershipAction(bounty.id, values.newOwner)
+      transferOwnershipAction(
+        bounty.bounty_id,
+        bounty.contract_version,
+        values.newOwner
+      )
     );
 
   const activateBounty = values =>
     initiateWalkthrough(() =>
       activateBountyAction(
-        bounty.id,
+        bounty.bounty_id,
         values.balance,
         bounty.paysTokens,
         bounty.tokenDecimals,
@@ -131,9 +143,9 @@ const ModalManagerComponent = props => {
         visible={modalVisible && modalType === 'contribute'}
         onClose={closeModal}
         onSubmit={contribute}
-        tokenSymbol={bounty.tokenSymbol}
-        tokenDecimals={bounty.tokenDecimals}
-        tokenContract={bounty.tokenContract}
+        tokenSymbol={bounty.token_symbol}
+        tokenDecimals={bounty.token_decimals}
+        tokenContract={bounty.token_contract}
       />
       <ExtendDeadlineErrorModal
         visible={modalVisible && modalType === 'deadlineWarning'}

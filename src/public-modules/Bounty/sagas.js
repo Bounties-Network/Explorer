@@ -329,12 +329,15 @@ export function* getBounty(action) {
 }
 
 export function* killBounty(action) {
-  const { id } = action;
+  const { id, contract_version } = action;
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
 
   try {
-    const { standardBounties } = yield call(getContractClient);
+    const { standardBounties } = yield call(
+      getContractClient,
+      contract_version
+    );
     const txHash = yield call(
       promisifyContractCall(standardBounties.killBounty, {
         from: userAddress
@@ -410,20 +413,38 @@ export function* activateBounty(action) {
 }
 
 export function* extendDeadline(action) {
-  const { id, deadline } = action;
+  const { id, contract_version, deadline } = action;
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
   const formattedDeadline = parseInt(moment(deadline).unix());
 
   try {
-    const { standardBounties } = yield call(getContractClient);
-    const txHash = yield call(
-      promisifyContractCall(standardBounties.extendDeadline, {
-        from: userAddress
-      }),
-      id,
-      `${formattedDeadline}`
+    const { standardBounties } = yield call(
+      getContractClient,
+      contract_version
     );
+    let txHash;
+    if (contract_version === 1) {
+      txHash = yield call(
+        promisifyContractCall(standardBounties.extendDeadline, {
+          from: userAddress
+        }),
+        id,
+        `${formattedDeadline}`
+      );
+    } else if (contract_version === 2) {
+      txHash = yield call(
+        promisifyContractCall(standardBounties.changeDeadline, {
+          from: userAddress
+        }),
+        userAddress,
+        id,
+        0,
+        `${formattedDeadline}`
+      );
+    } else {
+      throw new Error(`contract version ${contract_version} invalid.`);
+    }
     yield put(stdBountySuccess());
     yield put(setPendingReceipt(txHash));
   } catch (e) {
@@ -576,19 +597,40 @@ export function* contribute(action) {
 }
 
 export function* transferIssuer(action) {
-  const { id, address } = action;
+  const { id, contract_version, address } = action;
+  console.log({ contract_version });
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
 
   try {
-    const { standardBounties } = yield call(getContractClient);
-    const txHash = yield call(
-      promisifyContractCall(standardBounties.transferIssuer, {
-        from: userAddress
-      }),
-      id,
-      address
+    const { standardBounties } = yield call(
+      getContractClient,
+      contract_version
     );
+    let txHash;
+    if (contract_version === 1) {
+      txHash = yield call(
+        promisifyContractCall(standardBounties.transferIssuer, {
+          from: userAddress
+        }),
+        id,
+        address
+      );
+    } else if (contract_version === 2) {
+      txHash = yield call(
+        promisifyContractCall(standardBounties.changeIssuer, {
+          from: userAddress
+        }),
+        userAddress,
+        id,
+        0,
+        0,
+        address
+      );
+    } else {
+      throw new Error(`contract version ${contract_version} invalid.`);
+    }
+
     yield put(stdBountySuccess());
     yield put(setPendingReceipt(txHash));
   } catch (e) {

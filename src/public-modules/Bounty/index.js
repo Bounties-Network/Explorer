@@ -92,16 +92,16 @@ function createBounty(values, balance) {
   return { type: CREATE_BOUNTY, values, balance };
 }
 
-function transferOwnership(id, address) {
-  return { type: TRANSFER_OWNERSHIP, id, address };
+function transferOwnership(id, contract_version, address) {
+  return { type: TRANSFER_OWNERSHIP, id, contract_version, address };
 }
 
-function killBounty(id) {
-  return { type: KILL_BOUNTY, id };
+function killBounty(id, contract_version) {
+  return { type: KILL_BOUNTY, id, contract_version };
 }
 
-function extendDeadline(id, deadline) {
-  return { type: EXTEND_DEADLINE, id, deadline };
+function extendDeadline(id, contract_version, deadline) {
+  return { type: EXTEND_DEADLINE, id, contract_version, deadline };
 }
 
 function contribute(
@@ -127,6 +127,7 @@ function contribute(
 
 function increasePayout(
   id,
+  contract_version,
   fulfillmentAmount,
   balance,
   paysTokens,
@@ -136,6 +137,7 @@ function increasePayout(
   return {
     type: INCREASE_PAYOUT,
     id,
+    contract_version,
     fulfillmentAmount,
     balance,
     paysTokens,

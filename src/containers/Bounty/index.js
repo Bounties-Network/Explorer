@@ -179,11 +179,11 @@ class BountyComponent extends React.Component {
                 isDraft={isDraft}
                 bountyStage={bounty.bounty_stage}
                 payoutPrimaryValue={bounty.calculated_fulfillmentAmount}
-                payoutPrimaryCurrency={bounty.tokenSymbol}
+                payoutPrimaryCurrency={bounty.token_symbol}
                 payoutSecondaryValue={bounty.usd_price}
                 payoutSecondaryCurrency="usd"
                 balancePrimaryValue={bounty.calculated_balance}
-                balancePrimaryCurrency={bounty.tokenSymbol}
+                balancePrimaryCurrency={bounty.token_symbol}
                 balanceSecondaryValue={
                   bounty.calculated_balance
                     ? (bounty.calculated_balance /
