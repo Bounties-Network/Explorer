@@ -552,22 +552,29 @@ export function* contribute(action) {
     user_address,
     contract_version
   } = action;
+
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
   let addedBalance;
+
   if (paysTokens) {
     addedBalance = calculateDecimals(value, decimals);
   } else {
     const { web3 } = yield call(getWeb3Client);
     addedBalance = web3.utils.toWei(BigNumber(value, 10).toString(), 'ether');
   }
+
   try {
-    const { standardBounties } = yield call(getContractClient);
+    const { standardBounties } = yield call(
+      getContractClient,
+      contract_version
+    );
     let txHash;
     let args =
       contract_version === 1
         ? [id, addedBalance]
         : [user_address, id, addedBalance];
+
     if (paysTokens) {
       const { tokenContract: tokenContractClient } = yield call(
         getTokenClient,
@@ -598,6 +605,7 @@ export function* contribute(action) {
         ...args
       );
     }
+
     yield put(stdBountySuccess());
     yield put(setPendingReceipt(txHash));
   } catch (e) {
