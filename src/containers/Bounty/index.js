@@ -359,44 +359,50 @@ class BountyComponent extends React.Component {
                   )}
                 </section>
 
-                <section className={styles.metadataSection}>
-                  {bounty.sourceDirectoryHash && (
-                    <div className={styles.metadataItem}>
-                      <i className={styles.metadataIcon}>
-                        <FontAwesomeIcon icon={['far', 'paperclip']} />
-                      </i>
-                      <Text
-                        link
-                        absolute
-                        src={`https://ipfs.infura.io/ipfs/${
-                          bounty.sourceDirectoryHash
-                        }/${bounty.sourceFileName}`}
-                      >
-                        {shortenFileName(bounty.sourceFileName, 18)}
-                      </Text>
-                    </div>
-                  )}
+                {(bounty.attached_data_hash ||
+                  bounty.attached_url ||
+                  bounty.user.email) && (
+                  <section className={styles.metadataSection}>
+                    {bounty.attached_data_hash && (
+                      <div className={styles.metadataItem}>
+                        <i className={styles.metadataIcon}>
+                          <FontAwesomeIcon icon={['far', 'paperclip']} />
+                        </i>
+                        <Text
+                          link
+                          absolute
+                          src={`https://ipfs.infura.io/ipfs/${
+                            bounty.sourceDirectoryHash
+                          }/${bounty.attached_filename}`}
+                        >
+                          {shortenFileName(bounty.attached_filename, 18)}
+                        </Text>
+                      </div>
+                    )}
 
-                  {bounty.webReferenceURL && (
-                    <div className={styles.metadataItem}>
-                      <i className={styles.metadataIcon}>
-                        <FontAwesomeIcon icon={['far', 'link']} />
-                      </i>
-                      <Text link absolute src={`${bounty.webReferenceURL}`}>
-                        {shortenUrl(bounty.webReferenceURL)}
-                      </Text>
-                    </div>
-                  )}
+                    {bounty.attached_url && (
+                      <div className={styles.metadataItem}>
+                        <i className={styles.metadataIcon}>
+                          <FontAwesomeIcon icon={['far', 'link']} />
+                        </i>
+                        <Text link absolute src={`${bounty.attached_url}`}>
+                          {shortenUrl(bounty.attached_url)}
+                        </Text>
+                      </div>
+                    )}
 
-                  <div className={styles.metadataItem}>
-                    <i className={styles.metadataIcon}>
-                      <FontAwesomeIcon icon={['far', 'envelope']} />
-                    </i>
-                    <Text link src={`mailto:${bounty.user.email}`}>
-                      {bounty.user.email}
-                    </Text>
-                  </div>
-                </section>
+                    {bounty.user.email && (
+                      <div className={styles.metadataItem}>
+                        <i className={styles.metadataIcon}>
+                          <FontAwesomeIcon icon={['far', 'envelope']} />
+                        </i>
+                        <Text link src={`mailto:${bounty.user.email}`}>
+                          {bounty.user.email}
+                        </Text>
+                      </div>
+                    )}
+                  </section>
+                )}
               </div>
               {!isDraft && (
                 <div className={styles.social}>
