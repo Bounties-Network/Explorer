@@ -84,6 +84,7 @@ const ModalManagerComponent = props => {
     initiateWalkthrough(() =>
       activateBountyAction(
         bounty.bounty_id,
+        bounty.contract_version,
         values.balance,
         bounty.paysTokens,
         bounty.tokenDecimals,

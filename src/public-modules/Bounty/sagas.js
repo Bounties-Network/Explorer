@@ -353,7 +353,14 @@ export function* killBounty(action) {
 }
 
 export function* activateBounty(action) {
-  const { id, balance, paysTokens, decimals, tokenContract } = action;
+  const {
+    id,
+    contract_version,
+    balance,
+    paysTokens,
+    decimals,
+    tokenContract
+  } = action;
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
   let contractBalance;
@@ -370,7 +377,10 @@ export function* activateBounty(action) {
     );
   }
   try {
-    const { standardBounties } = yield call(getContractClient);
+    const { standardBounties } = yield call(
+      getContractClient,
+      contract_version
+    );
     let txHash;
     if (paysTokens) {
       const { tokenContract: tokenContractClient } = yield call(

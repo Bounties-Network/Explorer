@@ -146,10 +146,18 @@ function increasePayout(
   };
 }
 
-function activateBounty(id, balance, paysTokens, decimals, tokenContract) {
+function activateBounty(
+  id,
+  contract_version,
+  balance,
+  paysTokens,
+  decimals,
+  tokenContract
+) {
   return {
     type: ACTIVATE_BOUNTY,
     id,
+    contract_version,
     balance,
     paysTokens,
     decimals,
