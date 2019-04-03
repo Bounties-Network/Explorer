@@ -86,9 +86,9 @@ const ModalManagerComponent = props => {
         bounty.bounty_id,
         bounty.contract_version,
         values.balance,
-        bounty.paysTokens,
-        bounty.tokenDecimals,
-        bounty.tokenContract
+        bounty.pays_tokens,
+        bounty.token_decimals,
+        bounty.token_contract
       )
     );
 
