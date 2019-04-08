@@ -110,8 +110,8 @@ class Textbox extends React.Component {
   state = { text: '' };
 
   onTextareaChange = ({ target: { value } }) => {
-    if (typeof this.props.value !== 'string') {
-      this.setState({ value });
+    if (typeof this.props.value == 'string') {
+      this.setState({ text: value });
     }
     this.props.onChange(value);
   };
@@ -162,7 +162,7 @@ class Textbox extends React.Component {
             disabled={disabled}
             onFocus={onFocus}
             onBlur={onBlur}
-            value={this.state.text}
+            value={textValue}
             onChange={this.onTextareaChange}
           />
           {overlay ? <Overlay>{overlay}</Overlay> : null}
