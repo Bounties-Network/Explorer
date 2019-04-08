@@ -59,7 +59,7 @@ const WalletRequired = props => {
             Cancel
           </Button>
         )}
-        <a href={walletLink}>
+        <a href={walletLink} target="_blank">
           <Button type="primary">Visit {walletName}</Button>
         </a>
       </Modal.Footer>
