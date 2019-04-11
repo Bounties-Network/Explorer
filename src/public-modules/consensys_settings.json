@@ -1,0 +1,19 @@
+{
+  "platform": "consensys",
+  "postingPlatform": "consensys",
+  "postingSchema": "standardSchema",
+  "postingSchemaVersion": "0.1",
+  "categoryPlatform": "consensys",
+  "networkName": "consensys.bounties.network",
+  "url": {
+    "mainNet": "https://rinkeby.api.bounties.network",
+    "rinkeby": "https://rinkeby.api.bounties.network"
+  },
+  "requiredNetwork": "rinkeby",
+  "mainNet": {
+    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+  },
+  "rinkeby": {
+    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+  }
+}
