@@ -96,8 +96,8 @@ function transferOwnership(id, contract_version, address) {
   return { type: TRANSFER_OWNERSHIP, id, contract_version, address };
 }
 
-function killBounty(id, contract_version) {
-  return { type: KILL_BOUNTY, id, contract_version };
+function killBounty(id, contract_version, currentBalance) {
+  return { type: KILL_BOUNTY, id, contract_version, currentBalance };
 }
 
 function extendDeadline(id, contract_version, deadline) {

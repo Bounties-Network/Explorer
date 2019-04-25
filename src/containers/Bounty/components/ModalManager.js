@@ -54,7 +54,11 @@ const ModalManagerComponent = props => {
 
   const killBounty = () =>
     initiateWalkthrough(() =>
-      killBountyAction(bounty.bounty_id, bounty.contract_version)
+      killBountyAction(
+        bounty.bounty_id,
+        bounty.contract_version,
+        bounty.balance
+      )
     );
 
   const activateDraftBounty = values =>
