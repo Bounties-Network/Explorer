@@ -85,16 +85,27 @@ const ModalManagerComponent = props => {
     );
 
   const activateBounty = values =>
-    initiateWalkthrough(() =>
-      activateBountyAction(
-        bounty.bounty_id,
-        bounty.contract_version,
-        values.balance,
-        bounty.pays_tokens,
-        bounty.token_decimals,
-        bounty.token_contract
-      )
-    );
+    initiateWalkthrough(() => {
+      if (bounty.contract_version === 2) {
+        contributeAction(
+          bounty.bounty_id,
+          values.balance,
+          bounty.token_version,
+          bounty.token_decimals,
+          bounty.token_contract,
+          user.public_address,
+          bounty.contract_version
+        );
+      } else {
+        activateBountyAction(
+          bounty.bounty_id,
+          values.balance,
+          bounty.pays_tokens,
+          bounty.token_decimals,
+          bounty.token_contract
+        );
+      }
+    });
 
   const contribute = values =>
     initiateWalkthrough(() =>
