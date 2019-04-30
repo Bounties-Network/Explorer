@@ -18,7 +18,6 @@ import baseReducers from './reducers';
 import { App } from 'layout';
 import 'styles/index.scss';
 import 'styles/flexboxgrid.css';
-import 'font-files/inter-ui.css';
 import 'styles/index.scss';
 import 'fontAwesome';
 import 'styles/Toastify.scss';

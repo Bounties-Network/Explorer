@@ -1,10 +1,17 @@
-@import "~styles/variables.scss";
-@import "~styles/reset.scss";
+@import '~styles/variables.scss';
+@import '~styles/reset.scss';
+@import url('https://rsms.me/inter/inter.css');
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Inter var', sans-serif;
+  }
+}
 
 html {
   box-sizing: border-box;
   font-size: $base-font-size;
-  font-family: "Inter UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   height: 100%;
   width: 100%;
 }
@@ -146,7 +153,7 @@ a {
     position: relative;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       height: 100%;
       top: 0;
@@ -177,7 +184,7 @@ a {
       padding-left: $m-spacing;
 
       &::before {
-        content: "∙";
+        content: '∙';
         display: inline-block;
         color: $brand-blue;
         font-size: $base-font-size;
@@ -196,7 +203,7 @@ a {
       counter-increment: ol-list-counter;
 
       &::before {
-        content: counter(ol-list-counter) ".";
+        content: counter(ol-list-counter) '.';
         display: inline-block;
         color: $brand-blue;
         text-align: right;
@@ -213,7 +220,7 @@ a {
       padding-left: $m-spacing;
 
       &::before {
-        content: "∙";
+        content: '∙';
         display: inline-block;
         color: $brand-blue;
         font-size: $base-font-size;
@@ -231,7 +238,7 @@ a {
       position: relative;
 
       &::before {
-        content: counter(ol-list-counter) ".";
+        content: counter(ol-list-counter) '.';
         display: inline-block;
         color: $brand-blue;
         font-size: $body-font-size;

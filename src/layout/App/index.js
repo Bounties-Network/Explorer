@@ -42,7 +42,6 @@ import { getCurrentUserStateSelector } from 'public-modules/Authentication/selec
 import { currentRouteSelector, scrollToTop } from 'utils/helpers';
 
 import '../../styles/flexboxgrid.css';
-import '../../font-files/inter-ui.css';
 
 const { DropdownTrigger, DropdownContent, MenuItem } = Dropdown;
 
