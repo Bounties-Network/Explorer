@@ -83,15 +83,15 @@ export const notification_template = {
     icon: level_up
   },
   [NOTIFICATION_ID.FULFILLMENT_SUBMITTED_ISSUER]: {
-    message: 'You received a submission',
+    message: 'You received a submission to',
     icon: level_down
   },
   [NOTIFICATION_ID.BOUNTY_ACTIVATED]: {
-    message: 'You activated a bounty',
+    message: 'You activated a bounty:',
     icon: plus
   },
   [NOTIFICATION_ID.FULFILLMENT_ACCEPTED]: {
-    message: 'You accepted a submission',
+    message: 'You accepted a submission to',
     icon: check
   },
   [NOTIFICATION_ID.FULFILLMENT_ACCEPTED_FULFILLER]: {
@@ -99,15 +99,15 @@ export const notification_template = {
     icon: check
   },
   [NOTIFICATION_ID.BOUNTY_EXPIRED]: {
-    message: 'Your bounty expired',
+    message: 'Your bounty expired:',
     icon: calendar_exclamation
   },
   [NOTIFICATION_ID.BOUNTY_ISSUED]: {
-    message: 'You issued a new bounty',
+    message: 'You issued a new bounty:',
     icon: plus
   },
   [NOTIFICATION_ID.BOUNTY_KILLED]: {
-    message: 'You killed a bounty',
+    message: 'You killed a bounty:',
     icon: times_circle
   },
   [NOTIFICATION_ID.CONTRIBUTION_ADDED]: {
@@ -119,15 +119,15 @@ export const notification_template = {
     icon: calendar_plus
   },
   [NOTIFICATION_ID.BOUNTY_CHANGED]: {
-    message: 'You updated your bounty',
+    message: 'You updated your bounty:',
     icon: sync
   },
   [NOTIFICATION_ID.ISSUER_TRANSFERRED]: {
-    message: 'You transferred ownernship of the bounty',
+    message: 'You transferred ownernship of your bounty:',
     icon: user_friends
   },
   [NOTIFICATION_ID.TRANSFER_RECIPIENT]: {
-    message: 'A bounty was transferred to you',
+    message: 'Ownership of a bounty was transferred to you:',
     icon: user_friends
   },
   [NOTIFICATION_ID.PAYOUT_INCREASED]: {
@@ -139,7 +139,7 @@ export const notification_template = {
     icon: comment
   },
   [NOTIFICATION_ID.BOUNTY_ISSUED_ACTIVATED]: {
-    message: 'You posted a new bounty',
+    message: 'You posted a new bounty:',
     icon: plus
   },
   [NOTIFICATION_ID.FULFILLMENT_UPDATED]: {
@@ -147,11 +147,11 @@ export const notification_template = {
     icon: sync
   },
   [NOTIFICATION_ID.FULFILLMENT_UPDATED_ISSUER]: {
-    message: 'A submission was updated for your bounty',
+    message: 'A submission to your bounty was updated:',
     icon: sync
   },
   [NOTIFICATION_ID.RATING_ISSUED]: {
-    message: 'You wrote a review on',
+    message: 'You wrote a review for',
     icon: star
   },
   [NOTIFICATION_ID.RATING_RECEIVED]: {
@@ -167,43 +167,43 @@ export const notification_template = {
     icon: comment
   },
   [NOTIFICATION_ID.DRAFT_CREATED]: {
-    message: 'You created a draft',
+    message: 'You created a draft:',
     icon: edit
   },
   [NOTIFICATION_ID.DRAFT_UPDATED]: {
-    message: 'You updated a draft',
+    message: 'You updated a draft:',
     icon: sync
   },
   [NOTIFICATION_ID.CONTRIBUTION_RECEIVED]: {
     message: 'You received a contribution to',
-    icon: plus
+    icon: dollar_sign
   },
   [NOTIFICATION_ID.BOUNTY_COMPLETED]: {
-    message: 'Your bounty ran out of funds',
+    message: 'Your bounty ran out of funds:',
     icon: minus
   },
   [NOTIFICATION_ID.APPLICATION_CREATED]: {
     message: 'You submitted an application to',
-    icon: star
+    icon: level_up
   },
   [NOTIFICATION_ID.APPLICATION_RECEIVED]: {
     message: 'You received a new application for',
     icon: star
   },
   [NOTIFICATION_ID.APPLICATION_ACCEPTED_APPLICANT]: {
-    message: 'Your application was accepted',
-    icon: level_up
+    message: 'Your application was accepted for',
+    icon: check
   },
   [NOTIFICATION_ID.APPLICATION_ACCEPTED_ISSUER]: {
     message: 'You accepted an application for',
-    icon: level_up
+    icon: check
   },
   [NOTIFICATION_ID.APPLICATION_REJECTED_APPLICANT]: {
-    message: 'Your application was rejected',
-    icon: star
+    message: 'Your application was rejected for',
+    icon: times_circle
   },
   [NOTIFICATION_ID.APPLICATION_REJECTED_ISSUER]: {
     message: 'You rejected an application for',
-    icon: star
+    icon: times_circle
   }
 };

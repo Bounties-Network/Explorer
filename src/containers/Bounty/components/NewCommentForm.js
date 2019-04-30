@@ -35,7 +35,7 @@ const NewCommentForm = props => {
   return (
     <form onSubmit={handleSubmit}>
       <div className={`${styles.container} ${className}`}>
-        <Button type="action">Sign in to post comment</Button>
+        <Button>Sign in to post comment</Button>
       </div>
     </form>
   );

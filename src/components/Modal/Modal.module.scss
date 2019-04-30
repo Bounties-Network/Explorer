@@ -1,19 +1,19 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 $modal-padding-small: $m-spacing;
 $modal-padding-large: $l-spacing;
 
 .enter {
-    &.overlay {
+  &.overlay {
+    opacity: 0;
+    .modalWrapper {
       opacity: 0;
-      .modalWrapper {
-        opacity: 0;
-        transform: translateY(25px);
-      }
+      transform: translateY(25px);
     }
+  }
 }
 
-.enterActive{
+.enterActive {
   &.overlay {
     .modalWrapper {
       opacity: 1;
@@ -27,15 +27,15 @@ $modal-padding-large: $l-spacing;
 }
 
 :global(.exiting) .enter {
-    &.overlay {
-      opacity: 0;
-    }
+  &.overlay {
+    opacity: 0;
+  }
 }
 
-:global(.exiting) .enterActive{
+:global(.exiting) .enterActive {
   &.overlay {
     opacity: 1;
-    transition: all 0ms ease-out;;
+    transition: all 0ms ease-out;
     transition-delay: 150ms;
   }
 }
@@ -175,7 +175,9 @@ $modal-padding-large: $l-spacing;
   //margin-bottom: $s-spacing;
 }
 
-.small, .medium, .large {
+.small,
+.medium,
+.large {
   width: 100%;
   margin: $s-spacing;
 }
@@ -216,7 +218,7 @@ $modal-padding-large: $l-spacing;
 }
 
 .description {
-  padding: $xl-spacing 0 $xxl-spacing;
+  padding: $xxl-spacing 0 $xxl-spacing;
   text-align: center;
   margin: 0 auto;
   max-width: 38rem;

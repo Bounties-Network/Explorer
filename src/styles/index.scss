@@ -1,20 +1,34 @@
-@import "~styles/variables.scss";
-@import "~styles/reset.scss";
+@import '~styles/variables.scss';
+@import '~styles/reset.scss';
+@import url('https://rsms.me/inter/inter.css');
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Inter var', sans-serif;
+  }
+}
 
 html {
   box-sizing: border-box;
   font-size: $base-font-size;
-  font-family: 'Inter UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   height: 100%;
   width: 100%;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
-input, textarea {
+input,
+textarea {
   appearance: none;
+}
+
+textarea {
+  line-height: $base-line-height;
 }
 
 .modal-open {
@@ -67,7 +81,11 @@ a {
   text-align: left;
   line-height: $base-line-height;
 
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     color: $brand-black;
     font-weight: 500;
 
@@ -77,33 +95,28 @@ a {
   }
 
   h1 {
-    font-size: $h2-font-size;
+    font-size: $h3-font-size;
     line-height: $line-height-large;
     padding-bottom: $m-spacing;
   }
 
   h2 {
-    font-size: $h3-font-size;
-    padding-bottom: $m-spacing;
-  }
-
-  h3 {
     font-size: $h4-font-size;
     padding-bottom: $m-spacing;
   }
 
-  h4 {
+  h3 {
+    font-size: $h5-font-size;
+    padding-bottom: $m-spacing;
+  }
+
+  h5 {
     font-size: $h5-font-size;
     padding-bottom: $base-spacing;
   }
 
-  h5 {
-    font-size: $body-font-size;
-    padding-bottom: $base-spacing;
-  }
-
   p:not(:last-child) {
-    padding-bottom: $m-spacing;
+    padding-bottom: $l-spacing;
   }
 
   body {
@@ -123,42 +136,125 @@ a {
     hyphens: auto;
   }
 
-  em, b {
+  strong,
+  b {
     font-weight: 700;
   }
 
-  ul, ol {
+  em {
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  blockquote {
+    color: $brand-grey;
+    font-style: italic;
+    padding-left: $m-spacing;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      border-left: 2px solid $brand-blue;
+      color: $brand-blue;
+      display: inline-block;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: $l-spacing;
+    }
+  }
+
+  //List styles
+
+  ul,
+  ol {
     padding-bottom: $m-spacing;
   }
 
   ul {
-    list-style-type: disc;
-    list-style-position: inside;
+    list-style: none;
+
+    li {
+      position: relative;
+      padding-left: $m-spacing;
+
+      &::before {
+        content: '∙';
+        display: inline-block;
+        color: $brand-blue;
+        font-size: $base-font-size;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
   }
 
   ol {
-    list-style-type: decimal;
-    list-style-position: inside;
+    list-style: none;
+    counter-reset: ol-list-counter;
+
+    li {
+      counter-increment: ol-list-counter;
+
+      &::before {
+        content: counter(ol-list-counter) '.';
+        display: inline-block;
+        color: $brand-blue;
+        text-align: right;
+        margin-right: 0.5rem;
+      }
+    }
   }
 
-  ul ul, ol ul {
-    list-style-type: circle;
-    list-style-position: inside;
-    margin-left: $l-spacing;
+  ul ul,
+  ol ul {
+    li {
+      margin-left: $xl-spacing;
+      position: relative;
+      padding-left: $m-spacing;
+
+      &::before {
+        content: '∙';
+        display: inline-block;
+        color: $brand-blue;
+        font-size: $base-font-size;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
   }
 
-  ol ol, ul ol {
-     list-style-type: lower-latin;
-     list-style-position: inside;
-     margin-left: $l-spacing;
+  ol ol,
+  ul ol {
+    li {
+      margin-left: $l-spacing;
+      position: relative;
+
+      &::before {
+        content: counter(ol-list-counter) '.';
+        display: inline-block;
+        color: $brand-blue;
+        font-size: $body-font-size;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
   }
 
-  pre  {
+  pre {
     background: $base-input-background;
     border: $base-border;
     border-radius: $base-border-radius;
-    margin: $m-spacing 0 $l-spacing;
-    padding: $base-spacing;
+    margin: $l-spacing 0;
+    padding: $m-spacing;
     white-space: pre-wrap;
     word-wrap: break-word;
     line-height: 1.5;
@@ -176,6 +272,6 @@ a {
   }
 }
 
-.st0{
-  fill:#FFD200;
+.st0 {
+  fill: #ffd200;
 }
