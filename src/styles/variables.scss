@@ -42,39 +42,39 @@ $line-height-large: 1.875rem;
 $line-height-reset: 1;
 
 // COLORS
-$brand-purple: #5A28C6;
+$brand-purple: #5a28c6;
 $brand-purple-hover: darken($brand-purple, 10%);
 $brand-purple-disabled: lighten($brand-purple, 30%);
 
-$brand-dark-purple: #2D2838;
+$brand-dark-purple: #2d2838;
 
-$brand-destructive: #D14545;
+$brand-destructive: #d14545;
 $brand-destructive-hover: darken($brand-destructive, 10%);
 $brand-red: $brand-destructive;
 
-$brand-blue: #4A93FF;
+$brand-blue: #4a93ff;
 $brand-blue-hover: darken($brand-blue, 10%);
 
-$brand-orange: #FBAA31;
+$brand-orange: #fbaa31;
 
-$brand-green: #6FC78D;
+$brand-green: #6fc78d;
 $brand-green-hover: darken($brand-green, 10%);
 
-$brand-black: #2D2838;
-$brand-darkGrey: #615E67;
-$brand-grey: #A09CA8; // Lightest text
-$brand-lightGrey: #D9D8DE;
-$brand-nearWhite: #F1F0F6;
-$brand-white: #FFFFFF;
+$brand-black: #2d2838;
+$brand-darkGrey: #615e67;
+$brand-grey: #a09ca8; // Lightest text
+$brand-lightGrey: #d9d8de;
+$brand-nearWhite: #f1f0f6;
+$brand-white: #ffffff;
 $brand-purpleWhite: #cebeff;
 
-$base-input-background: #FAF9FD;
+$base-input-background: #faf9fd;
 
 $base-border-color: $brand-lightGrey;
 
 // BANNER
 @mixin banner-gradient {
-  background: linear-gradient(to right, #5b29c8 , #594aff);
+  background: linear-gradient(to right, #5b29c8, #594aff);
 }
 $banner-min-height: 13rem;
 

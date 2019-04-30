@@ -10,9 +10,12 @@
   padding: $s-spacing;
 }
 
+textarea {
+  line-height: $base-line-height;
+}
+
 .textArea {
   white-space: pre-wrap;
-  line-height: 1.4;
   padding: $m-spacing;
   min-height: $l-spacing * 2;
 }
