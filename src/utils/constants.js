@@ -151,7 +151,7 @@ export const notification_template = {
     icon: sync
   },
   [NOTIFICATION_ID.RATING_ISSUED]: {
-    message: 'You wrote a review on',
+    message: 'You wrote a review for',
     icon: star
   },
   [NOTIFICATION_ID.RATING_RECEIVED]: {
