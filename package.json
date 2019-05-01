@@ -10,7 +10,9 @@
     "@fortawesome/fontawesome-pro-solid": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.0",
     "@fortawesome/react-fontawesome": "0.0.20",
+    "@rebass/grid": "^6.0.0",
     "axios": "^0.18.0",
+    "babel-plugin-styled-components": "^1.10.0",
     "bignumber.js": "^7.0.1",
     "buffer": "^5.1.0",
     "chalk": "1.1.3",
@@ -42,6 +44,7 @@
     "react-toastify": "^4.1.0",
     "react-toggle": "^4.0.2",
     "react-transition-group": "^2.4.0",
+    "rebass": "^3.1.0",
     "redux": "^3.7.2",
     "redux-form": "^7.4.2",
     "redux-saga": "^0.16.0",
@@ -50,6 +53,7 @@
     "rollbar": "^2.3.9",
     "showdown": "^1.8.6",
     "styled-components": "^4.1.3",
+    "styled-system": "^4.1.0",
     "web3": "^1.0.0-beta.34"
   },
   "lint-staged": {
