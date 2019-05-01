@@ -187,7 +187,7 @@ class BountyComponent extends React.Component {
                 balanceSecondaryValue={
                   bounty.calculated_balance
                     ? (bounty.calculated_balance /
-                        bounty.calculated_fulfillmentAmount) *
+                        bounty.calculated_fulfillment_amount) *
                       bounty.usd_price
                     : 0
                 }
