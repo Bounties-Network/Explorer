@@ -251,7 +251,6 @@ export function* createBounty(action) {
         config[network].StandardBountiesV2,
         contractBalance
       );
-      console.log('finished approval');
       yield call(delay, 2000);
       const issuedBountyHash = yield call(
         promisifyContractCall(standardBounties.issueAndContribute, {
