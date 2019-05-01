@@ -253,7 +253,7 @@ export function* createBounty(action) {
       );
       yield call(delay, 2000);
       const issuedBountyHash = yield call(
-        promisifyContractCall(standardBounties.issueBounty, {
+        promisifyContractCall(standardBounties.issueAndContribute, {
           from: userAddress,
           gas: 400000
         }),
