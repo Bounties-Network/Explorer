@@ -11,6 +11,7 @@ import {
 } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import { ThemeProvider } from 'styled-components';
+//import theme from './theme.js';// Uncomment when ready to activate theme.js
 import { BigNumber } from 'bignumber.js';
 import { reducers, sagaWatchers } from 'public-modules';
 import explorerSagas from './sagas';
