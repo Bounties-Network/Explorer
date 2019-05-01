@@ -63,6 +63,7 @@
     "precommit": "lint-staged",
     "start": "APP_SETTINGS_FILE=staging_settings APP_LOGO=logo node scripts/start.js",
     "start-local": "APP_SETTINGS_FILE=local_settings APP_LOGO=logo node scripts/start.js",
+    "start-staging": "APP_SETTINGS_FILE=staging_settings APP_LOGO=logo node scripts/start.js",
     "start-production": "APP_SETTINGS_FILE=production_settings APP_LOGO=logo node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
