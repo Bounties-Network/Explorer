@@ -170,7 +170,7 @@ const SubmissionItem = props => {
               <div>
                 <FontAwesomeIcon
                   icon={['far', 'file-archive']}
-                  className={styles.fileIcon}
+                  className={styles.submissionIcon}
                 />
                 <Text
                   link
