@@ -121,13 +121,6 @@ const SubmissionItem = props => {
         <div className={`${styles.actionContainer}`}>
           <FulfillmentStagePill accepted={accepted} bountyStage={bountyStage} />
           {actionButton}
-          <Button
-            className={styles.actionButton}
-            icon={['far', 'check']}
-            onClick={acceptFulfillment}
-          >
-            Accept
-          </Button>
         </div>
       </header>
       <div className={`${styles.detailsContainer} ${styles.filter}`}>
