@@ -89,20 +89,22 @@ export function* createOrUpdateDraft(action) {
   const { paysTokens } = draftBountyData;
   const { web3 } = yield call(getWeb3Client);
   if (!paysTokens) {
-    draftBountyData.fulfillmentAmount = web3.utils.toWei(
-      draftBountyData.fulfillmentAmount,
+    draftBountyData.fulfillment_amount = web3.utils.toWei(
+      draftBountyData.fulfillment_amount,
       'ether'
     );
+    draftBountyData.token_version = '0';
   } else {
     const { tokenContract } = draftBountyData;
     try {
       const { symbol, decimals } = yield call(getTokenData, tokenContract);
       draftBountyData.tokenSymbol = symbol;
       draftBountyData.tokenDecimals = BigNumber(decimals, 10).toString();
-      draftBountyData.fulfillmentAmount = calculateDecimals(
-        draftBountyData.fulfillmentAmount,
+      draftBountyData.fulfillment_amount = calculateDecimals(
+        draftBountyData.fulfillment_amount,
         decimals
       );
+      draftBountyData.token_version = '20';
     } catch (e) {
       console.log(e);
       // call error toast here - contract isn't a proper erc20 token.
@@ -145,7 +147,7 @@ export function* createBounty(action) {
     issuer_email,
     issuer_name,
     calculated_fulfillmentAmount,
-    fulfillmentAmount,
+    fulfillment_amount,
     paysTokens,
     privateFulfillments,
     fulfillers_need_approval,
@@ -168,7 +170,7 @@ export function* createBounty(action) {
       tokenSymbol = symbol;
       contractFulfillmentAmount = calculateDecimals(
         BigNumber(
-          calculated_fulfillmentAmount || fulfillmentAmount,
+          calculated_fulfillmentAmount || fulfillment_amount,
           10
         ).toString(),
         decimals
@@ -184,7 +186,7 @@ export function* createBounty(action) {
   } else {
     contractFulfillmentAmount = web3.utils.toWei(
       BigNumber(
-        calculated_fulfillmentAmount || fulfillmentAmount,
+        calculated_fulfillmentAmount || fulfillment_amount,
         10
       ).toString(),
       'ether'

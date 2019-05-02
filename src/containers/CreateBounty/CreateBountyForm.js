@@ -105,12 +105,12 @@ class CreateBountyFormComponent extends React.Component {
     webReferenceURL: [validators.maxLength(256), validators.isURL],
     deadline: [validators.required, validators.minDate(this.props.minDate)],
     tokenContract: [validators.required, validators.isWeb3Address],
-    fulfillmentAmount: [validators.required, validators.minValue(0)],
+    fulfillment_amount: [validators.required, validators.minValue(0)],
     balance: [
       validators.required,
       validators.minValue(0),
       (balance, allValues) => {
-        const valueField = allValues.fulfillmentAmount;
+        const valueField = allValues.fulfillment_amount;
         if (
           valueField &&
           BigNumber(balance, 10).isLessThan(BigNumber(valueField, 10))
@@ -414,7 +414,7 @@ class CreateBountyFormComponent extends React.Component {
                 </div>
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
-                    name="fulfillmentAmount"
+                    name="fulfillment_amount"
                     disabled={submittingBounty}
                     component={FormTextInput}
                     type="text"
@@ -422,7 +422,7 @@ class CreateBountyFormComponent extends React.Component {
                     label={`Payout amount ${
                       !config.defaultToken ? ' (ETH or whole tokens)' : ''
                     }`}
-                    validate={validatorGroups.fulfillmentAmount}
+                    validate={validatorGroups.fulfillment_amount}
                     placeholder="Enter amount..."
                   />
                 </div>

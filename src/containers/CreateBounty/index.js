@@ -78,18 +78,18 @@ const mapStateToProps = (state, router) => {
   const user = getCurrentUserSelector(state) || {};
   const getDraftState = getDraftStateSelector(state);
   let draftBounty = getDraftBountySelector(state) || {};
-  let fulfillmentAmount = draftBounty.calculated_fulfillmentAmount;
+  let fulfillment_amount = draftBounty.calculated_fulfillmentAmount;
   let isDraftPage = true;
 
-  if (typeof fulfillmentAmount === 'string') {
-    fulfillmentAmount = BigNumber(
-      draftBounty.calculated_fulfillmentAmount,
+  if (typeof fulfillment_amount === 'string') {
+    fulfillment_amount = BigNumber(
+      draftBounty.calculated_fulfillment_amount,
       10
     ).toString();
   }
   if (router.match.path === '/createBounty') {
     draftBounty = {};
-    fulfillmentAmount = undefined;
+    fulfillment_amount = undefined;
     isDraftPage = false;
   }
 
@@ -111,7 +111,7 @@ const mapStateToProps = (state, router) => {
       tokenContract:
         draftBounty.tokenContract ||
         (config.defaultToken && config.defaultToken.address),
-      fulfillmentAmount: fulfillmentAmount,
+      fulfillment_amount: fulfillment_amount,
       issuer_email: draftBounty.issuer_email || user.email || '',
       issuer_name: draftBounty.issuer_name || user.name || '',
       activateNow: !isDraftPage,
