@@ -90,16 +90,44 @@ export const textStyles = {
 };
 
 // COLOR PALETTE
+
+//Brand
 const purple = '#5a28c6';
-const black = '2d2838';
-const white = '#fff';
-const text = '#615e67';
+const darkPurple = '#2d2838';
+const blue = '#4a93ff';
+const red = '#d14545';
+const orange = '#fbaa31';
+const green = '#6fc78d';
+
+//Grayscale
+const black = '#2d2838';
+const gray400 = '#615e67';
+const gray300 = '#a09ca8';
+const gray200 = '#d9d8de';
+const gray100 = '#f1f0f6';
+const white = '#ffffff';
+
+// Misc
+const text = gray400;
+const inputBg = '#faf9fd';
+const baseBorderColor = gray200;
 
 const colors = {
-  black,
+  purple,
+  darkPurple,
+  blue,
+  red,
+  orange,
+  green,
+  gray100,
+  gray200,
+  gray300,
+  gray400,
   white,
+  black,
   text,
-  purple
+  inputBg,
+  baseBorderColor
 };
 
 export { colors };
@@ -109,16 +137,16 @@ export { colors };
 export const radii = [0, 3];
 export const radius = '3px';
 
-//WRAPPER
+//PAGE WRAPPER
 export const maxContainerWidth = '1280px';
 
 // BOXSHADOWS
-export const boxShadows = [
-  '0 0 2px 0 rgba(0,0,0,.08),0 1px 4px 0 rgba(0,0,0,.16)',
-  '0 0 2px 0 rgba(0,0,0,.08),0 2px 8px 0 rgba(0,0,0,.16)',
-  '0 0 2px 0 rgba(0,0,0,.08),0 4px 16px 0 rgba(0,0,0,.16)',
-  '0 0 2px 0 rgba(0,0,0,.08),0 8px 32px 0 rgba(0,0,0,.16)'
+export const shadows = [
+  //Box shadow styles to go here
 ];
+
+//Z-INDEX
+export const zIndices = [0, 9, 99, 999, 9999];
 
 // EXPORT THEME
 const theme = {
@@ -135,7 +163,8 @@ const theme = {
   colors,
   radii,
   radius,
-  boxShadows,
+  shadows,
+  zIndices,
   maxContainerWidth
 };
 
