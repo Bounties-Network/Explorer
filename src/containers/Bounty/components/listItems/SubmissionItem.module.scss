@@ -2,14 +2,20 @@
 
 .submissionItem {
   padding: $base-spacing 0;
-  border-bottom: $base-border;
-  border-bottom-width: 4px;
   margin-left: -$xxl-spacing;
   margin-right: -$xxl-spacing;
   padding: $m-spacing 0;
 
-  @media only screen and (min-width: 48em) {
+  &:not(:last-child) {
     border-bottom: $base-border;
+    border-bottom-width: 4px;
+
+    @media only screen and (min-width: 48em) {
+      border-bottom: $base-border;
+    }
+  }
+
+  @media only screen and (min-width: 48em) {
     margin-left: -$l-spacing;
     margin-right: -$l-spacing;
     padding: $xl-spacing 0;
