@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .checkbox {
   cursor: pointer;
@@ -91,11 +91,11 @@
   height: $base-checkbox-size;
   width: $base-checkbox-size;
   border: 2px solid $brand-lightGrey;
-  border-radius: $base-border-radius;
+  border-radius: $base-border-radius / 2;
 
   /* Create the indicator (the checkmark - hidden when not checked) */
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     display: none;
   }

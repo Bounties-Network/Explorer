@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .sidebar {
   height: 100%; /* 100% Full-height */
@@ -37,7 +37,7 @@
 
 .desktopSideNav {
   display: none;
-  
+
   @media only screen and (min-width: 48em) {
     display: block;
   }
@@ -81,7 +81,6 @@
       max-width: 9.3rem;
       padding-right: $m-spacing;
       padding-left: $m-spacing;
-      font-size: $h5-font-size;
     }
   }
 
@@ -92,7 +91,6 @@
     &:hover .navText {
       padding-right: 0;
       padding-left: 0;
-      font-size: inherit;
     }
   }
 }
@@ -102,8 +100,7 @@
   flex-grow: 0;
   flex-shrink: 0;
   opacity: 0.5;
-  transition:
-    opacity 150ms ease-in-out;
+  transition: opacity 150ms ease-in-out;
 }
 
 .navText {
@@ -129,8 +126,6 @@
     background-color: $sidebar-color;
     font-size: $h5-font-size;
     text-align: left;
-    transition:
-      all 150ms ease-in-out,
   }
 
   @media only screen and (min-width: 110em) {
@@ -142,7 +137,7 @@
     margin-left: $l-spacing;
     padding: 0;
     position: relative;
-    font-size: inherit;
+    font-size: $h4-font-size;
   }
 }
 

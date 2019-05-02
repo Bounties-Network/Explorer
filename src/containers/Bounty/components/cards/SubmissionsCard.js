@@ -43,40 +43,34 @@ const SubmissionsCard = props => {
         currentUser && fulfiller === currentUser.public_address;
 
       return (
-        <ListGroup.ListItem
-          key={fulfillment_id}
-          className={styles.listItem}
-          fullBorder
-        >
-          <SubmissionItem
-            fulfillmentId={fulfillment_id}
-            fulfiller_name={name}
-            fulfiller_email={fulfiller_email}
-            fulfiller_address={fulfiller}
-            fulfiller_img={small_profile_image_url}
-            bounty={bounty}
-            url={url}
-            description={description}
-            dataHash={sourceDirectoryHash}
-            dataFileName={sourceFileName}
-            created={created}
-            accepted={accepted}
-            fulfiller_review={fulfiller_review || null}
-            issuer_review={issuer_review || null}
-            bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
-            submissionBelongsToLoggedInUser={submissionBelongsToLoggedInUser}
-            acceptFulfillment={() =>
-              initiateLoginProtection(() =>
-                initiateWalkthrough(() =>
-                  acceptFulfillment(bounty.id, fulfillment_id)
-                )
+        <SubmissionItem
+          fulfillmentId={fulfillment_id}
+          fulfiller_name={name}
+          fulfiller_email={fulfiller_email}
+          fulfiller_address={fulfiller}
+          fulfiller_img={small_profile_image_url}
+          bounty={bounty}
+          url={url}
+          description={description}
+          dataHash={sourceDirectoryHash}
+          dataFileName={sourceFileName}
+          created={created}
+          accepted={accepted}
+          fulfiller_review={fulfiller_review || null}
+          issuer_review={issuer_review || null}
+          bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
+          submissionBelongsToLoggedInUser={submissionBelongsToLoggedInUser}
+          acceptFulfillment={() =>
+            initiateLoginProtection(() =>
+              initiateWalkthrough(() =>
+                acceptFulfillment(bounty.id, fulfillment_id)
               )
-            }
-            initiateLoginProtection={initiateLoginProtection}
-            showModal={showModal}
-            setRatingModal={setRatingModal}
-          />
-        </ListGroup.ListItem>
+            )
+          }
+          initiateLoginProtection={initiateLoginProtection}
+          showModal={showModal}
+          setRatingModal={setRatingModal}
+        />
       );
     }, list);
   };

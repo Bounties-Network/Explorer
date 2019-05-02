@@ -106,12 +106,8 @@ const SubmissionItem = props => {
   }
 
   return (
-    <div className="row">
-      <div
-        className={`col-xs-12 col-sm-3 ${styles.detailsContainer} ${
-          styles.filter
-        }`}
-      >
+    <div className={`${styles.submissionItem}`}>
+      <header className={`${styles.submissionHeader}`}>
         <LinkedAvatar
           name={fulfiller_name}
           address={fulfiller_address}
@@ -120,28 +116,54 @@ const SubmissionItem = props => {
           to={`/profile/${fulfiller_address}`}
           nameTextScale={'h4'}
           nameTextColor="black"
+          border
         />
-        <div className={[styles.labelGroup, styles.contactInfo].join(' ')}>
-          <Text inputLabel>Contact</Text>
-          <Text link src={`mailto:${fulfiller_email}`}>
-            {fulfiller_email}
-          </Text>
+        <div className={`${styles.actionContainer}`}>
+          <FulfillmentStagePill accepted={accepted} bountyStage={bountyStage} />
+          {actionButton}
+          <Button
+            className={styles.actionButton}
+            icon={['far', 'check']}
+            onClick={acceptFulfillment}
+          >
+            Accept
+          </Button>
         </div>
-
-        <div className={[styles.labelGroup, styles.submitTime].join(' ')}>
-          <Text inputLabel>Submitted</Text>
-          <Text>{formattedTime}</Text>
-        </div>
-      </div>
-      <div className={`col-xs-12 col-sm-6 ${styles.filter}`}>
-        {url ? (
-          <div className={[styles.labelGroup, styles.bottomMargin].join(' ')}>
-            <Text inputLabel>Web link</Text>
-            <Text link absolute src={url}>
-              {shortenUrl(url)}
+      </header>
+      <div className={`${styles.detailsContainer} ${styles.filter}`}>
+        <div className={`${styles.metaDataContainer}`}>
+          <div className={`${styles.submissionMetadata}`}>
+            <FontAwesomeIcon
+              icon={['far', 'clock']}
+              className={styles.submissionIcon}
+            />
+            <Text inline>{formattedTime}</Text>
+          </div>
+          <div className={`${styles.submissionMetadata}`}>
+            <FontAwesomeIcon
+              icon={['far', 'envelope']}
+              className={styles.submissionIcon}
+            />
+            <Text link src={`mailto:${fulfiller_email}`}>
+              {fulfiller_email}
             </Text>
           </div>
-        ) : null}
+          {url ? (
+            <div
+              className={[styles.submissionMetadata, styles.bottomMargin].join(
+                ' '
+              )}
+            >
+              <FontAwesomeIcon
+                icon={['far', 'link']}
+                className={styles.submissionIcon}
+              />
+              <Text link absolute src={url}>
+                {shortenUrl(url)}
+              </Text>
+            </div>
+          ) : null}
+        </div>
         <div className={`${styles.labelGroup} ${styles.submissionContents}`}>
           <Text inputLabel>Description</Text>
           <Text className={styles.submissionDescription}>
@@ -149,32 +171,38 @@ const SubmissionItem = props => {
           </Text>
         </div>
         {dataHash ? (
-          <div className={styles.labelGroup}>
-            <Text inputLabel>Associated files</Text>
-            <FontAwesomeIcon
-              icon={['fal', 'file-archive']}
-              className={styles.fileIcon}
-            />
-            <Text
-              link
-              absolute
-              src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-            >
-              {shortenFileName(dataFileName)}
-            </Text>
+          <div className={`${styles.labelGroup}`}>
+            <Text inputLabel>Submission files</Text>
+            {!hasImageExtension(dataFileName) && (
+              <div>
+                <FontAwesomeIcon
+                  icon={['far', 'file-archive']}
+                  className={styles.fileIcon}
+                />
+                <Text
+                  link
+                  absolute
+                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                >
+                  {shortenFileName(dataFileName)}
+                </Text>
+              </div>
+            )}
             {hasImageExtension(dataFileName) && (
-              <img
-                src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                class={styles.image}
-                alt={dataFileName}
-              />
+              <a
+                className={`${styles.imageLink}`}
+                href={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                target="_blank"
+              >
+                <img
+                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  class={styles.image}
+                  alt={dataFileName}
+                />
+              </a>
             )}
           </div>
         ) : null}
-      </div>
-      <div className={`col-sm-3 ${styles.actionColumn}`}>
-        <FulfillmentStagePill accepted={accepted} bountyStage={bountyStage} />
-        {actionButton}
       </div>
     </div>
   );
