@@ -77,21 +77,21 @@ const SubmissionsCard = props => {
 
   let bodyClass = '';
   let body = (
-    <ListGroup className={styles.borderStyle}>
+    <div>
       {[
         ...renderFulfillments(fulfillments.list),
         fulfillments.list.length < fulfillments.count && (
-          <ListGroup.ListItem key="load" className={styles.loadMoreButton}>
+          <div key="load" className={styles.loadMoreButton}>
             <Button
               loading={fulfillments.loadingMore}
               onClick={loadMoreFulfillments}
             >
               Load More
             </Button>
-          </ListGroup.ListItem>
+          </div>
         )
       ]}
-    </ListGroup>
+    </div>
   );
 
   if (!fulfillments.list.length) {

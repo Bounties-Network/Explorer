@@ -1,10 +1,19 @@
 @import '~styles/variables.scss';
 
 .submissionItem {
-  padding: $l-spacing 0;
+  padding: $base-spacing 0;
   border-bottom: $base-border;
-  margin-right: -$l-spacing;
-  margin-left: -$l-spacing;
+  border-bottom-width: 4px;
+  margin-left: -$xxl-spacing;
+  margin-right: -$xxl-spacing;
+  padding: $m-spacing 0;
+
+  @media only screen and (min-width: 48em) {
+    border-bottom: $base-border;
+    margin-left: -$l-spacing;
+    margin-right: -$l-spacing;
+    padding: $xl-spacing 0;
+  }
 }
 
 .submissionHeader {
@@ -12,9 +21,15 @@
   justify-content: space-between;
   background: $brand-nearWhite;
   border-radius: $base-border-radius;
-  margin-left: $l-spacing;
-  margin-right: $l-spacing;
-  padding: $m-spacing;
+  margin-left: $xl-spacing;
+  margin-right: $xl-spacing;
+  padding: $base-spacing;
+
+  @media only screen and (min-width: 48em) {
+    margin-left: $l-spacing;
+    margin-right: $l-spacing;
+    padding: $m-spacing;
+  }
 }
 
 .actionContainer {
@@ -77,7 +92,7 @@
 
 .imageLink {
   display: block;
-  width: 300px;
+  max-width: 100%;
   border: $base-border;
   border-radius: $base-border-radius;
   margin-top: $m-spacing;
@@ -85,10 +100,18 @@
   &:hover {
     border-color: $brand-blue;
   }
+
+  @media only screen and (min-width: 48em) {
+    max-width: 300px;
+  }
 }
 
 .image {
-  max-width: 300px;
+  max-width: 100%;
   margin: 0;
   padding: $base-spacing;
+
+  @media only screen and (min-width: 48em) {
+    max-width: 300px;
+  }
 }
