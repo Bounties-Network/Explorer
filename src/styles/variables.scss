@@ -74,7 +74,7 @@ $base-border-color: $brand-lightGrey;
 
 // BANNER
 @mixin banner-gradient {
-  background: linear-gradient(to right, $brand-purple, $brand-purple);
+  background: linear-gradient(to right, $brand-purple, $brand-blue-hover);
 }
 $banner-min-height: 13rem;
 
