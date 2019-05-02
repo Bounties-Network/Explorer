@@ -159,7 +159,7 @@ const SubmissionItem = props => {
         </div>
         <div className={`${styles.labelGroup} ${styles.submissionContents}`}>
           <Text inputLabel>Description</Text>
-          <Text className={styles.submissionDescription}>
+          <Text color="darkGrey" className={styles.submissionDescription}>
             {description || 'N/A'}
           </Text>
         </div>
