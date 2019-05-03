@@ -112,6 +112,8 @@ class Textbox extends React.Component {
   onTextareaChange = ({ target: { value } }) => {
     if (typeof this.props.value === 'string') {
       this.setState({ text: value });
+    } else {
+      this.setState({ text: textStateValue });
     }
     this.props.onChange(value);
   };
