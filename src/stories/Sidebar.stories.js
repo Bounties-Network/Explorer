@@ -9,8 +9,8 @@ storiesOf('Sidebar', module).add('Sidebar', () => (
   <div>
     <Sidebar defaultActiveTab="dashboard" onTabClick={action('clicked')}>
       <Sidebar.TabGroup>
-        <Sidebar.TabIcon icon={['far', 'tachometer']} tabKey="dashboard" />
         <Sidebar.TabIcon icon={['far', 'list-alt']} tabKey="explorer" />
+        <Sidebar.TabIcon icon={['far', 'tachometer']} tabKey="dashboard" />
         <Sidebar.TabIcon icon={['far', 'trophy-alt']} tabKey="leaderboard" />
         <Sidebar.TabIcon icon={['far', 'user-alt']} tabKey="profile" />
       </Sidebar.TabGroup>
