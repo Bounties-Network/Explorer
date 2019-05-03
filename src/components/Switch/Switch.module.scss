@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 $switch-height-small: $l-spacing;
 $switch-height-large: $xl-spacing;
@@ -10,7 +10,7 @@ $switch-width-large: 240px;
   position: relative;
   height: $switch-height-small;
   width: $switch-width-small;
-  border-radius: $base-border-radius;
+  border-radius: $base-border-radius / 2;
 
   &.large {
     height: $switch-height-large;
@@ -76,7 +76,7 @@ $switch-width-large: 240px;
   float: left;
   width: $switch-width-small / 2;
   line-height: $switch-height-small;
-  font-size: $body-small-font-size;;
+  font-size: $body-small-font-size;
   text-align: center;
   cursor: pointer;
   .large & {
@@ -131,10 +131,6 @@ $switch-width-large: 240px;
   &.white {
     color: white;
   }
-}
-
-.switchLabel:active {
-  font-weight: bold;
 }
 
 .switchLabelOff {
@@ -225,7 +221,7 @@ $switch-width-large: 240px;
   left: 2px;
   width: calc((#{$switch-width-small} / 2) - 2px);
   height: calc(#{$switch-height-small} - 4px);
-  border-radius: $base-border-radius;
+  border-radius: $base-border-radius / 2;
   transition: left 0.15s ease-out;
   .large & {
     top: 2.5px;

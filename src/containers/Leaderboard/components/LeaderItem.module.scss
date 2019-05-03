@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .leaderboardItem {
   align-items: center;
@@ -12,10 +12,6 @@
 
   p {
     text-overflow: ellipsis;
-
-    @media only screen and (min-width: 35em) {
-      font-size: $h3-font-size;
-    }
   }
 }
 
@@ -41,7 +37,7 @@
 }
 
 .label {
-  margin-left: .2rem;
+  margin-left: 0.2rem;
   @media only screen and (min-width: 35em) {
     font-size: $body-font-size;
   }

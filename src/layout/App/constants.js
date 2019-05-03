@@ -1,15 +1,15 @@
 export const NAV_ITEMS = [
   {
-    icon: ['far', 'tachometer'],
-    to: '/dashboard',
-    tabKey: 'dashboard',
-    title: 'Dashboard'
-  },
-  {
     icon: ['far', 'list-alt'],
     to: '/explorer',
     tabKey: 'explorer',
     title: 'Explorer'
+  },
+  {
+    icon: ['far', 'tachometer'],
+    to: '/dashboard',
+    tabKey: 'dashboard',
+    title: 'Dashboard'
   },
   {
     icon: ['far', 'trophy-alt'],

@@ -8,7 +8,7 @@ $xxl-spacing: $base-spacing * 5; // 40px
 
 // SIZES
 $base-border-width: 1px;
-$base-border-radius: 3px;
+$base-border-radius: 8px;
 $base-input-height: $xxl-spacing;
 $base-checkbox-size: $m-spacing * 1.25;
 $base-toggle-size: 1.187rem;
@@ -43,28 +43,28 @@ $line-height-reset: 1;
 
 // COLORS
 $brand-purple: #5a28c6;
-$brand-purple-hover: darken($brand-purple, 10%);
-$brand-purple-disabled: lighten($brand-purple, 30%);
+$brand-purple-hover: #47209d;
+$brand-purple-disabled: #9673e3;
+$brand-dark-purple: #2e2a35;
 
-$brand-dark-purple: #2d2838;
-
-$brand-destructive: #d14545;
-$brand-destructive-hover: darken($brand-destructive, 10%);
+$brand-destructive: #e17582;
+$brand-destructive-hover: #ad4350;
 $brand-red: $brand-destructive;
 
 $brand-blue: #4a93ff;
-$brand-blue-hover: darken($brand-blue, 10%);
+$brand-blue-hover: #307ae8;
 
 $brand-orange: #fbaa31;
 
 $brand-green: #6fc78d;
-$brand-green-hover: darken($brand-green, 10%);
+$brand-green-hover: #4bb971;
 
-$brand-black: #2d2838;
-$brand-darkGrey: #615e67;
-$brand-grey: #a09ca8; // Lightest text
-$brand-lightGrey: #d9d8de;
-$brand-nearWhite: #f1f0f6;
+$brand-black: #111318;
+$brand-darkGrey: #434751;
+$brand-grey: #868e9c; // Lightest text
+$brand-mediumGrey: #d8dadf;
+$brand-lightGrey: #e6e7ea;
+$brand-nearWhite: #f2f4f8;
 $brand-white: #ffffff;
 $brand-purpleWhite: #cebeff;
 
@@ -74,7 +74,7 @@ $base-border-color: $brand-lightGrey;
 
 // BANNER
 @mixin banner-gradient {
-  background: linear-gradient(to right, #5b29c8, #594aff);
+  background: linear-gradient(to right, $brand-purple, $brand-blue-hover);
 }
 $banner-min-height: 13rem;
 

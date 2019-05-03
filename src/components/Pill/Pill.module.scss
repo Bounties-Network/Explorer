@@ -1,6 +1,6 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
-.pill{
+.pill {
   color: $brand-grey;
   border: $base-border;
   white-space: nowrap;
@@ -21,7 +21,7 @@
 }
 
 .rectangle {
-  border-radius: $base-border-radius;
+  border-radius: $base-border-radius / 2;
 }
 
 .closeButton {
@@ -75,7 +75,6 @@
 .whiteBorder {
   border-color: $brand-white;
 }
-
 
 .lightGreyBorder {
   border-color: $brand-lightGrey;

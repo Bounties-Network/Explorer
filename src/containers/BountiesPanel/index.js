@@ -144,7 +144,7 @@ class BountiesPanelComponent extends React.Component {
               My Bounties
             </Text>
             <Link to="/profile">
-              <Text typeScale="Small" className={styles.decoratedLink}>
+              <Text typeScale="Body" className={styles.decoratedLink}>
                 View All
               </Text>
             </Link>

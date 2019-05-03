@@ -28,7 +28,7 @@ import userAlt from '@fortawesome/fontawesome-pro-regular/faUserAlt';
 import userAltLight from '@fortawesome/fontawesome-pro-light/faUserAlt';
 import chevronUp from '@fortawesome/fontawesome-pro-regular/faChevronUp';
 import chevronDown from '@fortawesome/fontawesome-pro-regular/faChevronDown';
-import fileArchive from '@fortawesome/fontawesome-pro-light/faFileArchive';
+import fileArchive from '@fortawesome/fontawesome-pro-regular/faFileArchive';
 import times from '@fortawesome/fontawesome-pro-light/faTimes';
 import camera from '@fortawesome/fontawesome-pro-light/faCamera';
 import unlock from '@fortawesome/fontawesome-pro-light/faUnlock';
