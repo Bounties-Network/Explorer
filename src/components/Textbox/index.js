@@ -31,8 +31,8 @@ const Overlay = styled.div`
   position: absolute;
   top: ${props => props.theme.baseSpacing};
   right: ${props => props.theme.baseSpacing};
-  margin-top: ${props => props.theme.baseSpacing};
-  margin-right: ${props => props.theme.baseSpacing};
+  margin-top: ${props => props.theme.sSpacing};
+  margin-right: ${props => props.theme.sSpacing};
   border: ${props => props.theme.baseBorder};
   border-radius: ${props => props.theme.baseBorderRadius};
   background: ${props => props.theme.brandWhite};
@@ -54,7 +54,7 @@ const Textarea = styled(PlainTextarea)`
   border-radius: ${props => props.theme.baseBorderRadius};
   font-size: ${props => props.theme.bodyFontSize};
   font-family: inherit;
-  padding: ${props => props.theme.baseSpacing};
+  padding: ${props => props.theme.mSpacing};
 
   ${props =>
     props.error &&

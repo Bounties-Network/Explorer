@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .markdownEditor {
   height: 100%;
@@ -16,7 +16,7 @@ textarea {
 
 .textArea {
   white-space: pre-wrap;
-  padding: $m-spacing;
+  padding: $s-spacing;
   min-height: $l-spacing * 2;
 }
 
