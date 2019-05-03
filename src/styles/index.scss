@@ -12,6 +12,7 @@ html {
   box-sizing: border-box;
   font-size: $base-font-size;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-feature-settings: 'ss01' 1;
   height: 100%;
   width: 100%;
 }
