@@ -162,8 +162,8 @@ class CreateBountyFormComponent extends React.Component {
               Enter a title and description for your bounty. A{' '}
               <Text
                 link
+                absolute
                 src={'http://www.markdownguide.org/cheat-sheet'}
-                target={'_blank'}
               >
                 markdown
               </Text>{' '}
