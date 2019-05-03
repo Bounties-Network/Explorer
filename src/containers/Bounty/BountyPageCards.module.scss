@@ -1,10 +1,11 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .tabsContainer {
   padding: 1px 0;
   position: relative;
   margin-left: -$m-spacing;
   margin-right: -$m-spacing;
+  overflow-x: scroll;
 
   @media only screen and (min-width: 35em) {
     margin-left: -$l-spacing;

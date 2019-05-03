@@ -159,9 +159,18 @@ class CreateBountyFormComponent extends React.Component {
               Enter your details about this bounty.
             </FormSection.Description>
             <FormSection.SubText>
-              Enter a title and description for your bounty. A markdown preview
-              will automatically be generated as you type, which you can view by
-              clicking the preview button.
+              Enter a title and description for your bounty. A{' '}
+              <Text
+                link
+                absolute
+                src={'http://www.markdownguide.org/cheat-sheet'}
+              >
+                markdown
+              </Text>{' '}
+              preview will automatically be generated as you type, which you can
+              view by clicking the preview button. Feel free to use the
+              description template provided below, or clear the field to create
+              your own.
             </FormSection.SubText>
             <FormSection.InputGroup>
               <Field
