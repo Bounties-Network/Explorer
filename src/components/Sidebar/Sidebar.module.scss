@@ -109,6 +109,7 @@
   opacity: 0.5;
   transition: opacity 250ms ease-in-out;
   font-size: inherit;
+  transition: all 150ms ease-in-out;
 
   @media only screen and (min-width: 48em) {
     border-top-right-radius: $base-border-radius;

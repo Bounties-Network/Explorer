@@ -1,17 +1,35 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .button {
   border-radius: $base-border-radius;
   position: relative;
   border: none;
-  box-shadow: $base-box-shadow;
+  //box-shadow: $base-box-shadow;
   cursor: pointer;
   display: inline-block;
   font-size: $body-font-size;
+  outline: none;
   padding: 0 $l-spacing;
   height: $base-input-height;
   line-height: $base-input-height;
   white-space: nowrap;
+  transition: transform 0.1s ease-in-out;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $base-box-shadow;
+
+    &.disabled {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+  }
+
+  &:active,
+  &:focus {
+    transform: translateY(0);
+    box-shadow: none;
+  }
 }
 
 .margin {
@@ -28,7 +46,7 @@
 }
 
 .disabled {
-  cursor: default;
+  cursor: not-allowed;
   border: none;
   box-shadow: none;
 }
@@ -42,25 +60,40 @@
   border: $base-border;
   color: $brand-darkGrey;
   line-height: calc(#{$base-input-height} - (#{$base-border-width} * 2));
+  transition: transform 0.1s ease-in-out;
 
   &:hover {
-    background-color: lighten($brand-blue, 33%);
-    border-color: $brand-blue;
-    color: $brand-blue;
+    transform: translateY(-3px);
+    border-color: $brand-mediumGrey;
+    color: $brand-black;
+    box-shadow: $base-box-shadow;
 
     .icon {
       color: $brand-blue;
     }
   }
 
-  &.disabled{
-     background-color: $brand-nearWhite;
-     border: 0;
-     color: lighten($brand-grey, 15%);
+  &:active,
+  &:focus {
+    transform: translateY(0);
+    border: $base-border;
+    color: $brand-black;
+    outline: none;
+    box-shadow: none;
 
-     &:hover {
-       border: 0;
-     }
+    .icon {
+      color: $brand-blue;
+    }
+  }
+
+  &.disabled {
+    background-color: $brand-nearWhite;
+    border: 0;
+    color: lighten($brand-grey, 15%);
+
+    &:hover {
+      border: 0;
+    }
   }
 
   &.buttonLoading:hover {
@@ -80,11 +113,11 @@
   }
 
   &.disabled {
-     opacity: 0.4;
+    opacity: 0.4;
 
-     &:hover {
-       background-color: $brand-blue;
-     }
+    &:hover {
+      background-color: $brand-blue;
+    }
   }
 
   &.buttonLoading:hover {
@@ -105,12 +138,12 @@
     background-color: $brand-destructive-hover;
   }
 
-  &.disabled{
-     opacity: 0.4;
+  &.disabled {
+    opacity: 0.4;
 
-     &:hover {
-       background-color: $brand-destructive;
-     }
+    &:hover {
+      background-color: $brand-destructive;
+    }
   }
 
   &.buttonLoading:hover {
@@ -168,7 +201,6 @@
   }
 }
 
-
 .link-destructive {
   background-color: none;
   color: $brand-red;
@@ -184,7 +216,7 @@
   }
 
   &.disabled {
-    opacity: 0.4
+    opacity: 0.4;
   }
 }
 
