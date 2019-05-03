@@ -25,6 +25,7 @@
 .submissionHeader {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background: $brand-nearWhite;
   border-radius: $base-border-radius;
   margin-left: $xl-spacing;
