@@ -40,10 +40,12 @@
 }
 
 .actionContainer {
-}
+  display: flex;
+  align-items: center;
 
-.actionButton {
-  margin-left: $base-spacing;
+  & > * {
+    margin-left: $m-spacing;
+  }
 }
 
 .detailsContainer {
