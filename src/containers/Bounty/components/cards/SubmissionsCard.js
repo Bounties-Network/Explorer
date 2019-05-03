@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Cards.module.scss';
-import { Button, ListGroup, Loader, Text, ZeroState } from 'components';
+import { Button, Loader, Text, ZeroState } from 'components';
 import { SubmissionItem } from '../index';
 import { map as fpMap } from 'lodash';
 
