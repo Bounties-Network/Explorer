@@ -150,7 +150,7 @@ export function* watchViewAllNotifications() {
 export function* loopNotifications() {
   while (true) {
     yield put(loadNotifications());
-    yield delay(3000);
+    yield delay(10000);
   }
 }
 
