@@ -109,8 +109,9 @@ const ErrorFragment = ({ error }) => (
 class Textbox extends React.Component {
   state = { text: '' };
 
-  onTextareaChange = ({ target: { value } }) => {
-    if (typeof this.props.value === 'string') {
+  onTextareaChange = e => {
+    const { value } = e.target;
+    if (typeof this.props.value !== 'string') {
       this.setState({ text: value });
     }
     this.props.onChange(value);
@@ -135,7 +136,6 @@ class Textbox extends React.Component {
     } = this.props;
 
     const { text: textStateValue } = this.state;
-
     const textValue = typeof value === 'string' ? value : textStateValue;
 
     return (
