@@ -198,7 +198,6 @@ export function* createBounty(action) {
   }
 
   const deadline = parseInt(moment(values.deadline).unix());
-
   const issuedData = {
     payload: {
       uid,
@@ -275,7 +274,6 @@ export function* createBounty(action) {
       return yield put(stdBountyFail());
     }
   }
-
   try {
     const txHash = yield call(
       promisifyContractCall(standardBounties.issueAndContribute, {
@@ -625,7 +623,6 @@ export function* contribute(action) {
 
 export function* transferIssuer(action) {
   const { id, contract_version, address } = action;
-  console.log({ contract_version });
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
 
