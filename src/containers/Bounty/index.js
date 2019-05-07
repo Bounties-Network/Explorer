@@ -323,8 +323,8 @@ class BountyComponent extends React.Component {
                       className={styles.metadataInput}
                       weight="fontWeight-medium"
                     >
-                      {bounty.experience_level
-                        ? DIFFICULTY_MAPPINGS[bounty.experience_level]
+                      {bounty.experienceLevel
+                        ? DIFFICULTY_MAPPINGS[bounty.experienceLevel]
                         : DIFFICULTY_MAPPINGS[0]}
                     </Text>
                     <Text

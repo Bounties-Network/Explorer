@@ -35,7 +35,7 @@ const ExplorerBodyComponent = props => {
         title,
         categories,
         user,
-        experience_level,
+        experienceLevel,
         fulfillment_count,
         deadline,
         calculated_fulfillment_amount,
@@ -51,7 +51,7 @@ const ExplorerBodyComponent = props => {
           categories={categories}
           img={user.small_profile_image_url}
           address={user.public_address}
-          experience_level={experience_level}
+          experienceLevel={experienceLevel}
           submissions={fulfillment_count}
           deadline={moment.utc(deadline, 'YYYY-MM-DDThh:mm:ssZ').fromNow(true)}
           value={Number(calculated_fulfillment_amount)}
