@@ -473,12 +473,12 @@ export function* extendDeadline(action) {
 export function* increasePayout(action) {
   const {
     id,
-    fulfillmentAmount,
+    contract_version,
+    fulfillment_amount,
     balance,
     paysTokens,
     decimals,
-    tokenContract,
-    contract_version
+    tokenContract
   } = action;
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
@@ -487,7 +487,7 @@ export function* increasePayout(action) {
   let contractBalance;
   if (paysTokens) {
     contractFulfillmentAmount = calculateDecimals(
-      BigNumber(fulfillmentAmount, 10).toString(),
+      BigNumber(fulfillment_amount, 10).toString(),
       BigNumber(decimals, 10).toString()
     );
     contractBalance = calculateDecimals(
@@ -497,7 +497,7 @@ export function* increasePayout(action) {
   } else {
     const { web3 } = yield call(getWeb3Client);
     contractFulfillmentAmount = web3.utils.toWei(
-      BigNumber(fulfillmentAmount, 10).toString(),
+      BigNumber(fulfillment_amount, 10).toString(),
       'ether'
     );
     contractBalance = calculateDecimals(
