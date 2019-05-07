@@ -213,7 +213,7 @@ export function* createBounty(action) {
       fulfillersNeedApproval: fulfillers_need_approval,
       created: parseInt(new Date().getTime() / 1000) | 0,
       tokenAddress: tokenContract || '',
-      difficulty: experienceLevel,
+      difficulty: DIFFICULTY_VALUES[experienceLevel],
       issuer: {
         address: userAddress,
         email: issuer_email,
