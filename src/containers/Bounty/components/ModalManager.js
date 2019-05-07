@@ -123,12 +123,13 @@ const ModalManagerComponent = props => {
   const increasePayout = values =>
     initiateWalkthrough(() =>
       increasePayoutAction(
-        bounty.id,
-        values.fulfillmentAmount,
+        bounty.bounty_id,
+        values.fulfillment_amount,
         values.balance || '0',
-        bounty.paysTokens,
-        bounty.tokenDecimals,
-        bounty.tokenContract
+        bounty.pays_tokens,
+        bounty.token_decimals,
+        bounty.token_contract,
+        bounty.contract_version
       )
     );
 
@@ -152,7 +153,7 @@ const ModalManagerComponent = props => {
     currentDeadline > tomorrow
       ? currentDeadline.add(1, 'days').local()
       : tomorrow;
-
+  console.log('bounty', bounty);
   return (
     <React.Fragment>
       <ContributeFormModal
@@ -208,15 +209,13 @@ const ModalManagerComponent = props => {
       <IncreasePayoutFormModal
         onClose={closeModal}
         onSubmit={increasePayout}
-        minimumPayout={BigNumber(
-          bounty.calculated_fulfillmentAmount,
-          10
-        ).toString()}
+        minimumPayout={BigNumber(bounty.fulfillment_amount, 10).toString()}
         visible={modalVisible && modalType === 'increasePayout'}
         tokenSymbol={bounty.token_symbol}
         tokenDecimals={bounty.token_decimals}
         tokenContract={bounty.token_contract}
-        minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}
+        minimumBalance={BigNumber(bounty.fulfillment_amount, 10).toString()}
+        contract_version={bounty.contract_version}
       />
       <FulfillBountyFormModal
         visible={modalType === 'fulfillBounty'}

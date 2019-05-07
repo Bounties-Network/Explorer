@@ -26,7 +26,7 @@ class SubmissionsPanelComponent extends React.Component {
         id,
         title,
         tokenSymbol,
-        calculated_fulfillmentAmount,
+        calculated_fulfillment_amount,
         bountyStage
       } = bounty_data;
       const { public_address, small_profile_image_url } = user;
@@ -42,7 +42,7 @@ class SubmissionsPanelComponent extends React.Component {
           submissionDate={fulfillment_created}
           status={accepted}
           usd={(usd_price || 0).toFixed(0)}
-          amount={Number(calculated_fulfillmentAmount)}
+          amount={Number(calculated_fulfillment_amount)}
           currency={tokenSymbol}
         />
       );

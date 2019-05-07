@@ -27,7 +27,7 @@ class BountiesPanelComponent extends React.Component {
     return map(bounty => {
       const {
         id,
-        calculated_fulfillmentAmount,
+        calculated_fulfillment_amount,
         bounty_created,
         created,
         fulfillment_count,
@@ -53,7 +53,7 @@ class BountiesPanelComponent extends React.Component {
               bountyId={id}
               title={title}
               submissions={fulfillment_count}
-              value={Number(calculated_fulfillmentAmount)}
+              value={Number(calculated_fulfillment_amount)}
               currency={tokenSymbol}
               usd_value={parseFloat(usd_price).toFixed(0)}
               createdAt={isDraft ? created : bounty_created}

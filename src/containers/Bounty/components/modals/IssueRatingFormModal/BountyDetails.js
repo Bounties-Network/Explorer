@@ -7,7 +7,7 @@ import { FulfillmentStagePill } from 'explorer-components';
 const BountyDetails = props => {
   const { bounty } = props;
   const {
-    calculated_fulfillmentAmount,
+    calculated_fulfillment_amount,
     title,
     tokenSymbol,
     usd_price
@@ -50,7 +50,7 @@ const BountyDetails = props => {
             typeScale="Small"
             className={styles.usd}
           >
-            {`${Number(calculated_fulfillmentAmount)} ${tokenSymbol}`}
+            {`${Number(calculated_fulfillment_amount)} ${tokenSymbol}`}
           </Text>
         </div>
       </div>

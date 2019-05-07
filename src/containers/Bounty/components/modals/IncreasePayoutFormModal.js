@@ -18,7 +18,7 @@ class IncreasePayoutFormModal extends React.Component {
       validators.maxDecimals(this.props.tokenDecimals),
       (balance, values) => {
         if (
-          BigNumber(values.fulfillmentAmount || 0, 10).isGreaterThan(
+          BigNumber(values.fulfillment_amount || 0, 10).isGreaterThan(
             BigNumber(this.props.minimumBalance, 10).plus(
               BigNumber(balance || 0, 10)
             )
@@ -28,14 +28,14 @@ class IncreasePayoutFormModal extends React.Component {
         }
       }
     ],
-    fulfillmentAmount: [
+    fulfillment_amount: [
       validators.required,
       validators.maxDecimals(this.props.tokenDecimals),
       validators.minValue(0),
-      (fulfillmentAmount, values) => {
+      (fulfillment_amount, values) => {
         if (
           BigNumber(this.minimumPayout || 0).isGreaterThanOrEqualTo(
-            BigNumber(values.fulfillmentAmount || 0, 10)
+            BigNumber(values.fulfillment_amount || 0, 10)
           )
         ) {
           return 'Your payout amount must be greater than the previous payout amount.';
@@ -45,6 +45,8 @@ class IncreasePayoutFormModal extends React.Component {
   };
 
   render() {
+    console.log('props', this.props);
+
     const {
       onClose,
       minimumBalance,
@@ -54,9 +56,9 @@ class IncreasePayoutFormModal extends React.Component {
       visible,
       submitFailed,
       invalid,
-      asyncValidating
+      asyncValidating,
+      contract_version
     } = this.props;
-
     return (
       <form onSubmit={handleSubmit}>
         <Modal
@@ -98,11 +100,11 @@ class IncreasePayoutFormModal extends React.Component {
             />
             <div className={styles.inputGroup}>
               <Field
-                name="fulfillmentAmount"
+                name="fulfillment_amount"
                 component={FormTextInput}
                 label={`New prize amount (${tokenSymbol})`}
                 normalize={normalizers.number}
-                validate={this.validatorGroups.fulfillmentAmount}
+                validate={this.validatorGroups.fulfillment_amount}
                 placeholder="Enter amount..."
               />
             </div>

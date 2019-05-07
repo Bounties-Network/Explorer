@@ -128,7 +128,7 @@ function contribute(
 function increasePayout(
   id,
   contract_version,
-  fulfillmentAmount,
+  fulfillment_amount,
   balance,
   paysTokens,
   decimals,
@@ -138,7 +138,7 @@ function increasePayout(
     type: INCREASE_PAYOUT,
     id,
     contract_version,
-    fulfillmentAmount,
+    fulfillment_amount,
     balance,
     paysTokens,
     decimals,

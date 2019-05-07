@@ -78,7 +78,7 @@ const mapStateToProps = (state, router) => {
   const user = getCurrentUserSelector(state) || {};
   const getDraftState = getDraftStateSelector(state);
   let draftBounty = getDraftBountySelector(state) || {};
-  let fulfillment_amount = draftBounty.calculated_fulfillmentAmount;
+  let fulfillment_amount = draftBounty.calculated_fulfillment_amount;
   let isDraftPage = true;
 
   if (typeof fulfillment_amount === 'string') {

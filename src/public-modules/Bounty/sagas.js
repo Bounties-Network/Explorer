@@ -146,7 +146,7 @@ export function* createBounty(action) {
     experienceLevel,
     issuer_email,
     issuer_name,
-    calculated_fulfillmentAmount,
+    calculated_fulfillment_amount,
     fulfillment_amount,
     paysTokens,
     privateFulfillments,
@@ -170,7 +170,7 @@ export function* createBounty(action) {
       tokenSymbol = symbol;
       contractFulfillmentAmount = calculateDecimals(
         BigNumber(
-          calculated_fulfillmentAmount || fulfillment_amount,
+          calculated_fulfillment_amount || fulfillment_amount,
           10
         ).toString(),
         decimals
@@ -186,7 +186,7 @@ export function* createBounty(action) {
   } else {
     contractFulfillmentAmount = web3.utils.toWei(
       BigNumber(
-        calculated_fulfillmentAmount || fulfillment_amount,
+        calculated_fulfillment_amount || fulfillment_amount,
         10
       ).toString(),
       'ether'
@@ -477,7 +477,8 @@ export function* increasePayout(action) {
     balance,
     paysTokens,
     decimals,
-    tokenContract
+    tokenContract,
+    contract_version
   } = action;
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
@@ -507,6 +508,8 @@ export function* increasePayout(action) {
   try {
     let txHash;
     const { standardBounties } = yield call(getContractClient);
+    console.log('contract', contract_version);
+    //if (contract_version)
     if (paysTokens) {
       const { tokenContract: tokenContractClient } = yield call(
         getTokenClient,

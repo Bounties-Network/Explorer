@@ -178,7 +178,7 @@ class BountyComponent extends React.Component {
               <BountyEssentials
                 isDraft={isDraft}
                 bountyStage={bounty.bounty_stage}
-                payoutPrimaryValue={bounty.calculated_fulfillmentAmount}
+                payoutPrimaryValue={bounty.calculated_fulfillment_amount}
                 payoutPrimaryCurrency={bounty.token_symbol}
                 payoutSecondaryValue={bounty.usd_price}
                 payoutSecondaryCurrency="usd"
