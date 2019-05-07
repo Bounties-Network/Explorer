@@ -83,8 +83,8 @@ export function* createOrUpdateDraft(action) {
     private_fulfillments: values.privateFulfillments,
     platform: config.postingPlatform
   };
-  draftBountyData.experienceLevel =
-    DIFFICULTY_VALUES[draftBountyData.experienceLevel];
+  draftBountyData.experience_level =
+    DIFFICULTY_VALUES[draftBountyData.experience_level];
 
   const { paysTokens } = draftBountyData;
   const { web3 } = yield call(getWeb3Client);
@@ -143,7 +143,7 @@ export function* createBounty(action) {
     description,
     categories,
     tokenContract,
-    experienceLevel,
+    experience_level,
     issuer_email,
     issuer_name,
     calculated_fulfillment_amount,
@@ -213,7 +213,7 @@ export function* createBounty(action) {
       fulfillersNeedApproval: fulfillers_need_approval,
       created: parseInt(new Date().getTime() / 1000) | 0,
       tokenAddress: tokenContract || '',
-      difficulty: experienceLevel,
+      difficulty: experience_level,
       issuer: {
         address: userAddress,
         email: issuer_email,

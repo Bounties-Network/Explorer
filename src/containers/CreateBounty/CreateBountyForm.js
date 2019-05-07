@@ -243,7 +243,7 @@ class CreateBountyFormComponent extends React.Component {
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={submittingBounty}
-                    name="experienceLevel"
+                    name="experience_level"
                     component={FormRadioGroup}
                     label="Difficulty"
                     options={DIFFICULTY_OPTIONS}
