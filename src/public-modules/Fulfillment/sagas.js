@@ -71,6 +71,13 @@ export function* acceptFulfillment(action) {
         fulfillmentId
       );
     } else if (contract_version === 2) {
+      console.log('data:', {
+        userAddress,
+        bountyId,
+        fulfillmentId,
+        approverId,
+        tokenAmounts
+      });
       txHash = yield call(
         promisifyContractCall(standardBounties.acceptFulfillment, {
           from: userAddress
