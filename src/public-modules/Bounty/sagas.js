@@ -478,7 +478,8 @@ export function* increasePayout(action) {
     balance,
     paysTokens,
     decimals,
-    tokenContract
+    tokenContract,
+    bounty
   } = action;
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
@@ -508,42 +509,95 @@ export function* increasePayout(action) {
   try {
     let txHash;
     const { standardBounties } = yield call(getContractClient);
-    console.log('contract', contract_version);
-    //if (contract_version)
-    if (paysTokens) {
-      const { tokenContract: tokenContractClient } = yield call(
-        getTokenClient,
-        tokenContract
-      );
-      const network = yield select(networkSelector);
-      yield call(
-        promisifyContractCall(tokenContractClient.approve, {
+
+    if (contract_version === 1) {
+      if (paysTokens) {
+        const { tokenContract: tokenContractClient } = yield call(
+          getTokenClient,
+          tokenContract
+        );
+        const network = yield select(networkSelector);
+        yield call(
+          promisifyContractCall(tokenContractClient.approve, {
+            from: userAddress
+          }),
+          config[network].standardBountiesAddress,
+          contractBalance
+        );
+        yield call(delay, 2000);
+        txHash = yield call(
+          promisifyContractCall(standardBounties.increasePayout, {
+            from: userAddress,
+            gas: 200000
+          }),
+          id,
+          contractFulfillmentAmount,
+          contractBalance
+        );
+      } else {
+        txHash = yield call(
+          promisifyContractCall(standardBounties.increasePayout, {
+            from: userAddress,
+            value: contractBalance
+          }),
+          id,
+          contractFulfillmentAmount,
+          contractBalance
+        );
+      }
+    } else if (contract_version === 2) {
+      const issuedData = {
+        payload: {
+          uid: bounty.uid,
+          title: bounty.title,
+          description: bounty.description,
+          sourceFileHash: '',
+          sourceDirectoryHash: bounty.attached_data_hash,
+          sourceFileName: bounty.attached_filename,
+          webReferenceURL: bounty.attached_url,
+          categories: bounty.categories.map(category => category.name),
+          revisions: bounty.revisions,
+          privateFulfillments: bounty.private_fulfillments,
+          fulfillersNeedApproval: bounty.fulfillers_need_approval,
+          created: bounty.bounty_created,
+          tokenAddress: bounty.token_contract,
+          difficulty: bounty.experience_level,
+          issuer: {
+            address: bounty.user.public_address,
+            email: bounty.user.email,
+            name: bounty.user.name
+          },
+          funders: [
+            {
+              address: bounty.user.public_address,
+              email: bounty.user.email,
+              name: bounty.user.name
+            }
+          ],
+          symbol: bounty.token_symbol,
+          fulfillmentAmount: contractFulfillmentAmount
+        },
+        meta: {
+          platform: siteConfig.postingPlatform,
+          schemaVersion: siteConfig.postingSchemaVersion,
+          schemaName: siteConfig.postingSchema
+        }
+      };
+
+      const ipfsHash = yield call(addJSON, issuedData);
+      txHash = yield call(
+        promisifyContractCall(standardBounties.changeData, {
           from: userAddress
         }),
-        config[network].standardBountiesAddress,
-        contractBalance
-      );
-      yield call(delay, 2000);
-      txHash = yield call(
-        promisifyContractCall(standardBounties.increasePayout, {
-          from: userAddress,
-          gas: 200000
-        }),
+        userAddress,
         id,
-        contractFulfillmentAmount,
-        contractBalance
+        0,
+        ipfsHash
       );
     } else {
-      txHash = yield call(
-        promisifyContractCall(standardBounties.increasePayout, {
-          from: userAddress,
-          value: contractBalance
-        }),
-        id,
-        contractFulfillmentAmount,
-        contractBalance
-      );
+      throw new Error(`contract version ${contract_version} invalid.`);
     }
+
     yield put(stdBountySuccess());
     yield put(setPendingReceipt(txHash));
   } catch (e) {

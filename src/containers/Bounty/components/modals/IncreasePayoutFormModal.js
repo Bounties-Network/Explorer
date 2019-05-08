@@ -33,11 +33,21 @@ class IncreasePayoutFormModal extends React.Component {
       validators.minValue(0),
       (fulfillment_amount, values) => {
         if (
-          BigNumber(this.minimumPayout || 0).isGreaterThanOrEqualTo(
+          BigNumber(this.props.minimumPayout || 0).isGreaterThanOrEqualTo(
             BigNumber(values.fulfillment_amount || 0, 10)
           )
         ) {
           return 'Your payout amount must be greater than the previous payout amount.';
+        }
+      },
+      (fulfillment_amount, values) => {
+        if (
+          this.props.contract_version === 2 &&
+          BigNumber(values.fulfillment_amount || 0, 10).isGreaterThan(
+            BigNumber(this.props.minimumBalance, 10)
+          )
+        ) {
+          return 'The balance of your bounty must be greater than the payout amount.';
         }
       }
     ]
@@ -69,7 +79,7 @@ class IncreasePayoutFormModal extends React.Component {
             <Modal.Message>Increase bounty payout</Modal.Message>
             <Modal.Description>
               Indicate the amount you would like to increase the payout to.
-              {contract_version == 1 &&
+              {contract_version === 1 &&
                 'You may include an additional balance to cover the costs.'}
               <br />
               <br />
@@ -89,14 +99,16 @@ class IncreasePayoutFormModal extends React.Component {
           </Modal.Header>
 
           <Modal.Body className={styles.modalBody}>
-            <Field
-              name="balance"
-              component={FormTextInput}
-              label={`Deposit amount (${tokenSymbol})`}
-              normalize={normalizers.number}
-              validate={this.validatorGroups.balance}
-              placeholder="Enter amount..."
-            />
+            {contract_version === 1 && (
+              <Field
+                name="balance"
+                component={FormTextInput}
+                label={`Deposit amount (${tokenSymbol})`}
+                normalize={normalizers.number}
+                validate={this.validatorGroups.balance}
+                placeholder="Enter amount..."
+              />
+            )}
             <div className={styles.inputGroup}>
               <Field
                 name="fulfillment_amount"

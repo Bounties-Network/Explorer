@@ -129,7 +129,8 @@ const ModalManagerComponent = props => {
         values.balance || '0',
         bounty.pays_tokens,
         bounty.token_decimals,
-        bounty.token_contract
+        bounty.token_contract,
+        bounty
       )
     );
 
@@ -216,10 +217,7 @@ const ModalManagerComponent = props => {
         tokenSymbol={bounty.token_symbol}
         tokenDecimals={bounty.token_decimals}
         tokenContract={bounty.token_contract}
-        minimumBalance={BigNumber(
-          bounty.calculated_fulfillment_amount,
-          10
-        ).toString()}
+        minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}
         contract_version={bounty.contract_version}
       />
       <FulfillBountyFormModal
