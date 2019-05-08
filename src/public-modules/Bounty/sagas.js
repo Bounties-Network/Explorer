@@ -249,20 +249,19 @@ export function* createBounty(action) {
         promisifyContractCall(tokenContractClient.approve, {
           from: userAddress
         }),
-        config[network].StandardBountiesV2,
+        config[network].standardBountiesAddressV2,
         contractBalance
       );
       yield call(delay, 2000);
       const issuedBountyHash = yield call(
         promisifyContractCall(standardBounties.issueAndContribute, {
-          from: userAddress,
-          gas: 400000
+          from: userAddress
         }),
         userAddress,
         [userAddress],
         [userAddress],
         ipfsHash,
-        deadline,
+        `${deadline}`,
         tokenContract || 0x0,
         20,
         contractBalance
@@ -273,27 +272,28 @@ export function* createBounty(action) {
       yield put(setTransactionError());
       return yield put(stdBountyFail());
     }
-  }
-  try {
-    const txHash = yield call(
-      promisifyContractCall(standardBounties.issueAndContribute, {
-        from: userAddress,
-        value: contractBalance
-      }),
-      userAddress,
-      [userAddress],
-      [userAddress],
-      ipfsHash,
-      `${deadline}`,
-      0x0,
-      0,
-      contractBalance
-    );
-    yield put(setPendingReceipt(txHash));
-    yield put(stdBountySuccess());
-  } catch (e) {
-    yield put(setTransactionError());
-    yield put(stdBountyFail());
+  } else {
+    try {
+      const txHash = yield call(
+        promisifyContractCall(standardBounties.issueAndContribute, {
+          from: userAddress,
+          value: contractBalance
+        }),
+        userAddress,
+        [userAddress],
+        [userAddress],
+        ipfsHash,
+        `${deadline}`,
+        0x0,
+        0,
+        contractBalance
+      );
+      yield put(setPendingReceipt(txHash));
+      yield put(stdBountySuccess());
+    } catch (e) {
+      yield put(setTransactionError());
+      yield put(stdBountyFail());
+    }
   }
 }
 
@@ -645,11 +645,14 @@ export function* contribute(action) {
         tokenContract
       );
       const network = yield select(networkSelector);
+      console.log('token', tokenContract);
       yield call(
         promisifyContractCall(tokenContractClient.approve, {
           from: userAddress
         }),
-        config[network][`standardBountiesAddressV${contract_version}`],
+        contract_version === 1
+          ? config[network].standardBountiesAddressV1
+          : config[network].standardBountiesAddressV2,
         addedBalance
       );
       yield call(delay, 2000);
