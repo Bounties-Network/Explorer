@@ -103,7 +103,7 @@ const mapStateToProps = (state, router) => {
       categories: draftBounty.categories,
       description: draftBounty.description || DEFAULT_MARKDOWN,
       experienceLevel:
-        DIFFICULTY_MAPPINGS[draftBounty.experienceLevel] || 'Beginner',
+        DIFFICULTY_MAPPINGS[draftBounty.experience_level] || 'Beginner',
       revisions: draftBounty.revisions || 3,
       privateFulfillments: draftBounty.private_fulfillments || false,
       fulfillers_need_approval: draftBounty.fulfillers_need_approval || false,

@@ -83,7 +83,7 @@ export function* createOrUpdateDraft(action) {
     private_fulfillments: values.privateFulfillments,
     platform: config.postingPlatform
   };
-  draftBountyData.experienceLevel =
+  draftBountyData.experience_level =
     DIFFICULTY_VALUES[draftBountyData.experienceLevel];
 
   const { paysTokens } = draftBountyData;
