@@ -81,7 +81,9 @@ export function* createOrUpdateDraft(action) {
   const draftBountyData = {
     ...values,
     private_fulfillments: values.privateFulfillments,
-    platform: config.postingPlatform
+    platform: config.postingPlatform,
+    attached_data_hash: values.sourceDirectoryHash,
+    attached_filename: values.sourceFileName
   };
   draftBountyData.experience_level =
     DIFFICULTY_VALUES[draftBountyData.experienceLevel];
