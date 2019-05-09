@@ -16,15 +16,19 @@ const minLength = min => value =>
   value && value.length < min ? `Must be ${min} characters or more` : undefined;
 
 const maxDecimals = max => value => {
-  const arr = value.split('.');
+  if (value) {
+    const arr = value.split('.');
 
-  if (arr.length < 2) {
+    if (arr.length < 2) {
+      return undefined;
+    }
+
+    return arr[1].length <= max
+      ? undefined
+      : `Must be ${max} decimal places or less`;
+  } else {
     return undefined;
   }
-
-  return arr[1].length <= max
-    ? undefined
-    : `Must be ${max} decimal places or less`;
 };
 
 const minValue = min => value => {

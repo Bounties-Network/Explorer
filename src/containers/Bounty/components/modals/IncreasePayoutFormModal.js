@@ -15,7 +15,6 @@ class IncreasePayoutFormModal extends React.Component {
     balance: [
       validators.minOrEqualsValue(0),
       validators.maxDecimals(this.props.tokenDecimals),
-      validators.maxDecimals(this.props.tokenDecimals),
       (balance, values) => {
         if (
           BigNumber(values.fulfillment_amount || 0, 10).isGreaterThan(
@@ -34,19 +33,27 @@ class IncreasePayoutFormModal extends React.Component {
       validators.minValue(0),
       (fulfillment_amount, values) => {
         if (
-          BigNumber(this.minimumPayout || 0).isGreaterThanOrEqualTo(
+          BigNumber(this.props.minimumPayout || 0).isGreaterThanOrEqualTo(
             BigNumber(values.fulfillment_amount || 0, 10)
           )
         ) {
           return 'Your payout amount must be greater than the previous payout amount.';
+        }
+      },
+      (fulfillment_amount, values) => {
+        if (
+          this.props.contract_version === 2 &&
+          BigNumber(values.fulfillment_amount || 0, 10).isGreaterThan(
+            BigNumber(this.props.minimumBalance, 10)
+          )
+        ) {
+          return 'The balance of your bounty must be greater than the payout amount.';
         }
       }
     ]
   };
 
   render() {
-    console.log('props', this.props);
-
     const {
       onClose,
       minimumBalance,
@@ -71,8 +78,9 @@ class IncreasePayoutFormModal extends React.Component {
           <Modal.Header closable={true}>
             <Modal.Message>Increase bounty payout</Modal.Message>
             <Modal.Description>
-              Indicate the amount you would like to increase the payout to. You
-              may include an additional balance to cover the costs.
+              Indicate the amount you would like to increase the payout to.
+              {contract_version === 1 &&
+                'You may include an additional balance to cover the costs.'}
               <br />
               <br />
               <em>
@@ -89,15 +97,18 @@ class IncreasePayoutFormModal extends React.Component {
               >{`${minimumPayout} ${tokenSymbol}`}</span>.
             </Modal.Description>
           </Modal.Header>
+
           <Modal.Body className={styles.modalBody}>
-            <Field
-              name="balance"
-              component={FormTextInput}
-              label={`Deposit amount (${tokenSymbol})`}
-              normalize={normalizers.number}
-              validate={this.validatorGroups.balance}
-              placeholder="Enter amount..."
-            />
+            {contract_version === 1 && (
+              <Field
+                name="balance"
+                component={FormTextInput}
+                label={`Deposit amount (${tokenSymbol})`}
+                normalize={normalizers.number}
+                validate={this.validatorGroups.balance}
+                placeholder="Enter amount..."
+              />
+            )}
             <div className={styles.inputGroup}>
               <Field
                 name="fulfillment_amount"

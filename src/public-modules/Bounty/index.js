@@ -132,7 +132,8 @@ function increasePayout(
   balance,
   paysTokens,
   decimals,
-  tokenContract
+  tokenContract,
+  bounty
 ) {
   return {
     type: INCREASE_PAYOUT,
@@ -142,7 +143,8 @@ function increasePayout(
     balance,
     paysTokens,
     decimals,
-    tokenContract
+    tokenContract,
+    bounty
   };
 }
 
