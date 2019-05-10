@@ -154,6 +154,8 @@ const ModalManagerComponent = props => {
     currentDeadline > tomorrow
       ? currentDeadline.add(1, 'days').local()
       : tomorrow;
+
+  console.log('bounty:', bounty);
   return (
     <React.Fragment>
       <ContributeFormModal
@@ -222,7 +224,7 @@ const ModalManagerComponent = props => {
       />
       <FulfillBountyFormModal
         visible={modalType === 'fulfillBounty'}
-        privateFulfillments={bounty.private_fulfillments}
+        private_fulfillments={bounty.private_fulfillments}
         onClose={closeModal}
         onSubmit={fulfillBounty}
         name={user.name}

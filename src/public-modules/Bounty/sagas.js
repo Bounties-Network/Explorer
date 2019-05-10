@@ -60,6 +60,7 @@ export function* getTokenData(tokenAddress) {
       tokenAddress
     );
     symbol = yield call(tokenContractClient.symbol().call);
+    console.log('symbol', symbol);
     decimals = yield call(tokenContractClient.decimals().call);
   } catch (e) {
     const { tokenContract: tokenContractClient } = yield call(
@@ -80,12 +81,12 @@ export function* createOrUpdateDraft(action) {
   const { values, bountyId } = action;
   const draftBountyData = {
     ...values,
-    private_fulfillments: values.privateFulfillments,
+    private_fulfillments: values.private_fulfillments,
     platform: config.postingPlatform
   };
-  draftBountyData.experienceLevel =
-    DIFFICULTY_VALUES[draftBountyData.experienceLevel];
-
+  draftBountyData.experience_level =
+    DIFFICULTY_VALUES[draftBountyData.experience_level];
+  console.log('values', values);
   const { paysTokens } = draftBountyData;
   const { web3 } = yield call(getWeb3Client);
   if (!paysTokens) {
@@ -98,18 +99,20 @@ export function* createOrUpdateDraft(action) {
     const { tokenContract } = draftBountyData;
     try {
       const { symbol, decimals } = yield call(getTokenData, tokenContract);
-      draftBountyData.tokenSymbol = symbol;
-      draftBountyData.tokenDecimals = BigNumber(decimals, 10).toString();
       draftBountyData.fulfillment_amount = calculateDecimals(
         draftBountyData.fulfillment_amount,
         decimals
       );
       draftBountyData.token_version = '20';
+      draftBountyData.token_symbol = symbol;
+      draftBountyData.token_contract = tokenContract;
     } catch (e) {
       console.log(e);
       // call error toast here - contract isn't a proper erc20 token.
     }
   }
+  console.log('draftBountyData:', draftBountyData);
+
   draftBountyData.deadline = moment(draftBountyData.deadline)
     .utc()
     .toISOString();
@@ -121,7 +124,14 @@ export function* createOrUpdateDraft(action) {
       methodType = 'PUT';
       endpoint += `${bountyId}/`;
     }
-
+    console.log('about to call:', [
+      request,
+      endpoint,
+      methodType,
+      {
+        data: draftBountyData
+      }
+    ]);
     const bounty = yield call(request, endpoint, methodType, {
       data: draftBountyData
     });
@@ -143,13 +153,13 @@ export function* createBounty(action) {
     description,
     categories,
     tokenContract,
-    experienceLevel,
+    experience_level,
     issuer_email,
     issuer_name,
     calculated_fulfillment_amount,
     fulfillment_amount,
     paysTokens,
-    privateFulfillments,
+    private_fulfillments,
     fulfillers_need_approval,
     revisions,
     sourceDirectoryHash,
@@ -157,13 +167,12 @@ export function* createBounty(action) {
     webReferenceURL,
     uid
   } = values;
-
   yield put(setPendingWalletConfirm());
   const user = yield select(getCurrentUserSelector);
   const userAddress = user.public_address;
 
   const { web3 } = yield call(getWeb3Client);
-
+  console.log('values:', values);
   if (paysTokens) {
     try {
       const { symbol, decimals } = yield call(getTokenData, tokenContract);
@@ -209,11 +218,14 @@ export function* createBounty(action) {
       webReferenceURL,
       categories,
       revisions,
-      privateFulfillments,
+      privateFulfillments: private_fulfillments,
       fulfillersNeedApproval: fulfillers_need_approval,
       created: parseInt(new Date().getTime() / 1000) | 0,
       tokenAddress: tokenContract || '',
-      difficulty: DIFFICULTY_VALUES[experienceLevel],
+      difficulty:
+        typeof experience_level === 'number'
+          ? experience_level
+          : DIFFICULTY_VALUES[experience_level],
       issuer: {
         address: userAddress,
         email: issuer_email,
@@ -235,7 +247,7 @@ export function* createBounty(action) {
       schemaName: siteConfig.postingSchema
     }
   };
-
+  console.log('issuing:', issuedData);
   const ipfsHash = yield call(addJSON, issuedData);
   const { standardBounties } = yield call(getContractClient);
   if (paysTokens) {
@@ -253,6 +265,7 @@ export function* createBounty(action) {
         contractBalance
       );
       yield call(delay, 2000);
+
       const issuedBountyHash = yield call(
         promisifyContractCall(standardBounties.issueAndContribute, {
           from: userAddress

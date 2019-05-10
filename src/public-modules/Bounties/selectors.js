@@ -83,7 +83,7 @@ export const bountiesQuerySelector = createSelector(
       rootBounty.stageFilters
     ).join(',');
 
-    query['experienceLevel__in'] = reduce(
+    query['experience_level__in'] = reduce(
       (result, value, key) => {
         if (value) {
           result.push(DIFFICULTY_MAPPING[key]);

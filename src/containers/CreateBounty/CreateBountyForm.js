@@ -150,7 +150,6 @@ class CreateBountyFormComponent extends React.Component {
     if (bountyId && !activateNow) {
       submitButtonText = 'Update Draft';
     }
-
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
         <FormSection>
@@ -243,7 +242,7 @@ class CreateBountyFormComponent extends React.Component {
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={submittingBounty}
-                    name="experienceLevel"
+                    name="experience_level"
                     component={FormRadioGroup}
                     label="Difficulty"
                     options={DIFFICULTY_OPTIONS}
@@ -369,7 +368,7 @@ class CreateBountyFormComponent extends React.Component {
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={submittingBounty}
-                    name="privateFulfillments"
+                    name="private_fulfillments"
                     component={FormRadioGroup}
                     label="Visibility"
                     options={VISIBILITY_OPTIONS}
