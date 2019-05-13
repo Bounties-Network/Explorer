@@ -55,7 +55,7 @@ const {
 export function* getTokenData(tokenAddress) {
   let symbol, decimals;
   try {
-    const { tokenContract: tokenContractClient } = yield call(
+    const { token_contract: tokenContractClient } = yield call(
       getTokenClient,
       tokenAddress
     );
@@ -63,7 +63,7 @@ export function* getTokenData(tokenAddress) {
     console.log('symbol', symbol);
     decimals = yield call(tokenContractClient.decimals().call);
   } catch (e) {
-    const { tokenContract: tokenContractClient } = yield call(
+    const { token_contract: tokenContractClient } = yield call(
       getTokenClient,
       tokenAddress,
       'DSToken'
@@ -96,16 +96,16 @@ export function* createOrUpdateDraft(action) {
     );
     draftBountyData.token_version = '0';
   } else {
-    const { tokenContract } = draftBountyData;
+    const { token_contract } = draftBountyData;
     try {
-      const { symbol, decimals } = yield call(getTokenData, tokenContract);
+      const { symbol, decimals } = yield call(getTokenData, token_contract);
       draftBountyData.fulfillment_amount = calculateDecimals(
         draftBountyData.fulfillment_amount,
         decimals
       );
       draftBountyData.token_version = '20';
       draftBountyData.token_symbol = symbol;
-      draftBountyData.token_contract = tokenContract;
+      draftBountyData.token_contract = token_contract;
     } catch (e) {
       console.log(e);
       // call error toast here - contract isn't a proper erc20 token.
@@ -147,12 +147,14 @@ export function* createBounty(action) {
   let contractFulfillmentAmount;
   let contractBalance;
 
+  console.log('action', action);
+
   const { values, balance } = action;
   const {
     title,
     description,
     categories,
-    tokenContract,
+    token_contract,
     experience_level,
     issuer_email,
     issuer_name,
@@ -173,9 +175,11 @@ export function* createBounty(action) {
 
   const { web3 } = yield call(getWeb3Client);
   console.log('values:', values);
-  if (paysTokens) {
+
+  const isTokenBounty = paysTokens ? paysTokens : values.token_version === 20;
+  if (isTokenBounty) {
     try {
-      const { symbol, decimals } = yield call(getTokenData, tokenContract);
+      const { symbol, decimals } = yield call(getTokenData, token_contract);
       tokenSymbol = symbol;
       contractFulfillmentAmount = calculateDecimals(
         BigNumber(
@@ -221,7 +225,7 @@ export function* createBounty(action) {
       privateFulfillments: private_fulfillments,
       fulfillersNeedApproval: fulfillers_need_approval,
       created: parseInt(new Date().getTime() / 1000) | 0,
-      tokenAddress: tokenContract || '',
+      tokenAddress: token_contract || '',
       difficulty:
         typeof experience_level === 'number'
           ? experience_level
@@ -250,10 +254,10 @@ export function* createBounty(action) {
   console.log('issuing:', issuedData);
   const ipfsHash = yield call(addJSON, issuedData);
   const { standardBounties } = yield call(getContractClient);
-  if (paysTokens) {
-    const { tokenContract: tokenContractClient } = yield call(
+  if (isTokenBounty) {
+    const { token_contract: tokenContractClient } = yield call(
       getTokenClient,
-      tokenContract
+      token_contract
     );
     try {
       const network = yield select(networkSelector);
@@ -275,7 +279,7 @@ export function* createBounty(action) {
         [userAddress],
         ipfsHash,
         `${deadline}`,
-        tokenContract || 0x0,
+        token_contract || 0x0,
         20,
         contractBalance
       );
@@ -382,7 +386,7 @@ export function* killBounty(action) {
 }
 
 export function* activateBounty(action) {
-  const { id, balance, paysTokens, decimals, tokenContract } = action;
+  const { id, balance, paysTokens, decimals, token_contract } = action;
 
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
@@ -403,9 +407,9 @@ export function* activateBounty(action) {
     const { standardBounties } = yield call(getContractClient, 1);
     let txHash;
     if (paysTokens) {
-      const { tokenContract: tokenContractClient } = yield call(
+      const { token_contract: tokenContractClient } = yield call(
         getTokenClient,
-        tokenContract
+        token_contract
       );
       const network = yield select(networkSelector);
       yield call(
@@ -491,7 +495,7 @@ export function* increasePayout(action) {
     balance,
     paysTokens,
     decimals,
-    tokenContract,
+    token_contract,
     bounty
   } = action;
   const userAddress = yield select(addressSelector);
@@ -525,9 +529,9 @@ export function* increasePayout(action) {
 
     if (contract_version === 1) {
       if (paysTokens) {
-        const { tokenContract: tokenContractClient } = yield call(
+        const { token_contract: tokenContractClient } = yield call(
           getTokenClient,
-          tokenContract
+          token_contract
         );
         const network = yield select(networkSelector);
         yield call(
@@ -625,7 +629,7 @@ export function* contribute(action) {
     value,
     paysTokens,
     decimals,
-    tokenContract,
+    token_contract,
     user_address,
     contract_version
   } = action;
@@ -653,12 +657,11 @@ export function* contribute(action) {
         : [user_address, id, addedBalance];
 
     if (paysTokens) {
-      const { tokenContract: tokenContractClient } = yield call(
+      const { token_contract: tokenContractClient } = yield call(
         getTokenClient,
-        tokenContract
+        token_contract
       );
       const network = yield select(networkSelector);
-      console.log('token', tokenContract);
       yield call(
         promisifyContractCall(tokenContractClient.approve, {
           from: userAddress

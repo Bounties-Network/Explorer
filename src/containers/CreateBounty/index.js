@@ -92,7 +92,6 @@ const mapStateToProps = (state, router) => {
     fulfillment_amount = undefined;
     isDraftPage = false;
   }
-
   return {
     public_address: user && user.public_address,
     isDraftPage: isDraftPage,
@@ -107,9 +106,10 @@ const mapStateToProps = (state, router) => {
       revisions: draftBounty.revisions || 3,
       private_fulfillments: draftBounty.private_fulfillments || false,
       fulfillers_need_approval: draftBounty.fulfillers_need_approval || false,
-      paysTokens: draftBounty.paysTokens || !!config.defaultToken || false,
-      tokenContract:
-        draftBounty.tokenContract ||
+      paysTokens:
+        draftBounty.token_version === 20 || !!config.defaultToken || false,
+      token_contract:
+        draftBounty.token_contract ||
         (config.defaultToken && config.defaultToken.address),
       fulfillment_amount: fulfillment_amount,
       issuer_email: draftBounty.issuer_email || user.email || '',

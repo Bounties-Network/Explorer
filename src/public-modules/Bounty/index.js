@@ -109,7 +109,7 @@ function contribute(
   value,
   paysTokens,
   decimals,
-  tokenContract,
+  token_contract,
   user_address,
   contract_version
 ) {
@@ -119,7 +119,7 @@ function contribute(
     value,
     paysTokens,
     decimals,
-    tokenContract,
+    token_contract,
     user_address,
     contract_version
   };
@@ -132,7 +132,7 @@ function increasePayout(
   balance,
   paysTokens,
   decimals,
-  tokenContract,
+  token_contract,
   bounty
 ) {
   return {
@@ -143,19 +143,19 @@ function increasePayout(
     balance,
     paysTokens,
     decimals,
-    tokenContract,
+    token_contract,
     bounty
   };
 }
 
-function activateBounty(id, balance, paysTokens, decimals, tokenContract) {
+function activateBounty(id, balance, paysTokens, decimals, token_contract) {
   return {
     type: ACTIVATE_BOUNTY,
     id,
     balance,
     paysTokens,
     decimals,
-    tokenContract
+    token_contract
   };
 }
 

@@ -104,7 +104,7 @@ class CreateBountyFormComponent extends React.Component {
     categories: [validators.required],
     webReferenceURL: [validators.maxLength(256), validators.isURL],
     deadline: [validators.required, validators.minDate(this.props.minDate)],
-    tokenContract: [validators.required, validators.isWeb3Address],
+    token_contract: [validators.required, validators.isWeb3Address],
     fulfillment_amount: [validators.required, validators.minValue(0)],
     balance: [
       validators.required,
@@ -141,6 +141,7 @@ class CreateBountyFormComponent extends React.Component {
       tokens
     } = this.props;
 
+    console.log('this.props', this.props);
     const { validatorGroups } = this;
 
     let submitButtonText = 'Create Bounty';
@@ -390,7 +391,7 @@ class CreateBountyFormComponent extends React.Component {
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   {config.defaultToken ? (
                     <Field
-                      name="tokenContract"
+                      name="token_contract"
                       disabled={submittingBounty || !!config.defaultToken}
                       component={FormTextInput}
                       label={
@@ -398,7 +399,7 @@ class CreateBountyFormComponent extends React.Component {
                           ? 'Token Contract Address'
                           : `${config.defaultToken.symbol} Contract Address`
                       }
-                      validate={validatorGroups.tokenContract}
+                      validate={validatorGroups.token_contract}
                       placeholder="Enter token contract address..."
                     />
                   ) : (
@@ -433,11 +434,11 @@ class CreateBountyFormComponent extends React.Component {
                   <div className={`col-xs-12 ${styles.input}`}>
                     <Field
                       disabled={submittingBounty || !!config.defaultToken}
-                      name="tokenContract"
+                      name="token_contract"
                       component={FormSearchSelect}
                       label="Token"
                       placeholder="Select token or enter token address..."
-                      validate={validatorGroups.tokenContract}
+                      validate={validatorGroups.token_contract}
                       options={tokens}
                       single={true}
                       clearable={true}
@@ -576,13 +577,13 @@ const CreateBountyForm = compose(
       return asyncValidators.tokenValidationWrapper(
         { ...values, ethAddress: '0x0000000000000000000000000000000000000000' },
         'balance',
-        values.paysTokens ? 'tokenContract' : 'ethAddress',
+        values.paysTokens ? 'token_contract' : 'ethAddress',
         props.asyncValidating,
         field,
         dispatch
       );
     },
-    asyncChangeFields: ['balance', 'tokenContract'],
+    asyncChangeFields: ['balance', 'token_contract'],
 
     // there is a bug in redux-form where shouldAsyncValidate is called before
     // the sync validation errors are remove from the store and therefore the
