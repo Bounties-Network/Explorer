@@ -22,6 +22,16 @@ export const hasWalletSelector = createSelector(
   client => client.hasWallet
 );
 
+export const hasPortisSelector = createSelector(
+  rootClientSelector,
+  client => client.hasPortis
+);
+
+export const signingInToPortisSelector = createSelector(
+  rootClientSelector,
+  client => client.signingInToPortis
+);
+
 export const initializedSelector = createSelector(
   rootClientSelector,
   client => client.initialized

@@ -4,7 +4,7 @@ import { getMobileOperatingSystem } from 'utils/helpers';
 import { Modal, Text, Button } from 'components';
 
 const WalletRequired = props => {
-  const { visible, onClose, closable } = props;
+  const { visible, onClose, choosePortisProvider, closable } = props;
 
   const operatingSystem = getMobileOperatingSystem();
   let walletName = 'MetaMask';
@@ -32,7 +32,7 @@ const WalletRequired = props => {
     >
       <Modal.Header closable icon={['fal', 'wallet']}>
         <Modal.Message>
-          Web3 enabled browser and secure wallet required.
+          Web3 enabled browser or secure wallet required.
         </Modal.Message>
       </Modal.Header>
       <Modal.Body>
@@ -45,23 +45,27 @@ const WalletRequired = props => {
           , please install a secure wallet such as
           <Text link src={walletLink}>
             {' '}
-            {walletName}.{' '}
+            {walletName},{' '}
           </Text>
-          If you&#39;d like help getting set up, take a look at our{' '}
+          or use
+          <Text link src="https://portis.io">
+            {' '}
+            Portis,{' '}
+          </Text>
+          a secure cloud hosted wallet. If you&#39;d like help getting set up,
+          take a look at our{' '}
           <Text link src="https://bounties.network/gettingStarted">
             Getting Started Guide.
           </Text>
         </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
-        {closable && (
-          <Button margin onClick={onClose}>
-            Cancel
-          </Button>
-        )}
-        <a href={walletLink} target="_blank">
-          <Button type="primary">Visit {walletName}</Button>
-        </a>
+        <Button margin onClick={onClose}>
+          Visit {walletName}
+        </Button>
+        <Button type="primary" onClick={choosePortisProvider}>
+          Use Portis
+        </Button>
       </Modal.Footer>
     </Modal>
   );
@@ -70,6 +74,7 @@ const WalletRequired = props => {
 WalletRequired.propTypes = {
   visible: PropTypes.bool,
   onClose: PropTypes.func,
+  choosePortisProvider: PropTypes.func,
   closable: PropTypes.bool
 };
 

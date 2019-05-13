@@ -15,6 +15,8 @@ const initialState = {
 
 const SET_LOCKED = 'web3client/SET_LOCKED';
 const SET_HAS_WALLET = 'web3client/SET_HAS_WALLET';
+const SET_HAS_PORTIS = 'web3client/SET_HAS_PORTIS';
+const SET_SIGNING_IN_TO_PORTIS = 'web3client/SET_SIGNING_IN_TO_PORTIS';
 const SET_ADDRESS = 'web3client/SET_ADDRESS';
 const SET_NETWORK = 'web3client/SET_NETWORK';
 const SET_INITIALIZED = 'web3client/SET_INITIALIZED';
@@ -25,6 +27,14 @@ function setLocked(isLocked) {
 
 function setHasWallet(hasWallet) {
   return { type: SET_HAS_WALLET, hasWallet };
+}
+
+function setHasPortis() {
+  return { type: SET_HAS_PORTIS, hasPortis: true, signingInToPortis: true };
+}
+
+function setSigningInToPortis(signingInToPortis) {
+  return { type: SET_SIGNING_IN_TO_PORTIS, signingInToPortis };
 }
 
 function setNetwork(network) {
@@ -85,6 +95,19 @@ function ClientReducer(state = initialState, action) {
         hasWallet: action.hasWallet
       };
     }
+    case SET_HAS_PORTIS: {
+      return {
+        ...state,
+        hasPortis: action.hasPortis,
+        signingInToPortis: action.signingInToPortis
+      };
+    }
+    case SET_SIGNING_IN_TO_PORTIS: {
+      return {
+        ...state,
+        signingInToPortis: action.signingInToPortis
+      };
+    }
     case SET_NETWORK: {
       return {
         ...state,
@@ -124,6 +147,8 @@ function ClientReducer(state = initialState, action) {
 export const actions = {
   setLocked,
   setHasWallet,
+  setHasPortis,
+  setSigningInToPortis,
   setNetwork,
   setInitialized,
   setAddress,
@@ -137,6 +162,8 @@ export const actionTypes = {
   SET_ADDRESS,
   SET_LOCKED,
   SET_HAS_WALLET,
+  SET_HAS_PORTIS,
+  SET_SIGNING_IN_TO_PORTIS,
   SET_NETWORK,
   GET_TOKEN_BALANCE,
   GET_TOKEN_BALANCE_SUCCESS,
