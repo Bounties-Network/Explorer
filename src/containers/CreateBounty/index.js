@@ -81,6 +81,7 @@ const mapStateToProps = (state, router) => {
   let fulfillment_amount = draftBounty.calculated_fulfillment_amount;
   let isDraftPage = true;
 
+  console.log('draft bounty', draftBounty);
   if (typeof fulfillment_amount === 'string') {
     fulfillment_amount = BigNumber(
       draftBounty.calculated_fulfillment_amount,
@@ -115,6 +116,7 @@ const mapStateToProps = (state, router) => {
       issuer_email: draftBounty.issuer_email || user.email || '',
       issuer_name: draftBounty.issuer_name || user.name || '',
       activateNow: !isDraftPage,
+      webReferenceURL: draftBounty.attached_url,
       deadline:
         draftBounty.deadline && moment(draftBounty.deadline) > moment()
           ? moment.utc(draftBounty.deadline).local()

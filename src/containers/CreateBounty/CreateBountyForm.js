@@ -140,7 +140,6 @@ class CreateBountyFormComponent extends React.Component {
       minDate,
       tokens
     } = this.props;
-
     console.log('this.props', this.props);
     const { validatorGroups } = this;
 

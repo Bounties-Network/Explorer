@@ -89,12 +89,15 @@ export function* createOrUpdateDraft(action) {
   console.log('values', values);
   const { paysTokens } = draftBountyData;
   const { web3 } = yield call(getWeb3Client);
+  draftBountyData.attached_url = values.webReferenceURL;
   if (!paysTokens) {
     draftBountyData.fulfillment_amount = web3.utils.toWei(
       draftBountyData.fulfillment_amount,
       'ether'
     );
     draftBountyData.token_version = '0';
+    draftBountyData.token_contract =
+      '0x0000000000000000000000000000000000000000';
   } else {
     const { token_contract } = draftBountyData;
     try {
@@ -176,6 +179,7 @@ export function* createBounty(action) {
   const { web3 } = yield call(getWeb3Client);
   console.log('values:', values);
 
+  const url = webReferenceURL ? webReferenceURL : values.attached_url;
   const isTokenBounty = paysTokens ? paysTokens : values.token_version === 20;
   if (isTokenBounty) {
     try {
@@ -219,7 +223,7 @@ export function* createBounty(action) {
       sourceFileHash: '',
       sourceDirectoryHash,
       sourceFileName,
-      webReferenceURL,
+      webReferenceURL: url,
       categories,
       revisions,
       privateFulfillments: private_fulfillments,
