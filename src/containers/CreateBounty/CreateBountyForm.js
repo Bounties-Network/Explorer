@@ -140,7 +140,6 @@ class CreateBountyFormComponent extends React.Component {
       minDate,
       tokens
     } = this.props;
-    console.log('this.props', this.props);
     const { validatorGroups } = this;
 
     let submitButtonText = 'Create Bounty';
@@ -582,21 +581,21 @@ const CreateBountyForm = compose(
   reduxForm({
     form: 'createBounty',
     asyncValidate: (values, dispatch, props, field) => {
-      if (values.activateNow) {
-        return asyncValidators.tokenValidationWrapper(
-          {
-            ...values,
-            ethAddress: '0x0000000000000000000000000000000000000000'
-          },
-          'balance',
-          values.paysTokens ? 'token_contract' : 'ethAddress',
-          props.asyncValidating,
-          field,
-          dispatch
-        );
-      }
+      console.log('new values', values);
+      return asyncValidators.tokenValidationWrapper(
+        {
+          ...values,
+          ethAddress: '0x0000000000000000000000000000000000000000'
+        },
+        'balance',
+        values.paysTokens ? 'token_contract' : 'ethAddress',
+        values.activateNow,
+        props.asyncValidating,
+        field,
+        dispatch
+      );
     },
-    asyncChangeFields: ['balance', 'token_contract'],
+    asyncChangeFields: ['balance', 'token_contract', 'activateNow'],
 
     // there is a bug in redux-form where shouldAsyncValidate is called before
     // the sync validation errors are remove from the store and therefore the

@@ -92,6 +92,7 @@ export default compose(
         { ...values, token_contract: props.token_contract },
         'contribution',
         'token_contract',
+        true,
         props.asyncValidating,
         field,
         dispatch

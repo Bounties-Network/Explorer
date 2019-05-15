@@ -100,6 +100,7 @@ export default compose(
         { ...values, token_contract: props.token_contract },
         'balance',
         'token_contract',
+        true,
         props.asyncValidating,
         field,
         dispatch
