@@ -78,21 +78,21 @@ const mapStateToProps = (state, router) => {
   const user = getCurrentUserSelector(state) || {};
   const getDraftState = getDraftStateSelector(state);
   let draftBounty = getDraftBountySelector(state) || {};
-  let fulfillmentAmount = draftBounty.calculated_fulfillmentAmount;
+  let fulfillment_amount = draftBounty.calculated_fulfillment_amount;
   let isDraftPage = true;
 
-  if (typeof fulfillmentAmount === 'string') {
-    fulfillmentAmount = BigNumber(
-      draftBounty.calculated_fulfillmentAmount,
+  console.log('draft bounty', draftBounty);
+  if (typeof fulfillment_amount === 'string') {
+    fulfillment_amount = BigNumber(
+      draftBounty.calculated_fulfillment_amount,
       10
     ).toString();
   }
   if (router.match.path === '/createBounty') {
     draftBounty = {};
-    fulfillmentAmount = undefined;
+    fulfillment_amount = undefined;
     isDraftPage = false;
   }
-
   return {
     public_address: user && user.public_address,
     isDraftPage: isDraftPage,
@@ -102,19 +102,21 @@ const mapStateToProps = (state, router) => {
       title: draftBounty.title,
       categories: draftBounty.categories,
       description: draftBounty.description || DEFAULT_MARKDOWN,
-      experienceLevel:
-        DIFFICULTY_MAPPINGS[draftBounty.experienceLevel] || 'Beginner',
+      experience_level:
+        DIFFICULTY_MAPPINGS[draftBounty.experience_level] || 'Beginner',
       revisions: draftBounty.revisions || 3,
-      privateFulfillments: draftBounty.private_fulfillments || false,
+      private_fulfillments: draftBounty.private_fulfillments || false,
       fulfillers_need_approval: draftBounty.fulfillers_need_approval || false,
-      paysTokens: draftBounty.paysTokens || !!config.defaultToken || false,
-      tokenContract:
-        draftBounty.tokenContract ||
+      paysTokens:
+        draftBounty.token_version === 20 || !!config.defaultToken || false,
+      token_contract:
+        draftBounty.token_contract ||
         (config.defaultToken && config.defaultToken.address),
-      fulfillmentAmount: fulfillmentAmount,
+      fulfillment_amount: fulfillment_amount,
       issuer_email: draftBounty.issuer_email || user.email || '',
       issuer_name: draftBounty.issuer_name || user.name || '',
       activateNow: !isDraftPage,
+      webReferenceURL: draftBounty.attached_url,
       deadline:
         draftBounty.deadline && moment(draftBounty.deadline) > moment()
           ? moment.utc(draftBounty.deadline).local()

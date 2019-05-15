@@ -63,7 +63,13 @@ const SubmissionsCard = props => {
           acceptFulfillment={() =>
             initiateLoginProtection(() =>
               initiateWalkthrough(() =>
-                acceptFulfillment(bounty.id, fulfillment_id)
+                acceptFulfillment(
+                  bounty.bounty_id,
+                  bounty.contract_version,
+                  fulfillment_id,
+                  0,
+                  [bounty.fulfillment_amount]
+                )
               )
             )
           }

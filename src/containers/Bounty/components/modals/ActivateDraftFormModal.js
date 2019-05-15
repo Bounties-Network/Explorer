@@ -104,9 +104,9 @@ export default compose(
     destroyOnUnmount: false,
     asyncValidate: (values, dispatch, props, field) => {
       return asyncValidators.tokenValidationWrapper(
-        { ...values, tokenContract: props.tokenContract },
+        { ...values, token_contract: props.token_contract },
         'balance',
-        'tokenContract',
+        'token_contract',
         props.asyncValidating,
         field,
         dispatch

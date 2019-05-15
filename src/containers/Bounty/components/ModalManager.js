@@ -48,12 +48,18 @@ const ModalManagerComponent = props => {
   } = props;
 
   const minimumBalance = BigNumber(
-    bounty.calculated_fulfillmentAmount,
+    bounty.calculated_fulfillment_amount,
     10
   ).toString();
 
   const killBounty = () =>
-    initiateWalkthrough(() => killBountyAction(bounty.id));
+    initiateWalkthrough(() =>
+      killBountyAction(
+        bounty.bounty_id,
+        bounty.contract_version,
+        bounty.balance
+      )
+    );
 
   const activateDraftBounty = values =>
     initiateWalkthrough(() =>
@@ -61,50 +67,81 @@ const ModalManagerComponent = props => {
     );
 
   const extendDeadline = values =>
-    initiateWalkthrough(() => extendDeadlineAction(bounty.id, values.deadline));
+    initiateWalkthrough(() =>
+      extendDeadlineAction(
+        bounty.bounty_id,
+        bounty.contract_version,
+        values.deadline
+      )
+    );
 
   const transferOwnership = values =>
     initiateWalkthrough(() =>
-      transferOwnershipAction(bounty.id, values.newOwner)
+      transferOwnershipAction(
+        bounty.bounty_id,
+        bounty.contract_version,
+        values.newOwner
+      )
     );
 
   const activateBounty = values =>
-    initiateWalkthrough(() =>
-      activateBountyAction(
-        bounty.id,
-        values.balance,
-        bounty.paysTokens,
-        bounty.tokenDecimals,
-        bounty.tokenContract
-      )
-    );
+    initiateWalkthrough(() => {
+      if (bounty.contract_version === 2) {
+        contributeAction(
+          bounty.bounty_id,
+          values.balance,
+          bounty.token_version,
+          bounty.token_decimals,
+          bounty.token_contract,
+          user.public_address,
+          bounty.contract_version
+        );
+      } else {
+        activateBountyAction(
+          bounty.bounty_id,
+          values.balance,
+          bounty.pays_tokens,
+          bounty.token_decimals,
+          bounty.token_contract
+        );
+      }
+    });
 
   const contribute = values =>
     initiateWalkthrough(() =>
       contributeAction(
-        bounty.id,
+        bounty.bounty_id,
         values.contribution,
-        bounty.paysTokens,
-        bounty.tokenDecimals,
-        bounty.tokenContract
+        bounty.token_version,
+        bounty.token_decimals,
+        bounty.token_contract,
+        user.public_address,
+        bounty.contract_version
       )
     );
 
   const increasePayout = values =>
     initiateWalkthrough(() =>
       increasePayoutAction(
-        bounty.id,
-        values.fulfillmentAmount,
+        bounty.bounty_id,
+        bounty.contract_version,
+        values.fulfillment_amount,
         values.balance || '0',
-        bounty.paysTokens,
-        bounty.tokenDecimals,
-        bounty.tokenContract
+        bounty.pays_tokens,
+        bounty.token_decimals,
+        bounty.token_contract,
+        bounty
       )
     );
 
   const fulfillBounty = values =>
     initiateWalkthrough(() =>
-      fulfillBountyAction(bounty.id, bounty.platform, values)
+      fulfillBountyAction(
+        bounty.bounty_id,
+        bounty.contract_version,
+        bounty.platform,
+        values
+      )
     );
 
   const createFulfillerApplication = (values, callback) =>
@@ -118,15 +155,16 @@ const ModalManagerComponent = props => {
       ? currentDeadline.add(1, 'days').local()
       : tomorrow;
 
+  console.log('bounty:', bounty);
   return (
     <React.Fragment>
       <ContributeFormModal
         visible={modalVisible && modalType === 'contribute'}
         onClose={closeModal}
         onSubmit={contribute}
-        tokenSymbol={bounty.tokenSymbol}
-        tokenDecimals={bounty.tokenDecimals}
-        tokenContract={bounty.tokenContract}
+        tokenSymbol={bounty.token_symbol}
+        tokenDecimals={bounty.token_decimals}
+        token_contract={bounty.token_contract}
       />
       <ExtendDeadlineErrorModal
         visible={modalVisible && modalType === 'deadlineWarning'}
@@ -143,9 +181,9 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={activateDraftBounty}
         minimumBalance={minimumBalance}
-        tokenSymbol={bounty.tokenSymbol}
-        tokenDecimals={bounty.tokenDecimals}
-        tokenContract={bounty.tokenContract}
+        tokenSymbol={bounty.token_symbol}
+        tokenDecimals={bounty.token_decimals}
+        token_contract={bounty.token_contract}
         initialValues={{ balance: minimumBalance }}
       />
       <ExtendDeadlineFormModal
@@ -165,27 +203,28 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={activateBounty}
         minimumBalance={minimumBalance}
-        tokenSymbol={bounty.tokenSymbol}
-        tokenDecimals={bounty.tokenDecimals}
-        tokenContract={bounty.tokenContract}
+        tokenSymbol={bounty.token_symbol}
+        tokenDecimals={bounty.token_decimals}
+        token_contract={bounty.token_contract}
         initialValues={{ balance: minimumBalance }}
       />
       <IncreasePayoutFormModal
         onClose={closeModal}
         onSubmit={increasePayout}
         minimumPayout={BigNumber(
-          bounty.calculated_fulfillmentAmount,
+          bounty.calculated_fulfillment_amount,
           10
         ).toString()}
         visible={modalVisible && modalType === 'increasePayout'}
-        tokenSymbol={bounty.tokenSymbol}
-        tokenDecimals={bounty.tokenDecimals}
-        tokenContract={bounty.tokenContract}
+        tokenSymbol={bounty.token_symbol}
+        tokenDecimals={bounty.token_decimals}
+        token_contract={bounty.token_contract}
         minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}
+        contract_version={bounty.contract_version}
       />
       <FulfillBountyFormModal
         visible={modalType === 'fulfillBounty'}
-        privateFulfillments={bounty.private_fulfillments}
+        private_fulfillments={bounty.private_fulfillments}
         onClose={closeModal}
         onSubmit={fulfillBounty}
         name={user.name}

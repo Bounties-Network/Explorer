@@ -44,7 +44,6 @@ function BountyPageUIReducer(state = initialState, action) {
   switch (action.type) {
     case SHOW_MODAL: {
       const { modalType, modalProps } = action;
-
       return {
         ...state,
         modalVisible: true,

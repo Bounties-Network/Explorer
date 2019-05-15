@@ -103,15 +103,15 @@ export function* getWeb3Client() {
   return { web3, proxiedWeb3 };
 }
 
-export function* getContractClient() {
+export function* getContractClient(contract_version = 2) {
   const { web3 } = yield call(getWeb3Client);
   const network = yield select(networkSelector);
 
   if (network !== 'unknown') {
     return {
       standardBounties: new web3.eth.Contract(
-        config.interfaces.StandardBounties,
-        config[network].standardBountiesAddress
+        config.interfaces[`StandardBountiesV${contract_version}`],
+        config[network][`standardBountiesAddressV${contract_version}`]
       ).methods
     };
   }
@@ -124,7 +124,7 @@ export function* getTokenClient(tokenAddress, type = 'HumanStandardToken') {
 
   if (network !== 'unknown') {
     return {
-      tokenContract: new web3.eth.Contract(
+      token_contract: new web3.eth.Contract(
         config.interfaces[type],
         tokenAddress
       ).methods
@@ -153,7 +153,7 @@ export function* getTokenBalance(action) {
     let symbol, decimals, balance;
     try {
       const token = yield call(getTokenClient, tokenAddress);
-      const { tokenContract: tokenClient } = token;
+      const { token_contract: tokenClient } = token;
       symbol = yield call(tokenClient.symbol().call);
       decimals = yield call(tokenClient.decimals().call);
       balance = yield call(tokenClient.balanceOf(userAddress).call);
@@ -161,7 +161,7 @@ export function* getTokenBalance(action) {
       // if it fails, it may be because the token uses a slightly
       // different abi (DAI does this for example) and symbol is a bytes32
       const token = yield call(getTokenClient, tokenAddress, 'DSToken');
-      const { tokenContract: tokenClient } = token;
+      const { token_contract: tokenClient } = token;
       symbol = web3.utils.hexToAscii(yield call(tokenClient.symbol().call));
       decimals = yield call(tokenClient.decimals().call);
       balance = yield call(tokenClient.balanceOf(userAddress).call);

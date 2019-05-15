@@ -18,16 +18,18 @@ const SEOHeader = props => {
     description += '...';
   }
 
-  const fulfillmentAmount = Number(bounty.calculated_fulfillmentAmount).toFixed(
-    2
-  );
+  const fulfillment_amount = Number(
+    bounty.calculated_fulfillment_amount
+  ).toFixed(2);
   const usdPrice = Number(bounty.usd_price).toFixed(2);
-  const value = `${fulfillmentAmount} ${bounty.tokenSymbol} ($${usdPrice} USD)`;
+  const value = `${fulfillment_amount} ${
+    bounty.tokenSymbol
+  } ($${usdPrice} USD)`;
   const deadline = moment
     .utc(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ')
     .fromNow(true);
   const deadlineDescription =
-    bounty.bountyStage === EXPIRED ? 'expired' : 'remaining';
+    bounty.bounty_stage === EXPIRED ? 'expired' : 'remaining';
   const deadlineText = `${deadline} ${deadlineDescription}`;
 
   return (

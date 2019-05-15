@@ -46,7 +46,7 @@ const {
 export function* initializeFiltersFromQuery() {
   const params = queryStringToObject(window.location.search);
 
-  const { search, bountyStage, difficulty, category, platform, sort } = params;
+  const { search, bounty_stage, difficulty, category, platform, sort } = params;
 
   if (search) {
     yield put(resetFilter('search'));
@@ -65,13 +65,13 @@ export function* initializeFiltersFromQuery() {
     }
   }
 
-  if (bountyStage === '') {
+  if (bounty_stage === '') {
     yield put(resetFilter('stage'));
   }
 
-  if (bountyStage) {
+  if (bounty_stage) {
     yield put(resetFilter('stage'));
-    const stages = bountyStage.split(',');
+    const stages = bounty_stage.split(',');
     for (let i = 0; i < stages.length; i++) {
       yield put(toggleStageFilter(stages[i]));
     }

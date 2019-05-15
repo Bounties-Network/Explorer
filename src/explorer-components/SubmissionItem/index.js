@@ -13,7 +13,7 @@ import moment from 'moment';
 const SubmissionItem = props => {
   const {
     bountyId,
-    bountyStage,
+    bounty_stage,
     title,
     fulfiller,
     fulfiller_img,
@@ -54,7 +54,7 @@ const SubmissionItem = props => {
         <Text typeScale="Body">{formattedTime}</Text>
       </Table.Cell>
       <Table.Cell flexBasis="16%" headerText="Status">
-        <FulfillmentStagePill bountyStage={bountyStage} accepted={status} />
+        <FulfillmentStagePill bounty_stage={bounty_stage} accepted={status} />
       </Table.Cell>
       <Table.Cell
         flexBasis="13%"

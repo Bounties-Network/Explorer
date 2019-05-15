@@ -15,10 +15,9 @@ class IncreasePayoutFormModal extends React.Component {
     balance: [
       validators.minOrEqualsValue(0),
       validators.maxDecimals(this.props.tokenDecimals),
-      validators.maxDecimals(this.props.tokenDecimals),
       (balance, values) => {
         if (
-          BigNumber(values.fulfillmentAmount || 0, 10).isGreaterThan(
+          BigNumber(values.fulfillment_amount || 0, 10).isGreaterThan(
             BigNumber(this.props.minimumBalance, 10).plus(
               BigNumber(balance || 0, 10)
             )
@@ -28,17 +27,27 @@ class IncreasePayoutFormModal extends React.Component {
         }
       }
     ],
-    fulfillmentAmount: [
+    fulfillment_amount: [
       validators.required,
       validators.maxDecimals(this.props.tokenDecimals),
       validators.minValue(0),
-      (fulfillmentAmount, values) => {
+      (fulfillment_amount, values) => {
         if (
-          BigNumber(this.minimumPayout || 0).isGreaterThanOrEqualTo(
-            BigNumber(values.fulfillmentAmount || 0, 10)
+          BigNumber(this.props.minimumPayout || 0).isGreaterThanOrEqualTo(
+            BigNumber(values.fulfillment_amount || 0, 10)
           )
         ) {
           return 'Your payout amount must be greater than the previous payout amount.';
+        }
+      },
+      (fulfillment_amount, values) => {
+        if (
+          this.props.contract_version === 2 &&
+          BigNumber(values.fulfillment_amount || 0, 10).isGreaterThan(
+            BigNumber(this.props.minimumBalance, 10)
+          )
+        ) {
+          return 'The balance of your bounty must be greater than the payout amount.';
         }
       }
     ]
@@ -54,9 +63,9 @@ class IncreasePayoutFormModal extends React.Component {
       visible,
       submitFailed,
       invalid,
-      asyncValidating
+      asyncValidating,
+      contract_version
     } = this.props;
-
     return (
       <form onSubmit={handleSubmit}>
         <Modal
@@ -69,8 +78,9 @@ class IncreasePayoutFormModal extends React.Component {
           <Modal.Header closable={true}>
             <Modal.Message>Increase bounty payout</Modal.Message>
             <Modal.Description>
-              Indicate the amount you would like to increase the payout to. You
-              may include an additional balance to cover the costs.
+              Indicate the amount you would like to increase the payout to.
+              {contract_version === 1 &&
+                'You may include an additional balance to cover the costs.'}
               <br />
               <br />
               <em>
@@ -87,22 +97,25 @@ class IncreasePayoutFormModal extends React.Component {
               >{`${minimumPayout} ${tokenSymbol}`}</span>.
             </Modal.Description>
           </Modal.Header>
+
           <Modal.Body className={styles.modalBody}>
-            <Field
-              name="balance"
-              component={FormTextInput}
-              label={`Deposit amount (${tokenSymbol})`}
-              normalize={normalizers.number}
-              validate={this.validatorGroups.balance}
-              placeholder="Enter amount..."
-            />
+            {contract_version === 1 && (
+              <Field
+                name="balance"
+                component={FormTextInput}
+                label={`Deposit amount (${tokenSymbol})`}
+                normalize={normalizers.number}
+                validate={this.validatorGroups.balance}
+                placeholder="Enter amount..."
+              />
+            )}
             <div className={styles.inputGroup}>
               <Field
-                name="fulfillmentAmount"
+                name="fulfillment_amount"
                 component={FormTextInput}
                 label={`New prize amount (${tokenSymbol})`}
                 normalize={normalizers.number}
-                validate={this.validatorGroups.fulfillmentAmount}
+                validate={this.validatorGroups.fulfillment_amount}
                 placeholder="Enter amount..."
               />
             </div>
@@ -144,9 +157,9 @@ export default compose(
     destroyOnUnmount: false,
     asyncValidate: (values, dispatch, props, field) => {
       return asyncValidators.tokenValidationWrapper(
-        { ...values, tokenContract: props.tokenContract },
+        { ...values, token_contract: props.token_contract },
         'balance',
-        'tokenContract',
+        'token_contract',
         props.asyncValidating,
         field,
         dispatch
