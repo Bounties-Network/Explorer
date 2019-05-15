@@ -84,7 +84,7 @@ const FilterNav = props => {
 
   const rootLocationParams =
     location.search ||
-    `?bountyStage=${stages}&platform=${defaultPlatforms.join(',')}`;
+    `?bounty_stage=${stages}&platform=${defaultPlatforms.join(',')}`;
 
   const baseAction = curry((queryModifier, key, value, action) => {
     value = Array.isArray(value) ? value : [value];
