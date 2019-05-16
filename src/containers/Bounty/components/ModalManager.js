@@ -100,7 +100,7 @@ const ModalManagerComponent = props => {
         activateBountyAction(
           bounty.bounty_id,
           values.balance,
-          bounty.pays_tokens,
+          bounty.token_version !== 0,
           bounty.token_decimals,
           bounty.token_contract
         );
@@ -127,7 +127,7 @@ const ModalManagerComponent = props => {
         bounty.contract_version,
         values.fulfillment_amount,
         values.balance || '0',
-        bounty.pays_tokens,
+        bounty.token_version !== 0,
         bounty.token_decimals,
         bounty.token_contract,
         bounty
