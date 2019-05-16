@@ -60,7 +60,6 @@ export function* getTokenData(tokenAddress) {
       tokenAddress
     );
     symbol = yield call(tokenContractClient.symbol().call);
-    console.log('symbol', symbol);
     decimals = yield call(tokenContractClient.decimals().call);
   } catch (e) {
     const { token_contract: tokenContractClient } = yield call(
@@ -86,7 +85,6 @@ export function* createOrUpdateDraft(action) {
   };
   draftBountyData.experience_level =
     DIFFICULTY_VALUES[draftBountyData.experience_level];
-  console.log('values', values);
   const { paysTokens } = draftBountyData;
   const { web3 } = yield call(getWeb3Client);
   draftBountyData.attached_url = values.webReferenceURL;
@@ -114,7 +112,6 @@ export function* createOrUpdateDraft(action) {
       // call error toast here - contract isn't a proper erc20 token.
     }
   }
-  console.log('draftBountyData:', draftBountyData);
 
   draftBountyData.deadline = moment(draftBountyData.deadline)
     .utc()
@@ -127,14 +124,7 @@ export function* createOrUpdateDraft(action) {
       methodType = 'PUT';
       endpoint += `${bountyId}/`;
     }
-    console.log('about to call:', [
-      request,
-      endpoint,
-      methodType,
-      {
-        data: draftBountyData
-      }
-    ]);
+
     const bounty = yield call(request, endpoint, methodType, {
       data: draftBountyData
     });
@@ -149,8 +139,6 @@ export function* createBounty(action) {
   let token_symbol = 'ETH';
   let contractFulfillmentAmount;
   let contractBalance;
-
-  console.log('action', action);
 
   const { values, balance } = action;
   const {
@@ -254,7 +242,6 @@ export function* createBounty(action) {
       schemaName: siteConfig.postingSchema
     }
   };
-  console.log('issuing:', issuedData);
   const ipfsHash = yield call(addJSON, issuedData);
   const { standardBounties } = yield call(getContractClient);
   if (isTokenBounty) {

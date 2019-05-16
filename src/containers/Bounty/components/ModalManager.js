@@ -155,7 +155,6 @@ const ModalManagerComponent = props => {
       ? currentDeadline.add(1, 'days').local()
       : tomorrow;
 
-  console.log('bounty:', bounty);
   return (
     <React.Fragment>
       <ContributeFormModal

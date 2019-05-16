@@ -581,7 +581,6 @@ const CreateBountyForm = compose(
   reduxForm({
     form: 'createBounty',
     asyncValidate: (values, dispatch, props, field) => {
-      console.log('new values', values);
       return asyncValidators.tokenValidationWrapper(
         {
           ...values,
