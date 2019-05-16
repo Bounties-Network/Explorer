@@ -162,7 +162,7 @@ const ModalManagerComponent = props => {
         visible={modalVisible && modalType === 'contribute'}
         onClose={closeModal}
         onSubmit={contribute}
-        tokenSymbol={bounty.token_symbol}
+        token_symbol={bounty.token_symbol}
         tokenDecimals={bounty.token_decimals}
         token_contract={bounty.token_contract}
       />
@@ -181,7 +181,7 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={activateDraftBounty}
         minimumBalance={minimumBalance}
-        tokenSymbol={bounty.token_symbol}
+        token_symbol={bounty.token_symbol}
         tokenDecimals={bounty.token_decimals}
         token_contract={bounty.token_contract}
         initialValues={{ balance: minimumBalance }}
@@ -203,7 +203,7 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={activateBounty}
         minimumBalance={minimumBalance}
-        tokenSymbol={bounty.token_symbol}
+        token_symbol={bounty.token_symbol}
         tokenDecimals={bounty.token_decimals}
         token_contract={bounty.token_contract}
         initialValues={{ balance: minimumBalance }}
@@ -216,7 +216,7 @@ const ModalManagerComponent = props => {
           10
         ).toString()}
         visible={modalVisible && modalType === 'increasePayout'}
-        tokenSymbol={bounty.token_symbol}
+        token_symbol={bounty.token_symbol}
         tokenDecimals={bounty.token_decimals}
         token_contract={bounty.token_contract}
         minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}

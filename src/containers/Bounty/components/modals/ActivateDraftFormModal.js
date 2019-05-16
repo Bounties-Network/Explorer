@@ -26,7 +26,7 @@ class ActivateDraftFormModal extends React.Component {
       onClose,
       minimumBalance,
       handleSubmit,
-      tokenSymbol,
+      token_symbol,
       visible,
       submitFailed,
       invalid,
@@ -54,14 +54,14 @@ class ActivateDraftFormModal extends React.Component {
               </em>{' '}
               <strong
                 className={styles.textHighlight}
-              >{`${minimumBalance} ${tokenSymbol}.`}</strong>
+              >{`${minimumBalance} ${token_symbol}.`}</strong>
             </Modal.Description>
           </Modal.Header>
           <Modal.Body className={styles.modalBody}>
             <Field
               name="balance"
               component={FormTextInput}
-              label={`Deposit amount (${tokenSymbol}).`}
+              label={`Deposit amount (${token_symbol}).`}
               normalize={normalizers.number}
               validate={this.fieldValidators}
               placeholder="Enter amount..."

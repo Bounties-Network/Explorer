@@ -146,7 +146,7 @@ export function* createOrUpdateDraft(action) {
 }
 
 export function* createBounty(action) {
-  let tokenSymbol = 'ETH';
+  let token_symbol = 'ETH';
   let contractFulfillmentAmount;
   let contractBalance;
 
@@ -177,14 +177,13 @@ export function* createBounty(action) {
   const userAddress = user.public_address;
 
   const { web3 } = yield call(getWeb3Client);
-  console.log('values:', values);
 
   const url = webReferenceURL ? webReferenceURL : values.attached_url;
   const isTokenBounty = paysTokens ? paysTokens : values.token_version === 20;
   if (isTokenBounty) {
     try {
       const { symbol, decimals } = yield call(getTokenData, token_contract);
-      tokenSymbol = symbol;
+      token_symbol = symbol;
       contractFulfillmentAmount = calculateDecimals(
         BigNumber(
           calculated_fulfillment_amount || fulfillment_amount,
@@ -246,7 +245,7 @@ export function* createBounty(action) {
           name: issuer_name
         }
       ],
-      symbol: tokenSymbol,
+      symbol: token_symbol,
       fulfillmentAmount: contractFulfillmentAmount
     },
     meta: {
