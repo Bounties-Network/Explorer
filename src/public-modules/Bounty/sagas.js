@@ -503,6 +503,7 @@ export function* increasePayout(action) {
       BigNumber(decimals, 10).toString()
     );
   } else {
+    console.log('about to increase');
     const { web3 } = yield call(getWeb3Client);
     contractFulfillmentAmount = web3.utils.toWei(
       BigNumber(fulfillment_amount, 10).toString(),
@@ -513,9 +514,17 @@ export function* increasePayout(action) {
       BigNumber(decimals, 10).toString()
     );
   }
+
+  console.log('contractFulfillmentAmount', contractFulfillmentAmount);
+  console.log('contractBalance', contractBalance);
+  console.log('id', id);
+
   try {
     let txHash;
-    const { standardBounties } = yield call(getContractClient);
+    const { standardBounties } = yield call(
+      getContractClient,
+      contract_version
+    );
 
     if (contract_version === 1) {
       if (paysTokens) {
@@ -542,15 +551,28 @@ export function* increasePayout(action) {
           contractBalance
         );
       } else {
-        txHash = yield call(
-          promisifyContractCall(standardBounties.increasePayout, {
-            from: userAddress,
-            value: contractBalance
-          }),
-          id,
-          contractFulfillmentAmount,
-          contractBalance
-        );
+        try {
+          console.log(
+            'standardBounties',
+            standardBounties.address,
+            userAddress,
+            contractBalance,
+            id,
+            contractFulfillmentAmount,
+            contractBalance
+          );
+          txHash = yield call(
+            promisifyContractCall(standardBounties.increasePayout, {
+              from: userAddress,
+              value: contractBalance
+            }),
+            id,
+            contractFulfillmentAmount,
+            contractBalance
+          );
+        } catch (e) {
+          console.log('e', e);
+        }
       }
     } else if (contract_version === 2) {
       const issuedData = {
