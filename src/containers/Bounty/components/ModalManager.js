@@ -100,7 +100,7 @@ const ModalManagerComponent = props => {
         activateBountyAction(
           bounty.bounty_id,
           values.balance,
-          bounty.pays_tokens,
+          bounty.token_version !== 0,
           bounty.token_decimals,
           bounty.token_contract
         );
@@ -127,7 +127,7 @@ const ModalManagerComponent = props => {
         bounty.contract_version,
         values.fulfillment_amount,
         values.balance || '0',
-        bounty.pays_tokens,
+        bounty.token_version !== 0,
         bounty.token_decimals,
         bounty.token_contract,
         bounty
@@ -155,14 +155,13 @@ const ModalManagerComponent = props => {
       ? currentDeadline.add(1, 'days').local()
       : tomorrow;
 
-  console.log('bounty:', bounty);
   return (
     <React.Fragment>
       <ContributeFormModal
         visible={modalVisible && modalType === 'contribute'}
         onClose={closeModal}
         onSubmit={contribute}
-        tokenSymbol={bounty.token_symbol}
+        token_symbol={bounty.token_symbol}
         tokenDecimals={bounty.token_decimals}
         token_contract={bounty.token_contract}
       />
@@ -181,7 +180,7 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={activateDraftBounty}
         minimumBalance={minimumBalance}
-        tokenSymbol={bounty.token_symbol}
+        token_symbol={bounty.token_symbol}
         tokenDecimals={bounty.token_decimals}
         token_contract={bounty.token_contract}
         initialValues={{ balance: minimumBalance }}
@@ -203,7 +202,7 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={activateBounty}
         minimumBalance={minimumBalance}
-        tokenSymbol={bounty.token_symbol}
+        token_symbol={bounty.token_symbol}
         tokenDecimals={bounty.token_decimals}
         token_contract={bounty.token_contract}
         initialValues={{ balance: minimumBalance }}
@@ -216,7 +215,7 @@ const ModalManagerComponent = props => {
           10
         ).toString()}
         visible={modalVisible && modalType === 'increasePayout'}
-        tokenSymbol={bounty.token_symbol}
+        token_symbol={bounty.token_symbol}
         tokenDecimals={bounty.token_decimals}
         token_contract={bounty.token_contract}
         minimumBalance={BigNumber(bounty.calculated_balance, 10).toString()}

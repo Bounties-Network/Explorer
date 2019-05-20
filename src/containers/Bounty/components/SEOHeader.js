@@ -23,7 +23,7 @@ const SEOHeader = props => {
   ).toFixed(2);
   const usdPrice = Number(bounty.usd_price).toFixed(2);
   const value = `${fulfillment_amount} ${
-    bounty.tokenSymbol
+    bounty.token_symbol
   } ($${usdPrice} USD)`;
   const deadline = moment
     .utc(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ')

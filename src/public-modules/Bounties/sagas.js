@@ -94,7 +94,6 @@ export function* initializeFiltersFromQuery() {
   if (category) {
     yield put(resetFilter('category'));
     const categories = category.split(',');
-    console.log(categories);
     for (let i = 0; i < categories.length; i++) {
       yield put(addCategoryFilter(categories[i]));
     }

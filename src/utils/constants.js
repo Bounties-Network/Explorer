@@ -88,19 +88,19 @@ const arrow_up = ['far', 'arrow-up'];
 
 export const notification_template = {
   [NOTIFICATION_ID.FULFILLMENT_SUBMITTED]: {
-    message: 'You made a submission to',
+    message: 'You made a submission',
     icon: level_up
   },
   [NOTIFICATION_ID.FULFILLMENT_SUBMITTED_ISSUER]: {
-    message: 'You received a submission to',
+    message: 'You received a submission',
     icon: level_down
   },
   [NOTIFICATION_ID.BOUNTY_ACTIVATED]: {
-    message: 'You activated a bounty:',
+    message: 'You activated a bounty',
     icon: plus
   },
   [NOTIFICATION_ID.FULFILLMENT_ACCEPTED]: {
-    message: 'You accepted a submission to',
+    message: 'You accepted a submission',
     icon: check
   },
   [NOTIFICATION_ID.FULFILLMENT_ACCEPTED_FULFILLER]: {
@@ -108,39 +108,39 @@ export const notification_template = {
     icon: check
   },
   [NOTIFICATION_ID.BOUNTY_EXPIRED]: {
-    message: 'Your bounty expired:',
+    message: 'Your bounty expired',
     icon: calendar_exclamation
   },
   [NOTIFICATION_ID.BOUNTY_ISSUED]: {
-    message: 'You issued a new bounty:',
+    message: 'You issued a new bounty',
     icon: plus
   },
   [NOTIFICATION_ID.BOUNTY_KILLED]: {
-    message: 'You killed a bounty:',
+    message: 'You killed a bounty',
     icon: times_circle
   },
   [NOTIFICATION_ID.CONTRIBUTION_ADDED]: {
-    message: 'You made a contribution to',
+    message: 'You made a contribution',
     icon: dollar_sign
   },
   [NOTIFICATION_ID.DEADLINE_EXTENDED]: {
-    message: 'You extended the deadline on',
+    message: 'You extended the deadline',
     icon: calendar_plus
   },
   [NOTIFICATION_ID.BOUNTY_CHANGED]: {
-    message: 'You updated your bounty:',
+    message: 'You updated your bounty',
     icon: sync
   },
   [NOTIFICATION_ID.ISSUER_TRANSFERRED]: {
-    message: 'You transferred ownernship of your bounty:',
+    message: 'You transferred ownernship of your bounty',
     icon: user_friends
   },
   [NOTIFICATION_ID.TRANSFER_RECIPIENT]: {
-    message: 'Ownership of a bounty was transferred to you:',
+    message: 'Ownership of a bounty was transferred to you',
     icon: user_friends
   },
   [NOTIFICATION_ID.PAYOUT_INCREASED]: {
-    message: 'You increased the payout on',
+    message: 'You increased a payout',
     icon: arrow_up
   },
   [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED]: {
@@ -148,19 +148,19 @@ export const notification_template = {
     icon: comment
   },
   [NOTIFICATION_ID.BOUNTY_ISSUED_ACTIVATED]: {
-    message: 'You posted a new bounty:',
+    message: 'You posted a new bounty',
     icon: plus
   },
   [NOTIFICATION_ID.FULFILLMENT_UPDATED]: {
-    message: 'You updated your submission to',
+    message: 'You updated your submission',
     icon: sync
   },
   [NOTIFICATION_ID.FULFILLMENT_UPDATED_ISSUER]: {
-    message: 'A submission to your bounty was updated:',
+    message: 'A submission to your bounty was updated',
     icon: sync
   },
   [NOTIFICATION_ID.RATING_ISSUED]: {
-    message: 'You wrote a review for',
+    message: 'You wrote a review',
     icon: star
   },
   [NOTIFICATION_ID.RATING_RECEIVED]: {
@@ -172,7 +172,7 @@ export const notification_template = {
     icon: user
   },
   [NOTIFICATION_ID.COMMENT_ISSUED]: {
-    message: 'You wrote a comment on',
+    message: 'You wrote a comment',
     icon: comment
   },
   [NOTIFICATION_ID.DRAFT_CREATED]: {
@@ -184,7 +184,7 @@ export const notification_template = {
     icon: sync
   },
   [NOTIFICATION_ID.CONTRIBUTION_RECEIVED]: {
-    message: 'You received a contribution to',
+    message: 'You received a contribution',
     icon: dollar_sign
   },
   [NOTIFICATION_ID.BOUNTY_COMPLETED]: {
@@ -192,27 +192,27 @@ export const notification_template = {
     icon: minus
   },
   [NOTIFICATION_ID.APPLICATION_CREATED]: {
-    message: 'You submitted an application to',
+    message: 'You submitted an application',
     icon: level_up
   },
   [NOTIFICATION_ID.APPLICATION_RECEIVED]: {
-    message: 'You received a new application for',
+    message: 'You received a new application',
     icon: star
   },
   [NOTIFICATION_ID.APPLICATION_ACCEPTED_APPLICANT]: {
-    message: 'Your application was accepted for',
+    message: 'Your application was accepted',
     icon: check
   },
   [NOTIFICATION_ID.APPLICATION_ACCEPTED_ISSUER]: {
-    message: 'You accepted an application for',
+    message: 'You accepted an application',
     icon: check
   },
   [NOTIFICATION_ID.APPLICATION_REJECTED_APPLICANT]: {
-    message: 'Your application was rejected for',
+    message: 'Your application was rejected',
     icon: times_circle
   },
   [NOTIFICATION_ID.APPLICATION_REJECTED_ISSUER]: {
-    message: 'You rejected an application for',
+    message: 'You rejected an application',
     icon: times_circle
   }
 };

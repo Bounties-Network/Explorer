@@ -60,7 +60,6 @@ export function* getTokenData(tokenAddress) {
       tokenAddress
     );
     symbol = yield call(tokenContractClient.symbol().call);
-    console.log('symbol', symbol);
     decimals = yield call(tokenContractClient.decimals().call);
   } catch (e) {
     const { token_contract: tokenContractClient } = yield call(
@@ -86,7 +85,6 @@ export function* createOrUpdateDraft(action) {
   };
   draftBountyData.experience_level =
     DIFFICULTY_VALUES[draftBountyData.experience_level];
-  console.log('values', values);
   const { paysTokens } = draftBountyData;
   const { web3 } = yield call(getWeb3Client);
   draftBountyData.attached_url = values.webReferenceURL;
@@ -114,7 +112,6 @@ export function* createOrUpdateDraft(action) {
       // call error toast here - contract isn't a proper erc20 token.
     }
   }
-  console.log('draftBountyData:', draftBountyData);
 
   draftBountyData.deadline = moment(draftBountyData.deadline)
     .utc()
@@ -127,14 +124,7 @@ export function* createOrUpdateDraft(action) {
       methodType = 'PUT';
       endpoint += `${bountyId}/`;
     }
-    console.log('about to call:', [
-      request,
-      endpoint,
-      methodType,
-      {
-        data: draftBountyData
-      }
-    ]);
+
     const bounty = yield call(request, endpoint, methodType, {
       data: draftBountyData
     });
@@ -146,11 +136,9 @@ export function* createOrUpdateDraft(action) {
 }
 
 export function* createBounty(action) {
-  let tokenSymbol = 'ETH';
+  let token_symbol = 'ETH';
   let contractFulfillmentAmount;
   let contractBalance;
-
-  console.log('action', action);
 
   const { values, balance } = action;
   const {
@@ -177,14 +165,13 @@ export function* createBounty(action) {
   const userAddress = user.public_address;
 
   const { web3 } = yield call(getWeb3Client);
-  console.log('values:', values);
 
   const url = webReferenceURL ? webReferenceURL : values.attached_url;
   const isTokenBounty = paysTokens ? paysTokens : values.token_version === 20;
   if (isTokenBounty) {
     try {
       const { symbol, decimals } = yield call(getTokenData, token_contract);
-      tokenSymbol = symbol;
+      token_symbol = symbol;
       contractFulfillmentAmount = calculateDecimals(
         BigNumber(
           calculated_fulfillment_amount || fulfillment_amount,
@@ -246,7 +233,7 @@ export function* createBounty(action) {
           name: issuer_name
         }
       ],
-      symbol: tokenSymbol,
+      symbol: token_symbol,
       fulfillmentAmount: contractFulfillmentAmount
     },
     meta: {
@@ -255,7 +242,6 @@ export function* createBounty(action) {
       schemaName: siteConfig.postingSchema
     }
   };
-  console.log('issuing:', issuedData);
   const ipfsHash = yield call(addJSON, issuedData);
   const { standardBounties } = yield call(getContractClient);
   if (isTokenBounty) {
@@ -517,6 +503,7 @@ export function* increasePayout(action) {
       BigNumber(decimals, 10).toString()
     );
   } else {
+    console.log('about to increase');
     const { web3 } = yield call(getWeb3Client);
     contractFulfillmentAmount = web3.utils.toWei(
       BigNumber(fulfillment_amount, 10).toString(),
@@ -527,9 +514,17 @@ export function* increasePayout(action) {
       BigNumber(decimals, 10).toString()
     );
   }
+
+  console.log('contractFulfillmentAmount', contractFulfillmentAmount);
+  console.log('contractBalance', contractBalance);
+  console.log('id', id);
+
   try {
     let txHash;
-    const { standardBounties } = yield call(getContractClient);
+    const { standardBounties } = yield call(
+      getContractClient,
+      contract_version
+    );
 
     if (contract_version === 1) {
       if (paysTokens) {
@@ -556,15 +551,28 @@ export function* increasePayout(action) {
           contractBalance
         );
       } else {
-        txHash = yield call(
-          promisifyContractCall(standardBounties.increasePayout, {
-            from: userAddress,
-            value: contractBalance
-          }),
-          id,
-          contractFulfillmentAmount,
-          contractBalance
-        );
+        try {
+          console.log(
+            'standardBounties',
+            standardBounties.address,
+            userAddress,
+            contractBalance,
+            id,
+            contractFulfillmentAmount,
+            contractBalance
+          );
+          txHash = yield call(
+            promisifyContractCall(standardBounties.increasePayout, {
+              from: userAddress,
+              value: contractBalance
+            }),
+            id,
+            contractFulfillmentAmount,
+            contractBalance
+          );
+        } catch (e) {
+          console.log('e', e);
+        }
       }
     } else if (contract_version === 2) {
       const issuedData = {

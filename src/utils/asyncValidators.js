@@ -48,6 +48,7 @@ const tokenValidationWrapper = (
   values,
   amountKey,
   tokenContractKey,
+  checkBalance,
   asyncValidating,
   field,
   dispatch
@@ -65,16 +66,19 @@ const tokenValidationWrapper = (
     const { error, balance = 0, symbol } = e;
     let formError = {};
 
-    const validationMessage = `Insufficient funds in wallet — balance: \
-      ${balance.toFixed(2)} ${symbol}`;
+    let balanceMessage;
+    if (checkBalance) {
+      balanceMessage = `Insufficient funds in wallet — balance: \
+        ${balance.toFixed(2)} ${symbol}`;
+    }
 
     switch (error) {
       case ZERO_BALANCE_ERROR:
-        formError[tokenContractKey] = validationMessage;
-        formError[amountKey] = validationMessage;
+        formError[tokenContractKey] = balanceMessage;
+        formError[amountKey] = balanceMessage;
         break;
       case INSUFFICIENT_BALANCE_ERROR:
-        formError[amountKey] = validationMessage;
+        formError[amountKey] = balanceMessage;
         break;
       case CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR:
         formError[tokenContractKey] =

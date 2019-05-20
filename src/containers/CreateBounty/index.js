@@ -81,7 +81,6 @@ const mapStateToProps = (state, router) => {
   let fulfillment_amount = draftBounty.calculated_fulfillment_amount;
   let isDraftPage = true;
 
-  console.log('draft bounty', draftBounty);
   if (typeof fulfillment_amount === 'string') {
     fulfillment_amount = BigNumber(
       draftBounty.calculated_fulfillment_amount,

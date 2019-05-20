@@ -32,7 +32,7 @@ class BountiesPanelComponent extends React.Component {
         created,
         fulfillment_count,
         title,
-        tokenSymbol,
+        token_symbol,
         usd_price,
         uid
       } = bounty;
@@ -54,7 +54,7 @@ class BountiesPanelComponent extends React.Component {
               title={title}
               submissions={fulfillment_count}
               value={Number(calculated_fulfillment_amount)}
-              currency={tokenSymbol}
+              currency={token_symbol}
               usd_value={parseFloat(usd_price).toFixed(0)}
               createdAt={isDraft ? created : bounty_created}
               isDraft={isDraft}

@@ -26,7 +26,7 @@ class ActivateDeadFormModal extends React.Component {
       onClose,
       minimumBalance,
       handleSubmit,
-      tokenSymbol,
+      token_symbol,
       visible,
       submitFailed,
       invalid,
@@ -47,14 +47,14 @@ class ActivateDeadFormModal extends React.Component {
             <Modal.Description>
               Indicate an amount for your deposit to activate the bounty. At
               minimum, your deposit must match the payout amount{' '}
-              {`(${minimumBalance} ${tokenSymbol}).`}
+              {`(${minimumBalance} ${token_symbol}).`}
             </Modal.Description>
           </Modal.Header>
           <Modal.Body className={styles.modalBody}>
             <Field
               name="balance"
               component={FormTextInput}
-              label={`Deposit amount in ${tokenSymbol}`}
+              label={`Deposit amount in ${token_symbol}`}
               normalize={normalizers.number}
               validate={this.fieldValidators}
               placeholder="Enter amount..."
@@ -100,6 +100,7 @@ export default compose(
         { ...values, token_contract: props.token_contract },
         'balance',
         'token_contract',
+        true,
         props.asyncValidating,
         field,
         dispatch

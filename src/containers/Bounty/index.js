@@ -408,7 +408,7 @@ class BountyComponent extends React.Component {
               </div>
               {!isDraft && (
                 <div className={styles.social}>
-                  <Social utm_campaign={`bounty_${bounty.id}`} />
+                  <Social utm_campaign={`bounty_${bounty.bounty_id}`} />
                 </div>
               )}
             </div>

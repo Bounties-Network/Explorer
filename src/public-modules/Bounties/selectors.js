@@ -72,7 +72,7 @@ export const bountiesQuerySelector = createSelector(
       ? expandPlatforms(platforms)
       : config.platform;
 
-    query['bountyStage__in'] = reduce(
+    query['bounty_stage__in'] = reduce(
       (result, value, key) => {
         if (value) {
           result.push(STAGE_MAPPING[key]);

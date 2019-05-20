@@ -59,7 +59,7 @@ class IncreasePayoutFormModal extends React.Component {
       minimumBalance,
       minimumPayout,
       handleSubmit,
-      tokenSymbol,
+      token_symbol,
       visible,
       submitFailed,
       invalid,
@@ -85,16 +85,16 @@ class IncreasePayoutFormModal extends React.Component {
               <br />
               <em>
                 Your total balance must be greater than the new prize amount ({
-                  tokenSymbol
+                  token_symbol
                 })
               </em>. The current balance is:{' '}
               <span
                 className={styles.textHighlight}
-              >{`${minimumBalance} ${tokenSymbol}`}</span>. The current payout
+              >{`${minimumBalance} ${token_symbol}`}</span>. The current payout
               amount is:{' '}
               <span
                 className={styles.textHighlight}
-              >{`${minimumPayout} ${tokenSymbol}`}</span>.
+              >{`${minimumPayout} ${token_symbol}`}</span>.
             </Modal.Description>
           </Modal.Header>
 
@@ -103,7 +103,7 @@ class IncreasePayoutFormModal extends React.Component {
               <Field
                 name="balance"
                 component={FormTextInput}
-                label={`Deposit amount (${tokenSymbol})`}
+                label={`Deposit amount (${token_symbol})`}
                 normalize={normalizers.number}
                 validate={this.validatorGroups.balance}
                 placeholder="Enter amount..."
@@ -113,7 +113,7 @@ class IncreasePayoutFormModal extends React.Component {
               <Field
                 name="fulfillment_amount"
                 component={FormTextInput}
-                label={`New prize amount (${tokenSymbol})`}
+                label={`New prize amount (${token_symbol})`}
                 normalize={normalizers.number}
                 validate={this.validatorGroups.fulfillment_amount}
                 placeholder="Enter amount..."
@@ -160,6 +160,7 @@ export default compose(
         { ...values, token_contract: props.token_contract },
         'balance',
         'token_contract',
+        true,
         props.asyncValidating,
         field,
         dispatch
