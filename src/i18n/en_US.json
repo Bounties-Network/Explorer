@@ -4,5 +4,21 @@
     "dashboard": "Dashboard",
     "leaderboard": "LeaderBoard",
     "profile": "Profile"
+  },
+  "actions": {
+    "load_more": "Load more"
+  },
+  "sections": {
+    "activity": {
+      "title": "My Activity",
+      "zero_state": {
+        "title": "You have no activity yet",
+        "description":
+          "Once you start using the platform, your activity will show up here."
+      }
+    }
+  },
+  "errors": {
+    "500": "Something went wrong. Try again later."
   }
 }

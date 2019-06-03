@@ -9,6 +9,7 @@ import { Button, Card, ListGroup, Loader, ZeroState } from 'components';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { rootActivitySelector } from 'public-modules/Activity/selectors';
 import { actions } from 'public-modules/Activity';
+import intl from 'react-intl-universal';
 
 class ActivityPanelComponent extends React.Component {
   renderActivity = list => {
@@ -62,7 +63,7 @@ class ActivityPanelComponent extends React.Component {
         {list.length < count && (
           <div className={styles.loadMoreButton}>
             <Button loading={loadingMore} onClick={loadMore}>
-              Load More
+              {intl.get('actions.load_more')}
             </Button>
           </div>
         )}
@@ -74,10 +75,8 @@ class ActivityPanelComponent extends React.Component {
       body = (
         <div className={styles.zeroState}>
           <ZeroState
-            title={'You have no activity yet'}
-            text={
-              'Once you start using the platform, your activity will show up here.'
-            }
+            title={intl.get('sections.activity.zero_state.title')}
+            text={intl.get('sections.activity.zero_state.description')}
             iconColor="blue"
             icon={['fal', 'chart-line']}
           />
@@ -96,7 +95,7 @@ class ActivityPanelComponent extends React.Component {
         <div className={styles.zeroState}>
           <ZeroState
             type="error"
-            text={'Something went wrong. Try again later.'}
+            text={intl.get('errors.500')}
             iconColor="red"
             icon={['fal', 'exclamation-triangle']}
           />
@@ -107,7 +106,9 @@ class ActivityPanelComponent extends React.Component {
     return (
       <Card className={className}>
         <Card.Header>
-          <Card.HeaderTitle>My Activity</Card.HeaderTitle>
+          <Card.HeaderTitle>
+            {intl.get('sections.activity.title')}
+          </Card.HeaderTitle>
         </Card.Header>
         <Card.Body className={`${bodyClass} ${zeroStateClass}`}>
           {body}
