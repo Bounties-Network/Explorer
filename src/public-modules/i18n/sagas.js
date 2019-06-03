@@ -1,5 +1,5 @@
 import intl from 'react-intl-universal';
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { INIT_TRANSLATIONS, UPDATE_LOCALE } from './constants';
 import { actions } from './index';
 
