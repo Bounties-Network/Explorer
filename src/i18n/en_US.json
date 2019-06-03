@@ -6,7 +6,8 @@
     "profile": "Profile"
   },
   "actions": {
-    "load_more": "Load more"
+    "load_more": "Load more",
+    "view_all": "View all"
   },
   "sections": {
     "activity": {
@@ -15,6 +16,21 @@
         "title": "You have no activity yet",
         "description":
           "Once you start using the platform, your activity will show up here."
+      }
+    },
+    "bounties": {
+      "title": "My Bounties",
+      "tabs": {
+        "active": "Active",
+        "drafts": "Drafts"
+      },
+      "zero_state": {
+        "title": "You have no {tab} bounties",
+        "description":
+          "It looks like you don't have any {tab} bounties at the moment. Enter a title for a new bounty here to get started creating one!",
+        "actions": {
+          "new_bounty": "Create new bounty"
+        }
       }
     }
   },
