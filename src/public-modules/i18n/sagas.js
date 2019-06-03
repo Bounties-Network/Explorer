@@ -10,7 +10,6 @@ const locales = {
 };
 
 export function* initTranslations(action) {
-  console.log('initing');
   const locale = action.locale
     ? action.locale
     : intl.determineLocale({

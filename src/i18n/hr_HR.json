@@ -1,3 +1,8 @@
 {
-  "hello": "Bok"
+  "nav": {
+    "explorer": "Preglednik",
+    "dashboard": "Kontrolna ploča",
+    "leaderboard": "Rezultati",
+    "profile": "Moj profil"
+  }
 }

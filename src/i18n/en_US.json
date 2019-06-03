@@ -1,3 +1,8 @@
 {
-  "hello": "Hello!"
+  "nav": {
+    "explorer": "Explorer",
+    "dashboard": "Dashboard",
+    "leaderboard": "LeaderBoard",
+    "profile": "Profile"
+  }
 }
