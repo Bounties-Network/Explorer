@@ -6,7 +6,7 @@ const ExtendDeadlineErrorModal = props => {
 
   return (
     <Modal dismissable onClose={onClose} visible={visible} fixed size="small">
-      <Modal.Header closable icon={['far', 'exclamation-triangle']}>
+      <Modal.Header closable icon="error">
         <Modal.Message>
           The deadline must be in the future in order to activate your bounty.
         </Modal.Message>
