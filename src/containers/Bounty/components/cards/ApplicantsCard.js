@@ -122,8 +122,7 @@ const ApplicantsCard = props => {
         <ZeroState
           title={'There are 0 applicants'}
           text={'Applicants to this bounty will appear here.'}
-          iconColor="blue"
-          icon={['fal', 'level-up']}
+          icon="inbox"
         />
       </div>
     );

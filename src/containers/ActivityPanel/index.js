@@ -79,7 +79,7 @@ class ActivityPanelComponent extends React.Component {
               'Once you start using the platform, your activity will show up here.'
             }
             iconColor="blue"
-            icon={['fal', 'chart-line']}
+            faIcon={['fal', 'chart-line']}
           />
         </div>
       );
@@ -98,7 +98,7 @@ class ActivityPanelComponent extends React.Component {
             type="error"
             text={'Something went wrong. Try again later.'}
             iconColor="red"
-            icon={['fal', 'exclamation-triangle']}
+            faIcon={['fal', 'exclamation-triangle']}
           />
         </div>
       );
