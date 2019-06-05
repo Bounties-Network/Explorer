@@ -88,7 +88,7 @@ const WalkthroughError = props => {
 
   return (
     <Modal dismissable onClose={onClose} fixed size="small" visible={visible}>
-      <Modal.Header icon={['fal', 'exclamation-triangle']} closable />
+      <Modal.Header icon="error" closable />
       <Modal.Body>
         <Modal.Message>Something happened. Try again later.</Modal.Message>
       </Modal.Body>
