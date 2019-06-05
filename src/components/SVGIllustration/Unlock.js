@@ -2,36 +2,35 @@ import React from 'react';
 
 const SVG = () => (
   <svg
-    id="lock"
-    width="90"
-    height="96"
-    viewBox="0 0 90 96"
+    width="102"
+    height="116"
+    viewBox="0 0 102 116"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g filter="url(#filter078_d)">
-      <g filter="url(#filter0439_d)">
+    <g filter="url(#filter0_d)">
+      <g filter="url(#filter1_d)">
         <path
-          d="M55.8696 30.3043V39H61.3043V30.3043C61.3043 21.2997 54.0046 14 45 14C35.9954 14 28.6956 21.2997 28.6956 30.3043V39H34.1304V30.3043C34.1304 24.3013 38.9969 19.4348 45 19.4348C51.0031 19.4348 55.8696 24.3013 55.8696 30.3043Z"
-          fill="url(#paint92378_linear)"
+          d="M61.8696 41V36.3043C61.8696 30.3013 57.0031 25.4348 51 25.4348C44.9969 25.4348 40.1305 30.3013 40.1305 36.3043V53C40.1305 55.2596 40.8199 57.3581 42 59.0968V66.5974C37.598 63.6779 34.6957 58.6779 34.6957 53V36.3043C34.6957 27.2997 41.9954 20 51 20C60.0047 20 67.3044 27.2997 67.3044 36.3043V41H61.8696Z"
+          fill="url(#paint0_linear)"
         />
       </g>
-      <g filter="url(#filter24579_d)">
+      <g filter="url(#filter2_d)">
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
-          d="M28 34.6522C23.5817 34.6522 20 38.2339 20 42.6522V61.4348C20 65.8531 23.5817 69.4348 28 69.4348H62C66.4183 69.4348 70 65.8531 70 61.4348V42.6522C70 38.2339 66.4183 34.6522 62 34.6522H28ZM48.8256 48.228C48.8256 49.6692 48.0219 50.9226 46.8383 51.5646L49.4123 59.9239H40.6522L43.2262 51.5645C42.0427 50.9225 41.2391 49.6691 41.2391 48.228C41.2391 46.1331 42.9374 44.4348 45.0323 44.4348C47.1273 44.4348 48.8256 46.1331 48.8256 48.228Z"
-          fill="url(#paint984_radial)"
+          d="M34 48.6522C29.5817 48.6522 26 52.2339 26 56.6522V75.4348C26 79.8531 29.5817 83.4348 34 83.4348H68C72.4183 83.4348 76 79.8531 76 75.4348V56.6522C76 52.2339 72.4183 48.6522 68 48.6522H34ZM54.8256 62.228C54.8256 63.6692 54.0219 64.9226 52.8383 65.5646L55.4123 73.9239H46.6522L49.2262 65.5645C48.0427 64.9225 47.2391 63.6691 47.2391 62.228C47.2391 60.1331 48.9374 58.4348 51.0323 58.4348C53.1273 58.4348 54.8256 60.1331 54.8256 62.228Z"
+          fill="url(#paint1_radial)"
         />
       </g>
     </g>
     <defs>
       <filter
-        id="filter078_d"
+        id="filter0_d"
         x="0"
         y="0"
-        width="90"
-        height="95.4348"
+        width="102"
+        height="115.435"
         filterUnits="userSpaceOnUse"
         color-interpolation-filters="sRGB"
       >
@@ -42,10 +41,10 @@ const SVG = () => (
           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
         />
         <feOffset dy="6" />
-        <feGaussianBlur stdDeviation="10" />
+        <feGaussianBlur stdDeviation="13" />
         <feColorMatrix
           type="matrix"
-          values="0 0 0 0 0.109804 0 0 0 0 0.25098 0 0 0 0 0.462745 0 0 0 0.05 0"
+          values="0 0 0 0 0.109804 0 0 0 0 0.25098 0 0 0 0 0.462745 0 0 0 0.15 0"
         />
         <feBlend
           mode="normal"
@@ -60,11 +59,11 @@ const SVG = () => (
         />
       </filter>
       <filter
-        id="filter0439_d"
-        x="22.6956"
-        y="12"
+        id="filter1_d"
+        x="28.6957"
+        y="18"
         width="44.6087"
-        height="37"
+        height="58.5974"
         filterUnits="userSpaceOnUse"
         color-interpolation-filters="sRGB"
       >
@@ -93,9 +92,9 @@ const SVG = () => (
         />
       </filter>
       <filter
-        id="filter24579_d"
-        x="14"
-        y="32.6522"
+        id="filter2_d"
+        x="20"
+        y="46.6522"
         width="62"
         height="46.7826"
         filterUnits="userSpaceOnUse"
@@ -126,23 +125,23 @@ const SVG = () => (
         />
       </filter>
       <linearGradient
-        id="paint92378_linear"
-        x1="45"
-        y1="19.4348"
-        x2="46.1914"
-        y2="33.9019"
+        id="paint0_linear"
+        x1="51"
+        y1="27.1739"
+        x2="53.0657"
+        y2="46.1754"
         gradientUnits="userSpaceOnUse"
       >
         <stop stop-color="white" />
         <stop offset="1" stop-color="#F7F7F7" />
       </linearGradient>
       <radialGradient
-        id="paint984_radial"
+        id="paint1_radial"
         cx="0"
         cy="0"
         r="1"
         gradientUnits="userSpaceOnUse"
-        gradientTransform="translate(52.9545 34.6522) rotate(135.453) scale(35.6103 43.3082)"
+        gradientTransform="translate(58.9545 48.6522) rotate(135.453) scale(35.6103 43.3082)"
       >
         <stop stop-color="white" />
         <stop offset="1" stop-color="#F7F7F7" />

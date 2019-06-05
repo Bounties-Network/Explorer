@@ -8,27 +8,11 @@ const SVG = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <mask
-      id="mask0"
-      mask-type="alpha"
-      maskUnits="userSpaceOnUse"
-      x="1"
-      y="2"
-      width="48"
-      height="62"
-    >
+    <g filter="url(#filter0_i)">
       <path
-        d="M49 3L49 63.1799L1.99997 63.1799L1.99998 3L49 3Z"
-        fill="#111618"
+        d="M43 3C46.3137 3 49 5.68629 49 9V57.1799C49 60.4936 46.3137 63.1799 43 63.1799L1.99998 63.1799L1.99998 3L43 3Z"
+        fill="white"
       />
-    </mask>
-    <g mask="url(#mask0)">
-      <g filter="url(#filter0_i)">
-        <path
-          d="M43 3C46.3137 3 49 5.68629 49 9V57.1799C49 60.4936 46.3137 63.1799 43 63.1799L1.99998 63.1799L1.99998 3L43 3Z"
-          fill="white"
-        />
-      </g>
     </g>
     <g filter="url(#filter1_d)">
       <path

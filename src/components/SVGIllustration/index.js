@@ -11,6 +11,9 @@ import Bell from './Bell';
 import Star from './Star';
 import Lock from './Lock';
 import Inbox from './Inbox';
+import Error from './Error';
+import Network from './Network';
+import Unlock from './Unlock';
 
 const SVGIllustration = props => {
   switch (props.icon) {
@@ -36,6 +39,12 @@ const SVGIllustration = props => {
       return <Lock {...props} />;
     case 'inbox':
       return <Inbox {...props} />;
+    case 'error':
+      return <Error {...props} />;
+    case 'network':
+      return <Network {...props} />;
+    case 'unlock':
+      return <Unlock {...props} />;
     default:
       return;
   }
