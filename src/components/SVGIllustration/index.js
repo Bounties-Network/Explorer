@@ -49,7 +49,7 @@ const SVGIllustration = props => {
     case 'trophy':
       return <Trophy {...props} />;
     default:
-      return;
+      return null;
   }
 };
 

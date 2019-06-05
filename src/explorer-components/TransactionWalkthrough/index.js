@@ -8,7 +8,7 @@ const InitiateWalkthrough = props => {
 
   return (
     <Modal onClose={onClose} visible={visible} fixed size="small">
-      <Modal.Header icon={['fal', 'wallet']}>
+      <Modal.Header icon="wallet">
         <Modal.Message>Your wallet will take it from here!</Modal.Message>
       </Modal.Header>
       <Modal.Body>
