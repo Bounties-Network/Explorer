@@ -9,6 +9,7 @@ import normalizers from 'utils/normalizers';
 import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 import asyncValidators from 'utils/asyncValidators';
+import intl from 'react-intl-universal';
 
 class ActivateDraftFormModal extends React.Component {
   fieldValidators = [
@@ -16,7 +17,9 @@ class ActivateDraftFormModal extends React.Component {
     validators.maxDecimals(this.props.tokenDecimals),
     balance => {
       if (BigNumber(balance, 10).isLessThan(this.props.minimumBalance)) {
-        return 'At minimum, your initial deposit must match your payout amount.';
+        return intl.get(
+          'sections.bounty.modals.activate_draft_form.min_deposit_warning'
+        );
       }
     }
   ];
@@ -45,33 +48,36 @@ class ActivateDraftFormModal extends React.Component {
           <Modal.Header closable={true}>
             <Modal.Message>Activate your bounty</Modal.Message>
             <Modal.Description>
-              Indicate an amount for your initial deposit to activate the
-              bounty.
-              <em>
-                {' '}
-                At minimum, your initial deposit must match your payout amount
-                of
-              </em>{' '}
-              <strong
-                className={styles.textHighlight}
-              >{`${minimumBalance} ${tokenSymbol}.`}</strong>
+              {intl.getHTML(
+                'sections.bounty.modals.activate_draft_form.description',
+                {
+                  textHighlightClass: styles.textHighlight,
+                  minimumBalance,
+                  tokenSymbol
+                }
+              )}
             </Modal.Description>
           </Modal.Header>
           <Modal.Body className={styles.modalBody}>
             <Field
               name="balance"
               component={FormTextInput}
-              label={`Deposit amount (${tokenSymbol}).`}
+              label={intl.get(
+                'sections.bounty.modals.activate_draft_form.form.balance.label',
+                { tokenSymbol }
+              )}
               normalize={normalizers.number}
               validate={this.fieldValidators}
-              placeholder="Enter amount..."
+              placeholder={intl.get(
+                'sections.bounty.modals.activate_draft_form.form.balance.placeholder'
+              )}
             />
           </Modal.Body>
           <Modal.Footer>
             {submitFailed &&
               invalid && (
                 <Text inputLabel color="red">
-                  Fix errors before submitting.
+                  {intl.get('errors.form_error')}
                 </Text>
               )}
             <Button
@@ -82,14 +88,14 @@ class ActivateDraftFormModal extends React.Component {
               }}
               buttonType="button"
             >
-              Cancel
+              {intl.get('actions.cancel')}
             </Button>
             <Button
               type="action"
               disabled={submitFailed && invalid}
               loading={asyncValidating && typeof asyncValidating === 'boolean'}
             >
-              Activate
+              {intl.get('actions.activate')}
             </Button>
           </Modal.Footer>
         </Modal>

@@ -9,6 +9,7 @@ import normalizers from 'utils/normalizers';
 import validators from 'utils/validators';
 import { FormTextInput } from 'form-components';
 import asyncValidators from 'utils/asyncValidators';
+import intl from 'react-intl-universal';
 
 class IncreasePayoutFormModal extends React.Component {
   validatorGroups = {
@@ -24,7 +25,9 @@ class IncreasePayoutFormModal extends React.Component {
             )
           )
         ) {
-          return 'The balance of your bounty must be greater than the payout amount.';
+          return intl.get(
+            'sections.bounty.modals.increase_payout.balance_warning'
+          );
         }
       }
     ],
@@ -38,7 +41,9 @@ class IncreasePayoutFormModal extends React.Component {
             BigNumber(values.fulfillmentAmount || 0, 10)
           )
         ) {
-          return 'Your payout amount must be greater than the previous payout amount.';
+          return intl.get(
+            'sections.bounty.modals.increase_payout.payout_warning'
+          );
         }
       }
     ]
@@ -67,43 +72,48 @@ class IncreasePayoutFormModal extends React.Component {
           size="small"
         >
           <Modal.Header closable={true}>
-            <Modal.Message>Increase bounty payout</Modal.Message>
+            <Modal.Message>
+              {intl.get('sections.bounty.modals.increase_payout.title')}
+            </Modal.Message>
             <Modal.Description>
-              Indicate the amount you would like to increase the payout to. You
-              may include an additional balance to cover the costs.
-              <br />
-              <br />
-              <em>
-                Your total balance must be greater than the new prize amount ({
-                  tokenSymbol
-                })
-              </em>. The current balance is:{' '}
-              <span
-                className={styles.textHighlight}
-              >{`${minimumBalance} ${tokenSymbol}`}</span>. The current payout
-              amount is:{' '}
-              <span
-                className={styles.textHighlight}
-              >{`${minimumPayout} ${tokenSymbol}`}</span>.
+              {intl.getHTML(
+                'sections.bounty.modals.increase_payout.description',
+                {
+                  tokenSymbol,
+                  minimumBalance,
+                  minimumPayout,
+                  textHighlightClass: styles.textHighlight
+                }
+              )}
             </Modal.Description>
           </Modal.Header>
           <Modal.Body className={styles.modalBody}>
             <Field
               name="balance"
               component={FormTextInput}
-              label={`Deposit amount (${tokenSymbol})`}
+              label={intl.get(
+                'sections.bounty.modals.increase_payout.form.balance.label',
+                { tokenSymbol }
+              )}
               normalize={normalizers.number}
               validate={this.validatorGroups.balance}
-              placeholder="Enter amount..."
+              placeholder={intl.get(
+                'sections.bounty.modals.increase_payout.form.balance.placeholder'
+              )}
             />
             <div className={styles.inputGroup}>
               <Field
                 name="fulfillmentAmount"
                 component={FormTextInput}
-                label={`New prize amount (${tokenSymbol})`}
+                label={intl.get(
+                  'sections.bounty.modals.increase_payout.form.fullfillment_amount.label',
+                  { tokenSymbol }
+                )}
                 normalize={normalizers.number}
                 validate={this.validatorGroups.fulfillmentAmount}
-                placeholder="Enter amount..."
+                placeholder={intl.get(
+                  'sections.bounty.modals.increase_payout.form.fullfillment_amount.placeholder'
+                )}
               />
             </div>
           </Modal.Body>
@@ -111,7 +121,7 @@ class IncreasePayoutFormModal extends React.Component {
             {submitFailed &&
               invalid && (
                 <Text inputLabel color="red">
-                  Fix errors before submitting.
+                  {intl.get('errors.form_error')}
                 </Text>
               )}
             <Button
@@ -122,14 +132,14 @@ class IncreasePayoutFormModal extends React.Component {
               }}
               buttonType="button"
             >
-              Cancel
+              {intl.get('actions.cancel')}
             </Button>
             <Button
               type="action"
               disabled={submitFailed && invalid}
               loading={asyncValidating && typeof asyncValidating === 'boolean'}
             >
-              Increase Payout
+              {intl.get('actions.increase_payout')}
             </Button>
           </Modal.Footer>
         </Modal>

@@ -7,6 +7,7 @@ import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE, EXPIRED } from 'public-modules/Bounty/constants';
 import { hasImageExtension, shortenFileName, shortenUrl } from 'utils/helpers';
 import moment from 'moment';
+import intl from 'react-intl-universal';
 
 const SubmissionItem = props => {
   const {
@@ -52,7 +53,7 @@ const SubmissionItem = props => {
         icon={['far', 'check']}
         onClick={acceptFulfillment}
       >
-        Accept
+        {intl.get('actions.accept')}
       </Button>
     );
   }
@@ -74,7 +75,7 @@ const SubmissionItem = props => {
           })
         }
       >
-        Rate fulfiller
+        {intl.get('actions.rate_fulfiller')}
       </Button>
     );
   }
@@ -100,7 +101,7 @@ const SubmissionItem = props => {
           })
         }
       >
-        Rate issuer
+        {intl.get('actions.rate_issuer')}
       </Button>
     );
   }

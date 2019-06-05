@@ -6,6 +6,7 @@ import moment from 'moment';
 import { Button } from 'components';
 import { DEAD, ACTIVE } from 'public-modules/Bounty/constants';
 import { ModalManager } from './components';
+import intl from 'react-intl-universal';
 
 const ActionBar = props => {
   const {
@@ -39,7 +40,7 @@ const ActionBar = props => {
             initiateLoginProtection(() => showModal('activate'));
           }}
         >
-          Activate Bounty
+          {intl.get('sections.bounty.actions.activate')}
         </Button>
         <Link to={draftUrl}>
           <Button
@@ -47,7 +48,7 @@ const ActionBar = props => {
             fitWidth
             className={styles.editBountyButton}
           >
-            Edit Bounty
+            {intl.get('sections.bounty.actions.edit')}
           </Button>
         </Link>
       </div>
@@ -66,7 +67,7 @@ const ActionBar = props => {
               initiateLoginProtection(() => showModal('activateDead'))
             }
           >
-            Re-activate Bounty
+            {intl.get('sections.bounty.actions.re_activate')}
           </Button>
         ) : (
           <Button
@@ -75,7 +76,7 @@ const ActionBar = props => {
             fitWidth
             onClick={() => initiateLoginProtection(() => showModal('kill'))}
           >
-            De-activate bounty
+            {intl.get('sections.bounty.actions.de_activate')}
           </Button>
         )}
 
@@ -88,7 +89,7 @@ const ActionBar = props => {
             fitWidth
             className={styles.buttonGroup}
           >
-            Increase Prize
+            {intl.get('sections.bounty.actions.increase_prize')}
           </Button>
         )}
         {bounty.bountyStage !== DEAD && (
@@ -100,7 +101,7 @@ const ActionBar = props => {
             }
             fitWidth
           >
-            Contribute
+            {intl.get('sections.bounty.actions.contribute')}
           </Button>
         )}
         <Button
@@ -111,7 +112,7 @@ const ActionBar = props => {
             initiateLoginProtection(() => showModal('extendDeadline'))
           }
         >
-          Extend deadline
+          {intl.get('sections.bounty.actions.extend_deadline')}
         </Button>
         <Button
           icon={['far', 'user-friends']}
@@ -121,7 +122,7 @@ const ActionBar = props => {
             initiateLoginProtection(() => showModal('transferOwnership'))
           }
         >
-          Transfer Ownership
+          {intl.get('sections.bounty.actions.transfer_ownership')}
         </Button>
       </div>
     );
@@ -136,7 +137,9 @@ const ActionBar = props => {
           initiateLoginProtection(() => showModal('fulfillBounty'))
         }
       >
-        {user ? 'Fulfill' : 'Sign in to fulfill'}
+        {user
+          ? intl.get('sections.bounty.actions.fulfill')
+          : intl.get('sections.bounty.actions.login_fulfill')}
       </Button>
     );
 
@@ -149,14 +152,16 @@ const ActionBar = props => {
             initiateLoginProtection(() => showModal('fulfillerApplication'))
           }
         >
-          {user ? 'Apply to bounty' : 'Sign in to apply'}
+          {user
+            ? intl.get('sections.bounty.actions.apply')
+            : intl.get('sections.bounty.actions.login_apply')}
         </Button>
       );
 
       if (bounty.user_has_applied) {
         mainActionButton = (
           <Button type="action" fitWidth disabled>
-            Apply to bounty
+            {intl.get('sections.bounty.actions.apply')}
           </Button>
         );
       }
@@ -179,7 +184,7 @@ const ActionBar = props => {
             );
           }}
         >
-          Fulfill on Gitcoin
+          {intl.get('sections.bounty.actions.fulfill_gitcoin')}
         </Button>
       );
     }
@@ -193,7 +198,7 @@ const ActionBar = props => {
           onClick={() => initiateLoginProtection(() => showModal('contribute'))}
           fitWidth
         >
-          Contribute
+          {intl.get('sections.bounty.actions.contribute')}
         </Button>
       </div>
     );

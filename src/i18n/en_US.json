@@ -7,7 +7,20 @@
   },
   "actions": {
     "load_more": "Load more",
-    "view_all": "View all"
+    "view_all": "View all",
+    "accept": "Accept",
+    "reject": "Reject",
+    "rate_fulfiller": "Rate fulfiller",
+    "rate_issuer": "Rate issuer",
+    "activate": "Activate",
+    "de_activate": "Deactivate",
+    "re_activate": "Re-Activate",
+    "cancel": "Cancel",
+    "contribute": "Contribute",
+    "submit": "Submit",
+    "extend_deadline": "Extend Deadline",
+    "increase_payout": "Increase Payout",
+    "transfer_ownership": "Transfer Ownership"
   },
   "sections": {
     "activity": {
@@ -32,9 +45,217 @@
           "new_bounty": "Create new bounty"
         }
       }
+    },
+    "bounty": {
+      "zero_state": {
+        "title": "Could not find that bounty",
+        "description": "Try refreshing, or make sure your url is correct"
+      },
+      "meta": {
+        "input": "Private",
+        "label": "bounty",
+        "tooltip":
+          "Private bounties require that users apply to fulfill the bounty. Once you are approved by the issuer, you may submit a fulfillment for this bounty.",
+        "revisions": "{count} revisions"
+      },
+      "components": {
+        "new_comment": {
+          "placeholder": "Write a comment..",
+          "action": "Post comment",
+          "login_action": "Sign in to post comment"
+        },
+        "applicant_card": {
+          "declined_message":
+            "Your declined application status is only visible to you",
+          "zero_state": {
+            "title": "There are 0 applicants",
+            "description": "Applicants to this bounty will appear here."
+          }
+        },
+        "comments_card": {
+          "zero_state": {
+            "title": "There are 0 comments",
+            "description": "Submit a comment using the form above."
+          }
+        },
+        "submissions_card": {
+          "zero_state": {
+            "title": "There are 0 submissions",
+            "private_title": "Submissions are private",
+            "description": "Submissions to this bounty will appear here.",
+            "private_description":
+              "The submissions for this bounty have been set to private.",
+            "bounty_owner_description":
+              "Submissions to this bounty will appear here and will only be visible to you. Additionally, fulfillers will be able to see the submissions that they created."
+          },
+          "notice": "Submissions to this bounty are hidden.",
+          "bounty_owner_notice":
+            " The submissions are only visible to you and the fulfiller.",
+          "fulfiller_notice":
+            " Your submissions are only visible to you and the bounty issuer."
+        }
+      },
+      "difficulties": {
+        "Beginner": "Beginner",
+        "Intermediate": "Intermediate",
+        "Expert": "Expert"
+      },
+      "actions": {
+        "activate": "Activate Bounty",
+        "edit": "Edit Bounty",
+        "re_activate": "Re-activate Bounty",
+        "de_activate": "De-activate bounty",
+        "increase_prize": "Increase Prize",
+        "contribute": "Contribute",
+        "extend_deadline": "Extend deadline",
+        "transfer_ownership": "Transfer Ownership",
+        "fulfill": "Fulfill",
+        "login_fulfill": "Sign in to fulfill",
+        "fulfill_gitcoin": "Fulfill on Gitcoin",
+        "apply": "Apply to bounty",
+        "login_apply": "Sign in to apply"
+      },
+      "tabs": {
+        "applicants": {
+          "title": "Applicants"
+        },
+        "submissions": {
+          "title": "Submissions"
+        },
+        "comments": {
+          "title": "Comments"
+        }
+      },
+      "modals": {
+        "activate_dead_form": {
+          "title": "Re-Activate your bounty",
+          "description":
+            "Indicate an amount for your deposit to activate the bounty. At minimum, your deposit must match the payout amount ({minimumBalance} {tokenSymbol}).",
+          "min_deposit_warning":
+            "At minimum, your initial deposit must match your payout amount.",
+          "form": {
+            "balance": {
+              "label": "Deposit amount in {tokenSymbol}",
+              "placeholder": "Enter amount..."
+            }
+          }
+        },
+        "activate_draft_form": {
+          "title": "Activate your bounty",
+          "description":
+            "Indicate an amount for your initial deposit to activate the bounty.<em> At minimum, your initial deposit must match your payout amount of</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {tokenSymbol}</strong>",
+          "min_deposit_warning":
+            "At minimum, your initial deposit must match your payout amount.",
+          "form": {
+            "balance": {
+              "label": "Deposit amount in {tokenSymbol}",
+              "placeholder": "Enter amount..."
+            }
+          }
+        },
+        "contribute": {
+          "title": "Contribute to the bounty",
+          "description":
+            "Indicate the amount you would like to contribute towards the bounty ({tokenSymbol}).",
+          "form": {
+            "contribution": {
+              "label": "Deposit amount {tokenSymbol}",
+              "placeholder": "Enter amount..."
+            }
+          }
+        },
+        "extend_deadline_error": {
+          "title":
+            "The deadline must be in the future in order to activate your bounty."
+        },
+        "extend_deadline_form": {
+          "title": "Extend Deadline",
+          "description":
+            "Indicate the time that you would like to extend the bounty deadline until {timezone, select, null { } other { (timezone={timezone})}}"
+        },
+        "fulfill_bounty": {
+          "title": "Enter submission details",
+          "description":
+            "Enter and submit the details for your bounty submission, including any files or links that may be required for fulfillment as indicated by the bounty description.",
+          "form": {
+            "name": {
+              "label": "Contact name",
+              "placeholder": "Enter name..."
+            },
+            "email": {
+              "label": "Contact email",
+              "placeholder": "Enter email..."
+            },
+            "url": {
+              "label": "Web link",
+              "placeholder": "Enter URL..."
+            },
+            "description": {
+              "label": "Description",
+              "placeholder": "Enter description..."
+            },
+            "private_notice":
+              "All information entered here will be stored on the public Ethereum network, but will be hidden on the site.",
+            "public_notice":
+              "All information entered here will be stored on the public Ethereum network, and will be publicly displayed on the site."
+          }
+        },
+        "fulfiller_application": {
+          "title": "Enter application details",
+          "description":
+            "Describe why you believe you would be a good fit to complete this bounty. Feel free to also provide links to relevant work or experience.",
+          "form": {
+            "message": {
+              "label": "Application",
+              "placeholder": "Enter message..."
+            }
+          }
+        },
+        "increase_payout": {
+          "title": "Increase bounty payout",
+          "description":
+            "Indicate the amount you would like to increase the payout to. You may include an additional balance to cover the costs.<br /><br /><em>Your total balance must be greater than the new prize amount ({tokenSymbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {tokenSymbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {tokenSymbol}</span>.",
+          "balance_warning":
+            "The balance of your bounty must be greater than the payout amount.",
+          "payout_warning":
+            "Your payout amount must be greater than the previous payout amount.",
+          "form": {
+            "balance": {
+              "label": "Deposit amount ({tokenSymbol})",
+              "placeholder": "Enter amount..."
+            },
+            "fullfillment_amount": {
+              "label": "New prize amount ({tokenSymbol})",
+              "placeholder": "Enter amount..."
+            }
+          }
+        },
+        "kill_bounty": {
+          "title": "Are you sure you want to de-activate your bounty?",
+          "description":
+            "If you change your mind, you can always re-activate it again later."
+        },
+        "transfer_ownership": {
+          "title": "Transfer Ownership",
+          "description":
+            "Include the wallet address of who you would like to transfer the bounty to.",
+          "form": {
+            "new_owner": {
+              "placeholder": "Enter wallet address..."
+            }
+          }
+        }
+      }
     }
   },
   "errors": {
-    "500": "Something went wrong. Try again later."
+    "500": "Something went wrong. Try again later.",
+    "form_error": "Fix errors before submitting."
+  },
+  "common": {
+    "expired": "expired",
+    "remaining": "remaining",
+    "difficulty": "difficulty",
+    "expected": "expected"
   }
 }

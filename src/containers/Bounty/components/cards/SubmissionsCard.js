@@ -3,6 +3,7 @@ import styles from './Cards.module.scss';
 import { Button, Loader, Text, ZeroState } from 'components';
 import { SubmissionItem } from '../index';
 import { map as fpMap } from 'lodash';
+import intl from 'react-intl-universal';
 
 const map = fpMap.convert({ cap: false });
 
@@ -86,7 +87,7 @@ const SubmissionsCard = props => {
               loading={fulfillments.loadingMore}
               onClick={loadMoreFulfillments}
             >
-              Load More
+              {intl.get('actions.load_more')}
             </Button>
           </div>
         )
@@ -99,22 +100,12 @@ const SubmissionsCard = props => {
     body = (
       <div className={styles.zeroState}>
         <ZeroState
-          title={'There are 0 submissions'}
-          text={'Submissions to this bounty will appear here.'}
-          iconColor="blue"
-          icon={['fal', 'level-up']}
-        />
-      </div>
-    );
-  }
-
-  if (!fulfillments.list.length) {
-    bodyClass = styles.bodyLoading;
-    body = (
-      <div className={styles.zeroState}>
-        <ZeroState
-          title={'There are 0 submissions'}
-          text={'Submissions to this bounty will appear here.'}
+          title={intl.get(
+            'sections.bounty.components.submissions_card.zero_state.title'
+          )}
+          text={intl.get(
+            'sections.bounty.components.submissions_card.zero_state.description'
+          )}
           iconColor="blue"
           icon={['fal', 'level-up']}
         />
@@ -128,10 +119,14 @@ const SubmissionsCard = props => {
         <React.Fragment>
           {body}
           <Text alignment="align-center" color="defaultGrey" typeScale="Small">
-            Submissions to this bounty are hidden.
+            {intl.get('sections.bounty.components.submissions_card.notice')}
             {bountyBelongsToLoggedInUser
-              ? ' The submissions are only visible to you and the fulfiller.'
-              : ' Your submissions are only visible to you and the bounty issuer.'}
+              ? intl.get(
+                  'sections.bounty.components.submissions_card.bounty_owner_notice'
+                )
+              : intl.get(
+                  'sections.bounty.components.submissions_card.fulfiller_notice'
+                )}
           </Text>
         </React.Fragment>
       );
@@ -142,12 +137,12 @@ const SubmissionsCard = props => {
       body = (
         <div className={styles.zeroState}>
           <ZeroState
-            title={'There are 0 submissions'}
-            text={
-              'Submissions to this bounty will appear here and will \
-            only be visible to you. Additionally, fulfillers will be able \
-            to see the submissions that they created.'
-            }
+            title={intl.get(
+              'sections.bounty.components.submissions_card.zero_state.title'
+            )}
+            text={intl.get(
+              'sections.bounty.components.submissions_card.zero_state.bounty_owner_description'
+            )}
             iconColor="blue"
             icon={['fal', 'lock']}
           />
@@ -160,8 +155,12 @@ const SubmissionsCard = props => {
       body = (
         <div className={styles.zeroState}>
           <ZeroState
-            title={'Submissions are private'}
-            text={'The submissions for this bounty have been set to private.'}
+            title={intl.get(
+              'sections.bounty.components.submissions_card.zero_state.private_title'
+            )}
+            text={intl.get(
+              'sections.bounty.components.submissions_card.zero_state.private_description'
+            )}
             iconColor="blue"
             icon={['fal', 'lock']}
           />

@@ -31,6 +31,7 @@ import { queryStringToObject } from 'utils/locationHelpers';
 import { newTabExtension, shortenFileName, shortenUrl } from 'utils/helpers';
 import { locationNonceSelector } from 'layout/App/selectors';
 import { SEOHeader } from './components';
+import intl from 'react-intl-universal';
 
 showdown.setOption('simpleLineBreaks', true);
 showdown.extension('targetBlank', newTabExtension);
@@ -153,8 +154,8 @@ class BountyComponent extends React.Component {
           <ZeroState
             type="error"
             iconColor="red"
-            title="Could not find that bounty"
-            text="Try refreshing, or make sure your url is correct"
+            title={intl.get('sections.bounty.zero_state.title')}
+            text={intl.get('sections.bounty.zero_state.descriptions')}
             icon={['fal', 'exclamation-triangle']}
           />
         </div>
@@ -264,14 +265,14 @@ class BountyComponent extends React.Component {
                       className={styles.metadataInput}
                       weight="fontWeight-medium"
                     >
-                      Private
+                      {intl.get('sections.bounty.meta.input')}
                     </Text>
                     <Text
                       inline
                       color="defaultGrey"
                       className={styles.metadataLabel}
                     >
-                      bounty
+                      {intl.get('sections.bounty.meta.label')}
                     </Text>
 
                     <Tooltip
@@ -284,9 +285,7 @@ class BountyComponent extends React.Component {
                         alignment="align-left"
                         lineHeight="lineHeight-small"
                       >
-                        Private bounties require that users apply to fulfill the
-                        bounty. Once you are approved by the issuer, you may
-                        submit a fulfillment for this bounty.
+                        {intl.get('sections.bounty.meta.tooltip')}
                       </Text>
                     </Tooltip>
                   </div>
@@ -310,7 +309,9 @@ class BountyComponent extends React.Component {
                       color="defaultGrey"
                       className={styles.metadataLabel}
                     >
-                      {bounty.bountyStage === EXPIRED ? 'expired' : 'remaining'}
+                      {bounty.bountyStage === EXPIRED
+                        ? intl.get('common.expired')
+                        : intl.get('common.remaining')}
                     </Text>
                   </div>
 
@@ -323,14 +324,18 @@ class BountyComponent extends React.Component {
                       className={styles.metadataInput}
                       weight="fontWeight-medium"
                     >
-                      {DIFFICULTY_MAPPINGS[bounty.experienceLevel]}
+                      {intl.get(
+                        `sections.bounty.difficulties.${
+                          DIFFICULTY_MAPPINGS[bounty.experienceLevel]
+                        }`
+                      )}
                     </Text>
                     <Text
                       inline
                       color="defaultGrey"
                       className={styles.metadataLabel}
                     >
-                      difficulty
+                      {intl.get('common.difficulty')}
                     </Text>
                   </div>
 
@@ -344,14 +349,16 @@ class BountyComponent extends React.Component {
                         weight="fontWeight-medium"
                         className={styles.metadataInput}
                       >
-                        {bounty.revisions + ' revisions'}
+                        {intl.get('sections.bounty.meta.revisions', {
+                          count: bounty.revisions
+                        })}
                       </Text>
                       <Text
                         inline
                         color="defaultGrey"
                         className={styles.metadataLabel}
                       >
-                        expected
+                        {intl.get('common.expected')}
                       </Text>
                     </div>
                   )}
