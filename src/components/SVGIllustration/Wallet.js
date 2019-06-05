@@ -10,13 +10,13 @@ const SVG = () => (
   >
     <path
       d="M43 54C43 50.6863 45.6863 48 49 48H97C100.314 48 103 50.6863 103 54V76C103 79.3137 100.314 82 97 82H49C45.6863 82 43 79.3137 43 76V54Z"
-      fill="url(#paint0_linear)"
+      fill="url(#cds_linear)"
     />
     <path
       d="M43 61C43 57.6863 45.6863 55 49 55H97C100.314 55 103 57.6863 103 61V77C103 80.3137 100.314 83 97 83H49C45.6863 83 43 80.3137 43 77V61Z"
       fill="#CED5FF"
     />
-    <g filter="url(#filter0_dd)">
+    <g filter="url(#4a3cxf_dd)">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -24,12 +24,12 @@ const SVG = () => (
         fill="white"
       />
     </g>
-    <g filter="url(#filter1_dd)">
+    <g filter="url(#vh64_dd)">
       <path
         d="M98 88.5C98 93.7467 93.7467 98 88.5 98C83.2533 98 79 93.7467 79 88.5C79 83.2533 83.2533 79 88.5 79C93.7467 79 98 83.2533 98 88.5Z"
         fill="white"
       />
-      <g filter="url(#filter2_i)">
+      <g filter="url(#vh756_i)">
         <path
           d="M95 88.5C95 92.0899 92.0899 95 88.5 95C84.9101 95 82 92.0899 82 88.5C82 84.9101 84.9101 82 88.5 82C92.0899 82 95 84.9101 95 88.5Z"
           fill="white"
@@ -38,7 +38,7 @@ const SVG = () => (
     </g>
     <defs>
       <filter
-        id="filter0_dd"
+        id="4a3cxf_dd"
         x="0"
         y="0"
         width="146"
@@ -87,7 +87,7 @@ const SVG = () => (
         />
       </filter>
       <filter
-        id="filter1_dd"
+        id="vh64_dd"
         x="39"
         y="36"
         width="99"
@@ -136,7 +136,7 @@ const SVG = () => (
         />
       </filter>
       <filter
-        id="filter2_i"
+        id="vh756_i"
         x="82"
         y="82"
         width="13"
@@ -167,7 +167,7 @@ const SVG = () => (
         <feBlend mode="normal" in2="shape" result="effect1_innerShadow" />
       </filter>
       <linearGradient
-        id="paint0_linear"
+        id="cds_linear"
         x1="73"
         y1="66.5"
         x2="73"

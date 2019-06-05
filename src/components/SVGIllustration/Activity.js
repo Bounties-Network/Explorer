@@ -8,7 +8,7 @@ const SVG = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g filter="url(#filter0_dd)">
+    <g filter="url(#324f_dd)">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -18,7 +18,7 @@ const SVG = () => (
     </g>
     <defs>
       <filter
-        id="filter0_dd"
+        id="324f_dd"
         x="0"
         y="0"
         width="130"

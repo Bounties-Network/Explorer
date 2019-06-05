@@ -9,8 +9,8 @@ const SVG = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g filter="url(#filter078_d)">
-      <g filter="url(#filter0439_d)">
+    <g filter="url(#67kj78_d)">
+      <g filter="url(#67kj439_d)">
         <path
           d="M55.8696 30.3043V39H61.3043V30.3043C61.3043 21.2997 54.0046 14 45 14C35.9954 14 28.6956 21.2997 28.6956 30.3043V39H34.1304V30.3043C34.1304 24.3013 38.9969 19.4348 45 19.4348C51.0031 19.4348 55.8696 24.3013 55.8696 30.3043Z"
           fill="url(#paint92378_linear)"
@@ -27,7 +27,7 @@ const SVG = () => (
     </g>
     <defs>
       <filter
-        id="filter078_d"
+        id="67kj78_d"
         x="0"
         y="0"
         width="90"
@@ -60,7 +60,7 @@ const SVG = () => (
         />
       </filter>
       <filter
-        id="filter0439_d"
+        id="67kj439_d"
         x="22.6956"
         y="12"
         width="44.6087"

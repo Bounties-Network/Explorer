@@ -8,18 +8,18 @@ const SVG = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g filter="url(#filter0_dd)">
+    <g filter="url(#bute_dd)">
       <path
         d="M40 38.4857C40 34.0674 43.5817 30.4857 48 30.4857H98C102.418 30.4857 106 34.0674 106 38.4857V69.6286C106 74.0468 102.418 77.6286 98 77.6286H48C43.5817 77.6286 40 74.0468 40 69.6286V38.4857Z"
         fill="white"
       />
-      <g filter="url(#filter1_i)">
+      <g filter="url(#6b7j_i)">
         <path
           d="M42.8286 39.3143C42.8286 36.0006 45.5149 33.3143 48.8286 33.3143H97.1714C100.485 33.3143 103.171 36.0006 103.171 39.3143V68.8C103.171 72.1137 100.485 74.8 97.1714 74.8H48.8286C45.5149 74.8 42.8286 72.1137 42.8286 68.8V39.3143Z"
           fill="white"
         />
       </g>
-      <g filter="url(#filter2_d)">
+      <g filter="url(#bk68f_d)">
         <path
           d="M68.2858 26.7143C68.2858 24.1107 70.3964 22 73.0001 22C75.6037 22 77.7143 24.1107 77.7143 26.7143V35.2C77.7143 37.8036 75.6037 39.9143 73.0001 39.9143C70.3964 39.9143 68.2858 37.8036 68.2858 35.2V26.7143Z"
           fill="white"
@@ -27,7 +27,7 @@ const SVG = () => (
       </g>
       <path
         d="M79.6001 52.6429C79.6001 56.5483 76.4341 59.7143 72.5286 59.7143C68.6232 59.7143 65.4572 56.5483 65.4572 52.6429C65.4572 48.7374 68.6232 45.5714 72.5286 45.5714C76.4341 45.5714 79.6001 48.7374 79.6001 52.6429Z"
-        fill="url(#paint0_linear)"
+        fill="url(#vj57sz_linear)"
       />
       <path
         fill-rule="evenodd"
@@ -38,7 +38,7 @@ const SVG = () => (
     </g>
     <defs>
       <filter
-        id="filter0_dd"
+        id="bute_dd"
         x="0"
         y="0"
         width="146"
@@ -87,7 +87,7 @@ const SVG = () => (
         />
       </filter>
       <filter
-        id="filter1_i"
+        id="6b7j_i"
         x="42.8286"
         y="33.3143"
         width="60.3429"
@@ -118,7 +118,7 @@ const SVG = () => (
         <feBlend mode="normal" in2="shape" result="effect1_innerShadow" />
       </filter>
       <filter
-        id="filter2_d"
+        id="bk68f_d"
         x="64.2858"
         y="22"
         width="17.4286"
@@ -151,7 +151,7 @@ const SVG = () => (
         />
       </filter>
       <linearGradient
-        id="paint0_linear"
+        id="vj57sz_linear"
         x1="73"
         y1="66.5"
         x2="72.5286"

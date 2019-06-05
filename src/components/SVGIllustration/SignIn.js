@@ -8,13 +8,13 @@ const SVG = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g filter="url(#filter0_i)">
+    <g filter="url(#3q4g_i)">
       <path
         d="M43 3C46.3137 3 49 5.68629 49 9V57.1799C49 60.4936 46.3137 63.1799 43 63.1799L1.99998 63.1799L1.99998 3L43 3Z"
         fill="white"
       />
     </g>
-    <g filter="url(#filter1_d)">
+    <g filter="url(#lkjgh_d)">
       <path
         d="M31.4025 74.0177C35.3078 75.4028 39.4082 72.5065 39.4082 68.3629V23.8266C39.4082 20.5898 37.4578 17.672 34.4669 16.4344L2.00001 3L2.00001 63.5894L31.4025 74.0177Z"
         fill="white"
@@ -26,7 +26,7 @@ const SVG = () => (
     />
     <defs>
       <filter
-        id="filter0_i"
+        id="3q4g_i"
         x="1.99998"
         y="3"
         width="47"
@@ -57,7 +57,7 @@ const SVG = () => (
         <feBlend mode="normal" in2="shape" result="effect1_innerShadow" />
       </filter>
       <filter
-        id="filter1_d"
+        id="lkjgh_d"
         x="7.62939e-06"
         y="1.43051e-06"
         width="51.4082"
