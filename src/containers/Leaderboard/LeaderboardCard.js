@@ -111,7 +111,7 @@ const LeaderboardCardComponent = props => {
             iconColor="blue"
             title="No Results Yet"
             text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
-            icon={['fal', 'trophy-alt']}
+            icon="trophy"
           />
         </div>
       </React.Fragment>
@@ -138,7 +138,7 @@ const LeaderboardCardComponent = props => {
             iconColor="white"
             title="Uh oh, something happened"
             text="Try to refresh the page and try again"
-            icon={['fal', 'exclamation-triangle']}
+            icon="error"
           />
         </div>
       </React.Fragment>
