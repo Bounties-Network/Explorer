@@ -108,7 +108,7 @@ const WalkthroughSuccess = props => {
 
   return (
     <Modal fixed size="small" visible={visible}>
-      <Modal.Header icon={['fal', 'check-circle']} />
+      <Modal.Header icon="check" />
       <Modal.Body>
         <Modal.Message>Your transaction has been confirmed!</Modal.Message>
       </Modal.Body>

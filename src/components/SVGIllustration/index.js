@@ -15,6 +15,7 @@ import Error from './Error';
 import Network from './Network';
 import Unlock from './Unlock';
 import Trophy from './Trophy';
+import Check from './Check';
 
 const SVGIllustration = props => {
   switch (props.icon) {
@@ -48,6 +49,8 @@ const SVGIllustration = props => {
       return <Unlock {...props} />;
     case 'trophy':
       return <Trophy {...props} />;
+    case 'check':
+      return <Check {...props} />;
     default:
       return null;
   }
