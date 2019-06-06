@@ -242,7 +242,7 @@ class CreateBountyFormComponent extends React.Component {
             title={intl.get('sections.create_bounty.sections.details.title')}
           >
             <FormSection.Description>
-              {intl.get('sections.create_bounty.sections.details.decription')}
+              {intl.get('sections.create_bounty.sections.details.description')}
             </FormSection.Description>
             <FormSection.SubText>
               {intl.get('sections.create_bounty.sections.details.notice')}
@@ -343,7 +343,7 @@ class CreateBountyFormComponent extends React.Component {
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Text inputLabel color="defaultGrey">
                     {intl.get(
-                      'sections.create_bounty.sections.attachments.file.label'
+                      'sections.create_bounty.sections.attachments.form.file.label'
                     )}
                   </Text>
                   <FileUpload
@@ -365,9 +365,7 @@ class CreateBountyFormComponent extends React.Component {
             title={intl.get('sections.create_bounty.sections.deadline.title')}
           >
             <FormSection.Description>
-              {intl.get(
-                'sections.create_bounty.sections.deadline.desscription'
-              )}
+              {intl.get('sections.create_bounty.sections.deadline.description')}
             </FormSection.Description>
             <FormSection.SubText>
               {intl.get('sections.create_bounty.sections.deadline.notice', {

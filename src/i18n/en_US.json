@@ -248,6 +248,10 @@
       }
     },
     "create_bounty": {
+      "zero_state": {
+        "title": "Could not find that bounty",
+        "description": "Try refreshing, or make sure your url is correct"
+      },
       "deposit_warning":
         "Deposit amount must at least match the payout amount.",
       "actions": {
@@ -261,7 +265,7 @@
           "description": "Enter your details about this bounty.",
           "notice": "Enter a title and description for your bounty. A ",
           "notice2":
-            "{markdownLink} preview will automatically be generated as you type, which you can view by clicking the preview button. Feel free to use the description template provided below, or clear the field to create your own.",
+            " preview will automatically be generated as you type, which you can view by clicking the preview button. Feel free to use the description template provided below, or clear the field to create your own.",
           "form": {
             "title": {
               "label": "Title",
@@ -407,6 +411,10 @@
           }
         }
       }
+    },
+    "dashboard": {
+      "profile_strength": "Profile strength",
+      "edit_profile": "Edit profile"
     }
   },
   "errors": {
