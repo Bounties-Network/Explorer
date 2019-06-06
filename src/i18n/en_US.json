@@ -246,6 +246,167 @@
           }
         }
       }
+    },
+    "create_bounty": {
+      "deposit_warning":
+        "Deposit amount must at least match the payout amount.",
+      "actions": {
+        "create": "Create Bounty",
+        "draft": "Create Draft",
+        "update": "Update Draft"
+      },
+      "sections": {
+        "about": {
+          "title": "ABOUT",
+          "description": "Enter your details about this bounty.",
+          "notice": "Enter a title and description for your bounty. A ",
+          "notice2":
+            "{markdownLink} preview will automatically be generated as you type, which you can view by clicking the preview button. Feel free to use the description template provided below, or clear the field to create your own.",
+          "form": {
+            "title": {
+              "label": "Title",
+              "placeholder": "Enter title..."
+            },
+            "description": {
+              "label": "Description"
+            }
+          }
+        },
+        "contact": {
+          "title": "CONTACT",
+          "description":
+            "Who will be the primary contact for bounty questions and submissions?",
+          "form": {
+            "issuer_name": {
+              "label": "Contact name",
+              "placeholder": "Enter name..."
+            },
+            "issuer_email": {
+              "label": "Contact email",
+              "placeholder": "Enter email..."
+            }
+          }
+        },
+        "details": {
+          "title": "DETAILS",
+          "description": "How should this bounty be classified?",
+          "notice":
+            "Enter the categories and difficulty level for the bounty. Since difficulty can be fairly subjective, it is helpful to provide more details around required experience within your bounty description.",
+          "form": {
+            "categories": {
+              "label": "Bounty category",
+              "placeholder": "Create or Select category..."
+            },
+            "experience_level": {
+              "label": "Difficulty",
+              "options": {
+                "beginner": "Beginner",
+                "intermediate": "Intermediate",
+                "expert": "Expert"
+              }
+            }
+          }
+        },
+        "revisions": {
+          "title": "REVISIONS",
+          "description": "Will you require revisions?",
+          "notice":
+            "Enter the maximum number of revisions you may require for this task, in order to help set expectations for the contributors."
+        },
+        "attachments": {
+          "title": "ATTACHMENTS",
+          "description":
+            "Does this bounty require any external assets for completion?",
+          "notice":
+            "Attach any files or links that may be helpful as references or necessary for a contributor to complete the bounty.",
+          "form": {
+            "url": {
+              "label": "Web link",
+              "placeholder": "Enter URL..."
+            },
+            "file": {
+              "label": "Associated file"
+            }
+          }
+        },
+        "deadline": {
+          "title": "DEADLINE",
+          "description": "When will this bounty be due?",
+          "notice":
+            "Enter the date and time for this bounty's deadline {timezone, select, null { } other {(timezone={timezone})}}"
+        },
+        "privacy": {
+          "title": "PRIVACY",
+          "description": "Will submissions be visible to everyone?",
+          "notice": "Submissions can be hidden from other users if desired.",
+          "form": {
+            "fulfillers_need_approval": {
+              "label": "Pre-approval Required",
+              "placeholder": "Enter URL...",
+              "options": {
+                "yes": "Yes",
+                "no": "No"
+              }
+            },
+            "private_fullfillments": {
+              "label": "Visibility",
+              "description":
+                "Do you want to approve people before they can fulfill your bounty?",
+              "notice":
+                "If you require approval, you will be notified when a user indicates their intent to submit, and will be required to approve them before they are allowed to complete your bounty.",
+              "options": {
+                "public": "Public",
+                "hidden": "Hidden"
+              }
+            }
+          }
+        },
+        "payout": {
+          "title": "PAYOUT",
+          "description": "Select payout method and amount.",
+          "notice":
+            "Select the token and enter the amount you will award for completion of this bounty.",
+          "form": {
+            "token_contract": {
+              "label_default": "Token Contract Address",
+              "label_custom": "{token} Contract Address",
+              "placeholder": "Enter token contract address..."
+            },
+            "method": {
+              "label": "Payout Method"
+            },
+            "fulfillment_amount": {
+              "label":
+                "Payout amount {hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
+              "placeholder": "Enter amount..."
+            },
+            "token_contract_2": {
+              "label": "Token",
+              "placeholder": "Select token or enter token address..."
+            }
+          }
+        },
+        "save": {
+          "title": "SAVE OR SUBMIT",
+          "description":
+            "When would you like to submit and activate the bounty?",
+          "notice":
+            "If you wish to activate the bounty later, you can save it as a draft. The requirements for a bounty can only be edited while it is in the draft stage. At minimum, your deposit amount must match your payout amount.",
+          "form": {
+            "activate_now": {
+              "label": "When to activate",
+              "options": {
+                "now": "Now",
+                "later": "Later"
+              }
+            },
+            "balance": {
+              "label": "Deposit amount (ETH or whole tokens)",
+              "placeholder": "Enter amount..."
+            }
+          }
+        }
+      }
     }
   },
   "errors": {

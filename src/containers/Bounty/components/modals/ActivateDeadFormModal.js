@@ -75,7 +75,7 @@ class ActivateDeadFormModal extends React.Component {
             {submitFailed &&
               invalid && (
                 <Text inputLabel color="red">
-                  {intl.get('actions.errors.form_error')}
+                  {intl.get('errors.form_error')}
                 </Text>
               )}
             <Button
