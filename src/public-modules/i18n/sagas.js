@@ -2,6 +2,7 @@ import intl from 'react-intl-universal';
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { INIT_TRANSLATIONS, UPDATE_LOCALE } from './constants';
 import { actions } from './index';
+import moment from 'moment';
 
 // app locale data
 const locales = {
@@ -16,6 +17,7 @@ export function* initTranslations(action) {
         urlLocaleKey: 'lang',
         cookieLocaleKey: 'lang'
       });
+  moment.locale(locale.slice(0, 2));
   yield intl.init({
     currentLocale: locale,
     locales
@@ -23,6 +25,7 @@ export function* initTranslations(action) {
   yield put(actions.translationLoaded(locale));
 }
 export function* changeLocale(action) {
+  moment.locale(action.locale.slice(0, 2));
   yield intl.init({
     ...intl.getInitOptions(),
     currentLocale: action.locale

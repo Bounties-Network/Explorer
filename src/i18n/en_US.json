@@ -686,6 +686,7 @@
     "form_error": "Fix errors before submitting."
   },
   "common": {
+    "description": "Description",
     "expired": "expired",
     "remaining": "remaining",
     "difficulty": "difficulty",

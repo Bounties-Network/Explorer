@@ -38,8 +38,7 @@ const SubmissionItem = props => {
   const formattedTime = moment
     .utc(created, 'YYYY-MM-DDThh:mm:ssZ')
     .local()
-    .format('MM/DD/YYYY');
-
+    .format('L');
   let actionButton = null;
   if (
     bountyBelongsToLoggedInUser &&
@@ -159,7 +158,7 @@ const SubmissionItem = props => {
           ) : null}
         </div>
         <div className={`${styles.labelGroup} ${styles.submissionContents}`}>
-          <Text inputLabel>Description</Text>
+          <Text inputLabel>{intl.get('common.description')}</Text>
           <Text color="darkGrey" className={styles.submissionDescription}>
             {description || 'N/A'}
           </Text>
