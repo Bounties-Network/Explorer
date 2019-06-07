@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import config from 'public-modules/config';
 import { Modal, Text, Button } from 'components';
+import intl from 'react-intl-universal';
 
 const WrongNetwork = props => {
   const { visible, onClose, pageLevel, closable } = props;
@@ -16,11 +17,15 @@ const WrongNetwork = props => {
       fixed={!pageLevel}
     >
       <Modal.Header closable={closable} icon={['fal', 'wifi']}>
-        <Modal.Message>Foreign network detected</Modal.Message>
+        <Modal.Message>
+          {intl.get('sections.login.modals.wrong_network.title')}
+        </Modal.Message>
       </Modal.Header>
       <Modal.Body>
         <Modal.Description>
-          {config.networkName} is currently operational on
+          {intl.get('sections.login.modals.wrong_network.description1', {
+            networkName: config.networkName
+          })}
           {config.requiredNetwork ? (
             <Text weight="fontWeight-bold" inline>
               {' '}
@@ -32,7 +37,7 @@ const WrongNetwork = props => {
                 {' '}
                 Rinkeby
               </Text>{' '}
-              and
+              {intl.get('common.and')}
               <Text weight="fontWeight-bold" inline>
                 {' '}
                 Mainnet.
@@ -40,12 +45,12 @@ const WrongNetwork = props => {
             </div>
           )}
           <br />
-          Please switch your active wallet network.
+          {intl.get('sections.login.modals.wrong_network.description2')}
         </Modal.Description>
       </Modal.Body>
       {closable && (
         <Modal.Footer>
-          <Button onClick={onClose}>Close</Button>
+          <Button onClick={onClose}>{intl.get('actions.close')}</Button>
         </Modal.Footer>
       )}
     </Modal>

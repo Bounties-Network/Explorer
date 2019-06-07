@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getMobileOperatingSystem } from 'utils/helpers';
 import { Modal, Text, Button } from 'components';
+import intl from 'react-intl-universal';
 
 const WalletRequired = props => {
   const { visible, onClose, closable } = props;
@@ -32,35 +33,39 @@ const WalletRequired = props => {
     >
       <Modal.Header closable icon={['fal', 'wallet']}>
         <Modal.Message>
-          Web3 enabled browser and secure wallet required.
+          {intl.get('sections.login.modals.wallet_required.title')}
         </Modal.Message>
       </Modal.Header>
       <Modal.Body>
         <Modal.Description>
-          In order to use
+          {intl.get('sections.login.modals.wallet_required.description1')}
           <Text weight="fontWeight-bold" inline>
             {' '}
             bounties.network
           </Text>
-          , please install a secure wallet such as
+          {intl.get('sections.login.modals.wallet_required.description2')}
           <Text link src={walletLink}>
             {' '}
             {walletName}.{' '}
           </Text>
-          If you&#39;d like help getting set up, take a look at our{' '}
+          {intl.get('sections.login.modals.wallet_required.description3')}
           <Text link src="https://bounties.network/gettingStarted">
-            Getting Started Guide.
+            {intl.get('sections.login.modals.wallet_required.guide')}
           </Text>
         </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
         {closable && (
           <Button margin onClick={onClose}>
-            Cancel
+            {intl.get('actions.cancel')}
           </Button>
         )}
         <a href={walletLink} target="_blank">
-          <Button type="primary">Visit {walletName}</Button>
+          <Button type="primary">
+            {intl.get('sections.login.modals.wallet_required.actions.visit', {
+              walletName
+            })}
+          </Button>
         </a>
       </Modal.Footer>
     </Modal>

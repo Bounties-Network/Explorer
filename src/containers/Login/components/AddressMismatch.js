@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal, Text, Button, Avatar } from 'components';
 import { shortenAddress } from 'utils/helpers';
 import styles from './baseStyles.module.scss';
+import intl from 'react-intl-universal';
 
 const AddressMismatch = props => {
   const {
@@ -27,15 +28,21 @@ const AddressMismatch = props => {
       fixed={!pageLevel}
     >
       <Modal.Header closable={closable} icon={['fal', 'address-card']}>
-        <Modal.Heading>Wallet address does not match</Modal.Heading>
+        <Modal.Heading>
+          {intl.get('sections.login.modals.address_mismatch.title')}
+        </Modal.Heading>
       </Modal.Header>
       <Modal.Body>
         <Modal.Description>
-          <Text inline>You were previously signed in to </Text>
-          <Text inline weight="fontWeight-bold">
-            bounties.network
+          <Text inline>
+            {intl.get('sections.login.modals.address_mismatch.description1')}
           </Text>
-          <Text inline> using the following address:</Text>
+          <Text inline weight="fontWeight-bold">
+            {intl.get('sections.login.modals.address_mismatch.description2')}
+          </Text>
+          <Text inline>
+            {intl.get('sections.login.modals.address_mismatch.description3')}
+          </Text>
           <div>
             <Avatar
               className={styles.avatar}
@@ -46,21 +53,20 @@ const AddressMismatch = props => {
             />
           </div>
           <Text inline>
-            This address does not match your current wallet account address:
+            {intl.get('sections.login.modals.address_mismatch.description4')}
           </Text>
           <Text inline weight="fontWeight-bold" color="black">
             {' '}
             {shortenAddress(currentAddress)}
           </Text>
           <Text inline>
-            . Please switch your wallet account, or log out of the Bounties
-            Network and sign in using a different address.
+            {intl.get('sections.login.modals.address_mismatch.description5')}
           </Text>
         </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
         <Button type="primary" onClick={logout} loading={loggingOut}>
-          Logout
+          {intl.get('actions.logout')}
         </Button>
       </Modal.Footer>
     </Modal>

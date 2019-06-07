@@ -21,7 +21,10 @@
     "submit": "Submit",
     "extend_deadline": "Extend Deadline",
     "increase_payout": "Increase Payout",
-    "transfer_ownership": "Transfer Ownership"
+    "transfer_ownership": "Transfer Ownership",
+    "logout": "Logout",
+    "close": "Close",
+    "continue": "Continue"
   },
   "sections": {
     "activity": {
@@ -441,6 +444,66 @@
         "title": "Uh oh, something happened",
         "description": "Try to refresh the page and try again"
       }
+    },
+    "login": {
+      "modals": {
+        "details": {
+          "title": "Profile Details",
+          "description":
+            "Add some profile details about yourself, so that others on the platform have an idea of your background and skillset, and can find you elsewhere online.",
+          "description2":
+            "Welcome to the Bounties Network! We&#39;re excited to see what you bounty. <br /> <br /> Before you get started, we encourage you to add some profile details\n            about yourself, so that others on the platform have an idea of your background and skillset.",
+          "actions": {
+            "skip": "Skip",
+            "add": "Add profile details"
+          }
+        },
+        "address_mismatch": {
+          "title": "Wallet address does not match",
+          "description1": "You were previously signed in to ",
+          "description2": "bounties.network",
+          "description3": " using the following address:",
+          "description4":
+            "This address does not match your current wallet account address:",
+          "description5":
+            ". Please switch your wallet account, or log out of the Bounties Network and sign in using a different address."
+        },
+        "error": {
+          "title": "Something happened. Try again later."
+        },
+        "sign_in": {
+          "title": "Sign in and verify address",
+          "description":
+            "After clicking \"Continue\", a wallet dialogue will prompt you to verify your unique address. Once you verify, you&#39;ll be signed in to the network."
+        },
+        "signing_in": {
+          "title":
+            "Complete signature request to verify your address and sign in"
+        },
+        "unlock": {
+          "title": "Secure Wallet Access",
+          "description1":
+            "You&#39;ll need to log in and/or grant access to your secure wallet (e.g.",
+          "description2":
+            ") in order to use {pageLevel, select, null {parts of} other { }} {networkName}"
+        },
+        "wallet_required": {
+          "title": "Web3 enabled browser and secure wallet required.",
+          "description1": "In order to use",
+          "description2": ", please install a secure wallet such as",
+          "description3":
+            "If you'd like help getting set up, take a look at our ",
+          "guide": "Getting Started Guide.",
+          "actions": {
+            "visit": "Visit {walletName}"
+          }
+        },
+        "wrong_network": {
+          "title": "Foreign network detected",
+          "description1": "{networkName} is currently operational on",
+          "description2": "Please switch your active wallet network."
+        }
+      }
     }
   },
   "errors": {
@@ -451,6 +514,7 @@
     "expired": "expired",
     "remaining": "remaining",
     "difficulty": "difficulty",
-    "expected": "expected"
+    "expected": "expected",
+    "and": "and"
   }
 }

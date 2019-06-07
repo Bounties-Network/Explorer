@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'components';
+import intl from 'react-intl-universal';
 
 const SignIn = props => {
   const { visible, onClose, signIn } = props;
@@ -8,18 +9,18 @@ const SignIn = props => {
   return (
     <Modal visible={visible} size="small" dismissable onClose={onClose}>
       <Modal.Header closable icon={['fal', 'sign-in']}>
-        <Modal.Message>Sign in and verify address</Modal.Message>
+        <Modal.Message>
+          {intl.get('sections.login.modals.sign_in.title')}
+        </Modal.Message>
       </Modal.Header>
       <Modal.Body>
         <Modal.Description>
-          After clicking "Continue", a wallet dialogue will prompt you to verify
-          your unique address. Once you verify, you&#39;ll be signed in to the
-          network.
+          {intl.get('sections.login.modals.sign_in.description')}
         </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
         <Button type="primary" onClick={signIn}>
-          Continue
+          {intl.get('actions.continue')}
         </Button>
       </Modal.Footer>
     </Modal>

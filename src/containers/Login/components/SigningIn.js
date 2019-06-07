@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'components';
+import intl from 'react-intl-universal';
 
 const SigningIn = props => {
   const { visible } = props;
@@ -9,7 +10,7 @@ const SigningIn = props => {
     <Modal visible={visible} size="small">
       <Modal.Header loadingIcon>
         <Modal.Message>
-          Complete signature request to verify your address and sign in
+          {intl.get('sections.login.modals.signing_in.title')}
         </Modal.Message>
       </Modal.Header>
     </Modal>
