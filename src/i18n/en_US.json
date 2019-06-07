@@ -10,6 +10,7 @@
     "view_all": "View all",
     "accept": "Accept",
     "reject": "Reject",
+    "filter": "Filter",
     "rate_fulfiller": "Rate fulfiller",
     "rate_issuer": "Rate issuer",
     "activate": "Activate",
@@ -415,6 +416,17 @@
     "dashboard": {
       "profile_strength": "Profile strength",
       "edit_profile": "Edit profile"
+    },
+    "explorer_body": {
+      "bounty_count": "{count, plural, =1 {bounty} other {bounties}}",
+      "zero_state": {
+        "title": "No Bounties Found",
+        "description": "Update your search filters to see more bounties"
+      },
+      "zero_state_error": {
+        "title": "Uh oh, something happened",
+        "description": "Try a new filter or refresh the page and try again"
+      }
     }
   },
   "errors": {
