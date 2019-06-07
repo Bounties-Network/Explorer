@@ -673,6 +673,12 @@
         "description":
           "It looks like you don't have any submissions. Come back after you have ${currentTab} a fulfillment!"
       }
+    },
+    "user_stats": {
+      "bounties_issued": "Bounties issued",
+      "bounties_completed": "Bounties completed",
+      "awarded": "Awarded",
+      "earned": "Earned"
     }
   },
   "errors": {
@@ -685,5 +691,9 @@
     "difficulty": "difficulty",
     "expected": "expected",
     "and": "and"
+  },
+  "formats": {
+    "amount": "{value, number}",
+    "usd": "{value, number, USD}"
   }
 }

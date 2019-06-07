@@ -4,5 +4,9 @@
     "dashboard": "Kontrolna ploča",
     "leaderboard": "Rezultati",
     "profile": "Moj profil"
+  },
+  "formats": {
+    "amount": "{value, number}",
+    "usd": "{value, number, USD}"
   }
 }
