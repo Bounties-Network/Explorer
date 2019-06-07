@@ -515,6 +515,145 @@
         "description":
           "Once you start using the platform, notifications will show here."
       }
+    },
+    "profile": {
+      "about": {
+        "title": "About",
+        "organization": "Organization",
+        "languages": "Languages spoken"
+      },
+      "elsewhere": {
+        "title": "Elsewhere"
+      },
+      "network": {
+        "title": "Network Stats",
+        "descriptions": {
+          "issuer": {
+            "acceptance": "Fulfilment acceptance rate",
+            "rating": "Average fulfiller rating received",
+            "ratingGiven": "Average issuer rating given"
+          },
+          "fulfiller": {
+            "acceptance": "Submission acceptance rate",
+            "rating": "Average issuer rating received",
+            "ratingGiven": "Average fulfiller rating given"
+          }
+        }
+      },
+      "tabs": {
+        "bounties": "Bounties created",
+        "submissions": "Submissions"
+      },
+      "reviews": {
+        "title": "{reviewType} ratings received",
+        "zero_state": {
+          "title": "No Reviews Found",
+          "description":
+            "We didn't find any reviews associated with this action."
+        }
+      },
+      "zero_state": {
+        "title": "No User Found",
+        "description": "Check that the address is correct and try again"
+      },
+      "zero_state_error": {
+        "title": "Error",
+        "description": "Please try again"
+      }
+    },
+    "settings": {
+      "emails": {
+        "title": "EMAIL NOTIFICATIONS",
+        "description":
+          "What notifications would you like to receive via email?",
+        "notice":
+          "Opt in or out of the notifications you wish to receive via email. We recommend sticking with the default settings so that you can be informed of important activity relevant to you on the network.",
+        "actions": {
+          "save": "Save Email Preferences"
+        },
+        "notification_options": {
+          "rating_received": "User issues you a rating",
+          "transfer_recipient": "Bounty transfer to another user completes",
+          "bounty_comment_received": "Bounty receives a comment",
+          "bounty_expired": "Bounty expires",
+          "fulfillment_updated_issuer":
+            "Fulfiller, updates their fulfillment on your bounty",
+          "fulfillment_submitted_issuer":
+            "Fulfiller, submits a new fulfillment to your bounty",
+          "fulfillment_accepted_fulfiller": "Issuer accepts your fulfillment",
+          "contribution_received":
+            "Another user contributes funds to your bounty",
+          "bounty_completed": "Bounty no longer has enough funds to pay out",
+          "application_received": "New worker applies to bounty",
+          "application_accepted_applicant": "Issuer accepts your application",
+          "application_rejected_applicant": "Issuer rejects your application",
+          "activity": "General activity (updated profile, created bounty, etc.)"
+        }
+      },
+      "user": {
+        "photo": {
+          "title": "PROFILE PHOTO",
+          "label": "Image upload failed, please try again."
+        },
+        "about": {
+          "title": "ABOUT",
+          "description": "What would you like people to know about you?",
+          "notice":
+            "Enter some of your personal details so that the community can get to know you.",
+          "form": {
+            "name": {
+              "label": "Name",
+              "placeholder": "Enter name..."
+            },
+            "organization": {
+              "label": "Organization",
+              "placeholder": "Enter organization..."
+            },
+            "languages": {
+              "label": "Languages",
+              "placeholder": "Choose languages..."
+            }
+          }
+        },
+        "skills": {
+          "title": "SKILLS",
+          "description":
+            "What are some of your professional or technical skills?",
+          "notice":
+            "Enter or select the skills for which you are proficient. This will help others on the network be confident in your ability to fulfill certain types of bounties.",
+          "label": "Skills",
+          "placeholder": "Create or Select a skill..."
+        },
+        "social": {
+          "title": "SOCIAL",
+          "description":
+            "Do you have any other social profiles you would like displayed?",
+          "form": {
+            "web": {
+              "label": "Personal website"
+            }
+          }
+        },
+        "contact": {
+          "title": "CONTACT",
+          "description":
+            "Where would you like to receive status notifications about your bounties and fulfillments?",
+          "form": {
+            "email": {
+              "label": "Contact email",
+              "placeholder": "Enter email..."
+            },
+            "marketing": {
+              "label":
+                "I would also like to receive relevant bounty suggestions and platform updates"
+            }
+          },
+          "actions": {
+            "submit": "Submit Details",
+            "update": "Update Profile"
+          }
+        }
+      }
     }
   },
   "errors": {

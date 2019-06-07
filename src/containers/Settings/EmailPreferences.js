@@ -11,6 +11,7 @@ import { actions as settingsActions } from 'public-modules/Settings';
 import { emailPreferencesSelector } from 'public-modules/Settings/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { EMAIL_NOTIFICATION_OPTIONS } from './constants';
+import intl from 'react-intl-universal';
 
 const map = fpMap.convert({ cap: false });
 
@@ -37,7 +38,9 @@ let EmailPreferencesComponent = props => {
           name={key}
           className={key === 'activity' ? styles.hide : ''}
           component={PreferencesToggle}
-          label={value}
+          label={intl.get(
+            'sections.settings.emails.notification_options.' + value
+          )}
         />
       ),
       EMAIL_NOTIFICATION_OPTIONS
@@ -47,14 +50,12 @@ let EmailPreferencesComponent = props => {
   return (
     <form onSubmit={handleSubmit(handleSaveEmailPreferences)}>
       <FormSection>
-        <FormSection.Section title="EMAIL NOTIFICATIONS">
+        <FormSection.Section title={intl.get('sections.settings.emails.title')}>
           <FormSection.Description>
-            What notifications would you like to receive via email?
+            {intl.get('sections.settings.emails.description')}
           </FormSection.Description>
           <FormSection.SubText>
-            Opt in or out of the notifications you wish to receive via email. We
-            recommend sticking with the default settings so that you can be
-            informed of important activity relevant to you on the network.
+            {intl.get('sections.settings.emails.notice')}
           </FormSection.SubText>
           <FormSection.InputGroup>{renderToggles()}</FormSection.InputGroup>
         </FormSection.Section>
@@ -65,11 +66,11 @@ let EmailPreferencesComponent = props => {
           disabled={saving || (submitFailed && invalid)}
           loading={saving}
         >
-          Save Email Preferences
+          {intl.get('sections.settings.emails.actions.save')}
         </Button>
         {submitFailed && invalid ? (
           <Text inputLabel color="red" className={styles.submitError}>
-            Fix errors before submitting.
+            {intl.get('errors.form_error')}
           </Text>
         ) : null}
       </div>
