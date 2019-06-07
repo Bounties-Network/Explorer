@@ -504,6 +504,17 @@
           "description2": "Please switch your active wallet network."
         }
       }
+    },
+    "notifications": {
+      "title": "Notifications",
+      "actions": {
+        "mark_read": "Mark all as read"
+      },
+      "zero_state": {
+        "title": "You have no notifications",
+        "description":
+          "Once you start using the platform, notifications will show here."
+      }
     }
   },
   "errors": {
