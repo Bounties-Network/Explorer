@@ -101,8 +101,7 @@ const SubmissionsCard = props => {
         <ZeroState
           title={'There are 0 submissions'}
           text={'Submissions to this bounty will appear here.'}
-          iconColor="blue"
-          icon={['fal', 'level-up']}
+          icon="inbox"
         />
       </div>
     );
@@ -115,8 +114,7 @@ const SubmissionsCard = props => {
         <ZeroState
           title={'There are 0 submissions'}
           text={'Submissions to this bounty will appear here.'}
-          iconColor="blue"
-          icon={['fal', 'level-up']}
+          icon="inbox"
         />
       </div>
     );
@@ -148,8 +146,7 @@ const SubmissionsCard = props => {
             only be visible to you. Additionally, fulfillers will be able \
             to see the submissions that they created.'
             }
-            iconColor="blue"
-            icon={['fal', 'lock']}
+            icon="inbox"
           />
         </div>
       );
@@ -162,8 +159,7 @@ const SubmissionsCard = props => {
           <ZeroState
             title={'Submissions are private'}
             text={'The submissions for this bounty have been set to private.'}
-            iconColor="blue"
-            icon={['fal', 'lock']}
+            icon="lock"
           />
         </div>
       );

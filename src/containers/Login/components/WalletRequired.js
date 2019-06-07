@@ -30,7 +30,7 @@ const WalletRequired = props => {
       onClose={onClose}
       closable={closable}
     >
-      <Modal.Header closable icon={['fal', 'wallet']}>
+      <Modal.Header closable icon="wallet">
         <Modal.Message>
           Web3 enabled browser and secure wallet required.
         </Modal.Message>

@@ -117,10 +117,9 @@ const ExplorerBodyComponent = props => {
         <div className={styles.bountyListCentered}>
           <ZeroState
             className={styles.centeredItem}
-            iconColor="blue"
             title="No Bounties Found"
             text="Update your search filters to see more bounties"
-            icon={['fal', 'expand']}
+            icon="hive"
           />
         </div>
       ) : null}
@@ -129,10 +128,9 @@ const ExplorerBodyComponent = props => {
           <ZeroState
             className={styles.centeredItem}
             type="error"
-            iconColor="white"
             title="Uh oh, something happened"
             text="Try a new filter or refresh the page and try again"
-            icon={['fal', 'exclamation-triangle']}
+            icon="error"
           />
         </div>
       ) : null}
