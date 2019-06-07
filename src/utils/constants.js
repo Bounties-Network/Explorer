@@ -29,6 +29,9 @@ What should bounty issuers submit as proof that they have completed the bounty? 
 
 ### Things to Note
 Is there any other information you'd like potential fulfillers to know about you or the bounty? Does the bounty require any additional materials that either party needs to provide or information exchanged for external communication to occur?
+
+### Restrictions
+Will your bounty be available for anyone to fulfill? Should it be restricted to a particular group of people based on their geography, attendance at an event, or membership within a community?
 `;
 
 export const NOTIFICATION_ID = {
