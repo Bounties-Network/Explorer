@@ -26,7 +26,7 @@ const AddressMismatch = props => {
       onClose={onClose}
       fixed={!pageLevel}
     >
-      <Modal.Header closable={closable} icon={['fal', 'address-card']}>
+      <Modal.Header closable={closable} icon="address">
         <Modal.Heading>Wallet address does not match</Modal.Heading>
       </Modal.Header>
       <Modal.Body>

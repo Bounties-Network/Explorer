@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import styles from './Modal.module.scss';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { Text, Loader } from 'components';
+import { Text, Loader, SVGIllustration } from 'components';
 import { includes, each, some, map } from 'lodash';
 
 const ModalContext = React.createContext({});
@@ -28,7 +28,7 @@ class Header extends React.Component {
             <div className={children ? styles.headerContent : ''}>
               {icon && !loadingIcon ? (
                 <div className={styles.iconHeader}>
-                  <FontAwesomeIcon icon={icon} />
+                  <SVGIllustration icon={icon} />
                 </div>
               ) : null}
               {loadingIcon ? (
@@ -52,7 +52,7 @@ class Header extends React.Component {
 Header.propTypes = {
   closable: PropTypes.bool,
   loadingIcon: PropTypes.bool,
-  icon: PropTypes.array
+  icon: PropTypes.string
 };
 
 class Heading extends React.Component {

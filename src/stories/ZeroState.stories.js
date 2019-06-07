@@ -105,9 +105,10 @@ storiesOf('Card', module).add('ZeroState', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The <code>icon</code> prop will determine the icon to be displayed. It
-      must be an array with a font awesome icon (e.g{' '}
-      <code>['['fal', 'trophy-alt']</code>).
+      The <code>icon</code> prop will determine the icon to be displayed. It can
+      be an array with a font awesome icon (e.g{' '}
+      <code>['['fal', 'trophy-alt']</code>), or string with the name of one of
+      our custom SVG icons (e.g <code>"trophy"</code>)
     </Text>
 
     <div className="sb-component-group sb-button-group">
@@ -139,9 +140,9 @@ storiesOf('Card', module).add('ZeroState', () => (
       typeScale="Body"
       lineHeight="lineHeight-default"
     >
-      The <code>iconColor</code> prop will determine the color of the icon to be
-      displayed. It must be an array with a font awesome icon (e.g{' '}
-      <code>['fal', 'trophy-alt']</code>).
+      The <code>iconColor</code> prop will determine the color of the
+      FontAwesome icon to be displayed. It must be an array with a font awesome
+      icon (e.g <code>['fal', 'trophy-alt']</code>).
     </Text>
 
     <div className="sb-component-group sb-button-group">

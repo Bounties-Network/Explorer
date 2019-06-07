@@ -26,9 +26,8 @@ function RequireLoginComponentHOC(WrappedComponent) {
                     title={'Sign in to use the Bounties Network'}
                     action
                     actionText={'Sign In'}
-                    iconColor="blue"
                     onActionClick={() => showLogin(true)}
-                    icon={['fal', 'sign-in']}
+                    icon="lock"
                   >
                     <div>
                       <ZeroState.BodyText>

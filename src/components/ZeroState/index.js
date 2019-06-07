@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ZeroState.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Text, Button } from 'components';
+import { Text, Button, SVGIllustration } from 'components';
 
 const BodyText = props => {
   return (
@@ -16,6 +16,7 @@ const ZeroState = props => {
   const {
     type,
     icon,
+    faIcon,
     action,
     title,
     text,
@@ -35,8 +36,14 @@ const ZeroState = props => {
     <div className={`${styles.zeroState} ${className}`}>
       {icon ? (
         <div className={styles.icon}>
+          <SVGIllustration icon={icon} />
+        </div>
+      ) : null}
+
+      {faIcon ? (
+        <div className={styles.icon}>
           <Text typeScale="h2" color={iconColor}>
-            <FontAwesomeIcon icon={icon} className={styles.iconStyles} />
+            <FontAwesomeIcon icon={faIcon} className={styles.iconStyles} />
           </Text>
         </div>
       ) : null}
@@ -68,7 +75,8 @@ ZeroState.propTypes = {
   type: PropTypes.oneOf(['zero', 'error']),
   className: PropTypes.string,
   onActionClick: PropTypes.func,
-  icon: PropTypes.array,
+  icon: PropTypes.string,
+  faIcon: PropTypes.array,
   iconColor: PropTypes.string,
   title: PropTypes.string,
   text: PropTypes.string,
@@ -77,7 +85,6 @@ ZeroState.propTypes = {
 };
 
 ZeroState.defaultProps = {
-  iconColor: 'lightGrey',
   onActionClick: () => {}
 };
 

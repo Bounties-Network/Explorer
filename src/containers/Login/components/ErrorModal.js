@@ -7,7 +7,7 @@ const ErrorModal = props => {
 
   return (
     <Modal visible={visible} size="small" dismissable onClose={onClose}>
-      <Modal.Header closable icon={['fal', 'exclamation-triangle']} />
+      <Modal.Header closable icon="error" />
       <Modal.Body>
         <Text
           typeScale="h4"

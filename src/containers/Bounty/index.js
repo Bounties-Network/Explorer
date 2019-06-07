@@ -155,7 +155,7 @@ class BountyComponent extends React.Component {
             iconColor="red"
             title="Could not find that bounty"
             text="Try refreshing, or make sure your url is correct"
-            icon={['fal', 'exclamation-triangle']}
+            icon="error"
           />
         </div>
       );
