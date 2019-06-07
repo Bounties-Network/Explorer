@@ -3,6 +3,7 @@ import styles from './ReviewModal.module.scss';
 import { map } from 'lodash';
 import { Button, ListGroup, Modal, ZeroState } from 'components';
 import ReviewItem from './ReviewItem';
+import intl from 'react-intl-universal';
 
 let ReviewsModal = props => {
   const {
@@ -38,8 +39,8 @@ let ReviewsModal = props => {
       type="error"
       icon={['fal', 'star']}
       iconColor="red"
-      title="No Reviews Found"
-      text="We didn't find any reviews associated with this action."
+      title={intl.get('sections.profile.reviews.zero_state.title')}
+      text={intl.get('sections.profile.reviews.zero_state.description')}
     />
   );
 
@@ -52,7 +53,7 @@ let ReviewsModal = props => {
         {reviews.length < count && (
           <div className={styles.loadMoreButton}>
             <Button loading={loadingMore} onClick={loadMore}>
-              Load More
+              {intl.get('actions.load_more')}
             </Button>
           </div>
         )}

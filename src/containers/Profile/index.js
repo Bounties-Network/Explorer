@@ -19,6 +19,7 @@ import { locationNonceSelector } from 'layout/App/selectors';
 import { SEOHeader } from './components';
 import { actions } from './reducer';
 import { queryStringToObject } from 'utils/locationHelpers';
+import intl from 'react-intl-universal';
 
 class ProfileComponent extends React.Component {
   constructor(props) {
@@ -198,8 +199,8 @@ class ProfileComponent extends React.Component {
           <ZeroState
             className={styles.centeredItem}
             iconColor="blue"
-            title="No User Found"
-            text="Check that the address is correct and try again"
+            title={intl.get('sections.profile.zero_state.title')}
+            text={intl.get('sections.profile.zero_state.description')}
             icon={['fal', 'exclamation-triangle']}
           />
         </div>
@@ -212,8 +213,8 @@ class ProfileComponent extends React.Component {
           <ZeroState
             className={styles.centeredItem}
             iconColor="red"
-            title="Error"
-            text="Please try again"
+            title={intl.get('sections.profile.zero_state_error.title')}
+            text={intl.get('sections.profile.zero_state_error.description')}
             icon={['fal', 'exclamation-triangle']}
           />
         </div>

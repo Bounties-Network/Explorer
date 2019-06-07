@@ -7,10 +7,11 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { ReviewsModal } from '../';
 import { Circle, Switch, Text } from 'components';
 import { capitalize } from 'lodash';
-import { descriptionText, displayFormat } from './constants';
+import { displayFormat } from './constants';
 import { profileUISelector } from 'containers/Profile/selectors';
 import { reviewsStateSelector } from 'public-modules/Reviews/selectors';
 import { actions as reviewsActions } from 'public-modules/Reviews';
+import intl from 'react-intl-universal';
 
 function formatInput(value, format) {
   if (value === null) {
@@ -35,7 +36,9 @@ const NetworkStatsComponent = props => {
   const { loadingMore, loadingMoreError, reviews, count } = reviewsState;
 
   const renderCircle = key => {
-    const text = descriptionText[switchValue][key];
+    const text = intl.get(
+      `sections.profile.network.descriptions.${switchValue}.${key}`
+    );
     let value = stats[switchValue][key];
     let color = value >= 0.8 ? 'green' : value >= 0.5 ? 'orange' : 'red';
 
@@ -105,7 +108,7 @@ const NetworkStatsComponent = props => {
       />
       <div className={styles.networkStatsHeader}>
         <Text typeScale="h4" color="black" weight="fontWeight-medium">
-          Network Stats
+          {intl.get('sections.profile.network.title')}
         </Text>
 
         <Switch
