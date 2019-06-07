@@ -427,6 +427,20 @@
         "title": "Uh oh, something happened",
         "description": "Try a new filter or refresh the page and try again"
       }
+    },
+    "leaderboard": {
+      "title": "Leaderboard"
+    },
+    "leaderboard_card": {
+      "zero_state": {
+        "title": "No Results Yet",
+        "description":
+          "As bounties are issues and submissions are completed, this leaderboard will begin to populate"
+      },
+      "zero_state_error": {
+        "title": "Uh oh, something happened",
+        "description": "Try to refresh the page and try again"
+      }
     }
   },
   "errors": {

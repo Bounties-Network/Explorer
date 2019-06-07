@@ -13,6 +13,7 @@ import {
 import { rootLeaderboardUISelector } from './selectors';
 import { actions } from 'public-modules/Leaderboard';
 import config from 'public-modules/config';
+import intl from 'react-intl-universal';
 
 const map = fpMap.convert({ cap: false });
 
@@ -95,7 +96,7 @@ const LeaderboardCardComponent = props => {
       {leaderboard[toggleValue].length < count[toggleValue] && (
         <div className={styles.loadMoreButton}>
           <Button loading={loadingMore} onClick={loadMore}>
-            Load More
+            {intl.get('actions.load_more')}
           </Button>
         </div>
       )}
@@ -109,8 +110,8 @@ const LeaderboardCardComponent = props => {
           <ZeroState
             className={styles.zeroState}
             iconColor="blue"
-            title="No Results Yet"
-            text="As bounties are issues and submissions are completed, this leaderboard will begin to populate"
+            title={intl.get('section.leaderboard_card.zero_state.title')}
+            text={intl.get('section.leaderboard_card.zero_state.description')}
             icon={['fal', 'trophy-alt']}
           />
         </div>
@@ -136,8 +137,10 @@ const LeaderboardCardComponent = props => {
             className={styles.zeroState}
             type="error"
             iconColor="white"
-            title="Uh oh, something happened"
-            text="Try to refresh the page and try again"
+            title={intl.get('section.leaderboard_card.zero_state_error.title')}
+            text={intl.get(
+              'section.leaderboard_card.zero_state_error.description'
+            )}
             icon={['fal', 'exclamation-triangle']}
           />
         </div>
