@@ -331,8 +331,9 @@ class ModalDemo extends React.Component {
           typeScale="Body"
           lineHeight="lineHeight-default"
         >
-          The <code>icon</code> prop will display a font awesome icon. <br />
-          It must be an array (e.g <code>['fal', 'wallet']</code>).
+          The <code>icon</code> prop will display a custom icon. <br />
+          It must be a string and must be chosen from one of the available icons
+          from our SVG Illustration set (e.g <code>"wallet"</code>).
           <br />
           <br />
         </Text>
@@ -346,7 +347,7 @@ class ModalDemo extends React.Component {
             Modal with icon
           </Button>
           <Modal onClose={this.hideModal} visible={this.state.modal === 'icon'}>
-            <Modal.Header closable icon={['fal', 'wallet']}>
+            <Modal.Header closable icon="wallet">
               <Modal.Heading>I am a modal with an icon</Modal.Heading>
             </Modal.Header>
             <Modal.Body>
