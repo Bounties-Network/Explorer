@@ -654,6 +654,25 @@
           }
         }
       }
+    },
+    "submissions": {
+      "title": "Submissions",
+      "tabs": {
+        "received": "Received",
+        "submitted": "Submitted"
+      },
+      "headers": {
+        "title": "Bounty title",
+        "fulfiller": "Fulfiller",
+        "date": "Submission date",
+        "status": "Status",
+        "payment": "Payment amount"
+      },
+      "zero_state": {
+        "title": "You have ${currentTab} 0 submissions",
+        "description":
+          "It looks like you don't have any submissions. Come back after you have ${currentTab} a fulfillment!"
+      }
     }
   },
   "errors": {
