@@ -1,22 +1,10 @@
 {
-  "platforms": {
-    "bounties-network": [
-      "bounties-network",
-      "sf",
-      "prague",
-      "colorado",
-      "paris",
-      "sa",
-      "nyc",
-      "korea"
-    ],
-    "gitcoin": ["gitcoin"]
-  },
-  "postingPlatform": "bounties-network",
+  "platform": "korea",
+  "postingPlatform": "korea",
   "postingSchema": "standardSchema",
   "postingSchemaVersion": "0.1",
-  "categoryPlatform": "main",
-  "networkName": "explorer.bounties.network",
+  "categoryPlatform": "korea",
+  "networkName": "korea.bounties.network",
   "url": {
     "mainNet": "https://api.bounties.network",
     "rinkeby": "https://api.bounties.network"

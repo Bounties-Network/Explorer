@@ -50,10 +50,9 @@ class CreateBountyComponent extends React.Component {
         <div className={styles.centeredBody}>
           <ZeroState
             type="error"
-            iconColor="red"
             title="Could not find that bounty"
             text="Try refreshing, or make sure your url is correct"
-            icon={['far', 'exclamation-triangle']}
+            icon="error"
           />
         </div>
       );

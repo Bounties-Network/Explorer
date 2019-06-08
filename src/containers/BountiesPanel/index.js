@@ -110,7 +110,7 @@ class BountiesPanelComponent extends React.Component {
             action
             actionText="Create new bounty"
             onActionClick={() => history.push('/createBounty')}
-            icon={['fal', 'expand']}
+            faIcon={['fal', 'expand']}
             iconColor="blue"
           />
         </div>
@@ -130,7 +130,7 @@ class BountiesPanelComponent extends React.Component {
             type="error"
             text="Something went wrong. Try again later."
             iconColor="red"
-            icon={['fal', 'exclamation-triangle']}
+            faIcon={['fal', 'exclamation-triangle']}
           />
         </div>
       );
