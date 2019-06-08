@@ -2,7 +2,7 @@
   "platform": "nyc",
   "postingPlatform": "nyc",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "nyc",
   "networkName": "nyc.bounties.network",
   "url": {

@@ -12,7 +12,7 @@
   },
   "postingPlatform": "bounties-network",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "rinkeby",
   "networkName": "rinkeby.bounties.network",
   "url": {

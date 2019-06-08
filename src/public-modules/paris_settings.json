@@ -2,7 +2,7 @@
   "platform": "paris",
   "postingPlatform": "paris",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "paris",
   "networkName": "paris.bounties.network",
   "url": {

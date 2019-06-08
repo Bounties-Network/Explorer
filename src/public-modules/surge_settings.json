@@ -2,7 +2,7 @@
   "platform": "surge",
   "postingPlatform": "surge",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "surge",
   "networkName": "surge.bounties.network",
   "url": {

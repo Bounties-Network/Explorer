@@ -2,7 +2,7 @@
   "platform": "boost",
   "postingPlatform": "boost",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "boost",
   "networkName": "boost.bounties.network",
   "url": {

@@ -2,7 +2,7 @@
   "platform": "colorado",
   "postingPlatform": "colorado",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "colorado",
   "networkName": "colorado.bounties.network",
   "url": {

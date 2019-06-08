@@ -2,7 +2,7 @@
   "platform": "korea",
   "postingPlatform": "korea",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "korea",
   "networkName": "korea.bounties.network",
   "url": {

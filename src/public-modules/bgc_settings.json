@@ -2,7 +2,7 @@
   "platform": "bgc",
   "postingPlatform": "bgc",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "bgc",
   "networkName": "bgc.bounties.network",
   "url": {

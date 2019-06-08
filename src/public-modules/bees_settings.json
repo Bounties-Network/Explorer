@@ -2,7 +2,7 @@
   "platform": "pollenbees",
   "postingPlatform": "pollenbees",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "pollenbees",
   "networkName": "bees.bounties.network",
   "url": {

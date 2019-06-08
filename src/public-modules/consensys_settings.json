@@ -2,7 +2,7 @@
   "platform": "consensys",
   "postingPlatform": "consensys",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "consensys",
   "networkName": "consensys.bounties.network",
   "url": {

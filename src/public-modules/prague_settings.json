@@ -2,7 +2,7 @@
   "platform": "prague",
   "postingPlatform": "prague",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "prague",
   "networkName": "prague.bounties.network",
   "url": {
