@@ -13,7 +13,7 @@ const ContributeFormModal = props => {
   const {
     onClose,
     handleSubmit,
-    tokenSymbol,
+    token_symbol,
     tokenDecimals,
     visible,
     submitFailed,
@@ -40,7 +40,7 @@ const ContributeFormModal = props => {
           <Modal.Message>Contribute to the bounty</Modal.Message>
           <Modal.Description>
             Indicate the amount you would like to contribute towards the bounty
-            ({tokenSymbol}).
+            ({token_symbol}).
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
@@ -48,7 +48,7 @@ const ContributeFormModal = props => {
             name="contribution"
             component={FormTextInput}
             normalize={normalizers.number}
-            label={`Deposit amount ${tokenSymbol}`}
+            label={`Deposit amount ${token_symbol}`}
             validate={fieldValidators}
             placeholder="Enter amount..."
           />
@@ -89,9 +89,10 @@ export default compose(
     destroyOnUnmount: false,
     asyncValidate: (values, dispatch, props, field) => {
       return asyncValidators.tokenValidationWrapper(
-        { ...values, tokenContract: props.tokenContract },
+        { ...values, token_contract: props.token_contract },
         'contribution',
-        'tokenContract',
+        'token_contract',
+        true,
         props.asyncValidating,
         field,
         dispatch

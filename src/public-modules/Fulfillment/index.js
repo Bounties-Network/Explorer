@@ -33,8 +33,14 @@ const CREATE_FULFILLMENT = 'fulfillment/CREATE_FULFILLMENT';
 const CREATE_FULFILLMENT_SUCCESS = 'fulfillment/CREATE_FULFILLMENT_SUCCESS';
 const CREATE_FULFILLMENT_FAIL = 'fulfillment/CREATE_FULFILLMENT_FAIL';
 
-function createFulfillment(bountyId, bountyPlatform, data) {
-  return { type: CREATE_FULFILLMENT, bountyId, bountyPlatform, data };
+function createFulfillment(bountyId, contract_version, bountyPlatform, data) {
+  return {
+    type: CREATE_FULFILLMENT,
+    bountyId,
+    contract_version,
+    bountyPlatform,
+    data
+  };
 }
 
 function createFulfillmentSuccess() {
@@ -49,8 +55,21 @@ const ACCEPT_FULFILLMENT = 'fulfillment/ACCEPT_FULFILLMENT';
 const ACCEPT_FULFILLMENT_SUCCESS = 'fulfillment/ACCEPT_FULFILLMENT_SUCCESS';
 const ACCEPT_FULFILLMENT_FAIL = 'fulfillment/ACCEPT_FULFILLMENT_FAIL';
 
-function acceptFulfillment(bountyId, fulfillmentId) {
-  return { type: ACCEPT_FULFILLMENT, bountyId, fulfillmentId };
+function acceptFulfillment(
+  bountyId,
+  contract_version,
+  fulfillmentId,
+  approverId,
+  tokenAmounts
+) {
+  return {
+    type: ACCEPT_FULFILLMENT,
+    bountyId,
+    contract_version,
+    fulfillmentId,
+    approverId,
+    tokenAmounts
+  };
 }
 
 function acceptFulfillmentSuccess() {

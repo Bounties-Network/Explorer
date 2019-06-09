@@ -72,7 +72,7 @@ export const bountiesQuerySelector = createSelector(
       ? expandPlatforms(platforms)
       : config.platform;
 
-    query['bountyStage__in'] = reduce(
+    query['bounty_stage__in'] = reduce(
       (result, value, key) => {
         if (value) {
           result.push(STAGE_MAPPING[key]);
@@ -83,7 +83,7 @@ export const bountiesQuerySelector = createSelector(
       rootBounty.stageFilters
     ).join(',');
 
-    query['experienceLevel__in'] = reduce(
+    query['experience_level__in'] = reduce(
       (result, value, key) => {
         if (value) {
           result.push(DIFFICULTY_MAPPING[key]);
@@ -105,7 +105,7 @@ export const bountiesQuerySelector = createSelector(
     query['search'] = rootBounty.search;
     query['ordering'] =
       rootBounty.sort === 'usd_price'
-        ? `${orderPrefix}${rootBounty.sort},-fulfillmentAmount`
+        ? `${orderPrefix}${rootBounty.sort},-fulfillment_amount`
         : orderPrefix + rootBounty.sort;
     query['limit'] = PAGE_SIZE;
 

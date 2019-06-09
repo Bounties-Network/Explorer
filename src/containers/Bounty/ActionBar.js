@@ -18,7 +18,8 @@ const ActionBar = props => {
     user
   } = props;
 
-  const belongsToLoggedInUser = user && bounty.issuer === user.public_address;
+  const belongsToLoggedInUser =
+    user && bounty.user.public_address === user.public_address;
 
   const draftUrl = `/createBounty/draft/${bounty.uid}/`;
 
@@ -57,7 +58,7 @@ const ActionBar = props => {
   if (!isDraft && belongsToLoggedInUser) {
     actionOptions = (
       <div className={styles.actionBar}>
-        {bounty.bountyStage === DEAD ? (
+        {bounty.bounty_stage === DEAD ? (
           <Button
             type="action"
             className={styles.reactivateButton}
@@ -79,7 +80,7 @@ const ActionBar = props => {
           </Button>
         )}
 
-        {bounty.bountyStage !== DEAD && (
+        {bounty.bounty_stage !== DEAD && (
           <Button
             onClick={() =>
               initiateLoginProtection(() => showModal('increasePayout'))
@@ -91,7 +92,7 @@ const ActionBar = props => {
             Increase Prize
           </Button>
         )}
-        {bounty.bountyStage !== DEAD && (
+        {bounty.bounty_stage !== DEAD && (
           <Button
             icon={['far', 'dollar-sign']}
             className={styles.buttonGroup}
@@ -127,7 +128,7 @@ const ActionBar = props => {
     );
   }
 
-  if (!belongsToLoggedInUser && bounty.bountyStage === ACTIVE) {
+  if (!belongsToLoggedInUser && bounty.bounty_stage === ACTIVE) {
     let mainActionButton = (
       <Button
         type="action"
@@ -175,7 +176,7 @@ const ActionBar = props => {
             window.location.replace(
               `https://gitcoin.co/issue/${gitcoinUrlInfo[0]}/${
                 gitcoinUrlInfo[1]
-              }/${gitcoinUrlInfo[3]}/${bounty.id}`
+              }/${gitcoinUrlInfo[3]}/${bounty.bounty_id}`
             );
           }}
         >

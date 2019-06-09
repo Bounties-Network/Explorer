@@ -4,7 +4,7 @@ import { Pill } from 'components';
 import { DEAD, COMPLETED } from 'public-modules/Bounty/constants';
 
 const FulfillmentStagePill = props => {
-  const { bountyStage, accepted, className } = props;
+  const { bounty_stage, accepted, className } = props;
 
   let text;
   let backgroundColor;
@@ -13,7 +13,10 @@ const FulfillmentStagePill = props => {
   if (accepted) {
     text = 'Accepted';
     backgroundColor = 'green';
-  } else if (!accepted && (bountyStage === COMPLETED || bountyStage === DEAD)) {
+  } else if (
+    !accepted &&
+    (bounty_stage === COMPLETED || bounty_stage === DEAD)
+  ) {
     text = 'Not Accepted';
     backgroundColor = 'orange';
   } else {
@@ -34,7 +37,7 @@ const FulfillmentStagePill = props => {
 
 FulfillmentStagePill.propTypes = {
   accepted: PropTypes.bool,
-  bountyStage: PropTypes.number,
+  bounty_stage: PropTypes.number,
   className: PropTypes.string
 };
 

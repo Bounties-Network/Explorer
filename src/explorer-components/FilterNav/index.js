@@ -84,7 +84,7 @@ const FilterNav = props => {
 
   const rootLocationParams =
     location.search ||
-    `?bountyStage=${stages}&platform=${defaultPlatforms.join(',')}`;
+    `?bounty_stage=${stages}&platform=${defaultPlatforms.join(',')}`;
 
   const baseAction = curry((queryModifier, key, value, action) => {
     value = Array.isArray(value) ? value : [value];
@@ -98,7 +98,7 @@ const FilterNav = props => {
   const removeAction = baseAction(removeFromParam);
   const setAction = baseAction(setParam);
 
-  const toggleStageFilterAction = stage => toggleAction('bountyStage', stage, toggleStageFilter); // prettier-ignore
+  const toggleStageFilterAction = stage => toggleAction('bounty_stage', stage, toggleStageFilter); // prettier-ignore
   const toggleDifficultyFilterAction = difficulty => toggleAction('difficulty', difficulty, toggleDifficultyFilter); // prettier-ignore
   const togglePlatformFilterAction = platform => toggleAction('platform', platform, togglePlatformFilter); // prettier-ignore
 

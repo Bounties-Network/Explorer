@@ -46,22 +46,44 @@ export function* loadFulfillment(action) {
 }
 
 export function* acceptFulfillment(action) {
-  const { bountyId, fulfillmentId } = action;
+  const {
+    bountyId,
+    contract_version,
+    fulfillmentId,
+    approverId,
+    tokenAmounts
+  } = action;
 
   yield put(setPendingWalletConfirm());
 
   const userAddress = yield select(addressSelector);
   yield call(getWeb3Client);
 
-  const { standardBounties } = yield call(getContractClient);
+  const { standardBounties } = yield call(getContractClient, contract_version);
   try {
-    const txHash = yield call(
-      promisifyContractCall(standardBounties.acceptFulfillment, {
-        from: userAddress
-      }),
-      bountyId,
-      fulfillmentId
-    );
+    let txHash;
+    if (contract_version === 1) {
+      txHash = yield call(
+        promisifyContractCall(standardBounties.acceptFulfillment, {
+          from: userAddress
+        }),
+        bountyId,
+        fulfillmentId
+      );
+    } else if (contract_version === 2) {
+      txHash = yield call(
+        promisifyContractCall(standardBounties.acceptFulfillment, {
+          from: userAddress
+        }),
+        userAddress,
+        bountyId,
+        fulfillmentId,
+        approverId,
+        tokenAmounts
+      );
+    } else {
+      throw new Error(`contract version ${contract_version} invalid.`);
+    }
 
     yield put(setPendingReceipt(txHash));
     yield put(acceptFulfillmentSuccess());
@@ -73,7 +95,7 @@ export function* acceptFulfillment(action) {
 }
 
 export function* createFulfillment(action) {
-  const { bountyId, bountyPlatform, data } = action;
+  const { bountyId, contract_version, bountyPlatform, data } = action;
   const {
     name,
     email,
@@ -87,7 +109,6 @@ export function* createFulfillment(action) {
 
   const userAddress = yield select(addressSelector);
   yield call(getWeb3Client);
-
   const payload = {
     payload: {
       url,
@@ -110,15 +131,31 @@ export function* createFulfillment(action) {
 
   const ipfsHash = yield call(addJSON, payload);
 
-  const { standardBounties } = yield call(getContractClient);
+  const { standardBounties } = yield call(getContractClient, contract_version);
+
   try {
-    const txHash = yield call(
-      promisifyContractCall(standardBounties.fulfillBounty, {
-        from: userAddress
-      }),
-      bountyId,
-      ipfsHash
-    );
+    let txHash;
+    if (contract_version === 1) {
+      txHash = yield call(
+        promisifyContractCall(standardBounties.fulfillBounty, {
+          from: userAddress
+        }),
+        bountyId,
+        ipfsHash
+      );
+    } else if (contract_version === 2) {
+      txHash = yield call(
+        promisifyContractCall(standardBounties.fulfillBounty, {
+          from: userAddress
+        }),
+        userAddress,
+        bountyId,
+        [userAddress],
+        ipfsHash
+      );
+    } else {
+      throw new Error(`contract version ${contract_version} invalid`);
+    }
 
     yield put(setPendingReceipt(txHash));
     yield put(createFulfillmentSuccess());

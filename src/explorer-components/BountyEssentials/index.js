@@ -15,24 +15,18 @@ const BountyEssentials = props => {
     balanceSecondaryValue,
     balanceSecondaryCurrency,
     isDraft,
-    bountyStage
+    bounty_stage
   } = props;
 
   return (
-
     <div className={styles.bountyEssentials}>
-
       <div className={styles.stage}>
-        <StagePill stage={isDraft ? DRAFT : bountyStage} />
+        <StagePill stage={isDraft ? DRAFT : bounty_stage} />
       </div>
 
       <div className={styles.currencyContainer}>
         <div className={styles.payoutEthBox}>
-          <Text
-            className={styles.currencyTypeHeaderText}
-            inline
-            color="white"
-          >
+          <Text className={styles.currencyTypeHeaderText} inline color="white">
             Payout
           </Text>
 
@@ -41,13 +35,11 @@ const BountyEssentials = props => {
             primaryClassName={styles.primary}
             secondaryClassName={styles.currency}
             primaryContainerClass={styles.primaryContainerClass}
-
             primaryValue={payoutPrimaryValue}
             primaryDecimals="all"
             primaryCurrency={payoutPrimaryCurrency}
             primaryColor="white"
             currencyColor="white"
-
             secondaryValue={payoutSecondaryValue}
             secondaryDecimals={2}
             secondaryCurrency={payoutSecondaryCurrency}
@@ -57,11 +49,7 @@ const BountyEssentials = props => {
         </div>
 
         <div className={styles.balanceEthBox}>
-          <Text
-            className={styles.currencyTypeHeaderText}
-            inline
-            color="white"
-          >
+          <Text className={styles.currencyTypeHeaderText} inline color="white">
             Remaining Balance
           </Text>
 
@@ -70,20 +58,17 @@ const BountyEssentials = props => {
             primaryClassName={styles.primary}
             secondaryClassName={styles.currency}
             primaryContainerClass={styles.primaryContainerClass}
-
             primaryValue={balancePrimaryValue}
             primaryDecimals="all"
             primaryCurrency={balancePrimaryCurrency}
             primaryColor="white"
             currencyColor="white"
-
             secondaryValue={balanceSecondaryValue}
             secondaryDecimals={2}
             secondaryCurrency={balanceSecondaryCurrency}
             secondaryTypeScale="h4"
             secondaryColor="white"
           />
-
         </div>
       </div>
     </div>

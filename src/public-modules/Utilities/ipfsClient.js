@@ -1,8 +1,8 @@
 import ipfsMiniAPI from 'ipfs-mini';
 
 const ipfsMini = new ipfsMiniAPI({
-  host: 'ipfs.infura.io',
-  port: 5001,
+  host: 'ipfs.bounties.network',
+  port: 443,
   protocol: 'https'
 });
 
@@ -10,8 +10,8 @@ export const addBufferToIPFS = (filename, bufferContent) =>
   new Promise((resolve, reject) => {
     // due to es5 issues - we load this via a CDN
     const ipfs = window.IpfsApi({
-      host: 'ipfs.infura.io',
-      port: 5001,
+      host: 'ipfs.bounties.network',
+      port: 443,
       protocol: 'https'
     });
 

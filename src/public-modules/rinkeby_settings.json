@@ -12,18 +12,20 @@
   },
   "postingPlatform": "bounties-network",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "rinkeby",
-  "networkName": "explorer.bounties.network",
+  "networkName": "rinkeby.bounties.network",
   "url": {
     "mainNet": "https://rinkeby.api.bounties.network",
     "rinkeby": "https://rinkeby.api.bounties.network"
   },
   "requiredNetwork": "rinkeby",
   "mainNet": {
-    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+    "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
+    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c"
   },
   "rinkeby": {
-    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+    "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
+    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c"
   }
 }
