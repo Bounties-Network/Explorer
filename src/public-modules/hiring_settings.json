@@ -11,9 +11,9 @@
   },
   "requiredNetwork": "rinkeby",
   "mainNet": {
-    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+    "standardBountiesAddressV2": "0xf209d2b723b6417cbf04c07e733bee776105a073"
   },
   "rinkeby": {
-    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+    "standardBountiesAddressV2": "0xf209d2b723b6417cbf04c07e733bee776105a073"
   }
 }
