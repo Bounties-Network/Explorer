@@ -406,7 +406,7 @@ export function* activateBounty(action) {
         promisifyContractCall(tokenContractClient.approve, {
           from: userAddress
         }),
-        config[network].standardBountiesAddress,
+        config[network].standardBountiesAddressV1,
         contractBalance
       );
       yield call(delay, 2000);
@@ -532,7 +532,7 @@ export function* increasePayout(action) {
           promisifyContractCall(tokenContractClient.approve, {
             from: userAddress
           }),
-          config[network].standardBountiesAddress,
+          config[network].standardBountiesAddressV1,
           contractBalance
         );
         yield call(delay, 2000);
