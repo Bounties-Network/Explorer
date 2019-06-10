@@ -529,6 +529,9 @@
       "elsewhere": {
         "title": "Elsewhere"
       },
+      "skills": {
+        "title": "Skills"
+      },
       "network": {
         "title": "Network Stats",
         "descriptions": {
