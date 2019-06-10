@@ -9,6 +9,7 @@ import {
   LinkedAvatar
 } from 'explorer-components';
 import moment from 'moment';
+import intl from 'react-intl-universal';
 
 const SubmissionItem = props => {
   const {
@@ -26,18 +27,24 @@ const SubmissionItem = props => {
 
   const formattedTime = moment
     .utc(submissionDate, 'YYYY-MM-DDThh:mm:ssZ')
-    .format('M/D/YYYY');
+    .format('L');
 
   return (
     <Table.Row className={styles.submissionItemRow}>
-      <Table.Cell flexBasis="40%" headerText="Bounty title">
+      <Table.Cell
+        flexBasis="40%"
+        headerText={intl.get('components.submission.title')}
+      >
         <Link to={`/bounty/${bountyId}`} className={styles.link}>
           <Text typeScale="h5" weight="fontWeight-medium">
             {title}
           </Text>
         </Link>
       </Table.Cell>
-      <Table.Cell flexBasis="16%" headerText="Fulfiller">
+      <Table.Cell
+        flexBasis="16%"
+        headerText={intl.get('components.submission.fulfiller')}
+      >
         <LinkedAvatar
           img={fulfiller_img}
           address={fulfiller}
@@ -49,16 +56,19 @@ const SubmissionItem = props => {
       <Table.Cell
         flexBasis="15%"
         contentType="numerical"
-        headerText="Submission date"
+        headerText={intl.get('components.submission.date')}
       >
         <Text typeScale="Body">{formattedTime}</Text>
       </Table.Cell>
-      <Table.Cell flexBasis="16%" headerText="Status">
+      <Table.Cell
+        flexBasis="16%"
+        headerText={intl.get('components.submission.status')}
+      >
         <FulfillmentStagePill bountyStage={bountyStage} accepted={status} />
       </Table.Cell>
       <Table.Cell
         flexBasis="13%"
-        headerText="Payment amount"
+        headerText={intl.get('components.submission.amount')}
         contentType="numerical"
       >
         <Currency

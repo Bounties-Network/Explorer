@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './BountyCard.module.scss';
-import { map, includes, capitalize } from 'lodash';
+import { includes, map } from 'lodash';
 import { Link } from 'react-router-dom';
 import { REV_DIFFICULTY_MAPPING } from 'public-modules/Bounties/constants';
 import { EXPIRED } from 'public-modules/Bounty/constants';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { Card, Text, Pill } from 'components';
+import { Card, Pill, Text } from 'components';
 import { Currency, LinkedAvatar } from 'explorer-components';
 import { scrollToTop } from 'utils/helpers';
+import intl from 'react-intl-universal';
 
 const BountyCard = props => {
   const {
@@ -93,10 +94,13 @@ const BountyCard = props => {
                 className={styles.detailInput}
                 weight="fontWeight-medium"
               >
-                {capitalize(REV_DIFFICULTY_MAPPING[experienceLevel])}
+                {intl.get(
+                  'components.bounty_card.difficulty_options.' +
+                    REV_DIFFICULTY_MAPPING[experienceLevel]
+                )}
               </Text>
               <Text inline color="defaultGrey" className={styles.detailLabel}>
-                difficulty
+                {intl.get('components.bounty_card.difficulty')}
               </Text>
             </div>
             <div className={styles.detailGroup}>
@@ -113,7 +117,9 @@ const BountyCard = props => {
                 {deadline}
               </Text>
               <Text inline color="defaultGrey" className={styles.detailLabel}>
-                {stage === EXPIRED ? 'expired' : 'remaining'}
+                {stage === EXPIRED
+                  ? intl.get('common.expired')
+                  : intl.get('common.remaining')}
               </Text>
             </div>
             <div className={styles.detailGroup}>
@@ -130,7 +136,9 @@ const BountyCard = props => {
                 {submissions || 0}
               </Text>
               <Text inline color="defaultGrey" className={styles.detailLabel}>
-                {submissions === 1 ? 'submission' : 'submissions'}
+                {intl.get('components.bounty_card.submissions_count', {
+                  count: submissions || 0
+                })}
               </Text>
             </div>
           </div>

@@ -11,6 +11,7 @@
     "accept": "Accept",
     "reject": "Reject",
     "filter": "Filter",
+    "ok": "OK",
     "rate_fulfiller": "Rate fulfiller",
     "rate_issuer": "Rate issuer",
     "activate": "Activate",
@@ -24,7 +25,10 @@
     "transfer_ownership": "Transfer Ownership",
     "logout": "Logout",
     "close": "Close",
-    "continue": "Continue"
+    "reset": "Reset",
+    "sort": "Sort",
+    "continue": "Continue",
+    "dashboard": "Go to Dashboard"
   },
   "sections": {
     "activity": {
@@ -681,6 +685,70 @@
       "earned": "Earned"
     }
   },
+  "components": {
+    "applicant_stage": {
+      "accepted": "Accepted",
+      "declined": "Declined",
+      "pending": "Pending",
+      "default": "Pending acceptance"
+    },
+    "bounty_card": {
+      "difficulty": "difficulty",
+      "difficulty_options": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      },
+      "submissions_count":
+        "{count, plural, =1 {submission} other {submissions}}"
+    },
+    "essentials": {
+      "balance": "Remaining Balance"
+    },
+    "filter_nav": {
+      "sortOptions": {
+        "bounty_created": "Most Recent",
+        "usd_price": "Value: High to Low",
+        "deadline": "Expiry"
+      },
+      "refine": "Refine by",
+      "platform": "Platform",
+      "category": "Category",
+      "stage": "Stage",
+      "checkbox": {
+        "active": "Active",
+        "completed": "Completed",
+        "expired": "Expired",
+        "dead": "Dead"
+      }
+    },
+    "fulfillment_stage": {
+      "accepted": "Accepted",
+      "not_accepted": "Not Accepted"
+    },
+    "submission": {
+      "title": "Bounty title",
+      "status": "Status",
+      "date": "Submission date",
+      "fulfiller": "Fulfiller",
+      "amount": "Payment amount"
+    },
+    "tx_guide": {
+      "title": "Your wallet will take it from here!",
+      "description":
+        "After clicking \"OK\", a wallet dialogue will prompt you to confirm your Ethereum transaction and pay a small amount of ETH (for gas fees).",
+      "notice": "A default gas limit and price will be set for you.",
+      "messages": {
+        "waiting":
+          "Waiting for your transaction to be confirmed on the blockchain...",
+        "confirmed": "Your transaction has been confirmed!",
+        "pending_receipt":
+          "Your transaction is being processed. We will notify you once it is confirmed.",
+        "pending_wallet":
+          "Confirming Ethereum transaction with your enabled wallet. This may take a few seconds."
+      }
+    }
+  },
   "errors": {
     "500": "Something went wrong. Try again later.",
     "form_error": "Fix errors before submitting."
@@ -691,7 +759,8 @@
     "remaining": "remaining",
     "difficulty": "difficulty",
     "expected": "expected",
-    "and": "and"
+    "and": "and",
+    "payout": "Payout"
   },
   "formats": {
     "amount": "{value, number}",
