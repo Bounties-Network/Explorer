@@ -51,7 +51,6 @@ const BountyCard = props => {
       );
     }, categories);
   };
-
   return (
     <Card hover className={styles.bountyCard}>
       <Card.Body>

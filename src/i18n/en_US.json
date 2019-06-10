@@ -709,7 +709,7 @@
       "balance": "Remaining Balance"
     },
     "filter_nav": {
-      "sortOptions": {
+      "sort_options": {
         "bounty_created": "Most Recent",
         "usd_price": "Value: High to Low",
         "deadline": "Expiry"

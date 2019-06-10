@@ -326,7 +326,7 @@ class BountyComponent extends React.Component {
                     >
                       {intl.get(
                         `sections.bounty.difficulties.${
-                          DIFFICULTY_MAPPINGS[bounty.experienceLevel]
+                          DIFFICULTY_MAPPINGS[bounty.experience_level]
                         }`
                       )}
                     </Text>
