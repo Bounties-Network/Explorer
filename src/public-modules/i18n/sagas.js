@@ -6,8 +6,7 @@ import moment from 'moment';
 
 // app locale data
 const locales = {
-  'en-US': require('../../i18n/en_US'),
-  'hr-HR': require('../../i18n/hr_HR')
+  'en-US': require('../../i18n/en_US')
 };
 
 export function* initTranslations(action) {
