@@ -10,6 +10,8 @@ export const HTTP_422_UNKNOWN = 422;
 export const HTTP_500_INTERNAL_SERVER_ERROR = 500;
 export const HTTP_503_SERVICE_UNAVAILABLE = 503;
 
+export const PORTIS_DAPP_ID = 'e2a88f86-b6b9-4419-991b-be14ab19d475';
+
 export const DEFAULT_MARKDOWN = `# Description
 Describe the bounty that you want completed. What is it for? What does it involve?
 

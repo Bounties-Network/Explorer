@@ -6,6 +6,7 @@ import {
   ErrorModal,
   SignIn,
   SigningIn,
+  SigningInToPortis,
   WrongNetwork
 } from './components';
 
@@ -13,6 +14,8 @@ const FunctionalLoginLock = props => {
   const {
     visible,
     hide,
+    choosePortisProvider,
+    signingInToPortis,
     addressMismatch,
     currentAddress,
     previousAddress,
@@ -37,6 +40,7 @@ const FunctionalLoginLock = props => {
     showUnlockWallet: false,
     showMismatch: false,
     showSigningIn: false,
+    showSigningInToPortis: false,
     showSignIn: false,
     showWrongNetwork: false
   };
@@ -46,6 +50,8 @@ const FunctionalLoginLock = props => {
       config.showError = true;
     } else if (!hasWallet) {
       config.showWalletRequired = true;
+    } else if (signingInToPortis) {
+      config.showSigningInToPortis = true;
     } else if (walletLocked) {
       config.showUnlockWallet = true;
     } else if (!isCorrectNetwork) {
@@ -79,6 +85,7 @@ const FunctionalLoginLock = props => {
         visible={config.showWalletRequired}
         closable
         onClose={hide}
+        choosePortisProvider={choosePortisProvider}
       />
       <UnlockWallet visible={config.showUnlockWallet} closable onClose={hide} />
       <AddressMismatch
@@ -92,6 +99,7 @@ const FunctionalLoginLock = props => {
         loggingOut={loggingOut}
       />
       <SigningIn visible={config.showSigningIn} />
+      <SigningInToPortis visible={config.showSigningInToPortis} />
       <SignIn visible={config.showSignIn} onClose={hide} signIn={login} />
     </React.Fragment>
   );

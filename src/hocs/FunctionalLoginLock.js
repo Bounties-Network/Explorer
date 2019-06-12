@@ -6,10 +6,12 @@ import siteConfig from 'public-modules/config';
 import FunctionalLoginLock from 'containers/Login/FunctionalLoginLock';
 import { actions as authActions } from 'public-modules/Authentication';
 import { actions } from 'containers/Login/reducer';
+import { actions as clientActions } from '../public-modules/Client';
 import {
   addressSelector,
   walletLockedSelector,
-  hasWalletSelector
+  hasWalletSelector,
+  signingInToPortisSelector
 } from 'public-modules/Client/selectors';
 import {
   getCurrentUserSelector,
@@ -58,6 +60,8 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
     render() {
       const {
         hasWallet,
+        choosePortisProvider,
+        signingInToPortis,
         walletLocked,
         currentAddress,
         previousAddress,
@@ -86,6 +90,8 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
           <FunctionalLoginLock
             visible={visible}
             hide={() => showFunctionalLock(false)}
+            choosePortisProvider={() => choosePortisProvider()}
+            signingInToPortis={signingInToPortis}
             hasWallet={hasWallet}
             walletLocked={walletLocked}
             currentAddress={currentAddress}
@@ -113,6 +119,7 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
     const loginState = loginStateSelector(state);
     const logoutState = logoutStateSelector(state);
     const hasWallet = hasWalletSelector(state);
+    const signingInToPortis = signingInToPortisSelector(state);
     const walletLocked = walletLockedSelector(state);
     const currentAddress = addressSelector(state);
     const addressMismatch =
@@ -133,6 +140,7 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
 
     return {
       hasWallet,
+      signingInToPortis,
       walletLocked,
       currentAddress,
       addressMismatch,
@@ -154,6 +162,7 @@ function FunctionalLoginLockHOC(config, WrappedComponent) {
       mapStateToProps,
       {
         showFunctionalLock: actions.showFunctionalLock,
+        choosePortisProvider: clientActions.setHasPortis,
         login: authActions.login,
         logout: authActions.logout,
         resetLoginState: authActions.resetLoginState,

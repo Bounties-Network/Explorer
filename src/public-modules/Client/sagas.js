@@ -6,6 +6,7 @@ import {
   addressSelector,
   walletLockedSelector,
   hasWalletSelector,
+  hasPortisSelector,
   initializedSelector
 } from 'public-modules/Client/selectors';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
@@ -13,6 +14,13 @@ import { delay } from 'redux-saga';
 import { apiEndpoint } from 'utils/global';
 import { actions, actionTypes } from 'public-modules/Client';
 import { BigNumber } from 'bignumber.js';
+import { PORTIS_DAPP_ID } from '../../utils/constants';
+import Portis from '@portis/web3';
+const portis = new Portis(PORTIS_DAPP_ID, 'mainnet');
+
+portis.onLogin(() => {
+  actions.setSigningInToPortis(false);
+});
 
 let proxiedWeb3;
 
@@ -61,17 +69,22 @@ export function* getWeb3Client() {
   const wasLocked = yield select(walletLockedSelector);
   const prevAddress = yield select(addressSelector);
   const hadWallet = yield select(hasWalletSelector);
+  const usePortis = yield select(hasPortisSelector);
   const hasWallet =
     typeof window.ethereum !== 'undefined' ||
     (typeof window.web3 !== 'undefined' &&
-      typeof window.web3.currentProvider !== 'undefined');
+      typeof window.web3.currentProvider !== 'undefined') ||
+    usePortis;
   const networkPrev = yield select(networkSelector);
   if (hasWallet !== hadWallet) {
     yield put(setHasWallet(hasWallet));
   }
   if (hasWallet) {
     if (!proxiedWeb3) {
-      web3.setProvider(window.ethereum || window.web3.currentProvider);
+      const provider = usePortis
+        ? portis.provider
+        : window.ethereum || window.web3.currentProvider;
+      web3.setProvider(provider);
     }
     proxiedWeb3 = new Proxy(web3, proxiedWeb3Handler);
     isLocked = yield call(isWalletLocked);

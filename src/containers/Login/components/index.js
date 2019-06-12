@@ -6,6 +6,7 @@ import SigningIn from './SigningIn';
 import AddressMismatch from './AddressMismatch';
 import ErrorModal from './ErrorModal';
 import AddProfileDetails from './AddProfileDetails';
+import SigningInToPortis from './SigningInToPortis';
 
 export {
   WalletRequired,
@@ -15,5 +16,6 @@ export {
   AddressMismatch,
   ErrorModal,
   AddProfileDetails,
-  WrongNetwork
+  WrongNetwork,
+  SigningInToPortis
 };
