@@ -5,13 +5,19 @@ import { Tabs } from 'components';
 // TODO: handle too many skills to display
 
 const ProfileTabs = props => {
-  const { currentTab, setActiveTab, issuedCount, fulfilledCount } = props;
+  const {
+    currentTab,
+    defaultTab,
+    setActiveTab,
+    issuedCount,
+    fulfilledCount
+  } = props;
 
   return (
     <Tabs
       className={styles.centerTabs}
       currentKey={currentTab}
-      defaultActiveKey={currentTab}
+      defaultActiveKey={defaultTab}
       onSelect={setActiveTab}
     >
       <Tabs.Tab tabColor="lightGrey" tabCount={issuedCount} eventKey={'issued'}>

@@ -56,13 +56,15 @@ class ProfileDetailsComponent extends React.Component {
       const {
         switchValue,
         switchValueOverride,
-        toggleNetworkSwitch
+        toggleNetworkSwitch,
+        setActiveTab
       } = this.props;
 
       const mostInterestingStats = this.mostInterestingStats();
       if (mostInterestingStats !== switchValue) {
         this.networkSwitchAlreadySet = mostInterestingStats;
         toggleNetworkSwitch();
+        setActiveTab();
       } else if (switchValueOverride) {
         this.networkSwitchAlreadySet = mostInterestingStats;
       }
@@ -89,6 +91,11 @@ class ProfileDetailsComponent extends React.Component {
 
     let bodyClass;
 
+    let defaultTab =
+      loadedUserInfo.stats.total_bounties >
+      loadedUserInfo.stats.total_fulfillments
+        ? 'issued'
+        : 'fulfilled';
     let body = (
       <React.Fragment>
         <ProfileAvatar
@@ -141,6 +148,7 @@ class ProfileDetailsComponent extends React.Component {
           <div className="col-xs-12">
             <ProfileTabs
               currentTab={currentTab}
+              defaultTab={defaultTab}
               setActiveTab={setActiveTab}
               issuedCount={loadedUserInfo.stats.total_bounties || 0}
               fulfilledCount={loadedUserInfo.stats.total_fulfillments || 0}
