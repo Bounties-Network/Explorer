@@ -136,7 +136,6 @@ export function* createFulfillment(action) {
   try {
     let txHash;
     if (contract_version === 1) {
-      console.log('about to fulfill', userAddress, bountyId, ipfsHash);
       txHash = yield call(
         promisifyContractCall(standardBounties.fulfillBounty, {
           from: userAddress
