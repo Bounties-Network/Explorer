@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Skills.module.scss';
 import { Pill, Text } from 'components';
 import { map } from 'lodash';
+import intl from 'react-intl-universal';
 
 // TODO: handle too many skills to display
 
@@ -21,7 +22,7 @@ const Skills = props => {
   return (
     <div className={styles.skills}>
       <Text typeScale="h4" color="black" weight="fontWeight-medium">
-        Skills
+        {intl.get('sections.profile.skills.title')}
       </Text>
 
       {skills ? (

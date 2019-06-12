@@ -4,6 +4,7 @@ import styles from './baseStyles.module.scss';
 import UserSettings from 'containers/Settings/UserSettings';
 import { Modal, Button } from 'components';
 import { PageCard } from 'explorer-components';
+import intl from 'react-intl-universal';
 
 class AddProfileDetails extends React.Component {
   constructor(props) {
@@ -33,13 +34,13 @@ class AddProfileDetails extends React.Component {
           onClose={this.onClose}
         >
           <Modal.Header closable icon="profile">
-            <Modal.Heading>Profile Details</Modal.Heading>
+            <Modal.Heading>
+              {intl.get('sections.login.modals.details.title')}
+            </Modal.Heading>
           </Modal.Header>
           <Modal.Body>
             <Modal.Description>
-              Add some profile details about yourself, so that others on the
-              platform have an idea of your background and skillset, and can
-              find you elsewhere online.
+              {intl.get('sections.login.modals.details.description')}
             </Modal.Description>
 
             <PageCard.Break />
@@ -54,25 +55,21 @@ class AddProfileDetails extends React.Component {
     return (
       <Modal visible={visible} size="small" dismissable onClose={this.onClose}>
         <Modal.Header closable icon="profile">
-          <Modal.Heading>Profile Details</Modal.Heading>
+          <Modal.Heading>
+            {intl.get('sections.login.modals.details.title')}
+          </Modal.Heading>
         </Modal.Header>
         <Modal.Body>
           <Modal.Description>
-            Welcome to the Bounties Network! We&#39;re excited to see what you
-            bounty.
-            <br />
-            <br />
-            Before you get started, we encourage you to add some profile details
-            about yourself, so that others on the platform have an idea of your
-            background and skillset.
+            {intl.getHTML('sections.login.modals.details.description2')}
           </Modal.Description>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.onClose} margin>
-            Skip
+            {intl.get('sections.login.modals.details.actions.skip')}
           </Button>
           <Button type="primary" onClick={this.showForm}>
-            Add profile details
+            {intl.get('sections.login.modals.details.actions.add')}
           </Button>
         </Modal.Footer>
       </Modal>

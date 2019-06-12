@@ -10,6 +10,7 @@ import { fulfillmentsSelector } from 'public-modules/Fulfillments/selectors';
 import { submissionsPanelSelector } from './selectors';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillments';
 import { actions } from './reducer';
+import intl from 'react-intl-universal';
 
 class SubmissionsPanelComponent extends React.Component {
   renderSubmissions = list => {
@@ -70,14 +71,20 @@ class SubmissionsPanelComponent extends React.Component {
       <React.Fragment>
         <Table>
           <Table.Header>
-            <Table.HeaderCell flexBasis="40%">Bounty title</Table.HeaderCell>
-            <Table.HeaderCell flexBasis="16%">Fulfiller</Table.HeaderCell>
-            <Table.HeaderCell flexBasis="15%" contentType="numerical">
-              Submission date
+            <Table.HeaderCell flexBasis="40%">
+              {intl.get('sections.submissions.headers.title')}
             </Table.HeaderCell>
-            <Table.HeaderCell flexBasis="16%">Status</Table.HeaderCell>
+            <Table.HeaderCell flexBasis="16%">
+              {intl.get('sections.submissions.headers.fulfiller')}
+            </Table.HeaderCell>
+            <Table.HeaderCell flexBasis="15%" contentType="numerical">
+              {intl.get('sections.submissions.headers.date')}
+            </Table.HeaderCell>
+            <Table.HeaderCell flexBasis="16%">
+              {intl.get('sections.submissions.headers.status')}
+            </Table.HeaderCell>
             <Table.HeaderCell flexBasis="13%" contentType="numerical">
-              Payment amount
+              {intl.get('sections.submissions.headers.payment')}
             </Table.HeaderCell>
           </Table.Header>
           {this.renderSubmissions(list)}
@@ -85,7 +92,7 @@ class SubmissionsPanelComponent extends React.Component {
         {list.length < count && (
           <div className={styles.loadMoreButton}>
             <Button loading={loadingMore} onClick={loadMore}>
-              Load More
+              {intl.get('actions.load_more')}
             </Button>
           </div>
         )}
@@ -97,8 +104,12 @@ class SubmissionsPanelComponent extends React.Component {
       body = (
         <div className={styles.zeroState}>
           <ZeroState
-            title={`You have ${currentTab} 0 submissions`}
-            text={`It looks like you don't have any submissions. Come back after you have ${currentTab} a fulfillment!`}
+            title={intl.get('sections.submissions.zero_state.title', {
+              currentTab
+            })}
+            text={intl.get('sections.submissions.zero_state.description', {
+              currentTab
+            })}
             iconColor="blue"
             faIcon={['fal', 'level-up']}
           />
@@ -117,7 +128,7 @@ class SubmissionsPanelComponent extends React.Component {
         <div className={styles.zeroState}>
           <ZeroState
             type="error"
-            text={'Something went wrong. Try again later.'}
+            text={intl.get('errors.500')}
             iconColor="red"
             faIcon={['fal', 'exclamation-triangle']}
           />
@@ -128,7 +139,9 @@ class SubmissionsPanelComponent extends React.Component {
     return (
       <Card className={className}>
         <Card.Header>
-          <Card.HeaderTitle>Submissions</Card.HeaderTitle>
+          <Card.HeaderTitle>
+            {intl.get('sections.submissions.title')}
+          </Card.HeaderTitle>
           <Card.HeaderTabs
             onSelect={setActiveTab}
             activeKey={currentTab}
@@ -139,14 +152,14 @@ class SubmissionsPanelComponent extends React.Component {
               tabCount={total_received}
               eventKey={'received'}
             >
-              Received
+              {intl.get('sections.submissions.tabs.received')}
             </Tabs.Tab>
             <Tabs.Tab
               tabColor="green"
               tabCount={total_submitted}
               eventKey={'submitted'}
             >
-              Submitted
+              {intl.get('sections.submissions.tabs.submitted')}
             </Tabs.Tab>
           </Card.HeaderTabs>
         </Card.Header>

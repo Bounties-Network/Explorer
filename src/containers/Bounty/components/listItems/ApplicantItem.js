@@ -3,6 +3,7 @@ import styles from './ApplicantItem.module.scss';
 import { Button, Text } from 'components';
 import { ApplicantStagePill, LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
+import intl from 'react-intl-universal';
 
 const ApplicantItem = props => {
   const {
@@ -33,7 +34,7 @@ const ApplicantItem = props => {
         className={styles.applicantsActionsButton}
         onClick={acceptApplicant}
       >
-        Accept
+        {intl.get('actions.accept')}
       </Button>
     );
     actionsOrStatus.push(
@@ -43,7 +44,7 @@ const ApplicantItem = props => {
         className={styles.applicantsActionsButton}
         onClick={rejectApplicant}
       >
-        Reject
+        {intl.get('actions.reject')}
       </Button>
     );
   } else {

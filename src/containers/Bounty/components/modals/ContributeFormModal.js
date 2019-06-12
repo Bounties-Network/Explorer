@@ -8,6 +8,7 @@ import validators from 'utils/validators';
 import normalizers from 'utils/normalizers';
 import { FormTextInput } from 'form-components';
 import asyncValidators from 'utils/asyncValidators';
+import intl from 'react-intl-universal';
 
 const ContributeFormModal = props => {
   const {
@@ -37,10 +38,13 @@ const ContributeFormModal = props => {
         size="small"
       >
         <Modal.Header closable={true}>
-          <Modal.Message>Contribute to the bounty</Modal.Message>
+          <Modal.Message>
+            {intl.get('sections.bounty.modals.contribute.title')}
+          </Modal.Message>
           <Modal.Description>
-            Indicate the amount you would like to contribute towards the bounty
-            ({token_symbol}).
+            {intl.get('sections.bounty.modals.contribute.description', {
+              token_symbol
+            })}
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
@@ -48,16 +52,21 @@ const ContributeFormModal = props => {
             name="contribution"
             component={FormTextInput}
             normalize={normalizers.number}
-            label={`Deposit amount ${token_symbol}`}
+            label={intl.get(
+              'sections.bounty.modals.contribute.form.contribution.label',
+              { token_symbol }
+            )}
             validate={fieldValidators}
-            placeholder="Enter amount..."
+            placeholder={intl.get(
+              'sections.bounty.modals.contribute.form.contribution.placeholder'
+            )}
           />
         </Modal.Body>
         <Modal.Footer>
           {submitFailed &&
             invalid && (
               <Text inputLabel color="red">
-                Fix errors before submitting.
+                {intl.get('errors.form_error')}
               </Text>
             )}
           <Button
@@ -68,14 +77,14 @@ const ContributeFormModal = props => {
             }}
             buttonType="button"
           >
-            Cancel
+            {intl.get('actions.cancel')}
           </Button>
           <Button
             type="action"
             disabled={submitFailed && invalid}
             loading={asyncValidating && typeof asyncValidating === 'boolean'}
           >
-            Contribute
+            {intl.get('actions.contribute')}
           </Button>
         </Modal.Footer>
       </Modal>

@@ -24,6 +24,7 @@ import {
   setParam
 } from 'utils/locationHelpers';
 import appConfig from 'public-modules/config';
+import intl from 'react-intl-universal';
 
 const map = fpMap.convert({ cap: false });
 const reduce = fpReduce.convert({ cap: false });
@@ -66,9 +67,18 @@ const FilterNav = props => {
   } = props;
 
   const sortOptions = [
-    { value: 'bounty_created', label: 'Most Recent' },
-    { value: 'usd_price', label: 'Value: High to Low' },
-    { value: 'deadline', label: 'Expiry' }
+    {
+      value: 'bounty_created',
+      label: intl.get('components.filter_nav.sort_options.bounty_created')
+    },
+    {
+      value: 'usd_price',
+      label: intl.get('components.filter_nav.sort_options.usd_price')
+    },
+    {
+      value: 'deadline',
+      label: intl.get('components.filter_nav.sort_options.deadline')
+    }
   ];
 
   const platforms = appConfig.displayPlatforms;
@@ -137,20 +147,20 @@ const FilterNav = props => {
       )}
       <div className={styles.refineWrapper}>
         <Text inline typeScale="h3" weight="fontWeight-medium">
-          Refine By
+          {intl.get('components.filter_nav.refine')}
         </Text>
         <Button
           type="link"
           className={styles.clearButton}
           onClick={resetFilterAction}
         >
-          Reset
+          {intl.get('actions.reset')}
         </Button>
       </div>
       {config.sort && (
         <div className={styles.stageFilter}>
           <Text weight="fontWeight-medium" className={styles.groupText}>
-            Sort
+            {intl.get('actions.sort')}
           </Text>
           <RadioGroup
             onChange={setSortAction}
@@ -164,7 +174,7 @@ const FilterNav = props => {
         platforms.length > 1 && (
           <div className={styles.categoryFilter}>
             <Text weight="fontWeight-medium" className={styles.groupText}>
-              Platform
+              {intl.get('components.filter_nav.platform')}
             </Text>
             {map(platform => {
               return (
@@ -181,7 +191,7 @@ const FilterNav = props => {
       {config.category && (
         <div className={styles.categoryFilter}>
           <Text weight="fontWeight-medium" className={styles.groupText}>
-            Category
+            {intl.get('components.filter_nav.category')}
           </Text>
           <SearchSelect
             options={availableCategories}
@@ -200,27 +210,27 @@ const FilterNav = props => {
       {config.stage && (
         <div className={styles.stageFilter}>
           <Text weight="fontWeight-medium" className={styles.groupText}>
-            Stage
+            {intl.get('components.filter_nav.stage')}
           </Text>
           <Checkbox
-            label="Active"
+            label={intl.get('components.filter_nav.checkbox.active')}
             onChange={() => {
               toggleStageFilterAction('active');
             }}
             checked={currentStageFilter.active}
           />
           <Checkbox
-            label="Completed"
+            label={intl.get('components.filter_nav.checkbox.completed')}
             onChange={() => toggleStageFilterAction('completed')}
             checked={currentStageFilter.completed}
           />
           <Checkbox
-            label="Expired"
+            label={intl.get('components.filter_nav.checkbox.expired')}
             onChange={() => toggleStageFilterAction('expired')}
             checked={currentStageFilter.expired}
           />
           <Checkbox
-            label="Dead"
+            label={intl.get('components.filter_nav.checkbox.dead')}
             onChange={() => toggleStageFilterAction('dead')}
             checked={currentStageFilter.dead}
           />
@@ -229,20 +239,26 @@ const FilterNav = props => {
       {config.difficulty && (
         <div className={styles.difficultyFilter}>
           <Text weight="fontWeight-medium" className={styles.groupText}>
-            Difficulty
+            {intl.get('common.difficulty')}
           </Text>
           <Checkbox
-            label="Beginner"
+            label={intl.get(
+              'components.bounty_card.difficulty_options.beginner'
+            )}
             onChange={() => toggleDifficultyFilterAction('beginner')}
             checked={currentDifficultyFilters.beginner}
           />
           <Checkbox
-            label="Intermediate"
+            label={intl.get(
+              'components.bounty_card.difficulty_options.intermediate'
+            )}
             onChange={() => toggleDifficultyFilterAction('intermediate')}
             checked={currentDifficultyFilters.intermediate}
           />
           <Checkbox
-            label="Advanced"
+            label={intl.get(
+              'components.bounty_card.difficulty_options.advanced'
+            )}
             onChange={() => toggleDifficultyFilterAction('advanced')}
             checked={currentDifficultyFilters.advanced}
           />

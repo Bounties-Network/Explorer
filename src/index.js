@@ -23,6 +23,13 @@ import 'styles/index.scss';
 import 'fontAwesome';
 import 'styles/Toastify.scss';
 
+// common locale data
+import 'intl/locale-data/jsonp/en.js';
+// add locales here
+
+//add supported moment locales here
+// import 'moment/locale/hr.js';
+
 // eslint-disable-next-line import/no-webpack-loader-syntax
 const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!./styles/variables.scss');
 

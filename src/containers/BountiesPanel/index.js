@@ -21,6 +21,7 @@ import { draftsCountSelector } from 'public-modules/Drafts/selectors';
 import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as draftsActions } from 'public-modules/Drafts';
 import { actions } from './reducer';
+import intl from 'react-intl-universal';
 
 class BountiesPanelComponent extends React.Component {
   renderBounties = list => {
@@ -91,7 +92,7 @@ class BountiesPanelComponent extends React.Component {
               loading={loadingMore}
               onClick={this.props[`${currentTab}LoadMore`]}
             >
-              Load More
+              {intl.get('actions.load_more')}
             </Button>
           </div>
         )}
@@ -103,12 +104,16 @@ class BountiesPanelComponent extends React.Component {
       body = (
         <div className={styles.zeroState}>
           <ZeroState
-            title={`You have no ${currentTab} bounties`}
-            text={`It looks like you don\'t have any ${currentTab} bounties at the
-              moment. Enter a title for a new bounty here to get started
-              creating one!`}
+            title={intl.get('sections.bounties.zero_state.title', {
+              tab: currentTab
+            })}
+            text={intl.get('sections.bounties.zero_state.description', {
+              tab: currentTab
+            })}
             action
-            actionText="Create new bounty"
+            actionText={intl.get(
+              'sections.bounties.zero_state.actions.new_bounty'
+            )}
             onActionClick={() => history.push('/createBounty')}
             faIcon={['fal', 'expand']}
             iconColor="blue"
@@ -128,7 +133,7 @@ class BountiesPanelComponent extends React.Component {
         <div className={styles.zeroState}>
           <ZeroState
             type="error"
-            text="Something went wrong. Try again later."
+            text={intl.get('errors.500')}
             iconColor="red"
             faIcon={['fal', 'exclamation-triangle']}
           />
@@ -141,11 +146,11 @@ class BountiesPanelComponent extends React.Component {
         <Card.Header>
           <div className={styles.bountiesPanelCardHeader}>
             <Text inline typeScale="h3" weight="fontWeight-medium">
-              My Bounties
+              {intl.get('sections.bounties.title')}
             </Text>
             <Link to="/profile">
               <Text typeScale="Body" className={styles.decoratedLink}>
-                View All
+                {intl.get('actions.view_all')}
               </Text>
             </Link>
           </div>
@@ -155,10 +160,10 @@ class BountiesPanelComponent extends React.Component {
             defaultActiveKey={currentTab}
           >
             <Tabs.Tab tabColor="green" tabCount={activeCount} eventKey="active">
-              Active
+              {intl.get('sections.bounties.tabs.active')}
             </Tabs.Tab>
             <Tabs.Tab tabColor="blue" tabCount={draftsCount} eventKey="drafts">
-              Drafts
+              {intl.get('sections.bounties.tabs.drafts')}
             </Tabs.Tab>
           </Card.HeaderTabs>
         </Card.Header>

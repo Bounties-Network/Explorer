@@ -14,6 +14,7 @@ import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
 import { actions as commentsActions } from 'public-modules/Comments';
 import { actions as loginActions } from 'containers/Login/reducer';
 import { actions as bountyUIActions } from './reducer';
+import intl from 'react-intl-universal';
 
 export const defaultTab = 'comments';
 
@@ -146,7 +147,7 @@ class BountyPageCardsComponent extends React.Component {
           typeScale="h4"
           tabTextClass={styles.tabText}
         >
-          Applicants
+          {intl.get('sections.bounty.tabs.applicants.title')}
         </Tabs.Tab>
       );
     }
@@ -160,7 +161,7 @@ class BountyPageCardsComponent extends React.Component {
         typeScale="h4"
         tabTextClass={styles.tabText}
       >
-        Submissions
+        {intl.get('sections.bounty.tabs.submissions.title')}
       </Tabs.Tab>,
       <Tabs.Tab
         key={'comments'}
@@ -173,7 +174,7 @@ class BountyPageCardsComponent extends React.Component {
         typeScale="h4"
         tabTextClass={styles.tabText}
       >
-        Comments
+        {intl.get('sections.bounty.tabs.comments.title')}
       </Tabs.Tab>
     );
 

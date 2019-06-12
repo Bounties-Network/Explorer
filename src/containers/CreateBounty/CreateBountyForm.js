@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { FormSection } from 'explorer-components';
 import { getUploadKeySelector } from 'public-modules/FileUpload/selectors';
-import { formValueSelector } from 'redux-form';
+import { Field, formValueSelector, reduxForm } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as categoryActions } from 'public-modules/Categories';
 import { actions as bountyActions } from 'public-modules/Bounty';
@@ -12,37 +12,38 @@ import { categoriesSelector } from 'public-modules/Categories/selectors';
 import { rootTokensSelector } from 'public-modules/Tokens/selectors';
 import { tokensDropdownDataSelector } from './selectors';
 import { TransactionWalkthrough } from 'hocs';
-import { Field, reduxForm } from 'redux-form';
 import { getTimezone } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
 import moment from 'moment';
 import {
-  stdBountyStateSelector,
   createDraftStateSelector,
-  getDraftBountySelector
+  getDraftBountySelector,
+  stdBountyStateSelector
 } from 'public-modules/Bounty/selectors';
 import validators from 'utils/validators';
 import asyncValidators from 'utils/asyncValidators';
 import normalizers from 'utils/normalizers';
-import { FileUpload, Button, Text } from 'components';
+import { Button, FileUpload, Text } from 'components';
 import {
-  FormTextInput,
+  FormDatePicker,
   FormMarkdownEditor,
-  FormSearchSelect,
-  FormRadioGroup,
   FormNumberInput,
-  FormDatePicker
+  FormRadioGroup,
+  FormSearchSelect,
+  FormTextInput
 } from 'form-components';
 import {
+  ACTIVATE_OPTIONS,
+  APPROVAL_OPTIONS,
   DIFFICULTY_OPTIONS,
   PAYOUT_OPTIONS,
-  ACTIVATE_OPTIONS,
   UPLOAD_KEY,
-  VISIBILITY_OPTIONS,
-  APPROVAL_OPTIONS
+  VISIBILITY_OPTIONS
 } from './constants';
 import config from 'public-modules/config';
 import defaultShouldAsyncValidate from 'redux-form/es/defaultShouldAsyncValidate';
+import { translateOption } from '../../utils/i18nHelpers';
+import intl from 'react-intl-universal';
 
 const formSelector = formValueSelector('createBounty');
 
@@ -115,7 +116,7 @@ class CreateBountyFormComponent extends React.Component {
           valueField &&
           BigNumber(balance, 10).isLessThan(BigNumber(valueField, 10))
         ) {
-          return 'Deposit amount must at least match the payout amount.';
+          return intl.get('sections.create_bounty.deposit_warning');
         }
       }
     ]
@@ -142,41 +143,44 @@ class CreateBountyFormComponent extends React.Component {
     } = this.props;
     const { validatorGroups } = this;
 
-    let submitButtonText = 'Create Bounty';
+    let submitButtonText = intl.get('sections.create_bounty.actions.create');
     if (!activateNow) {
-      submitButtonText = 'Create Draft';
+      submitButtonText = intl.get('sections.create_bounty.actions.draft');
     }
     if (bountyId && !activateNow) {
-      submitButtonText = 'Update Draft';
+      submitButtonText = intl.get('sections.create_bounty.actions.update');
     }
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
         <FormSection>
-          <FormSection.Section title="ABOUT">
+          <FormSection.Section
+            title={intl.get('sections.create_bounty.sections.about.title')}
+          >
             <FormSection.Description>
-              Enter your details about this bounty.
+              {intl.get('sections.create_bounty.sections.about.description')}
             </FormSection.Description>
             <FormSection.SubText>
-              Enter a title and description for your bounty. A{' '}
+              {intl.getHTML('sections.create_bounty.sections.about.notice')}
               <Text
                 link
                 absolute
                 src={'http://www.markdownguide.org/cheat-sheet'}
               >
                 markdown
-              </Text>{' '}
-              preview will automatically be generated as you type, which you can
-              view by clicking the preview button. Feel free to use the
-              description template provided below, or clear the field to create
-              your own.
+              </Text>
+              {intl.getHTML('sections.create_bounty.sections.about.notice2')}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <Field
                 name="title"
                 disabled={submittingBounty}
                 component={FormTextInput}
-                label="Title"
-                placeholder="Enter title..."
+                label={intl.get(
+                  'sections.create_bounty.sections.about.form.title.label'
+                )}
+                placeholder={intl.get(
+                  'sections.create_bounty.sections.about.form.title.placeholder'
+                )}
                 validate={validatorGroups.title}
               />
             </FormSection.InputGroup>
@@ -185,16 +189,19 @@ class CreateBountyFormComponent extends React.Component {
                 disabled={submittingBounty}
                 name="description"
                 component={FormMarkdownEditor}
-                label="Description"
+                label={intl.get(
+                  'sections.create_bounty.sections.about.form.description.label'
+                )}
                 textBoxClassName={styles.markdownEditor}
                 validate={validatorGroups.description}
               />
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="CONTACT">
+          <FormSection.Section
+            title={intl.get('sections.create_bounty.sections.contact.title')}
+          >
             <FormSection.Description>
-              Who will be the primary contact for bounty questions and
-              submissions?
+              {intl.get('sections.create_bounty.sections.contact.description')}
             </FormSection.Description>
             <FormSection.InputGroup>
               <div className="row">
@@ -203,8 +210,12 @@ class CreateBountyFormComponent extends React.Component {
                     disabled={submittingBounty}
                     name="issuer_name"
                     component={FormTextInput}
-                    label="Contact name"
-                    placeholder="Enter name..."
+                    label={intl.get(
+                      'sections.create_bounty.sections.contact.form.issuer_name.label'
+                    )}
+                    placeholder={intl.get(
+                      'sections.create_bounty.sections.contact.form.issuer_name.placeholder'
+                    )}
                     validate={validatorGroups.issuer_name}
                   />
                 </div>
@@ -213,22 +224,26 @@ class CreateBountyFormComponent extends React.Component {
                     disabled={submittingBounty}
                     name="issuer_email"
                     component={FormTextInput}
-                    label="Contact email"
-                    placeholder="Enter email..."
+                    label={intl.get(
+                      'sections.create_bounty.sections.contact.form.issuer_email.label'
+                    )}
+                    placeholder={intl.get(
+                      'sections.create_bounty.sections.contact.form.issuer_email.placeholder'
+                    )}
                     validate={validatorGroups.issuer_email}
                   />
                 </div>
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="DETAILS">
+          <FormSection.Section
+            title={intl.get('sections.create_bounty.sections.details.title')}
+          >
             <FormSection.Description>
-              How should this bounty be classified?
+              {intl.get('sections.create_bounty.sections.details.description')}
             </FormSection.Description>
             <FormSection.SubText>
-              Enter the categories and difficulty level for the bounty. Since
-              difficulty can be fairly subjective, it is helpful to provide more
-              details around required experience within your bounty description.
+              {intl.get('sections.create_bounty.sections.details.notice')}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -237,8 +252,12 @@ class CreateBountyFormComponent extends React.Component {
                     disabled={submittingBounty}
                     name="categories"
                     component={FormSearchSelect}
-                    label="Bounty category"
-                    placeholder="Create or Select category..."
+                    label={intl.get(
+                      'sections.create_bounty.sections.details.form.categories.label'
+                    )}
+                    placeholder={intl.get(
+                      'sections.create_bounty.sections.details.form.categories.placeholder'
+                    )}
                     validate={validatorGroups.categories}
                     onCreateOption={addCategory}
                     options={categories}
@@ -252,20 +271,30 @@ class CreateBountyFormComponent extends React.Component {
                     disabled={submittingBounty}
                     name="experience_level"
                     component={FormRadioGroup}
-                    label="Difficulty"
-                    options={DIFFICULTY_OPTIONS}
+                    label={intl.get(
+                      'sections.create_bounty.sections.details.form.experience_level.label'
+                    )}
+                    options={DIFFICULTY_OPTIONS.map(option =>
+                      translateOption(
+                        'sections.create_bounty.sections.details.form.experience_level.options',
+                        option
+                      )
+                    )}
                   />
                 </div>
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="REVISIONS">
+          <FormSection.Section
+            title={intl.get('sections.create_bounty.sections.revisions.title')}
+          >
             <FormSection.Description>
-              Will you require revisions?
+              {intl.get(
+                'sections.create_bounty.sections.revisions.description'
+              )}
             </FormSection.Description>
             <FormSection.SubText>
-              Enter the maximum number of revisions you may require for this
-              task, in order to help set expectations for the contributors.
+              {intl.get('sections.create_bounty.sections.revisions.notice')}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -279,13 +308,18 @@ class CreateBountyFormComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="ATTACHMENTS">
+          <FormSection.Section
+            title={intl.get(
+              'sections.create_bounty.sections.attachments.title'
+            )}
+          >
             <FormSection.Description>
-              Does this bounty require any external assets for completion?
+              {intl.get(
+                'sections.create_bounty.sections.attachments.description'
+              )}
             </FormSection.Description>
             <FormSection.SubText>
-              Attach any files or links that may be helpful as references or
-              necessary for a contributor to complete the bounty.
+              {intl.get('sections.create_bounty.sections.attachments.notice')}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -295,14 +329,20 @@ class CreateBountyFormComponent extends React.Component {
                     disabled={submittingBounty}
                     component={FormTextInput}
                     type="text"
-                    label="Web link"
+                    label={intl.get(
+                      'sections.create_bounty.sections.attachments.form.url.label'
+                    )}
                     validate={validatorGroups.webReferenceURL}
-                    placeholder="Enter URL..."
+                    placeholder={intl.get(
+                      'sections.create_bounty.sections.attachments.form.url.placeholder'
+                    )}
                   />
                 </div>
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Text inputLabel color="defaultGrey">
-                    Associated file
+                    {intl.get(
+                      'sections.create_bounty.sections.attachments.form.file.label'
+                    )}
                   </Text>
                   <FileUpload
                     disabled={submittingBounty}
@@ -319,14 +359,16 @@ class CreateBountyFormComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="DEADLINE">
+          <FormSection.Section
+            title={intl.get('sections.create_bounty.sections.deadline.title')}
+          >
             <FormSection.Description>
-              When will this bounty be due?
+              {intl.get('sections.create_bounty.sections.deadline.description')}
             </FormSection.Description>
             <FormSection.SubText>
-              Enter the date and time for this bounty's deadline{getTimezone()
-                ? ` (timezone ${getTimezone()}).`
-                : '.'}
+              {intl.get('sections.create_bounty.sections.deadline.notice', {
+                timezone: getTimezone()
+              })}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -343,14 +385,14 @@ class CreateBountyFormComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="PRIVACY">
+          <FormSection.Section
+            title={intl.get('sections.create_bounty.sections.privacy.title')}
+          >
             <FormSection.Description>
-              Do you want to approve people before they can fulfill your bounty?
+              {intl.get('sections.create_bounty.sections.privacy.description')}
             </FormSection.Description>
             <FormSection.SubText>
-              If you require approval, you will be notified when a user
-              indicates their intent to submit, and will be required to approve
-              them before they are allowed to complete your bounty.
+              {intl.get('sections.create_bounty.sections.privacy.notice')}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -359,17 +401,28 @@ class CreateBountyFormComponent extends React.Component {
                     disabled={submittingBounty}
                     name="fulfillers_need_approval"
                     component={FormRadioGroup}
-                    label="Pre-approval Required"
-                    options={APPROVAL_OPTIONS}
+                    label={intl.get(
+                      'sections.create_bounty.sections.privacy.form.fulfillers_need_approval.label'
+                    )}
+                    options={APPROVAL_OPTIONS.map(option =>
+                      translateOption(
+                        'sections.create_bounty.sections.privacy.form.fulfillers_need_approval.options',
+                        option
+                      )
+                    )}
                   />
                 </div>
               </div>
             </FormSection.InputGroup>
             <FormSection.Description>
-              Will submissions be visible to everyone?
+              {intl.get(
+                'sections.create_bounty.sections.privacy.form.private_fullfillments.description'
+              )}
             </FormSection.Description>
             <FormSection.SubText>
-              Submissions can be hidden from other users if desired.
+              {intl.get(
+                'sections.create_bounty.sections.privacy.form.private_fullfillments.notice'
+              )}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -378,20 +431,28 @@ class CreateBountyFormComponent extends React.Component {
                     disabled={submittingBounty}
                     name="private_fulfillments"
                     component={FormRadioGroup}
-                    label="Visibility"
-                    options={VISIBILITY_OPTIONS}
+                    label={intl.get(
+                      'sections.create_bounty.sections.privacy.form.private_fullfillments.label'
+                    )}
+                    options={VISIBILITY_OPTIONS.map(option =>
+                      translateOption(
+                        'sections.create_bounty.sections.privacy.form.private_fullfillments.options',
+                        option
+                      )
+                    )}
                   />
                 </div>
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="PAYOUT">
+          <FormSection.Section
+            title={intl.get('sections.create_bounty.sections.payout.title')}
+          >
             <FormSection.Description>
-              Select payout method and amount.
+              {intl.get('sections.create_bounty.sections.payout.description')}
             </FormSection.Description>
             <FormSection.SubText>
-              Select the token and enter the amount you will award for
-              completion of this bounty.
+              {intl.get('sections.create_bounty.sections.payout.notice')}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -403,18 +464,27 @@ class CreateBountyFormComponent extends React.Component {
                       component={FormTextInput}
                       label={
                         !config.defaultToken
-                          ? 'Token Contract Address'
-                          : `${config.defaultToken.symbol} Contract Address`
+                          ? intl.get(
+                              'sections.create_bounty.sections.payout.form.token_contract.label_default'
+                            )
+                          : intl.get(
+                              'sections.create_bounty.sections.payout.form.token_contract.label_custom',
+                              { token: config.defaultToken.symbol }
+                            )
                       }
                       validate={validatorGroups.token_contract}
-                      placeholder="Enter token contract address..."
+                      placeholder={intl.get(
+                        'sections.create_bounty.sections.payout.form.token_contract.placeholder'
+                      )}
                     />
                   ) : (
                     <Field
                       disabled={submittingBounty}
                       name="paysTokens"
                       component={FormRadioGroup}
-                      label="Payout Method"
+                      label={intl.get(
+                        'sections.create_bounty.sections.payout.form.method.label'
+                      )}
                       options={PAYOUT_OPTIONS}
                     />
                   )}
@@ -426,11 +496,14 @@ class CreateBountyFormComponent extends React.Component {
                     component={FormTextInput}
                     type="text"
                     normalize={normalizers.number}
-                    label={`Payout amount ${
-                      !config.defaultToken ? ' (ETH or whole tokens)' : ''
-                    }`}
+                    label={intl.get(
+                      'sections.create_bounty.sections.payout.form.fulfillment_amount.label',
+                      { hasDefaultToken: !config.defaultToken }
+                    )}
                     validate={validatorGroups.fulfillment_amount}
-                    placeholder="Enter amount..."
+                    placeholder={intl.get(
+                      'sections.create_bounty.sections.payout.form.fulfillment_amount.placeholder'
+                    )}
                   />
                 </div>
               </div>
@@ -443,8 +516,12 @@ class CreateBountyFormComponent extends React.Component {
                       disabled={submittingBounty || !!config.defaultToken}
                       name="token_contract"
                       component={FormSearchSelect}
-                      label="Token"
-                      placeholder="Select token or enter token address..."
+                      label={intl.get(
+                        'sections.create_bounty.sections.payout.form.token_contract_2.label'
+                      )}
+                      placeholder={intl.get(
+                        'sections.create_bounty.sections.payout.form.token_contract_2.placeholder'
+                      )}
                       validate={validatorGroups.token_contract}
                       options={tokens}
                       single={true}
@@ -459,15 +536,14 @@ class CreateBountyFormComponent extends React.Component {
               </FormSection.InputGroup>
             ) : null}
           </FormSection.Section>
-          <FormSection.Section title="SAVE OR SUBMIT">
+          <FormSection.Section
+            title={intl.get('sections.create_bounty.sections.save.title')}
+          >
             <FormSection.Description>
-              When would you like to submit and activate the bounty?
+              {intl.get('sections.create_bounty.sections.save.description')}
             </FormSection.Description>
             <FormSection.SubText>
-              If you wish to activate the bounty later, you can save it as a
-              draft. The requirements for a bounty can only be edited while it
-              is in the draft stage. At minimum, your deposit amount must match
-              your payout amount.
+              {intl.get('sections.create_bounty.sections.save.notice')}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -476,8 +552,15 @@ class CreateBountyFormComponent extends React.Component {
                     name="activateNow"
                     disabled={submittingBounty}
                     component={FormRadioGroup}
-                    label="When to activate"
-                    options={ACTIVATE_OPTIONS}
+                    label={intl.get(
+                      'sections.create_bounty.sections.save.form.activate_now.label'
+                    )}
+                    options={ACTIVATE_OPTIONS.map(option =>
+                      translateOption(
+                        'sections.create_bounty.sections.save.form.activate_now.options',
+                        option
+                      )
+                    )}
                   />
                 </div>
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
@@ -486,10 +569,14 @@ class CreateBountyFormComponent extends React.Component {
                       name="balance"
                       disabled={submittingBounty}
                       component={FormTextInput}
-                      label="Deposit amount (ETH or whole tokens)"
+                      label={intl.get(
+                        'sections.create_bounty.sections.save.form.balance.label'
+                      )}
                       validate={validatorGroups.balance}
                       normalize={normalizers.number}
-                      placeholder="Enter amount..."
+                      placeholder={intl.get(
+                        'sections.create_bounty.sections.save.form.balance.placeholder'
+                      )}
                     />
                   ) : null}
                   {/* this hidden field is added as a duplicate to the above
@@ -522,7 +609,7 @@ class CreateBountyFormComponent extends React.Component {
           </Button>
           {submitFailed && invalid ? (
             <Text inputLabel color="red" className={styles.submitError}>
-              Fix errors before submitting.
+              {intl.get('errors.form_error')}
             </Text>
           ) : null}
         </div>

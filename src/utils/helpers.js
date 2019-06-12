@@ -5,7 +5,7 @@ export function getTimezone() {
       return dateTimeFormat.resolvedOptions().timeZone;
     }
   }
-  return '';
+  return null;
 }
 
 export function shortenAddress(address) {
