@@ -11,7 +11,6 @@ import { FormTextbox, FormRating } from 'form-components';
 import { actions as reviewActions } from 'public-modules/Review';
 import { rootReviewSelector } from 'public-modules/Review/selectors';
 import { ratingModalSelector } from 'containers/Bounty/selectors';
-import BountyDetails from './BountyDetails';
 
 const messageTemplate = {
   issuer: [
