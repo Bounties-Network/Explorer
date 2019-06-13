@@ -95,7 +95,7 @@ const HeaderComponent = props => {
                     history.push('/settings');
                   }}
                 >
-                  {intl.get('actions.settings`')}
+                  {intl.get('actions.settings')}
                 </MenuItem>
                 <MenuItem
                   icon={['fal', 'sign-out']}

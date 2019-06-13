@@ -32,7 +32,7 @@
     "create_bounty": "Create New Bounty",
     "profile": "Profile",
     "settings": "Account Settings",
-    "singout": "Sign out",
+    "signout": "Sign out",
     "signin": "Sign in"
   },
   "sections": {
