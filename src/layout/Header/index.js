@@ -12,6 +12,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import styles from './Header.module.scss';
 import { Button, Avatar, Dropdown, Network, Text } from 'components';
 import { NotificationDropdown } from 'containers';
+import intl from 'react-intl-universal';
 
 const BeeLogo = require(`../../styles/${process.env.APP_LOGO}.js`).default;
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
@@ -57,7 +58,7 @@ const HeaderComponent = props => {
                   <FontAwesomeIcon icon={['far', 'plus']} />
                 </Text>
                 <Text className={styles.desktopButtonText}>
-                  Create New Bounty
+                  {intl.get('actions.create_bounty')}
                 </Text>
               </Button>
             )}
@@ -85,7 +86,7 @@ const HeaderComponent = props => {
                     history.push('/profile');
                   }}
                 >
-                  Profile
+                  {intl.get('actions.profile')}
                 </MenuItem>
                 <MenuItem
                   key="settings"
@@ -94,14 +95,14 @@ const HeaderComponent = props => {
                     history.push('/settings');
                   }}
                 >
-                  Account Settings
+                  {intl.get('actions.settings`')}
                 </MenuItem>
                 <MenuItem
                   icon={['fal', 'sign-out']}
                   onClick={logout}
                   key="logout"
                 >
-                  Sign Out
+                  {intl.get('actions.signout')}
                 </MenuItem>
               </DropdownContent>
             </Dropdown>
@@ -114,7 +115,7 @@ const HeaderComponent = props => {
             onClick={() => showLogin(true)}
             className={styles.button}
           >
-            Sign In
+            {intl.get('actions.signin')}
           </Button>
         </div>
       )}

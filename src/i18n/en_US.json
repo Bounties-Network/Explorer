@@ -28,7 +28,12 @@
     "reset": "Reset",
     "sort": "Sort",
     "continue": "Continue",
-    "dashboard": "Go to Dashboard"
+    "dashboard": "Go to Dashboard",
+    "create_bounty": "Create New Bounty",
+    "profile": "Profile",
+    "settings": "Account Settings",
+    "singout": "Sign out",
+    "signin": "Sign in"
   },
   "sections": {
     "activity": {
@@ -67,6 +72,19 @@
         "revisions": "{count} revisions"
       },
       "components": {
+        "issue_rating": {
+          "issuer1":
+            "Your bounty submission was accepted! If you would like, you can rate your experience with the following bounty issuer:",
+          "issuer2":
+            "This will help set expectations for other fulfillers on the platform.",
+          "fulfiller1":
+            "You accepted a submission to your bounty! If you would like, you can rate your experience with the following fulfiller:",
+          "fulfiller2":
+            "This will help set expectations for other issuers on the platform.",
+          "rating": "Rating",
+          "review": "Review",
+          "review_placeholder": "Enter review..."
+        },
         "new_comment": {
           "placeholder": "Write a comment..",
           "action": "Post comment",
@@ -436,7 +454,11 @@
       }
     },
     "leaderboard": {
-      "title": "Leaderboard"
+      "title": "Leaderboard",
+      "banner": {
+        "top_issuers": "Top Issuers",
+        "top_earners": "Top Earners"
+      }
     },
     "leaderboard_card": {
       "zero_state": {
@@ -569,6 +591,11 @@
       }
     },
     "settings": {
+      "title": "Account Settings",
+      "messages": {
+        "profile_saved": "Profile saved successfully",
+        "email_saved": "Email preferences saved successfully"
+      },
       "emails": {
         "title": "EMAIL NOTIFICATIONS",
         "description":
@@ -705,6 +732,10 @@
       "submissions_count":
         "{count, plural, =1 {submission} other {submissions}}"
     },
+    "bounty_item": {
+      "text":
+        "Created {time} ∙ {submissionCount, plural, =1 {submission} = {submissions}}"
+    },
     "essentials": {
       "balance": "Remaining Balance"
     },
@@ -752,9 +783,40 @@
       }
     }
   },
+  "hocs": {
+    "require_login": {
+      "zero_state": {
+        "title": "Sign in to use the Bounties Network",
+        "body":
+          "In order for you to use certain features of the network like creating and fulfilling bounties, commenting, and viewing your network stats, please sign in using your secure wallet.",
+        "subtext":
+          "If you don't wish to sign in but want to explore, feel free to check out some bounties using the ",
+        "action": "Sign In"
+      },
+      "explorer": "explorer"
+    }
+  },
   "errors": {
     "500": "Something went wrong. Try again later.",
+    "404": "Not Found",
     "form_error": "Fix errors before submitting."
+  },
+  "validation": {
+    "required": "* Required",
+    "max": "Must be {max} characters or less",
+    "min": "Must be {min} characters or more",
+    "max_decimals": "Must be {max} decimal places or less",
+    "min_value": "Must be greater than {min}",
+    "mineq_value": "Must be greater than or equal to  {min}",
+    "min_date": "Date must be after ${date)}",
+    "length": "Must be {length} characters",
+    "web3": "Must be a proper web3 address",
+    "number": "Must be a number",
+    "email": "Invalid email address",
+    "alfa_num": "Only alphanumeric characters",
+    "twitter": "Invalid Twitter handle",
+    "github": "Invalid Github handle",
+    "url": "Invalid URL"
   },
   "common": {
     "description": "Description",

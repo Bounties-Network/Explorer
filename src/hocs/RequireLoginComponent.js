@@ -8,6 +8,7 @@ import { ZeroState, Card } from 'components';
 import { actions as loginActions } from 'containers/Login/reducer';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import LoginLock from 'containers/Login/LoginLock';
+import intl from 'react-intl-universal';
 
 function RequireLoginComponentHOC(WrappedComponent) {
   class RequireLoginComponent extends Component {
@@ -23,28 +24,28 @@ function RequireLoginComponentHOC(WrappedComponent) {
               <Card className={styles.notLoggedInCard}>
                 <Card.Body>
                   <ZeroState
-                    title={'Sign in to use the Bounties Network'}
+                    title={intl.get('hocs.require_login.zero_state.title')}
                     action
-                    actionText={'Sign In'}
+                    actionText={intl.get(
+                      'hocs.require_login.zero_state.action'
+                    )}
                     iconColor="blue"
                     onActionClick={() => showLogin(true)}
                     icon={['fal', 'sign-in']}
                   >
                     <div>
                       <ZeroState.BodyText>
-                        In order for you to use certain features of the network
-                        like creating and fulfilling bounties, commenting, and
-                        viewing your network stats, please sign in using your
-                        secure wallet.
+                        {intl.get('hocs.require_login.zero_state.body')}
                       </ZeroState.BodyText>
                     </div>
                     <div className={styles.subText}>
                       <ZeroState.BodyText>
-                        If you don&#39;t wish to sign in but want to explore,
-                        feel free to check out some bounties using the{' '}
+                        {intl.get('hocs.require_login.zero_state.subtext')}
                       </ZeroState.BodyText>
                       <ZeroState.BodyText>
-                        <Link to="/explorer">explorer</Link>
+                        <Link to="/explorer">
+                          {intl.get('hocs.require_login.explorer')}
+                        </Link>
                       </ZeroState.BodyText>
                       <ZeroState.BodyText>.</ZeroState.BodyText>
                     </div>

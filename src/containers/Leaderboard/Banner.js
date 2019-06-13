@@ -20,9 +20,13 @@ const BannerComponent = props => {
       </PageCard.Title>
       <Switch
         onChange={leaderboardToggle}
-        onValue={'Top Issuers'}
-        offValue={'Top Earners'}
-        value={toggleValue === 'issuer' ? 'Top Issuers' : 'Top Earners'}
+        onValue={intl.get('sections.leaderboard.banner.top_issuer')}
+        offValue={intl.get('sections.leaderboard.banner.top_earner')}
+        value={
+          toggleValue === 'issuer'
+            ? intl.get('sections.leaderboard.banner.top_issuer')
+            : intl.get('sections.leaderboard.banner.top_earner')
+        }
         selectedColor="white"
         unselectedColor="transparentWhite"
         backgroundColor="dark"
