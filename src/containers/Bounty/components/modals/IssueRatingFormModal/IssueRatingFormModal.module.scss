@@ -1,35 +1,12 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
-.inputGroup {
-  margin-top: $xxl-spacing;
-}
-
-.bountyInfoContainer {
-  margin: $xl-spacing;
-  margin-bottom: $xxl-spacing * 2;
-}
-
-.bountyInfo {
-  position: relative;
-  padding: $m-spacing;
-  border: $base-border;
-  border-radius: $base-border-radius;
-  box-shadow: $base-box-shadow;
-
-  .pill {
-    line-height: 1;
-    position: absolute;
-    top: -10px;
-    left: -10px;
-  }
+.inputGroup:last-child {
+  margin-top: $xl-spacing;
 }
 
 .rowText {
   display: flex;
   justify-content: space-between;
-}
-
-.detailsGroup {
 }
 
 .review {

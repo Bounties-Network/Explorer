@@ -81,7 +81,6 @@ const IssueRatingFormModalComponent = props => {
         size="medium"
       >
         <Modal.Header closable={true}>
-          <BountyDetails bounty={bounty} />
           <Modal.Heading>Rate {type}</Modal.Heading>
           <Modal.Description>
             {messageTemplate[type][0]}
