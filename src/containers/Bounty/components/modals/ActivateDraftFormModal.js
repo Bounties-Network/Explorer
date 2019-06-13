@@ -29,7 +29,7 @@ class ActivateDraftFormModal extends React.Component {
       onClose,
       minimumBalance,
       handleSubmit,
-      tokenSymbol,
+      token_symbol,
       visible,
       submitFailed,
       invalid,
@@ -53,7 +53,7 @@ class ActivateDraftFormModal extends React.Component {
                 {
                   textHighlightClass: styles.textHighlight,
                   minimumBalance,
-                  tokenSymbol
+                  token_symbol
                 }
               )}
             </Modal.Description>
@@ -64,7 +64,7 @@ class ActivateDraftFormModal extends React.Component {
               component={FormTextInput}
               label={intl.get(
                 'sections.bounty.modals.activate_draft_form.form.balance.label',
-                { tokenSymbol }
+                { token_symbol }
               )}
               normalize={normalizers.number}
               validate={this.fieldValidators}
@@ -110,9 +110,10 @@ export default compose(
     destroyOnUnmount: false,
     asyncValidate: (values, dispatch, props, field) => {
       return asyncValidators.tokenValidationWrapper(
-        { ...values, tokenContract: props.tokenContract },
+        { ...values, token_contract: props.token_contract },
         'balance',
-        'tokenContract',
+        'token_contract',
+        true,
         props.asyncValidating,
         field,
         dispatch

@@ -29,7 +29,7 @@ class ActivateDeadFormModal extends React.Component {
       onClose,
       minimumBalance,
       handleSubmit,
-      tokenSymbol,
+      token_symbol,
       visible,
       submitFailed,
       invalid,
@@ -52,7 +52,7 @@ class ActivateDeadFormModal extends React.Component {
             <Modal.Description>
               {intl.get(
                 'sections.bounty.modals.activate_dead_form.description',
-                { minimumBalance, tokenSymbol }
+                { minimumBalance, token_symbol }
               )}
             </Modal.Description>
           </Modal.Header>
@@ -62,7 +62,7 @@ class ActivateDeadFormModal extends React.Component {
               component={FormTextInput}
               label={intl.get(
                 'sections.bounty.modals.activate_dead_form.form.balance.label',
-                { tokenSymbol }
+                { token_symbol }
               )}
               normalize={normalizers.number}
               validate={this.fieldValidators}
@@ -108,9 +108,10 @@ export default compose(
     destroyOnUnmount: false,
     asyncValidate: (values, dispatch, props, field) => {
       return asyncValidators.tokenValidationWrapper(
-        { ...values, tokenContract: props.tokenContract },
+        { ...values, token_contract: props.token_contract },
         'balance',
-        'tokenContract',
+        'token_contract',
+        true,
         props.asyncValidating,
         field,
         dispatch

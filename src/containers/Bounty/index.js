@@ -156,7 +156,7 @@ class BountyComponent extends React.Component {
             iconColor="red"
             title={intl.get('sections.bounty.zero_state.title')}
             text={intl.get('sections.bounty.zero_state.descriptions')}
-            icon={['fal', 'exclamation-triangle']}
+            icon="error"
           />
         </div>
       );
@@ -178,17 +178,17 @@ class BountyComponent extends React.Component {
             <div className={styles.header}>
               <BountyEssentials
                 isDraft={isDraft}
-                bountyStage={bounty.bountyStage}
-                payoutPrimaryValue={bounty.calculated_fulfillmentAmount}
-                payoutPrimaryCurrency={bounty.tokenSymbol}
+                bounty_stage={bounty.bounty_stage}
+                payoutPrimaryValue={bounty.calculated_fulfillment_amount}
+                payoutPrimaryCurrency={bounty.token_symbol}
                 payoutSecondaryValue={bounty.usd_price}
                 payoutSecondaryCurrency="usd"
                 balancePrimaryValue={bounty.calculated_balance}
-                balancePrimaryCurrency={bounty.tokenSymbol}
+                balancePrimaryCurrency={bounty.token_symbol}
                 balanceSecondaryValue={
                   bounty.calculated_balance
                     ? (bounty.calculated_balance /
-                        bounty.calculated_fulfillmentAmount) *
+                        bounty.calculated_fulfillment_amount) *
                       bounty.usd_price
                     : 0
                 }
@@ -309,7 +309,7 @@ class BountyComponent extends React.Component {
                       color="defaultGrey"
                       className={styles.metadataLabel}
                     >
-                      {bounty.bountyStage === EXPIRED
+                      {bounty.bounty_stage === EXPIRED
                         ? intl.get('common.expired')
                         : intl.get('common.remaining')}
                     </Text>
@@ -364,48 +364,54 @@ class BountyComponent extends React.Component {
                   )}
                 </section>
 
-                <section className={styles.metadataSection}>
-                  {bounty.sourceDirectoryHash && (
-                    <div className={styles.metadataItem}>
-                      <i className={styles.metadataIcon}>
-                        <FontAwesomeIcon icon={['far', 'paperclip']} />
-                      </i>
-                      <Text
-                        link
-                        absolute
-                        src={`https://ipfs.infura.io/ipfs/${
-                          bounty.sourceDirectoryHash
-                        }/${bounty.sourceFileName}`}
-                      >
-                        {shortenFileName(bounty.sourceFileName, 18)}
-                      </Text>
-                    </div>
-                  )}
+                {(bounty.attached_data_hash ||
+                  bounty.attached_url ||
+                  bounty.user.email) && (
+                  <section className={styles.metadataSection}>
+                    {bounty.attached_data_hash && (
+                      <div className={styles.metadataItem}>
+                        <i className={styles.metadataIcon}>
+                          <FontAwesomeIcon icon={['far', 'paperclip']} />
+                        </i>
+                        <Text
+                          link
+                          absolute
+                          src={`https://ipfs.infura.io/ipfs/${
+                            bounty.attached_data_hash
+                          }/${bounty.attached_filename}`}
+                        >
+                          {shortenFileName(bounty.attached_filename, 18)}
+                        </Text>
+                      </div>
+                    )}
 
-                  {bounty.webReferenceURL && (
-                    <div className={styles.metadataItem}>
-                      <i className={styles.metadataIcon}>
-                        <FontAwesomeIcon icon={['far', 'link']} />
-                      </i>
-                      <Text link absolute src={`${bounty.webReferenceURL}`}>
-                        {shortenUrl(bounty.webReferenceURL)}
-                      </Text>
-                    </div>
-                  )}
+                    {bounty.attached_url && (
+                      <div className={styles.metadataItem}>
+                        <i className={styles.metadataIcon}>
+                          <FontAwesomeIcon icon={['far', 'link']} />
+                        </i>
+                        <Text link absolute src={`${bounty.attached_url}`}>
+                          {shortenUrl(bounty.attached_url)}
+                        </Text>
+                      </div>
+                    )}
 
-                  <div className={styles.metadataItem}>
-                    <i className={styles.metadataIcon}>
-                      <FontAwesomeIcon icon={['far', 'envelope']} />
-                    </i>
-                    <Text link src={`mailto:${bounty.issuer_email}`}>
-                      {bounty.issuer_email}
-                    </Text>
-                  </div>
-                </section>
+                    {bounty.user.email && (
+                      <div className={styles.metadataItem}>
+                        <i className={styles.metadataIcon}>
+                          <FontAwesomeIcon icon={['far', 'envelope']} />
+                        </i>
+                        <Text link src={`mailto:${bounty.user.email}`}>
+                          {bounty.user.email}
+                        </Text>
+                      </div>
+                    )}
+                  </section>
+                )}
               </div>
               {!isDraft && (
                 <div className={styles.social}>
-                  <Social utm_campaign={`bounty_${bounty.id}`} />
+                  <Social utm_campaign={`bounty_${bounty.bounty_id}`} />
                 </div>
               )}
             </div>

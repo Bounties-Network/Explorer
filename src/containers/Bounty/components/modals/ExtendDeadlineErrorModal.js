@@ -7,7 +7,7 @@ const ExtendDeadlineErrorModal = props => {
 
   return (
     <Modal dismissable onClose={onClose} visible={visible} fixed size="small">
-      <Modal.Header closable icon={['far', 'exclamation-triangle']}>
+      <Modal.Header closable icon="error">
         <Modal.Message>
           {intl.get('sections.bounty.modals.extend_deadline_error.title')}
         </Modal.Message>

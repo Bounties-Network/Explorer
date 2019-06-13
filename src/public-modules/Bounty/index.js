@@ -92,49 +92,70 @@ function createBounty(values, balance) {
   return { type: CREATE_BOUNTY, values, balance };
 }
 
-function transferOwnership(id, address) {
-  return { type: TRANSFER_OWNERSHIP, id, address };
+function transferOwnership(id, contract_version, address) {
+  return { type: TRANSFER_OWNERSHIP, id, contract_version, address };
 }
 
-function killBounty(id) {
-  return { type: KILL_BOUNTY, id };
+function killBounty(id, contract_version, currentBalance) {
+  return { type: KILL_BOUNTY, id, contract_version, currentBalance };
 }
 
-function extendDeadline(id, deadline) {
-  return { type: EXTEND_DEADLINE, id, deadline };
+function extendDeadline(id, contract_version, deadline) {
+  return { type: EXTEND_DEADLINE, id, contract_version, deadline };
 }
 
-function contribute(id, value, paysTokens, decimals, tokenContract) {
-  return { type: CONTRIBUTE, id, value, paysTokens, decimals, tokenContract };
+function contribute(
+  id,
+  value,
+  paysTokens,
+  decimals,
+  token_contract,
+  user_address,
+  contract_version
+) {
+  return {
+    type: CONTRIBUTE,
+    id,
+    value,
+    paysTokens,
+    decimals,
+    token_contract,
+    user_address,
+    contract_version
+  };
 }
 
 function increasePayout(
   id,
-  fulfillmentAmount,
+  contract_version,
+  fulfillment_amount,
   balance,
   paysTokens,
   decimals,
-  tokenContract
+  token_contract,
+  bounty
 ) {
   return {
     type: INCREASE_PAYOUT,
     id,
-    fulfillmentAmount,
+    contract_version,
+    fulfillment_amount,
     balance,
     paysTokens,
     decimals,
-    tokenContract
+    token_contract,
+    bounty
   };
 }
 
-function activateBounty(id, balance, paysTokens, decimals, tokenContract) {
+function activateBounty(id, balance, paysTokens, decimals, token_contract) {
   return {
     type: ACTIVATE_BOUNTY,
     id,
     balance,
     paysTokens,
     decimals,
-    tokenContract
+    token_contract
   };
 }
 

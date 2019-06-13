@@ -129,8 +129,7 @@ const ApplicantsCard = props => {
           text={intl.get(
             'sections.bounty.components.applicants_card.zero_state.description'
           )}
-          iconColor="blue"
-          icon={['fal', 'level-up']}
+          icon="inbox"
         />
       </div>
     );

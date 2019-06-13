@@ -5,7 +5,7 @@
   },
   "postingPlatform": "bounties-network",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "main",
   "networkName": "staging.bounties.network",
   "url": {
@@ -14,9 +14,10 @@
   },
   "requiredNetwork": "rinkeby",
   "mainNet": {
-    "standardBountiesAddress": "0xf1c785a5b66c522aed038a82077a34d0b23799fc"
+    "standardBountiesAddressV2": "0xf1c785a5b66c522aed038a82077a34d0b23799fc"
   },
   "rinkeby": {
-    "standardBountiesAddress": "0xf1c785a5b66c522aed038a82077a34d0b23799fc"
+    "standardBountiesAddressV1": "0xdd1636b88e9071507e859e61991ed4be6647f420",
+    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c"
   }
 }

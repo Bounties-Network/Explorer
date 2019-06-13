@@ -16,13 +16,13 @@ const BountyEssentials = props => {
     balanceSecondaryValue,
     balanceSecondaryCurrency,
     isDraft,
-    bountyStage
+    bounty_stage
   } = props;
 
   return (
     <div className={styles.bountyEssentials}>
       <div className={styles.stage}>
-        <StagePill stage={isDraft ? DRAFT : bountyStage} />
+        <StagePill stage={isDraft ? DRAFT : bounty_stage} />
       </div>
 
       <div className={styles.currencyContainer}>

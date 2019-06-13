@@ -15,7 +15,7 @@
   transition: transform 0.1s ease-in-out;
 
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: $base-box-shadow;
 
     &.disabled {
@@ -62,7 +62,7 @@
   transition: transform 0.1s ease-in-out;
 
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     border-color: $brand-mediumGrey;
     color: $brand-black;
     box-shadow: $base-box-shadow;

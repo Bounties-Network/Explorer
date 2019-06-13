@@ -16,7 +16,7 @@ const WrongNetwork = props => {
       closable={closable}
       fixed={!pageLevel}
     >
-      <Modal.Header closable={closable} icon={['fal', 'wifi']}>
+      <Modal.Header closable={closable} icon="network">
         <Modal.Message>
           {intl.get('sections.login.modals.wrong_network.title')}
         </Modal.Message>

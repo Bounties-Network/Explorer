@@ -14,7 +14,7 @@ const ContributeFormModal = props => {
   const {
     onClose,
     handleSubmit,
-    tokenSymbol,
+    token_symbol,
     tokenDecimals,
     visible,
     submitFailed,
@@ -43,7 +43,7 @@ const ContributeFormModal = props => {
           </Modal.Message>
           <Modal.Description>
             {intl.get('sections.bounty.modals.contribute.description', {
-              tokenSymbol
+              token_symbol
             })}
           </Modal.Description>
         </Modal.Header>
@@ -54,7 +54,7 @@ const ContributeFormModal = props => {
             normalize={normalizers.number}
             label={intl.get(
               'sections.bounty.modals.contribute.form.contribution.label',
-              { tokenSymbol }
+              { token_symbol }
             )}
             validate={fieldValidators}
             placeholder={intl.get(
@@ -98,9 +98,10 @@ export default compose(
     destroyOnUnmount: false,
     asyncValidate: (values, dispatch, props, field) => {
       return asyncValidators.tokenValidationWrapper(
-        { ...values, tokenContract: props.tokenContract },
+        { ...values, token_contract: props.token_contract },
         'contribution',
-        'tokenContract',
+        'token_contract',
+        true,
         props.asyncValidating,
         field,
         dispatch

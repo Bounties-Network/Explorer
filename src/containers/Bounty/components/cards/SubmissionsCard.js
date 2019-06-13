@@ -64,7 +64,13 @@ const SubmissionsCard = props => {
           acceptFulfillment={() =>
             initiateLoginProtection(() =>
               initiateWalkthrough(() =>
-                acceptFulfillment(bounty.id, fulfillment_id)
+                acceptFulfillment(
+                  bounty.bounty_id,
+                  bounty.contract_version,
+                  fulfillment_id,
+                  0,
+                  [bounty.fulfillment_amount]
+                )
               )
             )
           }
@@ -106,8 +112,7 @@ const SubmissionsCard = props => {
           text={intl.get(
             'sections.bounty.components.submissions_card.zero_state.description'
           )}
-          iconColor="blue"
-          icon={['fal', 'level-up']}
+          icon="inbox"
         />
       </div>
     );
@@ -143,8 +148,7 @@ const SubmissionsCard = props => {
             text={intl.get(
               'sections.bounty.components.submissions_card.zero_state.bounty_owner_description'
             )}
-            iconColor="blue"
-            icon={['fal', 'lock']}
+            icon="inbox"
           />
         </div>
       );
@@ -161,8 +165,7 @@ const SubmissionsCard = props => {
             text={intl.get(
               'sections.bounty.components.submissions_card.zero_state.private_description'
             )}
-            iconColor="blue"
-            icon={['fal', 'lock']}
+            icon="lock"
           />
         </div>
       );

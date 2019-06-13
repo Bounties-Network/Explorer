@@ -112,7 +112,7 @@ const LeaderboardCardComponent = props => {
             iconColor="blue"
             title={intl.get('section.leaderboard_card.zero_state.title')}
             text={intl.get('section.leaderboard_card.zero_state.description')}
-            icon={['fal', 'trophy-alt']}
+            icon="trophy"
           />
         </div>
       </React.Fragment>
@@ -141,7 +141,7 @@ const LeaderboardCardComponent = props => {
             text={intl.get(
               'section.leaderboard_card.zero_state_error.description'
             )}
-            icon={['fal', 'exclamation-triangle']}
+            icon="error"
           />
         </div>
       </React.Fragment>

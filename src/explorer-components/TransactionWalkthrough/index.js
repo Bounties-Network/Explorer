@@ -9,7 +9,7 @@ const InitiateWalkthrough = props => {
 
   return (
     <Modal onClose={onClose} visible={visible} fixed size="small">
-      <Modal.Header icon={['fal', 'wallet']}>
+      <Modal.Header icon="wallet">
         <Modal.Message>{intl.get('components.tx_guide.title')}</Modal.Message>
       </Modal.Header>
       <Modal.Body>
@@ -87,7 +87,7 @@ const WalkthroughError = props => {
 
   return (
     <Modal dismissable onClose={onClose} fixed size="small" visible={visible}>
-      <Modal.Header icon={['fal', 'exclamation-triangle']} closable />
+      <Modal.Header icon="error" closable />
       <Modal.Body>
         <Modal.Message>{intl.get('errors.500')}</Modal.Message>
       </Modal.Body>
@@ -107,7 +107,7 @@ const WalkthroughSuccess = props => {
 
   return (
     <Modal fixed size="small" visible={visible}>
-      <Modal.Header icon={['fal', 'check-circle']} />
+      <Modal.Header icon="check" />
       <Modal.Body>
         <Modal.Message>
           {intl.get('components.tx_guide.messages.confirmed')}

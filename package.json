@@ -69,6 +69,7 @@
     "precommit": "lint-staged",
     "start": "APP_SETTINGS_FILE=production_settings APP_LOGO=logo node scripts/start.js",
     "start-local": "APP_SETTINGS_FILE=local_settings APP_LOGO=logo node scripts/start.js",
+    "start-staging": "APP_SETTINGS_FILE=staging_settings APP_LOGO=logo node scripts/start.js",
     "start-production": "APP_SETTINGS_FILE=production_settings APP_LOGO=logo node scripts/start.js",
     "start-rinkeby": "APP_SETTINGS_FILE=rinkeby_settings APP_LOGO=logo node scripts/start.js",
     "build": "node scripts/build.js",
@@ -93,8 +94,8 @@
     "deploy-sf": "APP_SETTINGS_FILE=sf_settings APP_LOGO=logo npm run build && aws s3 sync build/. s3://sf.bounties.network --acl public-read --exclude index.html --cache-control max-age=31536000 && aws s3 cp build/index.html s3://sf.bounties.network --acl public-read --cache-control 'no-cache, no-store, must-revalidate'",
     "deploy-staging": "APP_SETTINGS_FILE=staging_settings APP_LOGO=logo npm run build && aws s3 sync build/. s3://staging.bounties.network --acl public-read --exclude index.html --cache-control max-age=31536000 && aws s3 cp build/index.html s3://staging.bounties.network --acl public-read --cache-control 'no-cache, no-store, must-revalidate'",
     "deploy-surge": "APP_SETTINGS_FILE=surge_settings APP_LOGO=surge_logo npm run build && aws s3 sync build/. s3://surge.bounties.network --acl public-read --exclude index.html --cache-control max-age=31536000 && aws s3 cp build/index.html s3://surge.bounties.network --acl public-read --cache-control 'no-cache, no-store, must-revalidate'",
-    "deploy-all": "npm run deploy-production && npm run deploy-berlin && npm run deploy-hiring && npm run deploy-bees && npm run deploy-staging && npm run deploy-sf && npm run deploy-prague && npm run deploy-colorado && npm run deploy-paris",
-    "deploy-all-production": "npm run deploy-production && npm run deploy-berlin && npm run deploy-hiring && npm run deploy-bees && npm run deploy-sf && npm run deploy-prague && npm run deploy-colorado"
+    "deploy-all": "npm run deploy-production && npm run deploy-rinkeby && npm run deploy-prague && npm run deploy-colorado && npm run deploy-bgc && npm run deploy-boost && npm run deploy-korea && npm run deploy-nyc && npm run deploy-surge",
+    "deploy-all-production": "npm run deploy-production && npm run deploy-rinkeby && npm run deploy-prague && npm run deploy-colorado && npm run deploy-bgc && npm run deploy-boost && npm run deploy-korea && npm run deploy-nyc && npm run deploy-surge"
   },
   "jest": {
     "collectCoverageFrom": [

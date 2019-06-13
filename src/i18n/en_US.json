@@ -156,12 +156,12 @@
         "activate_dead_form": {
           "title": "Re-Activate your bounty",
           "description":
-            "Indicate an amount for your deposit to activate the bounty. At minimum, your deposit must match the payout amount ({minimumBalance} {tokenSymbol}).",
+            "Indicate an amount for your deposit to activate the bounty. At minimum, your deposit must match the payout amount ({minimumBalance} {token_symbol}).",
           "min_deposit_warning":
             "At minimum, your initial deposit must match your payout amount.",
           "form": {
             "balance": {
-              "label": "Deposit amount in {tokenSymbol}",
+              "label": "Deposit amount in {token_symbol}",
               "placeholder": "Enter amount..."
             }
           }
@@ -169,12 +169,12 @@
         "activate_draft_form": {
           "title": "Activate your bounty",
           "description":
-            "Indicate an amount for your initial deposit to activate the bounty.<em> At minimum, your initial deposit must match your payout amount of</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {tokenSymbol}</strong>",
+            "Indicate an amount for your initial deposit to activate the bounty.<em> At minimum, your initial deposit must match your payout amount of</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {token_symbol}</strong>",
           "min_deposit_warning":
             "At minimum, your initial deposit must match your payout amount.",
           "form": {
             "balance": {
-              "label": "Deposit amount in {tokenSymbol}",
+              "label": "Deposit amount in {token_symbol}",
               "placeholder": "Enter amount..."
             }
           }
@@ -182,10 +182,10 @@
         "contribute": {
           "title": "Contribute to the bounty",
           "description":
-            "Indicate the amount you would like to contribute towards the bounty ({tokenSymbol}).",
+            "Indicate the amount you would like to contribute towards the bounty ({token_symbol}).",
           "form": {
             "contribution": {
-              "label": "Deposit amount {tokenSymbol}",
+              "label": "Deposit amount {token_symbol}",
               "placeholder": "Enter amount..."
             }
           }
@@ -239,19 +239,21 @@
         },
         "increase_payout": {
           "title": "Increase bounty payout",
-          "description":
-            "Indicate the amount you would like to increase the payout to. You may include an additional balance to cover the costs.<br /><br /><em>Your total balance must be greater than the new prize amount ({tokenSymbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {tokenSymbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {tokenSymbol}</span>.",
+          "description1":
+            "Indicate the amount you would like to increase the payout to. You may include an additional balance to cover the costs.<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+          "description2":
+            "Indicate the amount you would like to increase the payout to.<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
           "balance_warning":
             "The balance of your bounty must be greater than the payout amount.",
           "payout_warning":
             "Your payout amount must be greater than the previous payout amount.",
           "form": {
             "balance": {
-              "label": "Deposit amount ({tokenSymbol})",
+              "label": "Deposit amount ({token_symbol})",
               "placeholder": "Enter amount..."
             },
             "fullfillment_amount": {
-              "label": "New prize amount ({tokenSymbol})",
+              "label": "New prize amount ({token_symbol})",
               "placeholder": "Enter amount..."
             }
           }

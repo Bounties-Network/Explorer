@@ -33,9 +33,9 @@ export function shortenFileName(name, maxLength = 28) {
 }
 
 export function findETHValue(ethObj) {
-  const fulfillmentAmount = parseInt(ethObj.fulfillmentAmount);
+  const fulfillment_amount = parseInt(ethObj.fulfillment_amount);
   const tokenDecimals = parseInt(ethObj.tokenDecimals);
-  return fulfillmentAmount / Math.pow(10, tokenDecimals);
+  return fulfillment_amount / Math.pow(10, tokenDecimals);
 }
 
 export function bytesToSize(bytes) {

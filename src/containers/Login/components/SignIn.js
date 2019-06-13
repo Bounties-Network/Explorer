@@ -8,7 +8,7 @@ const SignIn = props => {
 
   return (
     <Modal visible={visible} size="small" dismissable onClose={onClose}>
-      <Modal.Header closable icon={['fal', 'sign-in']}>
+      <Modal.Header closable icon="signIn">
         <Modal.Message>
           {intl.get('sections.login.modals.sign_in.title')}
         </Modal.Message>

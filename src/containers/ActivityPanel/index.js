@@ -78,7 +78,7 @@ class ActivityPanelComponent extends React.Component {
             title={intl.get('sections.activity.zero_state.title')}
             text={intl.get('sections.activity.zero_state.description')}
             iconColor="blue"
-            icon={['fal', 'chart-line']}
+            faIcon={['fal', 'chart-line']}
           />
         </div>
       );
@@ -97,7 +97,7 @@ class ActivityPanelComponent extends React.Component {
             type="error"
             text={intl.get('errors.500')}
             iconColor="red"
-            icon={['fal', 'exclamation-triangle']}
+            faIcon={['fal', 'exclamation-triangle']}
           />
         </div>
       );

@@ -18,7 +18,7 @@ let FulfillBountyFormModalComponent = props => {
     onSubmit,
     uploadFile,
     resetUpload,
-    privateFulfillments,
+    private_fulfillments,
     submitFailed,
     invalid,
 
@@ -148,7 +148,7 @@ let FulfillBountyFormModalComponent = props => {
           <div className={`row ${styles.fulfillmentInput}`}>
             <div className="col-xs">
               <Text fontStyle="italic" color="defaultGrey">
-                {privateFulfillments
+                {private_fulfillments
                   ? intl.get(
                       'sections.bounty.modals.fulfill_bounty.form.private_notice'
                     )

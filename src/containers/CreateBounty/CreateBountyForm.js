@@ -105,13 +105,13 @@ class CreateBountyFormComponent extends React.Component {
     categories: [validators.required],
     webReferenceURL: [validators.maxLength(256), validators.isURL],
     deadline: [validators.required, validators.minDate(this.props.minDate)],
-    tokenContract: [validators.required, validators.isWeb3Address],
-    fulfillmentAmount: [validators.required, validators.minValue(0)],
+    token_contract: [validators.required, validators.isWeb3Address],
+    fulfillment_amount: [validators.required, validators.minValue(0)],
     balance: [
       validators.required,
       validators.minValue(0),
       (balance, allValues) => {
-        const valueField = allValues.fulfillmentAmount;
+        const valueField = allValues.fulfillment_amount;
         if (
           valueField &&
           BigNumber(balance, 10).isLessThan(BigNumber(valueField, 10))
@@ -141,7 +141,6 @@ class CreateBountyFormComponent extends React.Component {
       minDate,
       tokens
     } = this.props;
-
     const { validatorGroups } = this;
 
     let submitButtonText = intl.get('sections.create_bounty.actions.create');
@@ -151,7 +150,6 @@ class CreateBountyFormComponent extends React.Component {
     if (bountyId && !activateNow) {
       submitButtonText = intl.get('sections.create_bounty.actions.update');
     }
-
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
         <FormSection>
@@ -271,7 +269,7 @@ class CreateBountyFormComponent extends React.Component {
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={submittingBounty}
-                    name="experienceLevel"
+                    name="experience_level"
                     component={FormRadioGroup}
                     label={intl.get(
                       'sections.create_bounty.sections.details.form.experience_level.label'
@@ -431,7 +429,7 @@ class CreateBountyFormComponent extends React.Component {
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
                     disabled={submittingBounty}
-                    name="privateFulfillments"
+                    name="private_fulfillments"
                     component={FormRadioGroup}
                     label={intl.get(
                       'sections.create_bounty.sections.privacy.form.private_fullfillments.label'
@@ -461,7 +459,7 @@ class CreateBountyFormComponent extends React.Component {
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   {config.defaultToken ? (
                     <Field
-                      name="tokenContract"
+                      name="token_contract"
                       disabled={submittingBounty || !!config.defaultToken}
                       component={FormTextInput}
                       label={
@@ -474,7 +472,7 @@ class CreateBountyFormComponent extends React.Component {
                               { token: config.defaultToken.symbol }
                             )
                       }
-                      validate={validatorGroups.tokenContract}
+                      validate={validatorGroups.token_contract}
                       placeholder={intl.get(
                         'sections.create_bounty.sections.payout.form.token_contract.placeholder'
                       )}
@@ -493,7 +491,7 @@ class CreateBountyFormComponent extends React.Component {
                 </div>
                 <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                   <Field
-                    name="fulfillmentAmount"
+                    name="fulfillment_amount"
                     disabled={submittingBounty}
                     component={FormTextInput}
                     type="text"
@@ -502,7 +500,7 @@ class CreateBountyFormComponent extends React.Component {
                       'sections.create_bounty.sections.payout.form.fulfillment_amount.label',
                       { hasDefaultToken: !config.defaultToken }
                     )}
-                    validate={validatorGroups.fulfillmentAmount}
+                    validate={validatorGroups.fulfillment_amount}
                     placeholder={intl.get(
                       'sections.create_bounty.sections.payout.form.fulfillment_amount.placeholder'
                     )}
@@ -516,7 +514,7 @@ class CreateBountyFormComponent extends React.Component {
                   <div className={`col-xs-12 ${styles.input}`}>
                     <Field
                       disabled={submittingBounty || !!config.defaultToken}
-                      name="tokenContract"
+                      name="token_contract"
                       component={FormSearchSelect}
                       label={intl.get(
                         'sections.create_bounty.sections.payout.form.token_contract_2.label'
@@ -524,7 +522,7 @@ class CreateBountyFormComponent extends React.Component {
                       placeholder={intl.get(
                         'sections.create_bounty.sections.payout.form.token_contract_2.placeholder'
                       )}
-                      validate={validatorGroups.tokenContract}
+                      validate={validatorGroups.token_contract}
                       options={tokens}
                       single={true}
                       clearable={true}
@@ -671,15 +669,19 @@ const CreateBountyForm = compose(
     form: 'createBounty',
     asyncValidate: (values, dispatch, props, field) => {
       return asyncValidators.tokenValidationWrapper(
-        { ...values, ethAddress: '0x0000000000000000000000000000000000000000' },
+        {
+          ...values,
+          ethAddress: '0x0000000000000000000000000000000000000000'
+        },
         'balance',
-        values.paysTokens ? 'tokenContract' : 'ethAddress',
+        values.paysTokens ? 'token_contract' : 'ethAddress',
+        values.activateNow,
         props.asyncValidating,
         field,
         dispatch
       );
     },
-    asyncChangeFields: ['balance', 'tokenContract'],
+    asyncChangeFields: ['balance', 'token_contract', 'activateNow'],
 
     // there is a bug in redux-form where shouldAsyncValidate is called before
     // the sync validation errors are remove from the store and therefore the

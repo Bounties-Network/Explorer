@@ -138,7 +138,7 @@ const NotificationDropdown = props => {
               type="error"
               text={intl.get('errors.500')}
               iconColor="red"
-              icon={['fal', 'exclamation-triangle']}
+              faIcon={['fal', 'exclamation-triangle']}
             />
           )}
           {!loaded && (
@@ -155,7 +155,7 @@ const NotificationDropdown = props => {
                     'sections.notifications.zero_state.description'
                   )}
                   iconColor="blue"
-                  icon={['fal', 'bell']}
+                  faIcon={['fal', 'bell']}
                 />
               </div>
             )}

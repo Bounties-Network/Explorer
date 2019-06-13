@@ -16,10 +16,9 @@ class IncreasePayoutFormModal extends React.Component {
     balance: [
       validators.minOrEqualsValue(0),
       validators.maxDecimals(this.props.tokenDecimals),
-      validators.maxDecimals(this.props.tokenDecimals),
       (balance, values) => {
         if (
-          BigNumber(values.fulfillmentAmount || 0, 10).isGreaterThan(
+          BigNumber(values.fulfillment_amount || 0, 10).isGreaterThan(
             BigNumber(this.props.minimumBalance, 10).plus(
               BigNumber(balance || 0, 10)
             )
@@ -31,19 +30,29 @@ class IncreasePayoutFormModal extends React.Component {
         }
       }
     ],
-    fulfillmentAmount: [
+    fulfillment_amount: [
       validators.required,
       validators.maxDecimals(this.props.tokenDecimals),
       validators.minValue(0),
-      (fulfillmentAmount, values) => {
+      (fulfillment_amount, values) => {
         if (
-          BigNumber(this.minimumPayout || 0).isGreaterThanOrEqualTo(
-            BigNumber(values.fulfillmentAmount || 0, 10)
+          BigNumber(this.props.minimumPayout || 0).isGreaterThanOrEqualTo(
+            BigNumber(values.fulfillment_amount || 0, 10)
           )
         ) {
           return intl.get(
             'sections.bounty.modals.increase_payout.payout_warning'
           );
+        }
+      },
+      (fulfillment_amount, values) => {
+        if (
+          this.props.contract_version === 2 &&
+          BigNumber(values.fulfillment_amount || 0, 10).isGreaterThan(
+            BigNumber(this.props.minimumBalance, 10)
+          )
+        ) {
+          return 'The balance of your bounty must be greater than the payout amount.';
         }
       }
     ]
@@ -55,13 +64,13 @@ class IncreasePayoutFormModal extends React.Component {
       minimumBalance,
       minimumPayout,
       handleSubmit,
-      tokenSymbol,
+      token_symbol,
       visible,
       submitFailed,
       invalid,
-      asyncValidating
+      asyncValidating,
+      contract_version
     } = this.props;
-
     return (
       <form onSubmit={handleSubmit}>
         <Modal
@@ -76,41 +85,55 @@ class IncreasePayoutFormModal extends React.Component {
               {intl.get('sections.bounty.modals.increase_payout.title')}
             </Modal.Message>
             <Modal.Description>
-              {intl.getHTML(
-                'sections.bounty.modals.increase_payout.description',
-                {
-                  tokenSymbol,
-                  minimumBalance,
-                  minimumPayout,
-                  textHighlightClass: styles.textHighlight
-                }
-              )}
+              {contract_version === 1 &&
+                intl.getHTML(
+                  'sections.bounty.modals.increase_payout.description1',
+                  {
+                    token_symbol,
+                    minimumBalance,
+                    minimumPayout,
+                    textHighlightClass: styles.textHighlight
+                  }
+                )}
+              {contract_version === 2 &&
+                intl.getHTML(
+                  'sections.bounty.modals.increase_payout.description2',
+                  {
+                    token_symbol,
+                    minimumBalance,
+                    minimumPayout,
+                    textHighlightClass: styles.textHighlight
+                  }
+                )}
             </Modal.Description>
           </Modal.Header>
+
           <Modal.Body className={styles.modalBody}>
-            <Field
-              name="balance"
-              component={FormTextInput}
-              label={intl.get(
-                'sections.bounty.modals.increase_payout.form.balance.label',
-                { tokenSymbol }
-              )}
-              normalize={normalizers.number}
-              validate={this.validatorGroups.balance}
-              placeholder={intl.get(
-                'sections.bounty.modals.increase_payout.form.balance.placeholder'
-              )}
-            />
+            {contract_version === 1 && (
+              <Field
+                name="balance"
+                component={FormTextInput}
+                label={intl.get(
+                  'sections.bounty.modals.increase_payout.form.balance.label',
+                  { token_symbol }
+                )}
+                normalize={normalizers.number}
+                validate={this.validatorGroups.balance}
+                placeholder={intl.get(
+                  'sections.bounty.modals.increase_payout.form.balance.placeholder'
+                )}
+              />
+            )}
             <div className={styles.inputGroup}>
               <Field
-                name="fulfillmentAmount"
+                name="fulfillment_amount"
                 component={FormTextInput}
                 label={intl.get(
                   'sections.bounty.modals.increase_payout.form.fullfillment_amount.label',
-                  { tokenSymbol }
+                  { token_symbol }
                 )}
                 normalize={normalizers.number}
-                validate={this.validatorGroups.fulfillmentAmount}
+                validate={this.validatorGroups.fulfillment_amount}
                 placeholder={intl.get(
                   'sections.bounty.modals.increase_payout.form.fullfillment_amount.placeholder'
                 )}
@@ -154,9 +177,10 @@ export default compose(
     destroyOnUnmount: false,
     asyncValidate: (values, dispatch, props, field) => {
       return asyncValidators.tokenValidationWrapper(
-        { ...values, tokenContract: props.tokenContract },
+        { ...values, token_contract: props.token_contract },
         'balance',
-        'tokenContract',
+        'token_contract',
+        true,
         props.asyncValidating,
         field,
         dispatch

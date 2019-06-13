@@ -14,7 +14,7 @@ import intl from 'react-intl-universal';
 const SubmissionItem = props => {
   const {
     bountyId,
-    bountyStage,
+    bounty_stage,
     title,
     fulfiller,
     fulfiller_img,
@@ -64,7 +64,7 @@ const SubmissionItem = props => {
         flexBasis="16%"
         headerText={intl.get('components.submission.status')}
       >
-        <FulfillmentStagePill bountyStage={bountyStage} accepted={status} />
+        <FulfillmentStagePill bounty_stage={bounty_stage} accepted={status} />
       </Table.Cell>
       <Table.Cell
         flexBasis="13%"

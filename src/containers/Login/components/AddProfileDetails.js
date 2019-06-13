@@ -33,7 +33,7 @@ class AddProfileDetails extends React.Component {
           dismissable
           onClose={this.onClose}
         >
-          <Modal.Header closable icon={['fal', 'id-card-alt']}>
+          <Modal.Header closable icon="profile">
             <Modal.Heading>
               {intl.get('sections.login.modals.details.title')}
             </Modal.Heading>
@@ -54,7 +54,7 @@ class AddProfileDetails extends React.Component {
 
     return (
       <Modal visible={visible} size="small" dismissable onClose={this.onClose}>
-        <Modal.Header closable icon={['fal', 'id-card-alt']}>
+        <Modal.Header closable icon="profile">
           <Modal.Heading>
             {intl.get('sections.login.modals.details.title')}
           </Modal.Heading>

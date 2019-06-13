@@ -31,7 +31,7 @@ function RequireLoginComponentHOC(WrappedComponent) {
                     )}
                     iconColor="blue"
                     onActionClick={() => showLogin(true)}
-                    icon={['fal', 'sign-in']}
+                    icon="lock"
                   >
                     <div>
                       <ZeroState.BodyText>

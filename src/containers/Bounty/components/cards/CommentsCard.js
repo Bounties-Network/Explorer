@@ -94,8 +94,7 @@ const CommentsCard = props => {
               text={intl.get(
                 'sections.bounty.components.comments_card.zero_state.description'
               )}
-              iconColor="blue"
-              icon={['fal', 'comments']}
+              icon="comment"
             />
           </ListGroup.ListItem>
         ]}

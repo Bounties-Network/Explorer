@@ -18,7 +18,7 @@ const BountyCard = props => {
     categories,
     img,
     address,
-    experienceLevel,
+    experience_level,
     submissions,
     deadline,
     stage,
@@ -95,7 +95,7 @@ const BountyCard = props => {
               >
                 {intl.get(
                   'components.bounty_card.difficulty_options.' +
-                    REV_DIFFICULTY_MAPPING[experienceLevel]
+                    REV_DIFFICULTY_MAPPING[experience_level]
                 )}
               </Text>
               <Text inline color="defaultGrey" className={styles.detailLabel}>
@@ -159,7 +159,7 @@ const BountyCard = props => {
 };
 
 BountyCard.propTypes = {
-  experienceLevel: PropTypes.number,
+  experience_level: PropTypes.number,
   title: PropTypes.string,
   categories: PropTypes.array,
   img: PropTypes.string,
@@ -174,7 +174,7 @@ BountyCard.propTypes = {
 
 BountyCard.defaultProps = {
   onPillClick: () => {},
-  experienceLevel: 'Unknown'
+  experience_level: 'Unknown'
 };
 
 export default BountyCard;

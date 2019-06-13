@@ -89,7 +89,7 @@ class BountyPageCardsComponent extends React.Component {
     } = this.props;
 
     const bountyBelongsToLoggedInUser =
-      currentUser && bounty.issuer === currentUser.public_address;
+      currentUser && bounty.user.public_address === currentUser.public_address;
 
     let tabBody = null;
 

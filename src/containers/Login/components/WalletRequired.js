@@ -31,7 +31,7 @@ const WalletRequired = props => {
       onClose={onClose}
       closable={closable}
     >
-      <Modal.Header closable icon={['fal', 'wallet']}>
+      <Modal.Header closable icon="wallet">
         <Modal.Message>
           {intl.get('sections.login.modals.wallet_required.title')}
         </Modal.Message>

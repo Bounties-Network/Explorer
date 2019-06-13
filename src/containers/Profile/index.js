@@ -198,10 +198,9 @@ class ProfileComponent extends React.Component {
         <div className={`fullHeight ${styles.zeroStateCentered}`}>
           <ZeroState
             className={styles.centeredItem}
-            iconColor="blue"
             title={intl.get('sections.profile.zero_state.title')}
             text={intl.get('sections.profile.zero_state.description')}
-            icon={['fal', 'exclamation-triangle']}
+            icon="error"
           />
         </div>
       );
@@ -212,10 +211,9 @@ class ProfileComponent extends React.Component {
         <div className={`fullHeight ${styles.zeroStateCentered}`}>
           <ZeroState
             className={styles.centeredItem}
-            iconColor="red"
             title={intl.get('sections.profile.zero_state_error.title')}
             text={intl.get('sections.profile.zero_state_error.description')}
-            icon={['fal', 'exclamation-triangle']}
+            icon="error"
           />
         </div>
       );

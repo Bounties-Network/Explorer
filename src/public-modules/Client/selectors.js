@@ -7,9 +7,8 @@ export const networkSelector = createSelector(
   client => client.network
 );
 
-export const addressSelector = createSelector(
-  rootClientSelector,
-  client => client.address
+export const addressSelector = createSelector(rootClientSelector, client =>
+  client.address.toLowerCase()
 );
 
 export const walletLockedSelector = createSelector(

@@ -2,7 +2,7 @@
   "platform": "consensys",
   "postingPlatform": "consensys",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "consensys",
   "networkName": "consensys.bounties.network",
   "url": {
@@ -11,9 +11,11 @@
   },
   "requiredNetwork": "rinkeby",
   "mainNet": {
-    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+    "standardBountiesAddressV1": "0xdd1636b88e9071507e859e61991ed4be6647f420",
+    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c"
   },
   "rinkeby": {
-    "standardBountiesAddress": "0xf209d2b723b6417cbf04c07e733bee776105a073"
+    "standardBountiesAddressV1": "0xdd1636b88e9071507e859e61991ed4be6647f420",
+    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c"
   }
 }

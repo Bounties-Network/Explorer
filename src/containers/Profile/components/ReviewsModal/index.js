@@ -36,9 +36,7 @@ let ReviewsModal = props => {
   let body = (
     <ZeroState
       className={styles.reviewsZeroState}
-      type="error"
-      icon={['fal', 'star']}
-      iconColor="red"
+      icon="star"
       title={intl.get('sections.profile.reviews.zero_state.title')}
       text={intl.get('sections.profile.reviews.zero_state.description')}
     />

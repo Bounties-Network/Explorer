@@ -2,7 +2,7 @@
   "platform": "bgc",
   "postingPlatform": "bgc",
   "postingSchema": "standardSchema",
-  "postingSchemaVersion": "0.1",
+  "postingSchemaVersion": "1.0",
   "categoryPlatform": "bgc",
   "networkName": "bgc.bounties.network",
   "url": {
@@ -11,9 +11,11 @@
   },
   "requiredNetwork": "mainNet",
   "mainNet": {
-    "standardBountiesAddress": "0x2af47a65da8CD66729b4209C22017d6A5C2d2400"
+    "standardBountiesAddressV1": "0x2af47a65da8CD66729b4209C22017d6A5C2d2400",
+    "standardBountiesAddressV2": "0xe7f69ea2a79521136ee0bf3c50f6b5f1ea0ab0cd"
   },
   "rinkeby": {
-    "standardBountiesAddress": "0x2af47a65da8CD66729b4209C22017d6A5C2d2400"
+    "standardBountiesAddressV1": "0x2af47a65da8CD66729b4209C22017d6A5C2d2400",
+    "standardBountiesAddressV2": "0xe7f69ea2a79521136ee0bf3c50f6b5f1ea0ab0cd"
   }
 }
