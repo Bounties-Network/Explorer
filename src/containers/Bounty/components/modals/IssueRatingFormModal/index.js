@@ -11,7 +11,6 @@ import { FormTextbox, FormRating } from 'form-components';
 import { actions as reviewActions } from 'public-modules/Review';
 import { rootReviewSelector } from 'public-modules/Review/selectors';
 import { ratingModalSelector } from 'containers/Bounty/selectors';
-import BountyDetails from './BountyDetails';
 
 const messageTemplate = {
   issuer: [
@@ -81,7 +80,6 @@ const IssueRatingFormModalComponent = props => {
         size="medium"
       >
         <Modal.Header closable={true}>
-          <BountyDetails bounty={bounty} />
           <Modal.Heading>Rate {type}</Modal.Heading>
           <Modal.Description>
             {messageTemplate[type][0]}
