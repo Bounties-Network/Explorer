@@ -22,6 +22,7 @@ const ActionBar = props => {
     user && bounty.user.public_address === user.public_address;
 
   const draftUrl = `/createBounty/draft/${bounty.uid}/`;
+  const editUrl = `/createBounty/edit/${bounty.bounty_id}/`;
 
   let actionOptions = null;
   if (isDraft && belongsToLoggedInUser) {
@@ -79,19 +80,15 @@ const ActionBar = props => {
             De-activate bounty
           </Button>
         )}
-
-        {bounty.bounty_stage !== DEAD && (
+        <Link to={editUrl}>
           <Button
-            onClick={() =>
-              initiateLoginProtection(() => showModal('increasePayout'))
-            }
-            icon={['far', 'arrow-up']}
+            icon={['far', 'edit']}
             fitWidth
-            className={styles.buttonGroup}
+            className={styles.editBountyButton}
           >
-            Increase Prize
+            Edit Bounty
           </Button>
-        )}
+        </Link>
         {bounty.bounty_stage !== DEAD && (
           <Button
             icon={['far', 'dollar-sign']}
@@ -101,19 +98,9 @@ const ActionBar = props => {
             }
             fitWidth
           >
-            Contribute
+            Increase Balance
           </Button>
         )}
-        <Button
-          icon={['far', 'calendar-plus']}
-          fitWidth
-          className={styles.buttonGroup}
-          onClick={() =>
-            initiateLoginProtection(() => showModal('extendDeadline'))
-          }
-        >
-          Extend deadline
-        </Button>
         <Button
           icon={['far', 'user-friends']}
           fitWidth
