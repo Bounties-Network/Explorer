@@ -22,7 +22,7 @@ const ActionBar = props => {
     user && bounty.user.public_address === user.public_address;
 
   const draftUrl = `/createBounty/draft/${bounty.uid}/`;
-  const editUrl = `/createBounty/edit/${bounty.bounty_id}/`;
+  const editUrl = `/editBounty/${bounty.id}/`;
 
   let actionOptions = null;
   if (isDraft && belongsToLoggedInUser) {
