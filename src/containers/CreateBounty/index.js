@@ -9,7 +9,9 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import CreateBountyForm from './CreateBountyForm';
 import {
   getDraftStateSelector,
-  getDraftBountySelector
+  getDraftBountySelector,
+  getBountyStateSelector,
+  getBountySelector
 } from 'public-modules/Bounty/selectors';
 import moment from 'moment';
 import { Loader, ZeroState } from 'components';
@@ -20,24 +22,28 @@ import config from 'public-modules/config';
 class CreateBountyComponent extends React.Component {
   constructor(props) {
     super(props);
-    const { match, getDraft, loadTokens, public_address } = props;
+    const { match, getDraft, getBounty, loadTokens, public_address } = props;
 
     loadTokens();
 
     if (match.path === '/createBounty/draft/:id/') {
       getDraft(match.params.id, public_address);
     }
+    if (match.path === '/editBounty/:id/') {
+      getBounty(match.params.id);
+    }
   }
 
   render() {
     const {
-      draftLoading,
+      loading,
+      error,
       formInitialValues,
-      draftError,
-      isDraftPage
+      isEditing,
+      isDraft
     } = this.props;
 
-    if (draftLoading) {
+    if (loading) {
       return (
         <div className={styles.centeredBody}>
           <Loader size="medium" />
@@ -45,7 +51,7 @@ class CreateBountyComponent extends React.Component {
       );
     }
 
-    if (draftError) {
+    if (error) {
       return (
         <div className={styles.centeredBody}>
           <ZeroState
@@ -62,7 +68,7 @@ class CreateBountyComponent extends React.Component {
       <PageCard>
         <PageCard.Header>
           <PageCard.Title>
-            {isDraftPage ? 'Edit Bounty' : 'Create Bounty'}
+            {isEditing || isDraft ? 'Edit Bounty' : 'Create Bounty'}
           </PageCard.Title>
         </PageCard.Header>
         <PageCard.Content key="createBountyForm" className={styles.cardContent}>
@@ -76,9 +82,40 @@ class CreateBountyComponent extends React.Component {
 const mapStateToProps = (state, router) => {
   const user = getCurrentUserSelector(state) || {};
   const getDraftState = getDraftStateSelector(state);
-  let draftBounty = getDraftBountySelector(state) || {};
-  let fulfillment_amount = draftBounty.calculated_fulfillment_amount;
-  let isDraftPage = true;
+  const getBountyState = getBountyStateSelector(state);
+
+  let draftBounty = {};
+  let fulfillment_amount;
+  let balance = '0';
+  let categories = [];
+  let isDraft = false;
+  let isEditing = false;
+  let error;
+  let loading;
+
+  if (router.match.path === '/createBounty/draft/:id/') {
+    draftBounty = getDraftBountySelector(state) || {};
+    console.log('draftBounty', draftBounty);
+    fulfillment_amount = draftBounty.calculated_fulfillment_amount;
+    categories = draftBounty.categories;
+    isDraft = true;
+    error = getDraftState.error;
+    loading = getDraftState.loading;
+  }
+  if (router.match.path === '/editBounty/:id/') {
+    draftBounty = getBountySelector(state) || {};
+    console.log('draftBounty', draftBounty);
+    fulfillment_amount = draftBounty.calculated_fulfillment_amount;
+    balance = draftBounty.calculated_balance;
+    categories = draftBounty.categories
+      ? draftBounty.categories.map(category => {
+          return category.normalized_name;
+        })
+      : [];
+    isEditing = true;
+    error = getBountyState.error;
+    loading = getBountyState.loading;
+  }
 
   if (typeof fulfillment_amount === 'string') {
     fulfillment_amount = BigNumber(
@@ -86,19 +123,22 @@ const mapStateToProps = (state, router) => {
       10
     ).toString();
   }
-  if (router.match.path === '/createBounty') {
-    draftBounty = {};
-    fulfillment_amount = undefined;
-    isDraftPage = false;
+  if (typeof balance === 'string') {
+    fulfillment_amount = BigNumber(
+      draftBounty.calculated_balance || 0,
+      10
+    ).toString();
   }
+
   return {
     public_address: user && user.public_address,
-    isDraftPage: isDraftPage,
-    draftError: getDraftState.error,
-    draftLoading: getDraftState.loading,
+    isDraft,
+    isEditing,
+    error,
+    loading,
     formInitialValues: {
       title: draftBounty.title,
-      categories: draftBounty.categories,
+      categories: categories,
       description: draftBounty.description || DEFAULT_MARKDOWN,
       experience_level:
         DIFFICULTY_MAPPINGS[draftBounty.experience_level] || 'Beginner',
@@ -111,9 +151,10 @@ const mapStateToProps = (state, router) => {
         draftBounty.token_contract ||
         (config.defaultToken && config.defaultToken.address),
       fulfillment_amount: fulfillment_amount,
+      balance: balance,
       issuer_email: draftBounty.issuer_email || user.email || '',
       issuer_name: draftBounty.issuer_name || user.name || '',
-      activateNow: !isDraftPage,
+      activateNow: !(isDraft || isEditing),
       webReferenceURL: draftBounty.attached_url,
       deadline:
         draftBounty.deadline && moment(draftBounty.deadline) > moment()
@@ -127,6 +168,7 @@ const CreateBounty = connect(
   mapStateToProps,
   {
     getDraft: bountyActions.getDraft,
+    getBounty: bountyActions.getBounty,
     loadTokens: tokensActions.loadTokens
   }
 )(CreateBountyComponent);
