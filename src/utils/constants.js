@@ -10,30 +10,6 @@ export const HTTP_422_UNKNOWN = 422;
 export const HTTP_500_INTERNAL_SERVER_ERROR = 500;
 export const HTTP_503_SERVICE_UNAVAILABLE = 503;
 
-export const DEFAULT_MARKDOWN = `# Description
-Describe the bounty that you want completed. What is it for? What does it involve?
-
-## Requirements
-What requirements do you have for bounty fulfillers? Are there any rules or constraints for your bounty? Are there any pre-requisites needed to complete it?
-
-* Item one
-* Item two
-* Item three
-
-## Definition of Done
-What should bounty issuers submit as proof that they have completed the bounty? What do fulfillers need to include in a submission in order for it to be accepted?
-
-1. Item 1
-2. Item 2
-3. Item 3
-
-### Things to Note
-Is there any other information you'd like potential fulfillers to know about you or the bounty? Does the bounty require any additional materials that either party needs to provide or information exchanged for external communication to occur?
-
-### Restrictions
-Will your bounty be available for anyone to fulfill? Should it be restricted to a particular group of people based on their geography, attendance at an event, or membership within a community?
-`;
-
 export const NOTIFICATION_ID = {
   FULFILLMENT_SUBMITTED: 0,
   FULFILLMENT_SUBMITTED_ISSUER: 1,

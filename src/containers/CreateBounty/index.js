@@ -13,7 +13,6 @@ import {
 } from 'public-modules/Bounty/selectors';
 import moment from 'moment';
 import { Loader, ZeroState } from 'components';
-import { DEFAULT_MARKDOWN } from 'utils/constants';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import config from 'public-modules/config';
 import intl from 'react-intl-universal';
@@ -102,8 +101,9 @@ const mapStateToProps = (state, router) => {
     formInitialValues: {
       title: draftBounty.title,
       categories: draftBounty.categories,
-      description: draftBounty.description || DEFAULT_MARKDOWN,
-      experience_level:
+      description:
+        draftBounty.description || intl.get('components.editor.default'),
+      experienceLevel:
         DIFFICULTY_MAPPINGS[draftBounty.experience_level] || 'Beginner',
       revisions: draftBounty.revisions || 3,
       private_fulfillments: draftBounty.private_fulfillments || false,
