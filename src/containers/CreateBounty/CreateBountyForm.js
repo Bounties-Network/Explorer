@@ -15,12 +15,17 @@ import { TransactionWalkthrough } from 'hocs';
 import { Field, reduxForm } from 'redux-form';
 import { getTimezone } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
+import { Link } from 'react-router-dom';
+
 import moment from 'moment';
 import {
   stdBountyStateSelector,
+  getBountyStateSelector,
   createDraftStateSelector,
-  getDraftBountySelector
+  getDraftBountySelector,
+  getBountySelector
 } from 'public-modules/Bounty/selectors';
+import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import validators from 'utils/validators';
 import asyncValidators from 'utils/asyncValidators';
 import normalizers from 'utils/normalizers';
@@ -58,15 +63,26 @@ class CreateBountyFormComponent extends React.Component {
       uid,
       updateDraft,
       isEditing,
-      isDraft
+      isDraft,
+      initialValues,
+      user,
+      bounty_id
     } = this.props;
 
     const fileData = {
       sourceDirectoryHash: fileHash,
       sourceFileName: filename
     };
+
     if (isEditing) {
-      return editBounty({ ...bountyValues, ...fileData });
+      return editBounty({
+        ...bountyValues,
+        ...fileData,
+        uid,
+        balance,
+        user,
+        bounty_id
+      });
     }
 
     if (!isEditing && !isDraft && activateNow) {
@@ -81,9 +97,9 @@ class CreateBountyFormComponent extends React.Component {
   };
 
   handleSubmit = values => {
-    const { initiateWalkthrough } = this.props;
+    const { initiateWalkthrough, isEditing } = this.props;
     const { activateNow } = values;
-    if (activateNow) {
+    if (activateNow || isEditing) {
       return initiateWalkthrough(() => this.handleCreateBounty(values));
     }
     this.handleCreateBounty(values);
@@ -112,7 +128,21 @@ class CreateBountyFormComponent extends React.Component {
     webReferenceURL: [validators.maxLength(256), validators.isURL],
     deadline: [validators.required, validators.minDate(this.props.minDate)],
     token_contract: [validators.required, validators.isWeb3Address],
-    fulfillment_amount: [validators.required, validators.minValue(0)],
+    fulfillment_amount: [
+      validators.required,
+      validators.minValue(0),
+      (fulfillment_amount, allValues) => {
+        const valueField = allValues.balance;
+        if (
+          valueField &&
+          BigNumber(valueField, 10).isLessThan(
+            BigNumber(fulfillment_amount, 10)
+          )
+        ) {
+          return "Payout amount may not be larger than the bounty's balance.";
+        }
+      }
+    ],
     balance: [
       validators.required,
       validators.minValue(0),
@@ -143,9 +173,12 @@ class CreateBountyFormComponent extends React.Component {
       filename,
       resetUpload,
       deleteUploadKey,
-      bountyId,
+      id,
       minDate,
-      tokens
+      tokens,
+      isDraft,
+      isEditing,
+      initialValues
     } = this.props;
     const { validatorGroups } = this;
 
@@ -153,9 +186,14 @@ class CreateBountyFormComponent extends React.Component {
     if (!activateNow) {
       submitButtonText = 'Create Draft';
     }
-    if (bountyId && !activateNow) {
+    if (id && !activateNow) {
       submitButtonText = 'Update Draft';
     }
+    if (isEditing) {
+      submitButtonText = 'Update Bounty';
+    }
+    const increaseBalanceUrl = `/bounty/${this.props.initialValues.id}/`;
+
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
         <FormSection>
@@ -326,30 +364,32 @@ class CreateBountyFormComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="DEADLINE">
-            <FormSection.Description>
-              When will this bounty be due?
-            </FormSection.Description>
-            <FormSection.SubText>
-              Enter the date and time for this bounty's deadline{getTimezone()
-                ? ` (timezone ${getTimezone()}).`
-                : '.'}
-            </FormSection.SubText>
-            <FormSection.InputGroup>
-              <div className="row">
-                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
-                  <Field
-                    disabled={submittingBounty}
-                    name="deadline"
-                    component={FormDatePicker}
-                    minDate={minDate}
-                    validate={validatorGroups.deadline}
-                    showTimeSelect
-                  />
+          {!isEditing && (
+            <FormSection.Section title="DEADLINE">
+              <FormSection.Description>
+                When will this bounty be due?
+              </FormSection.Description>
+              <FormSection.SubText>
+                Enter the date and time for this bounty's deadline{getTimezone()
+                  ? ` (timezone ${getTimezone()}).`
+                  : '.'}
+              </FormSection.SubText>
+              <FormSection.InputGroup>
+                <div className="row">
+                  <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                    <Field
+                      disabled={submittingBounty}
+                      name="deadline"
+                      component={FormDatePicker}
+                      minDate={minDate}
+                      validate={validatorGroups.deadline}
+                      showTimeSelect
+                    />
+                  </div>
                 </div>
-              </div>
-            </FormSection.InputGroup>
-          </FormSection.Section>
+              </FormSection.InputGroup>
+            </FormSection.Section>
+          )}
           <FormSection.Section title="PRIVACY">
             <FormSection.Description>
               Do you want to approve people before they can fulfill your bounty?
@@ -392,132 +432,200 @@ class CreateBountyFormComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="PAYOUT">
-            <FormSection.Description>
-              Select payout method and amount.
-            </FormSection.Description>
-            <FormSection.SubText>
-              Select the token and enter the amount you will award for
-              completion of this bounty.
-            </FormSection.SubText>
-            <FormSection.InputGroup>
-              <div className="row">
-                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
-                  {config.defaultToken ? (
-                    <Field
-                      name="token_contract"
-                      disabled={submittingBounty || !!config.defaultToken}
-                      component={FormTextInput}
-                      label={
-                        !config.defaultToken
-                          ? 'Token Contract Address'
-                          : `${config.defaultToken.symbol} Contract Address`
-                      }
-                      validate={validatorGroups.token_contract}
-                      placeholder="Enter token contract address..."
-                    />
-                  ) : (
-                    <Field
-                      disabled={submittingBounty}
-                      name="paysTokens"
-                      component={FormRadioGroup}
-                      label="Payout Method"
-                      options={PAYOUT_OPTIONS}
-                    />
-                  )}
-                </div>
-                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
-                  <Field
-                    name="fulfillment_amount"
-                    disabled={submittingBounty}
-                    component={FormTextInput}
-                    type="text"
-                    normalize={normalizers.number}
-                    label={`Payout amount ${
-                      !config.defaultToken ? ' (ETH or whole tokens)' : ''
-                    }`}
-                    validate={validatorGroups.fulfillment_amount}
-                    placeholder="Enter amount..."
-                  />
-                </div>
-              </div>
-            </FormSection.InputGroup>
-            {paysTokens && !config.defaultToken ? (
+          {!isEditing && (
+            <FormSection.Section title="PAYOUT">
+              <FormSection.Description>
+                Select payout method and amount.
+              </FormSection.Description>
+              <FormSection.SubText>
+                Select the token and enter the amount you will award for
+                completion of this bounty.
+              </FormSection.SubText>
               <FormSection.InputGroup>
                 <div className="row">
-                  <div className={`col-xs-12 ${styles.input}`}>
+                  <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                    {config.defaultToken ? (
+                      <Field
+                        name="token_contract"
+                        disabled={submittingBounty || !!config.defaultToken}
+                        component={FormTextInput}
+                        label={
+                          !config.defaultToken
+                            ? 'Token Contract Address'
+                            : `${config.defaultToken.symbol} Contract Address`
+                        }
+                        validate={validatorGroups.token_contract}
+                        placeholder="Enter token contract address..."
+                      />
+                    ) : (
+                      <Field
+                        disabled={submittingBounty}
+                        name="paysTokens"
+                        component={FormRadioGroup}
+                        label="Payout Method"
+                        options={PAYOUT_OPTIONS}
+                      />
+                    )}
+                  </div>
+                  <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                     <Field
-                      disabled={submittingBounty || !!config.defaultToken}
-                      name="token_contract"
-                      component={FormSearchSelect}
-                      label="Token"
-                      placeholder="Select token or enter token address..."
-                      validate={validatorGroups.token_contract}
-                      options={tokens}
-                      single={true}
-                      clearable={true}
-                      creatable={true}
-                      labelKey="display"
-                      valueKey="value"
-                      isLoading={true}
+                      name="fulfillment_amount"
+                      disabled={submittingBounty}
+                      component={FormTextInput}
+                      type="text"
+                      normalize={normalizers.number}
+                      label={`Payout amount ${
+                        !config.defaultToken ? ' (ETH or whole tokens)' : ''
+                      }`}
+                      validate={validatorGroups.fulfillment_amount}
+                      placeholder="Enter amount..."
                     />
                   </div>
                 </div>
               </FormSection.InputGroup>
-            ) : null}
-          </FormSection.Section>
-          <FormSection.Section title="SAVE OR SUBMIT">
-            <FormSection.Description>
-              When would you like to submit and activate the bounty?
-            </FormSection.Description>
-            <FormSection.SubText>
-              If you wish to activate the bounty later, you can save it as a
-              draft. The requirements for a bounty can only be edited while it
-              is in the draft stage. At minimum, your deposit amount must match
-              your payout amount.
-            </FormSection.SubText>
-            <FormSection.InputGroup>
-              <div className="row">
-                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
-                  <Field
-                    name="activateNow"
-                    disabled={submittingBounty}
-                    component={FormRadioGroup}
-                    label="When to activate"
-                    options={ACTIVATE_OPTIONS}
-                  />
-                </div>
-                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
-                  {activateNow ? (
+              {paysTokens && !config.defaultToken ? (
+                <FormSection.InputGroup>
+                  <div className="row">
+                    <div className={`col-xs-12 ${styles.input}`}>
+                      <Field
+                        disabled={submittingBounty || !!config.defaultToken}
+                        name="token_contract"
+                        component={FormSearchSelect}
+                        label="Token"
+                        placeholder="Select token or enter token address..."
+                        validate={validatorGroups.token_contract}
+                        options={tokens}
+                        single={true}
+                        clearable={true}
+                        creatable={true}
+                        labelKey="display"
+                        valueKey="value"
+                        isLoading={true}
+                      />
+                    </div>
+                  </div>
+                </FormSection.InputGroup>
+              ) : null}
+            </FormSection.Section>
+          )}
+          {isEditing && (
+            <FormSection.Section title="PAYOUT">
+              <FormSection.Description>
+                Indicate the payout amount
+              </FormSection.Description>
+              <FormSection.SubText>
+                Enter the amount you will award for the completion of this
+                bounty. The payout may not be larger than your current balance
+                of{' '}
+                <span className={styles.textHighlight}>
+                  {initialValues.balance} {initialValues.token_symbol}
+                </span>, and your current payout is{' '}
+                <span className={styles.textHighlight}>
+                  {initialValues.fulfillment_amount}{' '}
+                  {initialValues.token_symbol}
+                </span>. If you would like to add more funds to the bounty,
+                please{' '}
+                <Link to={increaseBalanceUrl}>increase your balance.</Link>
+              </FormSection.SubText>
+              <FormSection.InputGroup>
+                <div className="row">
+                  <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
                     <Field
-                      name="balance"
+                      name="fulfillment_amount"
                       disabled={submittingBounty}
                       component={FormTextInput}
-                      label="Deposit amount (ETH or whole tokens)"
-                      validate={validatorGroups.balance}
+                      type="text"
                       normalize={normalizers.number}
+                      label={`Payout amount ${
+                        initialValues.token_symbol
+                          ? '(' + initialValues.token_symbol + ')'
+                          : ''
+                      }`}
+                      validate={validatorGroups.fulfillment_amount}
                       placeholder="Enter amount..."
                     />
-                  ) : null}
-                  {/* this hidden field is added as a duplicate to the above
-                    balance field because when a field is unregistered in
-                    redux-form it is possible to submit invalid info.
-                    https://github.com/erikras/redux-form/issues/4235 */}
-                  {activateNow ? (
-                    <div className={styles.hidden}>
+                  </div>
+                </div>
+              </FormSection.InputGroup>
+              {paysTokens && !config.defaultToken ? (
+                <FormSection.InputGroup>
+                  <div className="row">
+                    <div className={`col-xs-12 ${styles.input}`}>
+                      <Field
+                        disabled={submittingBounty || !!config.defaultToken}
+                        name="token_contract"
+                        component={FormSearchSelect}
+                        label="Token"
+                        placeholder="Select token or enter token address..."
+                        validate={validatorGroups.token_contract}
+                        options={tokens}
+                        single={true}
+                        clearable={true}
+                        creatable={true}
+                        labelKey="display"
+                        valueKey="value"
+                        isLoading={true}
+                      />
+                    </div>
+                  </div>
+                </FormSection.InputGroup>
+              ) : null}
+            </FormSection.Section>
+          )}
+          {!isEditing && (
+            <FormSection.Section title="SAVE OR SUBMIT">
+              <FormSection.Description>
+                When would you like to submit and activate the bounty?
+              </FormSection.Description>
+              <FormSection.SubText>
+                If you wish to activate the bounty later, you can save it as a
+                draft. The requirements for a bounty can only be edited while it
+                is in the draft stage. At minimum, your deposit amount must
+                match your payout amount.
+              </FormSection.SubText>
+              <FormSection.InputGroup>
+                <div className="row">
+                  <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                    <Field
+                      name="activateNow"
+                      disabled={submittingBounty}
+                      component={FormRadioGroup}
+                      label="When to activate"
+                      options={ACTIVATE_OPTIONS}
+                    />
+                  </div>
+                  <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                    {activateNow ? (
                       <Field
                         name="balance"
                         disabled={submittingBounty}
                         component={FormTextInput}
+                        label="Deposit amount (ETH or whole tokens)"
                         validate={validatorGroups.balance}
                         normalize={normalizers.number}
+                        placeholder="Enter amount..."
                       />
-                    </div>
-                  ) : null}
+                    ) : null}
+                    {/* this hidden field is added as a duplicate to the above
+                    balance field because when a field is unregistered in
+                    redux-form it is possible to submit invalid info.
+                    https://github.com/erikras/redux-form/issues/4235 */}
+                    {activateNow ? (
+                      <div className={styles.hidden}>
+                        <Field
+                          name="balance"
+                          disabled={submittingBounty}
+                          component={FormTextInput}
+                          validate={validatorGroups.balance}
+                          normalize={normalizers.number}
+                        />
+                      </div>
+                    ) : null}
+                  </div>
                 </div>
-              </div>
-            </FormSection.InputGroup>
-          </FormSection.Section>
+              </FormSection.InputGroup>
+            </FormSection.Section>
+          )}
         </FormSection>
         <div className={styles.buttonContainer}>
           <Button
@@ -550,6 +658,8 @@ const mapStateToProps = (state, router) => {
   const draftBounty = isDraft ? getDraftBountySelector(state) || {} : {};
   const rootTokens = rootTokensSelector(state);
   const tokens = tokensDropdownDataSelector(state);
+  const user = getCurrentUserSelector(state) || {};
+  const bounty = getBountySelector(state) || {};
 
   return {
     uploadLoading: uploadedFile ? uploadedFile.uploading : false,
@@ -558,7 +668,9 @@ const mapStateToProps = (state, router) => {
     categories: categoriesSelector(state),
     submittingBounty: draftState.creating || bountyState.pending,
     uid: draftBounty.uid,
-    bountyId: draftBounty.id,
+    id: draftBounty.id,
+    bounty_id: bounty.bounty_id,
+    user: user,
     filename: uploadedFile ? uploadedFile.fileName : draftBounty.sourceFileName,
     minDate: moment().add(1, 'days'),
     fileHash: uploadedFile

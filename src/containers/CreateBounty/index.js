@@ -128,12 +128,8 @@ const mapStateToProps = (state, router) => {
     ).toString();
   }
   if (typeof balance === 'string') {
-    fulfillment_amount = BigNumber(
-      draftBounty.calculated_balance || 0,
-      10
-    ).toString();
+    balance = BigNumber(draftBounty.calculated_balance, 10).toNumber();
   }
-
   return {
     public_address: user && user.public_address,
     isDraft,
@@ -155,11 +151,13 @@ const mapStateToProps = (state, router) => {
         draftBounty.token_contract ||
         (config.defaultToken && config.defaultToken.address),
       fulfillment_amount: fulfillment_amount,
+      id: draftBounty.id,
       balance: balance,
       issuer_email: draftBounty.issuer_email || user.email || '',
       issuer_name: draftBounty.issuer_name || user.name || '',
       activateNow: !(isDraft || isEditing),
       webReferenceURL: draftBounty.attached_url,
+      token_symbol: draftBounty.token_symbol,
       deadline:
         draftBounty.deadline && moment(draftBounty.deadline) > moment()
           ? moment.utc(draftBounty.deadline).local()

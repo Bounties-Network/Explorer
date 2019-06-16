@@ -80,15 +80,17 @@ const ActionBar = props => {
             De-activate bounty
           </Button>
         )}
-        <Link to={editUrl}>
-          <Button
-            icon={['far', 'edit']}
-            fitWidth
-            className={styles.editBountyButton}
-          >
-            Edit Bounty
-          </Button>
-        </Link>
+        {bounty.contract_version === 2 && (
+          <Link to={editUrl}>
+            <Button
+              icon={['far', 'edit']}
+              fitWidth
+              className={styles.editBountyButton}
+            >
+              Edit Bounty
+            </Button>
+          </Link>
+        )}
         {bounty.bounty_stage !== DEAD && (
           <Button
             icon={['far', 'dollar-sign']}
@@ -101,6 +103,16 @@ const ActionBar = props => {
             Increase Balance
           </Button>
         )}
+        <Button
+          icon={['far', 'calendar-plus']}
+          fitWidth
+          className={styles.buttonGroup}
+          onClick={() =>
+            initiateLoginProtection(() => showModal('extendDeadline'))
+          }
+        >
+          Extend deadline
+        </Button>
         <Button
           icon={['far', 'user-friends']}
           fitWidth
