@@ -80,6 +80,21 @@ const ActionBar = props => {
             De-activate bounty
           </Button>
         )}
+
+        {bounty.bounty_stage !== DEAD &&
+          bounty.contract_version === 1 && (
+            <Button
+              onClick={() =>
+                initiateLoginProtection(() => showModal('increasePayout'))
+              }
+              icon={['far', 'arrow-up']}
+              fitWidth
+              className={styles.buttonGroup}
+            >
+              Increase Prize
+            </Button>
+          )}
+
         {bounty.contract_version === 2 && (
           <Link to={editUrl}>
             <Button
@@ -91,6 +106,7 @@ const ActionBar = props => {
             </Button>
           </Link>
         )}
+
         {bounty.bounty_stage !== DEAD && (
           <Button
             icon={['far', 'dollar-sign']}
@@ -126,7 +142,6 @@ const ActionBar = props => {
       </div>
     );
   }
-
   if (!belongsToLoggedInUser && bounty.bounty_stage === ACTIVE) {
     let mainActionButton = (
       <Button
