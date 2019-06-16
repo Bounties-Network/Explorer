@@ -10,34 +10,21 @@ import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
 import { FormTextInput, FormTextbox } from 'form-components';
 
-let FulfillBountyFormModalComponent = props => {
-  const {
-    handleSubmit,
-    onClose,
-    onSubmit,
-    uploadFile,
-    resetUpload,
-    private_fulfillments,
-    submitFailed,
-    invalid,
+let error = false;
 
-    // upload state
-    uploading,
-    ipfsHash,
-    fileName,
-    visible
-  } = props;
-
-  const submitFulfillment = values => {
-    onSubmit({ ...values, ipfsHash, fileName });
+class FulfillBountyFormModalComponent extends React.Component {
+  submitFulfillment = values => {
+    const ipfsHash = this.props.ipfsHash;
+    const fileName = this.props.fileName;
+    this.props.onSubmit({ ...values, ipfsHash, fileName });
   };
 
-  const closeAndReset = () => {
-    resetUpload('fulfillment');
-    onClose();
+  closeAndReset = () => {
+    this.props.resetUpload('fulfillment');
+    this.props.onClose();
   };
 
-  const validatorGroups = {
+  validatorGroups = {
     name: [validators.required, validators.maxLength(128)],
     email: [validators.email],
     url: [validators.maxLength(256), validators.isURL],
@@ -48,125 +35,135 @@ let FulfillBountyFormModalComponent = props => {
     ]
   };
 
-  return (
-    <form onSubmit={handleSubmit(values => submitFulfillment(values))}>
-      <Modal
-        dismissable={true}
-        onClose={closeAndReset}
-        visible={visible}
-        fixed
-        size="medium"
+  render() {
+    return (
+      <form
+        onSubmit={this.props.handleSubmit(values =>
+          this.submitFulfillment(values)
+        )}
       >
-        <Modal.Header closable={true}>
-          <Modal.Message>Enter submission details</Modal.Message>
-          <Modal.Description>
-            Enter and submit the details for your bounty submission, including
-            any files or links that may be required for fulfillment as indicated
-            by the bounty description.
-          </Modal.Description>
-        </Modal.Header>
-        <Modal.Body className={styles.modalBody}>
-          <div className="row">
-            <div className={`col-xs-12 col-sm ${styles.fulfillmentInput}`}>
-              <Field
-                name="name"
-                component={FormTextInput}
-                type="text"
-                label="Contact name"
-                validate={validatorGroups.name}
-                placeholder="Enter name..."
-              />
+        <Modal
+          dismissable={true}
+          onClose={this.closeAndReset}
+          visible={this.props.visible}
+          fixed
+          size="medium"
+        >
+          <Modal.Header closable={true}>
+            <Modal.Message>Enter submission details</Modal.Message>
+            <Modal.Description>
+              Enter and submit the details for your bounty submission, including
+              any files or links that may be required for fulfillment as
+              indicated by the bounty description.
+            </Modal.Description>
+          </Modal.Header>
+          <Modal.Body className={styles.modalBody}>
+            <div className="row">
+              <div className={`col-xs-12 col-sm ${styles.fulfillmentInput}`}>
+                <Field
+                  name="name"
+                  component={FormTextInput}
+                  type="text"
+                  label="Contact name"
+                  validate={this.validatorGroups.name}
+                  placeholder="Enter name..."
+                />
+              </div>
+              <div className={`col-xs-12 col-sm ${styles.fulfillmentInput}`}>
+                <Field
+                  name="email"
+                  component={FormTextInput}
+                  type="text"
+                  label="Contact email"
+                  validate={this.validatorGroups.email}
+                  placeholder="Enter email..."
+                />
+              </div>
             </div>
-            <div className={`col-xs-12 col-sm ${styles.fulfillmentInput}`}>
-              <Field
-                name="email"
-                component={FormTextInput}
-                type="text"
-                label="Contact email"
-                validate={validatorGroups.email}
-                placeholder="Enter email..."
-              />
+            <div className={`row ${styles.fulfillmentInput}`}>
+              <div className="col-xs">
+                <Field
+                  name="url"
+                  component={FormTextInput}
+                  type="text"
+                  label="Web link"
+                  validate={this.validatorGroups.url}
+                  placeholder="Enter URL..."
+                />
+              </div>
             </div>
-          </div>
-          <div className={`row ${styles.fulfillmentInput}`}>
-            <div className="col-xs">
-              <Field
-                name="url"
-                component={FormTextInput}
-                type="text"
-                label="Web link"
-                validate={validatorGroups.url}
-                placeholder="Enter URL..."
-              />
+            <div className={`row ${styles.fulfillmentInput}`}>
+              <div className="col-xs">
+                <Text inputLabel>Attachment</Text>
+                <FileUpload
+                  disabled={this.props.uploading}
+                  onChange={file =>
+                    file
+                      ? this.props.uploadFile('fulfillment', file)
+                      : this.props.resetUpload('fulfillment')
+                  }
+                  loading={this.props.uploading}
+                  filename={this.props.fileName}
+                  error={error}
+                />
+              </div>
             </div>
-          </div>
-          <div className={`row ${styles.fulfillmentInput}`}>
-            <div className="col-xs">
-              <Text inputLabel>Attachment</Text>
-              <FileUpload
-                disabled={uploading}
-                onChange={file =>
-                  file
-                    ? uploadFile('fulfillment', file)
-                    : resetUpload('fulfillment')
-                }
-                loading={uploading}
-                filename={fileName}
-              />
+            <div className={`row ${styles.fulfillmentInput}`}>
+              <div className="col-xs">
+                <Field
+                  name="description"
+                  component={FormTextbox}
+                  type="text"
+                  label="Description"
+                  validate={this.validatorGroups.description}
+                  placeholder="Enter description..."
+                />
+              </div>
             </div>
-          </div>
-          <div className={`row ${styles.fulfillmentInput}`}>
-            <div className="col-xs">
-              <Field
-                name="description"
-                component={FormTextbox}
-                type="text"
-                label="Description"
-                validate={validatorGroups.description}
-                placeholder="Enter description..."
-              />
-            </div>
-          </div>
 
-          <div className={`row ${styles.fulfillmentInput}`}>
-            <div className="col-xs">
-              <Text fontStyle="italic" color="defaultGrey">
-                {private_fulfillments
-                  ? 'All information entered here will be stored on the public Ethereum network, but will be hidden on the site.'
-                  : 'All information entered here will be stored on the public Ethereum network, and will be publicly displayed on the site.'}
-              </Text>
+            <div className={`row ${styles.fulfillmentInput}`}>
+              <div className="col-xs">
+                <Text fontStyle="italic" color="defaultGrey">
+                  {this.props.private_fulfillments
+                    ? 'All information entered here will be stored on the public Ethereum network, but will be hidden on the site.'
+                    : 'All information entered here will be stored on the public Ethereum network, and will be publicly displayed on the site.'}
+                </Text>
+              </div>
             </div>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          {submitFailed &&
-            invalid && (
-              <Text inputLabel color="red">
-                Fix errors before submitting.
-              </Text>
-            )}
-          <Button
-            margin
-            disabled={uploading}
-            onClick={e => {
-              e.preventDefault();
-              closeAndReset();
-            }}
-          >
-            Cancel
-          </Button>
-          <Button
-            type="primary"
-            buttonType="submit"
-            disabled={uploading || (submitFailed && invalid)}
-          >
-            Submit
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </form>
-  );
-};
+          </Modal.Body>
+          <Modal.Footer>
+            {this.props.submitFailed &&
+              this.props.invalid && (
+                <Text inputLabel color="red">
+                  Fix errors before submitting.
+                </Text>
+              )}
+            <Button
+              margin
+              disabled={this.props.uploading}
+              onClick={e => {
+                e.preventDefault();
+                this.closeAndReset();
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="primary"
+              buttonType="submit"
+              disabled={
+                this.props.uploading ||
+                (this.props.submitFailed && this.props.invalid)
+              }
+            >
+              Submit
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </form>
+    );
+  }
+}
 
 FulfillBountyFormModalComponent = compose(
   reduxForm({
@@ -179,7 +176,7 @@ FulfillBountyFormModalComponent = compose(
 const mapStateToProps = (state, props) => {
   const { name, email } = props;
   const uploadState = getUploadKeySelector('fulfillment')(state);
-
+  error = uploadState ? uploadState.error : false;
   return {
     initialValues: { name, email },
     uploading: uploadState ? uploadState.uploading : false,
