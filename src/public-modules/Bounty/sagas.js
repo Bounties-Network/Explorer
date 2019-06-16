@@ -478,7 +478,6 @@ export function* extendDeadline(action) {
   }
 }
 export function* editBounty(action) {
-  console.log('editing bounty', action);
   const { values } = action;
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
@@ -546,14 +545,6 @@ export function* editBounty(action) {
     };
 
     const ipfsHash = yield call(addJSON, issuedData);
-    console.log(
-      'added to IFPS',
-      standardBounties,
-      userAddress,
-      values.bounty_id,
-      0,
-      ipfsHash
-    );
     txHash = yield call(
       promisifyContractCall(standardBounties.changeData, {
         from: userAddress

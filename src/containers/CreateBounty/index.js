@@ -99,7 +99,6 @@ const mapStateToProps = (state, router) => {
 
   if (router.match.path === '/createBounty/draft/:id/') {
     draftBounty = getDraftBountySelector(state) || {};
-    console.log('draftBounty', draftBounty);
     fulfillment_amount = draftBounty.calculated_fulfillment_amount;
     categories = draftBounty.categories;
     isDraft = true;
@@ -108,7 +107,6 @@ const mapStateToProps = (state, router) => {
   }
   if (router.match.path === '/editBounty/:id/') {
     draftBounty = getBountySelector(state) || {};
-    console.log('draftBounty', draftBounty);
     fulfillment_amount = draftBounty.calculated_fulfillment_amount;
     balance = draftBounty.calculated_balance;
     categories = draftBounty.categories
