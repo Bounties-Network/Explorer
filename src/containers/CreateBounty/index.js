@@ -72,7 +72,11 @@ class CreateBountyComponent extends React.Component {
           </PageCard.Title>
         </PageCard.Header>
         <PageCard.Content key="createBountyForm" className={styles.cardContent}>
-          <CreateBountyForm initialValues={formInitialValues} />
+          <CreateBountyForm
+            initialValues={formInitialValues}
+            isEditing={isEditing}
+            isDraft={isDraft}
+          />
         </PageCard.Content>
       </PageCard>
     );

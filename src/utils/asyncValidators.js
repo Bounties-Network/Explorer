@@ -53,6 +53,7 @@ const tokenValidationWrapper = (
   field,
   dispatch
 ) => {
+  console.log('checkBalance', checkBalance);
   // submit immediately if no async errors
   if (!field && !values.asyncErrors && !asyncValidating)
     return Promise.resolve();

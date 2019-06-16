@@ -24,6 +24,7 @@ import {
 
 const {
   CREATE_DRAFT,
+  EDIT_BOUNTY,
   UPDATE_DRAFT,
   CREATE_BOUNTY,
   GET_DRAFT,
@@ -476,7 +477,9 @@ export function* extendDeadline(action) {
     yield put(setTransactionError());
   }
 }
-
+export function* editBounty(action) {
+  console.log('editing bounty');
+}
 export function* increasePayout(action) {
   const {
     id,
@@ -739,6 +742,10 @@ export function* watchCreateDraft() {
 
 export function* watchCreateBounty() {
   yield takeLatest(CREATE_BOUNTY, createBounty);
+}
+
+export function* watchEditBounty() {
+  yield takeLatest(EDIT_BOUNTY, editBounty);
 }
 
 export function* watchGetDraft() {

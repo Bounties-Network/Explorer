@@ -53,16 +53,23 @@ class CreateBountyFormComponent extends React.Component {
       filename,
       fileHash,
       createBounty,
+      editBounty,
       createDraft,
       uid,
-      updateDraft
+      updateDraft,
+      isEditing,
+      isDraft
     } = this.props;
 
     const fileData = {
       sourceDirectoryHash: fileHash,
       sourceFileName: filename
     };
-    if (activateNow) {
+    if (isEditing) {
+      return editBounty({ ...bountyValues, ...fileData });
+    }
+
+    if (!isEditing && !isDraft && activateNow) {
       return createBounty({ ...bountyValues, ...fileData }, balance);
     }
 
@@ -532,9 +539,10 @@ class CreateBountyFormComponent extends React.Component {
 }
 
 const mapStateToProps = (state, router) => {
-  let isDraft = true;
-  if (router.match.path === '/createBounty') {
-    isDraft = false;
+  let isDraft = false;
+  let isEditing = false;
+  if (router.match.path === '/createBounty/draft/:id/') {
+    isDraft = true;
   }
   const uploadedFile = getUploadKeySelector(UPLOAD_KEY)(state);
   const draftState = createDraftStateSelector(state);
@@ -572,6 +580,7 @@ const CreateBountyForm = compose(
       uploadFile: uploadActions.uploadFile,
       addCategory: categoryActions.addToCategories,
       createDraft: bountyActions.createDraft,
+      editBounty: bountyActions.editBounty,
       updateDraft: bountyActions.updateDraft,
       createBounty: bountyActions.createBounty,
       resetUpload: uploadActions.resetUpload,
