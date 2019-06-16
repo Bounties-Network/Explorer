@@ -139,7 +139,7 @@ class CreateBountyFormComponent extends React.Component {
             BigNumber(fulfillment_amount, 10)
           )
         ) {
-          return "Payout amount may not be larger than the bounty's balance.";
+          return 'Payout amount may not be larger than the bounty&#39;s balance.';
         }
       }
     ],
