@@ -45,14 +45,14 @@ export const NOTIFICATION_ID = {
   BOUNTY_KILLED: 7,
   CONTRIBUTION_ADDED: 8,
   DEADLINE_EXTENDED: 9,
-  BOUNTY_CHANGED: 10,
+  BOUNTY_CHANGED_FULFILLER: 10,
   ISSUER_TRANSFERRED: 11,
   TRANSFER_RECIPIENT: 12,
   PAYOUT_INCREASED: 13,
   BOUNTY_EXPIRED: 14,
   // ^^^ using this one for now since that is how the api is coding them
   // definitely need to fix this at some point :-)
-  BOUNTY_COMMENT_RECEIVED: 15,
+  BOUNTY_COMMENT_RECEIVED_FULFILLER: 15,
   BOUNTY_ISSUED_ACTIVATED: 16,
   FULFILLMENT_UPDATED: 17,
   FULFILLMENT_UPDATED_ISSUER: 18,
@@ -69,7 +69,10 @@ export const NOTIFICATION_ID = {
   APPLICATION_ACCEPTED_APPLICANT: 29,
   APPLICATION_ACCEPTED_ISSUER: 30,
   APPLICATION_REJECTED_APPLICANT: 31,
-  APPLICATION_REJECTED_ISSUER: 32
+  APPLICATION_REJECTED_ISSUER: 32,
+  BOUNTY_COMMENT_RECEIVED_ISSUER: 33,
+  BOUNTY_CHANGED_APPLICANT: 34,
+  BOUNTY_COMMENT_RECEIVED_COMMENTER: 35
 };
 
 const plus = ['far', 'plus-circle'];
@@ -130,7 +133,11 @@ export const notification_template = {
     message: 'You extended the deadline',
     icon: calendar_plus
   },
-  [NOTIFICATION_ID.BOUNTY_CHANGED]: {
+  [NOTIFICATION_ID.BOUNTY_CHANGED_FULFILLER]: {
+    message: 'You updated your bounty',
+    icon: sync
+  },
+  [NOTIFICATION_ID.BOUNTY_CHANGED_APPLICANT]: {
     message: 'You updated your bounty',
     icon: sync
   },
@@ -146,7 +153,15 @@ export const notification_template = {
     message: 'You increased a payout',
     icon: arrow_up
   },
-  [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED]: {
+  [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED_FULFILLER]: {
+    message: 'Someone commented on',
+    icon: comment
+  },
+  [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED_COMMENTER]: {
+    message: 'Someone commented on',
+    icon: comment
+  },
+  [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED_ISSUER]: {
     message: 'Someone commented on',
     icon: comment
   },
