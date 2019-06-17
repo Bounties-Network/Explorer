@@ -192,7 +192,9 @@ class CreateBountyFormComponent extends React.Component {
     if (isEditing) {
       submitButtonText = 'Update Bounty';
     }
-    const increaseBalanceUrl = `/bounty/${this.props.initialValues.id}/`;
+    const increaseBalanceUrl = `/bounty/${
+      this.props.initialValues.id
+    }/?contribute=true`;
 
     return (
       <form onSubmit={handleSubmit(this.handleSubmit)}>
