@@ -20,7 +20,6 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import {
   stdBountyStateSelector,
-  getBountyStateSelector,
   createDraftStateSelector,
   getDraftBountySelector,
   getBountySelector
@@ -64,7 +63,6 @@ class CreateBountyFormComponent extends React.Component {
       updateDraft,
       isEditing,
       isDraft,
-      initialValues,
       user,
       bounty_id
     } = this.props;
@@ -176,7 +174,6 @@ class CreateBountyFormComponent extends React.Component {
       id,
       minDate,
       tokens,
-      isDraft,
       isEditing,
       initialValues
     } = this.props;
@@ -650,7 +647,6 @@ class CreateBountyFormComponent extends React.Component {
 
 const mapStateToProps = (state, router) => {
   let isDraft = false;
-  let isEditing = false;
   if (router.match.path === '/createBounty/draft/:id/') {
     isDraft = true;
   }

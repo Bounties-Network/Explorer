@@ -484,13 +484,10 @@ export function* editBounty(action) {
 
   let contractFulfillmentAmount;
   if (values.paysTokens) {
-    const { symbol, decimals } = yield call(
-      getTokenData,
-      values.token_contract
-    );
+    const { decimals } = yield call(getTokenData, values.token_contract);
     contractFulfillmentAmount = calculateDecimals(
       BigNumber(values.fulfillment_amount, 10).toString(),
-      BigNumber(values.decimals, 10).toString()
+      BigNumber(decimals, 10).toString()
     );
   } else {
     const { web3 } = yield call(getWeb3Client);
