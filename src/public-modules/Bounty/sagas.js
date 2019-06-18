@@ -88,7 +88,7 @@ export function* createOrUpdateDraft(action) {
     DIFFICULTY_VALUES[draftBountyData.experience_level];
   const { paysTokens } = draftBountyData;
   const { web3 } = yield call(getWeb3Client);
-  draftBountyData.attached_url = values.webReferenceURL;
+  draftBountyData.attached_url = values.webReferenceURL || '';
   if (!paysTokens) {
     draftBountyData.fulfillment_amount = web3.utils.toWei(
       draftBountyData.fulfillment_amount,
