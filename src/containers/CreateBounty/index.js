@@ -97,6 +97,7 @@ const mapStateToProps = (state, router) => {
   let error;
   let loading;
 
+  //|| user.uid !== draftBounty.user.uid
   if (router.match.path === '/createBounty/draft/:id/') {
     draftBounty = getDraftBountySelector(state) || {};
     fulfillment_amount = draftBounty.calculated_fulfillment_amount;
@@ -117,6 +118,12 @@ const mapStateToProps = (state, router) => {
     isEditing = true;
     error = getBountyState.error;
     loading = getBountyState.loading;
+  }
+  if (draftBounty && draftBounty.user && user) {
+    error = draftBounty.user.id !== user.id;
+  }
+  if (isEditing && draftBounty.contract_version !== 2) {
+    error = true;
   }
 
   if (typeof fulfillment_amount === 'string') {

@@ -83,7 +83,7 @@ class CreateBountyFormComponent extends React.Component {
       });
     }
 
-    if (!isEditing && !isDraft && activateNow) {
+    if (activateNow) {
       return createBounty({ ...bountyValues, ...fileData }, balance);
     }
 
