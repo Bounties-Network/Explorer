@@ -133,12 +133,12 @@ export const notification_template = {
     message: 'You extended the deadline',
     icon: calendar_plus
   },
-  [NOTIFICATION_ID.BOUNTY_CHANGED_FULFILLER]: {
-    message: 'You updated your bounty',
+  [NOTIFICATION_ID.BOUNTY_CHANGED]: {
+    message: 'Someone updated their bounty',
     icon: sync
   },
   [NOTIFICATION_ID.BOUNTY_CHANGED_APPLICANT]: {
-    message: 'You updated your bounty',
+    message: 'Someone updated their bounty',
     icon: sync
   },
   [NOTIFICATION_ID.ISSUER_TRANSFERRED]: {
@@ -153,7 +153,7 @@ export const notification_template = {
     message: 'You increased a payout',
     icon: arrow_up
   },
-  [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED_FULFILLER]: {
+  [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED]: {
     message: 'Someone commented on',
     icon: comment
   },
