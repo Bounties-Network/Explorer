@@ -21,7 +21,11 @@ export const addBufferToIPFS = (filename, bufferContent) =>
         if (err) {
           reject(err);
         }
-        resolve(response[1].hash);
+        try {
+          resolve(response[1].hash);
+        } catch (e) {
+          reject(e);
+        }
       }
     );
   });

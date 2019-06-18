@@ -76,32 +76,44 @@ class FileUpload extends React.Component {
       <div className={styles.fileUpload}>
         <div className={styles.fileLabel}>
           <div className={styles.fileInfo}>
-            <Text
-              typeScale="Body"
-              className={styles.nameText}
-              color={filenameTextColor}
-            >
-              {filename || filenameDefault}
-            </Text>
-            {filenameDefault || filename
-              ? [
-                  <Text
-                    typeScale="Body"
-                    className={styles.sizeText}
-                    color={filesizeTextColor}
-                    key={1}
-                  >
-                    {bytes ? `(${bytes})` : ''}
-                  </Text>,
-                  <Text typeScale="Body" color={iconColor} key={2}>
-                    <FontAwesomeIcon
-                      icon={['fal', 'times']}
-                      className={iconClass}
-                      onClick={this.removeFile}
-                    />
-                  </Text>
-                ]
-              : null}
+            {this.props.error ? (
+              <Text
+                typeScale="Body"
+                className={styles.nameText}
+                color={iconColor}
+              >
+                Error: Could not upload to IPFS.
+              </Text>
+            ) : (
+              [
+                <Text
+                  typeScale="Body"
+                  className={styles.nameText}
+                  color={filenameTextColor}
+                >
+                  {filename || filenameDefault}
+                </Text>,
+                filenameDefault || filename
+                  ? [
+                      <Text
+                        typeScale="Body"
+                        className={styles.sizeText}
+                        color={filesizeTextColor}
+                        key={1}
+                      >
+                        {bytes ? `(${bytes})` : ''}
+                      </Text>,
+                      <Text typeScale="Body" color={iconColor} key={2}>
+                        <FontAwesomeIcon
+                          icon={['fal', 'times']}
+                          className={iconClass}
+                          onClick={this.removeFile}
+                        />
+                      </Text>
+                    ]
+                  : null
+              ]
+            )}
           </div>
         </div>
         <span
