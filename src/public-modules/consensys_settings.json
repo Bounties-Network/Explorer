@@ -9,6 +9,11 @@
     "mainNet": "https://rinkeby.api.bounties.network",
     "rinkeby": "https://rinkeby.api.bounties.network"
   },
+  "defaultToken": {
+    "symbol": "MESH",
+    "address": "0x261d24441091bB67Ce2B3B5e255071Da260BB880",
+    "decimals": 18
+  },
   "requiredNetwork": "rinkeby",
   "mainNet": {
     "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
