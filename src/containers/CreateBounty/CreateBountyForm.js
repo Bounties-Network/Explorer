@@ -62,7 +62,6 @@ class CreateBountyFormComponent extends React.Component {
       uid,
       updateDraft,
       isEditing,
-      isDraft,
       user,
       bounty_id
     } = this.props;
