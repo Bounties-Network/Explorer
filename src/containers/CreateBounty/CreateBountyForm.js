@@ -517,10 +517,6 @@ class CreateBountyFormComponent extends React.Component {
                 of{' '}
                 <span className={styles.textHighlight}>
                   {initialValues.balance} {initialValues.token_symbol}
-                </span>, and your current payout is{' '}
-                <span className={styles.textHighlight}>
-                  {initialValues.fulfillment_amount}{' '}
-                  {initialValues.token_symbol}
                 </span>. If you would like to add more funds to the bounty,
                 please{' '}
                 <Link to={increaseBalanceUrl}>increase your balance.</Link>
