@@ -28,7 +28,14 @@
     "reset": "Reset",
     "sort": "Sort",
     "continue": "Continue",
-    "dashboard": "Go to Dashboard"
+    "dashboard": "Go to Dashboard",
+    "create_bounty": "Create New Bounty",
+    "profile": "Profile",
+    "settings": "Account Settings",
+    "signout": "Sign out",
+    "signin": "Sign in",
+    "view_bounty": "View Bounty",
+    "view_rating": "View Rating"
   },
   "sections": {
     "activity": {
@@ -67,6 +74,19 @@
         "revisions": "{count} revisions"
       },
       "components": {
+        "issue_rating": {
+          "issuer1":
+            "Your bounty submission was accepted! If you would like, you can rate your experience with the following bounty issuer:",
+          "issuer2":
+            "This will help set expectations for other fulfillers on the platform.",
+          "fulfiller1":
+            "You accepted a submission to your bounty! If you would like, you can rate your experience with the following fulfiller:",
+          "fulfiller2":
+            "This will help set expectations for other issuers on the platform.",
+          "rating": "Rating",
+          "review": "Review",
+          "review_placeholder": "Enter review..."
+        },
         "new_comment": {
           "placeholder": "Write a comment..",
           "action": "Post comment",
@@ -438,7 +458,11 @@
       }
     },
     "leaderboard": {
-      "title": "Leaderboard"
+      "title": "Leaderboard",
+      "banner": {
+        "top_issuers": "Top Issuers",
+        "top_earners": "Top Earners"
+      }
     },
     "leaderboard_card": {
       "zero_state": {
@@ -480,7 +504,7 @@
         "sign_in": {
           "title": "Sign in and verify address",
           "description":
-            "After clicking \"Continue\", a wallet dialogue will prompt you to verify your unique address. Once you verify, you&#39;ll be signed in to the network."
+            "After clicking \"Continue\", a wallet dialogue will prompt you to verify your unique address. Once you verify, you'll be signed in to the network."
         },
         "signing_in": {
           "title":
@@ -489,7 +513,7 @@
         "unlock": {
           "title": "Secure Wallet Access",
           "description1":
-            "You&#39;ll need to log in and/or grant access to your secure wallet (e.g.",
+            "You'll need to log in and/or grant access to your secure wallet (e.g.",
           "description2":
             ") in order to use {pageLevel, select, null {parts of} other { }} {networkName}"
         },
@@ -571,6 +595,11 @@
       }
     },
     "settings": {
+      "title": "Account Settings",
+      "messages": {
+        "profile_saved": "Profile saved successfully",
+        "email_saved": "Email preferences saved successfully"
+      },
       "emails": {
         "title": "EMAIL NOTIFICATIONS",
         "description":
@@ -707,6 +736,10 @@
       "submissions_count":
         "{count, plural, =1 {submission} other {submissions}}"
     },
+    "bounty_item": {
+      "text":
+        "Created {time} ∙ {submissionCount, plural, =1 {submission} = {submissions}}"
+    },
     "essentials": {
       "balance": "Remaining Balance"
     },
@@ -752,11 +785,81 @@
         "pending_wallet":
           "Confirming Ethereum transaction with your enabled wallet. This may take a few seconds."
       }
+    },
+    "editor": {
+      "preview": "Preview",
+      "default":
+        "# Description\nDescribe the bounty that you want completed. What is it for? What does it involve?\n\n## Requirements\nWhat requirements do you have for bounty fulfillers? Are there any rules or constraints for your bounty? Are there any pre-requisites needed to complete it?\n\n* Item one\n* Item two\n* Item three\n\n## Definition of Done\nWhat should bounty issuers submit as proof that they have completed the bounty? What do fulfillers need to include in a submission in order for it to be accepted?\n\n1. Item 1\n2. Item 2\n3. Item 3\n\n### Things to Note\nIs there any other information you'd like potential fulfillers to know about you or the bounty? Does the bounty require any additional materials that either party needs to provide or information exchanged for external communication to occur?"
+    },
+    "notifications": {
+      "fulfilLment_submitted": "You made a submission",
+      "fulfilLment_submitted_issuer": "You received a submission",
+      "bounty_activated": "You activated a bounty:",
+      "fulfillment_accepted": "You accepted a submission",
+      "fulfillment_accepted_fulfiller": "Your submission was accepted",
+      "bounty_expired": "Your bounty expired",
+      "bounty_issued": "You issued a new bounty",
+      "bounty_killed": "You killed a bounty",
+      "contribution_added": "You made a contribution",
+      "deadline_extended": "You extended the deadline",
+      "bounty_changed": "You updated your bounty",
+      "issuer_transferred": "You transferred ownership of your bounty",
+      "transfer_recipient": "Ownership of a bounty was transferred to you",
+      "payout_increased": "You increased the payout",
+      "bounty_comment_received": "Someone commented on",
+      "bounty_issue_activated": "You posted a new bounty",
+      "fulfillment_updated": "You updated your submission",
+      "fulfillment_updated_issuer": "A submission to your bounty was updated",
+      "rating_issued": "You wrote a review",
+      "rating_received": "You received a rating",
+      "profile_updated": "You updated your profile",
+      "comment_issued": "You wrote a comment",
+      "draft_created": "You created a draft:",
+      "draft_updated": "You updated a draft:",
+      "contribution_received": "You received a contribution",
+      "bounty_completed": "Your bounty ran out of funds:",
+      "application_created": "You submitted an application",
+      "application_received": "You received a new application",
+      "application_accepted_application": "Your application was accepted",
+      "application_accepted_issuer": "You accepted an application",
+      "application_rejected_applicant": "Your application was rejected",
+      "application_rejected_issuer": "You rejected an application"
+    }
+  },
+  "hocs": {
+    "require_login": {
+      "zero_state": {
+        "title": "Sign in to use the Bounties Network",
+        "body":
+          "In order for you to use certain features of the network like creating and fulfilling bounties, commenting, and viewing your network stats, please sign in using your secure wallet.",
+        "subtext":
+          "If you don't wish to sign in but want to explore, feel free to check out some bounties using the ",
+        "action": "Sign In"
+      },
+      "explorer": "explorer"
     }
   },
   "errors": {
     "500": "Something went wrong. Try again later.",
+    "404": "Not Found",
     "form_error": "Fix errors before submitting."
+  },
+  "validation": {
+    "required": "* Required",
+    "max": "Must be {max} characters or less",
+    "min": "Must be {min} characters or more",
+    "max_decimals": "Must be {max} decimal places or less",
+    "min_value": "Must be greater than {min}",
+    "mineq_value": "Must be greater than or equal to  {min}",
+    "min_date": "Date must be after ${date)}",
+    "length": "Must be {length} characters",
+    "web3": "Must be a proper web3 address",
+    "number": "Must be a number",
+    "email": "Invalid email address",
+    "alfa_num": "Only alphanumeric characters",
+    "twitter": "Invalid Twitter handle",
+    "github": "Invalid Github handle",
+    "url": "Invalid URL"
   },
   "common": {
     "description": "Description",

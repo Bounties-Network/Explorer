@@ -3,19 +3,13 @@ import PropTypes from 'prop-types';
 import styles from './BountyItem.module.scss';
 import { Text } from 'components';
 import { Currency } from 'explorer-components';
-import Pluralize from 'pluralize';
 import moment from 'moment';
+import intl from 'react-intl-universal';
 
 const BountyItem = props => {
   const { createdAt, currency, submissions, title, usd_value, value } = props;
 
   const formattedTime = moment.utc(createdAt, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
-
-  let submissionsText = '';
-  if (typeof submissions === 'number') {
-    const pluralized = Pluralize('Submission', submissions, true);
-    submissionsText = `∙ ${pluralized}`;
-  }
 
   return (
     <div className={`row ${styles.container}`}>
@@ -35,7 +29,10 @@ const BountyItem = props => {
           color="defaultGrey"
           className={styles.details}
         >
-          {`Created ${formattedTime} ${submissionsText}`}
+          {intl.get('components.bounty_item.text', {
+            time: formattedTime,
+            submissionsCount: submissions.length
+          })}
         </Text>
       </div>
       <div className="col-xs-3">

@@ -3,6 +3,7 @@ import { toast as callToast } from 'react-toastify';
 import { Toast } from 'components';
 import { actions as settingsUIActions } from './reducer';
 import { actionTypes as settingsActionTypes } from 'public-modules/Settings';
+import intl from 'react-intl-universal';
 
 const {
   SAVE_SETTINGS_SUCCESS,
@@ -16,11 +17,11 @@ const { setProfileImageUrls, resetProfileImageUrls } = settingsUIActions;
 
 let lastProfileToast;
 export function* sendProfileUpdatedToast(action) {
-  let postedMessage = 'Profile saved successfully';
+  let postedMessage = intl.get('sections.settings.messages.profile_saved');
   let toastType = Toast.TYPE.SUCCESS;
 
   if (action.type === SAVE_SETTINGS_FAIL) {
-    postedMessage = 'Something went wrong. Please try again.';
+    postedMessage = intl.get('errors.500');
     toastType = Toast.TYPE.ERROR;
   }
 
@@ -35,11 +36,11 @@ export function* sendProfileUpdatedToast(action) {
 
 let lastEmailToast;
 export function* sendEmailSettingsUpdatedToast(action) {
-  let postedMessage = 'Email preferences saved successfully';
+  let postedMessage = intl.get('sections.settings.messages.email_saved');
   let toastType = Toast.TYPE.SUCCESS;
 
   if (action.type === SAVE_EMAIL_PREFERENCES_FAIL) {
-    postedMessage = 'Something went wrong. Please try again.';
+    postedMessage = intl.get('errors.500');
     toastType = Toast.TYPE.ERROR;
   }
 

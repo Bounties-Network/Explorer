@@ -10,30 +10,6 @@ export const HTTP_422_UNKNOWN = 422;
 export const HTTP_500_INTERNAL_SERVER_ERROR = 500;
 export const HTTP_503_SERVICE_UNAVAILABLE = 503;
 
-export const DEFAULT_MARKDOWN = `# Description
-Describe the bounty that you want completed. What is it for? What does it involve?
-
-## Requirements
-What requirements do you have for bounty fulfillers? Are there any rules or constraints for your bounty? Are there any pre-requisites needed to complete it?
-
-* Item one
-* Item two
-* Item three
-
-## Definition of Done
-What should bounty issuers submit as proof that they have completed the bounty? What do fulfillers need to include in a submission in order for it to be accepted?
-
-1. Item 1
-2. Item 2
-3. Item 3
-
-### Things to Note
-Is there any other information you'd like potential fulfillers to know about you or the bounty? Does the bounty require any additional materials that either party needs to provide or information exchanged for external communication to occur?
-
-### Restrictions
-Will your bounty be available for anyone to fulfill? Should it be restricted to a particular group of people based on their geography, attendance at an event, or membership within a community?
-`;
-
 export const NOTIFICATION_ID = {
   FULFILLMENT_SUBMITTED: 0,
   FULFILLMENT_SUBMITTED_ISSUER: 1,
@@ -91,131 +67,131 @@ const arrow_up = ['far', 'arrow-up'];
 
 export const notification_template = {
   [NOTIFICATION_ID.FULFILLMENT_SUBMITTED]: {
-    message: 'You made a submission',
+    message: 'components.notifications.fulfilLment_submitted',
     icon: level_up
   },
   [NOTIFICATION_ID.FULFILLMENT_SUBMITTED_ISSUER]: {
-    message: 'You received a submission',
+    message: 'components.notifications.fulfilLment_submitted_issuer',
     icon: level_down
   },
   [NOTIFICATION_ID.BOUNTY_ACTIVATED]: {
-    message: 'You activated a bounty',
+    message: 'components.notifications.bounty_activated',
     icon: plus
   },
   [NOTIFICATION_ID.FULFILLMENT_ACCEPTED]: {
-    message: 'You accepted a submission',
+    message: 'components.notifications.fulfillment_accepted',
     icon: check
   },
   [NOTIFICATION_ID.FULFILLMENT_ACCEPTED_FULFILLER]: {
-    message: 'Your submission was accepted',
+    message: 'components.notifications.fulfillment_accepted_fulfiller',
     icon: check
   },
   [NOTIFICATION_ID.BOUNTY_EXPIRED]: {
-    message: 'Your bounty expired',
+    message: 'components.notifications.bounty_expired',
     icon: calendar_exclamation
   },
   [NOTIFICATION_ID.BOUNTY_ISSUED]: {
-    message: 'You issued a new bounty',
+    message: 'components.notifications.bounty_issued',
     icon: plus
   },
   [NOTIFICATION_ID.BOUNTY_KILLED]: {
-    message: 'You killed a bounty',
+    message: 'components.notifications.bounty_killed',
     icon: times_circle
   },
   [NOTIFICATION_ID.CONTRIBUTION_ADDED]: {
-    message: 'You made a contribution',
+    message: 'components.notifications.contribution_added',
     icon: dollar_sign
   },
   [NOTIFICATION_ID.DEADLINE_EXTENDED]: {
-    message: 'You extended the deadline',
+    message: 'components.notifications.deadline_extended',
     icon: calendar_plus
   },
   [NOTIFICATION_ID.BOUNTY_CHANGED]: {
-    message: 'You updated your bounty',
+    message: 'components.notifications.bounty_changed',
     icon: sync
   },
   [NOTIFICATION_ID.ISSUER_TRANSFERRED]: {
-    message: 'You transferred ownernship of your bounty',
+    message: 'components.notifications.issuer_transferred',
     icon: user_friends
   },
   [NOTIFICATION_ID.TRANSFER_RECIPIENT]: {
-    message: 'Ownership of a bounty was transferred to you',
+    message: 'components.notifications.transfer_recipient',
     icon: user_friends
   },
   [NOTIFICATION_ID.PAYOUT_INCREASED]: {
-    message: 'You increased a payout',
+    message: 'components.notifications.payout_increased',
     icon: arrow_up
   },
   [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED]: {
-    message: 'Someone commented on',
+    message: 'components.notifications.bounty_comment_received',
     icon: comment
   },
   [NOTIFICATION_ID.BOUNTY_ISSUED_ACTIVATED]: {
-    message: 'You posted a new bounty',
+    message: 'components.notifications.bounty_issue_activated',
     icon: plus
   },
   [NOTIFICATION_ID.FULFILLMENT_UPDATED]: {
-    message: 'You updated your submission',
+    message: 'components.notifications.fulfillment_updated',
     icon: sync
   },
   [NOTIFICATION_ID.FULFILLMENT_UPDATED_ISSUER]: {
-    message: 'A submission to your bounty was updated',
+    message: 'components.notifications.fulfillment_updated_issuer',
     icon: sync
   },
   [NOTIFICATION_ID.RATING_ISSUED]: {
-    message: 'You wrote a review',
+    message: 'components.notifications.rating_issued',
     icon: star
   },
   [NOTIFICATION_ID.RATING_RECEIVED]: {
-    message: 'You received a rating',
+    message: 'components.notifications.rating_received',
     icon: star
   },
   [NOTIFICATION_ID.PROFILE_UPDATED]: {
-    message: 'You updated your profile',
+    message: 'components.notifications.profile_updated',
     icon: user
   },
   [NOTIFICATION_ID.COMMENT_ISSUED]: {
-    message: 'You wrote a comment',
+    message: 'components.notifications.comment_issued',
     icon: comment
   },
   [NOTIFICATION_ID.DRAFT_CREATED]: {
-    message: 'You created a draft:',
+    message: 'components.notifications.draft_created',
     icon: edit
   },
   [NOTIFICATION_ID.DRAFT_UPDATED]: {
-    message: 'You updated a draft:',
+    message: 'components.notifications.draft_updated',
     icon: sync
   },
   [NOTIFICATION_ID.CONTRIBUTION_RECEIVED]: {
-    message: 'You received a contribution',
+    message: 'components.notifications.contribution_received',
     icon: dollar_sign
   },
   [NOTIFICATION_ID.BOUNTY_COMPLETED]: {
-    message: 'Your bounty ran out of funds:',
+    message: 'components.notifications.bounty_completed',
     icon: minus
   },
   [NOTIFICATION_ID.APPLICATION_CREATED]: {
-    message: 'You submitted an application',
+    message: 'components.notifications.application_created',
     icon: level_up
   },
   [NOTIFICATION_ID.APPLICATION_RECEIVED]: {
-    message: 'You received a new application',
+    message: 'components.notifications.application_received',
     icon: star
   },
   [NOTIFICATION_ID.APPLICATION_ACCEPTED_APPLICANT]: {
-    message: 'Your application was accepted',
+    message: 'components.notifications.application_accepted_application',
     icon: check
   },
   [NOTIFICATION_ID.APPLICATION_ACCEPTED_ISSUER]: {
-    message: 'You accepted an application',
+    message: 'components.notifications.application_accepted_issuer',
     icon: check
   },
   [NOTIFICATION_ID.APPLICATION_REJECTED_APPLICANT]: {
-    message: 'Your application was rejected',
+    message: 'components.notifications.application_rejected_applicant',
     icon: times_circle
   },
   [NOTIFICATION_ID.APPLICATION_REJECTED_ISSUER]: {
-    message: 'You rejected an application',
+    message: 'components.notifications.application_rejected_issuer',
     icon: times_circle
   }
 };
