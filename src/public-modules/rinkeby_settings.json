@@ -1,16 +1,6 @@
 {
-  "platforms": {
-    "bounties-network": [
-      "bounties-network",
-      "sf",
-      "prague",
-      "colorado",
-      "paris",
-      "sa"
-    ],
-    "gitcoin": ["gitcoin"]
-  },
-  "postingPlatform": "bounties-network",
+  "platform": "rinkeby",
+  "postingPlatform": "rinkeby",
   "postingSchema": "standardSchema",
   "postingSchemaVersion": "1.0",
   "categoryPlatform": "rinkeby",

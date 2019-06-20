@@ -75,13 +75,17 @@ export function* saveEmailPreferences(action) {
     FulfillmentAcceptedFulfiller,
     FulfillmentSubmittedIssuer,
     FulfillmentUpdatedIssuer,
+    BountyCommentReceivedIssuer,
     RatingReceived,
     TransferRecipient,
     ContributionReceived,
     BountyCompleted,
     ApplicationReceived,
     ApplicationAcceptedApplicant,
-    ApplicationRejectedApplicant
+    ApplicationRejectedApplicant,
+    BountyChanged,
+    BountyChangedApplicant,
+    BountyCommentReceivedCommenter
   } = values;
 
   const data = {
@@ -91,11 +95,11 @@ export function* saveEmailPreferences(action) {
         RatingReceived
       },
       issuer: {
-        BountyCommentReceived,
         BountyExpired,
         TransferRecipient,
         FulfillmentUpdatedIssuer,
         FulfillmentSubmittedIssuer,
+        BountyCommentReceivedIssuer,
         ContributionReceived,
         BountyCompleted,
         ApplicationReceived
@@ -103,7 +107,11 @@ export function* saveEmailPreferences(action) {
       fulfiller: {
         FulfillmentAcceptedFulfiller,
         ApplicationAcceptedApplicant,
-        ApplicationRejectedApplicant
+        ApplicationRejectedApplicant,
+        BountyCommentReceived,
+        BountyCommentReceivedCommenter,
+        BountyChanged,
+        BountyChangedApplicant
       }
     }
   };

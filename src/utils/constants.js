@@ -69,7 +69,10 @@ export const NOTIFICATION_ID = {
   APPLICATION_ACCEPTED_APPLICANT: 29,
   APPLICATION_ACCEPTED_ISSUER: 30,
   APPLICATION_REJECTED_APPLICANT: 31,
-  APPLICATION_REJECTED_ISSUER: 32
+  APPLICATION_REJECTED_ISSUER: 32,
+  BOUNTY_COMMENT_RECEIVED_ISSUER: 33,
+  BOUNTY_CHANGED_APPLICANT: 34,
+  BOUNTY_COMMENT_RECEIVED_COMMENTER: 35
 };
 
 const plus = ['far', 'plus-circle'];
@@ -131,7 +134,11 @@ export const notification_template = {
     icon: calendar_plus
   },
   [NOTIFICATION_ID.BOUNTY_CHANGED]: {
-    message: 'You updated your bounty',
+    message: 'Someone updated their bounty',
+    icon: sync
+  },
+  [NOTIFICATION_ID.BOUNTY_CHANGED_APPLICANT]: {
+    message: 'Someone updated their bounty',
     icon: sync
   },
   [NOTIFICATION_ID.ISSUER_TRANSFERRED]: {
@@ -147,6 +154,14 @@ export const notification_template = {
     icon: arrow_up
   },
   [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED]: {
+    message: 'Someone commented on',
+    icon: comment
+  },
+  [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED_COMMENTER]: {
+    message: 'Someone commented on',
+    icon: comment
+  },
+  [NOTIFICATION_ID.BOUNTY_COMMENT_RECEIVED_ISSUER]: {
     message: 'Someone commented on',
     icon: comment
   },

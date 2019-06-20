@@ -79,6 +79,7 @@ function getDraftFail(error) {
 }
 
 const CREATE_BOUNTY = 'bounty/CREATE_BOUNTY';
+const EDIT_BOUNTY = 'bounty/EDIT_BOUNTY';
 const KILL_BOUNTY = 'bounty/KILL_BOUNTY';
 const EXTEND_DEADLINE = 'bounty/EXTEND_DEADLINE';
 const TRANSFER_OWNERSHIP = 'bounty/TRANSFER_OWNERSHIP';
@@ -90,6 +91,10 @@ const STD_BOUNTY_FAIL = 'bounty/STD_BOUNTY_FAIL';
 
 function createBounty(values, balance) {
   return { type: CREATE_BOUNTY, values, balance };
+}
+
+function editBounty(values) {
+  return { type: EDIT_BOUNTY, values };
 }
 
 function transferOwnership(id, contract_version, address) {
@@ -240,6 +245,7 @@ function BountyReducer(state = initialState, action) {
     case EXTEND_DEADLINE:
     case ACTIVATE_BOUNTY:
     case CONTRIBUTE:
+    case EDIT_BOUNTY:
     case CREATE_BOUNTY: {
       return {
         ...state,
@@ -323,6 +329,7 @@ export const actions = {
   getDraftSuccess,
   getDraftFail,
   createBounty,
+  editBounty,
   increasePayout,
   activateBounty,
   killBounty,
@@ -346,6 +353,7 @@ export const actionTypes = {
   GET_DRAFT_FAIL,
   UPDATE_DRAFT,
   CREATE_BOUNTY,
+  EDIT_BOUNTY,
   INCREASE_PAYOUT,
   EXTEND_DEADLINE,
   ACTIVATE_BOUNTY,

@@ -47,6 +47,9 @@ const ModalManagerComponent = props => {
     /*****************/
   } = props;
 
+  const belongsToLoggedInUser =
+    user && bounty.user.public_address === user.public_address;
+
   const minimumBalance = BigNumber(
     bounty.calculated_fulfillment_amount,
     10
@@ -164,6 +167,7 @@ const ModalManagerComponent = props => {
         token_symbol={bounty.token_symbol}
         tokenDecimals={bounty.token_decimals}
         token_contract={bounty.token_contract}
+        belongsToLoggedInUser={belongsToLoggedInUser}
       />
       <ExtendDeadlineErrorModal
         visible={modalVisible && modalType === 'deadlineWarning'}

@@ -18,7 +18,8 @@ const ContributeFormModal = props => {
     visible,
     submitFailed,
     invalid,
-    asyncValidating
+    asyncValidating,
+    belongsToLoggedInUser
   } = props;
 
   const fieldValidators = [
@@ -36,13 +37,25 @@ const ContributeFormModal = props => {
         fixed
         size="small"
       >
-        <Modal.Header closable={true}>
-          <Modal.Message>Contribute to the bounty</Modal.Message>
-          <Modal.Description>
-            Indicate the amount you would like to contribute towards the bounty
-            ({token_symbol}).
-          </Modal.Description>
-        </Modal.Header>
+        {!belongsToLoggedInUser && (
+          <Modal.Header closable={true}>
+            <Modal.Message>Contribute to the bounty</Modal.Message>
+            <Modal.Description>
+              Indicate the amount you would like to contribute towards the
+              bounty ({token_symbol}).
+            </Modal.Description>
+          </Modal.Header>
+        )}
+        {belongsToLoggedInUser && (
+          <Modal.Header closable={true}>
+            <Modal.Message>Increase the balance</Modal.Message>
+            <Modal.Description>
+              Indicate the amount you would like to add to the bounty ({
+                token_symbol
+              }).
+            </Modal.Description>
+          </Modal.Header>
+        )}
         <Modal.Body className={styles.modalBody}>
           <Field
             name="contribution"

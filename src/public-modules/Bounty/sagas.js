@@ -24,6 +24,7 @@ import {
 
 const {
   CREATE_DRAFT,
+  EDIT_BOUNTY,
   UPDATE_DRAFT,
   CREATE_BOUNTY,
   GET_DRAFT,
@@ -476,7 +477,88 @@ export function* extendDeadline(action) {
     yield put(setTransactionError());
   }
 }
+export function* editBounty(action) {
+  const { values } = action;
+  const userAddress = yield select(addressSelector);
+  yield put(setPendingWalletConfirm());
 
+  let contractFulfillmentAmount;
+  if (values.paysTokens) {
+    const { decimals } = yield call(getTokenData, values.token_contract);
+    contractFulfillmentAmount = calculateDecimals(
+      BigNumber(values.fulfillment_amount, 10).toString(),
+      BigNumber(decimals, 10).toString()
+    );
+  } else {
+    const { web3 } = yield call(getWeb3Client);
+    contractFulfillmentAmount = web3.utils.toWei(
+      BigNumber(values.fulfillment_amount, 10).toString(),
+      'ether'
+    );
+  }
+
+  try {
+    let txHash;
+    const { standardBounties } = yield call(getContractClient, 2);
+    const issuedData = {
+      payload: {
+        uid: values.uid,
+        title: values.title,
+        description: values.description,
+        sourceFileHash: '',
+        sourceDirectoryHash: values.attached_data_hash,
+        sourceFileName: values.attached_filename,
+        webReferenceURL: values.webReferenceURL,
+        categories: values.categories,
+        revisions: values.revisions,
+        privateFulfillments: values.private_fulfillments,
+        fulfillersNeedApproval: values.fulfillers_need_approval,
+        created: values.bounty_created,
+        tokenAddress: values.token_contract,
+        difficulty:
+          typeof values.experience_level === 'number'
+            ? values.experience_level
+            : DIFFICULTY_VALUES[values.experience_level],
+        issuer: {
+          address: values.user.public_address,
+          email: values.issuer_email,
+          name: values.issuer_name
+        },
+        funders: [
+          {
+            address: values.user.public_address,
+            email: values.user.email,
+            name: values.user.name
+          }
+        ],
+        symbol: values.token_symbol,
+        fulfillmentAmount: contractFulfillmentAmount
+      },
+      meta: {
+        platform: siteConfig.postingPlatform,
+        schemaVersion: siteConfig.postingSchemaVersion,
+        schemaName: siteConfig.postingSchema
+      }
+    };
+
+    const ipfsHash = yield call(addJSON, issuedData);
+    txHash = yield call(
+      promisifyContractCall(standardBounties.changeData, {
+        from: userAddress
+      }),
+      userAddress,
+      values.bounty_id,
+      0,
+      ipfsHash
+    );
+
+    yield put(stdBountySuccess());
+    yield put(setPendingReceipt(txHash));
+  } catch (e) {
+    yield put(stdBountyFail());
+    yield put(setTransactionError());
+  }
+}
 export function* increasePayout(action) {
   const {
     id,
@@ -741,6 +823,10 @@ export function* watchCreateBounty() {
   yield takeLatest(CREATE_BOUNTY, createBounty);
 }
 
+export function* watchEditBounty() {
+  yield takeLatest(EDIT_BOUNTY, editBounty);
+}
+
 export function* watchGetDraft() {
   yield takeLatest(GET_DRAFT, getDraft);
 }
@@ -777,6 +863,7 @@ export default [
   watchGetDraft,
   watchCreateDraft,
   watchCreateBounty,
+  watchEditBounty,
   watchGetBounty,
   watchKillBounty,
   watchActivateBounty,
