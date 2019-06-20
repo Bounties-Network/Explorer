@@ -31,7 +31,7 @@ const BountyItem = props => {
         >
           {intl.get('components.bounty_item.text', {
             time: formattedTime,
-            submissionCount: submissions ? submissions.length : 0
+            submissionCount: submissions || 0
           })}
         </Text>
       </div>
