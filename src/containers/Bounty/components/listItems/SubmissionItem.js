@@ -135,15 +135,17 @@ const SubmissionItem = props => {
             />
             <Text inline>{formattedTime}</Text>
           </div>
-          <div className={`${styles.submissionMetadata}`}>
-            <FontAwesomeIcon
-              icon={['far', 'envelope']}
-              className={styles.submissionIcon}
-            />
-            <Text link src={`mailto:${fulfiller_email}`}>
-              {fulfiller_email}
-            </Text>
-          </div>
+          {bountyBelongsToLoggedInUser && (
+            <div className={`${styles.submissionMetadata}`}>
+              <FontAwesomeIcon
+                icon={['far', 'envelope']}
+                className={styles.submissionIcon}
+              />
+              <Text link src={`mailto:${fulfiller_email}`}>
+                {fulfiller_email}
+              </Text>
+            </div>
+          )}
           {url ? (
             <div
               className={[styles.submissionMetadata, styles.bottomMargin].join(
