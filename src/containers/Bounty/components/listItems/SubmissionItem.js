@@ -180,7 +180,7 @@ const SubmissionItem = props => {
                 <Text
                   link
                   absolute
-                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  src={`https://ipfs.bounties.network/ipfs/${dataHash}/${dataFileName}`}
                 >
                   {shortenFileName(dataFileName)}
                 </Text>
@@ -189,11 +189,11 @@ const SubmissionItem = props => {
             {hasImageExtension(dataFileName) && (
               <a
                 className={`${styles.imageLink}`}
-                href={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                href={`https://ipfs.bounties.network/ipfs/${dataHash}/${dataFileName}`}
                 target="_blank"
               >
                 <img
-                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  src={`https://ipfs.bounties.network/ipfs/${dataHash}/${dataFileName}`}
                   class={styles.image}
                   alt={dataFileName}
                 />

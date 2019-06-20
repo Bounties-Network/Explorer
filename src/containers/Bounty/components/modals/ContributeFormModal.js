@@ -19,7 +19,8 @@ const ContributeFormModal = props => {
     visible,
     submitFailed,
     invalid,
-    asyncValidating
+    asyncValidating,
+    belongsToLoggedInUser
   } = props;
 
   const fieldValidators = [
@@ -37,16 +38,33 @@ const ContributeFormModal = props => {
         fixed
         size="small"
       >
-        <Modal.Header closable={true}>
-          <Modal.Message>
-            {intl.get('sections.bounty.modals.contribute.title')}
-          </Modal.Message>
-          <Modal.Description>
-            {intl.get('sections.bounty.modals.contribute.description', {
-              token_symbol
-            })}
-          </Modal.Description>
-        </Modal.Header>
+        {!belongsToLoggedInUser && (
+          <Modal.Header closable={true}>
+            <Modal.Message>
+              {intl.get('sections.bounty.modals.contribute.title')}
+            </Modal.Message>
+            <Modal.Description>
+              {intl.get('sections.bounty.modals.contribute.description', {
+                token_symbol
+              })}
+            </Modal.Description>
+          </Modal.Header>
+        )}
+        {belongsToLoggedInUser && (
+          <Modal.Header closable={true}>
+            <Modal.Message>
+              {intl.get('sections.bounty.modals.contribute.title_issuer')}
+            </Modal.Message>
+            <Modal.Description>
+              {intl.get(
+                'sections.bounty.modals.contribute.description_issuer',
+                {
+                  token_symbol
+                }
+              )}
+            </Modal.Description>
+          </Modal.Header>
+        )}
         <Modal.Body className={styles.modalBody}>
           <Field
             name="contribution"

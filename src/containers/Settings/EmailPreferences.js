@@ -89,7 +89,10 @@ const mapStateToProps = state => {
   const initialValues = {
     RatingReceived: preferences.both.RatingReceived,
     TransferRecipient: preferences.issuer.TransferRecipient,
-    BountyCommentReceived: preferences.issuer.BountyCommentReceived,
+    BountyCommentReceived: preferences.fulfiller.BountyCommentReceived,
+    BountyCommentReceivedIssuer: preferences.issuer.BountyCommentReceivedIssuer,
+    BountyChanged: preferences.fulfiller.BountyChanged,
+    BountyChangedApplicant: preferences.fulfiller.BountyChangedApplicant,
     BountyExpired: preferences.issuer.BountyExpired,
     FulfillmentUpdatedIssuer: preferences.issuer.FulfillmentUpdatedIssuer,
     FulfillmentSubmittedIssuer: preferences.issuer.FulfillmentSubmittedIssuer,

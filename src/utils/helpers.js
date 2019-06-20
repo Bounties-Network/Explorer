@@ -50,7 +50,7 @@ export function currentRouteSelector(pathname) {
 }
 
 export function ipfsToHttp(directoryHash, fileName) {
-  return `https://ipfs.infura.io/ipfs/${directoryHash}/${fileName}`;
+  return `https://ipfs.bounties.network/ipfs/${directoryHash}/${fileName}`;
 }
 
 export function isMobile() {

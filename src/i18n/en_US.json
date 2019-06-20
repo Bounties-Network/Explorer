@@ -19,6 +19,7 @@
     "re_activate": "Re-Activate",
     "cancel": "Cancel",
     "contribute": "Contribute",
+    "contribute_issuer": "Increase Balance",
     "submit": "Submit",
     "extend_deadline": "Extend Deadline",
     "increase_payout": "Increase Payout",
@@ -182,9 +183,12 @@
           }
         },
         "contribute": {
-          "title": "Contribute to the bounty",
+          "title": "Increase the balance",
           "description":
             "Indicate the amount you would like to contribute towards the bounty ({token_symbol}).",
+          "title_issuer": "Contribute to the bounty",
+          "description_issuer":
+            "Indicate the amount you would like to add to the bounty ({token_symbol}).",
           "form": {
             "contribution": {
               "label": "Deposit amount {token_symbol}",
@@ -284,10 +288,12 @@
       },
       "deposit_warning":
         "Deposit amount must at least match the payout amount.",
+      "payout_warning": "Payout amount may not be larger than the balance.",
       "actions": {
         "create": "Create Bounty",
         "draft": "Create Draft",
-        "update": "Update Draft"
+        "update_draft": "Update Draft",
+        "update_bounty": "Update Bounty"
       },
       "sections": {
         "about": {
@@ -400,6 +406,31 @@
           "description": "Select payout method and amount.",
           "notice":
             "Select the token and enter the amount you will award for completion of this bounty.",
+          "form": {
+            "token_contract": {
+              "label_default": "Token Contract Address",
+              "label_custom": "{token} Contract Address",
+              "placeholder": "Enter token contract address..."
+            },
+            "method": {
+              "label": "Payout Method"
+            },
+            "fulfillment_amount": {
+              "label":
+                "Payout amount {hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
+              "placeholder": "Enter amount..."
+            },
+            "token_contract_2": {
+              "label": "Token",
+              "placeholder": "Select token or enter token address..."
+            }
+          }
+        },
+        "payout_editing": {
+          "title": "PAYOUT",
+          "description": "Indicate the payout amount",
+          "notice":
+            "Enter the amount you will award for the completion of this bounty. The payout may not be larger than your current balance of <span className=\"{textHighlight}\">{balance} {token_symbol} </span>. If you would like to add more funds to the bounty, please <Link to=\"{increaseBalanceUrl}\">increase your balance.</Link>",
           "form": {
             "token_contract": {
               "label_default": "Token Contract Address",
@@ -612,8 +643,14 @@
         "notification_options": {
           "rating_received": "User issues you a rating",
           "transfer_recipient": "Bounty transfer to another user completes",
-          "bounty_comment_received": "Bounty receives a comment",
+          "bounty_comment_received":
+            "A bounty you fulfilled receives a comment",
+          "bounty_comment_received_issuer": "Your bounty receives a comment",
+          "bounty_comment_received_commenter":
+            "A bounty you commented on receives a comment",
           "bounty_expired": "Bounty expires",
+          "bounty_changed": "A bounty you fulfilled is changed",
+          "bounty_changed_applicant": "A bounty you applied for is changed",
           "fulfillment_updated_issuer":
             "Fulfiller, updates their fulfillment on your bounty",
           "fulfillment_submitted_issuer":
@@ -795,7 +832,7 @@
     "notifications": {
       "fulfilLment_submitted": "You made a submission",
       "fulfilLment_submitted_issuer": "You received a submission",
-      "bounty_activated": "You activated a bounty:",
+      "bounty_activated": "You activated a bounty",
       "fulfillment_accepted": "You accepted a submission",
       "fulfillment_accepted_fulfiller": "Your submission was accepted",
       "bounty_expired": "Your bounty expired",
@@ -807,7 +844,10 @@
       "issuer_transferred": "You transferred ownership of your bounty",
       "transfer_recipient": "Ownership of a bounty was transferred to you",
       "payout_increased": "You increased the payout",
-      "bounty_comment_received": "Someone commented on",
+      "bounty_comment_received": "A bounty you fulfilled received a comment",
+      "bounty_comment_received_issuer": "Your bounty received a comment",
+      "bounty_comment_received_commenter":
+        "A bounty you commented on received a comment",
       "bounty_issue_activated": "You posted a new bounty",
       "fulfillment_updated": "You updated your submission",
       "fulfillment_updated_issuer": "A submission to your bounty was updated",
@@ -815,10 +855,10 @@
       "rating_received": "You received a rating",
       "profile_updated": "You updated your profile",
       "comment_issued": "You wrote a comment",
-      "draft_created": "You created a draft:",
-      "draft_updated": "You updated a draft:",
+      "draft_created": "You created a draft",
+      "draft_updated": "You updated a draft",
       "contribution_received": "You received a contribution",
-      "bounty_completed": "Your bounty ran out of funds:",
+      "bounty_completed": "Your bounty ran out of funds",
       "application_created": "You submitted an application",
       "application_received": "You received a new application",
       "application_accepted_application": "Your application was accepted",

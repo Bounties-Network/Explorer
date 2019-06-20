@@ -23,6 +23,7 @@ const ActionBar = props => {
     user && bounty.user.public_address === user.public_address;
 
   const draftUrl = `/createBounty/draft/${bounty.uid}/`;
+  const editUrl = `/editBounty/${bounty.id}/`;
 
   let actionOptions = null;
   if (isDraft && belongsToLoggedInUser) {
@@ -81,18 +82,32 @@ const ActionBar = props => {
           </Button>
         )}
 
-        {bounty.bounty_stage !== DEAD && (
-          <Button
-            onClick={() =>
-              initiateLoginProtection(() => showModal('increasePayout'))
-            }
-            icon={['far', 'arrow-up']}
-            fitWidth
-            className={styles.buttonGroup}
-          >
-            {intl.get('sections.bounty.actions.increase_prize')}
-          </Button>
+        {bounty.bounty_stage !== DEAD &&
+          bounty.contract_version === 1 && (
+            <Button
+              onClick={() =>
+                initiateLoginProtection(() => showModal('increasePayout'))
+              }
+              icon={['far', 'arrow-up']}
+              fitWidth
+              className={styles.buttonGroup}
+            >
+              {intl.get('sections.bounty.actions.increase_prize')}
+            </Button>
+          )}
+
+        {bounty.contract_version === 2 && (
+          <Link to={editUrl}>
+            <Button
+              icon={['far', 'edit']}
+              fitWidth
+              className={styles.editBountyButton}
+            >
+              {intl.get('sections.bounty.actions.edit_bounty')}
+            </Button>
+          </Link>
         )}
+
         {bounty.bounty_stage !== DEAD && (
           <Button
             icon={['far', 'dollar-sign']}
@@ -102,7 +117,7 @@ const ActionBar = props => {
             }
             fitWidth
           >
-            {intl.get('sections.bounty.actions.contribute')}
+            {intl.get('sections.bounty.actions.contribute_issuer')}
           </Button>
         )}
         <Button
@@ -128,7 +143,6 @@ const ActionBar = props => {
       </div>
     );
   }
-
   if (!belongsToLoggedInUser && bounty.bounty_stage === ACTIVE) {
     let mainActionButton = (
       <Button

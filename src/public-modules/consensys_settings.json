@@ -9,13 +9,18 @@
     "mainNet": "https://rinkeby.api.bounties.network",
     "rinkeby": "https://rinkeby.api.bounties.network"
   },
+  "defaultToken": {
+    "symbol": "MESH",
+    "address": "0x261d24441091bB67Ce2B3B5e255071Da260BB880",
+    "decimals": 18
+  },
   "requiredNetwork": "rinkeby",
   "mainNet": {
-    "standardBountiesAddressV1": "0xdd1636b88e9071507e859e61991ed4be6647f420",
+    "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
     "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c"
   },
   "rinkeby": {
-    "standardBountiesAddressV1": "0xdd1636b88e9071507e859e61991ed4be6647f420",
+    "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
     "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c"
   }
 }
