@@ -11,6 +11,12 @@ const BountyItem = props => {
 
   const formattedTime = moment.utc(createdAt, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
 
+  let isDraft = true;
+
+  if (typeof submissions === 'number') {
+    isDraft = false;
+  }
+
   return (
     <div className={`row ${styles.container}`}>
       <div className="col-xs-9">
@@ -29,10 +35,15 @@ const BountyItem = props => {
           color="defaultGrey"
           className={styles.details}
         >
-          {intl.get('components.bounty_item.text', {
-            time: formattedTime,
-            submissionCount: submissions || 0
-          })}
+          {!isDraft &&
+            intl.get('components.bounty_item.text', {
+              time: formattedTime,
+              submissionCount: submissions || 0
+            })}
+          {isDraft &&
+            intl.get('components.bounty_item.draftText', {
+              time: formattedTime
+            })}
         </Text>
       </div>
       <div className="col-xs-3">

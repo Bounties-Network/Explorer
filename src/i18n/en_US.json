@@ -738,7 +738,8 @@
     },
     "bounty_item": {
       "text":
-        "Created {time} {submissionCount, plural, =1 {∙ # submission} other {∙ # submissions}}"
+        "Created {time} {submissionCount, plural, =1 {∙ # submission} other {∙ # submissions}}",
+      "draftText": "Created {time}"
     },
     "essentials": {
       "balance": "Remaining Balance"
