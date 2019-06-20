@@ -72,8 +72,8 @@ const SVG = () => (
         gradientUnits="userSpaceOnUse"
         gradientTransform="translate(64.5568 20) rotate(128.488) scale(47.7113 56.5395)"
       >
-        <stop stop-color="white" />
-        <stop offset="1" stop-color="#F7F7F7" />
+        <stop stopColor="white" />
+        <stop offset="1" stopColor="#F7F7F7" />
       </radialGradient>
     </defs>
   </svg>

@@ -72,8 +72,8 @@ const SVG = () => (
         y2="67.4583"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="white" />
-        <stop offset="1" stop-color="#F7F7F7" />
+        <stop stopColor="white" />
+        <stop offset="1" stopColor="#F7F7F7" />
       </linearGradient>
     </defs>
   </svg>

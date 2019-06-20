@@ -32,8 +32,8 @@ const SVG = () => (
     </g>
     <g filter="url(#6lkhj7_dd)">
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M15.5232 57.5152C12.1773 58.4734 10 61.7349 10 65.3978V68.1547C10 71.8906 12.2736 75.1812 15.7332 75.9519C20.6017 77.0365 28.3181 78.2961 37.8972 78.2961C47.5918 78.2961 55.6511 77.0059 60.7396 75.9127C64.2659 75.1551 66.6148 71.8191 66.6148 68.0169V65.5135C66.6148 61.7942 64.3707 58.495 60.9647 57.5563C55.3937 56.0208 46.4897 54.0214 37.8972 54.0214C29.3811 54.0214 20.8649 55.9854 15.5232 57.5152ZM38.5 69.8711C40.9853 69.8711 43 67.7423 43 65.1163C43 62.4903 40.9853 60.3616 38.5 60.3616C36.0147 60.3616 34 62.4903 34 65.1163C34 67.7423 36.0147 69.8711 38.5 69.8711Z"
         fill="url(#lk43hj_linear)"
       />
@@ -250,8 +250,8 @@ const SVG = () => (
         y2="33.7727"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="white" />
-        <stop offset="1" stop-color="#F7F7F7" />
+        <stop stopColor="white" />
+        <stop offset="1" stopColor="#F7F7F7" />
       </linearGradient>
       <linearGradient
         id="0sdf_linear"
@@ -261,8 +261,8 @@ const SVG = () => (
         y2="55.1731"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="white" />
-        <stop offset="1" stop-color="#F7F7F7" />
+        <stop stopColor="white" />
+        <stop offset="1" stopColor="#F7F7F7" />
       </linearGradient>
       <linearGradient
         id="5kjh_linear"
@@ -272,8 +272,8 @@ const SVG = () => (
         y2="63.5474"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="white" />
-        <stop offset="1" stop-color="#F7F7F7" />
+        <stop stopColor="white" />
+        <stop offset="1" stopColor="#F7F7F7" />
       </linearGradient>
       <linearGradient
         id="df0s9_linear"
@@ -283,8 +283,8 @@ const SVG = () => (
         y2="87.7692"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="white" />
-        <stop offset="1" stop-color="#F7F7F7" />
+        <stop stopColor="white" />
+        <stop offset="1" stopColor="#F7F7F7" />
       </linearGradient>
       <linearGradient
         id="lk43hj_linear"
@@ -294,8 +294,8 @@ const SVG = () => (
         y2="75.3601"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="white" />
-        <stop offset="1" stop-color="#F7F7F7" />
+        <stop stopColor="white" />
+        <stop offset="1" stopColor="#F7F7F7" />
       </linearGradient>
       <linearGradient
         id="fd9s0a_linear"
@@ -305,8 +305,8 @@ const SVG = () => (
         y2="21.015"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="white" />
-        <stop offset="1" stop-color="#F7F7F7" />
+        <stop stopColor="white" />
+        <stop offset="1" stopColor="#F7F7F7" />
       </linearGradient>
     </defs>
   </svg>

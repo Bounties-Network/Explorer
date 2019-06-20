@@ -179,8 +179,8 @@ const SVG = () => (
         gradientUnits="userSpaceOnUse"
         gradientTransform="translate(76.8181 76) rotate(119.866) scale(13.2507 13.92)"
       >
-        <stop stop-color="white" />
-        <stop offset="1" stop-color="#F7F7F7" />
+        <stop stopColor="white" />
+        <stop offset="1" stopColor="#F7F7F7" />
       </radialGradient>
       <radialGradient
         id="paint1_radial"
@@ -190,8 +190,8 @@ const SVG = () => (
         gradientUnits="userSpaceOnUse"
         gradientTransform="translate(53.8181 35) rotate(119.866) scale(13.2507 13.92)"
       >
-        <stop stop-color="white" />
-        <stop offset="1" stop-color="#F7F7F7" />
+        <stop stopColor="white" />
+        <stop offset="1" stopColor="#F7F7F7" />
       </radialGradient>
       <linearGradient
         id="paint2_linear"
@@ -201,8 +201,8 @@ const SVG = () => (
         y2="87.5"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#CCBAF5" />
-        <stop offset="1" stop-color="#AFC6FF" />
+        <stop stopColor="#CCBAF5" />
+        <stop offset="1" stopColor="#AFC6FF" />
       </linearGradient>
     </defs>
   </svg>

@@ -18,8 +18,8 @@ const SVG = () => (
     />
     <g filter="url(#4a3cxf_dd)">
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M48 40C43.5817 40 40 43.5817 40 48V80C40 84.4183 43.5817 88 48 88H98C102.418 88 106 84.4183 106 80V48C106 43.5817 102.418 40 98 40H48ZM43 48.717C43 45.4033 45.6863 42.717 49 42.717H97C100.314 42.717 103 45.4033 103 48.717V61.7358H78.9776C78.725 64.2746 76.369 66.2642 73.5 66.2642C70.631 66.2642 68.275 64.2746 68.0224 61.7358H43V48.717Z"
         fill="white"
       />
@@ -174,8 +174,8 @@ const SVG = () => (
         y2="29"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#9673E3" />
-        <stop offset="1" stop-color="#EDE5FF" />
+        <stop stopColor="#9673E3" />
+        <stop offset="1" stopColor="#EDE5FF" />
       </linearGradient>
     </defs>
   </svg>
