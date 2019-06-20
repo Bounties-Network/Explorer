@@ -343,7 +343,10 @@ class CreateBountyFormComponent extends React.Component {
                     placeholder="Enter URL..."
                   />
                 </div>
-                <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                <div
+                  className={`col-xs-12 col-sm-6 ${styles.input}`}
+                  style={{ display: 'none' }}
+                >
                   <Text inputLabel color="defaultGrey">
                     Associated file
                   </Text>
