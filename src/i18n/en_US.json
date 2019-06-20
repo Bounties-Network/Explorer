@@ -20,6 +20,7 @@
     "cancel": "Cancel",
     "contribute": "Contribute",
     "contribute_issuer": "Increase Balance",
+    "edit_bounty": "Edit Bounty",
     "submit": "Submit",
     "extend_deadline": "Extend Deadline",
     "increase_payout": "Increase Payout",
@@ -136,6 +137,7 @@
         "de_activate": "De-activate bounty",
         "increase_prize": "Increase Prize",
         "contribute": "Contribute",
+        "contribute_issuer": "Increase Balance",
         "extend_deadline": "Extend deadline",
         "transfer_ownership": "Transfer Ownership",
         "fulfill": "Fulfill",
@@ -291,6 +293,7 @@
       "payout_warning": "Payout amount may not be larger than the balance.",
       "actions": {
         "create": "Create Bounty",
+        "edit": "Edit Bounty",
         "draft": "Create Draft",
         "update_draft": "Update Draft",
         "update_bounty": "Update Bounty"

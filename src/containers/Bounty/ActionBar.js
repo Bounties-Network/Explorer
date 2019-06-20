@@ -103,7 +103,7 @@ const ActionBar = props => {
               fitWidth
               className={styles.editBountyButton}
             >
-              {intl.get('sections.bounty.actions.edit_bounty')}
+              {intl.get('sections.bounty.actions.edit')}
             </Button>
           </Link>
         )}
