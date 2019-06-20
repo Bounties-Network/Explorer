@@ -34,7 +34,7 @@ export const actions = {
 const initialState = {
   loading: true,
   loaded: false,
-  currentLocale: undefined
+  currentLocale: 'en-US'
 };
 
 function I18nReducer(state = initialState, action) {
