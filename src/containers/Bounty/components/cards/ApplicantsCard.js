@@ -124,10 +124,10 @@ const ApplicantsCard = props => {
       <div className={styles.zeroState}>
         <ZeroState
           title={intl.get(
-            'sections.bounty.components.applicants_card.zero_state.title'
+            'sections.bounty.components.applicant_card.zero_state.title'
           )}
           text={intl.get(
-            'sections.bounty.components.applicants_card.zero_state.description'
+            'sections.bounty.components.applicant_card.zero_state.description'
           )}
           icon="inbox"
         />
