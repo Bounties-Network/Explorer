@@ -1,5 +1,5 @@
 export const IPFS_OPTIONS = {
-  host: 'ipfs.bounties.network',
+  host: 'ipfs.infura.io',
   port: 5001,
   protocol: 'https'
 };

@@ -373,7 +373,7 @@ class BountyComponent extends React.Component {
                         <Text
                           link
                           absolute
-                          src={`https://ipfs.bounties.network/ipfs/${
+                          src={`https://ipfs.infura.io/ipfs/${
                             bounty.attached_data_hash
                           }/${bounty.attached_filename}`}
                         >
