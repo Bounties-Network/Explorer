@@ -895,7 +895,7 @@
     "max_decimals": "Must be {max} decimal places or less",
     "min_value": "Must be greater than {min}",
     "mineq_value": "Must be greater than or equal to  {min}",
-    "min_date": "Date must be after ${date)}",
+    "min_date": "Date must be after {date}",
     "length": "Must be {length} characters",
     "web3": "Must be a proper web3 address",
     "number": "Must be a number",
