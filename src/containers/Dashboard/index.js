@@ -108,7 +108,7 @@ class DashboardComponent extends React.Component {
                 history.push('/settings');
               }}
             >
-              {intl.get('sections.dashboard.ediit_profile')}
+              {intl.get('sections.dashboard.edit_profile')}
             </Text>
           </div>
         </PageBanner>
