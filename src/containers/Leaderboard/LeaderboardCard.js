@@ -110,8 +110,8 @@ const LeaderboardCardComponent = props => {
           <ZeroState
             className={styles.zeroState}
             iconColor="blue"
-            title={intl.get('section.leaderboard_card.zero_state.title')}
-            text={intl.get('section.leaderboard_card.zero_state.description')}
+            title={intl.get('sections.leaderboard_card.zero_state.title')}
+            text={intl.get('sections.leaderboard_card.zero_state.description')}
             icon="trophy"
           />
         </div>
