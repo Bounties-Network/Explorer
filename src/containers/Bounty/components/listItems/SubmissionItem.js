@@ -7,6 +7,7 @@ import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE, EXPIRED } from 'public-modules/Bounty/constants';
 import { hasImageExtension, shortenFileName, shortenUrl } from 'utils/helpers';
 import moment from 'moment';
+import intl from 'react-intl-universal';
 
 const SubmissionItem = props => {
   const {
@@ -37,8 +38,7 @@ const SubmissionItem = props => {
   const formattedTime = moment
     .utc(created, 'YYYY-MM-DDThh:mm:ssZ')
     .local()
-    .format('MM/DD/YYYY');
-
+    .format('L');
   let actionButton = null;
   if (
     bountyBelongsToLoggedInUser &&
@@ -52,7 +52,7 @@ const SubmissionItem = props => {
         icon={['far', 'check']}
         onClick={acceptFulfillment}
       >
-        Accept
+        {intl.get('actions.accept')}
       </Button>
     );
   }
@@ -74,7 +74,7 @@ const SubmissionItem = props => {
           })
         }
       >
-        Rate fulfiller
+        {intl.get('actions.rate_fulfiller')}
       </Button>
     );
   }
@@ -100,7 +100,7 @@ const SubmissionItem = props => {
           })
         }
       >
-        Rate issuer
+        {intl.get('actions.rate_issuer')}
       </Button>
     );
   }
@@ -135,15 +135,17 @@ const SubmissionItem = props => {
             />
             <Text inline>{formattedTime}</Text>
           </div>
-          <div className={`${styles.submissionMetadata}`}>
-            <FontAwesomeIcon
-              icon={['far', 'envelope']}
-              className={styles.submissionIcon}
-            />
-            <Text link src={`mailto:${fulfiller_email}`}>
-              {fulfiller_email}
-            </Text>
-          </div>
+          {bountyBelongsToLoggedInUser && (
+            <div className={`${styles.submissionMetadata}`}>
+              <FontAwesomeIcon
+                icon={['far', 'envelope']}
+                className={styles.submissionIcon}
+              />
+              <Text link src={`mailto:${fulfiller_email}`}>
+                {fulfiller_email}
+              </Text>
+            </div>
+          )}
           {url ? (
             <div
               className={[styles.submissionMetadata, styles.bottomMargin].join(
@@ -161,7 +163,7 @@ const SubmissionItem = props => {
           ) : null}
         </div>
         <div className={`${styles.labelGroup} ${styles.submissionContents}`}>
-          <Text inputLabel>Description</Text>
+          <Text inputLabel>{intl.get('common.description')}</Text>
           <Text color="darkGrey" className={styles.submissionDescription}>
             {description || 'N/A'}
           </Text>

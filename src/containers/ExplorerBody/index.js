@@ -12,6 +12,7 @@ import {
   bountiesCategoryFiltersSelector
 } from 'public-modules/Bounties/selectors';
 import { actions } from 'public-modules/Bounties';
+import intl from 'react-intl-universal';
 
 const ExplorerBodyComponent = props => {
   const {
@@ -73,7 +74,6 @@ const ExplorerBodyComponent = props => {
   if (className) {
     bodyClass += ` ${className}`;
   }
-
   return (
     <div className={`${bodyClass} explorer-body`}>
       <div className={styles.bodyHeading}>
@@ -87,12 +87,12 @@ const ExplorerBodyComponent = props => {
             {count}
           </Text>
           <Text color="defaultGrey" inline>
-            {count === 1 ? 'bounty' : 'bounties'}
+            {intl.get('sections.explorer_body.bounty_count', { count })}
           </Text>
         </div>
         <div className={styles.filterNav}>
           <Button icon={['far', 'sliders-h']} onClick={onOpenFilters}>
-            Filter
+            {intl.get('actions.filter')}
           </Button>
         </div>
       </div>
@@ -107,7 +107,7 @@ const ExplorerBodyComponent = props => {
           {offset + PAGE_SIZE < count ? (
             <div className={styles.loadMoreButton}>
               <Button loading={loadingMore} onClick={loadMoreBounties}>
-                Load More
+                {intl.get('actions.load_more')}
               </Button>
             </div>
           ) : null}
@@ -117,8 +117,8 @@ const ExplorerBodyComponent = props => {
         <div className={styles.bountyListCentered}>
           <ZeroState
             className={styles.centeredItem}
-            title="No Bounties Found"
-            text="Update your search filters to see more bounties"
+            title={intl.get('sections.explorer_body.zero_state.title')}
+            text={intl.get('sections.explorer_body.zero_state.description')}
             icon="hive"
           />
         </div>
@@ -128,8 +128,10 @@ const ExplorerBodyComponent = props => {
           <ZeroState
             className={styles.centeredItem}
             type="error"
-            title="Uh oh, something happened"
-            text="Try a new filter or refresh the page and try again"
+            title={intl.get('sections.explorer_body.zero_state_error.title')}
+            text={intl.get(
+              'sections.explorer_body.zero_state_error.description'
+            )}
             icon="error"
           />
         </div>

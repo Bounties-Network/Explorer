@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import styles from './BountyItem.module.scss';
 import { Text } from 'components';
 import { Currency } from 'explorer-components';
-import Pluralize from 'pluralize';
 import moment from 'moment';
+import intl from 'react-intl-universal';
 
 const BountyItem = props => {
   const { createdAt, currency, submissions, title, usd_value, value } = props;
 
   const formattedTime = moment.utc(createdAt, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
 
-  let submissionsText = '';
+  let isDraft = true;
+
   if (typeof submissions === 'number') {
-    const pluralized = Pluralize('Submission', submissions, true);
-    submissionsText = `∙ ${pluralized}`;
+    isDraft = false;
   }
 
   return (
@@ -35,7 +35,15 @@ const BountyItem = props => {
           color="defaultGrey"
           className={styles.details}
         >
-          {`Created ${formattedTime} ${submissionsText}`}
+          {!isDraft &&
+            intl.get('components.bounty_item.text', {
+              time: formattedTime,
+              submissionCount: submissions || 0
+            })}
+          {isDraft &&
+            intl.get('components.bounty_item.draftText', {
+              time: formattedTime
+            })}
         </Text>
       </div>
       <div className="col-xs-3">

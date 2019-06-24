@@ -20,7 +20,7 @@ import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as draftsActions } from 'public-modules/Drafts';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
 import { SORT_CREATED } from 'public-modules/Bounties/constants';
-
+import intl from 'react-intl-universal';
 import { actions as submissionsPanelActions } from 'containers/SubmissionsPanel/reducer';
 
 class DashboardComponent extends React.Component {
@@ -93,7 +93,7 @@ class DashboardComponent extends React.Component {
               weight="fontWeight-medium"
               color="defaultGrey"
             >
-              Profile strength
+              {intl.get('sections.dashboard.profile_strength')}
             </Text>
             <ProgressBar
               className={`${styles.profileStrengthProgress}`}
@@ -108,7 +108,7 @@ class DashboardComponent extends React.Component {
                 history.push('/settings');
               }}
             >
-              Edit profile
+              {intl.get('sections.dashboard.edit_profile')}
             </Text>
           </div>
         </PageBanner>

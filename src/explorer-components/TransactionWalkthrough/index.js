@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './TransactionWalkthrough.module.scss';
 import { Text, Modal, Button } from 'components';
+import intl from 'react-intl-universal';
 
 const InitiateWalkthrough = props => {
   const { onClose, visible, onConfirm } = props;
@@ -9,24 +10,22 @@ const InitiateWalkthrough = props => {
   return (
     <Modal onClose={onClose} visible={visible} fixed size="small">
       <Modal.Header icon="wallet">
-        <Modal.Message>Your wallet will take it from here!</Modal.Message>
+        <Modal.Message>{intl.get('components.tx_guide.title')}</Modal.Message>
       </Modal.Header>
       <Modal.Body>
         <Modal.Description>
           <Text className={styles.textBreak}>
-            After clicking &quot;OK &quot;, a wallet dialogue will prompt you to
-            confirm your Ethereum transaction and pay a small amount of ETH (for
-            gas fees).
+            {intl.get('components.tx_guide.description')}
           </Text>
-          <Text>A default gas limit and price will be set for you.</Text>
+          <Text>{intl.get('components.tx_guide.notice')}</Text>
         </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
         <Button margin onClick={onClose}>
-          Cancel
+          {intl.get('actions.cancel')}
         </Button>
         <Button type="primary" onClick={onConfirm}>
-          OK
+          {intl.get('actions.ok')}
         </Button>
       </Modal.Footer>
     </Modal>
@@ -62,7 +61,7 @@ const PendingReceipt = props => {
     <Modal visible={visible} fixed size="small">
       <Modal.Header loadingIcon>
         <Modal.Message>
-          Waiting for your transaction to be confirmed on the blockchain...
+          {intl.get('components.tx_guide.messages.waiting')}
         </Modal.Message>
       </Modal.Header>
       <Modal.Body>
@@ -70,7 +69,7 @@ const PendingReceipt = props => {
       </Modal.Body>
       <Modal.Footer>
         <Button type="primary" onClick={toDashboard}>
-          Go to Dashboard
+          {intl.get('actions.dashboard')}
         </Button>
       </Modal.Footer>
     </Modal>
@@ -90,10 +89,10 @@ const WalkthroughError = props => {
     <Modal dismissable onClose={onClose} fixed size="small" visible={visible}>
       <Modal.Header icon="error" closable />
       <Modal.Body>
-        <Modal.Message>Something happened. Try again later.</Modal.Message>
+        <Modal.Message>{intl.get('errors.500')}</Modal.Message>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onClose}>Close</Button>
+        <Button onClick={onClose}>{intl.get('actions.close')}</Button>
       </Modal.Footer>
     </Modal>
   );
@@ -110,11 +109,13 @@ const WalkthroughSuccess = props => {
     <Modal fixed size="small" visible={visible}>
       <Modal.Header icon="check" />
       <Modal.Body>
-        <Modal.Message>Your transaction has been confirmed!</Modal.Message>
+        <Modal.Message>
+          {intl.get('components.tx_guide.messages.confirmed')}
+        </Modal.Message>
       </Modal.Body>
       <Modal.Footer>
         <Button margin onClick={toDashboard}>
-          To Dashboard
+          {intl.get('actions.dashboard')}
         </Button>
         <a href={successLink}>
           <Button type="primary">{buttonText}</Button>
@@ -186,10 +187,8 @@ TransactionWalkthrough.propTypes = {
 };
 
 TransactionWalkthrough.defaultProps = {
-  pendingReceiptText:
-    'Your transaction is being processed. We will notify you once it is confirmed.',
-  pendingWalletText:
-    'Confirming Ethereum transaction with your enabled wallet. This may take a few seconds.'
+  pendingReceiptText: intl.get('components.tx_guide.messages.pending_receipt'),
+  pendingWalletText: intl.get('components.tx_guide.messages.pending_wallet')
 };
 
 export default TransactionWalkthrough;

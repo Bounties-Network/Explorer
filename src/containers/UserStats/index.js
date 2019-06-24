@@ -11,6 +11,7 @@ import {
   loadedUserStatsSelector
 } from 'public-modules/UserInfo/selectors';
 import { actions as userInfoActions } from 'public-modules/UserInfo';
+import intl from 'react-intl-universal';
 
 const { loadUserInfo } = userInfoActions;
 
@@ -66,10 +67,22 @@ class UserStatsComponent extends React.Component {
         <div className={styles.statsContainer}>
           {loading ? null : (
             <div className={styles.stats}>
-              {renderStat(stats.issuer.total, 'Bounties issued')}
-              {renderStat(stats.fulfiller.total, 'Bounties completed')}
-              {renderStat(`$${awarded.toFixed(0)}`, 'Awarded')}
-              {renderStat(`$${earned.toFixed(0)}`, 'Earned')}
+              {renderStat(
+                intl.get('formats.amount', { value: stats.issuer.total }),
+                intl.get('sections.user_stats.bounties_issued')
+              )}
+              {renderStat(
+                intl.get('formats.amount', { value: stats.fulfiller.total }),
+                intl.get('sections.user_stats.bounties_completed')
+              )}
+              {renderStat(
+                intl.get('formats.usd', { value: awarded.toFixed(0) }),
+                intl.get('sections.user_stats.awarded')
+              )}
+              {renderStat(
+                intl.get('formats.usd', { value: earned.toFixed(0) }),
+                intl.get('sections.user_stats.earned')
+              )}
             </div>
           )}
         </div>

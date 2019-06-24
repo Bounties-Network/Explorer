@@ -3,24 +3,24 @@ export const NAV_ITEMS = [
     icon: ['far', 'list-alt'],
     to: '/explorer',
     tabKey: 'explorer',
-    title: 'Explorer'
+    title: 'nav.explorer'
   },
   {
     icon: ['far', 'tachometer'],
     to: '/dashboard',
     tabKey: 'dashboard',
-    title: 'Dashboard'
+    title: 'nav.dashboard'
   },
   {
     icon: ['far', 'trophy-alt'],
     to: '/leaderboard',
     tabKey: 'leaderboard',
-    title: 'Leaderboard'
+    title: 'nav.leaderboard'
   },
   {
     icon: ['far', 'user-alt'],
     to: '/profile',
     tabKey: 'profile',
-    title: 'Profile'
+    title: 'nav.profile'
   }
 ];

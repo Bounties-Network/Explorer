@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Pill } from 'components';
 import { DEAD, COMPLETED } from 'public-modules/Bounty/constants';
+import intl from 'react-intl-universal';
 
 const FulfillmentStagePill = props => {
   const { bounty_stage, accepted, className } = props;
@@ -9,15 +10,14 @@ const FulfillmentStagePill = props => {
   let text;
   let backgroundColor;
   let textColor = 'white';
-
   if (accepted) {
-    text = 'Accepted';
+    text = intl.get('components.fulfillment_stage.accepted');
     backgroundColor = 'green';
   } else if (
     !accepted &&
     (bounty_stage === COMPLETED || bounty_stage === DEAD)
   ) {
-    text = 'Not Accepted';
+    text = intl.get('components.fulfillment_stage.not_accepted');
     backgroundColor = 'orange';
   } else {
     return null;

@@ -24,6 +24,7 @@ import applicantsReducer from 'public-modules/Applicants';
 import reviewReducer from 'public-modules/Review';
 import reviewsReducer from 'public-modules/Reviews';
 import tokensReducer from 'public-modules/Tokens';
+import i18nReducer from 'public-modules/i18n';
 
 export const reducers = {
   bounties: bountiesReducer,
@@ -48,7 +49,8 @@ export const reducers = {
   applicants: applicantsReducer,
   review: reviewReducer,
   reviews: reviewsReducer,
-  tokens: tokensReducer
+  tokens: tokensReducer,
+  i18n: i18nReducer
 };
 
 import bountiesSagas from 'public-modules/Bounties/sagas';
@@ -74,6 +76,7 @@ import commentsSagas from 'public-modules/Comments/sagas';
 import reviewSagas from 'public-modules/Review/sagas';
 import reviewsSagas from 'public-modules/Reviews/sagas';
 import tokensSagas from 'public-modules/Tokens/sagas';
+import i18nSagas from 'public-modules/i18n/sagas';
 
 export const sagaWatchers = [
   ...leaderboardSagas,
@@ -98,5 +101,6 @@ export const sagaWatchers = [
   ...applicantsSagas,
   ...reviewSagas,
   ...reviewsSagas,
-  ...tokensSagas
+  ...tokensSagas,
+  ...i18nSagas
 ];

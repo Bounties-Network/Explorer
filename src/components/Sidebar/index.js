@@ -4,6 +4,7 @@ import styles from './Sidebar.module.scss';
 import { each } from 'lodash';
 import { SideOverlay, Text } from 'components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import intl from 'react-intl-universal';
 
 const ModalContext = React.createContext({});
 
@@ -27,7 +28,7 @@ class TabIcon extends React.Component {
               <FontAwesomeIcon icon={icon} className={styles.navIcon} />
               {title && (
                 <Text className={styles.navText} typeScale="h4">
-                  {title}
+                  {intl.get(title)}
                 </Text>
               )}
             </a>

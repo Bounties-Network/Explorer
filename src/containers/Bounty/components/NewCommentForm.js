@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 import { Field, reduxForm } from 'redux-form';
 import { FormTextbox } from 'form-components';
+import intl from 'react-intl-universal';
 
 const formSelector = formValueSelector('newComment');
 
@@ -20,12 +21,14 @@ const NewCommentForm = props => {
             name="text"
             component={FormTextbox}
             type="text"
-            placeholder="Write a comment..."
+            placeholder={intl.get(
+              'sections.bounty.components.new_comment.placeholder'
+            )}
             maxHeight="12.5rem"
             minHeight="2.5rem"
           />
           <Button disabled={loading || text.length === 0} loading={loading}>
-            Post comment
+            {intl.get('sections.bounty.components.new_comment.action')}
           </Button>
         </div>
       </form>
@@ -35,7 +38,9 @@ const NewCommentForm = props => {
   return (
     <form onSubmit={handleSubmit}>
       <div className={`${styles.container} ${className}`}>
-        <Button>Sign in to post comment</Button>
+        <Button>
+          {intl.get('sections.bounty.components.new_comment.login_action')}
+        </Button>
       </div>
     </form>
   );

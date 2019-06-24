@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button, Text } from 'components';
+import intl from 'react-intl-universal';
 
 const ErrorModal = props => {
   const { visible, onClose } = props;
@@ -15,11 +16,11 @@ const ErrorModal = props => {
           weight="fontWeight-medium"
           alignment="align-center"
         >
-          Something happened. Try again later.
+          {intl.get('sections.login.modals.error.title')}
         </Text>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onClose}>Close</Button>
+        <Button onClick={onClose}>{intl.get('actions.close')}</Button>
       </Modal.Footer>
     </Modal>
   );

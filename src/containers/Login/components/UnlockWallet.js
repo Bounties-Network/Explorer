@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import config from 'public-modules/config';
 import { Modal, Text, Button } from 'components';
+import intl from 'react-intl-universal';
 
 const UnlockWallet = props => {
   const { visible, onClose, pageLevel, closable } = props;
@@ -16,23 +17,26 @@ const UnlockWallet = props => {
       fixed={!pageLevel}
     >
       <Modal.Header closable={closable} icon="unlock">
-        <Modal.Message>Secure Wallet Access</Modal.Message>
+        <Modal.Message>
+          {intl.get('sections.login.modals.unlock.title')}
+        </Modal.Message>
       </Modal.Header>
       <Modal.Body>
         <Modal.Description>
-          You&#39;ll need to log in and/or grant access to your secure wallet
-          (e.g.
+          {intl.getHTML('sections.login.modals.unlock.description1')}
           <Text weight="fontWeight-bold" inline>
             {' '}
             MetaMask
           </Text>
-          ) in order to use {pageLevel ? 'parts of ' : ''}
-          {config.networkName}
+          {intl.get('sections.login.modals.unlock.description2', {
+            pageLevel,
+            networkName: config.networkName
+          })}
         </Modal.Description>
       </Modal.Body>
       {closable && (
         <Modal.Footer>
-          <Button onClick={onClose}>Close</Button>
+          <Button onClick={onClose}>{intl.get('actions.close')}</Button>
         </Modal.Footer>
       )}
     </Modal>

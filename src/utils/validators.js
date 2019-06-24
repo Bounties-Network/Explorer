@@ -1,19 +1,22 @@
 import web3 from 'public-modules/Utilities/Web3Client';
 import moment from 'moment';
 import { BigNumber } from 'bignumber.js';
+import intl from 'react-intl-universal';
 
 const required = value => {
   if (Array.isArray(value)) {
-    return value.length ? undefined : '* Required';
+    return value.length ? undefined : intl.get('validation.required');
   }
-  return value || typeof value === 'number' ? undefined : '* Required';
+  return value || typeof value === 'number'
+    ? undefined
+    : intl.get('validation.required');
 };
 
 const maxLength = max => value =>
-  value && value.length > max ? `Must be ${max} characters or less` : undefined;
+  value && value.length > max ? intl.get('validation.max', { max }) : undefined;
 
 const minLength = min => value =>
-  value && value.length < min ? `Must be ${min} characters or more` : undefined;
+  value && value.length < min ? intl.get('validation.min', { min }) : undefined;
 
 const maxDecimals = max => value => {
   if (value) {
@@ -25,7 +28,7 @@ const maxDecimals = max => value => {
 
     return arr[1].length <= max
       ? undefined
-      : `Must be ${max} decimal places or less`;
+      : intl.get('validation.max_decimals', { max });
   }
 
   return undefined;
@@ -35,7 +38,7 @@ const minValue = min => value => {
   if (value) {
     return BigNumber(value).isGreaterThan(min)
       ? undefined
-      : `Must be greater than ${min}`;
+      : intl.get('validation.min_value', { min });
   }
 };
 
@@ -43,42 +46,50 @@ const minOrEqualsValue = min => value => {
   if (value) {
     return BigNumber(value).isGreaterThanOrEqualTo(min)
       ? undefined
-      : `Must be greater than or equal to  ${min}`;
+      : intl.get('validation.mineq_value', { value });
   }
 };
 
 const minDate = min => value => {
   return moment(min) <= moment(value)
     ? undefined
-    : `Date must be after ${moment(min).format('MMMM Do YYYY, h:mm:ss a')}`;
+    : intl.get('validation.min_date', {
+        time: moment(min).format('MMMM Do YYYY, h:mm:ss a')
+      });
 };
 
 const totalLength = length => value =>
-  value && value.length !== length ? `Must be ${length} characters` : undefined;
+  value && value.length !== length
+    ? intl.get('validation.length', { length })
+    : undefined;
 
 const isWeb3Address = value =>
-  web3.utils.isAddress(value) ? undefined : 'Must be a proper web3 address';
+  web3.utils.isAddress(value)
+    ? undefined
+    : intl.get('validation.web3', { value });
 
 const number = value =>
-  value && isNaN(Number(value)) ? 'Must be a number' : undefined;
+  value && isNaN(Number(value)) ? intl.get('validation.number') : undefined;
 
 const email = value =>
   !value || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,7}$/i.test(value)
-    ? 'Invalid email address'
+    ? intl.get('validation.email')
     : undefined;
 
 const alphaNumeric = value =>
   value && /[^a-zA-Z0-9 ]/i.test(value)
-    ? 'Only alphanumeric characters'
+    ? intl.get('validation.alfa_num')
     : undefined;
 
 const isTwitterHandle = value =>
-  !value || /^@(\w){1,15}$/i.test(value) ? undefined : 'Invalid Twitter handle';
+  !value || /^@(\w){1,15}$/i.test(value)
+    ? undefined
+    : intl.get('validation.twitter');
 
 const isGithubHandle = value =>
   !value || /^@[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i.test(value)
     ? undefined
-    : 'Invalid Github handle';
+    : intl.get('validation.github');
 
 const isURL = value =>
   !value ||
@@ -86,7 +97,7 @@ const isURL = value =>
     value
   )
     ? undefined
-    : 'Invalid URL';
+    : intl.get('validation.url');
 
 export default {
   required,

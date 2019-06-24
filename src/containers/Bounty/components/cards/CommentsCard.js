@@ -3,6 +3,7 @@ import styles from './Cards.module.scss';
 import { map as fpMap } from 'lodash';
 import { CommentItem, NewCommentForm } from '../index';
 import { Button, ListGroup, Loader, ZeroState } from 'components';
+import intl from 'react-intl-universal';
 const map = fpMap.convert({ cap: false });
 
 const CommentsCard = props => {
@@ -68,7 +69,7 @@ const CommentsCard = props => {
             fullBorder
           >
             <Button loading={comments.loadingMore} onClick={loadMoreComments}>
-              Load More
+              {intl.get('actions.load_more')}
             </Button>
           </ListGroup.ListItem>
         )
@@ -87,8 +88,12 @@ const CommentsCard = props => {
             fullBorder
           >
             <ZeroState
-              title={'There are 0 comments'}
-              text={'Submit a comment using the form above.'}
+              title={intl.get(
+                'sections.bounty.components.comments_card.zero_state.title'
+              )}
+              text={intl.get(
+                'sections.bounty.components.comments_card.zero_state.description'
+              )}
               icon="comment"
             />
           </ListGroup.ListItem>

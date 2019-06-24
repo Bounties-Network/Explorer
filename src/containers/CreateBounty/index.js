@@ -15,9 +15,9 @@ import {
 } from 'public-modules/Bounty/selectors';
 import moment from 'moment';
 import { Loader, ZeroState } from 'components';
-import { DEFAULT_MARKDOWN } from 'utils/constants';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import config from 'public-modules/config';
+import intl from 'react-intl-universal';
 
 class CreateBountyComponent extends React.Component {
   constructor(props) {
@@ -56,8 +56,8 @@ class CreateBountyComponent extends React.Component {
         <div className={styles.centeredBody}>
           <ZeroState
             type="error"
-            title="Could not find that bounty"
-            text="Try refreshing, or make sure your url is correct"
+            title={intl.get('sections.create_bounty.zero_state.title')}
+            text={intl.get('sections.create_bounty.zero_state.description')}
             icon="error"
           />
         </div>
@@ -68,7 +68,9 @@ class CreateBountyComponent extends React.Component {
       <PageCard>
         <PageCard.Header>
           <PageCard.Title>
-            {isEditing || isDraft ? 'Edit Bounty' : 'Create Bounty'}
+            {isEditing || isDraft
+              ? intl.get('sections.create_bounty.actions.edit')
+              : intl.get('sections.create_bounty.actions.create')}
           </PageCard.Title>
         </PageCard.Header>
         <PageCard.Content key="createBountyForm" className={styles.cardContent}>
@@ -144,7 +146,8 @@ const mapStateToProps = (state, router) => {
     formInitialValues: {
       title: draftBounty.title,
       categories: categories,
-      description: draftBounty.description || DEFAULT_MARKDOWN,
+      description:
+        draftBounty.description || intl.get('components.editor.default'),
       experience_level:
         DIFFICULTY_MAPPINGS[draftBounty.experience_level] || 'Beginner',
       revisions: draftBounty.revisions || 3,

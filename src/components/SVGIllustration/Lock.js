@@ -17,8 +17,8 @@ const SVG = () => (
       </g>
       <g filter="url(#bj7d_d)">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M34 40.6522C29.5817 40.6522 26 44.2339 26 48.6522V67.4348C26 71.8531 29.5817 75.4348 34 75.4348H68C72.4183 75.4348 76 71.8531 76 67.4348V48.6522C76 44.2339 72.4183 40.6522 68 40.6522H34ZM54.8256 54.228C54.8256 55.6692 54.0219 56.9226 52.8383 57.5646L55.4123 65.9239H46.6522L49.2262 57.5645C48.0427 56.9225 47.2391 55.6691 47.2391 54.228C47.2391 52.1331 48.9374 50.4348 51.0323 50.4348C53.1273 50.4348 54.8256 52.1331 54.8256 54.228Z"
           fill="url(#09obuy_radial)"
         />
@@ -32,9 +32,9 @@ const SVG = () => (
         width="102"
         height="107.435"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -65,9 +65,9 @@ const SVG = () => (
         width="44.6087"
         height="37"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -98,9 +98,9 @@ const SVG = () => (
         width="62"
         height="46.7826"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -132,8 +132,8 @@ const SVG = () => (
         y2="39.9019"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="white" />
-        <stop offset="1" stop-color="#F7F7F7" />
+        <stop stopColor="white" />
+        <stop offset="1" stopColor="#F7F7F7" />
       </linearGradient>
       <radialGradient
         id="09obuy_radial"
@@ -143,8 +143,8 @@ const SVG = () => (
         gradientUnits="userSpaceOnUse"
         gradientTransform="translate(58.9545 40.6522) rotate(135.453) scale(35.6103 43.3082)"
       >
-        <stop stop-color="white" />
-        <stop offset="1" stop-color="#F7F7F7" />
+        <stop stopColor="white" />
+        <stop offset="1" stopColor="#F7F7F7" />
       </radialGradient>
     </defs>
   </svg>
