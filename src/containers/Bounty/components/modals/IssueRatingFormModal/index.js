@@ -128,7 +128,7 @@ const IssueRatingFormModalComponent = props => {
           {submitFailed &&
             invalid && (
               <Text inputLabel color="red" className={styles.submitError}>
-                Fix errors before submitting.
+                Fix the errors above and re-submit.
               </Text>
             )}
 
