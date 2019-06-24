@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .container {
   position: relative;
@@ -49,4 +49,5 @@
 
 .inputHelpText {
   padding-top: $base-spacing;
+  line-height: $line-height-small;
 }
