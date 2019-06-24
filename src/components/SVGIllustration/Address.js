@@ -42,9 +42,9 @@ const SVG = () => (
         width="152"
         height="129"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -92,8 +92,8 @@ const SVG = () => (
         y2="61"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#EDE5FF" />
-        <stop offset="1" stop-color="white" />
+        <stop stopColor="#EDE5FF" />
+        <stop offset="1" stopColor="white" />
       </linearGradient>
     </defs>
   </svg>

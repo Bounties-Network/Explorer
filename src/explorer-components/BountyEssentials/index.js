@@ -3,6 +3,7 @@ import styles from './BountyEssentials.module.scss';
 import { Currency, StagePill } from 'explorer-components';
 import { Text } from 'components';
 import { DRAFT } from 'public-modules/Bounty/constants';
+import intl from 'react-intl-universal';
 
 const BountyEssentials = props => {
   const {
@@ -27,7 +28,7 @@ const BountyEssentials = props => {
       <div className={styles.currencyContainer}>
         <div className={styles.payoutEthBox}>
           <Text className={styles.currencyTypeHeaderText} inline color="white">
-            Payout
+            {intl.get('common.payout')}
           </Text>
 
           <Currency
@@ -50,7 +51,7 @@ const BountyEssentials = props => {
 
         <div className={styles.balanceEthBox}>
           <Text className={styles.currencyTypeHeaderText} inline color="white">
-            Remaining Balance
+            {intl.get('components.essentials.balance')}
           </Text>
 
           <Currency

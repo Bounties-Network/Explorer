@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import styles from './MarkdownEditor.module.scss';
 import showdown from 'showdown';
-import { DEFAULT_MARKDOWN } from 'utils/constants';
 import { Textbox, Modal, Text } from 'components';
 import { newTabExtension } from 'utils/helpers';
+import intl from 'react-intl-universal';
 
 showdown.setOption('simpleLineBreaks', true);
 showdown.extension('targetBlank', newTabExtension);
@@ -88,7 +88,8 @@ class MarkdownEditor extends React.Component {
               <FontAwesomeIcon
                 icon={['fal', 'eye']}
                 className={styles.overlayIcon}
-              />Preview
+              />
+              {intl.get('components.editor.preview')}
             </Text>
           }
         />
@@ -112,7 +113,7 @@ MarkdownEditor.defaultProps = {
   onFocus: () => {},
   onBlur: () => {},
   onChange: () => {},
-  defaultValue: DEFAULT_MARKDOWN
+  defaultValue: intl.get('components.editor.default')
 };
 
 export default MarkdownEditor;

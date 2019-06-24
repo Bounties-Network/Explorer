@@ -15,6 +15,7 @@ import { actions, actionTypes } from 'public-modules/Notification';
 import { notification_template, NOTIFICATION_ID } from 'utils/constants';
 import { deserializeNotification } from './helpers';
 import config from 'public-modules/config';
+import intl from 'react-intl-universal';
 
 const {
   loadNotifications,
@@ -96,10 +97,10 @@ export function* showNotification(dispatch, action) {
     notification: { link, notification_name, id }
   } = action;
 
-  let linkText = 'View Bounty';
+  let linkText = intl.get('actions.view_bounty');
 
   if (notification_name === NOTIFICATION_ID.RATING_RECEIVED) {
-    linkText = 'View Rating';
+    linkText = intl.get('actions.view_rating');
   }
 
   let postedLink = (

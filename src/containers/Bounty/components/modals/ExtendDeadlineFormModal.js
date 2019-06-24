@@ -7,6 +7,7 @@ import { compose } from 'redux';
 import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
 import { getTimezone } from 'utils/helpers';
+import intl from 'react-intl-universal';
 
 const ExtendDeadlineFormModal = props => {
   const {
@@ -33,10 +34,15 @@ const ExtendDeadlineFormModal = props => {
         size="small"
       >
         <Modal.Header closable={true}>
-          <Modal.Message>Extend Deadline</Modal.Message>
+          <Modal.Message>
+            {' '}
+            {intl.get('sections.bounty.modals.extend_deadline_form.title')}
+          </Modal.Message>
           <Modal.Description>
-            Indicate the time that you would like to extend the bounty deadline
-            until{getTimezone() ? ` (timezone: ${getTimezone()}).` : '.'}
+            {intl.get(
+              'sections.bounty.modals.extend_deadline_form.description',
+              { timezone: getTimezone() }
+            )}
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
@@ -52,7 +58,7 @@ const ExtendDeadlineFormModal = props => {
           {submitFailed &&
             invalid && (
               <Text inputLabel color="red">
-                Fix errors before submitting.
+                {intl.get('errors.form_error')}
               </Text>
             )}
           <Button
@@ -63,9 +69,9 @@ const ExtendDeadlineFormModal = props => {
             }}
             buttonType="button"
           >
-            Cancel
+            {intl.get('actions.cancel')}
           </Button>
-          <Button type="action">Extend Deadline</Button>
+          <Button type="action">{intl.get('actions.extend_deadline')}</Button>
         </Modal.Footer>
       </Modal>
     </form>

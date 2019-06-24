@@ -11,15 +11,16 @@ import { FormTextbox, FormRating } from 'form-components';
 import { actions as reviewActions } from 'public-modules/Review';
 import { rootReviewSelector } from 'public-modules/Review/selectors';
 import { ratingModalSelector } from 'containers/Bounty/selectors';
+import intl from 'react-intl-universal';
 
 const messageTemplate = {
   issuer: [
-    'Your bounty submission was accepted! If you would like, you can rate your experience with the following bounty issuer:',
-    'This will help set expectations for other fulfillers on the platform.'
+    intl.get('sections.bounty.components.issue_rating.issuer1'),
+    intl.get('sections.bounty.components.issue_rating.issuer2')
   ],
   fulfiller: [
-    'You accepted a submission to your bounty! If you would like, you can rate your experience with the following fulfiller:',
-    'This will help set expectations for other issuers on the platform.'
+    intl.get('sections.bounty.components.issue_rating.fulfiller1'),
+    intl.get('sections.bounty.components.issue_rating.fulfiller2')
   ]
 };
 
@@ -94,7 +95,9 @@ const IssueRatingFormModalComponent = props => {
                 name="rating"
                 component={FormRating}
                 type="string"
-                label="Rating"
+                label={intl.get(
+                  'sections.bounty.components.issue_rating.rating'
+                )}
                 validate={fieldValidators}
               />
             </div>
@@ -103,9 +106,13 @@ const IssueRatingFormModalComponent = props => {
                 name="review"
                 component={FormTextbox}
                 type="string"
-                label="Review"
+                label={intl.get(
+                  'sections.bounty.components.issue_rating.review'
+                )}
                 validate={fieldValidators}
-                placeholder="Enter review..."
+                placeholder={intl.get(
+                  'sections.bounty.components.issue_rating.review_placeholder'
+                )}
               />
             </div>
           </div>
@@ -119,22 +126,22 @@ const IssueRatingFormModalComponent = props => {
             }}
             disabled={posting}
           >
-            Cancel
+            {intl.get('actions.cancel')}
           </Button>
           <Button type="primary" loading={posting} disabled={posting}>
-            Submit
+            {intl.get('actions.submit')}
           </Button>
 
           {submitFailed &&
             invalid && (
               <Text inputLabel color="red" className={styles.submitError}>
-                Fix the errors above and re-submit.
+                {intl.get('errors.form_error')}
               </Text>
             )}
 
           {postingError && (
             <Text inputLabel color="red" className={styles.submitError}>
-              Something went wrong. Please try again later.
+              {intl.get('errors.500')}
             </Text>
           )}
         </Modal.Footer>

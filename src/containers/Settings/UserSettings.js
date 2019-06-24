@@ -18,6 +18,7 @@ import { Field, reduxForm } from 'redux-form';
 import validators from 'utils/validators';
 import { Cropper, Button, Text } from 'components';
 import { FormCheckbox, FormTextInput, FormSearchSelect } from 'form-components';
+import intl from 'react-intl-universal';
 
 class UserSettingsComponent extends React.Component {
   constructor(props) {
@@ -83,7 +84,9 @@ class UserSettingsComponent extends React.Component {
     return (
       <form onSubmit={handleSubmit(values => handleSaveSettings(values))}>
         <FormSection>
-          <FormSection.Section title="PROFILE PHOTO">
+          <FormSection.Section
+            title={intl.get('sections.settings.user.photo.title')}
+          >
             <FormSection.InputGroup>
               <Cropper
                 disabled={savingSettings}
@@ -94,18 +97,19 @@ class UserSettingsComponent extends React.Component {
               />
               {uploadingError && (
                 <Text inputLabel color="red">
-                  Image upload failed, please try again.
+                  {intl.get('sections.settings.user.photo.label')}
                 </Text>
               )}
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="ABOUT">
+          <FormSection.Section
+            title={intl.get('sections.settings.user.about.title')}
+          >
             <FormSection.Description>
-              What would you like people to know about you?
+              {intl.get('sections.settings.user.about.description')}
             </FormSection.Description>
             <FormSection.SubText>
-              Enter some of your personal details so that the community can get
-              to know you.
+              {intl.get('sections.settings.user.about.notice')}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -114,8 +118,12 @@ class UserSettingsComponent extends React.Component {
                     disabled={savingSettings}
                     name="name"
                     component={FormTextInput}
-                    label="Name"
-                    placeholder="Enter name..."
+                    label={intl.get(
+                      'sections.settings.user.about.form.name.label'
+                    )}
+                    placeholder={intl.get(
+                      'sections.settings.user.about.form.name.placeholder'
+                    )}
                     validate={validatorGroups.name}
                   />
                 </div>
@@ -124,8 +132,12 @@ class UserSettingsComponent extends React.Component {
                     disabled={savingSettings}
                     name="organization"
                     component={FormTextInput}
-                    label="Organization"
-                    placeholder="Enter organization..."
+                    label={intl.get(
+                      'sections.settings.user.about.form.organization.label'
+                    )}
+                    placeholder={intl.get(
+                      'sections.settings.user.about.form.organization.placeholder'
+                    )}
                     validate={validatorGroups.organization}
                   />
                 </div>
@@ -138,8 +150,12 @@ class UserSettingsComponent extends React.Component {
                     disabled={savingSettings}
                     name="languages"
                     component={FormSearchSelect}
-                    label="Languages"
-                    placeholder="Choose languages..."
+                    label={intl.get(
+                      'sections.settings.user.about.form.languages.label'
+                    )}
+                    placeholder={intl.get(
+                      'sections.settings.user.about.form.languages.placeholder'
+                    )}
                     options={languages}
                     labelKey="name"
                     valueKey="normalized_name"
@@ -148,14 +164,14 @@ class UserSettingsComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="SKILLS">
+          <FormSection.Section
+            title={intl.get('sections.settings.user.skills.title')}
+          >
             <FormSection.Description>
-              What are some of your professional or technical skills?
+              {intl.get('sections.settings.user.skills.description')}
             </FormSection.Description>
             <FormSection.SubText>
-              Enter or select the skills for which you are proficient. This will
-              help others on the network be confident in your ability to fulfill
-              certain types of bounties.
+              {intl.get('sections.settings.user.skills.notice')}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -164,8 +180,10 @@ class UserSettingsComponent extends React.Component {
                     disabled={savingSettings}
                     name="skills"
                     component={FormSearchSelect}
-                    label="Skills"
-                    placeholder="Create or Select a skill..."
+                    label={intl.get('sections.settings.user.skills.label')}
+                    placeholder={intl.get(
+                      'sections.settings.user.skills.placeholder'
+                    )}
                     onCreateOption={addSkill}
                     options={skills}
                     labelKey="name"
@@ -176,9 +194,11 @@ class UserSettingsComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="SOCIAL">
+          <FormSection.Section
+            title={intl.get('sections.settings.user.social.title')}
+          >
             <FormSection.Description>
-              Do you have any other social profiles you would like displayed?
+              {intl.get('sections.settings.user.social.description')}
             </FormSection.Description>
             <FormSection.InputGroup>
               <div className="row">
@@ -187,7 +207,9 @@ class UserSettingsComponent extends React.Component {
                     disabled={savingSettings}
                     name="website"
                     component={FormTextInput}
-                    label="Personal website"
+                    label={intl.get(
+                      'sections.settings.user.social.form.web.label'
+                    )}
                     placeholder="https://example.com"
                     validate={validatorGroups.website}
                   />
@@ -229,10 +251,11 @@ class UserSettingsComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          <FormSection.Section title="CONTACT">
+          <FormSection.Section
+            title={intl.get('sections.settings.user.contact.title')}
+          >
             <FormSection.Description>
-              Where would you like to receive status notifications about your
-              bounties and fulfillments?
+              {intl.get('sections.settings.user.contact.description')}
             </FormSection.Description>
             <FormSection.InputGroup>
               <div className="row">
@@ -241,8 +264,12 @@ class UserSettingsComponent extends React.Component {
                     disabled={savingSettings}
                     name="email"
                     component={FormTextInput}
-                    label="Contact email"
-                    placeholder="Enter email..."
+                    label={intl.get(
+                      'sections.settings.user.contact.form.email.label'
+                    )}
+                    placeholder={intl.get(
+                      'sections.settings.user.contact.form.email.placeholder'
+                    )}
                     validate={validatorGroups.email}
                   />
                 </div>
@@ -253,7 +280,9 @@ class UserSettingsComponent extends React.Component {
                 disabled={savingSettings}
                 name="wants_marketing_emails"
                 component={FormCheckbox}
-                label="I would also like to receive relevant bounty suggestions and platform updates"
+                label={intl.get(
+                  'sections.settings.user.contact.form.marketing.label'
+                )}
               />
             </FormSection.InputGroup>
           </FormSection.Section>
@@ -261,7 +290,7 @@ class UserSettingsComponent extends React.Component {
         <div className={styles.buttonContainer}>
           {onboarding && (
             <Button onClick={onClose} margin>
-              Cancel
+              {intl.get('actions.cancel')}
             </Button>
           )}
           <Button
@@ -270,11 +299,14 @@ class UserSettingsComponent extends React.Component {
             loading={savingSettings}
             buttonType="submit"
           >
-            {onboarding ? 'Submit Details' : 'Update Profile'}
+            {onboarding
+              ? intl.get('sections.settings.user.contact.actions.submit')
+              : intl.get('sections.settings.user.contact.actions.update')}
           </Button>
           {submitFailed && invalid ? (
             <Text inputLabel color="red" className={styles.submitError}>
-              Fix the errors above and re-submit.
+              {intl.get('errors.form_error')}
+
             </Text>
           ) : null}
         </div>

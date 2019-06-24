@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ProfileTabs.module.scss';
 import { Tabs } from 'components';
+import intl from 'react-intl-universal';
 
 // TODO: handle too many skills to display
 
@@ -15,14 +16,14 @@ const ProfileTabs = props => {
       onSelect={setActiveTab}
     >
       <Tabs.Tab tabColor="lightGrey" tabCount={issuedCount} eventKey={'issued'}>
-        Bounties created
+        {intl.get('sections.profile.tabs.bounties')}
       </Tabs.Tab>
       <Tabs.Tab
         tabColor="lightGrey"
         tabCount={fulfilledCount}
         eventKey={'fulfilled'}
       >
-        Submissions
+        {intl.get('sections.profile.tabs.submissions')}
       </Tabs.Tab>
     </Tabs>
   );

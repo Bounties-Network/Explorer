@@ -9,6 +9,7 @@ import { Field, reduxForm } from 'redux-form';
 import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
 import { FormTextInput, FormTextbox } from 'form-components';
+import intl from 'react-intl-universal';
 
 let FulfillBountyFormModalComponent = props => {
   const {
@@ -72,9 +73,13 @@ let FulfillBountyFormModalComponent = props => {
                 name="name"
                 component={FormTextInput}
                 type="text"
-                label="Contact name"
+                label={intl.get(
+                  'sections.bounty.modals.fulfill_bounty.form.name.label'
+                )}
                 validate={validatorGroups.name}
-                placeholder="Enter name..."
+                placeholder={intl.get(
+                  'sections.bounty.modals.fulfill_bounty.form.name.placeholder'
+                )}
               />
             </div>
             <div className={`col-xs-12 col-sm ${styles.fulfillmentInput}`}>
@@ -82,9 +87,13 @@ let FulfillBountyFormModalComponent = props => {
                 name="email"
                 component={FormTextInput}
                 type="text"
-                label="Contact email"
+                label={intl.get(
+                  'sections.bounty.modals.fulfill_bounty.form.email.label'
+                )}
                 validate={validatorGroups.email}
-                placeholder="Enter email..."
+                placeholder={intl.get(
+                  'sections.bounty.modals.fulfill_bounty.form.email.placeholder'
+                )}
               />
             </div>
           </div>
@@ -94,9 +103,13 @@ let FulfillBountyFormModalComponent = props => {
                 name="url"
                 component={FormTextInput}
                 type="text"
-                label="Web link"
+                label={intl.get(
+                  'sections.bounty.modals.fulfill_bounty.form.url.label'
+                )}
                 validate={validatorGroups.url}
-                placeholder="Enter URL..."
+                placeholder={intl.get(
+                  'sections.bounty.modals.fulfill_bounty.form.url.placeholder'
+                )}
               />
             </div>
           </div>
@@ -124,9 +137,13 @@ let FulfillBountyFormModalComponent = props => {
                 name="description"
                 component={FormTextbox}
                 type="text"
-                label="Description"
+                label={intl.get(
+                  'sections.bounty.modals.fulfill_bounty.form.description.label'
+                )}
                 validate={validatorGroups.description}
-                placeholder="Enter description..."
+                placeholder={intl.get(
+                  'sections.bounty.modals.fulfill_bounty.form.description.placeholder'
+                )}
               />
             </div>
           </div>
@@ -135,8 +152,12 @@ let FulfillBountyFormModalComponent = props => {
             <div className="col-xs">
               <Text fontStyle="italic" color="defaultGrey">
                 {private_fulfillments
-                  ? 'All information entered here will be stored on the public Ethereum network, but will be hidden on the site.'
-                  : 'All information entered here will be stored on the public Ethereum network, and will be publicly displayed on the site.'}
+                  ? intl.get(
+                      'sections.bounty.modals.fulfill_bounty.form.private_notice'
+                    )
+                  : intl.get(
+                      'sections.bounty.modals.fulfill_bounty.form.public_notice'
+                    )}
               </Text>
             </div>
           </div>
@@ -145,7 +166,7 @@ let FulfillBountyFormModalComponent = props => {
           {submitFailed &&
             invalid && (
               <Text inputLabel color="red">
-                Fix errors before submitting.
+                {intl.get('errors.form_error')}
               </Text>
             )}
           <Button
@@ -156,14 +177,14 @@ let FulfillBountyFormModalComponent = props => {
               closeAndReset();
             }}
           >
-            Cancel
+            {intl.get('actions.cancel')}
           </Button>
           <Button
             type="primary"
             buttonType="submit"
             disabled={uploading || (submitFailed && invalid)}
           >
-            Submit
+            {intl.get('actions.submit')}
           </Button>
         </Modal.Footer>
       </Modal>

@@ -1,26 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Pill } from 'components';
+import intl from 'react-intl-universal';
 
 const ApplicantStagePill = props => {
   const { applicationStatus, className } = props;
 
-  let text = 'Pending acceptance';
+  let text = intl.get('components.applicant_stage.default');
   let textColor = 'white';
   let backgroundColor = 'orange';
 
   if (applicationStatus === 'A') {
-    text = 'Accepted';
+    text = intl.get('components.applicant_stage.accepted');
     backgroundColor = 'green';
   }
 
   if (applicationStatus === 'R') {
-    text = 'Declined';
+    text = intl.get('components.applicant_stage.declined');
     backgroundColor = 'red';
   }
 
   if (applicationStatus === 'P') {
-    text = 'Pending';
+    text = intl.get('components.applicant_stage.pending');
     backgroundColor = 'orange';
   }
 

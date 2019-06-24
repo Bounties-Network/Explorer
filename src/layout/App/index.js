@@ -1,35 +1,36 @@
 import React from 'react';
 import styles from './App.module.scss';
 import { hot } from 'react-hot-loader';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { SEOHeader } from './SEOHeader';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { map } from 'lodash';
 import {
   hasWalletSelector,
+  initializedSelector,
   walletLockedSelector
 } from 'public-modules/Client/selectors';
 import { NAV_ITEMS } from './constants';
 import {
-  Explorer,
-  Dashboard,
   Bounty,
+  CreateBounty,
+  Dashboard,
+  Explorer,
   Leaderboard,
   Login,
-  CreateBounty,
   Profile,
   Settings
 } from 'containers';
 import { RequireLoginComponent } from 'hocs';
 import {
-  Sidebar,
-  Loader,
-  ToastContainer,
-  Network,
-  SideOverlay,
   Dropdown,
-  Text
+  Loader,
+  Network,
+  Sidebar,
+  SideOverlay,
+  Text,
+  ToastContainer
 } from 'components';
 import { BountyFilterNav } from 'containers/FilterNav';
 import { Header, Privacy, TOS } from 'layout';
@@ -37,9 +38,10 @@ import { rootAppSelector } from './selectors';
 import { actions as appActions } from './reducer';
 import { actions as authActions } from 'public-modules/Authentication';
 import { actions as categoryActions } from 'public-modules/Categories';
-import { initializedSelector } from 'public-modules/Client/selectors';
+import { actions as translationActions } from 'public-modules/i18n';
 import { getCurrentUserStateSelector } from 'public-modules/Authentication/selectors';
 import { currentRouteSelector, scrollToTop } from 'utils/helpers';
+import { translationSelector } from 'public-modules/i18n/selectors';
 
 import '../../styles/flexboxgrid.css';
 
@@ -210,6 +212,7 @@ class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     this.body = React.createRef();
+    props.loadTranslation();
   }
 
   currentRouteSelector = () => {
@@ -218,8 +221,14 @@ class AppComponent extends React.Component {
   };
 
   render() {
-    const { loadingUser, clientInitialized, userFail } = this.props;
-    const isPageLoading = loadingUser || !clientInitialized;
+    const {
+      loadingUser,
+      clientInitialized,
+      userFail,
+      translationsLoading
+    } = this.props;
+    const isPageLoading =
+      loadingUser || translationsLoading || !clientInitialized;
 
     return (
       <div className={styles.app}>
@@ -292,10 +301,11 @@ class AppComponent extends React.Component {
 
 const mapStateToProps = state => {
   const currentUserState = getCurrentUserStateSelector(state);
-
+  const translationState = translationSelector(state);
   return {
     clientInitialized: initializedSelector(state),
     loadingUser: currentUserState.loading || !currentUserState.loaded,
+    translationsLoading: translationState.loading || !translationState.loaded,
     userFail: currentUserState.error
   };
 };
@@ -307,7 +317,8 @@ const App = compose(
     mapStateToProps,
     {
       getCurrentUser: authActions.getCurrentUser,
-      loadCategories: categoryActions.loadCategories
+      loadCategories: categoryActions.loadCategories,
+      loadTranslation: translationActions.initTranslations
     }
   )
 )(AppComponent);

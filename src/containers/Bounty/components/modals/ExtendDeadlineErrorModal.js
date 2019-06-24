@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Button } from 'components';
+import intl from 'react-intl-universal';
 
 const ExtendDeadlineErrorModal = props => {
   const { onClose, onExtendDeadline, visible } = props;
@@ -8,15 +9,15 @@ const ExtendDeadlineErrorModal = props => {
     <Modal dismissable onClose={onClose} visible={visible} fixed size="small">
       <Modal.Header closable icon="error">
         <Modal.Message>
-          The deadline must be in the future in order to activate your bounty.
+          {intl.get('sections.bounty.modals.extend_deadline_error.title')}
         </Modal.Message>
       </Modal.Header>
       <Modal.Footer>
         <Button margin onClick={onClose} buttonType="button">
-          Cancel
+          {intl.get('actions.cancel')}
         </Button>
         <Button type="primary" submit onClick={onExtendDeadline}>
-          Extend Deadline
+          {intl.get('actions.extend_deadline')}
         </Button>
       </Modal.Footer>
     </Modal>

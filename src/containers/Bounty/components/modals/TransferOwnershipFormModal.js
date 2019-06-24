@@ -6,6 +6,7 @@ import { compose } from 'redux';
 import { ModalFormReset } from 'hocs';
 import { FormTextInput } from 'form-components';
 import validators from 'utils/validators';
+import intl from 'react-intl-universal';
 
 const TransferOwnershipFormModal = props => {
   const { onClose, handleSubmit, visible, submitFailed, invalid } = props;
@@ -22,10 +23,11 @@ const TransferOwnershipFormModal = props => {
         size="small"
       >
         <Modal.Header closable={true}>
-          <Modal.Message>Transfer Ownership</Modal.Message>
+          <Modal.Message>
+            {intl.get('sections.bounty.modals.transfer_ownership.title')}
+          </Modal.Message>
           <Modal.Description>
-            Include the wallet address of who you would like to transfer the
-            bounty to.
+            {intl.get('sections.bounty.modals.transfer_ownership.description')}
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
@@ -33,14 +35,16 @@ const TransferOwnershipFormModal = props => {
             name="newOwner"
             component={FormTextInput}
             validate={fieldValidators}
-            placeholder="Enter wallet address..."
+            placeholder={intl.get(
+              'sections.bounty.modals.transfer_ownership.form.new_owner.placeholder'
+            )}
           />
         </Modal.Body>
         <Modal.Footer>
           {submitFailed &&
             invalid && (
               <Text inputLabel color="red">
-                Fix errors before submitting.
+                {intl.get('errors.form_error')}
               </Text>
             )}
           <Button
@@ -51,9 +55,11 @@ const TransferOwnershipFormModal = props => {
             }}
             buttonType="button"
           >
-            Cancel
+            {intl.get('actions.cancel')}
           </Button>
-          <Button type="action">Transfer Ownership</Button>
+          <Button type="action">
+            {intl.get('actions.transfer_ownership')}
+          </Button>
         </Modal.Footer>
       </Modal>
     </Form>

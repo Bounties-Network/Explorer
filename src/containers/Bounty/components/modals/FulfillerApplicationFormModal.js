@@ -4,6 +4,7 @@ import { Button, Modal, Text } from 'components';
 import { FormTextbox } from 'form-components/formik';
 import { Form, Field, withFormik } from 'formik';
 import { size } from 'lodash';
+import intl from 'react-intl-universal';
 
 const MAX_MESSAGE_LENGTH = 500;
 
@@ -33,32 +34,38 @@ let FulfillerApplicationModalComponent = props => {
         size="small"
       >
         <Modal.Header closable={true}>
-          <Modal.Message>Enter application details</Modal.Message>
+          <Modal.Message>
+            {intl.get('sections.bounty.modals.fulfiller_application.title')}
+          </Modal.Message>
           <Modal.Description>
-            Describe why you believe you would be a good fit to complete this
-            bounty. Feel free to also provide links to relevant work or
-            experience.
+            {intl.get(
+              'sections.bounty.modals.fulfiller_application.description'
+            )}
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
           <Field
             type="text"
             name="message"
-            label="Application"
+            label={intl.get(
+              'sections.bounty.modals.fulfiller_application.form.message.label'
+            )}
             maxLength={MAX_MESSAGE_LENGTH}
-            placeholder="Enter message..."
+            placeholder={intl.get(
+              'sections.bounty.modals.fulfiller_application.form.message.placeholder'
+            )}
             component={FormTextbox}
           />
         </Modal.Body>
         <Modal.Footer>
           {!!size(errors) && (
             <Text inputLabel color="red">
-              Fix errors before submitting.
+              {intl.get('errors.form_error')}
             </Text>
           )}
           {status === 'api error' && (
             <Text inputLabel color="red">
-              Internal error, please try again.
+              {intl.get('errors.500')}
             </Text>
           )}
           <Button
@@ -69,7 +76,7 @@ let FulfillerApplicationModalComponent = props => {
               onCloseAndReset();
             }}
           >
-            Cancel
+            {intl.get('actions.cancel')}
           </Button>
           <Button
             type="primary"
@@ -77,7 +84,7 @@ let FulfillerApplicationModalComponent = props => {
             loading={isSubmitting}
             disabled={isSubmitting || !!size(errors)}
           >
-            Submit
+            {intl.get('actions.submit')}
           </Button>
         </Modal.Footer>
       </Modal>

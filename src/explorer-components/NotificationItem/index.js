@@ -6,6 +6,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Text } from 'components';
 import { LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
+import intl from 'react-intl-universal';
 
 const NotificationItem = props => {
   const {
@@ -33,7 +34,7 @@ const NotificationItem = props => {
       <div className={styles.notificationMain}>
         <div className={styles.text}>
           <Text color="black" typeScale="Small" inline>
-            {message}
+            {intl.get(message).d(message)}
           </Text>
           <Text color="black" weight="fontWeight-bold" typeScale="Small" inline>
             {' ' + title}

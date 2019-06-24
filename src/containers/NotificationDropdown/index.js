@@ -20,6 +20,7 @@ import {
   Loader,
   ZeroState
 } from 'components';
+import intl from 'react-intl-universal';
 
 const { DropdownTrigger, DropdownContent } = Dropdown;
 
@@ -111,7 +112,7 @@ const NotificationDropdown = props => {
               weight="fontWeight-medium"
               className={styles.headingTitle}
             >
-              Notifications
+              {intl.get('sections.notifications.title')}
             </Text>
             {!!notifications.length &&
               hasUnread && (
@@ -128,14 +129,14 @@ const NotificationDropdown = props => {
                     viewAllNotifications();
                   }}
                 >
-                  Mark all as read
+                  {intl.get('sections.notifications.actions.mark_read')}
                 </Text>
               )}
           </div>
           {error && (
             <ZeroState
               type="error"
-              text={'Something went wrong. Try again later.'}
+              text={intl.get('errors.500')}
               iconColor="red"
               faIcon={['fal', 'exclamation-triangle']}
             />
@@ -149,10 +150,10 @@ const NotificationDropdown = props => {
             !count && (
               <div className={styles.zeroState}>
                 <ZeroState
-                  title="You have no notifications"
-                  text={
-                    'Once you start using the platform, notifications will show here.'
-                  }
+                  title={intl.get('sections.notifications.zero_state.title')}
+                  text={intl.get(
+                    'sections.notifications.zero_state.description'
+                  )}
                   iconColor="blue"
                   faIcon={['fal', 'bell']}
                 />
@@ -175,7 +176,7 @@ const NotificationDropdown = props => {
                       }}
                       loading={loadingMore}
                     >
-                      Load More
+                      {intl.get('actions.load_more')}
                     </Button>
                   </ListGroup.ListItem>
                 )

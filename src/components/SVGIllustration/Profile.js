@@ -30,8 +30,8 @@ const SVG = () => (
         fill="url(#vj57sz_linear)"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M66.1587 60.8256C62.5277 61.5828 59.8 64.8014 59.8 68.6571V74.8H85.2572V68.6571C85.2572 64.8014 82.5296 61.5828 78.8987 60.8257C77.275 62.468 75.0207 63.4857 72.5287 63.4857C70.0367 63.4857 67.7824 62.468 66.1587 60.8256Z"
         fill="#AFC6FF"
       />
@@ -44,9 +44,9 @@ const SVG = () => (
         width="146"
         height="135.629"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -93,9 +93,9 @@ const SVG = () => (
         width="60.3429"
         height="43.4857"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feBlend
           mode="normal"
           in="SourceGraphic"
@@ -124,9 +124,9 @@ const SVG = () => (
         width="17.4286"
         height="25.9143"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"
@@ -158,8 +158,8 @@ const SVG = () => (
         y2="40.8571"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#9673E3" />
-        <stop offset="1" stop-color="#EDE5FF" />
+        <stop stopColor="#9673E3" />
+        <stop offset="1" stopColor="#EDE5FF" />
       </linearGradient>
     </defs>
   </svg>

@@ -3,6 +3,7 @@ import styles from './Cards.module.scss';
 import { Button, ListGroup, Loader, Text, ZeroState } from 'components';
 import { map as fpMap } from 'lodash';
 import { ApplicantItem } from '../index';
+import intl from 'react-intl-universal';
 
 const map = fpMap.convert({ cap: false });
 
@@ -99,7 +100,9 @@ const ApplicantsCard = props => {
                 color="defaultGrey"
                 typeScale="Small"
               >
-                Your declined application status is only visible to you
+                {intl.get(
+                  'sections.bounty.components.applicant_card.declined_message'
+                )}
               </Text>
             ) : (
               <div className={styles.bottomBorder} />
@@ -120,8 +123,12 @@ const ApplicantsCard = props => {
     body = (
       <div className={styles.zeroState}>
         <ZeroState
-          title={'There are 0 applicants'}
-          text={'Applicants to this bounty will appear here.'}
+          title={intl.get(
+            'sections.bounty.components.applicant_card.zero_state.title'
+          )}
+          text={intl.get(
+            'sections.bounty.components.applicant_card.zero_state.description'
+          )}
           icon="inbox"
         />
       </div>
@@ -137,7 +144,7 @@ const ApplicantsCard = props => {
                 loading={applicants.loadingMore}
                 onClick={loadMoreApplicants}
               >
-                Load More
+                {intl.get('actions.load_more')}
               </Button>
             </ListGroup.ListItem>
           )
