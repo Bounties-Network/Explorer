@@ -1,11 +1,6 @@
 @import '~styles/variables.scss';
 
 .submissionItem {
-  padding: $base-spacing 0;
-  margin-left: -$xxl-spacing;
-  margin-right: -$xxl-spacing;
-  padding: $m-spacing 0;
-
   &:not(:last-child) {
     border-bottom: $base-border;
     border-bottom-width: 4px;
@@ -18,23 +13,17 @@
   @media only screen and (min-width: 48em) {
     margin-left: -$l-spacing;
     margin-right: -$l-spacing;
-    padding: $xl-spacing 0;
   }
 }
 
 .submissionHeader {
+  border-bottom: $base-border;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: $brand-nearWhite;
-  border-radius: $base-border-radius;
-  margin-left: $xl-spacing;
-  margin-right: $xl-spacing;
   padding: $base-spacing;
 
   @media only screen and (min-width: 48em) {
-    margin-left: $l-spacing;
-    margin-right: $l-spacing;
     padding: $m-spacing;
   }
 }
@@ -44,12 +33,12 @@
   align-items: center;
 
   & > * {
-    margin-left: $m-spacing;
+    margin-left: $base-spacing;
   }
 }
 
 .detailsContainer {
-  padding: 0 $xxl-spacing;
+  padding: 0 $m-spacing;
 }
 
 .labelGroup {
@@ -73,7 +62,6 @@
 }
 
 .metaDataContainer {
-  margin: $xxl-spacing 0;
 }
 
 .submissionMetadata:not(:last-child) {
@@ -88,9 +76,14 @@
   margin-bottom: $base-spacing;
 }
 
-.submissionIcon {
+.emailLink {
+  border: $base-border;
   color: $brand-grey;
-  margin-right: $m-spacing;
+  height: $base-input-height;
+  width: $base-input-height;
+  text-align: center;
+  line-height: $base-input-height;
+  border-radius: $base-border-radius;
 }
 
 .label {

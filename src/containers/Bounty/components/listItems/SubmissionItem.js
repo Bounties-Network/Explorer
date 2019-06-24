@@ -49,9 +49,7 @@ const SubmissionItem = props => {
       <Button
         type="action"
         className={styles.actionButton}
-        icon={['far', 'check']}
-        onClick={acceptFulfillment}
-      >
+        onClick={acceptFulfillment}>
         {intl.get('actions.accept')}
       </Button>
     );
@@ -61,7 +59,6 @@ const SubmissionItem = props => {
     actionButton = (
       <Button
         className={styles.actionButton}
-        icon={['far', 'star']}
         onClick={() =>
           initiateLoginProtection(() => {
             setRatingModal(fulfillmentId, {
@@ -72,8 +69,7 @@ const SubmissionItem = props => {
 
             showModal('issueRatingForFulfiller');
           })
-        }
-      >
+        }>
         {intl.get('actions.rate_fulfiller')}
       </Button>
     );
@@ -83,7 +79,6 @@ const SubmissionItem = props => {
     actionButton = (
       <Button
         className={styles.actionButton}
-        icon={['far', 'star']}
         onClick={() =>
           initiateLoginProtection(() => {
             const {
@@ -98,8 +93,7 @@ const SubmissionItem = props => {
             });
             showModal('issueRatingForIssuer');
           })
-        }
-      >
+        }>
         {intl.get('actions.rate_issuer')}
       </Button>
     );
@@ -119,6 +113,15 @@ const SubmissionItem = props => {
           border
         />
         <div className={`${styles.actionContainer}`}>
+          <Text
+            link
+            src={`mailto:${fulfiller_email}`}
+            className={styles.emailLink}>
+            <FontAwesomeIcon
+              icon={['far', 'envelope']}
+              className={styles.emailIcon}
+            />
+          </Text>
           {actionButton}
           <FulfillmentStagePill
             accepted={accepted}
@@ -127,31 +130,23 @@ const SubmissionItem = props => {
         </div>
       </header>
       <div className={`${styles.detailsContainer} ${styles.filter}`}>
+        <Text color="darkGrey" className={styles.submissionDescription}>
+          {description || 'N/A'}
+        </Text>
         <div className={`${styles.metaDataContainer}`}>
           <div className={`${styles.submissionMetadata}`}>
-            <FontAwesomeIcon
-              icon={['far', 'clock']}
-              className={styles.submissionIcon}
-            />
             <Text inline>{formattedTime}</Text>
           </div>
-          {bountyBelongsToLoggedInUser && (
-            <div className={`${styles.submissionMetadata}`}>
-              <FontAwesomeIcon
-                icon={['far', 'envelope']}
-                className={styles.submissionIcon}
-              />
-              <Text link src={`mailto:${fulfiller_email}`}>
-                {fulfiller_email}
-              </Text>
-            </div>
-          )}
+          <div className={`${styles.submissionMetadata}`}>
+            <Text link src="#">
+              Comment
+            </Text>
+          </div>
           {url ? (
             <div
               className={[styles.submissionMetadata, styles.bottomMargin].join(
                 ' '
-              )}
-            >
+              )}>
               <FontAwesomeIcon
                 icon={['far', 'link']}
                 className={styles.submissionIcon}
@@ -161,12 +156,6 @@ const SubmissionItem = props => {
               </Text>
             </div>
           ) : null}
-        </div>
-        <div className={`${styles.labelGroup} ${styles.submissionContents}`}>
-          <Text inputLabel>{intl.get('common.description')}</Text>
-          <Text color="darkGrey" className={styles.submissionDescription}>
-            {description || 'N/A'}
-          </Text>
         </div>
         {dataHash ? (
           <div className={`${styles.labelGroup}`}>
@@ -180,8 +169,7 @@ const SubmissionItem = props => {
                 <Text
                   link
                   absolute
-                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                >
+                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}>
                   {shortenFileName(dataFileName)}
                 </Text>
               </div>
@@ -190,8 +178,7 @@ const SubmissionItem = props => {
               <a
                 className={`${styles.imageLink}`}
                 href={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                target="_blank"
-              >
+                target="_blank">
                 <img
                   src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
                   class={styles.image}
