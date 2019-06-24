@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .dropdownSearch {
   width: 100%;
@@ -18,10 +18,11 @@
 
 .error {
   :global(.Select-control) {
-    border-color: $brand-red;
+    border: 2px solid $brand-red;
   }
 }
 
 .inputHelpText {
   padding-top: $base-spacing;
+  line-height: $line-height-small;
 }

@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .actionBar {
   margin-bottom: $xxl-spacing;
@@ -9,11 +9,11 @@
 }
 
 .editBountyButton {
-  margin-bottom: $m-spacing;
+  margin-bottom: $l-spacing;
 }
 
 .killButton {
-  margin-bottom: $m-spacing;
+  margin-bottom: $base-spacing;
 }
 
 .buttonGroup {

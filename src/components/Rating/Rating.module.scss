@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 $unchecked-color: $brand-lightGrey;
 $checked-color: $brand-blue;
@@ -15,7 +15,7 @@ $checked-color: $brand-blue;
 
     & + label {
       background-color: $unchecked-color;
-      border-radius: 50px;;
+      border-radius: 50px;
       color: $brand-white;
       display: inline-block;
       padding: 0 ($base-spacing * 1.5);
@@ -44,4 +44,5 @@ $checked-color: $brand-blue;
 
 .inputHelpText {
   padding-top: $base-spacing;
+  line-height: $line-height-small;
 }

@@ -37,7 +37,7 @@ $h2-font-size: 1.563rem; // 25px
 $h1-font-size: 1.938rem; // 31px
 
 $base-line-height: 1.5rem;
-$line-height-small: 1.3rem;
+$line-height-small: 1rem;
 $line-height-large: 1.875rem;
 $line-height-reset: 1;
 
@@ -47,8 +47,8 @@ $brand-purple-hover: #47209d;
 $brand-purple-disabled: #9673e3;
 $brand-dark-purple: #2e2a35;
 
-$brand-destructive: #e17582;
-$brand-destructive-hover: #ad4350;
+$brand-destructive: hsl(353, 64%, 67%);
+$brand-destructive-hover: hsl(353, 64%, 60%);
 $brand-red: $brand-destructive;
 
 $brand-blue: #4a93ff;

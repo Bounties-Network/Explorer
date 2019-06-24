@@ -888,7 +888,7 @@
   "errors": {
     "500": "Something went wrong. Try again later.",
     "404": "Not Found",
-    "form_error": "Fix errors before submitting."
+    "form_error": "Fix the errors above and re-submit."
   },
   "validation": {
     "required": "* Required",
