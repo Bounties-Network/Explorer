@@ -844,6 +844,7 @@
       "contribution_added": "You made a contribution",
       "deadline_extended": "You extended the deadline",
       "bounty_changed": "A bounty you submitted to was updated",
+      "bounty_changed_issuer": "You updated your bounty",
       "bounty_changed_applicant": "A bounty you applied to was updated",
       "issuer_transferred": "You transferred ownership of your bounty",
       "transfer_recipient": "Ownership of a bounty was transferred to you",

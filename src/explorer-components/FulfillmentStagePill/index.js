@@ -10,7 +10,6 @@ const FulfillmentStagePill = props => {
   let text;
   let backgroundColor;
   let textColor = 'white';
-
   if (accepted) {
     text = intl.get('components.fulfillment_stage.accepted');
     backgroundColor = 'green';

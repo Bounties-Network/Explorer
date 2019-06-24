@@ -31,7 +31,6 @@ class SubmissionsPanelComponent extends React.Component {
         bounty_stage
       } = bounty_data;
       const { public_address, small_profile_image_url } = user;
-
       return (
         <SubmissionItem
           key={submission_id}
@@ -65,7 +64,6 @@ class SubmissionsPanelComponent extends React.Component {
       total_received,
       total_submitted
     } = this.props;
-
     let zeroStateClass;
     let body = (
       <React.Fragment>
