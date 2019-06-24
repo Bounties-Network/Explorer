@@ -306,6 +306,7 @@ class UserSettingsComponent extends React.Component {
           {submitFailed && invalid ? (
             <Text inputLabel color="red" className={styles.submitError}>
               {intl.get('errors.form_error')}
+
             </Text>
           ) : null}
         </div>
