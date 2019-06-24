@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 /**
  * React Select
@@ -50,7 +50,7 @@
 .Select.is-open > .Select-control .Select-arrow {
   &:before {
     left: 0;
-    top: calc(50% - 3px);;
+    top: calc(50% - 3px);
     border-bottom: 5px solid $brand-darkGrey;
     border-top: none;
   }
@@ -79,25 +79,55 @@
 .Select.has-value.is-clearable.Select--single > .Select-control .Select-value {
   padding-right: $xxl-spacing;
 }
-.Select.has-value.Select--single > .Select-control .Select-value .Select-value-label,
-.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+.Select.has-value.Select--single
+  > .Select-control
+  .Select-value
+  .Select-value-label,
+.Select.has-value.is-pseudo-focused.Select--single
+  > .Select-control
+  .Select-value
+  .Select-value-label {
   color: #333;
 }
-.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label,
-.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label {
+.Select.has-value.Select--single
+  > .Select-control
+  .Select-value
+  a.Select-value-label,
+.Select.has-value.is-pseudo-focused.Select--single
+  > .Select-control
+  .Select-value
+  a.Select-value-label {
   cursor: pointer;
   text-decoration: none;
 }
-.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:hover,
-.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:hover,
-.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
-.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus {
+.Select.has-value.Select--single
+  > .Select-control
+  .Select-value
+  a.Select-value-label:hover,
+.Select.has-value.is-pseudo-focused.Select--single
+  > .Select-control
+  .Select-value
+  a.Select-value-label:hover,
+.Select.has-value.Select--single
+  > .Select-control
+  .Select-value
+  a.Select-value-label:focus,
+.Select.has-value.is-pseudo-focused.Select--single
+  > .Select-control
+  .Select-value
+  a.Select-value-label:focus {
   color: #007eff;
   outline: none;
   text-decoration: underline;
 }
-.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
-.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus {
+.Select.has-value.Select--single
+  > .Select-control
+  .Select-value
+  a.Select-value-label:focus,
+.Select.has-value.is-pseudo-focused.Select--single
+  > .Select-control
+  .Select-value
+  a.Select-value-label:focus {
   background: #fff;
 }
 .Select.has-value.is-pseudo-focused .Select-input {
@@ -212,7 +242,7 @@
   width: 17px;
 }
 .Select-clear-zone:hover {
-  color: #D0021B;
+  color: #d0021b;
 }
 .Select-clear {
   display: inline-block;

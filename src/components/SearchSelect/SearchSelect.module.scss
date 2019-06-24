@@ -18,7 +18,7 @@
 
 .error {
   :global(.Select-control) {
-    border-color: $brand-red;
+    border: 2px solid $brand-red;
   }
 }
 
