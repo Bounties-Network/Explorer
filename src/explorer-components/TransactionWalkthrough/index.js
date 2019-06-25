@@ -39,7 +39,7 @@ InitiateWalkthrough.propTypes = {
 };
 
 const PendingWalletConfirm = props => {
-  const { text, visible } = props;
+  const { visible } = props;
 
   return (
     <Modal visible={visible} fixed size="small">
@@ -57,7 +57,7 @@ PendingWalletConfirm.propTypes = {
 };
 
 const PendingReceipt = props => {
-  const { text, visible, toDashboard } = props;
+  const { visible, toDashboard } = props;
 
   return (
     <Modal visible={visible} fixed size="small">
