@@ -1,9 +1,16 @@
 @import '~styles/variables.scss';
 
 .submissionItem {
+  border: $base-border;
+  border-radius: $base-border-radius;
+  box-shadow: $base-box-shadow;
+  margin-bottom: $base-spacing;
+  margin-top: $base-spacing;
+  margin-left: 0;
+  margin-right: 0;
+
   &:not(:last-child) {
     border-bottom: $base-border;
-    border-bottom-width: 4px;
 
     @media only screen and (min-width: 48em) {
       border-bottom: $base-border;
@@ -11,8 +18,10 @@
   }
 
   @media only screen and (min-width: 48em) {
-    margin-left: -$l-spacing;
-    margin-right: -$l-spacing;
+    margin-bottom: $m-spacing;
+    margin-top: $m-spacing;
+    margin-left: -$base-spacing;
+    margin-right: -$base-spacing;
   }
 }
 
@@ -38,7 +47,7 @@
 }
 
 .detailsContainer {
-  padding: 0 $m-spacing;
+  padding: $m-spacing;
 }
 
 .labelGroup {
@@ -59,9 +68,6 @@
 
 .avatarLabel {
   padding-top: $base-spacing;
-}
-
-.metaDataContainer {
 }
 
 .submissionMetadata:not(:last-child) {
@@ -97,7 +103,7 @@
 
   &:active,
   &:focus {
-    transform: translateY(0);
+    transform: translateY(0px);
     box-shadow: none;
   }
 }
@@ -132,4 +138,18 @@
   @media only screen and (min-width: 48em) {
     max-width: 300px;
   }
+}
+
+.submissionFooter {
+  margin-top: $l-spacing;
+}
+
+.timePosted::after {
+  content: '・';
+  margin: 0 $s-spacing;
+  display: inline-block;
+}
+
+.commentIcon {
+  margin-right: $s-spacing;
 }

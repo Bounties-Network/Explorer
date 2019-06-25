@@ -49,7 +49,8 @@ const SubmissionItem = props => {
       <Button
         type="action"
         className={styles.actionButton}
-        onClick={acceptFulfillment}>
+        onClick={acceptFulfillment}
+      >
         {intl.get('actions.accept')}
       </Button>
     );
@@ -69,7 +70,8 @@ const SubmissionItem = props => {
 
             showModal('issueRatingForFulfiller');
           })
-        }>
+        }
+      >
         {intl.get('actions.rate_fulfiller')}
       </Button>
     );
@@ -93,7 +95,8 @@ const SubmissionItem = props => {
             });
             showModal('issueRatingForIssuer');
           })
-        }>
+        }
+      >
         {intl.get('actions.rate_issuer')}
       </Button>
     );
@@ -116,7 +119,8 @@ const SubmissionItem = props => {
           <Text
             link
             src={`mailto:${fulfiller_email}`}
-            className={styles.emailLink}>
+            className={styles.emailLink}
+          >
             <FontAwesomeIcon
               icon={['far', 'envelope']}
               className={styles.emailIcon}
@@ -133,20 +137,13 @@ const SubmissionItem = props => {
         <Text color="darkGrey" className={styles.submissionDescription}>
           {description || 'N/A'}
         </Text>
-        <div className={`${styles.metaDataContainer}`}>
-          <div className={`${styles.submissionMetadata}`}>
-            <Text inline>{formattedTime}</Text>
-          </div>
-          <div className={`${styles.submissionMetadata}`}>
-            <Text link src="#">
-              Comment
-            </Text>
-          </div>
+        <div>
           {url ? (
             <div
               className={[styles.submissionMetadata, styles.bottomMargin].join(
                 ' '
-              )}>
+              )}
+            >
               <FontAwesomeIcon
                 icon={['far', 'link']}
                 className={styles.submissionIcon}
@@ -169,7 +166,8 @@ const SubmissionItem = props => {
                 <Text
                   link
                   absolute
-                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}>
+                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                >
                   {shortenFileName(dataFileName)}
                 </Text>
               </div>
@@ -178,7 +176,8 @@ const SubmissionItem = props => {
               <a
                 className={`${styles.imageLink}`}
                 href={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                target="_blank">
+                target="_blank"
+              >
                 <img
                   src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
                   class={styles.image}
@@ -188,6 +187,18 @@ const SubmissionItem = props => {
             )}
           </div>
         ) : null}
+        <footer className={`${styles.submissionFooter}`}>
+          <Text inline color="defaultGrey" className={`${styles.timePosted}`}>
+            {formattedTime}
+          </Text>
+          <Text link src="#">
+            <FontAwesomeIcon
+              icon={['far', 'comment']}
+              className={styles.commentIcon}
+            />
+            Comment
+          </Text>
+        </footer>
       </div>
     </div>
   );
