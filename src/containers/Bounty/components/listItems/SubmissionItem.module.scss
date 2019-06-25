@@ -185,7 +185,7 @@
   border-bottom-left-radius: $base-border-radius;
   border: 0;
   border-top: $base-border;
-  color: $brand-darkGrey;
+  color: $brand-grey;
   font-weight: 500;
   cursor: pointer;
   display: block;
@@ -198,6 +198,16 @@
   padding: 0;
 
   &:hover {
-    color: $brand-blue;
+    color: $brand-black;
+
+    .toggleIcon {
+      color: $brand-blue;
+    }
   }
+}
+
+.toggleIcon {
+  color: $brand-grey;
+  margin-right: $base-spacing;
+  font-size: $base-font-size;
 }

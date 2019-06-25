@@ -196,7 +196,10 @@ const SubmissionItem = props => {
         </footer>
       </div>
       <button className={`${styles.toggleComments}`}>
-        <FontAwesomeIcon icon={['far', 'angle-down']} />
+        <FontAwesomeIcon
+          icon={['far', 'angle-down']}
+          className={`${styles.toggleIcon}`}
+        />
         Show 3 comments
       </button>
     </div>
