@@ -433,7 +433,7 @@
           "title": "PAYOUT",
           "description": "Indicate the payout amount",
           "notice":
-            "Enter the amount you will award for the completion of this bounty. The payout may not be larger than your current balance of <span className=\"{textHighlight}\">{balance} {token_symbol} </span>. If you would like to add more funds to the bounty, please <Link to=\"{increaseBalanceUrl}\">increase your balance.</Link>",
+            "Enter the amount you will award for the completion of this bounty. The payout may not be larger than your current balance of <span class=\"{textHighlight}\">{balance} {token_symbol} </span>. If you would like to add more funds to the bounty, please <a href=\"{increaseBalanceUrl}\">increase your balance.</a>",
           "form": {
             "token_contract": {
               "label_default": "Token Contract Address",
