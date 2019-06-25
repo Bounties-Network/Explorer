@@ -8,6 +8,7 @@
   margin-top: $base-spacing;
   margin-left: 0;
   margin-right: 0;
+  overflow: hidden;
 
   &:not(:last-child) {
     border-bottom: $base-border;
@@ -26,6 +27,7 @@
 }
 
 .submissionHeader {
+  background-color: $brand-nearWhite;
   border-bottom: $base-border;
   display: flex;
   justify-content: space-between;
@@ -63,6 +65,7 @@
 }
 
 .emailLink {
+  background-color: $brand-white;
   border: $base-border;
   color: $brand-grey;
   width: $base-input-height;

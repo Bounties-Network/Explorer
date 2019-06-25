@@ -116,6 +116,10 @@ const SubmissionItem = props => {
           border
         />
         <div className={`${styles.actionContainer}`}>
+          <FulfillmentStagePill
+            accepted={accepted}
+            bounty_stage={bounty_stage}
+          />
           <Text
             link
             src={`mailto:${fulfiller_email}`}
@@ -127,10 +131,6 @@ const SubmissionItem = props => {
             />
           </Text>
           {actionButton}
-          <FulfillmentStagePill
-            accepted={accepted}
-            bounty_stage={bounty_stage}
-          />
         </div>
       </header>
       <div className={`${styles.submissionContents}`}>
