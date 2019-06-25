@@ -1,6 +1,7 @@
 @import '~styles/variables.scss';
 
 .submissionItem {
+  background-color: $brand-white;
   border: $base-border;
   border-radius: $base-border-radius;
   box-shadow: $base-box-shadow;
@@ -9,6 +10,7 @@
   margin-left: 0;
   margin-right: 0;
   overflow: hidden;
+  position: relative;
 
   &:not(:last-child) {
     border-bottom: $base-border;
@@ -176,4 +178,26 @@
 
 .commentIcon {
   margin-right: $s-spacing;
+}
+
+.toggleComments {
+  border-bottom-right-radius: $base-border-radius;
+  border-bottom-left-radius: $base-border-radius;
+  border: 0;
+  border-top: $base-border;
+  color: $brand-darkGrey;
+  font-weight: 500;
+  cursor: pointer;
+  display: block;
+  font-size: $body-font-size;
+  outline: none;
+  height: 50px;
+  line-height: 50px;
+  width: 100%;
+  margin-top: $m-spacing;
+  padding: 0;
+
+  &:hover {
+    color: $brand-blue;
+  }
 }
