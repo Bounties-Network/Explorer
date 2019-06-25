@@ -120,6 +120,7 @@ const SubmissionItem = props => {
             accepted={accepted}
             bounty_stage={bounty_stage}
           />
+          {actionButton}
           <Text
             link
             src={`mailto:${fulfiller_email}`}
@@ -130,7 +131,6 @@ const SubmissionItem = props => {
               className={styles.emailIcon}
             />
           </Text>
-          {actionButton}
         </div>
       </header>
       <div className={`${styles.submissionContents}`}>
