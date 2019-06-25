@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .avatar {
   display: flex;
@@ -8,13 +8,11 @@
 }
 
 .nameText {
+  word-wrap: normal;
   margin-bottom: $s-spacing;
 }
 
 .textWrapper {
   margin-left: $m-spacing;
-
-  .addressText {
-    text-decoration: underline;
-  }
+  flex-shrink: 0;
 }

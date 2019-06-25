@@ -1,18 +1,29 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
+
+.commentItem {
+  display: flex;
+  flex-direction: column;
+  padding: 0 $base-spacing;
+
+  @media only screen and (min-width: 48em) {
+    flex-direction: row;
+  }
+}
+
+.avatar {
+  width: 200px;
+}
 
 .details {
   text-align: left;
   line-height: $base-line-height;
-  padding-left: $xl-spacing + $m-spacing;
   padding-top: $l-spacing;
-  white-space: pre-wrap;
 
   @media only screen and (min-width: 48em) {
-    padding-left: 0;
     padding-top: 0;
   }
 }
 
 .timeStamp {
-  padding-top: $base-spacing;
+  padding-top: $s-spacing;
 }

@@ -10,31 +10,30 @@ const CommentItem = props => {
   const formattedTime = moment.utc(created, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
 
   return (
-    <div className="">
-      <div className="row">
-        <div className={`col-xs-12 col-sm-4 ${styles.avatar}`}>
-          <LinkedAvatar
-            className={styles.labelGroup}
-            name={name}
-            address={address}
-            img={img}
-            hash={address}
-            nameTextScale={'h4'}
-            to={`/profile/${address}`}
-          />
-        </div>
-        <div className="col-xs-12 col-sm-8">
-          <div className={styles.details}>
-            <Text typeScale="Body">{text}</Text>
-            <Text
-              className={styles.timeStamp}
-              typeScale="Small"
-              color="defaultGrey"
-            >
-              {formattedTime}
-            </Text>
-          </div>
-        </div>
+    <div className={styles.commentItem}>
+      <div>
+        <LinkedAvatar
+          className={styles.avatar}
+          name={name}
+          address={address}
+          img={img}
+          hash={address}
+          nameTextScale={'h4'}
+          to={`/profile/${address}`}
+        />
+      </div>
+
+      <div className={styles.details}>
+        <Text typeScale="Body" color="darkGrey">
+          {text}
+        </Text>
+        <Text
+          className={styles.timeStamp}
+          typeScale="Small"
+          color="defaultGrey"
+        >
+          {formattedTime}
+        </Text>
       </div>
     </div>
   );
