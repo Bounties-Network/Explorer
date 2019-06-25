@@ -197,7 +197,7 @@ const SubmissionItem = props => {
       </div>
       <button className={`${styles.toggleComments}`}>
         <FontAwesomeIcon icon={['far', 'angle-down']} />
-        {'Show ' + '3' + ' comments'}
+        Show 3 comments
       </button>
     </div>
   );
