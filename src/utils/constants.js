@@ -48,7 +48,8 @@ export const NOTIFICATION_ID = {
   APPLICATION_REJECTED_ISSUER: 32,
   BOUNTY_COMMENT_RECEIVED_ISSUER: 33,
   BOUNTY_CHANGED_APPLICANT: 34,
-  BOUNTY_COMMENT_RECEIVED_COMMENTER: 35
+  BOUNTY_COMMENT_RECEIVED_COMMENTER: 35,
+  BOUNTY_CHANGED_ISSUER: 36
 };
 
 const plus = ['far', 'plus-circle'];
@@ -208,5 +209,9 @@ export const notification_template = {
   [NOTIFICATION_ID.APPLICATION_REJECTED_ISSUER]: {
     message: 'components.notifications.application_rejected_issuer',
     icon: times_circle
+  },
+  [NOTIFICATION_ID.BOUNTY_CHANGED_ISSUER]: {
+    message: 'components.notifications.bounty_changed_issuer',
+    icon: edit
   }
 };
