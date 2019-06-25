@@ -190,7 +190,7 @@ TransactionWalkthrough.propTypes = {
   pendingWalletText: PropTypes.string
 };
 
-TransactionWalkthrough.props = {
+TransactionWalkthrough.defaultProps = {
   pendingReceiptText: intl.get('components.tx_guide.messages.pending_receipt'),
   pendingWalletText: intl.get('components.tx_guide.messages.pending_wallet')
 };
