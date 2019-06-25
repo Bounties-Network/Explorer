@@ -133,60 +133,55 @@ const SubmissionItem = props => {
           />
         </div>
       </header>
-      <div className={`${styles.detailsContainer} ${styles.filter}`}>
-        <Text color="darkGrey" className={styles.submissionDescription}>
+      <div className={`${styles.submissionContents}`}>
+        <Text color="darkGrey" className={`${styles.submissionDescription}`}>
           {description || 'N/A'}
         </Text>
-        <div>
+        <div className={`${styles.submissionMedia}`}>
           {url ? (
-            <div
-              className={[styles.submissionMetadata, styles.bottomMargin].join(
-                ' '
-              )}
-            >
+            <a src={url} className={`${styles.submissionMediaItem}`}>
               <FontAwesomeIcon
                 icon={['far', 'link']}
-                className={styles.submissionIcon}
+                className={styles.submissionMediaIcon}
               />
-              <Text link absolute src={url}>
-                {shortenUrl(url)}
-              </Text>
+              <Text className={`${styles.fileName}`}>{shortenUrl(url)}</Text>
+            </a>
+          ) : null}
+          {dataHash ? (
+            <div>
+              {!hasImageExtension(dataFileName) && (
+                <a
+                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  className={`${styles.submissionMediaItem}`}
+                >
+                  <FontAwesomeIcon
+                    icon={['far', 'file-archive']}
+                    className={styles.submissionMediaIcon}
+                  />
+                  <Text
+                    className={`${styles.fileName}`}
+                    src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  >
+                    {shortenFileName(dataFileName)}
+                  </Text>
+                </a>
+              )}
+              {hasImageExtension(dataFileName) && (
+                <a
+                  className={`${styles.submissionMediaItem}`}
+                  href={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  target="_blank"
+                >
+                  <img
+                    src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                    class={styles.image}
+                    alt={dataFileName}
+                  />
+                </a>
+              )}
             </div>
           ) : null}
         </div>
-        {dataHash ? (
-          <div className={`${styles.labelGroup}`}>
-            <Text inputLabel>Submission files</Text>
-            {!hasImageExtension(dataFileName) && (
-              <div>
-                <FontAwesomeIcon
-                  icon={['far', 'file-archive']}
-                  className={styles.submissionIcon}
-                />
-                <Text
-                  link
-                  absolute
-                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                >
-                  {shortenFileName(dataFileName)}
-                </Text>
-              </div>
-            )}
-            {hasImageExtension(dataFileName) && (
-              <a
-                className={`${styles.imageLink}`}
-                href={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                target="_blank"
-              >
-                <img
-                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                  class={styles.image}
-                  alt={dataFileName}
-                />
-              </a>
-            )}
-          </div>
-        ) : null}
         <footer className={`${styles.submissionFooter}`}>
           <Text inline color="defaultGrey" className={`${styles.timePosted}`}>
             {formattedTime}

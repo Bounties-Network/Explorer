@@ -46,16 +46,12 @@
   }
 }
 
-.detailsContainer {
+.submissionContents {
   padding: $m-spacing;
 }
 
-.labelGroup {
-  word-wrap: break-word;
-
-  &:not(:last-child) {
-    margin: $xl-spacing 0;
-  }
+.submissionDescription {
+  line-height: $base-line-height;
 }
 
 .submitTime {
@@ -64,22 +60,6 @@
   @media only screen and (min-width: 48em) {
     margin-bottom: 0;
   }
-}
-
-.avatarLabel {
-  padding-top: $base-spacing;
-}
-
-.submissionMetadata:not(:last-child) {
-  margin-bottom: $base-spacing * 1.5;
-}
-
-.submissionDescription {
-  line-height: $base-line-height;
-}
-
-.fileName {
-  margin-bottom: $base-spacing;
 }
 
 .emailLink {
@@ -108,26 +88,66 @@
   }
 }
 
-.label {
-  position: absolute;
-  top: $xl-spacing;
-  right: 0;
+.submissionMedia {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
-.imageLink {
-  display: block;
-  max-width: 100%;
+.submissionMediaItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100px;
+  width: 100px;
   border: $base-border;
   border-radius: $base-border-radius;
   margin-top: $m-spacing;
+  padding: $base-spacing;
+  transition: all 0.1s ease-in-out;
+  overflow: hidden;
+
+  &:not(:last-child) {
+    margin-right: $m-spacing;
+  }
 
   &:hover {
+    background-color: $brand-light-blue;
+    box-shadow: $base-box-shadow;
+    color: $brand-blue;
+    transform: translateY(-2px);
     border-color: $brand-blue;
+    cursor: pointer;
+
+    .submissionMediaIcon,
+    .fileName {
+      color: $brand-blue;
+    }
   }
 
-  @media only screen and (min-width: 48em) {
-    max-width: 300px;
+  img {
+    width: auto;
+    height: 100%;
   }
+}
+
+.submissionMediaIcon {
+  color: $brand-grey;
+  margin-top: $m-spacing;
+  text-align: center;
+}
+
+.fileName {
+  color: $brand-grey;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-wrap: none;
+  word-break: none;
+  hyphens: none;
+  display: block;
+  white-space: nowrap;
+  width: calc(100px - #{$base-spacing * 2});
 }
 
 .image {
