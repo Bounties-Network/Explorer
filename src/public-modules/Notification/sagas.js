@@ -108,7 +108,8 @@ export function* showNotification(dispatch, action) {
       {linkText}
     </Link>
   );
-  const postedMessage = notification_template[notification_name].message;
+  const message = notification_template[notification_name].message;
+  const postedMessage = intl.get(message).d(message);
   const toastType = Toast.TYPE.NOTIFICATION;
   yield call(Toast, toastType, postedMessage, postedLink, () => {
     dispatch(setNotificationViewed(id));
