@@ -44,7 +44,9 @@ const PendingWalletConfirm = props => {
   return (
     <Modal visible={visible} fixed size="small">
       <Modal.Header loadingIcon>
-        <Modal.Message>{text}</Modal.Message>
+        <Modal.Message>
+          {intl.get('components.tx_guide.messages.pending_wallet')}
+        </Modal.Message>
       </Modal.Header>
     </Modal>
   );
@@ -65,7 +67,9 @@ const PendingReceipt = props => {
         </Modal.Message>
       </Modal.Header>
       <Modal.Body>
-        <Modal.Description>{text}</Modal.Description>
+        <Modal.Description>
+          {intl.get('components.tx_guide.messages.pending_receipt')}
+        </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
         <Button type="primary" onClick={toDashboard}>
@@ -186,7 +190,7 @@ TransactionWalkthrough.propTypes = {
   pendingWalletText: PropTypes.string
 };
 
-TransactionWalkthrough.defaultProps = {
+TransactionWalkthrough.props = {
   pendingReceiptText: intl.get('components.tx_guide.messages.pending_receipt'),
   pendingWalletText: intl.get('components.tx_guide.messages.pending_wallet')
 };
