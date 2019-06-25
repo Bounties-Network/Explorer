@@ -63,6 +63,8 @@ import lock from '@fortawesome/fontawesome-pro-light/faLock';
 import lockAlt from '@fortawesome/fontawesome-pro-regular/faLockAlt';
 import arrow from '@fortawesome/fontawesome-pro-regular/faArrowUp';
 import angleDoubleUp from '@fortawesome/fontawesome-pro-light/faAngleDoubleUp';
+import angleUp from '@fortawesome/fontawesome-pro-regular/faAngleUp';
+import angleDown from '@fortawesome/fontawesome-pro-regular/faAngleDown';
 import externalLink from '@fortawesome/fontawesome-pro-regular/faExternalLink';
 import externalLinkSquare from '@fortawesome/fontawesome-pro-light/faExternalLinkSquare';
 import envelope from '@fortawesome/fontawesome-pro-regular/faEnvelope';
@@ -81,6 +83,8 @@ library.add(
   externalLink,
   externalLinkSquare,
   arrow,
+  angleUp,
+  angleDown,
   angleDoubleUp,
   check,
   star,
