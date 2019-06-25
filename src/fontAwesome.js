@@ -64,6 +64,7 @@ import lockAlt from '@fortawesome/fontawesome-pro-regular/faLockAlt';
 import arrow from '@fortawesome/fontawesome-pro-regular/faArrowUp';
 import angleDoubleUp from '@fortawesome/fontawesome-pro-light/faAngleDoubleUp';
 import externalLink from '@fortawesome/fontawesome-pro-regular/faExternalLink';
+import externalLinkSquare from '@fortawesome/fontawesome-pro-light/faExternalLinkSquare';
 import envelope from '@fortawesome/fontawesome-pro-regular/faEnvelope';
 import link from '@fortawesome/fontawesome-pro-regular/faLink';
 import paperclip from '@fortawesome/fontawesome-pro-regular/faPaperclip';
@@ -78,6 +79,7 @@ import lightQuestionCircle from '@fortawesome/fontawesome-pro-light/faQuestionCi
 
 library.add(
   externalLink,
+  externalLinkSquare,
   arrow,
   angleDoubleUp,
   check,
