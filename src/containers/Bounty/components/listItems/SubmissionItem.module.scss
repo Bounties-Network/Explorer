@@ -72,7 +72,7 @@
   display: inline-block;
   height: $base-input-height;
   line-height: $base-input-height;
-  transition: all 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out;
 
   &:hover {
     border-color: $brand-mediumGrey;
@@ -105,7 +105,7 @@
   border-radius: $base-border-radius;
   margin-top: $m-spacing;
   padding: $base-spacing;
-  transition: all 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out;
   overflow: hidden;
 
   &:not(:last-child) {
@@ -136,6 +136,7 @@
   color: $brand-grey;
   margin-top: $m-spacing;
   text-align: center;
+  font-size: 24px;
 }
 
 .fileName {

@@ -141,7 +141,7 @@ const SubmissionItem = props => {
           {url ? (
             <a src={url} className={`${styles.submissionMediaItem}`}>
               <FontAwesomeIcon
-                icon={['far', 'link']}
+                icon={['fal', 'external-link-square']}
                 className={styles.submissionMediaIcon}
               />
               <Text className={`${styles.fileName}`}>{shortenUrl(url)}</Text>
