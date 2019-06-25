@@ -48,7 +48,7 @@ const NotificationDropdown = props => {
         link,
         viewed
       } = notification;
-
+      console.log('notification', notification);
       return (
         <Link
           key={id}
