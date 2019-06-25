@@ -13,17 +13,6 @@ import { rootReviewSelector } from 'public-modules/Review/selectors';
 import { ratingModalSelector } from 'containers/Bounty/selectors';
 import intl from 'react-intl-universal';
 
-const messageTemplate = {
-  issuer: [
-    intl.get('sections.bounty.components.issue_rating.issuer1'),
-    intl.get('sections.bounty.components.issue_rating.issuer2')
-  ],
-  fulfiller: [
-    intl.get('sections.bounty.components.issue_rating.fulfiller1'),
-    intl.get('sections.bounty.components.issue_rating.fulfiller2')
-  ]
-};
-
 const IssueRatingFormModalComponent = props => {
   const {
     onClose,
@@ -70,7 +59,6 @@ const IssueRatingFormModalComponent = props => {
   if (error) {
     revieweeAvatar = null;
   }
-
   return (
     <form onSubmit={handleSubmit(handleReview)}>
       <Modal
@@ -83,9 +71,13 @@ const IssueRatingFormModalComponent = props => {
         <Modal.Header closable={true}>
           <Modal.Heading>Rate {type}</Modal.Heading>
           <Modal.Description>
-            {messageTemplate[type][0]}
+            {type === 'issuer'
+              ? intl.get('sections.bounty.components.issue_rating.issuer1')
+              : intl.get('sections.bounty.components.issue_rating.fulfiller1')}
             <div className={styles.avatar}>{revieweeAvatar}</div>
-            {messageTemplate[type][1]}
+            {type === 'issuer'
+              ? intl.get('sections.bounty.components.issue_rating.issuer2')
+              : intl.get('sections.bounty.components.issue_rating.fulfiller2')}
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
