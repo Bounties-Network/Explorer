@@ -79,11 +79,27 @@
 .emailLink {
   border: $base-border;
   color: $brand-grey;
-  height: $base-input-height;
   width: $base-input-height;
   text-align: center;
-  line-height: $base-input-height;
   border-radius: $base-border-radius;
+  cursor: pointer;
+  display: inline-block;
+  height: $base-input-height;
+  line-height: $base-input-height;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    border-color: $brand-mediumGrey;
+    color: $brand-blue;
+    transform: translateY(-2px);
+    box-shadow: $base-box-shadow;
+  }
+
+  &:active,
+  &:focus {
+    transform: translateY(0);
+    box-shadow: none;
+  }
 }
 
 .label {
