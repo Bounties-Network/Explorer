@@ -123,7 +123,8 @@ Text.propTypes = {
     'white',
     'defaultGrey',
     'lightGrey',
-    'darkGrey'
+    'darkGrey',
+    'semiTransparentWhite'
   ]),
   weight: PropTypes.oneOf([
     'fontWeight-regular',
