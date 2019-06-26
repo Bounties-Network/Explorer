@@ -444,10 +444,14 @@ class CreateBountyFormComponent extends React.Component {
             title={intl.get('sections.create_bounty.sections.privacy.title')}
           >
             <FormSection.Description>
-              {intl.get('sections.create_bounty.sections.privacy.description')}
+              {intl.get(
+                'sections.create_bounty.sections.privacy.form.private_fullfillments.description'
+              )}
             </FormSection.Description>
             <FormSection.SubText>
-              {intl.get('sections.create_bounty.sections.privacy.notice')}
+              {intl.get(
+                'sections.create_bounty.sections.privacy.form.private_fullfillments.notice'
+              )}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
@@ -470,14 +474,10 @@ class CreateBountyFormComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
             <FormSection.Description>
-              {intl.get(
-                'sections.create_bounty.sections.privacy.form.private_fullfillments.description'
-              )}
+              {intl.get('sections.create_bounty.sections.privacy.description')}
             </FormSection.Description>
             <FormSection.SubText>
-              {intl.get(
-                'sections.create_bounty.sections.privacy.form.private_fullfillments.notice'
-              )}
+              {intl.get('sections.create_bounty.sections.privacy.notice')}
             </FormSection.SubText>
             <FormSection.InputGroup>
               <div className="row">
