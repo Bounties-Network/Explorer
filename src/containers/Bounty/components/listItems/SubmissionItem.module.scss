@@ -129,11 +129,17 @@
     margin-right: $m-spacing;
   }
 
+  @media (hover: hover) {
+    &:hover {
+      background-color: $brand-light-blue;
+      transform: translateY(-2px);
+      box-shadow: $base-box-shadow;
+    }
+  }
+
   &:hover {
     background-color: $brand-light-blue;
-    box-shadow: $base-box-shadow;
     color: $brand-blue;
-    transform: translateY(-2px);
     border-color: $brand-blue;
     cursor: pointer;
 
