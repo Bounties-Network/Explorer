@@ -1,13 +1,29 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .container {
   display: flex;
   justify-content: center;
-  padding: $l-spacing;
+  flex-direction: column;
 
   > div {
     flex: 1;
-    padding-right: $base-spacing;
+    padding-right: 0;
+
+    @media only screen and (min-width: 35em) {
+      padding-right: $base-spacing;
+    }
+  }
+
+  button {
+    margin-top: $base-spacing;
+  }
+
+  @media only screen and (min-width: 35em) {
+    flex-direction: row;
+
+    button {
+      margin-top: 0;
+    }
   }
 }
 
