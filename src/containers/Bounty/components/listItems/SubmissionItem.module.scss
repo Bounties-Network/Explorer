@@ -5,10 +5,10 @@
   border: $base-border;
   border-radius: $base-border-radius;
   box-shadow: $base-box-shadow;
-  margin-bottom: $base-spacing;
-  margin-top: $base-spacing;
-  margin-left: 0;
-  margin-right: 0;
+  margin-bottom: $m-spacing;
+  margin-top: $m-spacing;
+  margin-left: -$base-spacing;
+  margin-right: -$base-spacing;
   overflow: hidden;
   position: relative;
 
@@ -50,6 +50,14 @@
   }
 }
 
+.rateButton {
+  display: none;
+
+  @media only screen and (min-width: 35em) {
+    display: inline-block;
+  }
+}
+
 .submissionContents {
   padding: $m-spacing;
 }
@@ -74,10 +82,14 @@
   text-align: center;
   border-radius: $base-border-radius;
   cursor: pointer;
-  display: inline-block;
+  display: none;
   height: $base-input-height;
   line-height: $base-input-height;
   transition: transform 0.1s ease-in-out;
+
+  @media only screen and (min-width: 35em) {
+    display: inline-block;
+  }
 
   &:hover {
     border-color: $brand-mediumGrey;
@@ -181,11 +193,12 @@
 }
 
 .toggleComments {
+  background-color: $brand-white;
   border-bottom-right-radius: $base-border-radius;
   border-bottom-left-radius: $base-border-radius;
   border: 0;
   border-top: $base-border;
-  color: $brand-grey;
+  color: $brand-darkGrey;
   font-weight: 500;
   cursor: pointer;
   display: block;

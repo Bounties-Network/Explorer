@@ -80,7 +80,7 @@ const SubmissionItem = props => {
   if (submissionBelongsToLoggedInUser && accepted && !issuer_review) {
     actionButton = (
       <Button
-        className={styles.actionButton}
+        className={`${styles.actionButton} ${styles.rateButton}`}
         onClick={() =>
           initiateLoginProtection(() => {
             const {
