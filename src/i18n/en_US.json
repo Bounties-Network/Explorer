@@ -52,7 +52,7 @@
       "title": "My Bounties",
       "tabs": {
         "active": "Active",
-        "drafts": "Drafts"
+        "drafts": "Draft"
       },
       "zero_state": {
         "title": "You have no {tab} bounties",
