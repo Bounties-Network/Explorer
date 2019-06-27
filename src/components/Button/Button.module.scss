@@ -26,6 +26,11 @@
       box-shadow: none;
     }
   }
+
+  &:disabled:hover {
+    transform: translateY(0);
+    box-shadow: none;
+  }
 }
 
 .margin {
