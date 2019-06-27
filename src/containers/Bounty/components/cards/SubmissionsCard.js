@@ -35,7 +35,8 @@ const SubmissionsCard = props => {
         url,
         user,
         fulfiller_review,
-        issuer_review
+        issuer_review,
+        comment_count
       } = fulfillment;
 
       const { name, small_profile_image_url } = user;
@@ -77,6 +78,7 @@ const SubmissionsCard = props => {
           initiateLoginProtection={initiateLoginProtection}
           showModal={showModal}
           setRatingModal={setRatingModal}
+          comment_count={comment_count}
         />
       );
     }, list);

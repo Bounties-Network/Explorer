@@ -30,7 +30,8 @@ const SubmissionItem = props => {
     acceptFulfillment,
     showModal,
     setRatingModal,
-    initiateLoginProtection
+    initiateLoginProtection,
+    comment_count
   } = props;
 
   const { bounty_stage } = bounty;
@@ -200,7 +201,7 @@ const SubmissionItem = props => {
           icon={['far', 'angle-down']}
           className={`${styles.toggleIcon}`}
         />
-        Show 3 comments
+        Show {comment_count} comments
       </button>
     </div>
   );

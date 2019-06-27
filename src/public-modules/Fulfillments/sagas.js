@@ -21,6 +21,7 @@ export function* loadFulfillments() {
     let endpoint = 'fulfillment/';
     const fulfillments = yield call(request, endpoint, 'GET', { params });
     const { results, count } = fulfillments;
+    console.log('fulfillnments', fulfillments);
     yield put(loadFulfillmentsSuccess(results, count));
   } catch (e) {
     yield put(loadFulfillmentsFail(e));
