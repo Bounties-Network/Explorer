@@ -14,18 +14,20 @@
   white-space: nowrap;
   transition: transform 0.1s ease-in-out;
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: $base-box-shadow;
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $base-box-shadow;
+    }
 
-    &.disabled {
+    &:active,
+    &:focus {
       transform: translateY(0);
       box-shadow: none;
     }
   }
 
-  &:active,
-  &:focus {
+  &:disabled:hover {
     transform: translateY(0);
     box-shadow: none;
   }
@@ -61,14 +63,16 @@
   line-height: calc(#{$base-input-height} - (#{$base-border-width} * 2));
   transition: transform 0.1s ease-in-out;
 
-  &:hover {
-    transform: translateY(-2px);
-    border-color: $brand-mediumGrey;
-    color: $brand-black;
-    box-shadow: $base-box-shadow;
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-2px);
+      border-color: $brand-mediumGrey;
+      color: $brand-black;
+      box-shadow: $base-box-shadow;
 
-    .icon {
-      color: $brand-blue;
+      .icon {
+        color: $brand-blue;
+      }
     }
   }
 

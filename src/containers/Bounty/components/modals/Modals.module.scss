@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .modalBody {
   text-align: left;
@@ -25,4 +25,17 @@ p {
     color: $brand-purple;
     font-weight: 500;
   }
+}
+
+.submitError {
+  color: $brand-destructive-hover;
+  margin-top: $base-spacing;
+  padding: $m-spacing;
+  background: lighten($brand-destructive, 23%);
+  border-radius: $base-border-radius;
+  margin: $l-spacing 0;
+  margin-bottom: 0;
+  display: block;
+  text-align: center;
+  width: 100%;
 }
