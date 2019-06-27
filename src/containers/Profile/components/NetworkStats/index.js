@@ -69,6 +69,7 @@ const NetworkStatsComponent = props => {
             onClick={() => setReviewsModalVisible(true)}
             typeScale="Small"
             alignment="align-center"
+            lineHeight="lineHeight-small"
             color="defaultGrey"
             className={`${styles.reviewsModalLink} ${
               styles.networkStatCircleLabel
@@ -85,6 +86,7 @@ const NetworkStatsComponent = props => {
             className={styles.networkStatCircleLabel}
             typeScale="Small"
             alignment="align-center"
+            lineHeight="lineHeight-small"
             color="defaultGrey"
           >
             {text}
