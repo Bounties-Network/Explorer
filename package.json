@@ -73,6 +73,7 @@
     "start-production": "APP_SETTINGS_FILE=production_settings APP_LOGO=logo node scripts/start.js",
     "start-rinkeby": "APP_SETTINGS_FILE=rinkeby_settings APP_LOGO=logo node scripts/start.js",
     "start-boost": "APP_SETTINGS_FILE=boost_settings APP_LOGO=logo node scripts/start.js",
+    "start-consensys": "APP_SETTINGS_FILE=consensys_settings APP_LOGO=logo node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "storybook": "start-storybook -p 6006",
