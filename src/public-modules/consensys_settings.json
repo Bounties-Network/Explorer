@@ -12,7 +12,7 @@
   "defaultToken": {
     "symbol": "MESH",
     "address": "0x261d24441091bB67Ce2B3B5e255071Da260BB880",
-    "decimals": 18
+    "decimals": 0
   },
   "requiredNetwork": "rinkeby",
   "mainNet": {

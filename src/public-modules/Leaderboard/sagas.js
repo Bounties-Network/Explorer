@@ -30,7 +30,6 @@ export function* loadLeaderboard(action) {
       issuer: call(request, 'leaderboard/issuer/', 'GET', { params }),
       fulfiller: call(request, 'leaderboard/fulfiller/', 'GET', { params })
     });
-
     yield put(loadLeaderboardSuccess({ issuer, fulfiller }));
   } catch (e) {
     yield put(loadLeaderboardFail(e));
