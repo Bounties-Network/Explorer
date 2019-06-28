@@ -35,7 +35,9 @@ export const leaderboardQuerySelector = createSelector(
         ? expandPlatforms([...rootLeaderboard.platformFilters])
         : config.platform
     };
-
+    if (config.defaultToken) {
+      query.token = config.defaultToken.address;
+    }
     return query;
   }
 );
