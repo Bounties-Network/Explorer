@@ -86,7 +86,6 @@ function LeaderboardReducer(state = initialState, action) {
         fulfiller: fulfiller.results
       };
       const count = { issuer: issuer.count, fulfiller: fulfiller.count };
-      console.log('leaderboard', leaderboard);
       return {
         ...state,
         loading: false,
