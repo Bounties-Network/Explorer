@@ -18,11 +18,19 @@ import { Loader, ZeroState } from 'components';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import config from 'public-modules/config';
 import intl from 'react-intl-universal';
+import NavigationPrompt from 'react-router-navigation-prompt';
+import Modal from '../../components/Modal';
+import Button from '../../components/Button';
 
 class CreateBountyComponent extends React.Component {
   constructor(props) {
     super(props);
     const { match, getDraft, getBounty, loadTokens, public_address } = props;
+    this.state = {
+      isit: true,
+      showModal: true,
+      dirty: false
+    };
 
     loadTokens();
 
@@ -33,6 +41,16 @@ class CreateBountyComponent extends React.Component {
       getBounty(match.params.id);
     }
   }
+  showModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  hideModal = () => {
+    this.setState({ showModal: false, isit: false });
+  };
+  hideModaltemp = () => {
+    this.setState({ showModal: false });
+  };
 
   render() {
     const {
@@ -64,23 +82,135 @@ class CreateBountyComponent extends React.Component {
       );
     }
 
+    var prompter = undefined;
+    if (this.state.dirty && !isEditing && (this.state.dirty && !isDraft)) {
+      prompter = (
+        <NavigationPrompt
+          renderIfNotActive={false}
+          when={(crntLocation, nextLocation) =>
+            !nextLocation ||
+            !nextLocation.pathname.startsWith(crntLocation.pathname)
+          }
+        >
+          {({ isActive, onCancel, onConfirm }) => {
+            if (isActive) {
+              return (
+                <Modal
+                  dismissable
+                  size={'medium'}
+                  fixed
+                  visible={true}
+                  onClose={onCancel}
+                >
+                  <Modal.Header closable />
+                  <Modal.Body>
+                    <div style={{ textAlign: 'center', padding: '1rem' }}>
+                      <h1 style={{ fontWeight: 'bold' }}>Discard changes?</h1>
+                      <br />
+                      <p>
+                        If you decide to leave this page, the changes made to
+                        your bounty will be discarded and your bounty will be
+                        reverted to its previous state.
+                      </p>
+                    </div>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      className="margin"
+                      margin
+                      fitwidth
+                      onClick={onCancel}
+                    >
+                      Cancel
+                    </Button>
+                    <Button type="destructive" onClick={onConfirm}>
+                      Discard changes
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              );
+            }
+          }}
+        </NavigationPrompt>
+      );
+    } else if (
+      (this.state.dirty && isEditing) ||
+      (this.state.dirty && isDraft)
+    ) {
+      prompter = (
+        <NavigationPrompt
+          renderIfNotActive={false}
+          when={(crntLocation, nextLocation) =>
+            !nextLocation ||
+            !nextLocation.pathname.startsWith(crntLocation.pathname)
+          }
+        >
+          {({ isActive, onCancel, onConfirm }) => {
+            if (isActive) {
+              return (
+                <Modal
+                  dismissable
+                  size={'medium'}
+                  fixed
+                  visible={true}
+                  onClose={onCancel}
+                >
+                  <Modal.Header closable />
+                  <Modal.Body>
+                    <div style={{ textAlign: 'center', padding: '1rem' }}>
+                      <h1 style={{ fontWeight: 'bold' }}>Discard changes?</h1>
+                      <br />
+                      <p>
+                        If you decide to leave this page without creating a
+                        draft or activating, your bounty will be discarded.
+                      </p>
+                    </div>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      className="margin"
+                      margin
+                      fitwidth
+                      onClick={onCancel}
+                    >
+                      Cancel
+                    </Button>
+                    <Button type="destructive" onClick={onConfirm}>
+                      Discard changes
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              );
+            }
+          }}
+        </NavigationPrompt>
+      );
+    }
+
     return (
-      <PageCard>
-        <PageCard.Header>
-          <PageCard.Title>
-            {isEditing || isDraft
-              ? intl.get('sections.create_bounty.actions.edit')
-              : intl.get('sections.create_bounty.actions.create')}
-          </PageCard.Title>
-        </PageCard.Header>
-        <PageCard.Content key="createBountyForm" className={styles.cardContent}>
-          <CreateBountyForm
-            initialValues={formInitialValues}
-            isEditing={isEditing}
-            isDraft={isDraft}
-          />
-        </PageCard.Content>
-      </PageCard>
+      <div>
+        {prompter}
+        <PageCard>
+          <PageCard.Header>
+            <PageCard.Title>
+              {isEditing || isDraft
+                ? intl.get('sections.create_bounty.actions.edit')
+                : intl.get('sections.create_bounty.actions.create')}
+            </PageCard.Title>
+          </PageCard.Header>
+          <PageCard.Content
+            key="createBountyForm"
+            className={styles.cardContent}
+          >
+            <CreateBountyForm
+              onChange={() => this.setState({ dirty: true })}
+              initialValues={formInitialValues}
+              isEditing={isEditing}
+              isDraft={isDraft}
+            />
+          </PageCard.Content>
+        </PageCard>
+      </div>
     );
   }
 }

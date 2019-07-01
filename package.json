@@ -39,6 +39,7 @@
     "react-intl-universal": "^2.0.3",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
+    "react-router-navigation-prompt": "^1.8.7",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-select": "^1.2.1",
     "react-slick": "^0.23.1",
