@@ -13,20 +13,9 @@ class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isit: true,
-      showModal: true,
       dirty: false
     };
   }
-  showModal = () => {
-    this.setState({ showModal: true });
-  };
-  hideModal = () => {
-    this.setState({ showModal: false, isit: false });
-  };
-  hideModaltemp = () => {
-    this.setState({ showModal: false });
-  };
   render() {
     return (
       <div>
@@ -94,7 +83,7 @@ class Settings extends React.Component {
         </PageCard>
         <PageCard noBanner>
           <PageCard.Content key="email" className={styles.cardContent}>
-            <EmailPreferences />
+            <EmailPreferences onChange={() => this.setState({ dirty: true })} />
           </PageCard.Content>
         </PageCard>
       </div>

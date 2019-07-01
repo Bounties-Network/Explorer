@@ -27,8 +27,6 @@ class CreateBountyComponent extends React.Component {
     super(props);
     const { match, getDraft, getBounty, loadTokens, public_address } = props;
     this.state = {
-      isit: true,
-      showModal: true,
       dirty: false
     };
 
@@ -41,16 +39,6 @@ class CreateBountyComponent extends React.Component {
       getBounty(match.params.id);
     }
   }
-  showModal = () => {
-    this.setState({ showModal: true });
-  };
-
-  hideModal = () => {
-    this.setState({ showModal: false, isit: false });
-  };
-  hideModaltemp = () => {
-    this.setState({ showModal: false });
-  };
 
   render() {
     const {
