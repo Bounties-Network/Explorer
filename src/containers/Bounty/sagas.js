@@ -20,7 +20,7 @@ import {
 } from './reducer';
 
 const { INITIATE_WALKTHROUGH } = transactionActionTypes;
-const { SET_ACTIVE_TAB } = bountyPageActionTypes;
+const { SET_ACTIVE_TAB, SET_OPEN_COMMENTS } = bountyPageActionTypes;
 const { POST_REVIEW_SUCCESS } = reviewActionTypes;
 const { LOAD_FULFILLMENT_SUCCESS } = fulfillmentActionTypes;
 const { closeModal, showModal, setRatingModal } = bountyPageActions;
@@ -39,6 +39,20 @@ export function* closeBountyModal(action) {
 }
 
 export function* loadTab(action) {
+  const { tabKey = 'comments' } = action;
+
+  if (tabKey === 'submissions') {
+    yield put(loadFulfillments());
+  } else if (tabKey === 'comments') {
+    const bountyId = yield select(bountyIdSelector);
+    yield put(loadComments(bountyId));
+  } else if (tabKey === 'applicants') {
+    const bountyId = yield select(bountyIdSelector);
+    yield put(loadApplicants(bountyId));
+  }
+}
+
+export function* loadFulComments(action) {
   const { tabKey = 'comments' } = action;
 
   if (tabKey === 'submissions') {
@@ -112,6 +126,10 @@ export function* watchCloseModals() {
 
 export function* watchTabLoads() {
   yield takeLatest([SET_ACTIVE_TAB, POST_REVIEW_SUCCESS], loadTab);
+}
+
+export function* watchCommentLoads() {
+  yield takeLatest([SET_OPEN_COMMENTS], loadFulComments);
 }
 
 export function* watchCommentPosted() {

@@ -122,16 +122,18 @@ const SubmissionItem = props => {
             bounty_stage={bounty_stage}
           />
           {actionButton}
-          <Text
-            link
-            src={`mailto:${fulfiller_email}`}
-            className={styles.emailLink}
-          >
-            <FontAwesomeIcon
-              icon={['far', 'envelope']}
-              className={styles.emailIcon}
-            />
-          </Text>
+          {bountyBelongsToLoggedInUser && (
+            <Text
+              link
+              src={`mailto:${fulfiller_email}`}
+              className={styles.emailLink}
+            >
+              <FontAwesomeIcon
+                icon={['far', 'envelope']}
+                className={styles.emailIcon}
+              />
+            </Text>
+          )}
         </div>
       </header>
       <div className={`${styles.submissionContents}`}>
