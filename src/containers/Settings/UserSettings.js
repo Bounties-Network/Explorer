@@ -24,7 +24,7 @@ class UserSettingsComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    const { initialValues, setProfileImageUrls } = props;
+    const { initialValues, setProfileImageUrls, handleUser } = props;
 
     const { smallProfileImageUrl, largeProfileImageUrl } = initialValues;
 
@@ -52,7 +52,8 @@ class UserSettingsComponent extends React.Component {
       onClose,
       smallProfileImageUrl,
       largeProfileImageUrl,
-      resetProfileImageUrls
+      resetProfileImageUrls,
+      handleUser
     } = this.props;
 
     const handleSaveSettings = values => {
@@ -294,6 +295,7 @@ class UserSettingsComponent extends React.Component {
             </Button>
           )}
           <Button
+            onClick={handleUser}
             type="primary"
             disabled={uploading || (submitFailed && invalid)}
             loading={savingSettings}
@@ -306,7 +308,6 @@ class UserSettingsComponent extends React.Component {
           {submitFailed && invalid ? (
             <Text inputLabel color="red" className={styles.submitError}>
               {intl.get('errors.form_error')}
-
             </Text>
           ) : null}
         </div>

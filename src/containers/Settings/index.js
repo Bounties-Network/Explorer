@@ -13,13 +13,14 @@ class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dirty: false
+      dirty: false,
+      submitNotPressed: true
     };
   }
   render() {
     return (
       <div>
-        {this.state.dirty ? (
+        {this.state.dirty && this.state.submitNotPressed ? (
           <NavigationPrompt
             renderIfNotActive={false}
             when={(crntLocation, nextLocation) =>
@@ -78,12 +79,18 @@ class Settings extends React.Component {
             </PageCard.Title>
           </PageCard.Header>
           <PageCard.Content key="profile" className={styles.cardContent}>
-            <UserSettings onChange={() => this.setState({ dirty: true })} />
+            <UserSettings
+              handleUser={() => this.setState({ submitNotPressed: false })}
+              onChange={() => this.setState({ dirty: true })}
+            />
           </PageCard.Content>
         </PageCard>
         <PageCard noBanner>
           <PageCard.Content key="email" className={styles.cardContent}>
-            <EmailPreferences onChange={() => this.setState({ dirty: true })} />
+            <EmailPreferences
+              handleEmail={() => this.setState({ submitNotPressed: false })}
+              onChange={() => this.setState({ dirty: true })}
+            />
           </PageCard.Content>
         </PageCard>
       </div>

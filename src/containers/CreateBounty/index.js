@@ -27,7 +27,8 @@ class CreateBountyComponent extends React.Component {
     super(props);
     const { match, getDraft, getBounty, loadTokens, public_address } = props;
     this.state = {
-      dirty: false
+      dirty: false,
+      submitNotPressed: true
     };
 
     loadTokens();
@@ -71,7 +72,12 @@ class CreateBountyComponent extends React.Component {
     }
 
     var prompter = undefined;
-    if (this.state.dirty && !isEditing && (this.state.dirty && !isDraft)) {
+    if (
+      this.state.dirty &&
+      !isEditing &&
+      (this.state.dirty && !isDraft) &&
+      (this.state.dirty && this.state.submitNotPressed)
+    ) {
       prompter = (
         <NavigationPrompt
           renderIfNotActive={false}
@@ -122,8 +128,12 @@ class CreateBountyComponent extends React.Component {
         </NavigationPrompt>
       );
     } else if (
-      (this.state.dirty && isEditing) ||
-      (this.state.dirty && isDraft)
+      (this.state.dirty &&
+        isEditing &&
+        (this.state.dirty && this.state.submitNotPressed)) ||
+      (this.state.dirty &&
+        isDraft &&
+        (this.state.dirty && this.state.submitNotPressed))
     ) {
       prompter = (
         <NavigationPrompt
@@ -191,6 +201,7 @@ class CreateBountyComponent extends React.Component {
             className={styles.cardContent}
           >
             <CreateBountyForm
+              handleBounty={() => this.setState({ submitNotPressed: false })}
               onChange={() => this.setState({ dirty: true })}
               initialValues={formInitialValues}
               isEditing={isEditing}

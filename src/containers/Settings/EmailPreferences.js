@@ -21,7 +21,8 @@ let EmailPreferencesComponent = props => {
     submitFailed,
     invalid,
     handleSubmit,
-    saveEmailPreferences
+    saveEmailPreferences,
+    handleEmail
   } = props;
 
   const handleSaveEmailPreferences = values => {
@@ -62,6 +63,7 @@ let EmailPreferencesComponent = props => {
       </FormSection>
       <div className={styles.buttonContainer}>
         <Button
+          onClick={handleEmail}
           type="primary"
           disabled={saving || (submitFailed && invalid)}
           loading={saving}
