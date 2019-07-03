@@ -55,15 +55,11 @@ let FulfillBountyFormModalComponent = props => {
         size="medium"
       >
         <Modal.Header closable={true}>
-          <Modal.Message>Enter submission details</Modal.Message>
+          <Modal.Message>
+            {intl.get('sections.bounty.modals.fulfill_bounty.title')}
+          </Modal.Message>
           <Modal.Description>
-            Enter and submit the details for your bounty submission, including
-            any links to content that may be required for fulfillment as
-            indicated by the bounty description. You may format your submission
-            description using{' '}
-            <a href="https://www.markdownguide.org/cheat-sheet" target="_blank">
-              Markdown
-            </a>.
+            {intl.getHTML('sections.bounty.modals.fulfill_bounty.description')}
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
