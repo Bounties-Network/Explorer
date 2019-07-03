@@ -42,11 +42,7 @@ let FulfillBountyFormModalComponent = props => {
     name: [validators.required, validators.maxLength(128)],
     email: [validators.email],
     url: [validators.maxLength(256), validators.isURL],
-    description: [
-      validators.required,
-      validators.minLength(2),
-      validators.maxLength(120000)
-    ]
+    description: [validators.minLength(2), validators.maxLength(120000)]
   };
 
   return (
@@ -62,8 +58,12 @@ let FulfillBountyFormModalComponent = props => {
           <Modal.Message>Enter submission details</Modal.Message>
           <Modal.Description>
             Enter and submit the details for your bounty submission, including
-            any files or links that may be required for fulfillment as indicated
-            by the bounty description.
+            any links to content that may be required for fulfillment as
+            indicated by the bounty description. You may format your submission
+            description using{' '}
+            <a href="https://www.markdownguide.org/cheat-sheet" target="_blank">
+              Markdown
+            </a>.
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
