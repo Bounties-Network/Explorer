@@ -53,8 +53,11 @@ export function* loadTab(action) {
 }
 
 export function* loadFulComments(action) {
-  const { tabKey = 'comments' } = action;
+  console.log('loading ful comments');
 
+  console.log('action', action);
+
+  /*
   if (tabKey === 'submissions') {
     yield put(loadFulfillments());
   } else if (tabKey === 'comments') {
@@ -63,7 +66,7 @@ export function* loadFulComments(action) {
   } else if (tabKey === 'applicants') {
     const bountyId = yield select(bountyIdSelector);
     yield put(loadApplicants(bountyId));
-  }
+  }*/
 }
 
 export function* showIssueRatingModal() {
@@ -139,6 +142,7 @@ export function* watchCommentPosted() {
 export default [
   watchCloseModals,
   watchTabLoads,
+  watchCommentLoads,
   watchFulfillmentLoadSuccess,
   watchCommentPosted
 ];

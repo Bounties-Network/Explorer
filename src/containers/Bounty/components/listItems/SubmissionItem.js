@@ -31,7 +31,8 @@ const SubmissionItem = props => {
     showModal,
     setRatingModal,
     initiateLoginProtection,
-    comment_count
+    comment_count,
+    setOpenComments
   } = props;
 
   const { bounty_stage } = bounty;
@@ -198,7 +199,12 @@ const SubmissionItem = props => {
           </Text>
         </footer>
       </div>
-      <button className={`${styles.toggleComments}`}>
+      <button
+        className={`${styles.toggleComments}`}
+        onClick={() => {
+          setOpenComments(fulfillmentId);
+        }}
+      >
         <FontAwesomeIcon
           icon={['far', 'angle-down']}
           className={`${styles.toggleIcon}`}

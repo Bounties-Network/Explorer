@@ -145,7 +145,8 @@ class BountyComponent extends React.Component {
       initiateWalkthrough,
       initiateLoginProtection,
       showModal,
-      setActiveTab
+      setActiveTab,
+      setOpenComments
     } = this.props;
 
     if (error) {
@@ -431,6 +432,7 @@ class BountyComponent extends React.Component {
                 isDraft={isDraft}
                 currentUser={user}
                 setActiveTabAction={setActiveTab}
+                setOpenCommentsAction={setOpenComments}
                 initiateLoginProtection={initiateLoginProtection}
                 initiateWalkthrough={initiateWalkthrough}
               />
@@ -485,6 +487,7 @@ const Bounty = compose(
       showModal: bountyUIActions.showModal,
       setBountyId: bountyUIActions.setBountyId,
       setActiveTab: bountyUIActions.setActiveTab,
+      setOpenComments: bountyUIActions.setOpenComments,
       loadBounty: bountyActions.getBounty,
       loadDraftBounty: bountyActions.getDraft,
       loadFulfillments: fulfillmentsActions.loadFulfillments,

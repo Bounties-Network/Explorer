@@ -74,6 +74,7 @@ class BountyPageCardsComponent extends React.Component {
       showModal,
       setRatingModal,
       setActiveTabAction: setActiveTab,
+      setOpenCommentsAction: setOpenComments,
       currentTab,
       fulfillments,
       applicants,
@@ -118,6 +119,7 @@ class BountyPageCardsComponent extends React.Component {
           acceptFulfillment={acceptFulfillment}
           showModal={showModal}
           setRatingModal={setRatingModal}
+          setOpenComments={setOpenComments}
         />
       );
     }

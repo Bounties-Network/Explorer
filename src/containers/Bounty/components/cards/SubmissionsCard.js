@@ -18,7 +18,8 @@ const SubmissionsCard = props => {
     initiateWalkthrough,
     acceptFulfillment,
     showModal,
-    setRatingModal
+    setRatingModal,
+    setOpenComments
   } = props;
 
   const renderFulfillments = list => {
@@ -79,6 +80,7 @@ const SubmissionsCard = props => {
           showModal={showModal}
           setRatingModal={setRatingModal}
           comment_count={comment_count}
+          setOpenComments={setOpenComments}
         />
       );
     }, list);
