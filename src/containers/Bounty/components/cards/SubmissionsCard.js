@@ -19,7 +19,11 @@ const SubmissionsCard = props => {
     acceptFulfillment,
     showModal,
     setRatingModal,
-    setOpenComments
+    setOpenComments,
+    openComments,
+    postFulComment,
+    showLogin,
+    comments
   } = props;
 
   const renderFulfillments = list => {
@@ -81,6 +85,11 @@ const SubmissionsCard = props => {
           setRatingModal={setRatingModal}
           comment_count={comment_count}
           setOpenComments={setOpenComments}
+          openComments={openComments === fulfillment_id}
+          currentUser={currentUser}
+          postFulComment={postFulComment}
+          showLogin={showLogin}
+          comments={comments}
         />
       );
     }, list);

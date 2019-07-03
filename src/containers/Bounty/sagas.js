@@ -25,7 +25,7 @@ const { POST_REVIEW_SUCCESS } = reviewActionTypes;
 const { LOAD_FULFILLMENT_SUCCESS } = fulfillmentActionTypes;
 const { closeModal, showModal, setRatingModal } = bountyPageActions;
 const { loadFulfillments } = fulfillmentsActions;
-const { loadComments, loadFulfillmentComments } = commentsActions;
+const { loadComments, loadFulComments } = commentsActions;
 const { loadApplicants } = applicantsActions;
 const { closeWalkthrough } = transactionActions;
 const { POST_COMMENT_SUCCESS } = commentsActionTypes;
@@ -52,21 +52,8 @@ export function* loadTab(action) {
   }
 }
 
-export function* loadFulComments(action) {
-  console.log('loading ful comments');
-
-  console.log('action', action);
-
-  /*
-  if (tabKey === 'submissions') {
-    yield put(loadFulfillments());
-  } else if (tabKey === 'comments') {
-    const bountyId = yield select(bountyIdSelector);
-    yield put(loadComments(bountyId));
-  } else if (tabKey === 'applicants') {
-    const bountyId = yield select(bountyIdSelector);
-    yield put(loadApplicants(bountyId));
-  }*/
+export function* loadFulfillmentComments(action) {
+  yield put(loadFulComments(action.bountyId, action.fulfillmentId));
 }
 
 export function* showIssueRatingModal() {
@@ -132,7 +119,7 @@ export function* watchTabLoads() {
 }
 
 export function* watchCommentLoads() {
-  yield takeLatest([SET_OPEN_COMMENTS], loadFulComments);
+  yield takeLatest([SET_OPEN_COMMENTS], loadFulfillmentComments);
 }
 
 export function* watchCommentPosted() {

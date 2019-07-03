@@ -79,14 +79,17 @@ class BountyPageCardsComponent extends React.Component {
       fulfillments,
       applicants,
       comments,
+      fulComments,
       bounty,
       currentUser,
       acceptFulfillment,
       changeApplicationState,
       postComment,
+      postFulComment,
       loadMoreComments,
       loadMoreFulfillments,
-      loadMoreApplicants
+      loadMoreApplicants,
+      openComments
     } = this.props;
 
     const bountyBelongsToLoggedInUser =
@@ -120,6 +123,10 @@ class BountyPageCardsComponent extends React.Component {
           showModal={showModal}
           setRatingModal={setRatingModal}
           setOpenComments={setOpenComments}
+          openComments={openComments}
+          showLogin={showLogin}
+          postFulComment={postFulComment}
+          comments={fulComments}
         />
       );
     }
@@ -209,7 +216,7 @@ const mapStateToProps = (state, router) => {
     modalType: bountyPage.modalType,
     modalVisible: bountyPage.modalVisible,
     currentTab: bountyPage.currentTab,
-
+    openComments: bountyPage.openComments,
     // data
     fulfillments: {
       ...fulfillmentsState,
@@ -222,6 +229,10 @@ const mapStateToProps = (state, router) => {
     comments: {
       ...commentsState,
       list: commentsState.comments
+    },
+    fulComments: {
+      ...commentsState,
+      list: commentsState.fulComments
     }
   };
 };
@@ -235,6 +246,7 @@ const BountyPageCards = compose(
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
       changeApplicationState: applicantsActions.changeApplicationState,
       postComment: commentsActions.postComment,
+      postFulComment: commentsActions.postFulComment,
       loadMoreComments: commentsActions.loadMoreComments,
       loadMoreFulfillments: fulfillmentsActions.loadMoreFulfillments,
       loadMoreApplicants: applicantsActions.loadMoreApplicants,

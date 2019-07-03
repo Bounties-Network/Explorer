@@ -81,9 +81,9 @@ export function* loadFulComments(action) {
   const { bountyId, fulfillmentId } = action;
 
   try {
-    const endpoint = `bounty/${bountyId}/comment/?limit=${LIMIT}`;
+    const endpoint = `bounty/${bountyId}/fulfillment/${fulfillmentId}/comment/?limit=${LIMIT}`;
     const comments = yield call(request, endpoint, 'GET');
-
+    console.log('comments', endpoint, comments);
     yield put(loadFulCommentsSuccess(comments.results, comments.count));
   } catch (e) {
     yield put(loadFulCommentsFail(e));
@@ -103,7 +103,7 @@ export function* loadMoreFulComments(action) {
   };
 
   try {
-    const endpoint = `bounty/${bountyId}/comment/`;
+    const endpoint = `bounty/${bountyId}/fulfillment/${fulfillmentId}/comment/`;
     const comments = yield call(request, endpoint, 'GET', { params });
     yield put(loadMoreFulCommentsSuccess(comments.results));
   } catch (e) {
@@ -114,11 +114,10 @@ export function* loadMoreFulComments(action) {
 
 export function* postNewFulComment(action) {
   const { bountyId, fulfillmentId, text } = action;
-
   try {
-    let endpoint = `bounty/${bountyId}/comment/`;
+    let endpoint = `bounty/${bountyId}/fulfillment/${fulfillmentId}/comment/`;
     const comment = yield call(request, endpoint, 'POST', { data: { text } });
-
+    console.log('comment', comment);
     yield put(postFulCommentSuccess(comment));
   } catch (e) {
     console.log(e);

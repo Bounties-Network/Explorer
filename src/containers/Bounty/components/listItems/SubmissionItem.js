@@ -2,9 +2,10 @@ import React from 'react';
 import styles from './SubmissionItem.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { includes } from 'lodash';
-import { Button, Text } from 'components';
+import { Button, Text, ListGroup, Loader, ZeroState } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE, EXPIRED } from 'public-modules/Bounty/constants';
+import { CommentItem, NewCommentForm } from '../index';
 import {
   newTabExtension,
   hasImageExtension,
@@ -43,7 +44,12 @@ const SubmissionItem = props => {
     setRatingModal,
     initiateLoginProtection,
     comment_count,
-    setOpenComments
+    setOpenComments,
+    openComments,
+    currentUser,
+    postFulComment,
+    comments,
+    showLogin
   } = props;
 
   const { bounty_stage } = bounty;
@@ -149,9 +155,12 @@ const SubmissionItem = props => {
         </div>
       </header>
       <div className={`${styles.submissionContents}`}>
-        <Text color="darkGrey" className={`${styles.submissionDescription}`}>
-          {description || 'N/A'}
-        </Text>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: converter.makeHtml(description || 'N/A')
+          }}
+          className="markdownContent"
+        />
         <div className={`${styles.submissionMedia}`}>
           {url ? (
             <a src={url} className={`${styles.submissionMediaItem}`}>
@@ -196,19 +205,6 @@ const SubmissionItem = props => {
               )}
             </div>
           ) : null}
-        </div>
-        <div className={`${styles.labelGroup} ${styles.submissionContents}`}>
-          <Text inputLabel>{intl.get('common.description')}</Text>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: converter.makeHtml(description || 'N/A')
-            }}
-            className="markdownContent"
-          />
-          <Text
-            color="darkGrey"
-            /*className={styles.submissionDescription}*/ className="markdownContent"
-          />
         </div>
         {dataHash ? (
           <div className={`${styles.labelGroup}`}>
@@ -259,7 +255,7 @@ const SubmissionItem = props => {
       <button
         className={`${styles.toggleComments}`}
         onClick={() => {
-          setOpenComments(bounty.id, fulfillmentId);
+          setOpenComments(bounty.id, openComments ? -1 : fulfillmentId);
         }}
       >
         <FontAwesomeIcon
@@ -268,6 +264,28 @@ const SubmissionItem = props => {
         />
         Show {comment_count} comments
       </button>
+      {openComments && (
+        <div>
+          <ListGroup.ListItem
+            key="form"
+            className={styles.newCommentForm}
+            borderColor="lightGrey"
+            fullBorder
+          >
+            <NewCommentForm
+              className={styles.newCommentForm}
+              signedIn={!!currentUser}
+              onSubmit={
+                !!currentUser
+                  ? values =>
+                      postFulComment(bounty.id, fulfillmentId, values.text)
+                  : showLogin
+              }
+              loading={comments.posting}
+            />
+          </ListGroup.ListItem>
+        </div>
+      )}
     </div>
   );
 };
