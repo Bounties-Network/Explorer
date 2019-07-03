@@ -44,7 +44,8 @@ class MarkdownEditor extends React.Component {
       onFocus,
       defaultValue,
       value,
-      textBoxClassName
+      textBoxClassName,
+      hidePreview
     } = this.props;
 
     const textValue =
@@ -80,17 +81,19 @@ class MarkdownEditor extends React.Component {
           onFocus={onFocus}
           onBlur={onBlur}
           overlay={
-            <Text
-              type="Small"
-              className={styles.overlay}
-              onClick={this.showModal}
-            >
-              <FontAwesomeIcon
-                icon={['fal', 'eye']}
-                className={styles.overlayIcon}
-              />
-              {intl.get('components.editor.preview')}
-            </Text>
+            !hidePreview && (
+              <Text
+                type="Small"
+                className={styles.overlay}
+                onClick={this.showModal}
+              >
+                <FontAwesomeIcon
+                  icon={['fal', 'eye']}
+                  className={styles.overlayIcon}
+                />
+                {intl.get('components.editor.preview')}
+              </Text>
+            )
           }
         />
       </div>
