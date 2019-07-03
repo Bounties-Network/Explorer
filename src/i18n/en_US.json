@@ -793,6 +793,7 @@
       "refine": "Refine by",
       "platform": "Platform",
       "category": "Category",
+      "difficulty": "Difficulty",
       "stage": "Stage",
       "checkbox": {
         "active": "Active",

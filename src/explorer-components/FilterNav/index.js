@@ -239,7 +239,7 @@ const FilterNav = props => {
       {config.difficulty && (
         <div className={styles.difficultyFilter}>
           <Text weight="fontWeight-medium" className={styles.groupText}>
-            {intl.get('common.difficulty')}
+            {intl.get('components.filter_nav.difficulty')}
           </Text>
           <Checkbox
             label={intl.get(
