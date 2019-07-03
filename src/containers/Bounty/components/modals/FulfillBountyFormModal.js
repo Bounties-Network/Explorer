@@ -144,6 +144,7 @@ let FulfillBountyFormModalComponent = props => {
                 placeholder={intl.get(
                   'sections.bounty.modals.fulfill_bounty.form.description.placeholder'
                 )}
+                hidePreview={true}
               />
             </div>
           </div>
