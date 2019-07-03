@@ -8,7 +8,7 @@ import { Button, FileUpload, Modal, Text } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
-import { FormTextInput, FormTextbox } from 'form-components';
+import { FormTextInput, FormMarkdownEditor } from 'form-components';
 import intl from 'react-intl-universal';
 
 let FulfillBountyFormModalComponent = props => {
@@ -135,7 +135,7 @@ let FulfillBountyFormModalComponent = props => {
             <div className="col-xs">
               <Field
                 name="description"
-                component={FormTextbox}
+                component={FormMarkdownEditor}
                 type="text"
                 label={intl.get(
                   'sections.bounty.modals.fulfill_bounty.form.description.label'
