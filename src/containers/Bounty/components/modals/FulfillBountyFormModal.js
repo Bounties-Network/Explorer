@@ -8,7 +8,7 @@ import { Button, FileUpload, Modal, Text } from 'components';
 import { Field, reduxForm } from 'redux-form';
 import { ModalFormReset } from 'hocs';
 import validators from 'utils/validators';
-import { FormTextInput, FormTextbox } from 'form-components';
+import { FormTextInput, FormMarkdownEditor } from 'form-components';
 import intl from 'react-intl-universal';
 
 let FulfillBountyFormModalComponent = props => {
@@ -42,11 +42,7 @@ let FulfillBountyFormModalComponent = props => {
     name: [validators.required, validators.maxLength(128)],
     email: [validators.email],
     url: [validators.maxLength(256), validators.isURL],
-    description: [
-      validators.required,
-      validators.minLength(2),
-      validators.maxLength(120000)
-    ]
+    description: [validators.minLength(2), validators.maxLength(120000)]
   };
 
   return (
@@ -59,11 +55,11 @@ let FulfillBountyFormModalComponent = props => {
         size="medium"
       >
         <Modal.Header closable={true}>
-          <Modal.Message>Enter submission details</Modal.Message>
+          <Modal.Message>
+            {intl.get('sections.bounty.modals.fulfill_bounty.title')}
+          </Modal.Message>
           <Modal.Description>
-            Enter and submit the details for your bounty submission, including
-            any files or links that may be required for fulfillment as indicated
-            by the bounty description.
+            {intl.getHTML('sections.bounty.modals.fulfill_bounty.description')}
           </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
@@ -135,7 +131,7 @@ let FulfillBountyFormModalComponent = props => {
             <div className="col-xs">
               <Field
                 name="description"
-                component={FormTextbox}
+                component={FormMarkdownEditor}
                 type="text"
                 label={intl.get(
                   'sections.bounty.modals.fulfill_bounty.form.description.label'
@@ -144,6 +140,7 @@ let FulfillBountyFormModalComponent = props => {
                 placeholder={intl.get(
                   'sections.bounty.modals.fulfill_bounty.form.description.placeholder'
                 )}
+                hidePreview={true}
               />
             </div>
           </div>

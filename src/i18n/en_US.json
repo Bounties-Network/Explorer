@@ -212,7 +212,7 @@
         "fulfill_bounty": {
           "title": "Enter submission details",
           "description":
-            "Enter and submit the details for your bounty submission, including any files or links that may be required for fulfillment as indicated by the bounty description.",
+            "Enter and submit the details for your bounty submission, including any links to content that may be required for fulfillment as indicated by the bounty description. You may format your submission description using <a href=\"https://www.markdownguide.org/cheat-sheet\" target=\"_blank\">Markdown</a>.",
           "form": {
             "name": {
               "label": "Contact name",
@@ -599,13 +599,13 @@
         "descriptions": {
           "issuer": {
             "acceptance": "Fulfilment acceptance rate",
-            "rating": "Average fulfiller rating received",
-            "ratingGiven": "Average issuer rating given"
+            "rating": "Average issuer rating received",
+            "ratingGiven": "Average fulfiller rating given"
           },
           "fulfiller": {
             "acceptance": "Submission acceptance rate",
-            "rating": "Average issuer rating received",
-            "ratingGiven": "Average fulfiller rating given"
+            "rating": "Average fulfiller rating received",
+            "ratingGiven": "Average issuer rating given"
           }
         }
       },
@@ -795,6 +795,7 @@
       "refine": "Refine by",
       "platform": "Platform",
       "category": "Category",
+      "difficulty": "Difficulty",
       "stage": "Stage",
       "checkbox": {
         "active": "Active",

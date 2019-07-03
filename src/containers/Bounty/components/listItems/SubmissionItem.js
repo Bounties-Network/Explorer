@@ -5,9 +5,20 @@ import { includes } from 'lodash';
 import { Button, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE, EXPIRED } from 'public-modules/Bounty/constants';
-import { hasImageExtension, shortenFileName, shortenUrl } from 'utils/helpers';
+import {
+  newTabExtension,
+  hasImageExtension,
+  shortenFileName,
+  shortenUrl
+} from 'utils/helpers';
 import moment from 'moment';
 import intl from 'react-intl-universal';
+import showdown from 'showdown';
+
+showdown.setOption('simpleLineBreaks', true);
+showdown.extension('targetBlank', newTabExtension);
+const converter = new showdown.Converter({ extensions: ['targetBlank'] });
+converter.setFlavor('github');
 
 const SubmissionItem = props => {
   const {
@@ -186,6 +197,52 @@ const SubmissionItem = props => {
             </div>
           ) : null}
         </div>
+        <div className={`${styles.labelGroup} ${styles.submissionContents}`}>
+          <Text inputLabel>{intl.get('common.description')}</Text>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: converter.makeHtml(description || 'N/A')
+            }}
+            className="markdownContent"
+          />
+          <Text
+            color="darkGrey"
+            /*className={styles.submissionDescription}*/ className="markdownContent"
+          />
+        </div>
+        {dataHash ? (
+          <div className={`${styles.labelGroup}`}>
+            <Text inputLabel>Submission files</Text>
+            {!hasImageExtension(dataFileName) && (
+              <div>
+                <FontAwesomeIcon
+                  icon={['far', 'file-archive']}
+                  className={styles.submissionIcon}
+                />
+                <Text
+                  link
+                  absolute
+                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                >
+                  {shortenFileName(dataFileName)}
+                </Text>
+              </div>
+            )}
+            {hasImageExtension(dataFileName) && (
+              <a
+                className={`${styles.imageLink}`}
+                href={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                target="_blank"
+              >
+                <img
+                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  class={styles.image}
+                  alt={dataFileName}
+                />
+              </a>
+            )}
+          </div>
+        ) : null}
         <footer className={`${styles.submissionFooter}`}>
           <Text inline color="defaultGrey" className={`${styles.timePosted}`}>
             {formattedTime}
