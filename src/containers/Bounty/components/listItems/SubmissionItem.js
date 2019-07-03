@@ -202,7 +202,7 @@ const SubmissionItem = props => {
       <button
         className={`${styles.toggleComments}`}
         onClick={() => {
-          setOpenComments(fulfillmentId);
+          setOpenComments(bounty.id, fulfillmentId);
         }}
       >
         <FontAwesomeIcon

@@ -38,8 +38,8 @@ function setActiveTab(tabKey) {
   return { type: SET_ACTIVE_TAB, tabKey };
 }
 
-function setOpenComments(fulfillmentId) {
-  return { type: SET_OPEN_COMMENTS, fulfillmentId };
+function setOpenComments(bountyId, fulfillmentId) {
+  return { type: SET_OPEN_COMMENTS, bountyId, fulfillmentId };
 }
 
 function setRatingModal(fulfillmentId, reviewee) {
@@ -82,7 +82,7 @@ function BountyPageUIReducer(state = initialState, action) {
     }
 
     case SET_OPEN_COMMENTS: {
-      const { fulfillmentId } = action;
+      const { bountyId, fulfillmentId } = action;
 
       return {
         ...state,
