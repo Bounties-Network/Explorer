@@ -597,13 +597,13 @@
         "descriptions": {
           "issuer": {
             "acceptance": "Fulfilment acceptance rate",
-            "rating": "Average fulfiller rating received",
-            "ratingGiven": "Average issuer rating given"
+            "rating": "Average issuer rating received",
+            "ratingGiven": "Average fulfiller rating given"
           },
           "fulfiller": {
             "acceptance": "Submission acceptance rate",
-            "rating": "Average issuer rating received",
-            "ratingGiven": "Average fulfiller rating given"
+            "rating": "Average fulfiller rating received",
+            "ratingGiven": "Average issuer rating given"
           }
         }
       },
