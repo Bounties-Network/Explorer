@@ -44,8 +44,7 @@
       "title": "My Activity",
       "zero_state": {
         "title": "You have no activity yet",
-        "description":
-          "Once you start using the platform, your activity will show up here."
+        "description": "Once you start using the platform, your activity will show up here."
       }
     },
     "bounties": {
@@ -56,8 +55,7 @@
       },
       "zero_state": {
         "title": "You have no {tab} bounties",
-        "description":
-          "It looks like you don't have any {tab} bounties at the moment. Enter a title for a new bounty here to get started creating one!",
+        "description": "It looks like you don't have any {tab} bounties at the moment. Enter a title for a new bounty here to get started creating one!",
         "actions": {
           "new_bounty": "Create new bounty"
         }
@@ -71,20 +69,15 @@
       "meta": {
         "input": "Private",
         "label": "bounty",
-        "tooltip":
-          "Private bounties require that users apply to fulfill the bounty. Once you are approved by the issuer, you may submit a fulfillment for this bounty.",
+        "tooltip": "Private bounties require that users apply to fulfill the bounty. Once you are approved by the issuer, you may submit a fulfillment for this bounty.",
         "revisions": "{count} revisions"
       },
       "components": {
         "issue_rating": {
-          "issuer1":
-            "Your bounty submission was accepted! If you would like, you can rate your experience with the following bounty issuer:",
-          "issuer2":
-            "This will help set expectations for other fulfillers on the platform.",
-          "fulfiller1":
-            "You accepted a submission to your bounty! If you would like, you can rate your experience with the following fulfiller:",
-          "fulfiller2":
-            "This will help set expectations for other issuers on the platform.",
+          "issuer1": "Your bounty submission was accepted! If you would like, you can rate your experience with the following bounty issuer:",
+          "issuer2": "This will help set expectations for other fulfillers on the platform.",
+          "fulfiller1": "You accepted a submission to your bounty! If you would like, you can rate your experience with the following fulfiller:",
+          "fulfiller2": "This will help set expectations for other issuers on the platform.",
           "rating": "Rating",
           "review": "Review",
           "review_placeholder": "Enter review..."
@@ -95,8 +88,7 @@
           "login_action": "Sign in to post comment"
         },
         "applicant_card": {
-          "declined_message":
-            "Your declined application status is only visible to you",
+          "declined_message": "Your declined application status is only visible to you",
           "zero_state": {
             "title": "There are 0 applicants",
             "description": "Applicants to this bounty will appear here."
@@ -113,16 +105,12 @@
             "title": "There are 0 submissions",
             "private_title": "Submissions are private",
             "description": "Submissions to this bounty will appear here.",
-            "private_description":
-              "The submissions for this bounty have been set to private.",
-            "bounty_owner_description":
-              "Submissions to this bounty will appear here and will only be visible to you. Additionally, fulfillers will be able to see the submissions that they created."
+            "private_description": "The submissions for this bounty have been set to private.",
+            "bounty_owner_description": "Submissions to this bounty will appear here and will only be visible to you. Additionally, fulfillers will be able to see the submissions that they created."
           },
           "notice": "Submissions to this bounty are hidden.",
-          "bounty_owner_notice":
-            " The submissions are only visible to you and the fulfiller.",
-          "fulfiller_notice":
-            " Your submissions are only visible to you and the bounty issuer."
+          "bounty_owner_notice": " The submissions are only visible to you and the fulfiller.",
+          "fulfiller_notice": " Your submissions are only visible to you and the bounty issuer."
         }
       },
       "difficulties": {
@@ -158,12 +146,20 @@
         }
       },
       "modals": {
+        "unsaved_changes": {
+          "new_bounty": {
+            "title": "Discard Changes?",
+            "description": "If you decide to leave this page, the changes made to your bounty will be discarded and your bounty will be reverted to its previous state."
+          },
+          "draft_or_edit_bounty": {
+            "title": "Discard Changes?",
+            "description": "If you decide to leave this page without creating a draft or activating, your bounty will be discarded."
+          }
+        },
         "activate_dead_form": {
           "title": "Re-Activate your bounty",
-          "description":
-            "Indicate an amount for your deposit to activate the bounty. At minimum, your deposit must match the payout amount ({minimumBalance} {token_symbol}).",
-          "min_deposit_warning":
-            "At minimum, your initial deposit must match your payout amount.",
+          "description": "Indicate an amount for your deposit to activate the bounty. At minimum, your deposit must match the payout amount ({minimumBalance} {token_symbol}).",
+          "min_deposit_warning": "At minimum, your initial deposit must match your payout amount.",
           "form": {
             "balance": {
               "label": "Deposit amount in {token_symbol}",
@@ -173,10 +169,8 @@
         },
         "activate_draft_form": {
           "title": "Activate your bounty",
-          "description":
-            "Indicate an amount for your initial deposit to activate the bounty.<em> At minimum, your initial deposit must match your payout amount of</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {token_symbol}</strong>",
-          "min_deposit_warning":
-            "At minimum, your initial deposit must match your payout amount.",
+          "description": "Indicate an amount for your initial deposit to activate the bounty.<em> At minimum, your initial deposit must match your payout amount of</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {token_symbol}</strong>",
+          "min_deposit_warning": "At minimum, your initial deposit must match your payout amount.",
           "form": {
             "balance": {
               "label": "Deposit amount in {token_symbol}",
@@ -186,11 +180,9 @@
         },
         "contribute": {
           "title": "Increase the balance",
-          "description":
-            "Indicate the amount you would like to contribute towards the bounty ({token_symbol}).",
+          "description": "Indicate the amount you would like to contribute towards the bounty ({token_symbol}).",
           "title_issuer": "Contribute to the bounty",
-          "description_issuer":
-            "Indicate the amount you would like to add to the bounty ({token_symbol}).",
+          "description_issuer": "Indicate the amount you would like to add to the bounty ({token_symbol}).",
           "form": {
             "contribution": {
               "label": "Deposit amount {token_symbol}",
@@ -199,13 +191,11 @@
           }
         },
         "extend_deadline_error": {
-          "title":
-            "The deadline must be in the future in order to activate your bounty."
+          "title": "The deadline must be in the future in order to activate your bounty."
         },
         "extend_deadline_form": {
           "title": "Extend Deadline",
-          "description":
-            "Indicate the time that you would like to extend the bounty deadline until {timezone, select, null { } other { (timezone={timezone})}}"
+          "description": "Indicate the time that you would like to extend the bounty deadline until {timezone, select, null { } other { (timezone={timezone})}}"
         },
         "fulfill_bounty": {
           "title": "Enter submission details",
@@ -228,16 +218,13 @@
               "label": "Description",
               "placeholder": "Enter description..."
             },
-            "private_notice":
-              "All information entered here will be stored on the public Ethereum network, but will be hidden on the site.",
-            "public_notice":
-              "All information entered here will be stored on the public Ethereum network, and will be publicly displayed on the site."
+            "private_notice": "All information entered here will be stored on the public Ethereum network, but will be hidden on the site.",
+            "public_notice": "All information entered here will be stored on the public Ethereum network, and will be publicly displayed on the site."
           }
         },
         "fulfiller_application": {
           "title": "Enter application details",
-          "description":
-            "Describe why you believe you would be a good fit to complete this bounty. Feel free to also provide links to relevant work or experience.",
+          "description": "Describe why you believe you would be a good fit to complete this bounty. Feel free to also provide links to relevant work or experience.",
           "form": {
             "message": {
               "label": "Application",
@@ -247,14 +234,10 @@
         },
         "increase_payout": {
           "title": "Increase bounty payout",
-          "description1":
-            "Indicate the amount you would like to increase the payout to. You may include an additional balance to cover the costs.<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
-          "description2":
-            "Indicate the amount you would like to increase the payout to.<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
-          "balance_warning":
-            "The balance of your bounty must be greater than the payout amount.",
-          "payout_warning":
-            "Your payout amount must be greater than the previous payout amount.",
+          "description1": "Indicate the amount you would like to increase the payout to. You may include an additional balance to cover the costs.<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+          "description2": "Indicate the amount you would like to increase the payout to.<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+          "balance_warning": "The balance of your bounty must be greater than the payout amount.",
+          "payout_warning": "Your payout amount must be greater than the previous payout amount.",
           "form": {
             "balance": {
               "label": "Deposit amount ({token_symbol})",
@@ -268,13 +251,11 @@
         },
         "kill_bounty": {
           "title": "Are you sure you want to de-activate your bounty?",
-          "description":
-            "If you change your mind, you can always re-activate it again later."
+          "description": "If you change your mind, you can always re-activate it again later."
         },
         "transfer_ownership": {
           "title": "Transfer Ownership",
-          "description":
-            "Include the wallet address of who you would like to transfer the bounty to.",
+          "description": "Include the wallet address of who you would like to transfer the bounty to.",
           "form": {
             "new_owner": {
               "placeholder": "Enter wallet address..."
@@ -288,8 +269,7 @@
         "title": "Could not find that bounty",
         "description": "Try refreshing, or make sure your url is correct"
       },
-      "deposit_warning":
-        "Deposit amount must at least match the payout amount.",
+      "deposit_warning": "Deposit amount must at least match the payout amount.",
       "payout_warning": "Payout amount may not be larger than the balance.",
       "actions": {
         "create": "Create Bounty",
@@ -303,8 +283,7 @@
           "title": "ABOUT",
           "description": "Enter your details about this bounty.",
           "notice": "Enter a title and description for your bounty. A ",
-          "notice2":
-            " preview will automatically be generated as you type, which you can view by clicking the preview button. Feel free to use the description template provided below, or clear the field to create your own.",
+          "notice2": " preview will automatically be generated as you type, which you can view by clicking the preview button. Feel free to use the description template provided below, or clear the field to create your own.",
           "form": {
             "title": {
               "label": "Title",
@@ -317,8 +296,7 @@
         },
         "contact": {
           "title": "CONTACT",
-          "description":
-            "Who will be the primary contact for bounty questions and submissions?",
+          "description": "Who will be the primary contact for bounty questions and submissions?",
           "form": {
             "issuer_name": {
               "label": "Contact name",
@@ -333,8 +311,7 @@
         "details": {
           "title": "DETAILS",
           "description": "How should this bounty be classified?",
-          "notice":
-            "Enter the categories and difficulty level for the bounty. Since difficulty can be fairly subjective, it is helpful to provide more details around required experience within your bounty description.",
+          "notice": "Enter the categories and difficulty level for the bounty. Since difficulty can be fairly subjective, it is helpful to provide more details around required experience within your bounty description.",
           "form": {
             "categories": {
               "label": "Bounty category",
@@ -353,15 +330,12 @@
         "revisions": {
           "title": "REVISIONS",
           "description": "Will you require revisions?",
-          "notice":
-            "Enter the maximum number of revisions you may require for this task, in order to help set expectations for the contributors."
+          "notice": "Enter the maximum number of revisions you may require for this task, in order to help set expectations for the contributors."
         },
         "attachments": {
           "title": "ATTACHMENTS",
-          "description":
-            "Does this bounty require any external assets for completion?",
-          "notice":
-            "Attach any files or links that may be helpful as references or necessary for a contributor to complete the bounty.",
+          "description": "Does this bounty require any external assets for completion?",
+          "notice": "Attach any files or links that may be helpful as references or necessary for a contributor to complete the bounty.",
           "form": {
             "url": {
               "label": "Web link",
@@ -375,8 +349,7 @@
         "deadline": {
           "title": "DEADLINE",
           "description": "When will this bounty be due?",
-          "notice":
-            "Enter the date and time for this bounty's deadline {timezone, select, null { } other {(timezone={timezone})}}"
+          "notice": "Enter the date and time for this bounty's deadline {timezone, select, null { } other {(timezone={timezone})}}"
         },
         "privacy": {
           "title": "PRIVACY",
@@ -393,10 +366,8 @@
             },
             "private_fullfillments": {
               "label": "Visibility",
-              "description":
-                "Do you want to approve people before they can fulfill your bounty?",
-              "notice":
-                "If you require approval, you will be notified when a user indicates their intent to submit, and will be required to approve them before they are allowed to complete your bounty.",
+              "description": "Do you want to approve people before they can fulfill your bounty?",
+              "notice": "If you require approval, you will be notified when a user indicates their intent to submit, and will be required to approve them before they are allowed to complete your bounty.",
               "options": {
                 "public": "Public",
                 "hidden": "Hidden"
@@ -407,8 +378,7 @@
         "payout": {
           "title": "PAYOUT",
           "description": "Select payout method and amount.",
-          "notice":
-            "Select the token and enter the amount you will award for completion of this bounty.",
+          "notice": "Select the token and enter the amount you will award for completion of this bounty.",
           "form": {
             "token_contract": {
               "label_default": "Token Contract Address",
@@ -419,8 +389,7 @@
               "label": "Payout Method"
             },
             "fulfillment_amount": {
-              "label":
-                "Payout amount {hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
+              "label": "Payout amount {hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
               "placeholder": "Enter amount..."
             },
             "token_contract_2": {
@@ -432,8 +401,7 @@
         "payout_editing": {
           "title": "PAYOUT",
           "description": "Indicate the payout amount",
-          "notice":
-            "Enter the amount you will award for the completion of this bounty. The payout may not be larger than your current balance of <span class=\"{textHighlight}\">{balance} {token_symbol} </span>. If you would like to add more funds to the bounty, please <a href=\"{increaseBalanceUrl}\">increase your balance.</a>",
+          "notice": "Enter the amount you will award for the completion of this bounty. The payout may not be larger than your current balance of <span class=\"{textHighlight}\">{balance} {token_symbol} </span>. If you would like to add more funds to the bounty, please <a href=\"{increaseBalanceUrl}\">increase your balance.</a>",
           "form": {
             "token_contract": {
               "label_default": "Token Contract Address",
@@ -444,8 +412,7 @@
               "label": "Payout Method"
             },
             "fulfillment_amount": {
-              "label":
-                "Payout amount {hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
+              "label": "Payout amount {hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
               "placeholder": "Enter amount..."
             },
             "token_contract_2": {
@@ -456,10 +423,8 @@
         },
         "save": {
           "title": "SAVE OR SUBMIT",
-          "description":
-            "When would you like to submit and activate the bounty?",
-          "notice":
-            "If you wish to activate the bounty later, you can save it as a draft. The requirements for a bounty can only be edited while it is in the draft stage. At minimum, your deposit amount must match your payout amount.",
+          "description": "When would you like to submit and activate the bounty?",
+          "notice": "If you wish to activate the bounty later, you can save it as a draft. The requirements for a bounty can only be edited while it is in the draft stage. At minimum, your deposit amount must match your payout amount.",
           "form": {
             "activate_now": {
               "label": "When to activate",
@@ -501,8 +466,7 @@
     "leaderboard_card": {
       "zero_state": {
         "title": "No Results Yet",
-        "description":
-          "As bounties are issues and submissions are completed, this leaderboard will begin to populate"
+        "description": "As bounties are issues and submissions are completed, this leaderboard will begin to populate"
       },
       "zero_state_error": {
         "title": "Uh oh, something happened",
@@ -513,10 +477,8 @@
       "modals": {
         "details": {
           "title": "Profile Details",
-          "description":
-            "Add some profile details about yourself, so that others on the platform have an idea of your background and skillset, and can find you elsewhere online.",
-          "description2":
-            "Welcome to the Bounties Network! We&#39;re excited to see what you bounty. <br /> <br /> Before you get started, we encourage you to add some profile details\n            about yourself, so that others on the platform have an idea of your background and skillset.",
+          "description": "Add some profile details about yourself, so that others on the platform have an idea of your background and skillset, and can find you elsewhere online.",
+          "description2": "Welcome to the Bounties Network! We&#39;re excited to see what you bounty. <br /> <br /> Before you get started, we encourage you to add some profile details\n            about yourself, so that others on the platform have an idea of your background and skillset.",
           "actions": {
             "skip": "Skip",
             "add": "Add profile details"
@@ -527,36 +489,29 @@
           "description1": "You were previously signed in to ",
           "description2": "bounties.network",
           "description3": " using the following address:",
-          "description4":
-            "This address does not match your current wallet account address:",
-          "description5":
-            ". Please switch your wallet account, or log out of the Bounties Network and sign in using a different address."
+          "description4": "This address does not match your current wallet account address:",
+          "description5": ". Please switch your wallet account, or log out of the Bounties Network and sign in using a different address."
         },
         "error": {
           "title": "Something happened. Try again later."
         },
         "sign_in": {
           "title": "Sign in and verify address",
-          "description":
-            "After clicking \"Continue\", a wallet dialogue will prompt you to verify your unique address. Once you verify, you'll be signed in to the network."
+          "description": "After clicking \"Continue\", a wallet dialogue will prompt you to verify your unique address. Once you verify, you'll be signed in to the network."
         },
         "signing_in": {
-          "title":
-            "Complete signature request to verify your address and sign in"
+          "title": "Complete signature request to verify your address and sign in"
         },
         "unlock": {
           "title": "Secure Wallet Access",
-          "description1":
-            "You'll need to log in and/or grant access to your secure wallet (e.g.",
-          "description2":
-            ") in order to use {pageLevel, select, null {parts of} other { }} {networkName}"
+          "description1": "You'll need to log in and/or grant access to your secure wallet (e.g.",
+          "description2": ") in order to use {pageLevel, select, null {parts of} other { }} {networkName}"
         },
         "wallet_required": {
           "title": "Web3 enabled browser and secure wallet required.",
           "description1": "In order to use",
           "description2": ", please install a secure wallet such as",
-          "description3":
-            "If you'd like help getting set up, take a look at our ",
+          "description3": "If you'd like help getting set up, take a look at our ",
           "guide": "Getting Started Guide.",
           "actions": {
             "visit": "Visit {walletName}"
@@ -576,8 +531,7 @@
       },
       "zero_state": {
         "title": "You have no notifications",
-        "description":
-          "Once you start using the platform, notifications will show here."
+        "description": "Once you start using the platform, notifications will show here."
       }
     },
     "profile": {
@@ -615,8 +569,7 @@
         "title": "{reviewType} ratings received",
         "zero_state": {
           "title": "No Reviews Found",
-          "description":
-            "We didn't find any reviews associated with this action."
+          "description": "We didn't find any reviews associated with this action."
         }
       },
       "zero_state": {
@@ -634,33 +587,32 @@
         "profile_saved": "Profile saved successfully",
         "email_saved": "Email preferences saved successfully"
       },
+      "modals": {
+        "unsaved_changes": {
+          "title": "Discard Changes?",
+          "description": "If you decide to leave this page without confirming your changes, the changes made to your profile will be discarded and your profile will be reverted to its previous state."
+        }
+      },
       "emails": {
         "title": "EMAIL NOTIFICATIONS",
-        "description":
-          "What notifications would you like to receive via email?",
-        "notice":
-          "Opt in or out of the notifications you wish to receive via email. We recommend sticking with the default settings so that you can be informed of important activity relevant to you on the network.",
+        "description": "What notifications would you like to receive via email?",
+        "notice": "Opt in or out of the notifications you wish to receive via email. We recommend sticking with the default settings so that you can be informed of important activity relevant to you on the network.",
         "actions": {
           "save": "Save Email Preferences"
         },
         "notification_options": {
           "rating_received": "User issues you a rating",
           "transfer_recipient": "Bounty transfer to another user completes",
-          "bounty_comment_received":
-            "A bounty you fulfilled receives a comment",
+          "bounty_comment_received": "A bounty you fulfilled receives a comment",
           "bounty_comment_received_issuer": "Your bounty receives a comment",
-          "bounty_comment_received_commenter":
-            "A bounty you commented on receives a comment",
+          "bounty_comment_received_commenter": "A bounty you commented on receives a comment",
           "bounty_expired": "Bounty expires",
           "bounty_changed": "A bounty you fulfilled is changed",
           "bounty_changed_applicant": "A bounty you applied for is changed",
-          "fulfillment_updated_issuer":
-            "Fulfiller, updates their fulfillment on your bounty",
-          "fulfillment_submitted_issuer":
-            "Fulfiller, submits a new fulfillment to your bounty",
+          "fulfillment_updated_issuer": "Fulfiller, updates their fulfillment on your bounty",
+          "fulfillment_submitted_issuer": "Fulfiller, submits a new fulfillment to your bounty",
           "fulfillment_accepted_fulfiller": "Issuer accepts your fulfillment",
-          "contribution_received":
-            "Another user contributes funds to your bounty",
+          "contribution_received": "Another user contributes funds to your bounty",
           "bounty_completed": "Bounty no longer has enough funds to pay out",
           "application_received": "New worker applies to bounty",
           "application_accepted_applicant": "Issuer accepts your application",
@@ -676,8 +628,7 @@
         "about": {
           "title": "ABOUT",
           "description": "What would you like people to know about you?",
-          "notice":
-            "Enter some of your personal details so that the community can get to know you.",
+          "notice": "Enter some of your personal details so that the community can get to know you.",
           "form": {
             "name": {
               "label": "Name",
@@ -695,17 +646,14 @@
         },
         "skills": {
           "title": "SKILLS",
-          "description":
-            "What are some of your professional or technical skills?",
-          "notice":
-            "Enter or select the skills for which you are proficient. This will help others on the network be confident in your ability to fulfill certain types of bounties.",
+          "description": "What are some of your professional or technical skills?",
+          "notice": "Enter or select the skills for which you are proficient. This will help others on the network be confident in your ability to fulfill certain types of bounties.",
           "label": "Skills",
           "placeholder": "Create or Select a skill..."
         },
         "social": {
           "title": "SOCIAL",
-          "description":
-            "Do you have any other social profiles you would like displayed?",
+          "description": "Do you have any other social profiles you would like displayed?",
           "form": {
             "web": {
               "label": "Personal website"
@@ -714,16 +662,14 @@
         },
         "contact": {
           "title": "CONTACT",
-          "description":
-            "Where would you like to receive status notifications about your bounties and fulfillments?",
+          "description": "Where would you like to receive status notifications about your bounties and fulfillments?",
           "form": {
             "email": {
               "label": "Contact email",
               "placeholder": "Enter email..."
             },
             "marketing": {
-              "label":
-                "I would also like to receive relevant bounty suggestions and platform updates"
+              "label": "I would also like to receive relevant bounty suggestions and platform updates"
             }
           },
           "actions": {
@@ -748,8 +694,7 @@
       },
       "zero_state": {
         "title": "You have {currentTab} 0 submissions",
-        "description":
-          "It looks like you don't have any submissions. Come back after you have {currentTab} a fulfillment!"
+        "description": "It looks like you don't have any submissions. Come back after you have {currentTab} a fulfillment!"
       }
     },
     "user_stats": {
@@ -773,12 +718,10 @@
         "intermediate": "Intermediate",
         "advanced": "Advanced"
       },
-      "submissions_count":
-        "{count, plural, =1 {submission} other {submissions}}"
+      "submissions_count": "{count, plural, =1 {submission} other {submissions}}"
     },
     "bounty_item": {
-      "text":
-        "Created {time} {submissionCount, plural, =1 {∙ # submission} other {∙ # submissions}}",
+      "text": "Created {time} {submissionCount, plural, =1 {∙ # submission} other {∙ # submissions}}",
       "draftText": "Created {time}"
     },
     "essentials": {
@@ -815,23 +758,18 @@
     },
     "tx_guide": {
       "title": "Your wallet will take it from here!",
-      "description":
-        "After clicking \"OK\", a wallet dialogue will prompt you to confirm your Ethereum transaction and pay a small amount of ETH (for gas fees).",
+      "description": "After clicking \"OK\", a wallet dialogue will prompt you to confirm your Ethereum transaction and pay a small amount of ETH (for gas fees).",
       "notice": "A default gas limit and price will be set for you.",
       "messages": {
-        "waiting":
-          "Waiting for your transaction to be confirmed on the blockchain...",
+        "waiting": "Waiting for your transaction to be confirmed on the blockchain...",
         "confirmed": "Your transaction has been confirmed!",
-        "pending_receipt":
-          "Your transaction is being processed. We will notify you once it is confirmed.",
-        "pending_wallet":
-          "Confirming Ethereum transaction with your enabled wallet. This may take a few seconds."
+        "pending_receipt": "Your transaction is being processed. We will notify you once it is confirmed.",
+        "pending_wallet": "Confirming Ethereum transaction with your enabled wallet. This may take a few seconds."
       }
     },
     "editor": {
       "preview": "Preview",
-      "default":
-        "# Description\nDescribe the bounty that you want completed. What is it for? What does it involve?\n\n## Requirements\nWhat requirements do you have for bounty fulfillers? Are there any rules or constraints for your bounty? Are there any pre-requisites needed to complete it?\n\n* Item one\n* Item two\n* Item three\n\n## Definition of Done\nWhat should bounty issuers submit as proof that they have completed the bounty? What do fulfillers need to include in a submission in order for it to be accepted?\n\n1. Item 1\n2. Item 2\n3. Item 3\n\n### Things to Note\nIs there any other information you'd like potential fulfillers to know about you or the bounty? Does the bounty require any additional materials that either party needs to provide or information exchanged for external communication to occur?"
+      "default": "# Description\nDescribe the bounty that you want completed. What is it for? What does it involve?\n\n## Requirements\nWhat requirements do you have for bounty fulfillers? Are there any rules or constraints for your bounty? Are there any pre-requisites needed to complete it?\n\n* Item one\n* Item two\n* Item three\n\n## Definition of Done\nWhat should bounty issuers submit as proof that they have completed the bounty? What do fulfillers need to include in a submission in order for it to be accepted?\n\n1. Item 1\n2. Item 2\n3. Item 3\n\n### Things to Note\nIs there any other information you'd like potential fulfillers to know about you or the bounty? Does the bounty require any additional materials that either party needs to provide or information exchanged for external communication to occur?"
     },
     "notifications": {
       "fulfilLment_submitted": "You made a submission",
@@ -852,8 +790,7 @@
       "payout_increased": "You increased the payout",
       "bounty_comment_received": "A bounty you fulfilled received a comment",
       "bounty_comment_received_issuer": "Your bounty received a comment",
-      "bounty_comment_received_commenter":
-        "A bounty you commented on received a comment",
+      "bounty_comment_received_commenter": "A bounty you commented on received a comment",
       "bounty_issue_activated": "You posted a new bounty",
       "fulfillment_updated": "You updated your submission",
       "fulfillment_updated_issuer": "A submission to your bounty was updated",
@@ -877,10 +814,8 @@
     "require_login": {
       "zero_state": {
         "title": "Sign in to use the Bounties Network",
-        "body":
-          "In order for you to use certain features of the network like creating and fulfilling bounties, commenting, and viewing your network stats, please sign in using your secure wallet.",
-        "subtext":
-          "If you don't wish to sign in but want to explore, feel free to check out some bounties using the ",
+        "body": "In order for you to use certain features of the network like creating and fulfilling bounties, commenting, and viewing your network stats, please sign in using your secure wallet.",
+        "subtext": "If you don't wish to sign in but want to explore, feel free to check out some bounties using the ",
         "action": "Sign In"
       },
       "explorer": "explorer"

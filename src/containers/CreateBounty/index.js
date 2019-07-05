@@ -18,11 +18,18 @@ import { Loader, ZeroState } from 'components';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import config from 'public-modules/config';
 import intl from 'react-intl-universal';
+import NavigationPrompt from 'react-router-navigation-prompt';
+import Modal from '../../components/Modal';
+import Button from '../../components/Button';
 
 class CreateBountyComponent extends React.Component {
   constructor(props) {
     super(props);
     const { match, getDraft, getBounty, loadTokens, public_address } = props;
+    this.state = {
+      dirty: false,
+      submitNotPressed: true
+    };
 
     loadTokens();
 
@@ -64,23 +71,150 @@ class CreateBountyComponent extends React.Component {
       );
     }
 
+    var prompter = undefined;
+    if (
+      this.state.dirty &&
+      !isEditing &&
+      !isDraft &&
+      this.state.submitNotPressed
+    ) {
+      prompter = (
+        <NavigationPrompt
+          renderIfNotActive={false}
+          when={(crntLocation, nextLocation) =>
+            !nextLocation ||
+            !nextLocation.pathname.startsWith(crntLocation.pathname)
+          }
+        >
+          {({ isActive, onCancel, onConfirm }) => {
+            if (isActive) {
+              return (
+                <Modal
+                  dismissable
+                  size="medium"
+                  fixed
+                  visible={true}
+                  onClose={onCancel}
+                >
+                  <Modal.Header closable>
+                    <Modal.Message>
+                      {intl.get(
+                        'sections.bounty.modals.unsaved_changes.new_bounty.title'
+                      )}
+                    </Modal.Message>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Modal.Description>
+                      {intl.get(
+                        'sections.bounty.modals.unsaved_changes.new_bounty.description'
+                      )}
+                    </Modal.Description>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      className="margin"
+                      margin
+                      fitwidth
+                      onClick={onCancel}
+                    >
+                      Cancel
+                    </Button>
+                    <Button type="destructive" onClick={onConfirm}>
+                      Discard changes
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              );
+            }
+          }}
+        </NavigationPrompt>
+      );
+    } else if (
+      (this.state.dirty &&
+        isEditing &&
+        (this.state.dirty && this.state.submitNotPressed)) ||
+      (this.state.dirty &&
+        isDraft &&
+        (this.state.dirty && this.state.submitNotPressed))
+    ) {
+      prompter = (
+        <NavigationPrompt
+          renderIfNotActive={false}
+          when={(crntLocation, nextLocation) =>
+            !nextLocation ||
+            !nextLocation.pathname.startsWith(crntLocation.pathname)
+          }
+        >
+          {({ isActive, onCancel, onConfirm }) => {
+            if (isActive) {
+              return (
+                <Modal
+                  dismissable
+                  size="medium"
+                  fixed
+                  visible={true}
+                  onClose={onCancel}
+                >
+                  <Modal.Header closable>
+                    <Modal.Message>
+                      {intl.get(
+                        'sections.bounty.modals.unsaved_changes.draft_or_edit_bounty.title'
+                      )}
+                    </Modal.Message>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Modal.Description>
+                      {intl.get(
+                        'sections.bounty.modals.unsaved_changes.draft_or_edit_bounty.description'
+                      )}
+                    </Modal.Description>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      className="margin"
+                      margin
+                      fitwidth
+                      onClick={onCancel}
+                    >
+                      Cancel
+                    </Button>
+                    <Button type="destructive" onClick={onConfirm}>
+                      Discard changes
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              );
+            }
+          }}
+        </NavigationPrompt>
+      );
+    }
+
     return (
-      <PageCard>
-        <PageCard.Header>
-          <PageCard.Title>
-            {isEditing || isDraft
-              ? intl.get('sections.create_bounty.actions.edit')
-              : intl.get('sections.create_bounty.actions.create')}
-          </PageCard.Title>
-        </PageCard.Header>
-        <PageCard.Content key="createBountyForm" className={styles.cardContent}>
-          <CreateBountyForm
-            initialValues={formInitialValues}
-            isEditing={isEditing}
-            isDraft={isDraft}
-          />
-        </PageCard.Content>
-      </PageCard>
+      <div>
+        {prompter}
+        <PageCard>
+          <PageCard.Header>
+            <PageCard.Title>
+              {isEditing || isDraft
+                ? intl.get('sections.create_bounty.actions.edit')
+                : intl.get('sections.create_bounty.actions.create')}
+            </PageCard.Title>
+          </PageCard.Header>
+          <PageCard.Content
+            key="createBountyForm"
+            className={styles.cardContent}
+          >
+            <CreateBountyForm
+              handleBounty={() => this.setState({ submitNotPressed: false })}
+              onChange={() => this.setState({ dirty: true })}
+              initialValues={formInitialValues}
+              isEditing={isEditing}
+              isDraft={isDraft}
+            />
+          </PageCard.Content>
+        </PageCard>
+      </div>
     );
   }
 }
