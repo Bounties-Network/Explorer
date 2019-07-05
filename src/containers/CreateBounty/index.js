@@ -75,8 +75,8 @@ class CreateBountyComponent extends React.Component {
     if (
       this.state.dirty &&
       !isEditing &&
-      (this.state.dirty && !isDraft) &&
-      (this.state.dirty && this.state.submitNotPressed)
+      !isDraft &&
+      this.state.submitNotPressed
     ) {
       prompter = (
         <NavigationPrompt
@@ -91,22 +91,24 @@ class CreateBountyComponent extends React.Component {
               return (
                 <Modal
                   dismissable
-                  size={'medium'}
+                  size="medium"
                   fixed
                   visible={true}
                   onClose={onCancel}
                 >
-                  <Modal.Header closable />
+                  <Modal.Header closable>
+                    <Modal.Message>
+                      {intl.get(
+                        'sections.bounty.modals.unsaved_changes.new_bounty.title'
+                      )}
+                    </Modal.Message>
+                  </Modal.Header>
                   <Modal.Body>
-                    <div style={{ textAlign: 'center', padding: '1rem' }}>
-                      <h1 style={{ fontWeight: 'bold' }}>Discard changes?</h1>
-                      <br />
-                      <p>
-                        If you decide to leave this page, the changes made to
-                        your bounty will be discarded and your bounty will be
-                        reverted to its previous state.
-                      </p>
-                    </div>
+                    <Modal.Description>
+                      {intl.get(
+                        'sections.bounty.modals.unsaved_changes.new_bounty.description'
+                      )}
+                    </Modal.Description>
                   </Modal.Body>
                   <Modal.Footer>
                     <Button
@@ -148,21 +150,24 @@ class CreateBountyComponent extends React.Component {
               return (
                 <Modal
                   dismissable
-                  size={'medium'}
+                  size="medium"
                   fixed
                   visible={true}
                   onClose={onCancel}
                 >
-                  <Modal.Header closable />
+                  <Modal.Header closable>
+                    <Modal.Message>
+                      {intl.get(
+                        'sections.bounty.modals.unsaved_changes.draft_or_edit_bounty.title'
+                      )}
+                    </Modal.Message>
+                  </Modal.Header>
                   <Modal.Body>
-                    <div style={{ textAlign: 'center', padding: '1rem' }}>
-                      <h1 style={{ fontWeight: 'bold' }}>Discard changes?</h1>
-                      <br />
-                      <p>
-                        If you decide to leave this page without creating a
-                        draft or activating, your bounty will be discarded.
-                      </p>
-                    </div>
+                    <Modal.Description>
+                      {intl.get(
+                        'sections.bounty.modals.unsaved_changes.draft_or_edit_bounty.description'
+                      )}
+                    </Modal.Description>
                   </Modal.Body>
                   <Modal.Footer>
                     <Button

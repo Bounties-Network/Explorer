@@ -24,7 +24,7 @@ class UserSettingsComponent extends React.Component {
   constructor(props) {
     super(props);
 
-    const { initialValues, setProfileImageUrls, handleUser } = props;
+    const { initialValues, setProfileImageUrls } = props;
 
     const { smallProfileImageUrl, largeProfileImageUrl } = initialValues;
 
