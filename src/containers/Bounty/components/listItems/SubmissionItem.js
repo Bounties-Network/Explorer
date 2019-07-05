@@ -5,9 +5,20 @@ import { includes } from 'lodash';
 import { Button, Text } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE, EXPIRED } from 'public-modules/Bounty/constants';
-import { hasImageExtension, shortenFileName, shortenUrl } from 'utils/helpers';
+import {
+  newTabExtension,
+  hasImageExtension,
+  shortenFileName,
+  shortenUrl
+} from 'utils/helpers';
 import moment from 'moment';
 import intl from 'react-intl-universal';
+import showdown from 'showdown';
+
+showdown.setOption('simpleLineBreaks', true);
+showdown.extension('targetBlank', newTabExtension);
+const converter = new showdown.Converter({ extensions: ['targetBlank'] });
+converter.setFlavor('github');
 
 const SubmissionItem = props => {
   const {
@@ -164,9 +175,16 @@ const SubmissionItem = props => {
         </div>
         <div className={`${styles.labelGroup} ${styles.submissionContents}`}>
           <Text inputLabel>{intl.get('common.description')}</Text>
-          <Text color="darkGrey" className={styles.submissionDescription}>
-            {description || 'N/A'}
-          </Text>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: converter.makeHtml(description || 'N/A')
+            }}
+            className="markdownContent"
+          />
+          <Text
+            color="darkGrey"
+            /*className={styles.submissionDescription}*/ className="markdownContent"
+          />
         </div>
         {dataHash ? (
           <div className={`${styles.labelGroup}`}>
