@@ -176,7 +176,8 @@ class CreateBountyFormComponent extends React.Component {
       minDate,
       tokens,
       isEditing,
-      initialValues
+      initialValues,
+      handleBounty
     } = this.props;
     const { validatorGroups } = this;
 
@@ -724,6 +725,7 @@ class CreateBountyFormComponent extends React.Component {
         </FormSection>
         <div className={styles.buttonContainer}>
           <Button
+            onClick={handleBounty}
             type="primary"
             disabled={uploadLoading || (submitFailed && invalid)}
             loading={submittingBounty}

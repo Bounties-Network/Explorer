@@ -160,6 +160,18 @@
         }
       },
       "modals": {
+        "unsaved_changes": {
+          "new_bounty": {
+            "title": "Discard Changes?",
+            "description":
+              "If you decide to leave this page, the changes made to your bounty will be discarded and your bounty will be reverted to its previous state."
+          },
+          "draft_or_edit_bounty": {
+            "title": "Discard Changes?",
+            "description":
+              "If you decide to leave this page without creating a draft or activating, your bounty will be discarded."
+          }
+        },
         "activate_dead_form": {
           "title": "Re-Activate your bounty",
           "description":
@@ -635,6 +647,13 @@
       "messages": {
         "profile_saved": "Profile saved successfully",
         "email_saved": "Email preferences saved successfully"
+      },
+      "modals": {
+        "unsaved_changes": {
+          "title": "Discard Changes?",
+          "description":
+            "If you decide to leave this page without confirming your changes, the changes made to your profile will be discarded and your profile will be reverted to its previous state."
+        }
       },
       "emails": {
         "title": "EMAIL NOTIFICATIONS",
