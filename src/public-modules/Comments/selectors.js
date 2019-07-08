@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 export const rootCommentsSelector = state => state.comments;
-export const rootFulCommentsSelector = state => state.fulComments;
+export const rootFulCommentsSelector = state => state.comments;
 
 export const commentsSelector = createSelector(
   rootCommentsSelector,

@@ -56,8 +56,8 @@ function loadCommentsFail(error) {
   return { type: LOAD_COMMENTS_FAIL, error };
 }
 
-function loadFulComments(bountyId, fulfillmentId) {
-  return { type: LOAD_FUL_COMMENTS, bountyId, fulfillmentId };
+function loadFulComments(id) {
+  return { type: LOAD_FUL_COMMENTS, id };
 }
 
 function loadFulCommentsSuccess(comments, count) {
@@ -104,8 +104,8 @@ function postCommentFail(error) {
   return { type: POST_COMMENT_FAIL, error };
 }
 
-function postFulComment(bountyId, fulfillmentId, text) {
-  return { type: POST_FUL_COMMENT, bountyId, fulfillmentId, text };
+function postFulComment(id, text) {
+  return { type: POST_FUL_COMMENT, id, text };
 }
 
 function postFulCommentSuccess(comment) {
@@ -194,27 +194,26 @@ function CommentsReducer(state = initialState, action) {
       };
     }
     case LOAD_FUL_COMMENTS: {
-      const { bountyId, fulfillmentId } = action;
+      const { id } = action;
 
       return {
         ...state,
         loadingFulComments: true,
         loadedFulComments: false,
-        bountyId,
-        fulfillmentId,
+        id,
         countFulComments: 0,
         errorFulComments: false
       };
     }
     case LOAD_FUL_COMMENTS_SUCCESS: {
-      const { fulComments, countFulComments } = action;
+      const { comments, count } = action;
       return {
         ...state,
         loadingFulComments: false,
         loadedFulComments: true,
         errorFulComments: false,
-        fulComments,
-        countFulComments
+        fulComments: comments,
+        countFulComments: count
       };
     }
     case LOAD_FUL_COMMENTS_FAIL: {
@@ -233,11 +232,11 @@ function CommentsReducer(state = initialState, action) {
       };
     }
     case LOAD_MORE_FUL_COMMENTS_SUCCESS: {
-      const { fulComments } = action;
+      const { comments } = action;
       return {
         ...state,
         loadingMoreFulComments: false,
-        fulComments: [...state.fulComments, ...fulComments]
+        fulComments: [...state.fulComments, ...comments]
       };
     }
     case LOAD_MORE_FUL_COMMENTS_FAIL: {
@@ -258,7 +257,8 @@ function CommentsReducer(state = initialState, action) {
       const { comment } = action;
       return {
         ...state,
-        posting: false,
+        postingFulComments: false,
+        countFulComments: 1 + state.countFulComments,
         fulComments: [comment, ...state.fulComments]
       };
     }

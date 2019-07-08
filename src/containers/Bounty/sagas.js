@@ -28,7 +28,7 @@ const { loadFulfillments } = fulfillmentsActions;
 const { loadComments, loadFulComments } = commentsActions;
 const { loadApplicants } = applicantsActions;
 const { closeWalkthrough } = transactionActions;
-const { POST_COMMENT_SUCCESS } = commentsActionTypes;
+const { POST_COMMENT_SUCCESS, POST_FUL_COMMENT_SUCCESS } = commentsActionTypes;
 
 export function* closeBountyModal(action) {
   yield put(closeModal());
@@ -53,7 +53,9 @@ export function* loadTab(action) {
 }
 
 export function* loadFulfillmentComments(action) {
-  yield put(loadFulComments(action.bountyId, action.fulfillmentId));
+  if (action.id >= 0) {
+    yield put(loadFulComments(action.id));
+  }
 }
 
 export function* showIssueRatingModal() {
@@ -126,10 +128,15 @@ export function* watchCommentPosted() {
   yield takeLatest(POST_COMMENT_SUCCESS, resetCommentsForm);
 }
 
+export function* watchFulCommentPosted() {
+  yield takeLatest(POST_FUL_COMMENT_SUCCESS, resetCommentsForm);
+}
+
 export default [
   watchCloseModals,
   watchTabLoads,
   watchCommentLoads,
   watchFulfillmentLoadSuccess,
-  watchCommentPosted
+  watchCommentPosted,
+  watchFulCommentPosted
 ];

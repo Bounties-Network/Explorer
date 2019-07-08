@@ -87,6 +87,7 @@ class BountyPageCardsComponent extends React.Component {
       postComment,
       postFulComment,
       loadMoreComments,
+      loadMoreFulComments,
       loadMoreFulfillments,
       loadMoreApplicants,
       openComments
@@ -126,6 +127,7 @@ class BountyPageCardsComponent extends React.Component {
           openComments={openComments}
           showLogin={showLogin}
           postFulComment={postFulComment}
+          loadMoreFulComments={loadMoreFulComments}
           comments={fulComments}
         />
       );
@@ -248,6 +250,7 @@ const BountyPageCards = compose(
       postComment: commentsActions.postComment,
       postFulComment: commentsActions.postFulComment,
       loadMoreComments: commentsActions.loadMoreComments,
+      loadMoreFulComments: commentsActions.loadMoreFulComments,
       loadMoreFulfillments: fulfillmentsActions.loadMoreFulfillments,
       loadMoreApplicants: applicantsActions.loadMoreApplicants,
       showLogin: loginActions.showLogin

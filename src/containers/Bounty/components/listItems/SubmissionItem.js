@@ -15,6 +15,8 @@ import {
 import moment from 'moment';
 import intl from 'react-intl-universal';
 import showdown from 'showdown';
+import { map as fpMap } from 'lodash';
+const map = fpMap.convert({ cap: false });
 
 showdown.setOption('simpleLineBreaks', true);
 showdown.extension('targetBlank', newTabExtension);
@@ -49,8 +51,33 @@ const SubmissionItem = props => {
     currentUser,
     postFulComment,
     comments,
-    showLogin
+    showLogin,
+    id,
+    loadMoreFulComments
   } = props;
+
+  let numComments =
+    openComments && comments.countFulComments >= comment_count
+      ? comments.countFulComments
+      : comment_count;
+  const renderComments = () => {
+    return map(comment => {
+      const { id, text, user, created } = comment;
+      const { name, public_address, small_profile_image_url } = user;
+
+      return (
+        <ListGroup.ListItem key={id} className={styles.listItem} fullBorder>
+          <CommentItem
+            name={name}
+            address={public_address}
+            img={small_profile_image_url}
+            text={text}
+            created={created}
+          />
+        </ListGroup.ListItem>
+      );
+    }, comments.list);
+  };
 
   const { bounty_stage } = bounty;
 
@@ -119,6 +146,85 @@ const SubmissionItem = props => {
         {intl.get('actions.rate_issuer')}
       </Button>
     );
+  }
+  let bodyClass = '';
+  let newCommentForm = '';
+  let body = '';
+  if (openComments) {
+    newCommentForm = (
+      <ListGroup.ListItem
+        key="form"
+        className={styles.newCommentForm}
+        borderColor="lightGrey"
+        fullBorder
+      >
+        <NewCommentForm
+          className={styles.newCommentForm}
+          signedIn={!!currentUser}
+          onSubmit={
+            !!currentUser
+              ? values => postFulComment(id, values.text)
+              : showLogin
+          }
+          loading={comments.postingFulComments}
+        />
+      </ListGroup.ListItem>
+    );
+
+    body = (
+      <ListGroup className={styles.borderStyle}>
+        {[
+          newCommentForm,
+          ...renderComments(),
+          comments.fulComments.length < comments.countFulComments && (
+            <ListGroup.ListItem
+              key="load"
+              className={styles.loadMoreButton}
+              fullBorder
+            >
+              <Button
+                loading={comments.loadingMoreFulComments}
+                onClick={() => {
+                  loadMoreFulComments(id);
+                }}
+              >
+                {intl.get('actions.load_more')}
+              </Button>
+            </ListGroup.ListItem>
+          )
+        ]}
+      </ListGroup>
+    );
+
+    if (!comments.list.length) {
+      body = (
+        <ListGroup className={styles.borderStyle}>
+          {[
+            newCommentForm,
+            <ListGroup.ListItem
+              key="zero"
+              className={styles.zeroState}
+              fullBorder
+            >
+              <ZeroState
+                title={intl.get(
+                  'sections.bounty.components.comments_card.zero_state.title'
+                )}
+                text={intl.get(
+                  'sections.bounty.components.comments_card.zero_state.description'
+                )}
+                icon="comment"
+              />
+            </ListGroup.ListItem>
+          ]}
+        </ListGroup>
+      );
+    }
+
+    if (comments.loadingFulComments) {
+      bodyClass = styles.bodyLoading;
+      body = <Loader color="blue" size="medium" />;
+    }
   }
 
   return (
@@ -255,37 +361,16 @@ const SubmissionItem = props => {
       <button
         className={`${styles.toggleComments}`}
         onClick={() => {
-          setOpenComments(bounty.id, openComments ? -1 : fulfillmentId);
+          setOpenComments(openComments ? -1 : id);
         }}
       >
         <FontAwesomeIcon
           icon={['far', 'angle-down']}
           className={`${styles.toggleIcon}`}
         />
-        Show {comment_count} comments
+        Show {numComments} comments
       </button>
-      {openComments && (
-        <div>
-          <ListGroup.ListItem
-            key="form"
-            className={styles.newCommentForm}
-            borderColor="lightGrey"
-            fullBorder
-          >
-            <NewCommentForm
-              className={styles.newCommentForm}
-              signedIn={!!currentUser}
-              onSubmit={
-                !!currentUser
-                  ? values =>
-                      postFulComment(bounty.id, fulfillmentId, values.text)
-                  : showLogin
-              }
-              loading={comments.posting}
-            />
-          </ListGroup.ListItem>
-        </div>
-      )}
+      {openComments && <div className={bodyClass}>{body}</div>}
     </div>
   );
 };

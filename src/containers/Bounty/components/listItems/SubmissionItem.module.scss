@@ -1,5 +1,11 @@
 @import '~styles/variables.scss';
-
+.bodyLoading {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  min-height: 15rem;
+}
 .submissionItem {
   background-color: $brand-white;
   border: $base-border;
@@ -27,7 +33,11 @@
     margin-right: -$base-spacing;
   }
 }
-
+.loadMoreButton {
+  width: 100%;
+  text-align: center;
+  padding-top: $l-spacing;
+}
 .submissionHeader {
   background-color: $brand-nearWhite;
   border-bottom: $base-border;

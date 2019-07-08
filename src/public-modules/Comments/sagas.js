@@ -5,7 +5,7 @@ import {
   commentsSelector,
   fulCommentsSelector
 } from 'public-modules/Comments/selectors';
-import { LIMIT } from './constants';
+import { LIMIT, LIMIT_FUL } from './constants';
 
 const {
   LOAD_COMMENTS,
@@ -78,12 +78,11 @@ export function* postNewComment(action) {
 }
 
 export function* loadFulComments(action) {
-  const { bountyId, fulfillmentId } = action;
+  const { id } = action;
 
   try {
-    const endpoint = `bounty/${bountyId}/fulfillment/${fulfillmentId}/comment/?limit=${LIMIT}`;
+    const endpoint = `fulfillment/${id}/comment/?limit=${LIMIT_FUL}`;
     const comments = yield call(request, endpoint, 'GET');
-    console.log('comments', endpoint, comments);
     yield put(loadFulCommentsSuccess(comments.results, comments.count));
   } catch (e) {
     yield put(loadFulCommentsFail(e));
@@ -91,20 +90,17 @@ export function* loadFulComments(action) {
 }
 
 export function* loadMoreFulComments(action) {
-  const {
-    fulComments: currentComments,
-    bountyId,
-    fulfillmentId
-  } = yield select(fulCommentsSelector);
+  const { fulComments, id } = yield select(fulCommentsSelector);
 
   const params = {
-    limit: LIMIT,
-    offset: currentComments.length
+    limit: LIMIT_FUL,
+    offset: fulComments.length
   };
 
   try {
-    const endpoint = `bounty/${bountyId}/fulfillment/${fulfillmentId}/comment/`;
+    const endpoint = `fulfillment/${id}/comment/`;
     const comments = yield call(request, endpoint, 'GET', { params });
+
     yield put(loadMoreFulCommentsSuccess(comments.results));
   } catch (e) {
     console.log(e);
@@ -113,9 +109,9 @@ export function* loadMoreFulComments(action) {
 }
 
 export function* postNewFulComment(action) {
-  const { bountyId, fulfillmentId, text } = action;
+  const { id, text } = action;
   try {
-    let endpoint = `bounty/${bountyId}/fulfillment/${fulfillmentId}/comment/`;
+    let endpoint = `fulfillment/${id}/comment/`;
     const comment = yield call(request, endpoint, 'POST', { data: { text } });
     console.log('comment', comment);
     yield put(postFulCommentSuccess(comment));
