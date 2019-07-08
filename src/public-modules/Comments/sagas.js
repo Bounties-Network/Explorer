@@ -113,7 +113,6 @@ export function* postNewFulComment(action) {
   try {
     let endpoint = `fulfillment/${id}/comment/`;
     const comment = yield call(request, endpoint, 'POST', { data: { text } });
-    console.log('comment', comment);
     yield put(postFulCommentSuccess(comment));
   } catch (e) {
     console.log(e);
