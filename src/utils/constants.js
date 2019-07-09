@@ -49,7 +49,11 @@ export const NOTIFICATION_ID = {
   BOUNTY_COMMENT_RECEIVED_ISSUER: 33,
   BOUNTY_CHANGED_APPLICANT: 34,
   BOUNTY_COMMENT_RECEIVED_COMMENTER: 35,
-  BOUNTY_CHANGED_ISSUER: 36
+  BOUNTY_CHANGED_ISSUER: 36,
+  FULFILLMENT_COMMENT_RECEIVED: 37,
+  FULFILLMENT_COMMENT_RECEIVED_COMMENTER: 38,
+  FULFILLMENT_COMMENT_RECEIVED_COMMENTER: 39,
+  FULFILLMENT_COMMENT_ISSUED: 40
 };
 
 const plus = ['far', 'plus-circle'];
@@ -212,6 +216,22 @@ export const notification_template = {
   },
   [NOTIFICATION_ID.BOUNTY_CHANGED_ISSUER]: {
     message: 'components.notifications.bounty_changed_issuer',
+    icon: edit
+  },
+  [NOTIFICATION_ID.FULFILLMENT_COMMENT_RECEIVED]: {
+    message: 'components.notifications.fulfillment_comment_received',
+    icon: edit
+  },
+  [NOTIFICATION_ID.FULFILLMENT_COMMENT_RECEIVED_COMMENTER]: {
+    message: 'components.notifications.fulfillment_comment_received_commenter',
+    icon: edit
+  },
+  [NOTIFICATION_ID.FULFILLMENT_COMMENT_RECEIVED_ISSUER]: {
+    message: 'components.notifications.fulfillment_comment_received_issuer',
+    icon: edit
+  },
+  [NOTIFICATION_ID.FULFILLMENT_COMMENT_ISSUED]: {
+    message: 'components.notifications.fulfillment_comment_issued',
     icon: edit
   }
 };

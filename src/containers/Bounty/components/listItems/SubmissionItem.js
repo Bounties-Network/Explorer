@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './SubmissionItem.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { includes } from 'lodash';
-import { Button, Text, ListGroup, Loader, ZeroState } from 'components';
+import { Button, Text, ListGroup, Loader } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE, EXPIRED } from 'public-modules/Bounty/constants';
 import { CommentItem, NewCommentForm } from '../index';

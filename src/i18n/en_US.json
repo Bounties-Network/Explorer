@@ -675,6 +675,11 @@
           "bounty_comment_received_issuer": "Your bounty receives a comment",
           "bounty_comment_received_commenter":
             "A bounty you commented on receives a comment",
+          "fulfillment_comment_received": "Your submission receives a comment",
+          "fulfillment_comment_received_issuer":
+            "A submission to your bounty receives a comment",
+          "fulfillment_comment_received_commenter":
+            "A submission you commented on receives a comment",
           "bounty_expired": "Bounty expires",
           "bounty_changed": "A bounty you fulfilled is changed",
           "bounty_changed_applicant": "A bounty you applied for is changed",
@@ -878,6 +883,11 @@
       "bounty_comment_received_issuer": "Your bounty received a comment",
       "bounty_comment_received_commenter":
         "A bounty you commented on received a comment",
+      "fulfillment_comment_received": "Your submission received a comment",
+      "fulfillment_comment_received_issuer":
+        "A submission to your bounty received a comment",
+      "fulfillment_comment_received_commenter":
+        "A submission you commented on received a comment",
       "bounty_issue_activated": "You posted a new bounty",
       "fulfillment_updated": "You updated your submission",
       "fulfillment_updated_issuer": "A submission to your bounty was updated",
@@ -885,6 +895,7 @@
       "rating_received": "You received a rating",
       "profile_updated": "You updated your profile",
       "comment_issued": "You wrote a comment",
+      "fulfillment_comment_issued": "You wrote a comment",
       "draft_created": "You created a draft",
       "draft_updated": "You updated a draft",
       "contribution_received": "You received a contribution",

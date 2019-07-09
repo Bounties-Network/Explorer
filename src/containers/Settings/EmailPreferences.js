@@ -93,6 +93,12 @@ const mapStateToProps = state => {
     TransferRecipient: preferences.issuer.TransferRecipient,
     BountyCommentReceived: preferences.fulfiller.BountyCommentReceived,
     BountyCommentReceivedIssuer: preferences.issuer.BountyCommentReceivedIssuer,
+    BountyCommentReceivedCommenter:
+      preferences.both.BountyCommentReceivedCommenter,
+    FulfillmentCommentReceived:
+      preferences.fulfiller.FulfillmentCommentReceived,
+    FulfillmentCommentReceivedIssuer:
+      preferences.issuer.FulfillmentCommentReceivedIssuer,
     BountyChanged: preferences.fulfiller.BountyChanged,
     BountyChangedApplicant: preferences.fulfiller.BountyChangedApplicant,
     BountyExpired: preferences.issuer.BountyExpired,
