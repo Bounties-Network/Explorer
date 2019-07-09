@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .listItem {
   padding: $m-spacing $m-spacing;
@@ -14,6 +14,10 @@
     transform: translateX(-50%);
     left: 50%;
   }
+}
+
+.white {
+  border-color: transparent;
 }
 
 .nearWhite {

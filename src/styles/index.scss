@@ -187,7 +187,6 @@ a {
       &::before {
         content: '∙';
         display: inline-block;
-        color: $brand-blue;
         font-size: $base-font-size;
         position: absolute;
         top: 0;
@@ -206,7 +205,6 @@ a {
       &::before {
         content: counter(ol-list-counter) '.';
         display: inline-block;
-        color: $brand-blue;
         text-align: right;
         margin-right: 0.5rem;
       }
@@ -223,7 +221,6 @@ a {
       &::before {
         content: '∙';
         display: inline-block;
-        color: $brand-blue;
         font-size: $base-font-size;
         position: absolute;
         top: 0;
@@ -241,7 +238,6 @@ a {
       &::before {
         content: counter(ol-list-counter) '.';
         display: inline-block;
-        color: $brand-blue;
         font-size: $body-font-size;
         position: absolute;
         top: 0;

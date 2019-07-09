@@ -223,7 +223,6 @@
   height: 50px;
   line-height: 50px;
   width: 100%;
-  margin-top: $m-spacing;
   padding: 0;
 
   &:hover {
@@ -239,4 +238,8 @@
   color: $brand-grey;
   margin-right: $base-spacing;
   font-size: $base-font-size;
+}
+
+.newCommentForm {
+  padding-top: 0;
 }

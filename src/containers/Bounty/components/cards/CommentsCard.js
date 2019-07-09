@@ -41,7 +41,7 @@ const CommentsCard = props => {
     <ListGroup.ListItem
       key="form"
       className={styles.newCommentForm}
-      borderColor="lightGrey"
+      borderColor="transparent"
       fullBorder
     >
       <NewCommentForm

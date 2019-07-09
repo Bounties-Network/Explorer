@@ -66,7 +66,7 @@ const SubmissionItem = props => {
       const { name, public_address, small_profile_image_url } = user;
 
       return (
-        <ListGroup.ListItem key={id} className={styles.listItem} fullBorder>
+        <ListGroup.ListItem key={id} className={styles.listItem}>
           <CommentItem
             name={name}
             address={public_address}
@@ -155,7 +155,7 @@ const SubmissionItem = props => {
       <ListGroup.ListItem
         key="form"
         className={styles.newCommentForm}
-        borderColor="lightGrey"
+        borderColor="transparent"
         fullBorder
       >
         <NewCommentForm
