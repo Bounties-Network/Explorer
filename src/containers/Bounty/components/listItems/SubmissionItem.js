@@ -355,10 +355,15 @@ const SubmissionItem = props => {
             icon={openComments ? ['far', 'angle-up'] : ['far', 'angle-down']}
             className={`${styles.toggleIcon}`}
           />
-          {intl.get(
-            'sections.bounty.components.submissions_card.show_comments',
-            { count: numComments }
-          )}
+          {openComments
+            ? intl.get(
+                'sections.bounty.components.submissions_card.hide_comments',
+                { count: numComments }
+              )
+            : intl.get(
+                'sections.bounty.components.submissions_card.show_comments',
+                { count: numComments }
+              )}
         </button>
       )}
       {openComments && <div className={bodyClass}>{body}</div>}

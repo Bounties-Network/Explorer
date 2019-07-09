@@ -125,6 +125,8 @@
             " Your submissions are only visible to you and the bounty issuer.",
           "show_comments":
             "Show {count} {count, plural, =1 {comment} other {comments}}",
+          "hide_comments":
+            "Hide {count} {count, plural, =1 {comment} other {comments}}",
           "action": "Comment"
         }
       },
