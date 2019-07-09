@@ -196,32 +196,13 @@ const SubmissionItem = props => {
       </ListGroup>
     );
 
-    if (!comments.list.length) {
+    if (!numComments) {
       body = (
-        <ListGroup className={styles.borderStyle}>
-          {[
-            newCommentForm,
-            <ListGroup.ListItem
-              key="zero"
-              className={styles.zeroState}
-              fullBorder
-            >
-              <ZeroState
-                title={intl.get(
-                  'sections.bounty.components.comments_card.zero_state.title'
-                )}
-                text={intl.get(
-                  'sections.bounty.components.comments_card.zero_state.description'
-                )}
-                icon="comment"
-              />
-            </ListGroup.ListItem>
-          ]}
-        </ListGroup>
+        <ListGroup className={styles.borderStyle}>{newCommentForm}</ListGroup>
       );
     }
 
-    if (comments.loadingFulComments) {
+    if (comments.loadingFulComments && numComments > 0) {
       bodyClass = styles.bodyLoading;
       body = <Loader color="blue" size="medium" />;
     }
@@ -349,27 +330,37 @@ const SubmissionItem = props => {
           <Text inline color="defaultGrey" className={`${styles.timePosted}`}>
             {formattedTime}
           </Text>
-          <Text link src="#">
+          <Text
+            link
+            onClick={() => {
+              setOpenComments(openComments ? -1 : id);
+            }}
+          >
             <FontAwesomeIcon
               icon={['far', 'comment']}
               className={styles.commentIcon}
             />
-            Comment
+            {intl.get('sections.bounty.components.submissions_card.action')}
           </Text>
         </footer>
       </div>
-      <button
-        className={`${styles.toggleComments}`}
-        onClick={() => {
-          setOpenComments(openComments ? -1 : id);
-        }}
-      >
-        <FontAwesomeIcon
-          icon={['far', 'angle-down']}
-          className={`${styles.toggleIcon}`}
-        />
-        Show {numComments} comments
-      </button>
+      {numComments > 0 && (
+        <button
+          className={`${styles.toggleComments}`}
+          onClick={() => {
+            setOpenComments(openComments ? -1 : id);
+          }}
+        >
+          <FontAwesomeIcon
+            icon={openComments ? ['far', 'angle-up'] : ['far', 'angle-down']}
+            className={`${styles.toggleIcon}`}
+          />
+          {intl.get(
+            'sections.bounty.components.submissions_card.show_comments',
+            { count: numComments }
+          )}
+        </button>
+      )}
       {openComments && <div className={bodyClass}>{body}</div>}
     </div>
   );
