@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './NewCommentForm.module.scss';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Button } from 'components';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -18,17 +19,21 @@ const NewCommentForm = props => {
       <form onSubmit={handleSubmit}>
         <div className={`${styles.container} ${className}`}>
           <Field
+            className={styles.commentFieldInput}
             name="text"
             component={FormTextbox}
             type="text"
             placeholder={intl.get(
               'sections.bounty.components.new_comment.placeholder'
             )}
-            maxHeight="12.5rem"
-            minHeight="2.5rem"
           />
-          <Button disabled={loading || text.length === 0} loading={loading}>
-            {intl.get('sections.bounty.components.new_comment.action')}
+          <Button
+            className={styles.commentFieldButton}
+            disabled={loading || text.length === 0}
+            loading={loading}
+            type="action"
+          >
+            <FontAwesomeIcon icon={['far', 'plus']} />
           </Button>
         </div>
       </form>
