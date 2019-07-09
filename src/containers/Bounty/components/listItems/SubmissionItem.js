@@ -293,39 +293,6 @@ const SubmissionItem = props => {
             </div>
           ) : null}
         </div>
-        {dataHash ? (
-          <div className={`${styles.labelGroup}`}>
-            <Text inputLabel>Submission files</Text>
-            {!hasImageExtension(dataFileName) && (
-              <div>
-                <FontAwesomeIcon
-                  icon={['far', 'file-archive']}
-                  className={styles.submissionIcon}
-                />
-                <Text
-                  link
-                  absolute
-                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                >
-                  {shortenFileName(dataFileName)}
-                </Text>
-              </div>
-            )}
-            {hasImageExtension(dataFileName) && (
-              <a
-                className={`${styles.imageLink}`}
-                href={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                target="_blank"
-              >
-                <img
-                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                  class={styles.image}
-                  alt={dataFileName}
-                />
-              </a>
-            )}
-          </div>
-        ) : null}
         <footer className={`${styles.submissionFooter}`}>
           <Text inline color="defaultGrey" className={`${styles.timePosted}`}>
             {formattedTime}
