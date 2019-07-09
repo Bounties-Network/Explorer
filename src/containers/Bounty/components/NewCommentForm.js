@@ -31,7 +31,7 @@ const NewCommentForm = props => {
             className={styles.commentFieldButton}
             disabled={loading || text.length === 0}
             loading={loading}
-            type="action"
+            type="primary"
           >
             <FontAwesomeIcon icon={['far', 'plus']} />
           </Button>
