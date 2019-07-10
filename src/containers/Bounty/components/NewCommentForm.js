@@ -12,8 +12,7 @@ import intl from 'react-intl-universal';
 const formSelector = formValueSelector('newComment');
 
 const NewCommentForm = props => {
-  const { signedIn, handleSubmit, loading, text, className } = props;
-
+  const { signedIn, handleSubmit, loading, text, className, autoFocus } = props;
   if (signedIn) {
     return (
       <form onSubmit={handleSubmit}>
@@ -26,6 +25,7 @@ const NewCommentForm = props => {
             placeholder={intl.get(
               'sections.bounty.components.new_comment.placeholder'
             )}
+            autoFocus={autoFocus}
           />
           <Button
             className={styles.commentFieldButton}

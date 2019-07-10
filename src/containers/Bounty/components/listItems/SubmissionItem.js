@@ -6,6 +6,7 @@ import { Button, Text, ListGroup, Loader } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE, EXPIRED } from 'public-modules/Bounty/constants';
 import { CommentItem, NewCommentForm } from '../index';
+
 import {
   newTabExtension,
   hasImageExtension,
@@ -53,8 +54,15 @@ const SubmissionItem = props => {
     comments,
     showLogin,
     id,
-    loadMoreFulComments
+    loadMoreFulComments,
+    autoFocus
   } = props;
+  let focusCommentInput = false;
+
+  const commentOnSubmission = () => {
+    focusCommentInput = true;
+    setOpenComments(openComments ? -1 : id, true);
+  };
 
   let numComments =
     openComments && comments.countFulComments >= comment_count
@@ -167,6 +175,7 @@ const SubmissionItem = props => {
               : showLogin
           }
           loading={comments.postingFulComments}
+          autoFocus={autoFocus}
         />
       </ListGroup.ListItem>
     );
@@ -250,7 +259,11 @@ const SubmissionItem = props => {
         />
         <div className={`${styles.submissionMedia}`}>
           {url ? (
-            <a src={url} className={`${styles.submissionMediaItem}`}>
+            <a
+              href={url}
+              target="_blank"
+              className={`${styles.submissionMediaItem}`}
+            >
               <FontAwesomeIcon
                 icon={['fal', 'external-link-square']}
                 className={styles.submissionMediaIcon}
@@ -297,12 +310,7 @@ const SubmissionItem = props => {
           <Text inline color="defaultGrey" className={`${styles.timePosted}`}>
             {formattedTime}
           </Text>
-          <Text
-            link
-            onClick={() => {
-              setOpenComments(openComments ? -1 : id);
-            }}
-          >
+          <Text link onClick={commentOnSubmission}>
             <FontAwesomeIcon
               icon={['far', 'comment']}
               className={styles.commentIcon}

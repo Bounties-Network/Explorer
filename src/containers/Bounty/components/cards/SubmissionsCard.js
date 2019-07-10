@@ -24,7 +24,8 @@ const SubmissionsCard = props => {
     postFulComment,
     showLogin,
     comments,
-    loadMoreFulComments
+    loadMoreFulComments,
+    autoFocus
   } = props;
 
   const renderFulfillments = list => {
@@ -94,6 +95,7 @@ const SubmissionsCard = props => {
           showLogin={showLogin}
           comments={comments}
           loadMoreFulComments={loadMoreFulComments}
+          autoFocus={autoFocus}
         />
       );
     }, list);

@@ -38,8 +38,8 @@ function setActiveTab(tabKey) {
   return { type: SET_ACTIVE_TAB, tabKey };
 }
 
-function setOpenComments(id) {
-  return { type: SET_OPEN_COMMENTS, id };
+function setOpenComments(id, autoFocus) {
+  return { type: SET_OPEN_COMMENTS, id, autoFocus };
 }
 
 function setRatingModal(fulfillmentId, reviewee) {
@@ -82,11 +82,11 @@ function BountyPageUIReducer(state = initialState, action) {
     }
 
     case SET_OPEN_COMMENTS: {
-      const { id } = action;
-
+      const { id, autoFocus } = action;
       return {
         ...state,
-        openComments: id
+        openComments: id,
+        autoFocus: autoFocus
       };
     }
     case SET_RATING_MODAL: {

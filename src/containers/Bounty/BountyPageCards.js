@@ -90,7 +90,8 @@ class BountyPageCardsComponent extends React.Component {
       loadMoreFulComments,
       loadMoreFulfillments,
       loadMoreApplicants,
-      openComments
+      openComments,
+      autoFocus
     } = this.props;
 
     const bountyBelongsToLoggedInUser =
@@ -125,6 +126,7 @@ class BountyPageCardsComponent extends React.Component {
           setRatingModal={setRatingModal}
           setOpenComments={setOpenComments}
           openComments={openComments}
+          autoFocus={autoFocus}
           showLogin={showLogin}
           postFulComment={postFulComment}
           loadMoreFulComments={loadMoreFulComments}
@@ -219,6 +221,7 @@ const mapStateToProps = (state, router) => {
     modalVisible: bountyPage.modalVisible,
     currentTab: bountyPage.currentTab,
     openComments: bountyPage.openComments,
+    autoFocus: bountyPage.autoFocus,
     // data
     fulfillments: {
       ...fulfillmentsState,
