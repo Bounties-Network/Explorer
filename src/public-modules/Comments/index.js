@@ -108,8 +108,8 @@ function postFulComment(id, text) {
   return { type: POST_FUL_COMMENT, id, text };
 }
 
-function postFulCommentSuccess(comment) {
-  return { type: POST_FUL_COMMENT_SUCCESS, comment };
+function postFulCommentSuccess(comment, id) {
+  return { type: POST_FUL_COMMENT_SUCCESS, comment, id };
 }
 
 function postFulCommentFail(error) {

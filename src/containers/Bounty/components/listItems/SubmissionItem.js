@@ -63,7 +63,6 @@ const SubmissionItem = props => {
     focusCommentInput = true;
     setOpenComments(openComments ? -1 : id, true);
   };
-
   let numComments =
     openComments && comments.countFulComments >= comment_count
       ? comments.countFulComments
