@@ -44,7 +44,7 @@ $line-height-reset: 1;
 // COLORS
 $brand-purple: #5a28c6;
 $brand-purple-hover: #47209d;
-$brand-purple-disabled: #9673e3;
+$brand-purple-disabled: hsl(259, 55%, 55%);
 $brand-dark-purple: #2e2a35;
 
 $brand-destructive: hsl(353, 64%, 67%);
@@ -75,7 +75,7 @@ $base-border-color: $brand-lightGrey;
 
 // BANNER
 @mixin banner-gradient {
-  background: linear-gradient(to right, $brand-purple, $brand-blue-hover);
+  background: linear-gradient(45deg, $brand-purple-disabled, $brand-blue);
 }
 $banner-min-height: 13rem;
 
