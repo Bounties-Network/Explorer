@@ -18,11 +18,9 @@ class Header extends React.Component {
           <div className={styles.header}>
             {closable ? (
               <div className={styles.closeWrapper}>
-                <FontAwesomeIcon
-                  icon={['fal', 'times']}
-                  className={styles.closeIcon}
-                  onClick={onClose}
-                />
+                <div className={styles.closeIconWrapper} onClick={onClose}>
+                  <FontAwesomeIcon icon={['fal', 'times']} />
+                </div>
               </div>
             ) : null}
             <div className={children ? styles.headerContent : ''}>
