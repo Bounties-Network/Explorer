@@ -2,9 +2,11 @@ import React from 'react';
 import styles from './SubmissionItem.module.scss';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { includes } from 'lodash';
-import { Button, Text } from 'components';
+import { Button, Text, ListGroup, Loader } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE, EXPIRED } from 'public-modules/Bounty/constants';
+import { CommentItem, NewCommentForm } from '../index';
+
 import {
   newTabExtension,
   hasImageExtension,
@@ -14,6 +16,8 @@ import {
 import moment from 'moment';
 import intl from 'react-intl-universal';
 import showdown from 'showdown';
+import { map as fpMap } from 'lodash';
+const map = fpMap.convert({ cap: false });
 
 showdown.setOption('simpleLineBreaks', true);
 showdown.extension('targetBlank', newTabExtension);
@@ -41,8 +45,46 @@ const SubmissionItem = props => {
     acceptFulfillment,
     showModal,
     setRatingModal,
-    initiateLoginProtection
+    initiateLoginProtection,
+    comment_count,
+    setOpenComments,
+    openComments,
+    currentUser,
+    postFulComment,
+    comments,
+    showLogin,
+    id,
+    loadMoreFulComments,
+    autoFocus
   } = props;
+  let focusCommentInput = false;
+
+  const commentOnSubmission = () => {
+    focusCommentInput = true;
+    setOpenComments(openComments ? -1 : id, true);
+  };
+  let numComments =
+    openComments && comments.countFulComments >= comment_count
+      ? comments.countFulComments
+      : comment_count;
+  const renderComments = () => {
+    return map(comment => {
+      const { id, text, user, created } = comment;
+      const { name, public_address, small_profile_image_url } = user;
+
+      return (
+        <ListGroup.ListItem key={id} className={styles.listItem}>
+          <CommentItem
+            name={name}
+            address={public_address}
+            img={small_profile_image_url}
+            text={text}
+            created={created}
+          />
+        </ListGroup.ListItem>
+      );
+    }, comments.list);
+  };
 
   const { bounty_stage } = bounty;
 
@@ -60,7 +102,6 @@ const SubmissionItem = props => {
       <Button
         type="action"
         className={styles.actionButton}
-        icon={['far', 'check']}
         onClick={acceptFulfillment}
       >
         {intl.get('actions.accept')}
@@ -72,7 +113,6 @@ const SubmissionItem = props => {
     actionButton = (
       <Button
         className={styles.actionButton}
-        icon={['far', 'star']}
         onClick={() =>
           initiateLoginProtection(() => {
             setRatingModal(fulfillmentId, {
@@ -93,8 +133,7 @@ const SubmissionItem = props => {
   if (submissionBelongsToLoggedInUser && accepted && !issuer_review) {
     actionButton = (
       <Button
-        className={styles.actionButton}
-        icon={['far', 'star']}
+        className={`${styles.actionButton} ${styles.rateButton}`}
         onClick={() =>
           initiateLoginProtection(() => {
             const {
@@ -115,6 +154,67 @@ const SubmissionItem = props => {
       </Button>
     );
   }
+  let bodyClass = '';
+  let newCommentForm = '';
+  let body = '';
+  if (openComments) {
+    newCommentForm = (
+      <ListGroup.ListItem
+        key="form"
+        className={styles.newCommentForm}
+        borderColor="transparent"
+        fullBorder
+      >
+        <NewCommentForm
+          className={styles.newCommentForm}
+          signedIn={!!currentUser}
+          onSubmit={
+            !!currentUser
+              ? values => postFulComment(id, values.text)
+              : showLogin
+          }
+          loading={comments.postingFulComments}
+          autoFocus={autoFocus}
+        />
+      </ListGroup.ListItem>
+    );
+
+    body = (
+      <ListGroup className={styles.borderStyle}>
+        {[
+          newCommentForm,
+          ...renderComments(),
+          comments.fulComments.length < comments.countFulComments && (
+            <ListGroup.ListItem
+              key="load"
+              className={styles.loadMoreButton}
+              fullBorder
+            >
+              <Button
+                loading={comments.loadingMoreFulComments}
+                onClick={() => {
+                  loadMoreFulComments(id);
+                }}
+              >
+                {intl.get('actions.load_more')}
+              </Button>
+            </ListGroup.ListItem>
+          )
+        ]}
+      </ListGroup>
+    );
+
+    if (!numComments) {
+      body = (
+        <ListGroup className={styles.borderStyle}>{newCommentForm}</ListGroup>
+      );
+    }
+
+    if (comments.loadingFulComments && numComments > 0) {
+      bodyClass = styles.bodyLoading;
+      body = <Loader color="blue" size="medium" />;
+    }
+  }
 
   return (
     <div className={`${styles.submissionItem}`}>
@@ -130,96 +230,117 @@ const SubmissionItem = props => {
           border
         />
         <div className={`${styles.actionContainer}`}>
-          {actionButton}
           <FulfillmentStagePill
             accepted={accepted}
             bounty_stage={bounty_stage}
           />
-        </div>
-      </header>
-      <div className={`${styles.detailsContainer} ${styles.filter}`}>
-        <div className={`${styles.metaDataContainer}`}>
-          <div className={`${styles.submissionMetadata}`}>
-            <FontAwesomeIcon
-              icon={['far', 'clock']}
-              className={styles.submissionIcon}
-            />
-            <Text inline>{formattedTime}</Text>
-          </div>
+          {actionButton}
           {bountyBelongsToLoggedInUser && (
-            <div className={`${styles.submissionMetadata}`}>
-              <FontAwesomeIcon
-                icon={['far', 'envelope']}
-                className={styles.submissionIcon}
-              />
-              <Text link src={`mailto:${fulfiller_email}`}>
-                {fulfiller_email}
-              </Text>
-            </div>
-          )}
-          {url ? (
-            <div
-              className={[styles.submissionMetadata, styles.bottomMargin].join(
-                ' '
-              )}
+            <Text
+              link
+              src={`mailto:${fulfiller_email}`}
+              className={styles.emailLink}
             >
               <FontAwesomeIcon
-                icon={['far', 'link']}
-                className={styles.submissionIcon}
+                icon={['far', 'envelope']}
+                className={styles.emailIcon}
               />
-              <Text link absolute src={url}>
-                {shortenUrl(url)}
-              </Text>
+            </Text>
+          )}
+        </div>
+      </header>
+      <div className={`${styles.submissionContents}`}>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: converter.makeHtml(description || 'N/A')
+          }}
+          className="markdownContent"
+        />
+        <div className={`${styles.submissionMedia}`}>
+          {url ? (
+            <a
+              href={url}
+              target="_blank"
+              className={`${styles.submissionMediaItem}`}
+            >
+              <FontAwesomeIcon
+                icon={['fal', 'external-link-square']}
+                className={styles.submissionMediaIcon}
+              />
+              <Text className={`${styles.fileName}`}>{shortenUrl(url)}</Text>
+            </a>
+          ) : null}
+          {dataHash ? (
+            <div>
+              {!hasImageExtension(dataFileName) && (
+                <a
+                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  className={`${styles.submissionMediaItem}`}
+                >
+                  <FontAwesomeIcon
+                    icon={['far', 'file-archive']}
+                    className={styles.submissionMediaIcon}
+                  />
+                  <Text
+                    className={`${styles.fileName}`}
+                    src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  >
+                    {shortenFileName(dataFileName)}
+                  </Text>
+                </a>
+              )}
+              {hasImageExtension(dataFileName) && (
+                <a
+                  className={`${styles.submissionMediaItem}`}
+                  href={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  target="_blank"
+                >
+                  <img
+                    src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                    class={styles.image}
+                    alt={dataFileName}
+                  />
+                </a>
+              )}
             </div>
           ) : null}
         </div>
-        <div className={`${styles.labelGroup} ${styles.submissionContents}`}>
-          <Text inputLabel>{intl.get('common.description')}</Text>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: converter.makeHtml(description || 'N/A')
-            }}
-            className="markdownContent"
-          />
-          <Text
-            color="darkGrey"
-            /*className={styles.submissionDescription}*/ className="markdownContent"
-          />
-        </div>
-        {dataHash ? (
-          <div className={`${styles.labelGroup}`}>
-            <Text inputLabel>Submission files</Text>
-            {!hasImageExtension(dataFileName) && (
-              <div>
-                <FontAwesomeIcon
-                  icon={['far', 'file-archive']}
-                  className={styles.submissionIcon}
-                />
-                <Text
-                  link
-                  absolute
-                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                >
-                  {shortenFileName(dataFileName)}
-                </Text>
-              </div>
-            )}
-            {hasImageExtension(dataFileName) && (
-              <a
-                className={`${styles.imageLink}`}
-                href={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                target="_blank"
-              >
-                <img
-                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
-                  class={styles.image}
-                  alt={dataFileName}
-                />
-              </a>
-            )}
-          </div>
-        ) : null}
+        <footer className={`${styles.submissionFooter}`}>
+          <Text inline color="defaultGrey" className={`${styles.timePosted}`}>
+            {formattedTime}
+          </Text>
+          <Text link onClick={commentOnSubmission}>
+            <FontAwesomeIcon
+              icon={['far', 'comment']}
+              className={styles.commentIcon}
+            />
+            {intl.get('sections.bounty.components.submissions_card.action')}
+          </Text>
+        </footer>
       </div>
+      {numComments > 0 && (
+        <button
+          className={`${styles.toggleComments}`}
+          onClick={() => {
+            setOpenComments(openComments ? -1 : id);
+          }}
+        >
+          <FontAwesomeIcon
+            icon={openComments ? ['far', 'angle-up'] : ['far', 'angle-down']}
+            className={`${styles.toggleIcon}`}
+          />
+          {openComments
+            ? intl.get(
+                'sections.bounty.components.submissions_card.hide_comments',
+                { count: numComments }
+              )
+            : intl.get(
+                'sections.bounty.components.submissions_card.show_comments',
+                { count: numComments }
+              )}
+        </button>
+      )}
+      {openComments && <div className={bodyClass}>{body}</div>}
     </div>
   );
 };

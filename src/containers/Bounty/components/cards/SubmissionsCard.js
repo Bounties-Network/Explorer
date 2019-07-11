@@ -18,7 +18,14 @@ const SubmissionsCard = props => {
     initiateWalkthrough,
     acceptFulfillment,
     showModal,
-    setRatingModal
+    setRatingModal,
+    setOpenComments,
+    openComments,
+    postFulComment,
+    showLogin,
+    comments,
+    loadMoreFulComments,
+    autoFocus
   } = props;
 
   const renderFulfillments = list => {
@@ -35,7 +42,9 @@ const SubmissionsCard = props => {
         url,
         user,
         fulfiller_review,
-        issuer_review
+        issuer_review,
+        comment_count,
+        id
       } = fulfillment;
 
       const { name, small_profile_image_url } = user;
@@ -46,6 +55,7 @@ const SubmissionsCard = props => {
       return (
         <SubmissionItem
           fulfillmentId={fulfillment_id}
+          id={id}
           fulfiller_name={name}
           fulfiller_email={fulfiller_email}
           fulfiller_address={fulfiller}
@@ -77,6 +87,15 @@ const SubmissionsCard = props => {
           initiateLoginProtection={initiateLoginProtection}
           showModal={showModal}
           setRatingModal={setRatingModal}
+          comment_count={comment_count}
+          setOpenComments={setOpenComments}
+          openComments={openComments === id}
+          currentUser={currentUser}
+          postFulComment={postFulComment}
+          showLogin={showLogin}
+          comments={comments}
+          loadMoreFulComments={loadMoreFulComments}
+          autoFocus={autoFocus}
         />
       );
     }, list);

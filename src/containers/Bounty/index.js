@@ -145,7 +145,8 @@ class BountyComponent extends React.Component {
       initiateWalkthrough,
       initiateLoginProtection,
       showModal,
-      setActiveTab
+      setActiveTab,
+      setOpenComments
     } = this.props;
 
     if (error) {
@@ -219,10 +220,13 @@ class BountyComponent extends React.Component {
                 <div className={styles.avatar}>
                   <LinkedAvatar
                     img={bounty.user.small_profile_image_url}
+                    name={bounty.user.name}
                     address={bounty.user.public_address}
                     hash={bounty.user.public_address}
                     to={`/profile/${bounty.user.public_address}`}
-                    addressTextColor="white"
+                    addressTextColor="semiTransparentWhite"
+                    nameTextScale="h4"
+                    nameTextColor="white"
                     size="small"
                     border
                   />
@@ -428,6 +432,7 @@ class BountyComponent extends React.Component {
                 isDraft={isDraft}
                 currentUser={user}
                 setActiveTabAction={setActiveTab}
+                setOpenCommentsAction={setOpenComments}
                 initiateLoginProtection={initiateLoginProtection}
                 initiateWalkthrough={initiateWalkthrough}
               />
@@ -482,6 +487,7 @@ const Bounty = compose(
       showModal: bountyUIActions.showModal,
       setBountyId: bountyUIActions.setBountyId,
       setActiveTab: bountyUIActions.setActiveTab,
+      setOpenComments: bountyUIActions.setOpenComments,
       loadBounty: bountyActions.getBounty,
       loadDraftBounty: bountyActions.getDraft,
       loadFulfillments: fulfillmentsActions.loadFulfillments,

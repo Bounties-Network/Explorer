@@ -1,5 +1,5 @@
-@import "~styles/variables.scss";
-@import "../BaseStyles.module.scss";
+@import '~styles/variables.scss';
+@import '../BaseStyles.module.scss';
 
 .network {
   @include statContainer;
@@ -34,7 +34,6 @@
 
   &Label {
     padding-top: $m-spacing;
-    line-height: $base-line-height / 1.5;
   }
 }
 

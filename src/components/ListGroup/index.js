@@ -28,7 +28,7 @@ class ListItem extends React.Component {
 ListItem.propTypes = {
   hover: PropTypes.bool,
   className: PropTypes.string,
-  borderColor: PropTypes.oneOf(['nearWhite', 'lightGrey']),
+  borderColor: PropTypes.oneOf(['transparent', 'nearWhite', 'lightGrey']),
   fullBorder: PropTypes.bool
 };
 

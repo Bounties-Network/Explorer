@@ -123,17 +123,19 @@ $modal-padding-large: $l-spacing;
 }
 
 .closeWrapper {
-  position: relative;
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.closeIcon {
-  cursor: pointer;
-  right: 0;
+.closeIconWrapper {
   color: $brand-grey;
-  font-size: 1.2em;
+  border-radius: 50%;
+  padding: $s-spacing $base-spacing;
+  font-size: $base-font-size * 1.25;
 
   &:hover {
+    cursor: pointer;
+    background: $brand-nearWhite;
     color: $brand-blue;
   }
 }

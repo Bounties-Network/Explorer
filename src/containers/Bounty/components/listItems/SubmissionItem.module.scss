@@ -1,14 +1,25 @@
 @import '~styles/variables.scss';
-
+.bodyLoading {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  min-height: 15rem;
+}
 .submissionItem {
-  padding: $base-spacing 0;
-  margin-left: -$xxl-spacing;
-  margin-right: -$xxl-spacing;
-  padding: $m-spacing 0;
+  background-color: $brand-white;
+  border: $base-border;
+  border-radius: $base-border-radius;
+  box-shadow: $base-box-shadow;
+  margin-bottom: $m-spacing;
+  margin-top: $m-spacing;
+  margin-left: -$base-spacing;
+  margin-right: -$base-spacing;
+  overflow: hidden;
+  position: relative;
 
   &:not(:last-child) {
     border-bottom: $base-border;
-    border-bottom-width: 4px;
 
     @media only screen and (min-width: 48em) {
       border-bottom: $base-border;
@@ -16,25 +27,26 @@
   }
 
   @media only screen and (min-width: 48em) {
-    margin-left: -$l-spacing;
-    margin-right: -$l-spacing;
-    padding: $xl-spacing 0;
+    margin-bottom: $m-spacing;
+    margin-top: $m-spacing;
+    margin-left: -$base-spacing;
+    margin-right: -$base-spacing;
   }
 }
-
+.loadMoreButton {
+  width: 100%;
+  text-align: center;
+  padding-top: $l-spacing;
+}
 .submissionHeader {
+  background-color: $brand-nearWhite;
+  border-bottom: $base-border;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: $brand-nearWhite;
-  border-radius: $base-border-radius;
-  margin-left: $xl-spacing;
-  margin-right: $xl-spacing;
   padding: $base-spacing;
 
   @media only screen and (min-width: 48em) {
-    margin-left: $l-spacing;
-    margin-right: $l-spacing;
     padding: $m-spacing;
   }
 }
@@ -44,20 +56,24 @@
   align-items: center;
 
   & > * {
-    margin-left: $m-spacing;
+    margin-left: $base-spacing;
   }
 }
 
-.detailsContainer {
-  padding: 0 $xxl-spacing;
+.rateButton {
+  display: none;
+
+  @media only screen and (min-width: 35em) {
+    display: inline-block;
+  }
 }
 
-.labelGroup {
-  word-wrap: break-word;
+.submissionContents {
+  padding: $m-spacing;
+}
 
-  &:not(:last-child) {
-    margin: $xl-spacing 0;
-  }
+.submissionDescription {
+  line-height: $base-line-height;
 }
 
 .submitTime {
@@ -68,51 +84,104 @@
   }
 }
 
-.avatarLabel {
-  padding-top: $base-spacing;
-}
-
-.metaDataContainer {
-  margin: $xxl-spacing 0;
-}
-
-.submissionMetadata:not(:last-child) {
-  margin-bottom: $base-spacing * 1.5;
-}
-
-.submissionDescription {
-  line-height: $base-line-height;
-}
-
-.fileName {
-  margin-bottom: $base-spacing;
-}
-
-.submissionIcon {
+.emailLink {
+  background-color: $brand-white;
+  border: $base-border;
   color: $brand-grey;
-  margin-right: $m-spacing;
+  width: $base-input-height;
+  text-align: center;
+  border-radius: $base-border-radius;
+  cursor: pointer;
+  display: none;
+  height: $base-input-height;
+  line-height: $base-input-height;
+  transition: transform 0.1s ease-in-out;
+
+  @media only screen and (min-width: 35em) {
+    display: inline-block;
+  }
+
+  &:hover {
+    border-color: $brand-mediumGrey;
+    color: $brand-blue;
+    transform: translateY(-2px);
+    box-shadow: $base-box-shadow;
+  }
+
+  &:active,
+  &:focus {
+    transform: translateY(0px);
+    box-shadow: none;
+  }
 }
 
-.label {
-  position: absolute;
-  top: $xl-spacing;
-  right: 0;
+.submissionMedia {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
-.imageLink {
-  display: block;
-  max-width: 100%;
+.submissionMediaItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100px;
+  width: 100px;
   border: $base-border;
   border-radius: $base-border-radius;
   margin-top: $m-spacing;
+  padding: $base-spacing;
+  transition: transform 0.1s ease-in-out;
+  overflow: hidden;
+
+  &:not(:last-child) {
+    margin-right: $m-spacing;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: $brand-light-blue;
+      transform: translateY(-2px);
+      box-shadow: $base-box-shadow;
+    }
+  }
 
   &:hover {
+    background-color: $brand-light-blue;
+    color: $brand-blue;
     border-color: $brand-blue;
+    cursor: pointer;
+
+    .submissionMediaIcon,
+    .fileName {
+      color: $brand-blue;
+    }
   }
 
-  @media only screen and (min-width: 48em) {
-    max-width: 300px;
+  img {
+    width: auto;
+    height: 100%;
   }
+}
+
+.submissionMediaIcon {
+  color: $brand-grey;
+  margin-top: $m-spacing;
+  text-align: center;
+  font-size: 24px;
+}
+
+.fileName {
+  color: $brand-grey;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-wrap: none;
+  word-break: none;
+  hyphens: none;
+  display: block;
+  white-space: nowrap;
+  width: calc(100px - #{$base-spacing * 2});
 }
 
 .image {
@@ -123,4 +192,54 @@
   @media only screen and (min-width: 48em) {
     max-width: 300px;
   }
+}
+
+.submissionFooter {
+  margin-top: $l-spacing;
+}
+
+.timePosted::after {
+  content: '・';
+  margin: 0 $s-spacing;
+  display: inline-block;
+}
+
+.commentIcon {
+  margin-right: $s-spacing;
+}
+
+.toggleComments {
+  background-color: $brand-white;
+  border-bottom-right-radius: $base-border-radius;
+  border-bottom-left-radius: $base-border-radius;
+  border: 0;
+  border-top: $base-border;
+  color: $brand-darkGrey;
+  font-weight: 500;
+  cursor: pointer;
+  display: block;
+  font-size: $body-font-size;
+  outline: none;
+  height: 50px;
+  line-height: 50px;
+  width: 100%;
+  padding: 0;
+
+  &:hover {
+    color: $brand-black;
+
+    .toggleIcon {
+      color: $brand-blue;
+    }
+  }
+}
+
+.toggleIcon {
+  color: $brand-grey;
+  margin-right: $base-spacing;
+  font-size: $base-font-size;
+}
+
+.newCommentForm {
+  padding-top: 0;
 }

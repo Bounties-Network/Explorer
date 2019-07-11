@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .h1 {
   font-size: $h1-font-size;
@@ -120,6 +120,10 @@
 
 .white {
   color: white;
+}
+
+.semiTransparentWhite {
+  color: rgba(white, 0.6);
 }
 
 .underline {

@@ -20,15 +20,15 @@ import {
 } from './reducer';
 
 const { INITIATE_WALKTHROUGH } = transactionActionTypes;
-const { SET_ACTIVE_TAB } = bountyPageActionTypes;
+const { SET_ACTIVE_TAB, SET_OPEN_COMMENTS } = bountyPageActionTypes;
 const { POST_REVIEW_SUCCESS } = reviewActionTypes;
 const { LOAD_FULFILLMENT_SUCCESS } = fulfillmentActionTypes;
 const { closeModal, showModal, setRatingModal } = bountyPageActions;
 const { loadFulfillments } = fulfillmentsActions;
-const { loadComments } = commentsActions;
+const { loadComments, loadFulComments } = commentsActions;
 const { loadApplicants } = applicantsActions;
 const { closeWalkthrough } = transactionActions;
-const { POST_COMMENT_SUCCESS } = commentsActionTypes;
+const { POST_COMMENT_SUCCESS, POST_FUL_COMMENT_SUCCESS } = commentsActionTypes;
 
 export function* closeBountyModal(action) {
   yield put(closeModal());
@@ -49,6 +49,12 @@ export function* loadTab(action) {
   } else if (tabKey === 'applicants') {
     const bountyId = yield select(bountyIdSelector);
     yield put(loadApplicants(bountyId));
+  }
+}
+
+export function* loadFulfillmentComments(action) {
+  if (action.id >= 0) {
+    yield put(loadFulComments(action.id));
   }
 }
 
@@ -114,13 +120,23 @@ export function* watchTabLoads() {
   yield takeLatest([SET_ACTIVE_TAB, POST_REVIEW_SUCCESS], loadTab);
 }
 
+export function* watchCommentLoads() {
+  yield takeLatest([SET_OPEN_COMMENTS], loadFulfillmentComments);
+}
+
 export function* watchCommentPosted() {
   yield takeLatest(POST_COMMENT_SUCCESS, resetCommentsForm);
+}
+
+export function* watchFulCommentPosted() {
+  yield takeLatest(POST_FUL_COMMENT_SUCCESS, resetCommentsForm);
 }
 
 export default [
   watchCloseModals,
   watchTabLoads,
+  watchCommentLoads,
   watchFulfillmentLoadSuccess,
-  watchCommentPosted
+  watchCommentPosted,
+  watchFulCommentPosted
 ];

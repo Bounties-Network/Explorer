@@ -74,18 +74,24 @@ class BountyPageCardsComponent extends React.Component {
       showModal,
       setRatingModal,
       setActiveTabAction: setActiveTab,
+      setOpenCommentsAction: setOpenComments,
       currentTab,
       fulfillments,
       applicants,
       comments,
+      fulComments,
       bounty,
       currentUser,
       acceptFulfillment,
       changeApplicationState,
       postComment,
+      postFulComment,
       loadMoreComments,
+      loadMoreFulComments,
       loadMoreFulfillments,
-      loadMoreApplicants
+      loadMoreApplicants,
+      openComments,
+      autoFocus
     } = this.props;
 
     const bountyBelongsToLoggedInUser =
@@ -118,6 +124,13 @@ class BountyPageCardsComponent extends React.Component {
           acceptFulfillment={acceptFulfillment}
           showModal={showModal}
           setRatingModal={setRatingModal}
+          setOpenComments={setOpenComments}
+          openComments={openComments}
+          autoFocus={autoFocus}
+          showLogin={showLogin}
+          postFulComment={postFulComment}
+          loadMoreFulComments={loadMoreFulComments}
+          comments={fulComments}
         />
       );
     }
@@ -207,7 +220,8 @@ const mapStateToProps = (state, router) => {
     modalType: bountyPage.modalType,
     modalVisible: bountyPage.modalVisible,
     currentTab: bountyPage.currentTab,
-
+    openComments: bountyPage.openComments,
+    autoFocus: bountyPage.autoFocus,
     // data
     fulfillments: {
       ...fulfillmentsState,
@@ -220,6 +234,10 @@ const mapStateToProps = (state, router) => {
     comments: {
       ...commentsState,
       list: commentsState.comments
+    },
+    fulComments: {
+      ...commentsState,
+      list: commentsState.fulComments
     }
   };
 };
@@ -233,7 +251,9 @@ const BountyPageCards = compose(
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
       changeApplicationState: applicantsActions.changeApplicationState,
       postComment: commentsActions.postComment,
+      postFulComment: commentsActions.postFulComment,
       loadMoreComments: commentsActions.loadMoreComments,
+      loadMoreFulComments: commentsActions.loadMoreFulComments,
       loadMoreFulfillments: fulfillmentsActions.loadMoreFulfillments,
       loadMoreApplicants: applicantsActions.loadMoreApplicants,
       showLogin: loginActions.showLogin

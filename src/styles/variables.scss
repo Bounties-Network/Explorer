@@ -36,23 +36,24 @@ $h3-font-size: 1.25rem; // 20px
 $h2-font-size: 1.563rem; // 25px
 $h1-font-size: 1.938rem; // 31px
 
-$base-line-height: 1.5rem;
-$line-height-small: 1rem;
-$line-height-large: 1.875rem;
+$base-line-height: 1.6;
+$line-height-small: 1.3;
+$line-height-large: 1.75;
 $line-height-reset: 1;
 
 // COLORS
 $brand-purple: #5a28c6;
 $brand-purple-hover: #47209d;
-$brand-purple-disabled: #9673e3;
+$brand-purple-disabled: hsl(259, 55%, 55%);
 $brand-dark-purple: #2e2a35;
 
 $brand-destructive: hsl(353, 64%, 67%);
 $brand-destructive-hover: hsl(353, 64%, 60%);
 $brand-red: $brand-destructive;
 
-$brand-blue: #4a93ff;
-$brand-blue-hover: #307ae8;
+$brand-blue: hsl(216, 100%, 65%);
+$brand-blue-hover: hsl(216, 80%, 55%);
+$brand-light-blue: hsl(216, 100%, 98%);
 
 $brand-orange: #fbaa31;
 
@@ -68,13 +69,13 @@ $brand-nearWhite: #f2f4f8;
 $brand-white: #ffffff;
 $brand-purpleWhite: #cebeff;
 
-$base-input-background: #faf9fd;
+$base-input-background: hsl(228, 30%, 98%);
 
 $base-border-color: $brand-lightGrey;
 
 // BANNER
 @mixin banner-gradient {
-  background: linear-gradient(to right, $brand-purple, $brand-blue-hover);
+  background: linear-gradient(45deg, $brand-purple-disabled, $brand-blue);
 }
 $banner-min-height: 13rem;
 

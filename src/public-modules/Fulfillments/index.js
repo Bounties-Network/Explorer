@@ -24,6 +24,8 @@ const LOAD_MORE_FULFILLMENTS_SUCCESS =
   'fulfillments/LOAD_MORE_FULFILLMENTS_SUCCESS';
 const LOAD_MORE_FULFILLMENTS_FAIL = 'fulfillments/LOAD_MORE_FULFILLMENTS_FAIL';
 
+const POST_FUL_COMMENT_SUCCESS = 'comments/POST_FUL_COMMENT_SUCCESS';
+
 function loadFulfillments() {
   return { type: LOAD_FULFILLMENTS };
 }
@@ -125,6 +127,20 @@ function FulfillmentsReducer(state = initialState, action) {
         loadingMoreError: true
       };
     }
+    case POST_FUL_COMMENT_SUCCESS: {
+      const { comment, id } = action;
+      console.log('action', comment);
+      let currentFul = state.fulfillments;
+      for (var i = 0; i < currentFul.length; i++) {
+        if (currentFul[i].id === id) {
+          currentFul[i].comment_count = currentFul[i].comment_count + 1;
+        }
+      }
+      return {
+        ...state,
+        fulfillments: currentFul
+      };
+    }
     case ADD_ISSUER_FILTER: {
       const { address } = action;
 
@@ -195,6 +211,7 @@ export const actionTypes = {
   LOAD_MORE_FULFILLMENTS,
   LOAD_MORE_FULFILLMENTS_SUCCESS,
   LOAD_MORE_FULFILLMENTS_FAIL,
+  POST_FUL_COMMENT_SUCCESS,
   ADD_ISSUER_FILTER,
   ADD_FULFILLER_FILTER,
   ADD_BOUNTY_FILTER,

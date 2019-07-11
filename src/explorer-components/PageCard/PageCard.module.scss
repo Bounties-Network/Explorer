@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .pageCard {
   height: 100%;
@@ -34,7 +34,7 @@
 }
 
 .title {
-  line-height: $base-line-height * 1.25;
+  line-height: $line-height-small;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;

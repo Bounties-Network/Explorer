@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .bountyPageCardHeader {
   padding: $m-spacing;
@@ -51,7 +51,7 @@
 }
 
 .avatar {
-  margin-top: $m-spacing;
+  margin-top: $l-spacing;
 }
 
 .pill {
@@ -93,7 +93,6 @@
   flex-direction: column;
 
   .metadata {
-
     &Section {
       padding: $m-spacing;
       width: 100%;

@@ -4,6 +4,7 @@ const initialState = {
   modalVisible: false,
   modalProps: {},
   currentTab: 'comments',
+  openComments: -1,
   ratingModal: {
     fulfillmentId: -1,
     reviewee: {
@@ -18,6 +19,7 @@ const SHOW_MODAL = 'BountyPage/SHOW_MODAL';
 const CLOSE_MODAL = 'BountyPage/CLOSE_MODAL';
 const SET_BOUNTY_ID = 'BountyPage/SET_BOUNTY_ID';
 const SET_ACTIVE_TAB = 'BountyPage/SET_ACTIVE_TAB';
+const SET_OPEN_COMMENTS = 'BountyPage/SET_OPEN_COMMENTS';
 const SET_RATING_MODAL = 'BountyPage/SET_RATING_MODAL';
 
 function showModal(modalType, modalProps = {}) {
@@ -34,6 +36,10 @@ function setBountyId(bountyId) {
 
 function setActiveTab(tabKey) {
   return { type: SET_ACTIVE_TAB, tabKey };
+}
+
+function setOpenComments(id, autoFocus) {
+  return { type: SET_OPEN_COMMENTS, id, autoFocus };
 }
 
 function setRatingModal(fulfillmentId, reviewee) {
@@ -74,6 +80,15 @@ function BountyPageUIReducer(state = initialState, action) {
         currentTab: tabKey
       };
     }
+
+    case SET_OPEN_COMMENTS: {
+      const { id, autoFocus } = action;
+      return {
+        ...state,
+        openComments: id,
+        autoFocus: autoFocus
+      };
+    }
     case SET_RATING_MODAL: {
       const { fulfillmentId, reviewee } = action;
 
@@ -95,6 +110,7 @@ export const actions = {
   closeModal,
   setBountyId,
   setActiveTab,
+  setOpenComments,
   setRatingModal
 };
 
@@ -103,6 +119,7 @@ export const actionTypes = {
   CLOSE_MODAL,
   SET_BOUNTY_ID,
   SET_ACTIVE_TAB,
+  SET_OPEN_COMMENTS,
   SET_RATING_MODAL
 };
 

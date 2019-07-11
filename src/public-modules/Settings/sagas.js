@@ -85,14 +85,18 @@ export function* saveEmailPreferences(action) {
     ApplicationRejectedApplicant,
     BountyChanged,
     BountyChangedApplicant,
-    BountyCommentReceivedCommenter
+    BountyCommentReceivedCommenter,
+    FulfillmentCommentReceivedCommenter,
+    FulfillmentCommentReceived,
+    FulfillmentCommentReceivedIssuer
   } = values;
 
   const data = {
     emails: {
       activity,
       both: {
-        RatingReceived
+        RatingReceived,
+        FulfillmentCommentReceivedCommenter
       },
       issuer: {
         BountyExpired,
@@ -102,7 +106,8 @@ export function* saveEmailPreferences(action) {
         BountyCommentReceivedIssuer,
         ContributionReceived,
         BountyCompleted,
-        ApplicationReceived
+        ApplicationReceived,
+        FulfillmentCommentReceivedIssuer
       },
       fulfiller: {
         FulfillmentAcceptedFulfiller,
@@ -111,7 +116,8 @@ export function* saveEmailPreferences(action) {
         BountyCommentReceived,
         BountyCommentReceivedCommenter,
         BountyChanged,
-        BountyChangedApplicant
+        BountyChangedApplicant,
+        FulfillmentCommentReceived
       }
     }
   };

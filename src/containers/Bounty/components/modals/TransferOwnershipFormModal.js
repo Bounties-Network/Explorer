@@ -41,12 +41,6 @@ const TransferOwnershipFormModal = props => {
           />
         </Modal.Body>
         <Modal.Footer>
-          {submitFailed &&
-            invalid && (
-              <Text inputLabel color="red">
-                {intl.get('errors.form_error')}
-              </Text>
-            )}
           <Button
             margin
             onClick={e => {
@@ -60,6 +54,12 @@ const TransferOwnershipFormModal = props => {
           <Button type="action">
             {intl.get('actions.transfer_ownership')}
           </Button>
+          {submitFailed &&
+            invalid && (
+              <Text typeScale="Small" className={styles.submitError}>
+                {intl.get('errors.form_error')}
+              </Text>
+            )}
         </Modal.Footer>
       </Modal>
     </Form>

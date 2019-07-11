@@ -132,7 +132,8 @@ class Textbox extends React.Component {
       value,
       maxLength,
       onFocus,
-      onBlur
+      onBlur,
+      autoFocus
     } = this.props;
 
     const { text: textStateValue } = this.state;
@@ -166,6 +167,7 @@ class Textbox extends React.Component {
             onBlur={onBlur}
             value={textValue}
             onChange={this.onTextareaChange}
+            autoFocus={autoFocus}
           />
           {overlay ? <Overlay>{overlay}</Overlay> : null}
         </TextareaContainer>
