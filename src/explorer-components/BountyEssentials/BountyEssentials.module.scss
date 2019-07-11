@@ -1,75 +1,75 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .currencyContainer {
-    padding: $m-spacing;
-    background-color: $brand-purple-hover;
-    border-radius: $base-border-radius;
-    text-align: left;
-    height: fit-content;
-    white-space: nowrap;
+  padding: $m-spacing;
+  background-color: hsl(251, 46%, 52%);
+  border-radius: $base-border-radius;
+  text-align: left;
+  height: fit-content;
+  white-space: nowrap;
 
-    @media only screen and (min-width: 35em) {
-        padding: $l-spacing;
-    }
+  @media only screen and (min-width: 35em) {
+    padding: $l-spacing;
+  }
 }
 
 .payoutEthBox {
 }
 
 .balanceEthBox {
-    margin-top: $m-spacing;
+  margin-top: $m-spacing;
 }
 
 .currencyTypeHeaderText {
-    font-size: $body-small-font-size;
+  font-size: $body-small-font-size;
 }
 
 .payoutCurrency {
-    margin-top: $base-spacing;
+  margin-top: $base-spacing;
 }
 
 .balanceCurrency {
-    margin-top: $base-spacing;
+  margin-top: $base-spacing;
 }
 
 .stage {
-    position: absolute;
-    left: 50%;
-    top: -0.6rem;
-    -webkit-transform: translate(-50%, 0);
-    -moz-transform: translate(-50%, 0);
-    transform: translate(-50%, 0);
+  position: absolute;
+  left: 50%;
+  top: -0.6rem;
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 
 .bountyEssentials {
-    position: relative;
-    margin-right: $l-spacing;
+  position: relative;
+  margin-right: $l-spacing;
 }
 
 .primaryContainerClass {
-    display: inline-block;
-    margin-bottom: -$base-spacing;
-  
-    @media only screen and (min-width: 35em) {
-      display: block;
-      margin-bottom: 0;
-    }
+  display: inline-block;
+  margin-bottom: -$base-spacing;
+
+  @media only screen and (min-width: 35em) {
+    display: block;
+    margin-bottom: 0;
   }
+}
 
 .primary {
-    font-size: $h3-font-size;
-    display: inline-block;
-    padding-right: $base-spacing;
+  font-size: $h3-font-size;
+  display: inline-block;
+  padding-right: $base-spacing;
 
-    @media only screen and (min-width: 35em) {
-        display: block;
-        font-size: $h2-font-size;
-        padding: 0;
-        padding-bottom: $base-spacing;
-    }
+  @media only screen and (min-width: 35em) {
+    display: block;
+    font-size: $h2-font-size;
+    padding: 0;
+    padding-bottom: $base-spacing;
+  }
 }
 
 .currency {
-    opacity: 0.5;
-    display: inline-block;
+  opacity: 0.5;
+  display: inline-block;
 }
