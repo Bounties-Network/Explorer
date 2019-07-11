@@ -128,7 +128,7 @@ function FulfillmentsReducer(state = initialState, action) {
       };
     }
     case POST_FUL_COMMENT_SUCCESS: {
-      const { comment, id } = action;
+      const { id } = action;
       let currentFul = state.fulfillments;
       for (var i = 0; i < currentFul.length; i++) {
         if (currentFul[i].id === id) {
