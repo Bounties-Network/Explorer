@@ -132,7 +132,6 @@ class CreateBountyFormComponent extends React.Component {
       validators.minValue(0),
       (fulfillment_amount, allValues) => {
         const valueField = allValues.balance;
-        console.log('validating ful', fulfillment_amount, allValues);
 
         if (
           valueField &&
@@ -148,7 +147,6 @@ class CreateBountyFormComponent extends React.Component {
       validators.required,
       validators.minValue(0),
       (balance, allValues) => {
-        console.log('validating bal', balance, allValues);
         const valueField = allValues.fulfillment_amount;
         if (
           valueField &&

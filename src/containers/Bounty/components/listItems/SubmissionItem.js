@@ -57,10 +57,8 @@ const SubmissionItem = props => {
     loadMoreFulComments,
     autoFocus
   } = props;
-  let focusCommentInput = false;
 
   const commentOnSubmission = () => {
-    focusCommentInput = true;
     setOpenComments(openComments ? -1 : id, true);
   };
   let numComments =
