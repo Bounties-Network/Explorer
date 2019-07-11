@@ -178,71 +178,33 @@ a {
   }
 
   ul {
-    list-style: none;
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: $m-spacing;
 
-    li {
-      position: relative;
-      padding-left: $m-spacing;
-
-      &::before {
-        content: '∙';
-        display: inline-block;
-        font-size: $base-font-size;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
+    li:not(:last-child) {
+      padding-bottom: $base-spacing;
     }
   }
 
   ol {
-    list-style: none;
-    counter-reset: ol-list-counter;
+    list-style-type: decimal;
+    list-style-position: outside;
+    padding-left: $m-spacing;
 
-    li {
-      counter-increment: ol-list-counter;
-
-      &::before {
-        content: counter(ol-list-counter) '.';
-        display: inline-block;
-        text-align: right;
-        margin-right: 0.5rem;
-      }
+    li:not(:last-child) {
+      padding-bottom: $base-spacing;
     }
   }
 
   ul ul,
-  ol ul {
-    li {
-      margin-left: $xl-spacing;
-      position: relative;
-      padding-left: $m-spacing;
-
-      &::before {
-        content: '∙';
-        display: inline-block;
-        font-size: $base-font-size;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-    }
-  }
-
+  ol ul,
   ol ol,
   ul ol {
-    li {
-      margin-left: $l-spacing;
-      position: relative;
+    margin-top: $m-spacing;
 
-      &::before {
-        content: counter(ol-list-counter) '.';
-        display: inline-block;
-        font-size: $body-font-size;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
+    li {
+      margin-left: $xl-spacing;
     }
   }
 
