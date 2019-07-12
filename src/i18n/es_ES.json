@@ -170,9 +170,9 @@
               "Si usted decide dejar esta pagina, los cambios echos a su recompensa seran omitidos y su recompensa sera revertida a su estado anterior."
           },
           "draft_or_edit_bounty": {
-            "title": "Discard Changes?",
+            "title": "Descartar Cambios?",
             "description":
-              "Si usted decide dejar esta pagina sin crear un borrador o activar, su recompensa sera descartada."
+              "Si usted decide dejar esta pagina sin crear un borrador o activar la recompensa, su recompensa sera descartada."
           }
         },
         "activate_dead_form": {
@@ -348,7 +348,7 @@
           }
         },
         "details": {
-          "title": "DETAILS",
+          "title": "DETALLES",
           "description": "Como deberia ser esta recompensa calificada?",
           "notice":
             "Introduzca las categorias y niveles de dificultades para esta recompensa. Ya que la dificultad puede estar justamente subjetiva, Es de gran ayuda que proporcione mas informacion alrededor de la experiencia requerida entre su descripcion de recompensa.",
@@ -911,7 +911,7 @@
   "hocs": {
     "require_login": {
       "zero_state": {
-        "title": "Inicia sesion para utilizar La Red de Reecompensas",
+        "title": "Inicia sesion para utilizar La Red de Recompensas",
         "body":
           "Para que usted utilize ciertas caracteristicas de la plataforma como crear recompensas, comentar, y ver su estadistica de red de trabajo, porfavor inicie sesion utlizando su cartera segura.",
         "subtext":
