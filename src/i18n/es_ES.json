@@ -455,7 +455,7 @@
             "token_contract": {
               "label_default": "Direccion Contrato de Ficha",
               "label_custom": "{token} Direccion de Contrato",
-              "placeholder": "Introduzca la direccion de la ficha de contrato..."
+              "placeholder": "Introduzca la direccion contrato de la ficha..."
             },
             "method": {
               "label": "Metodo de Pago"
@@ -694,7 +694,7 @@
           "application_received": "Nuevo trabajador aplico a la recompensa",
           "application_accepted_applicant": "Emisor acepto su aplicacion",
           "application_rejected_applicant": "Emisor declino su aplicacion",
-          "activity": "Actividad General (Perfil actualizado, recompensa creatada, etc.)"
+          "activity": "Actividad General (Perfil actualizado, recompensa creada, etc.)"
         }
       },
       "user": {
@@ -860,7 +860,7 @@
     "editor": {
       "preview": "Visa Previa",
       "default":
-        "# Descibra\nDescribe la recompensa que quiere sea completada. Para que es? Que incluye?\n\n## Requirementos\nQue requerimentos tiene para el mediador de la recompensa? Hay alguna regla o contratiempo para la recompensa? Hay algunos pre-requisitos necesarios para que sea completada?\n\n* Articulo uno\n* Articulo dos\n* Articulo tres\n\n## Definicion de echo\n Que deberian los emisores de recompensas enviar para probar que ellos han completado la recompensa? Que necesitan los mediadores incluir en la presentacion para que esta sea aceptada?\n\n1. Articulo 1\n2. Articulo 2\n3. Articulo 3\n\n### Cosas a tener en cuenta\n Hay alguna otra informacion que quisiera hacer saber a aspirantes mediadores para conocer acera de ti o de la recompensa? Requiere la recompensa materiales adicionales que bien sea el tercero debe proveer o alguna informacion de intercambio para una comunicacion externa ha efectuarse?"
+        "# Descripcion\nDescribe la recompensa que quiere sea completada. Para que es? Que incluye?\n\n## Requirementos\nQue requerimentos tiene para el mediador de la recompensa? Hay alguna regla o contratiempo para la recompensa? Hay algunos pre-requisitos necesarios para que sea completada?\n\n* Articulo uno\n* Articulo dos\n* Articulo tres\n\n## Definicion de elaborado\n Que deberian los emisores de recompensas enviar para probar que ellos han completado la recompensa? Que necesitan los mediadores incluir en la presentacion para que esta sea aceptada?\n\n1. Articulo 1\n2. Articulo 2\n3. Articulo 3\n\n### Cosas a tener en cuenta\n Hay alguna otra informacion que quisiera hacer saber a aspirantes mediadores para conocer acera de ti o de la recompensa? Requiere la recompensa materiales adicionales que bien sea el tercero debe proveer o alguna informacion de intercambio para una comunicacion externa ha efectuarse?"
     },
     "notifications": {
       "fulfilLment_submitted": "Hizo una muestra",
