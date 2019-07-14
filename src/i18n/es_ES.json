@@ -263,15 +263,15 @@
           }
         },
         "increase_payout": {
-          "title": "Icrementar recompensa de pago",
+          "title": "Icrementar pago de recompensa",
           "description1":
-            "Indicar la cantidad la cual le gustaria incrementar a ser pagada. Usted podria incluir saldo adicional para cubrir los costos.<br /><br /><em> Su saldo total debe ser mayor a la nueva cantidad del premio ({token_symbol})</em>. Su saldo actual es: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. La cantidad a pagar es: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+            "Indicar la cantidad la cual le gustaria incrementar a ser pagada. Usted podria incluir saldo adicional para cubrir los costos de dicha transaccion.<br /><br /><em> Su saldo total debe ser mayor a la nueva cantidad del premio ({token_symbol})</em>. Su saldo actual es: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. La cantidad a pagar es: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
           "description2":
             "Indicar la cantidad la cual le gustaria incrementar a ser pagada.<br /><br /><em>Su saldo total debe ser mayor que la cantidad del nuevo premio ({token_symbol})</em>. El saldo actual es: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. La cantidad a pagar es: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
           "balance_warning":
             "El saldo de su recompensa debe ser mayor a la cantidad a ser pagada.",
           "payout_warning":
-            "Su saldo a pagar debe ser mayor que la cantidad del previo monto pagado.",
+            "Su saldo a pagar debe ser mayor que la cantidad del previo monto a ser pagado.",
           "form": {
             "balance": {
               "label": "Depositar cantidad ({token_symbol})",
@@ -306,8 +306,8 @@
         "description": "Intente recargando, o asegurese de que la direccion web sea correcta"
       },
       "deposit_warning":
-        "La cantidad del deposito debe almenos coincidir con la cantidad a pagar.",
-      "payout_warning": "La cantidad a pagar no debe ser mas alta que el saldo.",
+        "La cantidad del deposito debe almenos coincidir con la cantidad a ser pagada.",
+      "payout_warning": "La cantidad a ser pagada no debe ser mas alta que el saldo.",
       "actions": {
         "create": "Crear Recompensa",
         "edit": "Editar Recompensa",
@@ -328,14 +328,14 @@
               "placeholder": "Introduzca Titulo..."
             },
             "description": {
-              "label": "Description"
+              "label": "Descripcion"
             }
           }
         },
         "contact": {
           "title": "CONTACTO",
           "description":
-            "Quien sera el contacto primario para preguntas acerca de la recompensa o muestras?",
+            "Quien sera el contacto principal para preguntas acerca de la recompensa o muestras?",
           "form": {
             "issuer_name": {
               "label": "Nombre de Contacto",
