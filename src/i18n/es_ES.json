@@ -398,11 +398,11 @@
         "privacy": {
           "title": "PRIVACIDAD",
           "description": "Las muestras serán visibles a todos?",
-          "notice": "Las muestras pueden ser ocultas para otros usuarios si se desea.",
+          "notice": "Las muestras pueden ser ocultadas para otros usuarios si se desea.",
           "form": {
             "fulfillers_need_approval": {
               "label": "Pre-aprobacion Requerida",
-              "placeholder": "Introduzca un direccion de enlace...",
+              "placeholder": "Introduzca un dirección de enlace...",
               "options": {
                 "yes": "Si",
                 "no": "No"
@@ -411,11 +411,11 @@
             "private_fullfillments": {
               "label": "Visibilidad",
               "description":
-                "Quiere aprobar a las personas antes de que puedan completar su recompensa?",
+                "Desea aprobar a las personas antes de que puedan completar su recompensa?",
               "notice":
-                "Si usted requiere aprobacion, sera notificado cuando un usuario indique su intento de enviar, y se les requerira aprobacion antes de que puedan completar su recompensa.",
+                "Si usted requiere aprobación, sera notificado cuando un usuario indique su intento de enviar, y se les requerira aprobacion antes de que puedan completar su recompensa.",
               "options": {
-                "public": "Publico",
+                "public": "Público",
                 "hidden": "Oculto"
               }
             }
@@ -423,17 +423,17 @@
         },
         "payout": {
           "title": "PAGO",
-          "description": "Seleccione un metodo a pagar y la cantidad.",
+          "description": "Seleccione un métodode pago y la cantidad.",
           "notice":
-            "Seleccione la ficha e introduzca la cantidad que usted premiara por la completacion de esta recompensa.",
+            "Seleccione la ficha e introduzca la cantidad que usted premiara por la completación de esta recompensa.",
           "form": {
             "token_contract": {
-              "label_default": "Direccion Contrato de Ficha",
-              "label_custom": "{token} Direccion de Contrato",
-              "placeholder": "Introduzca la direccion de la ficha de contrato..."
+              "label_default": "Dirección Contrato de Ficha",
+              "label_custom": "{token} Dirección de Contrato",
+              "placeholder": "Introduzca la dirección de la ficha de contrato..."
             },
             "method": {
-              "label": "Metodo de Pago"
+              "label": "Método de Pago"
             },
             "fulfillment_amount": {
               "label":
@@ -442,23 +442,23 @@
             },
             "token_contract_2": {
               "label": "Ficha",
-              "placeholder": "Seleccione ficha o introduzca una direccion de ficha..."
+              "placeholder": "Seleccione ficha o introduzca una dirección de ficha..."
             }
           }
         },
         "payout_editing": {
           "title": "PAGO",
-          "description": "Indique la cantidad a pagar",
+          "description": "Indique el monto a pagar",
           "notice":
-            "Introduzca la cantidad a premiar por la completacion de esta recompensa. El pago no debe ser mas grande que su saldo actual de <span class=\"{textHighlight}\">{balance} {token_symbol} </span>. Si usted desea agregar mas fondos a esta recompensa, porfavor <a href=\"{increaseBalanceUrl}\">incremente su saldo.</a>",
+            "Introduzca la cantidad a premiar por la completación de esta recompensa. El pago no debe ser mayor que su saldo actual de <span class=\"{textHighlight}\">{balance} {token_symbol} </span>. Si usted desea agregar mas fondos a esta recompensa, porfavor <a href=\"{increaseBalanceUrl}\">incremente su saldo.</a>",
           "form": {
             "token_contract": {
-              "label_default": "Direccion Contrato de Ficha",
-              "label_custom": "{token} Direccion de Contrato",
-              "placeholder": "Introduzca la direccion contrato de la ficha..."
+              "label_default": "Dirección Contrato de Ficha",
+              "label_custom": "{token} Dirección de Contrato",
+              "placeholder": "Introduzca la dirección contrato de la ficha..."
             },
             "method": {
-              "label": "Metodo de Pago"
+              "label": "Método de Pago"
             },
             "fulfillment_amount": {
               "label":
@@ -467,16 +467,16 @@
             },
             "token_contract_2": {
               "label": "Token",
-              "placeholder": "Introduzca la direccion de la ficha de contrato..."
+              "placeholder": "Introduzca la dirección de la ficha de contrato..."
             }
           }
         },
         "save": {
           "title": "GUARDAR O ENVIAR",
           "description":
-            "Cuando le gustaria enviar y activar su recompensa?",
+            "Cuando le gustaría enviar y activar su recompensa?",
           "notice":
-            "Si usted desea activar la recompensa mas tarde, puede guardarla como borrador. Los requirementos para la recompensa solamente pueden ser editador meintras este esta en la fase de borrador. Como minimo, la cantidad de su deposito debe coincidir con la cantidad de su pago.",
+            "Si usted desea activar la recompensa mas tarde, puede guardarla como borrador. Los requirementos para la recompensa solamente pueden ser editados meintra este esté en la fase de borrador. Como mínimo, la cantidad de su depósito debe coincidir con la cantidad de su pago.",
           "form": {
             "activate_now": {
               "label": "Cuando Activar",
@@ -501,11 +501,11 @@
       "bounty_count": "{count, plural, =1 {bounty} other {bounties}}",
       "zero_state": {
         "title": "Ninguna recompensa encontrada",
-        "description": "Actualize sus parametros de busqueda para ver mas recompensas"
+        "description": "Actualize sus parámetros de búsqueda para ver mas recompensas"
       },
       "zero_state_error": {
         "title": "Vaya!, algo ha ocurrido",
-        "description": "Intente un nuevo parametro o recargue la pagina e intente de nuevo"
+        "description": "Intente un nuevo parámetro o recargue la página e intente de nuevo"
       }
     },
     "leaderboard": {
@@ -517,13 +517,13 @@
     },
     "leaderboard_card": {
       "zero_state": {
-        "title": "No hay resultados todavia",
+        "title": "Todavía no hay resultados",
         "description":
           "Cuando las recompesas son emitidas y las muestras completadas, esta tabla de posiciones se empezara a llenar"
       },
       "zero_state_error": {
         "title": "Vaya!, algo ha ocurrido",
-        "description": "Intente recargar de nuevo la pagina y empieze de nuevo"
+        "description": "Intente recargar de nuevo la página y empieze de nuevo"
       }
     },
     "login": {
@@ -531,9 +531,9 @@
         "details": {
           "title": "Detalles de Perfil",
           "description":
-            "Agregue algunos detalles de perfil acerca de usted, asi los otros en la plataforma tienen una idea de su respaldo y habilidades bajo la manga, y pueden encontrarte en otro lado en linea.",
+            "Agregue algunos detalles de perfil acerca de usted, asi los demas usuarios de la plataforma tienen una idea de su respaldo y habilidades bajo la manga, y pueden encontrarte en otro lado en linea.",
           "description2":
-            "Bienvenido a la Red Trabajo de Recompensas! Es&#39;tamos encantados de ver su recompensa. <br /> <br /> Antes de empezar, le animamos a que agregue algunos detalles a su perfil\n            sobre usted, asi los otros en la plataforma tienen una idea de su respaldo y habilidades bajo la manga.",
+            "Bienvenido a la Red Trabajo de Recompensas! Estamos muy felices de ver su recompensa. <br /> <br /> Antes de empezar, le animamos a que agregue algunos detalles a su perfil\n            sobre usted, asi los otros en la plataforma tienen una idea de su respaldo y habilidades bajo la manga.",
           "actions": {
             "skip": "Saltar",
             "add": "Agregar detalles de perfil"
@@ -543,23 +543,23 @@
           "title": "La direccion de cartera no coincide",
           "description1": "Ya usted habia iniciado previamente ",
           "description2": "bounties.network",
-          "description3": " utilizando la siguiente direccion:",
+          "description3": " utilizando la siguiente dirección:",
           "description4":
-            "La direccion no coincide su cartera de cuenta de direcciones actual:",
+            "La dirección no coincide su cartera de cuenta de direcciones actual:",
           "description5":
-            ". Por favor cambia su cuenta de cartera, O salga de la Red de Recompensas e inicie sesion con una direccion diferente."
+            ". Por favor cambia su cuenta de cartera, O salga de la Red de Recompensas e inicie otra sesión con una dirección diferente."
         },
         "error": {
-          "title": "Algo ha sucedido. Intente nuevamente en otra ocasion."
+          "title": "Algo ha sucedido. Intente nuevamente en otra ocasión."
         },
         "sign_in": {
           "title": "Inicie sesion y verique la direccion",
           "description":
-            "Luego de haber presionado \"Continue\", un dialogo de cartera aparecera para verificar su unica direccion. Una vez verificada, Usted iniciara sesion en la red de trabajo."
+            "Después de haber presionado \"Continue\", un dialogo de cartera aparecera para verificar dirección. Una vez verificada, Usted podrá iniciara una sesión en la red de trabajo."
         },
         "signing_in": {
           "title":
-            "Completa la peticion de firma para verificar su direccion e iniciar sesion"
+            "Completa la petición de firma para verificar su dirección e iniciar sesión"
         },
         "unlock": {
           "title": "Acceso a Cartera Segura",
@@ -571,28 +571,28 @@
         "wallet_required": {
           "title": "Navegador con Web3 habilitado y cartera segura requerido.",
           "description1": "Para poder usar",
-          "description2": ", porfavor instala una cartera segura tal como",
+          "description2": ", por favor instala una cartera segura tal como",
           "description3":
-            "Si usted necesita ayuda para tener todo listo, eche un viztaso a nuestra",
-          "guide": "Guia de Iniciacion.",
+            "Si usted necesita ayuda para tener todo listo, eche un vistazo a nuestra",
+          "guide": "Guia de Início.",
           "actions": {
             "visit": "Visitar {walletName}"
           }
         },
         "wrong_network": {
           "title": "Red de Trabajo extraña detectada",
-          "description1": "{networkName} esta actualmente operacional",
-          "description2": "Porfavor cambie su cartera de red de trabajos actual."
+          "description1": "{networkName} está actualmente operacional",
+          "description2": "Por favor cambie su cartera de red de trabajos actual."
         }
       }
     },
     "notifications": {
       "title": "Notificaciones",
       "actions": {
-        "mark_read": "Marcar todo como leido"
+        "mark_read": "Marcar todo como leído"
       },
       "zero_state": {
-        "title": "No tiene notifiaciones",
+        "title": "No tiene notificaciones",
         "description":
           "Una vez empiezes a usar la plataforma, las notificaciones se mostraran aqui."
       }
@@ -613,14 +613,14 @@
         "title": "Estadisticas Red de Trabajo",
         "descriptions": {
           "issuer": {
-            "acceptance": "Tasa de aceptacion para Mediacion",
-            "rating": "Promedio de calificacion recibida por el emisor",
-            "ratingGiven": "Promedio de calificacion ortogada al mediador"
+            "acceptance": "Tasa de aceptación para Mediación",
+            "rating": "Promedio de calificación recibida por el emisor",
+            "ratingGiven": "Promedio de calificación ortogada al mediador"
           },
           "fulfiller": {
-            "acceptance": "Tasa de aceptacion para Muestra",
-            "rating": "Promedio de calificacion recibida por el mediador",
-            "ratingGiven": "Promedio de calificacion ortogada al emisor"
+            "acceptance": "Tasa de aceptación para Muestra",
+            "rating": "Promedio de calificación recibida por el mediador",
+            "ratingGiven": "Promedio de calificación ortogada al emisor"
           }
         }
       },
@@ -631,22 +631,22 @@
       "reviews": {
         "title": "{reviewType} calificaciones recibidas",
         "zero_state": {
-          "title": "Ningun analisis encontrado",
+          "title": "Ningún analisis encontrado",
           "description":
-            "No hemos encontrado ningun analisis asociado con esta accion."
+            "No hemos encontrado ningún analisis asociado con esta acción."
         }
       },
       "zero_state": {
         "title": "Ningun usuario encontrado",
-        "description": "Asegurese de que la direccion sea la correcta he intente de nuevo"
+        "description": "Asegurese de que la dirección sea la correcta he intente de nuevo"
       },
       "zero_state_error": {
         "title": "Error",
-        "description": "Porfavor intente de nuevo"
+        "description": "Por favor intente de nuevo"
       }
     },
     "settings": {
-      "title": "Configuracion de cuenta",
+      "title": "Configuración de cuenta",
       "messages": {
         "profile_saved": "Perfil guardado completamente",
         "email_saved": "Preferencias de correo electronico guardada completamente"
@@ -655,66 +655,66 @@
         "unsaved_changes": {
           "title": "Descartar cambios?",
           "description":
-            "Si usted decide dejar esta pagina sin confirmar los cambios, los cambios echos a su perfil seran descartados y su perfil sera be revertido al estado anterior."
+            "Si usted decide dejar esta pagina sin confirmar los cambios, los cambios hechos a su perfil seran descartados y su perfil revertido al estado anterior."
         }
       },
       "emails": {
-        "title": "NOTIFICACIONES DE CORREO ELECTRONICO",
+        "title": "NOTIFICACIONES DE CORREO ELECTRÓNICO",
         "description":
-          "Que notificaciones desea recibir via correo electronico?",
+          "Que notificaciones desea recibir via correo electrónico?",
         "notice":
-          "Seleccione entrada o salida de las notificaciones que desea recibir via correo electronico. Le recomendamos que se mantenga con la configuracion por defecto asi ustede puede ser informado de actividad importamente relevamente para usted en la red.",
+          "Seleccione entrada o salida de las notificaciones que desea recibir via correo electrónico. Le recomendamos que se mantenga con la configuracion por defecto asi ustede puede ser informado de actividad importamente relevamente para usted en la red.",
         "actions": {
-          "save": "Guardar preferencias de correo electronico"
+          "save": "Guardar preferencias de correo electrónico"
         },
         "notification_options": {
-          "rating_received": "Usuario le ha emitido una calificacion",
+          "rating_received": "Usuario le ha emitido una calificación",
           "transfer_recipient": "Transferencia de recompensa a otro usuario se ha completado",
           "bounty_comment_received":
-            "Una recompensa que usted completo recibio un comentario",
-          "bounty_comment_received_issuer": "Su recompensa recibio un comentario",
+            "Una recompensa que usted completó recibio un comentario",
+          "bounty_comment_received_issuer": "Su recompensa ha recibido un comentario",
           "bounty_comment_received_commenter":
-            "Una recompensa que usted comento recibio un comentario",
-          "fulfillment_comment_received": "Su muestra recibio un comentario",
+            "Una recompensa que usted comentó ha recibido un comentario",
+          "fulfillment_comment_received": "Su muestra recibió un comentario",
           "fulfillment_comment_received_issuer":
-            "Una muestra en su recompensa recibio un comentario",
+            "Una muestra en su recompensa ha recibido un comentario",
           "fulfillment_comment_received_commenter":
-            "Una muestra en la que usted comento recibio un comentario",
-          "bounty_expired": "La Recompensa se vencio",
-          "bounty_changed": "Una recompensa que usted completo ha cambiado",
-          "bounty_changed_applicant": "Una recompensa la cual usted aplicado ha cambiado",
+            "Una muestra en la que usted comentá ha recibido un comentario",
+          "bounty_expired": "La Recompensa se venció",
+          "bounty_changed": "Una recompensa que usted completó ha cambiado",
+          "bounty_changed_applicant": "Una recompensa la cual usted se aplicó ha cambiado",
           "fulfillment_updated_issuer":
             "Mediador, ha actualiza lo completado en su recompensa",
           "fulfillment_submitted_issuer":
-            "Mediador, ha enviado una nueva mediacion a su recompensa",
-          "fulfillment_accepted_fulfiller": "Emisor acepta su mediacion",
+            "Mediador, ha enviado una nueva mediación a su recompensa",
+          "fulfillment_accepted_fulfiller": "Emisor acepta su mediación",
           "contribution_received":
-            "Otro usuario contribuyo fondos a su recompensa",
-          "bounty_completed": "La recompensa no tiene mas suficente para ser pagada",
-          "application_received": "Nuevo trabajador aplico a la recompensa",
-          "application_accepted_applicant": "Emisor acepto su aplicacion",
-          "application_rejected_applicant": "Emisor declino su aplicacion",
+            "Otro usuario ha contribuído fondos a su recompensa",
+          "bounty_completed": "La recompensa no tiene mas suficente saldo para ser pagada",
+          "application_received": "Nuevo trabajador aplicado a la recompensa",
+          "application_accepted_applicant": "El emisor aceptó su aplicación",
+          "application_rejected_applicant": "El emisor declinó su aplicación",
           "activity": "Actividad General (Perfil actualizado, recompensa creada, etc.)"
         }
       },
       "user": {
         "photo": {
           "title": "FOTO DE PERFIL",
-          "label": "La imagen subida fallo, porfavor intente de nuevo."
+          "label": "La imagen subida fallo, por favor intentelo nuevamente."
         },
         "about": {
           "title": "ACERCA DE",
-          "description": "Que te gustaria que la gente supiera acerca de ti?",
+          "description": "Que te gustaría que la gente supiera acerca de ti?",
           "notice":
-            "Introduzca alguno de sus detalles personales asi la comunidad puede saber de usted.",
+            "Introduzca algunos de sus detalles personales asi la comunidad puede saber mas a respecto de usted.",
           "form": {
             "name": {
               "label": "Nombre",
               "placeholder": "Introduzca un nombre..."
             },
             "organization": {
-              "label": "Organizacion",
-              "placeholder": "Introduzca una organizacion..."
+              "label": "Organización",
+              "placeholder": "Introduzca una organización..."
             },
             "languages": {
               "label": "Idiomas",
@@ -725,9 +725,9 @@
         "skills": {
           "title": "HABILIDADES",
           "description":
-            "Cuales son algunas de sus habilidades tecnicas o profesionale?",
+            "Cuales son algunas de sus habilidades técnicas o profesionale?",
           "notice":
-            "Introduzca o seleccione las habilidades en las cuales usted es proeficiente. Esto ayudara a otro en la red de trabajo a confiar en su habilidad de mediar cierto tipos de recompensas.",
+            "Introduzca o seleccione las habilidades en las cuales usted es proeficiente. Esto ayudara a otro en la red de trabajo a confiar en su habilidad de mediar ciertos tipos de recompensas.",
           "label": "Skills",
           "placeholder": "Crear o Seleccionar una habilidad..."
         },
@@ -747,12 +747,12 @@
             "A donde le gustaria recibir notifiaciones acerca de tus recompensas y completaciones?",
           "form": {
             "email": {
-              "label": "Correo electronico de contacto",
-              "placeholder": "Introduzca un correo electronico..."
+              "label": "Correo electrónico de contacto",
+              "placeholder": "Introduzca un correo electrónico..."
             },
             "marketing": {
               "label":
-                "Me gustaria tambien recibir sugerencias y actualizaciones relevantes de recompensas en la plataforma"
+                "Me gustaria también recibir sugerencias y actualizaciones relevantes de recompensas en la plataforma"
             }
           },
           "actions": {
@@ -769,7 +769,7 @@
         "submitted": "Enviado"
       },
       "headers": {
-        "title": "Titulo de la Recompensa",
+        "title": "Título de la Recompensa",
         "fulfiller": "Mediador",
         "date": "Fecha de muestra",
         "status": "Estado",
@@ -793,7 +793,7 @@
       "accepted": "Aceptada",
       "declined": "Denegada",
       "pending": "Pendiente",
-      "default": "Pendiente de aceptacion"
+      "default": "Pendiente de aceptación"
     },
     "bounty_card": {
       "difficulty": "dificultad",
@@ -816,7 +816,7 @@
     "filter_nav": {
       "sort_options": {
         "bounty_created": "Mas reciente",
-        "usd_price": "Value: Del mas Alto al mas bajo",
+        "usd_price": "Value: Del más Alto al más bajo",
         "deadline": "Finalizo"
       },
       "refine": "Refinar por",
@@ -836,87 +836,87 @@
       "not_accepted": "No Aceptado"
     },
     "submission": {
-      "title": "Titulo de la Recompensa",
+      "title": "Título de la Recompensa",
       "status": "Estado",
-      "date": "Dia de la sumision",
+      "date": "Día de la sumision",
       "fulfiller": "Mediador",
       "amount": "Cantidad del Pago"
     },
     "tx_guide": {
       "title": "Su cartera lo tomara de aqui!",
       "description":
-        "Luego de clickear \"OK\", un dialogo de su cartera aparecera para confirmarle su transaccion de Ethereum y pagar una pequeña cantidad de ETH (para comisiones de transaccion).",
-      "notice": "Un limite de gas por defecto y un precio se le sera establecido.",
+        "Luego de clickear \"OK\", un diálogo de su cartera aparecera para confirmarle su transaccóon de Ethereum y pagará una pequeña cantidad de ETH (para comisiones de transaccion).",
+      "notice": "Un límite de gas por defecto y un precio se le sera establecido.",
       "messages": {
         "waiting":
-          "Esperando que su transaccion este confirmada en la Red de Bloques...",
-        "confirmed": "Su transaccion ha sido confirmada!",
+          "Esperando que su transacción se confirme en la Red de Bloques...",
+        "confirmed": "Su transacción ha sido confirmada!",
         "pending_receipt":
-          "Su transaccion esta siendo procesada. Le notificaremos una vez este confirmada.",
+          "Su transacción esta siendo procesada. Le notificaremos una vez esté confirmada.",
         "pending_wallet":
-          "Confirmando su transaccion de Ethereum con su cartera habilitada. Esto tomara algunos segundos."
+          "Confirmando su transacción de Ethereum con su cartera habilitada. Esto tomara algunos segundos."
       }
     },
     "editor": {
       "preview": "Visa Previa",
       "default":
-        "# Descripcion\nDescribe la recompensa que quiere sea completada. Para que es? Que incluye?\n\n## Requirementos\nQue requerimentos tiene para el mediador de la recompensa? Hay alguna regla o contratiempo para la recompensa? Hay algunos pre-requisitos necesarios para que sea completada?\n\n* Articulo uno\n* Articulo dos\n* Articulo tres\n\n## Definicion de elaborado\n Que deberian los emisores de recompensas enviar para probar que ellos han completado la recompensa? Que necesitan los mediadores incluir en la presentacion para que esta sea aceptada?\n\n1. Articulo 1\n2. Articulo 2\n3. Articulo 3\n\n### Cosas a tener en cuenta\n Hay alguna otra informacion que quisiera hacer saber a aspirantes mediadores para conocer acera de ti o de la recompensa? Requiere la recompensa materiales adicionales que bien sea el tercero debe proveer o alguna informacion de intercambio para una comunicacion externa ha efectuarse?"
+        "# Descripcion\nDescribe la recompensa que quiere ser completada. Para que es? Que incluye?\n\n## Requirementos\nQue requerimentos tiene para el mediador de la recompensa? Hay alguna regla o contratiempo para la recompensa? Hay algunos pre-requisitos necesarios para que sea completada?\n\n* Articulo uno\n* Articulo dos\n* Articulo tres\n\n## Definición de elaborado\n Que deberían los emisores de recompensas enviar para probar que la recompensa ha sido completada? Que necesitan los mediadores incluir en la presentación para que esta sea aceptada?\n\n1. Artículo 1\n2. Artículo 2\n3. Artículo 3\n\n### Cosas a tener en cuenta\n Hay alguna otra informacion que quisiera hacer saber a aspirantes mediadores para conocer acera de ti o de la recompensa? Requiere la recompensa materiales adicionales que bien sea el tercero debe proveer o alguna informacion de intercambio para una comunicacion externa ha efectuarse?"
     },
     "notifications": {
       "fulfilLment_submitted": "Hizo una muestra",
-      "fulfilLment_submitted_issuer": "Recibio una muestra",
+      "fulfilLment_submitted_issuer": "Recibió una muestra",
       "bounty_activated": "Ha activado una recompensa",
       "fulfillment_accepted": "Ha aceptado una muestra",
       "fulfillment_accepted_fulfiller": "Su muestra fue aceptada",
-      "bounty_expired": "Su recompensa se vencio",
+      "bounty_expired": "Su recompensa se ha caducado",
       "bounty_issued": "Ha emitido una nueva recompensa",
       "bounty_killed": "Haz aniquilado una recompensa",
-      "contribution_added": "Realizastes una contribucion",
+      "contribution_added": "Realizastes una contribución",
       "deadline_extended": "Extendistes la fecha limite",
-      "bounty_changed": "Una recompensa que usted presento fue actualizada",
+      "bounty_changed": "Una recompensa que usted presentó fue actualizada",
       "bounty_changed_issuer": "Ha actualizado su recompensa",
       "bounty_changed_applicant": "Una recompensa a la que aplicaste fue actualizada",
       "issuer_transferred": "Haz transferido la propiedad de tu recompensa",
       "transfer_recipient": "Propiedad de la recompensa ha sido transferida hacia ti",
       "payout_increased": "Haz incrementado la cantidad a pagar",
-      "bounty_comment_received": "Una recompensa que usted completo recibio un comentario",
-      "bounty_comment_received_issuer": "Su recompensa recibio un comentario",
+      "bounty_comment_received": "Una recompensa que usted completo ha recibido un comentario",
+      "bounty_comment_received_issuer": "Su recompensa ha recibido un comentario",
       "bounty_comment_received_commenter":
-        "Una recompensa que usted comento recibio un comentario",
-      "fulfillment_comment_received": "Su muestra recibio un comentario",
+        "Una recompensa que usted comento ha recibido un comentario",
+      "fulfillment_comment_received": "Su muestra ha recibido un comentario",
       "fulfillment_comment_received_issuer":
-        "Una muestra a su recompensa recibio un comentario",
+        "Una muestra a su recompensa ha recibido un comentario",
       "fulfillment_comment_received_commenter":
-        "Una muestra que usted comento recibio un comentario",
+        "Una muestra que usted comento ha recibido un comentario",
       "bounty_issue_activated": "Ha colocado una recompensa",
-      "fulfillment_updated": "Ha actualizado su presentacion",
+      "fulfillment_updated": "Ha actualizado su presentación",
       "fulfillment_updated_issuer": "Una muestra de su recompensa fue actualizada",
       "rating_issued": "Ha escrito un analisis",
-      "rating_received": "Recibio una calificacion",
+      "rating_received": "Recibio una calificación",
       "profile_updated": "Acaba de actualizar su perfil",
       "comment_issued": "Ha escrito un comentario",
       "fulfillment_comment_issued": "Ha escrito un comentario",
       "draft_created": "Ha creado un borrador",
       "draft_updated": "Ha editado un borrador",
-      "contribution_received": "Ha Recibido una contribucion",
+      "contribution_received": "Ha Recibido una contribución",
       "bounty_completed": "Su recompensa esta casi sin fondos",
-      "application_created": "Enviastes una nueva aplicacion",
-      "application_received": "Recibistes una nueva aplicacion",
+      "application_created": "Enviastes una nueva aplicación",
+      "application_received": "Recibistes una nueva aplicación",
       "application_accepted_application": "Su aplicacion fue aceptada",
-      "application_accepted_issuer": "Haz aceptado una aplicacion",
+      "application_accepted_issuer": "Haz aceptado una aplicación",
       "application_rejected_applicant": "Tu aplicacion ha sido denegada",
-      "application_rejected_issuer": "Haz denegado una aplicacion"
+      "application_rejected_issuer": "Haz denegado una aplicación"
     }
   },
   "hocs": {
     "require_login": {
       "zero_state": {
-        "title": "Inicia sesion para utilizar La Red de Recompensas",
+        "title": "Inicia sesión para utilizar La Red de Recompensas",
         "body":
-          "Para que usted utilize ciertas caracteristicas de la plataforma como crear recompensas, comentar, y ver su estadistica de red de trabajo, porfavor inicie sesion utlizando su cartera segura.",
+          "Para que usted utilize ciertas características de la plataforma como crear recompensas, comentar, y ver su estadistica de red de trabajo, por favor inicie sesión utlizando su cartera segura.",
         "subtext":
-          "Si usted no desea iniciar sesion y solamente explorar, Sientase libre analizando algunas recompensas utilizando el ",
-        "action": "Iniciar sesion"
+          "Si usted no desea iniciar sesión y solamente explorar, Sientase libre analizando algunas recompensas utilizando el ",
+        "action": "Iniciar sesión"
       },
       "explorer": "explorador"
     }
@@ -935,17 +935,17 @@
     "mineq_value": "Debe ser mayor o igual a {min}",
     "min_date": "La fecha debe ser antes de {date}",
     "length": "Debe ser {length} caracteres",
-    "web3": "Deber ser una direccion web3 apropiada",
-    "number": "Debe ser un numero",
-    "email": "Correo electronico incorrecto",
-    "alfa_num": "Solamente caracteres alfanumericos",
-    "twitter": "Usuario de Twitter Invalido",
-    "github": "Usuario de Github Invalido",
-    "url": "Direccion web Invalida"
+    "web3": "Deber ser una dirección web apropiada",
+    "number": "Debe ser un número",
+    "email": "Correo electrónico incorrecto",
+    "alfa_num": "Solamente caracteres alfanuméricos",
+    "twitter": "Usuario de Twitter Inválido",
+    "github": "Usuario de Github Inválido",
+    "url": "Direccion web Inválida"
   },
   "common": {
-    "description": "Descripcion",
-    "expired": "vencido",
+    "description": "Descripción",
+    "expired": "caducado",
     "remaining": "restante",
     "difficulty": "dificultad",
     "expected": "esperado",
