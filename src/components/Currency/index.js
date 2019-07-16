@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Currency.module.scss';
 import { isNumber } from 'utils/helpers';
+import intl from 'react-intl-universal';
 
 import { Text } from 'components';
 
@@ -31,23 +32,24 @@ const Currency = props => {
     secondaryColor
   } = props;
 
-  const primaryDisplay = [
-    primaryCurrency.toLowerCase() === 'usd' ? '$' : null,
-    primaryDecimals === 'all'
-      ? Number(primaryValue)
-      : Number(primaryValue).toFixed(primaryDecimals),
-    ' '
-  ].join('');
-
-  const secondaryDisplay = [
-    secondaryCurrency.toLowerCase() === 'usd' ? '$' : null,
-    secondaryDecimals === 'all'
-      ? Number(secondaryValue)
-      : Number(secondaryValue).toFixed(secondaryDecimals),
-    ' ',
-    secondaryCurrency.toLowerCase() === 'usd' ? null : secondaryCurrency
-  ].join('');
-
+  let primaryDisplay = '';
+  if (primaryCurrency.toLowerCase() === 'usd') {
+    primaryDisplay = intl.get('formats.usd', { value: primaryValue });
+  } else {
+    primaryDisplay =
+      intl.get('formats.amount', { value: primaryValue }) +
+      ' ' +
+      primaryCurrency;
+  }
+  let secondaryDisplay = '';
+  if (secondaryCurrency.toLowerCase() === 'usd') {
+    secondaryDisplay = intl.get('formats.usd', { value: secondaryValue });
+  } else {
+    secondaryDisplay =
+      intl.get('formats.amount', { value: secondaryValue }) +
+      ' ' +
+      secondaryCurrency;
+  }
   return (
     <div className={className}>
       <div
@@ -64,18 +66,6 @@ const Currency = props => {
           className={primaryClassName}
         >
           {primaryDisplay}
-
-          {primaryCurrency.toLowerCase() !== 'usd' && (
-            <Text
-              inline
-              color={currencyColor}
-              typeScale={currencyTypeScale}
-              weight={currencyWeight}
-              className={currencyClass}
-            >
-              {primaryCurrency}
-            </Text>
-          )}
         </Text>
       </div>
 
