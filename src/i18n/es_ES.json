@@ -978,7 +978,7 @@
     "description": "Descripción",
     "expired": "{count, plural, =1 {expirada} other {expiradas}}",
     "remaining": "{count, plural, =1 {restante} other {restantes}}",
-    "difficulty": "(dificultad)",
+    "difficulty": "dificultad",
     "expected": "{count, plural, =1 {esperada} other {esperadas}}",
     "and": "y",
     "payout": "Pago"
