@@ -6,8 +6,8 @@
     "profile": "Perfil"
   },
   "actions": {
-    "load_more": "Carga más",
-    "view_all": "Ver todos",
+    "load_more": "Carga Más",
+    "view_all": "Ver Todos",
     "accept": "Aceptar",
     "reject": "Rechazar",
     "filter": "Filtro",
@@ -22,10 +22,10 @@
     "contribute_issuer": "Incrementar Balance",
     "edit_bounty": "Editar Recompensa",
     "submit": "Enviar",
-    "extend_deadline": "Extender fecha límite",
+    "extend_deadline": "Extender Fecha Límite",
     "increase_payout": "Incrementar Pago",
     "transfer_ownership": "Transferir Propiedad",
-    "logout": "Cerrar sesión",
+    "logout": "Cerrar Sesión",
     "close": "Cerrar",
     "reset": "Restablecer",
     "sort": "Ordenar",
@@ -33,13 +33,13 @@
     "dashboard": "Ir a Panel Principal",
     "create_bounty": "Crear Recompensa",
     "profile": "Perfil",
-    "settings": "Ajustes de cuenta",
+    "settings": "Ajustes de Cuenta",
     "signout": "Cerrar Sesión",
     "signin": "Iniciar Sesión",
     "view_bounty": "Ver Recompensa",
     "view_rating": "Ver Calificación",
-    "discard_changes": "Discard Changes",
-    "upload_photo": "Upload New Photo"
+    "discard_changes": "Descartar cambios",
+    "upload_photo": "Cargar Nueva Foto"
   },
   "sections": {
     "activity": {
@@ -829,7 +829,7 @@
         "intermediate": "Intermedio",
         "advanced": "Avanzado"
       },
-      "submissions_count": "entrega(s)"
+      "submissions_count": "{count, plural, =1 {entrega} other {entregas}}"
     },
     "bounty_item": {
       "text":
@@ -837,7 +837,7 @@
       "draftText": "Creado {time}"
     },
     "essentials": {
-      "balance": "Balance restante"
+      "balance": "Restante"
     },
     "filter_nav": {
       "sort_options": {
@@ -976,19 +976,19 @@
   },
   "common": {
     "description": "Descripción",
-    "expired": "expirada",
-    "remaining": "restante(s)",
+    "expired": "{count, plural, =1 {expirada} other {expiradas}}",
+    "remaining": "{count, plural, =1 {restante} other {restantes}}",
     "difficulty": "(dificultad)",
-    "expected": "esperada(s)",
+    "expected": "{count, plural, =1 {esperada} other {esperadas}}",
     "and": "y",
     "payout": "Pago"
   },
   "stages": {
-    "draft": "Draft",
-    "active": "Active",
-    "dead": "Dead",
-    "completed": "Completed",
-    "expired": "Expired"
+    "draft": "Borrador",
+    "active": "Activa",
+    "dead": "Inactiva",
+    "completed": "Completada",
+    "expired": "Expirada"
   },
   "formats": {
     "amount": "{value, number}",

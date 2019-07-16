@@ -171,6 +171,17 @@ class BountyComponent extends React.Component {
       );
     }
 
+    var reg = /\d+/;
+    var date = moment
+      .utc(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ')
+      .fromNow(true)
+      .match(reg);
+    var dateNum;
+    if (date) {
+      dateNum = date[0];
+    } else {
+      dateNum = 1;
+    }
     return (
       <div>
         <SEOHeader bounty={bounty} />
@@ -314,8 +325,8 @@ class BountyComponent extends React.Component {
                       className={styles.metadataLabel}
                     >
                       {bounty.bounty_stage === EXPIRED
-                        ? intl.get('common.expired')
-                        : intl.get('common.remaining')}
+                        ? intl.get('common.expired', { count: dateNum })
+                        : intl.get('common.remaining', { count: dateNum })}
                     </Text>
                   </div>
 
@@ -362,7 +373,9 @@ class BountyComponent extends React.Component {
                         color="defaultGrey"
                         className={styles.metadataLabel}
                       >
-                        {intl.get('common.expected')}
+                        {intl.get('common.expected', {
+                          count: bounty.revisions
+                        })}
                       </Text>
                     </div>
                   )}
