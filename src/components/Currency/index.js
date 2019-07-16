@@ -16,7 +16,6 @@ const Currency = props => {
 
     primaryValue,
     primaryCurrency,
-    primaryDecimals,
     primaryTypeScale,
     primaryWeight,
     primaryColor,
@@ -27,7 +26,6 @@ const Currency = props => {
 
     secondaryValue,
     secondaryCurrency,
-    secondaryDecimals,
     secondaryTypeScale,
     secondaryColor
   } = props;
@@ -36,19 +34,13 @@ const Currency = props => {
   if (primaryCurrency.toLowerCase() === 'usd') {
     primaryDisplay = intl.get('formats.usd', { value: primaryValue });
   } else {
-    primaryDisplay =
-      intl.get('formats.amount', { value: primaryValue }) +
-      ' ' +
-      primaryCurrency;
+    primaryDisplay = intl.get('formats.amount', { value: primaryValue });
   }
   let secondaryDisplay = '';
   if (secondaryCurrency.toLowerCase() === 'usd') {
     secondaryDisplay = intl.get('formats.usd', { value: secondaryValue });
   } else {
-    secondaryDisplay =
-      intl.get('formats.amount', { value: secondaryValue }) +
-      ' ' +
-      secondaryCurrency;
+    secondaryDisplay = intl.get('formats.amount', { value: secondaryValue });
   }
   return (
     <div className={className}>
@@ -66,6 +58,18 @@ const Currency = props => {
           className={primaryClassName}
         >
           {primaryDisplay}
+
+          {primaryCurrency.toLowerCase() !== 'usd' && (
+            <Text
+              inline
+              color={currencyColor}
+              typeScale={currencyTypeScale}
+              weight={currencyWeight}
+              className={currencyClass}
+            >
+              {primaryCurrency}
+            </Text>
+          )}
         </Text>
       </div>
 
@@ -76,6 +80,16 @@ const Currency = props => {
           className={secondaryClassName}
         >
           {secondaryDisplay}
+          {secondaryCurrency.toLowerCase() !== 'usd' && (
+            <Text
+              inline
+              color={secondaryColor}
+              typeScale={secondaryTypeScale}
+              className={secondaryClassName}
+            >
+              {' ' + secondaryCurrency}
+            </Text>
+          )}
         </Text>
       )}
     </div>
