@@ -3,6 +3,7 @@ import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { INIT_TRANSLATIONS, UPDATE_LOCALE } from './constants';
 import { actions } from './index';
 import moment from 'moment';
+import 'moment/min/locales';
 
 // app locale data
 const locales = {

@@ -37,7 +37,9 @@
     "signout": "Sign out",
     "signin": "Sign in",
     "view_bounty": "View Bounty",
-    "view_rating": "View Rating"
+    "view_rating": "View Rating",
+    "discard_changes": "Discard Changes",
+    "upload_photo": "Upload New Photo"
   },
   "sections": {
     "activity": {
@@ -951,6 +953,13 @@
     "expected": "expected",
     "and": "and",
     "payout": "Payout"
+  },
+  "stages": {
+    "draft": "Draft",
+    "active": "Active",
+    "dead": "Dead",
+    "completed": "Completed",
+    "expired": "Expired"
   },
   "formats": {
     "amount": "{value, number}",
