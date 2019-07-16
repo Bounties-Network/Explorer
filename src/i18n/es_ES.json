@@ -823,7 +823,7 @@
       "default": "Aceptación pendiente"
     },
     "bounty_card": {
-      "difficulty": "(dificultad)",
+      "difficulty": "dificultad",
       "difficulty_options": {
         "beginner": "Principiante",
         "intermediate": "Intermedio",
