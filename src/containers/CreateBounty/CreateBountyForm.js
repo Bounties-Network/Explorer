@@ -148,6 +148,9 @@ class CreateBountyFormComponent extends React.Component {
       validators.minValue(0),
       (balance, allValues) => {
         const valueField = allValues.fulfillment_amount;
+        if (isNaN(balance)) {
+          return intl.get('sections.create_bounty.deposit_warning');
+        }
         if (
           valueField &&
           BigNumber(balance, 10).isLessThan(BigNumber(valueField, 10))
