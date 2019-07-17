@@ -59,10 +59,10 @@ class Settings extends React.Component {
                         fitwidth
                         onClick={onCancel}
                       >
-                        Cancel
+                        {intl.get('actions.cancel')}
                       </Button>
                       <Button type="destructive" onClick={onConfirm}>
-                        Discard changes
+                        {intl.get('actions.discard_changes')}
                       </Button>
                     </Modal.Footer>
                   </Modal>

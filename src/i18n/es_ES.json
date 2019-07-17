@@ -1,0 +1,997 @@
+{
+  "nav": {
+    "explorer": "Explorador",
+    "dashboard": "Panel",
+    "leaderboard": "Líderes",
+    "profile": "Perfil"
+  },
+  "actions": {
+    "load_more": "Carga Más",
+    "view_all": "Ver Todos",
+    "accept": "Aceptar",
+    "reject": "Rechazar",
+    "filter": "Filtro",
+    "ok": "OK",
+    "rate_fulfiller": "Calificar Caza recompensas",
+    "rate_issuer": "Calificar Publicador",
+    "activate": "Activar",
+    "de_activate": "Desactivar",
+    "re_activate": "Reactivar",
+    "cancel": "Cancelar",
+    "contribute": "Contribuir",
+    "contribute_issuer": "Incrementar Balance",
+    "edit_bounty": "Editar Recompensa",
+    "submit": "Enviar",
+    "extend_deadline": "Extender Fecha Límite",
+    "increase_payout": "Incrementar Pago",
+    "transfer_ownership": "Transferir Propiedad",
+    "logout": "Cerrar Sesión",
+    "close": "Cerrar",
+    "reset": "Restablecer",
+    "sort": "Ordenar",
+    "continue": "Continuar",
+    "dashboard": "Ir a Panel Principal",
+    "create_bounty": "Crear Recompensa",
+    "profile": "Perfil",
+    "settings": "Ajustes de Cuenta",
+    "signout": "Cerrar Sesión",
+    "signin": "Iniciar Sesión",
+    "view_bounty": "Ver Recompensa",
+    "view_rating": "Ver Calificación",
+    "discard_changes": "Descartar cambios",
+    "upload_photo": "Cargar Nueva Foto"
+  },
+  "sections": {
+    "activity": {
+      "title": "Mi Actividad",
+      "zero_state": {
+        "title": "No tienes actividad aún",
+        "description":
+          "Una vez empieces a utilizar la plataforma, tus actividades aparecerán aquí."
+      }
+    },
+    "bounties": {
+      "title": "Mis Recompensas",
+      "tabs": {
+        "active": "Activas",
+        "drafts": "Borradores"
+      },
+      "zero_state": {
+        "title":
+          "No tienes {tab, select, active {recompensas activas} drafts {ningún borrador} other {recompensas {currentTab}}}",
+        "description":
+          "Parece que no tienes {tab, select, active {recompensas activas} drafts {ningún borrador} other {recompensas {currentTab}}} por el momento. ¡Has click en el botón inferior para que empieces a crear nuevas recompensas!",
+        "actions": {
+          "new_bounty": "Crear recompensa"
+        }
+      }
+    },
+    "bounty": {
+      "zero_state": {
+        "title": "No pudimos encontrar esa recompensa",
+        "description":
+          "Trata de refrescar la página, o asegurate que la dirección URL es la correcta"
+      },
+      "meta": {
+        "input": "Privada",
+        "label": "recompensa",
+        "tooltip":
+          "Las recompensas privadas requieren que los usuarios envíen una solicitud de antemano para poder participar. Una vez seas aprobado por el publicador de esta recompensa, podrás completarla.",
+        "revisions": "{count, plural, =1 {# revisión} other {# revisiones}}"
+      },
+      "components": {
+        "issue_rating": {
+          "issuer1":
+            "¡Tu trabajo ha sido aceptado! Si lo deseas, puedes calificar tu experiencia con el publicador de esta recompensa:",
+          "issuer2":
+            "Esto ayudará a establecer expectativas para otros usuarios en la plataforma.",
+          "fulfiller1":
+            "¡Has aceptado este trabajo! Si lo deseas, puedes calificar tu experiencia con este usuario:",
+          "fulfiller2":
+            "Esto ayudará a establecer expectativas con otros usuarios en la plataforma.",
+          "rating": "Calificación",
+          "review": "Reseña",
+          "review_placeholder": "Introduce una reseña..."
+        },
+        "new_comment": {
+          "placeholder": "Escribe un comentario...",
+          "action": "Enviar comentario",
+          "login_action": "Inicia sesión para comentar"
+        },
+        "applicant_card": {
+          "declined_message":
+            "El estado de solicitud rechazada solo es visible para ti",
+          "zero_state": {
+            "title": "Hay 0 solicitudes",
+            "description":
+              "Las solicitudes para esta recompensa aparecerán aquí."
+          }
+        },
+        "comments_card": {
+          "zero_state": {
+            "title": "Hay 0 comentarios",
+            "description":
+              "Escribe un comentario utilizando el cuadro de arriba."
+          }
+        },
+        "submissions_card": {
+          "zero_state": {
+            "title": "Hay 0 trabajos entregados",
+            "private_title": "Los trabajos entregados son privados",
+            "description":
+              "Los trabajos entregados para esta recompensa aparecerán aquí.",
+            "private_description":
+              "Los trabajos entregados para esta recompensa han sido establecidos como privados.",
+            "bounty_owner_description":
+              "Los trabajos entregados que se realicen para esta recompensa aparecerán aquí y serán únicamente visibles para ti. Adicionalmente, los usuarios que participen serán capaces de ver solo su trabajo."
+          },
+          "notice":
+            "Los trabajos entregados para esta recompensa están ocultos.",
+          "bounty_owner_notice":
+            " Esta sección solo es visible para ti y el usuario que lo realizo.",
+          "fulfiller_notice":
+            " Esta sección solo es visible para ti y el publicador de la recompensa.",
+          "show_comments":
+            "Mostrar {count} {count, plural, =1 {comentario} other {comentarios}}",
+          "hide_comments":
+            "Ocultar {count} {count, plural, =1 {comentario} other {comentarios}}",
+          "action": "Comentar"
+        }
+      },
+      "difficulties": {
+        "Beginner": "Principiante",
+        "Intermediate": "Intermedio",
+        "Expert": "Experto"
+      },
+      "actions": {
+        "activate": "Activar Recompensa",
+        "edit": "Editar Recompensa",
+        "re_activate": "Reactivar Recompensa",
+        "de_activate": "Desactivar Recompensa",
+        "increase_prize": "Incrementar Precio",
+        "contribute": "Contribuir",
+        "contribute_issuer": "Incrementar Balance",
+        "extend_deadline": "Extender fecha límite",
+        "transfer_ownership": "Transferir Propiedad",
+        "fulfill": "Completar",
+        "login_fulfill": "Iniciar sesión para completar",
+        "fulfill_gitcoin": "Completar en Gitcoin",
+        "apply": "Enviar solicitud",
+        "login_apply": "Iniciar sesión para participar"
+      },
+      "tabs": {
+        "applicants": {
+          "title": "Solicitantes"
+        },
+        "submissions": {
+          "title": "Entregas"
+        },
+        "comments": {
+          "title": "Comentarios"
+        }
+      },
+      "modals": {
+        "unsaved_changes": {
+          "new_bounty": {
+            "title": "¿Descartar cambios?",
+            "description":
+              "Si decides abandonar esta página sin guardar los cambios realizados, estos serán descartados y la recompensa volverá a su estado anterior."
+          },
+          "draft_or_edit_bounty": {
+            "title": "¿Descartar cambios?",
+            "description":
+              "Si decides abandonar esta página sin crear un borrador o activar la recompensa, esta será descartada."
+          }
+        },
+        "activate_dead_form": {
+          "title": "Reactivar Recompensa",
+          "description":
+            "Indicar cantidad a depositar para activar la recompensa. Como mínimo, tu deposito debe coincidir con el monto a pagar ({minimumBalance} {token_symbol}).",
+          "min_deposit_warning":
+            "Como mínimo, tu deposito inicial debe coincidir con el monto a pagar.",
+          "form": {
+            "balance": {
+              "label": "Depositar monto en {token_symbol}",
+              "placeholder": "Introducir monto..."
+            }
+          }
+        },
+        "activate_draft_form": {
+          "title": "Activar recompensa",
+          "description":
+            "Indicar monto inicial a depositar para activar recompensa.<em> Como mínimo, tu deposito inicial debe coincidir con el monto a pagar de</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {token_symbol}</strong>",
+          "min_deposit_warning":
+            "Como mínimo, tu deposito inicial debe coincidir con el monto a pagar.",
+          "form": {
+            "balance": {
+              "label": "Depositar monto en {token_symbol}",
+              "placeholder": "Introducir monto..."
+            }
+          }
+        },
+        "contribute": {
+          "title": "Incrementar balance",
+          "description":
+            "Indique el monto con el que le gustaría contribuir para esta recompensa ({token_symbol}).",
+          "title_issuer": "Contribuir en la recompensa",
+          "description_issuer":
+            "Indique el monto que le gustaría agregar a la recompensa ({token_symbol}).",
+          "form": {
+            "contribution": {
+              "label": "Depositar monto en {token_symbol}",
+              "placeholder": "Introducir monto..."
+            }
+          }
+        },
+        "extend_deadline_error": {
+          "title":
+            "La fecha límite debe estar a futuro para poder activar su recompensa."
+        },
+        "extend_deadline_form": {
+          "title": "Extender fecha límite",
+          "description":
+            "Indique el tiempo que le gustaría extender la fecha límite de la recompensa {timezone, select, null { } other { (zona horaria={timezone})}}"
+        },
+        "fulfill_bounty": {
+          "title": "Detalles de la entrega",
+          "description":
+            "Introduce y envía los detalles de tu trabajo realizado, incluyendo cualquier enlace o contenido que pueda ser requerido, según lo especificado en la recompensa. Puedes darle formato a la descripción de esta entrega utilizando <a href=\"https://www.markdownguide.org/cheat-sheet\" target=\"_blank\">Markdown</a>.",
+          "form": {
+            "name": {
+              "label": "Nombre de contacto",
+              "placeholder": "Introducir nombre..."
+            },
+            "email": {
+              "label": "Correo electrónico de contacto",
+              "placeholder": "Introducir correo electrónico..."
+            },
+            "url": {
+              "label": "Enlace web",
+              "placeholder": "Introducir URL..."
+            },
+            "description": {
+              "label": "Descripción",
+              "placeholder": "Introducir descripción..."
+            },
+            "private_notice":
+              "Toda la información ingresada aquí se almacenará en la red pública de Ethereum, pero estará oculta en este sitio web.",
+            "public_notice":
+              "Toda la información ingresada aquí se almacenará en la red pública de Ethereum y se mostrará públicamente en este sitio web."
+          }
+        },
+        "fulfiller_application": {
+          "title": "Introduzca los detalles de su solicitud",
+          "description":
+            "Describe por qué crees que serías una buen candidato para completar esta recompensa. Si gustas puedes proporcionar enlaces de trabajo o experiencias relevantes.",
+          "form": {
+            "message": {
+              "label": "Solicitud",
+              "placeholder": "Introducir mensaje..."
+            }
+          }
+        },
+        "increase_payout": {
+          "title": "Incrementar pago de la recompensa",
+          "description1":
+            "Indique el monto por el cual le gustaría incrementar el pago. Tienes la posibilidad de agregar un poco más de saldo para cubrir los costos.<br /><br /><em>Tu balance total debe ser mayor al nuevo monto a pagar ({token_symbol})</em>. Tu balance actual es de: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. El monto a pagar actual es de: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+          "description2":
+            "Indique el monto por el cual le gustaría incrementar el pago.<br /><br /><em>Tu balance total debe ser mayor al nuevo monto a pagar ({token_symbol})</em>. Tu balance actual es de: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. El monto a pagar actual es de: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+          "balance_warning":
+            "El balance de tu recompensa debe ser mayor al monto a pagar.",
+          "payout_warning":
+            "El monto a pagar debe ser mayor que el establecido anteriormente.",
+          "form": {
+            "balance": {
+              "label": "Depositar monto ({token_symbol})",
+              "placeholder": "Introducir monto..."
+            },
+            "fullfillment_amount": {
+              "label": "Nuevo monto a pagar ({token_symbol})",
+              "placeholder": "Introducir monto..."
+            }
+          }
+        },
+        "kill_bounty": {
+          "title": "¿Estás seguro que quieres desactivar tu recompensa?",
+          "description":
+            "Si cambias de parecer, siempre tendrás la oportunidad de reactivarla nuevamente."
+        },
+        "transfer_ownership": {
+          "title": "Transferir Propiedad",
+          "description":
+            "Incluye la dirección de cartera a la cual te gustarias transferir esta recompensa.",
+          "form": {
+            "new_owner": {
+              "placeholder": "Introduce la dirección de cartera..."
+            }
+          }
+        }
+      }
+    },
+    "create_bounty": {
+      "zero_state": {
+        "title": "No encontramos esa recompensa",
+        "description":
+          "Intenta refrescar la página, o asegurate que la URL es la correcta"
+      },
+      "deposit_warning":
+        "El monto del depósito debe coincidir al menos con el monto de pago.",
+      "payout_warning":
+        "El monto de pago no puede ser mayor que el balance actual.",
+      "actions": {
+        "create": "Crear Recompensa",
+        "edit": "Editar Recompensa",
+        "draft": "Crear Borrador",
+        "update_draft": "Actualizar Borrador",
+        "update_bounty": "Actualizar Recompensa"
+      },
+      "sections": {
+        "about": {
+          "title": "ACERCA DE",
+          "description": "Introduzca los detalles respecto a esta recompensa.",
+          "notice":
+            "Ingrese título y descripción para esta recompensa. Si utilizas ",
+          "notice2":
+            ", la vista previa se generará automáticamente a medida que escribes, puedes verla haciendo clic en el botón de vista previa. Siéntete libre de usar la plantilla proporcionada a continuación, o borrarla y crear una propia.",
+          "form": {
+            "title": {
+              "label": "Título",
+              "placeholder": "Introducir título..."
+            },
+            "description": {
+              "label": "Descripción"
+            }
+          }
+        },
+        "contact": {
+          "title": "CONTACTO",
+          "description":
+            "¿Quién será el contacto principal de la recompensa para atender preguntas y trabajos entregados?",
+          "form": {
+            "issuer_name": {
+              "label": "Nombre de contacto",
+              "placeholder": "Introducir nombre..."
+            },
+            "issuer_email": {
+              "label": "Correo electrónico de contacto",
+              "placeholder": "Introducir correo electrónico..."
+            }
+          }
+        },
+        "details": {
+          "title": "DETALLES",
+          "description": "¿Cómo se debería clasificar esta recompensa?",
+          "notice":
+            "Seleccione las categorías y el nivel de dificultad para esta recompensa. Dada que la dificultad puede ser bastante subjetiva, resulta útil proporcionar detalles sobre la experiencia requerida para completar la recompensa.",
+          "form": {
+            "categories": {
+              "label": "Categoría de la recompensa",
+              "placeholder": "Crear o seleccionar categoría..."
+            },
+            "experience_level": {
+              "label": "Dificultad",
+              "options": {
+                "beginner": "Principiante",
+                "intermediate": "Intermedio",
+                "expert": "Experto"
+              }
+            }
+          }
+        },
+        "revisions": {
+          "title": "REVISIONES",
+          "description": "¿Necesitarás revisiones?",
+          "notice":
+            "Introduce el número máximo de revisiones que esta tarea podría requerir, esto con el fin de ayudar a establecer claras expectativas entre los usuarios involucrados."
+        },
+        "attachments": {
+          "title": "ARCHIVOS ADJUNTOS",
+          "description":
+            "¿Requiere esta recompensa algún archivo externo para ser completada?",
+          "notice":
+            "Adjunte cualquier archivo o enlace que pueda ser útil como referencia o que sea necesario para que el o los participantes completen la recompensa.",
+          "form": {
+            "url": {
+              "label": "Enlace Web",
+              "placeholder": "Introducir URL..."
+            },
+            "file": {
+              "label": "Archivo asociado"
+            }
+          }
+        },
+        "deadline": {
+          "title": "FECHA LÍMITE",
+          "description": "¿Cuándo expirará esta recompensa?",
+          "notice":
+            "Introduzca la fecha y hora límite de esta recompensa {timezone, select, null { } other {(zona horaria={timezone})}}"
+        },
+        "privacy": {
+          "title": "PRIVACIDAD",
+          "description": "¿Los trabajos entregados serán visibles para todos?",
+          "notice":
+            "Puedes ocultar los trabajos que los usuarios entreguen si así lo deseas.",
+          "form": {
+            "fulfillers_need_approval": {
+              "label": "Requiere aprobación previa",
+              "placeholder": "Introducir URL...",
+              "options": {
+                "yes": "Si",
+                "no": "No"
+              }
+            },
+            "private_fullfillments": {
+              "label": "Visibilidad",
+              "description":
+                "¿Quieres aprobar a las personas antes de que puedan cumplir con tu recompensa?",
+              "notice":
+                "De requerir aprobación, te será notificado cuando un usuario envíe su trabajo, y se te solicitará que lo apruebes antes de permitir que la recompensa sea completada.",
+              "options": {
+                "public": "Público",
+                "hidden": "Oculto"
+              }
+            }
+          }
+        },
+        "payout": {
+          "title": "PAGO",
+          "description": "Seleccione el método de pago y monto.",
+          "notice":
+            "Seleccione el token e ingrese la cantidad que pagará al ser completada esta recompensa.",
+          "form": {
+            "token_contract": {
+              "label_default": "Dirección del contrato del token",
+              "label_custom": "Dirección del contrato de {token}",
+              "placeholder": "Introducir dirección del contrato del token..."
+            },
+            "method": {
+              "label": "Método de pago"
+            },
+            "fulfillment_amount": {
+              "label":
+                "Monto de pago {hasDefaultToken, select, true {} false {(ETH o tokens)}}",
+              "placeholder": "Introducir monto..."
+            },
+            "token_contract_2": {
+              "label": "Token",
+              "placeholder":
+                "Seleccione el token o ingrese la dirección del token..."
+            }
+          }
+        },
+        "payout_editing": {
+          "title": "PAGO",
+          "description": "Indique el monto de pago",
+          "notice":
+            "Introduzca el monto que pagará por completar esta recompensa. El pago no puede ser mayor al balance actual de <span class=\"{textHighlight}\">{balance} {token_symbol} </span>. Si deseas agregar más fondos para la recompensa, por favor ir a <a href=\"{increaseBalanceUrl}\">incrementar balance.</a>",
+          "form": {
+            "token_contract": {
+              "label_default": "Dirección del contrato del token",
+              "label_custom": "Dirección del contrato de {token}",
+              "placeholder": "Introducir dirección del contrato del token..."
+            },
+            "method": {
+              "label": "Método de pago"
+            },
+            "fulfillment_amount": {
+              "label":
+                "Monto de pago {hasDefaultToken, select, true {} false {(ETH o tokens)}}",
+              "placeholder": "Introducir monto..."
+            },
+            "token_contract_2": {
+              "label": "Token",
+              "placeholder":
+                "Seleccione el token o ingrese la dirección del token..."
+            }
+          }
+        },
+        "save": {
+          "title": "ACTIVAR O GUARDAR",
+          "description": "¿Cuándo te gustaría activar esta recompensa?",
+          "notice":
+            "Si deseas activar la recompensa más tarde, puedes guardarla como borrador. Los requisitos de una recompensa solo pueden ser editador en modo borrador. Como mínimo, el monto de su depósito debe coincidir con el monto de su pago.",
+          "form": {
+            "activate_now": {
+              "label": "Cuándo activar",
+              "options": {
+                "now": "Ahora",
+                "later": "Luego"
+              }
+            },
+            "balance": {
+              "label": "Monto del deposito (ETH o tokens)",
+              "placeholder": "Introducir monto..."
+            }
+          }
+        }
+      }
+    },
+    "dashboard": {
+      "profile_strength": "Fuerza del perfil",
+      "edit_profile": "Editar perfil"
+    },
+    "explorer_body": {
+      "bounty_count": "{count, plural, =1 {recompensa} other {recompensas}}",
+      "zero_state": {
+        "title": "No se encontraron recompensas",
+        "description":
+          "Actualiza tus filtros de búsqueda para ver más recompensas."
+      },
+      "zero_state_error": {
+        "title": "¡Oops, algo ha pasado!",
+        "description":
+          "Prueba un nuevo filtro o actualiza la página y vuelve a intentarlo"
+      }
+    },
+    "leaderboard": {
+      "title": "Líderes",
+      "banner": {
+        "top_issuers": "Publicadores",
+        "top_earners": "Recompensados"
+      }
+    },
+    "leaderboard_card": {
+      "zero_state": {
+        "title": "No hay resultados aún",
+        "description":
+          "A medida que se creen y completen recompensas, la tabla de líderes comenzará a poblarse."
+      },
+      "zero_state_error": {
+        "title": "¡Oops, algo ha pasado!",
+        "description": "Intenta actualizar la página y vuelve a intentarlo."
+      }
+    },
+    "login": {
+      "modals": {
+        "details": {
+          "title": "Detalles del Perfil",
+          "description":
+            "Agrega algunos detalles personales en tu perfil, para que otros en la plataforma conozcan tus habilidades, y así puedan encontrarte donde sea en línea.",
+          "description2":
+            "¡Bienvenido a Bounties Network! Estamos emocionados de ver que clase de recompensas puedes crear o completar.<br /> <br /> Antes de comenzar, te invitamos a que agregues algunos detalles en tu perfil, para que otros en la plataforma tengan una idea de ti y tus habilidades.",
+          "actions": {
+            "skip": "Saltar",
+            "add": "Añadir detalles de perfil"
+          }
+        },
+        "address_mismatch": {
+          "title": "La dirección de cartera no coincide",
+          "description1": "Previamente habías iniciado sesión en ",
+          "description2": "bounties.network",
+          "description3": " utilizando la siguiente dirección:",
+          "description4":
+            "Esta dirección no coincide con la dirección de su cartera actual:",
+          "description5":
+            ". Cambie de cartera o cierre sesión en Bounties Network e inicie sesión con una dirección de cartera diferente."
+        },
+        "error": {
+          "title": "Algo pasó. Inténtalo de nuevo más tarde."
+        },
+        "sign_in": {
+          "title": "Verificar la dirección e iniciar sesión",
+          "description":
+            "Después de hacer clic en \"Continuar\", un cuadro de diálogo aparecerá y te pedirá que verifiques la dirección de tu cartera. Una vez la verifiques, habrás iniciado sesión en la red."
+        },
+        "signing_in": {
+          "title":
+            "Completa el proceso de autorización para verificar tu dirección e iniciar sesión"
+        },
+        "unlock": {
+          "title": "Acceso seguro a su cartera",
+          "description1":
+            "Deberás iniciar sesión y/o permitir el acceso a tu cartera segura (p. ej.",
+          "description2":
+            ") para poder usar {pageLevel, select, null {parte de} other { }} {networkName}"
+        },
+        "wallet_required": {
+          "title":
+            "Se requiere explorador con Web3 habilitado y una cartera segura.",
+          "description1": "Para poder usar",
+          "description2": ", por favor instale una cartera segura como",
+          "description3":
+            "Si necesita ayuda al momento de configurar, eche un vistazo en ",
+          "guide": "Guía de inicio.",
+          "actions": {
+            "visit": "Visitar {walletName}"
+          }
+        },
+        "wrong_network": {
+          "title": "Red foránea detectada",
+          "description1": "{networkName} está actualmente operativo en",
+          "description2": "Por favor cambie la red de su cartera activa."
+        }
+      }
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "actions": {
+        "mark_read": "Marcar todo como leido"
+      },
+      "zero_state": {
+        "title": "No tienes notificaciones",
+        "description":
+          "Una vez que empieces a utilizar la plataforma, las notificaciones aparecerán aquí."
+      }
+    },
+    "profile": {
+      "about": {
+        "title": "Acerca de mi",
+        "organization": "Organización",
+        "languages": "Idiomas hablados"
+      },
+      "elsewhere": {
+        "title": "Mis redes"
+      },
+      "skills": {
+        "title": "Habilidades"
+      },
+      "network": {
+        "title": "Estadísticas de Red",
+        "descriptions": {
+          "issuer": {
+            "acceptance": "Tasa de aceptación de trabajos",
+            "rating":
+              "Calificación promedio recibida como publicador de recompensas",
+            "ratingGiven": "Calificación promedio dada a caza recompensas"
+          },
+          "fulfiller": {
+            "acceptance": "Tasa de aceptación de entregas",
+            "rating": "Calificación promedio recibida como caza recompensas",
+            "ratingGiven":
+              "Calificación promedio dada a publicadores de recompensas"
+          }
+        }
+      },
+      "tabs": {
+        "bounties": "Recompensas creadas",
+        "submissions": "Trabajos entregados"
+      },
+      "reviews": {
+        "title": "reseñas recibidas como {reviewType}",
+        "zero_state": {
+          "title": "No se encontraron reseñas",
+          "description": "No hemos encontrado ninguna reseña asociada contigo."
+        }
+      },
+      "zero_state": {
+        "title": "Usuario no encontrado",
+        "description":
+          "Comprueba que la dirección es correcta y vuelve a intentarlo"
+      },
+      "zero_state_error": {
+        "title": "Error",
+        "description": "Inténtalo de nuevo"
+      }
+    },
+    "settings": {
+      "title": "Ajustes de cuenta",
+      "messages": {
+        "profile_saved": "Perfil guardado con éxito",
+        "email_saved": "Preferencias de correo electrónico guardadas con éxito"
+      },
+      "modals": {
+        "unsaved_changes": {
+          "title": "¿Descartar cambios?",
+          "description":
+            "Si decides abandonar esta página sin guardar los cambios realizados, estos serán descartados y tu perfil volverá a su estado anterior."
+        }
+      },
+      "emails": {
+        "title": "NOTIFICACIÓNES DE CORREO ELECTRÓNICO",
+        "description":
+          "¿Qué notificaciones te gustaría recibir por correo electrónico?",
+        "notice":
+          "Puedes optar por suscribirte o no a las notificaciones por correo electrónico. Recomendamos mantener la configuración predeterminada para que puedas estar informado de las actividades más importantes en la red.",
+        "actions": {
+          "save": "Guardar preferencias"
+        },
+        "notification_options": {
+          "rating_received": "Un usuario te ha calificado",
+          "transfer_recipient":
+            "Transferencia de recompensa a otro usuario completada",
+          "bounty_comment_received":
+            "Una recompensa que has completado ha sido comentada",
+          "bounty_comment_received_issuer": "Tu recompensa ha sido comentada",
+          "bounty_comment_received_commenter":
+            "Una recompensa en la que comentaste ha sido comentada",
+          "fulfillment_comment_received": "Tu trabajo ha sido comentado",
+          "fulfillment_comment_received_issuer":
+            "Un trabajo entregado en tu recompensa ha sido comentado",
+          "fulfillment_comment_received_commenter":
+            "Un trabajo en el que comentaste ha sido comentado",
+          "bounty_expired": "Recompensa expirada",
+          "bounty_changed": "Una recompensa que completaste ha sido cambiada",
+          "bounty_changed_applicant":
+            "Una recompensa a la cual enviaste una solicitud ha sido cambiada",
+          "fulfillment_updated_issuer":
+            "Un caza recompensas ha actualizado su trabajo en tu recompensa",
+          "fulfillment_submitted_issuer":
+            "Un caza recompensas ha enviado un nuevo trabajo a tu recompensa",
+          "fulfillment_accepted_fulfiller":
+            "El publicador de la recompensa ha aceptado tu trabajo",
+          "contribution_received":
+            "Otro usuario ha aportado fondos a tu recompensa",
+          "bounty_completed":
+            "La recompensa ya no tiene fondos suficientes para pagar",
+          "application_received":
+            "Un nuevo usuario ha enviado una solicitud a tu recompensa",
+          "application_accepted_applicant":
+            "El publicador de la recompensa ha aceptado tu solicitud",
+          "application_rejected_applicant":
+            "El publicador de la recompensa ha rechazado tu solicitud",
+          "activity":
+            "Actividad general (perfil actualizado, recompensa creada, etc.)"
+        }
+      },
+      "user": {
+        "photo": {
+          "title": "FOTO DE PERFIL",
+          "label": "La imagen no pudo ser cargada, por favor intenta de nuevo."
+        },
+        "about": {
+          "title": "ACERCA DE MI",
+          "description": "¿Qué te gustaría que la gente sepa de ti?",
+          "notice":
+            "Introduce algunos datos personales para que la comunidad pueda conocerte.",
+          "form": {
+            "name": {
+              "label": "Nombre",
+              "placeholder": "Introducir nombre..."
+            },
+            "organization": {
+              "label": "Organización",
+              "placeholder": "Introducir organización..."
+            },
+            "languages": {
+              "label": "Idiomas",
+              "placeholder": "Seleccionar idiomas..."
+            }
+          }
+        },
+        "skills": {
+          "title": "HABILIDADES",
+          "description":
+            "¿Cuáles son tus habilidades profesionales o técnicas?",
+          "notice":
+            "Introduce o selecciona habilidades en las cuales eres competente. Esto ayudará a otros usuarios en la red a tener una mejor ideas sobre tus capacidades para cumplir con ciertos tipos de recompensas.",
+          "label": "Habilidades",
+          "placeholder": "Crear o Seleccionar habilidad..."
+        },
+        "social": {
+          "title": "REDES SOCIALES",
+          "description":
+            "¿Tienes algún otro perfil social que te gustaría mostrar?",
+          "form": {
+            "web": {
+              "label": "Sitio web personal"
+            }
+          }
+        },
+        "contact": {
+          "title": "CONTACTO",
+          "description":
+            "¿Dónde te gustaría recibir las notificaciones sobre el estado de tus recompensas y entregas?",
+          "form": {
+            "email": {
+              "label": "Correo electrónico de contacto",
+              "placeholder": "Introducir correo electrónico..."
+            },
+            "marketing": {
+              "label":
+                "También me gustaría recibir sugerencias relevantes sobre recompensas y actualizaciones de la plataforma"
+            }
+          },
+          "actions": {
+            "submit": "Guardar Detalles",
+            "update": "Actualizar Perfil"
+          }
+        }
+      }
+    },
+    "submissions": {
+      "title": "Trabajos",
+      "tabs": {
+        "received": "Recibidos",
+        "submitted": "Enviados"
+      },
+      "headers": {
+        "title": "Título de la recompensa",
+        "fulfiller": "Caza recompensa",
+        "date": "Fecha de entrega",
+        "status": "Estado",
+        "payment": "Monto de pago"
+      },
+      "zero_state": {
+        "title":
+          "Tienes 0 entregas {currentTab, select, received {recibidas} submitted {enviadas} other {{currentTab}}} ",
+        "description":
+          "Parece que no tienes ningún trabajo. ¡Vuelve cuando hayas {currentTab, select, received {recibido} submitted {enviado} other {{currentTab}}} algún trabajo!"
+      }
+    },
+    "user_stats": {
+      "bounties_issued": "Recompensas publicadas",
+      "bounties_completed": "Recompensas completadas",
+      "awarded": "Pagado",
+      "earned": "Ganado"
+    }
+  },
+  "components": {
+    "applicant_stage": {
+      "accepted": "Aceptado",
+      "declined": "Rechazado",
+      "pending": "Pendiente",
+      "default": "Aceptación pendiente"
+    },
+    "bounty_card": {
+      "difficulty": "dificultad",
+      "difficulty_options": {
+        "beginner": "Principiante",
+        "intermediate": "Intermedio",
+        "advanced": "Avanzado"
+      },
+      "submissions_count": "{count, plural, =1 {entrega} other {entregas}}"
+    },
+    "bounty_item": {
+      "text":
+        "Creado {time} {submissionCount, plural, =1 {∙ # entrega} other {∙ # entregas}}",
+      "draftText": "Creado {time}"
+    },
+    "essentials": {
+      "balance": "Restante"
+    },
+    "filter_nav": {
+      "sort_options": {
+        "bounty_created": "Más reciente",
+        "usd_price": "Valor: mayor a menor",
+        "deadline": "Expiración"
+      },
+      "refine": "Filtrar por",
+      "platform": "Plataforma",
+      "category": "Categoría",
+      "difficulty": "Dificultad",
+      "stage": "Estado",
+      "checkbox": {
+        "active": "Activa",
+        "completed": "Completada",
+        "expired": "Expirada",
+        "dead": "Inactiva"
+      }
+    },
+    "fulfillment_stage": {
+      "accepted": "Aceptada",
+      "not_accepted": "No Aceptada"
+    },
+    "submission": {
+      "title": "Título de la recompensa",
+      "status": "Estado",
+      "date": "Fecha de entrega",
+      "fulfiller": "Caza recompensa",
+      "amount": "Monto de pago"
+    },
+    "tx_guide": {
+      "title": "¡Tu cartera hará el resto a partir de aquí!",
+      "description":
+        "Después de hacer clic en \"OK\", tu cartera te mostrará un cuadro de diálogo y te pedirá que confirmes la transacción de Ethereum pagando una pequeña cantidad de ETH (para el gas).",
+      "notice": "Se establecerá un límite y precio de gas predeterminado.",
+      "messages": {
+        "waiting":
+          "Esperando que tu transacción sea confirmada en la red de Ethereum...",
+        "confirmed": "¡Tu transacción ha sido confirmada!",
+        "pending_receipt":
+          "Su transacción se está procesando. Te avisaremos una vez sea confirmada.",
+        "pending_wallet":
+          "Procesando la transacción de Ethereum con la cartera habilitada. Esto puede tardar unos segundos."
+      }
+    },
+    "editor": {
+      "preview": "Vista previa",
+      "default":
+        "# Descripción\nDescriba la recompensa que debe ser completada. ¿Para qué sirve? ¿En qué consiste?\n\n## Requisitos\n¿Cuáles son los requisitos para completar esta recompensa? ¿Existen reglas o restricciones para esta recompensa? ¿Hay algún prerrequisito necesario para completarla?\n\n* Item uno\n* Item dos\n* Item tres\n\n## Criterios para considerar la recompensa como satisfecha\n¿Qué deberían enviar los caza recompensas como prueba de que han completado el trabajo? ¿Qué debería ser incluido en la entrega para que esta sea aceptada?\n\n1. Item 1\n2. Item 2\n3. Item 3\n\n### Cosas a tener en cuenta\n¿Hay alguna otra información que los caza recompensas deban saber sobre ti o esta recompensa? ¿Requiere esta recompensa algún material adicional o intercambio de información a través de medios externos que deba ser proporcionado por alguna de las partes involucradas?"
+    },
+    "notifications": {
+      "fulfilLment_submitted": "Has entregado tu trabajo",
+      "fulfilLment_submitted_issuer":
+        "Has recibido un trabajo de un caza recompensa",
+      "bounty_activated": "Has activado la recompensa",
+      "fulfillment_accepted": "Has aceptado el trabajo de un caza recompensa",
+      "fulfillment_accepted_fulfiller": "Tu trabajo ha sido aceptado",
+      "bounty_expired": "Tu recompensa expiró",
+      "bounty_issued": "Has publicado una nueva recompensa",
+      "bounty_killed": "Has eliminado una recompensa",
+      "contribution_added": "Has hecho una contribución",
+      "deadline_extended": "Has extendido la fecha límite",
+      "bounty_changed": "Se actualizó una recompensa en la que participastes",
+      "bounty_changed_issuer": "Has actualizado tu recompensa",
+      "bounty_changed_applicant":
+        "Una recompensa a la cual enviaste una solicitud ha sido actualizada",
+      "issuer_transferred": "Has transferido la propiedad de tu recompensa",
+      "transfer_recipient":
+        "La propiedad de una recompensa fue transferida a ti",
+      "payout_increased": "Incrementaste el pago",
+      "bounty_comment_received":
+        "Una recompensa que completaste ha recibido un comentario",
+      "bounty_comment_received_issuer": "Tu recompensa ha sido comentada",
+      "bounty_comment_received_commenter":
+        "Una recompensa en la que comentaste ha sido comentada",
+      "fulfillment_comment_received": "Tu trabajo ha sido comentado",
+      "fulfillment_comment_received_issuer":
+        "Un trabajo entregado en tu recompensa ha sido comentado",
+      "fulfillment_comment_received_commenter":
+        "Un trabajo en el que comentaste ha sido comentado",
+      "bounty_issue_activated": "Has publicado una nueva recompensa",
+      "fulfillment_updated": "Has actualizado tu trabajo",
+      "fulfillment_updated_issuer":
+        "Un trabajo en tu recompensa fue actualizado",
+      "rating_issued": "Has escrito una reseña",
+      "rating_received": "Has sido calificado",
+      "profile_updated": "Has actualizado tu perfil",
+      "comment_issued": "Has escrito un comentario",
+      "fulfillment_comment_issued": "Has escrito un comentario",
+      "draft_created": "Has creado un borrador",
+      "draft_updated": "Has actualizado el borrador",
+      "contribution_received": "Has recibido una contribución",
+      "bounty_completed": "Tu recompensa se quedó sin fondos",
+      "application_created": "Has enviado una solicitud",
+      "application_received": "Has recibido una nueva solicitud",
+      "application_accepted_application": "Tu solicitud fue aceptada",
+      "application_accepted_issuer": "Has aceptado una solicitud",
+      "application_rejected_applicant": "Tu solicitud fue rechazada",
+      "application_rejected_issuer": "Has rechazado una solicitud"
+    }
+  },
+  "hocs": {
+    "require_login": {
+      "zero_state": {
+        "title": "Inicia sesión para usar Bounties Network",
+        "body":
+          "Para poder utilizar ciertas funciones de Bounties Network como: crear, completar o comentar recompensas y revisar tus estadísticas, debes iniciar sesión con tu cartera segura.",
+        "subtext":
+          "Si no deseas iniciar sesión pero quieres explorar nuestra red, puedes tranquilamente revisar las recompensas usando el ",
+        "action": "Iniciar sesión"
+      },
+      "explorer": "explorador"
+    }
+  },
+  "errors": {
+    "500": "Algo salió mal. Inténtalo de nuevo más tarde.",
+    "404": "No encontrado",
+    "form_error": "Corregir los errores de arriba e intentar de nuevo."
+  },
+  "validation": {
+    "required": "* Requerido",
+    "max": "Debe tener {max} caracteres o menos",
+    "min": "Debe tener {min} caracteres o más",
+    "max_decimals": "Debe tener {max} decimales o menos",
+    "min_value": "Debe ser mayor que {min}",
+    "mineq_value": "Debe ser mayor o igual que {min}",
+    "min_date": "La fecha debe ser posterior a {date}",
+    "length": "Debe tener {length} caracteres",
+    "web3": "Debe ser una dirección web3 válida",
+    "number": "Tiene que ser un número",
+    "email": "Correo electrónico inválido",
+    "alfa_num": "Sólo caracteres alfanuméricos.",
+    "twitter": "Cuenta de Twitter inválida",
+    "github": "Cuenta de Github inválida",
+    "url": "URL inválida"
+  },
+  "common": {
+    "description": "Descripción",
+    "expired": "{count, plural, =1 {expirada} other {expiradas}}",
+    "remaining": "{count, plural, =1 {restante} other {restantes}}",
+    "difficulty": "dificultad",
+    "expected": "{count, plural, =1 {esperada} other {esperadas}}",
+    "and": "y",
+    "payout": "Pago"
+  },
+  "stages": {
+    "draft": "Borrador",
+    "active": "Activa",
+    "dead": "Inactiva",
+    "completed": "Completada",
+    "expired": "Expirada"
+  },
+  "formats": {
+    "amount": "{value, number}",
+    "usd": "{value, number, USD}"
+  }
+}

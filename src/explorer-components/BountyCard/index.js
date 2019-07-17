@@ -51,6 +51,15 @@ const BountyCard = props => {
       );
     }, categories);
   };
+
+  var reg = /\d+/;
+  var number = deadline.match(reg);
+  var dateNum;
+  if (number) {
+    dateNum = number[0];
+  } else {
+    dateNum = 1;
+  }
   return (
     <Card hover className={styles.bountyCard}>
       <Card.Body>
@@ -117,8 +126,8 @@ const BountyCard = props => {
               </Text>
               <Text inline color="defaultGrey" className={styles.detailLabel}>
                 {stage === EXPIRED
-                  ? intl.get('common.expired')
-                  : intl.get('common.remaining')}
+                  ? intl.get('common.expired', { count: dateNum })
+                  : intl.get('common.remaining', { count: dateNum })}
               </Text>
             </div>
             <div className={styles.detailGroup}>

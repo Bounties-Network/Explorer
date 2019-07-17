@@ -3,10 +3,12 @@ import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { INIT_TRANSLATIONS, UPDATE_LOCALE } from './constants';
 import { actions } from './index';
 import moment from 'moment';
+import 'moment/min/locales';
 
 // app locale data
 const locales = {
-  'en-US': require('../../i18n/en_US')
+  'en-US': require('../../i18n/en_US'),
+  'es-ES': require('../../i18n/es_ES')
 };
 
 export function* initTranslations(action) {

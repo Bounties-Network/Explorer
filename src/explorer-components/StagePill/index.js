@@ -9,6 +9,7 @@ import {
   EXPIRED,
   STAGE_VALUES
 } from 'public-modules/Bounty/constants';
+import intl from 'react-intl-universal';
 
 const StagePill = props => {
   const { stage } = props;
@@ -38,7 +39,7 @@ const StagePill = props => {
 
   return (
     <Pill textColor={textColor} backgroundColor={backgroundColor} noBorder>
-      {STAGE_VALUES[stage]}
+      {intl.get(STAGE_VALUES[stage])}
     </Pill>
   );
 };

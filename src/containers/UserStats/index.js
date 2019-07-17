@@ -46,7 +46,6 @@ class UserStatsComponent extends React.Component {
         </div>
       );
     };
-
     return (
       <div className={styles.dashboardHeader}>
         <div className={styles.dashboardAvatar}>

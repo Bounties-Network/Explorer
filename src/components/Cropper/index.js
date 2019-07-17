@@ -5,6 +5,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { Circle, Button } from 'components';
 import buttonStyles from 'components/Button/Button.module.scss';
 import styles from './Cropper.module.scss';
+import intl from 'react-intl-universal';
 
 class Cropper extends React.Component {
   constructor(props) {
@@ -178,7 +179,7 @@ class Cropper extends React.Component {
                 disabledState ? buttonStyles.disabled : null
               ].join(' ')}
             >
-              Upload New Photo
+              {intl.get('actions.upload_photo')}
               <input
                 key={nonce}
                 type="file"

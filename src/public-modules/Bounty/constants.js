@@ -11,11 +11,11 @@ export const DIFFICULTY_MAPPINGS = {
 };
 
 export const STAGE_VALUES = {
-  0: 'Draft',
-  1: 'Active',
-  2: 'Dead',
-  3: 'Completed',
-  4: 'Expired'
+  0: 'stages.draft',
+  1: 'stages.active',
+  2: 'stages.dead',
+  3: 'stages.completed',
+  4: 'stages.expired'
 };
 
 export const DRAFT = 0;
