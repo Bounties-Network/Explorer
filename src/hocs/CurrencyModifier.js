@@ -30,7 +30,7 @@ function CurrencyModifierHOC(WrappedComponent) {
       }
     }
 
-    return <WrappedComponent {...updatedProps} />;
+    return <WrappedComponent {...props} />;
   };
 }
 

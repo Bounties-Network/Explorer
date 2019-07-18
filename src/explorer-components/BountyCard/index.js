@@ -10,6 +10,7 @@ import { Card, Pill, Text } from 'components';
 import { Currency, LinkedAvatar } from 'explorer-components';
 import { scrollToTop } from 'utils/helpers';
 import intl from 'react-intl-universal';
+import config from 'public-modules/config';
 
 const BountyCard = props => {
   const {
@@ -28,6 +29,22 @@ const BountyCard = props => {
     onPillClick,
     selectedCategories
   } = props;
+  let primaryCurrency,
+    primaryValue,
+    primaryClassName,
+    secondaryValue,
+    secondaryCurrency;
+  if (config.defaultToken) {
+    primaryCurrency = currency;
+    primaryValue = value;
+    secondaryValue = usd;
+    secondaryCurrency = 'usd';
+  } else {
+    primaryValue = usd;
+    primaryClassName = styles.usd;
+    secondaryValue = value;
+    secondaryCurrency = currency;
+  }
 
   const renderCategories = () => {
     return map(category => {
@@ -153,10 +170,11 @@ const BountyCard = props => {
           <div className={`col-xs-3 col-sm-2 col-lg-2 ${styles.bountyPrize}`}>
             <Currency
               className={styles.price}
-              primaryValue={usd}
-              primaryClassName={styles.usd}
-              secondaryValue={value}
-              secondaryCurrency={currency}
+              primaryValue={primaryValue}
+              primaryCurrency={primaryCurrency}
+              primaryClassName={primaryClassName}
+              secondaryValue={secondaryValue}
+              secondaryCurrency={secondaryCurrency}
               secondaryTypeScale="Body"
               currencyClass={styles.currency}
             />
