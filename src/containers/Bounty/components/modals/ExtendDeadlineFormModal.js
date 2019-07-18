@@ -27,7 +27,7 @@ const ExtendDeadlineFormModal = props => {
   return (
     <form onSubmit={handleSubmit}>
       <Modal
-        dismissable={true}
+        dismissable={false}
         onClose={onClose}
         visible={visible}
         fixed

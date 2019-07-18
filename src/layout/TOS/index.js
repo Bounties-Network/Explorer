@@ -36,10 +36,10 @@ const TOS = () => (
         these Terms where that option is made available, you (x) accept and
         agree to these Terms (y) consent to the collection, use, disclosure and
         other handling of information as described in our{' '}
-        <a href="/privacyPolicy/">Privacy Policy</a> and (z) any additional
-        terms, rules and conditions of participation issued by Bounties from
-        time to time. IF YOU DO NOT AGREE TO THE TERMS, THEN YOU MAY NOT ACCESS
-        OR USE THE SERVICES.
+        <a href="/privacy">Privacy Policy</a> and (z) any additional terms,
+        rules and conditions of participation issued by Bounties from time to
+        time. IF YOU DO NOT AGREE TO THE TERMS, THEN YOU MAY NOT ACCESS OR USE
+        THE SERVICES.
       </p>
       <h4> 2. MODIFICATIONS OF TERMS OF USE</h4>
       <p>

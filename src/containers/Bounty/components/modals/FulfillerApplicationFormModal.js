@@ -27,7 +27,7 @@ let FulfillerApplicationModalComponent = props => {
   return (
     <Form>
       <Modal
-        dismissable={true}
+        dismissable={false}
         onClose={onCloseAndReset}
         visible={visible}
         fixed
