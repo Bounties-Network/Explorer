@@ -8,7 +8,8 @@ import 'moment/min/locales';
 // app locale data
 const locales = {
   'en-US': require('../../i18n/en_US'),
-  'es-ES': require('../../i18n/es_ES')
+  'es-ES': require('../../i18n/es_ES'),
+  es: require('../../i18n/es_ES')
 };
 
 export function* initTranslations(action) {
