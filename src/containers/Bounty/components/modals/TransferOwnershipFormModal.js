@@ -16,7 +16,7 @@ const TransferOwnershipFormModal = props => {
   return (
     <Form onSubmit={handleSubmit}>
       <Modal
-        dismissable={true}
+        dismissable={false}
         onClose={onClose}
         visible={visible}
         fixed

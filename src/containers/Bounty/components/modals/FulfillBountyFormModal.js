@@ -48,7 +48,7 @@ let FulfillBountyFormModalComponent = props => {
   return (
     <form onSubmit={handleSubmit(values => submitFulfillment(values))}>
       <Modal
-        dismissable={true}
+        dismissable={false}
         onClose={closeAndReset}
         visible={visible}
         fixed

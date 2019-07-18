@@ -23,7 +23,12 @@ const { INITIATE_WALKTHROUGH } = transactionActionTypes;
 const { SET_ACTIVE_TAB, SET_OPEN_COMMENTS } = bountyPageActionTypes;
 const { POST_REVIEW_SUCCESS } = reviewActionTypes;
 const { LOAD_FULFILLMENT_SUCCESS } = fulfillmentActionTypes;
-const { closeModal, showModal, setRatingModal } = bountyPageActions;
+const {
+  closeModal,
+  closeComments,
+  showModal,
+  setRatingModal
+} = bountyPageActions;
 const { loadFulfillments } = fulfillmentsActions;
 const { loadComments, loadFulComments } = commentsActions;
 const { loadApplicants } = applicantsActions;
@@ -36,6 +41,10 @@ export function* closeBountyModal(action) {
   if (action.type === LOCATION_CHANGE) {
     yield put(closeWalkthrough());
   }
+}
+
+export function* closeBountyComments(action) {
+  yield put(closeComments());
 }
 
 export function* loadTab(action) {
@@ -116,6 +125,10 @@ export function* watchCloseModals() {
   );
 }
 
+export function* watchCloseComments() {
+  yield takeLatest([LOCATION_CHANGE], closeBountyComments);
+}
+
 export function* watchTabLoads() {
   yield takeLatest([SET_ACTIVE_TAB, POST_REVIEW_SUCCESS], loadTab);
 }
@@ -138,5 +151,6 @@ export default [
   watchCommentLoads,
   watchFulfillmentLoadSuccess,
   watchCommentPosted,
-  watchFulCommentPosted
+  watchFulCommentPosted,
+  watchCloseComments
 ];

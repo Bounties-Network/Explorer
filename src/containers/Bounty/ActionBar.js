@@ -188,7 +188,7 @@ const ActionBar = props => {
           type="action"
           fitWidth
           onClick={() => {
-            const gitcoinUrlInfo = bounty.webReferenceURL
+            const gitcoinUrlInfo = bounty.attached_url
               .split('https://github.com/')
               .join('')
               .split('/');

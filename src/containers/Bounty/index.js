@@ -156,7 +156,7 @@ class BountyComponent extends React.Component {
             type="error"
             iconColor="red"
             title={intl.get('sections.bounty.zero_state.title')}
-            text={intl.get('sections.bounty.zero_state.descriptions')}
+            text={intl.get('sections.bounty.zero_state.description')}
             icon="error"
           />
         </div>

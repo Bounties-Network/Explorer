@@ -58,7 +58,7 @@ const Currency = props => {
           className={primaryClassName}
         >
           {primaryDisplay}
-
+          {primaryCurrency.toLowerCase() !== 'usd' && ' '}
           {primaryCurrency.toLowerCase() !== 'usd' && (
             <Text
               inline
@@ -80,6 +80,7 @@ const Currency = props => {
           className={secondaryClassName}
         >
           {secondaryDisplay}
+          {secondaryDisplay.toLowerCase() !== 'usd' && ' '}
           {secondaryCurrency.toLowerCase() !== 'usd' && (
             <Text
               inline
@@ -87,7 +88,7 @@ const Currency = props => {
               typeScale={secondaryTypeScale}
               className={secondaryClassName}
             >
-              {' ' + secondaryCurrency}
+              {secondaryCurrency}
             </Text>
           )}
         </Text>

@@ -42,7 +42,8 @@ const ToastContainer = props => {
   return (
     <ToastWrapper
       newestOnTop
-      autoClose={false}
+      autoClose={15000}
+      pauseOnFocusLoss={false}
       hideProgressBar
       draggable
       closeButton={<CloseIcon />}
