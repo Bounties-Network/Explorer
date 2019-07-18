@@ -17,6 +17,7 @@ const initialState = {
 
 const SHOW_MODAL = 'BountyPage/SHOW_MODAL';
 const CLOSE_MODAL = 'BountyPage/CLOSE_MODAL';
+const CLOSE_COMMENTS = 'BountyPage/CLOSE_COMMENTS';
 const SET_BOUNTY_ID = 'BountyPage/SET_BOUNTY_ID';
 const SET_ACTIVE_TAB = 'BountyPage/SET_ACTIVE_TAB';
 const SET_OPEN_COMMENTS = 'BountyPage/SET_OPEN_COMMENTS';
@@ -28,6 +29,10 @@ function showModal(modalType, modalProps = {}) {
 
 function closeModal() {
   return { type: CLOSE_MODAL };
+}
+
+function closeComments() {
+  return { type: CLOSE_COMMENTS };
 }
 
 function setBountyId(bountyId) {
@@ -63,6 +68,12 @@ function BountyPageUIReducer(state = initialState, action) {
         modalVisible: false,
         modalType: ''
       };
+    case CLOSE_COMMENTS:
+      return {
+        ...state,
+        openComments: -1
+      };
+
     case SET_BOUNTY_ID: {
       const { bountyId } = action;
 
@@ -108,6 +119,7 @@ function BountyPageUIReducer(state = initialState, action) {
 export const actions = {
   showModal,
   closeModal,
+  closeComments,
   setBountyId,
   setActiveTab,
   setOpenComments,
@@ -117,6 +129,7 @@ export const actions = {
 export const actionTypes = {
   SHOW_MODAL,
   CLOSE_MODAL,
+  CLOSE_COMMENTS,
   SET_BOUNTY_ID,
   SET_ACTIVE_TAB,
   SET_OPEN_COMMENTS,
