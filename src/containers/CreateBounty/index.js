@@ -227,7 +227,7 @@ const mapStateToProps = (state, router) => {
 
   let draftBounty = {};
   let fulfillment_amount;
-  let balance = '0';
+  let balance = '';
   let categories = [];
   let isDraft = false;
   let isEditing = false;
@@ -269,9 +269,7 @@ const mapStateToProps = (state, router) => {
       10
     ).toString();
   }
-  if (typeof balance === 'string') {
-    balance = BigNumber(draftBounty.calculated_balance, 10).toNumber();
-  }
+
   return {
     public_address: user && user.public_address,
     isDraft,

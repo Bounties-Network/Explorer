@@ -132,7 +132,6 @@ class CreateBountyFormComponent extends React.Component {
       validators.minValue(0),
       (fulfillment_amount, allValues) => {
         const valueField = allValues.balance;
-
         if (
           valueField &&
           BigNumber(valueField, 10).isLessThan(
@@ -553,7 +552,6 @@ class CreateBountyFormComponent extends React.Component {
                       disabled={submittingBounty}
                       component={FormTextInput}
                       type="text"
-                      defaultValue={0}
                       normalize={normalizers.number}
                       label={intl.get(
                         'sections.create_bounty.sections.payout.form.fulfillment_amount.label',
