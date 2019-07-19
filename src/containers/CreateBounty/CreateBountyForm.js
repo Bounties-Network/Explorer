@@ -556,6 +556,7 @@ class CreateBountyFormComponent extends React.Component {
                       disabled={submittingBounty}
                       component={FormTextInput}
                       type="text"
+                      defaultValue={0}
                       normalize={normalizers.number}
                       label={intl.get(
                         'sections.create_bounty.sections.payout.form.fulfillment_amount.label',
