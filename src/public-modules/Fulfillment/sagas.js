@@ -17,6 +17,7 @@ const {
 const {
   LOAD_FULFILLMENT,
   CREATE_FULFILLMENT,
+  UPDATE_FULFILLMENT,
   ACCEPT_FULFILLMENT
 } = actionTypes;
 
@@ -25,6 +26,8 @@ const {
   loadFulfillmentFail,
   createFulfillmentSuccess,
   createFulfillmentFail,
+  updateFulfillmentSuccess,
+  updateFulfillmentFail,
   acceptFulfillmentSuccess,
   acceptFulfillmentFail
 } = actions;
@@ -166,6 +169,71 @@ export function* createFulfillment(action) {
   }
 }
 
+export function* updateFulfillment(action) {
+  const { bountyId, contract_version, bountyPlatform, data } = action;
+  const {
+    name,
+    email,
+    url,
+    description,
+    fileName,
+    ipfsHash: fulfillmentDataHash,
+    fulfillmentId
+  } = data;
+
+  yield put(setPendingWalletConfirm());
+
+  const userAddress = yield select(addressSelector);
+  yield call(getWeb3Client);
+  const payload = {
+    payload: {
+      url,
+      description,
+      sourceFileName: fileName,
+      sourceDirectoryHash: fulfillmentDataHash,
+      sourceFileHash: '',
+      fulfiller: {
+        email,
+        userAddress,
+        name
+      }
+    },
+    meta: {
+      platform: bountyPlatform,
+      schemaVersion: siteConfig.postingSchemaVersion,
+      schemaName: siteConfig.postingSchema
+    }
+  };
+
+  const ipfsHash = yield call(addJSON, payload);
+
+  const { standardBounties } = yield call(getContractClient, contract_version);
+
+  try {
+    let txHash;
+    if (contract_version === 2) {
+      txHash = yield call(
+        promisifyContractCall(standardBounties.updateFulfillment, {
+          from: userAddress
+        }),
+        userAddress,
+        bountyId,
+        fulfillmentId,
+        [userAddress],
+        ipfsHash
+      );
+    } else {
+      throw new Error(`contract version ${contract_version} invalid`);
+    }
+
+    yield put(setPendingReceipt(txHash));
+    yield put(updateFulfillmentSuccess());
+  } catch (e) {
+    console.log(e);
+    yield put(setTransactionError());
+    yield put(updateFulfillmentFail());
+  }
+}
 export function* watchFulfillment() {
   yield takeLatest(LOAD_FULFILLMENT, loadFulfillment);
 }
@@ -178,8 +246,13 @@ export function* watchCreateFulfillment() {
   yield takeLatest(CREATE_FULFILLMENT, createFulfillment);
 }
 
+export function* watchUpdateFulfillment() {
+  yield takeLatest(UPDATE_FULFILLMENT, updateFulfillment);
+}
+
 export default [
   watchFulfillment,
   watchAcceptFulfillment,
-  watchCreateFulfillment
+  watchCreateFulfillment,
+  watchUpdateFulfillment
 ];

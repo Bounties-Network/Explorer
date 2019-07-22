@@ -21,7 +21,6 @@
     "contribute": "Contribuir",
     "contribute_issuer": "Incrementar Balance",
     "edit_bounty": "Editar Recompensa",
-    "update_submission": "Editar",
     "submit": "Enviar",
     "extend_deadline": "Extender Fecha Límite",
     "increase_payout": "Incrementar Pago",
@@ -40,7 +39,9 @@
     "view_bounty": "Ver Recompensa",
     "view_rating": "Ver Calificación",
     "discard_changes": "Descartar cambios",
-    "upload_photo": "Cargar Nueva Foto"
+    "upload_photo": "Cargar Nueva Foto",
+    "update_submission": "Editar",
+    "update": "Actualizar Trabajo"
   },
   "sections": {
     "activity": {
@@ -234,7 +235,8 @@
             "Indique el tiempo que le gustaría extender la fecha límite de la recompensa {timezone, select, null { } other { (zona horaria={timezone})}}"
         },
         "fulfill_bounty": {
-          "title": "Detalles de la entrega",
+          "title": "Detalles de la Entrega",
+          "title_updating": "Detalles de la Entrega",
           "description":
             "Introduce y envía los detalles de tu trabajo realizado, incluyendo cualquier enlace o contenido que pueda ser requerido, según lo especificado en la recompensa. Puedes darle formato a la descripción de esta entrega utilizando <a href=\"https://www.markdownguide.org/cheat-sheet\" target=\"_blank\">Markdown</a>.",
           "form": {

@@ -91,7 +91,8 @@ class BountyPageCardsComponent extends React.Component {
       loadMoreFulfillments,
       loadMoreApplicants,
       openComments,
-      autoFocus
+      autoFocus,
+      editFulfillment
     } = this.props;
 
     const bountyBelongsToLoggedInUser =
@@ -123,6 +124,7 @@ class BountyPageCardsComponent extends React.Component {
           initiateWalkthrough={initiateWalkthrough}
           acceptFulfillment={acceptFulfillment}
           showModal={showModal}
+          editFulfillment={editFulfillment}
           setRatingModal={setRatingModal}
           setOpenComments={setOpenComments}
           openComments={openComments}
@@ -221,6 +223,7 @@ const mapStateToProps = (state, router) => {
     modalVisible: bountyPage.modalVisible,
     currentTab: bountyPage.currentTab,
     openComments: bountyPage.openComments,
+    fulfillmentToEdit: bountyPage.fulfillmentToEdit,
     autoFocus: bountyPage.autoFocus,
     // data
     fulfillments: {
@@ -247,6 +250,7 @@ const BountyPageCards = compose(
     mapStateToProps,
     {
       showModal: bountyUIActions.showModal,
+      editFulfillment: bountyUIActions.editFulfillment,
       setRatingModal: bountyUIActions.setRatingModal,
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
       changeApplicationState: applicantsActions.changeApplicationState,

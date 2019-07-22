@@ -40,11 +40,12 @@ const ModalManagerComponent = props => {
     extendDeadlineAction,
     increasePayoutAction,
     fulfillBountyAction,
+    updateFulfillmentAction,
     transferOwnershipAction,
     contributeAction,
 
-    createFulfillerApplicationAction
-    /*****************/
+    createFulfillerApplicationAction,
+    fulfillmentToEdit
   } = props;
 
   const belongsToLoggedInUser =
@@ -147,6 +148,16 @@ const ModalManagerComponent = props => {
       )
     );
 
+  const updateFulfillment = values =>
+    initiateWalkthrough(() =>
+      updateFulfillmentAction(
+        bounty.bounty_id,
+        bounty.contract_version,
+        bounty.platform,
+        values
+      )
+    );
+
   const createFulfillerApplication = (values, callback) =>
     createFulfillerApplicationAction(bounty.id, values.message, callback);
 
@@ -233,6 +244,15 @@ const ModalManagerComponent = props => {
         name={user.name}
         email={user.email}
       />
+      <FulfillBountyFormModal
+        visible={modalType === 'updateFulfillment'}
+        private_fulfillments={bounty.private_fulfillments}
+        onClose={closeModal}
+        onSubmit={updateFulfillment}
+        name={user.name}
+        email={user.email}
+        fulfillmentToEdit={fulfillmentToEdit}
+      />
       <FulfillerApplicationFormModal
         visible={modalType === 'fulfillerApplication'}
         onClose={closeModal}
@@ -263,7 +283,8 @@ const mapStateToProps = (state, router) => {
 
   return {
     modalType: bountyPage.modalType,
-    modalVisible: bountyPage.modalVisible
+    modalVisible: bountyPage.modalVisible,
+    fulfillmentToEdit: bountyPage.fulfillmentToEdit
   };
 };
 
@@ -279,6 +300,7 @@ const ModalManager = compose(
       extendDeadlineAction: bountyActions.extendDeadline,
       increasePayoutAction: bountyActions.increasePayout,
       fulfillBountyAction: fulfillmentActions.createFulfillment,
+      updateFulfillmentAction: fulfillmentActions.updateFulfillment,
       transferOwnershipAction: bountyActions.transferOwnership,
       contributeAction: bountyActions.contribute,
       createFulfillerApplicationAction:
