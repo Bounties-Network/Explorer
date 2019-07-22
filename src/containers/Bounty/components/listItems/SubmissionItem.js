@@ -152,6 +152,16 @@ const SubmissionItem = props => {
       </Button>
     );
   }
+
+  // Edit Submission Button
+  if (submissionBelongsToLoggedInUser && !accepted) {
+    actionButton = (
+      <Button className={styles.actionButton} icon={['far', 'edit']}>
+        {intl.get('actions.update_submission')}
+      </Button>
+    );
+  }
+
   let bodyClass = '';
   let newCommentForm = '';
   let body = '';
