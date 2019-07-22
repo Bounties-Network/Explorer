@@ -31,14 +31,14 @@ let FulfillBountyFormModalComponent = props => {
   } = props;
 
   const submitFulfillment = values => {
-    const ipfsHash = this.props.ipfsHash;
-    const fileName = this.props.fileName;
-    this.props.onSubmit({ ...values, ipfsHash, fileName });
+    const ipfsHash = ipfsHash;
+    const fileName = fileName;
+    onSubmit({ ...values, ipfsHash, fileName });
   };
 
   const closeAndReset = () => {
-    this.props.resetUpload('fulfillment');
-    this.props.onClose();
+    resetUpload('fulfillment');
+    onClose();
   };
 
   const validatorGroups = {

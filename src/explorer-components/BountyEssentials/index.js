@@ -19,7 +19,6 @@ const BountyEssentials = props => {
     bounty_stage
   } = props;
 
-  console.log('props', props);
   return (
     <div className={styles.bountyEssentials}>
       <div className={styles.stage}>
