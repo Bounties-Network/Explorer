@@ -227,7 +227,7 @@ const mapStateToProps = (state, router) => {
 
   let draftBounty = {};
   let fulfillment_amount;
-  let balance = '';
+  let balance;
   let categories = [];
   let isDraft = false;
   let isEditing = false;
@@ -268,6 +268,9 @@ const mapStateToProps = (state, router) => {
       draftBounty.calculated_fulfillment_amount,
       10
     ).toString();
+  }
+  if (typeof balance === 'string') {
+    balance = BigNumber(draftBounty.calculated_balance, 10).toString();
   }
 
   return {
