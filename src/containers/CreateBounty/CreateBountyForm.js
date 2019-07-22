@@ -132,7 +132,6 @@ class CreateBountyFormComponent extends React.Component {
       validators.minValue(0),
       (fulfillment_amount, allValues) => {
         const valueField = allValues.balance;
-
         if (
           valueField &&
           BigNumber(valueField, 10).isLessThan(
