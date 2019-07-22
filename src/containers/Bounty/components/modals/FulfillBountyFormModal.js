@@ -11,6 +11,8 @@ import validators from 'utils/validators';
 import { FormTextInput, FormMarkdownEditor } from 'form-components';
 import intl from 'react-intl-universal';
 
+let error = false;
+
 let FulfillBountyFormModalComponent = props => {
   const {
     handleSubmit,
@@ -21,7 +23,6 @@ let FulfillBountyFormModalComponent = props => {
     private_fulfillments,
     submitFailed,
     invalid,
-
     // upload state
     uploading,
     ipfsHash,
@@ -30,12 +31,14 @@ let FulfillBountyFormModalComponent = props => {
   } = props;
 
   const submitFulfillment = values => {
-    onSubmit({ ...values, ipfsHash, fileName });
+    const ipfsHash = this.props.ipfsHash;
+    const fileName = this.props.fileName;
+    this.props.onSubmit({ ...values, ipfsHash, fileName });
   };
 
   const closeAndReset = () => {
-    resetUpload('fulfillment');
-    onClose();
+    this.props.resetUpload('fulfillment');
+    this.props.onClose();
   };
 
   const validatorGroups = {
@@ -111,7 +114,7 @@ let FulfillBountyFormModalComponent = props => {
           </div>
           <div
             className={`row ${styles.fulfillmentInput}`}
-            style={{ display: 'none' }}
+            style={{ display: '' }}
           >
             <div className="col-xs">
               <Text inputLabel>Attachment</Text>
@@ -124,6 +127,7 @@ let FulfillBountyFormModalComponent = props => {
                 }
                 loading={uploading}
                 filename={fileName}
+                error={error}
               />
             </div>
           </div>
@@ -144,7 +148,6 @@ let FulfillBountyFormModalComponent = props => {
               />
             </div>
           </div>
-
           <div className={`row ${styles.fulfillmentInput}`}>
             <div className="col-xs">
               <Text fontStyle="italic" color="defaultGrey">
@@ -200,7 +203,7 @@ FulfillBountyFormModalComponent = compose(
 const mapStateToProps = (state, props) => {
   const { name, email } = props;
   const uploadState = getUploadKeySelector('fulfillment')(state);
-
+  error = uploadState ? uploadState.error : false;
   return {
     initialValues: { name, email },
     uploading: uploadState ? uploadState.uploading : false,
