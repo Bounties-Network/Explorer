@@ -366,7 +366,7 @@
           "form": {
             "categories": {
               "label": "Categoría de la recompensa",
-              "placeholder": "Crear o seleccionar categoría..."
+              "placeholder": "Crear o seleccionar categorías..."
             },
             "experience_level": {
               "label": "Dificultad",

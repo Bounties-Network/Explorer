@@ -357,7 +357,7 @@
           "form": {
             "categories": {
               "label": "Bounty category",
-              "placeholder": "Create or Select category..."
+              "placeholder": "Create or select categories..."
             },
             "experience_level": {
               "label": "Difficulty",
