@@ -1,81 +1,81 @@
 {
   "nav": {
-    "explorer": "Explorer",
-    "dashboard": "Dashboard",
-    "leaderboard": "Leaderboard",
-    "profile": "Profile"
+    "explorer": "项目浏览器",
+    "dashboard": "仪表盘",
+    "leaderboard": "排行榜",
+    "profile": "个人资料"
   },
   "actions": {
-    "load_more": "Load more",
-    "view_all": "View all",
-    "accept": "Accept",
-    "reject": "Reject",
-    "filter": "Filter",
-    "ok": "OK",
-    "rate_fulfiller": "Rate fulfiller",
-    "rate_issuer": "Rate issuer",
-    "activate": "Activate",
-    "de_activate": "Deactivate",
-    "re_activate": "Re-Activate",
-    "cancel": "Cancel",
-    "contribute": "Contribute",
-    "contribute_issuer": "Increase Balance",
-    "edit_bounty": "Edit Bounty",
-    "submit": "Submit",
-    "extend_deadline": "Extend Deadline",
-    "increase_payout": "Increase Payout",
-    "transfer_ownership": "Transfer Ownership",
-    "logout": "Logout",
-    "close": "Close",
-    "reset": "Reset",
-    "sort": "Sort",
-    "continue": "Continue",
-    "dashboard": "Go to Dashboard",
-    "create_bounty": "Create New Bounty",
-    "profile": "Profile",
-    "settings": "Account Settings",
-    "signout": "Sign out",
-    "signin": "Sign in",
-    "view_bounty": "View Bounty",
-    "view_rating": "View Rating",
-    "discard_changes": "Discard Changes",
-    "upload_photo": "Upload New Photo"
+    "load_more": "加载更多",
+    "view_all": "查看全部",
+    "accept": "接受",
+    "reject": "拒绝",
+    "filter": "筛选",
+    "ok": "好的",
+    "rate_fulfiller": "为项目完成者评分",
+    "rate_issuer": "为项目提供者评分",
+    "activate": "激活",
+    "de_activate": "取消激活",
+    "re_activate": "重新激活",
+    "cancel": "取消",
+    "contribute": "捐助",
+    "contribute_issuer": "增加余额",
+    "edit_bounty": "编辑赏金项目",
+    "submit": "提交",
+    "extend_deadline": "延长截止日期",
+    "increase_payout": "提高",
+    "transfer_ownership": "转移所有权",
+    "logout": "登出",
+    "close": "关闭",
+    "reset": "重置",
+    "sort": "排序",
+    "continue": "继续",
+    "dashboard": "前往仪表盘",
+    "create_bounty": "创建新的赏金项目",
+    "profile": "个人资料",
+    "settings": "帐号设置",
+    "signout": "登出",
+    "signin": "登录",
+    "view_bounty": "查看赏金项目",
+    "view_rating": "查看评分",
+    "discard_changes": "撤消更改",
+    "upload_photo": "上传新图片"
   },
   "sections": {
     "activity": {
-      "title": "My Activity",
+      "title": "我的活动",
       "zero_state": {
-        "title": "You have no activity yet",
+        "title": "你还什么都没干呢",
         "description":
-          "Once you start using the platform, your activity will show up here."
+          "一旦你开始使用本平台，你的活动将会显示在这里。"
       }
     },
     "bounties": {
-      "title": "My Bounties",
+      "title": "我的赏金项目",
       "tabs": {
-        "active": "Active",
-        "drafts": "Draft"
+        "active": "活跃",
+        "drafts": "草稿"
       },
       "zero_state": {
-        "title": "You have no {tab} bounties",
+        "title": "你没有{tab}状态的赏金项目",
         "description":
-          "It looks like you don't have any {tab} bounties at the moment. Enter a title for a new bounty here to get started creating one!",
+          "看起来你现在没有{tab}状态的赏金项目. 在这里输入标题来创建新的！",
         "actions": {
-          "new_bounty": "Create new bounty"
+          "new_bounty": "创建新的赏金项目"
         }
       }
     },
     "bounty": {
       "zero_state": {
-        "title": "Could not find that bounty",
-        "description": "Try refreshing, or make sure your url is correct"
+        "title": "无法找到那个赏金项目",
+        "description": "尝试刷新，并检查你的URL是否正确。"
       },
       "meta": {
-        "input": "Private",
-        "label": "bounty",
+        "input": "私有",
+        "label": "赏金项目",
         "tooltip":
-          "Private bounties require that users apply to fulfill the bounty. Once you are approved by the issuer, you may submit a fulfillment for this bounty.",
-        "revisions": "{count} revisions"
+          "私有赏金项目要求用户申请完成项目。当你的申请被同意以后，你就可以为该项目提交",
+        "revisions": "{count}次修订"
       },
       "components": {
         "issue_rating": {
