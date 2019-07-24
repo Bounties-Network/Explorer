@@ -23,7 +23,7 @@
     "edit_bounty": "编辑赏金项目",
     "submit": "提交",
     "extend_deadline": "延长截止日期",
-    "increase_payout": "提高",
+    "increase_payout": "增加报酬",
     "transfer_ownership": "转移所有权",
     "logout": "登出",
     "close": "关闭",
@@ -59,7 +59,7 @@
       "zero_state": {
         "title": "你没有{tab}状态的赏金项目",
         "description":
-          "看起来你现在没有{tab}状态的赏金项目. 在这里输入标题来创建新的！",
+          "看起来你现在没有{tab}状态的赏金项目. 在这里输入标题新建一个吧！",
         "actions": {
           "new_bounty": "创建新的赏金项目"
         }
@@ -67,205 +67,205 @@
     },
     "bounty": {
       "zero_state": {
-        "title": "无法找到那个赏金项目",
+        "title": "无法找到赏金项目",
         "description": "尝试刷新，并检查你的URL是否正确。"
       },
       "meta": {
         "input": "私有",
         "label": "赏金项目",
         "tooltip":
-          "私有赏金项目要求用户申请完成项目。当你的申请被同意以后，你就可以为该项目提交",
+          "私有赏金项目要求用户提交申请。当你的申请被同意以后，你就可以为该项目提交成果了。",
         "revisions": "{count}次修订"
       },
       "components": {
         "issue_rating": {
           "issuer1":
-            "Your bounty submission was accepted! If you would like, you can rate your experience with the following bounty issuer:",
+            "你的赏金项目提交已被接受！如果你有兴趣，你可以给为如下赏金项目提供者的工作经历评分：",
           "issuer2":
-            "This will help set expectations for other fulfillers on the platform.",
+            "这将帮助",
           "fulfiller1":
             "You accepted a submission to your bounty! If you would like, you can rate your experience with the following fulfiller:",
           "fulfiller2":
             "This will help set expectations for other issuers on the platform.",
-          "rating": "Rating",
-          "review": "Review",
-          "review_placeholder": "Enter review..."
+          "rating": "评分",
+          "review": "评论",
+          "review_placeholder": "输入评论..."
         },
         "new_comment": {
-          "placeholder": "Write a comment..",
-          "action": "Post comment",
-          "login_action": "Sign in to post comment"
+          "placeholder": "撰写回复...",
+          "action": "发表回复",
+          "login_action": "登录来发表回复"
         },
         "applicant_card": {
           "declined_message":
-            "Your declined application status is only visible to you",
+            "申请被拒绝的状态只对你可见",
           "zero_state": {
-            "title": "There are 0 applicants",
-            "description": "Applicants to this bounty will appear here."
+            "title": "无申请者",
+            "description": "申请该赏金项目的人将显示在这里。"
           }
         },
         "comments_card": {
           "zero_state": {
-            "title": "There are 0 comments",
-            "description": "Submit a comment using the form above."
+            "title": "无回复",
+            "description": "用上面的表单来提交回复"
           }
         },
         "submissions_card": {
           "zero_state": {
-            "title": "There are 0 submissions",
-            "private_title": "Submissions are private",
-            "description": "Submissions to this bounty will appear here.",
+            "title": "无提交",
+            "private_title": "提交是私有的",
+            "description": "此赏金项目的提交将显示在这里",
             "private_description":
-              "The submissions for this bounty have been set to private.",
+              "此赏金项目的提交已被设为私有",
             "bounty_owner_description":
-              "Submissions to this bounty will appear here and will only be visible to you. Additionally, fulfillers will be able to see the submissions that they created."
+              "对此赏金项目的提交会显示在这里并只对你可见。另外, 项目完成者可以看到他们创建的提交。"
           },
-          "notice": "Submissions to this bounty are hidden.",
+          "notice": "此赏金项目的提交被隐藏",
           "bounty_owner_notice":
-            " The submissions are only visible to you and the fulfiller.",
+            "提交只对你和完成者可见",
           "fulfiller_notice":
-            " Your submissions are only visible to you and the bounty issuer.",
+            "你的提交只对你和项目提供者可见。",
           "show_comments":
-            "Show {count} {count, plural, =1 {comment} other {comments}}",
+            "显示{count}个回复",
           "hide_comments":
-            "Hide {count} {count, plural, =1 {comment} other {comments}}",
-          "action": "Comment"
+            "隐藏{count}个回复",
+          "action": "回复"
         }
       },
       "difficulties": {
-        "Beginner": "Beginner",
-        "Intermediate": "Intermediate",
-        "Expert": "Expert"
+        "Beginner": "新手",
+        "Intermediate": "中等",
+        "Expert": "专家"
       },
       "actions": {
-        "activate": "Activate Bounty",
-        "edit": "Edit Bounty",
-        "re_activate": "Re-activate Bounty",
-        "de_activate": "De-activate bounty",
-        "increase_prize": "Increase Prize",
-        "contribute": "Contribute",
-        "contribute_issuer": "Increase Balance",
-        "extend_deadline": "Extend deadline",
-        "transfer_ownership": "Transfer Ownership",
-        "fulfill": "Fulfill",
-        "login_fulfill": "Sign in to fulfill",
-        "fulfill_gitcoin": "Fulfill on Gitcoin",
-        "apply": "Apply to bounty",
-        "login_apply": "Sign in to apply"
+        "activate": "激活赏金项目",
+        "edit": "编辑赏金项目",
+        "re_activate": "重新激活赏金项目",
+        "de_activate": "取消激活赏金项目",
+        "increase_prize": "提高价格",
+        "contribute": "捐助",
+        "contribute_issuer": "增加余额",
+        "extend_deadline": "延长截止日期",
+        "transfer_ownership": "转移所有权",
+        "fulfill": "完成",
+        "login_fulfill": "登录后完成",
+        "fulfill_gitcoin": "在Gitcoin上完成",
+        "apply": "申请该赏金项目",
+        "login_apply": "登录后申请"
       },
       "tabs": {
         "applicants": {
-          "title": "Applicants"
+          "title": "申请者"
         },
         "submissions": {
-          "title": "Submissions"
+          "title": "提交"
         },
         "comments": {
-          "title": "Comments"
+          "title": "回复"
         }
       },
       "modals": {
         "unsaved_changes": {
           "new_bounty": {
-            "title": "Discard Changes?",
+            "title": "撤消更改？",
             "description":
-              "If you decide to leave this page, the changes made to your bounty will be discarded and your bounty will be reverted to its previous state."
+              "如果你离开此页面，你对你的赏金项目所做的更改将会被撤销，赏金项目将会还原到之前的状态。"
           },
           "draft_or_edit_bounty": {
-            "title": "Discard Changes?",
+            "title": "撤消更改？",
             "description":
-              "If you decide to leave this page without creating a draft or activating, your bounty will be discarded."
+              "如果你离开此页面并没有创建草稿或激活项目，你的赏金项目将被撤销"
           }
         },
         "activate_dead_form": {
-          "title": "Re-Activate your bounty",
+          "title": "重新激活你的赏金项目",
           "description":
-            "Indicate an amount for your deposit to activate the bounty. At minimum, your deposit must match the payout amount ({minimumBalance} {token_symbol}).",
+            "标明押金的金额来激活这个赏金项目。你的押金最少与你提供的报酬金额相等({minimumBalance} {token_symbol}).",
           "min_deposit_warning":
-            "At minimum, your initial deposit must match your payout amount.",
+            "你的初始押金最少与你提供的报酬金额相等。",
           "form": {
             "balance": {
-              "label": "Deposit amount in {token_symbol}",
-              "placeholder": "Enter amount..."
+              "label": "用{token_symbol}存入押金",
+              "placeholder": "输入金额..."
             }
           }
         },
         "activate_draft_form": {
-          "title": "Activate your bounty",
+          "title": "激活你的赏金项目",
           "description":
-            "Indicate an amount for your initial deposit to activate the bounty.<em> At minimum, your initial deposit must match your payout amount of</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {token_symbol}</strong>",
+            "标明初始押金的金额来激活这个赏金项目。<em> 你的押金最少与你提供的报酬金额相等：</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {token_symbol}</strong>",
           "min_deposit_warning":
-            "At minimum, your initial deposit must match your payout amount.",
+            "你的初始押金最少与你提供的报酬金额相等。",
           "form": {
             "balance": {
-              "label": "Deposit amount in {token_symbol}",
-              "placeholder": "Enter amount..."
+              "label": "用{token_symbol}存入押金",
+              "placeholder": "输入金额..."
             }
           }
         },
         "contribute": {
-          "title": "Increase the balance",
+          "title": "增加赏金余额",
           "description":
-            "Indicate the amount you would like to contribute towards the bounty ({token_symbol}).",
-          "title_issuer": "Contribute to the bounty",
+            "标明你要捐助给此赏金项目的金额 ({token_symbol}).",
+          "title_issuer": "给此赏金项目提供余额",
           "description_issuer":
-            "Indicate the amount you would like to add to the bounty ({token_symbol}).",
+            "标明你要为此赏金项目增加的金额 ({token_symbol}).",
           "form": {
             "contribution": {
-              "label": "Deposit amount {token_symbol}",
-              "placeholder": "Enter amount..."
+              "label": "存入 {token_symbol}",
+              "placeholder": "输入金额..."
             }
           }
         },
         "extend_deadline_error": {
           "title":
-            "The deadline must be in the future in order to activate your bounty."
+            "截止日期需要设在将来才能激活你的赏金项目。"
         },
         "extend_deadline_form": {
-          "title": "Extend Deadline",
+          "title": "延长截止日期",
           "description":
-            "Indicate the time that you would like to extend the bounty deadline until {timezone, select, null { } other { (timezone={timezone})}}"
+            "标明你希望将此赏金项目截止日期延长到的时间 {timezone, select, null { } other { (timezone={timezone})}}"
         },
         "fulfill_bounty": {
-          "title": "Enter submission details",
+          "title": "输入提交详情",
           "description":
-            "Enter and submit the details for your bounty submission, including any links to content that may be required for fulfillment as indicated by the bounty description. You may format your submission description using <a href=\"https://www.markdownguide.org/cheat-sheet\" target=\"_blank\">Markdown</a>.",
+            "为你的赏金项目提交提供详情, 包括赏金项目描述中指出的任何完成此赏金项目所需内容的链接。 你可以用<a href=\"https://www.markdownguide.org/cheat-sheet\" target=\"_blank\">Markdown</a>为你的提交描述排版。",
           "form": {
             "name": {
-              "label": "Contact name",
-              "placeholder": "Enter name..."
+              "label": "联系人姓名",
+              "placeholder": "输入姓名..."
             },
             "email": {
-              "label": "Contact email",
-              "placeholder": "Enter email..."
+              "label": "联系人邮箱",
+              "placeholder": "输入邮箱..."
             },
             "url": {
-              "label": "Web link",
-              "placeholder": "Enter URL..."
+              "label": "网页链接",
+              "placeholder": "输入URL..."
             },
             "description": {
-              "label": "Description",
-              "placeholder": "Enter description..."
+              "label": "描述",
+              "placeholder": "输入描述..."
             },
             "private_notice":
-              "All information entered here will be stored on the public Ethereum network, but will be hidden on the site.",
+              "在此输入的所有信息都会储存在公开的以太币(Ethereum)网络，但将在此网站被隐藏。",
             "public_notice":
-              "All information entered here will be stored on the public Ethereum network, and will be publicly displayed on the site."
+              "在此输入的所有信息都会储存在公开的以太币(Ethereum)网络，并且会在此网站公开显示。"
           }
         },
         "fulfiller_application": {
-          "title": "Enter application details",
+          "title": "输入申请详情",
           "description":
-            "Describe why you believe you would be a good fit to complete this bounty. Feel free to also provide links to relevant work or experience.",
+            "写一写为什么你认为你适合完成此赏金项目。 你可以随意提供相关工作或经历的链接。",
           "form": {
             "message": {
-              "label": "Application",
-              "placeholder": "Enter message..."
+              "label": "申请",
+              "placeholder": "输入信息..."
             }
           }
         },
         "increase_payout": {
-          "title": "Increase bounty payout",
+          "title": "增加",
           "description1":
             "Indicate the amount you would like to increase the payout to. You may include an additional balance to cover the costs.<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
           "description2":
