@@ -267,21 +267,21 @@
         "increase_payout": {
           "title": "增加报酬",
           "description1":
-            "标明你要将报酬提高到的金额。这可以包括额外用于承担各类费用的金额。<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+            "标明你要将报酬提高到的金额。这可以包括额外用于承担各类费用的金额。<br /><br /><em>你的总余额必须大于新的价值金额 ({token_symbol})</em>. 当前余额为: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. 当前报酬为: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
           "description2":
-            "Indicate the amount you would like to increase the payout to.<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+            "标明你要将报酬提高到的金额。<br /><br /><em>你的总余额必须大于新的价值金额 ({token_symbol})</em>。 当前余额为: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. 当前报酬为: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
           "balance_warning":
-            "The balance of your bounty must be greater than the payout amount.",
+            "赏金项目余额必须大于报酬金额。",
           "payout_warning":
-            "Your payout amount must be greater than the previous payout amount.",
+            "你提供的报酬金额必须大于之前的报酬金额。",
           "form": {
             "balance": {
-              "label": "Deposit amount ({token_symbol})",
-              "placeholder": "Enter amount..."
+              "label": "存入 ({token_symbol})",
+              "placeholder": "输入金额..."
             },
             "fullfillment_amount": {
-              "label": "New prize amount ({token_symbol})",
-              "placeholder": "Enter amount..."
+              "label": "新的价值金额 ({token_symbol})",
+              "placeholder": "输入金额..."
             }
           }
         },
@@ -304,258 +304,258 @@
     },
     "create_bounty": {
       "zero_state": {
-        "title": "Could not find that bounty",
-        "description": "Try refreshing, or make sure your url is correct"
+        "title": "无法找到赏金项目",
+        "description": "尝试刷新，并检查你的URL是否正确。"
       },
       "deposit_warning":
-        "Deposit amount must at least match the payout amount.",
-      "payout_warning": "Payout amount may not be larger than the balance.",
+        "存入金额至少与报酬相等。",
+      "payout_warning": "报酬金额不能大于余额。",
       "actions": {
-        "create": "Create Bounty",
-        "edit": "Edit Bounty",
-        "draft": "Create Draft",
-        "update_draft": "Update Draft",
-        "update_bounty": "Update Bounty"
+        "create": "创建赏金项目",
+        "edit": "编辑赏金项目",
+        "draft": "创建草稿",
+        "update_draft": "更新草稿",
+        "update_bounty": "更新赏金项目"
       },
       "sections": {
         "about": {
-          "title": "ABOUT",
-          "description": "Enter your details about this bounty.",
-          "notice": "Enter a title and description for your bounty. A ",
+          "title": "关于",
+          "description": "输入关于该赏金项目的细节",
+          "notice": "为你的赏金项目输入一个标题和描。",
           "notice2":
-            " preview will automatically be generated as you type, which you can view by clicking the preview button. Feel free to use the description template provided below, or clear the field to create your own.",
+            "预览效果将会在你输入时自动生成，你可以按预览按钮来查看。你可以随意使用下面提供的描述模板或清空输入区域来创建你自己的描述。",
           "form": {
             "title": {
-              "label": "Title",
-              "placeholder": "Enter title..."
+              "label": "标题",
+              "placeholder": "输入标题..."
             },
             "description": {
-              "label": "Description"
+              "label": "描述"
             }
           }
         },
         "contact": {
-          "title": "CONTACT",
+          "title": "联系人",
           "description":
-            "Who will be the primary contact for bounty questions and submissions?",
+            "谁是该项目答疑和提交的主要联系人？",
           "form": {
             "issuer_name": {
-              "label": "Contact name",
-              "placeholder": "Enter name..."
+              "label": "联系人姓名",
+              "placeholder": "输入姓名..."
             },
             "issuer_email": {
-              "label": "Contact email",
-              "placeholder": "Enter email..."
+              "label": "联系人邮箱",
+              "placeholder": "输入邮箱..."
             }
           }
         },
         "details": {
-          "title": "DETAILS",
-          "description": "How should this bounty be classified?",
+          "title": "详情",
+          "description": "这个赏金项目应如何分类？",
           "notice":
-            "Enter the categories and difficulty level for the bounty. Since difficulty can be fairly subjective, it is helpful to provide more details around required experience within your bounty description.",
+            "输入该项目的类别与难度。由于难度有时较为主观，最好能在描述中提供更多关于所需经历的细节。",
           "form": {
             "categories": {
-              "label": "Bounty category",
-              "placeholder": "Create or Select category..."
+              "label": "赏金项目类别",
+              "placeholder": "创建或选择类别..."
             },
             "experience_level": {
-              "label": "Difficulty",
+              "label": "难度",
               "options": {
-                "beginner": "Beginner",
-                "intermediate": "Intermediate",
-                "expert": "Expert"
+                "beginner": "新手",
+                "intermediate": "中等",
+                "expert": "专家"
               }
             }
           }
         },
         "revisions": {
-          "title": "REVISIONS",
-          "description": "Will you require revisions?",
+          "title": "审阅",
+          "description": "你要求审阅吗？",
           "notice":
-            "Enter the maximum number of revisions you may require for this task, in order to help set expectations for the contributors."
+            "输入你可能需要审阅该任务次数的最大值，来帮助贡献者设定期望值。"
         },
         "attachments": {
-          "title": "ATTACHMENTS",
+          "title": "附件",
           "description":
-            "Does this bounty require any external assets for completion?",
+            "这个赏金项目需要外部文件来完成吗？",
           "notice":
-            "Attach any files or links that may be helpful as references or necessary for a contributor to complete the bounty.",
+            "附加任何可能作为参考或贡献者完成该项目必需的文件或链接",
           "form": {
             "url": {
-              "label": "Web link",
-              "placeholder": "Enter URL..."
+              "label": "网页链接",
+              "placeholder": "输入URL..."
             },
             "file": {
-              "label": "Associated file"
+              "label": "相关文件"
             }
           }
         },
         "deadline": {
-          "title": "DEADLINE",
-          "description": "When will this bounty be due?",
+          "title": "截止日期",
+          "description": "这个赏金项目会不会过期？",
           "notice":
-            "Enter the date and time for this bounty's deadline {timezone, select, null { } other {(timezone={timezone})}}"
+            "输入该赏金项目截止的日期和时间{timezone, select, null { } other {(timezone={timezone})}}"
         },
         "privacy": {
-          "title": "PRIVACY",
-          "description": "Will submissions be visible to everyone?",
-          "notice": "Submissions can be hidden from other users if desired.",
+          "title": "隐私",
+          "description": "提交对所有人可见吗？",
+          "notice": "如有需要，提交可以对其他用户隐藏",
           "form": {
             "fulfillers_need_approval": {
-              "label": "Pre-approval Required",
-              "placeholder": "Enter URL...",
+              "label": "需要预先批准",
+              "placeholder": "输入URL...",
               "options": {
-                "yes": "Yes",
-                "no": "No"
+                "yes": "是",
+                "no": "否"
               }
             },
             "private_fullfillments": {
-              "label": "Visibility",
+              "label": "可见性",
               "description":
-                "Do you want to approve people before they can fulfill your bounty?",
+                "别人完成你的项目之前是否需要批准？",
               "notice":
-                "If you require approval, you will be notified when a user indicates their intent to submit, and will be required to approve them before they are allowed to complete your bounty.",
+                "如果你要求批准，你将会在有用户有意愿提交时被通知。需要你的批准，他们才被准许完成你的赏金任务。",
               "options": {
-                "public": "Public",
-                "hidden": "Hidden"
+                "public": "公开",
+                "hidden": "隐藏"
               }
             }
           }
         },
         "payout": {
-          "title": "PAYOUT",
-          "description": "Select payout method and amount.",
+          "title": "报酬",
+          "description": "选择支付报酬的方式和金额。",
           "notice":
-            "Select the token and enter the amount you will award for completion of this bounty.",
+            "选择货币并输入你将为该项目完成者提供的报酬。",
           "form": {
             "token_contract": {
-              "label_default": "Token Contract Address",
-              "label_custom": "{token} Contract Address",
-              "placeholder": "Enter token contract address..."
+              "label_default": "货币协议地址",
+              "label_custom": "{token} 协议地址",
+              "placeholder": "输入货币协议地址..."
             },
             "method": {
-              "label": "Payout Method"
+              "label": "支付方式"
             },
             "fulfillment_amount": {
               "label":
-                "Payout amount {hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
-              "placeholder": "Enter amount..."
+                "报酬金额 {hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
+              "placeholder": "输入金额..."
             },
             "token_contract_2": {
-              "label": "Token",
-              "placeholder": "Select token or enter token address..."
+              "label": "货币",
+              "placeholder": "选择货币或输入货币地址..."
             }
           }
         },
         "payout_editing": {
-          "title": "PAYOUT",
-          "description": "Indicate the payout amount",
+          "title": "支付",
+          "description": "标明报酬金额",
           "notice":
-            "Enter the amount you will award for the completion of this bounty. The payout may not be larger than your current balance of <span class=\"{textHighlight}\">{balance} {token_symbol} </span>. If you would like to add more funds to the bounty, please <a href=\"{increaseBalanceUrl}\">increase your balance.</a>",
+            "输入你将为该项目完成者提供的报酬。报酬不能大于你当前的余额：<span class=\"{textHighlight}\">{balance} {token_symbol} </span>. 如果你希望为该赏金项目提供更多资金，请<a href=\"{increaseBalanceUrl}\">增加余额。</a>",
           "form": {
             "token_contract": {
-              "label_default": "Token Contract Address",
-              "label_custom": "{token} Contract Address",
-              "placeholder": "Enter token contract address..."
+              "label_default": "货币协议地址",
+              "label_custom": "{token} 协议地址",
+              "placeholder": "输入货币协议地址..."
             },
             "method": {
-              "label": "Payout Method"
+              "label": "支付方式"
             },
             "fulfillment_amount": {
               "label":
-                "Payout amount {hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
-              "placeholder": "Enter amount..."
+                "报酬金额{hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
+              "placeholder": "输入金额..."
             },
             "token_contract_2": {
-              "label": "Token",
-              "placeholder": "Select token or enter token address..."
+              "label": "货币",
+              "placeholder": "选择货币或输入货币地址..."
             }
           }
         },
         "save": {
-          "title": "SAVE OR SUBMIT",
+          "title": "保存或提交",
           "description":
-            "When would you like to submit and activate the bounty?",
+            "你将在何时提交并激活这个赏金任务？",
           "notice":
-            "If you wish to activate the bounty later, you can save it as a draft. The requirements for a bounty can only be edited while it is in the draft stage. At minimum, your deposit amount must match your payout amount.",
+            "如果你希望晚些激活这个赏金任务，你可以把它保存为草稿。赏金任务的需求只能在草稿状态下才能被编辑。你的存入金额至少要与报酬金额相等。",
           "form": {
             "activate_now": {
-              "label": "When to activate",
+              "label": "何时激活",
               "options": {
-                "now": "Now",
-                "later": "Later"
+                "now": "现在",
+                "later": "以后"
               }
             },
             "balance": {
-              "label": "Deposit amount (ETH or whole tokens)",
-              "placeholder": "Enter amount..."
+              "label": "存入金额 (ETH or whole tokens)",
+              "placeholder": "输入金额..."
             }
           }
         }
       }
     },
     "dashboard": {
-      "profile_strength": "Profile strength",
-      "edit_profile": "Edit profile"
+      "profile_strength": "个人资料评级",
+      "edit_profile": "编辑个人资料"
     },
     "explorer_body": {
       "bounty_count": "{count, plural, =1 {bounty} other {bounties}}",
       "zero_state": {
-        "title": "No Bounties Found",
-        "description": "Update your search filters to see more bounties"
+        "title": "没有找到赏金项目",
+        "description": "更新搜索筛选器来发现更多赏金项目"
       },
       "zero_state_error": {
-        "title": "Uh oh, something happened",
-        "description": "Try a new filter or refresh the page and try again"
+        "title": "呃，出了点问题",
+        "description": "尝试使用新的筛选条件或刷新页面再试一次。"
       }
     },
     "leaderboard": {
-      "title": "Leaderboard",
+      "title": "排行榜",
       "banner": {
-        "top_issuers": "Top Issuers",
-        "top_earners": "Top Earners"
+        "top_issuers": "最佳项目提供者",
+        "top_earners": "最高收入者"
       }
     },
     "leaderboard_card": {
       "zero_state": {
-        "title": "No Results Yet",
+        "title": "尚无结果",
         "description":
-          "As bounties are issues and submissions are completed, this leaderboard will begin to populate"
+          "在有人提供赏金项目且提交已完成时，此排行榜将开始更新。"
       },
       "zero_state_error": {
-        "title": "Uh oh, something happened",
-        "description": "Try to refresh the page and try again"
+        "title": "呃，出了点问题",
+        "description": "尝试刷新页面再试一次"
       }
     },
     "login": {
       "modals": {
         "details": {
-          "title": "Profile Details",
+          "title": "个人资料详情",
           "description":
-            "Add some profile details about yourself, so that others on the platform have an idea of your background and skillset, and can find you elsewhere online.",
+            "增加一些关于你自己的个人资料详情，这样在此平台上的其他用户将会了解你的背景和技能，并可以在其他地方找到你。",
           "description2":
-            "Welcome to the Bounties Network! We&#39;re excited to see what you bounty. <br /> <br /> Before you get started, we encourage you to add some profile details\n            about yourself, so that others on the platform have an idea of your background and skillset.",
+            "欢迎来到赏金网络！我们期待看你如何赢得赏金。 <br /> <br /> 在你开始之前，我们鼓励你增加一些关于你自己的个人资料详情，\n 这样，在此平台上的其他人将会了解你的背景和技能。",
           "actions": {
-            "skip": "Skip",
-            "add": "Add profile details"
+            "skip": "跳过",
+            "add": "增加个人资料详情"
           }
         },
         "address_mismatch": {
-          "title": "Wallet address does not match",
-          "description1": "You were previously signed in to ",
+          "title": "钱包地址不匹配",
+          "description1": "你之前登录为 ",
           "description2": "bounties.network",
-          "description3": " using the following address:",
+          "description3": " 使用如下地址:",
           "description4":
-            "This address does not match your current wallet account address:",
+            "此地址与你现在钱包账号地址不匹配:",
           "description5":
-            ". Please switch your wallet account, or log out of the Bounties Network and sign in using a different address."
+            ". 请切换你的钱包账号或登出赏金网络并用不同地址登录。"
         },
         "error": {
-          "title": "Something happened. Try again later."
+          "title": "出了点错误，晚点再试。"
         },
         "sign_in": {
-          "title": "Sign in and verify address",
+          "title": "登录并验证地址",
           "description":
             "After clicking \"Continue\", a wallet dialogue will prompt you to verify your unique address. Once you verify, you'll be signed in to the network."
         },
