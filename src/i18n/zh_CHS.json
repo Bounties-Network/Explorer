@@ -80,13 +80,13 @@
       "components": {
         "issue_rating": {
           "issuer1":
-            "你的赏金项目提交已被接受！如果你有兴趣，你可以给为如下赏金项目提供者的工作经历评分：",
+            "你的赏金项目提交已被接受！如果你有兴趣，你可以给这次工作经历评分：",
           "issuer2":
-            "这将帮助",
+            "这将帮助此平台上其他项目完成者设定期望值",
           "fulfiller1":
-            "You accepted a submission to your bounty! If you would like, you can rate your experience with the following fulfiller:",
+            "你接受了对你赏金项目的提交！ 如果你有兴趣，你可以为此项目完成者评分：",
           "fulfiller2":
-            "This will help set expectations for other issuers on the platform.",
+            "这将帮助此平台上其他项目提供者设定期望值。",
           "rating": "评分",
           "review": "评论",
           "review_placeholder": "输入评论..."
@@ -265,9 +265,9 @@
           }
         },
         "increase_payout": {
-          "title": "增加",
+          "title": "增加报酬",
           "description1":
-            "Indicate the amount you would like to increase the payout to. You may include an additional balance to cover the costs.<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+            "标明你要将报酬提高到的金额。这可以包括额外用于承担各类费用的金额。<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
           "description2":
             "Indicate the amount you would like to increase the payout to.<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
           "balance_warning":
@@ -286,17 +286,17 @@
           }
         },
         "kill_bounty": {
-          "title": "Are you sure you want to de-activate your bounty?",
+          "title": "你确定要取消激活你的赏金项目吗？",
           "description":
-            "If you change your mind, you can always re-activate it again later."
+            "如果你改变主意，你可以随时重新激活此项目。"
         },
         "transfer_ownership": {
-          "title": "Transfer Ownership",
+          "title": "转移所有权",
           "description":
-            "Include the wallet address of who you would like to transfer the bounty to.",
+            "包括接收者的钱包地址。",
           "form": {
             "new_owner": {
-              "placeholder": "Enter wallet address..."
+              "placeholder": "输入钱包地址..."
             }
           }
         }
