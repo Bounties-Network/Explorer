@@ -26,6 +26,16 @@
   height: 15em;
 }
 
+.formHelper {
+  background-color: $brand-light-blue;
+  border: 1px solid lighten($brand-blue, 25%);
+  color: $brand-blue;
+  padding: $m-spacing;
+  position: relative;
+  margin: $m-spacing 0 $l-spacing;
+  border-radius: $base-border-radius;
+}
+
 .input:not(:last-child) {
   padding-bottom: $l-spacing;
 

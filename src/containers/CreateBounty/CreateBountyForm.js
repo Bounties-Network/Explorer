@@ -27,7 +27,7 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import validators from 'utils/validators';
 import asyncValidators from 'utils/asyncValidators';
 import normalizers from 'utils/normalizers';
-import { Button, FileUpload, Text } from 'components';
+import { Button, FileUpload, Text, Select } from 'components';
 import {
   FormDatePicker,
   FormMarkdownEditor,
@@ -177,8 +177,10 @@ class CreateBountyFormComponent extends React.Component {
       tokens,
       isEditing,
       initialValues,
+      options,
       handleBounty
     } = this.props;
+
     const { validatorGroups } = this;
 
     let submitButtonText = intl.get('sections.create_bounty.actions.create');
@@ -233,14 +235,46 @@ class CreateBountyFormComponent extends React.Component {
                 validate={validatorGroups.title}
               />
             </FormSection.InputGroup>
+            <div className="row ">
+              <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+                <Select
+                  label="Description template"
+                  options={[
+                    { value: 'default', label: 'Default' },
+                    { value: 'Proof of action', label: 'Proof of action' },
+                    { value: 'Code', label: 'Code' },
+                    { value: 'Graphic design', label: 'Graphic design' },
+                    { value: 'Translation', label: 'Translation' },
+                    { value: 'Idea generation', label: 'Idea generation' },
+                    {
+                      value: 'Feedback & critique',
+                      label: 'Feedback & critique'
+                    },
+                    { value: 'Survey', label: 'Survey' },
+                    { value: 'Recruitment', label: 'Recruitment' }
+                  ]}
+                />
+              </div>
+              <div className="col-xs-12">
+                <Text
+                  fontStyle="italic"
+                  className={styles.formHelper}
+                  typeScale="Small"
+                  color="defaultGrey"
+                  lineHeight="lineHeight-default"
+                >
+                  This is a short description of the template that has been
+                  selected above. It provides some insight into how this
+                  template might be used, in addition to some potential example
+                  use cases.
+                </Text>
+              </div>
+            </div>
             <FormSection.InputGroup>
               <Field
                 disabled={submittingBounty}
                 name="description"
                 component={FormMarkdownEditor}
-                label={intl.get(
-                  'sections.create_bounty.sections.about.form.description.label'
-                )}
                 textBoxClassName={styles.markdownEditor}
                 validate={validatorGroups.description}
               />

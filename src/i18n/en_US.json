@@ -323,7 +323,7 @@
           "description": "Enter your details about this bounty.",
           "notice": "Enter a title and description for your bounty. A ",
           "notice2":
-            " preview will automatically be generated as you type, which you can view by clicking the preview button. Feel free to use the description template provided below, or clear the field to create your own.",
+            " preview will automatically be generated as you type, which you can view by clicking the preview button. Choose a description template below to get started, or clear the field to create your own.",
           "form": {
             "title": {
               "label": "Title",
