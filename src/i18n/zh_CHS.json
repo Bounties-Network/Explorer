@@ -500,7 +500,7 @@
       "edit_profile": "编辑个人资料"
     },
     "explorer_body": {
-      "bounty_count": "{count, plural, =1 {bounty} other {bounties}}",
+      "bounty_count": "{count}个赏金项目",
       "zero_state": {
         "title": "没有找到赏金项目",
         "description": "更新搜索筛选器来发现更多赏金项目"
@@ -557,409 +557,409 @@
         "sign_in": {
           "title": "登录并验证地址",
           "description":
-            "After clicking \"Continue\", a wallet dialogue will prompt you to verify your unique address. Once you verify, you'll be signed in to the network."
+            "在你点击“继续”之后，将会弹出一个钱包窗口来验证你的唯一地址。一旦完成验证，你将被登录到此网络。"
         },
         "signing_in": {
           "title":
-            "Complete signature request to verify your address and sign in"
+            "完成签名请求来验证你的地址并登录。"
         },
         "unlock": {
-          "title": "Secure Wallet Access",
+          "title": "安全钱包访问",
           "description1":
-            "You'll need to log in and/or grant access to your secure wallet (e.g.",
+            "你将需要登录并/或允许访问你的安全钱包，（比如",
           "description2":
-            ") in order to use {pageLevel, select, null {parts of} other { }} {networkName}"
+            "）用于使用 {pageLevel, select, null {parts of} other { }} {networkName}"
         },
         "wallet_required": {
-          "title": "Web3 enabled browser and secure wallet required.",
-          "description1": "In order to use",
-          "description2": ", please install a secure wallet such as",
+          "title": "需要已激活Web3的浏览器和安全钱包。",
+          "description1": "为了使用",
+          "description2": "，请安装一个安全钱包，比如",
           "description3":
-            "If you'd like help getting set up, take a look at our ",
-          "guide": "Getting Started Guide.",
+            "如果你需要帮助来完成设置，来看看我们的 ",
+          "guide": "新手指南。",
           "actions": {
-            "visit": "Visit {walletName}"
+            "visit": "访问 {walletName}"
           }
         },
         "wrong_network": {
-          "title": "Foreign network detected",
-          "description1": "{networkName} is currently operational on",
-          "description2": "Please switch your active wallet network."
+          "title": "检测到外部网络",
+          "description1": "{networkName} 目前运行在",
+          "description2": "请切换你激活的钱包网络。"
         }
       }
     },
     "notifications": {
-      "title": "Notifications",
+      "title": "通知",
       "actions": {
-        "mark_read": "Mark all as read"
+        "mark_read": "全部标为已读"
       },
       "zero_state": {
-        "title": "You have no notifications",
+        "title": "你还没有通知",
         "description":
-          "Once you start using the platform, notifications will show here."
+          "一旦你开始使用本平台，通知将会显示在这里。"
       }
     },
     "profile": {
       "about": {
-        "title": "About",
-        "organization": "Organization",
-        "languages": "Languages spoken"
+        "title": "关于",
+        "organization": "组织",
+        "languages": "交流语言"
       },
       "elsewhere": {
-        "title": "Elsewhere"
+        "title": "其它地方"
       },
       "skills": {
-        "title": "Skills"
+        "title": "技能"
       },
       "network": {
-        "title": "Network Stats",
+        "title": "网络状态",
         "descriptions": {
           "issuer": {
-            "acceptance": "Fulfilment acceptance rate",
-            "rating": "Average issuer rating received",
-            "ratingGiven": "Average fulfiller rating given"
+            "acceptance": "成果接受率",
+            "rating": "项目提供者平均评分",
+            "ratingGiven": "项目完成者平均评分"
           },
           "fulfiller": {
-            "acceptance": "Submission acceptance rate",
-            "rating": "Average fulfiller rating received",
-            "ratingGiven": "Average issuer rating given"
+            "acceptance": "提交被接受率",
+            "rating": "项目完成者平均评分",
+            "ratingGiven": "项目提供者平均评分"
           }
         }
       },
       "tabs": {
-        "bounties": "Bounties created",
-        "submissions": "Submissions"
+        "bounties": "创建的赏金项目",
+        "submissions": "提交的成果"
       },
       "reviews": {
-        "title": "{reviewType} ratings received",
+        "title": "收到{reviewType}评分",
         "zero_state": {
-          "title": "No Reviews Found",
+          "title": "没有收到评价",
           "description":
-            "We didn't find any reviews associated with this action."
+            "我们没找到任何与此操作相关的评价。"
         }
       },
       "zero_state": {
-        "title": "No User Found",
-        "description": "Check that the address is correct and try again"
+        "title": "未找到用户",
+        "description": "检查地址是否正确并再试一次"
       },
       "zero_state_error": {
-        "title": "Error",
-        "description": "Please try again"
+        "title": "错误",
+        "description": "请再试一次"
       }
     },
     "settings": {
-      "title": "Account Settings",
+      "title": "账号设置",
       "messages": {
-        "profile_saved": "Profile saved successfully",
-        "email_saved": "Email preferences saved successfully"
+        "profile_saved": "个人资料成功保存",
+        "email_saved": "电子邮件偏好成功保存"
       },
       "modals": {
         "unsaved_changes": {
-          "title": "Discard Changes?",
+          "title": "撤销更改？",
           "description":
-            "If you decide to leave this page without confirming your changes, the changes made to your profile will be discarded and your profile will be reverted to its previous state."
+            "如果你离开此页面而不确认更改，你对你个人资料做的更改将会被撤销，你的个人资料将还原到之前的状态。"
         }
       },
       "emails": {
-        "title": "EMAIL NOTIFICATIONS",
+        "title": "电子邮件通知",
         "description":
-          "What notifications would you like to receive via email?",
+          "你希望通过电子邮件接收何种通知？",
         "notice":
-          "Opt in or out of the notifications you wish to receive via email. We recommend sticking with the default settings so that you can be informed of important activity relevant to you on the network.",
+          "选择你希望通过电子邮件接收的通知。为了能收到与此网络相关的重要活动通知，我们推荐使用默认设置。",
         "actions": {
-          "save": "Save Email Preferences"
+          "save": "保存电子邮件偏好"
         },
         "notification_options": {
-          "rating_received": "User issues you a rating",
-          "transfer_recipient": "Bounty transfer to another user completes",
+          "rating_received": "收到用户评分",
+          "transfer_recipient": "赏金项目转让完成",
           "bounty_comment_received":
-            "A bounty you fulfilled receives a comment",
-          "bounty_comment_received_issuer": "Your bounty receives a comment",
+            "你完成的赏金项目收到回复。",
+          "bounty_comment_received_issuer": "你的赏金项目收到回复",
           "bounty_comment_received_commenter":
-            "A bounty you commented on receives a comment",
-          "fulfillment_comment_received": "Your submission receives a comment",
+            "你回复过的赏金项目收到了回复",
+          "fulfillment_comment_received": "你的提交收到了回复",
           "fulfillment_comment_received_issuer":
-            "A submission to your bounty receives a comment",
+            "对你赏金项目的提交收到了回复",
           "fulfillment_comment_received_commenter":
-            "A submission you commented on receives a comment",
-          "bounty_expired": "Bounty expires",
-          "bounty_changed": "A bounty you fulfilled is changed",
-          "bounty_changed_applicant": "A bounty you applied for is changed",
+            "你回复过的提交收到了回复",
+          "bounty_expired": "赏金项目过期",
+          "bounty_changed": "一个你完成的赏金项目被更改",
+          "bounty_changed_applicant": "一个你申请的赏金项目被更改",
           "fulfillment_updated_issuer":
-            "Fulfiller, updates their fulfillment on your bounty",
+            "项目完成者更新了赏金项目的成果。",
           "fulfillment_submitted_issuer":
-            "Fulfiller, submits a new fulfillment to your bounty",
-          "fulfillment_accepted_fulfiller": "Issuer accepts your fulfillment",
+            "项目完成者为你的赏金项目提交了新的成果。",
+          "fulfillment_accepted_fulfiller": "项目提供者接受了你的成果。",
           "contribution_received":
-            "Another user contributes funds to your bounty",
-          "bounty_completed": "Bounty no longer has enough funds to pay out",
-          "application_received": "New worker applies to bounty",
-          "application_accepted_applicant": "Issuer accepts your application",
-          "application_rejected_applicant": "Issuer rejects your application",
-          "activity": "General activity (updated profile, created bounty, etc.)"
+            "另一个用户为你的赏金项目提供了资金。",
+          "bounty_completed": "赏金项目资金不足以支付报酬",
+          "application_received": "新的工作者申请了该赏金项目",
+          "application_accepted_applicant": "项目提供者接受了你的申请。",
+          "application_rejected_applicant": "项目提供者拒绝了你的申请",
+          "activity": "一般活动（更新个人资料，创建赏金项目等。）"
         }
       },
       "user": {
         "photo": {
-          "title": "PROFILE PHOTO",
-          "label": "Image upload failed, please try again."
+          "title": "个人资料照片",
+          "label": "图片上传失败，请重试。"
         },
         "about": {
-          "title": "ABOUT",
-          "description": "What would you like people to know about you?",
+          "title": "关于",
+          "description": "你希望别人了解些什么呢？",
           "notice":
-            "Enter some of your personal details so that the community can get to know you.",
+            "输入一些你的个人详情来让社区了解你",
           "form": {
             "name": {
-              "label": "Name",
-              "placeholder": "Enter name..."
+              "label": "姓名",
+              "placeholder": "输入姓名..."
             },
             "organization": {
-              "label": "Organization",
-              "placeholder": "Enter organization..."
+              "label": "组织",
+              "placeholder": "输入组织..."
             },
             "languages": {
-              "label": "Languages",
-              "placeholder": "Choose languages..."
+              "label": "语言",
+              "placeholder": "选择语言..."
             }
           }
         },
         "skills": {
-          "title": "SKILLS",
+          "title": "技能",
           "description":
-            "What are some of your professional or technical skills?",
+            "你有什么专业或技术性技能？",
           "notice":
-            "Enter or select the skills for which you are proficient. This will help others on the network be confident in your ability to fulfill certain types of bounties.",
-          "label": "Skills",
-          "placeholder": "Create or Select a skill..."
+            "输入或选择你精通的技能。这将帮助其他在本网络上的用户确信你有能力完成这些类型的赏金项目。",
+          "label": "技能",
+          "placeholder": "创建或选择一个技能C..."
         },
         "social": {
-          "title": "SOCIAL",
+          "title": "社交",
           "description":
-            "Do you have any other social profiles you would like displayed?",
+            "你有没有希望显示的其他社交资料？",
           "form": {
             "web": {
-              "label": "Personal website"
+              "label": "个人网站"
             }
           }
         },
         "contact": {
-          "title": "CONTACT",
+          "title": "联系",
           "description":
-            "Where would you like to receive status notifications about your bounties and fulfillments?",
+            "你希望在哪里接受关于你的赏金项目与成果的通知？",
           "form": {
             "email": {
-              "label": "Contact email",
-              "placeholder": "Enter email..."
+              "label": "联系邮箱",
+              "placeholder": "输入电子邮箱..."
             },
             "marketing": {
               "label":
-                "I would also like to receive relevant bounty suggestions and platform updates"
+                "我也想接收相关赏金项目建议和平台更新消息。"
             }
           },
           "actions": {
-            "submit": "Submit Details",
-            "update": "Update Profile"
+            "submit": "提交详情",
+            "update": "更新个人信息"
           }
         }
       }
     },
     "submissions": {
-      "title": "Submissions",
+      "title": "提交",
       "tabs": {
-        "received": "Received",
-        "submitted": "Submitted"
+        "received": "收到",
+        "submitted": "发布"
       },
       "headers": {
-        "title": "Bounty title",
-        "fulfiller": "Fulfiller",
-        "date": "Submission date",
-        "status": "Status",
-        "payment": "Payment amount"
+        "title": "赏金项目标题",
+        "fulfiller": "完成者",
+        "date": "提交日期",
+        "status": "状态",
+        "payment": "支付金额"
       },
       "zero_state": {
-        "title": "You have {currentTab} 0 submissions",
+        "title": "你现在有0个{currentTab}的提交。",
         "description":
-          "It looks like you don't have any submissions. Come back after you have {currentTab} a fulfillment!"
+          "看起来你还没有任何提交。 当你{currentTab}成果之后在回来吧！"
       }
     },
     "user_stats": {
-      "bounties_issued": "Bounties issued",
-      "bounties_completed": "Bounties completed",
-      "awarded": "Awarded",
-      "earned": "Earned"
+      "bounties_issued": "已发布的赏金项目",
+      "bounties_completed": "已完成的赏金项目",
+      "awarded": "支出",
+      "earned": "收获"
     }
   },
   "components": {
     "applicant_stage": {
-      "accepted": "Accepted",
-      "declined": "Declined",
-      "pending": "Pending",
-      "default": "Pending acceptance"
+      "accepted": "已接受",
+      "declined": "已拒绝",
+      "pending": "等待中",
+      "default": "待接受"
     },
     "bounty_card": {
-      "difficulty": "difficulty",
+      "difficulty": "难度",
       "difficulty_options": {
-        "beginner": "Beginner",
-        "intermediate": "Intermediate",
-        "advanced": "Advanced"
+        "beginner": "新手",
+        "intermediate": "中等",
+        "advanced": "高级"
       },
       "submissions_count":
-        "{count, plural, =1 {submission} other {submissions}}"
+        "{count}个提交"
     },
     "bounty_item": {
       "text":
-        "Created {time} {submissionCount, plural, =1 {∙ # submission} other {∙ # submissions}}",
-      "draftText": "Created {time}"
+        "创建于 {time} {submissionCount}个提交",
+      "draftText": "创建于 {time}"
     },
     "essentials": {
-      "balance": "Remaining Balance"
+      "balance": "剩余金额"
     },
     "filter_nav": {
       "sort_options": {
-        "bounty_created": "Most Recent",
-        "usd_price": "Value: High to Low",
-        "deadline": "Expiry"
+        "bounty_created": "最近发布",
+        "usd_price": "价值： 从高到低",
+        "deadline": "过期时间"
       },
-      "refine": "Refine by",
-      "platform": "Platform",
-      "category": "Category",
-      "difficulty": "Difficulty",
-      "stage": "Stage",
+      "refine": "筛选条件",
+      "platform": "平台",
+      "category": "类别",
+      "difficulty": "难度",
+      "stage": "状态",
       "checkbox": {
-        "active": "Active",
-        "completed": "Completed",
-        "expired": "Expired",
-        "dead": "Dead"
+        "active": "活跃",
+        "completed": "已完成",
+        "expired": "已过期",
+        "dead": "已终止"
       }
     },
     "fulfillment_stage": {
-      "accepted": "Accepted",
-      "not_accepted": "Not Accepted"
+      "accepted": "已被接受",
+      "not_accepted": "未被接受"
     },
     "submission": {
-      "title": "Bounty title",
-      "status": "Status",
-      "date": "Submission date",
-      "fulfiller": "Fulfiller",
-      "amount": "Payment amount"
+      "title": "赏金项目标题",
+      "status": "状态",
+      "date": "提交日期",
+      "fulfiller": "完成者",
+      "amount": "支付金额"
     },
     "tx_guide": {
-      "title": "Your wallet will take it from here!",
+      "title": "你的钱包从这里开始接管！",
       "description":
-        "After clicking \"OK\", a wallet dialogue will prompt you to confirm your Ethereum transaction and pay a small amount of ETH (for gas fees).",
-      "notice": "A default gas limit and price will be set for you.",
+        "当你点击“好的”以后，将会弹出钱包对话框来确认以太币(Ethereum)转账并支付一小部分以太币作为手续费(gas费用）。",
+      "notice": "将为你设置默认手续费(gas)限制和价格。",
       "messages": {
         "waiting":
-          "Waiting for your transaction to be confirmed on the blockchain...",
-        "confirmed": "Your transaction has been confirmed!",
+          "等待你的转账在区块链上被确认...",
+        "confirmed": "你的转账已被确认!",
         "pending_receipt":
-          "Your transaction is being processed. We will notify you once it is confirmed.",
+          "你的转账正被处理。当转账完成后我们会通知你。",
         "pending_wallet":
-          "Confirming Ethereum transaction with your enabled wallet. This may take a few seconds."
+          "正在与你激活的钱包确认以太币转账。可能花一段时间。"
       }
     },
     "editor": {
-      "preview": "Preview",
+      "preview": "预览",
       "default":
-        "# Description\nDescribe the bounty that you want completed. What is it for? What does it involve?\n\n## Requirements\nWhat requirements do you have for bounty fulfillers? Are there any rules or constraints for your bounty? Are there any pre-requisites needed to complete it?\n\n* Item one\n* Item two\n* Item three\n\n## Definition of Done\nWhat should bounty issuers submit as proof that they have completed the bounty? What do fulfillers need to include in a submission in order for it to be accepted?\n\n1. Item 1\n2. Item 2\n3. Item 3\n\n### Things to Note\nIs there any other information you'd like potential fulfillers to know about you or the bounty? Does the bounty require any additional materials that either party needs to provide or information exchanged for external communication to occur?"
+        "# 描述\n描述你想完成的赏金项目。你的项目用于何处？ 它包括什么？\n\n## 要求\n你对项目完成者有何要求？你的项目有无规定或限制？完成此项目需不需要一些先决条件？\n\n* 第一项\n* 第二项\n* 第三项\n\n## 完成的定义\nWhat should bounty issuers submit as proof that they have completed the bounty? 为了使提交被接受，完成者需要在提交中包含什么？\n\n1. 第一项\n2. 第二项\n3. 第三项\n\n### 注意事项\n有无希望完成者预先了解的关于你或项目的信息？这个赏金项目是否需要任一方提供额外材料或交换用于外部交流的信息?"
     },
     "notifications": {
-      "fulfilLment_submitted": "You made a submission",
-      "fulfilLment_submitted_issuer": "You received a submission",
-      "bounty_activated": "You activated a bounty",
-      "fulfillment_accepted": "You accepted a submission",
-      "fulfillment_accepted_fulfiller": "Your submission was accepted",
-      "bounty_expired": "Your bounty expired",
-      "bounty_issued": "You issued a new bounty",
-      "bounty_killed": "You killed a bounty",
-      "contribution_added": "You made a contribution",
-      "deadline_extended": "You extended the deadline",
-      "bounty_changed": "A bounty you submitted to was updated",
-      "bounty_changed_issuer": "You updated your bounty",
-      "bounty_changed_applicant": "A bounty you applied to was updated",
-      "issuer_transferred": "You transferred ownership of your bounty",
-      "transfer_recipient": "Ownership of a bounty was transferred to you",
-      "payout_increased": "You increased the payout",
-      "bounty_comment_received": "A bounty you fulfilled received a comment",
-      "bounty_comment_received_issuer": "Your bounty received a comment",
+      "fulfilLment_submitted": "你发布了一个提交",
+      "fulfilLment_submitted_issuer": "你收到了一个提交",
+      "bounty_activated": "你激活了一个赏金项目",
+      "fulfillment_accepted": "你接受了一份提交",
+      "fulfillment_accepted_fulfiller": "你的提交被接受了",
+      "bounty_expired": "你的赏金项目过期了",
+      "bounty_issued": "你发布了新的赏金项目",
+      "bounty_killed": "你删除了一个赏金项目",
+      "contribution_added": "你完成了一次捐助",
+      "deadline_extended": "你延后了截止日期",
+      "bounty_changed": "你发布提交的赏金项目已被更新",
+      "bounty_changed_issuer": "你更新了你的赏金项目",
+      "bounty_changed_applicant": "你申请的赏金项目已被更新",
+      "issuer_transferred": "你转移了你的赏金项目所有权",
+      "transfer_recipient": "一个赏金项目的所有权已被转让给你",
+      "payout_increased": "你增加了报酬",
+      "bounty_comment_received": "你完成的赏金项目收到了回复",
+      "bounty_comment_received_issuer": "你的赏金项目收到了一个回复",
       "bounty_comment_received_commenter":
-        "A bounty you commented on received a comment",
-      "fulfillment_comment_received": "Your submission received a comment",
+        "你回复的赏金项目收到了一份回复",
+      "fulfillment_comment_received": "你的提交收到了回复",
       "fulfillment_comment_received_issuer":
-        "A submission to your bounty received a comment",
+        "你赏金项目的一个提交收到了回复",
       "fulfillment_comment_received_commenter":
-        "A submission you commented on received a comment",
-      "bounty_issue_activated": "You posted a new bounty",
-      "fulfillment_updated": "You updated your submission",
-      "fulfillment_updated_issuer": "A submission to your bounty was updated",
-      "rating_issued": "You wrote a review",
-      "rating_received": "You received a rating",
-      "profile_updated": "You updated your profile",
-      "comment_issued": "You wrote a comment",
-      "fulfillment_comment_issued": "You wrote a comment",
-      "draft_created": "You created a draft",
-      "draft_updated": "You updated a draft",
-      "contribution_received": "You received a contribution",
-      "bounty_completed": "Your bounty ran out of funds",
-      "application_created": "You submitted an application",
-      "application_received": "You received a new application",
-      "application_accepted_application": "Your application was accepted",
-      "application_accepted_issuer": "You accepted an application",
-      "application_rejected_applicant": "Your application was rejected",
-      "application_rejected_issuer": "You rejected an application"
+        "你回复的提交收到了一个回复",
+      "bounty_issue_activated": "你发布了一个新的赏金项目",
+      "fulfillment_updated": "你更新了你的提交",
+      "fulfillment_updated_issuer": "你赏金项目的一个提交已被更新。",
+      "rating_issued": "你写了一份评论",
+      "rating_received": "你收到了一个评分",
+      "profile_updated": "你更新了你的个人资料",
+      "comment_issued": "你写了一个回复",
+      "fulfillment_comment_issued": "你写了一个回复",
+      "draft_created": "你创建了一份草稿",
+      "draft_updated": "你更新了一份草稿",
+      "contribution_received": "你收到了一份捐赠",
+      "bounty_completed": "你的赏金项目已用尽资金",
+      "application_created": "你提交了一份申请",
+      "application_received": "你收到了新的申请",
+      "application_accepted_application": "你的申请被接受了",
+      "application_accepted_issuer": "你接受了一个申请",
+      "application_rejected_applicant": "你的申请被拒绝了",
+      "application_rejected_issuer": "你拒绝了一个申请"
     }
   },
   "hocs": {
     "require_login": {
       "zero_state": {
-        "title": "Sign in to use the Bounties Network",
+        "title": "登录来使用赏金网络",
         "body":
-          "In order for you to use certain features of the network like creating and fulfilling bounties, commenting, and viewing your network stats, please sign in using your secure wallet.",
+          "为了使用本网络的特定功能比如创建或完成赏金项目、回复、查看你的网络状态，请用你的安全钱包登录。",
         "subtext":
-          "If you don't wish to sign in but want to explore, feel free to check out some bounties using the ",
-        "action": "Sign In"
+          "如果你不希望登录但是想浏览项目，请随意查看这些赏金项目；通过 ",
+        "action": "登录"
       },
-      "explorer": "explorer"
+      "explorer": "项目浏览器"
     }
   },
   "errors": {
-    "500": "Something went wrong. Try again later.",
-    "404": "Not Found",
-    "form_error": "Fix the errors above and re-submit."
+    "500": "出错了，晚些再试",
+    "404": "未找到",
+    "form_error": "修改以上错误并重新提交。"
   },
   "validation": {
-    "required": "* Required",
-    "max": "Must be {max} characters or less",
-    "min": "Must be {min} characters or more",
-    "max_decimals": "Must be {max} decimal places or less",
-    "min_value": "Must be greater than {min}",
-    "mineq_value": "Must be greater than or equal to  {min}",
-    "min_date": "Date must be after {date}",
-    "length": "Must be {length} characters",
-    "web3": "Must be a proper web3 address",
-    "number": "Must be a number",
-    "email": "Invalid email address",
-    "alfa_num": "Only alphanumeric characters",
-    "twitter": "Invalid Twitter handle",
-    "github": "Invalid Github handle",
-    "url": "Invalid URL"
+    "required": "* 必填",
+    "max": "必须是{max}个或更少字符",
+    "min": "必须是{min}或更多字符",
+    "max_decimals": "位数必须是{max}或更少",
+    "min_value": "必须大于 {min}",
+    "mineq_value": "必须大于等于{min}",
+    "min_date": "日期必须在{date}以后",
+    "length": "必须是 {length} 个字符",
+    "web3": "必须是合适的web3地址",
+    "number": "必须是数字",
+    "email": "无效电子邮箱地址",
+    "alfa_num": "只能是数字或字母字符",
+    "twitter": "无效Twitter标签",
+    "github": "无效Github标签",
+    "url": "无效URL"
   },
   "common": {
-    "description": "Description",
-    "expired": "expired",
-    "remaining": "remaining",
-    "difficulty": "difficulty",
-    "expected": "expected",
-    "and": "and",
-    "payout": "Payout"
+    "description": "描述",
+    "expired": "过期的",
+    "remaining": "剩余的",
+    "difficulty": "难度",
+    "expected": "期待的",
+    "and": "与",
+    "payout": "报酬"
   },
   "stages": {
-    "draft": "Draft",
-    "active": "Active",
-    "dead": "Dead",
-    "completed": "Completed",
-    "expired": "Expired"
+    "draft": "草稿",
+    "active": "活跃",
+    "dead": "已终止",
+    "completed": "已完成",
+    "expired": "已过期"
   },
   "formats": {
     "amount": "{value, number}",
