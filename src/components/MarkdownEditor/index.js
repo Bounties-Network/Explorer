@@ -88,7 +88,7 @@ class MarkdownEditor extends React.Component {
                 onClick={this.showModal}
               >
                 <FontAwesomeIcon
-                  icon={['fal', 'eye']}
+                  icon={['far', 'eye']}
                   className={styles.overlayIcon}
                 />
                 {intl.get('components.editor.preview')}

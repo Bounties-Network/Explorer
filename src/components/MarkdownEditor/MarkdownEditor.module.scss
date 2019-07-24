@@ -3,6 +3,10 @@
 .markdownEditor {
   height: 100%;
   width: 100%;
+
+  textarea {
+    padding-top: $xl-spacing * 2;
+  }
 }
 
 .overlay {
@@ -10,20 +14,10 @@
   padding: $s-spacing;
 }
 
-textarea {
-  line-height: $base-line-height;
-}
-
-.textArea {
-  white-space: pre-wrap;
-  padding: $s-spacing;
-  min-height: $l-spacing * 2;
-}
-
 .overlay:hover {
   color: $brand-blue-hover;
 }
 
 .overlayIcon {
-  margin-right: $s-spacing;
+  margin-right: $base-spacing;
 }
