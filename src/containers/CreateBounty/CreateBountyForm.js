@@ -15,6 +15,7 @@ import { TransactionWalkthrough } from 'hocs';
 import { getTimezone } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
 import { Link } from 'react-router-dom';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 import moment from 'moment';
 import {
@@ -235,8 +236,8 @@ class CreateBountyFormComponent extends React.Component {
                 validate={validatorGroups.title}
               />
             </FormSection.InputGroup>
-            <div className="row ">
-              <div className={`col-xs-12 col-sm-6 ${styles.input}`}>
+            <div className="row">
+              <div className="col-xs-12 col-sm-6">
                 <Select
                   label="Description template"
                   options={[
@@ -256,18 +257,23 @@ class CreateBountyFormComponent extends React.Component {
                 />
               </div>
               <div className="col-xs-12">
-                <Text
-                  fontStyle="italic"
-                  className={styles.formHelper}
-                  typeScale="Small"
-                  color="defaultGrey"
-                  lineHeight="lineHeight-default"
-                >
-                  This is a short description of the template that has been
-                  selected above. It provides some insight into how this
-                  template might be used, in addition to some potential example
-                  use cases.
-                </Text>
+                <div className={styles.formHelper}>
+                  <FontAwesomeIcon
+                    icon={['far', 'info-circle']}
+                    className={styles.formHelperIcon}
+                  />
+                  <Text
+                    fontStyle="italic"
+                    typeScale="Small"
+                    color="blue"
+                    lineHeight="lineHeight-default"
+                  >
+                    This is a short description of the template that has been
+                    selected above. It provides some insight into how this
+                    template might be used, in addition to some potential
+                    example use cases.
+                  </Text>
+                </div>
               </div>
             </div>
             <FormSection.InputGroup>

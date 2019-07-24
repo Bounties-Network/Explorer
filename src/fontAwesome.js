@@ -47,7 +47,7 @@ import facebook from '@fortawesome/fontawesome-free-brands/faFacebook';
 import reddit from '@fortawesome/fontawesome-free-brands/faReddit';
 import github from '@fortawesome/fontawesome-free-brands/faGithub';
 import linkedin from '@fortawesome/fontawesome-free-brands/faLinkedin';
-import eye from '@fortawesome/fontawesome-pro-light/faEye';
+import eye from '@fortawesome/fontawesome-pro-regular/faEye';
 import globe from '@fortawesome/fontawesome-pro-regular/faGlobe';
 import idCardAlt from '@fortawesome/fontawesome-pro-light/faIdCardAlt';
 import star from '@fortawesome/fontawesome-pro-regular/faStar';
