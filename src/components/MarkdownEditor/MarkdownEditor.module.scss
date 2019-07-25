@@ -5,7 +5,10 @@
   width: 100%;
 
   textarea {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
     padding-top: $xl-spacing * 2;
+    padding-bottom: $xl-spacing;
   }
 }
 

@@ -95,6 +95,7 @@ class MarkdownEditor extends React.Component {
               </Text>
             )
           }
+          markdownKey
         />
       </div>
     );
