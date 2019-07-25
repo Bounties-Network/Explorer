@@ -15,6 +15,7 @@ const Container = styled.div`
 const TextareaContainer = styled.div`
   position: relative;
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
 
   /* added this to avoid bug where the top and right :active border disappeared */
@@ -37,6 +38,21 @@ const Overlay = styled.div`
   border-radius: ${props => props.theme.baseBorderRadius};
   background: ${props => props.theme.brandWhite};
   padding: ${props => props.theme.sSpacing};
+`;
+
+const MarkdownKey = styled.div`
+  background-color: ${props => props.theme.brandWhite};
+  border: ${props => props.theme.baseBorder};
+  border-top: none;
+  border-bottom-right-radius: ${props => props.theme.baseBorderRadius};
+  border-bottom-left-radius: ${props => props.theme.baseBorderRadius};
+  display: flex;
+  align-items: center;
+  padding: ${props => props.theme.baseSpacing} ${props => props.theme.mSpacing};
+
+  > * {
+    margin-right: ${props => props.theme.mSpacing};
+  }
 `;
 
 const Textarea = styled(PlainTextarea)`
@@ -86,6 +102,13 @@ const Textarea = styled(PlainTextarea)`
   }
 `;
 
+const CodeExample = styled(Text)`
+  background-color: ${props => props.theme.brandNearWhite};
+  border: ${props => props.theme.baseBorder};
+  border-radius: 4px;
+  padding: ${props => props.theme.sSpacing};
+`;
+
 const LabelText = styled(Text)`
   color: ${props => (props.error ? props.theme.brandRed : null)};
 `;
@@ -129,6 +152,7 @@ class Textbox extends React.Component {
       disabled,
       placeholder,
       overlay,
+      markdownKey,
       value,
       maxLength,
       onFocus,
@@ -155,13 +179,15 @@ class Textbox extends React.Component {
         </TextareaInfo>
         <TextareaContainer>
           <Textarea
-            // style related props
-            error={error}
+            error={
+              error // style related props
+            }
             resizable={resizable.toString()}
             maxHeight={maxHeight}
             minHeight={minHeight}
-            // regular props
-            placeholder={placeholder}
+            placeholder={
+              placeholder // regular props
+            }
             disabled={disabled}
             onFocus={onFocus}
             onBlur={onBlur}
@@ -170,6 +196,38 @@ class Textbox extends React.Component {
             autoFocus={autoFocus}
           />
           {overlay ? <Overlay>{overlay}</Overlay> : null}
+          {markdownKey ? (
+            <MarkdownKey>
+              <React.Fragment>
+                <Text typeScale="Small" color="defaultGrey">
+                  # H1
+                </Text>
+                <Text typeScale="Small" color="defaultGrey">
+                  ## H2
+                </Text>
+                <Text typeScale="Small" color="defaultGrey">
+                  ### H3
+                </Text>
+                <Text
+                  typeScale="Small"
+                  color="defaultGrey"
+                  weight="fontWeight-bold"
+                  color="darkGrey"
+                >
+                  *bold*
+                </Text>
+                <Text typeScale="Small" color="defaultGrey" fontStyle="italic">
+                  _italics_
+                </Text>
+                <CodeExample typeScale="Small" color="defaultGrey">
+                  `code`
+                </CodeExample>
+                <CodeExample typeScale="Small" color="defaultGrey">
+                  ```preformatted```
+                </CodeExample>
+              </React.Fragment>
+            </MarkdownKey>
+          ) : null}
         </TextareaContainer>
         <ErrorFragment error={error} />
       </Container>
@@ -184,6 +242,7 @@ Textbox.propTypes = {
   optional: PropTypes.bool,
   disabled: PropTypes.bool,
   label: PropTypes.string,
+  markdownKey: PropTypes.bool,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
@@ -199,7 +258,8 @@ Textbox.defaultProps = {
   onBlur: () => {},
   onFocus: () => {},
   resizable: true,
-  minHeight: '100px'
+  minHeight: '100px',
+  markdownKey: false
 };
 
 export default Textbox;
