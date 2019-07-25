@@ -46,12 +46,16 @@ const MarkdownKey = styled.div`
   border-top: none;
   border-bottom-right-radius: ${props => props.theme.baseBorderRadius};
   border-bottom-left-radius: ${props => props.theme.baseBorderRadius};
-  display: flex;
+  display: none;
   align-items: center;
   padding: ${props => props.theme.baseSpacing} ${props => props.theme.mSpacing};
 
   > * {
     margin-right: ${props => props.theme.mSpacing};
+  }
+
+  @media only screen and (min-width: 56.25em) {
+    display: flex;
   }
 `;
 
