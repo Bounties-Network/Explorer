@@ -5,10 +5,13 @@
   width: 100%;
 
   textarea {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
     padding-top: $xl-spacing * 2;
     padding-bottom: $xl-spacing;
+
+    @media only screen and (min-width: 56.25em) {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
   }
 }
 
