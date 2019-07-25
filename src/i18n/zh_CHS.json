@@ -22,7 +22,7 @@
     "contribute_issuer": "增加余额",
     "edit_bounty": "编辑赏金项目",
     "submit": "提交",
-    "extend_deadline": "延长截止日期",
+    "extend_deadline": "延后截止日期",
     "increase_payout": "增加报酬",
     "transfer_ownership": "转移所有权",
     "logout": "登出",
@@ -80,7 +80,7 @@
       "components": {
         "issue_rating": {
           "issuer1":
-            "你的赏金项目提交已被接受！如果你有兴趣，你可以给这次工作经历评分：",
+            "你的提交已被接受！如果你有兴趣，你可以给这次工作经历评分：",
           "issuer2":
             "这将帮助此平台上其他项目完成者设定期望值",
           "fulfiller1":
@@ -145,7 +145,7 @@
         "increase_prize": "提高价格",
         "contribute": "捐助",
         "contribute_issuer": "增加余额",
-        "extend_deadline": "延长截止日期",
+        "extend_deadline": "延后截止日期",
         "transfer_ownership": "转移所有权",
         "fulfill": "完成",
         "login_fulfill": "登录后完成",
@@ -174,18 +174,18 @@
           "draft_or_edit_bounty": {
             "title": "撤消更改？",
             "description":
-              "如果你离开此页面并没有创建草稿或激活项目，你的赏金项目将被撤销"
+              "如果你离开此页面且没有创建草稿或激活项目，你的赏金项目将被撤销"
           }
         },
         "activate_dead_form": {
           "title": "重新激活你的赏金项目",
           "description":
-            "标明押金的金额来激活这个赏金项目。你的押金最少与你提供的报酬金额相等({minimumBalance} {token_symbol}).",
+            "标明存入的金额来激活这个赏金项目。你存入的金额最少与你提供的报酬金额相等({minimumBalance} {token_symbol}).",
           "min_deposit_warning":
-            "你的初始押金最少与你提供的报酬金额相等。",
+            "你初始存入的金额最少与你提供的报酬金额相等。",
           "form": {
             "balance": {
-              "label": "用{token_symbol}存入押金",
+              "label": "用{token_symbol}存入",
               "placeholder": "输入金额..."
             }
           }
@@ -193,12 +193,12 @@
         "activate_draft_form": {
           "title": "激活你的赏金项目",
           "description":
-            "标明初始押金的金额来激活这个赏金项目。<em> 你的押金最少与你提供的报酬金额相等：</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {token_symbol}</strong>",
+            "标明初始存入的金额来激活这个赏金项目。<em> 你存入的最少与你提供的报酬金额相等：</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {token_symbol}</strong>",
           "min_deposit_warning":
-            "你的初始押金最少与你提供的报酬金额相等。",
+            "你初始存入金额最少与你提供的报酬金额相等。",
           "form": {
             "balance": {
-              "label": "用{token_symbol}存入押金",
+              "label": "用{token_symbol}存入",
               "placeholder": "输入金额..."
             }
           }
@@ -219,17 +219,17 @@
         },
         "extend_deadline_error": {
           "title":
-            "截止日期需要设在将来才能激活你的赏金项目。"
+            "需要把截止日期设在将来才能激活你的赏金项目。"
         },
         "extend_deadline_form": {
-          "title": "延长截止日期",
+          "title": "延后截止日期",
           "description":
-            "标明你希望将此赏金项目截止日期延长到的时间 {timezone, select, null { } other { (timezone={timezone})}}"
+            "标明你希望将此赏金项目截止日期延后到的时间 {timezone, select, null { } other { (timezone={timezone})}}"
         },
         "fulfill_bounty": {
           "title": "输入提交详情",
           "description":
-            "为你的赏金项目提交提供详情, 包括赏金项目描述中指出的任何完成此赏金项目所需内容的链接。 你可以用<a href=\"https://www.markdownguide.org/cheat-sheet\" target=\"_blank\">Markdown</a>为你的提交描述排版。",
+            "为你对赏金项目的提交提供详情, 包括赏金项目描述中指出的任何完成此赏金项目所需内容的链接。 你可以用<a href=\"https://www.markdownguide.org/cheat-sheet\" target=\"_blank\">Markdown</a>为你的提交描述排版。",
           "form": {
             "name": {
               "label": "联系人姓名",
@@ -248,7 +248,7 @@
               "placeholder": "输入描述..."
             },
             "private_notice":
-              "在此输入的所有信息都会储存在公开的以太币(Ethereum)网络，但将在此网站被隐藏。",
+              "在此输入的所有信息都会储存在公开的以太币(Ethereum)网络，但在此网站将被隐藏。",
             "public_notice":
               "在此输入的所有信息都会储存在公开的以太币(Ethereum)网络，并且会在此网站公开显示。"
           }
@@ -256,7 +256,7 @@
         "fulfiller_application": {
           "title": "输入申请详情",
           "description":
-            "写一写为什么你认为你适合完成此赏金项目。 你可以随意提供相关工作或经历的链接。",
+            "写一写你为什么认为你适合完成此赏金项目。 你可以随意提供相关工作或经历的链接。",
           "form": {
             "message": {
               "label": "申请",
@@ -321,9 +321,9 @@
         "about": {
           "title": "关于",
           "description": "输入关于该赏金项目的细节",
-          "notice": "为你的赏金项目输入一个标题和描。",
+          "notice": "为你的赏金项目输入标题和描述。",
           "notice2":
-            "预览效果将会在你输入时自动生成，你可以按预览按钮来查看。你可以随意使用下面提供的描述模板或清空输入区域来创建你自己的描述。",
+            "预览效果将会在你输入时自动生成，你可以按预览按钮来查看。你可以随意使用下面提供的描述模板，或清空输入区域来创建你自己的描述。",
           "form": {
             "title": {
               "label": "标题",
@@ -380,7 +380,7 @@
           "description":
             "这个赏金项目需要外部文件来完成吗？",
           "notice":
-            "附加任何可能作为参考或贡献者完成该项目必需的文件或链接",
+            "附加任何可能作为参考，或贡献者完成该项目必需的文件或链接",
           "form": {
             "url": {
               "label": "网页链接",
@@ -403,7 +403,7 @@
           "notice": "如有需要，提交可以对其他用户隐藏",
           "form": {
             "fulfillers_need_approval": {
-              "label": "需要预先批准",
+              "label": "需要满足先决条件",
               "placeholder": "输入URL...",
               "options": {
                 "yes": "是",
@@ -413,9 +413,9 @@
             "private_fullfillments": {
               "label": "可见性",
               "description":
-                "别人完成你的项目之前是否需要批准？",
+                "别人在完成你的项目之前是否需要同意？",
               "notice":
-                "如果你要求批准，你将会在有用户有意愿提交时被通知。需要你的批准，他们才被准许完成你的赏金任务。",
+                "如果你要求审核申请，你将会在有用户有意愿提交时被通知。需要你的同意，他们才被准许完成你的赏金任务。",
               "options": {
                 "public": "公开",
                 "hidden": "隐藏"
@@ -452,7 +452,7 @@
           "title": "支付",
           "description": "标明报酬金额",
           "notice":
-            "输入你将为该项目完成者提供的报酬。报酬不能大于你当前的余额：<span class=\"{textHighlight}\">{balance} {token_symbol} </span>. 如果你希望为该赏金项目提供更多资金，请<a href=\"{increaseBalanceUrl}\">增加余额。</a>",
+            "输入你将为该项目完成者提供的报酬。报酬不能大于你当前的余额：<span class=\"{textHighlight}\">{balance} {token_symbol} </span>. 如果你希望为该赏金项目提供更多资金，请<a href=\"{increaseBalanceUrl}\">增加项目余额。</a>",
           "form": {
             "token_contract": {
               "label_default": "货币协议地址",
@@ -503,7 +503,7 @@
       "bounty_count": "{count}个赏金项目",
       "zero_state": {
         "title": "没有找到赏金项目",
-        "description": "更新搜索筛选器来发现更多赏金项目"
+        "description": "更新筛选条件来发现更多赏金项目"
       },
       "zero_state_error": {
         "title": "呃，出了点问题",
@@ -521,7 +521,7 @@
       "zero_state": {
         "title": "尚无结果",
         "description":
-          "在有人提供赏金项目且提交已完成时，此排行榜将开始更新。"
+          "在有人提供赏金项目，且项目成果提交已完成时，此排行榜将开始更新。"
       },
       "zero_state_error": {
         "title": "呃，出了点问题",
@@ -650,8 +650,8 @@
     "settings": {
       "title": "账号设置",
       "messages": {
-        "profile_saved": "个人资料成功保存",
-        "email_saved": "电子邮件偏好成功保存"
+        "profile_saved": "个人资料已成功保存",
+        "email_saved": "电子邮件偏好已成功保存"
       },
       "modals": {
         "unsaved_changes": {
@@ -683,8 +683,8 @@
           "fulfillment_comment_received_commenter":
             "你回复过的提交收到了回复",
           "bounty_expired": "赏金项目过期",
-          "bounty_changed": "一个你完成的赏金项目被更改",
-          "bounty_changed_applicant": "一个你申请的赏金项目被更改",
+          "bounty_changed": "你完成的一个赏金项目被更改",
+          "bounty_changed_applicant": "你申请的一个赏金项目被更改",
           "fulfillment_updated_issuer":
             "项目完成者更新了赏金项目的成果。",
           "fulfillment_submitted_issuer":
@@ -729,9 +729,9 @@
           "description":
             "你有什么专业或技术性技能？",
           "notice":
-            "输入或选择你精通的技能。这将帮助其他在本网络上的用户确信你有能力完成这些类型的赏金项目。",
+            "输入或选择你精通的技能。这将让其他在本网络上的用户确信你有能力完成这些类型的赏金项目。",
           "label": "技能",
-          "placeholder": "创建或选择一个技能C..."
+          "placeholder": "创建或选择一个技能..."
         },
         "social": {
           "title": "社交",
@@ -754,7 +754,7 @@
             },
             "marketing": {
               "label":
-                "我也想接收相关赏金项目建议和平台更新消息。"
+                "我也想接收相关赏金项目推荐和平台更新消息。"
             }
           },
           "actions": {
@@ -780,7 +780,7 @@
       "zero_state": {
         "title": "你现在有0个{currentTab}的提交。",
         "description":
-          "看起来你还没有任何提交。 当你{currentTab}成果之后在回来吧！"
+          "看起来你还没有任何提交。 当你{currentTab}提交之后在回来吧！"
       }
     },
     "user_stats": {
@@ -809,7 +809,7 @@
     },
     "bounty_item": {
       "text":
-        "创建于 {time} {submissionCount}个提交",
+        "创建于{time} {submissionCount}个提交",
       "draftText": "创建于 {time}"
     },
     "essentials": {
@@ -848,7 +848,7 @@
       "title": "你的钱包从这里开始接管！",
       "description":
         "当你点击“好的”以后，将会弹出钱包对话框来确认以太币(Ethereum)转账并支付一小部分以太币作为手续费(gas费用）。",
-      "notice": "将为你设置默认手续费(gas)限制和价格。",
+      "notice": "将为你设置默认手续费(gas费用)限制和价格。",
       "messages": {
         "waiting":
           "等待你的转账在区块链上被确认...",
@@ -856,13 +856,13 @@
         "pending_receipt":
           "你的转账正被处理。当转账完成后我们会通知你。",
         "pending_wallet":
-          "正在与你激活的钱包确认以太币转账。可能花一段时间。"
+          "正在与你激活的钱包确认以太币转账。可能会花一点时间。"
       }
     },
     "editor": {
       "preview": "预览",
       "default":
-        "# 描述\n描述你想完成的赏金项目。你的项目用于何处？ 它包括什么？\n\n## 要求\n你对项目完成者有何要求？你的项目有无规定或限制？完成此项目需不需要一些先决条件？\n\n* 第一项\n* 第二项\n* 第三项\n\n## 完成的定义\nWhat should bounty issuers submit as proof that they have completed the bounty? 为了使提交被接受，完成者需要在提交中包含什么？\n\n1. 第一项\n2. 第二项\n3. 第三项\n\n### 注意事项\n有无希望完成者预先了解的关于你或项目的信息？这个赏金项目是否需要任一方提供额外材料或交换用于外部交流的信息?"
+        "# 描述\n描述你想完成的赏金项目。你的项目用于何处？ 它包括什么？\n\n## 要求\n你对项目完成者有何要求？你的项目有无规定或限制？完成此项目需不需要满足一些先决条件？\n\n* 第一项\n* 第二项\n* 第三项\n\n## 完成的定义\n赏金项目完成者应该把什么作为完成项目的证据提交给你？ 为了使提交被接受，完成者需要在提交中包含什么？\n\n1. 第一项\n2. 第二项\n3. 第三项\n\n### 注意事项\n有无希望完成者预先了解的关于你或项目的信息？这个赏金项目是否需要任一方提供额外材料，或交换用于外部交流的信息?"
     },
     "notifications": {
       "fulfilLment_submitted": "你发布了一个提交",
@@ -931,7 +931,7 @@
   "validation": {
     "required": "* 必填",
     "max": "必须是{max}个或更少字符",
-    "min": "必须是{min}或更多字符",
+    "min": "必须是{min}个或更多字符",
     "max_decimals": "位数必须是{max}或更少",
     "min_value": "必须大于 {min}",
     "mineq_value": "必须大于等于{min}",
