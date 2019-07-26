@@ -21,9 +21,9 @@
   width: 100%;
 
   &:focus {
-    border-color: transparent;
     background: $brand-white;
     box-shadow: $brand-input-box-shadow;
+    border: 1px solid $brand-blue;
     outline: none;
   }
 
@@ -42,7 +42,7 @@
 }
 
 .error {
-  border-color: transparent;
+  border: 1px solid $brand-destructive;
   box-shadow: $brand-input-box-destructive-shadow;
   outline: none;
 }

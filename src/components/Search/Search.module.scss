@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .searchContainer {
   position: relative;
@@ -26,8 +26,8 @@
 
   &:focus {
     background: $brand-white;
-    border-color: transparent;
-    box-shadow: 0 0 0 2px $brand-blue;
+    border: 1px solid $brand-blue;
+    box-shadow: $brand-input-box-shadow;
     outline: none;
   }
 
