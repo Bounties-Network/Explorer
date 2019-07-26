@@ -5,25 +5,10 @@
   width: 100%;
 
   textarea {
-    padding-top: $xl-spacing * 2;
-    padding-bottom: $xl-spacing;
-
     @media only screen and (min-width: 56.25em) {
+      border-bottom: 1px solid transparent;
       border-bottom-right-radius: 0;
       border-bottom-left-radius: 0;
     }
   }
-}
-
-.overlay {
-  cursor: pointer;
-  padding: $s-spacing;
-}
-
-.overlay:hover {
-  color: $brand-blue-hover;
-}
-
-.overlayIcon {
-  margin-right: $base-spacing;
 }

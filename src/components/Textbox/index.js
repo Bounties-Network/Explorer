@@ -34,29 +34,6 @@ const Overlay = styled.div`
   right: ${props => props.theme.baseSpacing};
   margin-top: ${props => props.theme.sSpacing};
   margin-right: ${props => props.theme.sSpacing};
-  border: ${props => props.theme.baseBorder};
-  border-radius: ${props => props.theme.baseBorderRadius};
-  background: ${props => props.theme.brandWhite};
-  padding: ${props => props.theme.sSpacing};
-`;
-
-const MarkdownKey = styled.div`
-  background-color: ${props => props.theme.brandWhite};
-  border: ${props => props.theme.baseBorder};
-  border-top: none;
-  border-bottom-right-radius: ${props => props.theme.baseBorderRadius};
-  border-bottom-left-radius: ${props => props.theme.baseBorderRadius};
-  display: none;
-  align-items: center;
-  padding: ${props => props.theme.baseSpacing} ${props => props.theme.mSpacing};
-
-  > * {
-    margin-right: ${props => props.theme.mSpacing};
-  }
-
-  @media only screen and (min-width: 56.25em) {
-    display: flex;
-  }
 `;
 
 const Textarea = styled(PlainTextarea)`
@@ -79,7 +56,7 @@ const Textarea = styled(PlainTextarea)`
   ${props =>
     props.error &&
     `
-    border-color: transparent;
+    border: 1px solid ${props => props.theme.brandDestructive};
     box-shadow: ${props.theme.brandInputBoxDestructiveShadow};
     outline: none
   `} ${props =>
@@ -99,10 +76,28 @@ const Textarea = styled(PlainTextarea)`
   }
 
   &:focus {
-    border-color: transparent;
+    border: 1px solid ${props => props.theme.brandBlue};
     background: ${props => props.theme.brandWhite};
     box-shadow: ${props => props.theme.brandInputBoxShadow};
     outline: none;
+  }
+`;
+
+const MarkdownKey = styled.div`
+  background-color: ${props => props.theme.brandWhite};
+  border: ${props => props.theme.baseBorder};
+  border-bottom-right-radius: ${props => props.theme.baseBorderRadius};
+  border-bottom-left-radius: ${props => props.theme.baseBorderRadius};
+  display: none;
+  align-items: center;
+  padding: ${props => props.theme.baseSpacing} ${props => props.theme.mSpacing};
+
+  > * {
+    margin-right: ${props => props.theme.mSpacing};
+  }
+
+  @media only screen and (min-width: 56.25em) {
+    display: flex;
   }
 `;
 
@@ -111,6 +106,7 @@ const CodeExample = styled(Text)`
   border: ${props => props.theme.baseBorder};
   border-radius: 4px;
   padding: ${props => props.theme.sSpacing};
+  line-height: 1;
 `;
 
 const LabelText = styled(Text)`
