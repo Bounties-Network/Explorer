@@ -1,0 +1,968 @@
+{
+  "nav": {
+    "explorer": "Explorateur",
+    "dashboard": "Dashboard",
+    "leaderboard": "Leaderboard",
+    "profile": "Profil"
+  },
+  "actions": {
+    "load_more": "Afficher plus",
+    "view_all": "Tout voir",
+    "accept": "Accepter",
+    "reject": "Rejeter",
+    "filter": "Filtrer",
+    "ok": "OK",
+    "rate_fulfiller": "Rate fulfiller",
+    "rate_issuer": "Rate issuer",
+    "activate": "Activer",
+    "de_activate": "Desactiver",
+    "re_activate": "Re-Activer",
+    "cancel": "Annuler",
+    "contribute": "Contribuer",
+    "contribute_issuer": "Fonds insuffisant",
+    "edit_bounty": "Modifier la prime",
+    "submit": "Envoyer",
+    "extend_deadline": "Etendre Deadline",
+    "increase_payout": "Augmenter le paiement",
+    "transfer_ownership": "Changer de propriétaire",
+    "logout": "Déconnexion",
+    "close": "Fermer",
+    "reset": "Remise à zéro",
+    "sort": "classer",
+    "continue": "Continuer",
+    "dashboard": "Retourner Au Dashboard",
+    "create_bounty": "Créer Une Nouvelle Bounty",
+    "profile": "Profil",
+    "settings": "Paramètres du compte",
+    "signout": "déconnexion",
+    "signin": "S'identifier",
+    "view_bounty": "Voir la Bounty",
+    "view_rating": "Voir la récompense",
+    "discard_changes": "Annuler modifications",
+    "upload_photo": "Télécharger une nouvelle photo"
+  },
+  "sections": {
+    "activity": {
+      "title": "Mon relevé d'activité",
+      "zero_state": {
+        "title": "Pas d'historique, pour l'instant !",
+        "description":
+          "Lorsque vous commencerez à utiliser la platforme, votre relevé d'activité s'affichera ici"
+      }
+    },
+    "bounties": {
+      "title": "Mes Bounties",
+      "tabs": {
+        "active": "Active",
+        "drafts": "Brouillon"
+      },
+      "zero_state": {
+        "title": "Vous n'avez pas de {tab} bounties",
+        "description":
+          "Il semblerait que vous n'avez pas encore de {tab} bounties. Commencez par donner un titre ici, à votre nouvelle Bounty!",
+        "actions": {
+          "new_bounty": "Créer une nouvelle Bounty"
+        }
+      }
+    },
+    "bounty": {
+      "zero_state": {
+        "title": "Nous n'avons pas pu trouver cette bounty",
+        "description": "rafraichissez la page, ou vérifiez que votre adresse de navigation est correcte"
+      },
+      "meta": {
+        "input": "Privée",
+        "label": "bounty",
+        "tooltip":
+          "les bounties privées nécésittent que les utilisateurs deposent une candidature. Une fois la candidadure validée par le créateur, Vous pourez soumettre votre proposition",
+        "revisions": "{count} révisions"
+      },
+      "components": {
+        "issue_rating": {
+          "issuer1":
+            "Votre proposition a été acceptée! si vous le souhaitez, vous pouvez noter votre expérience avec le créateur de cette Bounty:",
+          "issuer2":
+            "Cela guidera les autres utilisateurs de la platforme",
+          "fulfiller1":
+            "Vous avez accepté la proposition pour votre Bounty! Si vous le souhaitez, vous pouvez noter votre expérience avec cet utilisateur:",
+          "fulfiller2":
+            "Cela guidera les autres créateurs de bounty de la platforme",
+          "rating": "Note",
+          "review": "commentaire",
+          "review_placeholder": "Veuillez laisser un commentaire..."
+        },
+        "new_comment": {
+          "placeholder": "écrire un commentaire..",
+          "action": "Publier votre commentaire",
+          "login_action": "authentifiez vous pour commenter"
+        },
+        "applicant_card": {
+          "declined_message":
+            "Le refus de votre candidature est privé, vous seul pouvez le consulter",
+          "zero_state": {
+            "title": "Il y a aucune candidature",
+            "description": "Les candidats pour cette bounty seront affichés ici"
+          }
+        },
+        "comments_card": {
+          "zero_state": {
+            "title": "Il n'y a pas de commentaires",
+            "description": "Utilisez le formulaire afin de publier un commentaire"
+          }
+        },
+        "submissions_card": {
+          "zero_state": {
+            "title": "Il n'y a pas de proposition",
+            "private_title": "Les propositions sont privées",
+            "description": "Les propositions de résolution de cette bounty seront affichées ici",
+            "private_description":
+              "Les propositions de résolution de cette bounty sont privées",
+            "bounty_owner_description":
+              "Les propositions de résolution de cette bounty seront affichées ici et ne seront visible que par vous. De plus, Les candidats ne pouront que consulter leur propres propositions."
+          },
+          "notice": "Les propositions liées à cette bounty sont masquées",
+          "bounty_owner_notice":
+            " les propositions ne sont visibles que par vous et le créateur de la bounty.",
+          "fulfiller_notice":
+            " les propositions ne sont visibles que par vous et le candidat",
+          "show_comments":
+            "Afficher {count} {count, plural, =1 {commentaire} other {commentaires}}",
+          "hide_comments":
+            "Masquer {count} {count, plural, =1 {commentaire} other {commentaires}}",
+          "action": "Comment"
+        }
+      },
+      "difficulties": {
+        "Beginner": "Débutant",
+        "Intermediate": "intermédiare",
+        "Expert": "Expert"
+      },
+      "actions": {
+        "activate": "Activer la Bounty",
+        "edit": "Modifier la Bounty",
+        "re_activate": "Relancer la Bounty",
+        "de_activate": "Désactiver la bounty",
+        "increase_prize": "Augmenter la prime",
+        "contribute": "Contribuer",
+        "contribute_issuer": "Fonds insuffisants",
+        "extend_deadline": "Repousser la Deadline",
+        "transfer_ownership": "Changer De Propriétaire",
+        "fulfill": "compléter",
+        "login_fulfill": "indentifiez vous pour compléter",
+        "fulfill_gitcoin": "compléter sur Gitcoin",
+        "apply": "candidature à une bounty",
+        "login_apply": "indentifiez vous pour candidater"
+      },
+      "tabs": {
+        "applicants": {
+          "title": "candidats"
+        },
+        "submissions": {
+          "title": "propositions"
+        },
+        "comments": {
+          "title": "commentaires"
+        }
+      },
+      "modals": {
+        "unsaved_changes": {
+          "new_bounty": {
+            "title": "Annuler les modifications?",
+            "description":
+              "Si vous quitez cette page, toute les modifications faites à votre bounty seront annulées."
+          },
+          "draft_or_edit_bounty": {
+            "title": "annuler les modifications?",
+            "description":
+              "Si vous quitez cette page sans sauvegarder un brouillon ou publier, votre bounty sera annulée."
+          }
+        },
+        "activate_dead_form": {
+          "title": "Réactiver votre bounty",
+          "description":
+            "définissez un montant de dépôt pour votre bounty. à minima, votre depôt doit être équivalent au montant de votre prime ({minimumBalance} {token_symbol}).",
+          "min_deposit_warning":
+            "Votre dépôt ne peut être inférieur au montant de votre prime.",
+          "form": {
+            "balance": {
+              "label": "montant du dépôt en {token_symbol}",
+              "placeholder": "indiquez le montant..."
+            }
+          }
+        },
+        "activate_draft_form": {
+          "title": "Activer votre bounty",
+          "description":
+            "Définissez un montant de dépôt initial pour activer votre bounty.<em> à minima, votre dépôt initial doit être équivalent au montant de votre prime de</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {token_symbol}</strong>",
+          "min_deposit_warning":
+            "Votre dépôt ne peut être inférieur au montant de votre prime.",
+          "form": {
+            "balance": {
+              "label": "montant du dépôt en {token_symbol}",
+              "placeholder": "indiquez le montant..."
+            }
+          }
+        },
+        "contribute": {
+          "title": "déposer",
+          "description":
+            "Indiquez le montant de votre dépôt pour la bounty ({token_symbol}).",
+          "title_issuer": "participer à la bounty",
+          "description_issuer":
+            "Indiquez le montant de votre contribution à la bounty ({token_symbol}).",
+          "form": {
+            "contribution": {
+              "label": "montant du dépôt en {token_symbol}",
+              "placeholder": "indiquez le montant..."
+            }
+          }
+        },
+        "extend_deadline_error": {
+          "title":
+            "Votre Bounty est expirée, il n'est plus désormais possible de la prolonger."
+        },
+        "extend_deadline_form": {
+          "title": "repousser la Deadline",
+          "description":
+            "définissez la nouvelle deadline {timezone, select, null { } other { (timezone={timezone})}}"
+        },
+        "fulfill_bounty": {
+          "title": "Détails de la proposition",
+          "description":
+            "Entrez et validez les détails de votre proposition, incluez tout lien vers du contenu qui pouraient être requis comme indiqué dans la description de la Bounty. Ce guide Markdown est à votre disposition pour structurer votre réponse. <a href=\"https://www.markdownguide.org/cheat-sheet\" target=\"_blank\">Markdown</a>.",
+          "form": {
+            "name": {
+              "label": "Nom usuel",
+              "placeholder": "Indiquez le nom..."
+            },
+            "email": {
+              "label": "email de contact",
+              "placeholder": "indiquez l'email..."
+            },
+            "url": {
+              "label": "Site web",
+              "placeholder": "indiquez l'adresse du site..."
+            },
+            "description": {
+              "label": "Description",
+              "placeholder": "Décrivez..."
+            },
+            "private_notice":
+              "Toute information indiquée ici sera publiée sur la Blockchain publique Ethereum, mais seront masquées aux utilisateurs du site.",
+            "public_notice":
+              "Toute information indiquée ici sera publiée sur la Blockchain publique Ethereum, et seront consultables par les utilisateurs du site."
+          }
+        },
+        "fulfiller_application": {
+          "title": "détaillez votre candidature",
+          "description":
+            "Décrivez en quoi votre candidature est idéale pour cette Bounty. n'hésitez pas à y inclure des liens correspondant à votre travail ou à votre expérience.",
+          "form": {
+            "message": {
+              "label": "Candidature",
+              "placeholder": "écrivez ici..."
+            }
+          }
+        },
+        "increase_payout": {
+          "title": "augmenter la prime",
+          "description1":
+            "Indicate the amount you would like to increase the payout to. You may include an additional balance to cover the costs.<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+          "description2":
+            "Indicate the amount you would like to increase the payout to.<br /><br /><em>Your total balance must be greater than the new prize amount ({token_symbol})</em>. The current balance is: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. The current payout amount is: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+          "balance_warning":
+            "Le solde de votre bounty doit être supérieur au montant de la prime.",
+          "payout_warning":
+            "votre nouvelle prime doit être supérieure à la précédente.",
+          "form": {
+            "balance": {
+              "label": "montant du dépôt en ({token_symbol})",
+              "placeholder": "Indiquez le montant..."
+            },
+            "fullfillment_amount": {
+              "label": "Nouveau montant de la price en ({token_symbol})",
+              "placeholder": "Indiquez le montant..."
+            }
+          }
+        },
+        "kill_bounty": {
+          "title": "Confirmez vous la déactivation de votre Bounty?",
+          "description":
+            "Si vous changez d'avis, Il est toujours possible de réactiver votre Bounty plus tard."
+        },
+        "transfer_ownership": {
+          "title": "Changer de propriétaire",
+          "description":
+            "Indiquez l'adresse publique du compte à qui vous voulez transférer votre Bounty.",
+          "form": {
+            "new_owner": {
+              "placeholder": "Indiquez l'adresse publique..."
+            }
+          }
+        }
+      }
+    },
+    "create_bounty": {
+      "zero_state": {
+        "title": "Nous n'avons pas pu trouver cette Bounty",
+        "description": "rafraichissez la page, ou vérifiez l'addresse de navigation"
+      },
+      "deposit_warning":
+        "Le montant du dépôt doit être supérieur au montant de la prime.",
+      "payout_warning": "Le montant de la prime ne peut pas être supérieur à votre solde.",
+      "actions": {
+        "create": "Créer Bounty",
+        "edit": "modifier Bounty",
+        "draft": "Créer un brouillon",
+        "update_draft": "Mettre à jour votre Brouillon",
+        "update_bounty": "Mettre à jour votre Bounty"
+      },
+      "sections": {
+        "about": {
+          "title": "Détails",
+          "description": "Détaillez ici cette Bounty.",
+          "notice": "Donnez ici un Titre et une Description à votre Bounty. Un ",
+          "notice2":
+            " Aperçu sera automatiquement généré en même temps que vous rédigerez, Vous pouvez le consulter en cliquant sur le bouton Aperçu. Un exemple de description est à votre disposition ci-dessous, vous pouvez également le supprimer pour composer le votre.",
+          "form": {
+            "title": {
+              "label": "Titre",
+              "placeholder": "Indiquez le Titre..."
+            },
+            "description": {
+              "label": "Description"
+            }
+          }
+        },
+        "contact": {
+          "title": "CONTACT",
+          "description":
+            "Qui sera le contact privilégié pour les questions relatives à la Bounty?",
+          "form": {
+            "issuer_name": {
+              "label": "Nom du contact",
+              "placeholder": "Indiquez le Nom..."
+            },
+            "issuer_email": {
+              "label": "Email de contact",
+              "placeholder": "indiquez l'email..."
+            }
+          }
+        },
+        "details": {
+          "title": "DETAILS",
+          "description": "Catégorisez cette Bounty",
+          "notice":
+            "Indiquez les catégories et le niveau de difficulté de cette Bounty. La notion de difficultée peut être subjective, il convient de détailler le plus possible votre Bounty, dans sa description, l'expérience et les compétentences attendues des candidats.",
+          "form": {
+            "categories": {
+              "label": "Catégorie de la Bounty",
+              "placeholder": "Créez ou sélectionnez une catégorie..."
+            },
+            "experience_level": {
+              "label": "Difficulté",
+              "options": {
+                "beginner": "Débutant",
+                "intermediate": "Intermédiare",
+                "expert": "Expert"
+              }
+            }
+          }
+        },
+        "revisions": {
+          "title": "Retours",
+          "description": "Voudrez vous faire des Retours?",
+          "notice":
+            "Indiquez le nombre maximum de Retours dont vous souhaitez disposer pour cette Bounty, Afin d'en informer les candidats."
+        },
+        "attachments": {
+          "title": "Pièces jointes",
+          "description":
+            "cette Bounty nécéssite t-elle le dépôt de pièce jointes?",
+          "notice":
+            "Joignez tout fichier ou lien qui pourraient être servir de référence ou nécéssaires au candidat pour compléter la Bounty.",
+          "form": {
+            "url": {
+              "label": "Lien web",
+              "placeholder": "Indiquez l'adresse du lien..."
+            },
+            "file": {
+              "label": "Fichier Joint"
+            }
+          }
+        },
+        "deadline": {
+          "title": "DEADLINE",
+          "description": "Quand cette Bounty expire?",
+          "notice":
+            "Indiquez la date et l'heure de la deadline de cette Bounty {timezone, select, null { } other {(timezone={timezone})}}"
+        },
+        "privacy": {
+          "title": "confidentialité",
+          "description": "Les propositions seront t-elles privées?",
+          "notice": "Au choix, les propositions peuvent être masquées aux autres utilisateurs.",
+          "form": {
+            "fulfillers_need_approval": {
+              "label": "Validation de la candidature nécéssaire",
+              "placeholder": "Indiquez l'addresse...",
+              "options": {
+                "yes": "Oui",
+                "no": "Non"
+              }
+            },
+            "private_fullfillments": {
+              "label": "Visibilité",
+              "description":
+                "Voulez vous approuver les candidats avant qu'ils puissent faire une proposition sur votre Bounty?",
+              "notice":
+                "Si vous exigez une pré-validation, Vous serez notifé quand un candidat se présentera, et il vous faudra valider sa candidature avant qu'il ne puisse commencer à travailler sur une proposition pour votre Bounty.",
+              "options": {
+                "public": "Publique",
+                "hidden": "Masquée"
+              }
+            }
+          }
+        },
+        "payout": {
+          "title": "Prime",
+          "description": "sélectionnez le moyen et le montant de votre prime.",
+          "notice":
+            "Indiquez le token et le montant que vous proposez pour votre Bounty.",
+          "form": {
+            "token_contract": {
+              "label_default": "Addresse publique du Token",
+              "label_custom": "{token} Adresse du Token",
+              "placeholder": "Indiquez l'adresse publique du Token..."
+            },
+            "method": {
+              "label": "Configuration de la Prime"
+            },
+            "fulfillment_amount": {
+              "label":
+                "Montant de la prime {hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
+              "placeholder": "indiquez le montant..."
+            },
+            "token_contract_2": {
+              "label": "Token",
+              "placeholder": "indiquez le token ou l'adresse du token..."
+            }
+          }
+        },
+        "payout_editing": {
+          "title": "Prime",
+          "description": "Indiquez le montant de la prime",
+          "notice":
+            "Indiquez le montant de la Prime que vous souhaitez proposer pour réaliser cette Bounty. Votre prime ne peut excéder votre solde actuel de <span class=\"{textHighlight}\">{balance} {token_symbol} </span>. Si vous souhaitez proposer une prime supérieure, Veuillez <a href=\"{increaseBalanceUrl}\"> augmenter votre solde.</a>",
+          "form": {
+            "token_contract": {
+              "label_default": "Adresse du Token",
+              "label_custom": "{token} Adresse du Smart-Contrat",
+              "placeholder": "Indiquez l'adresse du Token..."
+            },
+            "method": {
+              "label": "Moyen de paiement"
+            },
+            "fulfillment_amount": {
+              "label":
+                "Montant du paiement {hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
+              "placeholder": "Indiquez le montant..."
+            },
+            "token_contract_2": {
+              "label": "Token",
+              "placeholder": "Indiquez le Token ou l'adresse du token..."
+            }
+          }
+        },
+        "save": {
+          "title": "Enregistrer ou Publier",
+          "description":
+            "Quand shouhaitez vous publier et activer votre Bounty?",
+          "notice":
+            "Si vous souhaitez activer votre Bounty plus tard, Vous pouvez enregistrer un brouillon. Les conditions d'une Bounty ne peuvent être mise à jour seulement lorsque elle est enregistrée comme brouillon. A minima, votre dépôt doit être équivalent au montant de votre prime.",
+          "form": {
+            "activate_now": {
+              "label": "Activation de la Bounty?",
+              "options": {
+                "now": "Oui, Activer",
+                "later": "Activer plus tard"
+              }
+            },
+            "balance": {
+              "label": "Montant du dépôt (ETH or whole tokens)",
+              "placeholder": "Indiquez le montant..."
+            }
+          }
+        }
+      }
+    },
+    "dashboard": {
+      "profile_strength": "Niveau du profil",
+      "edit_profile": "Modifier votre profil"
+    },
+    "explorer_body": {
+      "bounty_count": "{count, plural, =1 {bounty} other {bounties}}",
+      "zero_state": {
+        "title": "Pas de Bounty Disponible",
+        "description": "Modifiez vos paramètres de recherche afin de trouver plus de Bounties"
+      },
+      "zero_state_error": {
+        "title": "Saperlipopette ! Un problème est survenu",
+        "description": "Tentez de modifier vos paramètres de recherche ou rafraichissez la page"
+      }
+    },
+    "leaderboard": {
+      "title": "Classement",
+      "banner": {
+        "top_issuers": "Meilleurs Créateurs de Bounty",
+        "top_earners": "Meilleurs Chasseurs de Primes"
+      }
+    },
+    "leaderboard_card": {
+      "zero_state": {
+        "title": "Ici, C'est vide... Pour l'instant!",
+        "description":
+          "Ce tableau sera remplit au fur et à mesure que les primes seront publiées et remportées par des candidats."
+      },
+      "zero_state_error": {
+        "title": "Sacrebleu! Une erreur est survenue",
+        "description": "Rafraichissez la page"
+      }
+    },
+    "login": {
+      "modals": {
+        "details": {
+          "title": "Détails de votre profil",
+          "description":
+            "Décrivez vous, ainsi les autres utilisateurs de la plateforme auront une idée précise de votre éxpérience et de vos compétences, et pourront vous retrouver en ligne.",
+          "description2":
+            "Bienvenue dans Bounties Network! Nous sommes&#39;Impatient de vous voir participer. <br /> <br /> Avant de commencer, Nous vous conseillons de compléter votre profil avec\n            quelques détails sur vous, de cette manière les autres auront une bonne idée de votre expérience et de vos compétences.",
+          "actions": {
+            "skip": "Passer",
+            "add": "Ajouter des détails à votre profil"
+          }
+        },
+        "address_mismatch": {
+          "title": "L'adresse publique de votre Wallet ne correponds pas",
+          "description1": "Vous aviez utilisé ",
+          "description2": "bounties.network",
+          "description3": " Avec l'adresse suivante:",
+          "description4":
+            "Cette adresse ne correponds pas à votre adresse actuelle:",
+          "description5":
+            ". Veuillez réutiliser votre adresse d'inscription, ou déconnectez vous du Bounties Network et inscrivez vous à nouveau avec une nouvelle adresse."
+        },
+        "error": {
+          "title": "Sacrebleu ! Une erreur est survenue. Veuillez recommencer."
+        },
+        "sign_in": {
+          "title": "Connexion et inscription de votre addresse",
+          "description":
+            "Après avoir cliqué ici \"Continue\", Un pop-up de votre wallet va apparaître afin de vérifier votre addresse. Une fois chose faite, vous serez connecté au Bounty Network."
+        },
+        "signing_in": {
+          "title":
+            "Merci de valider la demande de signature afin de vous connecter"
+        },
+        "unlock": {
+          "title": "Connexion sécurisée à votre Wallet",
+          "description1":
+            "Vous devez vous connecter et/ou authoriser l'accès à  votre wallet sécurisé (Par exemple",
+          "description2":
+            ") Pour vous connecter {pageLevel, select, null {parts of} other { }} {networkName}"
+        },
+        "wallet_required": {
+          "title": "Vous devez avoir un navigateur supportant Web3 ou un Wallet securisé.",
+          "description1": "Pour vous connecter",
+          "description2": ", Veuillez utiliser un wallet sécurisé tel que",
+          "description3":
+            "Si vous avez besoin d'être guidé pour cela, Suivez notre guide ",
+          "guide": "Guide du Débutant.",
+          "actions": {
+            "visit": "Naviguer vers {walletName}"
+          }
+        },
+        "wrong_network": {
+          "title": "Réseau Ethereum non compatible",
+          "description1": "Vous êtes actuellement connecté sur le réseau {networkName} ",
+          "description2": "Veuillez rejoindre le réseau principal."
+        }
+      }
+    },
+    "notifications": {
+      "title": "Notifications",
+      "actions": {
+        "mark_read": "Indiquer toutes les Notifications comme consultées"
+      },
+      "zero_state": {
+        "title": "Vous n'avez aucune alerte",
+        "description":
+          "Lorsque vous utilisez la plateforme, Vos notifications seront présentées ici."
+      }
+    },
+    "profile": {
+      "about": {
+        "title": "A propos",
+        "organization": "Entreprise",
+        "languages": "Langues maîtrisées"
+      },
+      "elsewhere": {
+        "title": "Ailleurs"
+      },
+      "skills": {
+        "title": "Compétences"
+      },
+      "network": {
+        "title": "Stats du Network",
+        "descriptions": {
+          "issuer": {
+            "acceptance": "Taux d'acceptation du travail effectué",
+            "rating": "évaluation moyenne reçue par les créateurs de Bounty",
+            "ratingGiven": "Note moyenne donnée par les chasseurs de Prime"
+          },
+          "fulfiller": {
+            "acceptance": "Taux d'acception du travail effectué",
+            "rating": "évaluation moyenne des chasseurs de primes",
+            "ratingGiven": "Note moyenne donnée par les créateurs de Bounty"
+          }
+        }
+      },
+      "tabs": {
+        "bounties": "Bounties crées",
+        "submissions": "Proposition de travail effectuées"
+      },
+      "reviews": {
+        "title": "{reviewType} évaluation reçues",
+        "zero_state": {
+          "title": "Pas d'évaluation disponible",
+          "description":
+            "Nous n'avons trouvé aucune évaluation liée à cela."
+        }
+      },
+      "zero_state": {
+        "title": "Aucun utilisateur trouvé",
+        "description": "Veuillez vérifier cette adresse et réessayer"
+      },
+      "zero_state_error": {
+        "title": "Erreur",
+        "description": "Veuillez réessayer"
+      }
+    },
+    "settings": {
+      "title": "Paramètres du compte",
+      "messages": {
+        "profile_saved": "Votre profil a été enregistré avec succès",
+        "email_saved": "Vos préférences de contact par email ont été enregistrée avec succès"
+      },
+      "modals": {
+        "unsaved_changes": {
+          "title": "Annuler les modifications?",
+          "description":
+            "Si vous quitez cette page sans valider vos modifications, Toutes les modifications de votre profil seront annulées."
+        }
+      },
+      "emails": {
+        "title": "notificationss par email",
+        "description":
+          "Quelles notifications souhaitez vous recevoir par email?",
+        "notice":
+          "sélectionnez les notifications que vous souhaitez recevoir par email. Nous vous conseillons de garder les paramètres par défaut qui vous informeront des événements importants relatifs au réseau.",
+        "actions": {
+          "save": "Enregistrer les préférences liées aux emails"
+        },
+        "notification_options": {
+          "rating_received": "Un utilisateur vous a évalué",
+          "transfer_recipient": "Votre transfert de Bounty a été effectué",
+          "bounty_comment_received":
+            "Une Bounty que vous avez complété a reçue un commentaire",
+          "bounty_comment_received_issuer": "votre Bounty a reçue un commentaire",
+          "bounty_comment_received_commenter":
+            "une bounty que vous avez commentée a reçue un commentaire",
+          "fulfillment_comment_received": "Votre proposition a reçue un commentaire",
+          "fulfillment_comment_received_issuer":
+            "Une proposition liée à votre Bounty a reçue un commentaire",
+          "fulfillment_comment_received_commenter":
+            "La proposition que vous avez commentée a reçue un commentaire",
+          "bounty_expired": "Une Bounty est expirée",
+          "bounty_changed": "Une bounty Que vous avez complétée a été modifiée",
+          "bounty_changed_applicant": "Une bounty auquelle vous avez candidaté a été modifiée",
+          "fulfillment_updated_issuer":
+            "Candidats, modifiez votre proposition pour une Bounty",
+          "fulfillment_submitted_issuer":
+            "Candidats, faites une nouvelle proposition pour cette Bounty",
+          "fulfillment_accepted_fulfiller": "Le créateur a accepté votre proposition",
+          "contribution_received":
+            "Un autre utilisateur à contribué à votre Bounty",
+          "bounty_completed": "La Bounty ne dispose plus d'un solde suffisant pour payer sa prime",
+          "application_received": "Un nouveau candidat s'est présenté pour votre Bounty",
+          "application_accepted_applicant": "Le créateur a accepté votre candidature",
+          "application_rejected_applicant": "Le créateur a refusé votre candidature",
+          "activity": "Activité (Mise à jour du profil, Création de Bounty, etc.)"
+        }
+      },
+      "user": {
+        "photo": {
+          "title": "PHOTO DE PROFIL",
+          "label": "Le téléchagement de votre image a échoué, veuillez réessayer."
+        },
+        "about": {
+          "title": "A PROPOS",
+          "description": "Que souhaitez partager à propos de vous avec les autres?",
+          "notice":
+            "Indiquez quelques détails personnels afin que la communauté en sache un peu plus sur vous.",
+          "form": {
+            "name": {
+              "label": "Nom",
+              "placeholder": "Indiquez votre Nom..."
+            },
+            "organization": {
+              "label": "Entreprise",
+              "placeholder": "indiquez votre Entreprise..."
+            },
+            "languages": {
+              "label": "Langues maîtrisées",
+              "placeholder": "Indiquez les langues maîtrisées..."
+            }
+          }
+        },
+        "skills": {
+          "title": "Compétences",
+          "description":
+            "Quels sont vont compétences techniques ou professionnelles ?",
+          "notice":
+            "Indiquez vos compétences. Cela indiquera aux autres utilisateurs que vous êtres à même de travailler sur une Bounty.",
+          "label": "Skills",
+          "placeholder": "Créez ou sélectionnez une compétence..."
+        },
+        "social": {
+          "title": "Réseaux Sociaux",
+          "description":
+            "Voulez vous afficher vos profils de réseaux sociaux?",
+          "form": {
+            "web": {
+              "label": "Site web personnel"
+            }
+          }
+        },
+        "contact": {
+          "title": "CONTACT",
+          "description":
+            "Où souhaitez vous recevoir des notificaltions liées à votre activité sur la plateforme?",
+          "form": {
+            "email": {
+              "label": "email de contact",
+              "placeholder": "indiquez votre email..."
+            },
+            "marketing": {
+              "label":
+                "Je souhaiterai également recevoir des informations liées à des Bounty correspondant à mon profil et des informations liées à la plateforme"
+            }
+          },
+          "actions": {
+            "submit": "Envoyer les Détails",
+            "update": "Mettre à jour le Profil"
+          }
+        }
+      }
+    },
+    "submissions": {
+      "title": "Propositions",
+      "tabs": {
+        "received": "Reçues",
+        "submitted": "Envoyées"
+      },
+      "headers": {
+        "title": "Titre de votre Bounty",
+        "fulfiller": "Candidat",
+        "date": "date de la proposition",
+        "status": "Statut",
+        "payment": "Montant de la prime"
+      },
+      "zero_state": {
+        "title": "Vous n'avez pas de {currentTab} propositions",
+        "description":
+          "Il semblerait que vous n'avez pas encore de proposition. Revenez ici {currentTab} dès que vous en recevrez une!"
+      }
+    },
+    "user_stats": {
+      "bounties_issued": "Bounties crées",
+      "bounties_completed": "Bounties complétées",
+      "awarded": "Recompensée",
+      "earned": "Gagnées"
+    }
+  },
+  "components": {
+    "applicant_stage": {
+      "accepted": "Accepté",
+      "declined": "Refusé",
+      "pending": "En attente",
+      "default": "En attente de validation"
+    },
+    "bounty_card": {
+      "difficulty": "difficulté",
+      "difficulty_options": {
+        "beginner": "Débutant",
+        "intermediate": "Intermediaire",
+        "advanced": "Expert"
+      },
+      "submissions_count":
+        "{count, plural, =1 {submission} other {submissions}}"
+    },
+    "bounty_item": {
+      "text":
+        "Created {time} {submissionCount, plural, =1 {∙ # submission} other {∙ # submissions}}",
+      "draftText": "crée : {time}"
+    },
+    "essentials": {
+      "balance": "Solde restant"
+    },
+    "filter_nav": {
+      "sort_options": {
+        "bounty_created": "Les plus récentes",
+        "usd_price": "Value: Décroissant",
+        "deadline": "Expiration"
+      },
+      "refine": "Filtrer par",
+      "platform": "Platforme",
+      "category": "Catégories",
+      "difficulty": "Difficulté",
+      "stage": "Statut",
+      "checkbox": {
+        "active": "Active",
+        "completed": "Complétée",
+        "expired": "Expirée",
+        "dead": "invalide"
+      }
+    },
+    "fulfillment_stage": {
+      "accepted": "Acceptée",
+      "not_accepted": "Refusée"
+    },
+    "submission": {
+      "title": "Titre de la Bounty",
+      "status": "Statut",
+      "date": "Date de la proposition",
+      "fulfiller": "Candidat",
+      "amount": "Montant du paiement"
+    },
+    "tx_guide": {
+      "title": "Votre Wallet va désormais prendre le relais!",
+      "description":
+        "Après avoir cliqué sur \"OK\", Un popup va vous demander de valider votre transaction Ethereum et vous devrez payer une fraction d'ETH (Pour les coûts en gas).",
+      "notice": "Des paramètres de frais de transactions par défaut vont être configurés pour vous.",
+      "messages": {
+        "waiting":
+          "En attente d'une confirmation sur le réseau Ethereum...",
+        "confirmed": "Votre transaction a été confimée!",
+        "pending_receipt":
+          "Votre trasaction est en cours dde traitement. Nous vous informerons dès qu'elle sera confirmée.",
+        "pending_wallet":
+          "Votre trasanction sur le réseau Ethereum est en cours de confirmation. Cela peut prendre quelques secondes."
+      }
+    },
+    "editor": {
+      "preview": "Aperçu",
+      "default":
+        "# Description\ndécrivez la Bounty que vous souhaitez completer. quel est son objectif? qu'attendez vous des candidats?\n\n## Conditions\nQuels conditions s'applient à vos candidats? votre Bounty a t-elle des régles ou des contraites précises? Il y a t-il des pré-requis pour la compléter?\n\n* Première étape\n* Seconde étape\n* Troisième étape\n\n## Pré-requis pour validation\nQue doivent produire les candidats pour que vous considériez cette Bounty comme complétée? Que doivent inclure dans leurs propositions les candidats pour que vous validiez leur proposition?\n\n1. En Premier \n2. En Second 2\n3. En Troisième\n\n### Informations complémentaires\nIl y a t-il des informations complémentaires dont les candidats devraient avoir connaissance? La Bounty nécéssite t-elle de prendre contact avec quelqu'un ou de consulter des informations ou des liens complémentaires?"
+    },
+    "notifications": {
+      "fulfilLment_submitted": "Vous avez fait une proposition",
+      "fulfilLment_submitted_issuer": "Vous avez reçu une proposition",
+      "bounty_activated": "Vous avez activé une Bounty",
+      "fulfillment_accepted": "Vous avez accepté une Proposition",
+      "fulfillment_accepted_fulfiller": "Votre proposition a été acceptée",
+      "bounty_expired": "Votre Bounty a expirée",
+      "bounty_issued": "Vous avez crée une nouvelle Bounty",
+      "bounty_killed": "Vous avez supprimé une Bounty",
+      "contribution_added": "Vous avez contribué à une Bounty",
+      "deadline_extended": "Vous avez prolongé une deadline",
+      "bounty_changed": "Une bounty auquel vous avez fait une proposition a été modifiée",
+      "bounty_changed_issuer": "Vous avez modifié bounty",
+      "bounty_changed_applicant": "Une bounty auquel vous avez candidaté a été modifiée",
+      "issuer_transferred": "Vous avez transféré la propriété de votre Bounty",
+      "transfer_recipient": "Vous avez reçu la propriété d'une Bounty",
+      "payout_increased": "Vous avez augmenté le montant d'une prime",
+      "bounty_comment_received": "Une Bounty que vous avez complétée a reçu un commentaire",
+      "bounty_comment_received_issuer": "Votre Bounty a reçue un commentaire",
+      "bounty_comment_received_commenter":
+        "Une Bounty que vous avez commentée a reçue un commentaire",
+      "fulfillment_comment_received": "Votre proposition a reçue un commentaire",
+      "fulfillment_comment_received_issuer":
+        "Une proposition liée à votre Bounty a reçue un commentaire",
+      "fulfillment_comment_received_commenter":
+        "Une proposition que vous avez commentée a reçue un commentaire",
+      "bounty_issue_activated": "Vous avez publiée une Bounty",
+      "fulfillment_updated": "Votre proposition a été mise à jour",
+      "fulfillment_updated_issuer": "Une proposition liée à votre Bounty a été mise à jour",
+      "rating_issued": "Vous avez écrit une évaluation",
+      "rating_received": "Vous avez reçu une évaluation",
+      "profile_updated": "Votre profil a été mis à jour",
+      "comment_issued": "Vous avez rédigé un commentaire",
+      "fulfillment_comment_issued": "Vous avez rédigé un commentaire",
+      "draft_created": "Vous avez créé un brouillon",
+      "draft_updated": "Votre brouillon a été mis à jour",
+      "contribution_received": "Vous avez reçu une contribution",
+      "bounty_completed": "Votre Bounty ne dispose plus de fonds",
+      "application_created": "Vous avez proposé votre candidature",
+      "application_received": "Vous avez reçu une nouvelle candidature",
+      "application_accepted_application": "Votre candidature a été acceptée",
+      "application_accepted_issuer": "Vous avez accepté une candidature",
+      "application_rejected_applicant": "Votre candidature a été refusée",
+      "application_rejected_issuer": "Vous avez rejeté une candidature"
+    }
+  },
+  "hocs": {
+    "require_login": {
+      "zero_state": {
+        "title": "Connectez vous pour rejoindre le Bounties Network",
+        "body":
+          "Afin d'utiliser pleinement la plateforme, veuillez vous connecter avec votre wallet securisé.",
+        "subtext":
+          "Si vous ne souhaitez pas vous connecter mais simplement jeter un oeil à la plateforme, explorez en utilisant le ",
+        "action": "Connection"
+      },
+      "explorer": "Explorateur"
+    }
+  },
+  "errors": {
+    "500": "Une erreur est survenue. veuillez réessayer.",
+    "404": "Page inconnue",
+    "form_error": "Veuillez corriger les erreurs suivantes et validez à nouveau."
+  },
+  "validation": {
+    "required": "* Requis",
+    "max": "Doit comporter au maximum {max} signes",
+    "min": "Doit comporter au minimum {min} signes",
+    "max_decimals": "Peut comporter {max} décimales de précision au maximum",
+    "min_value": "doit être supérieur à {min}",
+    "mineq_value": "doit être supérieur ou équivalent à {min}",
+    "min_date": "La date doit se situer après le {date}",
+    "length": "doit comporter {length} signes",
+    "web3": "Doit etre une addresse Web3 valide",
+    "number": "Doit être un chiffre",
+    "email": "Addresse Email invalide",
+    "alfa_num": "Seuls les signes alphanumériques sont acceptées",
+    "twitter": "Identifiant Twitter invalide",
+    "github": "Identifiant Github invalide",
+    "url": "URL invalide"
+  },
+  "common": {
+    "description": "Description",
+    "expired": "expirée",
+    "remaining": "restant",
+    "difficulty": "difficulté",
+    "expected": "requis",
+    "and": "et",
+    "payout": "Prime"
+  },
+  "stages": {
+    "draft": "Brouillon",
+    "active": "Active",
+    "dead": "Invalide",
+    "completed": "Completée",
+    "expired": "Expirée"
+  },
+  "formats": {
+    "amount": "{value, number}",
+    "usd": "{value, number, USD}"
+  }
+}
