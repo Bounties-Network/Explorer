@@ -147,9 +147,6 @@
         "contribute_issuer": "残高を増加する",
         "extend_deadline": "期限を延長する",
         "transfer_ownership": "所有権を移転する",
-
-### ここまで和訳 2019/7/23
-
         "fulfill": "フルフィル",
         "login_fulfill": "フルフィルするためにサインイン",
         "fulfill_gitcoin": "Gitcoinでフルフィル",
