@@ -725,7 +725,7 @@ class CreateBountyFormComponent extends React.Component {
         </FormSection>
         <div className={styles.buttonContainer}>
           <Button
-            onClick={() => handleBounty(submitFailed || invalid)}
+            onClick={() => handleBounty(submitFailed && invalid)}
             type="primary"
             disabled={uploadLoading || (submitFailed && invalid)}
             loading={submittingBounty}
