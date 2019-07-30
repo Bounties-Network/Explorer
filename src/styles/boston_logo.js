@@ -7,9 +7,9 @@ const BostonLogo = () => {
       id="Layer_1"
       x="0px"
       y="0px"
-      width="55px"
-      height="55px"
-      viewBox="0 0 55 55"
+      width="40px"
+      height="40px"
+      viewBox="0 0 720 720"
       enable-background="new 0 0 55 55"
     >
       <polygon

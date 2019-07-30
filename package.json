@@ -76,7 +76,7 @@
     "start-boost": "APP_SETTINGS_FILE=boost_settings APP_LOGO=logo node scripts/start.js",
     "start-consensys": "APP_SETTINGS_FILE=consensys_settings APP_LOGO=logo node scripts/start.js",
     "start-moksha": "APP_SETTINGS_FILE=moksha_settings APP_LOGO=moksha_logo node scripts/start.js",
-    "start-boston": "APP_SETTINGS_FILE=boston_settings APP_LOGO=moksha_logo node scripts/start.js",
+    "start-boston": "APP_SETTINGS_FILE=boston_settings APP_LOGO=boston_logo node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "storybook": "start-storybook -p 6006",
