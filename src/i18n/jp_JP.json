@@ -778,7 +778,7 @@
         "payment": "支払い額"
       },
       "zero_state": {
-        "title": "あなたの送信は {currentTab} 0 です,
+        "title": "あなたの送信は {currentTab} 0 です",
         "description":
           "提出が何もないようです。フルフィルメント{currentTab}を行ってから再度アクセスして下さい！"
       }
