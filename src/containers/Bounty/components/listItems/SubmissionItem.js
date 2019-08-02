@@ -164,16 +164,18 @@ const SubmissionItem = props => {
       <Button
         className={styles.actionButton}
         icon={['far', 'edit']}
-        onClick={() => {
-          editFulfillment({
-            fulfillmentId,
-            fulfiller_name,
-            fulfiller_email,
-            description,
-            url
-          });
-          showModal('updateFulfillment');
-        }}
+        onClick={() =>
+          initiateLoginProtection(() => {
+            editFulfillment({
+              fulfillmentId,
+              fulfiller_name,
+              fulfiller_email,
+              description,
+              url
+            });
+            showModal('updateFulfillment');
+          })
+        }
       >
         {intl.get('actions.update_submission')}
       </Button>
