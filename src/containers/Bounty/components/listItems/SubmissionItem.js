@@ -55,7 +55,8 @@ const SubmissionItem = props => {
     showLogin,
     id,
     loadMoreFulComments,
-    autoFocus
+    autoFocus,
+    editFulfillment
   } = props;
 
   const commentOnSubmission = () => {
@@ -152,6 +153,35 @@ const SubmissionItem = props => {
       </Button>
     );
   }
+
+  // Edit Submission Button
+  if (
+    submissionBelongsToLoggedInUser &&
+    !accepted &&
+    bounty.contract_version === 2
+  ) {
+    actionButton = (
+      <Button
+        className={styles.actionButton}
+        icon={['far', 'edit']}
+        onClick={() =>
+          initiateLoginProtection(() => {
+            editFulfillment({
+              fulfillmentId,
+              fulfiller_name,
+              fulfiller_email,
+              description,
+              url
+            });
+            showModal('updateFulfillment');
+          })
+        }
+      >
+        {intl.get('actions.update_submission')}
+      </Button>
+    );
+  }
+
   let bodyClass = '';
   let newCommentForm = '';
   let body = '';
