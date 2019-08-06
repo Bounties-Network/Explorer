@@ -183,7 +183,7 @@ a {
     padding-left: $m-spacing;
 
     li:not(:last-child) {
-      padding-bottom: $base-spacing;
+      padding-bottom: $s-spacing;
     }
   }
 
@@ -193,7 +193,7 @@ a {
     padding-left: $m-spacing;
 
     li:not(:last-child) {
-      padding-bottom: $base-spacing;
+      padding-bottom: $s-spacing;
     }
   }
 
@@ -204,7 +204,7 @@ a {
     margin-top: $m-spacing;
 
     li {
-      margin-left: $xl-spacing;
+      margin-left: $l-spacing;
     }
   }
 
@@ -214,7 +214,7 @@ a {
     padding: $m-spacing;
     background: $base-input-background;
     border: $base-border;
-    border-radius: 3px;
+    border-radius: $base-border-radius / 2;
 
     code {
       background: none;
@@ -227,7 +227,7 @@ a {
   code {
     background: $base-input-background;
     border: $base-border;
-    border-radius: 3px;
+    border-radius: $base-border-radius / 2;
     white-space: pre-wrap;
     word-wrap: break-word;
     line-height: 1.5;
