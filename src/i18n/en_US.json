@@ -357,7 +357,7 @@
           "form": {
             "categories": {
               "label": "Bounty category",
-              "placeholder": "Create or Select category..."
+              "placeholder": "Create or select categories..."
             },
             "experience_level": {
               "label": "Difficulty",
@@ -862,7 +862,7 @@
     "editor": {
       "preview": "Preview",
       "default":
-        "# Description\nDescribe the bounty that you want completed. What is it for? What does it involve?\n\n## Requirements\nWhat requirements do you have for bounty fulfillers? Are there any rules or constraints for your bounty? Are there any pre-requisites needed to complete it?\n\n* Item one\n* Item two\n* Item three\n\n## Definition of Done\nWhat should bounty issuers submit as proof that they have completed the bounty? What do fulfillers need to include in a submission in order for it to be accepted?\n\n1. Item 1\n2. Item 2\n3. Item 3\n\n### Things to Note\nIs there any other information you'd like potential fulfillers to know about you or the bounty? Does the bounty require any additional materials that either party needs to provide or information exchanged for external communication to occur?"
+        "# Description\nDescribe the bounty that you want completed. What is it for? What does it involve?\n\n## Requirements\nWhat requirements do you have for bounty fulfillers? Are there any rules or constraints for your bounty? Are there any pre-requisites needed to complete it?\n\n* Item one\n* Item two\n* Item three\n\n## Definition of Done\nWhat should bounty fulfillers submit as proof that they have completed the bounty? What do fulfillers need to include in a submission in order for it to be accepted?\n\n1. Item 1\n2. Item 2\n3. Item 3\n\n### Things to Note\nIs there any other information you'd like potential fulfillers to know about you or the bounty? Does the bounty require any additional materials that either party needs to provide or information exchanged for external communication to occur?"
     },
     "notifications": {
       "fulfilLment_submitted": "You made a submission",
