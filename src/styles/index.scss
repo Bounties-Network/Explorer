@@ -117,7 +117,7 @@ a {
   }
 
   p:not(:last-child) {
-    padding-bottom: $l-spacing;
+    padding-bottom: $m-spacing;
   }
 
   body {
@@ -209,19 +209,31 @@ a {
   }
 
   pre {
+    display: block;
+    margin: $base-spacing 0;
+    padding: $m-spacing;
     background: $base-input-background;
     border: $base-border;
-    border-radius: $base-border-radius;
-    margin: $l-spacing 0;
-    padding: $m-spacing;
+    border-radius: 3px;
+
+    code {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+    }
+  }
+
+  code {
+    background: $base-input-background;
+    border: $base-border;
+    border-radius: 3px;
     white-space: pre-wrap;
     word-wrap: break-word;
     line-height: 1.5;
-
-    code {
-      color: $brand-darkGrey;
-      font-family: monospace;
-    }
+    padding: 0 $s-spacing;
+    color: $brand-darkGrey;
+    font-family: monospace;
   }
 
   img {
