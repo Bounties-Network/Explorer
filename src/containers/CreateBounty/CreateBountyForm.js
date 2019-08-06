@@ -52,6 +52,37 @@ import intl from 'react-intl-universal';
 
 const formSelector = formValueSelector('createBounty');
 
+const templateOptions = [
+  { value: 'default', label: 'Default' },
+  { value: 'proof-of-action', label: 'Proof of Action' },
+  { value: 'code', label: 'Code' },
+  { value: 'graphic-design', label: 'Graphic Design' },
+  { value: 'translation', label: 'Translation' },
+  { value: 'idea-generation', label: 'Idea Generation' },
+  {
+    value: 'feedback-and-critique',
+    label: 'Feedback & Critique'
+  },
+  { value: 'survey', label: 'Survey' },
+  { value: 'recruitment', label: 'Recruitment' }
+];
+
+const templates = [
+  {
+    value: 'default',
+    about:
+      'This is a short description of the template that has been selected above. It provides some insight into how this template might be used, in addition to some potential example use cases.',
+    description: ''
+  },
+  { value: 'proof-of-action', label: 'Proof of Action' },
+  { value: 'code', label: 'Code' },
+  { value: 'graphic-design', label: 'Graphic Design' },
+  { value: 'translation', label: 'Translation' },
+  { value: 'idea-generation', label: 'Idea Generation' },
+  { value: 'feedback-and-critique', label: 'Feedback & Critique' },
+  { value: 'survey', label: 'Survey' },
+  { value: 'recruitment', label: 'Recruitment' }
+];
 class CreateBountyFormComponent extends React.Component {
   handleCreateBounty = values => {
     const { activateNow, balance, ...bountyValues } = values;
@@ -94,6 +125,14 @@ class CreateBountyFormComponent extends React.Component {
     }
 
     return createDraft({ ...bountyValues, ...fileData });
+  };
+  state = {
+    selectedTemplate: templateOptions[0],
+    overwrittenDescription: 'poop'
+  };
+  handleChangeTemplate = selectedTemplate => {
+    this.setState({ selectedTemplate });
+    console.log('Option selected:', selectedTemplate);
   };
 
   handleSubmit = values => {
@@ -182,6 +221,8 @@ class CreateBountyFormComponent extends React.Component {
       handleBounty
     } = this.props;
 
+    const { selectedTemplate, overwrittenDescription } = this.state;
+
     const { validatorGroups } = this;
 
     let submitButtonText = intl.get('sections.create_bounty.actions.create');
@@ -236,53 +277,51 @@ class CreateBountyFormComponent extends React.Component {
                 validate={validatorGroups.title}
               />
             </FormSection.InputGroup>
-            <div className="row">
-              <div className="col-xs-12 col-sm-6">
-                <Select
-                  label="Description template"
-                  options={[
-                    { value: 'default', label: 'Default' },
-                    { value: 'Proof of action', label: 'Proof of action' },
-                    { value: 'Code', label: 'Code' },
-                    { value: 'Graphic design', label: 'Graphic design' },
-                    { value: 'Translation', label: 'Translation' },
-                    { value: 'Idea generation', label: 'Idea generation' },
-                    {
-                      value: 'Feedback & critique',
-                      label: 'Feedback & critique'
-                    },
-                    { value: 'Survey', label: 'Survey' },
-                    { value: 'Recruitment', label: 'Recruitment' }
-                  ]}
-                />
-              </div>
-              <div className="col-xs-12">
-                <div className={styles.formHelper}>
-                  <FontAwesomeIcon
-                    icon={['far', 'info-circle']}
-                    className={styles.formHelperIcon}
-                  />
-                  <Text
-                    fontStyle="italic"
-                    typeScale="Small"
-                    color="blue"
-                    lineHeight="lineHeight-default"
-                  >
-                    This is a short description of the template that has been
-                    selected above. It provides some insight into how this
-                    template might be used, in addition to some potential
-                    example use cases.
-                  </Text>
+            {!isEditing &&
+              !id && (
+                <div className="row">
+                  <div className="col-xs-12 col-sm-6">
+                    <Select
+                      label={intl.get(
+                        'sections.create_bounty.sections.about.form.template.label'
+                      )}
+                      value={selectedTemplate}
+                      options={templateOptions}
+                      onChange={this.handleChangeTemplate}
+                    />
+                  </div>
+                  <div className="col-xs-12">
+                    <div className={styles.formHelper}>
+                      <FontAwesomeIcon
+                        icon={['far', 'info-circle']}
+                        className={styles.formHelperIcon}
+                      />
+                      <Text
+                        fontStyle="italic"
+                        typeScale="Small"
+                        color="blue"
+                        lineHeight="lineHeight-default"
+                      >
+                        This is a short description of the template that has
+                        been selected above. It provides some insight into how
+                        this template might be used, in addition to some
+                        potential example use cases.
+                      </Text>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              )}
             <FormSection.InputGroup>
               <Field
+                label={intl.get(
+                  'sections.create_bounty.sections.about.form.description.label'
+                )}
                 disabled={submittingBounty}
                 name="description"
                 component={FormMarkdownEditor}
                 textBoxClassName={styles.markdownEditor}
                 validate={validatorGroups.description}
+                value={'poop'}
               />
             </FormSection.InputGroup>
           </FormSection.Section>
