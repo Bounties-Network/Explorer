@@ -47,12 +47,11 @@ class MarkdownEditor extends React.Component {
       hidePreview
     } = this.props;
 
-    console.log('value', value);
-
     const textValue =
       typeof value === 'string' ? value : stateValue || defaultValue;
     const textBoxClass = `${styles.textArea} ${textBoxClassName}`;
 
+    console.log('value', this.props);
     return (
       <div className={styles.markdownEditor}>
         <Modal
@@ -110,7 +109,6 @@ MarkdownEditor.defaultProps = {
   onFocus: () => {},
   onBlur: () => {},
   onChange: () => {}
-  //defaultValue: intl.get('components.editor.default')
 };
 
 export default MarkdownEditor;

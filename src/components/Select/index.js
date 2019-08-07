@@ -25,10 +25,14 @@ class Select extends React.Component {
       error,
       optional,
       labelKey,
-      valueKey
+      valueKey,
+      defaultValue
     } = this.props;
-    const { selectedOption } = this.state;
+    let { selectedOption } = this.state;
 
+    if (!selectedOption) {
+      selectedOption = defaultValue;
+    }
     let labelText = label;
     if (optional) {
       labelText = `${labelText || ''} (Optional)`;

@@ -127,12 +127,14 @@ class CreateBountyFormComponent extends React.Component {
     return createDraft({ ...bountyValues, ...fileData });
   };
   state = {
-    selectedTemplate: templateOptions[0],
-    overwrittenDescription: 'poop'
+    selectedTemplate: { value: 'default', label: 'Default' },
+    overwrittenDescription: ''
   };
   handleChangeTemplate = selectedTemplate => {
-    this.setState({ selectedTemplate });
-    console.log('Option selected:', selectedTemplate);
+    this.setState({
+      selectedTemplate,
+      overwrittenDescription: 'poop'
+    });
   };
 
   handleSubmit = values => {
@@ -285,7 +287,7 @@ class CreateBountyFormComponent extends React.Component {
                       label={intl.get(
                         'sections.create_bounty.sections.about.form.template.label'
                       )}
-                      value={selectedTemplate}
+                      defaultValue={{ value: 'default', label: 'Default' }}
                       options={templateOptions}
                       onChange={this.handleChangeTemplate}
                     />
@@ -321,7 +323,7 @@ class CreateBountyFormComponent extends React.Component {
                 component={FormMarkdownEditor}
                 textBoxClassName={styles.markdownEditor}
                 validate={validatorGroups.description}
-                value={'poop'}
+                value={overwrittenDescription}
               />
             </FormSection.InputGroup>
           </FormSection.Section>
