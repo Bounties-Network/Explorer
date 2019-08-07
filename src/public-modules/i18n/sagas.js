@@ -9,7 +9,8 @@ import 'moment/min/locales';
 const locales = {
   'en-US': require('../../i18n/en_US'),
   'es-ES': require('../../i18n/es_ES'),
-  es: require('../../i18n/es_ES')
+  es: require('../../i18n/es_ES'),
+  'zh-CN': require('../../i18n/zh_CHS.json')
 };
 
 export function* initTranslations(action) {
