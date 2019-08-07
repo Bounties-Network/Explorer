@@ -21,7 +21,9 @@
     "contribute": "寄付する",
     "contribute_issuer": "残額を増加する",
     "edit_bounty": "報奨金を編集",
+    "update_submission": "を編集",
     "submit": "送信する",
+    "update": "更新の提出",
     "extend_deadline": "期限を延長する",
     "increase_payout": "支払い額を増やす",
     "transfer_ownership": "所有権を移転する",
@@ -228,6 +230,7 @@
         },
         "fulfill_bounty": {
           "title": "送信の詳細を入力",
+          "title_updating": "提出の詳細を更新",
           "description":
             "報奨を送信するため、報奨の説明で必要とされている内容のリンクなどの詳細を入力して下さい。 <a href=\"https://www.markdownguide.org/cheat-sheet\" target=\"_blank\">マークダウン</a>を用いて提出内容の書式を設定することができます。",
           "form": {
@@ -336,8 +339,7 @@
         },
         "contact": {
           "title": "連絡先",
-          "description":
-            "報奨の質問や送信における主な連絡先を入力して下さい。",
+          "description": "報奨の質問や送信における主な連絡先を入力して下さい。",
           "form": {
             "issuer_name": {
               "label": "連絡先の名前",
@@ -400,7 +402,8 @@
         "privacy": {
           "title": "プライバシー",
           "description": "提出内容は誰でも見ることができますか？",
-          "notice": "必要に応じて、提出内容を他のユーザには非表示とすることが可能です。",
+          "notice":
+            "必要に応じて、提出内容を他のユーザには非表示とすることが可能です。",
           "form": {
             "fulfillers_need_approval": {
               "label": "事前承認が必要",
@@ -412,8 +415,7 @@
             },
             "private_fullfillments": {
               "label": "視認性",
-              "description":
-                "報奨の対象となる作業を行う前に承認しますか？",
+              "description": "報奨の対象となる作業を行う前に承認しますか？",
               "notice":
                 "承認を必要とする場合、ユーザが送信する意図を示した時にあなたに通知されます。報奨を完了するには、ユーザは承認される必要があります。",
               "options": {
@@ -444,7 +446,8 @@
             },
             "token_contract_2": {
               "label": "トークン",
-              "placeholder": "トークンを選択するか、トークンのアドレスを入力して下さい…"
+              "placeholder":
+                "トークンを選択するか、トークンのアドレスを入力して下さい…"
             }
           }
         },
@@ -469,14 +472,14 @@
             },
             "token_contract_2": {
               "label": "トークン",
-              "placeholder": "トークンを選択するか、トークンのアドレスを入力して下さい…"
+              "placeholder":
+                "トークンを選択するか、トークンのアドレスを入力して下さい…"
             }
           }
         },
         "save": {
           "title": "保存または提出",
-          "description":
-            "いつ報奨を提出しアクティベートしますか",
+          "description": "いつ報奨を提出しアクティベートしますか",
           "notice":
             "報奨をあとでアクティベートしたい場合、ドラフトとして保存することができます。報奨の要件は報奨がドラフトの状態である間だけ編集可能です。入金の額は、少なくとも支払いの金額と同じでなければなりません。",
           "form": {
@@ -503,11 +506,13 @@
       "bounty_count": "{count, plural, =1 {bounty} other {bounties}}",
       "zero_state": {
         "title": "報奨は見つかりません",
-        "description": "報奨をさらに見るためには、検索フィルターを更新して下さい"
+        "description":
+          "報奨をさらに見るためには、検索フィルターを更新して下さい"
       },
       "zero_state_error": {
         "title": "おやおや、何かが起こりました",
-        "description": "新しいフィルターにするか、ページをリフレッシュし、再度試してみてください"
+        "description":
+          "新しいフィルターにするか、ページをリフレッシュし、再度試してみてください"
       }
     },
     "leaderboard": {
@@ -546,7 +551,7 @@
           "description1": "前回、バウンティーズ・ネットワークに",
           "description2": "サインインするために使用していたのは",
           "description3": "次のアドレスです：",
-          "description4": 
+          "description4":
             "このアドレスは、あなたの現在のウォレットのアカウントアドレスと一致しません：",
           "description5":
             "ウォレットのアカウントを切り替えるか、一度ログアウトし異なるアドレスを使用してサインインして下さい。"
@@ -573,9 +578,9 @@
         "wallet_required": {
           "title": "Web3対応ブラウザとセキュアなウォレットが必要です",
           "description1": "利用するためには、",
-          "description2": "セキュアなウォレットをインストールして下さい。 例： ",
-          "description3":
-            "設定でヘルプが必要な場合、",
+          "description2":
+            "セキュアなウォレットをインストールして下さい。 例： ",
+          "description3": "設定でヘルプが必要な場合、",
           "guide": "「Getting Started ガイド」を参照して下さい",
           "actions": {
             "visit": "{walletName}を訪れる"
@@ -584,7 +589,8 @@
         "wrong_network": {
           "title": "外部のネットワークが検出されました",
           "description1": "{networkName} は現在機能しています on ",
-          "description2": "アクティブなウォレットのネットワークを切り替えて下さい。"
+          "description2":
+            "アクティブなウォレットのネットワークを切り替えて下さい。"
         }
       }
     },
@@ -662,8 +668,7 @@
       },
       "emails": {
         "title": "メールによる通知",
-        "description":
-          "メールでどのような通知を受け取りたいですか？",
+        "description": "メールでどのような通知を受け取りたいですか？",
         "notice":
           "メールで受信する通知を選択して設定して下さい。当ネットワークの重要なイベントに関する情報を受け取れるよう、デフォルトの設定を変更しないことを推奨します。",
         "actions": {
@@ -674,7 +679,8 @@
           "transfer_recipient": "他のユーザへの報奨の移転が完了します",
           "bounty_comment_received":
             "あなたが完了した報奨にコメントが付きました",
-          "bounty_comment_received_issuer": "あなたの報奨にコメントが付きました",
+          "bounty_comment_received_issuer":
+            "あなたの報奨にコメントが付きました",
           "bounty_comment_received_commenter":
             "あなたがコメントした報奨にコメントが付きました",
           "fulfillment_comment_received": "あなたの提出にコメントが付きました",
@@ -689,14 +695,17 @@
             "フルフィラー、あなたの報奨への提出を更新",
           "fulfillment_submitted_issuer":
             "フルフィラー、あなたの報奨への新しいフルフィルメントを提出",
-          "fulfillment_accepted_fulfiller": "報奨作成者があなたの提出を承認しました",
-          "contribution_received":
-            "他のユーザが報奨に寄付しました",
+          "fulfillment_accepted_fulfiller":
+            "報奨作成者があなたの提出を承認しました",
+          "contribution_received": "他のユーザが報奨に寄付しました",
           "bounty_completed": "報奨には支払いに十分な資金がありません",
           "application_received": "報奨に新しいフルフィラーが応募しています",
-          "application_accepted_applicant": "報奨作成者があなたの応募を承認しました",
-          "application_rejected_applicant": "報奨作成者があなたの応募を却下しました",
-          "activity": "一般的なアクティビティ（プロファイル更新、報奨の新規作成など）"
+          "application_accepted_applicant":
+            "報奨作成者があなたの応募を承認しました",
+          "application_rejected_applicant":
+            "報奨作成者があなたの応募を却下しました",
+          "activity":
+            "一般的なアクティビティ（プロファイル更新、報奨の新規作成など）"
         }
       },
       "user": {
@@ -726,8 +735,7 @@
         },
         "skills": {
           "title": "スキル",
-          "description":
-            "業務や技術に関するスキルは、どのようなものですか？",
+          "description": "業務や技術に関するスキルは、どのようなものですか？",
           "notice":
             "得意とするスキルを入力または選択して下さい。これによって、あなたが一定の型の報奨を完了する技能を有することを本ネットワークの他の人が分かるようになります。",
           "label": "スキル",
@@ -735,8 +743,7 @@
         },
         "social": {
           "title": "ソーシャル",
-          "description":
-            "他に表示を希望するプロファイルや情報はありますか？",
+          "description": "他に表示を希望するプロファイルや情報はありますか？",
           "form": {
             "web": {
               "label": "個人のウェブサイト"
@@ -753,8 +760,7 @@
               "placeholder": "メールを入力…"
             },
             "marketing": {
-              "label":
-                "関連する報奨の示唆やサイトの更新情報の受信も希望します"
+              "label": "関連する報奨の示唆やサイトの更新情報の受信も希望します"
             }
           },
           "actions": {
@@ -804,8 +810,7 @@
         "intermediate": "中級",
         "advanced": "上級"
       },
-      "submissions_count":
-        "{count, plural, =1 {submission} 他 {submissions}}"
+      "submissions_count": "{count, plural, =1 {submission} 他 {submissions}}"
     },
     "bounty_item": {
       "text":
@@ -850,8 +855,7 @@
         "\"OK\"をクリックすると、ウォレットのダイアログが表示され、イーサリアムの取引を確認し、少額のETHを（gasフィーとして）支払うよう促します。",
       "notice": "デフォルトのgas上限と価格が設定されます",
       "messages": {
-        "waiting":
-          "取引がブロックチェーン上で確認されるのを待機しています…",
+        "waiting": "取引がブロックチェーン上で確認されるのを待機しています…",
         "confirmed": "取引が確認されました！",
         "pending_receipt":
           "取引が処理されています。確認され次第、お知らせします。",
@@ -913,7 +917,8 @@
   "hocs": {
     "require_login": {
       "zero_state": {
-        "title": "バウンティーズ・ネットワークを使用するには、サインインして下さい",
+        "title":
+          "バウンティーズ・ネットワークを使用するには、サインインして下さい",
         "body":
           "報奨の作成や業務の執行、コメントの記入、ネットワークの統計閲覧といった本ネットワークの機能を活用するためには、セキュアなウォレットを用いてサインインして下さい。",
         "subtext":
