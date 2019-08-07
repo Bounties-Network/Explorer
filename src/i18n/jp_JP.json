@@ -128,13 +128,13 @@
           "fulfiller_notice":
             " 提出はあなたと報奨の作成者だけしか見ることができません。",
           "show_comments":
-            "表示 {count} {count, plural, =1 {comment} 他 {comments}}",
+            "表示 {count} {count, plural, =1 {コメント} other {コメント}}",
           "hide_comments":
-            "非表示 {count} {count, plural, =1 {comment} 他 {comments}}",
+            "非表示 {count} {count, plural, =1 {コメント} other {コメント}}",
           "action": "コメント"
         }
       },
-      "難易度": {
+      "difficulties": {
         "Beginner": "初級",
         "Intermediate": "中級",
         "Expert": "上級"
@@ -810,11 +810,11 @@
         "intermediate": "中級",
         "advanced": "上級"
       },
-      "submissions_count": "{count, plural, =1 {submission} 他 {submissions}}"
+      "submissions_count": "{count, plural, =1 {提出} other {提出}}"
     },
     "bounty_item": {
       "text":
-        "作成 {time} {submissionCount, plural, =1 {? # submission} 他 {? # submissions}}",
+        "作成 {time} {submissionCount, plural, =1 {? # 提出} other {? # 提出}}",
       "draftText": "作成 {time}"
     },
     "essentials": {

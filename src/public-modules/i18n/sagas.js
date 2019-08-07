@@ -11,7 +11,8 @@ const locales = {
   'es-ES': require('../../i18n/es_ES'),
   es: require('../../i18n/es_ES'),
   'zh-CN': require('../../i18n/zh_CHS.json'),
-  'jp-JP': require('../../i18n/jp_JP.json')
+  zh: require('../../i18n/zh_CHS.json'),
+  ja: require('../../i18n/jp_JP.json')
 };
 
 export function* initTranslations(action) {
