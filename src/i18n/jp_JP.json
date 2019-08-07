@@ -1,0 +1,968 @@
+{
+  "nav": {
+    "explorer": "エクスプローラー",
+    "dashboard": "ダッシュボード",
+    "leaderboard": "リーダーボード",
+    "profile": "プロファイル"
+  },
+  "actions": {
+    "load_more": "さらにロードする",
+    "view_all": "全部を見る",
+    "accept": "承諾する",
+    "reject": "拒否する",
+    "filter": "フィルター",
+    "ok": "OK",
+    "rate_fulfiller": "レートフルフィラー",
+    "rate_issuer": "レートイシュアー",
+    "activate": "アクティベート",
+    "de_activate": "ディアクティベート",
+    "re_activate": "再アクティベート",
+    "cancel": "キャンセル",
+    "contribute": "寄付する",
+    "contribute_issuer": "残額を増加する",
+    "edit_bounty": "報奨金を編集",
+    "submit": "送信する",
+    "extend_deadline": "期限を延長する",
+    "increase_payout": "支払い額を増やす",
+    "transfer_ownership": "所有権を移転する",
+    "logout": "ログアウト",
+    "close": "クローズ",
+    "reset": "リセット",
+    "sort": "ソート",
+    "continue": "続ける",
+    "dashboard": "ダッシュボードに行く",
+    "create_bounty": "新しい報奨金を作成する",
+    "profile": "プロファイル",
+    "settings": "アカウント設定",
+    "signout": "サインアウト",
+    "signin": "サインイン",
+    "view_bounty": "報奨金を見る",
+    "view_rating": "レーティングを見る",
+    "discard_changes": "変更を破棄する",
+    "upload_photo": "新しい写真をアップロード"
+  },
+  "sections": {
+    "activity": {
+      "title": "自分のアクティビティ",
+      "zero_state": {
+        "title": "アクティビティがまだありません",
+        "description":
+          "プラットフォームの利用を開始すると、アクティビティがここに表示されます。"
+      }
+    },
+    "bounties": {
+      "title": "報奨金",
+      "tabs": {
+        "active": "アクティブ",
+        "drafts": "ドラフト"
+      },
+      "zero_state": {
+        "title": "報奨が {tab} ありません",
+        "description":
+          "現在、あなたが作成した{tab}報奨はまだ無いようです。タイトルを入力して新しい報奨を作成して下さい！",
+        "actions": {
+          "new_bounty": "新しい報奨を作成する"
+        }
+      }
+    },
+    "bounty": {
+      "zero_state": {
+        "title": "その報奨は見つかりませんでした",
+        "description": "リフレッシュするか、URLが正しいかの確認をして下さい"
+      },
+      "meta": {
+        "input": "プライベート",
+        "label": "報奨金",
+        "tooltip":
+          "プライベートバウンティでは、ユーザが報奨の充足に申請する必要があります。報奨のイシュアーに承認されると、その報奨に対する作業内容を送信することができます。",
+        "revisions": "{count} 回の改訂"
+      },
+      "components": {
+        "issue_rating": {
+          "issuer1":
+            "報奨の提出が承認されました！ ご希望であれば、この報奨の作成者との経験を評価して下さい:",
+          "issuer2":
+            "これによって本プラットフォーム上の他のフルフィラーにおける期待感の醸成が可能となります。",
+          "fulfiller1":
+            "報奨の提出を承認しました！ ご希望であれば、このフルフィラーとの経験を評価して下さい:",
+          "fulfiller2":
+            "これによって本プラットフォーム上の他のイシュアーにおける期待感の醸成が可能となります。",
+          "rating": "レーティング",
+          "review": "レビュー",
+          "review_placeholder": "レビューを入力して下さい…"
+        },
+        "new_comment": {
+          "placeholder": "コメントを記述して下さい…",
+          "action": "コメントを入力",
+          "login_action": "サインインしてコメントを入力する"
+        },
+        "applicant_card": {
+          "declined_message":
+            "辞退した申請のステータスは、あなただけしか見ることができません",
+          "zero_state": {
+            "title": "申請者はゼロです",
+            "description": "この報奨への申請者はここに表示されます。"
+          }
+        },
+        "comments_card": {
+          "zero_state": {
+            "title": "コメントはゼロです",
+            "description": "上のフォームを使ってコメントを送信"
+          }
+        },
+        "submissions_card": {
+          "zero_state": {
+            "title": "送信内容はゼロです",
+            "private_title": "送信は他社に非公開です",
+            "description": "この報奨への送信はここに表示されます。",
+            "private_description":
+              "この報奨の提出はプライベートに設定されました。",
+            "bounty_owner_description":
+              "この報奨の提出はここに表示され、 あなただけしか見ることができません。さらに、フルフィラーは作成した送信を見ることができます。"
+          },
+          "notice": "この報奨の提出は非表示です。",
+          "bounty_owner_notice":
+            " 提出はあなたとフルフィラーだけしか見ることができません。",
+          "fulfiller_notice":
+            " 提出はあなたと報奨の作成者だけしか見ることができません。",
+          "show_comments":
+            "表示 {count} {count, plural, =1 {comment} 他 {comments}}",
+          "hide_comments":
+            "非表示 {count} {count, plural, =1 {comment} 他 {comments}}",
+          "action": "コメント"
+        }
+      },
+      "難易度": {
+        "Beginner": "初級",
+        "Intermediate": "中級",
+        "Expert": "上級"
+      },
+      "actions": {
+        "activate": "報奨をアクティベートする",
+        "edit": "報奨を編集する",
+        "re_activate": "報奨を再アクティベートする",
+        "de_activate": "報奨をディアクティベートする",
+        "increase_prize": "賞金を増額する",
+        "contribute": "寄付する",
+        "contribute_issuer": "残高を増加する",
+        "extend_deadline": "期限を延長する",
+        "transfer_ownership": "所有権を移転する",
+        "fulfill": "フルフィル",
+        "login_fulfill": "フルフィルするためにサインイン",
+        "fulfill_gitcoin": "Gitcoinでフルフィル",
+        "apply": "報奨に申請",
+        "login_apply": "サインインして申請"
+      },
+      "tabs": {
+        "applicants": {
+          "title": "申請者"
+        },
+        "submissions": {
+          "title": "送信"
+        },
+        "comments": {
+          "title": "コメント"
+        }
+      },
+      "modals": {
+        "unsaved_changes": {
+          "new_bounty": {
+            "title": "変更を破棄しますか？",
+            "description":
+              "このページから出ると、報奨の変更箇所が破棄され、報奨は以前の状態に復帰されます。"
+          },
+          "draft_or_edit_bounty": {
+            "title": "変更を破棄しますか？",
+            "description":
+              "ドラフトの作成またはアクティベートをせずにこのページから出ると、報奨は破棄されます。"
+          }
+        },
+        "activate_dead_form": {
+          "title": "報奨を再アクティベート",
+          "description":
+            "報奨をアクティベートするために当初の入金額を入力して下さい。当初の入金額は、少なくとも支払い額 ({minimumBalance} {token_symbol})と同額にする必要があります。",
+          "min_deposit_warning":
+            "最低でも、当初の入金額は支払い額と同額にする必要があります。",
+          "form": {
+            "balance": {
+              "label": "{token_symbol}で入金",
+              "placeholder": "金額を入力…"
+            }
+          }
+        },
+        "activate_draft_form": {
+          "title": "報奨をアクティベート",
+          "description":
+            "報奨をアクティベートするために当初の入金額を入力して下さい。<em>当初の入金額は、少なくとも支払い額</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {token_symbol}と同額にする必要があります。</strong>",
+          "min_deposit_warning":
+            "当初の入金額は、少なくとも支払い額と同額にする必要があります。",
+          "form": {
+            "balance": {
+              "label": "{token_symbol}で入金",
+              "placeholder": "金額を入力…"
+            }
+          }
+        },
+        "contribute": {
+          "title": "残高を増加",
+          "description":
+            "報奨として充当したい金額({token_symbol})を入力して下さい。",
+          "title_issuer": "報奨に寄付する",
+          "description_issuer":
+            "報奨 ({token_symbol}) に追加したい金額を入力して下さい。",
+          "form": {
+            "contribution": {
+              "label": "{token_symbol}",
+              "placeholder": "金額を入力して下さい…"
+            }
+          }
+        },
+        "extend_deadline_error": {
+          "title":
+            "報奨をアクティベートするためには、期限を未来の日付にしなければなりません。"
+        },
+        "extend_deadline_form": {
+          "title": "期限を延長",
+          "description":
+            "報奨の期限を {timezone, select, null { } other { (timezone={timezone})}}まで延長するよう表示"
+        },
+        "fulfill_bounty": {
+          "title": "送信の詳細を入力",
+          "description":
+            "報奨を送信するため、報奨の説明で必要とされている内容のリンクなどの詳細を入力して下さい。 <a href=\"https://www.markdownguide.org/cheat-sheet\" target=\"_blank\">マークダウン</a>を用いて提出内容の書式を設定することができます。",
+          "form": {
+            "name": {
+              "label": "連絡先の名前",
+              "placeholder": "名前を入力…"
+            },
+            "email": {
+              "label": "連絡先のメール",
+              "placeholder": "メールを入力…"
+            },
+            "url": {
+              "label": "ウェブリンク",
+              "placeholder": "URLを入力…"
+            },
+            "description": {
+              "label": "説明",
+              "placeholder": "説明を入力…"
+            },
+            "private_notice":
+              "ここで入力された情報はすべてイーサリアムの公開ネットワークに格納されますが、サイト上では非公開となります。",
+            "public_notice":
+              "ここで入力された情報はすべてイーサリアムの公開ネットワークに格納され、サイト上で表示されます。"
+          }
+        },
+        "fulfiller_application": {
+          "title": "アプリケーションの詳細を入力して下さい",
+          "description":
+            "この報奨を完了する候補としてあなたが相応しいと考える理由を説明して下さい。関連した業務や経験のリンクも適宜ご提供下さい。",
+          "form": {
+            "message": {
+              "label": "アプリケーション",
+              "placeholder": "メッセージを入力…"
+            }
+          }
+        },
+        "increase_payout": {
+          "title": "報奨の支払額を増加する",
+          "description1":
+            "支払いを増やす金額を入力して下さい。コストをカバーするために追加の残高を含めることができます。<br /><br /><em>残高の総額は新しい報奨金の額 ({token_symbol})より多くなければなりません。</em> 現在の残高は、<span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span> です。現在の支払い金額は、 <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>です。",
+          "description2":
+            "支払いを増やす金額を入力して下さい。<br /><br /><em>残高の総額は新しい報奨金の額 ({token_symbol})より多くなければなりません。</em> 現在の残高は <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}です</span>。 現在の支払い金額は <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}です。</span>",
+          "balance_warning":
+            "報奨額の残高は、支払い額よりも大きくなければなりません。",
+          "payout_warning":
+            "支払いの額は、前の支払い額より大きくなければなりません。",
+          "form": {
+            "balance": {
+              "label": "入金する金額 ({token_symbol})",
+              "placeholder": "金額を入力…"
+            },
+            "fullfillment_amount": {
+              "label": "報奨の新しい金額 ({token_symbol})",
+              "placeholder": "金額を入力…"
+            }
+          }
+        },
+        "kill_bounty": {
+          "title": "報奨をディアクティベートして良いですか？",
+          "description":
+            "気が変わった場合、あとでいつでも再アクティベートすることが可能です。"
+        },
+        "transfer_ownership": {
+          "title": "所有権を移転",
+          "description":
+            "報奨を移転したい相手先のウォレットのアドレスを入力して下さい。",
+          "form": {
+            "new_owner": {
+              "placeholder": "ウォレットのアドレスを入力…"
+            }
+          }
+        }
+      }
+    },
+    "create_bounty": {
+      "zero_state": {
+        "title": "報奨が見つかりませんでした",
+        "description": "リフレッシュするか、またはURLが正しいかを確認して下さい"
+      },
+      "deposit_warning":
+        "入金する額は少なくとも支払い額と同じでなければなりません。",
+      "payout_warning": "支払い額がアカウントの残高を超えてはいけません。",
+      "actions": {
+        "create": "報奨を作成",
+        "edit": "報奨を編集",
+        "draft": "ドラフトを作成",
+        "update_draft": "ドラフトを更新",
+        "update_bounty": "報奨を更新"
+      },
+      "sections": {
+        "about": {
+          "title": "この報奨について",
+          "description": "この報奨についての詳細を入力して下さい。",
+          "notice": "報奨のタイトルと説明を入力して下さい。",
+          "notice2":
+            "入力すると同時にプレビューが自動的に生成され、プレビューボタンをクリックすると確認できます。下に表示される説明用テンプレートを使用するか、フィールドをクリアしてから自由に作成して下さい。",
+          "form": {
+            "title": {
+              "label": "タイトル",
+              "placeholder": "タイトルを入力…"
+            },
+            "description": {
+              "label": "説明"
+            }
+          }
+        },
+        "contact": {
+          "title": "連絡先",
+          "description":
+            "報奨の質問や送信における主な連絡先を入力して下さい。",
+          "form": {
+            "issuer_name": {
+              "label": "連絡先の名前",
+              "placeholder": "名前を入力…"
+            },
+            "issuer_email": {
+              "label": "連絡先のメール",
+              "placeholder": "メールを入力…"
+            }
+          }
+        },
+        "details": {
+          "title": "詳細",
+          "description": "この報奨はどのように分類すべきですか？",
+          "notice":
+            "報奨のカテゴリーと難易度を入力して下さい。難易度はかなり主観的になりうるため、必要な経験やスキルの詳細を報奨の説明において示すのが望ましいでしょう。",
+          "form": {
+            "categories": {
+              "label": "報奨のカテゴリー",
+              "placeholder": "カテゴリーを作成または選択…"
+            },
+            "experience_level": {
+              "label": "難易度",
+              "options": {
+                "beginner": "初級",
+                "intermediate": "中級",
+                "expert": "上級"
+              }
+            }
+          }
+        },
+        "revisions": {
+          "title": "改訂",
+          "description": "改訂が必要ですか？",
+          "notice":
+            "コントリビュータに作業量の目安が分かるよう、このタスクで必要となる改訂の最大回数を入力して下さい。"
+        },
+        "attachments": {
+          "title": "添付ファイル",
+          "description":
+            "この報奨を完了するためには外部のファイルなどが必要ですか？",
+          "notice":
+            "コントリビュータが報奨を完了するために必要、もしくは有用なファイルやリンクを添付して下さい。",
+          "form": {
+            "url": {
+              "label": "ウェブのリンク",
+              "placeholder": "URLを入力…"
+            },
+            "file": {
+              "label": "関連するファイル"
+            }
+          }
+        },
+        "deadline": {
+          "title": "期限",
+          "description": "この報奨の期限はいつですか？",
+          "notice":
+            "この報奨の期限となる日時{timezone, select, null { } other {(timezone={timezone})}}を入力して下さい"
+        },
+        "privacy": {
+          "title": "プライバシー",
+          "description": "提出内容は誰でも見ることができますか？",
+          "notice": "必要に応じて、提出内容を他のユーザには非表示とすることが可能です。",
+          "form": {
+            "fulfillers_need_approval": {
+              "label": "事前承認が必要",
+              "placeholder": "URLを入力して下さい…",
+              "options": {
+                "yes": "はい",
+                "no": "いいえ"
+              }
+            },
+            "private_fullfillments": {
+              "label": "視認性",
+              "description":
+                "報奨の対象となる作業を行う前に承認しますか？",
+              "notice":
+                "承認を必要とする場合、ユーザが送信する意図を示した時にあなたに通知されます。報奨を完了するには、ユーザは承認される必要があります。",
+              "options": {
+                "public": "公開",
+                "hidden": "非公開"
+              }
+            }
+          }
+        },
+        "payout": {
+          "title": "支払い",
+          "description": "支払いの方法と金額を選択して下さい。",
+          "notice":
+            "トークンを選択し、この報奨の完了時に支払う金額を入力して下さい。",
+          "form": {
+            "token_contract": {
+              "label_default": "トークンのコントラクトアドレス",
+              "label_custom": "{token} コントラクトアドレス",
+              "placeholder": "トークンのコントラクトアドレスを入力して下さい…"
+            },
+            "method": {
+              "label": "支払い方法"
+            },
+            "fulfillment_amount": {
+              "label":
+                "支払い金額 {hasDefaultToken, select, true {} false {(ETH またはトークン)}}",
+              "placeholder": "金額を入力して下さい…"
+            },
+            "token_contract_2": {
+              "label": "トークン",
+              "placeholder": "トークンを選択するか、トークンのアドレスを入力して下さい…"
+            }
+          }
+        },
+        "payout_editing": {
+          "title": "支払い",
+          "description": "支払い金額を入力して下さい",
+          "notice":
+            "報奨の完了に対して支払う金額を入力して下さい。支払い額が、現在の <span class=\"{textHighlight}\">{balance} {token_symbol} 残高より大きくてはいけません</span>。　報奨に資金を追加したい場合、<a href=\"{increaseBalanceUrl}\">残高を増加</a>して下さい。",
+          "form": {
+            "token_contract": {
+              "label_default": "トークンのコントラクトアドレス",
+              "label_custom": "{token} コントラクトアドレス",
+              "placeholder": "トークンのコントラクトアドレスを入力して下さい…"
+            },
+            "method": {
+              "label": "支払い方法"
+            },
+            "fulfillment_amount": {
+              "label":
+                "支払い金額 {hasDefaultToken, select, true {} false {(ETH またはトークン)}}",
+              "placeholder": "金額を入力…"
+            },
+            "token_contract_2": {
+              "label": "トークン",
+              "placeholder": "トークンを選択するか、トークンのアドレスを入力して下さい…"
+            }
+          }
+        },
+        "save": {
+          "title": "保存または提出",
+          "description":
+            "いつ報奨を提出しアクティベートしますか",
+          "notice":
+            "報奨をあとでアクティベートしたい場合、ドラフトとして保存することができます。報奨の要件は報奨がドラフトの状態である間だけ編集可能です。入金の額は、少なくとも支払いの金額と同じでなければなりません。",
+          "form": {
+            "activate_now": {
+              "label": "いつアクティベートするか",
+              "options": {
+                "now": "現在",
+                "later": "あとで"
+              }
+            },
+            "balance": {
+              "label": "入金する金額 (ETH またはトークン)",
+              "placeholder": "金額を入力…"
+            }
+          }
+        }
+      }
+    },
+    "dashboard": {
+      "profile_strength": "プロファイルの強さ",
+      "edit_profile": "プロファイルを編集"
+    },
+    "explorer_body": {
+      "bounty_count": "{count, plural, =1 {bounty} other {bounties}}",
+      "zero_state": {
+        "title": "報奨は見つかりません",
+        "description": "報奨をさらに見るためには、検索フィルターを更新して下さい"
+      },
+      "zero_state_error": {
+        "title": "おやおや、何かが起こりました",
+        "description": "新しいフィルターにするか、ページをリフレッシュし、再度試してみてください"
+      }
+    },
+    "leaderboard": {
+      "title": "Leaderboard",
+      "banner": {
+        "top_issuers": "トップの報奨作成者",
+        "top_earners": "トップのフルフィラー"
+      }
+    },
+    "leaderboard_card": {
+      "zero_state": {
+        "title": "結果がまだありません",
+        "description":
+          "報奨の作成や提出の完了が多くなるにつれて、このリーダーボードの人気が上がります"
+      },
+      "zero_state_error": {
+        "title": "おやおや、何かが起こりました",
+        "description": "ページをリフレッシュし、再度試してみてください"
+      }
+    },
+    "login": {
+      "modals": {
+        "details": {
+          "title": "プロファイルの詳細",
+          "description":
+            "プロファイルの詳細を追加して下さい。これによって、あなたの背景やスキルセットを本ネットワークの他の人が分かるようになり、サイト上の他の場所であなたを見つけることができます。",
+          "description2":
+            "バウンティーズ・ネットワークにようこそ！ あなたの報奨を楽しみにしています！<br /> <br /> 始める前に、プロファイルの詳細を是非追加して下さい。\n            あなたの背景やスキルセットを本ネットワークの他の方と共有しましょう。",
+          "actions": {
+            "skip": "スキップ",
+            "add": "プロファイルの詳細を追加して下さい"
+          }
+        },
+        "address_mismatch": {
+          "title": "ウォレットのアドレスが一致しません",
+          "description1": "前回、バウンティーズ・ネットワークに",
+          "description2": "サインインするために使用していたのは",
+          "description3": "次のアドレスです：",
+          "description4": 
+            "このアドレスは、あなたの現在のウォレットのアカウントアドレスと一致しません：",
+          "description5":
+            "ウォレットのアカウントを切り替えるか、一度ログアウトし異なるアドレスを使用してサインインして下さい。"
+        },
+        "error": {
+          "title": "異常が発生しました。後で再度実行して下さい。"
+        },
+        "sign_in": {
+          "title": "サインインしてアドレスを確認",
+          "description":
+            "\"続ける\"をクリックすると、あなたの固有のアドレスを確認するよう、ウォレットのダイアログが表示されます。確認の完了後、本ネットワークへのサインインが実行されます。"
+        },
+        "signing_in": {
+          "title":
+            "署名のリクエストを完了してアドレスを確認し、サインインして下さい"
+        },
+        "unlock": {
+          "title": "セキュアなウォレットアクセス",
+          "description1":
+            "ログインしてセキュアなウォレットへのアクセスを許可する必要があります。",
+          "description2":
+            "{pageLevel, select, null {parts of} other { }} {networkName}を使用するためです。"
+        },
+        "wallet_required": {
+          "title": "Web3対応ブラウザとセキュアなウォレットが必要です",
+          "description1": "利用するためには、",
+          "description2": "セキュアなウォレットをインストールして下さい。 例： ",
+          "description3":
+            "設定でヘルプが必要な場合、",
+          "guide": "「Getting Started ガイド」を参照して下さい",
+          "actions": {
+            "visit": "{walletName}を訪れる"
+          }
+        },
+        "wrong_network": {
+          "title": "外部のネットワークが検出されました",
+          "description1": "{networkName} は現在機能しています on ",
+          "description2": "アクティブなウォレットのネットワークを切り替えて下さい。"
+        }
+      }
+    },
+    "notifications": {
+      "title": "通知",
+      "actions": {
+        "mark_read": "全部を読了にする"
+      },
+      "zero_state": {
+        "title": "通知はありません",
+        "description":
+          "本プラットフォームの使用を開始すると、通知がここに表示されます。"
+      }
+    },
+    "profile": {
+      "about": {
+        "title": "概要",
+        "organization": "組織・団体",
+        "languages": "使用する言語"
+      },
+      "elsewhere": {
+        "title": "他の場所"
+      },
+      "skills": {
+        "title": "スキル"
+      },
+      "network": {
+        "title": "ネットワークの統計",
+        "descriptions": {
+          "issuer": {
+            "acceptance": "フルフィルメント承認率",
+            "rating": "報奨作成者の平均評価を受信しました",
+            "ratingGiven": "フルフィラーの平均評価が付与されました"
+          },
+          "fulfiller": {
+            "acceptance": "提出の承認率",
+            "rating": "フルフィラーの平均評価を受信しました",
+            "ratingGiven": "報奨作成者の平均評価が付与されました"
+          }
+        }
+      },
+      "tabs": {
+        "bounties": "提出した報奨",
+        "submissions": "提出"
+      },
+      "reviews": {
+        "title": "{reviewType} 評価を受信しました",
+        "zero_state": {
+          "title": "レビューがありません",
+          "description":
+            "このアクションに関連したレビューが見つかりませんでした。"
+        }
+      },
+      "zero_state": {
+        "title": "ユーザが見つかりません",
+        "description": "アドレスが正しいことを確認し、再度実行して下さい"
+      },
+      "zero_state_error": {
+        "title": "エラー",
+        "description": "再度実行して下さい"
+      }
+    },
+    "settings": {
+      "title": "アカウント設定",
+      "messages": {
+        "profile_saved": "プロファイルが保存されました",
+        "email_saved": "メールの設定が保存されました"
+      },
+      "modals": {
+        "unsaved_changes": {
+          "title": "変更を破棄しますか？",
+          "description":
+            "変更を確認せずこのページから移動する場合、変更は破棄され、プロファイルは以前の状態に戻ります。"
+        }
+      },
+      "emails": {
+        "title": "メールによる通知",
+        "description":
+          "メールでどのような通知を受け取りたいですか？",
+        "notice":
+          "メールで受信する通知を選択して設定して下さい。当ネットワークの重要なイベントに関する情報を受け取れるよう、デフォルトの設定を変更しないことを推奨します。",
+        "actions": {
+          "save": "メールの優先設定を保存"
+        },
+        "notification_options": {
+          "rating_received": "ユーザがあなたの評価を記入します",
+          "transfer_recipient": "他のユーザへの報奨の移転が完了します",
+          "bounty_comment_received":
+            "あなたが完了した報奨にコメントが付きました",
+          "bounty_comment_received_issuer": "あなたの報奨にコメントが付きました",
+          "bounty_comment_received_commenter":
+            "あなたがコメントした報奨にコメントが付きました",
+          "fulfillment_comment_received": "あなたの提出にコメントが付きました",
+          "fulfillment_comment_received_issuer":
+            "あなたの報奨に対する提出内容にコメントが付きました",
+          "fulfillment_comment_received_commenter":
+            "あなたがコメントした提出内容にコメントが付きました",
+          "bounty_expired": "報奨が失効しました",
+          "bounty_changed": "あなたが完了した報奨が変更されました",
+          "bounty_changed_applicant": "応募した報奨が変更されました",
+          "fulfillment_updated_issuer":
+            "フルフィラー、あなたの報奨への提出を更新",
+          "fulfillment_submitted_issuer":
+            "フルフィラー、あなたの報奨への新しいフルフィルメントを提出",
+          "fulfillment_accepted_fulfiller": "報奨作成者があなたの提出を承認しました",
+          "contribution_received":
+            "他のユーザが報奨に寄付しました",
+          "bounty_completed": "報奨には支払いに十分な資金がありません",
+          "application_received": "報奨に新しいフルフィラーが応募しています",
+          "application_accepted_applicant": "報奨作成者があなたの応募を承認しました",
+          "application_rejected_applicant": "報奨作成者があなたの応募を却下しました",
+          "activity": "一般的なアクティビティ（プロファイル更新、報奨の新規作成など）"
+        }
+      },
+      "user": {
+        "photo": {
+          "title": "プロファイルの写真",
+          "label": "画像のアップロードが失敗しました。再度実行して下さい。"
+        },
+        "about": {
+          "title": "あなたについて",
+          "description": "他の人にどのようなことを知らせたいですか？",
+          "notice":
+            "あなたの事がコミュニティに分かるよう、あなた自身の個人的な詳細などを入力して下さい。",
+          "form": {
+            "name": {
+              "label": "名前",
+              "placeholder": "名前を入力…"
+            },
+            "organization": {
+              "label": "組織・団体",
+              "placeholder": "組織・団体を入力…"
+            },
+            "languages": {
+              "label": "言語",
+              "placeholder": "言語を選択…"
+            }
+          }
+        },
+        "skills": {
+          "title": "スキル",
+          "description":
+            "業務や技術に関するスキルは、どのようなものですか？",
+          "notice":
+            "得意とするスキルを入力または選択して下さい。これによって、あなたが一定の型の報奨を完了する技能を有することを本ネットワークの他の人が分かるようになります。",
+          "label": "スキル",
+          "placeholder": "スキルを作成または選択…"
+        },
+        "social": {
+          "title": "ソーシャル",
+          "description":
+            "他に表示を希望するプロファイルや情報はありますか？",
+          "form": {
+            "web": {
+              "label": "個人のウェブサイト"
+            }
+          }
+        },
+        "contact": {
+          "title": "連絡先",
+          "description":
+            "報奨やフルフィルメントに関するステータスの通知をどこで受け取りたいですか？",
+          "form": {
+            "email": {
+              "label": "連絡先のメール",
+              "placeholder": "メールを入力…"
+            },
+            "marketing": {
+              "label":
+                "関連する報奨の示唆やサイトの更新情報の受信も希望します"
+            }
+          },
+          "actions": {
+            "submit": "詳細を送信",
+            "update": "プロファイルを更新"
+          }
+        }
+      }
+    },
+    "submissions": {
+      "title": "送信",
+      "tabs": {
+        "received": "受信しました",
+        "submitted": "送信しました"
+      },
+      "headers": {
+        "title": "報奨のタイトル",
+        "fulfiller": "フルフィラー",
+        "date": "送信日",
+        "status": "ステータス",
+        "payment": "支払い額"
+      },
+      "zero_state": {
+        "title": "あなたの送信は {currentTab} 0 です",
+        "description":
+          "提出が何もないようです。フルフィルメント{currentTab}を行ってから再度アクセスして下さい！"
+      }
+    },
+    "user_stats": {
+      "bounties_issued": "報奨が発行されました",
+      "bounties_completed": "報奨が完了しました",
+      "awarded": "報奨金が付与",
+      "earned": "獲得"
+    }
+  },
+  "components": {
+    "applicant_stage": {
+      "accepted": "承認されました",
+      "declined": "辞退されました",
+      "pending": "保留中",
+      "default": "承認を保留中"
+    },
+    "bounty_card": {
+      "difficulty": "難易度",
+      "difficulty_options": {
+        "beginner": "初級",
+        "intermediate": "中級",
+        "advanced": "上級"
+      },
+      "submissions_count":
+        "{count, plural, =1 {submission} 他 {submissions}}"
+    },
+    "bounty_item": {
+      "text":
+        "作成 {time} {submissionCount, plural, =1 {? # submission} 他 {? # submissions}}",
+      "draftText": "作成 {time}"
+    },
+    "essentials": {
+      "balance": "残高"
+    },
+    "filter_nav": {
+      "sort_options": {
+        "bounty_created": "最新の",
+        "usd_price": "バリュー: 高 → 低",
+        "deadline": "失効"
+      },
+      "refine": "絞り込み",
+      "platform": "プラットフォーム",
+      "category": "カテゴリー",
+      "difficulty": "難易度",
+      "stage": "ステージ",
+      "checkbox": {
+        "active": "アクティブ",
+        "completed": "完了",
+        "expired": "失効",
+        "dead": "無効"
+      }
+    },
+    "fulfillment_stage": {
+      "accepted": "承認されました",
+      "not_accepted": "承認されませんでした"
+    },
+    "submission": {
+      "title": "報奨のタイトル",
+      "status": "ステータス",
+      "date": "送信日",
+      "fulfiller": "フルフィラー",
+      "amount": "支払い額"
+    },
+    "tx_guide": {
+      "title": "あなたのウォレットがこれから使えるようになります！",
+      "description":
+        "\"OK\"をクリックすると、ウォレットのダイアログが表示され、イーサリアムの取引を確認し、少額のETHを（gasフィーとして）支払うよう促します。",
+      "notice": "デフォルトのgas上限と価格が設定されます",
+      "messages": {
+        "waiting":
+          "取引がブロックチェーン上で確認されるのを待機しています…",
+        "confirmed": "取引が確認されました！",
+        "pending_receipt":
+          "取引が処理されています。確認され次第、お知らせします。",
+        "pending_wallet":
+          "イネーブルされたウォレットによるイーサリアムの取引を確認しています。少々お待ち下さい。"
+      }
+    },
+    "editor": {
+      "preview": "プレビュー",
+      "default":
+        "# 説明\n完了を希望する報奨について目的や内容を記述して下さい。\n\n## 要件\n報奨の提出者に対する要件はどのようなものですか？ 報奨にルールや制約はありますか？ 報奨を完了するために必要な前提条件などはありますか？\n\n* 項目 1\n* 項目 2\n* 項目 3\n\n## 完了の定義\n報奨のフルフィラーは完了時の証明として何を提出しますか？ フルフィラーは報奨を承認されるためには提出時に何を含める必要がありますか？\n\n1. 項目 1\n2. 項目 2\n3. 項目 3\n\n### 留意事項\nフルフィラーが報奨やあなたについて知っておくべき情報は他にありますか？ その報奨が必要とするものや情報は他にありますか？"
+    },
+    "notifications": {
+      "fulfilLment_submitted": "提出しました",
+      "fulfilLment_submitted_issuer": "提出を受け取りました",
+      "bounty_activated": "報奨をアクティベートしました",
+      "fulfillment_accepted": "提出を承認しました",
+      "fulfillment_accepted_fulfiller": "提出が承認されました",
+      "bounty_expired": "報奨が失効しました",
+      "bounty_issued": "新しい報奨を作成しました",
+      "bounty_killed": "報奨を削除しました",
+      "contribution_added": "寄付しました",
+      "deadline_extended": "期限を延長しました",
+      "bounty_changed": "提出した報奨が更新されました",
+      "bounty_changed_issuer": "報奨を更新しました",
+      "bounty_changed_applicant": "申請した報奨が更新されました",
+      "issuer_transferred": "報奨の所有権を移転しました",
+      "transfer_recipient": "報奨の所有権があなたに移転されました",
+      "payout_increased": "支払いを増額しました",
+      "bounty_comment_received": "作業を行った報奨にコメントが付きました",
+      "bounty_comment_received_issuer": "報奨にコメントが付きました",
+      "bounty_comment_received_commenter":
+        "あなたがコメントした報奨にコメントが付きました",
+      "fulfillment_comment_received": "送信にコメントが付きました",
+      "fulfillment_comment_received_issuer":
+        "あなたの報奨に対する提出にコメントが付きました",
+      "fulfillment_comment_received_commenter":
+        "あなたがコメントした送信にコメントが付きました",
+      "bounty_issue_activated": "新しい報奨を投稿しました",
+      "fulfillment_updated": "送信を更新しました",
+      "fulfillment_updated_issuer": "報奨への提出が更新されました",
+      "rating_issued": "レビューを書きました",
+      "rating_received": "評価を受信しました",
+      "profile_updated": "プロファイルを更新しました",
+      "comment_issued": "コメントを書きました",
+      "fulfillment_comment_issued": "コメントを書きました",
+      "draft_created": "ドラフトを作成しました",
+      "draft_updated": "ドラフトを更新しました",
+      "contribution_received": "寄付を受け取りました",
+      "bounty_completed": "報奨の資金がなくなりました",
+      "application_created": "申請を送信しました",
+      "application_received": "新しい申請を受け取りました",
+      "application_accepted_application": "申請が承認されました",
+      "application_accepted_issuer": "申請を承認しました",
+      "application_rejected_applicant": "申請が却下されました",
+      "application_rejected_issuer": "申請を却下しました"
+    }
+  },
+  "hocs": {
+    "require_login": {
+      "zero_state": {
+        "title": "バウンティーズ・ネットワークを使用するには、サインインして下さい",
+        "body":
+          "報奨の作成や業務の執行、コメントの記入、ネットワークの統計閲覧といった本ネットワークの機能を活用するためには、セキュアなウォレットを用いてサインインして下さい。",
+        "subtext":
+          "サインインせずに閲覧したい場合、を使ってお気軽に報奨金をご確認下さい",
+        "action": "サインイン"
+      },
+      "explorer": "エクスプローラ"
+    }
+  },
+  "errors": {
+    "500": "異常な状態が発生しました。後でもう一度試してみて下さい。",
+    "404": "見つかりません",
+    "form_error": "上のエラーを修正して再送信して下さい。"
+  },
+  "validation": {
+    "required": "* 必須",
+    "max": "{max} 文字以下でなければなりません",
+    "min": "{min} 文字以上でなければなりません",
+    "max_decimals": "小数点以下{max}桁以内でなければなりません",
+    "min_value": "{min}より大きくなければなりません",
+    "mineq_value": "{min}以上でなければなりません",
+    "min_date": "日付は{date}以降でなければなりません",
+    "length": "{length}字でなければなりません",
+    "web3": "適切なweb3アドレスでなければなりません",
+    "number": "数字でなければなりません",
+    "email": "無効なメールアドレス",
+    "alfa_num": "英数字のみ",
+    "twitter": "無効なTwitterハンドル",
+    "github": "無効なGithubハンドル",
+    "url": "無効なURL"
+  },
+  "common": {
+    "description": "記述",
+    "expired": "失効",
+    "remaining": "残り",
+    "difficulty": "難易度",
+    "expected": "期待される",
+    "and": "および",
+    "payout": "支払い"
+  },
+  "stages": {
+    "draft": "ドラフト",
+    "active": "アクティブ",
+    "dead": "",
+    "completed": "完了",
+    "expired": "失効"
+  },
+  "formats": {
+    "amount": "{value, number}",
+    "usd": "{value, number, USD}"
+  }
+}
