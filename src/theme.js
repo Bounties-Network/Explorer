@@ -92,47 +92,64 @@ export const textStyles = {
 };
 
 // COLOR PALETTE
-const purple = '#5a28c6';
-const blue = '#4a93ff';
-const red = '#d14545';
-const orange = '#fbaa31';
-const green = '#6fc78d';
+const lightPurple = 'hsl(259, 55%, 55%)';
+const purple = 'hsl(259, 66%, 47%)';
+const darkPurple = 'hsl(259, 66%, 37%)';
+const lightBlue = 'hsl(216, 100%, 98%)';
+const blue = 'hsl(216, 100%, 65%)';
+const darkBlue = 'hsl(216, 80%, 55%)';
+const red = 'hsl(353, 64%, 67%)';
+const darkRed = 'hsl(353, 64%, 60%)';
+const orange = 'hsl(36, 96%, 59%)';
+const green = 'hsl(140, 44%, 61%)';
+const darkGreen = 'hsl(141, 44%, 51%)';
 
-// Brand aliases
+// Brand color aliases
 const brandPrimary = purple;
+const brandPrimaryHover = darkPurple;
 const brandSecondary = blue;
+const brandSecondaryHover = darkBlue;
 const brandDestructive = red;
+const brandDestructiveHover = darkRed;
 const brandWarning = orange;
 const brandAffirmative = green;
+const brandAffirmativeHover = darkGreen;
 
-// Grayscale
-const black = '#2d2838';
-const darkPurple = '#2d2838';
-const gray400 = '#615e67';
-const gray300 = '#a09ca8';
-const gray200 = '#d9d8de';
-const gray100 = '#f1f0f6';
-const white = '#ffffff';
+// Gray-scale
+const black = 'hsl(223, 17%, 8%)';
+const purpleBlack = 'hsl(262, 12%, 19%)';
+const gray500 = 'hsl(223, 9%, 29%)';
+const gray400 = 'hsl(218, 10%, 57%)';
+const gray300 = 'hsl(223, 10%, 86%)';
+const gray200 = 'hsl(225, 9%, 91%)';
+const gray100 = 'hsl(220, 30%, 96%)';
+const white = 'hsl(0, 0%, 100%)';
 
 // Misc
-const text = gray400;
-const inputBg = '#faf9fd';
+const text = gray500;
+const inputBg = gray100;
 const baseBorderColor = gray200;
 
 const colors = {
   brandPrimary,
-  brandPrimaryDark,
+  brandPrimaryHover,
   brandSecondary,
+  brandSecondaryHover,
   brandDestructive,
+  brandDestructiveHover,
   brandWarning,
   brandAffirmative,
-  gray100,
-  gray200,
-  gray300,
-  gray400,
-  white,
+  brandAffirmativeHover,
+  lightPurple,
+  lightBlue,
   black,
-  darkPurple,
+  purpleBlack,
+  gray500,
+  gray400,
+  gray300,
+  gray200,
+  gray100,
+  white,
   text,
   inputBg,
   baseBorderColor
@@ -155,7 +172,7 @@ export { borders };
 // PAGE WRAPPER
 export const maxContainerWidth = '1280px';
 
-// BOXSHADOWS
+// BOX SHADOWS
 export const shadows = [
   `0px 2px 4px rgba(${colors.black}, 0.075)`,
   `0 0 10px ${colors.gray200}`,
