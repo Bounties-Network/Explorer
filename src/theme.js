@@ -26,6 +26,7 @@ export const space = [0, 4, 8, 16, 32, 40, 64, 128];
 
 // TYPOGRAPHY //
 export const font = '"Inter", -apple-system, BlinkMacSystemFont, sans-serif';
+export const fontMonospace = 'monospace';
 export const fontSizes = [12, 14, 16, 20, 25, 32];
 
 // Weights
