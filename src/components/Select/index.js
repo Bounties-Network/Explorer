@@ -18,7 +18,6 @@ class Select extends React.Component {
   render() {
     const {
       options,
-      onChange,
       placeholder,
       label,
       disabled,

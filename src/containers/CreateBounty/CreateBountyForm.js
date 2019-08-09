@@ -16,6 +16,7 @@ import { getTimezone } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
 import { Link } from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import handleChooseTemplate from './Templates';
 
 import moment from 'moment';
 import {
@@ -43,7 +44,8 @@ import {
   DIFFICULTY_OPTIONS,
   PAYOUT_OPTIONS,
   UPLOAD_KEY,
-  VISIBILITY_OPTIONS
+  VISIBILITY_OPTIONS,
+  templateOptions
 } from './constants';
 import config from 'public-modules/config';
 import defaultShouldAsyncValidate from 'redux-form/es/defaultShouldAsyncValidate';
@@ -52,37 +54,6 @@ import intl from 'react-intl-universal';
 
 const formSelector = formValueSelector('createBounty');
 
-const templateOptions = [
-  { value: 'default', label: 'Default' },
-  { value: 'proof-of-action', label: 'Proof of Action' },
-  { value: 'code', label: 'Code' },
-  { value: 'graphic-design', label: 'Graphic Design' },
-  { value: 'translation', label: 'Translation' },
-  { value: 'idea-generation', label: 'Idea Generation' },
-  {
-    value: 'feedback-and-critique',
-    label: 'Feedback & Critique'
-  },
-  { value: 'survey', label: 'Survey' },
-  { value: 'recruitment', label: 'Recruitment' }
-];
-
-const templates = [
-  {
-    value: 'default',
-    about:
-      'This is a short description of the template that has been selected above. It provides some insight into how this template might be used, in addition to some potential example use cases.',
-    description: ''
-  },
-  { value: 'proof-of-action', label: 'Proof of Action' },
-  { value: 'code', label: 'Code' },
-  { value: 'graphic-design', label: 'Graphic Design' },
-  { value: 'translation', label: 'Translation' },
-  { value: 'idea-generation', label: 'Idea Generation' },
-  { value: 'feedback-and-critique', label: 'Feedback & Critique' },
-  { value: 'survey', label: 'Survey' },
-  { value: 'recruitment', label: 'Recruitment' }
-];
 class CreateBountyFormComponent extends React.Component {
   handleCreateBounty = values => {
     const { activateNow, balance, ...bountyValues } = values;
@@ -129,12 +100,6 @@ class CreateBountyFormComponent extends React.Component {
   state = {
     selectedTemplate: { value: 'default', label: 'Default' },
     overwrittenDescription: ''
-  };
-  handleChangeTemplate = selectedTemplate => {
-    this.setState({
-      selectedTemplate,
-      overwrittenDescription: 'poop'
-    });
   };
 
   handleSubmit = values => {
@@ -289,7 +254,7 @@ class CreateBountyFormComponent extends React.Component {
                       )}
                       defaultValue={{ value: 'default', label: 'Default' }}
                       options={templateOptions}
-                      onChange={this.handleChangeTemplate}
+                      onChange={handleChooseTemplate}
                     />
                   </div>
                   <div className="col-xs-12">

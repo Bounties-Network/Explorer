@@ -183,8 +183,8 @@ class Textbox extends React.Component {
               error // style related props
             }
             resizable={resizable.toString()}
-            maxHeight={maxHeight}
-            minHeight={minHeight}
+            max-height={maxHeight}
+            min-height={minHeight}
             placeholder={
               placeholder // regular props
             }
@@ -212,7 +212,6 @@ class Textbox extends React.Component {
                   typeScale="Small"
                   color="defaultGrey"
                   weight="fontWeight-bold"
-                  color="darkGrey"
                 >
                   *bold*
                 </Text>
