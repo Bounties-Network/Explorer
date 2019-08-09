@@ -11,7 +11,7 @@ import {
 } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import { ThemeProvider } from 'styled-components';
-//import theme from './theme.js';// Uncomment when ready to activate theme.js
+import theme from './theme.js';
 import { BigNumber } from 'bignumber.js';
 import { reducers, sagaWatchers } from 'public-modules';
 import explorerSagas from './sagas';
@@ -31,7 +31,7 @@ import 'intl/locale-data/jsonp/en.js';
 // import 'moment/locale/hr.js';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!./styles/variables.scss');
+//const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!./styles/variables.scss');
 
 // never return number formated as exponential
 BigNumber.config({ EXPONENTIAL_AT: 1e9 });

@@ -26,7 +26,7 @@ export const space = [0, 4, 8, 16, 32, 40, 64, 128];
 
 // TYPOGRAPHY //
 export const font = '"Inter", -apple-system, BlinkMacSystemFont, sans-serif';
-export const fontSizes = [12, 14, 16, 20, 24, 32];
+export const fontSizes = [12, 14, 16, 20, 25, 32];
 
 // Weights
 export const regular = 400;
@@ -41,8 +41,10 @@ export const fontWeights = {
 
 // Line-height
 export const lineHeights = {
-  standard: 1.5,
-  heading: 1.25
+  standard: 1.6,
+  small: 1.3,
+  heading: 1.25,
+  reset: 1
 };
 
 // Scale
@@ -90,17 +92,22 @@ export const textStyles = {
 };
 
 // COLOR PALETTE
-
-//Brand
 const purple = '#5a28c6';
-const darkPurple = '#2d2838';
 const blue = '#4a93ff';
 const red = '#d14545';
 const orange = '#fbaa31';
 const green = '#6fc78d';
 
-//Grayscale
+// Brand aliases
+const brandPrimary = purple;
+const brandSecondary = blue;
+const brandDestructive = red;
+const brandWarning = orange;
+const brandAffirmative = green;
+
+// Grayscale
 const black = '#2d2838';
+const darkPurple = '#2d2838';
 const gray400 = '#615e67';
 const gray300 = '#a09ca8';
 const gray200 = '#d9d8de';
@@ -113,18 +120,19 @@ const inputBg = '#faf9fd';
 const baseBorderColor = gray200;
 
 const colors = {
-  purple,
-  darkPurple,
-  blue,
-  red,
-  orange,
-  green,
+  brandPrimary,
+  brandPrimaryDark,
+  brandSecondary,
+  brandDestructive,
+  brandWarning,
+  brandAffirmative,
   gray100,
   gray200,
   gray300,
   gray400,
   white,
   black,
+  darkPurple,
   text,
   inputBg,
   baseBorderColor
@@ -134,15 +142,25 @@ export { colors };
 
 // BORDERS
 // styled-system's 'borderRadius' function can hook into the 'radii' object/array
-export const radii = [0, 3];
-export const radius = '3px';
+export const radii = [0, 6, 8];
+export const radius = '8px';
 
-//PAGE WRAPPER
+const baseBorder = `1px solid ${colors.baseBorderColor}`;
+const lightBorder = `1px solid ${colors.gray100}`;
+
+const borders = [baseBorder, lightBorder];
+
+export { borders };
+
+// PAGE WRAPPER
 export const maxContainerWidth = '1280px';
 
 // BOXSHADOWS
 export const shadows = [
-  //Box shadow styles to go here
+  `0px 2px 4px rgba(${colors.black}, 0.075)`,
+  `0 0 10px ${colors.gray200}`,
+  `inset 0 0 0 1px ${colors.brandSecondary}`,
+  `inset 0 0 0 1px ${colors.brandDestructive}`
 ];
 
 //Z-INDEX
