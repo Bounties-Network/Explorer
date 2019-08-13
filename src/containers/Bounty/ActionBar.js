@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import { Button } from 'components';
-import { DEAD, ACTIVE } from 'public-modules/Bounty/constants';
+import { DEAD, ACTIVE, COMPLETED } from 'public-modules/Bounty/constants';
 import { ModalManager } from './components';
 import intl from 'react-intl-universal';
 
@@ -60,7 +60,7 @@ const ActionBar = props => {
   if (!isDraft && belongsToLoggedInUser) {
     actionOptions = (
       <div className={styles.actionBar}>
-        {bounty.bounty_stage === DEAD ? (
+        {bounty.bounty_stage === DEAD && (
           <Button
             type="action"
             className={styles.reactivateButton}
@@ -71,16 +71,18 @@ const ActionBar = props => {
           >
             {intl.get('sections.bounty.actions.re_activate')}
           </Button>
-        ) : (
-          <Button
-            type="destructive"
-            className={styles.killButton}
-            fitWidth
-            onClick={() => initiateLoginProtection(() => showModal('kill'))}
-          >
-            {intl.get('sections.bounty.actions.de_activate')}
-          </Button>
         )}
+        {bounty.bounty_stage !== DEAD &&
+          bounty.bounty_stage !== COMPLETED && (
+            <Button
+              type="destructive"
+              className={styles.killButton}
+              fitWidth
+              onClick={() => initiateLoginProtection(() => showModal('kill'))}
+            >
+              {intl.get('sections.bounty.actions.de_activate')}
+            </Button>
+          )}
 
         {bounty.bounty_stage !== DEAD &&
           bounty.contract_version === 1 && (
