@@ -1,18 +1,23 @@
+/** @jsx jsx */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, Image, Flex, Box, Link } from 'rebass';
+import { jsx } from '@emotion/core';
+import css from '@styled-system/css';
+import { Text, Image, Flex, Link } from 'rebass';
 import { shortenAddress } from 'utils/helpers';
 
-const AvatarLink = props => (
-  <Link
-    {...props}
-    sx={{
-      ':hover': {
-        textDecoration: 'none'
-      }
-    }}
-  />
-);
+const LinkWrapper = props => {
+  return (
+    <Link
+      {...props}
+      css={css({
+        '&:hover': {
+          textDecoration: 'none'
+        }
+      })}
+    />
+  );
+};
 
 const Avatar = props => {
   const { name, address, img, hash, src, onClick } = props;
@@ -23,7 +28,7 @@ const Avatar = props => {
     }
 
     return (
-      <Text fontSize={1} sx={{ color: 'brandPrimary' }}>
+      <Text variant="h5" color="black">
         {name}
       </Text>
     );
@@ -35,17 +40,14 @@ const Avatar = props => {
     }
 
     return (
-      <Text
-        fontSize={1}
-        sx={{ lineHeight: 'reset', color: 'brandDestructive' }}
-      >
+      <Text variant="body" color="brandSecondary">
         {shortenAddress(address)}
       </Text>
     );
   };
 
   return (
-    <AvatarLink src={src ? src : '/profile/' + address} onClick={onClick}>
+    <LinkWrapper src={src ? src : '/profile/' + address} onClick={onClick}>
       <Flex alignItems="center">
         <Image
           width={5}
@@ -53,17 +55,17 @@ const Avatar = props => {
           src={img ? img : hash}
           type={img ? 'img' : 'blocky'}
           sx={{
-            borderRadius: '50%'
+            borderRadius: 3
           }}
         />
         {name || address ? (
-          <Box ml={2}>
+          <Flex ml={2} flexDirection="column" justifyContent="space-between">
             {renderName()}
             {renderAddress()}
-          </Box>
+          </Flex>
         ) : null}
       </Flex>
-    </AvatarLink>
+    </LinkWrapper>
   );
 };
 

@@ -11,6 +11,7 @@
     "@fortawesome/fontawesome-pro-solid": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.0",
     "@fortawesome/react-fontawesome": "0.0.20",
+    "@styled-system/css": "^5.0.23",
     "axios": "^0.18.0",
     "babel-plugin-emotion": "^10.0.15",
     "babel-plugin-styled-components": "^1.10.0",

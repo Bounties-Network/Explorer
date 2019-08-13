@@ -28,7 +28,7 @@ export const sizes = [0, 4, 8, 16, 32, 40, 64, 128];
 // TYPOGRAPHY //
 export const font = '"Inter", -apple-system, BlinkMacSystemFont, sans-serif';
 export const fontMonospace = 'monospace';
-export const fontSizes = [12, 14, 16, 20, 25, 32];
+export const fontSizes = [0.75, 0.875, 1, 1.25, 1.563, 2];
 
 // Weights
 export const regular = 400;
@@ -50,38 +50,38 @@ export const lineHeights = {
 };
 
 // Scale
-export const textStyles = {
-  heading4: {
+export const text = {
+  h1: {
     fontSize: fontSizes[5] + 'rem',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.heading
   },
-  heading3: {
+  h2: {
     fontSize: fontSizes[4] + 'rem',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.heading
   },
-  heading2: {
+  h3: {
     fontSize: fontSizes[3] + 'rem',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.heading
   },
-  heading1: {
+  h4: {
     fontSize: fontSizes[2] + 'rem',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.heading
   },
-  heading0: {
+  h5: {
     fontSize: fontSizes[1] + 'rem',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.heading
   },
-  body1: {
+  bodyLarge: {
     fontSize: fontSizes[2] + 'rem',
     fontWeight: fontWeights.regular,
     lineHeight: lineHeights.standard
   },
-  body0: {
+  body: {
     fontSize: fontSizes[1] + 'rem',
     fontWeight: fontWeights.regular,
     lineHeight: lineHeights.standard
@@ -128,7 +128,6 @@ const gray100 = 'hsl(220, 30%, 96%)';
 const white = 'hsl(0, 0%, 100%)';
 
 // Misc
-const text = gray500;
 const inputBg = gray100;
 const baseBorderColor = gray200;
 
@@ -152,7 +151,6 @@ const colors = {
   gray200,
   gray100,
   white,
-  text,
   inputBg,
   baseBorderColor
 };
@@ -161,7 +159,7 @@ export { colors };
 
 // BORDERS
 // styled-system's 'borderRadius' function can hook into the 'radii' object/array
-export const radii = [0, 6, 8];
+export const radii = [0, 4, 8, '50%'];
 export const radius = '8px';
 
 const baseBorder = `1px solid ${colors.baseBorderColor}`;
@@ -197,10 +195,11 @@ const theme = {
   lineHeights,
   regular,
   bold,
-  textStyles,
+  text,
   colors,
   radii,
   radius,
+  borders,
   shadows,
   zIndices,
   maxContainerWidth
