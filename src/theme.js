@@ -118,7 +118,7 @@ const brandAffirmative = green;
 const brandAffirmativeHover = darkGreen;
 
 // Gray-scale
-const black = 'hsl(223, 17%, 8%)';
+const black = '#111618';
 const purpleBlack = 'hsl(262, 12%, 19%)';
 const gray500 = 'hsl(223, 9%, 29%)';
 const gray400 = 'hsl(218, 10%, 57%)';
@@ -163,9 +163,10 @@ export const radii = [0, 4, 8, '50%'];
 export const radius = '8px';
 
 const baseBorder = `1px solid ${colors.baseBorderColor}`;
+const avatarBorder = `2px solid ${colors.white}`;
 const lightBorder = `1px solid ${colors.gray100}`;
 
-const borders = [baseBorder, lightBorder];
+const borders = [baseBorder, avatarBorder, lightBorder];
 
 export { borders };
 
@@ -174,11 +175,12 @@ export const maxContainerWidth = '1280px';
 
 // BOX SHADOWS
 export const shadows = [
-  `0px 2px 4px rgba(${colors.black}, 0.075)`,
+  '0px 2px 4px rgba(17, 22, 24, 0.08);',
+  '0px 3px 5px rgba(17, 22, 24, 0.15);',
   `0 0 10px ${colors.gray200}`,
   `inset 0 0 0 1px ${colors.brandSecondary}`,
   `inset 0 0 0 1px ${colors.brandDestructive}`
-];
+]; //Card //Avatar
 
 //Z-INDEX
 export const zIndices = [0, 9, 99, 999, 9999];

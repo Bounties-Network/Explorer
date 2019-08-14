@@ -3,7 +3,7 @@ import { storiesOf, addDecorator } from '@storybook/react';
 import { text } from '@storybook/addon-knobs/react';
 import centered from '@storybook/addon-centered';
 
-import { Avatar, Text } from 'components';
+import { Avatar } from 'components';
 
 addDecorator(centered);
 
