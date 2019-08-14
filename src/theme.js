@@ -23,7 +23,7 @@ addAliases(mediaQueries, aliases);
 
 // SPACING SCALE
 export const space = [0, 4, 8, 16, 32, 40, 64, 128];
-export const sizes = [0, 4, 8, 16, 32, 40, 64, 128];
+export const sizes = [0, 4, 8, 16, 32, 40, 64, 100, 128];
 
 // TYPOGRAPHY //
 export const font = '"Inter", -apple-system, BlinkMacSystemFont, sans-serif';
@@ -74,11 +74,16 @@ export const text = {
   h5: {
     fontSize: fontSizes[1] + 'rem',
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.heading
+    lineHeight: lineHeights.standard
   },
   bodyLarge: {
     fontSize: fontSizes[2] + 'rem',
     fontWeight: fontWeights.regular,
+    lineHeight: lineHeights.standard
+  },
+  bodyStrong: {
+    fontSize: fontSizes[1] + 'rem',
+    fontWeight: fontWeights.medium,
     lineHeight: lineHeights.standard
   },
   body: {
@@ -185,6 +190,18 @@ export const shadows = [
 //Z-INDEX
 export const zIndices = [0, 9, 99, 999, 9999];
 
+//AVATAR STYLES
+export const variants = {
+  avatarType: {
+    user: {
+      borderRadius: 3
+    },
+    community: {
+      borderRadius: 2
+    }
+  }
+};
+
 // EXPORT THEME
 const theme = {
   breakpoints,
@@ -204,6 +221,7 @@ const theme = {
   borders,
   shadows,
   zIndices,
+  variants,
   maxContainerWidth
 };
 
