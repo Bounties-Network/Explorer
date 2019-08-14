@@ -5,7 +5,6 @@ import { PageCard } from 'explorer-components';
 import { BigNumber } from 'bignumber.js';
 import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as tokensActions } from 'public-modules/Tokens';
-import { change } from 'redux-form';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import CreateBountyForm from './CreateBountyForm';
 import {
@@ -48,8 +47,7 @@ class CreateBountyComponent extends React.Component {
       error,
       formInitialValues,
       isEditing,
-      isDraft,
-      change
+      isDraft
     } = this.props;
 
     if (loading) {
@@ -212,7 +210,6 @@ class CreateBountyComponent extends React.Component {
               }}
               onChange={() => this.setState({ dirty: true })}
               initialValues={formInitialValues}
-              change={change}
               isEditing={isEditing}
               isDraft={isDraft}
             />
@@ -318,8 +315,7 @@ const CreateBounty = connect(
   {
     getDraft: bountyActions.getDraft,
     getBounty: bountyActions.getBounty,
-    loadTokens: tokensActions.loadTokens,
-    change
+    loadTokens: tokensActions.loadTokens
   }
 )(CreateBountyComponent);
 

@@ -184,12 +184,15 @@ class CreateBountyFormComponent extends React.Component {
       tokens,
       isEditing,
       initialValues,
-      options,
-      handleBounty,
-      change
+      // options,
+      change,
+      handleBounty
     } = this.props;
 
-    const { selectedTemplate, overwrittenDescription } = this.state;
+    const {
+      // selectedTemplate,
+      overwrittenDescription
+    } = this.state;
 
     const { validatorGroups } = this;
 
@@ -574,7 +577,9 @@ class CreateBountyFormComponent extends React.Component {
                               )
                             : intl.get(
                                 'sections.create_bounty.sections.payout.form.token_contract.label_custom',
-                                { token: config.defaultToken.symbol }
+                                {
+                                  token: config.defaultToken.symbol
+                                }
                               )
                         }
                         validate={validatorGroups.token_contract}
@@ -603,7 +608,9 @@ class CreateBountyFormComponent extends React.Component {
                       normalize={normalizers.number}
                       label={intl.get(
                         'sections.create_bounty.sections.payout.form.fulfillment_amount.label',
-                        { hasDefaultToken: !config.defaultToken }
+                        {
+                          hasDefaultToken: !config.defaultToken
+                        }
                       )}
                       validate={validatorGroups.fulfillment_amount}
                       placeholder={intl.get(
@@ -670,7 +677,9 @@ class CreateBountyFormComponent extends React.Component {
                       normalize={normalizers.number}
                       label={intl.get(
                         'sections.create_bounty.sections.payout_editing.form.fulfillment_amount.label',
-                        { hasDefaultToken: !config.defaultToken }
+                        {
+                          hasDefaultToken: !config.defaultToken
+                        }
                       )}
                       validate={validatorGroups.fulfillment_amount}
                       placeholder={intl.get(

@@ -14,14 +14,13 @@ const handleChooseTemplate = change => templateName => {
   /* 
   PS - Eric's Notes
 
-  src/containers/CreateBounty/index.js
+  src/containers/CreateBounty/CreateBountyForm.js
 
-  1 - Imported the change redux-form action creator here line 8
-  2 - Bound it via redux-connect at the bottom of the file putting it in the object of the second argument with the rest of the actions
-  3 - index.js -> prop pass the now dispatch bound action "change" to the CreateBountyForm.js component at index.js:215
-  4 - Pass the change prop instance to the function exported in the Templates.js file via CreateBountyForm.js:259 
-    onChange={handleChooseTemplate(change)}
-    Lambda function returning another at the top of this file :)
+  Pass the change prop instance to above
+  onChange={handleChooseTemplate(change)} where change is destructured from this.props bound from the redux form higher order component/wrapper
+  Lambda function returning another at the top of this file :)
+
+  change(field, value)
 */
 
   console.log(
@@ -31,7 +30,6 @@ const handleChooseTemplate = change => templateName => {
     )
   );
   change(
-    'CreateBounty',
     'description',
     intl.get(
       'sections.create_bounty.templates.' + templateName.value + '.description'
