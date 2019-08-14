@@ -185,7 +185,8 @@ class CreateBountyFormComponent extends React.Component {
       isEditing,
       initialValues,
       options,
-      handleBounty
+      handleBounty,
+      change
     } = this.props;
 
     const { selectedTemplate, overwrittenDescription } = this.state;
@@ -255,7 +256,7 @@ class CreateBountyFormComponent extends React.Component {
                       )}
                       defaultValue={{ value: 'default', label: 'Default' }}
                       options={templateOptions}
-                      onChange={handleChooseTemplate}
+                      onChange={handleChooseTemplate(change)}
                     />
                   </div>
                   <div className="col-xs-12">

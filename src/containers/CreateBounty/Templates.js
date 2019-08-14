@@ -1,7 +1,6 @@
 import intl from 'react-intl-universal';
-import { change } from 'redux-form';
 
-const handleChooseTemplate = templateName => {
+const handleChooseTemplate = change => templateName => {
   /*
   const chosenTemplate = templates.find((template) => template.templateName === templateName)
   chosenTemplate && chosenTemplate.templateFields.map((templateField) => {
@@ -11,6 +10,20 @@ const handleChooseTemplate = templateName => {
   })
   return
   */
+
+  /* 
+  PS - Eric's Notes
+
+  src/containers/CreateBounty/index.js
+
+  1 - Imported the change redux-form action creator here line 8
+  2 - Bound it via redux-connect at the bottom of the file putting it in the object of the second argument with the rest of the actions
+  3 - index.js -> prop pass the now dispatch bound action "change" to the CreateBountyForm.js component at index.js:215
+  4 - Pass the change prop instance to the function exported in the Templates.js file via CreateBountyForm.js:259 
+    onChange={handleChooseTemplate(change)}
+    Lambda function returning another at the top of this file :)
+*/
+
   console.log(
     'selected',
     intl.get(
