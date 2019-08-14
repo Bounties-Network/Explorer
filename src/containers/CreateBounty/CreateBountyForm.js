@@ -16,7 +16,7 @@ import { getTimezone } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
 import { Link } from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import handleChooseTemplate from './Templates';
+import handleChooseTemplate from './templates';
 
 import moment from 'moment';
 import {
@@ -211,7 +211,7 @@ class CreateBountyFormComponent extends React.Component {
     }/?contribute=true`;
 
     return (
-      <form onSubmit={handleSubmit(this.handleSubmit)}>
+      <form name="CreateBounty" onSubmit={handleSubmit(this.handleSubmit)}>
         <FormSection>
           <FormSection.Section
             title={intl.get('sections.create_bounty.sections.about.title')}
@@ -249,6 +249,7 @@ class CreateBountyFormComponent extends React.Component {
                 <div className="row">
                   <div className="col-xs-12 col-sm-6">
                     <Select
+                      name="templates"
                       label={intl.get(
                         'sections.create_bounty.sections.about.form.template.label'
                       )}
@@ -547,7 +548,7 @@ class CreateBountyFormComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          {!isEditing && (
+          {!isEditing ? (
             <FormSection.Section
               title={intl.get('sections.create_bounty.sections.payout.title')}
             >
@@ -635,8 +636,7 @@ class CreateBountyFormComponent extends React.Component {
                 </FormSection.InputGroup>
               ) : null}
             </FormSection.Section>
-          )}
-          {isEditing && (
+          ) : (
             <FormSection.Section
               title={intl.get(
                 'sections.create_bounty.sections.payout_editing.title'

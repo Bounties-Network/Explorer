@@ -18,6 +18,7 @@ const handleChooseTemplate = templateName => {
     )
   );
   change(
+    'CreateBounty',
     'description',
     intl.get(
       'sections.create_bounty.templates.' + templateName.value + '.description'
