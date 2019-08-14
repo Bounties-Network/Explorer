@@ -1,11 +1,10 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
-import css from '@styled-system/css';
+import { css, jsx } from '@emotion/core';
 import { Text, Image, Flex, Link } from 'rebass';
 import { shortenAddress } from 'utils/helpers';
 
 const Avatar = props => {
-  const { name, address, img, hash, src, onClick } = props;
+  const { name, address, img, hash, src, onClick, size } = props;
 
   const renderImage = props => {
     return (
@@ -14,13 +13,13 @@ const Avatar = props => {
         bg="white"
         src={img ? img : hash}
         type={img ? 'img' : 'blocky'}
-        css={css({
+        sx={{
           border: 1,
           borderRadius: 3,
           boxShadow: 1,
           height: 5,
           width: 5
-        })}
+        }}
       />
     );
   };
