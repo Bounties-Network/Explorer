@@ -16,7 +16,7 @@ import { getTimezone } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
 import { Link } from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import handleChooseTemplate from './templates';
+import handleChooseTemplate from './Templates';
 
 import moment from 'moment';
 import {
