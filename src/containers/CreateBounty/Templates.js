@@ -11,7 +11,7 @@ const handleChooseTemplate = change => templateName => {
   return
   */
 
-  /* 
+  /*
   PS - Eric's Notes
 
   src/containers/CreateBounty/CreateBountyForm.js
@@ -33,6 +33,12 @@ const handleChooseTemplate = change => templateName => {
     'description',
     intl.get(
       'sections.create_bounty.templates.' + templateName.value + '.description'
+    )
+  );
+  change(
+    'categories',
+    intl.get(
+      'sections.create_bounty.templates.' + templateName.value + '.categories'
     )
   );
 };
