@@ -1,6 +1,5 @@
-/** @jsx jsx */
+import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx } from '@emotion/core';
 import { css } from '@styled-system/css';
 import { Text, Image, Flex, Link } from 'rebass';
 import { shortenAddress } from 'utils/helpers';
@@ -120,6 +119,7 @@ const AvatarText = props => {
     } else {
       return (
         <Text
+          className="address"
           variant={addressSize()}
           color={addressContrast()}
           lineHeight="reset"
@@ -145,7 +145,11 @@ const Avatar = props => {
     <Link
       src={src ? src : '/profile/' + address}
       onClick={onClick}
-      css={{ '&:hover': { textDecoration: 'none' } }}
+      css={{
+        display: 'inline-block',
+        '&:hover': { textDecoration: 'none' },
+        '&:hover .address': { textDecoration: 'underline' }
+      }}
     >
       <Flex alignItems="center">
         <AvatarImage bg="black" {...props} />
