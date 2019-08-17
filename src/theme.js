@@ -200,6 +200,15 @@ export const avatarTypes = {
   }
 };
 
+export const textFormat = {
+  block: {
+    flexDirection: 'column'
+  },
+  inline: {
+    flexDirection: 'row'
+  }
+};
+
 // EXPORT THEME
 const theme = {
   breakpoints,
@@ -220,6 +229,7 @@ const theme = {
   shadows,
   zIndices,
   avatarTypes,
+  textFormat,
   maxContainerWidth
 };
 

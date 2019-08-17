@@ -66,30 +66,19 @@ const AvatarText = props => {
     }
   };
 
-  let nameContrast = () => {
-    if (onDark === true) {
-      return 'white';
-    } else {
-      return 'black';
-    }
-  };
-
-  let addressContrast = () => {
-    if (onDark === true) {
-      return 'rgba(255, 255, 255, 0.5);';
-    } else {
-      return 'brandSecondary';
-    }
-  };
-
   const Name = () => {
     if (!props.name) {
       return (
         <Text
           variant={nameSize()}
           fontWeight="medium"
-          color={nameContrast()}
+          color={onDark ? 'white' : 'black'}
           lineHeight="reset"
+          css={css({
+            '&:not(:last-child)': {
+              mb: 1
+            }
+          })}
         >
           --
         </Text>
@@ -97,10 +86,12 @@ const AvatarText = props => {
     } else {
       return (
         <Text
+          className="nameText"
           variant={nameSize()}
           fontWeight="medium"
-          color={nameContrast()}
+          color={onDark ? 'white' : 'black'}
           lineHeight="reset"
+          mr={props.textFormat === 'inline' ? 2 : ''}
           css={css({
             '&:not(:last-child)': {
               mb: 1
@@ -121,7 +112,7 @@ const AvatarText = props => {
         <Text
           className="address"
           variant={addressSize()}
-          color={addressContrast()}
+          color={onDark ? 'white' : 'brandSecondary'}
           lineHeight="reset"
         >
           {shortenAddress(props.address)}
@@ -131,7 +122,12 @@ const AvatarText = props => {
   };
 
   return (
-    <Flex ml={2} flexDirection="column" justifyContent="center">
+    <Flex
+      ml={2}
+      css={css({
+        variant: 'textFormat.' + props.textFormat
+      })}
+    >
       <Name />
       <Address />
     </Flex>
@@ -139,7 +135,7 @@ const AvatarText = props => {
 };
 
 const Avatar = props => {
-  const { src, onClick, address, name } = props;
+  const { src, onClick, address, name, textFormat, img } = props;
 
   return (
     <Link
@@ -151,8 +147,8 @@ const Avatar = props => {
         '&:hover .address': { textDecoration: 'underline' }
       }}
     >
-      <Flex alignItems="center">
-        <AvatarImage bg="black" {...props} />
+      <Flex alignItems={textFormat === 'inline' ? 'flex-start' : 'center'}>
+        {img ? <AvatarImage bg="black" {...props} /> : null}
         {name || address ? <AvatarText {...props} /> : null}
       </Flex>
     </Link>
@@ -165,6 +161,7 @@ Avatar.propTypes = {
   src: PropTypes.string,
   address: PropTypes.string,
   name: PropTypes.string,
+  textFormat: PropTypes.oneOf(['block', 'inline']),
   img: PropTypes.string,
   hash: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
@@ -173,7 +170,8 @@ Avatar.propTypes = {
 
 Avatar.defaultProps = {
   type: 'user',
-  size: 'small'
+  size: 'small',
+  textFormat: 'block'
 };
 
 export default Avatar;
