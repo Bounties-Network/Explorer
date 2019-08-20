@@ -16,7 +16,32 @@ const AvatarImage = props => {
       case 'large':
         return 7;
       default:
-        return 5;
+        return 4;
+    }
+  };
+
+  let blockySize = () => {
+    switch (size) {
+      case 'small':
+        return { size: '8', scale: '4' };
+      case 'medium':
+        return { size: '8', scale: '5' };
+      case 'large':
+        return { size: '8', scale: '10' };
+    }
+  };
+
+  const AvatarImage = () => {
+    if (!props.img) {
+      return <Blockies seed={props.hash} {...blockySize()} />;
+    } else {
+      return (
+        <Image
+          src={props.img ? props.img : props.hash}
+          height="100%"
+          width="auto"
+        />
+      );
     }
   };
 
