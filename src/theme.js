@@ -23,7 +23,7 @@ addAliases(mediaQueries, aliases);
 
 // SPACING SCALE
 export const space = [0, 4, 8, 16, 32, 40, 64, 128];
-export const sizes = [0, 4, 8, 16, 32, 40, 64, 100, 128];
+export const sizes = [0, 4, 8, 16, 32, 40, 64, 80, 100, 128];
 
 // TYPOGRAPHY //
 export const font = '"Inter", -apple-system, BlinkMacSystemFont, sans-serif';

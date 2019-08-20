@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@styled-system/css';
+import Blockies from 'react-blockies';
 import { Text, Image, Flex, Link } from 'rebass';
 import { shortenAddress } from 'utils/helpers';
 
-const AvatarImage = props => {
-  const { type, size } = props;
+const ImageContainer = props => {
+  const { type, size, img } = props;
 
   let avatarSize = () => {
     switch (size) {
       case 'small':
-        return 5;
+        return 4;
       case 'medium':
-        return 6;
+        return 5;
       case 'large':
         return 7;
       default:
@@ -28,49 +29,45 @@ const AvatarImage = props => {
         return { size: '8', scale: '5' };
       case 'large':
         return { size: '8', scale: '10' };
+      default:
+        return { size: '8', scale: '4' };
     }
   };
 
   const AvatarImage = () => {
-    if (!props.img) {
+    if (!img) {
       return <Blockies seed={props.hash} {...blockySize()} />;
     } else {
-      return (
-        <Image
-          src={props.img ? props.img : props.hash}
-          height="100%"
-          width="auto"
-        />
-      );
+      return <Image src={img ? img : props.hash} height="100%" width="auto" />;
     }
   };
 
   return (
-    <Image
-      src={props.img ? props.img : props.hash}
-      type={props.img ? 'img' : 'blocky'}
+    <Flex
+      alignItems="center"
+      justifyContent="center"
       css={css({
         bg: 'white',
-        border: 1,
-        boxSizing: 'content-box',
-        boxShadow: 1,
+        border: size === 'small' ? 'none' : 1,
+        boxShadow: size === 'small' ? 'none' : 1,
+        overflow: 'hidden',
         height: avatarSize(),
         width: avatarSize(),
         variant: 'avatarTypes.' + type
       })}
-    />
+    >
+      <AvatarImage {...props} />
+    </Flex>
   );
 };
 
-const AvatarText = props => {
+const TextContainer = props => {
   const { size, onDark } = props;
 
   let nameSize = () => {
     switch (size) {
-      case 'small':
+      case 'small' || 'medium':
         return 'bodyStrong';
-      case 'medium':
-        return 'h4';
       case 'large':
         return 'h2';
       default:
@@ -80,10 +77,8 @@ const AvatarText = props => {
 
   let addressSize = () => {
     switch (size) {
-      case 'small':
+      case 'small' || 'medium':
         return 'body';
-      case 'medium':
-        return 'bodyLarge';
       case 'large':
         return 'h4';
       default:
@@ -99,11 +94,7 @@ const AvatarText = props => {
           fontWeight="medium"
           color={onDark ? 'white' : 'black'}
           lineHeight="reset"
-          css={css({
-            '&:not(:last-child)': {
-              mb: 1
-            }
-          })}
+          mt={-1}
         >
           --
         </Text>
@@ -148,7 +139,7 @@ const AvatarText = props => {
 
   return (
     <Flex
-      ml={2}
+      ml={size === 'large' ? 3 : 2}
       css={css({
         variant: 'textFormat.' + props.textFormat
       })}
@@ -160,7 +151,7 @@ const AvatarText = props => {
 };
 
 const Avatar = props => {
-  const { src, onClick, address, name, textFormat, img } = props;
+  const { src, onClick, address, name, textFormat } = props;
 
   return (
     <Link
@@ -173,8 +164,8 @@ const Avatar = props => {
       }}
     >
       <Flex alignItems={textFormat === 'inline' ? 'flex-start' : 'center'}>
-        {img ? <AvatarImage bg="black" {...props} /> : null}
-        {name || address ? <AvatarText {...props} /> : null}
+        <ImageContainer {...props} />
+        {name || address ? <TextContainer {...props} /> : null}
       </Flex>
     </Link>
   );
