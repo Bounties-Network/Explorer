@@ -1,0 +1,21 @@
+{
+  "platform": "coverage",
+  "postingPlatform": "coverage",
+  "postingSchema": "standardSchema",
+  "postingSchemaVersion": "1.0",
+  "categoryPlatform": "coverage",
+  "networkName": "test.coverage.bounties.network",
+  "url": {
+    "mainNet": "https://rinkeby.api.bounties.network",
+    "rinkeby": "https://rinkeby.api.bounties.network"
+  },
+  "requiredNetwork": "rinkeby",
+  "mainNet": {
+    "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
+    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c"
+  },
+  "rinkeby": {
+    "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
+    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c"
+  }
+}
