@@ -85,7 +85,7 @@ const AvatarText = props => {
 
   return (
     <Flex
-      ml={size === 'large' ? 3 : 2}
+      pl={(size === 'large' ? 3 : 2, props.textFormat === 'inline' ? 3 : 2)}
       css={css({
         variant: 'textFormat.' + props.textFormat
       })}

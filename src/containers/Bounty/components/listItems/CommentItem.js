@@ -11,26 +11,27 @@ const CommentItem = props => {
 
   return (
     <div className={styles.commentItem}>
-      <div>
+      <div className={styles.commentData}>
         <LinkedAvatar
+          textFormat="inline"
           name={name}
           address={address}
           img={img}
           hash={address}
           to={`/profile/${address}`}
         />
-      </div>
-
-      <div className={styles.details}>
-        <Text typeScale="Body" color="darkGrey">
-          {text}
-        </Text>
         <Text
           className={styles.timeStamp}
           typeScale="Small"
           color="defaultGrey"
         >
-          {formattedTime}
+          {'﹒ ' + formattedTime}
+        </Text>
+      </div>
+
+      <div className={styles.commentContent}>
+        <Text typeScale="Body" color="darkGrey">
+          {text}
         </Text>
       </div>
     </div>
