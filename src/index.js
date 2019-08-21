@@ -29,9 +29,6 @@ import 'intl/locale-data/jsonp/en.js';
 //add supported moment locales here
 // import 'moment/locale/hr.js';
 
-// eslint-disable-next-line import/no-webpack-loader-syntax
-//const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!./styles/variables.scss');
-
 // never return number formated as exponential
 BigNumber.config({ EXPONENTIAL_AT: 1e9 });
 
