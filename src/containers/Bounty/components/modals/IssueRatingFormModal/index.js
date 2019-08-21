@@ -43,7 +43,6 @@ const IssueRatingFormModalComponent = props => {
 
   let revieweeAvatar = (
     <LinkedAvatar
-      nameTextScale="h4"
       name={name}
       address={address}
       hash={address}

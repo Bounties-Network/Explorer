@@ -1,107 +1,211 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Avatar.module.scss';
+import { css } from '@styled-system/css';
+import Blockies from 'react-blockies';
+import { Text, Image, Flex, Link } from 'rebass';
 import { shortenAddress } from 'utils/helpers';
-import { Text, Circle } from 'components';
 
-const Avatar = props => {
-  const {
-    size,
-    name,
-    address,
-    nameTextScale,
-    nameTextColor,
-    nameTextWeight,
-    addressTextScale,
-    addressTextColor,
-    border,
-    img,
-    hash,
-    className,
-    src,
-    onClick
-  } = props;
+const AvatarContainer = props => {
+  const { src, onClick } = props;
+  return (
+    <Link
+      src={src ? src : '/profile/' + props.address}
+      onClick={onClick}
+      css={{
+        display: 'inline-block',
+        '&:hover': { textDecoration: 'none' },
+        '&:hover .address': { textDecoration: 'underline' }
+      }}
+    >
+      {props.children}
+    </Link>
+  );
+};
 
-  const renderName = () => {
-    if (!name) {
-      return null;
+const ImageContainer = props => {
+  const { type, size } = props;
+
+  let containerSize = () => {
+    switch (size) {
+      case 'small':
+        return 4;
+      case 'medium':
+        return 5;
+      case 'large':
+        return 7;
+      default:
+        return 4;
     }
-
-    return (
-      <div className={styles.nameText}>
-        <Text
-          typeScale={nameTextScale}
-          weight={nameTextWeight}
-          color={nameTextColor}
-        >
-          {name}
-        </Text>
-      </div>
-    );
-  };
-
-  const renderAddress = () => {
-    if (!address) {
-      return null;
-    }
-
-    return (
-      <div className={styles.addressText}>
-        <Text
-          typeScale={addressTextScale}
-          color={addressTextColor}
-          src={src ? src : '/profile/' + address}
-          onClick={onClick}
-          link
-        >
-          {shortenAddress(address)}
-        </Text>
-      </div>
-    );
   };
 
   return (
-    <div className={`${styles.avatar} ${className}`}>
-      <Circle
-        border={border}
-        size={size}
-        color="white"
-        input={img ? img : hash}
-        type={img ? 'img' : 'blocky'}
-      />
-      {name || address ? (
-        <div className={styles.textWrapper}>
-          {renderName()}
-          {renderAddress()}
-        </div>
-      ) : null}
-    </div>
+    <Flex
+      alignItems="center"
+      justifyContent="center"
+      css={css({
+        bg: 'white',
+        border: size === 'small' ? 'none' : 1,
+        boxShadow: size === 'small' ? 'none' : 1,
+        overflow: 'hidden',
+        height: containerSize(),
+        width: containerSize(),
+        variant: 'avatarTypes.' + type
+      })}
+    >
+      {props.children}
+    </Flex>
+  );
+};
+
+const AvatarImage = props => {
+  const { img } = props;
+
+  let blockySize = () => {
+    switch (props.size) {
+      case 'small':
+        return { size: '8', scale: '4' };
+      case 'medium':
+        return { size: '8', scale: '5' };
+      case 'large':
+        return { size: '8', scale: '10' };
+      default:
+        return { size: '8', scale: '4' };
+    }
+  };
+
+  if (!img) {
+    return <Blockies seed={props.hash} {...blockySize()} />;
+  } else {
+    return <Image src={img ? img : props.hash} height="100%" width="auto" />;
+  }
+};
+
+const AvatarText = props => {
+  const { size } = props;
+
+  return (
+    <Flex
+      pl={(size === 'large' ? 3 : 2, props.textFormat === 'inline' ? 3 : 2)}
+      css={css({
+        variant: 'textFormat.' + props.textFormat
+      })}
+    >
+      {props.children}
+    </Flex>
+  );
+};
+
+const Name = props => {
+  const { onDark } = props;
+  let nameSize = () => {
+    switch (props.size) {
+      case 'small' || 'medium':
+        return 'bodyStrong';
+      case 'large':
+        return 'h2';
+      default:
+        return 'bodyStrong';
+    }
+  };
+  if (!props.name) {
+    return (
+      <Text
+        display={props.size === 'small' ? 'none' : null}
+        variant={nameSize()}
+        fontWeight="medium"
+        color={onDark ? 'white' : 'black'}
+        lineHeight="reset"
+        mt={-1}
+      >
+        --
+      </Text>
+    );
+  } else {
+    return (
+      <Text
+        className="nameText"
+        variant={nameSize()}
+        fontWeight="medium"
+        color={onDark ? 'white' : 'black'}
+        lineHeight="reset"
+        mr={props.textFormat === 'inline' ? 2 : ''}
+        css={css({
+          '&:not(:last-child)': {
+            mb: 1
+          }
+        })}
+      >
+        {props.name}
+      </Text>
+    );
+  }
+};
+
+const Address = props => {
+  let addressSize = () => {
+    switch (props.size) {
+      case 'small' || 'medium':
+        return 'body';
+      case 'large':
+        return 'bodyLarge';
+      default:
+        return 'body';
+    }
+  };
+  if (!props.address) {
+    return null;
+  } else {
+    return (
+      <Text
+        className="address"
+        variant={addressSize()}
+        color={props.onDark ? 'transparentWhite' : 'brandSecondary'}
+        lineHeight="reset"
+      >
+        {shortenAddress(props.address)}
+      </Text>
+    );
+  }
+};
+
+const Avatar = props => {
+  const { address, name, textFormat } = props;
+
+  return (
+    <AvatarContainer {...props}>
+      <Flex alignItems={textFormat === 'inline' ? 'flex-start' : 'center'}>
+        <ImageContainer {...props}>
+          <AvatarImage {...props} />
+        </ImageContainer>
+
+        {name || address ? (
+          <AvatarText {...props}>
+            <Name {...props} />
+            <Address {...props} />
+          </AvatarText>
+        ) : null}
+      </Flex>
+    </AvatarContainer>
   );
 };
 
 Avatar.propTypes = {
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  img: PropTypes.string,
-  border: PropTypes.bool,
-  name: PropTypes.string,
-  address: PropTypes.string,
-  className: PropTypes.string,
-  hash: PropTypes.string,
-  nameTextScale: PropTypes.string,
-  nameTextColor: PropTypes.string,
-  nameTextWeight: PropTypes.string,
-  addressTextScale: PropTypes.string,
-  addressTextColor: PropTypes.string,
+  type: PropTypes.oneOf(['user', 'community']),
+  onClick: PropTypes.func,
   src: PropTypes.string,
-  onClick: PropTypes.func
+  address: PropTypes.string,
+  name: PropTypes.string,
+  textFormat: PropTypes.oneOf(['block', 'inline']),
+  img: PropTypes.string,
+  hash: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  onDark: PropTypes.bool
 };
 
 Avatar.defaultProps = {
-  size: 'small',
-  border: false,
-  nameTextScale: 'h3',
-  nameTextWeight: 'fontWeight-medium',
-  addressTextScale: 'Body'
+  type: 'user',
+  size: 'medium',
+  textFormat: 'block'
 };
 
 export default Avatar;

@@ -102,6 +102,7 @@ const BountyCard = props => {
                 to={`/profile/${address}`}
                 onClick={() => scrollToTop()}
                 size="small"
+                type="user"
               />
             </div>
           </div>

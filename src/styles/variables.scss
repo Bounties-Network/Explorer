@@ -42,10 +42,10 @@ $line-height-large: 1.75;
 $line-height-reset: 1;
 
 // COLORS
-$brand-purple: #5a28c6;
-$brand-purple-hover: #47209d;
+$brand-purple: hsl(259, 66%, 47%);
+$brand-purple-hover: hsl(259, 66%, 37%);
 $brand-purple-disabled: hsl(259, 55%, 55%);
-$brand-dark-purple: #2e2a35;
+$brand-dark-purple: hsl(262, 12%, 19%);
 
 $brand-destructive: hsl(353, 64%, 67%);
 $brand-destructive-hover: hsl(353, 64%, 60%);
@@ -55,18 +55,18 @@ $brand-blue: hsl(216, 100%, 65%);
 $brand-blue-hover: hsl(216, 80%, 55%);
 $brand-light-blue: hsl(216, 100%, 98%);
 
-$brand-orange: #fbaa31;
+$brand-orange: hsl(36, 96%, 59%);
 
-$brand-green: #6fc78d;
-$brand-green-hover: #4bb971;
+$brand-green: hsl(140, 44%, 61%);
+$brand-green-hover: hsl(141, 44%, 51%);
 
-$brand-black: #111318;
-$brand-darkGrey: #434751;
-$brand-grey: #868e9c; // Lightest text
-$brand-mediumGrey: #d8dadf;
-$brand-lightGrey: #e6e7ea;
-$brand-nearWhite: #f2f4f8;
-$brand-white: #ffffff;
+$brand-black: hsl(223, 17%, 8%);
+$brand-darkGrey: hsl(223, 9%, 29%);
+$brand-grey: hsl(218, 10%, 57%); // Lightest text
+$brand-mediumGrey: hsl(223, 10%, 86%);
+$brand-lightGrey: hsl(225, 9%, 91%);
+$brand-nearWhite: hsl(220, 30%, 96%);
+$brand-white: hsl(0, 0%, 100%);
 $brand-purpleWhite: #cebeff;
 
 $base-input-background: hsl(228, 30%, 98%);

@@ -23,10 +23,12 @@ addAliases(mediaQueries, aliases);
 
 // SPACING SCALE
 export const space = [0, 4, 8, 16, 32, 40, 64, 128];
+export const sizes = [0, 4, 8, 16, 32, 40, 64, 80, 100, 128];
 
 // TYPOGRAPHY //
 export const font = '"Inter", -apple-system, BlinkMacSystemFont, sans-serif';
-export const fontSizes = [12, 14, 16, 20, 24, 32];
+export const fontMonospace = 'monospace';
+export const fontSizes = [0.75, 0.875, 1, 1.25, 1.563, 2];
 
 // Weights
 export const regular = 400;
@@ -41,43 +43,50 @@ export const fontWeights = {
 
 // Line-height
 export const lineHeights = {
-  standard: 1.5,
-  heading: 1.25
+  standard: 1.6,
+  small: 1.3,
+  heading: 1.25,
+  reset: 1
 };
 
 // Scale
-export const textStyles = {
-  heading4: {
+export const text = {
+  h1: {
     fontSize: fontSizes[5] + 'rem',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.heading
   },
-  heading3: {
+  h2: {
     fontSize: fontSizes[4] + 'rem',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.heading
   },
-  heading2: {
+  h3: {
     fontSize: fontSizes[3] + 'rem',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.heading
   },
-  heading1: {
+  h4: {
     fontSize: fontSizes[2] + 'rem',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.heading
   },
-  heading0: {
+  h5: {
     fontSize: fontSizes[1] + 'rem',
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.heading
+    lineHeight: lineHeights.standard
   },
-  body1: {
+  bodyLarge: {
     fontSize: fontSizes[2] + 'rem',
     fontWeight: fontWeights.regular,
     lineHeight: lineHeights.standard
   },
-  body0: {
+  bodyStrong: {
+    fontSize: fontSizes[1] + 'rem',
+    fontWeight: fontWeights.medium,
+    lineHeight: lineHeights.standard
+  },
+  body: {
     fontSize: fontSizes[1] + 'rem',
     fontWeight: fontWeights.regular,
     lineHeight: lineHeights.standard
@@ -90,42 +99,65 @@ export const textStyles = {
 };
 
 // COLOR PALETTE
+const lightPurple = 'hsl(259, 55%, 55%)';
+const purple = 'hsl(259, 66%, 47%)';
+const darkPurple = 'hsl(259, 66%, 37%)';
+const lightBlue = 'hsl(216, 100%, 98%)';
+const blue = 'hsl(216, 100%, 65%)';
+const darkBlue = 'hsl(216, 80%, 55%)';
+const red = 'hsl(353, 64%, 67%)';
+const darkRed = 'hsl(353, 64%, 60%)';
+const orange = 'hsl(36, 96%, 59%)';
+const green = 'hsl(140, 44%, 61%)';
+const darkGreen = 'hsl(141, 44%, 51%)';
 
-//Brand
-const purple = '#5a28c6';
-const darkPurple = '#2d2838';
-const blue = '#4a93ff';
-const red = '#d14545';
-const orange = '#fbaa31';
-const green = '#6fc78d';
+// Brand color aliases
+const brandPrimary = purple;
+const brandPrimaryHover = darkPurple;
+const brandSecondary = blue;
+const brandSecondaryHover = darkBlue;
+const brandDestructive = red;
+const brandDestructiveHover = darkRed;
+const brandWarning = orange;
+const brandAffirmative = green;
+const brandAffirmativeHover = darkGreen;
 
-//Grayscale
-const black = '#2d2838';
-const gray400 = '#615e67';
-const gray300 = '#a09ca8';
-const gray200 = '#d9d8de';
-const gray100 = '#f1f0f6';
-const white = '#ffffff';
+// Gray-scale
+const black = '#111618';
+const purpleBlack = 'hsl(262, 12%, 19%)';
+const gray500 = 'hsl(223, 9%, 29%)';
+const gray400 = 'hsl(218, 10%, 57%)';
+const gray300 = 'hsl(223, 10%, 86%)';
+const gray200 = 'hsl(225, 9%, 91%)';
+const gray100 = 'hsl(220, 30%, 96%)';
+const white = 'hsl(0, 0%, 100%)';
+const transparentWhite = 'rgba(255, 255, 255, 65%)';
 
 // Misc
-const text = gray400;
-const inputBg = '#faf9fd';
+const inputBg = gray100;
 const baseBorderColor = gray200;
 
 const colors = {
-  purple,
-  darkPurple,
-  blue,
-  red,
-  orange,
-  green,
-  gray100,
-  gray200,
-  gray300,
-  gray400,
-  white,
+  brandPrimary,
+  brandPrimaryHover,
+  brandSecondary,
+  brandSecondaryHover,
+  brandDestructive,
+  brandDestructiveHover,
+  brandWarning,
+  brandAffirmative,
+  brandAffirmativeHover,
+  lightPurple,
+  lightBlue,
   black,
-  text,
+  purpleBlack,
+  gray500,
+  gray400,
+  gray300,
+  gray200,
+  gray100,
+  white,
+  transparentWhite,
   inputBg,
   baseBorderColor
 };
@@ -134,37 +166,72 @@ export { colors };
 
 // BORDERS
 // styled-system's 'borderRadius' function can hook into the 'radii' object/array
-export const radii = [0, 3];
-export const radius = '3px';
+export const radii = [0, 4, 8, '50%'];
+export const radius = '8px';
 
-//PAGE WRAPPER
+const baseBorder = `1px solid ${colors.baseBorderColor}`;
+const avatarBorder = `2px solid ${colors.white}`;
+const lightBorder = `1px solid ${colors.gray100}`;
+
+const borders = [baseBorder, avatarBorder, lightBorder];
+
+export { borders };
+
+// PAGE WRAPPER
 export const maxContainerWidth = '1280px';
 
-// BOXSHADOWS
+// BOX SHADOWS
 export const shadows = [
-  //Box shadow styles to go here
-];
+  '0px 2px 4px rgba(17, 22, 24, 0.08);',
+  '0px 3px 5px rgba(17, 22, 24, 0.15);',
+  `0 0 10px ${colors.gray200}`,
+  `inset 0 0 0 1px ${colors.brandSecondary}`,
+  `inset 0 0 0 1px ${colors.brandDestructive}`
+]; //Card //Avatar
 
 //Z-INDEX
 export const zIndices = [0, 9, 99, 999, 9999];
+
+//AVATAR STYLES
+export const avatarTypes = {
+  user: {
+    borderRadius: 3
+  },
+  community: {
+    borderRadius: 2
+  }
+};
+
+export const textFormat = {
+  block: {
+    flexDirection: 'column'
+  },
+  inline: {
+    flexDirection: 'row'
+  }
+};
 
 // EXPORT THEME
 const theme = {
   breakpoints,
   mediaQueries,
   space,
+  sizes,
   font,
   fontSizes,
   fontWeights,
   lineHeights,
   regular,
   bold,
-  textStyles,
+  text,
   colors,
   radii,
   radius,
+  borders,
   shadows,
   zIndices,
+  avatarTypes,
+  textFormat,
   maxContainerWidth
 };
 
