@@ -80,7 +80,7 @@ const TextContainer = props => {
       case 'small' || 'medium':
         return 'body';
       case 'large':
-        return 'h4';
+        return 'bodyLarge';
       default:
         return 'body';
     }
@@ -90,6 +90,7 @@ const TextContainer = props => {
     if (!props.name) {
       return (
         <Text
+          display={size === 'small' ? 'none' : null}
           variant={nameSize()}
           fontWeight="medium"
           color={onDark ? 'white' : 'black'}
@@ -186,7 +187,7 @@ Avatar.propTypes = {
 
 Avatar.defaultProps = {
   type: 'user',
-  size: 'small',
+  size: 'medium',
   textFormat: 'block'
 };
 

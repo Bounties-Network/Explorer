@@ -13,12 +13,10 @@ const CommentItem = props => {
     <div className={styles.commentItem}>
       <div>
         <LinkedAvatar
-          className={styles.avatar}
           name={name}
           address={address}
           img={img}
           hash={address}
-          nameTextScale={'h4'}
           to={`/profile/${address}`}
         />
       </div>

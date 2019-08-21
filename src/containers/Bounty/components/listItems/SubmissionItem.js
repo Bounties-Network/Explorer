@@ -253,9 +253,6 @@ const SubmissionItem = props => {
           img={fulfiller_img}
           hash={fulfiller_address}
           to={`/profile/${fulfiller_address}`}
-          nameTextScale={'h4'}
-          nameTextColor="black"
-          border
         />
         <div className={`${styles.actionContainer}`}>
           <FulfillmentStagePill

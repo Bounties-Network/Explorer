@@ -25,7 +25,6 @@ const ReviewItem = props => {
           hash={address}
           img={img}
           to={`/profile/${address}`}
-          nameTextScale={'h4'}
         />
       </div>
       <div className={styles.created}>
