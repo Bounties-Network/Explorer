@@ -10,7 +10,6 @@ const ProfileAvatar = props => {
       <Avatar
         className={styles.profileAvatar}
         size="large"
-        border
         hash={address}
         img={img}
       />

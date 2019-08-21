@@ -128,7 +128,7 @@ const TextContainer = props => {
         <Text
           className="address"
           variant={addressSize()}
-          color={onDark ? 'white' : 'brandSecondary'}
+          color={onDark ? 'transparentWhite' : 'brandSecondary'}
           lineHeight="reset"
         >
           {shortenAddress(props.address)}

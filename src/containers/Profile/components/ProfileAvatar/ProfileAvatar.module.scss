@@ -1,19 +1,14 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .centerAvatar {
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  padding-top: $xxl-spacing;
 }
 
-.profile {
-  &Avatar {
-    padding-top: $xxl-spacing;
-    padding-bottom: $l-spacing;
-  }
-
-  &Name {
-    padding-bottom: $m-spacing;
-  }
+.profileName {
+  padding-top: $xl-spacing;
+  padding-bottom: $m-spacing;
 }

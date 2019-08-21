@@ -131,6 +131,7 @@ const gray300 = 'hsl(223, 10%, 86%)';
 const gray200 = 'hsl(225, 9%, 91%)';
 const gray100 = 'hsl(220, 30%, 96%)';
 const white = 'hsl(0, 0%, 100%)';
+const transparentWhite = 'rgba(255, 255, 255, 65%)';
 
 // Misc
 const inputBg = gray100;
@@ -156,6 +157,7 @@ const colors = {
   gray200,
   gray100,
   white,
+  transparentWhite,
   inputBg,
   baseBorderColor
 };
