@@ -5,6 +5,7 @@ import PlainTextarea from 'react-textarea-autosize';
 import { ThemeProvider } from 'styled-components';
 import { Text } from 'components';
 
+// Delete below once refactored to reference theme.js from root
 // eslint-disable-next-line import/no-webpack-loader-syntax
 const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!../../styles/variables.scss');
 
