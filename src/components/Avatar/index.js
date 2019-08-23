@@ -19,11 +19,33 @@ let imageContainerSize = props => {
   }
 };
 
-const AvatarWrapper = styled(Link)(
+let nameSize = props => {
+  switch (props.size) {
+    case 'small' || 'medium':
+      return 'bodyStrong';
+    case 'large':
+      return 'h2';
+    default:
+      return 'bodyStrong';
+  }
+};
+
+let addressSize = props => {
+  switch (props.size) {
+    case 'small' || 'medium':
+      return 'body';
+    case 'large':
+      return 'bodyLarge';
+    default:
+      return 'body';
+  }
+};
+
+const AvatarWrapper = styled(Link)(props =>
   css({
-    display: 'inline-block',
-    '&:hover': { textDecoration: 'none' },
-    '&:hover .address': { textDecoration: 'underline' }
+    display: 'flex',
+    alignItems: props.textFormat === 'inline' ? 'flex-start' : 'center',
+    '&:hover': { textDecoration: 'none' }
   })
 );
 
@@ -37,13 +59,6 @@ const ImageContainer = styled(Flex)(props =>
     overflow: 'hidden',
     size: imageContainerSize({ ...props }),
     variant: 'avatarTypes.' + props.type
-  })
-);
-
-const TextContainer = styled(Flex)(props =>
-  css({
-    pl: props.size === 'large' || props.textFormat === 'inline' ? 3 : 2,
-    variant: 'textFormat.' + props.textFormat
   })
 );
 
@@ -74,82 +89,38 @@ const AvatarImage = props => {
   }
 };
 
-const Name = props => {
-  let nameSize = () => {
-    switch (props.size) {
-      case 'small' || 'medium':
-        return 'bodyStrong';
-      case 'large':
-        return 'h2';
-      default:
-        return 'bodyStrong';
+const TextContainer = styled(Flex)(props =>
+  css({
+    pl: props.size === 'large' || props.textFormat === 'inline' ? 3 : 2,
+    variant: 'textFormat.' + props.textFormat
+  })
+);
+
+const AvatarName = styled(Text)(props =>
+  css({
+    display: props.size === 'small' ? 'none' : null,
+    color: props.onDark ? 'white' : 'black',
+    mt: !props.name ? -1 : null,
+    mr: props.textFormat === 'inline' ? 2 : '',
+    variant: 'text.' + nameSize({ ...props }),
+    lineHeight: 'reset',
+    '&:not(:last-child)': {
+      mb: 1
     }
-  };
+  })
+);
 
-  if (!props.name) {
-    return (
-      <Text
-        display={props.size === 'small' ? 'none' : null}
-        variant={nameSize()}
-        fontWeight="medium"
-        color={props.onDark ? 'white' : 'black'}
-        lineHeight="reset"
-        mt={-1}
-      >
-        --
-      </Text>
-    );
-  } else {
-    return (
-      <Text
-        className="nameText"
-        variant={nameSize()}
-        fontWeight="medium"
-        color={props.onDark ? 'white' : 'black'}
-        lineHeight="reset"
-        mr={props.textFormat === 'inline' ? 2 : ''}
-        css={css({
-          '&:not(:last-child)': {
-            mb: 1
-          }
-        })}
-      >
-        {props.name}
-      </Text>
-    );
-  }
-};
-
-const Address = props => {
-  let addressSize = () => {
-    switch (props.size) {
-      case 'small' || 'medium':
-        return 'body';
-      case 'large':
-        return 'bodyLarge';
-      default:
-        return 'body';
-    }
-  };
-
-  if (!props.address) {
-    return null;
-  } else {
-    return (
-      <Text
-        className="address"
-        variant={addressSize()}
-        color={props.onDark ? 'transparentWhite' : 'brandSecondary'}
-        lineHeight="reset"
-      >
-        {shortenAddress(props.address)}
-      </Text>
-    );
-  }
-};
+const AvatarAddress = styled(Text)(props =>
+  css({
+    color: props.onDark ? 'transparentWhite' : 'brandSecondary',
+    variant: 'text.' + addressSize({ ...props }),
+    lineHeight: 'reset',
+    'a:hover &': { textDecoration: 'underline' }
+  })
+);
 
 const Avatar = props => {
-  const { address, name, textFormat, src, onClick } = props;
+  const { address, name, src, onClick } = props;
 
   return (
     <AvatarWrapper
@@ -157,18 +128,18 @@ const Avatar = props => {
       onClick={onClick}
       {...props}
     >
-      <Flex alignItems={textFormat === 'inline' ? 'flex-start' : 'center'}>
-        <ImageContainer {...props}>
-          <AvatarImage {...props} />
-        </ImageContainer>
+      <ImageContainer {...props}>
+        <AvatarImage {...props} />
+      </ImageContainer>
 
-        {name || address ? (
-          <TextContainer {...props}>
-            <Name {...props} />
-            <Address {...props} />
-          </TextContainer>
-        ) : null}
-      </Flex>
+      {name || address ? (
+        <TextContainer {...props}>
+          <AvatarName {...props}>{name ? name : '--'}</AvatarName>
+          <AvatarAddress {...props}>
+            {address ? shortenAddress(props.address) : null}
+          </AvatarAddress>
+        </TextContainer>
+      ) : null}
     </AvatarWrapper>
   );
 };
