@@ -1,65 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@styled-system/css';
+import styled from '@emotion/styled';
 import Blockies from 'react-blockies';
 import { Text, Image, Flex, Link } from 'rebass';
 import { shortenAddress } from 'utils/helpers';
 
-const AvatarContainer = props => {
-  const { src, onClick } = props;
-  return (
-    <Link
-      src={src ? src : '/profile/' + props.address}
-      onClick={onClick}
-      css={{
-        display: 'inline-block',
-        '&:hover': { textDecoration: 'none' },
-        '&:hover .address': { textDecoration: 'underline' }
-      }}
-    >
-      {props.children}
-    </Link>
-  );
+let imageContainerSize = props => {
+  switch (props.size) {
+    case 'small':
+      return 4;
+    case 'medium':
+      return 5;
+    case 'large':
+      return 7;
+    default:
+      return 4;
+  }
 };
 
-const ImageContainer = props => {
-  const { type, size } = props;
+const AvatarWrapper = styled(Link)(
+  css({
+    display: 'inline-block',
+    '&:hover': { textDecoration: 'none' },
+    '&:hover .address': { textDecoration: 'underline' }
+  })
+);
 
-  let containerSize = () => {
-    switch (size) {
-      case 'small':
-        return 4;
-      case 'medium':
-        return 5;
-      case 'large':
-        return 7;
-      default:
-        return 4;
-    }
-  };
+const ImageContainer = styled(Flex)(props =>
+  css({
+    alignItems: 'center',
+    justifyContent: 'center',
+    bg: 'white',
+    border: props.size === 'small' ? 'none' : 1,
+    boxShadow: props.size === 'small' ? 'none' : 1,
+    overflow: 'hidden',
+    size: imageContainerSize({ ...props }),
+    variant: 'avatarTypes.' + props.type
+  })
+);
 
-  return (
-    <Flex
-      alignItems="center"
-      justifyContent="center"
-      css={css({
-        bg: 'white',
-        border: size === 'small' ? 'none' : 1,
-        boxShadow: size === 'small' ? 'none' : 1,
-        overflow: 'hidden',
-        height: containerSize(),
-        width: containerSize(),
-        variant: 'avatarTypes.' + type
-      })}
-    >
-      {props.children}
-    </Flex>
-  );
-};
+const TextContainer = styled(Flex)(props =>
+  css({
+    pl: props.size === 'large' || props.textFormat === 'inline' ? 3 : 2,
+    variant: 'textFormat.' + props.textFormat
+  })
+);
 
 const AvatarImage = props => {
-  const { img } = props;
-
   let blockySize = () => {
     switch (props.size) {
       case 'small':
@@ -73,30 +61,20 @@ const AvatarImage = props => {
     }
   };
 
-  if (!img) {
+  if (!props.img) {
     return <Blockies seed={props.hash} {...blockySize()} />;
   } else {
-    return <Image src={img ? img : props.hash} height="100%" width="auto" />;
+    return (
+      <Image
+        src={props.img ? props.img : props.hash}
+        height="100%"
+        width="auto"
+      />
+    );
   }
 };
 
-const AvatarText = props => {
-  const { size } = props;
-
-  return (
-    <Flex
-      pl={(size === 'large' ? 3 : 2, props.textFormat === 'inline' ? 3 : 2)}
-      css={css({
-        variant: 'textFormat.' + props.textFormat
-      })}
-    >
-      {props.children}
-    </Flex>
-  );
-};
-
 const Name = props => {
-  const { onDark } = props;
   let nameSize = () => {
     switch (props.size) {
       case 'small' || 'medium':
@@ -107,13 +85,14 @@ const Name = props => {
         return 'bodyStrong';
     }
   };
+
   if (!props.name) {
     return (
       <Text
         display={props.size === 'small' ? 'none' : null}
         variant={nameSize()}
         fontWeight="medium"
-        color={onDark ? 'white' : 'black'}
+        color={props.onDark ? 'white' : 'black'}
         lineHeight="reset"
         mt={-1}
       >
@@ -126,7 +105,7 @@ const Name = props => {
         className="nameText"
         variant={nameSize()}
         fontWeight="medium"
-        color={onDark ? 'white' : 'black'}
+        color={props.onDark ? 'white' : 'black'}
         lineHeight="reset"
         mr={props.textFormat === 'inline' ? 2 : ''}
         css={css({
@@ -152,6 +131,7 @@ const Address = props => {
         return 'body';
     }
   };
+
   if (!props.address) {
     return null;
   } else {
@@ -169,23 +149,27 @@ const Address = props => {
 };
 
 const Avatar = props => {
-  const { address, name, textFormat } = props;
+  const { address, name, textFormat, src, onClick } = props;
 
   return (
-    <AvatarContainer {...props}>
+    <AvatarWrapper
+      src={src ? src : '/profile/' + props.address}
+      onClick={onClick}
+      {...props}
+    >
       <Flex alignItems={textFormat === 'inline' ? 'flex-start' : 'center'}>
         <ImageContainer {...props}>
           <AvatarImage {...props} />
         </ImageContainer>
 
         {name || address ? (
-          <AvatarText {...props}>
+          <TextContainer {...props}>
             <Name {...props} />
             <Address {...props} />
-          </AvatarText>
+          </TextContainer>
         ) : null}
       </Flex>
-    </AvatarContainer>
+    </AvatarWrapper>
   );
 };
 
