@@ -84,7 +84,6 @@
     "@types/babel-core": "6.25.6",
     "@types/croppie": "^2.5.4",
     "@types/dotenv": "4.0.0",
-    "@types/eslint": "^6.1.0",
     "@types/fs-extra": "3.0.1",
     "@types/history": "^4.7.3",
     "@types/node-sass": "^4.11.0",
@@ -124,19 +123,11 @@
     "array-from": "^2.1.1",
     "autoprefixer": "7.1.6",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "7.2.3",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-import": "^1.7.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "css-loader": "0.28.7",
-    "eslint": "4.10.0",
-    "eslint-config-react-app": "^2.1.0",
-    "eslint-loader": "1.9.0",
-    "eslint-plugin-flowtype": "2.39.1",
-    "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-jsx-a11y": "5.1.1",
-    "eslint-plugin-react": "7.4.0",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^4.0.0-beta.8",
     "jest": "20.0.4",
@@ -242,20 +233,5 @@
       "node",
       "mjs"
     ]
-  },
-  "eslintConfig": {
-    "extends": "react-app",
-    "rules": {
-      "no-unused-expressions": "off",
-      "no-useless-escape": "off",
-      "radix": [
-        2,
-        "as-needed"
-      ],
-      "quotes": [
-        2,
-        "single"
-      ]
-    }
   }
 }

@@ -41,7 +41,7 @@ let addressSize = props => {
   }
 };
 
-const AvatarWrapper = styled(Link)(props =>
+const AvatarWrapper = styled(Link)<any>(props =>
   css({
     display: 'flex',
     alignItems: props.textFormat === 'inline' ? 'flex-start' : 'center',
@@ -49,7 +49,7 @@ const AvatarWrapper = styled(Link)(props =>
   })
 );
 
-const ImageContainer = styled(Flex)(props =>
+const ImageContainer = styled(Flex)<any>(props =>
   css({
     alignItems: 'center',
     justifyContent: 'center',
@@ -83,18 +83,18 @@ const AvatarImage = props => {
   }
 };
 
-const TextContainer = styled(Flex)(props =>
+const TextContainer = styled(Flex)<any>(props =>
   css({
     pl: props.size === 'large' || props.textFormat === 'inline' ? 3 : 2,
     variant: 'textFormat.' + props.textFormat
   })
 );
 
-const AvatarName = styled(Text)(props =>
+const AvatarName = styled(Text)<any>(props =>
   css({
-    display: props.size === 'small' ? 'none' : null,
+    display: props.size === 'small' ? 'none' : '',
     color: props.onDark ? 'white' : 'black',
-    mt: !props.name ? -1 : null,
+    mt: !props.name ? -1 : '',
     mr: props.textFormat === 'inline' ? 2 : '',
     variant: 'text.' + nameSize({ ...props }),
     lineHeight: 'reset',
@@ -104,7 +104,7 @@ const AvatarName = styled(Text)(props =>
   })
 );
 
-const AvatarAddress = styled(Text)(props =>
+const AvatarAddress = styled(Text)<any>(props =>
   css({
     color: props.onDark ? 'transparentWhite' : 'brandSecondary',
     variant: 'text.' + addressSize({ ...props }),
