@@ -1,4 +1,7 @@
-'use strict';
+
+require('@babel/register')({
+  extensions: ['.js', '.jsx', '.ts', '.tsx'],
+});
 
 const autoprefixer = require('autoprefixer');
 const path = require('path');
@@ -7,7 +10,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
@@ -26,6 +28,7 @@ const env = getClientEnvironment(publicUrl);
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
 module.exports = {
+  mode: 'development',
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
   devtool: 'cheap-module-source-map',
@@ -105,23 +108,6 @@ module.exports = {
       // We are waiting for https://github.com/facebookincubator/create-react-app/issues/2176.
       // { parser: { requireEnsure: false } },
 
-      // First, run the linter.
-      // It's important to do this before Babel processes the JS.
-      {
-        test: /\.(tsx|ts|js|jsx|mjs)$/,
-        enforce: 'pre',
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
-              
-            },
-            loader: require.resolve('eslint-loader'),
-          },
-        ],
-        include: paths.appSrc,
-      },
       {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall
@@ -140,7 +126,7 @@ module.exports = {
           },
           // Process JS with Babel.
           {
-            test: /\.(js|jsx|mjs)$/,
+            test: /\.(js|jsx|mjs|ts|tsx)$/,
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
@@ -150,11 +136,6 @@ module.exports = {
               // directory for faster rebuilds.
               cacheDirectory: true,
             },
-          },
-          {
-            test: /\.tsx?$/,
-            use: 'ts-loader',
-            exclude: /node_modules/
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -196,15 +177,15 @@ module.exports = {
           {
             test: /\.module\.scss$/,
             use: [
-              require.resolve("style-loader"),
+              require.resolve('style-loader'),
               {
-                loader: "css-loader",
+                loader: 'css-loader',
                 options: {
-                  "modules": true,
-                  "localIdentName": "[local]--[hash:base64:5]",
+                  'modules': true,
+                  'localIdentName': '[local]--[hash:base64:5]',
                 },
               },
-              require.resolve("sass-loader"),
+              require.resolve('sass-loader'),
               {
                 loader: require.resolve('postcss-loader'),
                 options: {
@@ -230,9 +211,9 @@ module.exports = {
           {
             test: /\.scss$/,
             use: [
-              require.resolve("style-loader"),
-              require.resolve("css-loader"),
-              require.resolve("sass-loader"),
+              require.resolve('style-loader'),
+              require.resolve('css-loader'),
+              require.resolve('sass-loader'),
               {
                 loader: require.resolve('postcss-loader'),
                 options: {
@@ -294,12 +275,12 @@ module.exports = {
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In development, this will be an empty string.
-    new InterpolateHtmlPlugin(env.raw),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
     }),
+    new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
     // Add module names to factory functions so they appear in browser profiler.
     new webpack.NamedModulesPlugin(),
     // Makes some environment variables available to the JS code, for example:
