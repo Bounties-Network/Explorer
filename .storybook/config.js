@@ -9,8 +9,11 @@ import '../src/styles/Toastify.scss';
 
 // automatically import all files ending in *.stories.js
 const req = require.context('../src/stories', true, /.stories.js$/);
+// automatically import all files ending in *.stories.tsx
+const tsReq = require.context('../src', true, /.stories.tsx$/);
 function loadStories() {
   req.keys().forEach(filename => req(filename));
+  tsReq.keys().forEach(filename => req(filename));
 }
 
 addDecorator(story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>);

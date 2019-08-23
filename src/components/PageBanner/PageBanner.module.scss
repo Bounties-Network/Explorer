@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .pageBanner {
   background-color: #e5e5e7;
@@ -8,11 +8,7 @@
 
 .pageBannerWrapper {
   display: flex;
-
-  // on mobile side spacing defaults to 1rem like most components
   padding: $m-spacing;
-
-  // on desktop, the wrapClass prop drives edge padding and max width
   @media only screen and (min-width: 48em) {
     padding: $m-spacing 0;
   }

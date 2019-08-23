@@ -1,3 +1,6 @@
+require('@babel/register')({
+  extensions: ['.js', '.jsx', '.ts', '.tsx']
+});
 const path = require('path');
 const fs = require('fs');
 const autoprefixer = require('autoprefixer');
@@ -9,7 +12,18 @@ module.exports = ({ config: defaultConfig }) => {
   defaultConfig.resolve.extensions = ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx', '.ts', '.tsx'];
 
   defaultConfig.module.rules.push({
+    exclude: /node_modules/,
+    test: /\.(ts|tsx)$/,
+    use: 'babel-loader'
+  });
+
+  defaultConfig.module.rules.push({
     test: /\.stories\.jsx?$/,
+    loaders: [require.resolve('@storybook/addon-storysource/loader')],
+    enforce: 'pre'
+  });
+  defaultConfig.module.rules.push({
+    test: /\.stories\.tsx?$/,
     loaders: [require.resolve('@storybook/addon-storysource/loader')],
     enforce: 'pre'
   });
@@ -21,8 +35,7 @@ module.exports = ({ config: defaultConfig }) => {
       {
         loader: 'css-loader',
         options: {
-          modules: true,
-          localIdentName: '[local]--[hash:base64:5]'
+          modules: true
         }
       },
       'sass-loader',
@@ -55,8 +68,7 @@ module.exports = ({ config: defaultConfig }) => {
       {
         loader: 'css-loader',
         options: {
-          modules: false,
-          localIdentName: '[local]--[hash:base64:5]'
+          modules: false
         }
       },
       'sass-loader',

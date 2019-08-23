@@ -160,6 +160,7 @@
     "check-types": "tsc",
     "lint": "prettier --single-quote --write \"src/**/*.{js,jsx,json,css}\"",
     "precommit": "lint-staged",
+    "dev": "npm run start-staging",
     "start": "APP_SETTINGS_FILE=production_settings APP_LOGO=logo node scripts/start.js",
     "start-local": "APP_SETTINGS_FILE=local_settings APP_LOGO=logo node scripts/start.js",
     "start-staging": "APP_SETTINGS_FILE=staging_settings APP_LOGO=logo node scripts/start.js",
