@@ -1,65 +1,68 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@styled-system/css';
+import styled from '@emotion/styled';
 import Blockies from 'react-blockies';
 import { Text, Image, Flex, Link } from 'rebass';
 import { shortenAddress } from 'utils/helpers';
 
-const AvatarContainer = props => {
-  const { src, onClick } = props;
-  return (
-    <Link
-      src={src ? src : '/profile/' + props.address}
-      onClick={onClick}
-      css={{
-        display: 'inline-block',
-        '&:hover': { textDecoration: 'none' },
-        '&:hover .address': { textDecoration: 'underline' }
-      }}
-    >
-      {props.children}
-    </Link>
-  );
+let imageContainerSize = props => {
+  switch (props.size) {
+    case 'small':
+      return 4;
+    case 'medium':
+      return 5;
+    case 'large':
+      return 7;
+    default:
+      return 4;
+  }
 };
 
-const ImageContainer = props => {
-  const { type, size } = props;
-
-  let containerSize = () => {
-    switch (size) {
-      case 'small':
-        return 4;
-      case 'medium':
-        return 5;
-      case 'large':
-        return 7;
-      default:
-        return 4;
-    }
-  };
-
-  return (
-    <Flex
-      alignItems="center"
-      justifyContent="center"
-      css={css({
-        bg: 'white',
-        border: size === 'small' ? 'none' : 1,
-        boxShadow: size === 'small' ? 'none' : 1,
-        overflow: 'hidden',
-        height: containerSize(),
-        width: containerSize(),
-        variant: 'avatarTypes.' + type
-      })}
-    >
-      {props.children}
-    </Flex>
-  );
+let nameSize = props => {
+  switch (props.size) {
+    case 'small' || 'medium':
+      return 'bodyStrong';
+    case 'large':
+      return 'h2';
+    default:
+      return 'bodyStrong';
+  }
 };
+
+let addressSize = props => {
+  switch (props.size) {
+    case 'small' || 'medium':
+      return 'body';
+    case 'large':
+      return 'bodyLarge';
+    default:
+      return 'body';
+  }
+};
+
+const AvatarWrapper = styled(Link)(props =>
+  css({
+    display: 'flex',
+    alignItems: props.textFormat === 'inline' ? 'flex-start' : 'center',
+    '&:hover': { textDecoration: 'none' }
+  })
+);
+
+const ImageContainer = styled(Flex)(props =>
+  css({
+    alignItems: 'center',
+    justifyContent: 'center',
+    bg: 'white',
+    border: props.size === 'small' ? 'none' : 1,
+    boxShadow: props.size === 'small' ? 'none' : 1,
+    overflow: 'hidden',
+    size: imageContainerSize({ ...props }),
+    variant: 'avatarTypes.' + props.type
+  })
+);
 
 const AvatarImage = props => {
-  const { img } = props;
-
   let blockySize = () => {
     switch (props.size) {
       case 'small':
@@ -73,119 +76,71 @@ const AvatarImage = props => {
     }
   };
 
-  if (!img) {
+  if (!props.img) {
     return <Blockies seed={props.hash} {...blockySize()} />;
   } else {
-    return <Image src={img ? img : props.hash} height="100%" width="auto" />;
+    return (
+      <Image
+        src={props.img ? props.img : props.hash}
+        height="100%"
+        width="auto"
+      />
+    );
   }
 };
 
-const AvatarText = props => {
-  const { size } = props;
+const TextContainer = styled(Flex)(props =>
+  css({
+    pl: props.size === 'large' || props.textFormat === 'inline' ? 3 : 2,
+    variant: 'textFormat.' + props.textFormat
+  })
+);
 
-  return (
-    <Flex
-      pl={(size === 'large' ? 3 : 2, props.textFormat === 'inline' ? 3 : 2)}
-      css={css({
-        variant: 'textFormat.' + props.textFormat
-      })}
-    >
-      {props.children}
-    </Flex>
-  );
-};
-
-const Name = props => {
-  const { onDark } = props;
-  let nameSize = () => {
-    switch (props.size) {
-      case 'small' || 'medium':
-        return 'bodyStrong';
-      case 'large':
-        return 'h2';
-      default:
-        return 'bodyStrong';
+const AvatarName = styled(Text)(props =>
+  css({
+    display: props.size === 'small' ? 'none' : null,
+    color: props.onDark ? 'white' : 'black',
+    mt: !props.name ? -1 : null,
+    mr: props.textFormat === 'inline' ? 2 : '',
+    variant: 'text.' + nameSize({ ...props }),
+    lineHeight: 'reset',
+    '&:not(:last-child)': {
+      mb: 1
     }
-  };
-  if (!props.name) {
-    return (
-      <Text
-        display={props.size === 'small' ? 'none' : null}
-        variant={nameSize()}
-        fontWeight="medium"
-        color={onDark ? 'white' : 'black'}
-        lineHeight="reset"
-        mt={-1}
-      >
-        --
-      </Text>
-    );
-  } else {
-    return (
-      <Text
-        className="nameText"
-        variant={nameSize()}
-        fontWeight="medium"
-        color={onDark ? 'white' : 'black'}
-        lineHeight="reset"
-        mr={props.textFormat === 'inline' ? 2 : ''}
-        css={css({
-          '&:not(:last-child)': {
-            mb: 1
-          }
-        })}
-      >
-        {props.name}
-      </Text>
-    );
-  }
-};
+  })
+);
 
-const Address = props => {
-  let addressSize = () => {
-    switch (props.size) {
-      case 'small' || 'medium':
-        return 'body';
-      case 'large':
-        return 'bodyLarge';
-      default:
-        return 'body';
-    }
-  };
-  if (!props.address) {
-    return null;
-  } else {
-    return (
-      <Text
-        className="address"
-        variant={addressSize()}
-        color={props.onDark ? 'transparentWhite' : 'brandSecondary'}
-        lineHeight="reset"
-      >
-        {shortenAddress(props.address)}
-      </Text>
-    );
-  }
-};
+const AvatarAddress = styled(Text)(props =>
+  css({
+    color: props.onDark ? 'transparentWhite' : 'brandSecondary',
+    variant: 'text.' + addressSize({ ...props }),
+    lineHeight: 'reset',
+    'a:hover &': { textDecoration: 'underline' }
+  })
+);
 
 const Avatar = props => {
-  const { address, name, textFormat } = props;
+  const { address, name, src, onClick } = props;
 
   return (
-    <AvatarContainer {...props}>
-      <Flex alignItems={textFormat === 'inline' ? 'flex-start' : 'center'}>
-        <ImageContainer {...props}>
-          <AvatarImage {...props} />
-        </ImageContainer>
+    <AvatarWrapper
+      src={src ? src : '/profile/' + props.address}
+      onClick={onClick}
+      {...props}
+    >
+      <ImageContainer {...props}>
+        <AvatarImage {...props} />
+      </ImageContainer>
 
-        {name || address ? (
-          <AvatarText {...props}>
-            <Name {...props} />
-            <Address {...props} />
-          </AvatarText>
-        ) : null}
-      </Flex>
-    </AvatarContainer>
+      {name || address ? (
+        <TextContainer {...props}>
+          <AvatarName {...props}>{name ? name : '--'}</AvatarName>
+          <AvatarAddress {...props}>
+            {address ? shortenAddress(props.address) : null}
+          </AvatarAddress>
+        </TextContainer>
+      ) : null}
+    </AvatarWrapper>
   );
 };
 

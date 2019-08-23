@@ -10,6 +10,7 @@ addDecorator(withKnobs);
 
 storiesOf('Avatar', module).add('User', () => (
   <Avatar
+    textFormat={text('textFormat', 'block')}
     size={text('size', 'medium')}
     name={text('name', 'Simona Pop')}
     img={text('img', 'https://i.imgur.com/lhTwRZY.png')}
