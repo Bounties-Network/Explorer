@@ -12,6 +12,11 @@ module.exports = ({ config: defaultConfig }) => {
     loaders: [require.resolve('@storybook/addon-storysource/loader')],
     enforce: 'pre'
   });
+  defaultConfig.module.rules.push({
+    test: /\.stories\.tsx?$/,
+    loaders: [require.resolve('@storybook/addon-storysource/loader')],
+    enforce: 'pre'
+  });
 
   defaultConfig.module.rules.push({
     test: /\.module\.scss$/,

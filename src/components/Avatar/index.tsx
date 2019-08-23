@@ -79,13 +79,7 @@ const AvatarImage = props => {
   if (!props.img) {
     return <Blockies seed={props.hash} {...blockySize()} />;
   } else {
-    return (
-      <Image
-        src={props.img ? props.img : props.hash}
-        height="100%"
-        width="auto"
-      />
-    );
+    return <Image src={props.img ? props.img : props.hash} height="100%" width="auto" />;
   }
 };
 
@@ -123,11 +117,7 @@ const Avatar = props => {
   const { address, name, src, onClick } = props;
 
   return (
-    <AvatarWrapper
-      src={src ? src : '/profile/' + props.address}
-      onClick={onClick}
-      {...props}
-    >
+    <AvatarWrapper src={src ? src : '/profile/' + props.address} onClick={onClick} {...props}>
       <ImageContainer {...props}>
         <AvatarImage {...props} />
       </ImageContainer>
@@ -135,9 +125,7 @@ const Avatar = props => {
       {name || address ? (
         <TextContainer {...props}>
           <AvatarName {...props}>{name ? name : '--'}</AvatarName>
-          <AvatarAddress {...props}>
-            {address ? shortenAddress(props.address) : null}
-          </AvatarAddress>
+          <AvatarAddress {...props}>{address ? shortenAddress(props.address) : null}</AvatarAddress>
         </TextContainer>
       ) : null}
     </AvatarWrapper>
