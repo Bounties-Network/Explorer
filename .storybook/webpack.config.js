@@ -6,6 +6,7 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = ({ config: defaultConfig }) => {
   defaultConfig.resolve.modules = ['node_modules', path.resolve(__dirname, '../src')];
+  defaultConfig.resolve.extensions = ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx', '.ts', '.tsx'];
 
   defaultConfig.module.rules.push({
     test: /\.stories\.jsx?$/,

@@ -1,3 +1,7 @@
+require('@babel/register')({
+  extensions: ['.js', '.jsx', '.ts', '.tsx']
+});
+
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -112,7 +116,7 @@ module.exports = {
           },
           // Process JS with Babel.
           {
-            test: /\.(js|jsx|mjs)$/,
+            test: /\.(js|jsx|mjs|ts|tsx)$/,
             include: paths.appSrc,
             loader: require.resolve('babel-loader')
           },
