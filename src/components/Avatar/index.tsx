@@ -83,7 +83,7 @@ const AvatarImage: React.FC<AvatarImageProps> = ({ variant, hash, img }) => {
   if (!img) {
     return <Blockies seed={hash} {...blockySize()} />;
   } else {
-    return <Image src={img || hash} height="100%" width="auto" />;
+    return <Image src={img} height="100%" width="auto" />;
   }
 };
 
@@ -104,7 +104,7 @@ const AvatarName = styled(Text)<AvatarNameProps>(props =>
     mr: props.textFormat === 'inline' ? 2 : '',
     variant: 'text.' + nameSize(props.variant),
     lineHeight: 'reset',
-    '&:not(:last-child)': {
+    '&:not(:last-child):not(:only-child)': {
       mb: 1
     }
   })
@@ -121,28 +121,28 @@ const AvatarAddress = styled(Text)<AvatarAddressProps>(props =>
 );
 
 type AvatarProps = {
-  resourceType: 'user' | 'community';
   variant: 'small' | 'medium' | 'large';
-  onClick: (event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>) => void;
-  src: string;
-  address: string;
   name: string;
-  textFormat: 'block' | 'inline';
-  img: string;
-  hash: string;
+  resourceType: 'user' | 'community';
+  textFormat?: 'block' | 'inline';
   onDark: boolean;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>) => void;
+  src?: string;
+  img?: string;
+  address?: string;
+  hash?: string;
 };
 const Avatar: React.FC<AvatarProps> = ({
   resourceType = 'user',
   variant = 'medium',
   textFormat = 'block',
+  onDark = false,
   address,
   name,
   src,
   onClick,
   hash,
-  img,
-  onDark
+  img
 }) => {
   return (
     <AvatarWrapper src={src ? src : '/profile/' + address} onClick={onClick} textFormat={textFormat}>
@@ -155,9 +155,11 @@ const Avatar: React.FC<AvatarProps> = ({
           <AvatarName variant={variant} name={name} onDark={onDark} textFormat={textFormat}>
             {name || '--'}
           </AvatarName>
-          <AvatarAddress variant={variant} onDark={onDark}>
-            {address && shortenAddress(address)}
-          </AvatarAddress>
+          {address && (
+            <AvatarAddress variant={variant} onDark={onDark}>
+              {shortenAddress(address)}
+            </AvatarAddress>
+          )}
         </TextContainer>
       ) : null}
     </AvatarWrapper>

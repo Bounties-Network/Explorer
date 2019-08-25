@@ -1,3 +1,7 @@
+require('@babel/register')({
+  extensions: ['.js', '.jsx', '.ts', '.tsx']
+});
+
 import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { ThemeProvider } from 'emotion-theming';
@@ -8,11 +12,11 @@ import '../src/fontAwesome';
 import '../src/styles/Toastify.scss';
 
 // automatically import all files ending in *.stories.js
-const req = require.context('../src/stories', true, /.stories.js$/);
-const tsreq = require.context('../src/stories', true, /.stories.tsx$/);
 function loadStories() {
+  const req = require.context('../src/stories', true, /.stories.js$/);
   req.keys().forEach(filename => req(filename));
-  tsreq.keys().forEach(filename => req(filename));
+  const tsreq = require.context('../src/stories', true, /.stories.tsx$/);
+  tsreq.keys().forEach(filename => tsreq(filename));
 }
 
 addDecorator(story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>);
