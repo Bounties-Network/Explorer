@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@styled-system/css';
-import styled from '@emotion/styled';
+import styled from 'lib/emotion-styled';
 import Blockies from 'react-blockies';
 import { Text, Image, Flex, Link } from 'rebass';
 import { shortenAddress } from 'utils/helpers';
 
-let imageContainerSize = props => {
-  switch (props.size) {
+let imageContainerVariantSize = variant => {
+  switch (variant) {
     case 'small':
       return 4;
     case 'medium':
@@ -19,8 +18,8 @@ let imageContainerSize = props => {
   }
 };
 
-let nameSize = props => {
-  switch (props.size) {
+let nameSize = variant => {
+  switch (variant) {
     case 'small' || 'medium':
       return 'bodyStrong';
     case 'large':
@@ -30,8 +29,8 @@ let nameSize = props => {
   }
 };
 
-let addressSize = props => {
-  switch (props.size) {
+let addressSize = variant => {
+  switch (variant) {
     case 'small' || 'medium':
       return 'body';
     case 'large':
@@ -41,7 +40,8 @@ let addressSize = props => {
   }
 };
 
-const AvatarWrapper = styled(Link)<any>(props =>
+type AvatarWrapperProps = Pick<AvatarProps, 'textFormat'>;
+const AvatarWrapper = styled(Link)<AvatarWrapperProps>(props =>
   css({
     display: 'flex',
     alignItems: props.textFormat === 'inline' ? 'flex-start' : 'center',
@@ -49,22 +49,26 @@ const AvatarWrapper = styled(Link)<any>(props =>
   })
 );
 
-const ImageContainer = styled(Flex)<any>(props =>
-  css({
-    alignItems: 'center',
-    justifyContent: 'center',
-    bg: 'white',
-    border: props.size === 'small' ? 'none' : 1,
-    boxShadow: props.size === 'small' ? 'none' : 1,
-    overflow: 'hidden',
-    size: imageContainerSize({ ...props }),
-    variant: 'avatarTypes.' + props.type
-  })
+type ImageContainerProps = Pick<AvatarProps, 'variant' | 'resourceType'>;
+const ImageContainer = styled(Flex)<ImageContainerProps>(
+  props =>
+    css({
+      alignItems: 'center',
+      justifyContent: 'center',
+      bg: 'white',
+      border: props.variant === 'small' ? 'none' : 1,
+      boxShadow: props.variant === 'small' ? 'none' : 1,
+      overflow: 'hidden',
+      size: imageContainerVariantSize(props.variant),
+      variant: `avatarResourceTypes.${props.resourceType}`
+    })
+  // props => props.theme.avatarResourceTypes[props.resourceType] or use this instead of the variant key above
 );
 
-const AvatarImage = props => {
+type AvatarImageProps = Pick<AvatarProps, 'variant' | 'hash' | 'img'>;
+const AvatarImage: React.FC<AvatarImageProps> = ({ variant, hash, img }) => {
   let blockySize = () => {
-    switch (props.size) {
+    switch (variant) {
       case 'small':
         return { size: '8', scale: '4' };
       case 'medium':
@@ -76,27 +80,29 @@ const AvatarImage = props => {
     }
   };
 
-  if (!props.img) {
-    return <Blockies seed={props.hash} {...blockySize()} />;
+  if (!img) {
+    return <Blockies seed={hash} {...blockySize()} />;
   } else {
-    return <Image src={props.img ? props.img : props.hash} height="100%" width="auto" />;
+    return <Image src={img || hash} height="100%" width="auto" />;
   }
 };
 
-const TextContainer = styled(Flex)<any>(props =>
+type TextContainerProps = Pick<AvatarProps, 'variant' | 'textFormat'>;
+const TextContainer = styled(Flex)<TextContainerProps>(props =>
   css({
-    pl: props.size === 'large' || props.textFormat === 'inline' ? 3 : 2,
+    pl: props.variant === 'large' || props.textFormat === 'inline' ? 3 : 2,
     variant: 'textFormat.' + props.textFormat
   })
 );
 
-const AvatarName = styled(Text)<any>(props =>
+type AvatarNameProps = Pick<AvatarProps, 'variant' | 'textFormat' | 'onDark' | 'name'>;
+const AvatarName = styled(Text)<AvatarNameProps>(props =>
   css({
-    display: props.size === 'small' ? 'none' : '',
+    display: props.variant === 'small' ? 'none' : '',
     color: props.onDark ? 'white' : 'black',
     mt: !props.name ? -1 : '',
     mr: props.textFormat === 'inline' ? 2 : '',
-    variant: 'text.' + nameSize({ ...props }),
+    variant: 'text.' + nameSize(props.variant),
     lineHeight: 'reset',
     '&:not(:last-child)': {
       mb: 1
@@ -104,51 +110,58 @@ const AvatarName = styled(Text)<any>(props =>
   })
 );
 
-const AvatarAddress = styled(Text)<any>(props =>
+type AvatarAddressProps = Pick<AvatarProps, 'onDark' | 'variant'>;
+const AvatarAddress = styled(Text)<AvatarAddressProps>(props =>
   css({
     color: props.onDark ? 'transparentWhite' : 'brandSecondary',
-    variant: 'text.' + addressSize({ ...props }),
+    variant: 'text.' + addressSize(props.variant),
     lineHeight: 'reset',
     'a:hover &': { textDecoration: 'underline' }
   })
 );
 
-const Avatar = props => {
-  const { address, name, src, onClick } = props;
-
+type AvatarProps = {
+  resourceType: 'user' | 'community';
+  variant: 'small' | 'medium' | 'large';
+  onClick: (event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>) => void;
+  src: string;
+  address: string;
+  name: string;
+  textFormat: 'block' | 'inline';
+  img: string;
+  hash: string;
+  onDark: boolean;
+};
+const Avatar: React.FC<AvatarProps> = ({
+  resourceType = 'user',
+  variant = 'medium',
+  textFormat = 'block',
+  address,
+  name,
+  src,
+  onClick,
+  hash,
+  img,
+  onDark
+}) => {
   return (
-    <AvatarWrapper src={src ? src : '/profile/' + props.address} onClick={onClick} {...props}>
-      <ImageContainer {...props}>
-        <AvatarImage {...props} />
+    <AvatarWrapper src={src ? src : '/profile/' + address} onClick={onClick} textFormat={textFormat}>
+      <ImageContainer variant={variant} resourceType={resourceType}>
+        <AvatarImage variant={variant} img={img} hash={hash} />
       </ImageContainer>
 
       {name || address ? (
-        <TextContainer {...props}>
-          <AvatarName {...props}>{name ? name : '--'}</AvatarName>
-          <AvatarAddress {...props}>{address ? shortenAddress(props.address) : null}</AvatarAddress>
+        <TextContainer textFormat={textFormat} variant={variant}>
+          <AvatarName variant={variant} name={name} onDark={onDark} textFormat={textFormat}>
+            {name || '--'}
+          </AvatarName>
+          <AvatarAddress variant={variant} onDark={onDark}>
+            {address && shortenAddress(address)}
+          </AvatarAddress>
         </TextContainer>
       ) : null}
     </AvatarWrapper>
   );
-};
-
-Avatar.propTypes = {
-  type: PropTypes.oneOf(['user', 'community']),
-  onClick: PropTypes.func,
-  src: PropTypes.string,
-  address: PropTypes.string,
-  name: PropTypes.string,
-  textFormat: PropTypes.oneOf(['block', 'inline']),
-  img: PropTypes.string,
-  hash: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  onDark: PropTypes.bool
-};
-
-Avatar.defaultProps = {
-  type: 'user',
-  size: 'medium',
-  textFormat: 'block'
 };
 
 export default Avatar;

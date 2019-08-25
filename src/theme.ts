@@ -193,7 +193,7 @@ export const shadows = [
 export const zIndices = [0, 9, 99, 999, 9999];
 
 //AVATAR STYLES
-export const avatarTypes = {
+export const avatarResourceTypes = {
   user: {
     borderRadius: 3
   },
@@ -230,7 +230,7 @@ const theme = {
   borders,
   shadows,
   zIndices,
-  avatarTypes,
+  avatarResourceTypes,
   textFormat,
   maxContainerWidth
 };
