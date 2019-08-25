@@ -122,7 +122,7 @@ const AvatarAddress = styled(Text)<AvatarAddressProps>(props =>
 
 type AvatarProps = {
   variant: 'small' | 'medium' | 'large';
-  name: string;
+  name: string | undefined;
   resourceType: 'user' | 'community';
   textFormat?: 'block' | 'inline';
   onDark: boolean;
@@ -132,18 +132,20 @@ type AvatarProps = {
   address?: string;
   hash?: string;
 };
-const Avatar: React.FC<AvatarProps> = ({
-  resourceType = 'user',
-  variant = 'medium',
-  textFormat = 'block',
-  onDark = false,
-  address,
-  name,
-  src,
-  onClick,
-  hash,
-  img
-}) => {
+const Avatar: React.FC<AvatarProps> = props => {
+  const {
+    resourceType = 'user',
+    variant = 'medium',
+    textFormat = 'block',
+    onDark = false,
+    address,
+    name,
+    src,
+    onClick,
+    hash,
+    img
+  } = props;
+
   return (
     <AvatarWrapper src={src ? src : '/profile/' + address} onClick={onClick} textFormat={textFormat}>
       <ImageContainer variant={variant} resourceType={resourceType}>
@@ -152,9 +154,11 @@ const Avatar: React.FC<AvatarProps> = ({
 
       {name || address ? (
         <TextContainer textFormat={textFormat} variant={variant}>
-          <AvatarName variant={variant} name={name} onDark={onDark} textFormat={textFormat}>
-            {name || '--'}
-          </AvatarName>
+          {typeof name === 'string' && (
+            <AvatarName variant={variant} name={name} onDark={onDark} textFormat={textFormat}>
+              {name || '--'}
+            </AvatarName>
+          )}
           {address && (
             <AvatarAddress variant={variant} onDark={onDark}>
               {shortenAddress(address)}

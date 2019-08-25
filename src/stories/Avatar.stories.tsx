@@ -7,20 +7,35 @@ import Avatar from 'components/Avatar';
 addDecorator(centered);
 addDecorator(withKnobs);
 
-storiesOf('Avatar', module).add('User', () => (
-  <Avatar
-    resourceType="user"
-    textFormat={text('textFormat', 'block') as 'block'}
-    variant={text('variant', 'medium') as 'medium'}
-    name={text('name', 'Simona Pop')}
-    img={text('img', 'https://i.imgur.com/lhTwRZY.png')}
-    address={text('address', '0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r')}
-    src={text('src', 'https://www.google.co.uk')}
-    onClick={() => {}}
-    hash={text('address', '0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r')}
-    onDark={false}
-  />
-));
+storiesOf('Avatar', module)
+  .add('User with name', () => (
+    <Avatar
+      resourceType="user"
+      textFormat={text('textFormat', 'block') as 'block'}
+      variant={text('variant', 'medium') as 'medium'}
+      name={text('name', 'Simona Pop')}
+      img={text('img', 'https://i.imgur.com/lhTwRZY.png')}
+      address={text('address', '0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r')}
+      src={text('src', 'https://www.google.co.uk')}
+      onClick={() => {}}
+      hash={text('address', '0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r')}
+      onDark={false}
+    />
+  ))
+  .add('User without name', () => (
+    <Avatar
+      resourceType="user"
+      textFormat={text('textFormat', 'block') as 'block'}
+      variant={text('variant', 'medium') as 'medium'}
+      img={text('img', 'https://i.imgur.com/lhTwRZY.png')}
+      address={text('address', '0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r')}
+      name={null}
+      src={text('src', 'https://www.google.co.uk')}
+      onClick={() => {}}
+      hash={text('address', '0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r')}
+      onDark={false}
+    />
+  ));
 
 storiesOf('Avatar', module).add('Community', () => (
   <Avatar
