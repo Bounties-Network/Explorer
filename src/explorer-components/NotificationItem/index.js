@@ -26,7 +26,7 @@ const NotificationItem = props => {
     <div className={styles.container}>
       <div className={notifierClass}>
         {userAddress ? (
-          <LinkedAvatar size="small" img={profileImage} hash={userAddress} />
+          <LinkedAvatar variant="small" img={profileImage} hash={userAddress} />
         ) : (
           <FontAwesomeIcon icon={icon} className={styles.iconStyles} />
         )}
