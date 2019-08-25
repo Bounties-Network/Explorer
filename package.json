@@ -155,13 +155,13 @@
     "whatwg-fetch": "2.0.3"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
+    "src/**/*.{js,jsx,,ts,tsx,json,css}": [
       "prettier --single-quote --write",
       "git add"
     ]
   },
   "scripts": {
-    "lint": "prettier --single-quote --write \"src/**/*.{js,jsx,json,css}\"",
+    "lint": "prettier --single-quote --write \"src/**/*.{js,jsx,,ts,tsx,json,css}\"",
     "precommit": "lint-staged",
     "dev": "npm run start-staging",
     "start": "APP_SETTINGS_FILE=production_settings APP_LOGO=logo node scripts/start.js",
