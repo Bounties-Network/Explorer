@@ -95,7 +95,10 @@ const TextContainer = styled(Flex)<TextContainerProps>(props =>
   })
 );
 
-type AvatarNameProps = Pick<AvatarProps, 'variant' | 'textFormat' | 'onDark' | 'name'>;
+type AvatarNameProps = Pick<
+  AvatarProps,
+  'variant' | 'textFormat' | 'onDark' | 'name'
+>;
 const AvatarName = styled(Text)<AvatarNameProps>(props =>
   css({
     display: props.variant === 'small' ? 'none' : '',
@@ -126,7 +129,9 @@ type AvatarProps = {
   resourceType: 'user' | 'community';
   textFormat?: 'block' | 'inline';
   onDark: boolean;
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>) => void;
+  onClick?: (
+    event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>
+  ) => void;
   src?: string;
   img?: string;
   address?: string;
@@ -147,18 +152,25 @@ const Avatar: React.FC<AvatarProps> = props => {
   } = props;
 
   return (
-    <AvatarWrapper src={src ? src : '/profile/' + address} onClick={onClick} textFormat={textFormat}>
+    <AvatarWrapper
+      src={src ? src : '/profile/' + address}
+      onClick={onClick}
+      textFormat={textFormat}
+    >
       <ImageContainer variant={variant} resourceType={resourceType}>
         <AvatarImage variant={variant} img={img} hash={hash} />
       </ImageContainer>
 
       {name || address ? (
         <TextContainer textFormat={textFormat} variant={variant}>
-          {typeof name === 'string' && (
-            <AvatarName variant={variant} name={name} onDark={onDark} textFormat={textFormat}>
-              {name || '--'}
-            </AvatarName>
-          )}
+          <AvatarName
+            variant={variant}
+            name={name}
+            onDark={onDark}
+            textFormat={textFormat}
+          >
+            {name || '--'}
+          </AvatarName>
           {address && (
             <AvatarAddress variant={variant} onDark={onDark}>
               {shortenAddress(address)}
