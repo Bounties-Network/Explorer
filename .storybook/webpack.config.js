@@ -4,16 +4,34 @@ const autoprefixer = require('autoprefixer');
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
-module.exports = ({ config: defaultConfig }) => {
-  defaultConfig.resolve.modules = ['node_modules', path.resolve(__dirname, '../src')];
+module.exports = ({ config }) => {
+  config.resolve.modules = ['node_modules', path.resolve(__dirname, '../src')];
+  config.resolve.extensions.push('.ts', '.tsx');
 
-  defaultConfig.module.rules.push({
+  config.module.rules.push({
     test: /\.stories\.jsx?$/,
     loaders: [require.resolve('@storybook/addon-storysource/loader')],
     enforce: 'pre'
   });
+  config.module.rules.push({
+    test: /\.stories\.(ts|tsx)$/,
+    exclude: /node_modules/,
+    use: [
+      { loader: require.resolve('babel-loader') },
+      { loader: require.resolve('@storybook/addon-storysource/loader') }
+    ]
+  });
 
-  defaultConfig.module.rules.push({
+  config.module.rules.push({
+    test: /\.(ts|tsx)$/,
+    include: resolveApp('src'),
+    loader: require.resolve('babel-loader'),
+    options: {
+      cacheDirectory: true
+    }
+  });
+
+  config.module.rules.push({
     test: /\.module\.scss$/,
     use: [
       'style-loader',
@@ -47,7 +65,7 @@ module.exports = ({ config: defaultConfig }) => {
     ]
   });
 
-  defaultConfig.module.rules.push({
+  config.module.rules.push({
     test: /\.scss$/,
     use: [
       'style-loader',
@@ -83,5 +101,5 @@ module.exports = ({ config: defaultConfig }) => {
     include: [resolveApp('src/styles')]
   });
 
-  return defaultConfig;
+  return config;
 };

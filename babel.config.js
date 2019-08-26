@@ -1,5 +1,5 @@
 module.exports = {
-  presets: [['@babel/preset-react']],
+  presets: [['@babel/preset-typescript'], ['@babel/preset-react']],
   plugins: [
     ['react-hot-loader/babel'],
     ['@babel/plugin-syntax-object-rest-spread'],
@@ -58,6 +58,6 @@ module.exports = {
         camel2DashComponentName: false
       },
       'layout'
-    ],
+    ]
   ]
-}
+};

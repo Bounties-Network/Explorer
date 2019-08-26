@@ -9,7 +9,7 @@ const ProfileAvatar = props => {
     <div className={`${styles.centerAvatar} ${className}`}>
       <Avatar
         className={styles.profileAvatar}
-        size="large"
+        variant="large"
         hash={address}
         img={img}
       />

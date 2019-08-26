@@ -50,7 +50,7 @@ class UserStatsComponent extends React.Component {
       <div className={styles.dashboardHeader}>
         <div className={styles.dashboardAvatar}>
           <LinkedAvatar
-            size="large"
+            variant="large"
             name={name}
             address={public_address}
             hash={public_address}

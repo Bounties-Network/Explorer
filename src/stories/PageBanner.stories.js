@@ -67,8 +67,7 @@ storiesOf('PageBanner', module).add('PageBanner', () => (
     <div class="sb-component-container">
       <PageBanner>
         <Avatar
-          size="large"
-          border
+          variant="large"
           name="Simona Pop"
           img="https://i.imgur.com/lhTwRZY.png"
           address="0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r"
