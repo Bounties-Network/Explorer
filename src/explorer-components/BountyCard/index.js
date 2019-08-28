@@ -101,7 +101,8 @@ const BountyCard = props => {
                 hash={address}
                 to={`/profile/${address}`}
                 onClick={() => scrollToTop()}
-                size="small"
+                variant="small"
+                resourceType="user"
               />
             </div>
           </div>

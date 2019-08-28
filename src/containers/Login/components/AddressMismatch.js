@@ -46,7 +46,7 @@ const AddressMismatch = props => {
           <div>
             <Avatar
               className={styles.avatar}
-              size="small"
+              variant="small"
               img={img}
               hash={previousAddress}
               address={previousAddress}

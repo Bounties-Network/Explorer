@@ -117,7 +117,7 @@ a {
   }
 
   p:not(:last-child) {
-    padding-bottom: $l-spacing;
+    padding-bottom: $m-spacing;
   }
 
   body {
@@ -183,7 +183,7 @@ a {
     padding-left: $m-spacing;
 
     li:not(:last-child) {
-      padding-bottom: $base-spacing;
+      padding-bottom: $s-spacing;
     }
   }
 
@@ -193,7 +193,7 @@ a {
     padding-left: $m-spacing;
 
     li:not(:last-child) {
-      padding-bottom: $base-spacing;
+      padding-bottom: $s-spacing;
     }
   }
 
@@ -204,24 +204,36 @@ a {
     margin-top: $m-spacing;
 
     li {
-      margin-left: $xl-spacing;
+      margin-left: $l-spacing;
     }
   }
 
   pre {
+    display: block;
+    margin: $base-spacing 0;
+    padding: $m-spacing;
     background: $base-input-background;
     border: $base-border;
-    border-radius: $base-border-radius;
-    margin: $l-spacing 0;
-    padding: $m-spacing;
+    border-radius: $base-border-radius / 2;
+
+    code {
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+    }
+  }
+
+  code {
+    background: $base-input-background;
+    border: $base-border;
+    border-radius: $base-border-radius / 2;
     white-space: pre-wrap;
     word-wrap: break-word;
     line-height: 1.5;
-
-    code {
-      color: $brand-darkGrey;
-      font-family: monospace;
-    }
+    padding: 0 $s-spacing;
+    color: $brand-darkGrey;
+    font-family: monospace;
   }
 
   img {

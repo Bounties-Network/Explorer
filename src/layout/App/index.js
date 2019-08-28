@@ -1,6 +1,6 @@
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import styles from './App.module.scss';
-import { hot } from 'react-hot-loader';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { SEOHeader } from './SEOHeader';
 import { compose } from 'redux';
@@ -311,7 +311,6 @@ const mapStateToProps = state => {
 };
 
 const App = compose(
-  hot(module),
   withRouter,
   connect(
     mapStateToProps,
@@ -323,4 +322,4 @@ const App = compose(
   )
 )(AppComponent);
 
-export default App;
+export default hot(App);

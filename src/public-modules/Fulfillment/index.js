@@ -10,6 +10,10 @@ const initialState = {
   createFulfillment: {
     loading: false,
     error: false
+  },
+  updateFulfillment: {
+    loading: false,
+    error: false
   }
 };
 
@@ -49,6 +53,28 @@ function createFulfillmentSuccess() {
 
 function createFulfillmentFail() {
   return { type: CREATE_FULFILLMENT_FAIL };
+}
+
+const UPDATE_FULFILLMENT = 'fulfillment/UPDATE_FULFILLMENT';
+const UPDATE_FULFILLMENT_SUCCESS = 'fulfillment/UPDATE_FULFILLMENT_SUCCESS';
+const UPDATE_FULFILLMENT_FAIL = 'fulfillment/UPDATE_FULFILLMENT_FAIL';
+
+function updateFulfillment(bountyId, contract_version, bountyPlatform, data) {
+  return {
+    type: UPDATE_FULFILLMENT,
+    bountyId,
+    contract_version,
+    bountyPlatform,
+    data
+  };
+}
+
+function updateFulfillmentSuccess() {
+  return { type: UPDATE_FULFILLMENT_SUCCESS };
+}
+
+function updateFulfillmentFail() {
+  return { type: UPDATE_FULFILLMENT_FAIL };
 }
 
 const ACCEPT_FULFILLMENT = 'fulfillment/ACCEPT_FULFILLMENT';
@@ -136,6 +162,33 @@ function FulfillmentReducer(state = initialState, action) {
         }
       };
     }
+    case UPDATE_FULFILLMENT: {
+      return {
+        ...state,
+        updateFulfillment: {
+          loading: true,
+          error: false
+        }
+      };
+    }
+    case UPDATE_FULFILLMENT_SUCCESS: {
+      return {
+        ...state,
+        updateFulfillment: {
+          loading: false,
+          error: false
+        }
+      };
+    }
+    case UPDATE_FULFILLMENT_FAIL: {
+      return {
+        ...state,
+        updateFulfillment: {
+          loading: false,
+          error: true
+        }
+      };
+    }
     case ACCEPT_FULFILLMENT: {
       return {
         ...state,
@@ -177,7 +230,10 @@ export const actions = {
   acceptFulfillmentFail,
   createFulfillment,
   createFulfillmentSuccess,
-  createFulfillmentFail
+  createFulfillmentFail,
+  updateFulfillment,
+  updateFulfillmentSuccess,
+  updateFulfillmentFail
 };
 
 export const actionTypes = {
@@ -189,7 +245,10 @@ export const actionTypes = {
   ACCEPT_FULFILLMENT_FAIL,
   CREATE_FULFILLMENT,
   CREATE_FULFILLMENT_SUCCESS,
-  CREATE_FULFILLMENT_FAIL
+  CREATE_FULFILLMENT_FAIL,
+  UPDATE_FULFILLMENT,
+  UPDATE_FULFILLMENT_SUCCESS,
+  UPDATE_FULFILLMENT_FAIL
 };
 
 export default FulfillmentReducer;

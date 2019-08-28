@@ -14,31 +14,27 @@ const CommentItem = props => {
 
   return (
     <div className={styles.commentItem}>
-      <div>
+      <div className={styles.commentData}>
         <LinkedAvatar
-          className={styles.avatar}
+          textFormat="inline"
           name={name}
           address={address}
           img={img}
           hash={address}
-          nameTextScale={'h4'}
           to={`/profile/${address}`}
-        />
-      </div>
-
-      <div className={styles.details}>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: converter.makeHtml(text || 'N/A')
-          }}
-          className="markdownContent"
         />
         <Text
           className={styles.timeStamp}
           typeScale="Small"
           color="defaultGrey"
         >
-          {formattedTime}
+          {'﹒ ' + formattedTime}
+        </Text>
+      </div>
+
+      <div className={styles.commentContent}>
+        <Text typeScale="Body" color="darkGrey">
+          {text}
         </Text>
       </div>
     </div>

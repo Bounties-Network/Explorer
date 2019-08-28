@@ -1,0 +1,920 @@
+{
+  "nav": {
+    "explorer": "项目浏览器",
+    "dashboard": "仪表盘",
+    "leaderboard": "排行榜",
+    "profile": "个人资料"
+  },
+  "actions": {
+    "load_more": "加载更多",
+    "view_all": "查看全部",
+    "accept": "接受",
+    "reject": "拒绝",
+    "filter": "筛选",
+    "ok": "好的",
+    "rate_fulfiller": "为项目完成者评分",
+    "rate_issuer": "为项目提供者评分",
+    "activate": "激活",
+    "de_activate": "取消激活",
+    "re_activate": "重新激活",
+    "cancel": "取消",
+    "contribute": "捐助",
+    "contribute_issuer": "增加余额",
+    "edit_bounty": "编辑赏金项目",
+    "update_submission": "编辑",
+    "submit": "提交",
+    "update": "更新提交",
+    "extend_deadline": "延后截止日期",
+    "increase_payout": "增加报酬",
+    "transfer_ownership": "转移所有权",
+    "logout": "登出",
+    "close": "关闭",
+    "reset": "重置",
+    "sort": "排序",
+    "continue": "继续",
+    "dashboard": "前往仪表盘",
+    "create_bounty": "创建新的赏金项目",
+    "profile": "个人资料",
+    "settings": "帐号设置",
+    "signout": "登出",
+    "signin": "登录",
+    "view_bounty": "查看赏金项目",
+    "view_rating": "查看评分",
+    "discard_changes": "撤消更改",
+    "upload_photo": "上传新图片"
+  },
+  "sections": {
+    "activity": {
+      "title": "我的活动",
+      "zero_state": {
+        "title": "你还什么都没干呢",
+        "description": "一旦你开始使用本平台，你的活动将会显示在这里。"
+      }
+    },
+    "bounties": {
+      "title": "我的赏金项目",
+      "tabs": {
+        "active": "活跃",
+        "drafts": "草稿"
+      },
+      "zero_state": {
+        "title": "你没有{tab}状态的赏金项目",
+        "description":
+          "看起来你现在没有{tab}状态的赏金项目. 在这里输入标题新建一个吧！",
+        "actions": {
+          "new_bounty": "创建新的赏金项目"
+        }
+      }
+    },
+    "bounty": {
+      "zero_state": {
+        "title": "无法找到赏金项目",
+        "description": "尝试刷新，并检查你的URL是否正确。"
+      },
+      "meta": {
+        "input": "私有",
+        "label": "赏金项目",
+        "tooltip":
+          "私有赏金项目要求用户提交申请。当你的申请被同意以后，你就可以为该项目提交成果了。",
+        "revisions": "{count}次修订"
+      },
+      "components": {
+        "issue_rating": {
+          "issuer1":
+            "你的提交已被接受！如果你有兴趣，你可以给这次工作经历评分：",
+          "issuer2": "这将帮助此平台上其他项目完成者设定期望值",
+          "fulfiller1":
+            "你接受了对你赏金项目的提交！ 如果你有兴趣，你可以为此项目完成者评分：",
+          "fulfiller2": "这将帮助此平台上其他项目提供者设定期望值。",
+          "rating": "评分",
+          "review": "评论",
+          "review_placeholder": "输入评论..."
+        },
+        "new_comment": {
+          "placeholder": "撰写回复...",
+          "action": "发表回复",
+          "login_action": "登录来发表回复"
+        },
+        "applicant_card": {
+          "declined_message": "申请被拒绝的状态只对你可见",
+          "zero_state": {
+            "title": "无申请者",
+            "description": "申请该赏金项目的人将显示在这里。"
+          }
+        },
+        "comments_card": {
+          "zero_state": {
+            "title": "无回复",
+            "description": "用上面的表单来提交回复"
+          }
+        },
+        "submissions_card": {
+          "zero_state": {
+            "title": "无提交",
+            "private_title": "提交是私有的",
+            "description": "此赏金项目的提交将显示在这里",
+            "private_description": "此赏金项目的提交已被设为私有",
+            "bounty_owner_description":
+              "对此赏金项目的提交会显示在这里并只对你可见。另外, 项目完成者可以看到他们创建的提交。"
+          },
+          "notice": "此赏金项目的提交被隐藏",
+          "bounty_owner_notice": "提交只对你和完成者可见",
+          "fulfiller_notice": "你的提交只对你和项目提供者可见。",
+          "show_comments": "显示{count}个回复",
+          "hide_comments": "隐藏{count}个回复",
+          "action": "回复"
+        }
+      },
+      "difficulties": {
+        "Beginner": "新手",
+        "Intermediate": "中等",
+        "Expert": "专家"
+      },
+      "actions": {
+        "activate": "激活赏金项目",
+        "edit": "编辑赏金项目",
+        "re_activate": "重新激活赏金项目",
+        "de_activate": "取消激活赏金项目",
+        "increase_prize": "提高价格",
+        "contribute": "捐助",
+        "contribute_issuer": "增加余额",
+        "extend_deadline": "延后截止日期",
+        "transfer_ownership": "转移所有权",
+        "fulfill": "完成",
+        "login_fulfill": "登录后完成",
+        "fulfill_gitcoin": "在Gitcoin上完成",
+        "apply": "申请该赏金项目",
+        "login_apply": "登录后申请"
+      },
+      "tabs": {
+        "applicants": {
+          "title": "申请者"
+        },
+        "submissions": {
+          "title": "提交"
+        },
+        "comments": {
+          "title": "回复"
+        }
+      },
+      "modals": {
+        "unsaved_changes": {
+          "new_bounty": {
+            "title": "撤消更改？",
+            "description":
+              "如果你离开此页面，你对你的赏金项目所做的更改将会被撤销，赏金项目将会还原到之前的状态。"
+          },
+          "draft_or_edit_bounty": {
+            "title": "撤消更改？",
+            "description":
+              "如果你离开此页面且没有创建草稿或激活项目，你的赏金项目将被撤销"
+          }
+        },
+        "activate_dead_form": {
+          "title": "重新激活你的赏金项目",
+          "description":
+            "标明存入的金额来激活这个赏金项目。你存入的金额最少与你提供的报酬金额相等({minimumBalance} {token_symbol}).",
+          "min_deposit_warning": "你初始存入的金额最少与你提供的报酬金额相等。",
+          "form": {
+            "balance": {
+              "label": "用{token_symbol}存入",
+              "placeholder": "输入金额..."
+            }
+          }
+        },
+        "activate_draft_form": {
+          "title": "激活你的赏金项目",
+          "description":
+            "标明初始存入的金额来激活这个赏金项目。<em> 你存入的最少与你提供的报酬金额相等：</em> <strong class=\"{textHighlightClass}\">{minimumBalance} {token_symbol}</strong>",
+          "min_deposit_warning": "你初始存入金额最少与你提供的报酬金额相等。",
+          "form": {
+            "balance": {
+              "label": "用{token_symbol}存入",
+              "placeholder": "输入金额..."
+            }
+          }
+        },
+        "contribute": {
+          "title": "增加赏金余额",
+          "description": "标明你要捐助给此赏金项目的金额 ({token_symbol}).",
+          "title_issuer": "给此赏金项目提供余额",
+          "description_issuer":
+            "标明你要为此赏金项目增加的金额 ({token_symbol}).",
+          "form": {
+            "contribution": {
+              "label": "存入 {token_symbol}",
+              "placeholder": "输入金额..."
+            }
+          }
+        },
+        "extend_deadline_error": {
+          "title": "需要把截止日期设在将来才能激活你的赏金项目。"
+        },
+        "extend_deadline_form": {
+          "title": "延后截止日期",
+          "description":
+            "标明你希望将此赏金项目截止日期延后到的时间 {timezone, select, null { } other { (timezone={timezone})}}"
+        },
+        "fulfill_bounty": {
+          "title": "输入提交详情",
+          "title_updating": "更新提交详情",
+          "description":
+            "为你对赏金项目的提交提供详情, 包括赏金项目描述中指出的任何完成此赏金项目所需内容的链接。 你可以用<a href=\"https://www.markdownguide.org/cheat-sheet\" target=\"_blank\">Markdown</a>为你的提交描述排版。",
+          "form": {
+            "name": {
+              "label": "联系人姓名",
+              "placeholder": "输入姓名..."
+            },
+            "email": {
+              "label": "联系人邮箱",
+              "placeholder": "输入邮箱..."
+            },
+            "url": {
+              "label": "网页链接",
+              "placeholder": "输入URL..."
+            },
+            "description": {
+              "label": "描述",
+              "placeholder": "输入描述..."
+            },
+            "private_notice":
+              "在此输入的所有信息都会储存在公开的以太币(Ethereum)网络，但在此网站将被隐藏。",
+            "public_notice":
+              "在此输入的所有信息都会储存在公开的以太币(Ethereum)网络，并且会在此网站公开显示。"
+          }
+        },
+        "fulfiller_application": {
+          "title": "输入申请详情",
+          "description":
+            "写一写你为什么认为你适合完成此赏金项目。 你可以随意提供相关工作或经历的链接。",
+          "form": {
+            "message": {
+              "label": "申请",
+              "placeholder": "输入信息..."
+            }
+          }
+        },
+        "increase_payout": {
+          "title": "增加报酬",
+          "description1":
+            "标明你要将报酬提高到的金额。这可以包括额外用于承担各类费用的金额。<br /><br /><em>你的总余额必须大于新的价值金额 ({token_symbol})</em>. 当前余额为: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. 当前报酬为: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+          "description2":
+            "标明你要将报酬提高到的金额。<br /><br /><em>你的总余额必须大于新的价值金额 ({token_symbol})</em>。 当前余额为: <span class=\"{textHighlightClass}\"> {minimumBalance, number} {token_symbol}</span>. 当前报酬为: <span class=\"{textHighlightClass}\">{minimumPayout, number} {token_symbol}</span>.",
+          "balance_warning": "赏金项目余额必须大于报酬金额。",
+          "payout_warning": "你提供的报酬金额必须大于之前的报酬金额。",
+          "form": {
+            "balance": {
+              "label": "存入 ({token_symbol})",
+              "placeholder": "输入金额..."
+            },
+            "fullfillment_amount": {
+              "label": "新的价值金额 ({token_symbol})",
+              "placeholder": "输入金额..."
+            }
+          }
+        },
+        "kill_bounty": {
+          "title": "你确定要取消激活你的赏金项目吗？",
+          "description": "如果你改变主意，你可以随时重新激活此项目。"
+        },
+        "transfer_ownership": {
+          "title": "转移所有权",
+          "description": "包括接收者的钱包地址。",
+          "form": {
+            "new_owner": {
+              "placeholder": "输入钱包地址..."
+            }
+          }
+        }
+      }
+    },
+    "create_bounty": {
+      "zero_state": {
+        "title": "无法找到赏金项目",
+        "description": "尝试刷新，并检查你的URL是否正确。"
+      },
+      "deposit_warning": "存入金额至少与报酬相等。",
+      "payout_warning": "报酬金额不能大于余额。",
+      "actions": {
+        "create": "创建赏金项目",
+        "edit": "编辑赏金项目",
+        "draft": "创建草稿",
+        "update_draft": "更新草稿",
+        "update_bounty": "更新赏金项目"
+      },
+      "sections": {
+        "about": {
+          "title": "关于",
+          "description": "输入关于该赏金项目的细节",
+          "notice": "为你的赏金项目输入标题和描述。",
+          "notice2":
+            "预览效果将会在你输入时自动生成，你可以按预览按钮来查看。你可以随意使用下面提供的描述模板，或清空输入区域来创建你自己的描述。",
+          "form": {
+            "title": {
+              "label": "标题",
+              "placeholder": "输入标题..."
+            },
+            "description": {
+              "label": "描述"
+            }
+          }
+        },
+        "contact": {
+          "title": "联系人",
+          "description": "谁是该项目答疑和提交的主要联系人？",
+          "form": {
+            "issuer_name": {
+              "label": "联系人姓名",
+              "placeholder": "输入姓名..."
+            },
+            "issuer_email": {
+              "label": "联系人邮箱",
+              "placeholder": "输入邮箱..."
+            }
+          }
+        },
+        "details": {
+          "title": "详情",
+          "description": "这个赏金项目应如何分类？",
+          "notice":
+            "输入该项目的类别与难度。由于难度有时较为主观，最好能在描述中提供更多关于所需经历的细节。",
+          "form": {
+            "categories": {
+              "label": "赏金项目类别",
+              "placeholder": "创建或选择类别..."
+            },
+            "experience_level": {
+              "label": "难度",
+              "options": {
+                "beginner": "新手",
+                "intermediate": "中等",
+                "expert": "专家"
+              }
+            }
+          }
+        },
+        "revisions": {
+          "title": "审阅",
+          "description": "你要求审阅吗？",
+          "notice":
+            "输入你可能需要审阅该任务次数的最大值，来帮助贡献者设定期望值。"
+        },
+        "attachments": {
+          "title": "附件",
+          "description": "这个赏金项目需要外部文件来完成吗？",
+          "notice": "附加任何可能作为参考，或贡献者完成该项目必需的文件或链接",
+          "form": {
+            "url": {
+              "label": "网页链接",
+              "placeholder": "输入URL..."
+            },
+            "file": {
+              "label": "相关文件"
+            }
+          }
+        },
+        "deadline": {
+          "title": "截止日期",
+          "description": "这个赏金项目会不会过期？",
+          "notice":
+            "输入该赏金项目截止的日期和时间{timezone, select, null { } other {(timezone={timezone})}}"
+        },
+        "privacy": {
+          "title": "隐私",
+          "description": "提交对所有人可见吗？",
+          "notice": "如有需要，提交可以对其他用户隐藏",
+          "form": {
+            "fulfillers_need_approval": {
+              "label": "需要满足先决条件",
+              "placeholder": "输入URL...",
+              "options": {
+                "yes": "是",
+                "no": "否"
+              }
+            },
+            "private_fullfillments": {
+              "label": "可见性",
+              "description": "别人在完成你的项目之前是否需要同意？",
+              "notice":
+                "如果你要求审核申请，你将会在有用户有意愿提交时被通知。需要你的同意，他们才被准许完成你的赏金任务。",
+              "options": {
+                "public": "公开",
+                "hidden": "隐藏"
+              }
+            }
+          }
+        },
+        "payout": {
+          "title": "报酬",
+          "description": "选择支付报酬的方式和金额。",
+          "notice": "选择货币并输入你将为该项目完成者提供的报酬。",
+          "form": {
+            "token_contract": {
+              "label_default": "货币协议地址",
+              "label_custom": "{token} 协议地址",
+              "placeholder": "输入货币协议地址..."
+            },
+            "method": {
+              "label": "支付方式"
+            },
+            "fulfillment_amount": {
+              "label":
+                "报酬金额 {hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
+              "placeholder": "输入金额..."
+            },
+            "token_contract_2": {
+              "label": "货币",
+              "placeholder": "选择货币或输入货币地址..."
+            }
+          }
+        },
+        "payout_editing": {
+          "title": "支付",
+          "description": "标明报酬金额",
+          "notice":
+            "输入你将为该项目完成者提供的报酬。报酬不能大于你当前的余额：<span class=\"{textHighlight}\">{balance} {token_symbol} </span>. 如果你希望为该赏金项目提供更多资金，请<a href=\"{increaseBalanceUrl}\">增加项目余额。</a>",
+          "form": {
+            "token_contract": {
+              "label_default": "货币协议地址",
+              "label_custom": "{token} 协议地址",
+              "placeholder": "输入货币协议地址..."
+            },
+            "method": {
+              "label": "支付方式"
+            },
+            "fulfillment_amount": {
+              "label":
+                "报酬金额{hasDefaultToken, select, true {} false {(ETH or whole tokens)}}",
+              "placeholder": "输入金额..."
+            },
+            "token_contract_2": {
+              "label": "货币",
+              "placeholder": "选择货币或输入货币地址..."
+            }
+          }
+        },
+        "save": {
+          "title": "保存或提交",
+          "description": "你将在何时提交并激活这个赏金任务？",
+          "notice":
+            "如果你希望晚些激活这个赏金任务，你可以把它保存为草稿。赏金任务的需求只能在草稿状态下才能被编辑。你的存入金额至少要与报酬金额相等。",
+          "form": {
+            "activate_now": {
+              "label": "何时激活",
+              "options": {
+                "now": "现在",
+                "later": "以后"
+              }
+            },
+            "balance": {
+              "label": "存入金额 (ETH or whole tokens)",
+              "placeholder": "输入金额..."
+            }
+          }
+        }
+      }
+    },
+    "dashboard": {
+      "profile_strength": "个人资料评级",
+      "edit_profile": "编辑个人资料"
+    },
+    "explorer_body": {
+      "bounty_count": "{count}个赏金项目",
+      "zero_state": {
+        "title": "没有找到赏金项目",
+        "description": "更新筛选条件来发现更多赏金项目"
+      },
+      "zero_state_error": {
+        "title": "呃，出了点问题",
+        "description": "尝试使用新的筛选条件或刷新页面再试一次。"
+      }
+    },
+    "leaderboard": {
+      "title": "排行榜",
+      "banner": {
+        "top_issuers": "最佳项目提供者",
+        "top_earners": "最高收入者"
+      }
+    },
+    "leaderboard_card": {
+      "zero_state": {
+        "title": "尚无结果",
+        "description":
+          "在有人提供赏金项目，且项目成果提交已完成时，此排行榜将开始更新。"
+      },
+      "zero_state_error": {
+        "title": "呃，出了点问题",
+        "description": "尝试刷新页面再试一次"
+      }
+    },
+    "login": {
+      "modals": {
+        "details": {
+          "title": "个人资料详情",
+          "description":
+            "增加一些关于你自己的个人资料详情，这样在此平台上的其他用户将会了解你的背景和技能，并可以在其他地方找到你。",
+          "description2":
+            "欢迎来到赏金网络！我们期待看你如何赢得赏金。 <br /> <br /> 在你开始之前，我们鼓励你增加一些关于你自己的个人资料详情，\n 这样，在此平台上的其他人将会了解你的背景和技能。",
+          "actions": {
+            "skip": "跳过",
+            "add": "增加个人资料详情"
+          }
+        },
+        "address_mismatch": {
+          "title": "钱包地址不匹配",
+          "description1": "你之前登录为 ",
+          "description2": "bounties.network",
+          "description3": " 使用如下地址:",
+          "description4": "此地址与你现在钱包账号地址不匹配:",
+          "description5": ". 请切换你的钱包账号或登出赏金网络并用不同地址登录。"
+        },
+        "error": {
+          "title": "出了点错误，晚点再试。"
+        },
+        "sign_in": {
+          "title": "登录并验证地址",
+          "description":
+            "在你点击“继续”之后，将会弹出一个钱包窗口来验证你的唯一地址。一旦完成验证，你将被登录到此网络。"
+        },
+        "signing_in": {
+          "title": "完成签名请求来验证你的地址并登录。"
+        },
+        "unlock": {
+          "title": "安全钱包访问",
+          "description1": "你将需要登录并/或允许访问你的安全钱包，（比如",
+          "description2":
+            "）用于使用 {pageLevel, select, null {parts of} other { }} {networkName}"
+        },
+        "wallet_required": {
+          "title": "需要已激活Web3的浏览器和安全钱包。",
+          "description1": "为了使用",
+          "description2": "，请安装一个安全钱包，比如",
+          "description3": "如果你需要帮助来完成设置，来看看我们的 ",
+          "guide": "新手指南。",
+          "actions": {
+            "visit": "访问 {walletName}"
+          }
+        },
+        "wrong_network": {
+          "title": "检测到外部网络",
+          "description1": "{networkName} 目前运行在",
+          "description2": "请切换你激活的钱包网络。"
+        }
+      }
+    },
+    "notifications": {
+      "title": "通知",
+      "actions": {
+        "mark_read": "全部标为已读"
+      },
+      "zero_state": {
+        "title": "你还没有通知",
+        "description": "一旦你开始使用本平台，通知将会显示在这里。"
+      }
+    },
+    "profile": {
+      "about": {
+        "title": "关于",
+        "organization": "组织",
+        "languages": "交流语言"
+      },
+      "elsewhere": {
+        "title": "其它地方"
+      },
+      "skills": {
+        "title": "技能"
+      },
+      "network": {
+        "title": "网络状态",
+        "descriptions": {
+          "issuer": {
+            "acceptance": "成果接受率",
+            "rating": "项目提供者平均评分",
+            "ratingGiven": "项目完成者平均评分"
+          },
+          "fulfiller": {
+            "acceptance": "提交被接受率",
+            "rating": "项目完成者平均评分",
+            "ratingGiven": "项目提供者平均评分"
+          }
+        }
+      },
+      "tabs": {
+        "bounties": "创建的赏金项目",
+        "submissions": "提交的成果"
+      },
+      "reviews": {
+        "title": "收到{reviewType}评分",
+        "zero_state": {
+          "title": "没有收到评价",
+          "description": "我们没找到任何与此操作相关的评价。"
+        }
+      },
+      "zero_state": {
+        "title": "未找到用户",
+        "description": "检查地址是否正确并再试一次"
+      },
+      "zero_state_error": {
+        "title": "错误",
+        "description": "请再试一次"
+      }
+    },
+    "settings": {
+      "title": "账号设置",
+      "messages": {
+        "profile_saved": "个人资料已成功保存",
+        "email_saved": "电子邮件偏好已成功保存"
+      },
+      "modals": {
+        "unsaved_changes": {
+          "title": "撤销更改？",
+          "description":
+            "如果你离开此页面而不确认更改，你对你个人资料做的更改将会被撤销，你的个人资料将还原到之前的状态。"
+        }
+      },
+      "emails": {
+        "title": "电子邮件通知",
+        "description": "你希望通过电子邮件接收何种通知？",
+        "notice":
+          "选择你希望通过电子邮件接收的通知。为了能收到与此网络相关的重要活动通知，我们推荐使用默认设置。",
+        "actions": {
+          "save": "保存电子邮件偏好"
+        },
+        "notification_options": {
+          "rating_received": "收到用户评分",
+          "transfer_recipient": "赏金项目转让完成",
+          "bounty_comment_received": "你完成的赏金项目收到回复。",
+          "bounty_comment_received_issuer": "你的赏金项目收到回复",
+          "bounty_comment_received_commenter": "你回复过的赏金项目收到了回复",
+          "fulfillment_comment_received": "你的提交收到了回复",
+          "fulfillment_comment_received_issuer": "对你赏金项目的提交收到了回复",
+          "fulfillment_comment_received_commenter": "你回复过的提交收到了回复",
+          "bounty_expired": "赏金项目过期",
+          "bounty_changed": "你完成的一个赏金项目被更改",
+          "bounty_changed_applicant": "你申请的一个赏金项目被更改",
+          "fulfillment_updated_issuer": "项目完成者更新了赏金项目的成果。",
+          "fulfillment_submitted_issuer":
+            "项目完成者为你的赏金项目提交了新的成果。",
+          "fulfillment_accepted_fulfiller": "项目提供者接受了你的成果。",
+          "contribution_received": "另一个用户为你的赏金项目提供了资金。",
+          "bounty_completed": "赏金项目资金不足以支付报酬",
+          "application_received": "新的工作者申请了该赏金项目",
+          "application_accepted_applicant": "项目提供者接受了你的申请。",
+          "application_rejected_applicant": "项目提供者拒绝了你的申请",
+          "activity": "一般活动（更新个人资料，创建赏金项目等。）"
+        }
+      },
+      "user": {
+        "photo": {
+          "title": "个人资料照片",
+          "label": "图片上传失败，请重试。"
+        },
+        "about": {
+          "title": "关于",
+          "description": "你希望别人了解些什么呢？",
+          "notice": "输入一些你的个人详情来让社区了解你",
+          "form": {
+            "name": {
+              "label": "姓名",
+              "placeholder": "输入姓名..."
+            },
+            "organization": {
+              "label": "组织",
+              "placeholder": "输入组织..."
+            },
+            "languages": {
+              "label": "语言",
+              "placeholder": "选择语言..."
+            }
+          }
+        },
+        "skills": {
+          "title": "技能",
+          "description": "你有什么专业或技术性技能？",
+          "notice":
+            "输入或选择你精通的技能。这将让其他在本网络上的用户确信你有能力完成这些类型的赏金项目。",
+          "label": "技能",
+          "placeholder": "创建或选择一个技能..."
+        },
+        "social": {
+          "title": "社交",
+          "description": "你有没有希望显示的其他社交资料？",
+          "form": {
+            "web": {
+              "label": "个人网站"
+            }
+          }
+        },
+        "contact": {
+          "title": "联系",
+          "description": "你希望在哪里接受关于你的赏金项目与成果的通知？",
+          "form": {
+            "email": {
+              "label": "联系邮箱",
+              "placeholder": "输入电子邮箱..."
+            },
+            "marketing": {
+              "label": "我也想接收相关赏金项目推荐和平台更新消息。"
+            }
+          },
+          "actions": {
+            "submit": "提交详情",
+            "update": "更新个人信息"
+          }
+        }
+      }
+    },
+    "submissions": {
+      "title": "提交",
+      "tabs": {
+        "received": "收到",
+        "submitted": "发布"
+      },
+      "headers": {
+        "title": "赏金项目标题",
+        "fulfiller": "完成者",
+        "date": "提交日期",
+        "status": "状态",
+        "payment": "支付金额"
+      },
+      "zero_state": {
+        "title": "你现在有0个{currentTab}的提交。",
+        "description":
+          "看起来你还没有任何提交。 当你{currentTab}提交之后在回来吧！"
+      }
+    },
+    "user_stats": {
+      "bounties_issued": "已发布的赏金项目",
+      "bounties_completed": "已完成的赏金项目",
+      "awarded": "支出",
+      "earned": "收获"
+    }
+  },
+  "components": {
+    "applicant_stage": {
+      "accepted": "已接受",
+      "declined": "已拒绝",
+      "pending": "等待中",
+      "default": "待接受"
+    },
+    "bounty_card": {
+      "difficulty": "难度",
+      "difficulty_options": {
+        "beginner": "新手",
+        "intermediate": "中等",
+        "advanced": "高级"
+      },
+      "submissions_count": "{count}个提交"
+    },
+    "bounty_item": {
+      "text": "创建于{time} {submissionCount}个提交",
+      "draftText": "创建于 {time}"
+    },
+    "essentials": {
+      "balance": "剩余金额"
+    },
+    "filter_nav": {
+      "sort_options": {
+        "bounty_created": "最近发布",
+        "usd_price": "价值： 从高到低",
+        "deadline": "过期时间"
+      },
+      "refine": "筛选条件",
+      "platform": "平台",
+      "category": "类别",
+      "difficulty": "难度",
+      "stage": "状态",
+      "checkbox": {
+        "active": "活跃",
+        "completed": "已完成",
+        "expired": "已过期",
+        "dead": "已终止"
+      }
+    },
+    "fulfillment_stage": {
+      "accepted": "已被接受",
+      "not_accepted": "未被接受"
+    },
+    "submission": {
+      "title": "赏金项目标题",
+      "status": "状态",
+      "date": "提交日期",
+      "fulfiller": "完成者",
+      "amount": "支付金额"
+    },
+    "tx_guide": {
+      "title": "你的钱包从这里开始接管！",
+      "description":
+        "当你点击“好的”以后，将会弹出钱包对话框来确认以太币(Ethereum)转账并支付一小部分以太币作为手续费(gas费用）。",
+      "notice": "将为你设置默认手续费(gas费用)限制和价格。",
+      "messages": {
+        "waiting": "等待你的转账在区块链上被确认...",
+        "confirmed": "你的转账已被确认!",
+        "pending_receipt": "你的转账正被处理。当转账完成后我们会通知你。",
+        "pending_wallet": "正在与你激活的钱包确认以太币转账。可能会花一点时间。"
+      }
+    },
+    "editor": {
+      "preview": "预览",
+      "default":
+        "# 描述\n描述你想完成的赏金项目。你的项目用于何处？ 它包括什么？\n\n## 要求\n你对项目完成者有何要求？你的项目有无规定或限制？完成此项目需不需要满足一些先决条件？\n\n* 第一项\n* 第二项\n* 第三项\n\n## 完成的定义\n赏金项目完成者应该把什么作为完成项目的证据提交给你？ 为了使提交被接受，完成者需要在提交中包含什么？\n\n1. 第一项\n2. 第二项\n3. 第三项\n\n### 注意事项\n有无希望完成者预先了解的关于你或项目的信息？这个赏金项目是否需要任一方提供额外材料，或交换用于外部交流的信息?"
+    },
+    "notifications": {
+      "fulfilLment_submitted": "你发布了一个提交",
+      "fulfilLment_submitted_issuer": "你收到了一个提交",
+      "bounty_activated": "你激活了一个赏金项目",
+      "fulfillment_accepted": "你接受了一份提交",
+      "fulfillment_accepted_fulfiller": "你的提交被接受了",
+      "bounty_expired": "你的赏金项目过期了",
+      "bounty_issued": "你发布了新的赏金项目",
+      "bounty_killed": "你删除了一个赏金项目",
+      "contribution_added": "你完成了一次捐助",
+      "deadline_extended": "你延后了截止日期",
+      "bounty_changed": "你发布提交的赏金项目已被更新",
+      "bounty_changed_issuer": "你更新了你的赏金项目",
+      "bounty_changed_applicant": "你申请的赏金项目已被更新",
+      "issuer_transferred": "你转移了你的赏金项目所有权",
+      "transfer_recipient": "一个赏金项目的所有权已被转让给你",
+      "payout_increased": "你增加了报酬",
+      "bounty_comment_received": "你完成的赏金项目收到了回复",
+      "bounty_comment_received_issuer": "你的赏金项目收到了一个回复",
+      "bounty_comment_received_commenter": "你回复的赏金项目收到了一份回复",
+      "fulfillment_comment_received": "你的提交收到了回复",
+      "fulfillment_comment_received_issuer": "你赏金项目的一个提交收到了回复",
+      "fulfillment_comment_received_commenter": "你回复的提交收到了一个回复",
+      "bounty_issue_activated": "你发布了一个新的赏金项目",
+      "fulfillment_updated": "你更新了你的提交",
+      "fulfillment_updated_issuer": "你赏金项目的一个提交已被更新。",
+      "rating_issued": "你写了一份评论",
+      "rating_received": "你收到了一个评分",
+      "profile_updated": "你更新了你的个人资料",
+      "comment_issued": "你写了一个回复",
+      "fulfillment_comment_issued": "你写了一个回复",
+      "draft_created": "你创建了一份草稿",
+      "draft_updated": "你更新了一份草稿",
+      "contribution_received": "你收到了一份捐赠",
+      "bounty_completed": "你的赏金项目已用尽资金",
+      "application_created": "你提交了一份申请",
+      "application_received": "你收到了新的申请",
+      "application_accepted_application": "你的申请被接受了",
+      "application_accepted_issuer": "你接受了一个申请",
+      "application_rejected_applicant": "你的申请被拒绝了",
+      "application_rejected_issuer": "你拒绝了一个申请"
+    }
+  },
+  "hocs": {
+    "require_login": {
+      "zero_state": {
+        "title": "登录来使用赏金网络",
+        "body":
+          "为了使用本网络的特定功能比如创建或完成赏金项目、回复、查看你的网络状态，请用你的安全钱包登录。",
+        "subtext":
+          "如果你不希望登录但是想浏览项目，请随意查看这些赏金项目；通过 ",
+        "action": "登录"
+      },
+      "explorer": "项目浏览器"
+    }
+  },
+  "errors": {
+    "500": "出错了，晚些再试",
+    "404": "未找到",
+    "form_error": "修改以上错误并重新提交。"
+  },
+  "validation": {
+    "required": "* 必填",
+    "max": "必须是{max}个或更少字符",
+    "min": "必须是{min}个或更多字符",
+    "max_decimals": "位数必须是{max}或更少",
+    "min_value": "必须大于 {min}",
+    "mineq_value": "必须大于等于{min}",
+    "min_date": "日期必须在{date}以后",
+    "length": "必须是 {length} 个字符",
+    "web3": "必须是合适的web3地址",
+    "number": "必须是数字",
+    "email": "无效电子邮箱地址",
+    "alfa_num": "只能是数字或字母字符",
+    "twitter": "无效Twitter标签",
+    "github": "无效Github标签",
+    "url": "无效URL"
+  },
+  "common": {
+    "description": "描述",
+    "expired": "过期的",
+    "remaining": "剩余的",
+    "difficulty": "难度",
+    "expected": "期待的",
+    "and": "与",
+    "payout": "报酬"
+  },
+  "stages": {
+    "draft": "草稿",
+    "active": "活跃",
+    "dead": "已终止",
+    "completed": "已完成",
+    "expired": "已过期"
+  },
+  "formats": {
+    "amount": "{value, number}",
+    "usd": "{value, number, USD}"
+  }
+}

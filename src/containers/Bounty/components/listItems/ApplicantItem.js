@@ -72,8 +72,6 @@ const ApplicantItem = props => {
           img={applicant_img}
           hash={applicant_address}
           to={`/profile/${applicant_address}`}
-          nameTextScale={'h4'}
-          nameTextColor="black"
         />
 
         {bountyBelongsToLoggedInUser ? (

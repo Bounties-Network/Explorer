@@ -21,7 +21,9 @@
     "contribute": "Contribute",
     "contribute_issuer": "Increase Balance",
     "edit_bounty": "Edit Bounty",
+    "update_submission": "Edit",
     "submit": "Submit",
+    "update": "Update Submission",
     "extend_deadline": "Extend Deadline",
     "increase_payout": "Increase Payout",
     "transfer_ownership": "Transfer Ownership",
@@ -227,7 +229,8 @@
             "Indicate the time that you would like to extend the bounty deadline until {timezone, select, null { } other { (timezone={timezone})}}"
         },
         "fulfill_bounty": {
-          "title": "Enter submission details",
+          "title": "Enter Submission Details",
+          "title_updating": "Update Submission Details",
           "description":
             "Enter and submit the details for your bounty submission, including any links to content that may be required for fulfillment as indicated by the bounty description. You may format your submission description using <a href=\"https://www.markdownguide.org/cheat-sheet\" target=\"_blank\">Markdown</a>.",
           "form": {

@@ -50,16 +50,12 @@ class UserStatsComponent extends React.Component {
       <div className={styles.dashboardHeader}>
         <div className={styles.dashboardAvatar}>
           <LinkedAvatar
-            size="large"
-            border
+            variant="large"
             name={name}
-            nameTextScale="h2"
-            nameTextWeight="fontWeight-bold"
             address={public_address}
             hash={public_address}
             img={large_profile_image_url}
             to={`/profile/${public_address}`}
-            className={styles.alignLeft}
           />
         </div>
 

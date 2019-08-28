@@ -17,12 +17,9 @@ const LeaderItem = props => {
         <LinkedAvatar
           img={img}
           name={name}
-          nameTextScale="h4"
-          nameTextWeight="fontWeight-medium"
           address={address}
           hash={address}
           to={`profile/${address}`}
-          size="small"
         />
       </div>
 

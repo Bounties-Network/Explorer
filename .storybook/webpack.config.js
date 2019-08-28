@@ -1,32 +1,50 @@
-const path = require("path");
+const path = require('path');
 const fs = require('fs');
 const autoprefixer = require('autoprefixer');
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
-module.exports = (baseConfig, env, defaultConfig) => {
-  defaultConfig.resolve.modules = ["node_modules", path.resolve(__dirname, "../src")];
+module.exports = ({ config }) => {
+  config.resolve.modules = ['node_modules', path.resolve(__dirname, '../src')];
+  config.resolve.extensions.push('.ts', '.tsx');
 
-  defaultConfig.module.rules.push({
+  config.module.rules.push({
     test: /\.stories\.jsx?$/,
     loaders: [require.resolve('@storybook/addon-storysource/loader')],
-    enforce: 'pre',
+    enforce: 'pre'
+  });
+  config.module.rules.push({
+    test: /\.stories\.(ts|tsx)$/,
+    exclude: /node_modules/,
+    use: [
+      { loader: require.resolve('babel-loader') },
+      { loader: require.resolve('@storybook/addon-storysource/loader') }
+    ]
   });
 
-  defaultConfig.module.rules.push({
+  config.module.rules.push({
+    test: /\.(ts|tsx)$/,
+    include: resolveApp('src'),
+    loader: require.resolve('babel-loader'),
+    options: {
+      cacheDirectory: true
+    }
+  });
+
+  config.module.rules.push({
     test: /\.module\.scss$/,
     use: [
-      require.resolve("style-loader"),
+      'style-loader',
       {
-        loader: "css-loader",
+        loader: 'css-loader',
         options: {
-          "modules": true,
-          "localIdentName": "[local]--[hash:base64:5]",
-        },
+          modules: true,
+          localIdentName: '[local]--[hash:base64:5]'
+        }
       },
-      require.resolve("sass-loader"),
+      'sass-loader',
       {
-        loader: require.resolve('postcss-loader'),
+        loader: 'postcss-loader',
         options: {
           // Necessary for external CSS imports to work
           // https://github.com/facebookincubator/create-react-app/issues/2677
@@ -37,30 +55,30 @@ module.exports = (baseConfig, env, defaultConfig) => {
                 '>1%',
                 'last 4 versions',
                 'Firefox ESR',
-                'not ie < 9', // React doesn't support IE8 anyway
+                'not ie < 9' // React doesn't support IE8 anyway
               ],
-              flexbox: 'no-2009',
-            }),
-          ],
-        },
-      },
-    ],
+              flexbox: 'no-2009'
+            })
+          ]
+        }
+      }
+    ]
   });
 
-  defaultConfig.module.rules.push({
+  config.module.rules.push({
     test: /\.scss$/,
     use: [
-      require.resolve("style-loader"),
+      'style-loader',
       {
-        loader: "css-loader",
+        loader: 'css-loader',
         options: {
-          "modules": false,
-          "localIdentName": "[local]--[hash:base64:5]",
-        },
+          modules: false,
+          localIdentName: '[local]--[hash:base64:5]'
+        }
       },
-      require.resolve("sass-loader"),
+      'sass-loader',
       {
-        loader: require.resolve('postcss-loader'),
+        loader: 'postcss-loader',
         options: {
           // Necessary for external CSS imports to work
           // https://github.com/facebookincubator/create-react-app/issues/2677
@@ -72,16 +90,16 @@ module.exports = (baseConfig, env, defaultConfig) => {
                 '>1%',
                 'last 4 versions',
                 'Firefox ESR',
-                'not ie < 9', // React doesn't support IE8 anyway
+                'not ie < 9' // React doesn't support IE8 anyway
               ],
-              flexbox: 'no-2009',
-            }),
-          ],
-        },
-      },
+              flexbox: 'no-2009'
+            })
+          ]
+        }
+      }
     ],
-    include: [resolveApp('src/styles')],
+    include: [resolveApp('src/styles')]
   });
 
-  return defaultConfig;
+  return config;
 };

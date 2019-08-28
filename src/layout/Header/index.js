@@ -73,7 +73,6 @@ const HeaderComponent = props => {
             >
               <DropdownTrigger>
                 <Avatar
-                  size="small"
                   img={user.small_profile_image_url}
                   hash={user.public_address}
                 />

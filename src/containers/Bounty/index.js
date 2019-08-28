@@ -230,16 +230,13 @@ class BountyComponent extends React.Component {
                 </div>
                 <div className={styles.avatar}>
                   <LinkedAvatar
+                    onDark={true}
+                    variant="medium"
                     img={bounty.user.small_profile_image_url}
                     name={bounty.user.name}
                     address={bounty.user.public_address}
                     hash={bounty.user.public_address}
                     to={`/profile/${bounty.user.public_address}`}
-                    addressTextColor="semiTransparentWhite"
-                    nameTextScale="h4"
-                    nameTextColor="white"
-                    size="small"
-                    border
                   />
                 </div>
               </div>

@@ -26,11 +26,18 @@ let FulfillBountyFormModalComponent = props => {
     uploading,
     ipfsHash,
     fileName,
-    visible
+    visible,
+    fulfillmentToEdit,
+    updating
   } = props;
 
   const submitFulfillment = values => {
-    onSubmit({ ...values, ipfsHash, fileName });
+    onSubmit({
+      ...values,
+      ipfsHash,
+      fileName,
+      fulfillmentId: fulfillmentToEdit ? fulfillmentToEdit.fulfillmentId : -1
+    });
   };
 
   const closeAndReset = () => {
@@ -44,7 +51,6 @@ let FulfillBountyFormModalComponent = props => {
     url: [validators.maxLength(256), validators.isURL],
     description: [validators.minLength(2), validators.maxLength(120000)]
   };
-
   return (
     <form onSubmit={handleSubmit(values => submitFulfillment(values))}>
       <Modal
@@ -56,7 +62,9 @@ let FulfillBountyFormModalComponent = props => {
       >
         <Modal.Header closable={true}>
           <Modal.Message>
-            {intl.get('sections.bounty.modals.fulfill_bounty.title')}
+            {updating
+              ? intl.get('sections.bounty.modals.fulfill_bounty.title_updating')
+              : intl.get('sections.bounty.modals.fulfill_bounty.title')}
           </Modal.Message>
           <Modal.Description>
             {intl.getHTML('sections.bounty.modals.fulfill_bounty.description')}
@@ -123,7 +131,6 @@ let FulfillBountyFormModalComponent = props => {
                     : resetUpload('fulfillment')
                 }
                 loading={uploading}
-                filename={fileName}
               />
             </div>
           </div>
@@ -181,7 +188,7 @@ let FulfillBountyFormModalComponent = props => {
             buttonType="submit"
             disabled={uploading || (submitFailed && invalid)}
           >
-            {intl.get('actions.submit')}
+            {updating ? intl.get('actions.update') : intl.get('actions.submit')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -198,11 +205,21 @@ FulfillBountyFormModalComponent = compose(
 )(FulfillBountyFormModalComponent);
 
 const mapStateToProps = (state, props) => {
-  const { name, email } = props;
+  const { name, email, fulfillmentToEdit } = props;
   const uploadState = getUploadKeySelector('fulfillment')(state);
-
+  let initial = { name, email };
+  if (fulfillmentToEdit) {
+    initial = {
+      name: fulfillmentToEdit.fulfiller_name,
+      email: fulfillmentToEdit.fulfiller_email,
+      url: fulfillmentToEdit.url,
+      description: fulfillmentToEdit.description,
+      fulfillmentId: fulfillmentToEdit.fulfillmentId
+    };
+  }
   return {
-    initialValues: { name, email },
+    initialValues: initial,
+    updating: fulfillmentToEdit ? true : false,
     uploading: uploadState ? uploadState.uploading : false,
     error: uploadState ? uploadState.error : false,
     ipfsHash: uploadState ? uploadState.ipfsHash : '',

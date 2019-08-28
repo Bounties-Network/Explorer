@@ -10,8 +10,8 @@ import {
   routerMiddleware
 } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
-import { ThemeProvider } from 'styled-components';
-//import theme from './theme.js';// Uncomment when ready to activate theme.js
+import { ThemeProvider } from 'emotion-theming';
+import theme from './theme';
 import { BigNumber } from 'bignumber.js';
 import { reducers, sagaWatchers } from 'public-modules';
 import explorerSagas from './sagas';
@@ -19,7 +19,6 @@ import baseReducers from './reducers';
 import { App } from 'layout';
 import 'styles/index.scss';
 import 'styles/flexboxgrid.css';
-import 'styles/index.scss';
 import 'fontAwesome';
 import 'styles/Toastify.scss';
 
@@ -29,9 +28,6 @@ import 'intl/locale-data/jsonp/en.js';
 
 //add supported moment locales here
 // import 'moment/locale/hr.js';
-
-// eslint-disable-next-line import/no-webpack-loader-syntax
-const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!./styles/variables.scss');
 
 // never return number formated as exponential
 BigNumber.config({ EXPONENTIAL_AT: 1e9 });

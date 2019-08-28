@@ -2,8 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import PlainTextarea from 'react-textarea-autosize';
-
+import { ThemeProvider } from 'styled-components';
 import { Text } from 'components';
+
+// Delete below once refactored to reference theme.js from root
+// eslint-disable-next-line import/no-webpack-loader-syntax
+const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!../../styles/variables.scss');
 
 const Container = styled.div`
   width: 100%;
@@ -41,9 +45,8 @@ const Textarea = styled(PlainTextarea)`
   flex-grow: 1;
   width: 100%;
 
-  ${({ minHeight }) => minHeight && `min-height: ${minHeight};`} ${({
-    maxHeight
-  }) => maxHeight && `max-height: ${maxHeight};`}
+  ${({ minHeight }) => minHeight && `min-height: ${minHeight}`};
+  ${({ maxHeight }) => maxHeight && `max-height: ${maxHeight}`};
 
   overflow: auto;
   background-color: ${props => props.theme.baseInputBackground};
@@ -164,72 +167,39 @@ class Textbox extends React.Component {
     const textValue = typeof value === 'string' ? value : textStateValue;
 
     return (
-      <Container className={className}>
-        <TextareaInfo>
-          {label && (
-            <LabelText inputLabel error={!!error}>
-              {optional ? label + ' (Optional)' : label}
-            </LabelText>
-          )}
-          {maxLength && (
-            <LabelText inputLabel error={!!error}>
-              {textValue.length} / {maxLength}
-            </LabelText>
-          )}
-        </TextareaInfo>
-        <TextareaContainer>
-          <Textarea
-            error={
-              error // style related props
-            }
-            resizable={resizable.toString()}
-            max-height={maxHeight}
-            min-height={minHeight}
-            placeholder={
-              placeholder // regular props
-            }
-            disabled={disabled}
-            onFocus={onFocus}
-            onBlur={onBlur}
-            value={textValue}
-            onChange={this.onTextareaChange}
-            autoFocus={autoFocus}
-          />
-          {overlay ? <Overlay>{overlay}</Overlay> : null}
-          {markdownKey ? (
-            <MarkdownKey>
-              <React.Fragment>
-                <Text typeScale="Small" color="defaultGrey">
-                  # H1
-                </Text>
-                <Text typeScale="Small" color="defaultGrey">
-                  ## H2
-                </Text>
-                <Text typeScale="Small" color="defaultGrey">
-                  ### H3
-                </Text>
-                <Text
-                  typeScale="Small"
-                  color="defaultGrey"
-                  weight="fontWeight-bold"
-                >
-                  *bold*
-                </Text>
-                <Text typeScale="Small" color="defaultGrey" fontStyle="italic">
-                  _italics_
-                </Text>
-                <CodeExample typeScale="Small" color="defaultGrey">
-                  `code`
-                </CodeExample>
-                <CodeExample typeScale="Small" color="defaultGrey">
-                  ```preformatted```
-                </CodeExample>
-              </React.Fragment>
-            </MarkdownKey>
-          ) : null}
-        </TextareaContainer>
-        <ErrorFragment error={error} />
-      </Container>
+      <ThemeProvider theme={theme}>
+        <Container className={className}>
+          <TextareaInfo>
+            {label && (
+              <LabelText inputLabel error={!!error}>
+                {optional ? label + ' (Optional)' : label}
+              </LabelText>
+            )}
+            {maxLength && (
+              <LabelText inputLabel error={!!error}>
+                {textValue.length} / {maxLength}
+              </LabelText>
+            )}
+          </TextareaInfo>
+          <TextareaContainer>
+            <Textarea // style related props
+              error={error}
+              resizable={resizable.toString()}
+              maxHeight={maxHeight}
+              minHeight={minHeight} // regular props
+              placeholder={placeholder}
+              disabled={disabled}
+              onFocus={onFocus}
+              onBlur={onBlur}
+              value={textValue}
+              onChange={this.onTextareaChange}
+              autoFocus={autoFocus}
+            />
+            {overlay ? <Overlay>{overlay}</Overlay> : null}
+          </TextareaContainer>
+          <ErrorFragment error={error} />
+        </Container>
+      </ThemeProvider>
     );
   }
 }
