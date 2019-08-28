@@ -55,6 +55,10 @@ import intl from 'react-intl-universal';
 const formSelector = formValueSelector('createBounty');
 
 class CreateBountyFormComponent extends React.Component {
+  state = {
+    selectedTemplate: 'default'
+  };
+
   handleCreateBounty = values => {
     const { activateNow, balance, ...bountyValues } = values;
     const {
@@ -96,10 +100,6 @@ class CreateBountyFormComponent extends React.Component {
     }
 
     return createDraft({ ...bountyValues, ...fileData });
-  };
-  state = {
-    selectedTemplate: { value: 'default', label: 'Default' },
-    overwrittenDescription: ''
   };
 
   handleSubmit = values => {
@@ -189,11 +189,6 @@ class CreateBountyFormComponent extends React.Component {
       handleBounty
     } = this.props;
 
-    const {
-      // selectedTemplate,
-      overwrittenDescription
-    } = this.state;
-
     const { validatorGroups } = this;
 
     let submitButtonText = intl.get('sections.create_bounty.actions.create');
@@ -259,7 +254,9 @@ class CreateBountyFormComponent extends React.Component {
                       )}
                       defaultValue={{ value: 'default', label: 'Default' }}
                       options={templateOptions}
-                      onChange={handleChooseTemplate(change)}
+                      onChange={handleChooseTemplate(change, selectedTemplate =>
+                        this.setState({ selectedTemplate })
+                      )}
                     />
                   </div>
                   <div className="col-xs-12">
@@ -274,10 +271,11 @@ class CreateBountyFormComponent extends React.Component {
                         color="blue"
                         lineHeight="lineHeight-default"
                       >
-                        This is a short description of the template that has
-                        been selected above. It provides some insight into how
-                        this template might be used, in addition to some
-                        potential example use cases.
+                        {intl.get(
+                          `sections.create_bounty.templates.${
+                            this.state.selectedTemplate
+                          }.about`
+                        )}
                       </Text>
                     </div>
                   </div>
@@ -293,7 +291,6 @@ class CreateBountyFormComponent extends React.Component {
                 component={FormMarkdownEditor}
                 textBoxClassName={styles.markdownEditor}
                 validate={validatorGroups.description}
-                value={overwrittenDescription}
               />
             </FormSection.InputGroup>
           </FormSection.Section>

@@ -51,7 +51,6 @@ class MarkdownEditor extends React.Component {
       typeof value === 'string' ? value : stateValue || defaultValue;
     const textBoxClass = `${styles.textArea} ${textBoxClassName}`;
 
-    console.log('value', this.props);
     return (
       <div className={styles.markdownEditor}>
         <Modal

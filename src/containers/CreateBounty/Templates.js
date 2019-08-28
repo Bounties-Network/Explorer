@@ -1,6 +1,6 @@
 import intl from 'react-intl-universal';
 
-const handleChooseTemplate = change => templateName => {
+const handleChooseTemplate = (change, setState) => templateName => {
   /*
   const chosenTemplate = templates.find((template) => template.templateName === templateName)
   chosenTemplate && chosenTemplate.templateFields.map((templateField) => {
@@ -23,12 +23,12 @@ const handleChooseTemplate = change => templateName => {
   change(field, value)
 */
 
-  console.log(
-    'selected',
-    intl.get(
-      'sections.create_bounty.templates.' + templateName.value + '.description'
-    )
-  );
+  // console.log(
+  //   'selected',
+  //   intl.get(
+  //     'sections.create_bounty.templates.' + templateName.value + '.description'
+  //   )
+  // );
   change(
     'description',
     intl.get(
@@ -41,6 +41,7 @@ const handleChooseTemplate = change => templateName => {
       'sections.create_bounty.templates.' + templateName.value + '.categories'
     )
   );
+  setState && setState(templateName.value);
 };
 
 export default handleChooseTemplate;
