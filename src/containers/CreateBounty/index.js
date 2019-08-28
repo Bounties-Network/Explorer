@@ -282,7 +282,7 @@ const mapStateToProps = (state, router) => {
     formInitialValues: {
       title: draftBounty.title,
       categories: categories,
-      description: intl.get('components.editor.survey'),
+      description: intl.get('components.editor.default'),
       experience_level:
         DIFFICULTY_MAPPINGS[draftBounty.experience_level] || 'Beginner',
       revisions: draftBounty.revisions || 3,
