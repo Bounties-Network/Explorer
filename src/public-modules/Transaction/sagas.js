@@ -184,7 +184,7 @@ export function* watchPendingReceipt() {
 export function* loopTransactions() {
   while (true) {
     yield put(loadTransactions());
-    yield delay(10000);
+    yield delay(5000);
   }
 }
 

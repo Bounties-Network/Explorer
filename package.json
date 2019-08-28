@@ -163,7 +163,7 @@
   "scripts": {
     "lint": "prettier --single-quote --write \"src/**/*.{js,jsx,,ts,tsx,json,css}\"",
     "precommit": "lint-staged",
-    "dev": "npm run start-staging",
+    "dev": "npm run start-rinkeby",
     "start": "APP_SETTINGS_FILE=production_settings APP_LOGO=logo node scripts/start.js",
     "start-local": "APP_SETTINGS_FILE=local_settings APP_LOGO=logo node scripts/start.js",
     "start-staging": "APP_SETTINGS_FILE=staging_settings APP_LOGO=logo node scripts/start.js",
