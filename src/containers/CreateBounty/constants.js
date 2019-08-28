@@ -38,7 +38,6 @@ export const templates = [
   { value: 'proof-of-action', label: 'Proof of Action' },
   { value: 'code', label: 'Code' },
   { value: 'graphic-design', label: 'Graphic Design' },
-  { value: 'translation', label: 'Translation' },
   { value: 'idea-generation', label: 'Idea Generation' },
   { value: 'feedback-and-critique', label: 'Feedback & Critique' },
   { value: 'survey', label: 'Survey' },
@@ -50,7 +49,6 @@ export const templateOptions = [
   { value: 'proof-of-action', label: 'Proof of Action' },
   { value: 'code', label: 'Code' },
   { value: 'graphic-design', label: 'Graphic Design' },
-  { value: 'translation', label: 'Translation' },
   { value: 'idea-generation', label: 'Idea Generation' },
   {
     value: 'feedback-and-critique',
