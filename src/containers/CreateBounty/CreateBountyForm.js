@@ -16,7 +16,7 @@ import { getTimezone } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
 import { Link } from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import handleChooseTemplate from './Templates';
+import handleChooseTemplate from './handle-choose-template';
 
 import moment from 'moment';
 import {
@@ -185,6 +185,7 @@ class CreateBountyFormComponent extends React.Component {
       isEditing,
       initialValues,
       // options,
+      currentCategories,
       change,
       handleBounty
     } = this.props;
@@ -254,8 +255,10 @@ class CreateBountyFormComponent extends React.Component {
                       )}
                       defaultValue={{ value: 'default', label: 'Default' }}
                       options={templateOptions}
-                      onChange={handleChooseTemplate(change, selectedTemplate =>
-                        this.setState({ selectedTemplate })
+                      onChange={handleChooseTemplate(
+                        change,
+                        selectedTemplate => this.setState({ selectedTemplate }),
+                        currentCategories
                       )}
                     />
                   </div>
@@ -814,6 +817,7 @@ const mapStateToProps = (state, router) => {
     uploadLoading: uploadedFile ? uploadedFile.uploading : false,
     activateNow: formSelector(state, 'activateNow'),
     paysTokens: formSelector(state, 'paysTokens'),
+    currentCategories: formSelector(state, 'categories'),
     categories: categoriesSelector(state),
     submittingBounty: draftState.creating || bountyState.pending,
     uid: draftBounty.uid,
