@@ -143,6 +143,13 @@ class Modal extends React.Component {
           pageBody.classList.add('unfixed');
         }
       }
+      const pageHeader = document.getElementsByClassName('page-header')[0];
+      if (pageHeader) {
+        pageHeader.classList.add('modal-open');
+        if (fixed) {
+          pageHeader.classList.add('unfixed');
+        }
+      }
     }
   }
 
@@ -170,6 +177,13 @@ class Modal extends React.Component {
         pageBody.classList.add('unfixed');
       }
     }
+    const pageHeader = document.getElementsByClassName('page-header')[0];
+    if (pageHeader) {
+      pageHeader.classList.add('modal-open');
+      if (!fixed) {
+        pageHeader.classList.add('unfixed');
+      }
+    }
   };
 
   triggerExited = () => {
@@ -185,6 +199,13 @@ class Modal extends React.Component {
       pageBody.classList.remove('modal-open');
       if (!fixed) {
         pageBody.classList.remove('unfixed');
+      }
+    }
+    const pageHeader = document.getElementsByClassName('page-header')[0];
+    if (pageHeader) {
+      pageHeader.classList.remove('modal-open');
+      if (!fixed) {
+        pageHeader.classList.remove('unfixed');
       }
     }
   };
@@ -298,7 +319,7 @@ class Modal extends React.Component {
       rootModal = (
         <CSSTransition
           key="1"
-          timeout={400}
+          timeout={500}
           onEnter={this.triggerEnter}
           onEntered={this.triggerEntered}
           onEntering={this.triggerEntering}
