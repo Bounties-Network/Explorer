@@ -196,6 +196,42 @@ class Textbox extends React.Component {
               autoFocus={autoFocus}
             />
             {overlay ? <Overlay>{overlay}</Overlay> : null}
+            {markdownKey ? (
+              <MarkdownKey>
+                <React.Fragment>
+                  <Text typeScale="Small" color="defaultGrey">
+                    # H1
+                  </Text>
+                  <Text typeScale="Small" color="defaultGrey">
+                    ## H2
+                  </Text>
+                  <Text typeScale="Small" color="defaultGrey">
+                    ### H3
+                  </Text>
+                  <Text
+                    typeScale="Small"
+                    color="defaultGrey"
+                    weight="fontWeight-bold"
+                    color="darkGrey"
+                  >
+                    *bold*
+                  </Text>
+                  <Text
+                    typeScale="Small"
+                    color="defaultGrey"
+                    fontStyle="italic"
+                  >
+                    _italics_
+                  </Text>
+                  <CodeExample typeScale="Small" color="defaultGrey">
+                    `code`
+                  </CodeExample>
+                  <CodeExample typeScale="Small" color="defaultGrey">
+                    ```preformatted```
+                  </CodeExample>
+                </React.Fragment>
+              </MarkdownKey>
+            ) : null}
           </TextareaContainer>
           <ErrorFragment error={error} />
         </Container>
