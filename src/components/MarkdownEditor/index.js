@@ -81,7 +81,11 @@ class MarkdownEditor extends React.Component {
           onBlur={onBlur}
           overlay={
             !hidePreview && (
-              <Button icon={['far', 'eye']} onClick={this.showModal}>
+              <Button
+                buttonType={'button'}
+                icon={['far', 'eye']}
+                onClick={this.showModal}
+              >
                 {intl.get('components.editor.preview')}
               </Button>
             )
