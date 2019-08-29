@@ -1,3 +1,18 @@
+import React from 'react';
+import Text from 'components/Text';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import css from '@styled-system/css';
+import styled from 'lib/emotion-styled';
+import { Flex } from 'rebass';
+
+const OptionContainer = styled(Flex)(props =>
+  css({
+    '> *:first-child': {
+      mr: 2
+    }
+  })
+);
+
 export const DIFFICULTY_OPTIONS = [
   { value: 'Beginner', label: 'Beginner' },
   { value: 'Intermediate', label: 'Intermediate' },
@@ -46,7 +61,15 @@ export const templates = [
 
 export const templateOptions = [
   { value: 'default', label: 'Default' },
-  { value: 'proof-of-action', label: 'Proof of Action' },
+  {
+    value: 'proof-of-action',
+    label: (
+      <OptionContainer alignItems="center">
+        <FontAwesomeIcon icon={['far', 'search']} />
+        <Text>Proof of Action</Text>
+      </OptionContainer>
+    )
+  },
   { value: 'code', label: 'Code' },
   { value: 'graphic-design', label: 'Graphic Design' },
   { value: 'idea-generation', label: 'Idea Generation' },
