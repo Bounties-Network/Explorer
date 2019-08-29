@@ -32,7 +32,7 @@ export const templates = [
   {
     value: 'default',
     about:
-      'This is a short description of the template that has been selected above. It provides some insight into how this template might be used, in addition to some potential example use cases.',
+      'The default description template provides a simple and multi-purpose template for writing well structured and clear instructions for potential fulfillers.',
     description: ''
   },
   { value: 'proof-of-action', label: 'Proof of Action' },
