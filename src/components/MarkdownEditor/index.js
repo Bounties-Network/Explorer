@@ -71,6 +71,7 @@ class MarkdownEditor extends React.Component {
           </Modal.Body>
         </Modal>
         <Textbox
+          maxHeight={'50em'}
           error={error}
           label={label}
           value={textValue}
