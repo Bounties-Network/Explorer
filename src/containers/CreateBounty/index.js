@@ -91,12 +91,12 @@ class CreateBountyComponent extends React.Component {
               return (
                 <Modal
                   dismissable
-                  size="medium"
+                  size="small"
                   fixed
                   visible={true}
                   onClose={onCancel}
                 >
-                  <Modal.Header closable>
+                  <Modal.Header closable icon="error">
                     <Modal.Message>
                       {intl.get(
                         'sections.bounty.modals.unsaved_changes.new_bounty.title'
