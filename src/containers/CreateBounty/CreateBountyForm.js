@@ -253,7 +253,7 @@ class CreateBountyFormComponent extends React.Component {
                       label={intl.get(
                         'sections.create_bounty.sections.about.form.template.label'
                       )}
-                      defaultValue={{ value: 'default', label: 'Default' }}
+                      defaultValue={templateOptions[0]}
                       options={templateOptions}
                       onChange={handleChooseTemplate(
                         change,
