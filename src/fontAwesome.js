@@ -55,7 +55,8 @@ import starLight from '@fortawesome/fontawesome-pro-light/faStar';
 import calendarAlt from '@fortawesome/fontawesome-pro-regular/faCalendarAlt';
 import calendarPlus from '@fortawesome/fontawesome-pro-regular/faCalendarPlus';
 import dollarSign from '@fortawesome/fontawesome-pro-regular/faDollarSign';
-import fileAlt from '@fortawesome/fontawesome-pro-light/faFileAlt';
+import fileAltLight from '@fortawesome/fontawesome-pro-light/faFileAlt';
+import fileAlt from '@fortawesome/fontawesome-pro-regular/faFileAlt';
 import chartLine from '@fortawesome/fontawesome-pro-light/faChartLine';
 import bolt from '@fortawesome/fontawesome-pro-light/faBolt';
 import frown from '@fortawesome/fontawesome-pro-light/faFrown';
@@ -78,8 +79,25 @@ import userFriends from '@fortawesome/fontawesome-pro-regular/faUserFriends';
 import edit from '@fortawesome/fontawesome-pro-regular/faEdit';
 import expand from '@fortawesome/fontawesome-pro-light/faExpand';
 import lightQuestionCircle from '@fortawesome/fontawesome-pro-light/faQuestionCircle';
+import code from '@fortawesome/fontawesome-pro-regular/faCode';
+import lightbulb from '@fortawesome/fontawesome-pro-regular/faLightbulb';
+import users from '@fortawesome/fontawesome-pro-regular/faUsers';
+import language from '@fortawesome/fontawesome-pro-regular/faLanguage';
+
+// The following icons are having trouble being imported
+//
+// import fileSignature from '@fortawesome/fontawesome-pro-regular/faFileSignature';
+// import pencilPaintbrush from '@fortawesome/fontawesome-pro-regular/faPencilPaintbrush';
+// import voteYea from '@fortawesome/fontawesome-pro-regular/faVoteYea';
 
 library.add(
+  // voteYea,
+  // pencilPaintbrush,
+  // fileSignature,
+  code,
+  language,
+  users,
+  lightbulb,
   externalLink,
   externalLinkSquare,
   arrow,
@@ -139,6 +157,7 @@ library.add(
   addressCard,
   calendarAlt,
   dollarSign,
+  fileAltLight,
   fileAlt,
   chartLine,
   bolt,

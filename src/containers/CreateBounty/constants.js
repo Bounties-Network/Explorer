@@ -4,11 +4,14 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import css from '@styled-system/css';
 import styled from 'lib/emotion-styled';
 import { Flex } from 'rebass';
+import { textAlign } from 'styled-system';
 
 const OptionContainer = styled(Flex)(props =>
   css({
     '> *:first-child': {
-      mr: 2
+      mr: 2,
+      minWidth: '1.25rem',
+      textAlign: 'left'
     }
   })
 );
@@ -53,6 +56,7 @@ export const templates = [
   { value: 'proof-of-action', label: 'Proof of Action' },
   { value: 'code', label: 'Code' },
   { value: 'graphic-design', label: 'Graphic Design' },
+  { value: 'translation', label: 'Translation' },
   { value: 'idea-generation', label: 'Idea Generation' },
   { value: 'feedback-and-critique', label: 'Feedback & Critique' },
   { value: 'survey', label: 'Survey' },
@@ -60,23 +64,85 @@ export const templates = [
 ];
 
 export const templateOptions = [
-  { value: 'default', label: 'Default' },
+  {
+    value: 'default',
+    label: (
+      <OptionContainer alignItems="center">
+        <FontAwesomeIcon icon={['far', 'file-alt']} color="gray" />
+        <Text>Default</Text>
+      </OptionContainer>
+    )
+  },
   {
     value: 'proof-of-action',
     label: (
       <OptionContainer alignItems="center">
-        <FontAwesomeIcon icon={['far', 'search']} />
+        <FontAwesomeIcon icon={['far', 'vote-yea']} color="gray" />
         <Text>Proof of Action</Text>
       </OptionContainer>
     )
   },
-  { value: 'code', label: 'Code' },
-  { value: 'graphic-design', label: 'Graphic Design' },
-  { value: 'idea-generation', label: 'Idea Generation' },
+  {
+    value: 'code',
+    label: (
+      <OptionContainer alignItems="center">
+        <FontAwesomeIcon icon={['far', 'code']} color="gray" />
+        <Text>Code</Text>
+      </OptionContainer>
+    )
+  },
+  {
+    value: 'graphic-design',
+    label: (
+      <OptionContainer alignItems="center">
+        <FontAwesomeIcon icon={['far', 'pencil-paintbrush']} color="gray" />
+        <Text>Graphic Design</Text>
+      </OptionContainer>
+    )
+  },
+  {
+    value: 'translation',
+    label: (
+      <OptionContainer alignItems="center">
+        <FontAwesomeIcon icon={['far', 'language']} color="gray" />
+        <Text>Translation</Text>
+      </OptionContainer>
+    )
+  },
+  {
+    value: 'idea-generation',
+    label: (
+      <OptionContainer alignItems="center">
+        <FontAwesomeIcon icon={['far', 'lightbulb']} color="gray" />
+        <Text>Idea Generation</Text>
+      </OptionContainer>
+    )
+  },
   {
     value: 'feedback-and-critique',
-    label: 'Feedback & Critique'
+    label: (
+      <OptionContainer alignItems="center">
+        <FontAwesomeIcon icon={['far', 'comments']} color="gray" />
+        <Text>Feedback & Critique</Text>
+      </OptionContainer>
+    )
   },
-  { value: 'survey', label: 'Survey' },
-  { value: 'recruitment', label: 'Recruitment' }
+  {
+    value: 'survey',
+    label: (
+      <OptionContainer alignItems="center">
+        <FontAwesomeIcon icon={['far', 'file-signature']} color="gray" />
+        <Text>Survey</Text>
+      </OptionContainer>
+    )
+  },
+  {
+    value: 'recruitment',
+    label: (
+      <OptionContainer alignItems="center">
+        <FontAwesomeIcon icon={['far', 'users']} color="gray" />
+        <Text>Recruitement</Text>
+      </OptionContainer>
+    )
+  }
 ];
