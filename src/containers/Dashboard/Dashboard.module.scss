@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 $slider-height: calc(100vh - #{$header-height-sm});
 
@@ -25,7 +25,6 @@ $slider-height: calc(100vh - #{$header-height-sm});
 .panelContainer {
   display: flex;
   flex-wrap: wrap;
-  min-height: $slider-height;
   height: 100%;
 }
 
