@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .numberInput {
   display: flex;
@@ -25,11 +25,11 @@
 
 .decrement,
 .increment {
-  flex: 0 0  $base-input-height;
+  flex: 0 0 $base-input-height;
   border: $base-border;
   display: block;
   width: $base-input-height;
-  line-height: $base-input-height;
+  line-height: calc(#{$base-input-height} - #{$s-spacing});
   background: $brand-white;
   color: $brand-blue;
   text-align: center;
