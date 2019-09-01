@@ -3,12 +3,32 @@
 .markdownEditor {
   height: 100%;
   width: 100%;
+  position: relative;
 
   textarea {
+    position: relative;
+
     @media only screen and (min-width: 56.25em) {
       border-bottom: 1px solid transparent;
       border-bottom-right-radius: 0;
       border-bottom-left-radius: 0;
     }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    bottom: 2.5rem;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba($base-input-background, 1) 100%
+    );
+    height: 6.25rem;
+    pointer-events: none;
+    margin: 0 2px 1px;
   }
 }
