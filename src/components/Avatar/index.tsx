@@ -54,6 +54,7 @@ const ImageContainer = styled(Flex)<ImageContainerProps>(
   props =>
     css({
       alignItems: 'center',
+      flexShrink: 0,
       justifyContent: 'center',
       bg: 'white',
       border: props.variant === 'small' ? 'none' : 1,
@@ -90,6 +91,7 @@ const AvatarImage: React.FC<AvatarImageProps> = ({ variant, hash, img }) => {
 type TextContainerProps = Pick<AvatarProps, 'variant' | 'textFormat'>;
 const TextContainer = styled(Flex)<TextContainerProps>(props =>
   css({
+    flexShrink: 0,
     pl: props.variant === 'large' || props.textFormat === 'inline' ? 3 : 2,
     variant: 'textFormat.' + props.textFormat
   })
