@@ -4,6 +4,7 @@ import { Modal, Text, Button, Avatar } from 'components';
 import { shortenAddress } from 'utils/helpers';
 import styles from './baseStyles.module.scss';
 import intl from 'react-intl-universal';
+import LinkedAvatar from 'explorer-components/LinkedAvatar';
 
 const AddressMismatch = props => {
   const {
@@ -43,13 +44,12 @@ const AddressMismatch = props => {
           <Text inline>
             {intl.get('sections.login.modals.address_mismatch.description3')}
           </Text>
-          <div>
-            <Avatar
-              className={styles.avatar}
-              variant="small"
+          <div className={styles.avatarWrapper}>
+            <LinkedAvatar
               img={img}
               hash={previousAddress}
               address={previousAddress}
+              className={styles.avatar}
             />
           </div>
           <Text inline>

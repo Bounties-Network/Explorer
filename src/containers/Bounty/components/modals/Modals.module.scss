@@ -27,15 +27,22 @@ p {
   }
 }
 
-.submitError {
+.submitError,
+.modalSubmitError {
   color: $brand-destructive-hover;
-  margin-top: $base-spacing;
   padding: $m-spacing;
   background: lighten($brand-destructive, 23%);
   border-radius: $base-border-radius;
-  margin: $l-spacing 0;
   margin-bottom: 0;
   display: block;
   text-align: center;
   width: 100%;
+}
+
+.submitError {
+  margin-top: $base-spacing;
+}
+
+.modalSubmitError {
+  margin-bottom: $l-spacing;
 }
