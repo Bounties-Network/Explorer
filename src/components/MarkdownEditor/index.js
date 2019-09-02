@@ -5,7 +5,7 @@ import showdown from 'showdown';
 import { Textbox, Modal, Button } from 'components';
 import { newTabExtension } from 'utils/helpers';
 import intl from 'react-intl-universal';
-import { faEye } from '@fortawesome/pro-light-svg-icons';
+import { faEye } from '@fortawesome/pro-regular-svg-icons';
 
 showdown.setOption('simpleLineBreaks', true);
 showdown.extension('targetBlank', newTabExtension);
