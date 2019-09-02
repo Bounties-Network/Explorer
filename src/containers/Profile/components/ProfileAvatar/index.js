@@ -19,7 +19,7 @@ const ProfileAvatar = props => {
         color="black"
         weight="fontWeight-bold"
       >
-        {name}
+        {name || '--'}
       </Text>
       <FullAddressBar
         className={styles.profileAddress}
