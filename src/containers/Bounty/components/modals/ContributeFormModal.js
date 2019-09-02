@@ -81,6 +81,16 @@ const ContributeFormModal = props => {
           />
         </Modal.Body>
         <Modal.Footer>
+          {submitFailed &&
+            invalid && (
+              <Text
+                typeScale="Small"
+                color="red"
+                className={styles.modalSubmitError}
+              >
+                {intl.get('errors.form_error')}
+              </Text>
+            )}
           <Button
             margin
             onClick={e => {
@@ -98,16 +108,6 @@ const ContributeFormModal = props => {
           >
             {intl.get('actions.contribute')}
           </Button>
-          {submitFailed &&
-            invalid && (
-              <Text
-                typeScale="Small"
-                color="red"
-                className={styles.submitError}
-              >
-                {intl.get('errors.form_error')}
-              </Text>
-            )}
         </Modal.Footer>
       </Modal>
     </form>

@@ -1,7 +1,11 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
+
+.avatarWrapper {
+  margin: 0 auto;
+  padding: $xl-spacing 0;
+}
 
 .avatar {
-  margin: $xl-spacing auto;
 }
 
 .alignLeft {
