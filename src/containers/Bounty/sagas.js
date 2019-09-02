@@ -1,6 +1,6 @@
 import { put, takeLatest, select } from 'redux-saga/effects';
 import { reset } from 'redux-form';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { LOCATION_CHANGE } from 'connected-react-router';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import { bountyIdSelector } from './selectors';
 import { fulfillmentSelector } from 'public-modules/Fulfillment/selectors';

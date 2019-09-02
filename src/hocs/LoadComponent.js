@@ -8,7 +8,7 @@ function LoadComponent(initiatorProp, WrappedComponent) {
       load: PropTypes.func.isRequired
     };
 
-    componentWillMount() {
+    componentDidMount() {
       if (initiatorProp) {
         this.props.load(this.props[initiatorProp]);
       } else {

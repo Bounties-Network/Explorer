@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import styles from './BountiesPanel.module.scss';
 import { map } from 'lodash';
 import {

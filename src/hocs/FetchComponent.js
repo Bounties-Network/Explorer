@@ -3,7 +3,7 @@ import { curry } from 'lodash';
 
 function FetchComponent(fetch, WrappedComponent) {
   return class Fetch extends Component {
-    componentWillMount() {
+    componentDidMount() {
       if (process.env.SSR) {
         return fetch();
       }

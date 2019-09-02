@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer as formReducer } from 'redux-form';
 import {
   ConnectedRouter,
-  routerReducer,
+  connectRouter,
   routerMiddleware
-} from 'react-router-redux';
+} from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import { ThemeProvider } from 'emotion-theming';
 import theme from './theme';
@@ -31,14 +31,14 @@ import 'intl/locale-data/jsonp/en.js';
 // never return number formated as exponential
 BigNumber.config({ EXPONENTIAL_AT: 1e9 });
 
-const history = createHistory();
+const history = createBrowserHistory();
 const middleware = routerMiddleware(history);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
   combineReducers({
-    router: routerReducer,
+    router: connectRouter(history),
     form: formReducer,
     ...reducers,
     ...baseReducers
@@ -51,12 +51,12 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <ThemeProvider theme={theme}>
         <App />
-      </ConnectedRouter>
-    </Provider>
-  </ThemeProvider>,
+      </ThemeProvider>
+    </ConnectedRouter>
+  </Provider>,
   document.getElementById('root')
 );
