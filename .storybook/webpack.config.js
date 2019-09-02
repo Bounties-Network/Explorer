@@ -10,16 +10,14 @@ module.exports = ({ config }) => {
 
   config.module.rules.push({
     test: /\.stories\.jsx?$/,
-    loaders: [require.resolve('@storybook/addon-storysource/loader')],
+    loaders: [require.resolve('@storybook/source-loader')],
     enforce: 'pre'
   });
   config.module.rules.push({
     test: /\.stories\.(ts|tsx)$/,
     exclude: /node_modules/,
-    use: [
-      { loader: require.resolve('babel-loader') },
-      { loader: require.resolve('@storybook/addon-storysource/loader') }
-    ]
+    use: [{ loader: require.resolve('@storybook/source-loader'), options: { parser: 'typescript' } }],
+    enforce: 'pre'
   });
 
   config.module.rules.push({
