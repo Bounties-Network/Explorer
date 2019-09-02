@@ -50,7 +50,7 @@ const SubmissionItem = props => {
           address={fulfiller}
           hash={fulfiller}
           to={`profile/${fulfiller}`}
-          size="small"
+          variant="small"
         />
       </Table.Cell>
       <Table.Cell
