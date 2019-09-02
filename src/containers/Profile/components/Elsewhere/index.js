@@ -1,9 +1,15 @@
 import React from 'react';
 import styles from './Elsewhere.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Text } from 'components';
 import { shortenUrl } from 'utils/helpers';
 import intl from 'react-intl-universal';
+import { faGlobe } from '@fortawesome/pro-regular-svg-icons';
+import {
+  faTwitter,
+  faGithub,
+  faLinkedin
+} from '@fortawesome/free-brands-svg-icons';
 
 const Elsewhere = props => {
   const { website, twitter, github, linkedin } = props;
@@ -17,7 +23,7 @@ const Elsewhere = props => {
       <div className={styles.bulletPointContainer}>
         {website && (
           <div className={styles.bulletPoint}>
-            <FontAwesomeIcon icon={['far', 'globe']} className={styles.icon} />
+            <FontAwesomeIcon icon={faGlobe} className={styles.icon} />
             <Text link absolute src={website} typeScale="h5">
               {shortenUrl(website)}
             </Text>
@@ -26,10 +32,7 @@ const Elsewhere = props => {
 
         {twitter && (
           <div className={styles.bulletPoint}>
-            <FontAwesomeIcon
-              icon={['fab', 'twitter']}
-              className={styles.icon}
-            />
+            <FontAwesomeIcon icon={faTwitter} className={styles.icon} />
             <Text
               link
               absolute
@@ -43,7 +46,7 @@ const Elsewhere = props => {
 
         {github && (
           <div className={styles.bulletPoint}>
-            <FontAwesomeIcon icon={['fab', 'github']} className={styles.icon} />
+            <FontAwesomeIcon icon={faGithub} className={styles.icon} />
             <Text
               link
               absolute
@@ -57,10 +60,7 @@ const Elsewhere = props => {
 
         {linkedin && (
           <div className={styles.bulletPoint}>
-            <FontAwesomeIcon
-              icon={['fab', 'linkedin']}
-              className={styles.icon}
-            />
+            <FontAwesomeIcon icon={faLinkedin} className={styles.icon} />
             <Text link absolute src={linkedin} typeScale="h5">
               LinkedIn
             </Text>

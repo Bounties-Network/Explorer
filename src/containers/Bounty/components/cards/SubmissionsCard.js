@@ -55,6 +55,7 @@ const SubmissionsCard = props => {
 
       return (
         <SubmissionItem
+          key={id}
           fulfillmentId={fulfillment_id}
           id={id}
           fulfiller_name={name}

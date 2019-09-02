@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { LoadComponent } from 'hocs';
 import styles from './NetworkStats.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ReviewsModal } from '../';
 import { Circle, Switch, Text } from 'components';
 import { capitalize } from 'lodash';
@@ -12,6 +12,7 @@ import { profileUISelector } from 'containers/Profile/selectors';
 import { reviewsStateSelector } from 'public-modules/Reviews/selectors';
 import { actions as reviewsActions } from 'public-modules/Reviews';
 import intl from 'react-intl-universal';
+import { faExternalLink } from '@fortawesome/pro-regular-svg-icons';
 
 function formatInput(value, format) {
   if (value === null) {
@@ -76,10 +77,7 @@ const NetworkStatsComponent = props => {
             }`}
           >
             {text}
-            <FontAwesomeIcon
-              icon={['far', 'external-link']}
-              className={styles.icon}
-            />
+            <FontAwesomeIcon icon={faExternalLink} className={styles.icon} />
           </Text>
         ) : (
           <Text

@@ -5,6 +5,7 @@ import showdown from 'showdown';
 import { Textbox, Modal, Button } from 'components';
 import { newTabExtension } from 'utils/helpers';
 import intl from 'react-intl-universal';
+import { faEye } from '@fortawesome/pro-light-svg-icons';
 
 showdown.setOption('simpleLineBreaks', true);
 showdown.extension('targetBlank', newTabExtension);
@@ -85,7 +86,7 @@ class MarkdownEditor extends React.Component {
               <Button
                 type="action"
                 buttonType={'button'}
-                icon={['far', 'eye']}
+                icon={faEye}
                 onClick={this.showModal}
               >
                 {intl.get('components.editor.preview')}

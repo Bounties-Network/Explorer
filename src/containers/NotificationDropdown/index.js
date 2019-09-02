@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './NotificationDropdown.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { map } from 'lodash';
 import { Link } from 'react-router-dom';
 import { compose } from 'redux';
@@ -21,6 +21,11 @@ import {
   ZeroState
 } from 'components';
 import intl from 'react-intl-universal';
+import { faBell } from '@fortawesome/pro-regular-svg-icons';
+import {
+  faExclamationTriangle,
+  faBell as lightFaBell
+} from '@fortawesome/pro-light-svg-icons';
 
 const { DropdownTrigger, DropdownContent } = Dropdown;
 
@@ -89,7 +94,7 @@ const NotificationDropdown = props => {
           }`}
         >
           <FontAwesomeIcon
-            icon={['far', 'bell']}
+            icon={faBell}
             className={styles.notificationTriggerIcon}
           />
         </Text>
@@ -137,7 +142,7 @@ const NotificationDropdown = props => {
               type="error"
               text={intl.get('errors.500')}
               iconColor="red"
-              faIcon={['fal', 'exclamation-triangle']}
+              faIcon={faExclamationTriangle}
             />
           )}
           {!loaded && (
@@ -154,7 +159,7 @@ const NotificationDropdown = props => {
                     'sections.notifications.zero_state.description'
                   )}
                   iconColor="blue"
-                  faIcon={['fal', 'bell']}
+                  faIcon={lightFaBell}
                 />
               </div>
             )}

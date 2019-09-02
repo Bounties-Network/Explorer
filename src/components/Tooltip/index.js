@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestionCircle } from '@fortawesome/pro-light-svg-icons';
 
 const ARROW_OFFSET = '40px';
 const ICON_SIZE = '1rem';
@@ -118,7 +119,7 @@ Tooltip.propTypes = {
 };
 
 Tooltip.defaultProps = {
-  icon: ['fal', 'question-circle'],
+  icon: faQuestionCircle,
   position: 'bottom',
   align: 'center',
   width: '120px'

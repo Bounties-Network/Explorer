@@ -44,6 +44,7 @@ import { currentRouteSelector, scrollToTop } from 'utils/helpers';
 import { translationSelector } from 'public-modules/i18n/selectors';
 
 import '../../styles/flexboxgrid.css';
+import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
 
 const { DropdownTrigger, DropdownContent, MenuItem } = Dropdown;
 
@@ -127,7 +128,7 @@ class HeaderComponent extends React.Component {
                 containerClass={styles.dropdownContainer}
               >
                 <DropdownTrigger>
-                  <Sidebar.TabIcon icon={['far', 'info-circle']} />
+                  <Sidebar.TabIcon icon={faInfoCircle} />
                 </DropdownTrigger>
                 <DropdownContent className={styles.tosDropdown}>
                   <MenuItem onClick={() => history.push('/privacy')}>

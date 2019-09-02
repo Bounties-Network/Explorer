@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Pill.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Text } from 'components';
+import { faTimes } from '@fortawesome/pro-light-svg-icons';
 
 const Pill = props => {
   const {
@@ -36,7 +37,7 @@ const Pill = props => {
       {close && (
         <div className={`${styles.closeButton}`} onClick={onCloseClick}>
           <i>
-            <FontAwesomeIcon icon={['fal', 'times']} />
+            <FontAwesomeIcon icon={faTimes} />
           </i>
         </div>
       )}

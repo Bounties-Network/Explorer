@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Modal.module.scss';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Text, Loader, SVGIllustration } from 'components';
 import { includes, each, some, map } from 'lodash';
+import { faTimes } from '@fortawesome/pro-light-svg-icons';
 
 const ModalContext = React.createContext({});
 
@@ -19,7 +20,7 @@ class Header extends React.Component {
             {closable ? (
               <div className={styles.closeWrapper}>
                 <div className={styles.closeIconWrapper} onClick={onClose}>
-                  <FontAwesomeIcon icon={['fal', 'times']} />
+                  <FontAwesomeIcon icon={faTimes} />
                 </div>
               </div>
             ) : null}

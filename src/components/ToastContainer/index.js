@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ToastContainer.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Text } from 'components';
 import { ToastContainer as ToastWrapper } from 'react-toastify';
+import { faTimes } from '@fortawesome/pro-light-svg-icons';
 
 const BaseToast = props => {
   const { icon, message, link } = props;
@@ -26,7 +27,7 @@ const BaseToast = props => {
 const CloseIcon = props => {
   return (
     <i className={styles.closeIcon}>
-      <FontAwesomeIcon icon={['fal', 'times']} />
+      <FontAwesomeIcon icon={faTimes} />
     </i>
   );
 };

@@ -1,9 +1,9 @@
 import React from 'react';
-
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
 import { Button, Text } from 'components';
+import { faPlus } from '@fortawesome/pro-regular-svg-icons';
+import { faBell } from '@fortawesome/pro-light-svg-icons';
 
 storiesOf('Button', module).add('All Buttons', () => (
   <div className="sb-page-wrapper">
@@ -84,7 +84,7 @@ storiesOf('Button', module).add('All Buttons', () => (
     </Text>
 
     <div className="sb-component-group sb-button-group">
-      <Button onClick={action('clicked')} type="primary" icon={['far', 'plus']}>
+      <Button onClick={action('clicked')} type="primary" icon={faPlus}>
         Create new bounty
       </Button>
     </div>
@@ -144,15 +144,15 @@ storiesOf('Button', module).add('All Buttons', () => (
     <div className="sb-component-group sb-button-group">
       <Button loading>Default</Button>
 
-      <Button loading type="primary" icon={['fal', 'bell']}>
+      <Button loading type="primary" icon={faBell}>
         Primary
       </Button>
 
-      <Button loading type="destructive" icon={['fal', 'bell']}>
+      <Button loading type="destructive" icon={faBell}>
         Destructive
       </Button>
 
-      <Button loading type="action" icon={['fal', 'bell']}>
+      <Button loading type="action" icon={faBell}>
         Action
       </Button>
     </div>

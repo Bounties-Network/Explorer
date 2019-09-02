@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { ZeroState, Text, Card } from 'components';
+import { faTrophyAlt } from '@fortawesome/pro-light-svg-icons';
 
 storiesOf('Card', module).add('ZeroState', () => (
   <div className="sb-page-wrapper">
@@ -106,9 +107,8 @@ storiesOf('Card', module).add('ZeroState', () => (
       lineHeight="lineHeight-default"
     >
       The <code>icon</code> prop will determine the icon to be displayed. It can
-      be an array with a font awesome icon (e.g{' '}
-      <code>['['fal', 'trophy-alt']</code>), or string with the name of one of
-      our custom SVG icons (e.g <code>"trophy"</code>)
+      be a font awesome icon import (e.g <code>faBell</code>), or string with
+      the name of one of our custom SVG icons (e.g <code>"trophy"</code>)
     </Text>
 
     <div className="sb-component-group sb-button-group">
@@ -120,7 +120,7 @@ storiesOf('Card', module).add('ZeroState', () => (
               text={
                 "It looks like you don't have any active bounties at the moment. Enter a title for a new bounty here to get started creating one!"
               }
-              icon={['fal', 'trophy-alt']}
+              icon={faTrophyAlt}
             />
           </div>
         </Card.Body>
@@ -141,8 +141,8 @@ storiesOf('Card', module).add('ZeroState', () => (
       lineHeight="lineHeight-default"
     >
       The <code>iconColor</code> prop will determine the color of the
-      FontAwesome icon to be displayed. It must be an array with a font awesome
-      icon (e.g <code>['fal', 'trophy-alt']</code>).
+      FontAwesome icon to be displayed. It must be a font awesome icon import
+      (e.g <code>faTrophyAlt</code>).
     </Text>
 
     <div className="sb-component-group sb-button-group">
@@ -154,7 +154,7 @@ storiesOf('Card', module).add('ZeroState', () => (
               text={
                 "It looks like you don't have any active bounties at the moment. Enter a title for a new bounty here to get started creating one!"
               }
-              icon={['fal', 'trophy-alt']}
+              icon={faTrophyAlt}
               iconColor="blue"
             />
           </div>
@@ -189,7 +189,7 @@ storiesOf('Card', module).add('ZeroState', () => (
               text={
                 "It looks like you don't have any active bounties at the moment. Enter a title for a new bounty here to get started creating one!"
               }
-              icon={['fal', 'trophy-alt']}
+              icon={faTrophyAlt}
               iconColor="blue"
               action
               actionText="Add a new bounty"
@@ -225,7 +225,7 @@ storiesOf('Card', module).add('ZeroState', () => (
               text={
                 "It looks like you don't have any active bounties at the moment. Enter a title for a new bounty here to get started creating one!"
               }
-              icon={['fal', 'trophy-alt']}
+              icon={faTrophyAlt}
               iconColor="blue"
               action
               actionText="Add a new bounty"

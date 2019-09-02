@@ -11,6 +11,10 @@ import { submissionsPanelSelector } from './selectors';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillments';
 import { actions } from './reducer';
 import intl from 'react-intl-universal';
+import {
+  faLevelUp,
+  faExclamationTriangle
+} from '@fortawesome/pro-light-svg-icons';
 
 class SubmissionsPanelComponent extends React.Component {
   renderSubmissions = list => {
@@ -109,7 +113,7 @@ class SubmissionsPanelComponent extends React.Component {
               currentTab
             })}
             iconColor="blue"
-            faIcon={['fal', 'level-up']}
+            faIcon={faLevelUp}
           />
         </div>
       );
@@ -128,7 +132,7 @@ class SubmissionsPanelComponent extends React.Component {
             type="error"
             text={intl.get('errors.500')}
             iconColor="red"
-            faIcon={['fal', 'exclamation-triangle']}
+            faIcon={faExclamationTriangle}
           />
         </div>
       );

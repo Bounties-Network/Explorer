@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './PageBanner.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Transition } from 'react-transition-group';
+import { faTimes } from '@fortawesome/pro-light-svg-icons';
 
 const PageBanner = props => {
   const {
@@ -46,7 +47,7 @@ const PageBanner = props => {
             {dismissable && (
               <div className={`${styles.pageBannerClose}`}>
                 <FontAwesomeIcon
-                  icon={['fal', 'times']}
+                  icon={faTimes}
                   className={styles.closeIcon}
                   onClick={onClose}
                 />

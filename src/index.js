@@ -19,7 +19,6 @@ import baseReducers from './reducers';
 import { App } from 'layout';
 import 'styles/index.scss';
 import 'styles/flexboxgrid.css';
-import 'fontAwesome';
 import 'styles/Toastify.scss';
 
 // common locale data

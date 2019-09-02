@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './SubmissionItem.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { includes } from 'lodash';
 import { Button, Text, ListGroup, Loader } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
@@ -17,6 +17,15 @@ import moment from 'moment';
 import intl from 'react-intl-universal';
 import showdown from 'showdown';
 import { map as fpMap } from 'lodash';
+import {
+  faAngleUp,
+  faAngleDown,
+  faComment,
+  faEnvelope,
+  faEdit,
+  faFileArchive
+} from '@fortawesome/pro-regular-svg-icons';
+import { faExternalLinkSquare } from '@fortawesome/pro-light-svg-icons';
 const map = fpMap.convert({ cap: false });
 
 showdown.setOption('simpleLineBreaks', true);
@@ -163,7 +172,7 @@ const SubmissionItem = props => {
     actionButton = (
       <Button
         className={styles.actionButton}
-        icon={['far', 'edit']}
+        icon={faEdit}
         onClick={() =>
           initiateLoginProtection(() => {
             editFulfillment({
@@ -266,10 +275,7 @@ const SubmissionItem = props => {
               src={`mailto:${fulfiller_email}`}
               className={styles.emailLink}
             >
-              <FontAwesomeIcon
-                icon={['far', 'envelope']}
-                className={styles.emailIcon}
-              />
+              <FontAwesomeIcon icon={faEnvelope} className={styles.emailIcon} />
             </Text>
           )}
         </div>
@@ -289,7 +295,7 @@ const SubmissionItem = props => {
               className={`${styles.submissionMediaItem}`}
             >
               <FontAwesomeIcon
-                icon={['fal', 'external-link-square']}
+                icon={faExternalLinkSquare}
                 className={styles.submissionMediaIcon}
               />
               <Text className={`${styles.fileName}`}>{shortenUrl(url)}</Text>
@@ -303,7 +309,7 @@ const SubmissionItem = props => {
                   className={`${styles.submissionMediaItem}`}
                 >
                   <FontAwesomeIcon
-                    icon={['far', 'file-archive']}
+                    icon={faFileArchive}
                     className={styles.submissionMediaIcon}
                   />
                   <Text
@@ -335,10 +341,7 @@ const SubmissionItem = props => {
             {formattedTime}
           </Text>
           <Text link onClick={commentOnSubmission}>
-            <FontAwesomeIcon
-              icon={['far', 'comment']}
-              className={styles.commentIcon}
-            />
+            <FontAwesomeIcon icon={faComment} className={styles.commentIcon} />
             {intl.get('sections.bounty.components.submissions_card.action')}
           </Text>
         </footer>
@@ -351,7 +354,7 @@ const SubmissionItem = props => {
           }}
         >
           <FontAwesomeIcon
-            icon={openComments ? ['far', 'angle-up'] : ['far', 'angle-down']}
+            icon={openComments ? faAngleUp : faAngleDown}
             className={`${styles.toggleIcon}`}
           />
           {openComments

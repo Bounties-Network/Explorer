@@ -1,6 +1,11 @@
 import React from 'react';
 import { toast as callToast } from 'react-toastify';
 import { ToastContainer } from 'components';
+import { faInfoCircle, faEllipsisH } from '@fortawesome/pro-regular-svg-icons';
+import {
+  faCheckCircle,
+  faExclamationTriangle
+} from '@fortawesome/pro-light-svg-icons';
 
 const NOTIFICATION = 'NOTIFICATION';
 const SUCCESS = 'SUCCESS';
@@ -11,25 +16,28 @@ const Toast = (type, message, link, onClose) => {
   let icon;
   let messageType;
   if (type === NOTIFICATION) {
-    icon = ['far', 'info-circle'];
+    icon = faInfoCircle;
     messageType = callToast.TYPE.INFO;
   }
   if (type === SUCCESS) {
-    icon = ['fal', 'check-circle'];
+    icon = faCheckCircle;
     messageType = callToast.TYPE.SUCCESS;
   }
   if (type === ERROR) {
-    icon = ['fal', 'exclamation-triangle'];
+    icon = faExclamationTriangle;
     messageType = callToast.TYPE.ERROR;
   }
   if (type === TRANSACTION) {
-    icon = ['far', 'ellipsis-h'];
+    icon = faEllipsisH;
     messageType = callToast.TYPE.WARNING;
   }
 
   return callToast(
     <ToastContainer.BaseToast icon={icon} message={message} link={link} />,
-    { type: messageType, onClose }
+    {
+      type: messageType,
+      onClose
+    }
   );
 };
 

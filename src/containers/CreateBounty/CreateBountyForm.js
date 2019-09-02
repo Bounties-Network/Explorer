@@ -15,7 +15,7 @@ import { TransactionWalkthrough } from 'hocs';
 import { getTimezone } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
 import { Link } from 'react-router-dom';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import handleChooseTemplate from './handle-choose-template';
 
 import moment from 'moment';
@@ -51,6 +51,7 @@ import config from 'public-modules/config';
 import defaultShouldAsyncValidate from 'redux-form/es/defaultShouldAsyncValidate';
 import { translateOption } from '../../utils/i18nHelpers';
 import intl from 'react-intl-universal';
+import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
 
 const formSelector = formValueSelector('createBounty');
 
@@ -265,7 +266,7 @@ class CreateBountyFormComponent extends React.Component {
                   <div className="col-xs-12">
                     <div className={styles.formHelper}>
                       <FontAwesomeIcon
-                        icon={['far', 'info-circle']}
+                        icon={faInfoCircle}
                         className={styles.formHelperIcon}
                       />
                       <Text

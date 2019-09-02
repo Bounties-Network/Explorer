@@ -1,10 +1,21 @@
 import React from 'react';
 import Text from 'components/Text';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import css from '@styled-system/css';
 import styled from 'lib/emotion-styled';
 import { Flex } from 'rebass';
 import { textAlign } from 'styled-system';
+import {
+  faComments,
+  faFileAlt,
+  faVoteYea,
+  faCode,
+  faPencilPaintbrush,
+  faLanguage,
+  faLightbulb,
+  faFileSignature,
+  faUsers
+} from '@fortawesome/pro-regular-svg-icons';
 
 const OptionContainer = styled(Flex)(props =>
   css({
@@ -68,7 +79,7 @@ export const templateOptions = [
     value: 'default',
     label: (
       <OptionContainer alignItems="center">
-        <FontAwesomeIcon icon={['far', 'file-alt']} color="gray" />
+        <FontAwesomeIcon icon={faFileAlt} color="gray" />
         <Text>Default</Text>
       </OptionContainer>
     )
@@ -77,7 +88,7 @@ export const templateOptions = [
     value: 'proof-of-action',
     label: (
       <OptionContainer alignItems="center">
-        <FontAwesomeIcon icon={['far', 'vote-yea']} color="gray" />
+        <FontAwesomeIcon icon={faVoteYea} color="gray" />
         <Text>Proof of Action</Text>
       </OptionContainer>
     )
@@ -86,7 +97,7 @@ export const templateOptions = [
     value: 'code',
     label: (
       <OptionContainer alignItems="center">
-        <FontAwesomeIcon icon={['far', 'code']} color="gray" />
+        <FontAwesomeIcon icon={faCode} color="gray" />
         <Text>Code</Text>
       </OptionContainer>
     )
@@ -95,7 +106,7 @@ export const templateOptions = [
     value: 'graphic-design',
     label: (
       <OptionContainer alignItems="center">
-        <FontAwesomeIcon icon={['far', 'pencil-paintbrush']} color="gray" />
+        <FontAwesomeIcon icon={faPencilPaintbrush} color="gray" />
         <Text>Graphic Design</Text>
       </OptionContainer>
     )
@@ -104,7 +115,7 @@ export const templateOptions = [
     value: 'translation',
     label: (
       <OptionContainer alignItems="center">
-        <FontAwesomeIcon icon={['far', 'language']} color="gray" />
+        <FontAwesomeIcon icon={faLanguage} color="gray" />
         <Text>Translation</Text>
       </OptionContainer>
     )
@@ -113,7 +124,7 @@ export const templateOptions = [
     value: 'idea-generation',
     label: (
       <OptionContainer alignItems="center">
-        <FontAwesomeIcon icon={['far', 'lightbulb']} color="gray" />
+        <FontAwesomeIcon icon={faLightbulb} color="gray" />
         <Text>Idea Generation</Text>
       </OptionContainer>
     )
@@ -122,7 +133,7 @@ export const templateOptions = [
     value: 'feedback-and-critique',
     label: (
       <OptionContainer alignItems="center">
-        <FontAwesomeIcon icon={['far', 'comments']} color="gray" />
+        <FontAwesomeIcon icon={faComments} color="gray" />
         <Text>Feedback & Critique</Text>
       </OptionContainer>
     )
@@ -131,7 +142,7 @@ export const templateOptions = [
     value: 'survey',
     label: (
       <OptionContainer alignItems="center">
-        <FontAwesomeIcon icon={['far', 'file-signature']} color="gray" />
+        <FontAwesomeIcon icon={faFileSignature} color="gray" />
         <Text>Survey</Text>
       </OptionContainer>
     )
@@ -140,7 +151,7 @@ export const templateOptions = [
     value: 'recruitment',
     label: (
       <OptionContainer alignItems="center">
-        <FontAwesomeIcon icon={['far', 'users']} color="gray" />
+        <FontAwesomeIcon icon={faUsers} color="gray" />
         <Text>Recruitement</Text>
       </OptionContainer>
     )

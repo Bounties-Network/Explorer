@@ -8,11 +8,13 @@ import { actions as loginActions } from 'containers/Login/reducer';
 import { hasWalletSelector } from 'public-modules/Client/selectors';
 import { actions as authActions } from 'public-modules/Authentication';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Header.module.scss';
 import { Button, Avatar, Dropdown, Network, Text } from 'components';
 import { NotificationDropdown } from 'containers';
 import intl from 'react-intl-universal';
+import { faPlus, faBars } from '@fortawesome/pro-regular-svg-icons';
+import { faUserAlt, faCog, faSignOut } from '@fortawesome/pro-light-svg-icons';
 
 const BeeLogo = require(`../../styles/${process.env.APP_LOGO}.js`).default;
 const { MenuItem, DropdownTrigger, DropdownContent } = Dropdown;
@@ -40,7 +42,7 @@ const HeaderComponent = props => {
       {hasWallet && <Network network={network} className={styles.network} />}
       <div className={styles.sideNavTrigger} onClick={onShowNav}>
         <Text typeScale="h3" color="blue">
-          <FontAwesomeIcon icon={['far', 'bars']} />
+          <FontAwesomeIcon icon={faBars} />
         </Text>
       </div>
       {loginStatus ? (
@@ -55,7 +57,7 @@ const HeaderComponent = props => {
                 className={styles.button}
               >
                 <Text className={styles.mobileButtonText}>
-                  <FontAwesomeIcon icon={['far', 'plus']} />
+                  <FontAwesomeIcon icon={faPlus} />
                 </Text>
                 <Text className={styles.desktopButtonText}>
                   {intl.get('actions.create_bounty')}
@@ -80,7 +82,7 @@ const HeaderComponent = props => {
               <DropdownContent className={styles.profileDropdown}>
                 <MenuItem
                   key="profile"
-                  icon={['fal', 'user-alt']}
+                  icon={faUserAlt}
                   onClick={() => {
                     history.push('/profile');
                   }}
@@ -89,18 +91,14 @@ const HeaderComponent = props => {
                 </MenuItem>
                 <MenuItem
                   key="settings"
-                  icon={['fal', 'cog']}
+                  icon={faCog}
                   onClick={() => {
                     history.push('/settings');
                   }}
                 >
                   {intl.get('actions.settings')}
                 </MenuItem>
-                <MenuItem
-                  icon={['fal', 'sign-out']}
-                  onClick={logout}
-                  key="logout"
-                >
+                <MenuItem icon={faSignOut} onClick={logout} key="logout">
                   {intl.get('actions.signout')}
                 </MenuItem>
               </DropdownContent>
