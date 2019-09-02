@@ -83,6 +83,7 @@ class MarkdownEditor extends React.Component {
           overlay={
             !hidePreview && (
               <Button
+                type="action"
                 buttonType={'button'}
                 icon={['far', 'eye']}
                 onClick={this.showModal}
