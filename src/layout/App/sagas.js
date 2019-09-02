@@ -3,7 +3,7 @@ import { take, takeLatest, select, put, call } from 'redux-saga/effects';
 import { actions, actionTypes } from 'layout/App/reducer';
 import { actionTypes as clientActionTypes } from 'public-modules/Client';
 import { lastLocationSelector } from './selectors';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { LOCATION_CHANGE } from 'connected-react-router';
 
 const { setLastLocation } = actions;
 const { GET_TOKEN_BALANCE } = actionTypes;

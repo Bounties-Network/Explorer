@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Modal.module.scss';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Text, Loader, SVGIllustration } from 'components';
 import { includes, each, some, map } from 'lodash';
+import { faTimes } from '@fortawesome/pro-light-svg-icons';
 
 const ModalContext = React.createContext({});
 
@@ -19,7 +20,7 @@ class Header extends React.Component {
             {closable ? (
               <div className={styles.closeWrapper}>
                 <div className={styles.closeIconWrapper} onClick={onClose}>
-                  <FontAwesomeIcon icon={['fal', 'times']} />
+                  <FontAwesomeIcon icon={faTimes} />
                 </div>
               </div>
             ) : null}
@@ -143,6 +144,13 @@ class Modal extends React.Component {
           pageBody.classList.add('unfixed');
         }
       }
+      const pageHeader = document.getElementsByClassName('page-header')[0];
+      if (pageHeader) {
+        pageHeader.classList.add('modal-open');
+        if (fixed) {
+          pageHeader.classList.add('unfixed');
+        }
+      }
     }
   }
 
@@ -170,6 +178,13 @@ class Modal extends React.Component {
         pageBody.classList.add('unfixed');
       }
     }
+    const pageHeader = document.getElementsByClassName('page-header')[0];
+    if (pageHeader) {
+      pageHeader.classList.add('modal-open');
+      if (!fixed) {
+        pageHeader.classList.add('unfixed');
+      }
+    }
   };
 
   triggerExited = () => {
@@ -185,6 +200,13 @@ class Modal extends React.Component {
       pageBody.classList.remove('modal-open');
       if (!fixed) {
         pageBody.classList.remove('unfixed');
+      }
+    }
+    const pageHeader = document.getElementsByClassName('page-header')[0];
+    if (pageHeader) {
+      pageHeader.classList.remove('modal-open');
+      if (!fixed) {
+        pageHeader.classList.remove('unfixed');
       }
     }
   };
@@ -298,7 +320,7 @@ class Modal extends React.Component {
       rootModal = (
         <CSSTransition
           key="1"
-          timeout={400}
+          timeout={500}
           onEnter={this.triggerEnter}
           onEntered={this.triggerEntered}
           onEntering={this.triggerEntering}

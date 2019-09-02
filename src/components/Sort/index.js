@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Sort.module.scss';
 import { Text } from 'components';
+import { faChevronDown, faChevronUp } from '@fortawesome/pro-regular-svg-icons';
 
 class Sort extends React.Component {
   state = {
@@ -34,10 +35,10 @@ class Sort extends React.Component {
       textWeight = 'fontWeight-bold';
     }
 
-    let icon = ['far', 'chevron-down'];
+    let icon = faChevronDown;
     const sortState = sort || defaultSort;
     if (sortState === 'asc') {
-      icon = ['far', 'chevron-up'];
+      icon = faChevronUp;
     }
 
     return (

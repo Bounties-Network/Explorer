@@ -3,6 +3,9 @@ import styles from './CommentItem.module.scss';
 import { Text } from 'components';
 import { LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
+import showdown from 'showdown';
+const converter = new showdown.Converter({ extensions: ['targetBlank'] });
+converter.setFlavor('github');
 
 const CommentItem = props => {
   const { name, address, img, text, created } = props;

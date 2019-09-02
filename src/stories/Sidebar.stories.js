@@ -1,18 +1,22 @@
 import React from 'react';
-
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
 import { Sidebar, Text } from 'components';
+import {
+  faListAlt,
+  faTachometer,
+  faTrophyAlt,
+  faUserAlt
+} from '@fortawesome/pro-regular-svg-icons';
 
 storiesOf('Sidebar', module).add('Sidebar', () => (
   <div>
     <Sidebar defaultActiveTab="dashboard" onTabClick={action('clicked')}>
       <Sidebar.TabGroup>
-        <Sidebar.TabIcon icon={['far', 'list-alt']} tabKey="explorer" />
-        <Sidebar.TabIcon icon={['far', 'tachometer']} tabKey="dashboard" />
-        <Sidebar.TabIcon icon={['far', 'trophy-alt']} tabKey="leaderboard" />
-        <Sidebar.TabIcon icon={['far', 'user-alt']} tabKey="profile" />
+        <Sidebar.TabIcon icon={faListAlt} tabKey="explorer" />
+        <Sidebar.TabIcon icon={faTachometer} tabKey="dashboard" />
+        <Sidebar.TabIcon icon={faTrophyAlt} tabKey="leaderboard" />
+        <Sidebar.TabIcon icon={faUserAlt} tabKey="profile" />
       </Sidebar.TabGroup>
     </Sidebar>
     <div className="sb-page-wrapper">
@@ -95,8 +99,7 @@ storiesOf('Sidebar', module).add('Sidebar', () => (
         lineHeight="lineHeight-default"
       >
         The prop <code>icon</code> determines the icon of that specific tab. It
-        must be a font awesome icon, passed as an array (e.g{' '}
-        <code>['far', 'user-alt']</code>). <br />
+        must be a font awesome icon import (e.g <code>faUserAlt</code>). <br />
         <br />
         The prop <code>tabKey</code> the unique identifier for that specific tab
         and will be used as its link. (e.g <code>dashboard</code>). <br />

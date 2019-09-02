@@ -1,4 +1,4 @@
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { LOCATION_CHANGE } from 'connected-react-router';
 import { actionTypes as clientActionTypes } from 'public-modules/Client';
 
 const defaultConfig = {

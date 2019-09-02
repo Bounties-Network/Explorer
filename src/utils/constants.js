@@ -1,3 +1,22 @@
+import {
+  faLevelUp,
+  faUserAlt,
+  faPlusCircle,
+  faComment,
+  faDollarSign,
+  faMinusCircle,
+  faLevelDown,
+  faStar,
+  faCheck,
+  faCalendarExclamation,
+  faCalendarPlus,
+  faTimesCircle,
+  faSync,
+  faUserFriends,
+  faArrowUp,
+  faEdit
+} from '@fortawesome/pro-regular-svg-icons';
+
 export const HTTP_200_OK = 200;
 export const HTTP_300_MULTIPLE_CHOICES = 300;
 export const HTTP_400_BAD_REQUEST = 400;
@@ -56,22 +75,22 @@ export const NOTIFICATION_ID = {
   FULFILLMENT_COMMENT_ISSUED: 40
 };
 
-const plus = ['far', 'plus-circle'];
-const minus = ['far', 'minus-circle'];
-const level_up = ['far', 'level-up'];
-const level_down = ['far', 'level-down'];
-const star = ['far', 'star'];
-const comment = ['far', 'comment'];
-const check = ['far', 'check'];
-const calendar_exclamation = ['far', 'calendar-exclamation'];
-const calendar_plus = ['far', 'calendar-plus'];
-const times_circle = ['far', 'times-circle'];
-const dollar_sign = ['far', 'dollar-sign'];
-const sync = ['far', 'sync'];
-const user = ['far', 'user-alt'];
-const user_friends = ['far', 'user-friends'];
-const edit = ['far', 'edit'];
-const arrow_up = ['far', 'arrow-up'];
+const plus = faPlusCircle;
+const minus = faMinusCircle;
+const level_up = faLevelUp;
+const level_down = faLevelDown;
+const star = faStar;
+const comment = faComment;
+const check = faCheck;
+const calendar_exclamation = faCalendarExclamation;
+const calendar_plus = faCalendarPlus;
+const times_circle = faTimesCircle;
+const dollar_sign = faDollarSign;
+const sync = faSync;
+const user = faUserAlt;
+const user_friends = faUserFriends;
+const edit = faEdit;
+const arrow_up = faArrowUp;
 
 export const notification_template = {
   [NOTIFICATION_ID.FULFILLMENT_SUBMITTED]: {

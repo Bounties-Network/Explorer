@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Search.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/pro-regular-svg-icons';
 
 class Search extends React.Component {
   state = {
@@ -23,7 +24,7 @@ class Search extends React.Component {
     return (
       <div className={`${styles.searchContainer}`}>
         <i className={styles.searchIcon}>
-          <FontAwesomeIcon icon={['far', 'search']} />
+          <FontAwesomeIcon icon={faSearch} />
         </i>
         <input
           className={`${styles.searchInput}`}

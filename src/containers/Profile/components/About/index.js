@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './About.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Text } from 'components';
 import intl from 'react-intl-universal';
+import { faComments, faBriefcase } from '@fortawesome/pro-regular-svg-icons';
 
 const About = props => {
   const { organization, languages } = props;
@@ -16,10 +17,7 @@ const About = props => {
       <div className={styles.bulletPointContainer}>
         {organization && (
           <div className={styles.bulletPoint}>
-            <FontAwesomeIcon
-              icon={['far', 'briefcase']}
-              className={styles.icon}
-            />
+            <FontAwesomeIcon icon={faBriefcase} className={styles.icon} />
             <div className={styles.bulletPointText}>
               <Text inputLabel>
                 {intl.get('sections.profile.about.organization')}
@@ -37,10 +35,7 @@ const About = props => {
 
         {!!languages.length && (
           <div className={styles.bulletPoint}>
-            <FontAwesomeIcon
-              icon={['far', 'comments']}
-              className={styles.icon}
-            />
+            <FontAwesomeIcon icon={faComments} className={styles.icon} />
             <div className={styles.bulletPointText}>
               <Text inputLabel>
                 {intl.get('sections.profile.about.languages')}

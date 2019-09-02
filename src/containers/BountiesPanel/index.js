@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import styles from './BountiesPanel.module.scss';
 import { map } from 'lodash';
 import {
@@ -22,6 +22,10 @@ import { actions as bountiesActions } from 'public-modules/Bounties';
 import { actions as draftsActions } from 'public-modules/Drafts';
 import { actions } from './reducer';
 import intl from 'react-intl-universal';
+import {
+  faExpand,
+  faExclamationTriangle
+} from '@fortawesome/pro-light-svg-icons';
 
 class BountiesPanelComponent extends React.Component {
   renderBounties = list => {
@@ -115,7 +119,7 @@ class BountiesPanelComponent extends React.Component {
               'sections.bounties.zero_state.actions.new_bounty'
             )}
             onActionClick={() => history.push('/createBounty')}
-            faIcon={['fal', 'expand']}
+            faIcon={faExpand}
             iconColor="blue"
           />
         </div>
@@ -135,7 +139,7 @@ class BountiesPanelComponent extends React.Component {
             type="error"
             text={intl.get('errors.500')}
             iconColor="red"
-            faIcon={['fal', 'exclamation-triangle']}
+            faIcon={faExclamationTriangle}
           />
         </div>
       );

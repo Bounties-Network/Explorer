@@ -24,7 +24,7 @@ import {
 } from 'public-modules/Bounty/selectors';
 import { addressSelector } from 'public-modules/Client/selectors';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Pill, Text, Social, Loader, Tooltip, ZeroState } from 'components';
 import { BountyEssentials, PageCard, LinkedAvatar } from 'explorer-components';
 import { queryStringToObject } from 'utils/locationHelpers';
@@ -32,6 +32,15 @@ import { newTabExtension, shortenFileName, shortenUrl } from 'utils/helpers';
 import { locationNonceSelector } from 'layout/App/selectors';
 import { SEOHeader } from './components';
 import intl from 'react-intl-universal';
+import {
+  faClock,
+  faPuzzlePiece,
+  faEnvelope,
+  faRepeat,
+  faPaperclip,
+  faLink,
+  faLockAlt
+} from '@fortawesome/pro-regular-svg-icons';
 
 showdown.setOption('simpleLineBreaks', true);
 showdown.extension('targetBlank', newTabExtension);
@@ -270,7 +279,7 @@ class BountyComponent extends React.Component {
                     ].join(' ')}
                   >
                     <i className={styles.metadataIcon}>
-                      <FontAwesomeIcon icon={['far', 'lock-alt']} />
+                      <FontAwesomeIcon icon={faLockAlt} />
                     </i>
                     <Text
                       inline
@@ -305,7 +314,7 @@ class BountyComponent extends React.Component {
                 <section className={styles.metadataSection}>
                   <div className={styles.metadataItem}>
                     <i className={styles.metadataIcon}>
-                      <FontAwesomeIcon icon={['far', 'clock']} />
+                      <FontAwesomeIcon icon={faClock} />
                     </i>
                     <Text
                       inline
@@ -329,7 +338,7 @@ class BountyComponent extends React.Component {
 
                   <div className={styles.metadataItem}>
                     <i className={styles.metadataIcon}>
-                      <FontAwesomeIcon icon={['far', 'puzzle-piece']} />
+                      <FontAwesomeIcon icon={faPuzzlePiece} />
                     </i>
                     <Text
                       inline
@@ -354,7 +363,7 @@ class BountyComponent extends React.Component {
                   {typeof bounty.revisions === 'number' && (
                     <div className={styles.metadataItem}>
                       <i className={styles.metadataIcon}>
-                        <FontAwesomeIcon icon={['far', 'repeat']} />
+                        <FontAwesomeIcon icon={faRepeat} />
                       </i>
                       <Text
                         inline
@@ -385,7 +394,7 @@ class BountyComponent extends React.Component {
                     {bounty.attached_data_hash && (
                       <div className={styles.metadataItem}>
                         <i className={styles.metadataIcon}>
-                          <FontAwesomeIcon icon={['far', 'paperclip']} />
+                          <FontAwesomeIcon icon={faPaperclip} />
                         </i>
                         <Text
                           link
@@ -402,7 +411,7 @@ class BountyComponent extends React.Component {
                     {bounty.attached_url && (
                       <div className={styles.metadataItem}>
                         <i className={styles.metadataIcon}>
-                          <FontAwesomeIcon icon={['far', 'link']} />
+                          <FontAwesomeIcon icon={faLink} />
                         </i>
                         <Text link absolute src={`${bounty.attached_url}`}>
                           {shortenUrl(bounty.attached_url)}
@@ -413,7 +422,7 @@ class BountyComponent extends React.Component {
                     {bounty.user.email && (
                       <div className={styles.metadataItem}>
                         <i className={styles.metadataIcon}>
-                          <FontAwesomeIcon icon={['far', 'envelope']} />
+                          <FontAwesomeIcon icon={faEnvelope} />
                         </i>
                         <Text link src={`mailto:${bounty.user.email}`}>
                           {bounty.user.email}

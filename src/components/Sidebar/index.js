@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Sidebar.module.scss';
 import { each } from 'lodash';
 import { SideOverlay, Text } from 'components';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import intl from 'react-intl-universal';
 
 const ModalContext = React.createContext({});

@@ -16,7 +16,7 @@ import intl from 'react-intl-universal';
 const { loadUserInfo } = userInfoActions;
 
 class UserStatsComponent extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     const { public_address: loadedUser } = this.props.loadedUser;
     const { public_address: currentUser } = this.props.user;
 

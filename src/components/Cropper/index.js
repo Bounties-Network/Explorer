@@ -1,11 +1,12 @@
 import React from 'react';
 import { Croppie } from 'croppie/croppie';
 import '../../styles/Croppie.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Circle, Button } from 'components';
 import buttonStyles from 'components/Button/Button.module.scss';
 import styles from './Cropper.module.scss';
 import intl from 'react-intl-universal';
+import { faCamera } from '@fortawesome/pro-light-svg-icons';
 
 class Cropper extends React.Component {
   constructor(props) {
@@ -153,7 +154,7 @@ class Cropper extends React.Component {
               <Circle
                 type="text"
                 size="large"
-                input={<FontAwesomeIcon icon={['fal', 'camera']} />}
+                input={<FontAwesomeIcon icon={faCamera} />}
                 textColor="darkGrey"
                 color="lightGrey"
                 border

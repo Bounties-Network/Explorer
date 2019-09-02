@@ -19,6 +19,7 @@ const Container = styled.div`
 const TextareaContainer = styled.div`
   position: relative;
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
 
   /* added this to avoid bug where the top and right :active border disappeared */
@@ -37,10 +38,6 @@ const Overlay = styled.div`
   right: ${props => props.theme.baseSpacing};
   margin-top: ${props => props.theme.sSpacing};
   margin-right: ${props => props.theme.sSpacing};
-  border: ${props => props.theme.baseBorder};
-  border-radius: ${props => props.theme.baseBorderRadius};
-  background: ${props => props.theme.brandWhite};
-  padding: ${props => props.theme.sSpacing};
 `;
 
 const Textarea = styled(PlainTextarea)`
@@ -48,9 +45,8 @@ const Textarea = styled(PlainTextarea)`
   flex-grow: 1;
   width: 100%;
 
-  ${({ minHeight }) => minHeight && `min-height: ${minHeight};`} ${({
-    maxHeight
-  }) => maxHeight && `max-height: ${maxHeight};`}
+  ${({ minHeight }) => minHeight && `min-height: ${minHeight}`};
+  ${({ maxHeight }) => maxHeight && `max-height: ${maxHeight}`};
 
   overflow: auto;
   background-color: ${props => props.theme.baseInputBackground};
@@ -63,7 +59,7 @@ const Textarea = styled(PlainTextarea)`
   ${props =>
     props.error &&
     `
-    border-color: transparent;
+    border: 1px solid ${props => props.theme.brandDestructive};
     box-shadow: ${props.theme.brandInputBoxDestructiveShadow};
     outline: none
   `} ${props =>
@@ -83,11 +79,37 @@ const Textarea = styled(PlainTextarea)`
   }
 
   &:focus {
-    border-color: transparent;
+    border: 1px solid ${props => props.theme.brandBlue};
     background: ${props => props.theme.brandWhite};
     box-shadow: ${props => props.theme.brandInputBoxShadow};
     outline: none;
   }
+`;
+
+const MarkdownKey = styled.div`
+  background-color: ${props => props.theme.brandWhite};
+  border: ${props => props.theme.baseBorder};
+  border-bottom-right-radius: ${props => props.theme.baseBorderRadius};
+  border-bottom-left-radius: ${props => props.theme.baseBorderRadius};
+  display: none;
+  align-items: center;
+  padding: ${props => props.theme.baseSpacing} ${props => props.theme.mSpacing};
+
+  > * {
+    margin-right: ${props => props.theme.mSpacing};
+  }
+
+  @media only screen and (min-width: 56.25em) {
+    display: flex;
+  }
+`;
+
+const CodeExample = styled(Text)`
+  background-color: ${props => props.theme.brandNearWhite};
+  border: ${props => props.theme.baseBorder};
+  border-radius: 4px;
+  padding: ${props => props.theme.sSpacing};
+  line-height: 1;
 `;
 
 const LabelText = styled(Text)`
@@ -133,6 +155,7 @@ class Textbox extends React.Component {
       disabled,
       placeholder,
       overlay,
+      markdownKey,
       value,
       maxLength,
       onFocus,
@@ -173,6 +196,42 @@ class Textbox extends React.Component {
               autoFocus={autoFocus}
             />
             {overlay ? <Overlay>{overlay}</Overlay> : null}
+            {markdownKey ? (
+              <MarkdownKey>
+                <React.Fragment>
+                  <Text typeScale="Small" color="defaultGrey">
+                    # H1
+                  </Text>
+                  <Text typeScale="Small" color="defaultGrey">
+                    ## H2
+                  </Text>
+                  <Text typeScale="Small" color="defaultGrey">
+                    ### H3
+                  </Text>
+                  <Text
+                    typeScale="Small"
+                    color="defaultGrey"
+                    weight="fontWeight-bold"
+                    color="darkGrey"
+                  >
+                    *bold*
+                  </Text>
+                  <Text
+                    typeScale="Small"
+                    color="defaultGrey"
+                    fontStyle="italic"
+                  >
+                    _italics_
+                  </Text>
+                  <CodeExample typeScale="Small" color="defaultGrey">
+                    `code`
+                  </CodeExample>
+                  <CodeExample typeScale="Small" color="defaultGrey">
+                    ```preformatted```
+                  </CodeExample>
+                </React.Fragment>
+              </MarkdownKey>
+            ) : null}
           </TextareaContainer>
           <ErrorFragment error={error} />
         </Container>
@@ -188,6 +247,7 @@ Textbox.propTypes = {
   optional: PropTypes.bool,
   disabled: PropTypes.bool,
   label: PropTypes.string,
+  markdownKey: PropTypes.bool,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
@@ -203,7 +263,8 @@ Textbox.defaultProps = {
   onBlur: () => {},
   onFocus: () => {},
   resizable: true,
-  minHeight: '100px'
+  minHeight: '100px',
+  markdownKey: false
 };
 
 export default Textbox;

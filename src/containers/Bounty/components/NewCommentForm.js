@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './NewCommentForm.module.scss';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'components';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -8,6 +8,7 @@ import { formValueSelector } from 'redux-form';
 import { Field, reduxForm } from 'redux-form';
 import { FormTextbox } from 'form-components';
 import intl from 'react-intl-universal';
+import { faPlus } from '@fortawesome/pro-regular-svg-icons';
 
 const formSelector = formValueSelector('newComment');
 
@@ -33,7 +34,7 @@ const NewCommentForm = props => {
             loading={loading}
             type="primary"
           >
-            <FontAwesomeIcon icon={['far', 'plus']} />
+            <FontAwesomeIcon icon={faPlus} />
           </Button>
         </div>
       </form>

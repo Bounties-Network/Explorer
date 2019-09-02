@@ -192,7 +192,7 @@
   font-size: inherit;
   margin: 0;
   outline: none;
-  line-height: 17px;
+  line-height: 24px;
   /* For IE 8 compatibility */
   padding: 8px 0 12px;
   /* For IE 8 compatibility */
@@ -338,6 +338,7 @@
   -webkit-overflow-scrolling: touch;
 }
 .Select-menu {
+  border-radius: $base-border-radius;
   max-height: 198px;
   overflow-y: auto;
 }
@@ -396,7 +397,7 @@
   background-color: #ebf5ff;
   /* Fallback color for IE 8 */
   background-color: rgba(0, 126, 255, 0.08);
-  border-radius: 2px;
+  border-radius: $base-border-radius;
   border: 1px solid #c2e0ff;
   /* Fallback color for IE 8 */
   border: 1px solid rgba(0, 126, 255, 0.24);

@@ -26,6 +26,21 @@
   height: 15em;
 }
 
+.formHelper {
+  display: flex;
+  background-color: $brand-light-blue;
+  border: 1px solid lighten($brand-blue, 25%);
+  color: $brand-blue;
+  padding: $m-spacing;
+  margin: $m-spacing 0 $l-spacing;
+  border-radius: $base-border-radius;
+}
+
+.formHelperIcon {
+  margin-right: $base-spacing;
+  margin-top: 2px;
+}
+
 .input:not(:last-child) {
   padding-bottom: $l-spacing;
 

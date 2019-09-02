@@ -7,6 +7,13 @@ import { Button } from 'components';
 import { DEAD, ACTIVE, COMPLETED } from 'public-modules/Bounty/constants';
 import { ModalManager } from './components';
 import intl from 'react-intl-universal';
+import {
+  faDollarSign,
+  faEdit,
+  faArrowUp,
+  faCalendarPlus,
+  faUserFriends
+} from '@fortawesome/pro-regular-svg-icons';
 
 const ActionBar = props => {
   const {
@@ -45,11 +52,7 @@ const ActionBar = props => {
           {intl.get('sections.bounty.actions.activate')}
         </Button>
         <Link to={draftUrl}>
-          <Button
-            icon={['far', 'edit']}
-            fitWidth
-            className={styles.editBountyButton}
-          >
+          <Button icon={faEdit} fitWidth className={styles.editBountyButton}>
             {intl.get('sections.bounty.actions.edit')}
           </Button>
         </Link>
@@ -90,7 +93,7 @@ const ActionBar = props => {
               onClick={() =>
                 initiateLoginProtection(() => showModal('increasePayout'))
               }
-              icon={['far', 'arrow-up']}
+              icon={faArrowUp}
               fitWidth
               className={styles.buttonGroup}
             >
@@ -100,11 +103,7 @@ const ActionBar = props => {
 
         {bounty.contract_version === 2 && (
           <Link to={editUrl}>
-            <Button
-              icon={['far', 'edit']}
-              fitWidth
-              className={styles.editBountyButton}
-            >
+            <Button icon={faEdit} fitWidth className={styles.editBountyButton}>
               {intl.get('sections.bounty.actions.edit')}
             </Button>
           </Link>
@@ -112,7 +111,7 @@ const ActionBar = props => {
 
         {bounty.bounty_stage !== DEAD && (
           <Button
-            icon={['far', 'dollar-sign']}
+            icon={faDollarSign}
             className={styles.buttonGroup}
             onClick={() =>
               initiateLoginProtection(() => showModal('contribute'))
@@ -123,7 +122,7 @@ const ActionBar = props => {
           </Button>
         )}
         <Button
-          icon={['far', 'calendar-plus']}
+          icon={faCalendarPlus}
           fitWidth
           className={styles.buttonGroup}
           onClick={() =>
@@ -133,7 +132,7 @@ const ActionBar = props => {
           {intl.get('sections.bounty.actions.extend_deadline')}
         </Button>
         <Button
-          icon={['far', 'user-friends']}
+          icon={faUserFriends}
           fitWidth
           className={styles.buttonGroup}
           onClick={() =>
@@ -210,7 +209,7 @@ const ActionBar = props => {
       <div className={styles.actionBar}>
         {mainActionButton}
         <Button
-          icon={['far', 'dollar-sign']}
+          icon={faDollarSign}
           className={styles.buttonGroup}
           onClick={() => initiateLoginProtection(() => showModal('contribute'))}
           fitWidth

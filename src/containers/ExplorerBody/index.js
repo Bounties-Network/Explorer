@@ -13,6 +13,7 @@ import {
 } from 'public-modules/Bounties/selectors';
 import { actions } from 'public-modules/Bounties';
 import intl from 'react-intl-universal';
+import { faSlidersH } from '@fortawesome/pro-regular-svg-icons';
 
 const ExplorerBodyComponent = props => {
   const {
@@ -91,7 +92,7 @@ const ExplorerBodyComponent = props => {
           </Text>
         </div>
         <div className={styles.filterNav}>
-          <Button icon={['far', 'sliders-h']} onClick={onOpenFilters}>
+          <Button icon={faSlidersH} onClick={onOpenFilters}>
             {intl.get('actions.filter')}
           </Button>
         </div>

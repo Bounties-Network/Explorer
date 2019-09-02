@@ -15,6 +15,8 @@ import { TransactionWalkthrough } from 'hocs';
 import { getTimezone } from 'utils/helpers';
 import { BigNumber } from 'bignumber.js';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import handleChooseTemplate from './handle-choose-template';
 
 import moment from 'moment';
 import {
@@ -27,7 +29,7 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import validators from 'utils/validators';
 import asyncValidators from 'utils/asyncValidators';
 import normalizers from 'utils/normalizers';
-import { Button, FileUpload, Text } from 'components';
+import { Button, FileUpload, Text, Select } from 'components';
 import {
   FormDatePicker,
   FormMarkdownEditor,
@@ -42,16 +44,22 @@ import {
   DIFFICULTY_OPTIONS,
   PAYOUT_OPTIONS,
   UPLOAD_KEY,
-  VISIBILITY_OPTIONS
+  VISIBILITY_OPTIONS,
+  templateOptions
 } from './constants';
 import config from 'public-modules/config';
 import defaultShouldAsyncValidate from 'redux-form/es/defaultShouldAsyncValidate';
 import { translateOption } from '../../utils/i18nHelpers';
 import intl from 'react-intl-universal';
+import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
 
 const formSelector = formValueSelector('createBounty');
 
 class CreateBountyFormComponent extends React.Component {
+  state = {
+    selectedTemplate: 'default'
+  };
+
   handleCreateBounty = values => {
     const { activateNow, balance, ...bountyValues } = values;
     const {
@@ -177,8 +185,12 @@ class CreateBountyFormComponent extends React.Component {
       tokens,
       isEditing,
       initialValues,
+      // options,
+      currentCategories,
+      change,
       handleBounty
     } = this.props;
+
     const { validatorGroups } = this;
 
     let submitButtonText = intl.get('sections.create_bounty.actions.create');
@@ -200,7 +212,7 @@ class CreateBountyFormComponent extends React.Component {
     }/?contribute=true`;
 
     return (
-      <form onSubmit={handleSubmit(this.handleSubmit)}>
+      <form name="CreateBounty" onSubmit={handleSubmit(this.handleSubmit)}>
         <FormSection>
           <FormSection.Section
             title={intl.get('sections.create_bounty.sections.about.title')}
@@ -233,14 +245,54 @@ class CreateBountyFormComponent extends React.Component {
                 validate={validatorGroups.title}
               />
             </FormSection.InputGroup>
+            {!isEditing &&
+              !id && (
+                <div className="row">
+                  <div className="col-xs-12 col-sm-6">
+                    <Select
+                      name="templates"
+                      label={intl.get(
+                        'sections.create_bounty.sections.about.form.template.label'
+                      )}
+                      defaultValue={templateOptions[0]}
+                      options={templateOptions}
+                      onChange={handleChooseTemplate(
+                        change,
+                        selectedTemplate => this.setState({ selectedTemplate }),
+                        currentCategories
+                      )}
+                    />
+                  </div>
+                  <div className="col-xs-12">
+                    <div className={styles.formHelper}>
+                      <FontAwesomeIcon
+                        icon={faInfoCircle}
+                        className={styles.formHelperIcon}
+                      />
+                      <Text
+                        fontStyle="italic"
+                        typeScale="Small"
+                        color="blue"
+                        lineHeight="lineHeight-default"
+                      >
+                        {intl.get(
+                          `sections.create_bounty.templates.${
+                            this.state.selectedTemplate
+                          }.about`
+                        )}
+                      </Text>
+                    </div>
+                  </div>
+                </div>
+              )}
             <FormSection.InputGroup>
               <Field
-                disabled={submittingBounty}
-                name="description"
-                component={FormMarkdownEditor}
                 label={intl.get(
                   'sections.create_bounty.sections.about.form.description.label'
                 )}
+                disabled={submittingBounty}
+                name="description"
+                component={FormMarkdownEditor}
                 textBoxClassName={styles.markdownEditor}
                 validate={validatorGroups.description}
               />
@@ -501,7 +553,7 @@ class CreateBountyFormComponent extends React.Component {
               </div>
             </FormSection.InputGroup>
           </FormSection.Section>
-          {!isEditing && (
+          {!isEditing ? (
             <FormSection.Section
               title={intl.get('sections.create_bounty.sections.payout.title')}
             >
@@ -526,7 +578,9 @@ class CreateBountyFormComponent extends React.Component {
                               )
                             : intl.get(
                                 'sections.create_bounty.sections.payout.form.token_contract.label_custom',
-                                { token: config.defaultToken.symbol }
+                                {
+                                  token: config.defaultToken.symbol
+                                }
                               )
                         }
                         validate={validatorGroups.token_contract}
@@ -555,7 +609,9 @@ class CreateBountyFormComponent extends React.Component {
                       normalize={normalizers.number}
                       label={intl.get(
                         'sections.create_bounty.sections.payout.form.fulfillment_amount.label',
-                        { hasDefaultToken: !config.defaultToken }
+                        {
+                          hasDefaultToken: !config.defaultToken
+                        }
                       )}
                       validate={validatorGroups.fulfillment_amount}
                       placeholder={intl.get(
@@ -589,8 +645,7 @@ class CreateBountyFormComponent extends React.Component {
                 </FormSection.InputGroup>
               ) : null}
             </FormSection.Section>
-          )}
-          {isEditing && (
+          ) : (
             <FormSection.Section
               title={intl.get(
                 'sections.create_bounty.sections.payout_editing.title'
@@ -623,7 +678,9 @@ class CreateBountyFormComponent extends React.Component {
                       normalize={normalizers.number}
                       label={intl.get(
                         'sections.create_bounty.sections.payout_editing.form.fulfillment_amount.label',
-                        { hasDefaultToken: !config.defaultToken }
+                        {
+                          hasDefaultToken: !config.defaultToken
+                        }
                       )}
                       validate={validatorGroups.fulfillment_amount}
                       placeholder={intl.get(
@@ -761,6 +818,7 @@ const mapStateToProps = (state, router) => {
     uploadLoading: uploadedFile ? uploadedFile.uploading : false,
     activateNow: formSelector(state, 'activateNow'),
     paysTokens: formSelector(state, 'paysTokens'),
+    currentCategories: formSelector(state, 'categories'),
     categories: categoriesSelector(state),
     submittingBounty: draftState.creating || bountyState.pending,
     uid: draftBounty.uid,

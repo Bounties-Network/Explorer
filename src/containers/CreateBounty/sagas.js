@@ -1,4 +1,4 @@
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 import { put, takeLatest } from 'redux-saga/effects';
 import { actionTypes as bountyActionTypes } from 'public-modules/Bounty';
 

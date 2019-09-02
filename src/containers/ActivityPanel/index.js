@@ -10,6 +10,10 @@ import { getCurrentUserSelector } from 'public-modules/Authentication/selectors'
 import { rootActivitySelector } from 'public-modules/Activity/selectors';
 import { actions } from 'public-modules/Activity';
 import intl from 'react-intl-universal';
+import {
+  faChartLine,
+  faExclamationTriangle
+} from '@fortawesome/pro-light-svg-icons';
 
 class ActivityPanelComponent extends React.Component {
   renderActivity = list => {
@@ -78,7 +82,7 @@ class ActivityPanelComponent extends React.Component {
             title={intl.get('sections.activity.zero_state.title')}
             text={intl.get('sections.activity.zero_state.description')}
             iconColor="blue"
-            faIcon={['fal', 'chart-line']}
+            faIcon={faChartLine}
           />
         </div>
       );
@@ -97,7 +101,7 @@ class ActivityPanelComponent extends React.Component {
             type="error"
             text={intl.get('errors.500')}
             iconColor="red"
-            faIcon={['fal', 'exclamation-triangle']}
+            faIcon={faExclamationTriangle}
           />
         </div>
       );

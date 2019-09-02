@@ -7,7 +7,7 @@ import '../../styles/ReactSelect.scss';
 
 class Select extends React.Component {
   state = {
-    selectedOption: ''
+    selectedOption: this.props.defaultValue
   };
 
   handleChange = selectedOption => {
@@ -18,16 +18,16 @@ class Select extends React.Component {
   render() {
     const {
       options,
-      onChange,
       placeholder,
       label,
       disabled,
       error,
       optional,
       labelKey,
-      valueKey
+      valueKey,
+      defaultValue
     } = this.props;
-    const { selectedOption } = this.state;
+    let { selectedOption } = this.state;
 
     let labelText = label;
     if (optional) {

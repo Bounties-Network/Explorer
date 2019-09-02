@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import styles from './MarkdownEditor.module.scss';
 import showdown from 'showdown';
-import { Textbox, Modal, Text } from 'components';
+import { Textbox, Modal, Button } from 'components';
 import { newTabExtension } from 'utils/helpers';
 import intl from 'react-intl-universal';
+import { faEye } from '@fortawesome/pro-regular-svg-icons';
 
 showdown.setOption('simpleLineBreaks', true);
 showdown.extension('targetBlank', newTabExtension);
@@ -72,6 +72,7 @@ class MarkdownEditor extends React.Component {
           </Modal.Body>
         </Modal>
         <Textbox
+          maxHeight={'50em'}
           error={error}
           label={label}
           value={textValue}
@@ -82,19 +83,17 @@ class MarkdownEditor extends React.Component {
           onBlur={onBlur}
           overlay={
             !hidePreview && (
-              <Text
-                type="Small"
-                className={styles.overlay}
+              <Button
+                type="action"
+                buttonType={'button'}
+                icon={faEye}
                 onClick={this.showModal}
               >
-                <FontAwesomeIcon
-                  icon={['fal', 'eye']}
-                  className={styles.overlayIcon}
-                />
                 {intl.get('components.editor.preview')}
-              </Text>
+              </Button>
             )
           }
+          markdownKey={true}
         />
       </div>
     );
@@ -115,8 +114,7 @@ MarkdownEditor.propTypes = {
 MarkdownEditor.defaultProps = {
   onFocus: () => {},
   onBlur: () => {},
-  onChange: () => {},
-  defaultValue: intl.get('components.editor.default')
+  onChange: () => {}
 };
 
 export default MarkdownEditor;

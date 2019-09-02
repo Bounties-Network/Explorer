@@ -5,12 +5,17 @@ import { includes, map } from 'lodash';
 import { Link } from 'react-router-dom';
 import { REV_DIFFICULTY_MAPPING } from 'public-modules/Bounties/constants';
 import { EXPIRED } from 'public-modules/Bounty/constants';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Card, Pill, Text } from 'components';
 import { Currency, LinkedAvatar } from 'explorer-components';
 import { scrollToTop } from 'utils/helpers';
 import intl from 'react-intl-universal';
 import config from 'public-modules/config';
+import {
+  faLevelUp,
+  faClock,
+  faPuzzlePiece
+} from '@fortawesome/pro-regular-svg-icons';
 
 const BountyCard = props => {
   const {
@@ -112,7 +117,7 @@ const BountyCard = props => {
             <div className={styles.detailGroup}>
               <div className={styles.detailIcon}>
                 <Text inline color="defaultGrey">
-                  <FontAwesomeIcon icon={['far', 'puzzle-piece']} />
+                  <FontAwesomeIcon icon={faPuzzlePiece} />
                 </Text>
               </div>
               <Text
@@ -132,7 +137,7 @@ const BountyCard = props => {
             <div className={styles.detailGroup}>
               <div className={styles.detailIcon}>
                 <Text inline color="defaultGrey" className={styles.detailIcon}>
-                  <FontAwesomeIcon icon={['far', 'clock']} />
+                  <FontAwesomeIcon icon={faClock} />
                 </Text>
               </div>
               <Text
@@ -151,7 +156,7 @@ const BountyCard = props => {
             <div className={styles.detailGroup}>
               <div className={styles.detailIcon}>
                 <Text inline color="defaultGrey" className={styles.detailIcon}>
-                  <FontAwesomeIcon icon={['far', 'level-up']} />
+                  <FontAwesomeIcon icon={faLevelUp} />
                 </Text>
               </div>
               <Text

@@ -4,7 +4,8 @@ import styles from './FileUpload.module.scss';
 import buttonStyles from 'components/Button/Button.module.scss';
 import { Loader, Text } from 'components';
 import { bytesToSize } from 'utils/helpers';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/pro-light-svg-icons';
 
 class FileUpload extends React.Component {
   state = {
@@ -95,7 +96,7 @@ class FileUpload extends React.Component {
                   </Text>,
                   <Text typeScale="Body" color={iconColor} key={2}>
                     <FontAwesomeIcon
-                      icon={['fal', 'times']}
+                      icon={faTimes}
                       className={iconClass}
                       onClick={this.removeFile}
                     />
