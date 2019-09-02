@@ -56,7 +56,7 @@
 
 .pill {
   margin-top: $s-spacing;
-  opacity: 0.6;
+  opacity: 0.65;
 }
 
 .pageBody > div {
@@ -175,7 +175,6 @@
 .bountyPageCards {
   border-radius: 0;
   max-width: 100%;
-  overflow-x: hidden;
 
   @media only screen and (min-width: 48em) {
     border-radius: $base-border-radius;
