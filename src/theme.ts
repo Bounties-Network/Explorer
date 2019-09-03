@@ -26,74 +26,122 @@ export const space = [0, 4, 8, 16, 32, 40, 64, 128];
 export const sizes = [0, 4, 8, 16, 32, 40, 64, 80, 100, 128];
 
 // TYPOGRAPHY //
-export const font = '"Inter", -apple-system, BlinkMacSystemFont, sans-serif';
+export const font = '"Domine", Inter, -apple-system';
 export const fontMonospace = 'monospace';
-export const fontSizes = [0.75, 0.875, 1, 1.25, 1.563, 2];
+export const fontSizes = [12, 14, 16, 18, 20, 25];
 
 // Weights
 export const regular = 400;
 export const medium = 500;
+export const semiBold = 600;
 export const bold = 700;
 // styled-system's 'fontWeight' function can hook into the 'fontWeights' object
 export const fontWeights = {
   regular,
   medium,
+  semiBold,
   bold
 };
 
 // Line-height
 export const lineHeights = {
-  standard: 1.6,
-  small: 1.3,
-  heading: 1.25,
+  h1: 37,
+  h2: 24,
+  h3: 22,
+  h4: 19,
+  h5: 17,
+  standard: 21,
+  small: 18,
   reset: 1
 };
 
 // Scale
 export const text = {
   h1: {
-    fontSize: fontSizes[5] + 'rem',
-    fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.heading
+    fontSize: fontSizes[5] + 'px',
+    fontWeight: fontWeights.bold,
+    lineHeight: lineHeights.h1 + 'px'
   },
   h2: {
-    fontSize: fontSizes[4] + 'rem',
+    fontSize: fontSizes[4] + 'px',
+    fontWeight: fontWeights.bold,
+    lineHeight: lineHeights.h2
+  },
+  h2Secondary: {
+    fontSize: fontSizes[4] + 'px',
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.heading
+    lineHeight: lineHeights.h2
   },
   h3: {
-    fontSize: fontSizes[3] + 'rem',
+    fontSize: fontSizes[3] + 'px',
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.heading
+    lineHeight: lineHeights.h3
   },
   h4: {
-    fontSize: fontSizes[2] + 'rem',
+    fontSize: fontSizes[2] + 'px',
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.heading
+    lineHeight: lineHeights.h4
   },
   h5: {
-    fontSize: fontSizes[1] + 'rem',
-    fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.standard
+    fontSize: fontSizes[1] + 'px',
+    fontWeight: fontWeights.semiBold,
+    lineHeight: lineHeights.h5
   },
-  bodyLarge: {
-    fontSize: fontSizes[2] + 'rem',
+  bodyItalic: {
+    fontSize: fontSizes[1] + 'px',
     fontWeight: fontWeights.regular,
+    fontStyle: 'italic',
     lineHeight: lineHeights.standard
   },
   bodyStrong: {
-    fontSize: fontSizes[1] + 'rem',
+    fontSize: fontSizes[1] + 'px',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.standard
   },
   body: {
-    fontSize: fontSizes[1] + 'rem',
+    fontSize: fontSizes[1] + 'px',
     fontWeight: fontWeights.regular,
     lineHeight: lineHeights.standard
   },
+  smallStrong: {
+    fontSize: fontSizes[0] + 'px',
+    fontWeight: fontWeights.semiBold,
+    lineHeight: lineHeights.small
+  },
   small: {
-    fontSize: fontSizes[0] + 'rem',
+    fontSize: fontSizes[0] + 'px',
     fontWeight: fontWeights.regular,
+    lineHeight: lineHeights.small
+  },
+  link: {
+    fontSize: fontSizes[1] + 'px',
+    fontWeight: fontWeights.regular,
+    lineHeight: lineHeights.standard
+  },
+  linkStrong: {
+    fontSize: fontSizes[1] + 'px',
+    fontWeight: fontWeights.medium,
+    lineHeight: lineHeights.standard
+  },
+  linkSmall: {
+    fontSize: fontSizes[0] + 'px',
+    fontWeight: fontWeights.medium,
+    lineHeight: lineHeights.standard
+  },
+  label: {
+    fontSize: fontSizes[0] + 'px',
+    fontWeight: fontWeights.medium,
+    lineHeight: lineHeights.standard
+  },
+  help: {
+    fontSize: fontSizes[0] + 'px',
+    fontWeight: fontWeights.regular,
+    fontStyle: 'italic',
+    lineHeight: lineHeights.standard
+  },
+  tableHeading: {
+    fontSize: fontSizes[0] + 'px',
+    fontWeight: fontWeights.medium,
     lineHeight: lineHeights.standard
   }
 };
