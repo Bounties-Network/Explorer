@@ -1,17 +1,18 @@
 @import '~styles/variables.scss';
 @import '~styles/reset.scss';
 @import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css?family=Domine&display=swap');
 
 @supports (font-variation-settings: normal) {
   html {
-    font-family: 'Inter var', sans-serif;
+    font-family: 'Domine', 'Inter', serif;
   }
 }
 
 html {
   box-sizing: border-box;
   font-size: $base-font-size;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Domine', 'Inter', serif;
   font-feature-settings: 'ss01' 1;
   height: 100%;
   width: 100%;
