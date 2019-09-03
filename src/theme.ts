@@ -1,5 +1,5 @@
 // MEDIA QUERIES
-const createMediaQuery = n => '@media screen and (min-width:${n})';
+const createMediaQuery = n => `@media screen and (min-width:${n})`;
 
 const addAliases = (arr, aliases) =>
   aliases.forEach((key, i) =>
