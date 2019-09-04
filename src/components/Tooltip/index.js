@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/pro-light-svg-icons';
+
+const theme = require('sass-extract-loader?{"plugins": ["sass-extract-js"]}!../../styles/variables.scss');
 
 const ARROW_OFFSET = '40px';
 const ICON_SIZE = '1rem';
@@ -96,17 +98,19 @@ const Tooltip = props => {
   const { className, children, icon, width, align } = props;
 
   return (
-    <Container className={className}>
-      <Icon icon={icon} />
-      <TooltipContainer
-        typeScale="Small"
-        className="tooltip"
-        width={width}
-        align={align}
-      >
-        {children}
-      </TooltipContainer>
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container className={className}>
+        <Icon icon={icon} />
+        <TooltipContainer
+          typeScale="Small"
+          className="tooltip"
+          width={width}
+          align={align}
+        >
+          {children}
+        </TooltipContainer>
+      </Container>
+    </ThemeProvider>
   );
 };
 
