@@ -31,7 +31,7 @@ storiesOf('Tooltip', module)
       width={text('width', '200px')}
     >
       <Text
-        lineHeight="lineHeight-small"
+        lineHeight="lineHeight-default"
         alignment="align-left"
         typeScale="Small"
       >

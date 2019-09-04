@@ -304,7 +304,7 @@ class BountyComponent extends React.Component {
                       <Text
                         typeScale="Small"
                         alignment="align-left"
-                        lineHeight="lineHeight-small"
+                        lineHeight="lineHeight-default"
                       >
                         {intl.get('sections.bounty.meta.tooltip')}
                       </Text>
