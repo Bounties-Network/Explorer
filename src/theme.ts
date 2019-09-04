@@ -22,7 +22,7 @@ addAliases(breakpoints, aliases);
 addAliases(mediaQueries, aliases);
 
 // SPACING SCALE
-export const space = [0, 4, 8, 16, 32, 40, 64, 128];
+export const space = [0, 4, 8, 16, 24, 32, 40, 128];
 export const sizes = [0, 4, 8, 16, 32, 40, 64, 80, 100, 128];
 
 // TYPOGRAPHY //
@@ -147,6 +147,24 @@ export const text = {
 };
 
 // COLOR PALETTE
+const seaGlass100 = 'hsl(187, 45%, 81%)';
+const seaGlass200 = 'hsl(187, 50%, 60%)';
+const seaGlass300 = 'hsl(187, 76%, 35%)';
+const seaGlass400 = 'hsl(191, 76%, 27%)';
+const seaGlass500 = 'hsl(190, 95%, 18%)';
+
+const rose100 = 'hsl(351, 68%, 83%)';
+const rose200 = 'hsl(352, 64%, 67%)';
+const rose300 = 'hsl(345, 68%, 23%)';
+
+const amber100 = '#F2BAC2';
+const amber200 = '#F2BAC2';
+const amber300 = '#F2BAC2';
+
+const amber100 = '#F2BAC2';
+const amber200 = '#F2BAC2';
+const amber300 = '#F2BAC2';
+
 const lightPurple = 'hsl(259, 55%, 55%)';
 const purple = 'hsl(259, 66%, 47%)';
 const darkPurple = 'hsl(259, 66%, 37%)';
@@ -186,6 +204,16 @@ const inputBg = gray100;
 const baseBorderColor = gray200;
 
 const colors = {
+  seaGlass100,
+  seaGlass200,
+  seaGlass300,
+  seaGlass400,
+  seaGlass500,
+
+  rose100,
+  rose200,
+  rose300,
+
   brandPrimary,
   brandPrimaryHover,
   brandSecondary,
