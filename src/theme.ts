@@ -35,6 +35,7 @@ export const regular = 400;
 export const medium = 500;
 export const semiBold = 600;
 export const bold = 700;
+
 // styled-system's 'fontWeight' function can hook into the 'fontWeights' object
 export const fontWeights = {
   regular,
@@ -157,47 +158,34 @@ const rose100 = 'hsl(351, 68%, 83%)';
 const rose200 = 'hsl(352, 64%, 67%)';
 const rose300 = 'hsl(345, 68%, 23%)';
 
-const amber100 = '#F2BAC2';
-const amber200 = '#F2BAC2';
-const amber300 = '#F2BAC2';
+const amber100 = 'hsl(21, 94%, 85%)';
+const amber200 = 'hsl(21, 95%, 75%)';
+const amber300 = 'hsl(18, 68%, 35%)';
 
-const amber100 = '#F2BAC2';
-const amber200 = '#F2BAC2';
-const amber300 = '#F2BAC2';
+const mustard100 = 'hsl(175, 31%, 16%)';
+const mustard200 = 'hsl(39, 100%, 77%)';
+const mustard300 = 'hsl(36, 85%, 38%)';
 
-const lightPurple = 'hsl(259, 55%, 55%)';
-const purple = 'hsl(259, 66%, 47%)';
-const darkPurple = 'hsl(259, 66%, 37%)';
-const lightBlue = 'hsl(216, 100%, 98%)';
-const blue = 'hsl(216, 100%, 65%)';
-const darkBlue = 'hsl(216, 80%, 55%)';
-const red = 'hsl(353, 64%, 67%)';
-const darkRed = 'hsl(353, 64%, 60%)';
-const orange = 'hsl(36, 96%, 59%)';
-const green = 'hsl(140, 44%, 61%)';
-const darkGreen = 'hsl(141, 44%, 51%)';
-
-// Brand color aliases
-const brandPrimary = purple;
-const brandPrimaryHover = darkPurple;
-const brandSecondary = blue;
-const brandSecondaryHover = darkBlue;
-const brandDestructive = red;
-const brandDestructiveHover = darkRed;
-const brandWarning = orange;
-const brandAffirmative = green;
-const brandAffirmativeHover = darkGreen;
-
-// Gray-scale
-const black = '#111618';
-const purpleBlack = 'hsl(262, 12%, 19%)';
-const gray500 = 'hsl(223, 9%, 29%)';
-const gray400 = 'hsl(218, 10%, 57%)';
-const gray300 = 'hsl(223, 10%, 86%)';
-const gray200 = 'hsl(225, 9%, 91%)';
-const gray100 = 'hsl(220, 30%, 96%)';
+const gray100 = 'hsl(219, 27%, 97%)';
+const gray200 = 'hsl(180, 2%, 91%)';
+const gray300 = 'hsl(199, 4%, 86%)';
+const gray400 = 'hsl(193, 4%, 57%)';
+const gray500 = 'hsl(199, 4%, 29%)';
+const black = 'hsl(193, 59%, 63%)';
 const white = 'hsl(0, 0%, 100%)';
 const transparentWhite = 'rgba(255, 255, 255, 65%)';
+
+// Brand color aliases
+const brandPrimary = seaGlass200;
+const brandPrimaryHover = seaGlass100;
+const brandSecondary = white;
+const brandSecondaryHover = white;
+const brandDestructive = rose200;
+const brandDestructiveHover = rose100;
+const brandSpecial = amber200;
+const brandSpecialHover = amber100;
+const brandAffirmative = seaGlass200;
+const brandAffirmativeHover = seaGlass100;
 
 // Misc
 const inputBg = gray100;
@@ -214,24 +202,31 @@ const colors = {
   rose200,
   rose300,
 
+  amber100,
+  amber200,
+  amber300,
+
+  mustard100,
+  mustard200,
+  mustard300,
+
   brandPrimary,
   brandPrimaryHover,
   brandSecondary,
   brandSecondaryHover,
   brandDestructive,
   brandDestructiveHover,
-  brandWarning,
+  brandSpecial,
+  brandSpecialHover,
   brandAffirmative,
   brandAffirmativeHover,
-  lightPurple,
-  lightBlue,
-  black,
-  purpleBlack,
-  gray500,
-  gray400,
-  gray300,
-  gray200,
+
   gray100,
+  gray200,
+  gray300,
+  gray400,
+  gray500,
+  black,
   white,
   transparentWhite,
   inputBg,
