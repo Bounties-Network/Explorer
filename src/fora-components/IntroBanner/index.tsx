@@ -18,9 +18,9 @@ const IntroBannerHeading = styled(Text)<{ isAndSign?: boolean }>(props =>
 const Container = styled(Flex)(() =>
   css({
     flexDirection: 'column',
-    '> :first-child': { mb: 6 },
-    '> :nth-child(2)': { mb: 6 },
-    '> :nth-child(3)': { mb: 5 }
+    '> :first-of-type': { mb: 6 },
+    '> :nth-of-type(2)': { mb: 6 },
+    '> :nth-of-type(3)': { mb: 5 }
   })
 );
 
@@ -31,8 +31,8 @@ const Description = styled(Text)(() =>
 const CTAContainer = styled(Flex)(() =>
   css({
     alignItems: 'center',
-    '> :first-child': { mr: 3 },
-    '> :nth-child(2)': { mr: 3 }
+    '> :first-of-type': { mr: 3 },
+    '> :nth-of-type(2)': { mr: 3 }
   })
 );
 
