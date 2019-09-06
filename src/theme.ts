@@ -113,11 +113,14 @@ export const sizes = [0, 4, 8, 16, 32, 40, 64, 80, 100, 128];
 
 // TYPOGRAPHY //
 export const body = '"Domine", Inter, -apple-system';
+export const primary = '"Domine"';
+export const secondary = '"Inter"';
 export const heading = 'inherit';
 export const monospace = 'monospace';
 export const fontSizes = [12, 14, 16, 18, 20, 25];
 export const fonts = {
   body,
+  secondary,
   heading,
   monospace
 };
@@ -155,10 +158,17 @@ export const radius = '8px';
 
 const baseBorder = `1px solid ${colors.baseBorderColor}`;
 const activeBorder = `1px solid ${colors.gray300}`;
+const tertiaryActiveBorder = `1px solid ${colors.amber200}`;
 const avatarBorder = `2px solid ${colors.white}`;
 const lightBorder = `1px solid ${colors.gray100}`;
 
-const borders = [baseBorder, activeBorder, avatarBorder, lightBorder];
+const borders = {
+  base: baseBorder,
+  active: activeBorder,
+  tertiaryActive: tertiaryActiveBorder,
+  avatar: avatarBorder,
+  light: lightBorder
+};
 
 export { borders };
 
@@ -237,16 +247,21 @@ export const text = {
     lineHeight: lineHeights.small + 'px'
   },
   link: {
+    fontFamily: fonts.secondary,
     fontSize: fontSizes[1] + 'px',
     fontWeight: fontWeights.regular,
-    lineHeight: lineHeights.standard + 'px'
+    lineHeight: lineHeights.standard + 'px !important',
+    color: colors.seaGlass300
   },
   linkStrong: {
+    fontFamily: fonts.secondary,
     fontSize: fontSizes[1] + 'px',
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.standard + 'px'
+    lineHeight: lineHeights.standard + 'px',
+    color: colors.seaGlass300
   },
   linkSmall: {
+    fontFamily: fonts.secondary,
     fontSize: fontSizes[0] + 'px',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.standard + 'px'
@@ -278,33 +293,58 @@ export const text = {
     fontFamily: 'Inter',
     fontWeight: fontWeights.regular,
     fontSize: fontSizes[2] + 'px',
-    lineHeight: lineHeights.h2 + 'px'
+    lineHeight: lineHeights.h2 + 'px',
+    color: colors.seaGlass500
   }
 };
 
 // Button variants
 export const buttons = {
   secondary: {
-    background: 'white',
+    background: colors.white,
     borderRadius: 2,
     border: baseBorder,
     color: colors.gray500,
-    width: '153px',
     cursor: 'pointer',
+    boxSizing: 'border-box',
+    fontFamily: fonts.secondary,
     ...text.bodyStrong,
     ':hover': {
       boxShadow: shadows[0],
       color: colors.black,
-      border: borders[1]
+      border: borders.active
     },
     ':active': {
       color: colors.black,
-      border: borders[1]
+      border: borders.active
     },
     ':disabled': {
       background: colors.gray100,
       cursor: 'not-allowed',
       color: colors.gray300
+    }
+  },
+  tertiary: {
+    background: colors.amber200,
+    borderRadius: 2,
+    color: colors.amber300,
+    cursor: 'pointer',
+    boxSizing: 'border-box',
+    fontFamily: fonts.secondary,
+    ...text.bodyStrong,
+    ':hover': {
+      boxShadow: shadows[0],
+      color: colors.amber300,
+      background: colors.amber100,
+      border: borders.tertiaryActive
+    },
+    ':active': {
+      border: borders.tertiaryActive
+    },
+    ':disabled': {
+      background: colors.amber100,
+      cursor: 'not-allowed',
+      color: colors.gray100
     }
   }
 };

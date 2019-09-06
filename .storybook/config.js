@@ -21,4 +21,4 @@ addDecorator(story => (
   </ThemeProvider>
 ));
 
-configure(require.context('../src/stories', true, /\.stories\.(js|mdx|tsx)$/), module);
+configure(require.context('../src/fora-components', true, /\.stories\.(js|mdx|tsx)$/), module);
