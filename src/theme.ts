@@ -116,7 +116,7 @@ export const body = '"Domine", Inter, -apple-system';
 export const primary = '"Domine"';
 export const secondary = '"Inter"';
 export const heading = 'inherit';
-export const monospace = 'monospace';
+export const monospace = 'Roboto';
 export const fontSizes = [12, 14, 16, 18, 20, 25];
 export const fonts = {
   body,
@@ -157,6 +157,7 @@ export const radii = [0, 4, 8, '50%'];
 export const radius = '8px';
 
 const baseBorder = `1px solid ${colors.baseBorderColor}`;
+const primaryActiveBorder = `1px solid ${colors.seaGlass200}`;
 const activeBorder = `1px solid ${colors.gray300}`;
 const tertiaryActiveBorder = `1px solid ${colors.amber200}`;
 const avatarBorder = `2px solid ${colors.white}`;
@@ -165,6 +166,7 @@ const lightBorder = `1px solid ${colors.gray100}`;
 const borders = {
   base: baseBorder,
   active: activeBorder,
+  primaryActive: primaryActiveBorder,
   tertiaryActive: tertiaryActiveBorder,
   avatar: avatarBorder,
   light: lightBorder
@@ -267,9 +269,10 @@ export const text = {
     lineHeight: lineHeights.standard + 'px'
   },
   label: {
+    color: colors.gray400,
     fontSize: fontSizes[0] + 'px',
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.standard + 'px'
+    lineHeight: lineHeights.small + 'px'
   },
   help: {
     fontSize: fontSizes[0] + 'px',
@@ -295,15 +298,45 @@ export const text = {
     fontSize: fontSizes[2] + 'px',
     lineHeight: lineHeights.h2 + 'px',
     color: colors.seaGlass500
+  },
+  numeralMonospaceLarge: {
+    fontFamily: fonts.monospace,
+    fontSize: fontSizes[5] + 'px',
+    fontWeight: fontWeights.regular,
+    lineHeight: '29px'
   }
 };
 
 // Button variants
 export const buttons = {
-  secondary: {
-    background: colors.white,
+  primary: {
+    backgroundColor: colors.seaGlass200,
     borderRadius: 2,
-    border: baseBorder,
+    border: borders.base,
+    color: colors.seaGlass500,
+    cursor: 'pointer',
+    boxSizing: 'border-box',
+    fontFamily: fonts.secondary,
+    ...text.bodyStrong,
+    ':hover': {
+      background: colors.seaGlass100,
+      boxShadow: shadows[0],
+      border: borders.primaryActive
+    },
+    ':active': {
+      background: colors.seaGlass100,
+      border: borders.primaryActive
+    },
+    ':disabled': {
+      background: colors.seaGlass200,
+      cursor: 'not-allowed',
+      color: colors.gray300
+    }
+  },
+  secondary: {
+    backgroundColor: colors.white,
+    borderRadius: 2,
+    border: borders.base,
     color: colors.gray500,
     cursor: 'pointer',
     boxSizing: 'border-box',
@@ -325,7 +358,7 @@ export const buttons = {
     }
   },
   tertiary: {
-    background: colors.amber200,
+    backgroundColor: colors.amber200,
     borderRadius: 2,
     color: colors.amber300,
     cursor: 'pointer',
@@ -368,6 +401,16 @@ export const textFormat = {
   }
 };
 
+export const variants = {
+  card: {
+    border: borders.base,
+    padding: 5,
+    boxShadow: shadows[0],
+    boxSizing: 'border-box',
+    borderRadius: 2
+  }
+};
+
 // EXPORT THEME
 const theme = {
   breakpoints,
@@ -390,7 +433,8 @@ const theme = {
   buttons,
   avatarResourceTypes,
   textFormat,
-  maxContainerWidth
+  maxContainerWidth,
+  variants
 };
 
 export default theme;
