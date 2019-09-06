@@ -32,11 +32,11 @@ let nameSize = variant => {
 let addressSize = variant => {
   switch (variant) {
     case 'small' || 'medium':
-      return 'body';
+      return 'link';
     case 'large':
-      return 'bodyLarge';
+      return 'linkStrong';
     default:
-      return 'body';
+      return 'link';
   }
 };
 
@@ -110,6 +110,7 @@ const AvatarName = styled(Text)<AvatarNameProps>(props =>
     mr: props.textFormat === 'inline' ? 2 : '',
     textAlign: 'left',
     variant: 'text.' + nameSize(props.variant),
+    fontFamily: 'secondary',
     lineHeight: 'reset',
     '&:not(:last-child):not(:only-child)': {
       mb: 1
@@ -120,8 +121,9 @@ const AvatarName = styled(Text)<AvatarNameProps>(props =>
 type AvatarAddressProps = Pick<AvatarProps, 'onDark' | 'variant'>;
 const AvatarAddress = styled(Text)<AvatarAddressProps>(props =>
   css({
-    color: props.onDark ? 'transparentWhite' : 'brandSecondary',
+    color: props.onDark ? 'transparentWhite' : 'seaGlass300',
     variant: 'text.' + addressSize(props.variant),
+    fontFamily: 'secondary',
     lineHeight: 'reset',
     'a:hover &': { textDecoration: 'underline' }
   })
