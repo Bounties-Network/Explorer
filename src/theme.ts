@@ -208,6 +208,7 @@ export const text = {
     lineHeight: lineHeights.h2 + 'px'
   },
   h3: {
+    fontFamily: fonts.secondary,
     fontSize: fontSizes[3] + 'px',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.h3 + 'px'
@@ -408,6 +409,9 @@ export const variants = {
     boxShadow: shadows[0],
     boxSizing: 'border-box',
     borderRadius: 2
+  },
+  link: {
+    ...text.link
   }
 };
 
