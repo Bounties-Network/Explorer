@@ -67,6 +67,7 @@
     "showdown": "^1.8.6",
     "styled-components": "^4.3.2",
     "styled-system": "^5.1.0",
+    "typescript": "^3.6.2",
     "web3": "^1.0.0-beta.34"
   },
   "devDependencies": {
@@ -108,7 +109,7 @@
     "@types/react-textarea-autosize": "^4.3.4",
     "@types/react-toggle": "^4.0.2",
     "@types/react-transition-group": "^2.9.2",
-    "@types/rebass": "^3.0.4",
+    "@types/rebass": "^4.0.0",
     "@types/redux-form": "^7.5.5",
     "@types/resolve": "0.0.8",
     "@types/showdown": "^1.9.3",
@@ -136,11 +137,13 @@
     "jest": "20.0.4",
     "lint-staged": "^7.0.4",
     "mini-css-extract-plugin": "^0.8.0",
+    "mithril": "^2.0.4",
     "node-sass": "^4.11.0",
     "node-sass-chokidar": "^1.2.2",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
+    "preact": "^8.5.2",
     "prettier": "^1.11.1",
     "react-dev-utils": "^9.0.3",
     "react-hot-loader": "^4.12.11",
@@ -164,8 +167,9 @@
     ]
   },
   "scripts": {
+    "check-types": "tsc",
     "lint": "prettier --single-quote --write \"src/**/*.{js,jsx,,ts,tsx,json,css}\"",
-    "precommit": "lint-staged",
+    "precommit": "yarn check-types && lint-staged",
     "dev": "npm run start-rinkeby",
     "start": "APP_SETTINGS_FILE=production_settings APP_LOGO=logo node scripts/start.js",
     "start-local": "APP_SETTINGS_FILE=local_settings APP_LOGO=logo node scripts/start.js",

@@ -2,7 +2,7 @@ import React from 'react';
 import css from '@styled-system/css';
 import styled from 'lib/emotion-styled';
 
-const IllustrationSVG = styled('svg')(props => css({}));
+const IllustrationSVG = styled('svg')(() => css({}));
 
 export default () => (
   <IllustrationSVG

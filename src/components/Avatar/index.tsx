@@ -158,7 +158,7 @@ const Avatar: React.FC<AvatarProps> = props => {
   } = props;
 
   return (
-    <Box display="inline-block">
+    <Box css={{ display: 'inline-block' }}>
       <AvatarWrapper
         src={src ? src : '/profile/' + address}
         onClick={onClick}
