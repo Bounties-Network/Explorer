@@ -1,8 +1,9 @@
 import React from 'react';
-import { Image, Link, Text, Flex } from 'rebass';
+import { Link, Text, Flex } from 'rebass';
 import styled from 'lib/emotion-styled';
 import css from '@styled-system/css';
 import Divider from 'fora-components/Divider';
+import AvatarImage from 'fora-components/AvatarImage';
 
 const Container = styled(Flex)(() => css({ width: 270 }));
 const Header = styled(Flex)(() => css({ '> :first-child': { mr: 'auto' } }));
@@ -13,16 +14,6 @@ const CommunityContainer = styled(Flex)(() =>
   css({
     cursor: 'pointer',
     '> :first-of-type': { mr: 3 }
-  })
-);
-const CommunityImage = styled(Image)(() =>
-  css({
-    boxShadow: 0,
-    border: 'avatar',
-    boxSizing: 'border-box',
-    borderRadius: 2,
-    width: 40,
-    height: 40
   })
 );
 
@@ -40,7 +31,7 @@ const Community: React.FC<ICommunityProps> = ({
 }) => (
   <Link href={`/community/${id}`}>
     <CommunityContainer alignItems="center">
-      <CommunityImage src={src} />
+      <AvatarImage src={src} />
       <Flex flexDirection="column">
         <Text color="black" variant="text.bodyStrong">
           {name}

@@ -230,6 +230,8 @@ export const text = {
     lineHeight: lineHeights.standard + 'px'
   },
   bodyStrong: {
+    color: colors.black,
+    fontFamily: fonts.secondary,
     fontSize: fontSizes[1] + 'px',
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.standard + 'px'
