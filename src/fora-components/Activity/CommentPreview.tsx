@@ -24,7 +24,7 @@ const Description = styled(Box)(() =>
 );
 
 interface IProps {
-  avatarSrc: string;
+  avatarSrc: string | undefined;
   authorName: string | undefined;
   authorAddress: string;
   bountyTitle: string;
@@ -34,18 +34,22 @@ interface IProps {
 const Submission: React.FC<IProps> = ({
   avatarSrc,
   authorName,
-  authorAddress,
   bountyTitle,
   timestamp,
-  communityName
+  communityName,
+  authorAddress
 }) => (
   <Container flexDirection="column">
     <Content>
-      <AvatarImage address={authorAddress} src={avatarSrc} />
+      <AvatarImage
+        address={authorAddress}
+        src={avatarSrc}
+        resourceType="user"
+      />
       <DescriptionContainer flexDirection="column">
         <Description>
           <Text variant="bodyStrong">{authorName || '--'}</Text>
-          <Text variant="body" color="gray400">{` submitted to `}</Text>
+          <Text variant="body" color="gray400">{` commented on `}</Text>
           <Link variant="link">{bountyTitle}</Link>
         </Description>
         <Flex>

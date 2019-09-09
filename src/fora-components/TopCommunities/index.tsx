@@ -31,7 +31,7 @@ const Community: React.FC<ICommunityProps> = ({
 }) => (
   <Link href={`/community/${id}`}>
     <CommunityContainer alignItems="center">
-      <AvatarImage src={src} />
+      <AvatarImage resourceType={'community'} src={src} />
       <Flex flexDirection="column">
         <Text color="black" variant="text.bodyStrong">
           {name}
