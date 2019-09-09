@@ -1,3 +1,6 @@
 import Submission from './Submission';
+import CommentPreview from './CommentPreview';
 
-export { Submission };
+// Make this a generic switch case component based on props
+
+export { Submission, CommentPreview };

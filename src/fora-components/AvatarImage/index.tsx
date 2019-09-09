@@ -1,26 +1,63 @@
+import React from 'react';
 import styled from 'lib/emotion-styled';
-import { Image } from 'rebass';
+import { Image, Flex } from 'rebass';
 import css from '@styled-system/css';
+import Blockies from 'react-blockies';
 
-const borderRadiusVariant = (variant: string) => {
+let blockBySize = variant => {
   switch (variant) {
-    case 'circle':
-      return 3;
+    case 'small':
+      return { size: '8', scale: '4' };
+    case 'medium':
+      return { size: '8', scale: '5' };
+    case 'large':
+      return { size: '8', scale: '10' };
     default:
-      return 2;
+      return { size: '8', scale: '4' };
   }
 };
 
-const AvatarImage = styled(Image)<{ variant?: string }>(
-  ({ variant = 'roundedSquare' }) =>
+let imageContainerVariantSize = variant => {
+  switch (variant) {
+    case 'small':
+      return 4;
+    case 'medium':
+      return 5;
+    case 'large':
+      return 7;
+  }
+};
+
+type ImageContainerProps = { variant: string; resourceType: string };
+const ImageContainer = styled(Flex)<ImageContainerProps>(
+  props =>
     css({
-      boxShadow: 0,
-      border: 'avatar',
-      boxSizing: 'border-box',
-      borderRadius: borderRadiusVariant(variant),
-      width: 40,
-      height: 40
+      alignItems: 'center',
+      flexShrink: 0,
+      justifyContent: 'center',
+      bg: 'white',
+      border: props.variant === 'small' ? 'none' : 1,
+      boxShadow: props.variant === 'small' ? 'none' : 1,
+      overflow: 'hidden',
+      size: imageContainerVariantSize(props.variant),
+      variant: `avatarResourceTypes.${props.resourceType}`
     })
+  // props => props.theme.avatarResourceTypes[props.resourceType] or use this instead of the variant key above
+);
+
+const AvatarImage: React.FC<{
+  variant?: string;
+  resourceType?: string;
+  src: string | undefined;
+  address?: string;
+}> = ({ variant = 'medium', resourceType = 'user', src, address }) => (
+  <ImageContainer variant={variant} resourceType={resourceType}>
+    {src ? (
+      <Image src={src} height="100%" width="auto" />
+    ) : (
+      <Blockies seed={address} {...blockBySize(variant)} />
+    )}
+  </ImageContainer>
 );
 
 export default AvatarImage;
