@@ -259,7 +259,11 @@ const mapStateToProps = (state, router) => {
   if (draftBounty && draftBounty.user && user) {
     error = draftBounty.user.id !== user.id;
   }
-  if (isEditing && draftBounty.contract_version !== 2) {
+  if (
+    isEditing &&
+    (draftBounty.contract_version !== '2' &&
+      draftBounty.contract_version !== '2.1')
+  ) {
     error = true;
   }
 
