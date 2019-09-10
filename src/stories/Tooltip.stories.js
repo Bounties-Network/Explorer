@@ -9,7 +9,7 @@ import {
   boolean,
   number
 } from '@storybook/addon-knobs/react';
-import centered from '@storybook/addon-centered';
+import centered from '@storybook/addon-centered/react';
 
 import { Tooltip, Text } from 'components';
 
