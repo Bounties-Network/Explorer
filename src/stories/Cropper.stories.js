@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { Cropper, Text } from 'components';
 
 import { withKnobs, select, text, boolean } from '@storybook/addon-knobs/react';
-import centered from '@storybook/addon-centered';
+import centered from '@storybook/addon-centered/react';
 
 addDecorator(centered);
 

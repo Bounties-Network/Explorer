@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, addDecorator } from '@storybook/react';
 import { withKnobs, text } from '@storybook/addon-knobs';
-import centered from '@storybook/addon-centered';
+import centered from '@storybook/addon-centered/react';
 import Avatar from 'components/Avatar';
 
 addDecorator(centered);
