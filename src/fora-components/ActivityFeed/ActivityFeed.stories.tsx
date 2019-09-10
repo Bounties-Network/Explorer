@@ -1,13 +1,14 @@
 import React from 'react';
 import { storiesOf, addDecorator } from '@storybook/react';
 import centered from '@storybook/addon-centered';
-import Activity from '.';
+import Activity from '../Activity';
 import moment from 'moment';
+import { Flex } from 'rebass';
 
 addDecorator(centered);
 
-storiesOf('Activity', module)
-  .add('Submission', () => (
+storiesOf('ActivityFeed', module).add('v0', () => (
+  <Flex flexDirection="column">
     <Activity
       activityType={'submission'}
       authorAddress={'0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67'}
@@ -21,9 +22,7 @@ storiesOf('Activity', module)
         .toISOString()}
       communityName={'frontend'}
     />
-  ))
 
-  .add('CommentPreview', () => (
     <Activity
       activityType={'commentPreview'}
       authorAddress={'0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67'}
@@ -35,9 +34,7 @@ storiesOf('Activity', module)
         .toISOString()}
       communityName={'frontend'}
     />
-  ))
 
-  .add('BountyCreated', () => (
     <Activity
       activityType={'bountyCreated'}
       bountyStatus={'active'}
@@ -56,9 +53,7 @@ storiesOf('Activity', module)
         .toISOString()}
       communityName={'frontend'}
     />
-  ))
 
-  .add('LeaderboardRank', () => (
     <Activity
       activityType={'leaderboardRank'}
       rankChangeAmount={12}
@@ -72,9 +67,7 @@ storiesOf('Activity', module)
         .toISOString()}
       communityName={'frontend'}
     />
-  ))
 
-  .add('SubmissionAccepted', () => (
     <Activity
       activityType={'submissionAccepted'}
       bountyTitle={'This is some placeholder text for a long Bounty title... '}
@@ -88,9 +81,7 @@ storiesOf('Activity', module)
         .toISOString()}
       communityName={'frontend'}
     />
-  ))
 
-  .add('Contribution', () => (
     <Activity
       activityType={'contribution'}
       bountyTitle={'This is some placeholder text for a long Bounty title... '}
@@ -105,9 +96,7 @@ storiesOf('Activity', module)
         .toISOString()}
       communityName={'frontend'}
     />
-  ))
 
-  .add('DeadlineExtension', () => (
     <Activity
       activityType={'deadlineExtension'}
       bountyStatus={'active'}
@@ -127,9 +116,7 @@ storiesOf('Activity', module)
         .toISOString()}
       communityName={'frontend'}
     />
-  ))
 
-  .add('PayoutIncrease', () => (
     <Activity
       activityType={'payoutIncrease'}
       bountyStatus={'active'}
@@ -149,4 +136,5 @@ storiesOf('Activity', module)
         .toISOString()}
       communityName={'frontend'}
     />
-  ));
+  </Flex>
+));

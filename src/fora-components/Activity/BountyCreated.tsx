@@ -24,7 +24,8 @@ const Description = styled(Box)(() =>
   })
 );
 
-interface IProps {
+export interface IBountyCreatedProps {
+  activityType: 'bountyCreated';
   avatarSrc: string | undefined;
   authorName: string | undefined;
   authorAddress: string;
@@ -35,7 +36,7 @@ interface IProps {
   communityName: string;
   submissionCount: number;
 }
-const BountyCreated: React.FC<IProps> = ({
+const BountyCreated: React.FC<IBountyCreatedProps> = ({
   avatarSrc,
   authorName,
   bountyTitle,

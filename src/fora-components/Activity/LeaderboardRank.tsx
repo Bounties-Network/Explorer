@@ -24,7 +24,8 @@ const Description = styled(Box)(() =>
   })
 );
 
-interface IProps {
+export interface ILeaderboardRankProps {
+  activityType: 'leaderboardRank';
   avatarSrc: string;
   authorName: string | undefined;
   authorAddress: string;
@@ -32,7 +33,7 @@ interface IProps {
   timestamp: string;
   communityName: string;
 }
-const LeaderboardRank: React.FC<IProps> = ({
+const LeaderboardRank: React.FC<ILeaderboardRankProps> = ({
   avatarSrc,
   authorName,
   authorAddress,

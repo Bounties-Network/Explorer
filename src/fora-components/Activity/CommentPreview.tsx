@@ -23,7 +23,8 @@ const Description = styled(Box)(() =>
   })
 );
 
-interface IProps {
+export interface ICommentPreviewProps {
+  activityType: 'commentPreview';
   avatarSrc: string | undefined;
   authorName: string | undefined;
   authorAddress: string;
@@ -31,7 +32,7 @@ interface IProps {
   timestamp: string;
   communityName: string;
 }
-const CommentPreview: React.FC<IProps> = ({
+const CommentPreview: React.FC<ICommentPreviewProps> = ({
   avatarSrc,
   authorName,
   bountyTitle,

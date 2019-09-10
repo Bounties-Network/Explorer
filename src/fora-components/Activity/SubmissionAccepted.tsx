@@ -23,7 +23,8 @@ const Description = styled(Box)(() =>
   })
 );
 
-interface IProps {
+export interface ISubmissionAcceptedProps {
+  activityType: 'submissionAccepted';
   avatarSrc: string;
   authorName: string | undefined;
   authorAddress: string;
@@ -31,7 +32,7 @@ interface IProps {
   timestamp: string;
   communityName: string;
 }
-const SubmissionAccepted: React.FC<IProps> = ({
+const SubmissionAccepted: React.FC<ISubmissionAcceptedProps> = ({
   avatarSrc,
   authorName,
   authorAddress,

@@ -24,7 +24,8 @@ const Description = styled(Box)(() =>
   })
 );
 
-interface IProps {
+export interface IPayoutIncreaseProps {
+  activityType: 'payoutIncrease';
   avatarSrc: string | undefined;
   authorName: string | undefined;
   authorAddress: string;
@@ -36,7 +37,7 @@ interface IProps {
   communityName: string;
   submissionCount: number;
 }
-const DeadlineExtension: React.FC<IProps> = ({
+const DeadlineExtension: React.FC<IPayoutIncreaseProps> = ({
   avatarSrc,
   authorName,
   bountyTitle,
