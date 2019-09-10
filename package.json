@@ -45,6 +45,7 @@
     "ipfs-mini": "^1.1.2",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
+    "numbro": "^2.1.2",
     "object-assign": "4.1.1",
     "pluralize": "^7.0.0",
     "polished": "^3.2.0",

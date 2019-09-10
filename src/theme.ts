@@ -296,7 +296,7 @@ export const text = {
     color: colors.seaGlass400
   },
   introBannerDescription: {
-    fontFamily: 'Inter',
+    fontFamily: fonts.secondary,
     fontWeight: fontWeights.regular,
     fontSize: fontSizes[2] + 'px',
     lineHeight: lineHeights.h2 + 'px',
@@ -307,6 +307,16 @@ export const text = {
     fontSize: fontSizes[5] + 'px',
     fontWeight: fontWeights.regular,
     lineHeight: '29px'
+  },
+  status: {
+    active: {
+      color: colors.seaGlass500,
+      textTransform: 'capitalize',
+      fontFamily: fonts.secondary,
+      fontWeight: fontWeights.medium,
+      fontSize: fontSizes[0] + 'px',
+      lineHeight: '24px'
+    }
   }
 };
 
