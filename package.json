@@ -33,6 +33,7 @@
     "husky": "^0.14.3",
     "ipfs-mini": "^1.1.2",
     "moment": "^2.22.2",
+    "numbro": "^2.1.2",
     "object-assign": "4.1.1",
     "pluralize": "^7.0.0",
     "polished": "^3.2.0",

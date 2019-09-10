@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, Card, Button } from 'rebass';
 import styled from 'lib/emotion-styled';
 import css from '@styled-system/css';
+import numbro from 'numbro';
 
 const Container = styled(Card)(() =>
   css({
@@ -30,8 +31,11 @@ const PlatformStatistics: React.FC<IProps> = ({
     <Text variant="label">Platform bounties issued</Text>
     <Text variant="numeralMonospaceLarge">{platformBountiesIssued}</Text>
     <Text variant="label">Total value of bounties issued</Text>
-    <Text variant="numeralMonospaceLarge">{`$${totalBountyIssuedValueInUSD &&
-      totalBountyIssuedValueInUSD.toLocaleString().replace(/,/g, ', ')}`}</Text>
+    <Text variant="numeralMonospaceLarge">
+      {numbro(totalBountyIssuedValueInUSD)
+        .formatCurrency({ thousandSeparated: true })
+        .replace(/,/gi, ', ')}
+    </Text>
     <Button width={'100%'} variant="primary">
       View bounties
     </Button>
