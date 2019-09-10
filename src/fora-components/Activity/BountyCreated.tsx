@@ -35,7 +35,7 @@ interface IProps {
   communityName: string;
   submissionCount: number;
 }
-const Submission: React.FC<IProps> = ({
+const BountyCreated: React.FC<IProps> = ({
   avatarSrc,
   authorName,
   bountyTitle,
@@ -77,4 +77,4 @@ const Submission: React.FC<IProps> = ({
   </Container>
 );
 
-export default Submission;
+export default BountyCreated;
