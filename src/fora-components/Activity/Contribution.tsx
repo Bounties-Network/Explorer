@@ -17,40 +17,42 @@ const Description = styled(Box)(() =>
       display: 'inline-block',
       textAlign: 'left'
     },
-    '> *:nth-child(2)': {
+    '> *:nth-child(2n)': {
       mx: 1
     }
   })
 );
 
 interface IProps {
-  avatarSrc: string | undefined;
+  avatarSrc: string;
   authorName: string | undefined;
   authorAddress: string;
   bountyTitle: string;
+  ethContributionAmount: number;
   timestamp: string;
   communityName: string;
 }
-const CommentPreview: React.FC<IProps> = ({
+const Contribution: React.FC<IProps> = ({
   avatarSrc,
   authorName,
-  bountyTitle,
+  authorAddress,
+  ethContributionAmount,
   timestamp,
   communityName,
-  authorAddress
+  bountyTitle
 }) => (
   <Container flexDirection="column">
     <Content>
-      <AvatarImage
-        address={authorAddress}
-        src={avatarSrc}
-        resourceType="user"
-      />
+      <AvatarImage address={authorAddress} src={avatarSrc} />
       <DescriptionContainer flexDirection="column">
         <Description>
           <Text variant="bodyStrong">{authorName || '--'}</Text>
-          <Text variant="body" color="gray400">{` commented on `}</Text>
-          <Link variant="link">{bountyTitle}</Link>
+          <Text variant="body" color="gray400">{` just contributed `}</Text>
+          <Text variant="bodyStrong">{`${ethContributionAmount} ETH`}</Text>
+          <Text variant="body" color="gray400">{` to  `}</Text>
+          <Link variant="link" color="">
+            {bountyTitle}
+          </Link>
         </Description>
         <Flex>
           <Text variant="body" color="gray400">
@@ -63,4 +65,4 @@ const CommentPreview: React.FC<IProps> = ({
   </Container>
 );
 
-export default CommentPreview;
+export default Contribution;

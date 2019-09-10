@@ -31,7 +31,7 @@ interface IProps {
   timestamp: string;
   communityName: string;
 }
-const Submission: React.FC<IProps> = ({
+const SubmissionAccepted: React.FC<IProps> = ({
   avatarSrc,
   authorName,
   authorAddress,
@@ -62,4 +62,4 @@ const Submission: React.FC<IProps> = ({
   </Container>
 );
 
-export default Submission;
+export default SubmissionAccepted;

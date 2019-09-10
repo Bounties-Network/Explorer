@@ -1,15 +1,16 @@
 import React from 'react';
-import { Flex, Text, Link, Box } from 'rebass';
+import { Flex, Text, Box } from 'rebass';
 import Divider from 'fora-components/Divider';
 import AvatarImage from 'fora-components/AvatarImage';
 import css from '@styled-system/css';
 import styled from 'lib/emotion-styled';
 import moment from 'moment';
+import BountyPreviewCard from 'fora-components/Card/BountyPreviewCard';
 
 const Container = styled(Flex)(() => css({ maxWidth: 570 }));
 const Content = styled(Flex)(() => css({ '> *:first-child': { mr: 3 } }));
 const DescriptionContainer = styled(Flex)(() =>
-  css({ '> :first-child': { mb: 3 } })
+  css({ '> :not(:last-child)': { mb: 3 } })
 );
 const Description = styled(Box)(() =>
   css({
@@ -28,16 +29,24 @@ interface IProps {
   authorName: string | undefined;
   authorAddress: string;
   bountyTitle: string;
+  bountyExtensionDate: number;
+  bountyStatus: string;
   timestamp: string;
+  bountyExpirationTimestamp: string;
   communityName: string;
+  submissionCount: number;
 }
-const CommentPreview: React.FC<IProps> = ({
+const DeadlineExtension: React.FC<IProps> = ({
   avatarSrc,
   authorName,
   bountyTitle,
+  bountyStatus,
+  bountyExtensionDate,
+  bountyExpirationTimestamp,
   timestamp,
   communityName,
-  authorAddress
+  authorAddress,
+  submissionCount
 }) => (
   <Container flexDirection="column">
     <Content>
@@ -49,9 +58,22 @@ const CommentPreview: React.FC<IProps> = ({
       <DescriptionContainer flexDirection="column">
         <Description>
           <Text variant="bodyStrong">{authorName || '--'}</Text>
-          <Text variant="body" color="gray400">{` commented on `}</Text>
-          <Link variant="link">{bountyTitle}</Link>
+          <Text
+            variant="body"
+            color="gray400"
+          >{` extended their bounty's deadline to `}</Text>
+          <Text variant="bodyStrong">
+            {moment(bountyExtensionDate).format('DD/MM/YY')}
+          </Text>
         </Description>
+        <BountyPreviewCard
+          status={bountyStatus}
+          title={bountyTitle}
+          expirationTimestamp={bountyExpirationTimestamp}
+          submissionCount={submissionCount}
+          ethInUSD={'435'}
+          ethAmount={'0.56'}
+        />
         <Flex>
           <Text variant="body" color="gray400">
             {moment(timestamp).fromNow()} • {`f/${communityName}`}
@@ -63,4 +85,4 @@ const CommentPreview: React.FC<IProps> = ({
   </Container>
 );
 
-export default CommentPreview;
+export default DeadlineExtension;
