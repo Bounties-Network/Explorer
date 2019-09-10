@@ -23,7 +23,8 @@ const Description = styled(Box)(() =>
   })
 );
 
-interface IProps {
+export interface IContributionProps {
+  activityType: 'contribution';
   avatarSrc: string;
   authorName: string | undefined;
   authorAddress: string;
@@ -32,7 +33,7 @@ interface IProps {
   timestamp: string;
   communityName: string;
 }
-const Contribution: React.FC<IProps> = ({
+const Contribution: React.FC<IContributionProps> = ({
   avatarSrc,
   authorName,
   authorAddress,

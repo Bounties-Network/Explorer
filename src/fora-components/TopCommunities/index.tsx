@@ -53,7 +53,7 @@ const TopCommunities: React.FC<IProps> = ({ communities }) => (
       <Text variant="h3">Top communities</Text>
       <Link>See all</Link>
     </Header>
-    <Divider />
+    <Divider mb={5} />
     <CommunitiesContainer flexDirection="column">
       {communities.map(Community)}
     </CommunitiesContainer>
