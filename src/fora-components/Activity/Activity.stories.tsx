@@ -8,7 +8,8 @@ import {
   LeaderboardRank,
   SubmissionAccepted,
   Contribution,
-  DeadlineExtension
+  DeadlineExtension,
+  PayoutIncrease
 } from '.';
 import moment from 'moment';
 
@@ -113,6 +114,27 @@ storiesOf('Activity', module)
     <DeadlineExtension
       bountyStatus={'active'}
       bountyExtensionDate={1568553110000}
+      authorAddress={'0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67'}
+      avatarSrc={
+        'https://messari.s3.amazonaws.com/images/agora-images/0%3Fe%3D1554940800%26v%3Dbeta%26t%3DJIYqRj4hFp_woU4aOT7i6VVCH613wozFeVfWztcORVo'
+      }
+      authorName={'Simone Popé'}
+      bountyTitle={'This is some placeholder text for a long Bounty title... '}
+      submissionCount={2}
+      bountyExpirationTimestamp={moment()
+        .add(2, 'days')
+        .toISOString()}
+      timestamp={moment()
+        .subtract(4, 'hours')
+        .toISOString()}
+      communityName={'frontend'}
+    />
+  ))
+
+  .add('PayoutIncrease', () => (
+    <PayoutIncrease
+      bountyStatus={'active'}
+      bountyPayoutIncreaseAmount={0.56}
       authorAddress={'0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67'}
       avatarSrc={
         'https://messari.s3.amazonaws.com/images/agora-images/0%3Fe%3D1554940800%26v%3Dbeta%26t%3DJIYqRj4hFp_woU4aOT7i6VVCH613wozFeVfWztcORVo'

@@ -5,6 +5,7 @@ import LeaderboardRank from './LeaderboardRank';
 import SubmissionAccepted from './SubmissionAccepted';
 import Contribution from './Contribution';
 import DeadlineExtension from './DeadlineExtension';
+import PayoutIncrease from './PayoutIncrease';
 
 // Make this a generic switch case component based on props
 
@@ -15,5 +16,6 @@ export {
   LeaderboardRank,
   SubmissionAccepted,
   Contribution,
-  DeadlineExtension
+  DeadlineExtension,
+  PayoutIncrease
 };
