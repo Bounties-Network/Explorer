@@ -47,8 +47,7 @@ class IncreasePayoutFormModal extends React.Component {
       },
       (fulfillment_amount, values) => {
         if (
-          (bounty.contract_version === '2' ||
-            bounty.contract_version === '2.1') &&
+          (bounty.contract_version === 2 || bounty.contract_version === 2.1) &&
           BigNumber(values.fulfillment_amount || 0, 10).isGreaterThan(
             BigNumber(this.props.minimumBalance, 10)
           )
@@ -96,7 +95,7 @@ class IncreasePayoutFormModal extends React.Component {
                     textHighlightClass: styles.textHighlight
                   }
                 )}
-              {(contract_version === '2' || contract_version === '2.1') &&
+              {(contract_version === 2 || contract_version === 2.1) &&
                 intl.getHTML(
                   'sections.bounty.modals.increase_payout.description2',
                   {
@@ -142,12 +141,11 @@ class IncreasePayoutFormModal extends React.Component {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            {submitFailed &&
-              invalid && (
-                <Text inputLabel color="red">
-                  {intl.get('errors.form_error')}
-                </Text>
-              )}
+            {submitFailed && invalid && (
+              <Text inputLabel color="red">
+                {intl.get('errors.form_error')}
+              </Text>
+            )}
             <Button
               margin
               onClick={e => {

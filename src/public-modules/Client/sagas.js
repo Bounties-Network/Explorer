@@ -107,6 +107,15 @@ export function* getContractClient(contract_version = '2.1') {
   const { web3 } = yield call(getWeb3Client);
   const network = yield select(networkSelector);
 
+  console.log(
+    'interface',
+    config.interfaces[`StandardBountiesV${contract_version}`]
+  );
+  console.log(
+    'address',
+    config[network][`standardBountiesAddressV${contract_version}`]
+  );
+
   if (network !== 'unknown') {
     return {
       standardBounties: new web3.eth.Contract(

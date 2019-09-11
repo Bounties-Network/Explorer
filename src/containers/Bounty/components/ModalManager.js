@@ -90,10 +90,7 @@ const ModalManagerComponent = props => {
 
   const activateBounty = values =>
     initiateWalkthrough(() => {
-      if (
-        bounty.contract_version === '2' ||
-        bounty.contract_version === '2.1'
-      ) {
+      if (bounty.contract_version === 2 || bounty.contract_version === 2.1) {
         contributeAction(
           bounty.bounty_id,
           values.balance,

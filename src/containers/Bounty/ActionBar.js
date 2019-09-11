@@ -75,34 +75,31 @@ const ActionBar = props => {
             {intl.get('sections.bounty.actions.re_activate')}
           </Button>
         )}
-        {bounty.bounty_stage !== DEAD &&
-          bounty.bounty_stage !== COMPLETED && (
-            <Button
-              type="destructive"
-              className={styles.killButton}
-              fitWidth
-              onClick={() => initiateLoginProtection(() => showModal('kill'))}
-            >
-              {intl.get('sections.bounty.actions.de_activate')}
-            </Button>
-          )}
+        {bounty.bounty_stage !== DEAD && bounty.bounty_stage !== COMPLETED && (
+          <Button
+            type="destructive"
+            className={styles.killButton}
+            fitWidth
+            onClick={() => initiateLoginProtection(() => showModal('kill'))}
+          >
+            {intl.get('sections.bounty.actions.de_activate')}
+          </Button>
+        )}
 
-        {bounty.bounty_stage !== DEAD &&
-          bounty.contract_version === '1' && (
-            <Button
-              onClick={() =>
-                initiateLoginProtection(() => showModal('increasePayout'))
-              }
-              icon={faArrowUp}
-              fitWidth
-              className={styles.buttonGroup}
-            >
-              {intl.get('sections.bounty.actions.increase_prize')}
-            </Button>
-          )}
+        {bounty.bounty_stage !== DEAD && bounty.contract_version === '1' && (
+          <Button
+            onClick={() =>
+              initiateLoginProtection(() => showModal('increasePayout'))
+            }
+            icon={faArrowUp}
+            fitWidth
+            className={styles.buttonGroup}
+          >
+            {intl.get('sections.bounty.actions.increase_prize')}
+          </Button>
+        )}
 
-        {(bounty.contract_version === '2' ||
-          bounty.contract_version === '2.1') && (
+        {(bounty.contract_version === 2 || bounty.contract_version === 2.1) && (
           <Link to={editUrl}>
             <Button icon={faEdit} fitWidth className={styles.editBountyButton}>
               {intl.get('sections.bounty.actions.edit')}

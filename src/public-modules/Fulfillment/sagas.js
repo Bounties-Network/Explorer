@@ -62,7 +62,7 @@ export function* acceptFulfillment(action) {
   const userAddress = yield select(addressSelector);
   yield call(getWeb3Client);
 
-  const { standardBounties } = yield call(getContractClient, contract_version);
+  const { standardBounties } = yield call(arkieb, contract_version);
   try {
     let txHash;
     if (contract_version === '1') {
@@ -73,7 +73,7 @@ export function* acceptFulfillment(action) {
         bountyId,
         fulfillmentId
       );
-    } else if (contract_version === '2' || contract_version === '2.1') {
+    } else if (contract_version === 2 || contract_version === 2.1) {
       txHash = yield call(
         promisifyContractCall(standardBounties.acceptFulfillment, {
           from: userAddress
@@ -146,7 +146,7 @@ export function* createFulfillment(action) {
         bountyId,
         ipfsHash
       );
-    } else if (contract_version === '2' || contract_version === '2.1') {
+    } else if (contract_version === 2 || contract_version === 2.1) {
       txHash = yield call(
         promisifyContractCall(standardBounties.fulfillBounty, {
           from: userAddress
@@ -211,7 +211,7 @@ export function* updateFulfillment(action) {
 
   try {
     let txHash;
-    if (contract_version === '2' || contract_version === '2.1') {
+    if (contract_version === 2 || contract_version === 2.1) {
       txHash = yield call(
         promisifyContractCall(standardBounties.updateFulfillment, {
           from: userAddress
