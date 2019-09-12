@@ -242,11 +242,13 @@ export const text = {
     lineHeight: lineHeights.standard + 'px'
   },
   smallStrong: {
+    fontFamily: fonts.secondary,
     fontSize: fontSizes[0] + 'px',
     fontWeight: fontWeights.semiBold,
     lineHeight: lineHeights.small + 'px'
   },
   small: {
+    fontFamily: fonts.secondary,
     fontSize: fontSizes[0] + 'px',
     fontWeight: fontWeights.regular,
     lineHeight: lineHeights.small + 'px'
@@ -307,22 +309,13 @@ export const text = {
     fontSize: fontSizes[5] + 'px',
     fontWeight: fontWeights.regular,
     lineHeight: '29px'
-  },
-  status: {
-    active: {
-      color: colors.seaGlass500,
-      textTransform: 'capitalize',
-      fontFamily: fonts.secondary,
-      fontWeight: fontWeights.medium,
-      fontSize: fontSizes[0] + 'px',
-      lineHeight: '24px'
-    }
   }
 };
 
 // Button variants
 export const buttons = {
   primary: {
+    ...text.bodyStrong,
     backgroundColor: colors.seaGlass200,
     borderRadius: 2,
     border: borders.base,
@@ -330,7 +323,6 @@ export const buttons = {
     cursor: 'pointer',
     boxSizing: 'border-box',
     fontFamily: fonts.secondary,
-    ...text.bodyStrong,
     ':hover': {
       background: colors.seaGlass100,
       boxShadow: shadows[0],
@@ -347,6 +339,7 @@ export const buttons = {
     }
   },
   secondary: {
+    ...text.bodyStrong,
     backgroundColor: colors.white,
     borderRadius: 2,
     border: borders.base,
@@ -354,13 +347,14 @@ export const buttons = {
     cursor: 'pointer',
     boxSizing: 'border-box',
     fontFamily: fonts.secondary,
-    ...text.bodyStrong,
     ':hover': {
+      boxSizing: 'border-box',
       boxShadow: shadows[0],
       color: colors.black,
       border: borders.active
     },
     ':active': {
+      boxSizing: 'border-box',
       color: colors.black,
       border: borders.active
     },
@@ -371,20 +365,22 @@ export const buttons = {
     }
   },
   tertiary: {
+    ...text.bodyStrong,
     backgroundColor: colors.amber200,
     borderRadius: 2,
     color: colors.amber300,
     cursor: 'pointer',
     boxSizing: 'border-box',
     fontFamily: fonts.secondary,
-    ...text.bodyStrong,
     ':hover': {
       boxShadow: shadows[0],
+      boxSizing: 'border-box',
       color: colors.amber300,
       background: colors.amber100,
       border: borders.tertiaryActive
     },
     ':active': {
+      boxSizing: 'border-box',
       border: borders.tertiaryActive
     },
     ':disabled': {
@@ -414,6 +410,27 @@ export const textFormat = {
   }
 };
 
+export const pill = {
+  status: {
+    active: {
+      ...text.small,
+      textTransform: 'capitalize',
+      color: colors.seaGlass500,
+      backgroundColor: colors.seaGlass100
+    }
+  },
+  network: {
+    textTransform: 'capitalize',
+    backgroundColor: colors.white,
+    border: borders.base
+  },
+  notificationCount: {
+    backgroundColor: colors.rose200,
+    px: `${space[1]}px !important`,
+    py: `${space[1]}px !important`
+  }
+};
+
 export const variants = {
   card: {
     border: borders.base,
@@ -424,6 +441,15 @@ export const variants = {
   },
   link: {
     ...text.link
+  },
+  pill,
+  networkDot: {
+    mainnet: {
+      height: 2,
+      width: 2,
+      backgroundColor: colors.seaGlass200,
+      borderRadius: '50%'
+    }
   }
 };
 

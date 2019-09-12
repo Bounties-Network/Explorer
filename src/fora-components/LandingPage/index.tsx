@@ -7,6 +7,7 @@ import { Tabs, Tab, TabList, TabPanels, TabPanel } from 'fora-components/Tabs';
 import ActivityFeed from 'fora-components/ActivityFeed/View';
 import css from '@styled-system/css';
 import emotionStyled from 'lib/emotion-styled';
+import Navbar from 'fora-components/Navbar';
 
 const communities = [
   {
@@ -32,13 +33,16 @@ const communities = [
   }
 ];
 
-const Container = emotionStyled(Flex)(() => css({ pt: 6 }));
+const Container = emotionStyled(Flex)(() =>
+  css({ '> :first-child': { mb: 7 }, '> :not(:first-child)': { px: 7 } })
+);
 const Statistics = emotionStyled(Flex)(() =>
   css({ mr: 7, '> :first-child': { mb: 6 } })
 );
 
 const LandingPage = () => (
   <Container flexDirection="column">
+    <Navbar isLoggedIn={true} />
     <IntroBanner />
     <Flex>
       <Statistics flexDirection="column">
