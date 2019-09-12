@@ -32,6 +32,7 @@ type ImageContainerProps = { variant: string; resourceType: string };
 const ImageContainer = styled(Flex)<ImageContainerProps>(
   props =>
     css({
+      cursor: 'pointer',
       alignItems: 'center',
       flexShrink: 0,
       justifyContent: 'center',

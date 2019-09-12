@@ -31,7 +31,7 @@ const BountyPreviewCard = ({
         left: theme.space[3],
         top: '-10px'
       }))}
-      variant={`text.status.${status}`}
+      variant={`pill.status.${status}`}
       resourceType={status}
     />
     <Content>
