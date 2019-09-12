@@ -40,6 +40,7 @@ const Statistics = emotionStyled(Flex)(() =>
   css({ mr: 7, '> :first-child': { mb: 6 } })
 );
 
+// Super ignore the layout :))))))))
 const LandingPage = () => (
   <Container flexDirection="column">
     <Navbar isLoggedIn={true} />
