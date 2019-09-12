@@ -4,7 +4,7 @@ import Divider from 'fora-components/Divider';
 import AvatarImage from 'fora-components/AvatarImage';
 import css from '@styled-system/css';
 import styled from 'lib/emotion-styled';
-import moment from 'moment';
+import MetaData from './MetaData';
 
 const Container = styled(Flex)(() => css({ maxWidth: 570 }));
 const Content = styled(Flex)(() => css({ '> *:first-child': { mr: 3 } }));
@@ -32,6 +32,7 @@ export interface IContributionProps {
   ethContributionAmount: number;
   timestamp: string;
   communityName: string;
+  communityId: string;
 }
 const Contribution: React.FC<IContributionProps> = ({
   avatarSrc,
@@ -40,6 +41,7 @@ const Contribution: React.FC<IContributionProps> = ({
   ethContributionAmount,
   timestamp,
   communityName,
+  communityId,
   bountyTitle
 }) => (
   <Container flexDirection="column">
@@ -55,11 +57,11 @@ const Contribution: React.FC<IContributionProps> = ({
             {bountyTitle}
           </Link>
         </Description>
-        <Flex>
-          <Text variant="body" color="gray400">
-            {moment(timestamp).fromNow()} • {`f/${communityName}`}
-          </Text>
-        </Flex>
+        <MetaData
+          timestamp={timestamp}
+          communityName={communityName}
+          communityId={communityId}
+        />
       </DescriptionContainer>
     </Content>
     <Divider />

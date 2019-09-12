@@ -17,6 +17,7 @@ const ActivityFeed = () => (
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'123456789'}
     />
 
     <Activity
@@ -29,6 +30,7 @@ const ActivityFeed = () => (
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'123456789'}
     />
 
     <Activity
@@ -48,6 +50,7 @@ const ActivityFeed = () => (
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'123456789'}
     />
 
     <Activity
@@ -62,6 +65,7 @@ const ActivityFeed = () => (
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'123456789'}
     />
 
     <Activity
@@ -76,6 +80,7 @@ const ActivityFeed = () => (
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'123456789'}
     />
 
     <Activity
@@ -91,6 +96,7 @@ const ActivityFeed = () => (
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'123456789'}
     />
 
     <Activity
@@ -111,6 +117,7 @@ const ActivityFeed = () => (
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'frontend'}
     />
 
     <Activity
@@ -131,6 +138,7 @@ const ActivityFeed = () => (
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'frontend'}
     />
   </Flex>
 );

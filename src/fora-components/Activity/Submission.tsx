@@ -4,7 +4,7 @@ import Divider from 'fora-components/Divider';
 import AvatarImage from 'fora-components/AvatarImage';
 import css from '@styled-system/css';
 import styled from 'lib/emotion-styled';
-import moment from 'moment';
+import MetaData from './MetaData';
 
 const Container = styled(Flex)(() => css({ maxWidth: 570 }));
 const Content = styled(Flex)(() => css({ '> *:first-child': { mr: 3 } }));
@@ -31,6 +31,7 @@ export interface ISubmissionProps {
   bountyTitle: string;
   timestamp: string;
   communityName: string;
+  communityId: string;
 }
 const Submission: React.FC<ISubmissionProps> = ({
   avatarSrc,
@@ -38,7 +39,8 @@ const Submission: React.FC<ISubmissionProps> = ({
   authorAddress,
   bountyTitle,
   timestamp,
-  communityName
+  communityName,
+  communityId
 }) => (
   <Container flexDirection="column">
     <Content>
@@ -49,11 +51,11 @@ const Submission: React.FC<ISubmissionProps> = ({
           <Text variant="body" color="gray400">{` submitted to `}</Text>
           <Link variant="link">{bountyTitle}</Link>
         </Description>
-        <Flex>
-          <Text variant="body" color="gray400">
-            {moment(timestamp).fromNow()} • {`f/${communityName}`}
-          </Text>
-        </Flex>
+        <MetaData
+          timestamp={timestamp}
+          communityName={communityName}
+          communityId={communityId}
+        />
       </DescriptionContainer>
     </Content>
     <Divider />

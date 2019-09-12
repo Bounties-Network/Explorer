@@ -4,7 +4,7 @@ import Divider from 'fora-components/Divider';
 import AvatarImage from 'fora-components/AvatarImage';
 import css from '@styled-system/css';
 import styled from 'lib/emotion-styled';
-import moment from 'moment';
+import MetaData from './MetaData';
 
 const Container = styled(Flex)(() => css({ maxWidth: 570 }));
 const Content = styled(Flex)(() => css({ '> *:first-child': { mr: 3 } }));
@@ -31,6 +31,7 @@ export interface ICommentPreviewProps {
   bountyTitle: string;
   timestamp: string;
   communityName: string;
+  communityId: string;
 }
 const CommentPreview: React.FC<ICommentPreviewProps> = ({
   avatarSrc,
@@ -38,6 +39,7 @@ const CommentPreview: React.FC<ICommentPreviewProps> = ({
   bountyTitle,
   timestamp,
   communityName,
+  communityId,
   authorAddress
 }) => (
   <Container flexDirection="column">
@@ -53,11 +55,11 @@ const CommentPreview: React.FC<ICommentPreviewProps> = ({
           <Text variant="body" color="gray400">{` commented on `}</Text>
           <Link variant="link">{bountyTitle}</Link>
         </Description>
-        <Flex>
-          <Text variant="body" color="gray400">
-            {moment(timestamp).fromNow()} • {`f/${communityName}`}
-          </Text>
-        </Flex>
+        <MetaData
+          timestamp={timestamp}
+          communityName={communityName}
+          communityId={communityId}
+        />
       </DescriptionContainer>
     </Content>
     <Divider />

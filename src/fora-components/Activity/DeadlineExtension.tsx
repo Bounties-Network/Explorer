@@ -6,6 +6,7 @@ import css from '@styled-system/css';
 import styled from 'lib/emotion-styled';
 import moment from 'moment';
 import BountyPreviewCard from 'fora-components/Card/BountyPreviewCard';
+import MetaData from './MetaData';
 
 const Container = styled(Flex)(() => css({ maxWidth: 570 }));
 const Content = styled(Flex)(() => css({ '> *:first-child': { mr: 3 } }));
@@ -35,6 +36,7 @@ export interface IDeadlineExtensionProps {
   timestamp: string;
   bountyExpirationTimestamp: string;
   communityName: string;
+  communityId: string;
   submissionCount: number;
 }
 const DeadlineExtension: React.FC<IDeadlineExtensionProps> = ({
@@ -46,6 +48,7 @@ const DeadlineExtension: React.FC<IDeadlineExtensionProps> = ({
   bountyExpirationTimestamp,
   timestamp,
   communityName,
+  communityId,
   authorAddress,
   submissionCount
 }) => (
@@ -75,11 +78,11 @@ const DeadlineExtension: React.FC<IDeadlineExtensionProps> = ({
           ethInUSD={'435'}
           ethAmount={'0.56'}
         />
-        <Flex>
-          <Text variant="body" color="gray400">
-            {moment(timestamp).fromNow()} • {`f/${communityName}`}
-          </Text>
-        </Flex>
+        <MetaData
+          timestamp={timestamp}
+          communityName={communityName}
+          communityId={communityId}
+        />
       </DescriptionContainer>
     </Content>
     <Divider />

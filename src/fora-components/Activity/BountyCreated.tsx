@@ -3,16 +3,18 @@ import { Flex, Text, Box } from 'rebass';
 import Divider from 'fora-components/Divider';
 import AvatarImage from 'fora-components/AvatarImage';
 import css from '@styled-system/css';
-import styled from 'lib/emotion-styled';
-import moment from 'moment';
+import emotionStyled from 'lib/emotion-styled';
 import BountyPreviewCard from 'fora-components/Card/BountyPreviewCard';
+import MetaData from './MetaData';
 
-const Container = styled(Flex)(() => css({ maxWidth: 570 }));
-const Content = styled(Flex)(() => css({ '> *:first-child': { mr: 3 } }));
-const DescriptionContainer = styled(Flex)(() =>
+const Container = emotionStyled(Flex)(() => css({ maxWidth: 570 }));
+const Content = emotionStyled(Flex)(() =>
+  css({ '> *:first-child': { mr: 3 } })
+);
+const DescriptionContainer = emotionStyled(Flex)(() =>
   css({ '> :not(:last-child)': { mb: 3 } })
 );
-const Description = styled(Box)(() =>
+const Description = emotionStyled(Box)(() =>
   css({
     '> *': {
       display: 'inline-block',
@@ -34,6 +36,7 @@ export interface IBountyCreatedProps {
   timestamp: string;
   bountyExpirationTimestamp: string;
   communityName: string;
+  communityId: string;
   submissionCount: number;
 }
 const BountyCreated: React.FC<IBountyCreatedProps> = ({
@@ -44,6 +47,7 @@ const BountyCreated: React.FC<IBountyCreatedProps> = ({
   bountyExpirationTimestamp,
   timestamp,
   communityName,
+  communityId,
   authorAddress,
   submissionCount
 }) => (
@@ -67,11 +71,11 @@ const BountyCreated: React.FC<IBountyCreatedProps> = ({
           ethInUSD={'435'}
           ethAmount={'0.56'}
         />
-        <Flex>
-          <Text variant="body" color="gray400">
-            {moment(timestamp).fromNow()} • {`f/${communityName}`}
-          </Text>
-        </Flex>
+        <MetaData
+          timestamp={timestamp}
+          communityName={communityName}
+          communityId={communityId}
+        />
       </DescriptionContainer>
     </Content>
     <Divider />
