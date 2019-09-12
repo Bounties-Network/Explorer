@@ -4,8 +4,8 @@ import Divider from 'fora-components/Divider';
 import AvatarImage from 'fora-components/AvatarImage';
 import css from '@styled-system/css';
 import styled from 'lib/emotion-styled';
-import moment from 'moment';
 import numbro from 'numbro';
+import MetaData from './MetaData';
 
 const Container = styled(Flex)(() => css({ maxWidth: 570 }));
 const Content = styled(Flex)(() => css({ '> *:first-child': { mr: 3 } }));
@@ -32,6 +32,7 @@ export interface ILeaderboardRankProps {
   rankChangeAmount: number;
   timestamp: string;
   communityName: string;
+  communityId: string;
 }
 const LeaderboardRank: React.FC<ILeaderboardRankProps> = ({
   avatarSrc,
@@ -39,7 +40,8 @@ const LeaderboardRank: React.FC<ILeaderboardRankProps> = ({
   authorAddress,
   rankChangeAmount,
   timestamp,
-  communityName
+  communityName,
+  communityId
 }) => (
   <Container flexDirection="column">
     <Content>
@@ -59,11 +61,11 @@ const LeaderboardRank: React.FC<ILeaderboardRankProps> = ({
           <Text variant="body" color="gray400">{` on the  `}</Text>
           <Link variant="link" color="">{`leaderboard!`}</Link>
         </Description>
-        <Flex>
-          <Text variant="body" color="gray400">
-            {moment(timestamp).fromNow()} • {`f/${communityName}`}
-          </Text>
-        </Flex>
+        <MetaData
+          timestamp={timestamp}
+          communityName={communityName}
+          communityId={communityId}
+        />
       </DescriptionContainer>
     </Content>
     <Divider />

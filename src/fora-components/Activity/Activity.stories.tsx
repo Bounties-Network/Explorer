@@ -20,6 +20,7 @@ storiesOf('Activity', module)
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'frontend'}
     />
   ))
 
@@ -34,6 +35,7 @@ storiesOf('Activity', module)
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'frontend'}
     />
   ))
 
@@ -54,6 +56,7 @@ storiesOf('Activity', module)
       timestamp={moment()
         .subtract(4, 'hours')
         .toISOString()}
+      communityId={'1234567890'}
       communityName={'frontend'}
     />
   ))
@@ -71,6 +74,7 @@ storiesOf('Activity', module)
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'frontend'}
     />
   ))
 
@@ -87,6 +91,7 @@ storiesOf('Activity', module)
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'frontend'}
     />
   ))
 
@@ -104,6 +109,7 @@ storiesOf('Activity', module)
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'frontend'}
     />
   ))
 
@@ -126,6 +132,7 @@ storiesOf('Activity', module)
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'frontend'}
     />
   ))
 
@@ -148,5 +155,6 @@ storiesOf('Activity', module)
         .subtract(4, 'hours')
         .toISOString()}
       communityName={'frontend'}
+      communityId={'frontend'}
     />
   ));
