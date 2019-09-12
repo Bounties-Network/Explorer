@@ -62,7 +62,7 @@ export function* acceptFulfillment(action) {
   const userAddress = yield select(addressSelector);
   yield call(getWeb3Client);
 
-  const { standardBounties } = yield call(arkieb, contract_version);
+  const { standardBounties } = yield call(getContractClient, contract_version);
   try {
     let txHash;
     if (contract_version === '1') {
