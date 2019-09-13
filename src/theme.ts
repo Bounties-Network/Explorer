@@ -12,7 +12,7 @@ const addAliases = (arr, aliases) =>
   );
 
 // Break-points
-export const breakpoints = [32, 40, 48, 64].map(n => n + 'em');
+export const breakpoints = [40, 52, 64, 80].map(n => n + 'em');
 
 export const mediaQueries = breakpoints.map(createMediaQuery);
 
