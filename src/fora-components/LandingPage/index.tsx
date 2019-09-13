@@ -8,6 +8,7 @@ import ActivityFeed from 'fora-components/ActivityFeed/View';
 import css from '@styled-system/css';
 import emotionStyled from 'lib/emotion-styled';
 import Navbar from 'fora-components/Navbar';
+import Footer from 'fora-components/Footer';
 
 const communities = [
   {
@@ -33,49 +34,51 @@ const communities = [
   }
 ];
 
-const Container = emotionStyled(Flex)(() =>
-  css({ '> :first-child': { mb: 7 }, '> :not(:first-child)': { px: 7 } })
-);
+const Container = emotionStyled(Flex)(() => css({}));
 const Statistics = emotionStyled(Flex)(() =>
   css({ mr: 7, '> :first-child': { mb: 6 } })
 );
+const Content = emotionStyled(Flex)(() => css({ py: 7, '> *': { px: 7 } }));
 
 // Super ignore the layout :))))))))
 const LandingPage = () => (
   <Container flexDirection="column">
     <Navbar isLoggedIn={true} />
-    <IntroBanner />
-    <Flex>
-      <Statistics flexDirection="column">
-        <PlatformStatistics
-          activePlatformBounties={999}
-          platformBountiesIssued={9999}
-          totalBountyIssuedValueInUSD={9999999}
-        />
-        <TopCommunities communities={communities} />
-      </Statistics>
-      <Box>
-        <Tabs>
-          <TabList>
-            <Tab>Activity</Tab>
-            <Tab>Leaderboard</Tab>
-            <Tab>Members</Tab>
-          </TabList>
+    <Content flexDirection="column">
+      <IntroBanner />
+      <Flex>
+        <Statistics flexDirection="column">
+          <PlatformStatistics
+            activePlatformBounties={999}
+            platformBountiesIssued={9999}
+            totalBountyIssuedValueInUSD={9999999}
+          />
+          <TopCommunities communities={communities} />
+        </Statistics>
+        <Box>
+          <Tabs>
+            <TabList>
+              <Tab>Activity</Tab>
+              <Tab>Leaderboard</Tab>
+              <Tab>Members</Tab>
+            </TabList>
 
-          <TabPanels>
-            <TabPanel>
-              <ActivityFeed />
-            </TabPanel>
-            <TabPanel>
-              <p>two!</p>
-            </TabPanel>
-            <TabPanel>
-              <p>three!</p>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
-      </Box>
-    </Flex>
+            <TabPanels>
+              <TabPanel>
+                <ActivityFeed />
+              </TabPanel>
+              <TabPanel>
+                <p>two!</p>
+              </TabPanel>
+              <TabPanel>
+                <p>three!</p>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </Box>
+      </Flex>
+    </Content>
+    <Footer />
   </Container>
 );
 
