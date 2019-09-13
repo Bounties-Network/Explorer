@@ -171,7 +171,7 @@
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "preact": "^8.5.2",
-    "prettier": "^1.11.1",
+    "prettier": "^1.18.2",
     "react-dev-utils": "^9.0.3",
     "react-hot-loader": "^4.12.11",
     "rollbar-sourcemap-webpack-plugin": "^2.5.1",
@@ -190,13 +190,13 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,,ts,tsx,json,css}": [
-      "prettier --single-quote --write",
+      "prettier --write",
       "git add"
     ]
   },
   "scripts": {
     "check-types": "tsc",
-    "lint": "prettier --single-quote --write \"src/**/*.{js,jsx,,ts,tsx,json,css}\"",
+    "lint": "prettier --write \"src/**/*.{js,jsx,,ts,tsx,json,css}\"",
     "precommit": "yarn check-types && lint-staged",
     "dev": "npm run start-staging",
     "start": "APP_SETTINGS_FILE=production_settings APP_LOGO=logo node scripts/start.js",
