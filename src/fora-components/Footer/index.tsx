@@ -3,6 +3,15 @@ import { css } from '@styled-system/css';
 import { Flex, Text, Link } from 'rebass';
 import emotionStyled from 'lib/emotion-styled';
 import MustardLogo from 'assets/mustard-logo';
+import Divider from 'fora-components/Divider';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFacebook,
+  faTwitter,
+  faReddit,
+  faLinkedin,
+  faSlack
+} from '@fortawesome/free-brands-svg-icons';
 
 const Container = emotionStyled(Flex)(() =>
   css({
@@ -107,20 +116,60 @@ const SiteContent = emotionStyled(Flex)(() =>
 );
 const LinkColumnsContainer = emotionStyled(Flex)(() =>
   css({
-    '> :not(:last-child)': { mr: [2, 3, 6] }
+    '> :not(:last-child)': { mr: [2, 3, 6, 6] }
   })
+);
+const SocialContent = emotionStyled(Flex)(() =>
+  css({ '> :first-child': { mr: 'auto' } })
+);
+const SocialLinksContainer = emotionStyled(Flex)(() =>
+  css({ '> :not(:last-child)': { mr: 4 } })
+);
+const SocialIcon = emotionStyled(FontAwesomeIcon)(() =>
+  css({ color: 'amber200' })
+);
+
+const SocialLinks = () => (
+  <SocialLinksContainer>
+    <Link href={`https://twitter.com/home?status=`}>
+      <SocialIcon icon={faTwitter} />
+    </Link>
+    <Link href={`https://www.facebook.com/sharer/sharer.php?u=`}>
+      <SocialIcon icon={faFacebook} />
+    </Link>
+    <Link href={`http://reddit.com/submit?url=`}>
+      <SocialIcon icon={faReddit} />
+    </Link>
+    <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=`}>
+      <SocialIcon icon={faLinkedin} />
+    </Link>
+    <Link href={`https://www.slack.com/`}>
+      <SocialIcon icon={faSlack} />
+    </Link>
+  </SocialLinksContainer>
 );
 
 interface IProps {}
 const Footer: React.FC<IProps> = ({}) => {
   return (
-    <Container>
+    <Container flexDirection="column">
       <SiteContent>
         <MustardLogo />
         <LinkColumnsContainer>
           {footerLinks.map(LinkColumn)}
         </LinkColumnsContainer>
       </SiteContent>
+      <Divider
+        mt={[3, 4, 5, 6]}
+        mb={[3, 3, 5, 5]}
+        backgroundColor="seaGlass300"
+      />
+      <SocialContent>
+        <SocialLinks />
+        <Text color="seaGlass200" variant="body">
+          ©2019 fora, Inc. All rights reserved.
+        </Text>
+      </SocialContent>
     </Container>
   );
 };
