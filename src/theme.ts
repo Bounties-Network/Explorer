@@ -12,42 +12,42 @@ const addAliases = (arr, aliases) =>
   );
 
 // Break-points
-export const breakpoints = [40, 52, 64, 80].map(n => n + 'em');
+export const breakpoints = [40, 52, 64, 80].map(n => n + "em");
 
 export const mediaQueries = breakpoints.map(createMediaQuery);
 
-const aliases = ['sm', 'md', 'lg', 'xl'];
+const aliases = ["sm", "md", "lg", "xl"];
 
 addAliases(breakpoints, aliases);
 addAliases(mediaQueries, aliases);
 
 // COLOR PALETTE
-const seaGlass100 = 'hsl(187, 45%, 81%)';
-const seaGlass200 = 'hsl(187, 50%, 60%)';
-const seaGlass300 = 'hsl(187, 76%, 35%)';
-const seaGlass400 = 'hsl(191, 76%, 27%)';
-const seaGlass500 = 'hsl(190, 95%, 18%)';
+const seaGlass100 = "hsl(187, 45%, 81%)";
+const seaGlass200 = "hsl(187, 50%, 60%)";
+const seaGlass300 = "hsl(187, 76%, 35%)";
+const seaGlass400 = "hsl(191, 76%, 27%)";
+const seaGlass500 = "hsl(190, 95%, 18%)";
 
-const rose100 = 'hsl(351, 68%, 83%)';
-const rose200 = 'hsl(352, 64%, 67%)';
-const rose300 = 'hsl(345, 68%, 23%)';
+const rose100 = "hsl(351, 68%, 83%)";
+const rose200 = "hsl(352, 64%, 67%)";
+const rose300 = "hsl(345, 68%, 23%)";
 
-const amber100 = 'hsl(21, 94%, 85%)';
-const amber200 = 'hsl(21, 95%, 75%)';
-const amber300 = 'hsl(18, 68%, 35%)';
+const amber100 = "hsl(21, 94%, 85%)";
+const amber200 = "hsl(21, 95%, 75%)";
+const amber300 = "hsl(18, 68%, 35%)";
 
-const mustard100 = 'hsl(175, 31%, 16%)';
-const mustard200 = 'hsl(39, 100%, 77%)';
-const mustard300 = 'hsl(36, 85%, 38%)';
+const mustard100 = "hsl(175, 31%, 16%)";
+const mustard200 = "hsl(39, 100%, 77%)";
+const mustard300 = "hsl(36, 85%, 38%)";
 
-const gray100 = 'hsl(219, 27%, 97%)';
-const gray200 = 'hsl(180, 2%, 91%)';
-const gray300 = 'hsl(199, 4%, 86%)';
-const gray400 = 'hsl(193, 4%, 57%)';
-const gray500 = 'hsl(199, 4%, 29%)';
-const black = 'hsl(197, 17%, 8%)';
-const white = 'hsl(0, 0%, 100%)';
-const transparentWhite = 'rgba(255, 255, 255, 65%)';
+const gray100 = "hsl(219, 27%, 97%)";
+const gray200 = "hsl(180, 2%, 91%)";
+const gray300 = "hsl(199, 4%, 86%)";
+const gray400 = "hsl(193, 4%, 57%)";
+const gray500 = "hsl(199, 4%, 29%)";
+const black = "hsl(197, 17%, 8%)";
+const white = "hsl(0, 0%, 100%)";
+const transparentWhite = "rgba(255, 255, 255, 65%)";
 
 // Brand color aliases
 const brandPrimary = seaGlass200;
@@ -115,8 +115,8 @@ export const sizes = [0, 4, 8, 16, 32, 40, 64, 80, 100, 128];
 export const body = '"Domine", Inter, -apple-system';
 export const primary = '"Domine"';
 export const secondary = '"Inter"';
-export const heading = 'inherit';
-export const monospace = 'Roboto';
+export const heading = "inherit";
+export const monospace = "Roboto";
 export const fontSizes = [12, 14, 16, 18, 20, 25];
 export const fonts = {
   body,
@@ -153,8 +153,8 @@ export const lineHeights = {
 
 // BORDERS
 // styled-system's 'borderRadius' function can hook into the 'radii' object/array
-export const radii = [0, 4, 8, '50%'];
-export const radius = '8px';
+export const radii = [0, 4, 8, "50%"];
+export const radius = "8px";
 
 const baseBorder = `1px solid ${colors.baseBorderColor}`;
 const primaryActiveBorder = `1px solid ${colors.seaGlass200}`;
@@ -175,13 +175,14 @@ const borders = {
 export { borders };
 
 // PAGE WRAPPER
-export const maxContainerWidth = '1280px';
+export const maxContainerWidth = "1280px";
 
 // BOX SHADOWS
 export const shadows = [
-  '0px 2px 4px rgba(17, 22, 24, 0.08);', //buttonShadow1, cardShadow
-  '0px 3px 5px rgba(17, 22, 24, 0.15);', //buttonShadow2
-  '0px 9px 24px rgba(0, 0, 0, 0.08)', //shadowLarge
+  "0px 2px 4px rgba(17, 22, 24, 0.08);", //buttonShadow1, cardShadow
+  "0px 3px 5px rgba(17, 22, 24, 0.15);", //buttonShadow2
+  "0px 9px 24px rgba(0, 0, 0, 0.08)", //shadowLarge
+  `inset 0px 1px 4px rgba(0, 0, 0, 0.14)`, // innerShadows
   `0 0 10px ${colors.gray200}`,
   `inset 0 0 0 1px ${colors.brandSecondary}`,
   `inset 0 0 0 1px ${colors.brandDestructive}`
@@ -193,122 +194,122 @@ export const zIndices = [0, 9, 99, 999, 9999];
 // Text variants
 export const text = {
   h1: {
-    fontSize: fontSizes[5] + 'px',
+    fontSize: fontSizes[5] + "px",
     fontWeight: fontWeights.bold,
-    lineHeight: lineHeights.h1 + 'px'
+    lineHeight: lineHeights.h1 + "px"
   },
   h2: {
-    fontSize: fontSizes[4] + 'px',
+    fontSize: fontSizes[4] + "px",
     fontWeight: fontWeights.bold,
-    lineHeight: lineHeights.h2 + 'px'
+    lineHeight: lineHeights.h2 + "px"
   },
   h2Secondary: {
-    fontSize: fontSizes[4] + 'px',
+    fontSize: fontSizes[4] + "px",
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.h2 + 'px'
+    lineHeight: lineHeights.h2 + "px"
   },
   h3: {
     fontFamily: fonts.secondary,
-    fontSize: fontSizes[3] + 'px',
+    fontSize: fontSizes[3] + "px",
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.h3 + 'px'
+    lineHeight: lineHeights.h3 + "px"
   },
   h4: {
-    fontSize: fontSizes[2] + 'px',
+    fontSize: fontSizes[2] + "px",
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.h4 + 'px'
+    lineHeight: lineHeights.h4 + "px"
   },
   h5: {
-    fontSize: fontSizes[1] + 'px',
+    fontSize: fontSizes[1] + "px",
     fontWeight: fontWeights.semiBold,
-    lineHeight: lineHeights.h5 + 'px'
+    lineHeight: lineHeights.h5 + "px"
   },
   bodyItalic: {
-    fontSize: fontSizes[1] + 'px',
+    fontSize: fontSizes[1] + "px",
     fontWeight: fontWeights.regular,
-    fontStyle: 'italic',
-    lineHeight: lineHeights.standard + 'px'
+    fontStyle: "italic",
+    lineHeight: lineHeights.standard + "px"
   },
   bodyStrong: {
     color: colors.black,
     fontFamily: fonts.secondary,
-    fontSize: fontSizes[1] + 'px',
+    fontSize: fontSizes[1] + "px",
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.standard + 'px'
+    lineHeight: lineHeights.standard + "px"
   },
   body: {
-    fontSize: fontSizes[1] + 'px',
+    fontSize: fontSizes[1] + "px",
     fontWeight: fontWeights.regular,
-    lineHeight: lineHeights.standard + 'px'
+    lineHeight: lineHeights.standard + "px"
   },
   smallStrong: {
     fontFamily: fonts.secondary,
-    fontSize: fontSizes[0] + 'px',
+    fontSize: fontSizes[0] + "px",
     fontWeight: fontWeights.semiBold,
-    lineHeight: lineHeights.small + 'px'
+    lineHeight: lineHeights.small + "px"
   },
   small: {
     fontFamily: fonts.secondary,
-    fontSize: fontSizes[0] + 'px',
+    fontSize: fontSizes[0] + "px",
     fontWeight: fontWeights.regular,
-    lineHeight: lineHeights.small + 'px'
+    lineHeight: lineHeights.small + "px"
   },
   link: {
     fontFamily: fonts.secondary,
-    fontSize: fontSizes[1] + 'px',
+    fontSize: fontSizes[1] + "px",
     fontWeight: fontWeights.regular,
-    lineHeight: lineHeights.standard + 'px !important',
+    lineHeight: lineHeights.standard + "px !important",
     color: colors.seaGlass300
   },
   linkStrong: {
     fontFamily: fonts.secondary,
-    fontSize: fontSizes[1] + 'px',
+    fontSize: fontSizes[1] + "px",
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.standard + 'px',
+    lineHeight: lineHeights.standard + "px",
     color: colors.seaGlass300
   },
   linkSmall: {
     fontFamily: fonts.secondary,
-    fontSize: fontSizes[0] + 'px',
+    fontSize: fontSizes[0] + "px",
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.standard + 'px'
+    lineHeight: lineHeights.standard + "px"
   },
   label: {
     color: colors.gray400,
-    fontSize: fontSizes[0] + 'px',
+    fontSize: fontSizes[0] + "px",
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.small + 'px'
+    lineHeight: lineHeights.small + "px"
   },
   help: {
-    fontSize: fontSizes[0] + 'px',
+    fontSize: fontSizes[0] + "px",
     fontWeight: fontWeights.regular,
-    fontStyle: 'italic',
-    lineHeight: lineHeights.standard + 'px'
+    fontStyle: "italic",
+    lineHeight: lineHeights.standard + "px"
   },
   tableHeading: {
-    fontSize: fontSizes[0] + 'px',
+    fontSize: fontSizes[0] + "px",
     fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.standard + 'px'
+    lineHeight: lineHeights.standard + "px"
   },
   introBannerH1: {
-    fontFamily: 'Domine',
+    fontFamily: "Domine",
     fontWeight: fontWeights.bold,
-    fontSize: '40px',
-    lineHeight: '51px',
+    fontSize: "40px",
+    lineHeight: "51px",
     color: colors.seaGlass400
   },
   introBannerDescription: {
     fontFamily: fonts.secondary,
     fontWeight: fontWeights.regular,
-    fontSize: fontSizes[2] + 'px',
-    lineHeight: lineHeights.h2 + 'px',
+    fontSize: fontSizes[2] + "px",
+    lineHeight: lineHeights.h2 + "px",
     color: colors.seaGlass500
   },
   numeralMonospaceLarge: {
     fontFamily: fonts.monospace,
-    fontSize: fontSizes[5] + 'px',
+    fontSize: fontSizes[5] + "px",
     fontWeight: fontWeights.regular,
-    lineHeight: '29px'
+    lineHeight: "29px"
   }
 };
 
@@ -320,21 +321,21 @@ export const buttons = {
     borderRadius: 2,
     border: borders.base,
     color: colors.seaGlass500,
-    cursor: 'pointer',
-    boxSizing: 'border-box',
+    cursor: "pointer",
+    boxSizing: "border-box",
     fontFamily: fonts.secondary,
-    ':hover': {
+    ":hover": {
       background: colors.seaGlass100,
       boxShadow: shadows[0],
       border: borders.primaryActive
     },
-    ':active': {
+    ":active": {
       background: colors.seaGlass100,
       border: borders.primaryActive
     },
-    ':disabled': {
+    ":disabled": {
       background: colors.seaGlass200,
-      cursor: 'not-allowed',
+      cursor: "not-allowed",
       color: colors.gray300
     }
   },
@@ -344,23 +345,23 @@ export const buttons = {
     borderRadius: 2,
     border: borders.base,
     color: colors.gray500,
-    cursor: 'pointer',
-    boxSizing: 'border-box',
+    cursor: "pointer",
+    boxSizing: "border-box",
     fontFamily: fonts.secondary,
-    ':hover': {
-      boxSizing: 'border-box',
+    ":hover": {
+      boxSizing: "border-box",
       boxShadow: shadows[0],
       color: colors.black,
       border: borders.active
     },
-    ':active': {
-      boxSizing: 'border-box',
+    ":active": {
+      boxSizing: "border-box",
       color: colors.black,
       border: borders.active
     },
-    ':disabled': {
+    ":disabled": {
       background: colors.gray100,
-      cursor: 'not-allowed',
+      cursor: "not-allowed",
       color: colors.gray300
     }
   },
@@ -369,23 +370,23 @@ export const buttons = {
     backgroundColor: colors.amber200,
     borderRadius: 2,
     color: colors.amber300,
-    cursor: 'pointer',
-    boxSizing: 'border-box',
+    cursor: "pointer",
+    boxSizing: "border-box",
     fontFamily: fonts.secondary,
-    ':hover': {
+    ":hover": {
       boxShadow: shadows[0],
-      boxSizing: 'border-box',
+      boxSizing: "border-box",
       color: colors.amber300,
       background: colors.amber100,
       border: borders.tertiaryActive
     },
-    ':active': {
-      boxSizing: 'border-box',
+    ":active": {
+      boxSizing: "border-box",
       border: borders.tertiaryActive
     },
-    ':disabled': {
+    ":disabled": {
       background: colors.amber100,
-      cursor: 'not-allowed',
+      cursor: "not-allowed",
       color: colors.gray100
     }
   }
@@ -403,10 +404,10 @@ export const avatarResourceTypes = {
 
 export const textFormat = {
   block: {
-    flexDirection: 'column'
+    flexDirection: "column"
   },
   inline: {
-    flexDirection: 'row'
+    flexDirection: "row"
   }
 };
 
@@ -414,13 +415,13 @@ export const pill = {
   status: {
     active: {
       ...text.small,
-      textTransform: 'capitalize',
+      textTransform: "capitalize",
       color: colors.seaGlass500,
       backgroundColor: colors.seaGlass100
     }
   },
   network: {
-    textTransform: 'capitalize',
+    textTransform: "capitalize",
     backgroundColor: colors.white,
     border: borders.base
   },
@@ -436,7 +437,7 @@ export const variants = {
     border: borders.base,
     padding: 5,
     boxShadow: shadows[0],
-    boxSizing: 'border-box',
+    boxSizing: "border-box",
     borderRadius: 2
   },
   link: {
@@ -448,7 +449,7 @@ export const variants = {
       height: 2,
       width: 2,
       backgroundColor: colors.seaGlass200,
-      borderRadius: '50%'
+      borderRadius: "50%"
     }
   }
 };
