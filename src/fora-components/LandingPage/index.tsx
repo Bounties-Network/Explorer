@@ -1,44 +1,50 @@
-import React from 'react';
-import { Flex, Box } from 'rebass';
-import IntroBanner from 'fora-components/IntroBanner';
-import PlatformStatistics from 'fora-components/PlatformStatistics';
-import TopCommunities from 'fora-components/TopCommunities';
-import { Tabs, Tab, TabList, TabPanels, TabPanel } from 'fora-components/Tabs';
-import ActivityFeed from 'fora-components/ActivityFeed/View';
-import css from '@styled-system/css';
-import emotionStyled from 'lib/emotion-styled';
-import Navbar from 'fora-components/Navbar';
-import Footer from 'fora-components/Footer';
+import React from "react";
+import { Flex, Box } from "rebass";
+import IntroBanner from "fora-components/IntroBanner";
+import PlatformStatistics from "fora-components/PlatformStatistics";
+import TopCommunities from "fora-components/TopCommunities";
+import { Tabs, Tab, TabList, TabPanels, TabPanel } from "fora-components/Tabs";
+import ActivityFeed from "fora-components/ActivityFeed/View";
+import css from "@styled-system/css";
+import emotionStyled from "lib/emotion-styled";
+import Navbar from "fora-components/Navbar";
+import Footer from "fora-components/Footer";
+import mockLeaderboardData from "fora-components/Leaderboard/mock-leaderboard-data";
+import Leaderboard from "fora-components/Leaderboard";
+import SegmentedControl from "fora-components/SegmentedControl";
 
 const communities = [
   {
-    id: 'google',
+    id: "google",
     src:
-      'https://messari.s3.amazonaws.com/images/agora-images/0%3Fe%3D1554940800%26v%3Dbeta%26t%3DJIYqRj4hFp_woU4aOT7i6VVCH613wozFeVfWztcORVo',
-    name: 'f • code',
+      "https://messari.s3.amazonaws.com/images/agora-images/0%3Fe%3D1554940800%26v%3Dbeta%26t%3DJIYqRj4hFp_woU4aOT7i6VVCH613wozFeVfWztcORVo",
+    name: "f • code",
     memberCount: 1274
   },
   {
-    id: 'google',
+    id: "google",
     src:
-      'https://messari.s3.amazonaws.com/images/agora-images/0%3Fe%3D1554940800%26v%3Dbeta%26t%3DJIYqRj4hFp_woU4aOT7i6VVCH613wozFeVfWztcORVo',
-    name: 'yowza',
+      "https://messari.s3.amazonaws.com/images/agora-images/0%3Fe%3D1554940800%26v%3Dbeta%26t%3DJIYqRj4hFp_woU4aOT7i6VVCH613wozFeVfWztcORVo",
+    name: "yowza",
     memberCount: 1274
   },
   {
-    id: 'google',
+    id: "google",
     src:
-      'https://messari.s3.amazonaws.com/images/agora-images/0%3Fe%3D1554940800%26v%3Dbeta%26t%3DJIYqRj4hFp_woU4aOT7i6VVCH613wozFeVfWztcORVo',
-    name: 'save mi',
+      "https://messari.s3.amazonaws.com/images/agora-images/0%3Fe%3D1554940800%26v%3Dbeta%26t%3DJIYqRj4hFp_woU4aOT7i6VVCH613wozFeVfWztcORVo",
+    name: "save mi",
     memberCount: 1274
   }
 ];
 
 const Container = emotionStyled(Flex)(() => css({}));
 const Statistics = emotionStyled(Flex)(() =>
-  css({ mr: 7, '> :first-child': { mb: 6 } })
+  css({ mr: 7, "> :first-child": { mb: 6 } })
 );
-const Content = emotionStyled(Flex)(() => css({ py: 7, '> *': { px: 7 } }));
+const Content = emotionStyled(Flex)(() => css({ py: 7, "> *": { px: 7 } }));
+const LeaderboardContentContainer = emotionStyled(Flex)(() =>
+  css({ "> :first-child": { ml: "auto", mb: 4 } })
+);
 
 // Super ignore the layout :))))))))
 const LandingPage = () => (
@@ -62,13 +68,20 @@ const LandingPage = () => (
               <Tab>Leaderboard</Tab>
               <Tab>Members</Tab>
             </TabList>
-
             <TabPanels>
               <TabPanel>
                 <ActivityFeed />
               </TabPanel>
               <TabPanel>
-                <p>two!</p>
+                <LeaderboardContentContainer flexDirection="column">
+                  <SegmentedControl
+                    firstOption={"Issuers"}
+                    firstOptionHandleClick={() => {}}
+                    secondOption={"Fulfillers"}
+                    secondOptionHandleClick={() => {}}
+                  ></SegmentedControl>
+                  <Leaderboard data={mockLeaderboardData}></Leaderboard>
+                </LeaderboardContentContainer>
               </TabPanel>
               <TabPanel>
                 <p>three!</p>

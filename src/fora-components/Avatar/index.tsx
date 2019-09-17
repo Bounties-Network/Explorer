@@ -58,7 +58,7 @@ const ImageContainer = styled(Flex)<ImageContainerProps>(
       flexShrink: 0,
       justifyContent: "center",
       bg: "white",
-      border: props.variant === "small" ? "none" : 1,
+      border: props.variant === "small" ? "none" : "avatar",
       boxShadow: props.variant === "small" ? "none" : 1,
       overflow: "hidden",
       size: imageContainerVariantSize(props.variant),
@@ -67,8 +67,8 @@ const ImageContainer = styled(Flex)<ImageContainerProps>(
   // props => props.theme.avatarResourceTypes[props.resourceType] or use this instead of the variant key above
 );
 
-type AvatarImageProps = Pick<AvatarProps, "variant" | "hash" | "img">;
-const AvatarImage: React.FC<AvatarImageProps> = ({ variant, hash, img }) => {
+type AvatarImageProps = Pick<AvatarProps, "variant" | "address" | "img">;
+const AvatarImage: React.FC<AvatarImageProps> = ({ variant, address, img }) => {
   let blockySize = () => {
     switch (variant) {
       case "small":
@@ -83,7 +83,7 @@ const AvatarImage: React.FC<AvatarImageProps> = ({ variant, hash, img }) => {
   };
 
   if (!img) {
-    return <Blockies seed={hash} {...blockySize()} />;
+    return <Blockies seed={address} {...blockySize()} />;
   } else {
     return <Image src={img} height="100%" width="auto" />;
   }
@@ -118,6 +118,17 @@ const AvatarName = styled(Text)<AvatarNameProps>(props =>
   })
 );
 
+type AvatarScreenNameProps = Pick<AvatarProps, "onDark" | "variant">;
+const AvatarScreenName = styled(Text)<AvatarScreenNameProps>(props =>
+  css({
+    color: props.onDark ? "transparentWhite" : "seaGlass300",
+    variant: "text." + addressSize(props.variant),
+    fontFamily: "secondary",
+    lineHeight: "reset",
+    "a:hover &": { textDecoration: "underline" }
+  })
+);
+
 type AvatarAddressProps = Pick<AvatarProps, "onDark" | "variant">;
 const AvatarAddress = styled(Text)<AvatarAddressProps>(props =>
   css({
@@ -132,6 +143,7 @@ const AvatarAddress = styled(Text)<AvatarAddressProps>(props =>
 type AvatarProps = {
   variant: "small" | "medium" | "large";
   name: string | undefined;
+  screenName: string | undefined;
   resourceType: "user" | "community";
   textFormat?: "block" | "inline";
   onDark: boolean;
@@ -141,7 +153,6 @@ type AvatarProps = {
   src?: string;
   img?: string;
   address?: string;
-  hash?: string;
 };
 const Avatar: React.FC<AvatarProps> = props => {
   const {
@@ -151,9 +162,9 @@ const Avatar: React.FC<AvatarProps> = props => {
     onDark = false,
     address,
     name,
+    screenName,
     src,
     onClick,
-    hash,
     img
   } = props;
 
@@ -165,7 +176,7 @@ const Avatar: React.FC<AvatarProps> = props => {
         textFormat={textFormat}
       >
         <ImageContainer variant={variant} resourceType={resourceType}>
-          <AvatarImage variant={variant} img={img} hash={hash} />
+          <AvatarImage variant={variant} img={img} address={address} />
         </ImageContainer>
 
         {name || address ? (
@@ -178,10 +189,16 @@ const Avatar: React.FC<AvatarProps> = props => {
             >
               {name || "--"}
             </AvatarName>
-            {address && (
-              <AvatarAddress variant={variant} onDark={onDark}>
-                {shortenAddress(address)}
-              </AvatarAddress>
+            {screenName ? (
+              <AvatarScreenName variant={variant} onDark={onDark}>
+                {screenName}
+              </AvatarScreenName>
+            ) : (
+              address && (
+                <AvatarAddress variant={variant} onDark={onDark}>
+                  {shortenAddress(address)}
+                </AvatarAddress>
+              )
             )}
           </TextContainer>
         ) : null}
