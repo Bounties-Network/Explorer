@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex } from "rebass";
+import { Flex, Button } from "rebass";
 import styled from "lib/emotion-styled";
 import css from "@styled-system/css";
 import Member from "./Member";
@@ -8,18 +8,27 @@ import mockMemberData from "./mock-members-data";
 const Container = styled(Flex)(() =>
   css({
     flexDirection: "column",
-    "> div:last-child > div:last-child": {
-      display: "none"
-    }
+    "> :last-child": { mt: 6 }
   })
 );
 
 interface IProps {
   data: typeof mockMemberData;
+  loadMore: () => void;
 }
 
-const Members: React.FC<IProps> = ({ data }) => (
-  <Container>{data.map(Member)}</Container>
+const Members: React.FC<IProps> = ({ data, loadMore }) => (
+  <Container>
+    {data.map(Member)}
+    <Button
+      onClick={loadMore}
+      variant="secondary"
+      color="seaGlass300"
+      width={"100%"}
+    >
+      Load More
+    </Button>
+  </Container>
 );
 
 export default Members;

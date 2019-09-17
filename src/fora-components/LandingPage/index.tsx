@@ -91,11 +91,14 @@ const LandingPage = () => (
                     secondOption={"Fulfillers"}
                     secondOptionHandleClick={() => {}}
                   ></SegmentedControl>
-                  <Leaderboard data={mockLeaderboardData}></Leaderboard>
+                  <Leaderboard
+                    loadMore={() => {}}
+                    data={mockLeaderboardData}
+                  ></Leaderboard>
                 </LeaderboardContentContainer>
               </TabPanel>
               <TabPanel>
-                <Members data={mockMembersData}></Members>
+                <Members loadMore={() => {}} data={mockMembersData}></Members>
               </TabPanel>
             </TabPanels>
           </Tabs>

@@ -21,7 +21,10 @@ storiesOf("Tabs", module).add("Mi Fora", () => (
         <ActivityFeed />
       </TabPanel>
       <TabPanel>
-        <Leaderboard data={mockLeaderboardData}></Leaderboard>
+        <Leaderboard
+          loadMore={() => {}}
+          data={mockLeaderboardData}
+        ></Leaderboard>
       </TabPanel>
       <TabPanel>
         <p>three!</p>
