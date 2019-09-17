@@ -199,6 +199,7 @@ export const text = {
     lineHeight: lineHeights.h1 + "px"
   },
   h2: {
+    fontFamily: fonts.secondary,
     fontSize: fontSizes[4] + "px",
     fontWeight: fontWeights.bold,
     lineHeight: lineHeights.h2 + "px"

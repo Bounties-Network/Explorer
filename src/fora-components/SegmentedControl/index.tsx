@@ -5,7 +5,6 @@ import css from "@styled-system/css";
 
 const Container = emotionStyled(Flex)(() =>
   css({
-    background: "gray100",
     mixBlendMode: "normal",
     boxShadow: 3,
     borderRadius: 1
@@ -21,10 +20,11 @@ const Option = emotionStyled(Flex)<IOptionProps>(
     css({
       height: 24,
       minWidth: 80,
+      width: "fit-content",
       cursor: "pointer",
       justifyContent: "center",
       alignItems: "center",
-      background: props.isActive ? "white" : "gray400",
+      backgroundColor: props.isActive ? "white" : "gray100",
       mixBlendMode: "normal",
       boxSizing: "border-box"
     }),
