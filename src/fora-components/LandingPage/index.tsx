@@ -13,6 +13,8 @@ import mockLeaderboardData from "fora-components/Leaderboard/mock-leaderboard-da
 import Leaderboard from "fora-components/Leaderboard";
 import SegmentedControl from "fora-components/SegmentedControl";
 import Pill from "fora-components/Pill";
+import Members from "fora-components/Members/View";
+import { mockMembersData } from "fora-components/Members/mock-members-data";
 
 const communities = [
   {
@@ -93,7 +95,7 @@ const LandingPage = () => (
                 </LeaderboardContentContainer>
               </TabPanel>
               <TabPanel>
-                <p>three!</p>
+                <Members data={mockMembersData}></Members>
               </TabPanel>
             </TabPanels>
           </Tabs>
