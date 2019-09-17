@@ -7,5 +7,5 @@ import { mockMembersData } from "./mock-members-data";
 addDecorator(centered);
 
 storiesOf("Members", module).add("Mi Fora", () => (
-  <Members data={mockMembersData} />
+  <Members loadMore={() => {}} data={mockMembersData} />
 ));

@@ -8,7 +8,9 @@ import mockLeaderboardData from "./mock-leaderboard-data";
 addDecorator(centered);
 
 storiesOf("Leaderboard", module)
-  .add("Feed", () => <Leaderboard data={mockLeaderboardData} />)
+  .add("Feed", () => (
+    <Leaderboard loadMore={() => {}} data={mockLeaderboardData} />
+  ))
   .add("Entry", () => (
     <LeaderboardEntry {...mockLeaderboardData[0]} position={1} />
   ));
