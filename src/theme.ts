@@ -430,6 +430,11 @@ export const pill = {
     backgroundColor: colors.rose200,
     px: `${space[1]}px !important`,
     py: `${space[1]}px !important`
+  },
+  tabNotificationCount: {
+    backgroundColor: colors.gray200,
+    px: `${space[2]}px !important`,
+    py: `${space[2]}px !important`
   }
 };
 
