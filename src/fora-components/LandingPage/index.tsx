@@ -12,6 +12,7 @@ import Footer from "fora-components/Footer";
 import mockLeaderboardData from "fora-components/Leaderboard/mock-leaderboard-data";
 import Leaderboard from "fora-components/Leaderboard";
 import SegmentedControl from "fora-components/SegmentedControl";
+import Pill from "fora-components/Pill";
 
 const communities = [
   {
@@ -66,7 +67,15 @@ const LandingPage = () => (
             <TabList>
               <Tab>Activity</Tab>
               <Tab>Leaderboard</Tab>
-              <Tab>Members</Tab>
+              <Tab>
+                Members{" "}
+                <Pill
+                  css={css({ ml: 2 })}
+                  variant={"pill.tabNotificationCount"}
+                >
+                  {20}
+                </Pill>
+              </Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
