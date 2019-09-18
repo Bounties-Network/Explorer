@@ -284,7 +284,6 @@ export function* createBounty(action) {
     }
   } else {
     try {
-      console.log('stdb before', standardBounties.address);
       const txHash = yield call(
         promisifyContractCall(standardBounties.issueAndContribute, {
           from: userAddress,
@@ -299,8 +298,6 @@ export function* createBounty(action) {
         0,
         contractBalance
       );
-      console.log('stdb before', txHash);
-
       yield put(setPendingReceipt(txHash));
       yield put(stdBountySuccess());
     } catch (e) {
@@ -450,7 +447,6 @@ export function* extendDeadline(action) {
   const formattedDeadline = parseInt(moment(deadline).unix());
 
   try {
-    console.log('contract_version', contract_version);
     const { standardBounties } = yield call(
       getContractClient,
       contract_version
