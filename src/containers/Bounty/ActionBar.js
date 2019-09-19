@@ -88,7 +88,7 @@ const ActionBar = props => {
           )}
 
         {bounty.bounty_stage !== DEAD &&
-          bounty.contract_version === 1 && (
+          bounty.contract_version === '1' && (
             <Button
               onClick={() =>
                 initiateLoginProtection(() => showModal('increasePayout'))
@@ -101,7 +101,8 @@ const ActionBar = props => {
             </Button>
           )}
 
-        {bounty.contract_version === 2 && (
+        {(bounty.contract_version === '2' ||
+          bounty.contract_version === '2.1') && (
           <Link to={editUrl}>
             <Button icon={faEdit} fitWidth className={styles.editBountyButton}>
               {intl.get('sections.bounty.actions.edit')}

@@ -14,10 +14,12 @@
   },
   "requiredNetwork": "rinkeby",
   "mainNet": {
-    "standardBountiesAddressV2": "0xf1c785a5b66c522aed038a82077a34d0b23799fc"
+    "standardBountiesAddressV2": "0xf1c785a5b66c522aed038a82077a34d0b23799fc",
+    "standardBountiesAddressV2.1": "0x38f1886081759f7d352c28984908d04e8d2205a6"
   },
   "rinkeby": {
     "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
-    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c"
+    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c",
+    "standardBountiesAddressV2.1": "0x38f1886081759f7d352c28984908d04e8d2205a6"
   }
 }
