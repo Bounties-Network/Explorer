@@ -50,7 +50,7 @@ export function currentRouteSelector(pathname) {
 }
 
 export function ipfsToHttp(directoryHash, fileName) {
-  return `http://afedcb263daee11e9a62c0e21c210ae1-1865340558.us-east-1.elb.amazonaws.com/ipfs/${directoryHash}/${fileName}`;
+  return `http://afedcb263daee11e9a62c0e21c210ae1-1865340558.us-east-1.elb.amazonaws.com:5001/api/v0/cat?arg=${directoryHash}/${fileName}`;
 }
 
 export function isMobile() {
