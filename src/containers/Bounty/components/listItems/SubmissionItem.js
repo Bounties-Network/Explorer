@@ -307,7 +307,7 @@ const SubmissionItem = props => {
             <div>
               {!hasImageExtension(dataFileName) && (
                 <a
-                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  src={`http://afedcb263daee11e9a62c0e21c210ae1-1865340558.us-east-1.elb.amazonaws.com/ipfs/${dataHash}/${dataFileName}`}
                   className={`${styles.submissionMediaItem}`}
                 >
                   <FontAwesomeIcon
@@ -316,7 +316,7 @@ const SubmissionItem = props => {
                   />
                   <Text
                     className={`${styles.fileName}`}
-                    src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                    src={`http://afedcb263daee11e9a62c0e21c210ae1-1865340558.us-east-1.elb.amazonaws.com/ipfs/${dataHash}/${dataFileName}`}
                   >
                     {shortenFileName(dataFileName)}
                   </Text>
@@ -325,11 +325,11 @@ const SubmissionItem = props => {
               {hasImageExtension(dataFileName) && (
                 <a
                   className={`${styles.submissionMediaItem}`}
-                  href={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  href={`http://afedcb263daee11e9a62c0e21c210ae1-1865340558.us-east-1.elb.amazonaws.com/ipfs/${dataHash}/${dataFileName}`}
                   target="_blank"
                 >
                   <img
-                    src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                    src={`http://afedcb263daee11e9a62c0e21c210ae1-1865340558.us-east-1.elb.amazonaws.com/ipfs/${dataHash}/${dataFileName}`}
                     class={styles.image}
                     alt={dataFileName}
                   />
