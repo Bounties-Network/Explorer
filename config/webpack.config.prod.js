@@ -7,7 +7,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const RollbarSourceMapPlugin = require('rollbar-sourcemap-webpack-plugin')
+const RollbarSourceMapPlugin = require('rollbar-sourcemap-webpack-plugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
@@ -31,7 +31,10 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 // Note: defined here because it will be used more than once.
 const cssFilename = 'static/css/[name].[contenthash:8].css';
 const cssChunkFilename = 'static/css/[id].[contenthash:8].css';
-const gitShortSHA = require('child_process').execSync('git rev-parse --short HEAD').toString().trim()
+const gitShortSHA = require('child_process')
+  .execSync('git rev-parse --short HEAD')
+  .toString()
+  .trim();
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
@@ -55,9 +58,9 @@ module.exports = {
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
-    devtoolModuleFilenameTemplate: info => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/'),
-    // Rollbar fix
-    futureEmitAssets: false
+    devtoolModuleFilenameTemplate: info => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/')
+    // Rollbar fix?
+    // futureEmitAssets: false
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -261,7 +264,13 @@ module.exports = {
     })
   ],
   optimization: {
-    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
+    minimize: true,
+    minimizer: [
+      new TerserJSPlugin({
+        sourceMap: true
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
   },
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
