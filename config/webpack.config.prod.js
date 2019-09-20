@@ -267,7 +267,7 @@ module.exports = {
     minimize: true,
     minimizer: [
       new TerserJSPlugin({
-        sourceMap: true
+        sourceMap: process.env.APP_SETTINGS_FILE === 'production_settings'
       }),
       new OptimizeCSSAssetsPlugin({})
     ]
