@@ -214,7 +214,7 @@ class Textbox extends React.Component {
                     weight="fontWeight-bold"
                     color="darkGrey"
                   >
-                    *bold*
+                    **bold**
                   </Text>
                   <Text
                     typeScale="Small"
