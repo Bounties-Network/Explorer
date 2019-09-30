@@ -1,11 +1,7 @@
-import ipfsMiniAPI from 'ipfs-mini';
+import ipfsMiniAPI from "ipfs-mini";
+import config from "public-modules/config";
 
-const ipfsConfig = {
-  host:
-    'afedcb263daee11e9a62c0e21c210ae1-1865340558.us-east-1.elb.amazonaws.com',
-  port: 5001,
-  protocol: 'http'
-};
+const ipfsConfig = config.ipfs;
 
 const ipfsMini = new ipfsMiniAPI(ipfsConfig);
 
@@ -14,15 +10,12 @@ export const addBufferToIPFS = (filename, bufferContent) =>
     // due to es5 issues - we load this via a CDN
     const ipfs = window.IpfsApi(ipfsConfig);
 
-    ipfs.add(
-      [{ path: `/bounties/${filename}`, content: bufferContent }],
-      (err, response) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(response[1].hash);
+    ipfs.add([{ path: `/bounties/${filename}`, content: bufferContent }], (err, response) => {
+      if (err) {
+        reject(err);
       }
-    );
+      resolve(response[1].hash);
+    });
   });
 
 export const addJSON = data =>
