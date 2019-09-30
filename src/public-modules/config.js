@@ -1,8 +1,8 @@
 import { flatten, groupBy, keys, values } from "lodash";
+import ipfs from "./ipfs";
 
 const config = require("./config.json");
 const moduleSettings = require(`./${process.env.APP_SETTINGS_FILE}.json`);
-const ipfs = require("./ipfs");
 
 const platforms = moduleSettings.platforms
   ? moduleSettings.platforms
@@ -13,5 +13,6 @@ export default {
   ...moduleSettings,
   platforms,
   platform: flatten(values(platforms)).join(","),
-  displayPlatforms: keys(platforms)
+  displayPlatforms: keys(platforms),
+  ipfs
 };
