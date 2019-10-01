@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 import {
   HTTP_401_UNAUTHORIZED,
@@ -8,80 +8,71 @@ import {
   HTTP_300_MULTIPLE_CHOICES,
   HTTP_404_NOT_FOUND,
   HTTP_404_MOD_NOT_FOUND
-} from './constants';
+} from "./constants";
 
-import { apiEndpoint } from './global';
+import { apiEndpoint } from "./global";
 
-import rollbar from 'lib/rollbar';
+import rollbar from "lib/rollbar";
 
 const POST_OPTIONS = {
-  method: 'POST',
+  method: "POST",
   headers: {
-    accept: 'application/json',
-    'content-type': 'application/json'
+    accept: "application/json",
+    "content-type": "application/json"
   },
   withCredentials: true
 };
 
 const PUT_OPTIONS = {
-  method: 'PUT',
+  method: "PUT",
   headers: {
-    accept: 'application/json',
-    'content-type': 'application/json'
+    accept: "application/json",
+    "content-type": "application/json"
   },
   withCredentials: true
 };
 
 const PATCH_OPTIONS = {
-  method: 'PATCH',
+  method: "PATCH",
   headers: {
-    accept: 'application/json',
-    'content-type': 'application/json'
+    accept: "application/json",
+    "content-type": "application/json"
   },
   withCredentials: true
 };
 
 const OPTIONS_OPTIONS = {
-  method: 'OPTIONS',
+  method: "OPTIONS",
   headers: {
-    accept: 'application/json',
-    'content-type': 'application/json'
+    accept: "application/json",
+    "content-type": "application/json"
   },
   withCredentials: true
 };
 
 const GET_OPTIONS = {
-  method: 'GET',
+  method: "GET",
   withCredentials: true,
   headers: {}
 };
 
 function handleError(err) {
   const error = new Error();
-  error.errorStatus = '';
+  error.errorStatus = "";
   if (err.response) {
     const response = err.response;
 
     error.errorStatus = response.status;
     error.errorMessage = response.statusText;
 
-    if (
-      response.status === HTTP_401_UNAUTHORIZED ||
-      response.status === HTTP_403_FORBIDDEN
-    ) {
-      rollbar.warning('User session expired: relogin');
+    if (response.status === HTTP_401_UNAUTHORIZED || response.status === HTTP_403_FORBIDDEN) {
+      rollbar.warning("User session expired: relogin");
       return;
       // include redirect-type logic in here
     }
 
-    if (
-      response.request &&
-      (response.status === HTTP_404_NOT_FOUND ||
-        response.status === HTTP_404_MOD_NOT_FOUND)
-    ) {
-      rollbar.warning(
-        `Received 404 while accessing: ${response.request.responseURL}`
-      );
+    if (response.request && (response.status === HTTP_404_NOT_FOUND || response.status === HTTP_404_MOD_NOT_FOUND)) {
+      rollbar.warning(`Received 404 while accessing: ${response.request.responseURL}`);
       throw error;
     }
 
@@ -97,10 +88,7 @@ function handleError(err) {
 }
 
 function checkRequestStatus(response) {
-  if (
-    response.status >= HTTP_200_OK &&
-    response.status < HTTP_300_MULTIPLE_CHOICES
-  ) {
+  if (response.status >= HTTP_200_OK && response.status < HTTP_300_MULTIPLE_CHOICES) {
     return response.data;
   }
 }
@@ -116,31 +104,32 @@ function checkRequestStatus(response) {
 export default function(url, method, options, customErrorHandler) {
   let bakedOptions;
   const endpoint = apiEndpoint.get();
-  const method_type = typeof method === 'string' ? method : '';
-  switch ((method_type || '').toUpperCase()) {
-    case 'PUT':
+  const method_type = typeof method === "string" ? method : "";
+  switch ((method_type || "").toUpperCase()) {
+    case "PUT":
       bakedOptions = PUT_OPTIONS;
       break;
-    case 'POST':
+    case "POST":
       bakedOptions = POST_OPTIONS;
       break;
-    case 'PATCH':
+    case "PATCH":
       bakedOptions = PATCH_OPTIONS;
       break;
-    case 'OPTIONS':
+    case "OPTIONS":
       bakedOptions = OPTIONS_OPTIONS;
       break;
     default:
       bakedOptions = GET_OPTIONS;
   }
 
-  const isCustomUrl = url.slice(0, 4) === 'http';
+  const isCustomUrl = url.slice(0, 4) === "http";
 
   if (!isCustomUrl) {
-    bakedOptions.headers['haswallet'] = !!(window.web3 || window.ethereum) + '';
+    bakedOptions.headers["haswallet"] = !!(window.web3 || window.ethereum) + "";
   }
 
   const requestUrl = isCustomUrl ? url : `${endpoint}/${url}`;
+  // console.log({ ...bakedOptions, ...options })
 
   return axios
     .request(requestUrl, { ...bakedOptions, ...options })

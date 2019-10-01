@@ -1,25 +1,16 @@
-import request from 'utils/request';
-import { call, put, select, takeLatest } from 'redux-saga/effects';
-import { actionTypes, actions } from 'public-modules/Fulfillment';
-import { actions as transactionActions } from 'public-modules/Transaction';
-import { addressSelector } from 'public-modules/Client/selectors';
-import { addJSON } from 'public-modules/Utilities/ipfsClient';
-import siteConfig from 'public-modules/config';
-import { promisifyContractCall } from 'public-modules/Utilities/helpers';
-import { getContractClient, getWeb3Client } from 'public-modules/Client/sagas';
+import request from "utils/request";
+import { call, put, select, takeLatest } from "redux-saga/effects";
+import { actionTypes, actions } from "public-modules/Fulfillment";
+import { actions as transactionActions } from "public-modules/Transaction";
+import { addressSelector } from "public-modules/Client/selectors";
+import { addJSON } from "public-modules/Utilities/ipfsClient";
+import siteConfig from "public-modules/config";
+import { promisifyContractCall, promisifyContractEstimateGasCall } from "public-modules/Utilities/helpers";
+import { getContractClient, getWeb3Client } from "public-modules/Client/sagas";
 
-const {
-  setPendingWalletConfirm,
-  setTransactionError,
-  setPendingReceipt
-} = transactionActions;
+const { setPendingWalletConfirm, setTransactionError, setPendingReceipt } = transactionActions;
 
-const {
-  LOAD_FULFILLMENT,
-  CREATE_FULFILLMENT,
-  UPDATE_FULFILLMENT,
-  ACCEPT_FULFILLMENT
-} = actionTypes;
+const { LOAD_FULFILLMENT, CREATE_FULFILLMENT, UPDATE_FULFILLMENT, ACCEPT_FULFILLMENT } = actionTypes;
 
 const {
   loadFulfillmentSuccess,
@@ -40,8 +31,8 @@ export function* loadFulfillment(action) {
   };
 
   try {
-    let endpoint = 'fulfillment/';
-    const fulfillments = yield call(request, endpoint, 'GET', { params });
+    let endpoint = "fulfillment/";
+    const fulfillments = yield call(request, endpoint, "GET", { params });
     yield put(loadFulfillmentSuccess(fulfillments.results[0]));
   } catch (e) {
     yield put(loadFulfillmentFail(e));
@@ -49,13 +40,7 @@ export function* loadFulfillment(action) {
 }
 
 export function* acceptFulfillment(action) {
-  const {
-    bountyId,
-    contract_version,
-    fulfillmentId,
-    approverId,
-    tokenAmounts
-  } = action;
+  const { bountyId, contract_version, fulfillmentId, approverId, tokenAmounts } = action;
 
   yield put(setPendingWalletConfirm());
 
@@ -65,7 +50,7 @@ export function* acceptFulfillment(action) {
   const { standardBounties } = yield call(getContractClient, contract_version);
   try {
     let txHash;
-    if (contract_version === '1') {
+    if (contract_version === "1") {
       txHash = yield call(
         promisifyContractCall(standardBounties.acceptFulfillment, {
           from: userAddress
@@ -73,7 +58,7 @@ export function* acceptFulfillment(action) {
         bountyId,
         fulfillmentId
       );
-    } else if (contract_version === '2' || contract_version === '2.1') {
+    } else if (contract_version === "2" || contract_version === "2.1") {
       txHash = yield call(
         promisifyContractCall(standardBounties.acceptFulfillment, {
           from: userAddress
@@ -99,26 +84,19 @@ export function* acceptFulfillment(action) {
 
 export function* createFulfillment(action) {
   const { bountyId, contract_version, bountyPlatform, data } = action;
-  const {
-    name,
-    email,
-    url,
-    description,
-    fileName,
-    ipfsHash: fulfillmentDataHash
-  } = data;
+  const { name, email, url, description, fileName, ipfsHash: fulfillmentDataHash } = data;
 
   yield put(setPendingWalletConfirm());
 
   const userAddress = yield select(addressSelector);
-  yield call(getWeb3Client);
+  const { web3 } = yield call(getWeb3Client);
   const payload = {
     payload: {
       url,
       description,
       sourceFileName: fileName,
       sourceDirectoryHash: fulfillmentDataHash,
-      sourceFileHash: '',
+      sourceFileHash: "",
       fulfiller: {
         email,
         userAddress,
@@ -134,11 +112,11 @@ export function* createFulfillment(action) {
 
   const ipfsHash = yield call(addJSON, payload);
 
-  const { standardBounties } = yield call(getContractClient, contract_version);
+  const { standardBounties, relayer } = yield call(getContractClient, contract_version);
 
   try {
     let txHash;
-    if (contract_version === '1') {
+    if (contract_version === "1") {
       txHash = yield call(
         promisifyContractCall(standardBounties.fulfillBounty, {
           from: userAddress
@@ -146,9 +124,10 @@ export function* createFulfillment(action) {
         bountyId,
         ipfsHash
       );
-    } else if (contract_version === '2' || contract_version === '2.1') {
-      txHash = yield call(
-        promisifyContractCall(standardBounties.fulfillBounty, {
+    } else if (contract_version === "2" || contract_version === "2.1") {
+      const accountbalanceWei = yield call(web3.eth.getBalance, userAddress);
+      const fulfillEstimateGasCost = yield call(
+        promisifyContractEstimateGasCall(standardBounties.fulfillBounty, {
           from: userAddress
         }),
         userAddress,
@@ -156,6 +135,69 @@ export function* createFulfillment(action) {
         [userAddress],
         ipfsHash
       );
+      // console.log(fulfillEstimateGasCost);
+      // console.log(accountbalanceWei);
+      if (fulfillEstimateGasCost > accountbalanceWei + 50000) {
+        // Use meta transaction relayer, user does not have enough funds
+        const sender = web3.utils.toChecksumAddress(userAddress);
+        const fulfillers = [sender];
+        const latestNonce = yield relayer.methods.replayNonce(sender).call();
+        // console.log(relayer);
+        // console.log("latestNonce from meta tx contract: ", latestNonce);
+        const nonce = web3.utils.hexToNumber(latestNonce);
+        // console.log(siteConfig);
+        // console.log(
+        //   siteConfig[
+        //     `relayer${
+        //       process.env.APP_SETTINGS_FILE === "rinkeby_settings" ||
+        //       process.env.APP_SETTINGS_FILE === "staging_settings"
+        //         ? "Staging"
+        //         : "Production"
+        //     }ContractAddress`
+        //   ]
+        // );
+        // window.config = siteConfig;
+        const params = [
+          ["address", "string", "uint", "address[]", "string", "uint256"],
+          [web3.utils.toChecksumAddress(relayer._address), "metaFulfillBounty", bountyId, fulfillers, ipfsHash, nonce]
+        ];
+        // console.log(params);
+        let paramsHash = web3.utils.keccak256(web3.eth.abi.encodeParameters(...params));
+        // console.log("Params hash1", paramsHash);
+        // paramsHash = web3.utils.soliditySha3("\x19Ethereum Signed Message:\n32", paramsHash);
+        // console.log("Params hash", paramsHash);
+        let signature = yield web3.eth.personal.sign(paramsHash, sender, "");
+        // console.log(signature);
+        let signer = web3.eth.accounts.recover(paramsHash, signature);
+        // console.log("Is that equal?", sender, signer);
+        const data = {
+          sender,
+          method: "metaFulfillBounty",
+          params,
+          signature
+        };
+        const relayResponse = yield call(request, `${siteConfig.relayerApiURL}/relay`, "POST", {
+          data,
+          withCredentials: null
+        });
+        if (relayResponse.message && relayResponse.message.includes("quota")) {
+          // ({"status":400,"message":"You have reached the limited quota for RelayedTx. Try again later."})
+          throw new Error(relayResponse.message);
+        }
+        txHash = relayResponse.txHash;
+        // console.log(txHash);
+      } else {
+        // Use normal web3 provider
+        txHash = yield call(
+          promisifyContractCall(standardBounties.fulfillBounty, {
+            from: userAddress
+          }),
+          userAddress,
+          bountyId,
+          [userAddress],
+          ipfsHash
+        );
+      }
     } else {
       throw new Error(`contract version ${contract_version} invalid`);
     }
@@ -163,7 +205,7 @@ export function* createFulfillment(action) {
     yield put(setPendingReceipt(txHash));
     yield put(createFulfillmentSuccess());
   } catch (e) {
-    console.log(e);
+    console.error(e);
     yield put(setTransactionError());
     yield put(createFulfillmentFail());
   }
@@ -171,15 +213,7 @@ export function* createFulfillment(action) {
 
 export function* updateFulfillment(action) {
   const { bountyId, contract_version, bountyPlatform, data } = action;
-  const {
-    name,
-    email,
-    url,
-    description,
-    fileName,
-    ipfsHash: fulfillmentDataHash,
-    fulfillmentId
-  } = data;
+  const { name, email, url, description, fileName, ipfsHash: fulfillmentDataHash, fulfillmentId } = data;
 
   yield put(setPendingWalletConfirm());
 
@@ -191,7 +225,7 @@ export function* updateFulfillment(action) {
       description,
       sourceFileName: fileName,
       sourceDirectoryHash: fulfillmentDataHash,
-      sourceFileHash: '',
+      sourceFileHash: "",
       fulfiller: {
         email,
         userAddress,
@@ -211,7 +245,7 @@ export function* updateFulfillment(action) {
 
   try {
     let txHash;
-    if (contract_version === '2' || contract_version === '2.1') {
+    if (contract_version === "2" || contract_version === "2.1") {
       txHash = yield call(
         promisifyContractCall(standardBounties.updateFulfillment, {
           from: userAddress
@@ -250,9 +284,4 @@ export function* watchUpdateFulfillment() {
   yield takeLatest(UPDATE_FULFILLMENT, updateFulfillment);
 }
 
-export default [
-  watchFulfillment,
-  watchAcceptFulfillment,
-  watchCreateFulfillment,
-  watchUpdateFulfillment
-];
+export default [watchFulfillment, watchAcceptFulfillment, watchCreateFulfillment, watchUpdateFulfillment];
