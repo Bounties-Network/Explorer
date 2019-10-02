@@ -281,12 +281,14 @@ const SubmissionItem = props => {
         </div>
       </header>
       <div className={`${styles.submissionContents}`}>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: converter.makeHtml(description || 'N/A')
-          }}
-          className="markdownContent"
-        />
+        {description && (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: converter.makeHtml(description)
+            }}
+            className="markdownContent"
+          />
+        )}
         <div className={`${styles.submissionMedia}`}>
           {url ? (
             <a
