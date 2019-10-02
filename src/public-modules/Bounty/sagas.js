@@ -350,7 +350,7 @@ export function* killBounty(action) {
       getContractClient,
       contract_version
     );
-    if (contract_version === 1) {
+    if (contract_version === '1') {
       txHash = yield call(
         promisifyContractCall(standardBounties.killBounty, {
           from: userAddress
@@ -452,7 +452,7 @@ export function* extendDeadline(action) {
       contract_version
     );
     let txHash;
-    if (contract_version === 1) {
+    if (contract_version === '1') {
       txHash = yield call(
         promisifyContractCall(standardBounties.extendDeadline, {
           from: userAddress
@@ -606,7 +606,7 @@ export function* increasePayout(action) {
       contract_version
     );
 
-    if (contract_version === 1) {
+    if (contract_version === '1') {
       if (paysTokens) {
         const { token_contract: tokenContractClient } = yield call(
           getTokenClient,
@@ -712,7 +712,6 @@ export function* contribute(action) {
     user_address,
     contract_version
   } = action;
-
   const userAddress = yield select(addressSelector);
   yield put(setPendingWalletConfirm());
   let addedBalance;
@@ -731,7 +730,7 @@ export function* contribute(action) {
     );
     let txHash;
     let args =
-      contract_version === 1
+      contract_version === '1'
         ? [id, addedBalance]
         : [user_address, id, addedBalance];
 
@@ -745,11 +744,7 @@ export function* contribute(action) {
         promisifyContractCall(tokenContractClient.approve, {
           from: userAddress
         }),
-        contract_version === 1
-          ? config[network].standardBountiesAddressV1
-          : contract_version === '2'
-            ? config[network].standardBountiesAddressV2
-            : config[network]['standardBountiesAddressV2.1'],
+        config[network][`standardBountiesAddressV${contract_version}`],
         addedBalance
       );
       yield call(delay, 2000);
@@ -773,6 +768,7 @@ export function* contribute(action) {
     yield put(stdBountySuccess());
     yield put(setPendingReceipt(txHash));
   } catch (e) {
+    console.log('error', e);
     yield put(stdBountyFail());
     yield put(setTransactionError());
   }
@@ -789,7 +785,7 @@ export function* transferIssuer(action) {
       contract_version
     );
     let txHash;
-    if (contract_version === 1) {
+    if (contract_version === '1') {
       txHash = yield call(
         promisifyContractCall(standardBounties.transferIssuer, {
           from: userAddress
