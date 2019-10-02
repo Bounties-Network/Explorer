@@ -744,7 +744,7 @@ export function* contribute(action) {
         promisifyContractCall(tokenContractClient.approve, {
           from: userAddress
         }),
-        config[network]['standardBountiesAddressV' + contract_version],
+        config[network][`standardBountiesAddressV${contract_version}`],
         addedBalance
       );
       yield call(delay, 2000);
