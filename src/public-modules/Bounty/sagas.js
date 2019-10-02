@@ -756,7 +756,6 @@ export function* contribute(action) {
         ...args
       );
     } else {
-      console.log('args', contract_version, args);
       txHash = yield call(
         promisifyContractCall(standardBounties.contribute, {
           from: userAddress,
