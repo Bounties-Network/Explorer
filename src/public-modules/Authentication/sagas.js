@@ -1,10 +1,14 @@
 import request from 'utils/request';
+import { delay } from 'redux-saga';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { addressSelector } from 'public-modules/Client/selectors';
 import { actionTypes, actions } from 'public-modules/Authentication';
 import { actionTypes as clientActionTypes } from 'public-modules/Client';
 import { actionTypes as settingsActionTypes } from 'public-modules/Settings';
+import { actions as notificationActions } from 'public-modules/Notification';
 import { getWeb3Client } from 'public-modules/Client/sagas';
+import cookie from 'cookie';
+import client, { reInitClient } from 'lib/apollo-client';
 import { get } from 'lodash';
 
 const { SET_INITIALIZED } = clientActionTypes;
@@ -21,6 +25,7 @@ const {
   logoutSuccess,
   logoutFail
 } = actions;
+const { loadNotifications } = notificationActions;
 
 export function* getCurrentUser(action) {
   const endpoint = 'auth/user/';
@@ -36,10 +41,32 @@ export function* getCurrentUser(action) {
   }
 }
 
+function* setAuthorizationCookie(token) {
+  document.cookie = cookie.serialize('Authorization', token, {
+    path: '/',
+    maxAge: 365 * 24 * 60 * 60 * 100,
+    domain:
+      window && window.location.hostname.includes('localhost')
+        ? window.location.hostname
+        : '.' + window.location.hostname
+  });
+}
+
+function* deleteAuthorizationCookie() {
+  document.cookie = cookie.serialize('Authorization', null, {
+    path: '/',
+    maxAge: 0,
+    domain:
+      window && window.location.hostname.includes('localhost')
+        ? window.location.hostname
+        : '.' + window.location.hostname
+  });
+}
+
 export function* login(action) {
   const address = yield select(addressSelector);
   const nonceEndpoint = `auth/${address}/nonce/`;
-  const loginEndpoint = 'auth/login/';
+  const loginJWTEndpoint = 'auth/login/jwt/';
   try {
     const nonceResponce = yield call(request, nonceEndpoint, 'GET');
     const nonce = nonceResponce.nonce;
@@ -55,13 +82,18 @@ export function* login(action) {
         signature
       }
     };
-    const currentUser = yield call(
+    const { token, user } = yield call(
       request,
-      loginEndpoint,
+      loginJWTEndpoint,
       'POST',
       loginOptions
     );
-    yield put(loginSuccess(currentUser, signedUp));
+    yield setAuthorizationCookie(token);
+    yield put(loginSuccess(user, signedUp));
+
+    // Bootstrap WS
+    yield delay(2000);
+    yield put(loadNotifications());
   } catch (e) {
     yield put(loginFail(e));
   }
@@ -71,7 +103,12 @@ export function* logout(action) {
   const endpoint = 'auth/logout/';
   try {
     yield call(request, endpoint, 'GET');
+    yield deleteAuthorizationCookie();
     yield put(logoutSuccess());
+
+    // Terminate apollo graphql client
+    yield delay(500);
+    window.location.reload();
   } catch (e) {
     yield put(logoutFail(e));
   }
