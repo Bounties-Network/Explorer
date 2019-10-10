@@ -16,6 +16,8 @@ import { notification_template, NOTIFICATION_ID } from 'utils/constants';
 import { deserializeNotification } from './helpers';
 import config from 'public-modules/config';
 import intl from 'react-intl-universal';
+import client from 'lib/apollo-client';
+import { userDashboardNotificationsQuery } from './queries';
 
 const {
   loadNotifications,
@@ -42,10 +44,25 @@ export function* loadNotificationsSaga(action) {
       return null;
     }
     const currentNotifications = yield select(notificationsSelector);
-    const params = { notification__platform__in: config.platform };
-    const endpoint = `notification/push/user/${address}/`;
-    const response = yield call(request, endpoint, 'GET', { params });
-    const notifications = response.results;
+    // const params = { notification__platform__in: config.platform };
+    // ?notification__platform__in=bounties-network,sf,berlin,gitcoin
+    // const endpoint = `notification/push/user/${address}/`;
+    // const response = yield call(request, endpoint, "GET", { params });
+    // const notifications = response.results;
+    // console.log(
+    //   yield client.query({
+    //     query: userDashboardNotificationsQuery,
+    //     varibles: { platforms: config.platform }
+    //   })
+    // );
+    console.log(config.platform);
+    const response = yield call(client.query, {
+      query: userDashboardNotificationsQuery,
+      variables: { platforms: config.platform }
+    });
+    // debugger;
+    const notifications = response.data.notifications_dashboardnotification;
+    console.log(notifications.length);
     for (let i = 0; i < notifications.length; i++) {
       const notificationItem = notifications[i];
       const newNotification = deserializeNotification(notificationItem);
@@ -55,8 +72,9 @@ export function* loadNotificationsSaga(action) {
       }
       yield put(addNotification(newNotification));
     }
-    yield put(loadNotificationsSuccess(response.count));
+    yield put(loadNotificationsSuccess(notifications.length));
   } catch (e) {
+    // console.error(e);
     yield put(loadNotificationsFail(e));
   }
 }
@@ -152,7 +170,7 @@ export function* watchViewAllNotifications() {
 export function* loopNotifications() {
   while (true) {
     yield put(loadNotifications());
-    yield delay(10000);
+    yield delay(500);
   }
 }
 

@@ -7,6 +7,7 @@ const authCookie = cookies['Authorization'];
 const isStaging =
   typeof process.env.APP_SETTINGS_FILE === 'string' &&
   process.env.APP_SETTINGS_FILE.includes('staging');
+
 const client = new ApolloClient({
   headers: {
     Authorization: authCookie
