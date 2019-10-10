@@ -6,8 +6,10 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import cookie from 'cookie';
 
-const cookies = cookie.parse(document.cookie);
-const authCookie = cookies['Authorization'];
+const authCookie = () => {
+  const cookies = cookie.parse(document.cookie);
+  return cookies['Authorization'];
+};
 
 const isStaging =
   typeof process.env.APP_SETTINGS_FILE === 'string' &&
@@ -16,7 +18,7 @@ const isStaging =
 // Create an http link:
 const httpLink = new HttpLink({
   headers: {
-    Authorization: authCookie
+    Authorization: authCookie()
   },
   uri:
     typeof process.env.APP_SETTINGS_FILE === 'string' &&
@@ -29,9 +31,19 @@ const httpLink = new HttpLink({
 });
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:5000/`,
+  uri:
+    typeof process.env.APP_SETTINGS_FILE === 'string' &&
+    process.env.APP_SETTINGS_FILE.includes('local')
+      ? `ws://localhost:8080/v1/graphql`
+      : `wss://graphql-${
+          isStaging ? 'staging' : 'production'
+        }.bounties-network-flow.com/v1/graphql`,
   options: {
-    reconnect: true
+    lazy: true,
+    reconnect: true,
+    connectionParams: {
+      headers: { Authorization: authCookie() }
+    }
   }
 });
 
@@ -50,9 +62,17 @@ const link = split(
   httpLink
 );
 
-const client = new ApolloClient({
+let client = new ApolloClient({
   link,
   cache: new InMemoryCache()
 });
+
+export function reInitClient() {
+  client = new ApolloClient({
+    link,
+    cache: new InMemoryCache()
+  });
+  return client;
+}
 
 export default client;

@@ -1,8 +1,8 @@
 import React from 'react';
 import request from 'utils/request';
 import { LIMIT } from './constants';
-import { call, put, takeLatest, select } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
+import { call, put, takeLatest, select, take } from 'redux-saga/effects';
+import { delay, eventChannel } from 'redux-saga';
 import { Toast } from 'components';
 import { Link } from 'react-router-dom';
 import {
@@ -10,14 +10,20 @@ import {
   rootNotificationSelector,
   notificationsListSelector
 } from 'public-modules/Notification/selectors';
-import { getUserAddressSelector } from 'public-modules/Authentication/selectors';
+import {
+  getCurrentUserSelector,
+  getUserAddressSelector
+} from 'public-modules/Authentication/selectors';
 import { actions, actionTypes } from 'public-modules/Notification';
 import { notification_template, NOTIFICATION_ID } from 'utils/constants';
 import { deserializeNotification } from './helpers';
 import config from 'public-modules/config';
 import intl from 'react-intl-universal';
 import client from 'lib/apollo-client';
-import { userDashboardNotificationsQuery } from './queries';
+import {
+  userDashboardNotificationsSubscription,
+  userDashboardNotificationsQuery
+} from './queries';
 
 const {
   loadNotifications,
@@ -37,44 +43,82 @@ const {
   VIEW_ALL_NOTIFICATIONS
 } = actionTypes;
 
+function createSocketChannel(client) {
+  // `eventChannel` takes a subscriber function
+  // the subscriber function takes an `emit` argument to put messages onto the channel
+  return eventChannel(emit => {
+    const eventHandler = event => {
+      // puts event payload into the channel
+      // this allows a Saga to take this payload from the returned channel
+      emit(event);
+    };
+
+    const errorHandler = err => {
+      emit(err);
+    };
+
+    client.subscribe({
+      next(data) {
+        eventHandler(data);
+      },
+      error(err) {
+        errorHandler(err);
+      }
+    });
+
+    const unsubscribe = () => {
+      if (client.unsubscribe) {
+        client.unsubscribe();
+      }
+    };
+
+    return unsubscribe;
+  });
+}
+
 export function* loadNotificationsSaga(action) {
   try {
-    const address = yield select(getUserAddressSelector);
-    if (!address) {
-      return null;
-    }
-    const currentNotifications = yield select(notificationsSelector);
-    // const params = { notification__platform__in: config.platform };
-    // ?notification__platform__in=bounties-network,sf,berlin,gitcoin
-    // const endpoint = `notification/push/user/${address}/`;
-    // const response = yield call(request, endpoint, "GET", { params });
-    // const notifications = response.results;
-    // console.log(
-    //   yield client.query({
-    //     query: userDashboardNotificationsQuery,
-    //     varibles: { platforms: config.platform }
-    //   })
-    // );
-    // console.log(config.platform);
-    const response = yield call(client.query, {
-      query: userDashboardNotificationsQuery,
-      variables: { platforms: config.platform.split(',') }
-    });
-    // debugger;
-    const notifications = response.data.notifications_dashboardnotification;
-    // console.log(notifications.length);
-    for (let i = 0; i < notifications.length; i++) {
-      const notificationItem = notifications[i];
-      const newNotification = deserializeNotification(notificationItem);
-
-      if (currentNotifications[newNotification.id]) {
-        continue;
+    console.log('load notifications');
+    const subscriptionClient = client.subscribe({
+      query: userDashboardNotificationsSubscription,
+      variables: {
+        platforms: config.platform.split(',')
       }
-      yield put(addNotification(newNotification));
+    });
+
+    const socketChannel = yield call(createSocketChannel, subscriptionClient);
+
+    while (true) {
+      try {
+        // An error from socketChannel will cause the saga jump to the catch block
+        const response = yield take(socketChannel);
+        const address = yield select(getUserAddressSelector);
+        if (!address) {
+          return null;
+        }
+        const currentNotifications = yield select(notificationsSelector);
+
+        if (response.data) {
+          const notifications =
+            response.data.notifications_dashboardnotification;
+          for (let i = 0; i < notifications.length; i++) {
+            const notificationItem = notifications[i];
+            const newNotification = deserializeNotification(notificationItem);
+
+            if (currentNotifications[newNotification.id]) {
+              continue;
+            }
+            yield put(addNotification(newNotification));
+          }
+          yield put(loadNotificationsSuccess(notifications));
+        }
+      } catch (err) {
+        console.error(err);
+        yield socketChannel.close();
+      }
     }
-    yield put(loadNotificationsSuccess(notifications));
   } catch (e) {
-    // console.error(e);
+    console.error(e);
     yield put(loadNotificationsFail(e));
   }
 }
@@ -87,12 +131,6 @@ export function* loadMoreNotifications(action) {
     return null;
   }
   try {
-    // const params = {
-    //   notification__platform__in: config.platform,
-    //   offset: offset + LIMIT
-    // };
-    // const endpoint = `notification/push/user/${address}/`;
-    // const response = yield call(request, endpoint, "GET", { params });
     const response = yield call(client.query, {
       query: userDashboardNotificationsQuery,
       variables: {
@@ -100,9 +138,10 @@ export function* loadMoreNotifications(action) {
         offset: offset + LIMIT
       }
     });
-    // const notifications = response.results;
-    const notifications = response.data.notifications_dashboardnotification;
-    yield put(loadMoreNotificationsSuccess(notifications));
+    if (response.data) {
+      const notifications = response.data.notifications_dashboardnotification;
+      yield put(loadMoreNotificationsSuccess(notifications));
+    }
   } catch (e) {
     yield put(loadMoreNotificationsFail(e));
   }
@@ -175,15 +214,16 @@ export function* watchViewAllNotifications() {
   yield takeLatest(VIEW_ALL_NOTIFICATIONS, viewAllNotifications);
 }
 
-export function* loopNotifications() {
-  while (true) {
+export function* initNotifications() {
+  yield delay(2000);
+  const user = yield select(getCurrentUserSelector);
+  if (user) {
     yield put(loadNotifications());
-    yield delay(10000);
   }
 }
 
 export default [
-  loopNotifications,
+  initNotifications,
   watchSetNotificationViewed,
   watchViewAllNotifications,
   watchNotifications,
