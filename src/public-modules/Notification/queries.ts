@@ -1,4 +1,4 @@
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 const userDashboardNotificationsQuery = gql`
   query userDashboardNotifications($platforms: [String!], $offset: Int = 0) {
