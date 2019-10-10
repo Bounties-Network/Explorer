@@ -1,9 +1,11 @@
 import { gql } from 'apollo-boost';
 
 const userDashboardNotificationsQuery = gql`
-  query userDashboardNotifications($platforms: [String!]) {
+  query userDashboardNotifications($platforms: [String!], $offset: Int = 0) {
     notifications_dashboardnotification(
       order_by: { notifications_notification: { created: asc } }
+      offset: $offset
+      limit: 25
       where: {
         is_activity: { _eq: true }
         _and: { notifications_notification: { platform: { _in: $platforms } } }
