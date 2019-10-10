@@ -6,7 +6,7 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import cookie from 'cookie';
 
-const authCookie = () => {
+export const authCookie = () => {
   const cookies = cookie.parse(document.cookie);
   return cookies['Authorization'];
 };

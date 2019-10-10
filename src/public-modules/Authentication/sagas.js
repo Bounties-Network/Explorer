@@ -8,7 +8,7 @@ import { actionTypes as settingsActionTypes } from 'public-modules/Settings';
 import { actions as notificationActions } from 'public-modules/Notification';
 import { getWeb3Client } from 'public-modules/Client/sagas';
 import cookie from 'cookie';
-import client, { reInitClient } from 'lib/apollo-client';
+import client, { reInitClient, authCookie } from 'lib/apollo-client';
 import { get } from 'lodash';
 
 const { SET_INITIALIZED } = clientActionTypes;
@@ -91,8 +91,10 @@ export function* login(action) {
     yield setAuthorizationCookie(token);
     yield put(loginSuccess(user, signedUp));
 
-    // Bootstrap WS
-    yield delay(3000);
+    // Wait till Authorization cookie is set
+    while (!authCookie()) {
+      yield delay(2000);
+    }
     yield put(loadNotifications());
   } catch (e) {
     yield put(loginFail(e));
