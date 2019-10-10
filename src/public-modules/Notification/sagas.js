@@ -215,7 +215,7 @@ export function* watchViewAllNotifications() {
 }
 
 export function* initNotifications() {
-  yield delay(2000);
+  yield delay(3000);
   const user = yield select(getCurrentUserSelector);
   if (user) {
     yield put(loadNotifications());

@@ -6,11 +6,11 @@ const userDashboardNotificationsSubscription = gql`
     $offset: Int = 0
   ) {
     notifications_dashboardnotification(
-      order_by: { notifications_notification: { created: asc } }
+      order_by: { notifications_notification: { created: desc } }
       offset: $offset
       limit: 25
       where: {
-        is_activity: { _eq: true }
+        is_activity: { _eq: false }
         _and: { notifications_notification: { platform: { _in: $platforms } } }
       }
     ) {
@@ -33,11 +33,11 @@ const userDashboardNotificationsSubscription = gql`
 const userDashboardNotificationsQuery = gql`
   query userDashboardNotifications($platforms: [String!], $offset: Int = 0) {
     notifications_dashboardnotification(
-      order_by: { notifications_notification: { created: asc } }
+      order_by: { notifications_notification: { created: desc } }
       offset: $offset
       limit: 25
       where: {
-        is_activity: { _eq: true }
+        is_activity: { _eq: false }
         _and: { notifications_notification: { platform: { _in: $platforms } } }
       }
     ) {

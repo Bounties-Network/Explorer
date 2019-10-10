@@ -92,7 +92,7 @@ export function* login(action) {
     yield put(loginSuccess(user, signedUp));
 
     // Bootstrap WS
-    yield delay(2000);
+    yield delay(3000);
     yield put(loadNotifications());
   } catch (e) {
     yield put(loginFail(e));
