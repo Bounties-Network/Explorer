@@ -8,7 +8,7 @@ import { actionTypes as settingsActionTypes } from 'public-modules/Settings';
 import { actions as notificationActions } from 'public-modules/Notification';
 import { getWeb3Client } from 'public-modules/Client/sagas';
 import cookie from 'cookie';
-import client, { reInitClient, authCookie } from 'lib/apollo-client';
+import client, { reInitClient, authCookie, wsClient } from 'lib/apollo-client';
 import { get } from 'lodash';
 
 const { SET_INITIALIZED } = clientActionTypes;
@@ -95,6 +95,10 @@ export function* login(action) {
     while (!authCookie()) {
       yield delay(2000);
     }
+    yield client.resetStore();
+    yield client.stop();
+    yield wsClient.close(false, false);
+    yield delay(2000);
     yield put(loadNotifications());
   } catch (e) {
     yield put(loginFail(e));
@@ -109,7 +113,9 @@ export function* logout(action) {
     yield put(logoutSuccess());
 
     // Terminate apollo graphql client
-    yield delay(500);
+    while (authCookie()) {
+      yield delay(500);
+    }
     window.location.reload();
   } catch (e) {
     yield put(logoutFail(e));
