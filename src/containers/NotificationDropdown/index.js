@@ -1,35 +1,56 @@
-import React from 'react';
-import styles from './NotificationDropdown.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { map } from 'lodash';
-import { Link } from 'react-router-dom';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
+import React from "react";
+import styles from "./NotificationDropdown.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { map } from "lodash";
+import { Link } from "react-router-dom";
+import { compose } from "redux";
+import { connect } from "react-redux";
 import {
   notificationsListSelector,
   rootNotificationSelector,
   hasUnreadNotifications
-} from 'public-modules/Notification/selectors';
-import { actions } from 'public-modules/Notification';
-import { NotificationItem } from 'explorer-components';
-import {
-  Dropdown,
-  ListGroup,
-  Text,
-  Button,
-  Loader,
-  ZeroState
-} from 'components';
-import intl from 'react-intl-universal';
-import { faBell } from '@fortawesome/pro-regular-svg-icons';
-import {
-  faExclamationTriangle,
-  faBell as lightFaBell
-} from '@fortawesome/pro-light-svg-icons';
+} from "public-modules/Notification/selectors";
+import { actions } from "public-modules/Notification";
+import { NotificationItem } from "explorer-components";
+import { Dropdown, ListGroup, Text, Button, Loader, ZeroState } from "components";
+import intl from "react-intl-universal";
+import { faBell } from "@fortawesome/pro-regular-svg-icons";
+import { faExclamationTriangle, faBell as lightFaBell } from "@fortawesome/pro-light-svg-icons";
+import Tippy from "@tippy.js/react";
+import styled from "lib/emotion-styled";
+import { Global } from "@emotion/core";
+import { css } from "@styled-system/css";
+
+const NotificationTippy = styled(Tippy)(props => css({}));
+
+const NotificationTippyTrigger = styled.span(props =>
+  css({
+    cursor: "pointer"
+  })
+);
 
 const { DropdownTrigger, DropdownContent } = Dropdown;
 
+function useClickedOutside(ref, setVisible) {
+  function handleClickOutside(event) {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setVisible(false);
+    }
+  }
+
+  React.useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
+}
+
 const NotificationDropdown = props => {
+  const [visible, setVisible] = React.useState(false);
+  const wrapperRef = React.useRef(null);
+  useClickedOutside(wrapperRef, setVisible);
+
   const {
     notifications,
     setNotificationViewed,
@@ -44,30 +65,18 @@ const NotificationDropdown = props => {
 
   const renderNotifications = () => {
     return map(notification => {
-      const {
-        id,
-        notification_name,
-        bounty_title,
-        created,
-        from_user,
-        link,
-        viewed
-      } = notification;
+      const { id, notification_name, bounty_title, created, from_user, link, viewed } = notification;
       return (
         <Link
           key={id}
           to={link}
           className={styles.link}
-          onClick={() => {
+          onClick={e => {
             setNotificationViewed(id);
+            setVisible(false);
           }}
         >
-          <ListGroup.ListItem
-            className={`${styles.notificationListItem} ${
-              viewed ? styles.viewed : ''
-            }`}
-            hover
-          >
+          <ListGroup.ListItem className={`${styles.notificationListItem} ${viewed ? styles.viewed : ""}`} hover>
             <NotificationItem
               type={notification_name}
               title={bounty_title}
@@ -83,113 +92,124 @@ const NotificationDropdown = props => {
     }, notifications);
   };
 
+  const NotificationDropdownContent = ({ wrapperRef }) => {
+    return (
+      <div ref={wrapperRef} className={styles.notificationBox}>
+        <div
+          className={styles.heading}
+          onClick={e => {
+            e.preventDefault();
+            return false;
+          }}
+        >
+          <Text typeScale="h4" weight="fontWeight-medium" className={styles.headingTitle}>
+            {intl.get("sections.notifications.title")}
+          </Text>
+          {!!notifications.length &&
+            hasUnread && (
+              <Text
+                link
+                className={styles.headingLink}
+                src="#"
+                onClick={e => {
+                  e.preventDefault();
+                  viewAllNotifications();
+                  return false;
+                }}
+              >
+                {intl.get("sections.notifications.actions.mark_read")}
+              </Text>
+            )}
+        </div>
+        {error && (
+          <ZeroState type="error" text={intl.get("errors.500")} iconColor="red" faIcon={faExclamationTriangle} />
+        )}
+        {!loaded && (
+          <div className={styles.zeroState}>
+            <Loader color="blue" size="medium" />
+          </div>
+        )}
+        {loaded &&
+          !count && (
+            <div className={styles.zeroState}>
+              <ZeroState
+                title={intl.get("sections.notifications.zero_state.title")}
+                text={intl.get("sections.notifications.zero_state.description")}
+                iconColor="blue"
+                faIcon={lightFaBell}
+              />
+            </div>
+          )}
+        {loaded && (
+          <ListGroup className={styles.notificationListGroup}>
+            {[
+              ...renderNotifications(),
+              count > notifications.length && (
+                <ListGroup.ListItem key="load" className={styles.loadMore}>
+                  <Button
+                    onClick={e => {
+                      e.preventDefault();
+                      loadMoreNotifications();
+                      return false;
+                    }}
+                    loading={loadingMore}
+                  >
+                    {intl.get("actions.load_more")}
+                  </Button>
+                </ListGroup.ListItem>
+              )
+            ]}
+          </ListGroup>
+        )}
+      </div>
+    );
+  };
+
   return (
-    <Dropdown position="left" className={styles.customDropdown} hideOnClick>
-      <DropdownTrigger>
+    <NotificationTippy
+      className={`NotificationDropdown-tippy`}
+      visible={visible}
+      distance={0}
+      interactive={true}
+      animation="fade"
+      content={<NotificationDropdownContent wrapperRef={wrapperRef} />}
+    >
+      <NotificationTippyTrigger
+        ref={wrapperRef}
+        onClick={() => {
+          if (visible) {
+            setVisible(false);
+            return;
+          }
+          setVisible(true);
+        }}
+      >
+        <Global
+          styles={css({
+            ".tippy-tooltip": {
+              background: "none !important"
+            },
+            ".tippy-arrow": { display: "none" },
+            ".tippy-popper": {
+              background: "none"
+            },
+            ".tippy-content": {
+              px: 0,
+              py: 2,
+              background: "none"
+            },
+            ".tippy-popper": { background: "none", top: "-1.5rem !important" },
+          })}
+        />
         <Text
           typeScale="h3"
           color="defaultGrey"
-          className={`${hasUnread ? styles.notification : ''} ${
-            styles.notificationTrigger
-          }`}
+          className={`${hasUnread ? styles.notification : ""} ${styles.notificationTrigger}`}
         >
-          <FontAwesomeIcon
-            icon={faBell}
-            className={styles.notificationTriggerIcon}
-          />
+          <FontAwesomeIcon icon={faBell} className={styles.notificationTriggerIcon} />
         </Text>
-      </DropdownTrigger>
-      <DropdownContent>
-        <div className={styles.notificationBox}>
-          <div
-            className={styles.heading}
-            onMouseDown={e => {
-              e.preventDefault();
-              return false;
-            }}
-            onClick={e => {
-              e.preventDefault();
-            }}
-          >
-            <Text
-              typeScale="h4"
-              weight="fontWeight-medium"
-              className={styles.headingTitle}
-            >
-              {intl.get('sections.notifications.title')}
-            </Text>
-            {!!notifications.length &&
-              hasUnread && (
-                <Text
-                  link
-                  className={styles.headingLink}
-                  src="#"
-                  onMouseDown={e => {
-                    e.preventDefault();
-                    return false;
-                  }}
-                  onClick={e => {
-                    e.preventDefault();
-                    viewAllNotifications();
-                  }}
-                >
-                  {intl.get('sections.notifications.actions.mark_read')}
-                </Text>
-              )}
-          </div>
-          {error && (
-            <ZeroState
-              type="error"
-              text={intl.get('errors.500')}
-              iconColor="red"
-              faIcon={faExclamationTriangle}
-            />
-          )}
-          {!loaded && (
-            <div className={styles.zeroState}>
-              <Loader color="blue" size="medium" />
-            </div>
-          )}
-          {loaded &&
-            !count && (
-              <div className={styles.zeroState}>
-                <ZeroState
-                  title={intl.get('sections.notifications.zero_state.title')}
-                  text={intl.get(
-                    'sections.notifications.zero_state.description'
-                  )}
-                  iconColor="blue"
-                  faIcon={lightFaBell}
-                />
-              </div>
-            )}
-          {loaded && (
-            <ListGroup className={styles.notificationListGroup}>
-              {[
-                ...renderNotifications(),
-                count > notifications.length && (
-                  <ListGroup.ListItem key="load" className={styles.loadMore}>
-                    <Button
-                      onClick={e => {
-                        e.preventDefault();
-                        loadMoreNotifications();
-                      }}
-                      onMouseDown={e => {
-                        e.preventDefault();
-                        return false;
-                      }}
-                      loading={loadingMore}
-                    >
-                      {intl.get('actions.load_more')}
-                    </Button>
-                  </ListGroup.ListItem>
-                )
-              ]}
-            </ListGroup>
-          )}
-        </div>
-      </DropdownContent>
-    </Dropdown>
+      </NotificationTippyTrigger>
+    </NotificationTippy>
   );
 };
 

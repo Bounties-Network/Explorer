@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './CreateBounty.module.scss';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { PageCard } from 'explorer-components';
 import { BigNumber } from 'bignumber.js';
@@ -7,6 +8,7 @@ import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as tokensActions } from 'public-modules/Tokens';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import CreateBountyForm from './CreateBountyForm';
+import { withRouter } from 'react-router-dom';
 import {
   getDraftStateSelector,
   getDraftBountySelector,
@@ -80,11 +82,9 @@ class CreateBountyComponent extends React.Component {
     ) {
       prompter = (
         <NavigationPrompt
+          allowGoBack={true}
           renderIfNotActive={false}
-          when={(crntLocation, nextLocation) =>
-            !nextLocation ||
-            !nextLocation.pathname.startsWith(crntLocation.pathname)
-          }
+          when={(currentLocation, nextLocation) => !nextLocation || !nextLocation.pathname.startsWith(currentLocation.pathname)}
         >
           {({ isActive, onCancel, onConfirm }) => {
             if (isActive) {
@@ -135,10 +135,11 @@ class CreateBountyComponent extends React.Component {
     ) {
       prompter = (
         <NavigationPrompt
+          allowGoBack={true}
           renderIfNotActive={false}
-          when={(crntLocation, nextLocation) =>
-            !nextLocation ||
-            !nextLocation.pathname.startsWith(crntLocation.pathname)
+          when={(currentLocation, nextLocation) => {
+            return !nextLocation || !nextLocation.pathname.includes('bounty')
+          }
           }
         >
           {({ isActive, onCancel, onConfirm }) => {
@@ -318,13 +319,16 @@ const mapStateToProps = (state, router) => {
   };
 };
 
-const CreateBounty = connect(
+const CreateBounty = compose(
+  withRouter,
+  connect(
   mapStateToProps,
   {
     getDraft: bountyActions.getDraft,
     getBounty: bountyActions.getBounty,
     loadTokens: tokensActions.loadTokens
   }
+)
 )(CreateBountyComponent);
 
 export default CreateBounty;

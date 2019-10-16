@@ -5,8 +5,9 @@ import { split } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import cookie from 'cookie';
+import { SubscriptionClient } from 'subscriptions-transport-ws';
 
-const authCookie = () => {
+export const authCookie = () => {
   const cookies = cookie.parse(document.cookie);
   return cookies['Authorization'];
 };
@@ -29,23 +30,25 @@ const httpLink = new HttpLink({
         }.bounties-network-flow.com/v1/graphql`,
   credentials: 'include'
 });
-// Create a WebSocket link:
-const wsLink = new WebSocketLink({
-  uri:
-    typeof process.env.APP_SETTINGS_FILE === 'string' &&
-    process.env.APP_SETTINGS_FILE.includes('local')
-      ? `ws://localhost:8080/v1/graphql`
-      : `wss://graphql-${
-          isStaging ? 'staging' : 'production'
-        }.bounties-network-flow.com/v1/graphql`,
-  options: {
-    lazy: true,
+
+export const wsClient = new SubscriptionClient(
+  typeof process.env.APP_SETTINGS_FILE === 'string' &&
+  process.env.APP_SETTINGS_FILE.includes('local')
+    ? `ws://localhost:8080/v1/graphql`
+    : `wss://graphql-${
+        isStaging ? 'staging' : 'production'
+      }.bounties-network-flow.com/v1/graphql`,
+  {
     reconnect: true,
-    connectionParams: {
-      headers: { Authorization: authCookie() }
-    }
+    connectionParams: () => ({
+      headers: {
+        Authorization: authCookie()
+      }
+    })
   }
-});
+);
+// Create a WebSocket link:
+const wsLink = new WebSocketLink(wsClient);
 
 // using the ability to split links, you can send data to each link
 // depending on what kind of operation is being sent
