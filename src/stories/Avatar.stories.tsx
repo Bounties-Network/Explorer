@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, addDecorator } from '@storybook/react';
-import { withKnobs, text } from '@storybook/addon-knobs/react';
+import { withKnobs, text } from '@storybook/addon-knobs';
 import centered from '@storybook/addon-centered';
 import Avatar from 'components/Avatar';
 
@@ -29,7 +29,7 @@ storiesOf('Avatar', module)
       variant={text('variant', 'medium') as 'medium'}
       img={text('img', 'https://i.imgur.com/lhTwRZY.png')}
       address={text('address', '0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r')}
-      name={null}
+      name={undefined}
       src={text('src', 'https://www.google.co.uk')}
       onClick={() => {}}
       hash={text('address', '0xe68f8C6AB137ecDGD5cbf131f74A584aD2fG294r')}

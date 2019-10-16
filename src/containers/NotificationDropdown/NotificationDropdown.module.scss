@@ -52,7 +52,7 @@
 
   &:before {
     border-radius: 6px;
-    content: '';
+    content: "";
     height: 6px;
     width: 6px;
     background-color: $brand-red;
@@ -78,7 +78,7 @@
 .notification:after {
   border: 2px solid white;
   border-radius: 10px;
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   height: 12px;
@@ -106,7 +106,10 @@
   padding-right: $m-spacing;
 }
 
-.link:hover, .link:visited, .link:link, .link:active {
+.link:hover,
+.link:visited,
+.link:link,
+.link:active {
   text-decoration: none;
 }
 
