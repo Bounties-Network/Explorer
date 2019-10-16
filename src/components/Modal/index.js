@@ -230,6 +230,14 @@ class Modal extends React.Component {
     if (pageBody) {
       pageBody.classList.remove('modal-open');
     }
+    const pageHeader = document.getElementsByClassName('page-header')[0];
+    if (pageHeader) {
+      pageHeader.classList.remove('modal-open');
+      if (!fixed) {
+        pageHeader.classList.remove('unfixed');
+      }
+    }
+    document.body.classList.remove('exiting');
   }
 
   modalClick(e) {

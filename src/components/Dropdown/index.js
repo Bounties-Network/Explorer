@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Text from 'components/Text';
 import styles from './Dropdown.module.scss';
 
-import { Text } from 'components';
 
 class DropdownTrigger extends React.Component {
   render() {

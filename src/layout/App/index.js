@@ -44,6 +44,7 @@ import { currentRouteSelector, scrollToTop } from 'utils/helpers';
 import { translationSelector } from 'public-modules/i18n/selectors';
 
 import '../../styles/flexboxgrid.css';
+import 'tippy.js/dist/tippy.css';
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
 
 const { DropdownTrigger, DropdownContent, MenuItem } = Dropdown;
