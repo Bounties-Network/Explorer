@@ -1,37 +1,37 @@
-import React from 'react';
-import styles from './Bounty.module.scss';
-import { withRouter } from 'react-router-dom';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { actions as bountyActions } from 'public-modules/Bounty';
-import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
-import { actions as fulfillmentsActions } from 'public-modules/Fulfillments';
-import { actions as commentsActions } from 'public-modules/Comments';
-import { actions as bountyUIActions } from './reducer';
-import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
-import showdown from 'showdown';
-import moment from 'moment';
-import { map } from 'lodash';
-import { EXPIRED } from 'public-modules/Bounty/constants';
-import ActionBar from './ActionBar';
-import BountyPageCards from './BountyPageCards';
-import { TransactionWalkthrough, FunctionalLoginLock } from 'hocs';
+import React from "react";
+import styles from "./Bounty.module.scss";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { actions as bountyActions } from "public-modules/Bounty";
+import { actions as fulfillmentActions } from "public-modules/Fulfillment";
+import { actions as fulfillmentsActions } from "public-modules/Fulfillments";
+import { actions as commentsActions } from "public-modules/Comments";
+import { actions as bountyUIActions } from "./reducer";
+import { getCurrentUserSelector } from "public-modules/Authentication/selectors";
+import showdown from "showdown";
+import moment from "moment";
+import { map } from "lodash";
+import { EXPIRED } from "public-modules/Bounty/constants";
+import ActionBar from "./ActionBar";
+import BountyPageCards from "./BountyPageCards";
+import { TransactionWalkthrough, FunctionalLoginLock } from "hocs";
 import {
   getDraftStateSelector,
   getDraftBountySelector,
   getBountySelector,
   getBountyStateSelector
-} from 'public-modules/Bounty/selectors';
-import { addressSelector } from 'public-modules/Client/selectors';
-import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Pill, Text, Social, Loader, Tooltip, ZeroState } from 'components';
-import { BountyEssentials, PageCard, LinkedAvatar } from 'explorer-components';
-import { queryStringToObject } from 'utils/locationHelpers';
-import { newTabExtension, shortenFileName, shortenUrl } from 'utils/helpers';
-import { locationNonceSelector } from 'layout/App/selectors';
-import { SEOHeader } from './components';
-import intl from 'react-intl-universal';
+} from "public-modules/Bounty/selectors";
+import { addressSelector } from "public-modules/Client/selectors";
+import { DIFFICULTY_MAPPINGS } from "public-modules/Bounty/constants";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Pill, Text, Social, Loader, Tooltip, ZeroState } from "components";
+import { BountyEssentials, PageCard, LinkedAvatar } from "explorer-components";
+import { queryStringToObject } from "utils/locationHelpers";
+import { newTabExtension, shortenFileName, shortenUrl } from "utils/helpers";
+import { locationNonceSelector } from "layout/App/selectors";
+import { SEOHeader } from "./components";
+import intl from "react-intl-universal";
 import {
   faClock,
   faPuzzlePiece,
@@ -40,12 +40,13 @@ import {
   faPaperclip,
   faLink,
   faLockAlt
-} from '@fortawesome/pro-regular-svg-icons';
+} from "@fortawesome/pro-regular-svg-icons";
+import config from "public-modules/config";
 
-showdown.setOption('simpleLineBreaks', true);
-showdown.extension('targetBlank', newTabExtension);
-const converter = new showdown.Converter({ extensions: ['targetBlank'] });
-converter.setFlavor('github');
+showdown.setOption("simpleLineBreaks", true);
+showdown.extension("targetBlank", newTabExtension);
+const converter = new showdown.Converter({ extensions: ["targetBlank"] });
+converter.setFlavor("github");
 
 class BountyComponent extends React.Component {
   constructor(props) {
@@ -68,11 +69,11 @@ class BountyComponent extends React.Component {
 
     setBountyId(match.params.id);
 
-    if (match.path === '/bounty/draft/:id/') {
+    if (match.path === "/bounty/draft/:id/") {
       loadDraftBounty(match.params.id);
     }
 
-    if (match.path === '/bounty/:id/') {
+    if (match.path === "/bounty/:id/") {
       resetFulfillmentsState();
       resetCommentsState();
 
@@ -87,7 +88,7 @@ class BountyComponent extends React.Component {
       }
 
       if (values.contribute) {
-        initiateLoginProtection(() => showModal('contribute'));
+        initiateLoginProtection(() => showModal("contribute"));
       }
     }
   }
@@ -110,16 +111,16 @@ class BountyComponent extends React.Component {
     } = this.props;
 
     // do this because for some reason match was stale
-    const bountyId = history.location.pathname.split('/')[2];
+    const bountyId = history.location.pathname.split("/")[2];
 
     if (prevProps.locationNonce !== locationNonce) {
       setBountyId(bountyId);
 
-      if (match.path === '/bounty/draft/:id/') {
+      if (match.path === "/bounty/draft/:id/") {
         loadDraftBounty(bountyId);
       }
 
-      if (match.path === '/bounty/:id/') {
+      if (match.path === "/bounty/:id/") {
         resetFulfillmentsState();
         resetCommentsState();
 
@@ -164,8 +165,8 @@ class BountyComponent extends React.Component {
           <ZeroState
             type="error"
             iconColor="red"
-            title={intl.get('sections.bounty.zero_state.title')}
-            text={intl.get('sections.bounty.zero_state.description')}
+            title={intl.get("sections.bounty.zero_state.title")}
+            text={intl.get("sections.bounty.zero_state.description")}
             icon="error"
           />
         </div>
@@ -182,7 +183,7 @@ class BountyComponent extends React.Component {
 
     var reg = /\d+/;
     var date = moment
-      .utc(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ')
+      .utc(bounty.deadline, "YYYY-MM-DDThh:mm:ssZ")
       .fromNow(true)
       .match(reg);
     var dateNum;
@@ -208,9 +209,7 @@ class BountyComponent extends React.Component {
                 balancePrimaryCurrency={bounty.token_symbol}
                 balanceSecondaryValue={
                   bounty.calculated_balance
-                    ? (bounty.calculated_balance /
-                        bounty.calculated_fulfillment_amount) *
-                      bounty.usd_price
+                    ? (bounty.calculated_balance / bounty.calculated_fulfillment_amount) * bounty.usd_price
                     : 0
                 }
                 balanceSecondaryCurrency="usd"
@@ -223,15 +222,9 @@ class BountyComponent extends React.Component {
                       <Pill
                         className={styles.pill}
                         textColor="white"
-                        key={
-                          typeof category === 'object'
-                            ? category.normalized_name
-                            : category
-                        }
+                        key={typeof category === "object" ? category.normalized_name : category}
                       >
-                        {typeof category === 'object'
-                          ? category.name
-                          : category}
+                        {typeof category === "object" ? category.name : category}
                       </Pill>
                     ),
                     bounty.categories
@@ -272,41 +265,20 @@ class BountyComponent extends React.Component {
               />
               <div className={styles.bountyMetadata}>
                 {bounty.fulfillers_need_approval && (
-                  <div
-                    className={[
-                      styles.metadataItem,
-                      styles.applicationRequiredBounty
-                    ].join(' ')}
-                  >
+                  <div className={[styles.metadataItem, styles.applicationRequiredBounty].join(" ")}>
                     <i className={styles.metadataIcon}>
                       <FontAwesomeIcon icon={faLockAlt} />
                     </i>
-                    <Text
-                      inline
-                      className={styles.metadataInput}
-                      weight="fontWeight-medium"
-                    >
-                      {intl.get('sections.bounty.meta.input')}
+                    <Text inline className={styles.metadataInput} weight="fontWeight-medium">
+                      {intl.get("sections.bounty.meta.input")}
                     </Text>
-                    <Text
-                      inline
-                      color="defaultGrey"
-                      className={styles.metadataLabel}
-                    >
-                      {intl.get('sections.bounty.meta.label')}
+                    <Text inline color="defaultGrey" className={styles.metadataLabel}>
+                      {intl.get("sections.bounty.meta.label")}
                     </Text>
 
-                    <Tooltip
-                      align="right"
-                      className={styles.metadataTooltip}
-                      width="215px"
-                    >
-                      <Text
-                        typeScale="Small"
-                        alignment="align-left"
-                        lineHeight="lineHeight-default"
-                      >
-                        {intl.get('sections.bounty.meta.tooltip')}
+                    <Tooltip align="right" className={styles.metadataTooltip} width="215px">
+                      <Text typeScale="Small" alignment="align-left" lineHeight="lineHeight-default">
+                        {intl.get("sections.bounty.meta.tooltip")}
                       </Text>
                     </Tooltip>
                   </div>
@@ -316,23 +288,13 @@ class BountyComponent extends React.Component {
                     <i className={styles.metadataIcon}>
                       <FontAwesomeIcon icon={faClock} />
                     </i>
-                    <Text
-                      inline
-                      className={styles.metadataInput}
-                      weight="fontWeight-medium"
-                    >
-                      {moment
-                        .utc(bounty.deadline, 'YYYY-MM-DDThh:mm:ssZ')
-                        .fromNow(true)}
+                    <Text inline className={styles.metadataInput} weight="fontWeight-medium">
+                      {moment.utc(bounty.deadline, "YYYY-MM-DDThh:mm:ssZ").fromNow(true)}
                     </Text>
-                    <Text
-                      inline
-                      color="defaultGrey"
-                      className={styles.metadataLabel}
-                    >
+                    <Text inline color="defaultGrey" className={styles.metadataLabel}>
                       {bounty.bounty_stage === EXPIRED
-                        ? intl.get('common.expired', { count: dateNum })
-                        : intl.get('common.remaining', { count: dateNum })}
+                        ? intl.get("common.expired", { count: dateNum })
+                        : intl.get("common.remaining", { count: dateNum })}
                     </Text>
                   </div>
 
@@ -340,46 +302,26 @@ class BountyComponent extends React.Component {
                     <i className={styles.metadataIcon}>
                       <FontAwesomeIcon icon={faPuzzlePiece} />
                     </i>
-                    <Text
-                      inline
-                      className={styles.metadataInput}
-                      weight="fontWeight-medium"
-                    >
-                      {intl.get(
-                        `sections.bounty.difficulties.${
-                          DIFFICULTY_MAPPINGS[bounty.experience_level]
-                        }`
-                      )}
+                    <Text inline className={styles.metadataInput} weight="fontWeight-medium">
+                      {intl.get(`sections.bounty.difficulties.${DIFFICULTY_MAPPINGS[bounty.experience_level]}`)}
                     </Text>
-                    <Text
-                      inline
-                      color="defaultGrey"
-                      className={styles.metadataLabel}
-                    >
-                      {intl.get('common.difficulty')}
+                    <Text inline color="defaultGrey" className={styles.metadataLabel}>
+                      {intl.get("common.difficulty")}
                     </Text>
                   </div>
 
-                  {typeof bounty.revisions === 'number' && (
+                  {typeof bounty.revisions === "number" && (
                     <div className={styles.metadataItem}>
                       <i className={styles.metadataIcon}>
                         <FontAwesomeIcon icon={faRepeat} />
                       </i>
-                      <Text
-                        inline
-                        weight="fontWeight-medium"
-                        className={styles.metadataInput}
-                      >
-                        {intl.get('sections.bounty.meta.revisions', {
+                      <Text inline weight="fontWeight-medium" className={styles.metadataInput}>
+                        {intl.get("sections.bounty.meta.revisions", {
                           count: bounty.revisions
                         })}
                       </Text>
-                      <Text
-                        inline
-                        color="defaultGrey"
-                        className={styles.metadataLabel}
-                      >
-                        {intl.get('common.expected', {
+                      <Text inline color="defaultGrey" className={styles.metadataLabel}>
+                        {intl.get("common.expected", {
                           count: bounty.revisions
                         })}
                       </Text>
@@ -387,9 +329,7 @@ class BountyComponent extends React.Component {
                   )}
                 </section>
 
-                {(bounty.attached_data_hash ||
-                  bounty.attached_url ||
-                  bounty.user.email) && (
+                {(bounty.attached_data_hash || bounty.attached_url || bounty.user.email) && (
                   <section className={styles.metadataSection}>
                     {bounty.attached_data_hash && (
                       <div className={styles.metadataItem}>
@@ -399,9 +339,7 @@ class BountyComponent extends React.Component {
                         <Text
                           link
                           absolute
-                          src={`https://ipfs.infura.io/ipfs/${
-                            bounty.attached_data_hash
-                          }/${bounty.attached_filename}`}
+                          src={`${config.ipfs.apiViewURL}${bounty.attached_data_hash}/${bounty.attached_filename}`}
                         >
                           {shortenFileName(bounty.attached_filename, 18)}
                         </Text>
@@ -442,10 +380,7 @@ class BountyComponent extends React.Component {
         </PageCard>
         {!isDraft && (
           <PageCard noBanner>
-            <PageCard.Content
-              key="submissions-comments"
-              className={styles.bountyPageCards}
-            >
+            <PageCard.Content key="submissions-comments" className={styles.bountyPageCards}>
               <BountyPageCards
                 bounty={bounty}
                 isDraft={isDraft}
@@ -474,7 +409,7 @@ const mapStateToProps = (state, router) => {
   let bountyState = getBountyState;
   let isDraft = false;
 
-  if (match.path === '/bounty/draft/:id/') {
+  if (match.path === "/bounty/draft/:id/") {
     bounty = draftBounty;
     bountyState = getDraftState;
     isDraft = true;

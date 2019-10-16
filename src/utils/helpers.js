@@ -1,3 +1,5 @@
+import config from "public-modules/config";
+
 export function getTimezone() {
   if (Intl && Intl.DateTimeFormat) {
     const dateTimeFormat = Intl.DateTimeFormat();
@@ -9,14 +11,14 @@ export function getTimezone() {
 }
 
 export function shortenAddress(address) {
-  return address.slice(0, 6) + '...' + address.slice(-4);
+  return address.slice(0, 6) + "..." + address.slice(-4);
 }
 
 export function shortenUrl(url) {
-  const shortUrl = url.replace(/(^\w+:|^)\/\//, '').replace(/^www./, '');
+  const shortUrl = url.replace(/(^\w+:|^)\/\//, "").replace(/^www./, "");
 
   if (shortUrl.length > 25) {
-    return shortUrl.slice(0, 10) + '...' + url.slice(-6);
+    return shortUrl.slice(0, 10) + "..." + url.slice(-6);
   }
 
   return shortUrl;
@@ -26,7 +28,7 @@ export function shortenFileName(name, maxLength = 28) {
   const half = maxLength - 3;
 
   if (name.length > maxLength) {
-    return name.slice(0, half / 2) + '...' + name.slice(-(half / 2));
+    return name.slice(0, half / 2) + "..." + name.slice(-(half / 2));
   }
 
   return name;
@@ -39,18 +41,18 @@ export function findETHValue(ethObj) {
 }
 
 export function bytesToSize(bytes) {
-  var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-  if (bytes == 0) return '0 Byte'; // eslint-disable-line eqeqeq
+  var sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+  if (bytes == 0) return "0 Byte"; // eslint-disable-line eqeqeq
   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-  return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+  return Math.round(bytes / Math.pow(1024, i), 2) + " " + sizes[i];
 }
 
 export function currentRouteSelector(pathname) {
-  return pathname.split('/')[1] || '';
+  return pathname.split("/")[1] || "";
 }
 
 export function ipfsToHttp(directoryHash, fileName) {
-  return `https://ipfs.infura.io/ipfs/${directoryHash}/${fileName}`;
+  return `${config.ipfs.apiViewURL}${directoryHash}/${fileName}`;
 }
 
 export function isMobile() {
@@ -69,23 +71,23 @@ export function getMobileOperatingSystem() {
 
   // Windows Phone must come first because its UA also contains "Android"
   if (/windows phone/i.test(userAgent)) {
-    return 'Windows Phone';
+    return "Windows Phone";
   }
 
   if (/android/i.test(userAgent)) {
-    return 'Android';
+    return "Android";
   }
 
   // iOS detection from: http://stackoverflow.com/a/9039885/177710
   if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    return 'iOS';
+    return "iOS";
   }
 
-  return 'unknown';
+  return "unknown";
 }
 
 export function scrollToTop() {
-  const pageBody = document.getElementsByClassName('page-body')[0];
+  const pageBody = document.getElementsByClassName("page-body")[0];
   if (pageBody.scrollTo) {
     pageBody.scrollTo(0, 0);
   } else {
@@ -122,8 +124,8 @@ export function hasImageExtension(filename) {
 
 export const newTabExtension = () => [
   {
-    type: 'output',
-    regex: '<a(.*?)>',
-    replace: (_, content) => '<a target="_blank"' + content + '>'
+    type: "output",
+    regex: "<a(.*?)>",
+    replace: (_, content) => '<a target="_blank"' + content + ">"
   }
 ];

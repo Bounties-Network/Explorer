@@ -204,7 +204,9 @@ class CreateBountyComponent extends React.Component {
           >
             <CreateBountyForm
               handleBounty={error => {
-                console.log('error', error);
+                if (error) {
+                  console.error('error', error);
+                }
                 if (!error) {
                   this.setState({ submitNotPressed: false });
                 }
