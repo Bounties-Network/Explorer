@@ -8,7 +8,7 @@ import { actionTypes as settingsActionTypes } from 'public-modules/Settings';
 import { actions as notificationActions } from 'public-modules/Notification';
 import { getWeb3Client } from 'public-modules/Client/sagas';
 import cookie from 'cookie';
-import client, { reInitClient, authCookie, wsClient } from 'lib/apollo-client';
+import apolloClient, { authCookie, wsClient } from 'lib/apollo-client';
 import { get } from 'lodash';
 
 const { SET_INITIALIZED } = clientActionTypes;
@@ -95,9 +95,11 @@ export function* login(action) {
     while (!authCookie()) {
       yield delay(2000);
     }
-    yield client.resetStore();
-    yield client.stop();
+    yield apolloClient().resetStore();
+    yield apolloClient().stop();
     yield wsClient.close(false, false);
+    // Reinit apollo client
+    yield call(apolloClient, true)
     yield delay(2000);
     yield put(loadNotifications());
   } catch (e) {
