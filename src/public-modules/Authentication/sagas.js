@@ -113,13 +113,12 @@ export function* logout(action) {
   const endpoint = 'auth/logout/';
   try {
     yield call(request, endpoint, 'GET');
-    yield deleteAuthorizationCookie();
-    yield put(logoutSuccess());
-
-    // Terminate apollo graphql client
-    while (authCookie()) {
-      yield delay(500);
+    if (window.location.host.includes('localhost')) {
+      yield deleteAuthorizationCookie();
     }
+    yield put(logoutSuccess());
+    
+    yield delay(800);
     window.location.reload();
   } catch (e) {
     yield put(logoutFail(e));
