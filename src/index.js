@@ -24,7 +24,7 @@ import 'styles/Toastify.scss';
 
 // common locale data
 import 'intl/locale-data/jsonp/en.js';
-import client from 'lib/apollo-client';
+import apolloClient from 'lib/apollo-client';
 // add locales here
 
 //add supported moment locales here
@@ -56,7 +56,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <ThemeProvider theme={theme}>
-        <ApolloProvider client={client}>
+        <ApolloProvider client={apolloClient()}>
           <App />
         </ApolloProvider>
       </ThemeProvider>
