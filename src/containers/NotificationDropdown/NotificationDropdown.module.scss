@@ -31,7 +31,7 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  right: calc(-3.95rem - #{$m-spacing});
+  right: calc(-4.4rem - #{$m-spacing});
 
   @media only screen and (min-width: 48em) {
     width: 35rem;

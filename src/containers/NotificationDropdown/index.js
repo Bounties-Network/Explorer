@@ -187,7 +187,8 @@ const NotificationDropdown = props => {
         <Global
           styles={css({
             ".tippy-tooltip": {
-              background: "none !important"
+              background: "none !important",
+              color: 'rgb(0, 0, 0)'
             },
             ".tippy-arrow": { display: "none" },
             ".tippy-popper": {
@@ -198,7 +199,7 @@ const NotificationDropdown = props => {
               py: 2,
               background: "none"
             },
-            ".tippy-popper": { background: "none", top: "-1.5rem !important" },
+            ".tippy-popper": { background: "none", top: "-1.8rem !important" },
           })}
         />
         <Text
