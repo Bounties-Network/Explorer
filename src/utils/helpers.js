@@ -1,14 +1,11 @@
 import config from "public-modules/config";
+import moment from 'moment'
+import momentTz from 'moment-timezone'
 
 export function getTimezone() {
-  if (Intl && Intl.DateTimeFormat) {
-    const dateTimeFormat = Intl.DateTimeFormat();
-    if (dateTimeFormat.resolvedOptions) {
-      return dateTimeFormat.resolvedOptions().timeZone;
-    }
-  }
-  return null;
+  return momentTz.tz.guess(true)
 }
+
 
 export function shortenAddress(address) {
   return address.slice(0, 6) + "..." + address.slice(-4);
