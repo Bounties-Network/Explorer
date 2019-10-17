@@ -124,13 +124,14 @@ function build(previousFileSizes) {
           process.env.CI.toLowerCase() !== 'false') &&
         messages.warnings.length
       ) {
-        console.log(
-          chalk.yellow(
-            '\nTreating warnings as errors because process.env.CI = true.\n' +
-              'Most CI servers set it automatically.\n'
-          )
-        );
-        return reject(new Error(messages.warnings.join('\n\n')));
+        // console.log(
+        //   chalk.yellow(
+        //     '\nTreating warnings as errors because process.env.CI = true.\n' +
+        //       'Most CI servers set it automatically.\n'
+        //   )
+        // );
+        // return reject(new Error(messages.warnings.join('\n\n')));
+        console.warn(messages.warnings.join('\n\n'))
       }
       return resolve({
         stats,
