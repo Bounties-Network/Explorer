@@ -88,7 +88,9 @@ export function* login(action) {
       'POST',
       loginOptions
     );
-    yield setAuthorizationCookie(token);
+    if (window.location.host.includes('localhost')) {
+      yield setAuthorizationCookie(token);
+    }
     yield put(loginSuccess(user, signedUp));
 
     // Wait till Authorization cookie is set
