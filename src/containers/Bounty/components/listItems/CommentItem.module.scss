@@ -4,10 +4,13 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  padding: 0 $base-spacing;
+  margin-left: -$m-spacing;
+  margin-right: -$m-spacing;
 
-  @media only screen and (min-width: 48em) {
+  @media only screen and (min-width: 35em) {
     padding: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -18,10 +21,12 @@
 }
 
 .commentContent {
+  width: 100%;
   text-align: left;
   line-height: $base-line-height;
-  margin-top: -$m-spacing;
   padding-left: $xxl-spacing + $m-spacing;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .timeStamp {
