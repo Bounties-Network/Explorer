@@ -168,7 +168,7 @@ let FulfillBountyFormModalComponent = props => {
         <Modal.Footer>
           {submitFailed &&
             invalid && (
-              <Text inputLabel color="red">
+              <Text inputLabel className={styles.modalSubmitError}>
                 {intl.get('errors.form_error')}
               </Text>
             )}
