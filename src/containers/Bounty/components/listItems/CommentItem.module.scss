@@ -4,11 +4,14 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  margin-left: -$m-spacing;
-  margin-right: -$m-spacing;
+  padding: $m-spacing 0;
+
+  &:not(:last-child) {
+    margin-top: $base-spacing;
+    // border-bottom: $base-border;
+  }
 
   @media only screen and (min-width: 35em) {
-    padding: 0;
     margin-left: 0;
     margin-right: 0;
   }
@@ -27,6 +30,7 @@
   padding-left: $xxl-spacing + $m-spacing;
   white-space: pre-wrap;
   word-break: break-word;
+  margin-top: -$base-spacing;
 }
 
 .timeStamp {

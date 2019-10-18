@@ -22,15 +22,13 @@ const CommentsCard = props => {
       const { name, public_address, small_profile_image_url } = user;
 
       return (
-        <ListGroup.ListItem key={id} className={styles.listItem} fullBorder>
-          <CommentItem
-            name={name}
-            address={public_address}
-            img={small_profile_image_url}
-            text={text}
-            created={created}
-          />
-        </ListGroup.ListItem>
+        <CommentItem
+          name={name}
+          address={public_address}
+          img={small_profile_image_url}
+          text={text}
+          created={created}
+        />
       );
     }, comments.list);
   };
