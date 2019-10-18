@@ -64,7 +64,7 @@ let FulfillerApplicationModalComponent = props => {
             </Text>
           )}
           {status === 'api error' && (
-            <Text inputLabel lassName={styles.modalSubmitError}>
+            <Text inputLabel className={styles.modalSubmitError}>
               {intl.get('errors.500')}
             </Text>
           )}

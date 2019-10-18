@@ -13,7 +13,7 @@ const CommentItem = props => {
   const formattedTime = moment.utc(created, 'YYYY-MM-DDThh:mm:ssZ').fromNow();
 
   return (
-    <div className={styles.commentItem}>
+    <li className={styles.commentItem}>
       <div className={styles.commentData}>
         <LinkedAvatar
           textFormat="inline"
@@ -37,7 +37,7 @@ const CommentItem = props => {
           {text}
         </Text>
       </div>
-    </div>
+    </li>
   );
 };
 

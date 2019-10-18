@@ -4,10 +4,15 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  padding: 0 $base-spacing;
+  padding: $l-spacing 0;
 
-  @media only screen and (min-width: 48em) {
-    padding: 0;
+  &:not(:last-child) {
+    border-bottom: $base-border;
+  }
+
+  @media only screen and (min-width: 35em) {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -18,10 +23,13 @@
 }
 
 .commentContent {
+  width: 100%;
   text-align: left;
   line-height: $base-line-height;
-  margin-top: -$m-spacing;
   padding-left: $xxl-spacing + $m-spacing;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-top: -$m-spacing;
 }
 
 .timeStamp {

@@ -1,4 +1,4 @@
-@import "~styles/variables.scss";
+@import '~styles/variables.scss';
 
 .bodyLoading {
   display: flex;
@@ -28,15 +28,10 @@
 
 .listItem {
   padding: $l-spacing $m-spacing;
-  position: relative;
-  border-radius: $base-border-radius;
-  margin-left: -$l-spacing;
-  margin-right: -$l-spacing;
-  margin-top: -$base-border-width;
 
   @media only screen and (min-width: 35em) {
     margin-left: -$l-spacing;
-    margin-right: -$l-spacing;;
+    margin-right: -$l-spacing;
     padding: $l-spacing;
   }
 }
