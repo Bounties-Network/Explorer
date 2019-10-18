@@ -1498,7 +1498,7 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@storybook/addon-actions@^5.2.3":
+"@storybook/addon-actions@^5.2.4":
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.2.4.tgz#79d13c1b6e58c75dd548eb162aa6626a93dfd041"
   integrity sha512-5E8uXopy6Gq5R3MXrPf0VM9QiLaGLxLCXtDYHQ0gku+HhPYR25KQudS/PyuO+OWzuyB0fsvTi240B3zw+zilOg==
@@ -1518,7 +1518,7 @@
     react-inspector "^3.0.2"
     uuid "^3.3.2"
 
-"@storybook/addon-centered@^5.2.3":
+"@storybook/addon-centered@^5.2.4":
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@storybook/addon-centered/-/addon-centered-5.2.4.tgz#8e2b78cec11df56b828b5d8b41fa896f83c54a25"
   integrity sha512-T5hFGkdKfoFJflU91GX21XJbgrEmIVRnIk8Ar01S2xEblzAnGZVIKoP+16wR71PbxUsr97zmrJaegQQ+2/vhRw==
@@ -1528,7 +1528,7 @@
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
-"@storybook/addon-knobs@^5.2.3":
+"@storybook/addon-knobs@^5.2.4":
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@storybook/addon-knobs/-/addon-knobs-5.2.4.tgz#f5db98235bc2870361dd3c224f8c10f901592c43"
   integrity sha512-VYxbDARJs5RwTEOlcfa98tkDXLcRocB7QXLqt8wwCdXPIqkuoVeQLROXGYJm2NzSn49RyHPKUuVWnRhy34qBbQ==
@@ -1552,7 +1552,7 @@
     react-lifecycles-compat "^3.0.4"
     react-select "^3.0.0"
 
-"@storybook/addon-links@^5.2.3":
+"@storybook/addon-links@^5.2.4":
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-5.2.4.tgz#5a5d631dbd66bf5800d4be7660b79568085a210d"
   integrity sha512-MG+Qne4gUWGYx2qQuLQXNcl7oOBF4PbIcR0oboZNrkZ+D+6f3nHwyb53CTtzVTc+SF45CFFYLHvFdGZvv5fcAw==
@@ -1566,7 +1566,7 @@
     prop-types "^15.7.2"
     qs "^6.6.0"
 
-"@storybook/addon-storysource@^5.2.3":
+"@storybook/addon-storysource@^5.2.4":
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-5.2.4.tgz#58e08cf389b93297cca1e1f9afab2d64ac5ea7b8"
   integrity sha512-zOJO4zt+Fj08GgegClDA6rU+VFyBb+mepfL5eJAqLtV6gSsprwZ1JNFVkyqhfrcr+vIhgRRWfuz/DDGmI+6bTQ==
@@ -1585,7 +1585,7 @@
     regenerator-runtime "^0.12.1"
     util-deprecate "^1.0.2"
 
-"@storybook/addons@5.2.4", "@storybook/addons@^5.2.3":
+"@storybook/addons@5.2.4", "@storybook/addons@^5.2.4":
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-5.2.4.tgz#5c4f031e403c90a517cd6d208ec51d7e2455683a"
   integrity sha512-Q+bnVlBA308qnELxnh18hBDRSUgltR9KbV537285dUL/okv/NC6n51mxJwIaG+ksBW2wU+5e6tqSayaKF3uHLw==
@@ -1783,7 +1783,7 @@
     pretty-hrtime "^1.0.3"
     regenerator-runtime "^0.12.1"
 
-"@storybook/react@^5.2.3":
+"@storybook/react@^5.2.4":
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@storybook/react/-/react-5.2.4.tgz#305db3fa7cd113c185aba97e5239d7754dc14859"
   integrity sha512-AO0qwbD/2UGe5CrVizbaek+gCAPWkPVc0KUk38cT1mcuLpXwt1zZe7iHLQf2zOeBVSiBkPLOHrEtzDfnIJXKFQ==

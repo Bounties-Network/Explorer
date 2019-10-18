@@ -1,15 +1,10 @@
 const path = require('path');
 const fs = require('fs');
-const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = ({ config }) => {
-  const getClientEnvironment = require('../config/env')
-  const env = getClientEnvironment('/');
-  config.plugins.push(new webpack.DefinePlugin(env.stringified))
-  console.log(env.stringified)
   config.resolve.modules = ['node_modules', path.resolve(__dirname, '../src')];
   config.resolve.extensions.push('.ts', '.tsx');
 

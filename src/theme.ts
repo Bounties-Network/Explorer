@@ -1,4 +1,4 @@
-import { theme as cTheme } from '@chakra-ui/core';
+// import { theme as cTheme } from '@chakra-ui/core';
 // MEDIA QUERIES
 const createMediaQuery = n => `@media screen and (min-width:${n})`;
 
@@ -462,7 +462,7 @@ export const variants = {
 };
 
 // EXPORT THEME
-const theme = Object.assign(cTheme, {
+const theme = {
   breakpoints,
   mediaQueries,
   space,
@@ -485,7 +485,7 @@ const theme = Object.assign(cTheme, {
   textFormat,
   maxContainerWidth,
   variants
-});
+};
 
 export default theme;
 export { colors };

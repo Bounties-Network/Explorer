@@ -1,4 +1,3 @@
-import config from "public-modules/config";
 import moment from 'moment'
 import momentTz from 'moment-timezone'
 
@@ -49,6 +48,7 @@ export function currentRouteSelector(pathname) {
 }
 
 export function ipfsToHttp(directoryHash, fileName) {
+  const config = require('../../src/public-modules/config').default;
   return `${config.ipfs.apiViewURL}${directoryHash}/${fileName}`;
 }
 
