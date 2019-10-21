@@ -1,5 +1,26 @@
 version: 2
 jobs:
+  deploy_production:
+    docker:
+      - image: circleci/node:10.16.3
+    working_directory: ~/app
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install node deps
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Install awscli
+          command: sudo apt-get -y -qq install awscli
+      - run:
+          name: BUIDL AND DEPLOY STAGING
+          command: yarn run deploy-all
   deploy:
     docker:
       - image: circleci/node:10.16.3
@@ -17,7 +38,7 @@ jobs:
             - ./node_modules
       - run:
           name: Install awscli
-          command: sudo apt-get -y -qq install awscli 
+          command: sudo apt-get -y -qq install awscli
       - run:
           name: BUIDL AND DEPLOY STAGING
           command: yarn run deploy-staging
@@ -30,3 +51,9 @@ workflows:
           filters:
             branches:
               only: master
+      - deploy_production:
+          filters:
+            tags:
+              only: /^v.*$/
+            branches:
+              ignore: /.*/
