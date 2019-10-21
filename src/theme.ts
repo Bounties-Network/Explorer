@@ -466,7 +466,29 @@ export const variants = {
     borderRadius: 2
   },
   link: {
-    ...text.link
+    ...text.link,
+    '&[disabled]': { 
+      colors: colors.seaGlass300,
+      opacity: 0.3,
+      pointerEvents: 'disabled',
+      cursor: 'default',
+    },
+    ':active': { 
+      colors: colors.seaGlass500
+    }
+  },
+  secondaryLink: {
+    ...text.link,
+    color: colors.gray400,
+    '&[disabled]': { 
+      colors: colors.gray400,
+      opacity: 0.3,
+      pointerEvents: 'disabled',
+      cursor: 'default',
+    },
+    ':active': { 
+      color: colors.gray500
+    },
   },
   pill,
   networkDot: {

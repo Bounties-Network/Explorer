@@ -1,12 +1,7 @@
 import React from "react";
 import centered from "@storybook/addon-centered/react";
 import { storiesOf, addDecorator } from "@storybook/react";
-import {
-  Button,
-  Text,
-  Flex
-  // , Link
-} from "rebass";
+import { Button, Text, Flex, Link } from "rebass";
 import LoadingIcon from "assets/loading";
 import css from "@styled-system/css";
 import emotionStyled from "lib/emotion-styled";
@@ -27,7 +22,7 @@ const ButtonContainer = emotionStyled(Flex)(() =>
 storiesOf("Button", module)
   .add("PrimaryButton", () => (
     <Container flexDirection="column">
-      <Text variant="h4">Buttons</Text>
+      <Text variant="h4">Primary Buttons</Text>
       <ButtonContainer flexDirection="row">
         <div>
           <Text variant="h5">Primary</Text>
@@ -52,36 +47,30 @@ storiesOf("Button", module)
       </ButtonContainer>
     </Container>
   ))
-  .add("LinkButton", () => (
+  .add("PrimaryLinkButton", () => (
     <Container flexDirection="column">
-      <Text variant="h4">LinkButtons</Text>
+      <Text variant="h4">Primary Link Buttons</Text>
       <ButtonContainer flexDirection="row">
         <div>
-          <Text variant="h5">Primary</Text>
-          <Button width={"100%"} variant="primaryLink">
+          <Text variant="h5">Primary Link component</Text>
+          <Link width={"100%"} variant="link">
             Cancel
-          </Button>
+          </Link>
         </div>
 
         <div>
-          <Text variant="h5">Primary Disabled</Text>
-          <Button disabled={true} width={"100%"} variant="primaryLink">
+          <Text variant="h5">Disabled Primary Link component</Text>
+          <Link disabled={true} width={"100%"} variant="link">
             Cancel
-          </Button>
+          </Link>
         </div>
 
-        {/* <div>
-        <Text variant="h5">Primary Disabled</Text>
-        <Link disabled={true} width={"100%"} variant="link">
-          Cancel
-        </Link>
-      </div> */}
       </ButtonContainer>
     </Container>
   ))
-    .add("SecondaryButton", () => (
+  .add("SecondaryButton", () => (
     <Container flexDirection="column">
-      <Text variant="h4">SecondaryButtons</Text>
+      <Text variant="h4">Secondary Buttons</Text>
       <ButtonContainer flexDirection="row">
         <div>
           <Text variant="h5">Secondary</Text>
@@ -98,11 +87,33 @@ storiesOf("Button", module)
         </div>
 
         <div>
-        <Text variant="h5">Secondary Loading</Text>
-        <Button width={"100%"} variant="secondary">
-          <LoadingIcon variant="secondary"></LoadingIcon>
-        </Button>
-      </div>
+          <Text variant="h5">Secondary Loading</Text>
+          <Button width={"100%"} variant="secondary">
+            <LoadingIcon variant="secondary" />
+          </Button>
+        </div>
       </ButtonContainer>
     </Container>
-  ));
+  ))
+  .add("SecondaryLinkButton", () => (
+    <Container flexDirection="column">
+      <Text variant="h4">Secondary Link Buttons</Text>
+      <ButtonContainer flexDirection="row">
+
+        <div>
+          <Text variant="h5">Secondary Link component</Text>
+          <Link width={"100%"} variant="secondaryLink">
+            Cancel
+          </Link>
+        </div>
+
+        <div>
+          <Text variant="h5">Disabled Secondary Link component</Text>
+          <Link disabled={true} width={"100%"} variant="secondaryLink">
+            Cancel
+          </Link>
+        </div>
+
+      </ButtonContainer>
+    </Container>
+  ))
