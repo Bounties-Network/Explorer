@@ -336,9 +336,9 @@ export const buttons = {
       border: borders.primaryActive
     },
     ":disabled": {
-      background: colors.seaGlass200,
+      background: colors.seaGlass100,
       cursor: "not-allowed",
-      color: colors.gray300
+      color: colors.gray200
     }
   },
   secondary: {
