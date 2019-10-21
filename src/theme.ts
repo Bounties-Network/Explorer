@@ -341,6 +341,14 @@ const primaryButton = {
   }
 };
 
+const primaryIcon = {
+  ...primaryButton,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  "> :first-child": { mr: 2 }
+};
+
 const secondaryButton = {
   ...text.bodyStrong,
   backgroundColor: colors.white,
@@ -416,6 +424,8 @@ const special = {
   }
 };
 
+const specialIcon = { ...primaryIcon, ...special };
+
 const destructive = {
   ...primaryButton,
   backgroundColor: colors.rose200,
@@ -440,10 +450,12 @@ const destructive = {
 
 export const buttons = {
   primary: primaryButton,
+  primaryIcon,
   secondary: secondaryButton,
   secondaryAffirmative,
   secondaryDestructive,
   special,
+  specialIcon,
   destructive,
   tertiary: {
     ...text.bodyStrong,
@@ -517,6 +529,19 @@ export const pill = {
   }
 };
 
+const link = {
+  ...text.link,
+  "&[disabled]": {
+    colors: colors.seaGlass300,
+    opacity: 0.3,
+    pointerEvents: "disabled",
+    cursor: "default"
+  },
+  ":active": {
+    colors: colors.seaGlass500
+  }
+};
+
 export const variants = {
   card: {
     border: borders.base,
@@ -525,17 +550,13 @@ export const variants = {
     boxSizing: "border-box",
     borderRadius: 2
   },
-  link: {
-    ...text.link,
-    "&[disabled]": {
-      colors: colors.seaGlass300,
-      opacity: 0.3,
-      pointerEvents: "disabled",
-      cursor: "default"
-    },
-    ":active": {
-      colors: colors.seaGlass500
-    }
+  link,
+  linkIcon: {
+    ...link,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    "> :first-child": { mr: 2 }
   },
   secondaryLink: {
     ...text.link,

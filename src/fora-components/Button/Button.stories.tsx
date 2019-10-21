@@ -5,6 +5,8 @@ import { Button, Text, Flex, Link } from "rebass";
 import LoadingIcon from "assets/loading";
 import css from "@styled-system/css";
 import emotionStyled from "lib/emotion-styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencil, faPlus, faReply } from "@fortawesome/pro-regular-svg-icons";
 
 addDecorator(centered);
 
@@ -44,6 +46,14 @@ storiesOf("Button", module)
             <LoadingIcon />
           </Button>
         </div>
+
+        <div>
+          <Text variant = "h5">Primary with Icon child</Text>
+          <Button width={"100%"} variant="primaryIcon">
+            <FontAwesomeIcon icon={faPencil} />
+            <Text>Edit bounty</Text>
+          </Button>
+        </div>
       </ButtonContainer>
     </Container>
   ))
@@ -62,6 +72,22 @@ storiesOf("Button", module)
           <Text variant="h5">Disabled Primary Link component</Text>
           <Link disabled={true} width={"100%"} variant="link">
             Cancel
+          </Link>
+        </div>
+
+        <div>
+          <Text variant="h5">Primary Link Icon component</Text>
+          <Link width={"100%"} variant="linkIcon">
+            <FontAwesomeIcon icon={faReply} />
+            <Text>Reply</Text>
+          </Link>
+        </div>
+
+        <div>
+          <Text variant="h5">Disabled Primary Link Icon component</Text>
+          <Link disabled={true} width={"100%"} variant="linkIcon">
+            <FontAwesomeIcon icon={faReply} />
+            <Text>Reply</Text>
           </Link>
         </div>
 
@@ -184,6 +210,14 @@ storiesOf("Button", module)
           <Text variant="h5">Loading Special Button component</Text>
           <Button width={"100%"} variant="special">
             <LoadingIcon variant="special"></LoadingIcon>
+          </Button>
+        </div>
+
+        <div>
+          <Text variant="h5">Loading Special Button component</Text>
+            <Button width={"100%"} variant="specialIcon">
+              <FontAwesomeIcon icon={faPlus} />
+              <Text>Create new bounty</Text>
           </Button>
         </div>
       </ButtonContainer>
