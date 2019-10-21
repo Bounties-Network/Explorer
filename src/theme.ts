@@ -317,29 +317,29 @@ export const text = {
 
 // Button variants
 const primaryButton = {
-    ...text.bodyStrong,
-    backgroundColor: colors.seaGlass200,
-    borderRadius: 2,
-    border: borders.base,
-    color: colors.seaGlass500,
-    cursor: "pointer",
-    boxSizing: "border-box",
-    fontFamily: fonts.secondary,
-    ":hover": {
-      background: colors.seaGlass100,
-      boxShadow: shadows[0],
-      border: borders.primaryActive
-    },
-    ":active": {
-      background: colors.seaGlass100,
-      border: borders.primaryActive
-    },
-    ":disabled": {
-      background: colors.seaGlass100,
-      cursor: "not-allowed",
-      color: colors.gray200
-    }
+  ...text.bodyStrong,
+  backgroundColor: colors.seaGlass200,
+  borderRadius: 2,
+  border: borders.base,
+  color: colors.seaGlass500,
+  cursor: "pointer",
+  boxSizing: "border-box",
+  fontFamily: fonts.secondary,
+  ":hover": {
+    background: colors.seaGlass100,
+    boxShadow: shadows[0],
+    border: borders.primaryActive
+  },
+  ":active": {
+    background: colors.seaGlass100,
+    border: borders.primaryActive
+  },
+  ":disabled": {
+    background: colors.seaGlass100,
+    cursor: "not-allowed",
+    color: colors.gray200
   }
+};
 
 const secondaryButton = {
   ...text.bodyStrong,
@@ -366,98 +366,80 @@ const secondaryButton = {
     cursor: "not-allowed",
     color: colors.gray300
   }
-}
+};
 
 const secondaryAffirmative = {
   ...secondaryButton,
   color: colors.seaGlass300,
-  ':hover': { 
-    ...secondaryButton[':hover'],
-    color: colors.seaGlass400,
+  ":hover": {
+    ...secondaryButton[":hover"],
+    color: colors.seaGlass400
   },
-  ':active': { 
-    ...secondaryButton[':active'],
-    color: colors.seaGlass400,
+  ":active": {
+    ...secondaryButton[":active"],
+    color: colors.seaGlass400
   }
-}
+};
 
 const secondaryDestructive = {
   ...secondaryAffirmative,
   color: colors.rose200,
-  ':hover': { 
-    ...secondaryAffirmative[':hover'],
-    color: colors.rose300,
+  ":hover": {
+    ...secondaryAffirmative[":hover"],
+    color: colors.rose300
   },
-  ':active': { 
-    ...secondaryAffirmative[':active'],
-    color: colors.rose300,
+  ":active": {
+    ...secondaryAffirmative[":active"],
+    color: colors.rose300
   }
-}
+};
 
 const special = {
   ...primaryButton,
   backgroundColor: colors.amber200,
   color: colors.amber300,
-  ':hover': { 
-    ...primaryButton[':hover'],
+  ":hover": {
+    ...primaryButton[":hover"],
     backgroundColor: colors.amber100,
     borderColor: colors.amber200,
-    color: colors.rose300,
+    color: colors.rose300
   },
-  ':active': { 
-    ...primaryButton[':active'],
+  ":active": {
+    ...primaryButton[":active"],
     backgroundColor: colors.amber100,
-    color: colors.rose300,
+    color: colors.rose300
   },
-  ':disabled': { 
-    ...primaryButton[':disabled'],
-    color: primaryButton[':disabled'].color,
-    backgroundColor: colors.amber100,
+  ":disabled": {
+    ...primaryButton[":disabled"],
+    color: primaryButton[":disabled"].color,
+    backgroundColor: colors.amber100
   }
-}
+};
 
 const destructive = {
   ...primaryButton,
   backgroundColor: colors.rose200,
   color: colors.rose300,
-  ':hover': { 
-    ...primaryButton[':hover'],
+  ":hover": {
+    ...primaryButton[":hover"],
     backgroundColor: colors.rose100,
     borderColor: colors.rose200,
-    color: colors.rose300,
+    color: colors.rose300
   },
-  ':active': { 
-    ...primaryButton[':active'],
+  ":active": {
+    ...primaryButton[":active"],
     backgroundColor: colors.rose100,
-    color: colors.rose300,
+    color: colors.rose300
   },
-  ':disabled': { 
-    ...primaryButton[':disabled'],
-    color: primaryButton[':disabled'].color,
-    backgroundColor: colors.rose100,
+  ":disabled": {
+    ...primaryButton[":disabled"],
+    color: primaryButton[":disabled"].color,
+    backgroundColor: colors.rose100
   }
-}
+};
 
 export const buttons = {
   primary: primaryButton,
-  primaryLink: {
-    ...text.link,
-    backgroundColor: 'none',
-    border: 'none',
-    cursor: "pointer",
-    boxSizing: "border-box",
-    fontFamily: fonts.secondary,
-    ":hover": {
-      textDecoration: 'underline'
-    },
-    ":active": {
-      colors: colors.seaGlass500,
-    },
-    ":disabled": {
-      cursor: "not-allowed",
-      opacity: 0.3
-    }
-  },
   secondary: secondaryButton,
   secondaryAffirmative,
   secondaryDestructive,
@@ -489,8 +471,6 @@ export const buttons = {
     }
   }
 };
-
-
 
 //AVATAR STYLES
 export const avatarResourceTypes = {
@@ -547,28 +527,41 @@ export const variants = {
   },
   link: {
     ...text.link,
-    '&[disabled]': { 
+    "&[disabled]": {
       colors: colors.seaGlass300,
       opacity: 0.3,
-      pointerEvents: 'disabled',
-      cursor: 'default',
+      pointerEvents: "disabled",
+      cursor: "default"
     },
-    ':active': { 
+    ":active": {
       colors: colors.seaGlass500
     }
   },
   secondaryLink: {
     ...text.link,
     color: colors.gray400,
-    '&[disabled]': { 
+    "&[disabled]": {
       colors: colors.gray400,
       opacity: 0.3,
-      pointerEvents: 'disabled',
-      cursor: 'default',
+      pointerEvents: "disabled",
+      cursor: "default"
     },
-    ':active': { 
+    ":active": {
       color: colors.gray500
+    }
+  },
+  destructiveLink: {
+    ...text.link,
+    color: colors.rose200,
+    "&[disabled]": {
+      colors: colors.rose200,
+      opacity: 0.3,
+      pointerEvents: "disabled",
+      cursor: "default"
     },
+    ":active": {
+      color: colors.rose300
+    }
   },
   pill,
   networkDot: {
