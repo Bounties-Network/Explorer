@@ -180,6 +180,12 @@ storiesOf("Button", module)
           </Button>
         </div>
 
+        <div>
+          <Text variant="h5">Loading Special Button component</Text>
+          <Button width={"100%"} variant="special">
+            <LoadingIcon variant="special"></LoadingIcon>
+          </Button>
+        </div>
       </ButtonContainer>
     </Container>
   ))
