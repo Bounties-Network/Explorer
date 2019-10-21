@@ -356,6 +356,19 @@ const secondaryAffirmative = {
   }
 }
 
+const secondaryDestructive = {
+  ...secondaryAffirmative,
+  color: colors.rose200,
+  ':hover': { 
+    ...secondaryAffirmative[':hover'],
+    color: colors.rose300,
+  },
+  ':active': { 
+    ...secondaryAffirmative[':active'],
+    color: colors.rose300,
+  }
+}
+
 export const buttons = {
   primary: {
     ...text.bodyStrong,
@@ -401,6 +414,7 @@ export const buttons = {
   },
   secondary: secondaryButton,
   secondaryAffirmative,
+  secondaryDestructive,
   tertiary: {
     ...text.bodyStrong,
     backgroundColor: colors.amber200,

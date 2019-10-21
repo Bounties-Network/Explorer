@@ -139,3 +139,25 @@ storiesOf("Button", module)
       </ButtonContainer>
     </Container>
   ))
+  .add("SecondaryDestructiveButton", () => (
+    <Container flexDirection="column">
+      <Text variant="h4">Secondary Destructive Buttons</Text>
+      <ButtonContainer flexDirection="row">
+
+        <div>
+          <Text variant="h5">Secondary Destructive Button component</Text>
+          <Button width={"100%"} variant="secondaryDestructive">
+          Delete
+          </Button>
+        </div>
+
+        <div>
+          <Text variant="h5">Disabled Secondary Destructive Button component</Text>
+          <Button disabled={true} width={"100%"} variant="secondaryDestructive">
+            Delete
+          </Button>
+        </div>
+
+      </ButtonContainer>
+    </Container>
+  ))
