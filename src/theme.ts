@@ -316,6 +316,46 @@ export const text = {
 };
 
 // Button variants
+const secondaryButton = {
+  ...text.bodyStrong,
+  backgroundColor: colors.white,
+  borderRadius: 2,
+  border: borders.base,
+  color: colors.gray500,
+  cursor: "pointer",
+  boxSizing: "border-box",
+  fontFamily: fonts.secondary,
+  ":hover": {
+    boxSizing: "border-box",
+    boxShadow: shadows[0],
+    color: colors.black,
+    border: borders.active
+  },
+  ":active": {
+    boxSizing: "border-box",
+    color: colors.black,
+    border: borders.active
+  },
+  ":disabled": {
+    background: colors.gray100,
+    cursor: "not-allowed",
+    color: colors.gray300
+  }
+}
+
+const secondaryAffirmative = {
+  ...secondaryButton,
+  color: colors.seaGlass300,
+  ':hover': { 
+    ...secondaryButton[':hover'],
+    color: colors.seaGlass400,
+  },
+  ':active': { 
+    ...secondaryButton[':active'],
+    color: colors.seaGlass400,
+  }
+}
+
 export const buttons = {
   primary: {
     ...text.bodyStrong,
@@ -359,32 +399,8 @@ export const buttons = {
       opacity: 0.3
     }
   },
-  secondary: {
-    ...text.bodyStrong,
-    backgroundColor: colors.white,
-    borderRadius: 2,
-    border: borders.base,
-    color: colors.gray500,
-    cursor: "pointer",
-    boxSizing: "border-box",
-    fontFamily: fonts.secondary,
-    ":hover": {
-      boxSizing: "border-box",
-      boxShadow: shadows[0],
-      color: colors.black,
-      border: borders.active
-    },
-    ":active": {
-      boxSizing: "border-box",
-      color: colors.black,
-      border: borders.active
-    },
-    ":disabled": {
-      background: colors.gray100,
-      cursor: "not-allowed",
-      color: colors.gray300
-    }
-  },
+  secondary: secondaryButton,
+  secondaryAffirmative,
   tertiary: {
     ...text.bodyStrong,
     backgroundColor: colors.amber200,
@@ -411,6 +427,8 @@ export const buttons = {
     }
   }
 };
+
+
 
 //AVATAR STYLES
 export const avatarResourceTypes = {

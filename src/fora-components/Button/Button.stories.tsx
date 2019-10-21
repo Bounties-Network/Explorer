@@ -117,3 +117,25 @@ storiesOf("Button", module)
       </ButtonContainer>
     </Container>
   ))
+  .add("SecondaryAffirmativeButton", () => (
+    <Container flexDirection="column">
+      <Text variant="h4">Secondary Affirmative Buttons</Text>
+      <ButtonContainer flexDirection="row">
+
+        <div>
+          <Text variant="h5">Secondary Affirmative Button component</Text>
+          <Button width={"100%"} variant="secondaryAffirmative">
+            Activate
+          </Button>
+        </div>
+
+        <div>
+          <Text variant="h5">Disabled Secondary Affirmative Button component</Text>
+          <Button disabled={true} width={"100%"} variant="secondaryAffirmative">
+            Activate
+          </Button>
+        </div>
+
+      </ButtonContainer>
+    </Container>
+  ))
