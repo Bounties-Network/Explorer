@@ -341,6 +341,24 @@ export const buttons = {
       color: colors.gray200
     }
   },
+  primaryLink: {
+    ...text.link,
+    backgroundColor: 'none',
+    border: 'none',
+    cursor: "pointer",
+    boxSizing: "border-box",
+    fontFamily: fonts.secondary,
+    ":hover": {
+      textDecoration: 'underline'
+    },
+    ":active": {
+      colors: colors.seaGlass500,
+    },
+    ":disabled": {
+      cursor: "not-allowed",
+      opacity: 0.3
+    }
+  },
   secondary: {
     ...text.bodyStrong,
     backgroundColor: colors.white,
