@@ -161,3 +161,25 @@ storiesOf("Button", module)
       </ButtonContainer>
     </Container>
   ))
+  .add("SpecialButton", () => (
+    <Container flexDirection="column">
+      <Text variant="h4">Special Buttons</Text>
+      <ButtonContainer flexDirection="row">
+
+        <div>
+          <Text variant="h5">Special Button component</Text>
+          <Button width={"100%"} variant="special">
+          Create Bounty
+          </Button>
+        </div>
+
+        <div>
+          <Text variant="h5">Disabled Special Button component</Text>
+          <Button disabled={true} width={"100%"} variant="special">
+            Create Bounty
+          </Button>
+        </div>
+
+      </ButtonContainer>
+    </Container>
+  ))

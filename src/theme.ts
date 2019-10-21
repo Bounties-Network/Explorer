@@ -316,6 +316,31 @@ export const text = {
 };
 
 // Button variants
+const primaryButton = {
+    ...text.bodyStrong,
+    backgroundColor: colors.seaGlass200,
+    borderRadius: 2,
+    border: borders.base,
+    color: colors.seaGlass500,
+    cursor: "pointer",
+    boxSizing: "border-box",
+    fontFamily: fonts.secondary,
+    ":hover": {
+      background: colors.seaGlass100,
+      boxShadow: shadows[0],
+      border: borders.primaryActive
+    },
+    ":active": {
+      background: colors.seaGlass100,
+      border: borders.primaryActive
+    },
+    ":disabled": {
+      background: colors.seaGlass100,
+      cursor: "not-allowed",
+      color: colors.gray200
+    }
+  }
+
 const secondaryButton = {
   ...text.bodyStrong,
   backgroundColor: colors.white,
@@ -369,31 +394,30 @@ const secondaryDestructive = {
   }
 }
 
-export const buttons = {
-  primary: {
-    ...text.bodyStrong,
-    backgroundColor: colors.seaGlass200,
-    borderRadius: 2,
-    border: borders.base,
-    color: colors.seaGlass500,
-    cursor: "pointer",
-    boxSizing: "border-box",
-    fontFamily: fonts.secondary,
-    ":hover": {
-      background: colors.seaGlass100,
-      boxShadow: shadows[0],
-      border: borders.primaryActive
-    },
-    ":active": {
-      background: colors.seaGlass100,
-      border: borders.primaryActive
-    },
-    ":disabled": {
-      background: colors.seaGlass100,
-      cursor: "not-allowed",
-      color: colors.gray200
-    }
+const special = {
+  ...primaryButton,
+  backgroundColor: colors.amber200,
+  color: colors.amber300,
+  ':hover': { 
+    ...primaryButton[':hover'],
+    backgroundColor: colors.amber100,
+    borderColor: colors.amber200,
+    color: colors.rose300,
   },
+  ':active': { 
+    ...primaryButton[':active'],
+    backgroundColor: colors.amber100,
+    color: colors.rose300,
+  },
+  ':disabled': { 
+    ...primaryButton[':disabled'],
+    color: primaryButton[':disabled'].color,
+    backgroundColor: colors.amber100,
+  }
+}
+
+export const buttons = {
+  primary: primaryButton,
   primaryLink: {
     ...text.link,
     backgroundColor: 'none',
@@ -415,6 +439,7 @@ export const buttons = {
   secondary: secondaryButton,
   secondaryAffirmative,
   secondaryDestructive,
+  special,
   tertiary: {
     ...text.bodyStrong,
     backgroundColor: colors.amber200,
