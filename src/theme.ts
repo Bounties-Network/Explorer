@@ -416,6 +416,28 @@ const special = {
   }
 }
 
+const destructive = {
+  ...primaryButton,
+  backgroundColor: colors.rose200,
+  color: colors.rose300,
+  ':hover': { 
+    ...primaryButton[':hover'],
+    backgroundColor: colors.rose100,
+    borderColor: colors.rose200,
+    color: colors.rose300,
+  },
+  ':active': { 
+    ...primaryButton[':active'],
+    backgroundColor: colors.rose100,
+    color: colors.rose300,
+  },
+  ':disabled': { 
+    ...primaryButton[':disabled'],
+    color: primaryButton[':disabled'].color,
+    backgroundColor: colors.rose100,
+  }
+}
+
 export const buttons = {
   primary: primaryButton,
   primaryLink: {
@@ -440,6 +462,7 @@ export const buttons = {
   secondaryAffirmative,
   secondaryDestructive,
   special,
+  destructive,
   tertiary: {
     ...text.bodyStrong,
     backgroundColor: colors.amber200,
