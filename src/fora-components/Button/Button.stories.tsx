@@ -158,6 +158,13 @@ storiesOf("Button", module)
         </div>
 
         <div>
+          <Text variant="h5">Secondary small icon only</Text>
+          <Button variant="secondarySmallIconOnly">
+            <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
+          </Button>
+        </div>
+
+        <div>
           <Text variant="h5">Disabled Secondary small</Text>
           <Button disabled={true} variant="secondarySmall">
             Explore
@@ -265,7 +272,6 @@ storiesOf("Button", module)
             <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
           </Button>
         </div>
-
 
         <div>
           <Text variant="h5">Secondary Destructive small</Text>

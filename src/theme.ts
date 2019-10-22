@@ -410,6 +410,13 @@ const secondarySmall = {
   px: 4
 };
 
+const secondarySmallIconOnly = {
+  ...secondarySmall,
+  py: 0,
+  px: 2,
+  "> :first-of-type": { mr: 0 }
+};
+
 const secondaryAffirmative = {
   ...secondaryButton,
   color: colors.seaGlass300,
@@ -593,6 +600,7 @@ export const buttons = {
   secondaryIcon,
   secondaryIconOnly,
   secondarySmall,
+  secondarySmallIconOnly,
   secondaryAffirmative,
   secondaryAffirmativeIcon,
   secondaryAffirmativeIconOnly,
