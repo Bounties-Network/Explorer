@@ -19,7 +19,7 @@ jobs:
           name: Install awscli
           command: sudo apt-get -y -qq install awscli
       - run:
-          name: BUIDL AND DEPLOY STAGING
+          name: BUIDL AND DEPLOY ALL, ALL YOUR BASE R BELONG TO US
           command: yarn run deploy-all
   deploy:
     docker:
