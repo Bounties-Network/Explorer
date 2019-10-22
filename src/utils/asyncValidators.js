@@ -9,8 +9,6 @@ const { getTokenBalance } = actions;
 
 const ZERO_BALANCE_ERROR = 'ZERO_BALANCE_ERROR';
 const INSUFFICIENT_BALANCE_ERROR = 'INSUFFICIENT_BALANCE_ERROR';
-const CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR =
-  'CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR';
 const UNKNOWN_ERROR = 'UNKNOWN_ERROR';
 
 const tokenValidation = (amount, tokenAddress, dispatch) => {
@@ -26,10 +24,6 @@ const tokenValidation = (amount, tokenAddress, dispatch) => {
   };
 
   const handleRejection = e => {
-    if (includes('decode bytes32 from ABI', e.message)) {
-      throw { error: CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR };
-    }
-
     throw { error: UNKNOWN_ERROR };
   };
 
@@ -79,11 +73,6 @@ const tokenValidationWrapper = (
         break;
       case INSUFFICIENT_BALANCE_ERROR:
         formError[amountKey] = balanceMessage;
-        break;
-      case CONTRACT_DOES_NOT_CONFORM_TO_ERC20_ERROR:
-        formError[tokenContractKey] =
-          'Address provided does not conform to ERC-20 standards.';
-        formError[amountKey] = formError[tokenContractKey];
         break;
       default:
         formError[tokenContractKey] = 'Something went wrong.';
