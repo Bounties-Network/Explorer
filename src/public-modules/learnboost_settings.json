@@ -1,0 +1,29 @@
+{
+  "platform": "learnboost",
+  "postingPlatform": "learnboost",
+  "postingSchema": "standardSchema",
+  "postingSchemaVersion": "1.0",
+  "categoryPlatform": "learnboost",
+  "networkName": "learnboost.bounties.network",
+  "url": {
+    "mainNet": "https://rinkeby.api.bounties.network",
+    "rinkeby": "https://rinkeby.api.bounties.network"
+  },
+  "defaultToken": {
+    "symbol": "BST",
+    "address": "0x4f1690e9b1576a997e40334674d3f14e966bb7bb",
+    "decimals": 18
+  },
+  "requiredNetwork": "rinkeby",
+  "mainNet": {
+    "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
+    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c",
+    "standardBountiesAddressV2.1": "0x38f1886081759f7d352c28984908d04e8d2205a6"
+  },
+  "rinkeby": {
+    "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
+    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c",
+    "standardBountiesAddressV2.1": "0x38f1886081759f7d352c28984908d04e8d2205a6"
+  },
+  "logo": "surge_logo"
+}
