@@ -12,14 +12,14 @@ const PrimaryLoadingIcon = () => (
       cy="11"
       r="8.5"
       stroke="#111618"
-      stroke-opacity="0.3"
-      stroke-width="3"
+      strokeOpacity="0.3"
+      strokeWidth="3"
       style={{ mixBlendMode: "multiply" }}
     />
     <path
       d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20"
       stroke="white"
-      stroke-width="3"
+      strokeWidth="3"
     />
   </svg>
 );
@@ -31,14 +31,14 @@ const SecondaryLoadingIcon = () => (
       cy="11"
       r="8.5"
       stroke="#111618"
-      stroke-opacity="0.15"
-      stroke-width="3"
+      strokeOpacity="0.15"
+      strokeWidth="3"
       style={{ mixBlendMode: "multiply" }}
     />
     <path
       d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20"
       stroke="#158E9E"
-      stroke-width="3"
+      strokeWidth="3"
     />
   </svg>
 );
@@ -50,14 +50,14 @@ const SpecialLoadingIcon = () => (
       cy="11"
       r="8.5"
       stroke="#111618"
-      stroke-opacity="0.3"
-      stroke-width="3"
+      strokeOpacity="0.3"
+      strokeWidth="3"
       style={{ mixBlendMode: "multiply" }}
     />
     <path
       d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20"
       stroke="white"
-      stroke-width="3"
+      strokeWidth="3"
     />
   </svg>
 );
@@ -69,14 +69,14 @@ const DestructiveLoadingIcon = () => (
       cy="11"
       r="8.5"
       stroke="#111618"
-      stroke-opacity="0.3"
-      stroke-width="3"
+      strokeOpacity="0.3"
+      strokeWidth="3"
       style={{ mixBlendMode: "multiply" }}
     />
     <path
       d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20"
       stroke="white"
-      stroke-width="3"
+      strokeWidth="3"
     />
   </svg>
 );

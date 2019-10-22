@@ -346,7 +346,20 @@ const primaryIcon = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  "> :first-child": { mr: 2 }
+  "> :first-of-type": { mr: 2 }
+};
+
+const primaryIconOnly = {
+  ...primaryIcon,
+  height: 40,
+  width: 40,
+  "> :first-of-type": { mr: 0 }
+};
+
+const primarySmall = {
+  ...primaryButton,
+  py: 1,
+  px: 4
 };
 
 const secondaryButton = {
@@ -376,6 +389,27 @@ const secondaryButton = {
   }
 };
 
+const secondaryIcon = {
+  ...secondaryButton,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  "> :first-of-type": { mr: 2 }
+};
+
+const secondaryIconOnly = {
+  ...secondaryIcon,
+  width: 40,
+  height: 40,
+  "> :first-of-type": { mr: 0 }
+};
+
+const secondarySmall = {
+  ...secondaryButton,
+  py: 1,
+  px: 4
+};
+
 const secondaryAffirmative = {
   ...secondaryButton,
   color: colors.seaGlass300,
@@ -389,6 +423,27 @@ const secondaryAffirmative = {
   }
 };
 
+const secondaryAffirmativeIcon = {
+  ...secondaryAffirmative,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  "> :first-of-type": { mr: 2 }
+};
+
+const secondaryAffirmativeIconOnly = {
+  ...secondaryAffirmativeIcon,
+  width: 40,
+  height: 40,
+  "> :only-child": { mr: 0 }
+};
+
+const secondaryAffirmativeSmall = {
+  ...secondaryAffirmative,
+  py: 1,
+  px: 4
+};
+
 const secondaryDestructive = {
   ...secondaryAffirmative,
   color: colors.rose200,
@@ -400,6 +455,27 @@ const secondaryDestructive = {
     ...secondaryAffirmative[":active"],
     color: colors.rose300
   }
+};
+
+const secondaryDestructiveIcon = {
+  ...secondaryDestructive,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  "> :first-of-type": { mr: 2 }
+};
+
+const secondaryDestructiveIconOnly = {
+  ...secondaryDestructiveIcon,
+  width: 40,
+  height: 40,
+  "> :only-child": { mr: 0 }
+};
+
+const secondaryDestructiveSmall = {
+  ...secondaryDestructive,
+  py: 1,
+  px: 4
 };
 
 const special = {
@@ -426,6 +502,19 @@ const special = {
 
 const specialIcon = { ...primaryIcon, ...special };
 
+const specialIconOnly = {
+  ...specialIcon,
+  width: 40,
+  height: 40,
+  "> :only-child": { mr: 0 }
+};
+
+const specialSmall = {
+  ...special,
+  py: 1,
+  px: 4
+};
+
 const destructive = {
   ...primaryButton,
   backgroundColor: colors.rose200,
@@ -448,40 +537,79 @@ const destructive = {
   }
 };
 
+const destructiveIcon = {
+  ...destructive,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  "> :first-of-type": { mr: 2 }
+};
+
+const destructiveIconOnly = {
+  ...destructiveIcon,
+  width: 40,
+  height: 40,
+  "> :first-of-type": { mr: 0 }
+};
+
+const destructiveSmall = {
+  ...destructive,
+  py: 1,
+  px: 4
+};
+
+const tertiary = {
+  ...text.bodyStrong,
+  backgroundColor: colors.amber200,
+  borderRadius: 2,
+  color: colors.amber300,
+  cursor: "pointer",
+  boxSizing: "border-box",
+  fontFamily: fonts.secondary,
+  ":hover": {
+    boxShadow: shadows[0],
+    boxSizing: "border-box",
+    color: colors.amber300,
+    background: colors.amber100,
+    border: borders.tertiaryActive
+  },
+  ":active": {
+    boxSizing: "border-box",
+    border: borders.tertiaryActive
+  },
+  ":disabled": {
+    background: colors.amber100,
+    cursor: "not-allowed",
+    color: colors.gray100
+  }
+};
+
 export const buttons = {
   primary: primaryButton,
   primaryIcon,
+  primaryIconOnly,
+  primarySmall,
   secondary: secondaryButton,
+  secondaryIcon,
+  secondaryIconOnly,
+  secondarySmall,
   secondaryAffirmative,
+  secondaryAffirmativeIcon,
+  secondaryAffirmativeIconOnly,
+  secondaryAffirmativeSmall,
   secondaryDestructive,
+  secondaryDestructiveIcon,
+  secondaryDestructiveIconOnly,
+  secondaryDestructiveSmall,
   special,
+  specialSmall,
   specialIcon,
+  specialIconOnly,
   destructive,
-  tertiary: {
-    ...text.bodyStrong,
-    backgroundColor: colors.amber200,
-    borderRadius: 2,
-    color: colors.amber300,
-    cursor: "pointer",
-    boxSizing: "border-box",
-    fontFamily: fonts.secondary,
-    ":hover": {
-      boxShadow: shadows[0],
-      boxSizing: "border-box",
-      color: colors.amber300,
-      background: colors.amber100,
-      border: borders.tertiaryActive
-    },
-    ":active": {
-      boxSizing: "border-box",
-      border: borders.tertiaryActive
-    },
-    ":disabled": {
-      background: colors.amber100,
-      cursor: "not-allowed",
-      color: colors.gray100
-    }
-  }
+  destructiveIcon,
+  destructiveIconOnly,
+  destructiveSmall,
+  tertiary
 };
 
 //AVATAR STYLES
@@ -556,7 +684,7 @@ export const variants = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    "> :first-child": { mr: 2 }
+    "> :first-of-type": { mr: 2 }
   },
   secondaryLink: {
     ...text.link,
