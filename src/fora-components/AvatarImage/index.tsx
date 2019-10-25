@@ -46,12 +46,14 @@ const ImageContainer = styled(Flex)<ImageContainerProps>(
   // props => props.theme.avatarResourceTypes[props.resourceType] or use this instead of the variant key above
 );
 
-const AvatarImage: React.FC<{
+export type AvatarImageProps = {
   variant?: string;
   resourceType?: string;
   src: string | undefined;
   address?: string;
-}> = ({ variant = 'medium', resourceType = 'user', src, address }) => (
+}
+
+const AvatarImage: React.FC<AvatarImageProps> = ({ variant = 'medium', resourceType = 'user', src, address }) => (
   <ImageContainer variant={variant} resourceType={resourceType}>
     {src ? (
       <Image src={src} height="100%" width="auto" />
