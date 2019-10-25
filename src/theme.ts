@@ -646,6 +646,20 @@ export const pill = {
       textTransform: "capitalize",
       color: colors.seaGlass500,
       backgroundColor: colors.seaGlass100
+    },
+    expired: {
+      ...text.small,
+      textTransform: "capitalize",
+      color: colors.rose300,
+      backgroundColor: colors.rose100
+    }
+  },
+  tag: {
+    explorer: {
+      ...text.small,
+      textTransform: "capitalize",
+      color: colors.gray400,
+      border: `1px solid ${colors.gray200}`
     }
   },
   network: {

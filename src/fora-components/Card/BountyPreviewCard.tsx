@@ -4,6 +4,7 @@ import { Flex, Card, Text, Box, Link } from 'rebass';
 import css from '@styled-system/css';
 import Pill from 'fora-components/Pill';
 import moment from 'moment';
+import formatExpiration from 'lib/format-expiration';
 
 const CardContainer = emotionStyled(Card)(() =>
   css({ variant: 'card', position: 'relative', py: 3, px: 3 })
@@ -39,9 +40,7 @@ const BountyPreviewCard = ({
         <Link variant="link">{title}</Link>
         <Description>
           <Text variant="small" color="gray400">
-            {moment(expirationTimestamp).isSameOrAfter(Date.now())
-              ? `${moment(expirationTimestamp).fromNow(true)} remaining`
-              : `Expired ${moment(expirationTimestamp).fromNow(true)}`}
+            {formatExpiration(expirationTimestamp)}
           </Text>
           <Text variant="small" color="gray400">
             •

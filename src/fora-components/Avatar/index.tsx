@@ -136,7 +136,7 @@ const AvatarAddress = styled(Text)<AvatarAddressProps>(props =>
   })
 );
 
-type AvatarProps = {
+export type AvatarProps = {
   variant: "small" | "medium" | "large";
   name: string | undefined;
   screenName: string | undefined;
