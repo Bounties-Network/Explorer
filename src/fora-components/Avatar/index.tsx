@@ -98,13 +98,9 @@ const TextContainer = styled(Flex)<TextContainerProps>(props =>
   })
 );
 
-type AvatarNameProps = Pick<
-  AvatarProps,
-  "variant" | "textFormat" | "onDark" | "name"
->;
+type AvatarNameProps = Pick<AvatarProps, "variant" | "textFormat" | "onDark" | "name">;
 const AvatarName = styled(Text)<AvatarNameProps>(props =>
   css({
-    display: props.variant === "small" ? "none" : "",
     color: props.onDark ? "white" : "black",
     mt: !props.name ? -1 : "",
     mr: props.textFormat === "inline" ? 2 : "",
@@ -147,9 +143,7 @@ type AvatarProps = {
   resourceType: "user" | "community";
   textFormat?: "block" | "inline";
   onDark: boolean;
-  onClick?: (
-    event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>
-  ) => void;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>) => void;
   src?: string;
   img?: string;
   address?: string;
@@ -170,38 +164,26 @@ const Avatar: React.FC<AvatarProps> = props => {
 
   return (
     <Box css={{ display: "inline-block" }}>
-      <AvatarWrapper
-        src={src ? src : "/profile/" + address}
-        onClick={onClick}
-        textFormat={textFormat}
-      >
+      <AvatarWrapper src={src ? src : "/profile/" + address} onClick={onClick} textFormat={textFormat}>
         <ImageContainer variant={variant} resourceType={resourceType}>
           <AvatarImage variant={variant} img={img} address={address} />
         </ImageContainer>
-
-        {name || address ? (
-          <TextContainer textFormat={textFormat} variant={variant}>
-            <AvatarName
-              variant={variant}
-              name={name}
-              onDark={onDark}
-              textFormat={textFormat}
-            >
-              {name || "--"}
-            </AvatarName>
-            {screenName ? (
-              <AvatarScreenName variant={variant} onDark={onDark}>
-                {screenName}
-              </AvatarScreenName>
-            ) : (
-              address && (
-                <AvatarAddress variant={variant} onDark={onDark}>
-                  {shortenAddress(address)}
-                </AvatarAddress>
-              )
-            )}
-          </TextContainer>
-        ) : null}
+        <TextContainer textFormat={textFormat} variant={variant}>
+          <AvatarName variant={variant} name={name} onDark={onDark} textFormat={textFormat}>
+            {name || "--"}
+          </AvatarName>
+          {screenName ? (
+            <AvatarScreenName variant={variant} onDark={onDark}>
+              {`@${screenName}`}
+            </AvatarScreenName>
+          ) : (
+            address && (
+              <AvatarAddress variant={variant} onDark={onDark}>
+                {shortenAddress(address)}
+              </AvatarAddress>
+            )
+          )}
+        </TextContainer>
       </AvatarWrapper>
     </Box>
   );

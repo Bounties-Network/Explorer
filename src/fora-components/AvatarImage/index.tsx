@@ -24,7 +24,7 @@ let imageContainerVariantSize = variant => {
     case 'medium':
       return 5;
     case 'large':
-      return 7;
+      return 8;
   }
 };
 
