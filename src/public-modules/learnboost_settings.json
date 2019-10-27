@@ -11,7 +11,7 @@
   },
   "defaultToken": {
     "symbol": "BST",
-    "address": "0x4f1690e9b1576a997e40334674d3f14e966bb7bb",
+    "address": "0x4F1690e9b1576a997e40334674d3F14e966bb7Bb",
     "decimals": 18
   },
   "requiredNetwork": "rinkeby",
