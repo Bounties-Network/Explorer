@@ -1,74 +1,87 @@
-import React from 'react';
-import emotionStyled from 'lib/emotion-styled';
-import { Flex, Card, Text, Box, Link } from 'rebass';
-import css from '@styled-system/css';
-import Pill from 'fora-components/Pill';
-import FormatExpiration from 'lib/format-expiration';
+import React from "react";
+import emotionStyled from "lib/emotion-styled";
+import { Flex, Card, Text, Box, Link } from "rebass";
+import css from "@styled-system/css";
+import Pill from "fora-components/Pill";
+import FormatExpiration from "lib/format-expiration";
+import { CommunityProps } from "../ExplorerCard";
 
-const CardContainer = emotionStyled(Card)(() =>
-  css({ variant: 'card', position: 'relative', py: 3, px: 3 })
+const CardContainer = emotionStyled(Card)(props =>
+  css({
+    variant: "card",
+    position: "relative",
+    py: 3,
+    px: 3,
+    "> div:first-of-type": {
+      position: "absolute",
+      left: props.theme.space[3],
+      top: "-10px"
+    }
+  })
 );
 const Description = emotionStyled(Box)(() =>
   css({
-    '> *': { display: 'inline-block', textAlign: 'left' },
-    '> *:nth-child(2)': { mx: 1 }
+    "> *": { display: "inline-block", textAlign: "left" },
+    "> *:not(*:first-of-type)": { ml: 1 },
+    "> a": { ml: 1 }
   })
 );
-const Content = emotionStyled(Flex)(() => css({ '> :first-child': { mr: 5 } }));
+const Content = emotionStyled(Flex)(() => css({ "> :first-child": { mr: 5 } }));
+const ValueContainer = emotionStyled(Flex)(() =>  css({ '> :first-of-type': { mb: 1 } }) );
 
 type PreviewCardProps = {
-  href: string
-  title: string
-  expirationTimestamp: any
-  submissionCount: number
-  status: string
-  ethInUSD: number
-  ethAmount: number
-}
+  href: string;
+  title: string;
+  expirationTimestamp: any;
+  submissionCount: number;
+  status: string;
+  ethInUSD: number;
+  ethAmount: number;
+  community?: CommunityProps;
+};
 const PreviewCard: React.FC<PreviewCardProps> = ({
   href,
   title,
   expirationTimestamp,
   submissionCount,
   status,
+  community,
   ethInUSD,
   ethAmount
 }) => (
   <CardContainer>
-    <Pill
-      css={css(theme => ({
-        position: 'absolute',
-        left: theme.space[3],
-        top: '-10px'
-      }))}
-      variant={`pill.status.${status}`}
-      resourceType={status}
-    />
+    <Pill variant={`pill.status.${status}`} resourceType={status} />
     <Content>
       <Flex flexDirection="column">
-        <Link href={href} variant="link">{title}</Link>
+        <Link href={href} variant="link">
+          {title}
+        </Link>
         <Description>
           <Text variant="small" color="gray400">
-            <FormatExpiration variant='preview' expirationTimestamp={expirationTimestamp}></FormatExpiration>
+            <FormatExpiration variant="preview" expirationTimestamp={expirationTimestamp}></FormatExpiration>
           </Text>
           <Text variant="small" color="gray400">
             •
           </Text>
-          <Text
-            variant="small"
-            color="gray400"
-          >{`${submissionCount} submissions`}</Text>
+          <Text variant="small" color="gray400">
+            {`${submissionCount} submissions`}
+          </Text>
+          {community !== undefined && (
+            <>
+              <Text variant="small" color="gray400">
+                •
+              </Text>
+              <Link color='gray400' variant='linkSmall' href={community?.href}>{`f • ${community?.name}`}</Link>
+            </>
+          )}
         </Description>
       </Flex>
-      <Flex flexDirection="column">
+      <ValueContainer flexDirection="column">
         <Text fontFamily="secondary" variant="h5">{`$${ethInUSD}`}</Text>
-        <Text
-          fontFamily="secondary"
-          variant="label"
-          color="gray400"
-        >{`${ethAmount} ETH`}</Text>
-      </Flex>
+        <Text fontFamily="secondary" variant="label" color="gray400">{`${ethAmount} ETH`}</Text>
+      </ValueContainer>
     </Content>
   </CardContainer>
 );
+
 export default PreviewCard;

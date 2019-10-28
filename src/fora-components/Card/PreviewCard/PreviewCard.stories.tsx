@@ -29,3 +29,27 @@ storiesOf("PreviewCard", module)
         status={"expired"}
       />
   ))
+  .add("Dead", () => (
+      <PreviewCard
+        ethInUSD={435}
+        ethAmount={0.56}
+        submissionCount={6}
+        expirationTimestamp={moment().subtract('5', 'days')}
+        href={"https://www.google.co.uk"}
+        title={"🗺 ️BOOST Bounty - Mentorship Reward 🗺️"}
+        status={"dead"}
+        community={{ href: 'https://www.google.co.uk', name: 'frontend' }}
+      />
+  ))
+  .add("Completed", () => (
+      <PreviewCard
+        ethInUSD={435}
+        ethAmount={0.56}
+        submissionCount={6}
+        expirationTimestamp={moment().subtract('5', 'days')}
+        href={"https://www.google.co.uk"}
+        title={"🗺 ️BOOST Bounty - Mentorship Reward 🗺️"}
+        status={"completed"}
+        community={{ href: 'https://www.google.co.uk', name: 'socialImpact' }}
+      />
+  ))

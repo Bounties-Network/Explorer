@@ -192,6 +192,14 @@ export const shadows = [
 //Z-INDEX
 export const zIndices = [0, 9, 99, 999, 9999];
 
+const linkSmall = {
+  color: colors.seaGlass300,
+  fontFamily: fonts.secondary,
+  fontSize: fontSizes[0] + "px",
+  fontWeight: fontWeights.medium,
+  lineHeight: lineHeights.standard + "px"
+}
+
 // Text variants
 export const text = {
   h1: {
@@ -270,12 +278,7 @@ export const text = {
     lineHeight: lineHeights.standard + "px",
     color: colors.seaGlass300
   },
-  linkSmall: {
-    fontFamily: fonts.secondary,
-    fontSize: fontSizes[0] + "px",
-    fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.standard + "px"
-  },
+  linkSmall,
   label: {
     color: colors.gray400,
     fontSize: fontSizes[0] + "px",
@@ -652,6 +655,20 @@ export const pill = {
       textTransform: "capitalize",
       color: colors.rose300,
       backgroundColor: colors.rose100
+    },
+    dead: {
+      ...text.small,
+      textTransform: "capitalize",
+      color: colors.gray500,
+      backgroundColor: colors.white,
+      border: borders.base
+    },
+    completed: {
+      ...text.small,
+      textTransform: "capitalize",
+      color: colors.gray500,
+      backgroundColor: colors.white,
+      border: borders.base
     }
   },
   tag: {
@@ -701,6 +718,7 @@ export const variants = {
     borderRadius: 2
   },
   link,
+  linkSmall,
   linkIcon: {
     ...link,
     display: "flex",

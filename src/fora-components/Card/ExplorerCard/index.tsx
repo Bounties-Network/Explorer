@@ -51,7 +51,8 @@ const MetaDetail = emotionStyled(Flex)(props =>
   })
 );
 
-type CommunityProps = {
+
+export type CommunityProps = {
   name: string;
   href: string;
 };
@@ -74,7 +75,7 @@ interface IProps {
   deadline: any;
   tags: Tag[];
   avatar: AvatarProps;
-  community: CommunityProps;
+  community?: CommunityProps;
 }
 
 const ExplorerCard: React.FunctionComponent<IProps> = props => (

@@ -83,15 +83,16 @@
     "styled-system": "^5.1.0",
     "subscriptions-transport-ws": "^0.9.16",
     "tippy.js": "^5.0.3",
-    "typescript": "^3.7.0-dev.20191009",
+    "typescript": "^3.7.1-rc",
     "web3": "^1.0.0-beta.34"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
     "@babel/plugin-syntax-object-rest-spread": "^7.2.0",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
+    "@babel/preset-typescript": "^7.6.0",
     "@babel/runtime": "^7.5.5",
     "@storybook/addon-actions": "^5.2.5",
     "@storybook/addon-centered": "^5.2.5",

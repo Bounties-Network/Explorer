@@ -2,6 +2,7 @@ module.exports = {
   presets: [['@babel/preset-typescript'], ['@babel/preset-react']],
   plugins: [
     ['react-hot-loader/babel'],
+    ["@babel/plugin-proposal-optional-chaining"],
     ['@babel/plugin-syntax-object-rest-spread'],
     ['@babel/plugin-proposal-class-properties'],
     ['@babel/plugin-transform-react-jsx'],
