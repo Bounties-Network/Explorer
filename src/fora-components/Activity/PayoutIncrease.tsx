@@ -4,7 +4,7 @@ import Divider from 'fora-components/Divider';
 import AvatarImage from 'fora-components/AvatarImage';
 import css from '@styled-system/css';
 import styled from 'lib/emotion-styled';
-import BountyPreviewCard from 'fora-components/Card/BountyPreviewCard';
+import PreviewCard from 'fora-components/Card/PreviewCard';
 import MetaData from './MetaData';
 
 const Container = styled(Flex)(() => css({ maxWidth: 570 }));
@@ -67,13 +67,14 @@ const PayoutIncrease: React.FC<IPayoutIncreaseProps> = ({
           >{` increased their bounty's payout to `}</Text>
           <Text variant="bodyStrong">{`${bountyPayoutIncreaseAmount} ETH`}</Text>
         </Description>
-        <BountyPreviewCard
+        <PreviewCard
           status={bountyStatus}
           title={bountyTitle}
           expirationTimestamp={bountyExpirationTimestamp}
           submissionCount={submissionCount}
-          ethInUSD={'435'}
-          ethAmount={'0.56'}
+          ethInUSD={435}
+          ethAmount={0.56}
+          href={"https://www.google.co.uk"}
         />
         <MetaData
           timestamp={timestamp}

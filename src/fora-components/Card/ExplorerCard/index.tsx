@@ -6,7 +6,7 @@ import Pill from "fora-components/Pill";
 import Avatar, { AvatarProps } from "fora-components/Avatar";
 import { faPeopleCarry, faPuzzlePiece, faClock, faArrowUp } from "@fortawesome/pro-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import formatExpiration from "lib/format-expiration";
+import FormatExpiration from "lib/format-expiration";
 
 const Container = emotionStyled(Card)(props =>
   css({
@@ -33,13 +33,23 @@ const BountyMainDetails = emotionStyled(Flex)(props =>
   css({ display: "flex", flexDirection: "column", "> :first-of-type": { mb: 3 } })
 );
 const IssuerDetails = emotionStyled(Flex)(props => css({ display: "flex", flexDirection: "column" }));
-const MetaDetails = emotionStyled(Flex)(props => css({ display: "flex", flexDirection: "row", ml: "auto", '> :first-of-type': { mr: 6 } }));
-const BountyMetaDetails = emotionStyled(Flex)(props => css({ display: "flex", flexDirection: "column", '> :not(:last-child)': { mb: 2 } }));
-const BountyValue = emotionStyled(Flex)(props => css({ display: "flex", flexDirection: "column", '> :first-of-type': { mb: 2 } }));
-const MetaDetail = emotionStyled(Flex)(props => css({
-  alignItems: 'center',
-  "> svg:first-of-type": { mr: 2, color: 'gray300' }, '> div:nth-of-type(2)': { ml: 1 }, textAlign: 'center'
-}));
+const MetaDetails = emotionStyled(Flex)(props =>
+  css({ display: "flex", flexDirection: "row", ml: "auto", "> :first-of-type": { mr: 6 } })
+);
+const BountyMetaDetails = emotionStyled(Flex)(props =>
+  css({ display: "flex", flexDirection: "column", "> :not(:last-child)": { mb: 2 } })
+);
+const BountyValue = emotionStyled(Flex)(props =>
+  css({ display: "flex", flexDirection: "column", "> :first-of-type": { mb: 2 } })
+);
+const MetaDetail = emotionStyled(Flex)(props =>
+  css({
+    alignItems: "center",
+    "> svg:first-of-type": { mr: 2, color: "gray300" },
+    "> div:nth-of-type(2)": { ml: 1 },
+    textAlign: "center"
+  })
+);
 
 type CommunityProps = {
   name: string;
@@ -61,7 +71,7 @@ interface IProps {
   difficulty: string;
   ethInUSD: number;
   ethValue: number;
-  deadline: any,
+  deadline: any;
   tags: Tag[];
   avatar: AvatarProps;
   community: CommunityProps;
@@ -95,29 +105,29 @@ const ExplorerCard: React.FunctionComponent<IProps> = props => (
           <MetaDetail>
             <FontAwesomeIcon icon={faPuzzlePiece}></FontAwesomeIcon>
             <Text variant="bodyStrong">{`${props.difficulty}`}</Text>
-            <Text variant='bodyStrong' color={'gray300'}>{`difficulty`}</Text>
+            <Text variant="bodyStrong" color={"gray300"}>{`difficulty`}</Text>
           </MetaDetail>
         )}
         {props.deadline && (
           <MetaDetail>
             <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>
-            {formatExpiration(props.deadline)} 
+            <FormatExpiration variant="explorer" expirationTimestamp={props.deadline}></FormatExpiration>
           </MetaDetail>
         )}
         {props.submissionCount && (
           <MetaDetail>
             <FontAwesomeIcon icon={faArrowUp}></FontAwesomeIcon>
             <Text variant="bodyStrong">{`${props.submissionCount}`}</Text>
-            <Text variant='bodyStrong' color={'gray300'}>{`submissions`}</Text>
+            <Text variant="bodyStrong" color={"gray300"}>{`submissions`}</Text>
           </MetaDetail>
         )}
       </BountyMetaDetails>
       <BountyValue>
-        <Text variant="h2" fontWeight={'normal'} color="rose200">{`$${props.ethInUSD}`}</Text>
+        <Text variant="h2" fontWeight={"normal"} color="rose200">{`$${props.ethInUSD}`}</Text>
         <Text variant="bodyStrong" color="gray400">{`${props.ethValue} ETH`}</Text>
       </BountyValue>
     </MetaDetails>
   </Container>
 );
 
-export default ExplorerCard
+export default ExplorerCard;

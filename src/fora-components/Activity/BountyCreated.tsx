@@ -4,7 +4,7 @@ import Divider from 'fora-components/Divider';
 import AvatarImage from 'fora-components/AvatarImage';
 import css from '@styled-system/css';
 import emotionStyled from 'lib/emotion-styled';
-import BountyPreviewCard from 'fora-components/Card/BountyPreviewCard';
+import PreviewCard from 'fora-components/Card/PreviewCard';
 import MetaData from './MetaData';
 
 const Container = emotionStyled(Flex)(() => css({ maxWidth: 570 }));
@@ -63,13 +63,14 @@ const BountyCreated: React.FC<IBountyCreatedProps> = ({
           <Text variant="bodyStrong">{authorName || '--'}</Text>
           <Text variant="body" color="gray400">{` created a bounty`}</Text>
         </Description>
-        <BountyPreviewCard
+        <PreviewCard
           status={bountyStatus}
           title={bountyTitle}
           expirationTimestamp={bountyExpirationTimestamp}
           submissionCount={submissionCount}
-          ethInUSD={'435'}
-          ethAmount={'0.56'}
+          ethInUSD={435}
+          ethAmount={0.56}
+          href={"https://www.google.co.uk"}
         />
         <MetaData
           timestamp={timestamp}

@@ -5,7 +5,7 @@ import AvatarImage from 'fora-components/AvatarImage';
 import css from '@styled-system/css';
 import styled from 'lib/emotion-styled';
 import moment from 'moment';
-import BountyPreviewCard from 'fora-components/Card/BountyPreviewCard';
+import PreviewCard from 'fora-components/Card/PreviewCard';
 import MetaData from './MetaData';
 
 const Container = styled(Flex)(() => css({ maxWidth: 570 }));
@@ -70,13 +70,14 @@ const DeadlineExtension: React.FC<IDeadlineExtensionProps> = ({
             {moment(bountyExtensionDate).format('DD/MM/YY')}
           </Text>
         </Description>
-        <BountyPreviewCard
+        <PreviewCard
+          href={'https://www.google.co.uk'}
           status={bountyStatus}
           title={bountyTitle}
           expirationTimestamp={bountyExpirationTimestamp}
           submissionCount={submissionCount}
-          ethInUSD={'435'}
-          ethAmount={'0.56'}
+          ethInUSD={435}
+          ethAmount={0.56}
         />
         <MetaData
           timestamp={timestamp}

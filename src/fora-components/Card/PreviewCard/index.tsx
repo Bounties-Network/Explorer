@@ -1,100 +1,74 @@
-import * as React from "react";
-import emotionStyled from "lib/emotion-styled";
-import css from "@styled-system/css";
-import { Card, Text, Flex, Link } from "rebass";
-import Pill from "fora-components/Pill";
-import Avatar, { AvatarProps } from "fora-components/Avatar";
-import { faPeopleCarry, faPuzzlePiece, faClock, faArrowUp } from "@fortawesome/pro-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import formatExpiration from "lib/format-expiration";
+import React from 'react';
+import emotionStyled from 'lib/emotion-styled';
+import { Flex, Card, Text, Box, Link } from 'rebass';
+import css from '@styled-system/css';
+import Pill from 'fora-components/Pill';
+import FormatExpiration from 'lib/format-expiration';
 
-const Container = emotionStyled(Card)(props =>
+const CardContainer = emotionStyled(Card)(() =>
+  css({ variant: 'card', position: 'relative', py: 3, px: 3 })
+);
+const Description = emotionStyled(Box)(() =>
   css({
-    display: "flex",
-    position: "relative",
-    flexDirection: "row",
-    width: "100%",
-    padding: 4,
-    "> div:first-of-type": { position: "absolute", top: -2, left: 3 }
+    '> *': { display: 'inline-block', textAlign: 'left' },
+    '> *:nth-child(2)': { mx: 1 }
   })
 );
+const Content = emotionStyled(Flex)(() => css({ '> :first-child': { mr: 5 } }));
 
-const MainDetails = emotionStyled(Flex)(() =>
-  css({
-    display: "flex",
-    flexDirection: "column",
-    "> :first-of-type": {
-      mb: 3
-    }
-  })
-);
-const Tags = emotionStyled(Flex)(props => css({ display: "flex", "> :not(:last-of-type)": { mr: 2 } }));
-const BountyMainDetails = emotionStyled(Flex)(props =>
-  css({ display: "flex", flexDirection: "column", "> :first-of-type": { mb: 3 } })
-);
-const IssuerDetails = emotionStyled(Flex)(props => css({ display: "flex", flexDirection: "column" }));
-const MetaDetails = emotionStyled(Flex)(props => css({ display: "flex", flexDirection: "column", ml: "auto" }));
-const BountyMetaDetails = emotionStyled(Flex)(props => css({ display: "flex", flexDirection: "column", '> :not(:last-child)': { mb: 2 } }));
-const BountyValue = emotionStyled(Flex)(props => css({ display: "flex", flexDirection: "column" }));
-const MetaDetail = emotionStyled(Flex)(props => css({
-  alignItems: 'center',
-  "> svg:first-of-type": { mr: 2, color: 'gray300' }, '> div:nth-of-type(2)': { ml: 1 }, textAlign: 'center'
-}));
-
-type CommunityProps = {
-  name: string;
-  href: string;
-};
-const Community: React.FC<CommunityProps> = props => (
-  <MetaDetail>
-    <FontAwesomeIcon icon={faPeopleCarry}></FontAwesomeIcon>
-    <Link href={props.href}>{`f • ${props.name}`}</Link>
-  </MetaDetail>
-);
-
-type Tag = { tag: string; href: string };
-interface IProps {
-  status: string;
-  title: string;
-  submissionCount: number;
-  href: string;
-  difficulty: string;
-  deadline: any,
-  tags: Tag[];
-  avatar: AvatarProps;
-  community: CommunityProps;
+type PreviewCardProps = {
+  href: string
+  title: string
+  expirationTimestamp: any
+  submissionCount: number
+  status: string
+  ethInUSD: number
+  ethAmount: number
 }
-
-const PreviewCard: React.FunctionComponent<IProps> = props => (
-  <Container variant="card">
-    <Pill variant={`pill.status.${props.status}`}>{props.status}</Pill>
-    <MainDetails>
-      <BountyMainDetails>
-        <Link href={props.href}>
-          <Text variant="h4">{props.title}</Text>
-        </Link>
-      </BountyMainDetails>
-      <BountyMetaDetails>
-        {props.deadline && (
-          <MetaDetail>
-            <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>
-            {formatExpiration(props.deadline)} 
-          </MetaDetail>
-        )}
-        {props.submissionCount && (
-          <MetaDetail>
-            <FontAwesomeIcon icon={faArrowUp}></FontAwesomeIcon>
-            <Text variant="bodyStrong">{`${props.submissionCount}`}</Text>
-            <Text variant='bodyStrong' color={'gray300'}>{`submissions`}</Text>
-          </MetaDetail>
-        )}
-      </BountyMetaDetails>
-    </MainDetails>
-
-    <MetaDetails>
-      <BountyValue></BountyValue>
-    </MetaDetails>
-  </Container>
+const PreviewCard: React.FC<PreviewCardProps> = ({
+  href,
+  title,
+  expirationTimestamp,
+  submissionCount,
+  status,
+  ethInUSD,
+  ethAmount
+}) => (
+  <CardContainer>
+    <Pill
+      css={css(theme => ({
+        position: 'absolute',
+        left: theme.space[3],
+        top: '-10px'
+      }))}
+      variant={`pill.status.${status}`}
+      resourceType={status}
+    />
+    <Content>
+      <Flex flexDirection="column">
+        <Link href={href} variant="link">{title}</Link>
+        <Description>
+          <Text variant="small" color="gray400">
+            <FormatExpiration variant='preview' expirationTimestamp={expirationTimestamp}></FormatExpiration>
+          </Text>
+          <Text variant="small" color="gray400">
+            •
+          </Text>
+          <Text
+            variant="small"
+            color="gray400"
+          >{`${submissionCount} submissions`}</Text>
+        </Description>
+      </Flex>
+      <Flex flexDirection="column">
+        <Text fontFamily="secondary" variant="h5">{`$${ethInUSD}`}</Text>
+        <Text
+          fontFamily="secondary"
+          variant="label"
+          color="gray400"
+        >{`${ethAmount} ETH`}</Text>
+      </Flex>
+    </Content>
+  </CardContainer>
 );
-
 export default PreviewCard;
