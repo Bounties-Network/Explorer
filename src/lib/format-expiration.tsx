@@ -34,7 +34,7 @@ const Expired: React.FC<{ variant?: NotExpiredVariants; expirationTimestamp: any
     case 'preview': { 
       return (
         <MetaDetail>
-          <Text variant="small" color="gray400">{`Expired  ${moment(props.expirationTimestamp).fromNow(true)}`}</Text>
+          <Text variant="small" color="gray400">{`Expired ${moment(props.expirationTimestamp).fromNow(false)}`}</Text>
         </MetaDetail>
       )
     }
