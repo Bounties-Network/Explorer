@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf, addDecorator } from "@storybook/react";
 import centered from "@storybook/addon-centered/react";
-import ExplorerCard from ".";
+import PreviewCard from ".";
 import emotionStyled from "lib/emotion-styled";
 import css from "@styled-system/css";
 import { Flex } from "rebass";
@@ -30,12 +30,10 @@ const Container = emotionStyled(Flex)(() =>
 
 addDecorator(centered);
 
-storiesOf("ExplorerCard", module)
+storiesOf("PreviewCard", module)
   .add("Mi Fora", () => (
   <Container>
-    <ExplorerCard
-      ethInUSD={26}
-      ethValue={0.05}
+    <PreviewCard
       submissionCount={6}
       community={{
         name: "frontendDev",
@@ -49,7 +47,6 @@ storiesOf("ExplorerCard", module)
         onDark: false
       }}
       deadline={moment().add('5', 'days')}
-      difficulty={'Beginner'}
       tags={tags}
       href={"https://www.google.co.uk"}
       title={"🗺 ️BOOST Bounty - Mentorship Reward 🗺️"}
@@ -59,9 +56,7 @@ storiesOf("ExplorerCard", module)
   ))
   .add("Expired", () => (
     <Container>
-      <ExplorerCard
-        ethInUSD={26}
-        ethValue={0.05}
+      <PreviewCard
         submissionCount={6}
         community={{
           name: "frontendDev",
@@ -75,7 +70,6 @@ storiesOf("ExplorerCard", module)
           onDark: false
         }}
         deadline={moment().subtract('5', 'days')}
-        difficulty={'Beginner'}
         tags={tags}
         href={"https://www.google.co.uk"}
         title={"🗺 ️BOOST Bounty - Mentorship Reward 🗺️"}
@@ -83,5 +77,3 @@ storiesOf("ExplorerCard", module)
       />
     </Container>
   ));
-  
-  ;
