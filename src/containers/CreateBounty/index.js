@@ -174,9 +174,8 @@ const mapStateToProps = (state, router) => {
   }
   if (
     isEditing &&
-    draftBounty.contract_version.split(
-      draftBounty.contract_version.indexOf('.')
-    )[0] !== '2'
+    typeof draftBounty.contract_version === 'string' &&
+    draftBounty.contract_version.split('.')[0] !== '2'
   ) {
     error = true;
   }

@@ -47,9 +47,8 @@ class IncreasePayoutFormModal extends React.Component {
       },
       (fulfillment_amount, values) => {
         if (
-          this.props.contract_version.split(
-            this.props.contract_version.indexOf('.')
-          )[0] === '2' &&
+          typeof this.props.contract_version === 'string' && 
+          this.props.contract_version.split('.')[0] === '2' &&
           BigNumber(values.fulfillment_amount || 0, 10).isGreaterThan(
             BigNumber(this.props.minimumBalance, 10)
           )
@@ -97,7 +96,7 @@ class IncreasePayoutFormModal extends React.Component {
                     textHighlightClass: styles.textHighlight
                   }
                 )}
-              {contract_version.split(contract_version.indexOf('.'))[0] ===
+              {typeof contract_version === 'string' && contract_version.split('.')[0] ===
                 '2' &&
                 intl.getHTML(
                   'sections.bounty.modals.increase_payout.description2',

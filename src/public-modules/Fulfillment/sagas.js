@@ -77,7 +77,8 @@ export function* acceptFulfillment(action) {
         fulfillmentId
       );
     } else if (
-      contract_version.split(contract_version.indexOf('.'))[0] !== '2'
+      typeof contract_version === 'string' &&
+      contract_version.split('.')[0] !== '2'
     ) {
       txHash = yield call(
         promisifyContractCall(standardBounties.acceptFulfillment, {
@@ -155,7 +156,8 @@ export function* createFulfillment(action) {
         ipfsHash
       );
     } else if (
-      contract_version.split(contract_version.indexOf('.'))[0] !== '2'
+      typeof contract_version === 'string' &&
+      contract_version.split('.')[0] !== '2'
     ) {
       const accountbalanceWei = yield call(web3.eth.getBalance, userAddress);
       const fulfillEstimateGasCost = yield call(
@@ -308,7 +310,10 @@ export function* updateFulfillment(action) {
 
   try {
     let txHash;
-    if (contract_version.split(contract_version.indexOf('.'))[0] !== '2') {
+    if (
+      typeof contract_version === 'string' &&
+      contract_version.split('.')[0] !== '2'
+    ) {
       // Check if user has enough balance for transaction gas costs
       const accountbalanceWei = yield call(web3.eth.getBalance, userAddress);
       const fulfillEstimateGasCost = yield call(

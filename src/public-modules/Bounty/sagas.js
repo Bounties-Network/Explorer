@@ -358,7 +358,8 @@ export function* killBounty(action) {
         id
       );
     } else if (
-      contract_version.split(contract_version.indexOf('.'))[0] === '2'
+      typeof contract_version === 'string' &&
+      contract_version.split('.')[0] === '2'
     ) {
       txHash = yield call(
         promisifyContractCall(standardBounties.drainBounty, {
@@ -463,7 +464,8 @@ export function* extendDeadline(action) {
         `${formattedDeadline}`
       );
     } else if (
-      contract_version.split(contract_version.indexOf('.'))[0] === '2'
+      typeof contract_version === 'string' &&
+      contract_version.split('.')[0] === '2'
     ) {
       txHash = yield call(
         promisifyContractCall(standardBounties.changeDeadline, {
@@ -646,7 +648,8 @@ export function* increasePayout(action) {
         );
       }
     } else if (
-      contract_version.split(contract_version.indexOf('.'))[0] === '2'
+      typeof contract_version === 'string' &&
+      contract_version.split('.')[0] === '2'
     ) {
       const issuedData = {
         payload: {
@@ -800,7 +803,8 @@ export function* transferIssuer(action) {
         address
       );
     } else if (
-      contract_version.split(contract_version.indexOf('.'))[0] === '2'
+      typeof contract_version === 'string' &&
+      contract_version.split('.')[0] === '2'
     ) {
       txHash = yield call(
         promisifyContractCall(standardBounties.changeIssuer, {
