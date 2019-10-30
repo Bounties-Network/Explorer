@@ -167,7 +167,8 @@ const SubmissionItem = props => {
   if (
     submissionBelongsToLoggedInUser &&
     !accepted &&
-    (bounty.contract_version === '2' || bounty.contract_version === '2.1')
+    bounty.contract_version.split(bounty.contract_version.indexOf('.'))[0] ===
+      '2'
   ) {
     actionButton = (
       <Button

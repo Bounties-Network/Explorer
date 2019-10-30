@@ -1,18 +1,18 @@
-import web3 from "public-modules/Utilities/Web3Client";
-import config from "public-modules/config";
-import { proxiedWeb3Handler } from "public-modules/Utilities/helpers";
+import web3 from 'public-modules/Utilities/Web3Client';
+import config from 'public-modules/config';
+import { proxiedWeb3Handler } from 'public-modules/Utilities/helpers';
 import {
   networkSelector,
   addressSelector,
   walletLockedSelector,
   hasWalletSelector,
   initializedSelector
-} from "public-modules/Client/selectors";
-import { call, put, select, takeLatest } from "redux-saga/effects";
-import { delay } from "redux-saga";
-import { apiEndpoint } from "utils/global";
-import { actions, actionTypes } from "public-modules/Client";
-import { BigNumber } from "bignumber.js";
+} from 'public-modules/Client/selectors';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import { apiEndpoint } from 'utils/global';
+import { actions, actionTypes } from 'public-modules/Client';
+import { BigNumber } from 'bignumber.js';
 
 let proxiedWeb3;
 
@@ -41,13 +41,13 @@ function* isWalletLocked() {
 export function* getNetwork() {
   const networkID = yield proxiedWeb3.eth.net.getId();
 
-  let network = "unknown";
+  let network = 'unknown';
   if (networkID === 1) {
-    network = "mainNet";
+    network = 'mainNet';
     apiEndpoint.set(config.url.mainNet);
   }
   if (networkID === 4) {
-    network = "rinkeby";
+    network = 'rinkeby';
     apiEndpoint.set(config.url.rinkeby);
   }
 
@@ -55,15 +55,16 @@ export function* getNetwork() {
 }
 
 export function* getWeb3Client() {
-  let currentAddress = "";
+  let currentAddress = '';
   let isLocked = false;
-  let currentNetwork = "unknown";
+  let currentNetwork = 'unknown';
   const wasLocked = yield select(walletLockedSelector);
   const prevAddress = yield select(addressSelector);
   const hadWallet = yield select(hasWalletSelector);
   const hasWallet =
-    typeof window.ethereum !== "undefined" ||
-    (typeof window.web3 !== "undefined" && typeof window.web3.currentProvider !== "undefined");
+    typeof window.ethereum !== 'undefined' ||
+    (typeof window.web3 !== 'undefined' &&
+      typeof window.web3.currentProvider !== 'undefined');
   const networkPrev = yield select(networkSelector);
   if (hasWallet !== hadWallet) {
     yield put(setHasWallet(hasWallet));
@@ -102,19 +103,20 @@ export function* getWeb3Client() {
   return { web3, proxiedWeb3 };
 }
 
-export function* getContractClient(contract_version = 2.1) {
+export function* getContractClient(contract_version = config.contractVersion) {
   const { web3 } = yield call(getWeb3Client);
   const network = yield select(networkSelector);
 
-  if (network !== "unknown") {
+  if (network !== 'unknown') {
     return {
       relayer: new web3.eth.Contract(
-        config.interfaces["MetaTxRelayer"],
+        config.interfaces['MetaTxRelayer'],
         config[
           `relayer${
-            process.env.APP_SETTINGS_FILE === "rinkeby_settings" || process.env.APP_SETTINGS_FILE === "staging_settings"
-              ? "Staging"
-              : "Production"
+            process.env.APP_SETTINGS_FILE === 'rinkeby_settings' ||
+            process.env.APP_SETTINGS_FILE === 'staging_settings'
+              ? 'Staging'
+              : 'Production'
           }ContractAddress`
         ]
       ),
@@ -127,13 +129,16 @@ export function* getContractClient(contract_version = 2.1) {
   return null;
 }
 
-export function* getTokenClient(tokenAddress, type = "HumanStandardToken") {
+export function* getTokenClient(tokenAddress, type = 'HumanStandardToken') {
   const { web3 } = yield call(getWeb3Client);
   const network = yield select(networkSelector);
 
-  if (network !== "unknown") {
+  if (network !== 'unknown') {
     return {
-      token_contract: new web3.eth.Contract(config.interfaces[type], tokenAddress).methods
+      token_contract: new web3.eth.Contract(
+        config.interfaces[type],
+        tokenAddress
+      ).methods
     };
   }
   return null;
@@ -144,11 +149,11 @@ export function* getTokenBalance(action) {
   const userAddress = yield call(getWalletAddress);
   const { web3 } = yield call(getWeb3Client);
 
-  if (tokenAddress === "0x0000000000000000000000000000000000000000") {
+  if (tokenAddress === '0x0000000000000000000000000000000000000000') {
     try {
       const balanceWei = yield call(web3.eth.getBalance, userAddress);
-      const balanceEther = yield call(web3.utils.fromWei, balanceWei, "ether");
-      return yield put(getTokenBalanceSuccess([balanceEther, "ether"]));
+      const balanceEther = yield call(web3.utils.fromWei, balanceWei, 'ether');
+      return yield put(getTokenBalanceSuccess([balanceEther, 'ether']));
     } catch (e) {
       return yield put(getTokenBalanceFail(e));
     }
@@ -166,7 +171,7 @@ export function* getTokenBalance(action) {
     } catch (e) {
       // if it fails, it may be because the token uses a slightly
       // different abi (DAI does this for example) and symbol is a bytes32
-      const token = yield call(getTokenClient, tokenAddress, "DSToken");
+      const token = yield call(getTokenClient, tokenAddress, 'DSToken');
       const { token_contract: tokenClient } = token;
       symbol = web3.utils.hexToAscii(yield call(tokenClient.symbol().call));
       decimals = yield call(tokenClient.decimals().call);
@@ -176,7 +181,12 @@ export function* getTokenBalance(action) {
     const balanceBN = BigNumber(balance, 10);
     const decimalsBN = BigNumber(decimals, 10);
 
-    yield put(getTokenBalanceSuccess([balanceBN.dividedBy(BigNumber(10).exponentiatedBy(decimalsBN)), symbol]));
+    yield put(
+      getTokenBalanceSuccess([
+        balanceBN.dividedBy(BigNumber(10).exponentiatedBy(decimalsBN)),
+        symbol
+      ])
+    );
   } catch (e) {
     yield put(getTokenBalanceFail(e));
   }
