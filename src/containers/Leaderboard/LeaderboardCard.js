@@ -36,7 +36,7 @@ const LeaderboardCardComponent = props => {
       const { name, address, profile_image, total_usd, total } = leader;
 
       const value = config.defaultToken
-        ? Number(total / 10 ** config.defaultToken.decimals).toFixed(2)
+        ? Number(total / 10 ** config.defaultToken.decimals).toFixed(3)
         : total_usd;
       return (
         <ListGroup.ListItem key={index + 1}>

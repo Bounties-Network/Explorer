@@ -41,6 +41,7 @@ import {
   faLink,
   faLockAlt
 } from '@fortawesome/pro-regular-svg-icons';
+import config from 'public-modules/config';
 
 showdown.setOption('simpleLineBreaks', true);
 showdown.extension('targetBlank', newTabExtension);
@@ -399,7 +400,7 @@ class BountyComponent extends React.Component {
                         <Text
                           link
                           absolute
-                          src={`https://ipfs.infura.io/ipfs/${
+                          src={`${config.ipfs.apiViewURL}${
                             bounty.attached_data_hash
                           }/${bounty.attached_filename}`}
                         >

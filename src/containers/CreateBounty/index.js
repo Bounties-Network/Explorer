@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './CreateBounty.module.scss';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { PageCard } from 'explorer-components';
 import { BigNumber } from 'bignumber.js';
@@ -7,6 +8,7 @@ import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as tokensActions } from 'public-modules/Tokens';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
 import CreateBountyForm from './CreateBountyForm';
+import { withRouter } from 'react-router-dom';
 import {
   getDraftStateSelector,
   getDraftBountySelector,
@@ -18,9 +20,10 @@ import { Loader, ZeroState } from 'components';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import config from 'public-modules/config';
 import intl from 'react-intl-universal';
-import NavigationPrompt from 'react-router-navigation-prompt';
+import { Prompt } from 'react-router';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
+import onBeforeUnloadHandler from 'lib/on-before-unload-handler';
 
 class CreateBountyComponent extends React.Component {
   constructor(props) {
@@ -39,6 +42,14 @@ class CreateBountyComponent extends React.Component {
     if (match.path === '/editBounty/:id/') {
       getBounty(match.params.id);
     }
+  }
+
+  componentDidMount() {
+    window.addEventListener('beforeunload', onBeforeUnloadHandler);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload');
   }
 
   render() {
@@ -71,124 +82,24 @@ class CreateBountyComponent extends React.Component {
       );
     }
 
-    var prompter = undefined;
-    if (
-      this.state.dirty &&
-      !isEditing &&
-      !isDraft &&
-      this.state.submitNotPressed
-    ) {
-      prompter = (
-        <NavigationPrompt
-          renderIfNotActive={false}
-          when={(crntLocation, nextLocation) =>
-            !nextLocation ||
-            !nextLocation.pathname.startsWith(crntLocation.pathname)
-          }
-        >
-          {({ isActive, onCancel, onConfirm }) => {
-            if (isActive) {
-              return (
-                <Modal
-                  dismissable
-                  size="small"
-                  fixed
-                  visible={true}
-                  onClose={onCancel}
-                >
-                  <Modal.Header closable icon="error">
-                    <Modal.Message>
-                      {intl.get(
-                        'sections.bounty.modals.unsaved_changes.new_bounty.title'
-                      )}
-                    </Modal.Message>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <Modal.Description>
-                      {intl.get(
-                        'sections.bounty.modals.unsaved_changes.new_bounty.description'
-                      )}
-                    </Modal.Description>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button
-                      className="margin"
-                      margin
-                      fitwidth
-                      onClick={onCancel}
-                    >
-                      {intl.get('actions.cancel')}
-                    </Button>
-                    <Button type="destructive" onClick={onConfirm}>
-                      {intl.get('actions.discard_changes')}
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
-              );
-            }
-          }}
-        </NavigationPrompt>
-      );
-    } else if (
+    const createWhenCondition =
+      this.state.dirty && !isEditing && !isDraft && this.state.submitNotPressed;
+
+    const editWhenCondition =
       (this.state.dirty && isEditing && this.state.submitNotPressed) ||
-      (this.state.dirty && isDraft && this.state.submitNotPressed)
-    ) {
-      prompter = (
-        <NavigationPrompt
-          renderIfNotActive={false}
-          when={(crntLocation, nextLocation) =>
-            !nextLocation ||
-            !nextLocation.pathname.startsWith(crntLocation.pathname)
-          }
-        >
-          {({ isActive, onCancel, onConfirm }) => {
-            if (isActive) {
-              return (
-                <Modal
-                  dismissable
-                  size="medium"
-                  fixed
-                  visible={true}
-                  onClose={onCancel}
-                >
-                  <Modal.Header closable>
-                    <Modal.Message>
-                      {intl.get(
-                        'sections.bounty.modals.unsaved_changes.draft_or_edit_bounty.title'
-                      )}
-                    </Modal.Message>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <Modal.Description>
-                      {intl.get(
-                        'sections.bounty.modals.unsaved_changes.draft_or_edit_bounty.description'
-                      )}
-                    </Modal.Description>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button
-                      className="margin"
-                      margin
-                      fitwidth
-                      onClick={onCancel}
-                    >
-                      {intl.get('actions.cancel')}
-                    </Button>
-                    <Button type="destructive" onClick={onConfirm}>
-                      {intl.get('actions.discard_changes')}
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
-              );
-            }
-          }}
-        </NavigationPrompt>
-      );
-    }
+      (this.state.dirty && isDraft && this.state.submitNotPressed);
 
     return (
       <div>
-        {prompter}
+        {/* Need i18n? */}
+        <Prompt
+          when={createWhenCondition}
+          message={`Changes you made may not be saved.`}
+        />
+        <Prompt
+          when={editWhenCondition}
+          message={`Changes you made may not be saved.`}
+        />
         <PageCard>
           <PageCard.Header>
             <PageCard.Title>
@@ -203,7 +114,9 @@ class CreateBountyComponent extends React.Component {
           >
             <CreateBountyForm
               handleBounty={error => {
-                console.log('error', error);
+                if (error) {
+                  console.error('error', error);
+                }
                 if (!error) {
                   this.setState({ submitNotPressed: false });
                 }
@@ -316,13 +229,16 @@ const mapStateToProps = (state, router) => {
   };
 };
 
-const CreateBounty = connect(
-  mapStateToProps,
-  {
-    getDraft: bountyActions.getDraft,
-    getBounty: bountyActions.getBounty,
-    loadTokens: tokensActions.loadTokens
-  }
+const CreateBounty = compose(
+  withRouter,
+  connect(
+    mapStateToProps,
+    {
+      getDraft: bountyActions.getDraft,
+      getBounty: bountyActions.getBounty,
+      loadTokens: tokensActions.loadTokens
+    }
+  )
 )(CreateBountyComponent);
 
 export default CreateBounty;

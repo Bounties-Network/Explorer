@@ -9,7 +9,6 @@
   &:not(:last-child):after {
     position: absolute;
     content: '';
-    padding: 0 $m-spacing;
     bottom: 0;
     transform: translateX(-50%);
     left: 50%;

@@ -1,11 +1,9 @@
+import config from 'public-modules/config';
+import moment from 'moment';
+import momentTz from 'moment-timezone';
+
 export function getTimezone() {
-  if (Intl && Intl.DateTimeFormat) {
-    const dateTimeFormat = Intl.DateTimeFormat();
-    if (dateTimeFormat.resolvedOptions) {
-      return dateTimeFormat.resolvedOptions().timeZone;
-    }
-  }
-  return null;
+  return momentTz.tz.guess(true);
 }
 
 export function shortenAddress(address) {
@@ -50,7 +48,7 @@ export function currentRouteSelector(pathname) {
 }
 
 export function ipfsToHttp(directoryHash, fileName) {
-  return `https://ipfs.infura.io/ipfs/${directoryHash}/${fileName}`;
+  return `${config.ipfs.apiViewURL}${directoryHash}/${fileName}`;
 }
 
 export function isMobile() {

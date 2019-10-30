@@ -6,7 +6,6 @@ import { Button, Text, ListGroup, Loader } from 'components';
 import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
 import { ACTIVE, EXPIRED } from 'public-modules/Bounty/constants';
 import { CommentItem, NewCommentForm } from '../index';
-
 import {
   newTabExtension,
   hasImageExtension,
@@ -26,6 +25,7 @@ import {
   faFileArchive
 } from '@fortawesome/pro-regular-svg-icons';
 import { faExternalLinkSquare } from '@fortawesome/pro-light-svg-icons';
+import config from 'public-modules/config';
 const map = fpMap.convert({ cap: false });
 
 showdown.setOption('simpleLineBreaks', true);
@@ -281,12 +281,14 @@ const SubmissionItem = props => {
         </div>
       </header>
       <div className={`${styles.submissionContents}`}>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: converter.makeHtml(description || 'N/A')
-          }}
-          className="markdownContent"
-        />
+        {description && (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: converter.makeHtml(description)
+            }}
+            className="markdownContent"
+          />
+        )}
         <div className={`${styles.submissionMedia}`}>
           {url ? (
             <a
@@ -305,7 +307,7 @@ const SubmissionItem = props => {
             <div>
               {!hasImageExtension(dataFileName) && (
                 <a
-                  src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  src={`${config.ipfs.apiViewURL}${dataHash}/${dataFileName}`}
                   className={`${styles.submissionMediaItem}`}
                 >
                   <FontAwesomeIcon
@@ -314,7 +316,7 @@ const SubmissionItem = props => {
                   />
                   <Text
                     className={`${styles.fileName}`}
-                    src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                    src={`${config.ipfs.apiViewURL}${dataHash}/${dataFileName}`}
                   >
                     {shortenFileName(dataFileName)}
                   </Text>
@@ -323,11 +325,11 @@ const SubmissionItem = props => {
               {hasImageExtension(dataFileName) && (
                 <a
                   className={`${styles.submissionMediaItem}`}
-                  href={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                  href={`${config.ipfs.apiViewURL}${dataHash}/${dataFileName}`}
                   target="_blank"
                 >
                   <img
-                    src={`https://ipfs.infura.io/ipfs/${dataHash}/${dataFileName}`}
+                    src={`${config.ipfs.apiViewURL}${dataHash}/${dataFileName}`}
                     class={styles.image}
                     alt={dataFileName}
                   />

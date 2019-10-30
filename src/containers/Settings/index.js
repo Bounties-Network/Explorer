@@ -5,9 +5,10 @@ import EmailPreferences from './EmailPreferences';
 import { PageCard } from 'explorer-components';
 import intl from 'react-intl-universal';
 
-import NavigationPrompt from 'react-router-navigation-prompt';
+import { Prompt } from 'react-router';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
+import onBeforeUnloadHandler from 'lib/on-before-unload-handler';
 
 class Settings extends React.Component {
   constructor(props) {
@@ -17,62 +18,26 @@ class Settings extends React.Component {
       submitNotPressed: true
     };
   }
+
+  componentDidMount() {
+    window.addEventListener('beforeunload', onBeforeUnloadHandler);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload');
+  }
+
   render() {
+    const settingsWhenCondition =
+      this.state.dirty && this.state.submitNotPressed;
+
     return (
       <div>
-        {this.state.dirty && this.state.submitNotPressed ? (
-          <NavigationPrompt
-            renderIfNotActive={false}
-            when={(crntLocation, nextLocation) =>
-              !nextLocation ||
-              !nextLocation.pathname.startsWith(crntLocation.pathname)
-            }
-          >
-            {({ isActive, onCancel, onConfirm }) => {
-              if (isActive) {
-                return (
-                  <Modal
-                    dismissable
-                    size="medium"
-                    fixed
-                    visible={true}
-                    onClose={onCancel}
-                  >
-                    <Modal.Header closable>
-                      <Modal.Message>
-                        {intl.get(
-                          'sections.settings.modals.unsaved_changes.title'
-                        )}
-                      </Modal.Message>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <Modal.Description>
-                        {intl.get(
-                          'sections.settings.modals.unsaved_changes.description'
-                        )}
-                      </Modal.Description>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button
-                        className="margin"
-                        margin
-                        fitwidth
-                        onClick={onCancel}
-                      >
-                        {intl.get('actions.cancel')}
-                      </Button>
-                      <Button type="destructive" onClick={onConfirm}>
-                        {intl.get('actions.discard_changes')}
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
-                );
-              }
-            }}
-          </NavigationPrompt>
-        ) : (
-          ''
-        )}
+        {/* Need i18n? */}
+        <Prompt
+          when={settingsWhenCondition}
+          message={`Changes you made may not be saved.`}
+        />
         <PageCard>
           <PageCard.Header>
             <PageCard.Title>
