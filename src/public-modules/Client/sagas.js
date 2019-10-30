@@ -113,8 +113,8 @@ export function* getContractClient(contract_version = config.contractVersion) {
         config.interfaces['MetaTxRelayer'],
         config[
           `relayer${
-            process.env.APP_SETTINGS_FILE === 'rinkeby_settings' ||
-            process.env.APP_SETTINGS_FILE === 'staging_settings'
+            config.url.mainNet.includes('rinkeby') ||
+            config.url.mainNet.includes('staging')
               ? 'Staging'
               : 'Production'
           }ContractAddress`

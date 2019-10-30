@@ -192,7 +192,7 @@ export function* createFulfillment(action) {
         // );
         // window.config = siteConfig;
         const params = [
-          ['address', 'string', 'uint', 'address[]', 'string', 'uint256'],
+          ['address', 'string', 'uint', 'address[]', 'string', 'uint'],
           [
             web3.utils.toChecksumAddress(relayer._address),
             'metaFulfillBounty',
@@ -334,15 +334,7 @@ export function* updateFulfillment(action) {
         // console.log("latestNonce from meta tx contract: ", latestNonce);
         const nonce = web3.utils.hexToNumber(latestNonce);
         const params = [
-          [
-            'address',
-            'string',
-            'uint',
-            'uint',
-            'address[]',
-            'string',
-            'uint256'
-          ],
+          ['address', 'string', 'uint', 'uint', 'address[]', 'string', 'uint'],
           [
             web3.utils.toChecksumAddress(relayer._address),
             'metaUpdateFulfillment',
