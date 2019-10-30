@@ -102,7 +102,7 @@ export function* getWeb3Client() {
   return { web3, proxiedWeb3 };
 }
 
-export function* getContractClient(contract_version = 2.1) {
+export function* getContractClient(contract_version = 2.2) {
   const { web3 } = yield call(getWeb3Client);
   const network = yield select(networkSelector);
 

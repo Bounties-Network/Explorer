@@ -92,7 +92,8 @@ const ModalManagerComponent = props => {
     initiateWalkthrough(() => {
       if (
         bounty.contract_version === '2' ||
-        bounty.contract_version === '2.1'
+        bounty.contract_version === '2.1' ||
+        bounty.contract_version === '2.2'
       ) {
         contributeAction(
           bounty.bounty_id,
