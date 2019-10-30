@@ -47,8 +47,8 @@ class IncreasePayoutFormModal extends React.Component {
       },
       (fulfillment_amount, values) => {
         if (
-          bounty.contract_version.split(
-            bounty.contract_version.indexOf('.')
+          this.props.contract_version.split(
+            this.props.contract_version.indexOf('.')
           )[0] === '2' &&
           BigNumber(values.fulfillment_amount || 0, 10).isGreaterThan(
             BigNumber(this.props.minimumBalance, 10)
