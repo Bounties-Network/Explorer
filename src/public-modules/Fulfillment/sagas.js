@@ -186,7 +186,7 @@ export function* createFulfillment(action) {
         // );
         // window.config = siteConfig;
         const params = [
-          ['address', 'string', 'uint', 'address[]', 'string', 'uint256'],
+          ['address', 'string', 'uint', 'address[]', 'string', 'uint'],
           [
             web3.utils.toChecksumAddress(relayer._address),
             'metaFulfillBounty',
@@ -332,7 +332,7 @@ export function* updateFulfillment(action) {
             'uint',
             'address[]',
             'string',
-            'uint256'
+            'uint'
           ],
           [
             web3.utils.toChecksumAddress(relayer._address),
