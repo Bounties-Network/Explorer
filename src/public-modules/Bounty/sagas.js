@@ -258,7 +258,7 @@ export function* createBounty(action) {
         promisifyContractCall(tokenContractClient.approve, {
           from: userAddress
         }),
-        config[network]['standardBountiesAddressV2.1'],
+        config[network]['standardBountiesAddressV' + config.contractVersion],
         contractBalance
       );
       yield call(delay, 2000);
@@ -357,7 +357,10 @@ export function* killBounty(action) {
         }),
         id
       );
-    } else if (contract_version === '2' || contract_version === '2.1') {
+    } else if (
+      typeof contract_version === 'string' &&
+      contract_version.split('.')[0] === '2'
+    ) {
       txHash = yield call(
         promisifyContractCall(standardBounties.drainBounty, {
           from: userAddress
@@ -460,7 +463,10 @@ export function* extendDeadline(action) {
         id,
         `${formattedDeadline}`
       );
-    } else if (contract_version === '2' || contract_version === '2.1') {
+    } else if (
+      typeof contract_version === 'string' &&
+      contract_version.split('.')[0] === '2'
+    ) {
       txHash = yield call(
         promisifyContractCall(standardBounties.changeDeadline, {
           from: userAddress
@@ -641,7 +647,10 @@ export function* increasePayout(action) {
           contractBalance
         );
       }
-    } else if (contract_version === '2' || contract_version === '2.1') {
+    } else if (
+      typeof contract_version === 'string' &&
+      contract_version.split('.')[0] === '2'
+    ) {
       const issuedData = {
         payload: {
           uid: bounty.uid,
@@ -793,7 +802,10 @@ export function* transferIssuer(action) {
         id,
         address
       );
-    } else if (contract_version === '2' || contract_version === '2.1') {
+    } else if (
+      typeof contract_version === 'string' &&
+      contract_version.split('.')[0] === '2'
+    ) {
       txHash = yield call(
         promisifyContractCall(standardBounties.changeIssuer, {
           from: userAddress

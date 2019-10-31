@@ -103,12 +103,23 @@ export function* getWeb3Client() {
   return { web3, proxiedWeb3 };
 }
 
-export function* getContractClient(contract_version = 2.1) {
+export function* getContractClient(contract_version = config.contractVersion) {
   const { web3 } = yield call(getWeb3Client);
   const network = yield select(networkSelector);
 
   if (network !== 'unknown') {
     return {
+      relayer: new web3.eth.Contract(
+        config.interfaces['MetaTxRelayer'],
+        config[
+          `relayer${
+            config.url.mainNet.includes('rinkeby') ||
+            config.url.mainNet.includes('staging')
+              ? 'Staging'
+              : 'Production'
+          }ContractAddress`
+        ]
+      ),
       standardBounties: new web3.eth.Contract(
         config.interfaces[`StandardBountiesV${contract_version}`],
         config[network][`standardBountiesAddressV${contract_version}`]

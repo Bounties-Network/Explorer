@@ -1,16 +1,21 @@
-import React from "react";
-import styles from "./SubmissionItem.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { includes } from "lodash";
-import { Button, Text, ListGroup, Loader } from "components";
-import { FulfillmentStagePill, LinkedAvatar } from "explorer-components";
-import { ACTIVE, EXPIRED } from "public-modules/Bounty/constants";
-import { CommentItem, NewCommentForm } from "../index";
-import { newTabExtension, hasImageExtension, shortenFileName, shortenUrl } from "utils/helpers";
-import moment from "moment";
-import intl from "react-intl-universal";
-import showdown from "showdown";
-import { map as fpMap } from "lodash";
+import React from 'react';
+import styles from './SubmissionItem.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { includes } from 'lodash';
+import { Button, Text, ListGroup, Loader } from 'components';
+import { FulfillmentStagePill, LinkedAvatar } from 'explorer-components';
+import { ACTIVE, EXPIRED } from 'public-modules/Bounty/constants';
+import { CommentItem, NewCommentForm } from '../index';
+import {
+  newTabExtension,
+  hasImageExtension,
+  shortenFileName,
+  shortenUrl
+} from 'utils/helpers';
+import moment from 'moment';
+import intl from 'react-intl-universal';
+import showdown from 'showdown';
+import { map as fpMap } from 'lodash';
 import {
   faAngleUp,
   faAngleDown,
@@ -18,15 +23,15 @@ import {
   faEnvelope,
   faEdit,
   faFileArchive
-} from "@fortawesome/pro-regular-svg-icons";
-import { faExternalLinkSquare } from "@fortawesome/pro-light-svg-icons";
-import config from "public-modules/config";
+} from '@fortawesome/pro-regular-svg-icons';
+import { faExternalLinkSquare } from '@fortawesome/pro-light-svg-icons';
+import config from 'public-modules/config';
 const map = fpMap.convert({ cap: false });
 
-showdown.setOption("simpleLineBreaks", true);
-showdown.extension("targetBlank", newTabExtension);
-const converter = new showdown.Converter({ extensions: ["targetBlank"] });
-converter.setFlavor("github");
+showdown.setOption('simpleLineBreaks', true);
+showdown.extension('targetBlank', newTabExtension);
+const converter = new showdown.Converter({ extensions: ['targetBlank'] });
+converter.setFlavor('github');
 
 const SubmissionItem = props => {
   const {
@@ -67,7 +72,9 @@ const SubmissionItem = props => {
     setOpenComments(openComments ? -1 : id, true);
   };
   let numComments =
-    openComments && comments.countFulComments >= comment_count ? comments.countFulComments : comment_count;
+    openComments && comments.countFulComments >= comment_count
+      ? comments.countFulComments
+      : comment_count;
   const renderComments = () => {
     return map(comment => {
       const { id, text, user, created } = comment;
@@ -90,14 +97,22 @@ const SubmissionItem = props => {
   const { bounty_stage } = bounty;
 
   const formattedTime = moment
-    .utc(created, "YYYY-MM-DDThh:mm:ssZ")
+    .utc(created, 'YYYY-MM-DDThh:mm:ssZ')
     .local()
-    .format("L");
+    .format('L');
   let actionButton = null;
-  if (bountyBelongsToLoggedInUser && includes(bounty_stage, [ACTIVE, EXPIRED]) && !accepted) {
+  if (
+    bountyBelongsToLoggedInUser &&
+    includes(bounty_stage, [ACTIVE, EXPIRED]) &&
+    !accepted
+  ) {
     actionButton = (
-      <Button type="action" className={styles.actionButton} onClick={acceptFulfillment}>
-        {intl.get("actions.accept")}
+      <Button
+        type="action"
+        className={styles.actionButton}
+        onClick={acceptFulfillment}
+      >
+        {intl.get('actions.accept')}
       </Button>
     );
   }
@@ -114,11 +129,11 @@ const SubmissionItem = props => {
               img: fulfiller_img
             });
 
-            showModal("issueRatingForFulfiller");
+            showModal('issueRatingForFulfiller');
           })
         }
       >
-        {intl.get("actions.rate_fulfiller")}
+        {intl.get('actions.rate_fulfiller')}
       </Button>
     );
   }
@@ -129,17 +144,21 @@ const SubmissionItem = props => {
         className={`${styles.actionButton} ${styles.rateButton}`}
         onClick={() =>
           initiateLoginProtection(() => {
-            const { name, public_address, small_profile_image_url } = bounty.user;
+            const {
+              name,
+              public_address,
+              small_profile_image_url
+            } = bounty.user;
             setRatingModal(fulfillmentId, {
               name,
               address: public_address,
               img: small_profile_image_url
             });
-            showModal("issueRatingForIssuer");
+            showModal('issueRatingForIssuer');
           })
         }
       >
-        {intl.get("actions.rate_issuer")}
+        {intl.get('actions.rate_issuer')}
       </Button>
     );
   }
@@ -148,7 +167,9 @@ const SubmissionItem = props => {
   if (
     submissionBelongsToLoggedInUser &&
     !accepted &&
-    (bounty.contract_version === "2" || bounty.contract_version === "2.1")
+    typeof bounty.contract_version === 'string' && 
+    bounty.contract_version.split('.')[0] ===
+      '2'
   ) {
     actionButton = (
       <Button
@@ -163,25 +184,34 @@ const SubmissionItem = props => {
               description,
               url
             });
-            showModal("updateFulfillment");
+            showModal('updateFulfillment');
           })
         }
       >
-        {intl.get("actions.update_submission")}
+        {intl.get('actions.update_submission')}
       </Button>
     );
   }
 
-  let bodyClass = "";
-  let newCommentForm = "";
-  let body = "";
+  let bodyClass = '';
+  let newCommentForm = '';
+  let body = '';
   if (openComments) {
     newCommentForm = (
-      <ListGroup.ListItem key="form" className={styles.newCommentForm} borderColor="transparent" fullBorder>
+      <ListGroup.ListItem
+        key="form"
+        className={styles.newCommentForm}
+        borderColor="transparent"
+        fullBorder
+      >
         <NewCommentForm
           className={styles.newCommentForm}
           signedIn={!!currentUser}
-          onSubmit={!!currentUser ? values => postFulComment(id, values.text) : showLogin}
+          onSubmit={
+            !!currentUser
+              ? values => postFulComment(id, values.text)
+              : showLogin
+          }
           loading={comments.postingFulComments}
           autoFocus={autoFocus}
         />
@@ -194,14 +224,18 @@ const SubmissionItem = props => {
           newCommentForm,
           ...renderComments(),
           comments.fulComments.length < comments.countFulComments && (
-            <ListGroup.ListItem key="load" className={styles.loadMoreButton} fullBorder>
+            <ListGroup.ListItem
+              key="load"
+              className={styles.loadMoreButton}
+              fullBorder
+            >
               <Button
                 loading={comments.loadingMoreFulComments}
                 onClick={() => {
                   loadMoreFulComments(id);
                 }}
               >
-                {intl.get("actions.load_more")}
+                {intl.get('actions.load_more')}
               </Button>
             </ListGroup.ListItem>
           )
@@ -210,7 +244,9 @@ const SubmissionItem = props => {
     );
 
     if (!numComments) {
-      body = <ListGroup className={styles.borderStyle}>{newCommentForm}</ListGroup>;
+      body = (
+        <ListGroup className={styles.borderStyle}>{newCommentForm}</ListGroup>
+      );
     }
 
     if (comments.loadingFulComments && numComments > 0) {
@@ -230,10 +266,17 @@ const SubmissionItem = props => {
           to={`/profile/${fulfiller_address}`}
         />
         <div className={`${styles.actionContainer}`}>
-          <FulfillmentStagePill accepted={accepted} bounty_stage={bounty_stage} />
+          <FulfillmentStagePill
+            accepted={accepted}
+            bounty_stage={bounty_stage}
+          />
           {actionButton}
           {bountyBelongsToLoggedInUser && (
-            <Text link src={`mailto:${fulfiller_email}`} className={styles.emailLink}>
+            <Text
+              link
+              src={`mailto:${fulfiller_email}`}
+              className={styles.emailLink}
+            >
               <FontAwesomeIcon icon={faEnvelope} className={styles.emailIcon} />
             </Text>
           )}
@@ -250,8 +293,15 @@ const SubmissionItem = props => {
         )}
         <div className={`${styles.submissionMedia}`}>
           {url ? (
-            <a href={url} target="_blank" className={`${styles.submissionMediaItem}`}>
-              <FontAwesomeIcon icon={faExternalLinkSquare} className={styles.submissionMediaIcon} />
+            <a
+              href={url}
+              target="_blank"
+              className={`${styles.submissionMediaItem}`}
+            >
+              <FontAwesomeIcon
+                icon={faExternalLinkSquare}
+                className={styles.submissionMediaIcon}
+              />
               <Text className={`${styles.fileName}`}>{shortenUrl(url)}</Text>
             </a>
           ) : null}
@@ -262,8 +312,14 @@ const SubmissionItem = props => {
                   src={`${config.ipfs.apiViewURL}${dataHash}/${dataFileName}`}
                   className={`${styles.submissionMediaItem}`}
                 >
-                  <FontAwesomeIcon icon={faFileArchive} className={styles.submissionMediaIcon} />
-                  <Text className={`${styles.fileName}`} src={`${config.ipfs.apiViewURL}${dataHash}/${dataFileName}`}>
+                  <FontAwesomeIcon
+                    icon={faFileArchive}
+                    className={styles.submissionMediaIcon}
+                  />
+                  <Text
+                    className={`${styles.fileName}`}
+                    src={`${config.ipfs.apiViewURL}${dataHash}/${dataFileName}`}
+                  >
                     {shortenFileName(dataFileName)}
                   </Text>
                 </a>
@@ -290,7 +346,7 @@ const SubmissionItem = props => {
           </Text>
           <Text link onClick={commentOnSubmission}>
             <FontAwesomeIcon icon={faComment} className={styles.commentIcon} />
-            {intl.get("sections.bounty.components.submissions_card.action")}
+            {intl.get('sections.bounty.components.submissions_card.action')}
           </Text>
         </footer>
       </div>
@@ -301,10 +357,19 @@ const SubmissionItem = props => {
             setOpenComments(openComments ? -1 : id);
           }}
         >
-          <FontAwesomeIcon icon={openComments ? faAngleUp : faAngleDown} className={`${styles.toggleIcon}`} />
+          <FontAwesomeIcon
+            icon={openComments ? faAngleUp : faAngleDown}
+            className={`${styles.toggleIcon}`}
+          />
           {openComments
-            ? intl.get("sections.bounty.components.submissions_card.hide_comments", { count: numComments })
-            : intl.get("sections.bounty.components.submissions_card.show_comments", { count: numComments })}
+            ? intl.get(
+                'sections.bounty.components.submissions_card.hide_comments',
+                { count: numComments }
+              )
+            : intl.get(
+                'sections.bounty.components.submissions_card.show_comments',
+                { count: numComments }
+              )}
         </button>
       )}
       {openComments && <div className={bodyClass}>{body}</div>}

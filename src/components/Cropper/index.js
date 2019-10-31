@@ -7,7 +7,7 @@ import buttonStyles from 'components/Button/Button.module.scss';
 import styles from './Cropper.module.scss';
 import intl from 'react-intl-universal';
 import { faCamera } from '@fortawesome/pro-light-svg-icons';
-import EXIF from 'exif-js'
+import EXIF from 'exif-js';
 
 class Cropper extends React.Component {
   constructor(props) {

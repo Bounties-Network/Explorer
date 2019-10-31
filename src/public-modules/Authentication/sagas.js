@@ -101,7 +101,7 @@ export function* login(action) {
     yield apolloClient().stop();
     yield wsClient.close(false, false);
     // Reinit apollo client
-    yield call(apolloClient, true)
+    yield call(apolloClient, true);
     yield delay(2000);
     yield put(loadNotifications());
   } catch (e) {
@@ -117,7 +117,7 @@ export function* logout(action) {
       yield deleteAuthorizationCookie();
     }
     yield put(logoutSuccess());
-    
+
     yield delay(800);
     window.location.reload();
   } catch (e) {

@@ -1,31 +1,41 @@
-import React from "react";
-import styles from "./NotificationDropdown.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { map } from "lodash";
-import { Link } from "react-router-dom";
-import { compose } from "redux";
-import { connect } from "react-redux";
+import React from 'react';
+import styles from './NotificationDropdown.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { map } from 'lodash';
+import { Link } from 'react-router-dom';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import {
   notificationsListSelector,
   rootNotificationSelector,
   hasUnreadNotifications
-} from "public-modules/Notification/selectors";
-import { actions } from "public-modules/Notification";
-import { NotificationItem } from "explorer-components";
-import { Dropdown, ListGroup, Text, Button, Loader, ZeroState } from "components";
-import intl from "react-intl-universal";
-import { faBell } from "@fortawesome/pro-regular-svg-icons";
-import { faExclamationTriangle, faBell as lightFaBell } from "@fortawesome/pro-light-svg-icons";
-import Tippy from "@tippy.js/react";
-import styled from "lib/emotion-styled";
-import { Global } from "@emotion/core";
-import { css } from "@styled-system/css";
+} from 'public-modules/Notification/selectors';
+import { actions } from 'public-modules/Notification';
+import { NotificationItem } from 'explorer-components';
+import {
+  Dropdown,
+  ListGroup,
+  Text,
+  Button,
+  Loader,
+  ZeroState
+} from 'components';
+import intl from 'react-intl-universal';
+import { faBell } from '@fortawesome/pro-regular-svg-icons';
+import {
+  faExclamationTriangle,
+  faBell as lightFaBell
+} from '@fortawesome/pro-light-svg-icons';
+import Tippy from '@tippy.js/react';
+import styled from 'lib/emotion-styled';
+import { Global } from '@emotion/core';
+import { css } from '@styled-system/css';
 
 const NotificationTippy = styled(Tippy)(props => css({}));
 
 const NotificationTippyTrigger = styled.span(props =>
   css({
-    cursor: "pointer"
+    cursor: 'pointer'
   })
 );
 
@@ -39,9 +49,9 @@ function useClickedOutside(ref, setVisible) {
   }
 
   React.useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   });
 }
@@ -65,7 +75,15 @@ const NotificationDropdown = props => {
 
   const renderNotifications = () => {
     return map(notification => {
-      const { id, notification_name, bounty_title, created, from_user, link, viewed } = notification;
+      const {
+        id,
+        notification_name,
+        bounty_title,
+        created,
+        from_user,
+        link,
+        viewed
+      } = notification;
       return (
         <Link
           key={id}
@@ -76,7 +94,12 @@ const NotificationDropdown = props => {
             setVisible(false);
           }}
         >
-          <ListGroup.ListItem className={`${styles.notificationListItem} ${viewed ? styles.viewed : ""}`} hover>
+          <ListGroup.ListItem
+            className={`${styles.notificationListItem} ${
+              viewed ? styles.viewed : ''
+            }`}
+            hover
+          >
             <NotificationItem
               type={notification_name}
               title={bounty_title}
@@ -102,8 +125,12 @@ const NotificationDropdown = props => {
             return false;
           }}
         >
-          <Text typeScale="h4" weight="fontWeight-medium" className={styles.headingTitle}>
-            {intl.get("sections.notifications.title")}
+          <Text
+            typeScale="h4"
+            weight="fontWeight-medium"
+            className={styles.headingTitle}
+          >
+            {intl.get('sections.notifications.title')}
           </Text>
           {!!notifications.length &&
             hasUnread && (
@@ -117,12 +144,17 @@ const NotificationDropdown = props => {
                   return false;
                 }}
               >
-                {intl.get("sections.notifications.actions.mark_read")}
+                {intl.get('sections.notifications.actions.mark_read')}
               </Text>
             )}
         </div>
         {error && (
-          <ZeroState type="error" text={intl.get("errors.500")} iconColor="red" faIcon={faExclamationTriangle} />
+          <ZeroState
+            type="error"
+            text={intl.get('errors.500')}
+            iconColor="red"
+            faIcon={faExclamationTriangle}
+          />
         )}
         {!loaded && (
           <div className={styles.zeroState}>
@@ -133,8 +165,8 @@ const NotificationDropdown = props => {
           !count && (
             <div className={styles.zeroState}>
               <ZeroState
-                title={intl.get("sections.notifications.zero_state.title")}
-                text={intl.get("sections.notifications.zero_state.description")}
+                title={intl.get('sections.notifications.zero_state.title')}
+                text={intl.get('sections.notifications.zero_state.description')}
                 iconColor="blue"
                 faIcon={lightFaBell}
               />
@@ -154,7 +186,7 @@ const NotificationDropdown = props => {
                     }}
                     loading={loadingMore}
                   >
-                    {intl.get("actions.load_more")}
+                    {intl.get('actions.load_more')}
                   </Button>
                 </ListGroup.ListItem>
               )
@@ -186,28 +218,33 @@ const NotificationDropdown = props => {
       >
         <Global
           styles={css({
-            ".tippy-tooltip": {
-              background: "none !important",
+            '.tippy-tooltip': {
+              background: 'none !important',
               color: 'rgb(0, 0, 0)'
             },
-            ".tippy-arrow": { display: "none" },
-            ".tippy-popper": {
-              background: "none"
+            '.tippy-arrow': { display: 'none' },
+            '.tippy-popper': {
+              background: 'none'
             },
-            ".tippy-content": {
+            '.tippy-content': {
               px: 0,
               py: 2,
-              background: "none"
+              background: 'none'
             },
-            ".tippy-popper": { background: "none", top: "-1.8rem !important" },
+            '.tippy-popper': { background: 'none', top: '-1.8rem !important' }
           })}
         />
         <Text
           typeScale="h3"
           color="defaultGrey"
-          className={`${hasUnread ? styles.notification : ""} ${styles.notificationTrigger}`}
+          className={`${hasUnread ? styles.notification : ''} ${
+            styles.notificationTrigger
+          }`}
         >
-          <FontAwesomeIcon icon={faBell} className={styles.notificationTriggerIcon} />
+          <FontAwesomeIcon
+            icon={faBell}
+            className={styles.notificationTriggerIcon}
+          />
         </Text>
       </NotificationTippyTrigger>
     </NotificationTippy>

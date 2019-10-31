@@ -5,7 +5,6 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Text from 'components/Text';
 import styles from './Dropdown.module.scss';
 
-
 class DropdownTrigger extends React.Component {
   render() {
     return this.props.children;

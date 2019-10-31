@@ -13,14 +13,17 @@
     "rinkeby": "https://rinkebystaging.api.bounties.network"
   },
   "requiredNetwork": "rinkeby",
+  "contractVersion": "2.2",
   "mainNet": {
     "standardBountiesAddress": "0xe7f69ea2a79521136ee0bf3c50f6b5f1ea0ab0cd",
     "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c",
-    "standardBountiesAddressV2.1": "0x38f1886081759f7d352c28984908d04e8d2205a6"
+    "standardBountiesAddressV2.1": "0x38f1886081759f7d352c28984908d04e8d2205a6",
+    "standardBountiesAddressV2.2": "0x9142dd986fe36952c1f8f5d68b814217dee45186"
   },
   "rinkeby": {
     "standardBountiesAddressV1": "0xdd1636b88e9071507e859e61991ed4be6647f420",
     "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c",
-    "standardBountiesAddressV2.1": "0x38F1886081759F7D352c28984908D04e8D2205A6"
+    "standardBountiesAddressV2.1": "0x38F1886081759F7D352c28984908D04e8D2205A6",
+    "standardBountiesAddressV2.2": "0x9142dd986fe36952c1f8f5d68b814217dee45186"
   }
 }

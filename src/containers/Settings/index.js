@@ -20,20 +20,24 @@ class Settings extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('beforeunload', onBeforeUnloadHandler)
+    window.addEventListener('beforeunload', onBeforeUnloadHandler);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('beforeunload')
+    window.removeEventListener('beforeunload');
   }
 
   render() {
-    const settingsWhenCondition =this.state.dirty && this.state.submitNotPressed
+    const settingsWhenCondition =
+      this.state.dirty && this.state.submitNotPressed;
 
     return (
       <div>
         {/* Need i18n? */}
-        <Prompt when={settingsWhenCondition} message={`Changes you made may not be saved.`} />
+        <Prompt
+          when={settingsWhenCondition}
+          message={`Changes you made may not be saved.`}
+        />
         <PageCard>
           <PageCard.Header>
             <PageCard.Title>

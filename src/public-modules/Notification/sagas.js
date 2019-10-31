@@ -1,23 +1,29 @@
-import React from "react";
-import request from "utils/request";
-import { LIMIT } from "./constants";
-import { call, put, takeLatest, select, take } from "redux-saga/effects";
-import { delay, eventChannel } from "redux-saga";
-import { Toast } from "components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import request from 'utils/request';
+import { LIMIT } from './constants';
+import { call, put, takeLatest, select, take } from 'redux-saga/effects';
+import { delay, eventChannel } from 'redux-saga';
+import { Toast } from 'components';
+import { Link } from 'react-router-dom';
 import {
   notificationsSelector,
   rootNotificationSelector,
   notificationsListSelector
-} from "public-modules/Notification/selectors";
-import { getCurrentUserSelector, getUserAddressSelector } from "public-modules/Authentication/selectors";
-import { actions, actionTypes } from "public-modules/Notification";
-import { notification_template, NOTIFICATION_ID } from "utils/constants";
-import { deserializeNotification } from "./helpers";
-import config from "public-modules/config";
-import intl from "react-intl-universal";
-import apolloClient from "lib/apollo-client";
-import { userDashboardNotificationsSubscription, userDashboardNotificationsQuery } from "./queries";
+} from 'public-modules/Notification/selectors';
+import {
+  getCurrentUserSelector,
+  getUserAddressSelector
+} from 'public-modules/Authentication/selectors';
+import { actions, actionTypes } from 'public-modules/Notification';
+import { notification_template, NOTIFICATION_ID } from 'utils/constants';
+import { deserializeNotification } from './helpers';
+import config from 'public-modules/config';
+import intl from 'react-intl-universal';
+import apolloClient from 'lib/apollo-client';
+import {
+  userDashboardNotificationsSubscription,
+  userDashboardNotificationsQuery
+} from './queries';
 
 const {
   loadNotifications,
@@ -72,13 +78,13 @@ function createSocketChannel(apolloClient) {
 
 export function* loadNotificationsSaga(action) {
   try {
-    console.log("load notifications");
+    console.log('load notifications');
 
     // Load initial via normal query
     const response = yield apolloClient().query({
       query: userDashboardNotificationsQuery,
       variables: {
-        platforms: config.platform.split(",")
+        platforms: config.platform.split(',')
       }
     });
 
@@ -107,11 +113,14 @@ export function* loadNotificationsSaga(action) {
     const apolloSubscriptionClient = apolloClient().subscribe({
       query: userDashboardNotificationsSubscription,
       variables: {
-        platforms: config.platform.split(",")
+        platforms: config.platform.split(',')
       }
     });
 
-    const socketChannel = yield call(createSocketChannel, apolloSubscriptionClient);
+    const socketChannel = yield call(
+      createSocketChannel,
+      apolloSubscriptionClient
+    );
 
     while (true) {
       try {
@@ -124,7 +133,8 @@ export function* loadNotificationsSaga(action) {
         const currentNotifications = yield select(notificationsSelector);
 
         if (response.data) {
-          const notifications = response.data.notifications_dashboardnotification;
+          const notifications =
+            response.data.notifications_dashboardnotification;
           for (let i = 0; i < notifications.length; i++) {
             const notificationItem = notifications[i];
             const newNotification = deserializeNotification(notificationItem);
@@ -158,7 +168,7 @@ export function* loadMoreNotifications(action) {
     const response = yield call(apolloClient().query, {
       query: userDashboardNotificationsQuery,
       variables: {
-        platforms: config.platform.split(","),
+        platforms: config.platform.split(','),
         offset: offset + LIMIT
       }
     });
@@ -186,14 +196,14 @@ export function* showNotification(dispatch, action) {
     notification: { link, notification_name, id }
   } = action;
 
-  let linkText = intl.get("actions.view_bounty");
+  let linkText = intl.get('actions.view_bounty');
 
   if (notification_name === NOTIFICATION_ID.RATING_RECEIVED) {
-    linkText = intl.get("actions.view_rating");
+    linkText = intl.get('actions.view_rating');
   }
 
   let postedLink = (
-    <Link to={link} style={{ color: "inherit" }}>
+    <Link to={link} style={{ color: 'inherit' }}>
       {linkText}
     </Link>
   );
@@ -209,13 +219,13 @@ export function* setNotificationViewedSaga(action) {
   const { id } = action;
 
   const endpoint = `notification/push/${id}/view/`;
-  yield call(request, endpoint, "GET");
+  yield call(request, endpoint, 'GET');
 }
 
 export function* viewAllNotifications(action) {
   const address = yield select(getUserAddressSelector);
   const endpoint = `notification/push/user/${address}/view_all/`;
-  yield call(request, endpoint, "GET");
+  yield call(request, endpoint, 'GET');
 }
 
 export function* watchForNotificationToasts(dispatch) {

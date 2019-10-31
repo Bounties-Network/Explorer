@@ -101,8 +101,7 @@ const ActionBar = props => {
             </Button>
           )}
 
-        {(bounty.contract_version === '2' ||
-          bounty.contract_version === '2.1') && (
+        {typeof bounty.contract_version === 'string' && bounty.contract_version.split('.')[0] === '2' && (
           <Link to={editUrl}>
             <Button icon={faEdit} fitWidth className={styles.editBountyButton}>
               {intl.get('sections.bounty.actions.edit')}

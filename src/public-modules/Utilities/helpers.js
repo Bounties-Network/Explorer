@@ -1,6 +1,6 @@
-import web3 from 'public-modules/Utilities/Web3Client';
-import { each as fpEach } from 'lodash';
-import { BigNumber } from 'bignumber.js';
+import web3 from "public-modules/Utilities/Web3Client";
+import { each as fpEach } from "lodash";
+import { BigNumber } from "bignumber.js";
 
 const each = fpEach.convert({ cap: false });
 
@@ -39,7 +39,7 @@ export const proxiedWeb3Handler = {
     if (inner instanceof Function) {
       // Return a function with the callback already set.
       return (...args) => promisify(cb => inner(...args, cb));
-    } else if (typeof inner === 'object') {
+    } else if (typeof inner === "object") {
       // wrap inner web3 stuff
       return new Proxy(inner, proxiedWeb3Handler);
     } else {
@@ -48,14 +48,23 @@ export const proxiedWeb3Handler = {
   }
 };
 
-export const promisifyContractCall = (contractFunction, options) => (
-  ...args
-) => {
+export const promisifyContractCall = (contractFunction, options) => (...args) => {
   return new Promise((resolve, reject) => {
     return contractFunction(...args)
       .send(options)
-      .on('transactionHash', hash => resolve(hash))
-      .on('error', error => reject(error));
+      .on("transactionHash", hash => resolve(hash))
+      .on("error", error => reject(error));
+  });
+};
+
+export const promisifyContractEstimateGasCall = (contractFunction, options) => (...args) => {
+  return new Promise((resolve, reject) => {
+    return contractFunction(...args).estimateGas(options, function(error, gasAmount) {
+      if (error) {
+        reject(error);
+      }
+      resolve(gasAmount);
+    });
   });
 };
 
