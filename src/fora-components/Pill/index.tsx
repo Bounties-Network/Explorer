@@ -23,8 +23,8 @@ const Pill: React.FC<IProps> = ({ resourceType, variant, css, children }) => {
     <Container
       justifyContent={"center"}
       alignItems={"center"}
-      css={css}
       variant={variant}
+      css={css}
     >
       {children || <Text variant={variant}>{resourceType}</Text>}
     </Container>
