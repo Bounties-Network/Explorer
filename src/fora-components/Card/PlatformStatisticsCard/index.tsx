@@ -16,19 +16,23 @@ interface IProps {
   activePlatformBounties: number;
   platformBountiesIssued: number;
   totalBountyIssuedValueInUSD: number;
+  resourceType: 'communities' | 'platform';
 }
 
-const PlatformStatistics: React.FC<IProps> = ({
+const PlatformStatisticsCard: React.FC<IProps> = ({
   platformBountiesIssued,
   activePlatformBounties,
-  totalBountyIssuedValueInUSD
+  totalBountyIssuedValueInUSD,
+  resourceType
 }) => (
   <Container>
-    <Text variant="label">Active platform bounties</Text>
+    {resourceType === 'communities' && <Text variant="label">Active bounties in your communities</Text>}
+    {resourceType === 'platform' && <Text variant="label">Active platform bounties</Text>}
     <Text color={'seaGlass200'} variant="numeralMonospaceLarge">
       {activePlatformBounties}
     </Text>
-    <Text variant="label">Platform bounties issued</Text>
+    {resourceType === 'communities' && <Text variant="label">Bounties issued in your communities</Text>}
+    {resourceType === 'platform' && <Text variant="label">Platform bounties issued</Text>}
     <Text variant="numeralMonospaceLarge">{platformBountiesIssued}</Text>
     <Text variant="label">Total value of bounties issued</Text>
     <Text variant="numeralMonospaceLarge">
@@ -42,4 +46,4 @@ const PlatformStatistics: React.FC<IProps> = ({
   </Container>
 );
 
-export default PlatformStatistics;
+export default PlatformStatisticsCard;

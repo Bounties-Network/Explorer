@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex, Box } from "rebass";
 import IntroBanner from "fora-components/IntroBanner";
-import PlatformStatistics from "fora-components/PlatformStatistics";
+import PlatformStatisticsCard from "fora-components/Card/PlatformStatisticsCard";
 import TopCommunities from "fora-components/TopCommunities";
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from "fora-components/Tabs";
 import ActivityFeed from "fora-components/ActivityFeed/View";
@@ -57,7 +57,8 @@ const LandingPage = () => (
       <IntroBanner />
       <Flex>
         <Statistics flexDirection="column">
-          <PlatformStatistics
+          <PlatformStatisticsCard
+            resourceType={'platform'}
             activePlatformBounties={999}
             platformBountiesIssued={9999}
             totalBountyIssuedValueInUSD={9999999}
