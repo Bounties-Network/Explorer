@@ -956,7 +956,7 @@
     }
   },
   "errors": {
-    "500": "Algo salió mal. Inténtalo de nuevo más tarde.",
+    "500": "Algo salió mal.",
     "404": "No encontrado",
     "form_error": "Corregir los errores de arriba e intentar de nuevo."
   },

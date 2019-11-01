@@ -185,7 +185,7 @@ export function* createBounty(action) {
         BigNumber(decimals, 10).toString()
       );
     } catch (e) {
-      yield put(setTransactionError());
+      yield put(setTransactionError(e.message));
       return yield put(stdBountyFail());
     }
   } else {
@@ -279,7 +279,7 @@ export function* createBounty(action) {
       yield put(setPendingReceipt(issuedBountyHash));
       return yield put(stdBountySuccess());
     } catch (e) {
-      yield put(setTransactionError());
+      yield put(setTransactionError(e.message));
       return yield put(stdBountyFail());
     }
   } else {
@@ -302,7 +302,7 @@ export function* createBounty(action) {
       yield put(stdBountySuccess());
     } catch (e) {
       console.log('error', e);
-      yield put(setTransactionError());
+      yield put(setTransactionError(e.message));
       yield put(stdBountyFail());
     }
   }
@@ -378,7 +378,7 @@ export function* killBounty(action) {
     yield put(setPendingReceipt(txHash));
   } catch (e) {
     yield put(stdBountyFail());
-    yield put(setTransactionError());
+    yield put(setTransactionError(e.message));
   }
 }
 
@@ -439,7 +439,7 @@ export function* activateBounty(action) {
     yield put(setPendingReceipt(txHash));
   } catch (e) {
     yield put(stdBountyFail());
-    yield put(setTransactionError());
+    yield put(setTransactionError(e.message));
   }
 }
 
@@ -483,7 +483,7 @@ export function* extendDeadline(action) {
     yield put(setPendingReceipt(txHash));
   } catch (e) {
     yield put(stdBountyFail());
-    yield put(setTransactionError());
+    yield put(setTransactionError(e.message));
   }
 }
 export function* editBounty(action) {
@@ -569,7 +569,7 @@ export function* editBounty(action) {
     yield put(setPendingReceipt(txHash));
   } catch (e) {
     yield put(stdBountyFail());
-    yield put(setTransactionError());
+    yield put(setTransactionError(e.message));
   }
 }
 export function* increasePayout(action) {
@@ -711,7 +711,7 @@ export function* increasePayout(action) {
     yield put(setPendingReceipt(txHash));
   } catch (e) {
     yield put(stdBountyFail());
-    yield put(setTransactionError());
+    yield put(setTransactionError(e.message));
   }
 }
 
@@ -783,7 +783,7 @@ export function* contribute(action) {
   } catch (e) {
     console.log('error', e);
     yield put(stdBountyFail());
-    yield put(setTransactionError());
+    yield put(setTransactionError(e.message));
   }
 }
 
@@ -828,7 +828,7 @@ export function* transferIssuer(action) {
     yield put(setPendingReceipt(txHash));
   } catch (e) {
     yield put(stdBountyFail());
-    yield put(setTransactionError());
+    yield put(setTransactionError(e.message));
   }
 }
 

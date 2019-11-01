@@ -78,8 +78,6 @@ function createSocketChannel(apolloClient) {
 
 export function* loadNotificationsSaga(action) {
   try {
-    console.log('load notifications');
-
     // Load initial via normal query
     const response = yield apolloClient().query({
       query: userDashboardNotificationsQuery,

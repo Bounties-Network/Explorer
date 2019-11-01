@@ -1018,7 +1018,7 @@
     }
   },
   "errors": {
-    "500": "Something went wrong. Try again later.",
+    "500": "Something went wrong",
     "404": "Not Found",
     "form_error": "Fix the errors above and re-submit."
   },
