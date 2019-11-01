@@ -38,7 +38,8 @@ function TransactionWalkthroughHOC(config, WrappedComponent) {
         stage,
         history,
         onClose,
-        transaction
+        transaction,
+        errorText
       } = this.props;
 
       const { onConfirm } = this.state;
@@ -59,6 +60,7 @@ function TransactionWalkthroughHOC(config, WrappedComponent) {
             pendingReceiptText={config.pendingReceiptText}
             pendingWalletText={config.pendingWalletText}
             successLink={transaction.link}
+            errorText={errorText}
           />
           <WrappedComponent
             {...this.props}
@@ -77,6 +79,7 @@ function TransactionWalkthroughHOC(config, WrappedComponent) {
     return {
       visible: transactionState.walkthroughVisible,
       stage: transactionState.walkthroughStage,
+      errorText: transactionState.errorText,
       transaction: transaction || {}
     };
   };

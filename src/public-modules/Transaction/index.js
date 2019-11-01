@@ -5,7 +5,8 @@ const defaultWalkthroughState = {
   transactionsInitiated: false,
   walkthroughStage: 'initiatePrompt',
   walkthroughVisible: false,
-  pendingReceiptHash: ''
+  pendingReceiptHash: '',
+  errorText: ''
 };
 
 const initialState = {
@@ -111,8 +112,8 @@ function setPendingWalletConfirm() {
   return { type: SET_PENDING_WALLET_CONFIRM };
 }
 
-function setTransactionError() {
-  return { type: SET_ERROR };
+function setTransactionError(errorText) {
+  return { type: SET_ERROR, errorText };
 }
 
 function setPendingReceipt(txHash) {
@@ -177,8 +178,10 @@ function ManageTransactionReducer(state = initialState, action) {
       };
     }
     case SET_ERROR: {
+      const { errorText } = action;
       return {
         ...state,
+        errorText,
         walkthroughStage: 'error'
       };
     }

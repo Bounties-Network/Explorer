@@ -87,13 +87,14 @@ PendingReceipt.propTypes = {
 };
 
 const WalkthroughError = props => {
-  const { onClose, visible } = props;
+  const { onClose, visible, errorText } = props;
 
   return (
     <Modal dismissable onClose={onClose} fixed size="small" visible={visible}>
       <Modal.Header icon="error" closable />
       <Modal.Body>
         <Modal.Message>{intl.get('errors.500')}</Modal.Message>
+        <Modal.Description>{errorText}</Modal.Description>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={onClose}>{intl.get('actions.close')}</Button>
@@ -103,7 +104,8 @@ const WalkthroughError = props => {
 };
 
 WalkthroughError.propTypes = {
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  errorText: PropTypes.string
 };
 
 const WalkthroughSuccess = props => {
@@ -139,7 +141,8 @@ const TransactionWalkthrough = props => {
     pendingReceiptText,
     pendingWalletText,
     transaction,
-    successLink
+    successLink,
+    errorText
   } = props;
 
   return (
@@ -169,6 +172,7 @@ const TransactionWalkthrough = props => {
       <WalkthroughError
         onClose={onClose}
         visible={visible && stage === 'error'}
+        errorText={errorText}
       />
     </React.Fragment>
   );
@@ -187,7 +191,8 @@ TransactionWalkthrough.propTypes = {
   onConfirm: PropTypes.func,
   toDashboard: PropTypes.func,
   pendingReceiptText: PropTypes.string,
-  pendingWalletText: PropTypes.string
+  pendingWalletText: PropTypes.string,
+  errorText: PropTypes.string
 };
 
 TransactionWalkthrough.defaultProps = {

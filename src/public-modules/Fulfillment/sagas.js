@@ -98,7 +98,7 @@ export function* acceptFulfillment(action) {
     yield put(acceptFulfillmentSuccess());
   } catch (e) {
     console.log(e);
-    yield put(setTransactionError());
+    yield put(setTransactionError(e.message));
     yield put(acceptFulfillmentFail());
   }
 }
@@ -263,7 +263,7 @@ export function* createFulfillment(action) {
     yield put(createFulfillmentSuccess());
   } catch (e) {
     console.error(e);
-    yield put(setTransactionError());
+    yield put(setTransactionError(e.message));
     yield put(createFulfillmentFail());
   }
 }
@@ -411,7 +411,7 @@ export function* updateFulfillment(action) {
     yield put(updateFulfillmentSuccess());
   } catch (e) {
     console.log(e);
-    yield put(setTransactionError());
+    yield put(setTransactionError(e.message));
     yield put(updateFulfillmentFail());
   }
 }
