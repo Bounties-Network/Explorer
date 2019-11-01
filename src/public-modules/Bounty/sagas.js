@@ -245,7 +245,7 @@ export function* createBounty(action) {
   };
   const ipfsHash = yield call(addJSON, issuedData);
 
-  const { standardBounties } = yield call(getContractClient());
+  const { standardBounties } = yield call(getContractClient);
 
   if (isTokenBounty) {
     const { token_contract: tokenContractClient } = yield call(
