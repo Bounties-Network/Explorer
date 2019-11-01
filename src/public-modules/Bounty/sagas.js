@@ -508,7 +508,11 @@ export function* editBounty(action) {
 
   try {
     let txHash;
-    const { standardBounties } = yield call(getContractClient);
+    const { standardBounties } = yield call(
+      getContractClient,
+      values.contract_version
+    );
+
     const issuedData = {
       payload: {
         uid: values.uid,

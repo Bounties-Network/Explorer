@@ -72,7 +72,8 @@ class CreateBountyFormComponent extends React.Component {
       updateDraft,
       isEditing,
       user,
-      bounty_id
+      bounty_id,
+      contract_version
     } = this.props;
 
     const fileData = {
@@ -88,7 +89,8 @@ class CreateBountyFormComponent extends React.Component {
         uid,
         balance,
         user,
-        bounty_id
+        bounty_id,
+        contract_version
       });
     }
 
