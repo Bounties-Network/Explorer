@@ -58,7 +58,8 @@ class CreateBountyComponent extends React.Component {
       error,
       formInitialValues,
       isEditing,
-      isDraft
+      isDraft,
+      contract_version
     } = this.props;
 
     if (loading) {
@@ -125,6 +126,7 @@ class CreateBountyComponent extends React.Component {
               initialValues={formInitialValues}
               isEditing={isEditing}
               isDraft={isDraft}
+              contract_version={contract_version}
             />
           </PageCard.Content>
         </PageCard>
@@ -196,6 +198,7 @@ const mapStateToProps = (state, router) => {
     isEditing,
     error,
     loading,
+    contract_version: draftBounty.contract_version,
     formInitialValues: {
       title: draftBounty.title,
       categories: categories,
