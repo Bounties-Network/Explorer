@@ -121,6 +121,7 @@ export const monospace = "Roboto";
 export const fontSizes = [12, 14, 16, 18, 20, 25];
 export const fonts = {
   body,
+  primary,
   secondary,
   heading,
   monospace

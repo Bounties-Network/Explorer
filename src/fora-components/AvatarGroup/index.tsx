@@ -25,11 +25,11 @@ const AvatarGroupLink = emotionStyled(Link)(() => css({
    },
  }));
 
-type AvatarProps = {
+export type AvatarGroupProps = {
   href: string,
   avatars: AvatarImageProps[]
 };
-const Avatar: React.FC<AvatarProps> = props => {
+const AvatarGroup: React.FC<AvatarGroupProps> = props => {
   const {
     href,
     avatars,
@@ -43,4 +43,4 @@ const Avatar: React.FC<AvatarProps> = props => {
   );
 };
 
-export default Avatar;
+export default AvatarGroup;
