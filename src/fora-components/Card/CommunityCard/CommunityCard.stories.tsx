@@ -9,7 +9,7 @@ addDecorator(centered);
 storiesOf("CommunityCard", module)
   .add("Mi Fora", () => (
     <CommunityCard
-      goToExplorerRoute={() => alert('clicked go to explorer')}
+      goToExploreRoute={() => alert('clicked go to explore')}
       goToJoinRoute={() => alert('clicked go to join')}
       activeBounties={24}
       name={'Code'}
@@ -19,8 +19,17 @@ storiesOf("CommunityCard", module)
       avatarSrc={'https://messari.s3.amazonaws.com/images/agora-images/0%3Fe%3D1554940800%26v%3Dbeta%26t%3DJIYqRj4hFp_woU4aOT7i6VVCH613wozFeVfWztcORVo'}
     />
   ))
-  // .add("Small", () => (
-  //     <CommunityCard
-
-  //     />
-  // ))
+  .add("Preview", () => (
+    <CommunityCard
+      resourceType="preview"
+      goToExploreRoute={() => alert('clicked go to explore')}
+      goToJoinRoute={() => alert('clicked go to join')}
+      activeBounties={24}
+      memberCount={258}
+      name={'Code'}
+      description={`Get rewarded for contributing code. Find, contribute and get rewarded in crypto for completing bounties, and help us grow open-source.`}
+      avatars={mockAvatarGroupData}
+      href={'https://www.google.co.uk'}
+      avatarSrc={'https://messari.s3.amazonaws.com/images/agora-images/0%3Fe%3D1554940800%26v%3Dbeta%26t%3DJIYqRj4hFp_woU4aOT7i6VVCH613wozFeVfWztcORVo'}
+    />
+  ))

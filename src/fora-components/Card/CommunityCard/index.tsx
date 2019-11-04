@@ -5,22 +5,35 @@ import css from "@styled-system/css";
 import AvatarImage, { AvatarImageProps } from "fora-components/AvatarImage";
 import AvatarGroup from "fora-components/AvatarGroup";
 import Divider from "fora-components/Divider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisH } from "@fortawesome/pro-regular-svg-icons";
 
-const CardContainer = emotionStyled(Card)(() =>
+let getResourceTypeWidth = resourceType => {
+  switch (resourceType) {
+    case "preview": {
+      return 270;
+    }
+    default: {
+      return 370;
+    }
+  }
+};
+
+const CardContainer = emotionStyled(Card)<{ resourceType: "preview" | undefined }>(props =>
   css({
     variant: "card",
     position: "relative",
     py: 3,
     px: 3,
-    maxWidth: "370px",
+    width: `${getResourceTypeWidth(props.resourceType)}px`,
     "> a:first-of-type": {
       position: "absolute",
-      left: "calc((370px / 2) - 50px)", // lol I can still do maths
+      left: `calc((${getResourceTypeWidth(props.resourceType)}px / 2) - 50px)`, // lol I can still do maths
       top: "-30px"
     },
     "> div:first-of-type": {
       mt: "80px",
-      mb: 6
+      mb: props.resourceType === "preview" ? 4 : 6
     }
   })
 );
@@ -33,22 +46,26 @@ type CommunityCardProps = {
   name;
   description;
   avatars: AvatarImageProps[];
+  memberCount?: number;
   href: string;
-  goToExplorerRoute: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  goToExploreRoute: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   goToJoinRoute: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   avatarSrc: string;
+  resourceType?: "preview";
 };
 const CommunityCard: React.FC<CommunityCardProps> = ({
   activeBounties,
   name,
   description,
   avatars,
+  memberCount,
   href,
-  goToExplorerRoute,
+  goToExploreRoute,
   goToJoinRoute,
-  avatarSrc
+  avatarSrc,
+  resourceType
 }) => (
-  <CardContainer>
+  <CardContainer resourceType={resourceType}>
     <Link href={href}>
       <AvatarImage variant={"large"} src={avatarSrc} resourceType="community" />
     </Link>
@@ -58,24 +75,44 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
           {name}
         </Text>
       </Link>
-      <Text variant="body" color="seaGlass300">
-        {`${activeBounties} active bounties`}
+      <Text css={{ display: "inline-block" }} variant="body" color="seaGlass300">
+        <Text variant="bodyStrong" color="seaGlass300" css={{ display: "inline-block" }}>
+          {activeBounties}
+        </Text>
+        {` active bounties`}
       </Text>
+      {resourceType === "preview" && (
+        <Text css={{ display: "inline-block" }} variant="body" color="seaGlass300">
+          <Text variant="bodyStrong" color="seaGlass300" css={{ display: "inline-block" }}>
+            {memberCount}
+          </Text>
+          {` Members`}
+        </Text>
+      )}
     </Header>
-    <Content flexDirection="column">
-      <Text variant="body" color="gray400">
-        {description}
-      </Text>
-      <AvatarGroup avatars={avatars} href={href}></AvatarGroup>
-    </Content>
+    {resourceType !== "preview" && (
+      <Content flexDirection="column">
+        <Text variant="body" color="gray400">
+          {description}
+        </Text>
+        <AvatarGroup avatars={avatars} href={href}></AvatarGroup>
+      </Content>
+    )}
     <Divider></Divider>
     <Flex justifyContent={"space-between"}>
-      <Button onClick={goToExplorerRoute} width="150px" variant="secondary">
-        Explorer
+      <Button onClick={goToExploreRoute} width="150px" variant="secondary">
+        Explore
       </Button>
-      <Button onClick={goToJoinRoute} width="150px" variant="secondaryAffirmative">
-        Join
-      </Button>
+      {resourceType !== "preview" && (
+        <Button onClick={goToJoinRoute} width="150px" variant="secondaryAffirmative">
+          Join
+        </Button>
+      )}
+      {resourceType === "preview" && (
+        <Button variant="secondaryIconOnly">
+          <FontAwesomeIcon icon={faEllipsisH}></FontAwesomeIcon>
+        </Button>
+      )}
     </Flex>
   </CardContainer>
 );
