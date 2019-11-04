@@ -281,6 +281,7 @@ export const text = {
   },
   linkSmall,
   label: {
+    fontFamily: fonts.secondary,
     color: colors.gray400,
     fontSize: fontSizes[0] + "px",
     fontWeight: fontWeights.medium,
