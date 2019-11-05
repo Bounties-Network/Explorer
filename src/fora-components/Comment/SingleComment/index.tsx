@@ -7,19 +7,38 @@ import AvatarImage from "fora-components/AvatarImage";
 import moment from "moment";
 import { faReply } from "@fortawesome/pro-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import VerticalDivider from "fora-components/VerticalDivider";
 
-const Container = emotionStyled(Flex)(props => css({ 
-  '> :first-of-type': { mr: 3 }
-}));
-const DetailsContainer = emotionStyled(Flex)(props => css({ 
-  '> :not(:last-child)': { mr: 1 }, mb: 2
-}));
-const ContentContainer = emotionStyled(Flex)(props => css({ maxWidth: '600px', mb: 3 }));
-const ReplyLink = emotionStyled(Link)(props => css({ display: 'flex', alignItems: 'center', '> :first-of-type': { mr: 2, cursor: 'pointer' }, '> svg:first-of-type': { color: 'seaGlass200' } }));
+const Container = emotionStyled(Flex)(props =>
+  css({
+    "> :first-of-type": { mr: 3 }
+  })
+);
+const DetailsContainer = emotionStyled(Flex)(props =>
+  css({
+    "> :not(:last-child)": { mr: 1 },
+    mb: 2
+  })
+);
+const ContentContainer = emotionStyled(Flex)(props =>
+  css({
+    maxWidth: "600px",
+    mb: 3
+  })
+);
+const ReplyLink = emotionStyled(Link)(props =>
+  css({
+    display: "flex",
+    alignItems: "center",
+    "> :first-of-type": { mr: 2, cursor: "pointer" },
+    "> svg:first-of-type": { color: "seaGlass200" }
+  })
+);
 
 export type Commenter = Pick<AvatarProps, "name" | "screenName" | "address" | "src" | "onDark">;
 export interface ISingleCommentProps {
   isReply?: boolean;
+  isPreview?: boolean;
   replyHref?: string;
   content: string;
   timestamp: any;
@@ -31,22 +50,37 @@ const SingleComment: React.FunctionComponent<ISingleCommentProps> = props => (
       <AvatarImage src={props.commenter.src}></AvatarImage>
     </Link>
     <Flex flexDirection="column">
-      <DetailsContainer alignItems='center'>
-        <ReplyLink variant='link' href={`/address/${props.commenter.address}`}>
-        <Text variant='body' color='black'>{props.commenter.name}</Text>
+      <DetailsContainer alignItems="center">
+        <ReplyLink variant="link" href={`/address/${props.commenter.address}`}>
+          <Text variant="body" color="black">
+            {props.commenter.name}
+          </Text>
           <Text>@{props.commenter.screenName}</Text>
         </ReplyLink>
-        <Text >{` ∙ `}</Text>
-        <Text variant='body' color='gray400'>{moment(props.timestamp).fromNow()}</Text>
+        <Text>{` ∙ `}</Text>
+        <Text variant="body" color="gray400">
+          {moment(props.timestamp).fromNow()}
+        </Text>
       </DetailsContainer>
       <ContentContainer>
-        <Text variant='body' color='gray500'>{props.content}</Text>
-      </ContentContainer >
+        {props.isPreview ? (
+          <>
+            <VerticalDivider marginLeft={1}></VerticalDivider>
+            <Text variant="bodyItalic" color="gray500">
+              {props.content}
+            </Text>
+          </>
+        ) : (
+          <Text variant="body" color="gray500">
+            {props.content}
+          </Text>
+        )}
+      </ContentContainer>
       {!props.isReply && (
-        <ReplyLink variant='link' href={props.replyHref}>
-            <FontAwesomeIcon icon={faReply}></FontAwesomeIcon>
-            <Text variant='body' color='seaGlass300'>{`Reply`}</Text>
-          </ReplyLink>
+        <ReplyLink variant="link" href={props.replyHref}>
+          <FontAwesomeIcon icon={faReply}></FontAwesomeIcon>
+          <Text variant="body" color="seaGlass300">{`Reply`}</Text>
+        </ReplyLink>
       )}
     </Flex>
   </Container>

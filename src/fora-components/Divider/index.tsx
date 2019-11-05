@@ -19,4 +19,5 @@ const Divider = styled(Box)<IDividerProps>(props =>
     backgroundColor: props.backgroundColor || 'gray200'
   })
 );
+
 export default Divider;
