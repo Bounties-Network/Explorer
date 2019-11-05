@@ -18,8 +18,7 @@ const VerticalDivider = styled(Box)<IVerticalDividerProps>(props =>
     ml: props.ml || props.marginLeft || 3,
     mr: props.mr || props.marginRight || 3,
     width: '1px',
-    minHeight: props.height ? undefined : '100%',
-    height: props.height,
+    minHeight: '100%',
     backgroundColor: props.backgroundColor || 'gray200',
   })
 );

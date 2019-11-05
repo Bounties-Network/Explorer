@@ -1,51 +1,68 @@
-import * as React from 'react'
-import emotionStyled from 'lib/emotion-styled';
-import SingleComment, { ISingleCommentProps } from '../SingleComment';
-import { Flex, Box } from 'rebass';
-import css from '@styled-system/css';
-import VerticalDivider from 'fora-components/VerticalDivider';
+import React from "react";
+import emotionStyled from "lib/emotion-styled";
+import SingleComment, { ISingleCommentProps } from "../SingleComment";
+import { Flex } from "rebass";
+import css from "@styled-system/css";
+import VerticalDivider from "fora-components/VerticalDivider";
+import CommentForm from "fora-components/Form/CommentForm";
 
-const Container = emotionStyled(Flex)(props => css({ 
-  position: 'relative',
-})
-);
-const CommentsContainer = emotionStyled(Flex)(props => css({ 
-  '> div:not(:first-of-type)': { 
-    pl: '56px' // mm 40 + 16
-  },
-  '> div:not(:last-of-type)': { 
-    mb: 5
-  },
+const Container = emotionStyled(Flex)(props =>
+  css({
+    position: "relative"
   })
 );
-const Content = emotionStyled(Flex)(props => css({
-  position: 'relative',
-  '> div:first-of-type': { 
-    position: 'absolute',
-    zIndex: -1,
-    left: '2px',
-    top: '60px'
-  }
-}));
+const CommentsContainer = emotionStyled(Flex)(props =>
+  css({
+    "> *:not(:first-of-type)": {
+      pl: "56px" // mm 40 + 16
+    },
+    "> *:not(:last-of-type)": {
+      mb: 5
+    }
+  })
+);
+const Content = emotionStyled(Flex)(props =>
+  css({
+    position: "relative",
+    "> div:first-of-type": {
+      position: "absolute",
+      left: "2px",
+      top: "60px",
+      height: "calc(100% - 80px)",
+      minHeight: "unset !important"
+    }
+  })
+);
 
-interface IProps { 
-  comments: ISingleCommentProps[]
- }
+interface IProps {
+  comments: ISingleCommentProps[];
+  replySubmitHandler: any;
+}
 
-const CommentThread: React.FunctionComponent<IProps> = (props) => (
-  <Container flexDirection="row">
-    <Content flexDirection="row">
-    <VerticalDivider height='calc(100% - 80px)'></VerticalDivider>
-    <CommentsContainer flexDirection="column">
-    {Array.isArray(props.comments) && 
-      props.comments.map(
-        (comment, index) =>
-        <SingleComment isReply={Boolean(index)} {...comment} />
-        )
-      }
-      </CommentsContainer >
-      </Content >
-  </Container>
-)
+const CommentThread: React.FunctionComponent<IProps> = props => {
+  const [isReplyOpen, setState] = React.useState<boolean>(true);
 
-export default CommentThread
+  return (
+    <Container flexDirection="row">
+      <Content flexDirection="row">
+        <VerticalDivider></VerticalDivider>
+        <CommentsContainer flexDirection="column">
+          {Array.isArray(props.comments) &&
+            props.comments.map((comment, index) => {
+              if (index === 1 && isReplyOpen) {
+                return (
+                  <div>
+                    <CommentForm submitHandler={props.replySubmitHandler} />
+                    <SingleComment replyOnClickHandler={() => setState(true)} isReply={Boolean(index)} {...comment} />
+                  </div>
+                );
+              }
+              return <SingleComment replyOnClickHandler={() => setState(true)} isReply={Boolean(index)} {...comment} />;
+            })}
+        </CommentsContainer>
+      </Content>
+    </Container>
+  );
+};
+
+export default CommentThread;

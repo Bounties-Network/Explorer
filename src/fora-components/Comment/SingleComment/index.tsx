@@ -26,18 +26,27 @@ const ContentContainer = emotionStyled(Flex)(props =>
     mb: 3
   })
 );
-const ReplyLink = emotionStyled(Link)(props =>
+const NameLink = emotionStyled(Link)(props =>
+  css({
+    display: "flex",
+    alignItems: "center",
+    "> :first-of-type": { mr: 2, cursor: "pointer" },
+  })
+);
+
+const ReplyContainer = emotionStyled(Flex)(props =>
   css({
     display: "flex",
     alignItems: "center",
     "> :first-of-type": { mr: 2, cursor: "pointer" },
     "> svg:first-of-type": { color: "seaGlass200" }
   })
-);
+)
 
 export type Commenter = Pick<AvatarProps, "name" | "screenName" | "address" | "src" | "onDark">;
 export interface ISingleCommentProps {
   isReply?: boolean;
+  replyOnClickHandler?: any;
   isPreview?: boolean;
   replyHref?: string;
   content: string;
@@ -51,12 +60,12 @@ const SingleComment: React.FunctionComponent<ISingleCommentProps> = props => (
     </Link>
     <Flex flexDirection="column">
       <DetailsContainer alignItems="center">
-        <ReplyLink variant="link" href={`/address/${props.commenter.address}`}>
+        <NameLink variant="link" href={`/address/${props.commenter.address}`}>
           <Text variant="body" color="black">
             {props.commenter.name}
           </Text>
           <Text>@{props.commenter.screenName}</Text>
-        </ReplyLink>
+        </NameLink>
         <Text>{` ∙ `}</Text>
         <Text variant="body" color="gray400">
           {moment(props.timestamp).fromNow()}
@@ -77,10 +86,10 @@ const SingleComment: React.FunctionComponent<ISingleCommentProps> = props => (
         )}
       </ContentContainer>
       {!props.isReply && (
-        <ReplyLink variant="link" href={props.replyHref}>
+        <ReplyContainer onClick={props.replyOnClickHandler}>
           <FontAwesomeIcon icon={faReply}></FontAwesomeIcon>
           <Text variant="body" color="seaGlass300">{`Reply`}</Text>
-        </ReplyLink>
+        </ReplyContainer>
       )}
     </Flex>
   </Container>

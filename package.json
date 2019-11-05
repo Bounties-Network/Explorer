@@ -17,6 +17,7 @@
     "@fortawesome/pro-regular-svg-icons": "^5.10.2",
     "@fortawesome/pro-solid-svg-icons": "^5.10.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "@rebass/forms": "^4.0.6",
     "@styled-system/css": "^5.0.23",
     "@tippy.js/react": "^3.1.0",
     "apollo-cache-inmemory": "^1.6.3",
