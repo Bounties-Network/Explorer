@@ -9,6 +9,7 @@ interface IVerticalDividerProps {
   marginLeft?: number | number[];
   mr?: number | number[];
   marginRight?: number | number[];
+  height?: string;
 }
 
 const VerticalDivider = styled(Box)<IVerticalDividerProps>(props =>
@@ -17,7 +18,8 @@ const VerticalDivider = styled(Box)<IVerticalDividerProps>(props =>
     ml: props.ml || props.marginLeft || 3,
     mr: props.mr || props.marginRight || 3,
     width: '1px',
-    minHeight: '100%',
+    minHeight: props.height ? undefined : '100%',
+    height: props.height,
     backgroundColor: props.backgroundColor || 'gray200',
   })
 );

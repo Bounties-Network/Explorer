@@ -25,7 +25,7 @@ const comment = {
 const comments = [comment, comment, comment]
 
 storiesOf('CommentThread', module)
-  .add('Parent', () =>
+  .add('Threaded', () =>
     <CommentThread
       comments={comments}
     />
