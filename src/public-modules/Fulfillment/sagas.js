@@ -220,7 +220,8 @@ export function* createFulfillment(action) {
           sender,
           method: 'metaFulfillBounty',
           params,
-          signature
+          signature,
+          contract_version
         };
         const relayResponse = yield call(
           request,
@@ -366,7 +367,8 @@ export function* updateFulfillment(action) {
           sender,
           method: 'metaUpdateFulfillment',
           params,
-          signature
+          signature,
+          contract_version
         };
         const relayResponse = yield call(
           request,
