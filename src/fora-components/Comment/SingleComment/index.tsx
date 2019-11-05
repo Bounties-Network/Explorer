@@ -18,14 +18,14 @@ const ContentContainer = emotionStyled(Flex)(props => css({ maxWidth: '600px', m
 const ReplyLink = emotionStyled(Link)(props => css({ display: 'flex', alignItems: 'center', '> :first-of-type': { mr: 2, cursor: 'pointer' }, '> svg:first-of-type': { color: 'seaGlass200' } }));
 
 export type Commenter = Pick<AvatarProps, "name" | "screenName" | "address" | "src" | "onDark">;
-interface IProps {
-  isReply: boolean;
+export interface ISingleCommentProps {
+  isReply?: boolean;
   replyHref?: string;
   content: string;
   timestamp: any;
   commenter: Commenter;
 }
-const SingleComment: React.FunctionComponent<IProps> = props => (
+const SingleComment: React.FunctionComponent<ISingleCommentProps> = props => (
   <Container>
     <Link href={`/address/${props.commenter.address}`}>
       <AvatarImage src={props.commenter.src}></AvatarImage>
