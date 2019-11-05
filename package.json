@@ -205,6 +205,7 @@
     "start-learnboost": "APP_SETTINGS_FILE=learnboost_settings APP_LOGO=surge_logo node scripts/start.js",
     "start-moksha": "APP_SETTINGS_FILE=moksha_settings APP_LOGO=moksha_logo node scripts/start.js",
     "start-boston": "APP_SETTINGS_FILE=boston_settings APP_LOGO=boston_logo node scripts/start.js",
+    "start-waterloo":"APP_SETTINGS_FILE=waterloo_settings APP_LOGO=waterloo_logo node scripts/start.js",
     "gqt": "apollo client:codegen --target=typescript --config=apollo.config.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
@@ -235,7 +236,8 @@
     "deploy-sf": "APP_SETTINGS_FILE=sf_settings APP_LOGO=logo npm run build && aws s3 sync build/. s3://sf.bounties.network --acl public-read --exclude index.html --cache-control max-age=31536000 && aws s3 cp build/index.html s3://sf.bounties.network --acl public-read --cache-control 'no-cache, no-store, must-revalidate'",
     "deploy-staging": "APP_SETTINGS_FILE=staging_settings APP_LOGO=logo npm run build && aws s3 sync build/. s3://staging.bounties.network --acl public-read --exclude index.html --cache-control max-age=31536000 && aws s3 cp build/index.html s3://staging.bounties.network --acl public-read --cache-control 'no-cache, no-store, must-revalidate'",
     "deploy-surge": "APP_SETTINGS_FILE=surge_settings APP_LOGO=surge_logo npm run build && aws s3 sync build/. s3://surge.bounties.network --acl public-read --exclude index.html --cache-control max-age=31536000 && aws s3 cp build/index.html s3://surge.bounties.network --acl public-read --cache-control 'no-cache, no-store, must-revalidate'",
-    "deploy-all": "npm run deploy-production && npm run deploy-rinkeby && npm run deploy-prague && npm run deploy-colorado && npm run deploy-bgc && npm run deploy-boost && npm run deploy-korea && npm run deploy-nyc && npm run deploy-surge && npm run deploy-consensys && npm run deploy-ethscholars && npm run deploy-moksha && npm run deploy-berlin && npm run deploy-boston && npm run deploy-coverage && npm run deploy-test-coverage && npm run deploy-japan && npm run deploy-sa && npm run deploy-sf && npm run deploy-learnboost"
+    "deploy-surge": "APP_SETTINGS_FILE=waterloo_settings APP_LOGO=waterloo_logo npm run build && aws s3 sync build/. s3://waterloo.bounties.network --acl public-read --exclude index.html --cache-control max-age=31536000 && aws s3 cp build/index.html s3://waterloo.bounties.network --acl public-read --cache-control 'no-cache, no-store, must-revalidate'",
+    "deploy-all": "npm run deploy-production && npm run deploy-rinkeby && npm run deploy-prague && npm run deploy-colorado && npm run deploy-bgc && npm run deploy-boost && npm run deploy-korea && npm run deploy-nyc && npm run deploy-surge && npm run deploy-consensys && npm run deploy-ethscholars && npm run deploy-moksha && npm run deploy-berlin && npm run deploy-boston && npm run deploy-coverage && npm run deploy-test-coverage && npm run deploy-japan && npm run deploy-sa && npm run deploy-sf && npm run deploy-learnboost && npm run deploy-waterloo"
   },
   "jest": {
     "collectCoverageFrom": [
