@@ -65,7 +65,8 @@ const SubmissionItem = props => {
     id,
     loadMoreFulComments,
     autoFocus,
-    editFulfillment
+    editFulfillment,
+    pending
   } = props;
 
   const commentOnSubmission = () => {
@@ -104,7 +105,8 @@ const SubmissionItem = props => {
   if (
     bountyBelongsToLoggedInUser &&
     includes(bounty_stage, [ACTIVE, EXPIRED]) &&
-    !accepted
+    !accepted &&
+    !pending
   ) {
     actionButton = (
       <Button
@@ -117,7 +119,12 @@ const SubmissionItem = props => {
     );
   }
 
-  if (bountyBelongsToLoggedInUser && accepted && !fulfiller_review) {
+  if (
+    bountyBelongsToLoggedInUser &&
+    accepted &&
+    !fulfiller_review &&
+    !pending
+  ) {
     actionButton = (
       <Button
         className={styles.actionButton}
@@ -138,7 +145,12 @@ const SubmissionItem = props => {
     );
   }
 
-  if (submissionBelongsToLoggedInUser && accepted && !issuer_review) {
+  if (
+    submissionBelongsToLoggedInUser &&
+    accepted &&
+    !issuer_review &&
+    !pending
+  ) {
     actionButton = (
       <Button
         className={`${styles.actionButton} ${styles.rateButton}`}
@@ -167,9 +179,8 @@ const SubmissionItem = props => {
   if (
     submissionBelongsToLoggedInUser &&
     !accepted &&
-    typeof bounty.contract_version === 'string' && 
-    bounty.contract_version.split('.')[0] ===
-      '2'
+    typeof bounty.contract_version === 'string' &&
+    bounty.contract_version.split('.')[0] === '2'
   ) {
     actionButton = (
       <Button
@@ -269,6 +280,7 @@ const SubmissionItem = props => {
           <FulfillmentStagePill
             accepted={accepted}
             bounty_stage={bounty_stage}
+            pending={pending}
           />
           {actionButton}
           {bountyBelongsToLoggedInUser && (

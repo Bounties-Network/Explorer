@@ -793,7 +793,8 @@
     },
     "fulfillment_stage": {
       "accepted": "已被接受",
-      "not_accepted": "未被接受"
+      "not_accepted": "未被接受",
+      "pending": "待定"
     },
     "submission": {
       "title": "赏金项目标题",

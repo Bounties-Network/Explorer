@@ -22,7 +22,8 @@ const SubmissionItem = props => {
     status,
     usd,
     amount,
-    currency
+    currency,
+    pending
   } = props;
 
   const formattedTime = moment
@@ -64,7 +65,11 @@ const SubmissionItem = props => {
         flexBasis="16%"
         headerText={intl.get('components.submission.status')}
       >
-        <FulfillmentStagePill bounty_stage={bounty_stage} accepted={status} />
+        <FulfillmentStagePill
+          bounty_stage={bounty_stage}
+          accepted={status}
+          pending={pending}
+        />
       </Table.Cell>
       <Table.Cell
         flexBasis="13%"
