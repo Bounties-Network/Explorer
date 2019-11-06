@@ -98,8 +98,8 @@ function acceptFulfillment(
   };
 }
 
-function acceptFulfillmentSuccess(id) {
-  return { type: ACCEPT_FULFILLMENT_SUCCESS, id };
+function acceptFulfillmentSuccess() {
+  return { type: ACCEPT_FULFILLMENT_SUCCESS };
 }
 
 function acceptFulfillmentFail() {

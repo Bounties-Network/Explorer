@@ -72,6 +72,9 @@ const PendingReceipt = props => {
         </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
+        <Button margin onClick={onClose}>
+          {intl.get('actions.close')}
+        </Button>
         <Button type="primary" onClick={toDashboard}>
           {intl.get('actions.dashboard')}
         </Button>
