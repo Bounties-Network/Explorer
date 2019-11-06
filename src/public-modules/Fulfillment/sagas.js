@@ -108,6 +108,7 @@ export function* acceptFulfillment(action) {
 
 export function* createFulfillment(action) {
   const { bountyId, contract_version, bountyPlatform, data } = action;
+  const contractVersion = contract_version
   const {
     name,
     email,
@@ -223,7 +224,8 @@ export function* createFulfillment(action) {
           sender,
           method: 'metaFulfillBounty',
           params,
-          signature
+          signature,
+          contractVersion
         };
         const relayResponse = yield call(
           request,
@@ -273,6 +275,7 @@ export function* createFulfillment(action) {
 
 export function* updateFulfillment(action) {
   const { bountyId, contract_version, bountyPlatform, data } = action;
+  const contractVersion = contract_version
   const {
     name,
     email,
@@ -369,7 +372,8 @@ export function* updateFulfillment(action) {
           sender,
           method: 'metaUpdateFulfillment',
           params,
-          signature
+          signature,
+          contractVersion
         };
         const relayResponse = yield call(
           request,
