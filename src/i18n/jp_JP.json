@@ -840,7 +840,8 @@
     },
     "fulfillment_stage": {
       "accepted": "承認されました",
-      "not_accepted": "承認されませんでした"
+      "not_accepted": "承認されませんでした",
+      "pending": "保留中"
     },
     "submission": {
       "title": "報奨のタイトル",

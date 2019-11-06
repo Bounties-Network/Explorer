@@ -915,7 +915,8 @@
     },
     "fulfillment_stage": {
       "accepted": "Accepted",
-      "not_accepted": "Not Accepted"
+      "not_accepted": "Not Accepted",
+      "pending": "Pending"
     },
     "submission": {
       "title": "Bounty title",

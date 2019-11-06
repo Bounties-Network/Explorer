@@ -839,7 +839,8 @@
     },
     "fulfillment_stage": {
       "accepted": "Принято",
-      "not_accepted": "Не принято"
+      "not_accepted": "Не принято",
+      "pending": "в ожидании"
     },
     "submission": {
       "title": "Название награды",

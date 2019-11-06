@@ -862,7 +862,8 @@
     },
     "fulfillment_stage": {
       "accepted": "Aceptada",
-      "not_accepted": "No Aceptada"
+      "not_accepted": "No Aceptada",
+      "pending": "Pendiente"
     },
     "submission": {
       "title": "Título de la recompensa",

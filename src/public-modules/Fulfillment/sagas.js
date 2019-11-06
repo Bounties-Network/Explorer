@@ -2,6 +2,7 @@ import request from 'utils/request';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { actionTypes, actions } from 'public-modules/Fulfillment';
 import { actions as transactionActions } from 'public-modules/Transaction';
+import { actions as fulfillmentActions } from 'public-modules/Fulfillments';
 import { addressSelector } from 'public-modules/Client/selectors';
 import { addJSON } from 'public-modules/Utilities/ipfsClient';
 import siteConfig from 'public-modules/config';
@@ -34,6 +35,8 @@ const {
   acceptFulfillmentSuccess,
   acceptFulfillmentFail
 } = actions;
+
+const { fulfillmentAcceptancePending } = fulfillmentActions;
 
 export function* loadFulfillment(action) {
   const { bountyId, fulfillmentId } = action;
@@ -93,7 +96,7 @@ export function* acceptFulfillment(action) {
     } else {
       throw new Error(`contract version ${contract_version} invalid.`);
     }
-
+    yield put(fulfillmentAcceptancePending(fulfillmentId));
     yield put(setPendingReceipt(txHash));
     yield put(acceptFulfillmentSuccess());
   } catch (e) {
