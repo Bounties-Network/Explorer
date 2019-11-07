@@ -57,11 +57,11 @@ PendingWalletConfirm.propTypes = {
 };
 
 const PendingReceipt = props => {
-  const { visible, toDashboard } = props;
+  const { onClose, visible, toDashboard } = props;
 
   return (
-    <Modal visible={visible} fixed size="small">
-      <Modal.Header loadingIcon>
+    <Modal dismissable onClose={onClose} visible={visible} fixed size="small">
+      <Modal.Header loadingIcon closable>
         <Modal.Message>
           {intl.get('components.tx_guide.messages.waiting')}
         </Modal.Message>
@@ -72,6 +72,9 @@ const PendingReceipt = props => {
         </Modal.Description>
       </Modal.Body>
       <Modal.Footer>
+        <Button margin onClick={onClose}>
+          {intl.get('actions.close')}
+        </Button>
         <Button type="primary" onClick={toDashboard}>
           {intl.get('actions.dashboard')}
         </Button>
@@ -81,6 +84,7 @@ const PendingReceipt = props => {
 };
 
 PendingReceipt.propTypes = {
+  onClose: PropTypes.func,
   text: PropTypes.string,
   visible: PropTypes.bool,
   toDashboard: PropTypes.func
@@ -109,11 +113,11 @@ WalkthroughError.propTypes = {
 };
 
 const WalkthroughSuccess = props => {
-  const { visible, toDashboard, buttonText, successLink } = props;
+  const { onClose, visible, toDashboard, buttonText, successLink } = props;
 
   return (
-    <Modal fixed size="small" visible={visible}>
-      <Modal.Header icon="check" />
+    <Modal dismissable onClose={onClose} fixed size="small" visible={visible}>
+      <Modal.Header icon="check" closable />
       <Modal.Body>
         <Modal.Message>
           {intl.get('components.tx_guide.messages.confirmed')}
@@ -155,12 +159,14 @@ const TransactionWalkthrough = props => {
       <PendingWalletConfirm
         text={pendingWalletText}
         visible={visible && stage === 'pendingWalletConfirm'}
+        onClose={onClose}
       />
       <PendingReceipt
         text={pendingReceiptText}
         visible={
           visible && !transaction.completed && stage === 'pendingReceipt'
         }
+        onClose={onClose}
         toDashboard={toDashboard}
       />
       <WalkthroughSuccess
@@ -168,6 +174,7 @@ const TransactionWalkthrough = props => {
         toDashboard={toDashboard}
         buttonText={transaction.linkText}
         successLink={successLink}
+        onClose={onClose}
       />
       <WalkthroughError
         onClose={onClose}

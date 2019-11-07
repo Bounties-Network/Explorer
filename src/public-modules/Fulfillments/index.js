@@ -55,6 +55,7 @@ const ADD_FULFILLER_FILTER = 'fulfillments/ADD_FULFILLER_FILTER';
 const ADD_BOUNTY_FILTER = 'fulfillments/ADD_BOUNTY_FILTER';
 const RESET_FILTERS = 'fulfillments/RESET_FILTERS';
 const RESET_STATE = 'fulfillments/RESET_STATE';
+const ACCEPTANCE_PENDING = 'fulfillments/ACCEPTANCE_PENDING';
 
 function addIssuerFilter(address) {
   return { type: ADD_ISSUER_FILTER, address };
@@ -74,6 +75,10 @@ function resetFilters() {
 
 function resetState() {
   return { type: RESET_STATE };
+}
+
+function fulfillmentAcceptancePending(id) {
+  return { type: ACCEPTANCE_PENDING, id };
 }
 
 function FulfillmentsReducer(state = initialState, action) {
@@ -181,6 +186,20 @@ function FulfillmentsReducer(state = initialState, action) {
         filters: {}
       };
     }
+    case ACCEPTANCE_PENDING: {
+      const { id } = action;
+      let new_fulfillments = state.fulfillments;
+      for (var i = 0; i < new_fulfillments.length; i++) {
+        if (new_fulfillments[i].fulfillment_id === id) {
+          new_fulfillments[i].pending = true;
+        }
+      }
+      return {
+        ...state,
+        filters: {},
+        fulfillments: new_fulfillments
+      };
+    }
     case RESET_STATE: {
       return initialState;
     }
@@ -200,7 +219,8 @@ export const actions = {
   addFulfillerFilter,
   addBountyFilter,
   resetFilters,
-  resetState
+  resetState,
+  fulfillmentAcceptancePending
 };
 
 export const actionTypes = {
@@ -215,7 +235,8 @@ export const actionTypes = {
   ADD_FULFILLER_FILTER,
   ADD_BOUNTY_FILTER,
   RESET_FILTERS,
-  RESET_STATE
+  RESET_STATE,
+  ACCEPTANCE_PENDING
 };
 
 export default FulfillmentsReducer;

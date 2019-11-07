@@ -5,12 +5,15 @@ import { DEAD, COMPLETED } from 'public-modules/Bounty/constants';
 import intl from 'react-intl-universal';
 
 const FulfillmentStagePill = props => {
-  const { bounty_stage, accepted, className } = props;
+  const { bounty_stage, accepted, className, pending } = props;
 
   let text;
   let backgroundColor;
   let textColor = 'white';
-  if (accepted) {
+  if (pending) {
+    text = intl.get('components.fulfillment_stage.pending');
+    backgroundColor = 'blue';
+  } else if (accepted) {
     text = intl.get('components.fulfillment_stage.accepted');
     backgroundColor = 'green';
   } else if (

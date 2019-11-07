@@ -45,7 +45,8 @@ const SubmissionsCard = props => {
         fulfiller_review,
         issuer_review,
         comment_count,
-        id
+        id,
+        pending
       } = fulfillment;
 
       const { name, small_profile_image_url } = user;
@@ -99,6 +100,7 @@ const SubmissionsCard = props => {
           loadMoreFulComments={loadMoreFulComments}
           autoFocus={autoFocus}
           editFulfillment={editFulfillment}
+          pending={pending}
         />
       );
     }, list);
