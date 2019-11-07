@@ -15,17 +15,19 @@
     "decimals": 18
   },
   "requiredNetwork": "rinkeby",
-  "contractVersion": "2.2",
+  "contractVersion": "2.3",
   "mainNet": {
     "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
     "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c",
     "standardBountiesAddressV2.1": "0x38f1886081759f7d352c28984908d04e8d2205a6",
-    "standardBountiesAddressV2.2": "0x9142dd986fe36952c1f8f5d68b814217dee45186"
+    "standardBountiesAddressV2.2": "0x9142dd986fe36952c1f8f5d68b814217dee45186",
+    "standardBountiesAddressV2.3": "0x1ca6b906917167366324aed6c6a708131136bea9"
   },
   "rinkeby": {
     "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
     "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c",
     "standardBountiesAddressV2.1": "0x38f1886081759f7d352c28984908d04e8d2205a6",
-    "standardBountiesAddressV2.2": "0x9142dd986fe36952c1f8f5d68b814217dee45186"
+    "standardBountiesAddressV2.2": "0x9142dd986fe36952c1f8f5d68b814217dee45186",
+    "standardBountiesAddressV2.3": "0x1ca6b906917167366324aed6c6a708131136bea9"
   }
 }

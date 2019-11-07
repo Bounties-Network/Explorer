@@ -141,7 +141,10 @@ export function* createFulfillment(action) {
       );
       // console.log(fulfillEstimateGasCost);
       // console.log(accountbalanceWei);
-      if (contract_version == "2.2" && fulfillEstimateGasCost + 50000 > accountbalanceWei) {
+      if (
+        (contract_version == "2.2" || contract_version == "2.3") &&
+        fulfillEstimateGasCost + 50000 > accountbalanceWei
+      ) {
         // Use meta transaction relayer, user does not have enough funds
         const sender = web3.utils.toChecksumAddress(userAddress);
         const fulfillers = [sender];
@@ -268,7 +271,10 @@ export function* updateFulfillment(action) {
         ipfsHash
       );
 
-      if (contract_version == "2.2" && fulfillEstimateGasCost + 50000 > accountbalanceWei) {
+      if (
+        (contract_version == "2.2" || contract_version == "2.3") &&
+        fulfillEstimateGasCost + 50000 > accountbalanceWei
+      ) {
         const sender = web3.utils.toChecksumAddress(userAddress);
         const latestNonce = yield relayer.methods.replayNonce(sender).call();
         // console.log(relayer);
