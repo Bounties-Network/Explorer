@@ -23,7 +23,7 @@ export const mostInterestingTab = (bounty, comments) => {
     return 'submissions';
   } else if (comments.list.length > 0) {
     return 'comments';
-  } else if (bounty.application_count > 0) {
+  } else if (bounty.application_count > 0 && bounty.fulfillers_need_approval) {
     return 'applicants';
   } else {
     return 'comments';
