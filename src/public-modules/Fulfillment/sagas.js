@@ -164,15 +164,7 @@ export function* createFulfillment(action) {
       contract_version.split('.')[0] === '2'
     ) {
       const accountbalanceWei = yield call(web3.eth.getBalance, userAddress);
-      const fulfillEstimateGasCost = yield call(
-        promisifyContractEstimateGasCall(standardBounties.fulfillBounty, {
-          from: userAddress
-        }),
-        userAddress,
-        bountyId,
-        [userAddress],
-        ipfsHash
-      );
+      const fulfillEstimateGasCost = 155000;
       // console.log(fulfillEstimateGasCost);
       // console.log(accountbalanceWei);
       if (
@@ -182,7 +174,9 @@ export function* createFulfillment(action) {
         // Use meta transaction relayer, user does not have enough funds
         const sender = web3.utils.toChecksumAddress(userAddress);
         const fulfillers = [sender];
-        const latestNonce = yield bountiesMetaTxRelayer.methods.replayNonce(sender).call();
+        const latestNonce = yield bountiesMetaTxRelayer.methods
+          .replayNonce(sender)
+          .call();
         // console.log(relayer);
         // console.log("latestNonce from meta tx contract: ", latestNonce);
         const nonce = web3.utils.hexToNumber(latestNonce);
@@ -314,23 +308,16 @@ export function* updateFulfillment(action) {
     ) {
       // Check if user has enough balance for transaction gas costs
       const accountbalanceWei = yield call(web3.eth.getBalance, userAddress);
-      const updateFulfillmentEstimateGasCost = yield call(
-        promisifyContractEstimateGasCall(standardBounties.updateFulfillment, {
-          from: userAddress
-        }),
-        userAddress,
-        bountyId,
-        fulfillmentId,
-        [userAddress],
-        ipfsHash
-      );
+      const updateFulfillmentEstimateGasCost = 70000;
 
       if (
         (contract_version == '2.2' || contract_version == '2.3') &&
         updateFulfillmentEstimateGasCost + 50000 > accountbalanceWei
       ) {
         const sender = web3.utils.toChecksumAddress(userAddress);
-        const latestNonce = yield bountiesMetaTxRelayer.methods.replayNonce(sender).call();
+        const latestNonce = yield bountiesMetaTxRelayer.methods
+          .replayNonce(sender)
+          .call();
         // console.log(relayer);
         // console.log("latestNonce from meta tx contract: ", latestNonce);
         const nonce = web3.utils.hexToNumber(latestNonce);
