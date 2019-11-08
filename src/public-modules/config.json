@@ -5045,7 +5045,741 @@
         "type": "function"
       }
     ],
-    "MetaTxRelayer": [
+    "BountiesMetaTxRelayerV2.2": [
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "replayNonce",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "bountiesContract",
+        "outputs": [
+          {
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "name": "_contract",
+            "type": "address"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "name": "_deadline",
+            "type": "uint256"
+          },
+          {
+            "name": "_token",
+            "type": "address"
+          },
+          {
+            "name": "_tokenVersion",
+            "type": "uint256"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaIssueBounty",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "name": "_deadline",
+            "type": "uint256"
+          },
+          {
+            "name": "_token",
+            "type": "address"
+          },
+          {
+            "name": "_tokenVersion",
+            "type": "uint256"
+          },
+          {
+            "name": "_depositAmount",
+            "type": "uint256"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaIssueAndContribute",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_amount",
+            "type": "uint256"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaContribute",
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_contributionId",
+            "type": "uint256"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaRefundContribution",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_contributionIds",
+            "type": "uint256[]"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaRefundMyContributions",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "name": "_contributionIds",
+            "type": "uint256[]"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaRefundContributions",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "name": "_amounts",
+            "type": "uint256[]"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaDrainBounty",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaPerformAction",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_fulfillers",
+            "type": "address[]"
+          },
+          {
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaFulfillBounty",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_fulfillmentId",
+            "type": "uint256"
+          },
+          {
+            "name": "_fulfillers",
+            "type": "address[]"
+          },
+          {
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaUpdateFulfillment",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_fulfillmentId",
+            "type": "uint256"
+          },
+          {
+            "name": "_approverId",
+            "type": "uint256"
+          },
+          {
+            "name": "_tokenAmounts",
+            "type": "uint256[]"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaAcceptFulfillment",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_fulfillers",
+            "type": "address[]"
+          },
+          {
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "name": "_approverId",
+            "type": "uint256"
+          },
+          {
+            "name": "_tokenAmounts",
+            "type": "uint256[]"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaFulfillAndAccept",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "name": "_deadline",
+            "type": "uint256"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaChangeBounty",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuerIdToChange",
+            "type": "uint256"
+          },
+          {
+            "name": "_newIssuer",
+            "type": "address"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaChangeIssuer",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "name": "_approverId",
+            "type": "uint256"
+          },
+          {
+            "name": "_approver",
+            "type": "address"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaChangeApprover",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaChangeData",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "name": "_deadline",
+            "type": "uint256"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaChangeDeadline",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaAddIssuers",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaReplaceIssuers",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaAddApprovers",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaReplaceApprovers",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ],
+    "BountiesMetaTxRelayerV2.3": [
       {
         "constant": true,
         "inputs": [

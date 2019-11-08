@@ -144,7 +144,7 @@ export function* createFulfillment(action) {
 
   const ipfsHash = yield call(addJSON, payload);
 
-  const { standardBounties, relayer } = yield call(
+  const { standardBounties, bountiesMetaTxRelayer } = yield call(
     getContractClient,
     contract_version
   );
@@ -182,7 +182,7 @@ export function* createFulfillment(action) {
         // Use meta transaction relayer, user does not have enough funds
         const sender = web3.utils.toChecksumAddress(userAddress);
         const fulfillers = [sender];
-        const latestNonce = yield relayer.methods.replayNonce(sender).call();
+        const latestNonce = yield bountiesMetaTxRelayer.methods.replayNonce(sender).call();
         // console.log(relayer);
         // console.log("latestNonce from meta tx contract: ", latestNonce);
         const nonce = web3.utils.hexToNumber(latestNonce);
@@ -190,7 +190,7 @@ export function* createFulfillment(action) {
         const params = [
           ['address', 'string', 'uint', 'address[]', 'string', 'uint'],
           [
-            web3.utils.toChecksumAddress(relayer._address),
+            web3.utils.toChecksumAddress(bountiesMetaTxRelayer._address),
             'metaFulfillBounty',
             bountyId,
             fulfillers,
@@ -301,7 +301,7 @@ export function* updateFulfillment(action) {
 
   const ipfsHash = yield call(addJSON, payload);
 
-  const { standardBounties, relayer } = yield call(
+  const { standardBounties, bountiesMetaTxRelayer } = yield call(
     getContractClient,
     contract_version
   );
@@ -330,14 +330,14 @@ export function* updateFulfillment(action) {
         updateFulfillmentEstimateGasCost + 50000 > accountbalanceWei
       ) {
         const sender = web3.utils.toChecksumAddress(userAddress);
-        const latestNonce = yield relayer.methods.replayNonce(sender).call();
+        const latestNonce = yield bountiesMetaTxRelayer.methods.replayNonce(sender).call();
         // console.log(relayer);
         // console.log("latestNonce from meta tx contract: ", latestNonce);
         const nonce = web3.utils.hexToNumber(latestNonce);
         const params = [
           ['address', 'string', 'uint', 'uint', 'address[]', 'string', 'uint'],
           [
-            web3.utils.toChecksumAddress(relayer._address),
+            web3.utils.toChecksumAddress(bountiesMetaTxRelayer._address),
             'metaUpdateFulfillment',
             bountyId,
             fulfillmentId,
