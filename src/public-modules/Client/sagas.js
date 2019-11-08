@@ -110,7 +110,7 @@ export function* getContractClient(contract_version = config.contractVersion) {
     return {
       bountiesMetaTxRelayer: new web3.eth.Contract(
         config.interfaces[`BountiesMetaTxRelayerV${contract_version}`],
-        config[network]['relayerAddresses'][`bountiesMetaTxRelayerAddressV${contract_version}`]
+        config['relayerAddresses'][network][`bountiesMetaTxRelayerAddressV${contract_version}`]
       ),
       standardBounties: new web3.eth.Contract(
         config.interfaces[`StandardBountiesV${contract_version}`],
