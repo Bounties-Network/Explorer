@@ -108,7 +108,7 @@ export function* acceptFulfillment(action) {
 
 export function* createFulfillment(action) {
   const { bountyId, contract_version, bountyPlatform, data } = action;
-  const contractVersion = contract_version
+  const contractVersion = contract_version;
   const {
     name,
     email,
@@ -144,7 +144,7 @@ export function* createFulfillment(action) {
 
   const ipfsHash = yield call(addJSON, payload);
 
-  const { standardBounties, relayer } = yield call(
+  const { standardBounties, bountiesMetaTxRelayer } = yield call(
     getContractClient,
     contract_version
   );
@@ -176,32 +176,23 @@ export function* createFulfillment(action) {
       // console.log(fulfillEstimateGasCost);
       // console.log(accountbalanceWei);
       if (
-        contract_version == '2.2' &&
+        (contract_version == '2.2' || contract_version == '2.3') &&
         fulfillEstimateGasCost + 50000 > accountbalanceWei
       ) {
         // Use meta transaction relayer, user does not have enough funds
         const sender = web3.utils.toChecksumAddress(userAddress);
         const fulfillers = [sender];
-        const latestNonce = yield relayer.methods.replayNonce(sender).call();
+        const latestNonce = yield bountiesMetaTxRelayer.methods
+          .replayNonce(sender)
+          .call();
         // console.log(relayer);
         // console.log("latestNonce from meta tx contract: ", latestNonce);
         const nonce = web3.utils.hexToNumber(latestNonce);
-        // console.log(siteConfig);
-        // console.log(
-        //   siteConfig[
-        //     `relayer${
-        //       process.env.APP_SETTINGS_FILE === "rinkeby_settings" ||
-        //       process.env.APP_SETTINGS_FILE === "staging_settings"
-        //         ? "Staging"
-        //         : "Production"
-        //     }ContractAddress`
-        //   ]
-        // );
-        // window.config = siteConfig;
+
         const params = [
           ['address', 'string', 'uint', 'address[]', 'string', 'uint'],
           [
-            web3.utils.toChecksumAddress(relayer._address),
+            web3.utils.toChecksumAddress(bountiesMetaTxRelayer._address),
             'metaFulfillBounty',
             bountyId,
             fulfillers,
@@ -275,7 +266,7 @@ export function* createFulfillment(action) {
 
 export function* updateFulfillment(action) {
   const { bountyId, contract_version, bountyPlatform, data } = action;
-  const contractVersion = contract_version
+  const contractVersion = contract_version;
   const {
     name,
     email,
@@ -312,7 +303,7 @@ export function* updateFulfillment(action) {
 
   const ipfsHash = yield call(addJSON, payload);
 
-  const { standardBounties, relayer } = yield call(
+  const { standardBounties, bountiesMetaTxRelayer } = yield call(
     getContractClient,
     contract_version
   );
@@ -325,7 +316,7 @@ export function* updateFulfillment(action) {
     ) {
       // Check if user has enough balance for transaction gas costs
       const accountbalanceWei = yield call(web3.eth.getBalance, userAddress);
-      const fulfillEstimateGasCost = yield call(
+      const updateFulfillmentEstimateGasCost = yield call(
         promisifyContractEstimateGasCall(standardBounties.updateFulfillment, {
           from: userAddress
         }),
@@ -337,18 +328,20 @@ export function* updateFulfillment(action) {
       );
 
       if (
-        contract_version == '2.2' &&
-        fulfillEstimateGasCost + 50000 > accountbalanceWei
+        (contract_version == '2.2' || contract_version == '2.3') &&
+        updateFulfillmentEstimateGasCost + 50000 > accountbalanceWei
       ) {
         const sender = web3.utils.toChecksumAddress(userAddress);
-        const latestNonce = yield relayer.methods.replayNonce(sender).call();
+        const latestNonce = yield bountiesMetaTxRelayer.methods
+          .replayNonce(sender)
+          .call();
         // console.log(relayer);
         // console.log("latestNonce from meta tx contract: ", latestNonce);
         const nonce = web3.utils.hexToNumber(latestNonce);
         const params = [
           ['address', 'string', 'uint', 'uint', 'address[]', 'string', 'uint'],
           [
-            web3.utils.toChecksumAddress(relayer._address),
+            web3.utils.toChecksumAddress(bountiesMetaTxRelayer._address),
             'metaUpdateFulfillment',
             bountyId,
             fulfillmentId,
