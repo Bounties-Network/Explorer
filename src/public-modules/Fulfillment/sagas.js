@@ -186,18 +186,7 @@ export function* createFulfillment(action) {
         // console.log(relayer);
         // console.log("latestNonce from meta tx contract: ", latestNonce);
         const nonce = web3.utils.hexToNumber(latestNonce);
-        // console.log(siteConfig);
-        // console.log(
-        //   siteConfig[
-        //     `relayer${
-        //       process.env.APP_SETTINGS_FILE === "rinkeby_settings" ||
-        //       process.env.APP_SETTINGS_FILE === "staging_settings"
-        //         ? "Staging"
-        //         : "Production"
-        //     }ContractAddress`
-        //   ]
-        // );
-        // window.config = siteConfig;
+
         const params = [
           ['address', 'string', 'uint', 'address[]', 'string', 'uint'],
           [
@@ -325,7 +314,7 @@ export function* updateFulfillment(action) {
     ) {
       // Check if user has enough balance for transaction gas costs
       const accountbalanceWei = yield call(web3.eth.getBalance, userAddress);
-      const fulfillEstimateGasCost = yield call(
+      const updateFulfillmentEstimateGasCost = yield call(
         promisifyContractEstimateGasCall(standardBounties.updateFulfillment, {
           from: userAddress
         }),
@@ -338,7 +327,7 @@ export function* updateFulfillment(action) {
 
       if (
         (contract_version == '2.2' || contract_version == '2.3') &&
-        fulfillEstimateGasCost + 50000 > accountbalanceWei
+        updateFulfillmentEstimateGasCost + 50000 > accountbalanceWei
       ) {
         const sender = web3.utils.toChecksumAddress(userAddress);
         const latestNonce = yield relayer.methods.replayNonce(sender).call();
