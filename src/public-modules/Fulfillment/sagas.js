@@ -164,7 +164,15 @@ export function* createFulfillment(action) {
       contract_version.split('.')[0] === '2'
     ) {
       const accountbalanceWei = yield call(web3.eth.getBalance, userAddress);
-      const fulfillEstimateGasCost = 155000;
+      const fulfillEstimateGasCost = yield call(
+        promisifyContractEstimateGasCall(standardBounties.fulfillBounty, {
+          from: userAddress
+        }),
+        userAddress,
+        bountyId,
+        [userAddress],
+        ipfsHash
+      );
       // console.log(fulfillEstimateGasCost);
       // console.log(accountbalanceWei);
       if (
@@ -308,7 +316,16 @@ export function* updateFulfillment(action) {
     ) {
       // Check if user has enough balance for transaction gas costs
       const accountbalanceWei = yield call(web3.eth.getBalance, userAddress);
-      const updateFulfillmentEstimateGasCost = 70000;
+      const updateFulfillmentEstimateGasCost = yield call(
+        promisifyContractEstimateGasCall(standardBounties.updateFulfillment, {
+          from: userAddress
+        }),
+        userAddress,
+        bountyId,
+        fulfillmentId,
+        [userAddress],
+        ipfsHash
+      );
 
       if (
         (contract_version == '2.2' || contract_version == '2.3') &&
