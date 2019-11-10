@@ -2,9 +2,10 @@ import React from 'react';
 import styles from './CreateBounty.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { Prompt } from 'react-router';
 import { FormSection } from 'explorer-components';
 import { getUploadKeySelector } from 'public-modules/FileUpload/selectors';
-import { Field, formValueSelector, reduxForm } from 'redux-form';
+import { Field, formValueSelector, reduxForm, isDirty } from 'redux-form';
 import { actions as uploadActions } from 'public-modules/FileUpload';
 import { actions as categoryActions } from 'public-modules/Categories';
 import { actions as bountyActions } from 'public-modules/Bounty';
@@ -57,7 +58,7 @@ const formSelector = formValueSelector('createBounty');
 
 class CreateBountyFormComponent extends React.Component {
   state = {
-    selectedTemplate: 'default'
+    selectedTemplate: 'default',
   };
 
   handleCreateBounty = values => {
@@ -81,7 +82,6 @@ class CreateBountyFormComponent extends React.Component {
       sourceFileName: filename
     };
 
-    <Link />; // silences compiler warnings since Link is actually used
     if (isEditing) {
       return editBounty({
         ...bountyValues,
@@ -190,7 +190,6 @@ class CreateBountyFormComponent extends React.Component {
       // options,
       currentCategories,
       change,
-      handleBounty
     } = this.props;
 
     const { validatorGroups } = this;
@@ -215,6 +214,11 @@ class CreateBountyFormComponent extends React.Component {
 
     return (
       <form name="CreateBounty" onSubmit={handleSubmit(this.handleSubmit)}>
+        <Prompt
+          when={!this.props.submitSucceeded && this.props.isDirty}
+          /* Need i18n? */
+          message={`Changes you made may not be saved.`}
+        />
         <FormSection>
           <FormSection.Section
             title={intl.get('sections.create_bounty.sections.about.title')}
@@ -784,7 +788,6 @@ class CreateBountyFormComponent extends React.Component {
         </FormSection>
         <div className={styles.buttonContainer}>
           <Button
-            onClick={() => handleBounty(submitFailed && invalid)}
             type="primary"
             disabled={uploadLoading || (submitFailed && invalid)}
             loading={submittingBounty}
@@ -817,6 +820,7 @@ const mapStateToProps = (state, router) => {
   const bounty = getBountySelector(state) || {};
 
   return {
+    isDirty: isDirty('createBounty')(state),
     uploadLoading: uploadedFile ? uploadedFile.uploading : false,
     activateNow: formSelector(state, 'activateNow'),
     paysTokens: formSelector(state, 'paysTokens'),
@@ -883,7 +887,7 @@ const CreateBountyForm = compose(
         syncValidationPasses: true
       });
     }
-  })
+  }),
 )(CreateBountyFormComponent);
 
 export default CreateBountyForm;
