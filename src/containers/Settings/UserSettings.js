@@ -14,7 +14,8 @@ import {
   settingsSelector
 } from 'public-modules/Settings/selectors';
 import { getCurrentUserSelector } from 'public-modules/Authentication/selectors';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, isDirty } from 'redux-form';
+import { Prompt } from 'react-router';
 import validators from 'utils/validators';
 import { Cropper, Button, Text } from 'components';
 import { FormCheckbox, FormTextInput, FormSearchSelect } from 'form-components';
@@ -57,7 +58,7 @@ class UserSettingsComponent extends React.Component {
     } = this.props;
 
     const handleSaveSettings = values => {
-      saveSettings({
+      return saveSettings({
         ...values,
         smallProfileImageUrl,
         largeProfileImageUrl
@@ -84,6 +85,10 @@ class UserSettingsComponent extends React.Component {
 
     return (
       <form onSubmit={handleSubmit(values => handleSaveSettings(values))}>
+        <Prompt
+          when={!this.props.submitSucceeded && this.props.isDirty} // Need i18n?
+          message={`Changes you made may not be saved.`}
+        />
         <FormSection>
           <FormSection.Section
             title={intl.get('sections.settings.user.photo.title')}
@@ -329,6 +334,7 @@ const mapStateToProps = state => {
       smallProfileImageUrl: currentUser.small_profile_image_url,
       largeProfileImageUrl: currentUser.large_profile_image_url
     },
+    isDirty: isDirty('settings')(state),
     uploading: uploadState.uploading,
     uploadingError: uploadState.error,
     smallProfileImageUrl: settingsUISelector(state).smallProfileImageUrl,
@@ -340,12 +346,6 @@ const mapStateToProps = state => {
   };
 };
 
-UserSettingsComponent = reduxForm({
-  form: 'settings',
-  enableReinitialize: true,
-  destroyOnUnmount: false
-})(UserSettingsComponent);
-
 const UserSettings = compose(
   connect(
     mapStateToProps,
@@ -356,7 +356,12 @@ const UserSettings = compose(
       setProfileImageUrls: settingsUIActions.setProfileImageUrls,
       resetProfileImageUrls: settingsUIActions.resetProfileImageUrls
     }
-  )
+  ),
+  reduxForm({
+    form: 'settings',
+    enableReinitialize: true,
+    destroyOnUnmount: false
+  }),
 )(UserSettingsComponent);
 
 export default UserSettings;

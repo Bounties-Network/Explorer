@@ -20,19 +20,12 @@ import { Loader, ZeroState } from 'components';
 import { DIFFICULTY_MAPPINGS } from 'public-modules/Bounty/constants';
 import config from 'public-modules/config';
 import intl from 'react-intl-universal';
-import { Prompt } from 'react-router';
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
-import onBeforeUnloadHandler from 'lib/on-before-unload-handler';
-
 class CreateBountyComponent extends React.Component {
   constructor(props) {
     super(props);
     const { match, getDraft, getBounty, loadTokens, public_address } = props;
-    this.state = {
-      dirty: false,
-      submitNotPressed: true
-    };
 
     loadTokens();
 
@@ -42,14 +35,6 @@ class CreateBountyComponent extends React.Component {
     if (match.path === '/editBounty/:id/') {
       getBounty(match.params.id);
     }
-  }
-
-  componentDidMount() {
-    window.addEventListener('beforeunload', onBeforeUnloadHandler);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('beforeunload');
   }
 
   render() {
@@ -83,24 +68,8 @@ class CreateBountyComponent extends React.Component {
       );
     }
 
-    const createWhenCondition =
-      this.state.dirty && !isEditing && !isDraft && this.state.submitNotPressed;
-
-    const editWhenCondition =
-      (this.state.dirty && isEditing && this.state.submitNotPressed) ||
-      (this.state.dirty && isDraft && this.state.submitNotPressed);
-
     return (
       <div>
-        {/* Need i18n? */}
-        <Prompt
-          when={createWhenCondition}
-          message={`Changes you made may not be saved.`}
-        />
-        <Prompt
-          when={editWhenCondition}
-          message={`Changes you made may not be saved.`}
-        />
         <PageCard>
           <PageCard.Header>
             <PageCard.Title>
@@ -114,15 +83,6 @@ class CreateBountyComponent extends React.Component {
             className={styles.cardContent}
           >
             <CreateBountyForm
-              handleBounty={error => {
-                if (error) {
-                  console.error('error', error);
-                }
-                if (!error) {
-                  this.setState({ submitNotPressed: false });
-                }
-              }}
-              onChange={() => this.setState({ dirty: true })}
               initialValues={formInitialValues}
               isEditing={isEditing}
               isDraft={isDraft}
