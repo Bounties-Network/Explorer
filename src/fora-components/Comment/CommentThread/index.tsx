@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React from "react";
 import emotionStyled from "lib/emotion-styled";
 import SingleComment, { ISingleCommentProps } from "../SingleComment";
@@ -5,6 +7,7 @@ import { Flex } from "rebass";
 import css from "@styled-system/css";
 import VerticalDivider from "fora-components/VerticalDivider";
 import CommentForm from "fora-components/Form/CommentForm";
+import Divider from "fora-components/Divider";
 
 const Container = emotionStyled(Flex)(props =>
   css({
@@ -21,6 +24,7 @@ const CommentsContainer = emotionStyled(Flex)(props =>
     }
   })
 );
+
 const Content = emotionStyled(Flex)(props =>
   css({
     position: "relative",
@@ -51,8 +55,10 @@ const CommentThread: React.FunctionComponent<IProps> = props => {
             props.comments.map((comment, index) => {
               if (index === 1 && isReplyOpen) {
                 return (
-                  <div>
+                  <div >
+                    <Divider marginTop={'0'}></Divider>
                     <CommentForm submitHandler={props.replySubmitHandler} />
+                    <Divider></Divider>
                     <SingleComment replyOnClickHandler={() => setState(true)} isReply={Boolean(index)} {...comment} />
                   </div>
                 );
