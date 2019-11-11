@@ -9,7 +9,7 @@ export default {
         '0xf7fc27202bc20ce95ef28340d8e542346cb56b6d',
       'bountiesMetaTxRelayerAddressV2.1':
         '0xf7fc27202bc20ce95ef28340d8e542346cb56b6d',
-      // These above aren't used
+      // These above aren't transacted with but required for operations on pre 2.2 bounty operations code wise
       'bountiesMetaTxRelayerAddressV2.2':
         '0xf7fc27202bc20ce95ef28340d8e542346cb56b6d',
       'bountiesMetaTxRelayerAddressV2.3':
@@ -22,7 +22,7 @@ export default {
         '0xf7fc27202bc20ce95ef28340d8e542346cb56b6d',
       'bountiesMetaTxRelayerAddressV2.1':
         '0xf7fc27202bc20ce95ef28340d8e542346cb56b6d',
-      // These above aren't used
+      // These above aren't transacted with but required for operations on pre 2.2 bounty operations code wise
       'bountiesMetaTxRelayerAddressV2.2':
         '0x0d45e1f2cb1f28c05c9feee7d771a5acb2f237f5',
       'bountiesMetaTxRelayerAddressV2.3':
