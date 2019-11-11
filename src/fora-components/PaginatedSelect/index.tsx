@@ -1,38 +1,9 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import ReactPaginate, { ReactPaginateProps } from 'react-paginate';
+import ReactPaginate from 'react-paginate';
 import React from 'react'
-import { Flex } from "rebass";
-import { Global } from "@emotion/core";
-import css from "@styled-system/css";
 
-interface IArrowProp {
-  pageCount: number,
-  currentPage: number,
-  setPage: Function,
-  variant: 'left' | 'right'
-}
-const Arrow: React.FC<IArrowProp> = ({ pageCount, currentPage, variant, setPage, children }) => (
-  <div
-    onClick={() => {
-      const addition = variant === 'right' ? 1 : -1
-      let newPage = currentPage + addition
-      if (newPage === 0 || newPage > pageCount) {
-        return
-      }
-      setPage(newPage)
-    }}
-  >
-    {children}
-  </div>
-)
-
-interface IPageCounterProps { onClick: any, active: boolean }
-const PageCounter: React.FC<IPageCounterProps> = (props) => (
-  <div {...props} />
-)
-
-const prefixer = (c) => `.ReactPaginate-${c}`
+const prefixer = (c: string) => `.ReactPaginate-${c}`
 const reactPaginateStyle = {
   '> ul > *:not(:last-of-type)': { mr: 2 },
   [prefixer('arrow')]: {
