@@ -711,6 +711,16 @@ const link = {
   }
 };
 
+export const forms = {
+  'textarea': { 
+    ...text.body,
+    resize: "none",
+    border: 'none',
+    color: colors.gray500,
+    '::placeholder': { color: colors.gray400, },
+  }
+}
+
 export const variants = {
   card: {
     border: borders.base,
@@ -788,7 +798,8 @@ const theme = {
   avatarResourceTypes,
   textFormat,
   maxContainerWidth,
-  variants
+  forms,
+  variants,
 };
 
 export default theme;

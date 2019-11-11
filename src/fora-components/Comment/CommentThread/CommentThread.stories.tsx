@@ -27,6 +27,7 @@ const comments = [comment, comment, comment]
 storiesOf('CommentThread', module)
   .add('Threaded', () =>
     <CommentThread
+      replySubmitHandler={() => alert('submitted woo')}
       comments={comments}
     />
   )
