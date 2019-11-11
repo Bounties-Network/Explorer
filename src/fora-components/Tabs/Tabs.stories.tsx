@@ -8,7 +8,8 @@ import Leaderboard from "fora-components/Leaderboard";
 
 addDecorator(centered);
 
-storiesOf("Tabs", module).add("Mi Fora", () => (
+storiesOf("Tabs", module)
+  .add("Mi Fora", () => (
   <Tabs>
     <TabList>
       <Tab>Activity</Tab>
@@ -31,4 +32,54 @@ storiesOf("Tabs", module).add("Mi Fora", () => (
       </TabPanel>
     </TabPanels>
   </Tabs>
-));
+))
+  .add("Small", () => (
+  <Tabs size="sm">
+    <TabList>
+      <Tab>Activity</Tab>
+      <Tab>Leaderboard</Tab>
+      <Tab>Members</Tab>
+    </TabList>
+
+    <TabPanels>
+      <TabPanel>
+        <ActivityFeed />
+      </TabPanel>
+      <TabPanel>
+        <Leaderboard
+          loadMore={() => {}}
+          data={mockLeaderboardData}
+        ></Leaderboard>
+      </TabPanel>
+      <TabPanel>
+        <p>three!</p>
+      </TabPanel>
+    </TabPanels>
+  </Tabs>
+))
+  .add("Large", () => (
+  <Tabs size="lg">
+    <TabList>
+      <Tab>Activity</Tab>
+      <Tab>Leaderboard</Tab>
+      <Tab>Members</Tab>
+    </TabList>
+
+    <TabPanels>
+      <TabPanel>
+        <ActivityFeed />
+      </TabPanel>
+      <TabPanel>
+        <Leaderboard
+          loadMore={() => {}}
+          data={mockLeaderboardData}
+        ></Leaderboard>
+      </TabPanel>
+      <TabPanel>
+        <p>three!</p>
+      </TabPanel>
+    </TabPanels>
+  </Tabs>
+))
+
+
