@@ -11,6 +11,7 @@ import globalStyles from 'styles/global-styles';
 import '../src/styles/flexboxgrid.css';
 import '../src/styles/index.scss';
 import '../src/styles/Toastify.scss';
+import 'tippy.js/dist/tippy.css';
 
 addDecorator(story => (
   <ThemeProvider theme={theme}>
