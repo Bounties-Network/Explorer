@@ -161,17 +161,21 @@ export const radius = "8px";
 const baseBorder = `1px solid ${colors.baseBorderColor}`;
 const primaryActiveBorder = `1px solid ${colors.seaGlass200}`;
 const activeBorder = `1px solid ${colors.gray300}`;
+const focusBorder = `2px solid ${colors.seaGlass200}`;
 const tertiaryActiveBorder = `1px solid ${colors.amber200}`;
 const avatarBorder = `2px solid ${colors.white}`;
 const lightBorder = `1px solid ${colors.gray100}`;
+const errorBorder = `2px solid ${colors.rose200}`
 
 const borders = {
   base: baseBorder,
   active: activeBorder,
+  focus: focusBorder,
   primaryActive: primaryActiveBorder,
   tertiaryActive: tertiaryActiveBorder,
   avatar: avatarBorder,
-  light: lightBorder
+  light: lightBorder,
+  error: errorBorder 
 };
 
 export { borders };
@@ -181,8 +185,8 @@ export const maxContainerWidth = "1280px";
 
 // BOX SHADOWS
 export const shadows = [
-  "0px 2px 4px rgba(17, 22, 24, 0.08);", //buttonShadow1, cardShadow
-  "0px 3px 5px rgba(17, 22, 24, 0.15);", //buttonShadow2
+  "0px 2px 4px rgba(17, 22, 24, 0.08)", //buttonShadow1, cardShadow
+  "0px 3px 5px rgba(17, 22, 24, 0.15)", //buttonShadow2
   "0px 9px 24px rgba(0, 0, 0, 0.08)", //shadowLarge
   `inset 0px 1px 4px rgba(0, 0, 0, 0.14)`, // innerShadows
   `0 0 10px ${colors.gray200}`,
@@ -718,6 +722,12 @@ export const forms = {
     border: 'none',
     color: colors.gray500,
     '::placeholder': { color: colors.gray400, },
+  },
+  error: {
+    bg: `${colors.white} !important`,
+    border: `${borders.error} !important`,
+  },
+  valid: {
   }
 }
 
@@ -802,5 +812,7 @@ const theme = {
   variants,
 };
 
+
 export default theme;
+export type ITheme = typeof theme
 export { colors };
