@@ -73,6 +73,7 @@
         "description": "Try refreshing, or make sure your url is correct"
       },
       "meta": {
+        "views": "{count, plural, =1 {view} other {views}}",
         "input": "Private",
         "label": "bounty",
         "tooltip":
@@ -897,7 +898,7 @@
     },
     "filter_nav": {
       "sort_options": {
-        "view_count": "Most Popular",
+        "view_count": "Most Viewed",
         "bounty_created": "Most Recent",
         "usd_price": "Value: High to Low",
         "deadline": "Expiry"

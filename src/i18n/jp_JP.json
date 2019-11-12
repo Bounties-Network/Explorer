@@ -73,6 +73,7 @@
         "description": "リフレッシュするか、URLが正しいかの確認をして下さい"
       },
       "meta": {
+        "views": "{count, plural, =1 {ビュー} other {ビュー}}",
         "input": "プライベート",
         "label": "報奨金",
         "tooltip":
@@ -822,7 +823,7 @@
     },
     "filter_nav": {
       "sort_options": {
-        "view_count": "最も人気のある",
+        "view_count": "最も見られました",
         "bounty_created": "最新の",
         "usd_price": "バリュー: 高 → 低",
         "deadline": "失効"

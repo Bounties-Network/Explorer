@@ -72,6 +72,7 @@
         "description": "尝试刷新，并检查你的URL是否正确。"
       },
       "meta": {
+        "views": "{count, plural, =1 {视图} other {意见}}",
         "input": "私有",
         "label": "赏金项目",
         "tooltip":
@@ -775,7 +776,7 @@
     },
     "filter_nav": {
       "sort_options": {
-        "view_count": "最受欢迎",
+        "view_count": "最受关注",
         "bounty_created": "最近发布",
         "usd_price": "价值： 从高到低",
         "deadline": "过期时间"

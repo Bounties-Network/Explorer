@@ -338,7 +338,10 @@ class BountyComponent extends React.Component {
                         color="defaultGrey"
                         className={styles.metadataLabel}
                       >
-                        views
+                        {intl.get(
+                          'sections.bounty.meta.views',
+                          bounty.view_count
+                        )}
                       </Text>
                     </div>
                   )}
@@ -429,7 +432,9 @@ class BountyComponent extends React.Component {
                         <Text
                           link
                           absolute
-                          src={`${config.ipfs.apiViewURL}${bounty.attached_data_hash}/${bounty.attached_filename}`}
+                          src={`${config.ipfs.apiViewURL}${
+                            bounty.attached_data_hash
+                          }/${bounty.attached_filename}`}
                         >
                           {shortenFileName(bounty.attached_filename, 18)}
                         </Text>
