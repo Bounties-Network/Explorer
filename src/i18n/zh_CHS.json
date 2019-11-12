@@ -775,6 +775,7 @@
     },
     "filter_nav": {
       "sort_options": {
+        "view_count": "最受欢迎",
         "bounty_created": "最近发布",
         "usd_price": "价值： 从高到低",
         "deadline": "过期时间"

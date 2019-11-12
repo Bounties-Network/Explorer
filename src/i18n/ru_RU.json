@@ -821,7 +821,8 @@
     },
     "filter_nav": {
       "sort_options": {
-        "bounty_created": "Самые Последние",
+        "view_count": "Самый Популярный",
+        "bounty_created": "Самый Последние",
         "usd_price": "Сумма Оплаты: от Высокой до Низкой",
         "deadline": "С истекающим сроком"
       },

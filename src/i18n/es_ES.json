@@ -844,6 +844,7 @@
     },
     "filter_nav": {
       "sort_options": {
+        "view_count": "Más popular",
         "bounty_created": "Más reciente",
         "usd_price": "Valor: mayor a menor",
         "deadline": "Expiración"

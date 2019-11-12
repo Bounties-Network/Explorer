@@ -72,6 +72,10 @@ const FilterNav = props => {
       label: intl.get('components.filter_nav.sort_options.bounty_created')
     },
     {
+      value: 'view_count',
+      label: intl.get('components.filter_nav.sort_options.view_count')
+    },
+    {
       value: 'usd_price',
       label: intl.get('components.filter_nav.sort_options.usd_price')
     },

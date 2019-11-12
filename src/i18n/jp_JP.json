@@ -822,6 +822,7 @@
     },
     "filter_nav": {
       "sort_options": {
+        "view_count": "最も人気のある",
         "bounty_created": "最新の",
         "usd_price": "バリュー: 高 → 低",
         "deadline": "失効"
