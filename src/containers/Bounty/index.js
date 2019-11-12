@@ -39,7 +39,8 @@ import {
   faRepeat,
   faPaperclip,
   faLink,
-  faLockAlt
+  faLockAlt,
+  faEye
 } from '@fortawesome/pro-regular-svg-icons';
 import config from 'public-modules/config';
 
@@ -258,9 +259,6 @@ class BountyComponent extends React.Component {
                 </div>
               </div>
             </div>
-            {bounty.view_count > 0 && (
-              <div>This bounty has {bounty.view_count} views</div>
-            )}
           </PageCard.Header>
           <PageCard.Content key="body" className={styles.pageBody}>
             <div className={`${styles.descriptionSection}`}>
@@ -323,6 +321,27 @@ class BountyComponent extends React.Component {
                   </div>
                 )}
                 <section className={styles.metadataSection}>
+                  {bounty.view_count > 0 && (
+                    <div className={styles.metadataItem}>
+                      <i className={styles.metadataIcon}>
+                        <FontAwesomeIcon icon={faEye} />
+                      </i>
+                      <Text
+                        inline
+                        className={styles.metadataInput}
+                        weight="fontWeight-medium"
+                      >
+                        {bounty.view_count}
+                      </Text>
+                      <Text
+                        inline
+                        color="defaultGrey"
+                        className={styles.metadataLabel}
+                      >
+                        views
+                      </Text>
+                    </div>
+                  )}
                   <div className={styles.metadataItem}>
                     <i className={styles.metadataIcon}>
                       <FontAwesomeIcon icon={faClock} />
@@ -410,9 +429,7 @@ class BountyComponent extends React.Component {
                         <Text
                           link
                           absolute
-                          src={`${config.ipfs.apiViewURL}${
-                            bounty.attached_data_hash
-                          }/${bounty.attached_filename}`}
+                          src={`${config.ipfs.apiViewURL}${bounty.attached_data_hash}/${bounty.attached_filename}`}
                         >
                           {shortenFileName(bounty.attached_filename, 18)}
                         </Text>
