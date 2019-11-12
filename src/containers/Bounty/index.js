@@ -92,6 +92,13 @@ class BountyComponent extends React.Component {
       }
     }
   }
+  componentDidMount() {
+    const { match, addBountyView } = this.props;
+    if (match.path === '/bounty/:id/') {
+      addBountyView(match.params.id);
+      console.log('id', match.params.id);
+    }
+  }
 
   componentDidUpdate(prevProps) {
     const {
@@ -251,6 +258,9 @@ class BountyComponent extends React.Component {
                 </div>
               </div>
             </div>
+            {bounty.view_count > 0 && (
+              <div>This bounty has {bounty.view_count} views</div>
+            )}
           </PageCard.Header>
           <PageCard.Content key="body" className={styles.pageBody}>
             <div className={`${styles.descriptionSection}`}>
@@ -515,7 +525,8 @@ const Bounty = compose(
       addBountyFilter: fulfillmentsActions.addBountyFilter,
       resetFilters: fulfillmentsActions.resetFilters,
       resetFulfillmentsState: fulfillmentsActions.resetState,
-      resetCommentsState: commentsActions.resetState
+      resetCommentsState: commentsActions.resetState,
+      addBountyView: bountyActions.addBountyView
     }
   )
 )(BountyComponent);
