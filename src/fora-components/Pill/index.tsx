@@ -6,7 +6,7 @@ import emotionStyled from "lib/emotion-styled";
 const Container = emotionStyled(Flex)(props =>
   ssCSS({
     borderRadius: 100,
-    height: 20,
+    minHeight: 20,
     py: 2,
     px: 3,
     variant: props.variant
