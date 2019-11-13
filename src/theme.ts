@@ -166,6 +166,7 @@ const tertiaryActiveBorder = `1px solid ${colors.amber200}`;
 const avatarBorder = `2px solid ${colors.white}`;
 const lightBorder = `1px solid ${colors.gray100}`;
 const errorBorder = `2px solid ${colors.rose200}`
+const radioCheckboxBorder = `2px solid ${colors.seaGlass300}`
 
 const borders = {
   base: baseBorder,
@@ -175,7 +176,8 @@ const borders = {
   tertiaryActive: tertiaryActiveBorder,
   avatar: avatarBorder,
   light: lightBorder,
-  error: errorBorder 
+  error: errorBorder,
+  radioCheckbox: radioCheckboxBorder
 };
 
 export { borders };
