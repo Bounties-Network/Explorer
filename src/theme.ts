@@ -602,6 +602,22 @@ const tertiary = {
   }
 };
 
+const upload = {
+  cursor: 'pointer',
+  backgroundColor: 'white',
+  borderLeft: 'unset',
+  borderTopLeftRadius: 0,
+  borderBottomLeftRadius: 0,
+  borderTopRightRadius: 2,
+  borderBottomRightRadius: 2,
+  height: '48px',
+  width: '106px',
+  ...text.bodyStrong,
+  fontFamily: fonts.secondary,
+  color: 'black',
+  border: 'base'
+}
+
 export const buttons = {
   primary: primaryButton,
   primaryIcon,
@@ -628,7 +644,8 @@ export const buttons = {
   destructiveIcon,
   destructiveIconOnly,
   destructiveSmall,
-  tertiary
+  tertiary,
+  upload
 };
 
 //AVATAR STYLES
