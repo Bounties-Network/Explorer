@@ -89,13 +89,13 @@ const Radio: React.FC<{
   disabled: boolean;
   onChange: any;
 }> = props => (
-  <Label sx={{ '> div:first-of-type': { mr: 2 } }} variant='body' color='gray500' fontFamily='secondary' htmlFor={props.name}>
+  <Label sx={{ '> div:first-of-type': { mr: 2 } }} variant='body' color={props.checked ? 'seaGlass300' : 'gray500'} fontFamily='secondary' htmlFor={props.name}>
       <input
       {...props}
       type='radio'
     />
     <Box
-      sx={Object.assign(radioStyles, props.checked ? checkedStyles : {}, props.disabled ? disabledStyles : {})}>
+      sx={Object.assign(radioStyles, props.checked ? checkedStyles : { bg: 'white' }, props.disabled ? disabledStyles : {})}>
     {props.checked && !props.disabled && <Box sx={{ bg: 'white', height: '8px', width: '8px', mixBlendMode: 'normal', boxShadow: `0px 2px 4px rgba(17, 22, 24, 0.08), 0px 1px 2px rgba(17, 22, 24, 0.19)`, borderRadius: 1, }}>
       </Box>}
     </Box>
