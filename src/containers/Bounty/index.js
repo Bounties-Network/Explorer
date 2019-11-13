@@ -39,7 +39,8 @@ import {
   faRepeat,
   faPaperclip,
   faLink,
-  faLockAlt
+  faLockAlt,
+  faEye
 } from '@fortawesome/pro-regular-svg-icons';
 import config from 'public-modules/config';
 
@@ -90,6 +91,13 @@ class BountyComponent extends React.Component {
       if (values.contribute) {
         initiateLoginProtection(() => showModal('contribute'));
       }
+    }
+  }
+  componentDidMount() {
+    const { match, addBountyView } = this.props;
+    if (match.path === '/bounty/:id/') {
+      addBountyView(match.params.id);
+      console.log('id', match.params.id);
     }
   }
 
@@ -313,6 +321,30 @@ class BountyComponent extends React.Component {
                   </div>
                 )}
                 <section className={styles.metadataSection}>
+                  {bounty.view_count > 0 && (
+                    <div className={styles.metadataItem}>
+                      <i className={styles.metadataIcon}>
+                        <FontAwesomeIcon icon={faEye} />
+                      </i>
+                      <Text
+                        inline
+                        className={styles.metadataInput}
+                        weight="fontWeight-medium"
+                      >
+                        {bounty.view_count}
+                      </Text>
+                      <Text
+                        inline
+                        color="defaultGrey"
+                        className={styles.metadataLabel}
+                      >
+                        {intl.get(
+                          'sections.bounty.meta.views',
+                          bounty.view_count
+                        )}
+                      </Text>
+                    </div>
+                  )}
                   <div className={styles.metadataItem}>
                     <i className={styles.metadataIcon}>
                       <FontAwesomeIcon icon={faClock} />
@@ -515,7 +547,8 @@ const Bounty = compose(
       addBountyFilter: fulfillmentsActions.addBountyFilter,
       resetFilters: fulfillmentsActions.resetFilters,
       resetFulfillmentsState: fulfillmentsActions.resetState,
-      resetCommentsState: commentsActions.resetState
+      resetCommentsState: commentsActions.resetState,
+      addBountyView: bountyActions.addBountyView
     }
   )
 )(BountyComponent);

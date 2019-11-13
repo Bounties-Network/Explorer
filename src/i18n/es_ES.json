@@ -75,6 +75,7 @@
           "Trata de refrescar la página, o asegurate que la dirección URL es la correcta"
       },
       "meta": {
+        "views": "{count, plural, =1 {vista} other {vistas}}",
         "input": "Privada",
         "label": "recompensa",
         "tooltip":
@@ -844,6 +845,7 @@
     },
     "filter_nav": {
       "sort_options": {
+        "view_count": "Más visto",
         "bounty_created": "Más reciente",
         "usd_price": "Valor: mayor a menor",
         "deadline": "Expiración"

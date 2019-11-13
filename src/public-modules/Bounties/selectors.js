@@ -106,7 +106,9 @@ export const bountiesQuerySelector = createSelector(
     query['ordering'] =
       rootBounty.sort === 'usd_price'
         ? `${orderPrefix}${rootBounty.sort},-fulfillment_amount`
-        : orderPrefix + rootBounty.sort;
+        : rootBounty.sort === 'view_count'
+          ? `${orderPrefix}${rootBounty.sort},-view_count`
+          : orderPrefix + rootBounty.sort;
     query['limit'] = PAGE_SIZE;
 
     return query;

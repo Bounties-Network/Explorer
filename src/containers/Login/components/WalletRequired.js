@@ -12,9 +12,9 @@ const WalletRequired = props => {
   let walletLink = 'https://metamask.io';
 
   if (operatingSystem === 'iOS') {
-    walletName = 'Coinbase Wallet';
+    walletName = 'Trust Wallet';
     walletLink =
-      'https://itunes.apple.com/us/app/coinbase-wallet/id1278383455?mt=8';
+      'https://apps.apple.com/app/trust-ethereum-wallet/id1288339409';
   }
 
   if (operatingSystem === 'Android') {

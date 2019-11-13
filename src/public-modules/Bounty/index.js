@@ -88,6 +88,7 @@ const ACTIVATE_BOUNTY = 'bounty/ACTIVATE_BOUNTY';
 const CONTRIBUTE = 'bounty/CONTRIBUTE';
 const STD_BOUNTY_SUCCESS = 'bounty/STD_BOUNTY_SUCCESS';
 const STD_BOUNTY_FAIL = 'bounty/STD_BOUNTY_FAIL';
+const ADD_BOUNTY_VIEW = 'bounty/ADD_BOUNTY_VIEW';
 
 function createBounty(values, balance) {
   return { type: CREATE_BOUNTY, values, balance };
@@ -107,6 +108,10 @@ function killBounty(id, contract_version, currentBalance) {
 
 function extendDeadline(id, contract_version, deadline) {
   return { type: EXTEND_DEADLINE, id, contract_version, deadline };
+}
+
+function addBountyView(id) {
+  return { type: ADD_BOUNTY_VIEW, id };
 }
 
 function contribute(
@@ -341,7 +346,8 @@ export const actions = {
   updateDraft,
   createDraft,
   createDraftSuccess,
-  createDraftFail
+  createDraftFail,
+  addBountyView
 };
 
 export const actionTypes = {
@@ -364,7 +370,8 @@ export const actionTypes = {
   CREATE_DRAFT_SUCCESS,
   CREATE_DRAFT_FAIL,
   STD_BOUNTY_SUCCESS,
-  STD_BOUNTY_FAIL
+  STD_BOUNTY_FAIL,
+  ADD_BOUNTY_VIEW
 };
 
 export default BountyReducer;

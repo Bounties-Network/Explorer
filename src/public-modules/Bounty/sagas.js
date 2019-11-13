@@ -34,7 +34,8 @@ const {
   EXTEND_DEADLINE,
   INCREASE_PAYOUT,
   CONTRIBUTE,
-  TRANSFER_OWNERSHIP
+  TRANSFER_OWNERSHIP,
+  ADD_BOUNTY_VIEW
 } = actionTypes;
 const {
   getBountySuccess,
@@ -832,6 +833,19 @@ export function* transferIssuer(action) {
   }
 }
 
+export function* addBountyView(action) {
+  const { id } = action;
+
+  let endpoint = `bounty/${id}/view/`;
+  let methodType = 'POST';
+
+  try {
+    yield call(request, endpoint, methodType);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export function* watchCreateDraft() {
   yield takeLatest([CREATE_DRAFT, UPDATE_DRAFT], createOrUpdateDraft);
 }
@@ -876,6 +890,10 @@ export function* watchContribute() {
   yield takeLatest(CONTRIBUTE, contribute);
 }
 
+export function* watchAddBountyView() {
+  yield takeLatest(ADD_BOUNTY_VIEW, addBountyView);
+}
+
 export default [
   watchGetDraft,
   watchCreateDraft,
@@ -887,5 +905,6 @@ export default [
   watchExtendDeadline,
   watchIncreasePayout,
   watchTransferIssuer,
-  watchContribute
+  watchContribute,
+  watchAddBountyView
 ];
