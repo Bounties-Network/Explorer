@@ -338,10 +338,9 @@ class BountyComponent extends React.Component {
                         color="defaultGrey"
                         className={styles.metadataLabel}
                       >
-                        {intl.get(
-                          'sections.bounty.meta.views',
-                          bounty.view_count
-                        )}
+                        {intl.get('sections.bounty.meta.views', {
+                          count: bounty.view_count
+                        })}
                       </Text>
                     </div>
                   )}
