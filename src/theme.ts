@@ -165,8 +165,8 @@ const focusBorder = `2px solid ${colors.seaGlass200}`;
 const tertiaryActiveBorder = `1px solid ${colors.amber200}`;
 const avatarBorder = `2px solid ${colors.white}`;
 const lightBorder = `1px solid ${colors.gray100}`;
-const errorBorder = `2px solid ${colors.rose200}`
-const radioCheckboxBorder = `2px solid ${colors.seaGlass300}`
+const errorBorder = `2px solid ${colors.rose200}`;
+const radioCheckboxBorder = `2px solid ${colors.seaGlass300}`;
 
 const borders = {
   base: baseBorder,
@@ -205,7 +205,7 @@ const linkSmall = {
   fontSize: fontSizes[0] + "px",
   fontWeight: fontWeights.medium,
   lineHeight: lineHeights.standard + "px"
-}
+};
 
 // Text variants
 export const text = {
@@ -272,6 +272,14 @@ export const text = {
     lineHeight: lineHeights.small + "px"
   },
   link: {
+    cursor: "pointer",
+    "&:hover": {
+      textDecoration: "underline"
+    },
+    "&[disabled], &:disabled": {
+      cursor: "not-allowed",
+      pointerEvents: "disabled"
+    },
     fontFamily: fonts.secondary,
     fontSize: fontSizes[1] + "px",
     fontWeight: fontWeights.regular,
@@ -341,13 +349,14 @@ const primaryButton = {
     boxShadow: shadows[0],
     border: borders.primaryActive
   },
-  ":active": {
+  ":active, :focus": {
     background: colors.seaGlass100,
-    border: borders.primaryActive
+    border: borders.primaryActive,
   },
   ":disabled": {
     background: colors.seaGlass100,
     cursor: "not-allowed",
+    pointerEvents: "disabled",
     color: colors.gray200
   }
 };
@@ -388,10 +397,10 @@ const secondaryButton = {
     color: colors.black,
     border: borders.active
   },
-  ":active": {
+  ":active, :focus": {
     boxSizing: "border-box",
     color: colors.black,
-    border: borders.active
+    border: borders.active,
   },
   ":disabled": {
     background: colors.gray100,
@@ -543,15 +552,29 @@ const destructive = {
     borderColor: colors.rose200,
     color: colors.rose300
   },
-  ":active": {
+  ":active, :focus": {
     ...primaryButton[":active"],
     backgroundColor: colors.rose100,
-    color: colors.rose300
+    color: colors.rose300,
   },
   ":disabled": {
     ...primaryButton[":disabled"],
     color: primaryButton[":disabled"].color,
     backgroundColor: colors.rose100
+  }
+};
+
+const destructiveLink = {
+  ...text.link,
+  color: colors.rose200,
+  "&[disabled]": {
+    colors: colors.rose200,
+    opacity: 0.3,
+    pointerEvents: "disabled",
+    cursor: "not-allowed"
+  },
+  ":active": {
+    color: colors.rose300
   }
 };
 
@@ -591,9 +614,9 @@ const tertiary = {
     background: colors.amber100,
     border: borders.tertiaryActive
   },
-  ":active": {
+  ":active, :focus": {
     boxSizing: "border-box",
-    border: borders.tertiaryActive
+    border: borders.tertiaryActive,
   },
   ":disabled": {
     background: colors.amber100,
@@ -603,20 +626,20 @@ const tertiary = {
 };
 
 const upload = {
-  cursor: 'pointer',
-  backgroundColor: 'white',
-  borderLeft: 'unset',
+  cursor: "pointer",
+  backgroundColor: "white",
+  borderLeft: "unset",
   borderTopLeftRadius: 0,
   borderBottomLeftRadius: 0,
   borderTopRightRadius: 2,
   borderBottomRightRadius: 2,
-  height: '48px',
-  width: '106px',
+  height: "48px",
+  width: "106px",
   ...text.bodyStrong,
   fontFamily: fonts.secondary,
-  color: 'black',
-  border: 'base'
-}
+  color: "black",
+  border: "base"
+};
 
 export const buttons = {
   primary: primaryButton,
@@ -641,6 +664,7 @@ export const buttons = {
   specialIcon,
   specialIconOnly,
   destructive,
+  destructiveLink,
   destructiveIcon,
   destructiveIconOnly,
   destructiveSmall,
@@ -725,9 +749,7 @@ const link = {
   ...text.link,
   "&[disabled]": {
     colors: colors.seaGlass300,
-    opacity: 0.3,
-    pointerEvents: "disabled",
-    cursor: "default"
+    opacity: 0.3
   },
   ":active": {
     colors: colors.seaGlass500
@@ -735,20 +757,24 @@ const link = {
 };
 
 export const forms = {
-  'textarea': { 
+  textarea: {
     ...text.body,
     resize: "none",
-    border: 'none',
+    border: "none",
     color: colors.gray500,
-    '::placeholder': { color: colors.gray400, },
+    "&:active": {
+      border: "none",
+      outline: "none"
+    },
+    "&:focus, &:active": { border: "none", outline: "none" },
+    "::placeholder": { color: colors.gray400 }
   },
   error: {
     bg: `${colors.white} !important`,
-    border: `${borders.error} !important`,
+    border: `${borders.error} !important`
   },
-  valid: {
-  }
-}
+  valid: {}
+};
 
 export const variants = {
   card: {
@@ -772,27 +798,13 @@ export const variants = {
     color: colors.gray400,
     "&[disabled]": {
       colors: colors.gray400,
-      opacity: 0.3,
-      pointerEvents: "disabled",
-      cursor: "default"
+      opacity: 0.3
     },
     ":active": {
       color: colors.gray500
     }
   },
-  destructiveLink: {
-    ...text.link,
-    color: colors.rose200,
-    "&[disabled]": {
-      colors: colors.rose200,
-      opacity: 0.3,
-      pointerEvents: "disabled",
-      cursor: "default"
-    },
-    ":active": {
-      color: colors.rose300
-    }
-  },
+  destructiveLink,
   pill,
   networkDot: {
     mainnet: {
@@ -828,10 +840,9 @@ const theme = {
   textFormat,
   maxContainerWidth,
   forms,
-  variants,
+  variants
 };
 
-
 export default theme;
-export type ITheme = typeof theme
+export type ITheme = typeof theme;
 export { colors };

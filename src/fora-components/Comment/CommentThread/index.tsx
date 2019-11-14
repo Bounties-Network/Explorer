@@ -56,8 +56,8 @@ const CommentThread: React.FunctionComponent<IProps> = props => {
               if (index === 1 && isReplyOpen) {
                 return (
                   <div >
-                    <Divider marginTop={'0'}></Divider>
-                    <CommentForm submitHandler={props.replySubmitHandler} />
+                    <Divider marginTop={0}></Divider>
+                    <CommentForm handleCancel={() => setState(false)} handleSubmit={props.replySubmitHandler} />
                     <Divider></Divider>
                     <SingleComment replyOnClickHandler={() => setState(true)} isReply={Boolean(index)} {...comment} />
                   </div>
