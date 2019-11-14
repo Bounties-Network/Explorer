@@ -21,9 +21,6 @@ const uppyConfig = {
   restrictions: {
       maxNumberOfFiles: 1,
       minNumberOfFiles: 1,
-      allowedFileTypes: [
-        '*'
-      ],
       // maxFileSize: '' // TODO: Determine this max file size value
   },
 }
