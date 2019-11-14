@@ -50,7 +50,10 @@ const CommentForm: React.FC<{
           placeholder="Write a comment..."
         />
         <Flex sx={{ width: '100%', '> :first-of-type': { mr: 2, ml: 'auto' } }}>
-          <Button onClick={handleCancel} variant="destructiveLink" type="button">
+          <Button onClick={() => {
+            handleChange && handleChange(null)
+            handleCancel && handleCancel()
+          }} variant="destructiveLink" type="button">
             Cancel
           </Button>
           <Button disabled={!Boolean(value)} variant="secondary" type="submit">
