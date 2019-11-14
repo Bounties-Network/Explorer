@@ -69,13 +69,13 @@ const uploadInputStyle: any = (ipfsFileState) => ({
   pl: 3
 });
 
-type UploadInputProps = {
+type UploadImageInputProps = {
   value: any;
   onChange: any;
 };
 
 
-const UploadInput: React.FunctionComponent<UploadInputProps> = props => {
+const UploadImageInput: React.FunctionComponent<UploadImageInputProps> = props => {
   const [state, setState] = React.useState<boolean>(false)
   const [ipfsFileState, setIpfsFileState] = React.useState<{ Hash: string, Name: string, size: string } | null>(null)
 
@@ -131,4 +131,4 @@ const UploadInput: React.FunctionComponent<UploadInputProps> = props => {
   ) 
 };
 
-export default UploadInput;
+export default UploadImageInput;
