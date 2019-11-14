@@ -265,6 +265,15 @@
             }
           }
         },
+        "application_rejection": {
+          "title": "Отклонение заявки",
+          "form": {
+            "message": {
+              "label": "объяснение",
+              "placeholder": "Введите сообщение..."
+            }
+          }
+        },
         "increase_payout": {
           "title": "Увеличить оплату за награду",
           "description1":

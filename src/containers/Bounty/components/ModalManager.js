@@ -7,6 +7,7 @@ import { actions as bountyActions } from 'public-modules/Bounty';
 import { actions as fulfillmentActions } from 'public-modules/Fulfillment';
 import { actions as fulfillerApplicationActions } from 'public-modules/FulfillerApplication';
 import { actions as reviewActions } from 'public-modules/Review';
+import { actions as applicantsActions } from 'public-modules/Applicants';
 import { actions as bountyUIActions } from '../reducer';
 import { rootBountyPageSelector } from '../selectors';
 import {
@@ -20,7 +21,8 @@ import {
   KillBountyFormModal,
   ContributeFormModal,
   TransferOwnershipFormModal,
-  IssueRatingFormModal
+  IssueRatingFormModal,
+  ApplicationRejectionFormModal
 } from 'containers/Bounty/components';
 
 const ModalManagerComponent = props => {
@@ -91,7 +93,7 @@ const ModalManagerComponent = props => {
   const activateBounty = values =>
     initiateWalkthrough(() => {
       if (
-        typeof bounty.contract_version === 'string' && 
+        typeof bounty.contract_version === 'string' &&
         bounty.contract_version.split('.')[0] === '2'
       ) {
         contributeAction(
@@ -161,6 +163,9 @@ const ModalManagerComponent = props => {
       )
     );
 
+  const rejectApplication = (values, id) => {
+    console.log('values', values);
+  };
   const createFulfillerApplication = (values, callback) =>
     createFulfillerApplicationAction(bounty.id, values.message, callback);
 
@@ -261,6 +266,11 @@ const ModalManagerComponent = props => {
         onClose={closeModal}
         onSubmit={createFulfillerApplication}
       />
+      <ApplicationRejectionFormModal
+        visible={modalType === 'applicationRejection'}
+        onClose={closeModal}
+        onSubmit={rejectApplication}
+      />
       <IssueRatingFormModal
         key="issuer"
         type="issuer"
@@ -307,7 +317,8 @@ const ModalManager = compose(
       transferOwnershipAction: bountyActions.transferOwnership,
       contributeAction: bountyActions.contribute,
       createFulfillerApplicationAction:
-        fulfillerApplicationActions.createFulfillerApplication
+        fulfillerApplicationActions.createFulfillerApplication,
+      rejectApplicationAction: applicantsActions.changeApplicationState
     }
   )
 )(ModalManagerComponent);

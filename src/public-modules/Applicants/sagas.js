@@ -54,10 +54,11 @@ export function* loadMoreApplicants() {
 }
 
 export function* changeApplicationState(action) {
-  const { applicationId, state } = action;
+  const { applicationId, state, reply } = action;
 
   const data = {
-    state: state
+    state: state,
+    issuer_reply: reply
   };
 
   try {

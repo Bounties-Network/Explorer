@@ -12,6 +12,9 @@ const initialState = {
       address: '',
       img: ''
     }
+  },
+  rejectionModal: {
+    id: -1
   }
 };
 
@@ -22,6 +25,7 @@ const SET_BOUNTY_ID = 'BountyPage/SET_BOUNTY_ID';
 const SET_ACTIVE_TAB = 'BountyPage/SET_ACTIVE_TAB';
 const SET_OPEN_COMMENTS = 'BountyPage/SET_OPEN_COMMENTS';
 const SET_RATING_MODAL = 'BountyPage/SET_RATING_MODAL';
+const SET_REJECTION_MODAL = 'BountyPage/SET_REJECTION_MODAL';
 const EDIT_FULFILLMENT = 'BountyPage/EDIT_FULFILLMENT';
 
 function showModal(modalType, modalProps = {}) {
@@ -50,6 +54,10 @@ function setOpenComments(id, autoFocus) {
 
 function setRatingModal(fulfillmentId, reviewee) {
   return { type: SET_RATING_MODAL, fulfillmentId, reviewee };
+}
+
+function setRejectionModal(id) {
+  return { type: SET_RATING_MODAL, id };
 }
 
 function editFulfillment(fulfillment) {
@@ -116,6 +124,18 @@ function BountyPageUIReducer(state = initialState, action) {
         }
       };
     }
+
+    case SET_REJECTION_MODAL: {
+      const { id } = action;
+
+      return {
+        ...state,
+        rejectionModal: {
+          id
+        }
+      };
+    }
+
     case EDIT_FULFILLMENT: {
       const { fulfillment } = action;
       return {
@@ -136,6 +156,7 @@ export const actions = {
   setActiveTab,
   setOpenComments,
   setRatingModal,
+  setRejectionModal,
   editFulfillment
 };
 
@@ -147,6 +168,7 @@ export const actionTypes = {
   SET_ACTIVE_TAB,
   SET_OPEN_COMMENTS,
   SET_RATING_MODAL,
+  SET_REJECTION_MODAL,
   EDIT_FULFILLMENT
 };
 

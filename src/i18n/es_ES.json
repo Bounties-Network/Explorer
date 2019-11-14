@@ -274,6 +274,15 @@
             }
           }
         },
+        "application_rejection": {
+          "title": "Solicitud de Rechazo",
+          "form": {
+            "message": {
+              "label": "Explicación",
+              "placeholder": "Introducir mensaje..."
+            }
+          }
+        },
         "increase_payout": {
           "title": "Incrementar pago de la recompensa",
           "description1":

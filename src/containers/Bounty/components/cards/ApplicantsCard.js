@@ -13,7 +13,9 @@ const ApplicantsCard = props => {
     currentUser,
     bountyBelongsToLoggedInUser,
     changeApplicationState,
-    loadMoreApplicants
+    loadMoreApplicants,
+    setRejectionModal,
+    initiateLoginProtection
   } = props;
 
   const renderApplicants = list => {
@@ -45,6 +47,7 @@ const ApplicantsCard = props => {
               applicant_name={name}
               applicant_address={applicant.public_address}
               applicant_img={small_profile_image_url}
+              application_id={applicationId}
               state={state}
               description={message}
               created={created}
@@ -53,7 +56,9 @@ const ApplicantsCard = props => {
                 applicationBelongsToLoggedInUser
               }
               acceptApplicant={() => changeApplicationState(applicationId, 'A')}
-              rejectApplicant={() => changeApplicationState(applicationId, 'R')}
+              rejectApplicant={() => showModal('applicationRejection')}
+              setRejectionModal={setRejectionModal}
+              initiateLoginProtection={initiateLoginProtection}
             />
           </ListGroup.ListItem>
         );

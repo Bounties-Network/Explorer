@@ -4,6 +4,9 @@ import { Button, Text } from 'components';
 import { ApplicantStagePill, LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
 import intl from 'react-intl-universal';
+import { actions as bountyUIActions } from '../../reducer';
+
+const showModal = bountyUIActions.showModal;
 
 const ApplicantItem = props => {
   const {
@@ -16,7 +19,10 @@ const ApplicantItem = props => {
     bountyBelongsToLoggedInUser,
     applicationBelongsToLoggedInUser,
     acceptApplicant,
-    rejectApplicant
+    rejectApplicant,
+    setRejectionModal,
+    applicationId,
+    initiateLoginProtection
   } = props;
 
   const formattedTime = moment
@@ -42,7 +48,13 @@ const ApplicantItem = props => {
         key="reject"
         type="default"
         className={styles.applicantsActionsButton}
-        onClick={rejectApplicant}
+        onClick={() =>
+          initiateLoginProtection(() => {
+            setRejectionModal(applicationId);
+            console.log('app id', applicationId);
+            showModal('applicationRejection');
+          })
+        }
       >
         {intl.get('actions.reject')}
       </Button>

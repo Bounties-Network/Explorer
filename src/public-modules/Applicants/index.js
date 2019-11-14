@@ -54,8 +54,8 @@ function loadMoreApplicantsFail(error) {
   return { type: LOAD_MORE_APPLICANTS_FAIL, error };
 }
 
-function changeApplicationState(applicationId, state) {
-  return { type: CHANGE_APPLICATION_STATE, applicationId, state };
+function changeApplicationState(applicationId, state, reply) {
+  return { type: CHANGE_APPLICATION_STATE, applicationId, state, reply };
 }
 
 function changeApplicationStateSuccess() {
