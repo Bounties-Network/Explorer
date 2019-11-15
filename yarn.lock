@@ -2350,6 +2350,11 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
+"@theme-ui/match-media@^0.2.49":
+  version "0.2.49"
+  resolved "https://registry.yarnpkg.com/@theme-ui/match-media/-/match-media-0.2.49.tgz#3119a9070e5cf55a9e840dfae9484f07f99202c1"
+  integrity sha512-zlXg3x2Didzavu+9rwuN6cWTYc1snXr0NpzKJIQSY2fLQ2Ob0ZEbKkqSkewPTtr7DginWrdSy9/ybGDUDMW6vg==
+
 "@theme-ui/preset-base@^0.2.25":
   version "0.2.29"
   resolved "https://registry.yarnpkg.com/@theme-ui/preset-base/-/preset-base-0.2.29.tgz#ff5402eda152a2836e2d3cbf65358a8e2599f03e"

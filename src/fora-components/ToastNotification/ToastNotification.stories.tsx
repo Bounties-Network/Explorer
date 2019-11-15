@@ -8,15 +8,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestionCircle, faTimes } from "@fortawesome/pro-regular-svg-icons";
 import { toast } from "react-toastify";
 import css from "@styled-system/css";
+import { useResponsiveValue } from '@theme-ui/match-media'
 
 addDecorator(centered);
 
-interface IContentProps {  }
-const Content: React.FC<IContentProps> = () => (<div>This is some helper text that you find inside of a ToastNotification. It might attempt to explain something to a user in unique instances where something may be unclear, or needs to be defined beyond how it is displayed in the UI.</div>)
-
 storiesOf('ToastNotification', module)
-.add('Mi Fora', () => (
-  <div>
+.add('Mi Fora', () => {
+  const position = useResponsiveValue(['bottom-center', 'bottom-right', 'bottom-right'])
+return (   <div>
   <ToastContainer />
   <div sx={{ cursor: 'pointer' }} onClick={() => toast.info(
     <ToastNotificationContent
@@ -26,15 +25,14 @@ storiesOf('ToastNotification', module)
     detail={'Generic Subtext'}
     />,
     {
-      position: "top-right",
+      position,
       autoClose: 50000000000000,
       hideProgressBar: false,
-      closeButton: <FontAwesomeIcon icon={faTimes} />,
       pauseOnHover: true,
       draggable: true,
     }
     )
   }>Click me</div>
-  </div>
-  )
+  </div> )
+  }
 )
