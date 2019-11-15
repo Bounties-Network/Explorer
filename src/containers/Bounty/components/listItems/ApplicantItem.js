@@ -35,16 +35,6 @@ const ApplicantItem = props => {
   if (bountyBelongsToLoggedInUser && state === 'P') {
     actionsOrStatus.push(
       <Button
-        key="accept"
-        type="action"
-        className={styles.applicantsActionsButton}
-        onClick={acceptApplicant}
-      >
-        {intl.get('actions.accept')}
-      </Button>
-    );
-    actionsOrStatus.push(
-      <Button
         key="reject"
         type="default"
         className={styles.applicantsActionsButton}
@@ -55,6 +45,16 @@ const ApplicantItem = props => {
         }
       >
         {intl.get('actions.reject')}
+      </Button>
+    );
+    actionsOrStatus.push(
+      <Button
+        key="accept"
+        type="action"
+        className={styles.applicantsActionsButton}
+        onClick={acceptApplicant}
+      >
+        {intl.get('actions.accept')}
       </Button>
     );
   } else {
@@ -70,12 +70,8 @@ const ApplicantItem = props => {
   }
   console.log('belongs', reply, applicationBelongsToLoggedInUser);
   return (
-    <div className="row">
-      <div
-        className={`col-xs-12 col-sm-10 ${styles.detailsContainer} ${
-          styles.filter
-        }`}
-      >
+    <div className={styles.applicantionItem}>
+      <div className={styles.applicationHeader}>
         <LinkedAvatar
           name={applicant_name}
           address={applicant_address}
@@ -83,46 +79,57 @@ const ApplicantItem = props => {
           hash={applicant_address}
           to={`/profile/${applicant_address}`}
         />
-
-        {bountyBelongsToLoggedInUser || applicationBelongsToLoggedInUser ? (
+        <div className={styles.applicationActions}>{actionsOrStatus}</div>
+      </div>
+      {bountyBelongsToLoggedInUser || applicationBelongsToLoggedInUser ? (
+        <div className={styles.applicationBody}>
           <div>
-            <div className={`col-xs-12 col-sm-10 ${styles.filter}`}>
-              <div className={`${styles.labelGroup}`}>
-                <Text className={styles.submissionDescription}>
-                  {description || 'N/A'}
+            <Text className={styles.applicationDescription}>
+              {description || 'N/A'}
+            </Text>
+          </div>
+
+          <div className={[styles.labelGroup, styles.submitTime].join(' ')}>
+            <Text typeScale="Small" color="defaultGrey">
+              {formattedTime}
+            </Text>
+          </div>
+          {reply && (
+            <div className="applicationReply">
+              <div>
+                <LinkedAvatar
+                  textFormat="inline"
+                  name={issuer.name}
+                  address={issuer.public_address}
+                  img={issuer.small_profile_image_url}
+                  hash={issuer.public_address}
+                  to={`/profile/${issuer.public_address}`}
+                />
+              </div>
+              <div>
+                <Text typeScale="Body" color="darkGrey">
+                  {reply}
                 </Text>
               </div>
             </div>
-
-            <div className={[styles.labelGroup, styles.submitTime].join(' ')}>
-              <Text>{formattedTime}</Text>
-            </div>
-            {reply && (
-              <div className={styles.commentItem}>
-                <div className={styles.commentData}>
-                  <LinkedAvatar
-                    textFormat="inline"
-                    name={issuer.name}
-                    address={issuer.public_address}
-                    img={issuer.small_profile_image_url}
-                    hash={issuer.public_address}
-                    to={`/profile/${issuer.public_address}`}
-                  />
-                </div>
-
-                <div className={styles.commentContent}>
-                  <Text typeScale="Body" color="darkGrey">
-                    {reply}
-                  </Text>
-                </div>
-              </div>
+          )}
+        </div>
+      ) : null}
+      {applicationBelongsToLoggedInUser && state === 'R' ? (
+        <div className={styles.applicationFooter}>
+          <Text
+            className={styles.declinedNoteText}
+            alignment="align-center"
+            color="defaultGrey"
+            typeScale="Small"
+            fontStyle="italic"
+          >
+            {intl.get(
+              'sections.bounty.components.applicant_card.declined_message'
             )}
-          </div>
-        ) : null}
-      </div>
-      <div className={`col-sm-2 ${styles.applicantsActions}`}>
-        {actionsOrStatus}
-      </div>
+          </Text>
+        </div>
+      ) : null}
     </div>
   );
 };

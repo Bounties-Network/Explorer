@@ -123,6 +123,7 @@ Text.propTypes = {
     'white',
     'defaultGrey',
     'lightGrey',
+    'mediumGrey',
     'darkGrey',
     'semiTransparentWhite'
   ]),

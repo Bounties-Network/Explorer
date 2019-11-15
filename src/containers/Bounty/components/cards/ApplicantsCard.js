@@ -41,11 +41,7 @@ const ApplicantsCard = props => {
       console.log('issuer_reply', issuer_reply, applicant_item);
       if (!applicationBelongsToLoggedInUser) {
         const item = (
-          <ListGroup.ListItem
-            key={applicationId}
-            className={styles.listItem}
-            fullBorder
-          >
+          <li key={applicationId} fullBorder>
             <ApplicantItem
               applicant_name={name}
               applicant_address={applicant.public_address}
@@ -67,7 +63,7 @@ const ApplicantsCard = props => {
               reply={issuer_reply}
               issuer={issuer}
             />
-          </ListGroup.ListItem>
+          </li>
         );
 
         if (!bountyBelongsToLoggedInUser) {
@@ -81,11 +77,7 @@ const ApplicantsCard = props => {
       } else {
         renderFirst.push(
           <div>
-            <ListGroup.ListItem
-              key={applicationId}
-              className={styles.listItem}
-              fullBorder
-            >
+            <li key={applicationId} fullBorder>
               <ApplicantItem
                 applicant_name={name}
                 applicant_address={applicant.public_address}
@@ -108,21 +100,7 @@ const ApplicantsCard = props => {
                 reply={issuer_reply}
                 issuer={issuer}
               />
-            </ListGroup.ListItem>
-            {state === 'R' ? (
-              <Text
-                className={styles.declinedNoteText}
-                alignment="align-center"
-                color="defaultGrey"
-                typeScale="Small"
-              >
-                {intl.get(
-                  'sections.bounty.components.applicant_card.declined_message'
-                )}
-              </Text>
-            ) : (
-              <div className={styles.bottomBorder} />
-            )}
+            </li>
           </div>
         );
       }
@@ -151,21 +129,21 @@ const ApplicantsCard = props => {
     );
   } else {
     body = (
-      <ListGroup className={styles.applicantsTab}>
+      <ul className={styles.applicantsTab}>
         {[
           ...renderApplicants(applicants.list),
           applicants.list.length < applicants.count && (
-            <ListGroup.ListItem key="load" className={styles.loadMoreButton}>
+            <li key="load" className={styles.loadMoreButton}>
               <Button
                 loading={applicants.loadingMore}
                 onClick={loadMoreApplicants}
               >
                 {intl.get('actions.load_more')}
               </Button>
-            </ListGroup.ListItem>
+            </li>
           )
         ]}
-      </ListGroup>
+      </ul>
     );
   }
 
