@@ -14,6 +14,7 @@ import '../src/styles/Toastify.scss';
 import 'tippy.js/dist/tippy.css';
 import '@uppy/core/dist/style.css'
 import '@uppy/dashboard/dist/style.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 addDecorator(story => (
   <ThemeProvider theme={theme}>

@@ -73,7 +73,7 @@
     "react-select": "^3.0.8",
     "react-slick": "^0.25.2",
     "react-textarea-autosize": "^7.0.4",
-    "react-toastify": "^4.1.0",
+    "react-toastify": "^5.4.1",
     "react-toggle": "^4.0.2",
     "react-transition-group": "^2.4.0",
     "rebass": "^4.0.2",
