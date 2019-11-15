@@ -112,3 +112,36 @@
   max-height: 15rem;
   display: block;
 }
+
+.commentItem {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding: $l-spacing 0;
+  border-top: 1px solid #e6e7ea;
+
+  &:not(:last-child) {
+    border-bottom: $base-border;
+  }
+
+  @media only screen and (min-width: 35em) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.commentData {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.commentContent {
+  width: 100%;
+  text-align: left;
+  line-height: $base-line-height;
+  padding-left: $xxl-spacing + $m-spacing;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-top: -$m-spacing;
+}

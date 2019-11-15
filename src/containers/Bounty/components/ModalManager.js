@@ -32,6 +32,7 @@ const ModalManagerComponent = props => {
     onExtendDeadlineError,
     modalVisible,
     modalType,
+    modalProps,
     closeModal,
     initiateWalkthrough,
 
@@ -45,6 +46,7 @@ const ModalManagerComponent = props => {
     updateFulfillmentAction,
     transferOwnershipAction,
     contributeAction,
+    changeApplicationState,
 
     createFulfillerApplicationAction,
     fulfillmentToEdit
@@ -163,8 +165,9 @@ const ModalManagerComponent = props => {
       )
     );
 
-  const rejectApplication = (values, id) => {
-    console.log('values', values);
+  const rejectApplication = (values, id, callback) => {
+    changeApplicationState(id, 'R', values.message);
+    callback();
   };
   const createFulfillerApplication = (values, callback) =>
     createFulfillerApplicationAction(bounty.id, values.message, callback);
@@ -267,9 +270,10 @@ const ModalManagerComponent = props => {
         onSubmit={createFulfillerApplication}
       />
       <ApplicationRejectionFormModal
-        visible={modalType === 'applicationRejection'}
+        visible={modalVisible && modalType === 'applicationRejection'}
         onClose={closeModal}
         onSubmit={rejectApplication}
+        modalProps={modalProps}
       />
       <IssueRatingFormModal
         key="issuer"
@@ -297,6 +301,7 @@ const mapStateToProps = (state, router) => {
   return {
     modalType: bountyPage.modalType,
     modalVisible: bountyPage.modalVisible,
+    modalProps: bountyPage.modalProps,
     fulfillmentToEdit: bountyPage.fulfillmentToEdit
   };
 };
@@ -318,7 +323,7 @@ const ModalManager = compose(
       contributeAction: bountyActions.contribute,
       createFulfillerApplicationAction:
         fulfillerApplicationActions.createFulfillerApplication,
-      rejectApplicationAction: applicantsActions.changeApplicationState
+      changeApplicationState: applicantsActions.changeApplicationState
     }
   )
 )(ModalManagerComponent);

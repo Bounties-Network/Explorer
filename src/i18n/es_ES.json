@@ -276,6 +276,8 @@
         },
         "application_rejection": {
           "title": "Solicitud de Rechazo",
+          "description":
+            "Ayuda a proporcionar comentarios sobre por qué se rechaza una solicitud",
           "form": {
             "message": {
               "label": "Explicación",

@@ -111,6 +111,8 @@ class BountyPageCardsComponent extends React.Component {
           loadMoreApplicants={loadMoreApplicants}
           setRejectionModal={setRejectionModal}
           initiateLoginProtection={initiateLoginProtection}
+          showModal={showModal}
+          issuer={bounty.user}
         />
       );
     }

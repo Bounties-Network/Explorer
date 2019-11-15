@@ -57,7 +57,7 @@ function setRatingModal(fulfillmentId, reviewee) {
 }
 
 function setRejectionModal(id) {
-  return { type: SET_RATING_MODAL, id };
+  return { type: SET_REJECTION_MODAL, id };
 }
 
 function editFulfillment(fulfillment) {

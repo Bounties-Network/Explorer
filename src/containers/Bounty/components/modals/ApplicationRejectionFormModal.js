@@ -10,13 +10,20 @@ import { rejectionModalSelector } from 'containers/Bounty/selectors';
 const MAX_MESSAGE_LENGTH = 500;
 
 let ApplicationRejectionModalComponent = props => {
-  const { onClose, resetForm, isSubmitting, errors, status, visible } = props;
+  const {
+    onClose,
+    resetForm,
+    isSubmitting,
+    errors,
+    status,
+    visible,
+    modalProps
+  } = props;
 
   const onCloseAndReset = () => {
     resetForm();
     onClose();
   };
-
   return (
     <Form>
       <Modal
@@ -30,6 +37,11 @@ let ApplicationRejectionModalComponent = props => {
           <Modal.Message>
             {intl.get('sections.bounty.modals.application_rejection.title')}
           </Modal.Message>
+          <Modal.Description>
+            {intl.get(
+              'sections.bounty.modals.application_rejection.description'
+            )}
+          </Modal.Description>
         </Modal.Header>
         <Modal.Body className={styles.modalBody}>
           <Field
@@ -83,13 +95,6 @@ let ApplicationRejectionModalComponent = props => {
 const ApplicationRejectionModal = withFormik({
   mapPropsToValues: () => ({ message: '' }),
 
-  mapStateToProps: (state, ownProps) => {
-    const rejectionModal = rejectionModalSelector(state);
-
-    return {
-      application_id: rejectionModal.id
-    };
-  },
   validate: values => {
     const errors = {};
 
@@ -115,8 +120,7 @@ const ApplicationRejectionModal = withFormik({
 
       props.onClose();
     };
-
-    props.onSubmit(values, props.application_id, callback);
+    props.onSubmit(values, props.modalProps.applicationId, callback);
   }
 })(ApplicationRejectionModalComponent);
 

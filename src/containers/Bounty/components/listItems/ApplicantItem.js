@@ -4,9 +4,6 @@ import { Button, Text } from 'components';
 import { ApplicantStagePill, LinkedAvatar } from 'explorer-components';
 import moment from 'moment';
 import intl from 'react-intl-universal';
-import { actions as bountyUIActions } from '../../reducer';
-
-const showModal = bountyUIActions.showModal;
 
 const ApplicantItem = props => {
   const {
@@ -22,7 +19,10 @@ const ApplicantItem = props => {
     rejectApplicant,
     setRejectionModal,
     applicationId,
-    initiateLoginProtection
+    initiateLoginProtection,
+    showModal,
+    reply,
+    issuer
   } = props;
 
   const formattedTime = moment
@@ -50,9 +50,7 @@ const ApplicantItem = props => {
         className={styles.applicantsActionsButton}
         onClick={() =>
           initiateLoginProtection(() => {
-            setRejectionModal(applicationId);
-            console.log('app id', applicationId);
-            showModal('applicationRejection');
+            showModal('applicationRejection', { applicationId });
           })
         }
       >
@@ -70,7 +68,7 @@ const ApplicantItem = props => {
       );
     }
   }
-
+  console.log('belongs', reply, applicationBelongsToLoggedInUser);
   return (
     <div className="row">
       <div
@@ -86,7 +84,7 @@ const ApplicantItem = props => {
           to={`/profile/${applicant_address}`}
         />
 
-        {bountyBelongsToLoggedInUser ? (
+        {bountyBelongsToLoggedInUser || applicationBelongsToLoggedInUser ? (
           <div>
             <div className={`col-xs-12 col-sm-10 ${styles.filter}`}>
               <div className={`${styles.labelGroup}`}>
@@ -99,6 +97,26 @@ const ApplicantItem = props => {
             <div className={[styles.labelGroup, styles.submitTime].join(' ')}>
               <Text>{formattedTime}</Text>
             </div>
+            {reply && (
+              <div className={styles.commentItem}>
+                <div className={styles.commentData}>
+                  <LinkedAvatar
+                    textFormat="inline"
+                    name={issuer.name}
+                    address={issuer.public_address}
+                    img={issuer.small_profile_image_url}
+                    hash={issuer.public_address}
+                    to={`/profile/${issuer.public_address}`}
+                  />
+                </div>
+
+                <div className={styles.commentContent}>
+                  <Text typeScale="Body" color="darkGrey">
+                    {reply}
+                  </Text>
+                </div>
+              </div>
+            )}
           </div>
         ) : null}
       </div>

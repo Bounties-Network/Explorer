@@ -270,6 +270,8 @@
         },
         "application_rejection": {
           "title": "Rejecting Application",
+          "description":
+            "It helps to provide feedback about why an application is being rejected",
           "form": {
             "message": {
               "label": "Explanation",

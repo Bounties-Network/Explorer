@@ -270,6 +270,8 @@
         },
         "application_rejection": {
           "title": "アプリケーションの拒否",
+          "description":
+            "アプリケーションが拒否されている理由に関するフィードバックを提供するのに役立ちます",
           "form": {
             "message": {
               "label": "説明",

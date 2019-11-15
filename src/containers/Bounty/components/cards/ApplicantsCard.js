@@ -15,7 +15,9 @@ const ApplicantsCard = props => {
     changeApplicationState,
     loadMoreApplicants,
     setRejectionModal,
-    initiateLoginProtection
+    initiateLoginProtection,
+    showModal,
+    issuer
   } = props;
 
   const renderApplicants = list => {
@@ -28,14 +30,15 @@ const ApplicantsCard = props => {
         message,
         created,
         state,
-        applicant
+        applicant,
+        issuer_reply
       } = applicant_item;
 
       const { name, small_profile_image_url } = applicant;
 
       const applicationBelongsToLoggedInUser =
         currentUser && applicant.public_address === currentUser.public_address;
-
+      console.log('issuer_reply', issuer_reply, applicant_item);
       if (!applicationBelongsToLoggedInUser) {
         const item = (
           <ListGroup.ListItem
@@ -59,6 +62,10 @@ const ApplicantsCard = props => {
               rejectApplicant={() => showModal('applicationRejection')}
               setRejectionModal={setRejectionModal}
               initiateLoginProtection={initiateLoginProtection}
+              applicationId={applicationId}
+              showModal={showModal}
+              reply={issuer_reply}
+              issuer={issuer}
             />
           </ListGroup.ListItem>
         );
@@ -96,6 +103,10 @@ const ApplicantsCard = props => {
                 rejectApplicant={() =>
                   changeApplicationState(applicationId, 'R')
                 }
+                applicationId={applicationId}
+                showModal={showModal}
+                reply={issuer_reply}
+                issuer={issuer}
               />
             </ListGroup.ListItem>
             {state === 'R' ? (
