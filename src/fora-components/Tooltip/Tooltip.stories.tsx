@@ -16,7 +16,7 @@ storiesOf('Tooltip', module)
 .add('Mi Fora', () => (
   <Tooltip content={<Content />}>
     <div sx={{ cursor: 'pointer' }}>
-      <FontAwesomeIcon icon={faQuestionCircle}></FontAwesomeIcon>
+      <FontAwesomeIcon sx={ { color: 'seaGlass300' } } icon={faQuestionCircle}></FontAwesomeIcon>
     </div>
   </Tooltip>
   )
