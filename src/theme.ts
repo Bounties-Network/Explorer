@@ -1,4 +1,4 @@
-// import { theme as cTheme } from '@chakra-ui/core';
+import { theme as cTheme } from '@chakra-ui/core';
 // MEDIA QUERIES
 const createMediaQuery = n => `@media screen and (min-width:${n})`;
 
@@ -110,7 +110,7 @@ const colors = {
 
 // SPACING SCALE
 export const space = [0, 4, 8, 16, 24, 32, 40, 128];
-export const sizes = [0, 4, 8, 16, 32, 40, 64, 80, 100, 128];
+export const sizes = cTheme.sizes;
 
 // TYPOGRAPHY //
 export const body = '"Domine", Inter, -apple-system';
@@ -197,7 +197,7 @@ export const shadows = [
 ]; //Card //Avatar
 
 //Z-INDEX
-export const zIndices = [0, 9, 99, 999, 9999];
+export const zIndices = cTheme.zIndices;
 
 const linkSmall = {
   color: colors.seaGlass300,
@@ -816,6 +816,10 @@ export const variants = {
   }
 };
 
+const icons = {
+  ...cTheme.icons
+}
+
 // EXPORT THEME
 const theme = {
   breakpoints,
@@ -840,7 +844,8 @@ const theme = {
   textFormat,
   maxContainerWidth,
   forms,
-  variants
+  variants,
+  icons,
 };
 
 export default theme;
