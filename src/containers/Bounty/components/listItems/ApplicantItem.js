@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './ApplicantItem.module.scss';
 import { Button, Text } from 'components';
 import { ApplicantStagePill, LinkedAvatar } from 'explorer-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEyeSlash } from '@fortawesome/pro-regular-svg-icons';
 import moment from 'moment';
 import intl from 'react-intl-universal';
 
@@ -81,10 +83,11 @@ const ApplicantItem = props => {
         />
         <div className={styles.applicationActions}>{actionsOrStatus}</div>
       </div>
+
       {bountyBelongsToLoggedInUser || applicationBelongsToLoggedInUser ? (
         <div className={styles.applicationBody}>
           <div>
-            <Text className={styles.applicationDescription}>
+            <Text color="darkGrey" className={styles.applicationDescription}>
               {description || 'N/A'}
             </Text>
           </div>
@@ -94,27 +97,30 @@ const ApplicantItem = props => {
               {formattedTime}
             </Text>
           </div>
-          {reply && (
-            <div className="applicationReply">
-              <div>
-                <LinkedAvatar
-                  textFormat="inline"
-                  name={issuer.name}
-                  address={issuer.public_address}
-                  img={issuer.small_profile_image_url}
-                  hash={issuer.public_address}
-                  to={`/profile/${issuer.public_address}`}
-                />
-              </div>
-              <div>
-                <Text typeScale="Body" color="darkGrey">
-                  {reply}
-                </Text>
-              </div>
-            </div>
-          )}
         </div>
       ) : null}
+
+      {bountyBelongsToLoggedInUser ||
+      (applicationBelongsToLoggedInUser && reply) ? (
+        <div className={styles.applicationReply}>
+          <div>
+            <LinkedAvatar
+              textFormat="inline"
+              name={issuer.name}
+              address={issuer.public_address}
+              img={issuer.small_profile_image_url}
+              hash={issuer.public_address}
+              to={`/profile/${issuer.public_address}`}
+            />
+          </div>
+          <div className={styles.replyContent}>
+            <Text typeScale="Body" color="darkGrey">
+              {reply}
+            </Text>
+          </div>
+        </div>
+      ) : null}
+
       {applicationBelongsToLoggedInUser && state === 'R' ? (
         <div className={styles.applicationFooter}>
           <Text
@@ -124,6 +130,11 @@ const ApplicantItem = props => {
             typeScale="Small"
             fontStyle="italic"
           >
+            <FontAwesomeIcon
+              icon={faEyeSlash}
+              color="grey"
+              className={styles.faIcon}
+            />
             {intl.get(
               'sections.bounty.components.applicant_card.declined_message'
             )}

@@ -1,4 +1,4 @@
-@import '~styles/variables.scss';
+@import "~styles/variables.scss";
 
 .commentItem {
   align-items: flex-start;
@@ -26,7 +26,7 @@
   width: 100%;
   text-align: left;
   line-height: $base-line-height;
-  padding-left: $xxl-spacing + $m-spacing;
+  padding-left: $xxl-spacing + $base-spacing;
   white-space: pre-wrap;
   word-break: break-word;
   margin-top: -$m-spacing;

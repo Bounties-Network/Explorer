@@ -36,7 +36,26 @@
   padding-bottom: $base-spacing;
 }
 
+.applicationReply {
+  border-top: $light-border;
+  padding: $m-spacing;
+}
+
+.replyContent {
+  width: 100%;
+  text-align: left;
+  line-height: $base-line-height;
+  padding-left: $xxl-spacing + $base-spacing;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-top: -$m-spacing;
+}
+
 .declinedNoteText {
   background-color: $brand-nearWhite;
   padding: $base-spacing;
+}
+
+.faIcon {
+  margin-right: $base-spacing;
 }

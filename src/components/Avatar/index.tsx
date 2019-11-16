@@ -93,7 +93,8 @@ type TextContainerProps = Pick<AvatarProps, 'variant' | 'textFormat'>;
 const TextContainer = styled(Flex)<TextContainerProps>(props =>
   css({
     flexShrink: 0,
-    pl: props.variant === 'large' || props.textFormat === 'inline' ? 3 : 2,
+    pl: props.variant === 'large' ? 3 : 2,
+    pt: props.textFormat === 'inline' ? 1 : '0',
     variant: 'textFormat.' + props.textFormat
   })
 );
