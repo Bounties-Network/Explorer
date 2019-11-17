@@ -20,11 +20,11 @@ let blockBySize = variant => {
 let imageContainerVariantSize = variant => {
   switch (variant) {
     case "small":
-      return 4;
-    case "medium":
-      return 5;
-    case "large":
       return 8;
+    case "medium":
+      return 12;
+    case "large":
+      return 24;
   }
 };
 

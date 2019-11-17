@@ -6,10 +6,9 @@ import emotionStyled from "lib/emotion-styled";
 const Container = emotionStyled(Flex)(props =>
   ssCSS({
     borderRadius: 100,
-    height: 20,
+    height: '20px',
     py: 2,
     px: 3,
-    variant: props.variant
   })
 );
 
@@ -26,7 +25,7 @@ const Pill: React.FC<IProps> = ({ resourceType, variant, css, children }) => {
       variant={variant}
       css={css}
     >
-      {children || <Text variant={variant}>{resourceType}</Text>}
+      {children || <Text>{resourceType}</Text>}
     </Container>
   );
 };

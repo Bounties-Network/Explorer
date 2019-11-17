@@ -14,61 +14,61 @@ export interface IMember {
 export const mockMembersData = [
   {
     name: "firstName LastName",
-    screenName: "@screenName",
+    screenName: "screenName",
     address: "0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67",
     joinedTimestamp
   },
   {
     name: "firstName LastName",
-    screenName: "@screenName",
+    screenName: "screenName",
     address: "0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67",
     joinedTimestamp
   },
   {
     name: "firstName LastName",
-    screenName: "@screenName",
+    screenName: "screenName",
     address: "0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67",
     joinedTimestamp
   },
   {
     name: "firstName LastName",
-    screenName: "@screenName",
+    screenName: "screenName",
     address: "0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67",
     joinedTimestamp
   },
   {
     name: "firstName LastName",
-    screenName: "@screenName",
+    screenName: "screenName",
     address: "0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67",
     joinedTimestamp
   },
   {
     name: "firstName LastName",
-    screenName: "@screenName",
+    screenName: "screenName",
     address: "0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67",
     joinedTimestamp
   },
   {
     name: "firstName LastName",
-    screenName: "@screenName",
+    screenName: "screenName",
     address: "0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67",
     joinedTimestamp
   },
   {
     name: "firstName LastName",
-    screenName: "@screenName",
+    screenName: "screenName",
     address: "0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67",
     joinedTimestamp
   },
   {
     name: "firstName LastName",
-    screenName: "@screenName",
+    screenName: "screenName",
     address: "0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67",
     joinedTimestamp
   },
   {
     name: "firstName LastName",
-    screenName: "@screenName",
+    screenName: "screenName",
     address: "0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67",
     joinedTimestamp
   }

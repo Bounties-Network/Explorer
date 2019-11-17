@@ -97,13 +97,13 @@ const LinkColumn: React.FC<ILinkColumn[]> = links => (
     {links.map(
       ({ href, label }) =>
         typeof href === 'string' ? (
-          <Link href={href}>
+          <Link key={href} href={href}>
             <Text variant="body" color="white">
               {label}
             </Text>
           </Link>
         ) : (
-          <Text variant="bodyStrong" color="seaGlass200">
+          <Text key={label} variant="bodyStrong" color="seaGlass200">
             {label}
           </Text>
         )

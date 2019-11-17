@@ -18,8 +18,8 @@ interface IOptionProps {
 const Option = emotionStyled(Flex)<IOptionProps>(
   props =>
     css({
-      height: 24,
-      minWidth: 80,
+      height: '24px',
+      minWidth: '80px',
       width: "fit-content",
       cursor: "pointer",
       justifyContent: "center",

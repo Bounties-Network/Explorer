@@ -35,14 +35,14 @@ const BellIcon = emotionStyled(FontAwesomeIcon)(() =>
 );
 const NotificationContainer = emotionStyled(Flex)(() =>
   css({
-    ':hover': { '> :first-child': { color: 'black' } },
+    ':hover': { '> :first-of-type': { color: 'black' } },
     cursor: 'pointer',
-    height: 40,
-    width: 40,
+    height: '40px',
+    width: '40px',
     position: 'relative',
     '> *': { position: 'absolute' },
-    '> *:first-child': { top: '35%', transform: 'rotate(30deg)', left: '-0%' },
-    '> *:nth-child(2)': { top: '20%' }
+    '> svg:first-of-type': { top: '35%', transform: 'rotate(30deg)', left: '-0%' },
+    '> div:nth-of-type(2)': { top: '20%' }
   })
 );
 
