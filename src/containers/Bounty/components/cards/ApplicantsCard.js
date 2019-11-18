@@ -38,7 +38,6 @@ const ApplicantsCard = props => {
 
       const applicationBelongsToLoggedInUser =
         currentUser && applicant.public_address === currentUser.public_address;
-      console.log('issuer_reply', issuer_reply, applicant_item);
       if (!applicationBelongsToLoggedInUser) {
         const item = (
           <li key={applicationId} fullBorder>

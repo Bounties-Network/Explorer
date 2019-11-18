@@ -70,7 +70,6 @@ const ApplicantItem = props => {
       );
     }
   }
-  console.log('belongs', reply, applicationBelongsToLoggedInUser);
   return (
     <div className={styles.applicantionItem}>
       <div className={styles.applicationHeader}>
