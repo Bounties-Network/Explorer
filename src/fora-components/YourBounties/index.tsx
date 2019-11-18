@@ -106,7 +106,7 @@ const LoadMore: React.FC<ILoadMoreProps> = (props) => (
 )
 
 const YourBounties: React.FunctionComponent<YourBountiesProps> = props => (
-  <Tabs sx={{ bg: "white", boxSizing: "border-box", borderRadius: 2, border: "base" }}>
+  <Tabs size={'lg'} sx={{ bg: "white", boxSizing: "border-box", borderRadius: 2, border: "base" }}>
     <TabList>
       <YourBountiesTab label="Active" notificationCount={props.activeNotificationCount}></YourBountiesTab>
       <YourBountiesTab label="Drafts" notificationCount={props.draftsNotificationCount}></YourBountiesTab>
