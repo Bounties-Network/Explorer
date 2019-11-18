@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React from "react";
 import ssCSS from "@styled-system/css";
 import { Flex, Text } from "rebass";
@@ -15,15 +17,15 @@ const Container = emotionStyled(Flex)(props =>
 interface IProps {
   variant: string;
   resourceType?: string;
-  css?: any;
+  styles?: any;
 }
-const Pill: React.FC<IProps> = ({ resourceType, variant, css, children }) => {
+const Pill: React.FC<IProps> = ({ resourceType, variant, styles, children }) => {
   return (
     <Container
       justifyContent={"center"}
       alignItems={"center"}
       variant={variant}
-      css={css}
+      sx={styles}
     >
       {children || <Text>{resourceType}</Text>}
     </Container>
