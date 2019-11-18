@@ -12,6 +12,8 @@ import Divider from "fora-components/Divider";
 type YourBountiesProps = {
   drafts: IBountyProps[];
   active: IBountyProps[];
+  totalActiveCount: number;
+  totalDraftsCount: number;
   activeNotificationCount: number;
   draftsNotificationCount: number;
 };
@@ -94,6 +96,15 @@ const YourBountiesTab = React.forwardRef<any, { isSelected?: any; label: string;
   }
 );
 
+interface ILoadMoreProps { status: string }
+const LoadMore: React.FC<ILoadMoreProps> = (props) => (
+  <Flex sx={{ bg: 'gray100', height: '60px', width: '100%' }} justifyContent='center' alignItems='center'>
+    <Text variant='link'>
+      Load More
+    </Text>
+  </Flex>
+)
+
 const YourBounties: React.FunctionComponent<YourBountiesProps> = props => (
   <Tabs sx={{ bg: "white", boxSizing: "border-box", borderRadius: 2, border: "base" }}>
     <TabList>
@@ -102,8 +113,16 @@ const YourBounties: React.FunctionComponent<YourBountiesProps> = props => (
     </TabList>
 
     <TabPanels>
-      <TabPanel sx={{ pt: 0 }}>{props.active.map(Bounty)}</TabPanel>
-      <TabPanel sx={{ pt: 0 }}>{props.drafts.map(Bounty)}</TabPanel>
+      <TabPanel sx={{ pt: 0 }}>{props.active.map(Bounty)}
+      {props.active.length < props.totalActiveCount && (
+          <LoadMore status='active'></LoadMore>
+      )}
+      </TabPanel>
+      <TabPanel sx={{ pt: 0 }}>{props.drafts.map(Bounty)}
+      {props.drafts.length < props.totalDraftsCount && (
+          <LoadMore status='draft'></LoadMore>
+      )}
+      </TabPanel>
     </TabPanels>
   </Tabs>
 );

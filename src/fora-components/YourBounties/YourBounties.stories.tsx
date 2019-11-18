@@ -13,6 +13,8 @@ storiesOf("YourBounties", module).add("Mi Fora", () => {
       <YourBounties
         drafts={mockYourBountiesDraftData}
         active={mockYourBountiesActiveData}
+        totalActiveCount={5}
+        totalDraftsCount={4}
         activeNotificationCount={4}
         draftsNotificationCount={4}
       />

@@ -35,5 +35,5 @@ export const mockYourBountiesActiveData = [{
     status: 'active',
     ethUSDAmount: 435,
     ethAmount: 0.5,
-  }
+  },
 ]
