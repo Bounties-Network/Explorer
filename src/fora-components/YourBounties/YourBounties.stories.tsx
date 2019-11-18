@@ -1,18 +1,21 @@
-import React from 'react';
-import { storiesOf, addDecorator } from '@storybook/react';
-import centered from '@storybook/addon-centered/react';
-import YourBounties from '.';
+/** @jsx jsx */
+import { jsx } from "theme-ui";
+import { storiesOf, addDecorator } from "@storybook/react";
+import centered from "@storybook/addon-centered/react";
+import YourBounties from ".";
+import { mockYourBountiesDraftData, mockYourBountiesActiveData } from "./mock-your-bounties-data";
 
 addDecorator(centered);
 
-storiesOf('YourBounties', module)
-  .add('Mi Fora', () => {
+storiesOf("YourBounties", module).add("Mi Fora", () => {
   return (
-    <YourBounties
-      drafts={[]}
-      active={[]}
-      activeNotificationCount={4}
-      draftsNotificationCount={4}
-    />
-  )
-  })
+    <div sx={{ minWidth: "70vw" }}>
+      <YourBounties
+        drafts={mockYourBountiesDraftData}
+        active={mockYourBountiesActiveData}
+        activeNotificationCount={4}
+        draftsNotificationCount={4}
+      />
+    </div>
+  );
+});

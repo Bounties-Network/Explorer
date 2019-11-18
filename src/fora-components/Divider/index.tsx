@@ -4,9 +4,9 @@ import { Box } from 'rebass';
 
 interface IDividerProps {
   backgroundColor?: string;
-  mb?: number | number[];
+  mb?: number | number[] | string;
   marginBottom?: number | number[];
-  mt?: number | number[];
+  mt?: number | number[] | string;
   marginTop?: number | number[];
 }
 

@@ -371,8 +371,8 @@ const primaryIcon = {
 
 const primaryIconOnly = {
   ...primaryIcon,
-  height: 40,
-  width: 40,
+  height: '40px',
+  width: '40px',
   "> :first-of-type": { mr: 0 }
 };
 
@@ -419,8 +419,8 @@ const secondaryIcon = {
 
 const secondaryIconOnly = {
   ...secondaryIcon,
-  width: 40,
-  height: 40,
+  width: '40px',
+  height: '40px',
   "> :first-of-type": { mr: 0 }
 };
 
@@ -460,8 +460,8 @@ const secondaryAffirmativeIcon = {
 
 const secondaryAffirmativeIconOnly = {
   ...secondaryAffirmativeIcon,
-  width: 40,
-  height: 40,
+  width: '40px',
+  height: '40px',
   "> :only-child": { mr: 0 }
 };
 
@@ -494,8 +494,8 @@ const secondaryDestructiveIcon = {
 
 const secondaryDestructiveIconOnly = {
   ...secondaryDestructiveIcon,
-  width: 40,
-  height: 40,
+  width: '40px',
+  height: '40px',
   "> :only-child": { mr: 0 }
 };
 
@@ -531,8 +531,8 @@ const specialIcon = { ...primaryIcon, ...special };
 
 const specialIconOnly = {
   ...specialIcon,
-  width: 40,
-  height: 40,
+  width: '40px',
+  height: '40px',
   "> :only-child": { mr: 0 }
 };
 
@@ -588,8 +588,8 @@ const destructiveIcon = {
 
 const destructiveIconOnly = {
   ...destructiveIcon,
-  width: 40,
-  height: 40,
+  width: '40px',
+  height: '40px',
   "> :first-of-type": { mr: 0 }
 };
 
