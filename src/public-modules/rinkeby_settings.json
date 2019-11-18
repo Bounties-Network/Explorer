@@ -1,6 +1,9 @@
 {
-  "platform": "rinkeby",
-  "postingPlatform": "rinkeby",
+  "platforms": {
+    "bounties-network": ["bounties-network", "rinkeby", "daostack"],
+    "gitcoin": ["gitcoin"]
+  },
+  "postingPlatform": "bounties-network",
   "postingSchema": "standardSchema",
   "postingSchemaVersion": "1.0",
   "categoryPlatform": "rinkeby",
