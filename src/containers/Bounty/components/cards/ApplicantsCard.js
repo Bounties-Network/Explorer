@@ -13,7 +13,11 @@ const ApplicantsCard = props => {
     currentUser,
     bountyBelongsToLoggedInUser,
     changeApplicationState,
-    loadMoreApplicants
+    loadMoreApplicants,
+    setRejectionModal,
+    initiateLoginProtection,
+    showModal,
+    issuer
   } = props;
 
   const renderApplicants = list => {
@@ -26,25 +30,22 @@ const ApplicantsCard = props => {
         message,
         created,
         state,
-        applicant
+        applicant,
+        issuer_reply
       } = applicant_item;
 
       const { name, small_profile_image_url } = applicant;
 
       const applicationBelongsToLoggedInUser =
         currentUser && applicant.public_address === currentUser.public_address;
-
       if (!applicationBelongsToLoggedInUser) {
         const item = (
-          <ListGroup.ListItem
-            key={applicationId}
-            className={styles.listItem}
-            fullBorder
-          >
+          <li key={applicationId} fullBorder>
             <ApplicantItem
               applicant_name={name}
               applicant_address={applicant.public_address}
               applicant_img={small_profile_image_url}
+              application_id={applicationId}
               state={state}
               description={message}
               created={created}
@@ -53,9 +54,15 @@ const ApplicantsCard = props => {
                 applicationBelongsToLoggedInUser
               }
               acceptApplicant={() => changeApplicationState(applicationId, 'A')}
-              rejectApplicant={() => changeApplicationState(applicationId, 'R')}
+              rejectApplicant={() => showModal('applicationRejection')}
+              setRejectionModal={setRejectionModal}
+              initiateLoginProtection={initiateLoginProtection}
+              applicationId={applicationId}
+              showModal={showModal}
+              reply={issuer_reply}
+              issuer={issuer}
             />
-          </ListGroup.ListItem>
+          </li>
         );
 
         if (!bountyBelongsToLoggedInUser) {
@@ -69,11 +76,7 @@ const ApplicantsCard = props => {
       } else {
         renderFirst.push(
           <div>
-            <ListGroup.ListItem
-              key={applicationId}
-              className={styles.listItem}
-              fullBorder
-            >
+            <li key={applicationId} fullBorder>
               <ApplicantItem
                 applicant_name={name}
                 applicant_address={applicant.public_address}
@@ -91,22 +94,12 @@ const ApplicantsCard = props => {
                 rejectApplicant={() =>
                   changeApplicationState(applicationId, 'R')
                 }
+                applicationId={applicationId}
+                showModal={showModal}
+                reply={issuer_reply}
+                issuer={issuer}
               />
-            </ListGroup.ListItem>
-            {state === 'R' ? (
-              <Text
-                className={styles.declinedNoteText}
-                alignment="align-center"
-                color="defaultGrey"
-                typeScale="Small"
-              >
-                {intl.get(
-                  'sections.bounty.components.applicant_card.declined_message'
-                )}
-              </Text>
-            ) : (
-              <div className={styles.bottomBorder} />
-            )}
+            </li>
           </div>
         );
       }
@@ -135,21 +128,21 @@ const ApplicantsCard = props => {
     );
   } else {
     body = (
-      <ListGroup className={styles.applicantsTab}>
+      <ul className={styles.applicantsTab}>
         {[
           ...renderApplicants(applicants.list),
           applicants.list.length < applicants.count && (
-            <ListGroup.ListItem key="load" className={styles.loadMoreButton}>
+            <li key="load" className={styles.loadMoreButton}>
               <Button
                 loading={applicants.loadingMore}
                 onClick={loadMoreApplicants}
               >
                 {intl.get('actions.load_more')}
               </Button>
-            </ListGroup.ListItem>
+            </li>
           )
         ]}
-      </ListGroup>
+      </ul>
     );
   }
 

@@ -101,7 +101,7 @@
         },
         "applicant_card": {
           "declined_message":
-            "Your declined application status is only visible to you",
+            "Declined application status and response is private and only visible to you",
           "zero_state": {
             "title": "There are 0 applicants",
             "description": "Applicants to this bounty will appear here."
@@ -264,6 +264,17 @@
           "form": {
             "message": {
               "label": "Application",
+              "placeholder": "Enter message..."
+            }
+          }
+        },
+        "application_rejection": {
+          "title": "Rejecting Application",
+          "description":
+            "It helps to provide feedback about why an application is being rejected",
+          "form": {
+            "message": {
+              "label": "Explanation",
               "placeholder": "Enter message..."
             }
           }

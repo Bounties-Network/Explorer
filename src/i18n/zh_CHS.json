@@ -255,6 +255,16 @@
             }
           }
         },
+        "application_rejection": {
+          "title": "拒绝申请",
+          "description": "它有助于提供有关为何拒绝申请的反馈",
+          "form": {
+            "message": {
+              "label": "说明",
+              "placeholder": "输入信息..."
+            }
+          }
+        },
         "increase_payout": {
           "title": "增加报酬",
           "description1":

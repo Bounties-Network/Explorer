@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './ApplicantItem.module.scss';
 import { Button, Text } from 'components';
 import { ApplicantStagePill, LinkedAvatar } from 'explorer-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEyeSlash } from '@fortawesome/pro-regular-svg-icons';
 import moment from 'moment';
 import intl from 'react-intl-universal';
 
@@ -16,7 +18,13 @@ const ApplicantItem = props => {
     bountyBelongsToLoggedInUser,
     applicationBelongsToLoggedInUser,
     acceptApplicant,
-    rejectApplicant
+    rejectApplicant,
+    setRejectionModal,
+    applicationId,
+    initiateLoginProtection,
+    showModal,
+    reply,
+    issuer
   } = props;
 
   const formattedTime = moment
@@ -29,22 +37,26 @@ const ApplicantItem = props => {
   if (bountyBelongsToLoggedInUser && state === 'P') {
     actionsOrStatus.push(
       <Button
+        key="reject"
+        type="default"
+        className={styles.applicantsActionsButton}
+        onClick={() =>
+          initiateLoginProtection(() => {
+            showModal('applicationRejection', { applicationId });
+          })
+        }
+      >
+        {intl.get('actions.reject')}
+      </Button>
+    );
+    actionsOrStatus.push(
+      <Button
         key="accept"
         type="action"
         className={styles.applicantsActionsButton}
         onClick={acceptApplicant}
       >
         {intl.get('actions.accept')}
-      </Button>
-    );
-    actionsOrStatus.push(
-      <Button
-        key="reject"
-        type="default"
-        className={styles.applicantsActionsButton}
-        onClick={rejectApplicant}
-      >
-        {intl.get('actions.reject')}
       </Button>
     );
   } else {
@@ -58,14 +70,9 @@ const ApplicantItem = props => {
       );
     }
   }
-
   return (
-    <div className="row">
-      <div
-        className={`col-xs-12 col-sm-10 ${styles.detailsContainer} ${
-          styles.filter
-        }`}
-      >
+    <div className={styles.applicantionItem}>
+      <div className={styles.applicationHeader}>
         <LinkedAvatar
           name={applicant_name}
           address={applicant_address}
@@ -73,26 +80,66 @@ const ApplicantItem = props => {
           hash={applicant_address}
           to={`/profile/${applicant_address}`}
         />
+        <div className={styles.applicationActions}>{actionsOrStatus}</div>
+      </div>
 
-        {bountyBelongsToLoggedInUser ? (
+      {bountyBelongsToLoggedInUser || applicationBelongsToLoggedInUser ? (
+        <div className={styles.applicationBody}>
           <div>
-            <div className={`col-xs-12 col-sm-10 ${styles.filter}`}>
-              <div className={`${styles.labelGroup}`}>
-                <Text className={styles.submissionDescription}>
-                  {description || 'N/A'}
-                </Text>
-              </div>
-            </div>
-
-            <div className={[styles.labelGroup, styles.submitTime].join(' ')}>
-              <Text>{formattedTime}</Text>
-            </div>
+            <Text color="darkGrey" className={styles.applicationDescription}>
+              {description || 'N/A'}
+            </Text>
           </div>
-        ) : null}
-      </div>
-      <div className={`col-sm-2 ${styles.applicantsActions}`}>
-        {actionsOrStatus}
-      </div>
+
+          <div className={[styles.labelGroup, styles.submitTime].join(' ')}>
+            <Text typeScale="Small" color="defaultGrey">
+              {formattedTime}
+            </Text>
+          </div>
+        </div>
+      ) : null}
+
+      {bountyBelongsToLoggedInUser ||
+      (applicationBelongsToLoggedInUser && reply) ? (
+        <div className={styles.applicationReply}>
+          <div>
+            <LinkedAvatar
+              textFormat="inline"
+              name={issuer.name}
+              address={issuer.public_address}
+              img={issuer.small_profile_image_url}
+              hash={issuer.public_address}
+              to={`/profile/${issuer.public_address}`}
+            />
+          </div>
+          <div className={styles.replyContent}>
+            <Text typeScale="Body" color="darkGrey">
+              {reply}
+            </Text>
+          </div>
+        </div>
+      ) : null}
+
+      {applicationBelongsToLoggedInUser && state === 'R' ? (
+        <div className={styles.applicationFooter}>
+          <Text
+            className={styles.declinedNoteText}
+            alignment="align-center"
+            color="defaultGrey"
+            typeScale="Small"
+            fontStyle="italic"
+          >
+            <FontAwesomeIcon
+              icon={faEyeSlash}
+              color="grey"
+              className={styles.faIcon}
+            />
+            {intl.get(
+              'sections.bounty.components.applicant_card.declined_message'
+            )}
+          </Text>
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -73,6 +73,7 @@ class BountyPageCardsComponent extends React.Component {
       showLogin,
       showModal,
       setRatingModal,
+      setRejectionModal,
       setActiveTabAction: setActiveTab,
       setOpenCommentsAction: setOpenComments,
       currentTab,
@@ -108,6 +109,10 @@ class BountyPageCardsComponent extends React.Component {
           bountyBelongsToLoggedInUser={bountyBelongsToLoggedInUser}
           changeApplicationState={changeApplicationState}
           loadMoreApplicants={loadMoreApplicants}
+          setRejectionModal={setRejectionModal}
+          initiateLoginProtection={initiateLoginProtection}
+          showModal={showModal}
+          issuer={bounty.user}
         />
       );
     }
@@ -252,6 +257,7 @@ const BountyPageCards = compose(
       showModal: bountyUIActions.showModal,
       editFulfillment: bountyUIActions.editFulfillment,
       setRatingModal: bountyUIActions.setRatingModal,
+      setRejectionModal: bountyUIActions.setRejectionModal,
       acceptFulfillment: fulfillmentActions.acceptFulfillment,
       changeApplicationState: applicantsActions.changeApplicationState,
       postComment: commentsActions.postComment,

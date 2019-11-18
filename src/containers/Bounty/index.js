@@ -97,7 +97,6 @@ class BountyComponent extends React.Component {
     const { match, addBountyView } = this.props;
     if (match.path === '/bounty/:id/') {
       addBountyView(match.params.id);
-      console.log('id', match.params.id);
     }
   }
 

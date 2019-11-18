@@ -18,6 +18,7 @@ import NewCommentForm from './NewCommentForm';
 import CommentItem from './listItems/CommentItem';
 import IssueRatingFormModal from './modals/IssueRatingFormModal';
 import SEOHeader from './SEOHeader';
+import ApplicationRejectionFormModal from './modals/ApplicationRejectionFormModal';
 
 export {
   ApplicantsCard,
@@ -39,5 +40,6 @@ export {
   NewCommentForm,
   CommentItem,
   IssueRatingFormModal,
+  ApplicationRejectionFormModal,
   SEOHeader
 };

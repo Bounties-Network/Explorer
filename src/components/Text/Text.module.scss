@@ -1,4 +1,4 @@
-@import '~styles/variables.scss';
+@import "~styles/variables.scss";
 
 .h1 {
   font-size: $h1-font-size;
@@ -112,6 +112,10 @@
 
 .defaultGrey {
   color: $brand-grey;
+}
+
+.mediumGrey {
+  color: $brand-mediumGrey;
 }
 
 .darkGrey {

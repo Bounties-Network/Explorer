@@ -1,4 +1,4 @@
-@import '~styles/variables.scss';
+@import "~styles/variables.scss";
 
 .bodyLoading {
   display: flex;
@@ -40,14 +40,6 @@
   width: 100%;
   text-align: center;
   padding-top: $l-spacing;
-}
-
-.declinedNoteText {
-  background-color: $brand-nearWhite;
-  position: relative;
-  margin-right: -$l-spacing;
-  margin-left: -$l-spacing;
-  padding: $base-spacing;
 }
 
 .bottomBorder {

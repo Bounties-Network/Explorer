@@ -16,3 +16,8 @@ export const ratingModalSelector = createSelector(
   bountyPageSelector,
   bountyPage => bountyPage.ratingModal
 );
+
+export const rejectionModalSelector = createSelector(
+  bountyPageSelector,
+  bountyPage => bountyPage.rejectionModal
+);
