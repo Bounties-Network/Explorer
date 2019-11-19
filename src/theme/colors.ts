@@ -1,86 +1,74 @@
-const seaGlass100 = "hsl(187, 45%, 81%)";
-const seaGlass200 = "hsl(187, 50%, 60%)";
-const seaGlass300 = "hsl(187, 76%, 35%)";
-const seaGlass400 = "hsl(191, 76%, 27%)";
-const seaGlass500 = "hsl(190, 95%, 18%)";
-
-const rose100 = "hsl(351, 68%, 83%)";
-const rose200 = "hsl(352, 64%, 67%)";
-const rose300 = "hsl(345, 68%, 23%)";
-
-const amber100 = "hsl(21, 94%, 85%)";
-const amber200 = "hsl(21, 95%, 75%)";
-const amber300 = "hsl(18, 68%, 35%)";
-
-const mustard100 = "hsl(39, 100%, 85%)";
-const mustard200 = "hsl(39, 100%, 77%)";
-const mustard300 = "hsl(36, 85%, 38%)";
-
-const gray100 = "hsl(219, 27%, 97%)";
-const gray200 = "hsl(180, 2%, 91%)";
-const gray300 = "hsl(199, 4%, 86%)";
-const gray400 = "hsl(193, 4%, 57%)";
-const gray500 = "hsl(199, 4%, 29%)";
-const black = "hsl(197, 17%, 8%)";
-const white = "hsl(0, 0%, 100%)";
-const transparentWhite = "rgba(255, 255, 255, 65%)";
-
-// Brand color aliases
-const brandPrimary = seaGlass200;
-const brandPrimaryHover = seaGlass100;
-const brandSecondary = white;
-const brandSecondaryHover = white;
-const brandDestructive = rose200;
-const brandDestructiveHover = rose100;
-const brandSpecial = amber200;
-const brandSpecialHover = amber100;
-const brandAffirmative = seaGlass200;
-const brandAffirmativeHover = seaGlass100;
-
-// Misc
-const inputBg = gray100;
-const baseBorderColor = gray200;
-
 const colors = {
-  seaGlass100,
-  seaGlass200,
-  seaGlass300,
-  seaGlass400,
-  seaGlass500,
+  transparent: "transparent",
+  current: "currentColor",
+  black: "#000",
+  white: "#fff",
 
-  rose100,
-  rose200,
-  rose300,
+  whiteAlpha: {
+    50: "rgba(255, 255, 255, 0.04)",
+    100: "rgba(255, 255, 255, 0.06)",
+    200: "rgba(255, 255, 255, 0.08)",
+    300: "rgba(255, 255, 255, 0.16)",
+    400: "rgba(255, 255, 255, 0.24)",
+    500: "rgba(255, 255, 255, 0.36)",
+    600: "rgba(255, 255, 255, 0.48)",
+    700: "rgba(255, 255, 255, 0.64)",
+    800: "rgba(255, 255, 255, 0.80)",
+    900: "rgba(255, 255, 255, 0.92)"
+  },
 
-  amber100,
-  amber200,
-  amber300,
+  // Brand colors
+  seaGlass: {
+    100: "#BCE1E6",
+    200: "#66C0CC",
+    300: "#158E9E",
+    400: "#11697D",
+    500: "#024B5B"
+  },
 
-  mustard100,
-  mustard200,
-  mustard300,
+  rose: {
+    100: "#F2BAC2",
+    200: "#E17582",
+    300: "#671328"
+  },
 
-  brandPrimary,
-  brandPrimaryHover,
-  brandSecondary,
-  brandSecondaryHover,
-  brandDestructive,
-  brandDestructiveHover,
-  brandSpecial,
-  brandSpecialHover,
-  brandAffirmative,
-  brandAffirmativeHover,
+  amber: {
+    100: "#FDCFB5",
+    200: "#FCAF84",
+    300: "#9A431D"
+  },
 
-  gray100,
-  gray200,
-  gray300,
-  gray400,
-  gray500,
-  black,
-  white,
-  transparentWhite,
-  inputBg,
-  baseBorderColor
+  gold: {
+    100: "#FFE5B3",
+    200: "#FFD78A",
+    300: "#B8740E"
+  },
+
+  gray: {
+    100: "#F8F9FB",
+    200: "#EAEBEB",
+    300: "#D5D7D8",
+    400: "#8D9496",
+    500: "#474B4D"
+  }
+};
+
+const colorAliases = {
+  brandPrimary: colors.seaGlass["200"],
+  brandPrimaryHover: colors.seaGlass["100"],
+  brandSecondary: colors.white,
+  brandSecondaryHover: colors.white,
+  brandDestructive: colors.rose["200"],
+  brandDestructiveHover: colors.rose["100"],
+  brandSpecial: colors.amber["200"],
+  brandSpecialHover: colors.amber["100"],
+  brandAffirmative: colors.seaGlass["200"],
+  brandAffirmativeHover: colors.seaGlass["100"],
+
+  // Misc
+  inputBg: colors.gray["100"],
+  baseBorderColor: colors.gray["200"]
 };
 
 export { colors };
+export { colorAliases };

@@ -1,5 +1,5 @@
 import { theme as cTheme } from "@chakra-ui/core";
-import { colors } from "./colors";
+import { colors, colorAliases } from "./colors";
 // MEDIA QUERIES
 const createMediaQuery = n => `@media screen and (min-width:${n})`;
 
@@ -73,15 +73,15 @@ export const lineHeights = {
 export const radii = [0, 4, 8, "50%"];
 export const radius = "8px";
 
-const baseBorder = `1px solid ${colors.baseBorderColor}`;
-const primaryActiveBorder = `1px solid ${colors.seaGlass200}`;
-const activeBorder = `1px solid ${colors.gray300}`;
-const focusBorder = `2px solid ${colors.seaGlass200}`;
-const tertiaryActiveBorder = `1px solid ${colors.amber200}`;
+const baseBorder = `1px solid ${colorAliases.baseBorderColor}`;
+const primaryActiveBorder = `1px solid ${colors.seaGlass["200"]}`;
+const activeBorder = `1px solid ${colors.gray["300"]}`;
+const focusBorder = `2px solid ${colors.seaGlass["200"]}`;
+const tertiaryActiveBorder = `1px solid ${colors.amber["200"]}`;
 const avatarBorder = `2px solid ${colors.white}`;
-const lightBorder = `1px solid ${colors.gray100}`;
-const errorBorder = `2px solid ${colors.rose200}`;
-const radioCheckboxBorder = `2px solid ${colors.seaGlass300}`;
+const lightBorder = `1px solid ${colors.gray["100"]}`;
+const errorBorder = `2px solid ${colors.rose["200"]}`;
+const radioCheckboxBorder = `2px solid ${colors.seaGlass["300"]}`;
 
 const borders = {
   base: baseBorder,
@@ -106,7 +106,7 @@ export const shadows = [
   "0px 3px 5px rgba(17, 22, 24, 0.15)", //buttonShadow2
   "0px 9px 24px rgba(0, 0, 0, 0.08)", //shadowLarge
   `inset 0px 1px 4px rgba(0, 0, 0, 0.14)`, // innerShadows
-  `0 0 10px ${colors.gray200}`,
+  `0 0 10px ${colors.gray["200"]}`,
   `inset 0 0 0 1px ${colors.brandSecondary}`,
   `inset 0 0 0 1px ${colors.brandDestructive}`
 ]; //Card //Avatar
@@ -115,7 +115,7 @@ export const shadows = [
 export const zIndices = cTheme.zIndices;
 
 const linkSmall = {
-  color: colors.seaGlass300,
+  color: colors.seaGlass["300"],
   fontFamily: fonts.secondary,
   fontSize: fontSizes[0] + "px",
   fontWeight: fontWeights.medium,
@@ -199,19 +199,19 @@ export const text = {
     fontSize: fontSizes[1] + "px",
     fontWeight: fontWeights.regular,
     lineHeight: lineHeights.standard + "px !important",
-    color: colors.seaGlass300
+    color: colors.seaGlass["300"]
   },
   linkStrong: {
     fontFamily: fonts.secondary,
     fontSize: fontSizes[1] + "px",
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.standard + "px",
-    color: colors.seaGlass300
+    color: colors.seaGlass["300"]
   },
   linkSmall,
   label: {
     fontFamily: fonts.secondary,
-    color: colors.gray400,
+    color: colors.gray["400"],
     fontSize: fontSizes[0] + "px",
     fontWeight: fontWeights.medium,
     lineHeight: lineHeights.small + "px"
@@ -232,14 +232,14 @@ export const text = {
     fontWeight: fontWeights.bold,
     fontSize: "40px",
     lineHeight: "51px",
-    color: colors.seaGlass400
+    color: colors.seaGlass["400"]
   },
   introBannerDescription: {
     fontFamily: fonts.secondary,
     fontWeight: fontWeights.regular,
     fontSize: fontSizes[2] + "px",
     lineHeight: lineHeights.h2 + "px",
-    color: colors.seaGlass500
+    color: colors.seaGlass["500"]
   },
   numeralMonospaceLarge: {
     fontFamily: fonts.monospace,
@@ -252,27 +252,27 @@ export const text = {
 // Button variants
 const primaryButton = {
   ...text.bodyStrong,
-  backgroundColor: colors.seaGlass200,
+  backgroundColor: colors.seaGlass["200"],
   borderRadius: 2,
   border: borders.base,
-  color: colors.seaGlass500,
+  color: colors.seaGlass["500"],
   cursor: "pointer",
   boxSizing: "border-box",
   fontFamily: fonts.secondary,
   ":hover": {
-    background: colors.seaGlass100,
+    background: colors.seaGlass["100"],
     boxShadow: shadows[0],
     border: borders.primaryActive
   },
   ":active, :focus": {
-    background: colors.seaGlass100,
+    background: colors.seaGlass["100"],
     border: borders.primaryActive
   },
   ":disabled": {
-    background: colors.seaGlass100,
+    background: colors.seaGlass["100"],
     cursor: "not-allowed",
     pointerEvents: "disabled",
-    color: colors.gray200
+    color: colors.gray["200"]
   }
 };
 
@@ -302,7 +302,7 @@ const secondaryButton = {
   backgroundColor: colors.white,
   borderRadius: 2,
   border: borders.base,
-  color: colors.gray500,
+  color: colors.gray["500"],
   cursor: "pointer",
   boxSizing: "border-box",
   fontFamily: fonts.secondary,
@@ -318,9 +318,9 @@ const secondaryButton = {
     border: borders.active
   },
   ":disabled": {
-    background: colors.gray100,
+    background: colors.gray["100"],
     cursor: "not-allowed",
-    color: colors.gray300
+    color: colors.gray["300"]
   }
 };
 
@@ -354,14 +354,14 @@ const secondarySmallIconOnly = {
 
 const secondaryAffirmative = {
   ...secondaryButton,
-  color: colors.seaGlass300,
+  color: colors.seaGlass["300"],
   ":hover": {
     ...secondaryButton[":hover"],
-    color: colors.seaGlass400
+    color: colors.seaGlass["400"]
   },
   ":active": {
     ...secondaryButton[":active"],
-    color: colors.seaGlass400
+    color: colors.seaGlass["400"]
   }
 };
 
@@ -388,14 +388,14 @@ const secondaryAffirmativeSmall = {
 
 const secondaryDestructive = {
   ...secondaryAffirmative,
-  color: colors.rose200,
+  color: colors.rose["200"],
   ":hover": {
     ...secondaryAffirmative[":hover"],
-    color: colors.rose300
+    color: colors.rose["300"]
   },
   ":active": {
     ...secondaryAffirmative[":active"],
-    color: colors.rose300
+    color: colors.rose["300"]
   }
 };
 
@@ -422,23 +422,23 @@ const secondaryDestructiveSmall = {
 
 const special = {
   ...primaryButton,
-  backgroundColor: colors.amber200,
-  color: colors.amber300,
+  backgroundColor: colors.amber["200"],
+  color: colors.amber["300"],
   ":hover": {
     ...primaryButton[":hover"],
-    backgroundColor: colors.amber100,
-    borderColor: colors.amber200,
-    color: colors.rose300
+    backgroundColor: colors.amber["100"],
+    borderColor: colors.amber["200"],
+    color: colors.rose["300"]
   },
   ":active": {
     ...primaryButton[":active"],
-    backgroundColor: colors.amber100,
-    color: colors.rose300
+    backgroundColor: colors.amber["100"],
+    color: colors.rose["300"]
   },
   ":disabled": {
     ...primaryButton[":disabled"],
     color: primaryButton[":disabled"].color,
-    backgroundColor: colors.amber100
+    backgroundColor: colors.amber["100"]
   }
 };
 
@@ -459,37 +459,37 @@ const specialSmall = {
 
 const destructive = {
   ...primaryButton,
-  backgroundColor: colors.rose200,
-  color: colors.rose300,
+  backgroundColor: colors.rose["200"],
+  color: colors.rose["300"],
   ":hover": {
     ...primaryButton[":hover"],
-    backgroundColor: colors.rose100,
-    borderColor: colors.rose200,
-    color: colors.rose300
+    backgroundColor: colors.rose["100"],
+    borderColor: colors.rose["200"],
+    color: colors.rose["300"]
   },
   ":active, :focus": {
     ...primaryButton[":active"],
-    backgroundColor: colors.rose100,
-    color: colors.rose300
+    backgroundColor: colors.rose["100"],
+    color: colors.rose["300"]
   },
   ":disabled": {
     ...primaryButton[":disabled"],
     color: primaryButton[":disabled"].color,
-    backgroundColor: colors.rose100
+    backgroundColor: colors.rose["100"]
   }
 };
 
 const destructiveLink = {
   ...text.link,
-  color: colors.rose200,
+  color: colors.rose["200"],
   "&[disabled]": {
-    colors: colors.rose200,
+    colors: colors.rose["200"],
     opacity: 0.3,
     pointerEvents: "disabled",
     cursor: "not-allowed"
   },
   ":active": {
-    color: colors.rose300
+    color: colors.rose["300"]
   }
 };
 
@@ -516,17 +516,17 @@ const destructiveSmall = {
 
 const tertiary = {
   ...text.bodyStrong,
-  backgroundColor: colors.amber200,
+  backgroundColor: colors.amber["200"],
   borderRadius: 2,
-  color: colors.amber300,
+  color: colors.amber["300"],
   cursor: "pointer",
   boxSizing: "border-box",
   fontFamily: fonts.secondary,
   ":hover": {
     boxShadow: shadows[0],
     boxSizing: "border-box",
-    color: colors.amber300,
-    background: colors.amber100,
+    color: colors.amber["300"],
+    background: colors.amber["100"],
     border: borders.tertiaryActive
   },
   ":active, :focus": {
@@ -534,9 +534,9 @@ const tertiary = {
     border: borders.tertiaryActive
   },
   ":disabled": {
-    background: colors.amber100,
+    background: colors.amber["100"],
     cursor: "not-allowed",
-    color: colors.gray100
+    color: colors.gray["100"]
   }
 };
 
@@ -611,79 +611,78 @@ export const pill = {
     active: {
       ...text.small,
       textTransform: "capitalize",
-      color: colors.seaGlass500,
-      backgroundColor: colors.seaGlass100
+      color: colors.seaGlass["500"],
+      backgroundColor: colors.seaGlass["100"]
     },
     expired: {
       ...text.small,
       textTransform: "capitalize",
-      color: colors.rose300,
-      backgroundColor: colors.rose100
+      color: colors.rose["300"],
+      backgroundColor: colors.rose["100"]
     },
     dead: {
       ...text.small,
       textTransform: "capitalize",
-      color: colors.gray500,
+      color: colors.gray["500"],
       backgroundColor: colors.white,
       border: borders.base
     },
     completed: {
       ...text.small,
       textTransform: "capitalize",
-      color: colors.gray500,
+      color: colors.gray["500"],
       backgroundColor: colors.white,
       border: borders.base
     },
     pendingAcceptance: {
       ...text.small,
       textTransform: "capitalize",
-      color: colors.mustard300,
-      backgroundColor: colors.mustard100
+      color: colors.gold["300"],
+      backgroundColor: colors.gold["100"]
     },
     declined: {
       ...text.small,
       textTransform: "capitalize",
-      color: colors.rose300,
-      backgroundColor: colors.rose200
+      color: colors.rose["300"],
+      backgroundColor: colors.rose["200"]
     },
     accepted: {
       ...text.small,
       textTransform: "capitalize",
-      color: colors.seaGlass500,
-      backgroundColor: colors.seaGlass200
+      color: colors.seaGlass["500"],
+      backgroundColor: colors.seaGlass["200"]
     },
     processing: {
       ...text.small,
       textTransform: "capitalize",
-      color: colors.mustard300,
-      backgroundColor: colors.mustard100
+      color: colors.gold["300"],
+      backgroundColor: colors.gold["100"]
     },
     confirmed: {
       ...text.small,
       textTransform: "capitalize",
-      color: colors.seaGlass500,
-      backgroundColor: colors.seaGlass100
+      color: colors.seaGlass["500"],
+      backgroundColor: colors.seaGlass["100"]
     },
     failed: {
       ...text.small,
       textTransform: "capitalize",
-      color: colors.rose300,
-      backgroundColor: colors.rose200
+      color: colors.rose["300"],
+      backgroundColor: colors.rose["200"]
     },
     pending: {
       ...text.small,
       textTransform: "capitalize",
-      color: colors.mustard300,
-      backgroundColor: colors.mustard100,
-    },
+      color: colors.gold["300"],
+      backgroundColor: colors.gold["100"]
     }
   },
   tag: {
     explorer: {
       ...text.small,
       textTransform: "capitalize",
-      color: colors.gray400,
-      border: `1px solid ${colors.gray200}`
+      color: colors.gray["400"],
+      border: `1px solid ${colors.gray["200"]}`
     }
   },
   network: {
@@ -692,12 +691,12 @@ export const pill = {
     border: borders.base
   },
   notificationCount: {
-    backgroundColor: colors.rose200,
+    backgroundColor: colors.rose["200"],
     px: `${space[1]}px !important`,
     py: `${space[1]}px !important`
   },
   tabNotificationCount: {
-    backgroundColor: colors.gray200,
+    backgroundColor: colors.gray["200"],
     px: `${space[2]}px !important`,
     py: `${space[2]}px !important`
   }
@@ -706,11 +705,11 @@ export const pill = {
 const link = {
   ...text.link,
   "&[disabled]": {
-    colors: colors.seaGlass300,
+    colors: colors.seaGlass["300"],
     opacity: 0.3
   },
   ":active": {
-    colors: colors.seaGlass500
+    colors: colors.seaGlass["500"]
   }
 };
 
@@ -719,13 +718,13 @@ export const forms = {
     ...text.body,
     resize: "none",
     border: "none",
-    color: colors.gray500,
+    color: colors.gray["500"],
     "&:active": {
       border: "none",
       outline: "none"
     },
     "&:focus, &:active": { border: "none", outline: "none" },
-    "::placeholder": { color: colors.gray400 }
+    "::placeholder": { color: colors.gray["400"] }
   },
   error: {
     bg: `${colors.white} !important`,
@@ -753,13 +752,13 @@ export const variants = {
   },
   secondaryLink: {
     ...text.link,
-    color: colors.gray400,
+    color: colors.gray["400"],
     "&[disabled]": {
-      colors: colors.gray400,
+      colors: colors.gray["400"],
       opacity: 0.3
     },
     ":active": {
-      color: colors.gray500
+      color: colors.gray["500"]
     }
   },
   destructiveLink,
@@ -768,7 +767,7 @@ export const variants = {
     mainnet: {
       height: 2,
       width: 2,
-      backgroundColor: colors.seaGlass200,
+      backgroundColor: colors.seaGlass["200"],
       borderRadius: "50%"
     }
   }
@@ -780,6 +779,8 @@ const icons = {
 
 // EXPORT THEME
 const theme = {
+  colors,
+  colorAliases,
   breakpoints,
   mediaQueries,
   space,
