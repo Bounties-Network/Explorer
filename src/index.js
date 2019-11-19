@@ -1,30 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { createBrowserHistory } from 'history';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { Provider } from 'react-redux';
-import { reducer as formReducer } from 'redux-form';
+import React from "react";
+import ReactDOM from "react-dom";
+import { createBrowserHistory } from "history";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+import { reducer as formReducer } from "redux-form";
 import {
   ConnectedRouter,
   connectRouter,
   routerMiddleware
-} from 'connected-react-router';
-import createSagaMiddleware from 'redux-saga';
-import { ApolloProvider } from '@apollo/react-hooks';
-import { ThemeProvider } from 'emotion-theming';
-import theme from './theme';
-import { BigNumber } from 'bignumber.js';
-import { reducers, sagaWatchers } from 'public-modules';
-import explorerSagas from './sagas';
-import baseReducers from './reducers';
-import { App } from 'layout';
-import 'styles/index.scss';
-import 'styles/flexboxgrid.css';
-import 'styles/Toastify.scss';
+} from "connected-react-router";
+import createSagaMiddleware from "redux-saga";
+import { ApolloProvider } from "@apollo/react-hooks";
+import { ThemeProvider } from "theme-ui";
+import theme from "./theme/theme";
+import { BigNumber } from "bignumber.js";
+import { reducers, sagaWatchers } from "public-modules";
+import explorerSagas from "./sagas";
+import baseReducers from "./reducers";
+import { App } from "layout";
+import "styles/index.scss";
+import "styles/flexboxgrid.css";
+import "styles/Toastify.scss";
 
 // common locale data
-import 'intl/locale-data/jsonp/en.js';
-import apolloClient from 'lib/apollo-client';
+import "intl/locale-data/jsonp/en.js";
+import apolloClient from "lib/apollo-client";
 // add locales here
 
 //add supported moment locales here
@@ -62,5 +62,5 @@ ReactDOM.render(
       </ThemeProvider>
     </ConnectedRouter>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

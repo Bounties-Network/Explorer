@@ -4,14 +4,19 @@ import React from "react";
 import Tippy from "@tippy.js/react";
 import { Global } from "@emotion/core";
 import css from "@styled-system/css";
-import theme from "theme";
+import theme from "theme/theme";
 
 interface IProps {
   content: React.ReactElement<any>;
 }
 
 const Tooltip: React.FunctionComponent<IProps> = props => (
-  <Tippy distance={8} trigger={"click"} interactive={true} content={props.content}>
+  <Tippy
+    distance={8}
+    trigger={"click"}
+    interactive={true}
+    content={props.content}
+  >
     <div>
       <Global
         styles={css({
