@@ -1,4 +1,5 @@
-import { theme as cTheme } from '@chakra-ui/core';
+import { theme as cTheme } from "@chakra-ui/core";
+import { colors } from "./colors";
 // MEDIA QUERIES
 const createMediaQuery = n => `@media screen and (min-width:${n})`;
 
@@ -21,92 +22,6 @@ const aliases = ["sm", "md", "lg", "xl"];
 
 addAliases(breakpoints, aliases);
 addAliases(mediaQueries, aliases);
-
-// COLOR PALETTE
-const seaGlass100 = "hsl(187, 45%, 81%)";
-const seaGlass200 = "hsl(187, 50%, 60%)";
-const seaGlass300 = "hsl(187, 76%, 35%)";
-const seaGlass400 = "hsl(191, 76%, 27%)";
-const seaGlass500 = "hsl(190, 95%, 18%)";
-
-const rose100 = "hsl(351, 68%, 83%)";
-const rose200 = "hsl(352, 64%, 67%)";
-const rose300 = "hsl(345, 68%, 23%)";
-
-const amber100 = "hsl(21, 94%, 85%)";
-const amber200 = "hsl(21, 95%, 75%)";
-const amber300 = "hsl(18, 68%, 35%)";
-
-const mustard100 = "hsl(39, 100%, 85%)";
-const mustard200 = "hsl(39, 100%, 77%)";
-const mustard300 = "hsl(36, 85%, 38%)";
-
-const gray100 = "hsl(219, 27%, 97%)";
-const gray200 = "hsl(180, 2%, 91%)";
-const gray300 = "hsl(199, 4%, 86%)";
-const gray400 = "hsl(193, 4%, 57%)";
-const gray500 = "hsl(199, 4%, 29%)";
-const black = "hsl(197, 17%, 8%)";
-const white = "hsl(0, 0%, 100%)";
-const transparentWhite = "rgba(255, 255, 255, 65%)";
-
-// Brand color aliases
-const brandPrimary = seaGlass200;
-const brandPrimaryHover = seaGlass100;
-const brandSecondary = white;
-const brandSecondaryHover = white;
-const brandDestructive = rose200;
-const brandDestructiveHover = rose100;
-const brandSpecial = amber200;
-const brandSpecialHover = amber100;
-const brandAffirmative = seaGlass200;
-const brandAffirmativeHover = seaGlass100;
-
-// Misc
-const inputBg = gray100;
-const baseBorderColor = gray200;
-
-const colors = {
-  seaGlass100,
-  seaGlass200,
-  seaGlass300,
-  seaGlass400,
-  seaGlass500,
-
-  rose100,
-  rose200,
-  rose300,
-
-  amber100,
-  amber200,
-  amber300,
-
-  mustard100,
-  mustard200,
-  mustard300,
-
-  brandPrimary,
-  brandPrimaryHover,
-  brandSecondary,
-  brandSecondaryHover,
-  brandDestructive,
-  brandDestructiveHover,
-  brandSpecial,
-  brandSpecialHover,
-  brandAffirmative,
-  brandAffirmativeHover,
-
-  gray100,
-  gray200,
-  gray300,
-  gray400,
-  gray500,
-  black,
-  white,
-  transparentWhite,
-  inputBg,
-  baseBorderColor
-};
 
 // SPACING SCALE
 export const space = [0, 4, 8, 16, 24, 32, 40, 128];
@@ -351,7 +266,7 @@ const primaryButton = {
   },
   ":active, :focus": {
     background: colors.seaGlass100,
-    border: borders.primaryActive,
+    border: borders.primaryActive
   },
   ":disabled": {
     background: colors.seaGlass100,
@@ -371,8 +286,8 @@ const primaryIcon = {
 
 const primaryIconOnly = {
   ...primaryIcon,
-  height: '40px',
-  width: '40px',
+  height: "40px",
+  width: "40px",
   "> :first-of-type": { mr: 0 }
 };
 
@@ -400,7 +315,7 @@ const secondaryButton = {
   ":active, :focus": {
     boxSizing: "border-box",
     color: colors.black,
-    border: borders.active,
+    border: borders.active
   },
   ":disabled": {
     background: colors.gray100,
@@ -419,8 +334,8 @@ const secondaryIcon = {
 
 const secondaryIconOnly = {
   ...secondaryIcon,
-  width: '40px',
-  height: '40px',
+  width: "40px",
+  height: "40px",
   "> :first-of-type": { mr: 0 }
 };
 
@@ -460,8 +375,8 @@ const secondaryAffirmativeIcon = {
 
 const secondaryAffirmativeIconOnly = {
   ...secondaryAffirmativeIcon,
-  width: '40px',
-  height: '40px',
+  width: "40px",
+  height: "40px",
   "> :only-child": { mr: 0 }
 };
 
@@ -494,8 +409,8 @@ const secondaryDestructiveIcon = {
 
 const secondaryDestructiveIconOnly = {
   ...secondaryDestructiveIcon,
-  width: '40px',
-  height: '40px',
+  width: "40px",
+  height: "40px",
   "> :only-child": { mr: 0 }
 };
 
@@ -531,8 +446,8 @@ const specialIcon = { ...primaryIcon, ...special };
 
 const specialIconOnly = {
   ...specialIcon,
-  width: '40px',
-  height: '40px',
+  width: "40px",
+  height: "40px",
   "> :only-child": { mr: 0 }
 };
 
@@ -555,7 +470,7 @@ const destructive = {
   ":active, :focus": {
     ...primaryButton[":active"],
     backgroundColor: colors.rose100,
-    color: colors.rose300,
+    color: colors.rose300
   },
   ":disabled": {
     ...primaryButton[":disabled"],
@@ -588,8 +503,8 @@ const destructiveIcon = {
 
 const destructiveIconOnly = {
   ...destructiveIcon,
-  width: '40px',
-  height: '40px',
+  width: "40px",
+  height: "40px",
   "> :first-of-type": { mr: 0 }
 };
 
@@ -616,7 +531,7 @@ const tertiary = {
   },
   ":active, :focus": {
     boxSizing: "border-box",
-    border: borders.tertiaryActive,
+    border: borders.tertiaryActive
   },
   ":disabled": {
     background: colors.amber100,
@@ -723,7 +638,7 @@ export const pill = {
       ...text.small,
       textTransform: "capitalize",
       color: colors.mustard300,
-      backgroundColor: colors.mustard100,
+      backgroundColor: colors.mustard100
     },
     declined: {
       ...text.small,
@@ -741,7 +656,7 @@ export const pill = {
       ...text.small,
       textTransform: "capitalize",
       color: colors.mustard300,
-      backgroundColor: colors.mustard100,
+      backgroundColor: colors.mustard100
     },
     confirmed: {
       ...text.small,
@@ -761,6 +676,7 @@ export const pill = {
       color: colors.mustard300,
       backgroundColor: colors.mustard100,
     },
+    }
   },
   tag: {
     explorer: {
@@ -860,7 +776,7 @@ export const variants = {
 
 const icons = {
   ...cTheme.icons
-}
+};
 
 // EXPORT THEME
 const theme = {
@@ -874,7 +790,6 @@ const theme = {
   lineHeights,
   regular,
   bold,
-  colors,
   radii,
   radius,
   borders,
@@ -887,9 +802,8 @@ const theme = {
   maxContainerWidth,
   forms,
   variants,
-  icons,
+  icons
 };
 
 export default theme;
 export type ITheme = typeof theme;
-export { colors };
