@@ -1,7 +1,7 @@
 const colors = {
   transparent: "transparent",
   current: "currentColor",
-  black: "#000",
+  black: "#111618",
   white: "#fff",
 
   whiteAlpha: {
@@ -53,8 +53,9 @@ const colors = {
   }
 };
 
+// Brand color aliases
 const colorAliases = {
-  brandPrimary: colors.seaGlass["200"],
+  brandPrimary: colors.seaGlass["300"],
   brandPrimaryHover: colors.seaGlass["100"],
   brandSecondary: colors.white,
   brandSecondaryHover: colors.white,

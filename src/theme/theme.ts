@@ -1,5 +1,7 @@
 import { theme as cTheme } from "@chakra-ui/core";
 import { colors, colorAliases } from "./colors";
+import typography from "./typography";
+
 // MEDIA QUERIES
 const createMediaQuery = n => `@media screen and (min-width:${n})`;
 
@@ -24,49 +26,8 @@ addAliases(breakpoints, aliases);
 addAliases(mediaQueries, aliases);
 
 // SPACING SCALE
-export const space = [0, 4, 8, 16, 24, 32, 40, 128];
+export const space = [0, 4, 8, 16, 24, 32, 40, 128].map(n => n / 16 + "em");
 export const sizes = cTheme.sizes;
-
-// TYPOGRAPHY //
-export const body = '"Domine", Inter, -apple-system';
-export const primary = '"Domine"';
-export const secondary = '"Inter"';
-export const heading = "inherit";
-export const monospace = "Roboto";
-export const fontSizes = [12, 14, 16, 18, 20, 25];
-export const fonts = {
-  body,
-  primary,
-  secondary,
-  heading,
-  monospace
-};
-
-// Weights
-export const regular = 400;
-export const medium = 500;
-export const semiBold = 600;
-export const bold = 700;
-
-// styled-system's 'fontWeight' function can hook into the 'fontWeights' object
-export const fontWeights = {
-  regular,
-  medium,
-  semiBold,
-  bold
-};
-
-// Line-height
-export const lineHeights = {
-  h1: 37,
-  h2: 24,
-  h3: 22,
-  h4: 19,
-  h5: 17,
-  standard: 21,
-  small: 18,
-  reset: 1
-};
 
 // BORDERS
 // styled-system's 'borderRadius' function can hook into the 'radii' object/array
@@ -107,158 +68,21 @@ export const shadows = [
   "0px 9px 24px rgba(0, 0, 0, 0.08)", //shadowLarge
   `inset 0px 1px 4px rgba(0, 0, 0, 0.14)`, // innerShadows
   `0 0 10px ${colors.gray["200"]}`,
-  `inset 0 0 0 1px ${colors.brandSecondary}`,
-  `inset 0 0 0 1px ${colors.brandDestructive}`
+  `inset 0 0 0 1px ${colorAliases.brandSecondary}`,
+  `inset 0 0 0 1px ${colorAliases.brandDestructive}`
 ]; //Card //Avatar
 
 //Z-INDEX
 export const zIndices = cTheme.zIndices;
 
-const linkSmall = {
-  color: colors.seaGlass["300"],
-  fontFamily: fonts.secondary,
-  fontSize: fontSizes[0] + "px",
-  fontWeight: fontWeights.medium,
-  lineHeight: lineHeights.standard + "px"
-};
-
-// Text variants
-export const text = {
-  h1: {
-    fontSize: fontSizes[5] + "px",
-    fontWeight: fontWeights.bold,
-    lineHeight: lineHeights.h1 + "px"
-  },
-  h2: {
-    fontFamily: fonts.secondary,
-    fontSize: fontSizes[4] + "px",
-    fontWeight: fontWeights.bold,
-    lineHeight: lineHeights.h2 + "px"
-  },
-  h2Secondary: {
-    fontSize: fontSizes[4] + "px",
-    fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.h2 + "px"
-  },
-  h3: {
-    fontFamily: fonts.secondary,
-    fontSize: fontSizes[3] + "px",
-    fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.h3 + "px"
-  },
-  h4: {
-    fontSize: fontSizes[2] + "px",
-    fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.h4 + "px"
-  },
-  h5: {
-    fontSize: fontSizes[1] + "px",
-    fontWeight: fontWeights.semiBold,
-    lineHeight: lineHeights.h5 + "px"
-  },
-  bodyItalic: {
-    fontSize: fontSizes[1] + "px",
-    fontWeight: fontWeights.regular,
-    fontStyle: "italic",
-    lineHeight: lineHeights.standard + "px"
-  },
-  bodyStrong: {
-    color: colors.black,
-    fontFamily: fonts.secondary,
-    fontSize: fontSizes[1] + "px",
-    fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.standard + "px"
-  },
-  body: {
-    fontSize: fontSizes[1] + "px",
-    fontWeight: fontWeights.regular,
-    lineHeight: lineHeights.standard + "px"
-  },
-  smallStrong: {
-    fontFamily: fonts.secondary,
-    fontSize: fontSizes[0] + "px",
-    fontWeight: fontWeights.semiBold,
-    lineHeight: lineHeights.small + "px"
-  },
-  small: {
-    fontFamily: fonts.secondary,
-    fontSize: fontSizes[0] + "px",
-    fontWeight: fontWeights.regular,
-    lineHeight: lineHeights.small + "px"
-  },
-  link: {
-    cursor: "pointer",
-    "&:hover": {
-      textDecoration: "underline"
-    },
-    "&[disabled], &:disabled": {
-      cursor: "not-allowed",
-      pointerEvents: "disabled"
-    },
-    fontFamily: fonts.secondary,
-    fontSize: fontSizes[1] + "px",
-    fontWeight: fontWeights.regular,
-    lineHeight: lineHeights.standard + "px !important",
-    color: colors.seaGlass["300"]
-  },
-  linkStrong: {
-    fontFamily: fonts.secondary,
-    fontSize: fontSizes[1] + "px",
-    fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.standard + "px",
-    color: colors.seaGlass["300"]
-  },
-  linkSmall,
-  label: {
-    fontFamily: fonts.secondary,
-    color: colors.gray["400"],
-    fontSize: fontSizes[0] + "px",
-    fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.small + "px"
-  },
-  help: {
-    fontSize: fontSizes[0] + "px",
-    fontWeight: fontWeights.regular,
-    fontStyle: "italic",
-    lineHeight: lineHeights.standard + "px"
-  },
-  tableHeading: {
-    fontSize: fontSizes[0] + "px",
-    fontWeight: fontWeights.medium,
-    lineHeight: lineHeights.standard + "px"
-  },
-  introBannerH1: {
-    fontFamily: "Domine",
-    fontWeight: fontWeights.bold,
-    fontSize: "40px",
-    lineHeight: "51px",
-    color: colors.seaGlass["400"]
-  },
-  introBannerDescription: {
-    fontFamily: fonts.secondary,
-    fontWeight: fontWeights.regular,
-    fontSize: fontSizes[2] + "px",
-    lineHeight: lineHeights.h2 + "px",
-    color: colors.seaGlass["500"]
-  },
-  numeralMonospaceLarge: {
-    fontFamily: fonts.monospace,
-    fontSize: fontSizes[5] + "px",
-    fontWeight: fontWeights.regular,
-    lineHeight: "29px"
-  }
-};
-
 // Button variants
 const primaryButton = {
-  ...text.bodyStrong,
   backgroundColor: colors.seaGlass["200"],
   borderRadius: 2,
   border: borders.base,
   color: colors.seaGlass["500"],
   cursor: "pointer",
   boxSizing: "border-box",
-  fontFamily: fonts.secondary,
   ":hover": {
     background: colors.seaGlass["100"],
     boxShadow: shadows[0],
@@ -298,14 +122,12 @@ const primarySmall = {
 };
 
 const secondaryButton = {
-  ...text.bodyStrong,
   backgroundColor: colors.white,
   borderRadius: 2,
   border: borders.base,
   color: colors.gray["500"],
   cursor: "pointer",
   boxSizing: "border-box",
-  fontFamily: fonts.secondary,
   ":hover": {
     boxSizing: "border-box",
     boxShadow: shadows[0],
@@ -480,7 +302,7 @@ const destructive = {
 };
 
 const destructiveLink = {
-  ...text.link,
+  ...typography.text.link,
   color: colors.rose["200"],
   "&[disabled]": {
     colors: colors.rose["200"],
@@ -515,13 +337,11 @@ const destructiveSmall = {
 };
 
 const tertiary = {
-  ...text.bodyStrong,
   backgroundColor: colors.amber["200"],
   borderRadius: 2,
   color: colors.amber["300"],
   cursor: "pointer",
   boxSizing: "border-box",
-  fontFamily: fonts.secondary,
   ":hover": {
     boxShadow: shadows[0],
     boxSizing: "border-box",
@@ -550,8 +370,6 @@ const upload = {
   borderBottomRightRadius: 2,
   height: "48px",
   width: "106px",
-  ...text.bodyStrong,
-  fontFamily: fonts.secondary,
   color: "black",
   border: "base"
 };
@@ -609,63 +427,63 @@ export const textFormat = {
 export const pill = {
   status: {
     active: {
-      ...text.small,
+      fontSize: "xs",
       textTransform: "capitalize",
       color: colors.seaGlass["500"],
       backgroundColor: colors.seaGlass["100"]
     },
     expired: {
-      ...text.small,
+      fontSize: "xs",
       textTransform: "capitalize",
       color: colors.rose["300"],
       backgroundColor: colors.rose["100"]
     },
     dead: {
-      ...text.small,
+      fontSize: "xs",
       textTransform: "capitalize",
       color: colors.gray["500"],
       backgroundColor: colors.white,
       border: borders.base
     },
     completed: {
-      ...text.small,
+      fontSize: "xs",
       textTransform: "capitalize",
       color: colors.gray["500"],
       backgroundColor: colors.white,
       border: borders.base
     },
     pendingAcceptance: {
-      ...text.small,
+      fontSize: "xs",
       textTransform: "capitalize",
       color: colors.gold["300"],
       backgroundColor: colors.gold["100"]
     },
     declined: {
-      ...text.small,
+      fontSize: "xs",
       textTransform: "capitalize",
       color: colors.rose["300"],
       backgroundColor: colors.rose["200"]
     },
     accepted: {
-      ...text.small,
+      fontSize: "xs",
       textTransform: "capitalize",
       color: colors.seaGlass["500"],
       backgroundColor: colors.seaGlass["200"]
     },
     processing: {
-      ...text.small,
+      fontSize: "xs",
       textTransform: "capitalize",
       color: colors.gold["300"],
       backgroundColor: colors.gold["100"]
     },
     confirmed: {
-      ...text.small,
+      fontSize: "xs",
       textTransform: "capitalize",
       color: colors.seaGlass["500"],
       backgroundColor: colors.seaGlass["100"]
     },
     failed: {
-      ...text.small,
+      fontSize: "xs",
       textTransform: "capitalize",
       color: colors.rose["300"],
       backgroundColor: colors.rose["200"]
@@ -679,14 +497,14 @@ export const pill = {
   },
   tag: {
     explorer: {
-      ...text.small,
+      fontSize: "xs",
       textTransform: "capitalize",
       color: colors.gray["400"],
       border: `1px solid ${colors.gray["200"]}`
     }
   },
   network: {
-    textTransform: "capitalize",
+    textTransform: "uppercase",
     backgroundColor: colors.white,
     border: borders.base
   },
@@ -703,7 +521,7 @@ export const pill = {
 };
 
 const link = {
-  ...text.link,
+  ...typography.text.link,
   "&[disabled]": {
     colors: colors.seaGlass["300"],
     opacity: 0.3
@@ -715,7 +533,7 @@ const link = {
 
 export const forms = {
   textarea: {
-    ...text.body,
+    ...typography.text.body,
     resize: "none",
     border: "none",
     color: colors.gray["500"],
@@ -742,7 +560,6 @@ export const variants = {
     borderRadius: 2
   },
   link,
-  linkSmall,
   linkIcon: {
     ...link,
     display: "flex",
@@ -751,7 +568,7 @@ export const variants = {
     "> :first-of-type": { mr: 2 }
   },
   secondaryLink: {
-    ...text.link,
+    ...typography.text.link,
     color: colors.gray["400"],
     "&[disabled]": {
       colors: colors.gray["400"],
@@ -781,22 +598,16 @@ const icons = {
 const theme = {
   colors,
   colorAliases,
+  typography,
   breakpoints,
   mediaQueries,
   space,
   sizes,
-  fonts,
-  fontSizes,
-  fontWeights,
-  lineHeights,
-  regular,
-  bold,
   radii,
   radius,
   borders,
   shadows,
   zIndices,
-  text,
   buttons,
   avatarResourceTypes,
   textFormat,
