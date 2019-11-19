@@ -48,9 +48,9 @@ const SubmissionAccepted: React.FC<ISubmissionAcceptedProps> = ({
       <DescriptionContainer flexDirection="column">
         <Description>
           <Text variant="bodyStrong">{authorName || '--'}</Text>
-          <Text variant="body" color="gray400">{` submission to `}</Text>
+          <Text variant="body" color="gray.400">{` submission to `}</Text>
           <Link variant="link">{bountyTitle}</Link>
-          <Text variant="body" color="gray400">
+          <Text variant="body" color="gray.400">
             {'was accepted!'}
           </Text>
         </Description>

@@ -33,7 +33,7 @@ const Tooltip: React.FunctionComponent<IProps> = props => (
           ".tippy-content": {
             ...theme.text.small,
             fontWeight: "500",
-            color: "seaGlass300",
+            color: "seaGlass.300",
             border: `1px solid hsl(187, 45%, 81%)`,
             borderRadius: 2,
             p: 3

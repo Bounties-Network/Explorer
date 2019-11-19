@@ -63,7 +63,7 @@ const PayoutIncrease: React.FC<IPayoutIncreaseProps> = ({
           <Text variant="bodyStrong">{authorName || '--'}</Text>
           <Text
             variant="body"
-            color="gray400"
+            color="gray.400"
           >{` increased their bounty's payout to `}</Text>
           <Text variant="bodyStrong">{`${bountyPayoutIncreaseAmount} ETH`}</Text>
         </Description>

@@ -27,9 +27,9 @@ const inputStyle = (props: InputProps) => ({
   border: "base",
   borderRadius: 2,
   boxShadow: 3,
-  bg: "gray100",
+  bg: "gray.100",
   color: "black",
-  "::placeholder": { color: "gray400" },
+  "::placeholder": { color: "gray.400" },
   "&:focus": { border: "focus", outline: "none" },
   ...theme.text.body,
   fontFamily: "secondary",
@@ -49,7 +49,7 @@ const Input: React.FunctionComponent<InputProps> = props => (
       {props.isValid && (
         <FontAwesomeIcon
           sx={{
-            color: "seaGlass300",
+            color: "seaGlass.300",
             position: "absolute",
             top: "12px",
             right: 4
@@ -59,14 +59,14 @@ const Input: React.FunctionComponent<InputProps> = props => (
       )}
     </Flex>
     {typeof props.helperMessage === "string" && (
-      <Text sx={{ mt: 1 }} color="gray400" variant="help">
+      <Text sx={{ mt: 1 }} color="gray.400" variant="help">
         {props.helperMessage}
       </Text>
     )}
     {typeof props.errorMessage === "string" && (
       <Text
         sx={{ mt: 1 }}
-        color="rose200"
+        color="rose.200"
         variant="help"
       >{`* ${props.errorMessage}`}</Text>
     )}

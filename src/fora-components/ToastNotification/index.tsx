@@ -52,7 +52,7 @@ interface IToastNotificationContentProps {
   type: NotificationType;
 }
 
-const typeIconStyle = { color: "seaGlass200", mr: [3, 4] };
+const typeIconStyle = { color: "seaGlass.200", mr: [3, 4] };
 export const ToastNotificationContent: React.FC<IToastNotificationContentProps> = props => (
   <Flex
     alignItems="center"
@@ -75,14 +75,14 @@ export const ToastNotificationContent: React.FC<IToastNotificationContentProps> 
     )}
     {props.type === "loading" && (
       <FontAwesomeIcon
-        sx={Object.assign(typeIconStyle, { color: "amber200" })}
+        sx={Object.assign(typeIconStyle, { color: "amber.200" })}
         size={"lg"}
         icon={faSpinner}
       ></FontAwesomeIcon>
     )}
     {props.type === "error" && (
       <FontAwesomeIcon
-        sx={Object.assign(typeIconStyle, { color: "rose200" })}
+        sx={Object.assign(typeIconStyle, { color: "rose.200" })}
         size={"lg"}
         icon={faExclamationCircle}
       ></FontAwesomeIcon>
@@ -91,7 +91,7 @@ export const ToastNotificationContent: React.FC<IToastNotificationContentProps> 
       <Text variant="bodyStrong" color="black">
         {props.title}
       </Text>
-      <Text variant="body" color="gray400">
+      <Text variant="body" color="gray.400">
         {props.detail}
       </Text>
     </Flex>
@@ -104,7 +104,7 @@ export const ToastNotificationContent: React.FC<IToastNotificationContentProps> 
     )}
     <FontAwesomeIcon
       sx={{
-        color: "gray300",
+        color: "gray.300",
         position: "absolute",
         top: "-16px",
         right: "0px"

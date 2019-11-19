@@ -61,7 +61,7 @@ const BountyCreated: React.FC<IBountyCreatedProps> = ({
       <DescriptionContainer flexDirection="column">
         <Description>
           <Text variant="bodyStrong">{authorName || '--'}</Text>
-          <Text variant="body" color="gray400">{` created a bounty`}</Text>
+          <Text variant="body" color="gray.400">{` created a bounty`}</Text>
         </Description>
         <PreviewCard
           status={bountyStatus}

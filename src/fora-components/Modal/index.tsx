@@ -18,7 +18,7 @@ const Modal = props => (
 );
 const ModalOverlay = props => (
   <CModalOverlay
-    sx={{ backgroundColor: "gray500", opacity: 0.8 }}
+    sx={{ backgroundColor: "gray.500", opacity: 0.8 }}
     {...props}
   ></CModalOverlay>
 );

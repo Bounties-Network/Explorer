@@ -1,22 +1,22 @@
-import React from 'react';
-import { css } from '@styled-system/css';
-import { Flex, Text, Link } from 'rebass';
-import emotionStyled from 'lib/emotion-styled';
-import MustardLogo from 'assets/mustard-logo';
-import Divider from 'fora-components/Divider';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import { css } from "@styled-system/css";
+import { Flex, Text, Link } from "rebass";
+import emotionStyled from "lib/emotion-styled";
+import GoldLogo from "assets/gold-logo";
+import Divider from "fora-components/Divider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
   faTwitter,
   faReddit,
   faLinkedin,
   faSlack
-} from '@fortawesome/free-brands-svg-icons';
+} from "@fortawesome/free-brands-svg-icons";
 
 const Container = emotionStyled(Flex)(() =>
   css({
-    backgroundColor: 'seaGlass400',
-    width: '100vw',
+    backgroundColor: "seaGlass.400",
+    width: "100vw",
     py: [3, 4, 5, 6],
     px: [2, 3, 4, 6]
   })
@@ -28,105 +28,104 @@ interface ILinkColumn {
 }
 const footerLinks: Array<ILinkColumn[]> = [
   [
-    { label: 'Learn More' },
+    { label: "Learn More" },
     {
-      label: 'Getting started',
-      href: '/getting-started'
+      label: "Getting started",
+      href: "/getting-started"
     },
     {
-      label: 'FAQ',
-      href: '/faq'
+      label: "FAQ",
+      href: "/faq"
     }
   ],
 
   [
-    { label: 'Company' },
+    { label: "Company" },
     {
-      label: 'Our team',
-      href: '/team'
+      label: "Our team",
+      href: "/team"
     },
     {
-      label: 'Blog',
-      href: '/blog'
+      label: "Blog",
+      href: "/blog"
     },
     {
-      label: 'Careers',
-      href: '/careers'
+      label: "Careers",
+      href: "/careers"
     }
   ],
 
   [
-    { label: 'Technology' },
+    { label: "Technology" },
     {
-      label: 'Bounties Protocol',
-      href: '/protocol'
+      label: "Bounties Protocol",
+      href: "/protocol"
     }
   ],
 
   [
-    { label: 'Legal' },
+    { label: "Legal" },
     {
-      label: 'Privacy Policy',
-      href: '/privacy-policy'
+      label: "Privacy Policy",
+      href: "/privacy-policy"
     },
     {
-      label: 'Terms of service',
-      href: '/terms-of-service'
+      label: "Terms of service",
+      href: "/terms-of-service"
     },
     {
-      label: 'Security',
-      href: '/security'
+      label: "Security",
+      href: "/security"
     }
   ],
 
   [
-    { label: 'Contact & Support' },
+    { label: "Contact & Support" },
     {
-      label: 'contact@bounties.network',
-      href: 'mailto:contact@bounties.network'
+      label: "contact@bounties.network",
+      href: "mailto:contact@bounties.network"
     }
   ]
 ];
 
 const LinkColumnContainer = emotionStyled(Flex)(() =>
-  css({ '> :not(:last-child)': { mb: [1, 2, 3] } })
+  css({ "> :not(:last-child)": { mb: [1, 2, 3] } })
 );
 
 const LinkColumn: React.FC<ILinkColumn[]> = links => (
   <LinkColumnContainer flexDirection="column">
-    {links.map(
-      ({ href, label }) =>
-        typeof href === 'string' ? (
-          <Link key={href} href={href}>
-            <Text variant="body" color="white">
-              {label}
-            </Text>
-          </Link>
-        ) : (
-          <Text key={label} variant="bodyStrong" color="seaGlass200">
+    {links.map(({ href, label }) =>
+      typeof href === "string" ? (
+        <Link key={href} href={href}>
+          <Text variant="body" color="white">
             {label}
           </Text>
-        )
+        </Link>
+      ) : (
+        <Text key={label} variant="bodyStrong" color="seaGlass.200">
+          {label}
+        </Text>
+      )
     )}
   </LinkColumnContainer>
 );
 
 const SiteContent = emotionStyled(Flex)(() =>
-  css({ width: '100%', '> :last-child': { ml: 'auto' } })
+  css({ width: "100%", "> :last-child": { ml: "auto" } })
 );
 const LinkColumnsContainer = emotionStyled(Flex)(() =>
   css({
-    '> :not(:last-child)': { mr: [2, 3, 6, 6] }
+    "> :not(:last-child)": { mr: [2, 3, 6, 6] }
   })
 );
 const SocialContent = emotionStyled(Flex)(() =>
-  css({ '> :first-child': { mr: 'auto' } })
+  css({ "> :first-child": { mr: "auto" } })
 );
 const SocialLinksContainer = emotionStyled(Flex)(() =>
-  css({ '> :not(:last-child)': { mr: 4 } })
+  css({ "> :not(:last-child)": { mr: 4 } })
 );
 const SocialIcon = emotionStyled(FontAwesomeIcon)(() =>
-  css({ color: 'amber200' })
+  css({ color: "amber.200" })
 );
 
 const SocialLinks = () => (
@@ -154,7 +153,7 @@ const Footer: React.FC<IProps> = ({}) => {
   return (
     <Container flexDirection="column">
       <SiteContent>
-        <MustardLogo />
+        <GoldLogo />
         <LinkColumnsContainer>
           {footerLinks.map(LinkColumn)}
         </LinkColumnsContainer>
@@ -162,11 +161,11 @@ const Footer: React.FC<IProps> = ({}) => {
       <Divider
         mt={[3, 4, 5, 6]}
         mb={[3, 3, 5, 5]}
-        backgroundColor="seaGlass300"
+        backgroundColor="seaGlass.300"
       />
       <SocialContent>
         <SocialLinks />
-        <Text color="seaGlass200" variant="body">
+        <Text color="seaGlass.200" variant="body">
           ©2019 fora, Inc. All rights reserved.
         </Text>
       </SocialContent>

@@ -60,9 +60,9 @@ const uploadInputStyle: any = ipfsFileState => ({
   border: "base",
   borderTopLeftRadius: 2,
   borderBottomLeftRadius: 2,
-  bg: "gray100",
+  bg: "gray.100",
   color: "black",
-  "::placeholder": { color: "gray400" },
+  "::placeholder": { color: "gray.400" },
   "&:focus": { border: "focus", outline: "none" },
   ...theme.text.body,
   fontFamily: "secondary",
@@ -133,7 +133,7 @@ const UploadImageInput: React.FunctionComponent<UploadImageInputProps> = props =
               right: "120px",
               top: "16px",
               cursor: "pointer",
-              color: "rose200"
+              color: "rose.200"
             }}
           >
             <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>

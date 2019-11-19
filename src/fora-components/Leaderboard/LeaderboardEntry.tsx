@@ -42,11 +42,11 @@ const LeaderboardEntry: React.FC<IProps> = ({
         onDark={false}
       ></Avatar>
       <Flex flexDirection="column">
-        <Text color="seaGlass400" variant="h3">{`$${ethInUSD}`}</Text>
+        <Text color="seaGlass.400" variant="h3">{`$${ethInUSD}`}</Text>
         <Text
           fontFamily="secondary"
           variant="body"
-          color="gray300"
+          color="gray.300"
         >{`${ethAmount} ETH`}</Text>
       </Flex>
     </Container>

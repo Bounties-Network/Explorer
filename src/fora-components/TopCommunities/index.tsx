@@ -36,7 +36,7 @@ const Community: React.FC<ICommunityProps> = ({
         <Text color="black" variant="text.bodyStrong">
           {name}
         </Text>
-        <Text variant="text.small" color="gray400">
+        <Text variant="text.small" color="gray.400">
           {`${memberCount} members`}
         </Text>
       </Flex>

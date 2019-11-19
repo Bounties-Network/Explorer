@@ -120,7 +120,7 @@ const AvatarName = styled(Text)<AvatarNameProps>(props =>
 type AvatarAddressProps = Pick<AvatarProps, "onDark" | "variant">;
 const AvatarAddress = styled(Text)<AvatarAddressProps>(props =>
   css({
-    color: props.onDark ? "transparentWhite" : "seaGlass300",
+    color: props.onDark ? "transparentWhite" : "seaGlass.300",
     variant: "text." + addressSize(props.variant),
     fontFamily: "secondary",
     lineHeight: "reset",

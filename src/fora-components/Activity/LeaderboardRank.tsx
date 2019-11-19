@@ -51,14 +51,14 @@ const LeaderboardRank: React.FC<ILeaderboardRankProps> = ({
           <Text variant="bodyStrong">{authorName || '--'}</Text>
           <Text
             variant="body"
-            color="gray400"
+            color="gray.400"
           >{` moved up the ranks to `}</Text>
           <Text variant="bodyStrong">
             {numbro(rankChangeAmount).format({
               output: 'ordinal'
             })}
           </Text>
-          <Text variant="body" color="gray400">{` on the  `}</Text>
+          <Text variant="body" color="gray.400">{` on the  `}</Text>
           <Link variant="link" color="">{`leaderboard!`}</Link>
         </Description>
         <MetaData

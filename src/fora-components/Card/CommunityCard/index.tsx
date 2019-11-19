@@ -75,15 +75,15 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
           {name}
         </Text>
       </Link>
-      <Text css={{ display: "inline-block" }} variant="body" color="seaGlass300">
-        <Text variant="bodyStrong" color="seaGlass300" css={{ display: "inline-block" }}>
+      <Text css={{ display: "inline-block" }} variant="body" color="seaGlass.300">
+        <Text variant="bodyStrong" color="seaGlass.300" css={{ display: "inline-block" }}>
           {activeBounties}
         </Text>
         {` active bounties`}
       </Text>
       {resourceType === "preview" && (
-        <Text css={{ display: "inline-block" }} variant="body" color="seaGlass300">
-          <Text variant="bodyStrong" color="seaGlass300" css={{ display: "inline-block" }}>
+        <Text css={{ display: "inline-block" }} variant="body" color="seaGlass.300">
+          <Text variant="bodyStrong" color="seaGlass.300" css={{ display: "inline-block" }}>
             {memberCount}
           </Text>
           {` Members`}
@@ -92,7 +92,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
     </Header>
     {resourceType !== "preview" && (
       <Content flexDirection="column">
-        <Text variant="body" color="gray400">
+        <Text variant="body" color="gray.400">
           {description}
         </Text>
         <AvatarGroup avatars={avatars} href={href}></AvatarGroup>

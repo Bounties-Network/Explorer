@@ -30,7 +30,7 @@ const NameLink = emotionStyled(Link)(props =>
   css({
     display: "flex",
     alignItems: "center",
-    "> :first-of-type": { mr: 2, cursor: "pointer" },
+    "> :first-of-type": { mr: 2, cursor: "pointer" }
   })
 );
 
@@ -39,11 +39,14 @@ const ReplyContainer = emotionStyled(Flex)(props =>
     display: "flex",
     alignItems: "center",
     "> :first-of-type": { mr: 2, cursor: "pointer" },
-    "> svg:first-of-type": { color: "seaGlass200" }
+    "> svg:first-of-type": { color: "seaGlass.200" }
   })
-)
+);
 
-export type Commenter = Pick<AvatarProps, "name" | "screenName" | "address" | "src" | "onDark">;
+export type Commenter = Pick<
+  AvatarProps,
+  "name" | "screenName" | "address" | "src" | "onDark"
+>;
 export interface ISingleCommentProps {
   isReply?: boolean;
   replyOnClickHandler?: any;
@@ -67,7 +70,7 @@ const SingleComment: React.FunctionComponent<ISingleCommentProps> = props => (
           <Text>@{props.commenter.screenName}</Text>
         </NameLink>
         <Text>{` ∙ `}</Text>
-        <Text variant="body" color="gray400">
+        <Text variant="body" color="gray.400">
           {moment(props.timestamp).fromNow()}
         </Text>
       </DetailsContainer>
@@ -75,12 +78,12 @@ const SingleComment: React.FunctionComponent<ISingleCommentProps> = props => (
         {props.isPreview ? (
           <>
             <VerticalDivider marginLeft={1}></VerticalDivider>
-            <Text variant="bodyItalic" color="gray500">
+            <Text variant="bodyItalic" color="gray.500">
               {props.content}
             </Text>
           </>
         ) : (
-          <Text variant="body" color="gray500">
+          <Text variant="body" color="gray.500">
             {props.content}
           </Text>
         )}
@@ -88,7 +91,7 @@ const SingleComment: React.FunctionComponent<ISingleCommentProps> = props => (
       {!props.isReply && (
         <ReplyContainer onClick={props.replyOnClickHandler}>
           <FontAwesomeIcon icon={faReply}></FontAwesomeIcon>
-          <Text variant="body" color="seaGlass300">{`Reply`}</Text>
+          <Text variant="body" color="seaGlass.300">{`Reply`}</Text>
         </ReplyContainer>
       )}
     </Flex>

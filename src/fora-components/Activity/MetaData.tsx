@@ -19,14 +19,14 @@ const MetaData: React.FC<IProps> = ({
   communityId
 }) => (
   <Container>
-    <Text variant="body" color="gray400">
+    <Text variant="body" color="gray.400">
       {moment(timestamp).fromNow()}
     </Text>
-    <Text variant="body" color="gray400">
+    <Text variant="body" color="gray.400">
       {'•'}
     </Text>
     <Link href={`/community/${communityId}`} variant="link">
-      <Text color="gray400" variant="body">{`f/${communityName}`}</Text>
+      <Text color="gray.400" variant="body">{`f/${communityName}`}</Text>
     </Link>
   </Container>
 );
