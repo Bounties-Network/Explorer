@@ -5,8 +5,6 @@ import { Flex, Text, Link, Button } from "rebass";
 import { Tabs, TabList, TabPanels, TabPanel, Tab } from "fora-components/Tabs";
 import Pill from "fora-components/Pill";
 import moment from "moment";
-import { faPencil, faTrash } from "@fortawesome/pro-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Divider from "fora-components/Divider";
 import Avatar, { AvatarProps } from "fora-components/Avatar";
 

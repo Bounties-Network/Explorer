@@ -737,6 +737,24 @@ export const pill = {
       color: colors.seaGlass500,
       backgroundColor: colors.seaGlass200
     },
+    processing: {
+      ...text.small,
+      textTransform: "capitalize",
+      color: colors.mustard300,
+      backgroundColor: colors.mustard100,
+    },
+    confirmed: {
+      ...text.small,
+      textTransform: "capitalize",
+      color: colors.seaGlass500,
+      backgroundColor: colors.seaGlass100
+    },
+    failed: {
+      ...text.small,
+      textTransform: "capitalize",
+      color: colors.rose300,
+      backgroundColor: colors.rose200
+    },
   },
   tag: {
     explorer: {
