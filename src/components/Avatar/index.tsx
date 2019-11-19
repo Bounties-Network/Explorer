@@ -8,13 +8,13 @@ import { shortenAddress } from "utils/helpers";
 let imageContainerVariantSize = variant => {
   switch (variant) {
     case "small":
-      return 4;
+      return 8;
     case "medium":
-      return 5;
+      return 12;
     case "large":
-      return 7;
+      return 24;
     default:
-      return 4;
+      return 12;
   }
 };
 
@@ -61,7 +61,6 @@ const ImageContainer = styled(Flex)<ImageContainerProps>(
       border: props.variant === "small" ? "none" : 1,
       boxShadow: props.variant === "small" ? "none" : 1,
       overflow: "hidden",
-      size: imageContainerVariantSize(props.variant),
       variant: `avatarResourceTypes.${props.resourceType}`
     })
   // props => props.theme.avatarResourceTypes[props.resourceType] or use this instead of the variant key above

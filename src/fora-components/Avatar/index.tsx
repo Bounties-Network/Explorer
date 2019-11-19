@@ -4,6 +4,7 @@ import styled from "lib/emotion-styled";
 import Blockies from "react-blockies";
 import { Text, Image, Flex, Link, Box } from "rebass";
 import { shortenAddress } from "utils/helpers";
+import AvatarImage from "fora-components/AvatarImage";
 
 let imageContainerVariantSize = variant => {
   switch (variant) {
@@ -67,28 +68,6 @@ const ImageContainer = styled(Flex)<ImageContainerProps>(
   // props => props.theme.avatarResourceTypes[props.resourceType] or use this instead of the variant key above
 );
 
-type AvatarImageProps = Pick<AvatarProps, "variant" | "address" | "img">;
-const AvatarImage: React.FC<AvatarImageProps> = ({ variant, address, img }) => {
-  let blockySize = () => {
-    switch (variant) {
-      case "small":
-        return { size: "8", scale: "4" };
-      case "medium":
-        return { size: "8", scale: "5" };
-      case "large":
-        return { size: "8", scale: "10" };
-      default:
-        return { size: "8", scale: "4" };
-    }
-  };
-
-  if (!img) {
-    return <Blockies seed={address} {...blockySize()} />;
-  } else {
-    return <Image src={img} height="100%" width="auto" />;
-  }
-};
-
 type TextContainerProps = Pick<AvatarProps, "variant" | "textFormat">;
 const TextContainer = styled(Flex)<TextContainerProps>(props =>
   css({
@@ -137,10 +116,10 @@ const AvatarAddress = styled(Text)<AvatarAddressProps>(props =>
 );
 
 export type AvatarProps = {
-  variant: "small" | "medium" | "large";
+  variant: string; //"small" | "medium" | "large";
   name: string | undefined;
   screenName: string | undefined;
-  resourceType: "user" | "community";
+  resourceType: string; // "user" | "community";
   textFormat?: "block" | "inline";
   onDark: boolean;
   onClick?: (event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>) => void;
@@ -165,9 +144,7 @@ const Avatar: React.FC<AvatarProps> = props => {
   return (
     <Box css={{ display: "inline-block" }}>
       <AvatarWrapper src={src ? src : "/profile/" + address} onClick={onClick} textFormat={textFormat}>
-        <ImageContainer variant={variant} resourceType={resourceType}>
-          <AvatarImage variant={variant} img={img} address={address} />
-        </ImageContainer>
+        <AvatarImage resourceType={resourceType} variant={variant} src={img} address={address} />
         <TextContainer textFormat={textFormat} variant={variant}>
           <AvatarName variant={variant} name={name} onDark={onDark} textFormat={textFormat}>
             {name || "--"}

@@ -37,7 +37,7 @@ const amber100 = "hsl(21, 94%, 85%)";
 const amber200 = "hsl(21, 95%, 75%)";
 const amber300 = "hsl(18, 68%, 35%)";
 
-const mustard100 = "hsl(175, 31%, 16%)";
+const mustard100 = "hsl(39, 100%, 85%)";
 const mustard200 = "hsl(39, 100%, 77%)";
 const mustard300 = "hsl(36, 85%, 38%)";
 
@@ -718,7 +718,25 @@ export const pill = {
       color: colors.gray500,
       backgroundColor: colors.white,
       border: borders.base
-    }
+    },
+    pendingAcceptance: {
+      ...text.small,
+      textTransform: "capitalize",
+      color: colors.mustard300,
+      backgroundColor: colors.mustard100,
+    },
+    declined: {
+      ...text.small,
+      textTransform: "capitalize",
+      color: colors.rose300,
+      backgroundColor: colors.rose200
+    },
+    accepted: {
+      ...text.small,
+      textTransform: "capitalize",
+      color: colors.seaGlass500,
+      backgroundColor: colors.seaGlass200
+    },
   },
   tag: {
     explorer: {
