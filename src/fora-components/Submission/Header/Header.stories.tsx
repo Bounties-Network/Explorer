@@ -14,12 +14,14 @@ storiesOf("Header", module).add("Mi Fora", () => {
           name: 'firstName lastName',
           screenName: 'screenName',
           address: '0xbfecfede',
+          img: 'https://messari.s3.amazonaws.com/images/agora-images/0%3Fe%3D1554940800%26v%3Dbeta%26t%3DJIYqRj4hFp_woU4aOT7i6VVCH613wozFeVfWztcORVo',
+          src: 'https://www.google.co.uk',
           onDark: false,
           variant: 'medium',
           resourceType: 'user'
       }}
         handleSubmit={callback => {
-          callback && setTimeout(callback, 2500);
+          callback && setTimeout(callback, 2000);
         }}
       />
     </div>
