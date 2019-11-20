@@ -1,5 +1,3 @@
-import { colors, colorAliases } from "./colors";
-
 const typography = {
   fonts: {
     headingSans: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,`,
@@ -14,9 +12,9 @@ const typography = {
     sm: "0.875rem", // 14px
     md: "1rem", // 16px
     lg: "1.125rem", // 18px
-    "2xl": "1.25rem", // 20px
-    "3xl": "1.5625rem", // 25px
-    "4xl": "1.9375rem" // 31px
+    xl: "1.25rem", // 20px
+    "2xl": "1.5625rem", // 25px
+    "3xl": "1.9375rem" // 31px
   },
 
   fontWeights: {
@@ -40,14 +38,6 @@ const typography = {
       lineHeight: "standard"
     },
 
-    link: {
-      color: colorAliases.brandPrimary,
-      cursor: "pointer",
-      "&:hover": {
-        textDecoration: "underline"
-      }
-    },
-
     headingSans: {
       fontFamily: "headingSans",
       fontWeight: "medium"
@@ -59,7 +49,6 @@ const typography = {
     },
 
     label: {
-      color: colors.gray["400"],
       fontSize: "xs"
     },
 

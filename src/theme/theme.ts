@@ -520,17 +520,6 @@ export const pill = {
   }
 };
 
-const link = {
-  ...typography.text.link,
-  "&[disabled]": {
-    colors: colors.seaGlass["300"],
-    opacity: 0.3
-  },
-  ":active": {
-    colors: colors.seaGlass["500"]
-  }
-};
-
 export const forms = {
   textarea: {
     ...typography.text.body,
@@ -559,9 +548,14 @@ export const variants = {
     boxSizing: "border-box",
     borderRadius: 2
   },
-  link,
+  link: {
+    color: colorAliases.brandPrimary,
+    cursor: "pointer",
+    "&:hover": {
+      textDecoration: "underline"
+    }
+  },
   linkIcon: {
-    ...link,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -598,7 +592,7 @@ const icons = {
 const theme = {
   colors,
   colorAliases,
-  typography,
+  ...typography,
   breakpoints,
   mediaQueries,
   space,
