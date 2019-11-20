@@ -489,7 +489,7 @@ export const pill = {
       backgroundColor: colors.rose["200"]
     },
     pending: {
-      ...text.small,
+      fontSize: "xs",
       textTransform: "capitalize",
       color: colors.gold["300"],
       backgroundColor: colors.gold["100"]
