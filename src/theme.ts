@@ -755,6 +755,12 @@ export const pill = {
       color: colors.rose300,
       backgroundColor: colors.rose200
     },
+    pending: {
+      ...text.small,
+      textTransform: "capitalize",
+      color: colors.mustard300,
+      backgroundColor: colors.mustard100,
+    },
   },
   tag: {
     explorer: {

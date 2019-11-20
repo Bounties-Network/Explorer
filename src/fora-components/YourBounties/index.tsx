@@ -54,7 +54,7 @@ const Bounty: React.FC<IBountyProps> = props => (
     <Flex justifyContent="center" sx={{ ml: "auto" }}>
       <Flex alignItems={'center'} sx={{ "> :not(:last-of-type)": { mr: 2 }, mr: 3} }>
         {props.status === 'draft' &&
-          <Button color='seaGlass300' variant="secondary" sx={{ textTransform: "capitalize", height: "40px" }}>
+          <Button variant="secondaryAffirmative" sx={{ textTransform: "capitalize", height: "40px" }}>
             {'Activate'}
           </Button>
         }

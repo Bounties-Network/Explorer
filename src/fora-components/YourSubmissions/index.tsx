@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import React from "react";
-import { Flex, Text, Link, Button } from "rebass";
+import { Flex, Text, Link } from "rebass";
 import { Tabs, TabList, TabPanels, TabPanel, Tab } from "fora-components/Tabs";
 import Pill from "fora-components/Pill";
 import moment from "moment";
