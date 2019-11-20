@@ -588,6 +588,16 @@ const icons = {
   ...cTheme.icons
 };
 
+const styles = {
+  a: {
+    color: colorAliases.brandPrimary,
+    cursor: "pointer",
+    "&:hover": {
+      textDecoration: "underline"
+    }
+  }
+};
+
 // EXPORT THEME
 const theme = {
   colors,
@@ -608,7 +618,8 @@ const theme = {
   maxContainerWidth,
   forms,
   variants,
-  icons
+  icons,
+  styles
 };
 
 export default theme;
