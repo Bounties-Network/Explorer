@@ -1,10 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import React from "react";
-import { Flex, Text, Link, Image, Box, Button } from "rebass";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExternalLinkSquare, faFileArchive } from "@fortawesome/pro-regular-svg-icons";
-import ipfs from "public-modules/ipfs";
+import { Flex, Button } from "rebass";
 import Avatar, { AvatarProps } from "fora-components/Avatar";
 import Divider from "fora-components/Divider";
 import Pill from "fora-components/Pill";

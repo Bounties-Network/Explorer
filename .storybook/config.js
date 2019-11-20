@@ -4,7 +4,7 @@ require('@babel/register')({
 
 import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from 'theme-ui';
 import { Global } from '@emotion/core';
 import theme from '../src/theme';
 import globalStyles from 'styles/global-styles';

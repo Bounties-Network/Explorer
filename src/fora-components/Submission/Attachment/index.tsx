@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkSquare, faFileArchive } from "@fortawesome/pro-regular-svg-icons";
 import ipfs from "public-modules/ipfs";
 
-interface IProps {
+export interface IAttachmentProps {
   ipfsHash?: string;
   fileName?: string;
   fileExtensionType?: string;
@@ -50,7 +50,7 @@ const imageStyles = props => ({
 });
 const iconStyles = { height: "2.5rem", width: "1.25rem !important", color: "gray400" };
 
-const Attachment: React.FunctionComponent<IProps> = props => (
+const Attachment: React.FunctionComponent<IAttachmentProps> = props => (
   <Flex flexDirection="column" justifyContent={"center"} alignItems="center" sx={attachmentStyles}>
     {props.url && (
       <Link sx={{ textAlign: "center" }} href={props.url}>

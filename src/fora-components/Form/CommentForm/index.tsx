@@ -16,6 +16,9 @@ const Container = emotionStyled(Flex)(() =>
 const FormContainer = emotionStyled(Flex)(() =>
   css({
     width: "100%",
+    '> textarea': {
+      width: "100%",
+    }
   })
 );
 
@@ -40,7 +43,7 @@ const CommentForm: React.FC<{
       <AvatarImage src={undefined}></AvatarImage>
       <FormContainer flexDirection="column">
         <Textarea
-        width={width}
+          width={width}
           value={value}
           onChange={({ target: { value } }) => {
             handleChange(value);
