@@ -4,7 +4,6 @@ import React from "react";
 import Tippy from "@tippy.js/react";
 import { Global } from "@emotion/core";
 import css from "@styled-system/css";
-import theme from "theme/theme";
 
 interface IProps {
   content: React.ReactElement<any>;
@@ -31,8 +30,8 @@ const Tooltip: React.FunctionComponent<IProps> = props => (
             background: "none"
           },
           ".tippy-content": {
-            ...theme.text.small,
-            fontWeight: "500",
+            fontSize: "xs",
+            fontWeight: "normal",
             color: "seaGlass.300",
             border: `1px solid hsl(187, 45%, 81%)`,
             borderRadius: 2,

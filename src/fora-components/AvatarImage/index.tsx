@@ -22,7 +22,7 @@ let imageContainerVariantSize = variant => {
     case "small":
       return 8;
     case "medium":
-      return 12;
+      return 10;
     case "large":
       return 24;
   }
@@ -54,6 +54,7 @@ type ImageContainerProps = { variant: string; resourceType: string };
 const ImageContainer = styled(Flex)<ImageContainerProps>(
   props =>
     css({
+      boxSizing: "content-box",
       alignItems: "center",
       flexShrink: 0,
       justifyContent: "center",
@@ -74,7 +75,12 @@ export type AvatarImageProps = {
   address?: string;
 };
 
-const AvatarImage: React.FC<AvatarImageProps> = ({ variant = "medium", resourceType = "user", src, address }) => (
+const AvatarImage: React.FC<AvatarImageProps> = ({
+  variant = "medium",
+  resourceType = "user",
+  src,
+  address
+}) => (
   <ImageContainer variant={variant} resourceType={resourceType}>
     {typeof src === "string" ? (
       <Image src={src} height="100%" width="auto" />

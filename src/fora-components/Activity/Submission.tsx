@@ -1,28 +1,26 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import React from "react";
-import { Flex, Text, Link, Box } from "rebass";
+import { Flex, Text, Link, Box } from "@theme-ui/components";
 import Divider from "fora-components/Divider";
 import AvatarImage from "fora-components/AvatarImage";
-import css from "@styled-system/css";
-import styled from "lib/emotion-styled";
 import MetaData from "./MetaData";
 
-const Container = styled(Flex)(() => css({ maxWidth: 570 }));
-const Content = styled(Flex)(() => css({ "> *:first-child": { mr: 3 } }));
-const DescriptionContainer = styled(Flex)(() =>
-  css({ "> :first-child": { mb: 3 } })
-);
-const Description = styled(Box)(() =>
-  css({
-    "> *": {
-      display: "inline-block",
-      textAlign: "left"
-    },
-    "> *:nth-child(2)": {
-      mx: 1
-    }
-  })
+const ActivityItem = props => <Box {...props} sx={{ px: ["2", "0"] }} />;
+
+const ContentContainer = props => <Flex {...props} sx={{ mb: "3" }} />;
+
+const Description = props => (
+  <Box
+    {...props}
+    sx={{
+      "> *": {
+        display: "inline",
+        fontSize: "sm",
+        lineHeight: "standard"
+      }
+    }}
+  />
 );
 
 export interface ISubmissionProps {
@@ -35,6 +33,7 @@ export interface ISubmissionProps {
   communityName: string;
   communityId: string;
 }
+
 const Submission: React.FC<ISubmissionProps> = ({
   avatarSrc,
   authorName,
@@ -44,24 +43,24 @@ const Submission: React.FC<ISubmissionProps> = ({
   communityName,
   communityId
 }) => (
-  <Container flexDirection="column">
-    <Content>
+  <ActivityItem>
+    <ContentContainer>
       <AvatarImage address={authorAddress} src={avatarSrc} />
-      <DescriptionContainer flexDirection="column">
+      <Flex sx={{ flexDirection: "column", ml: "3" }}>
         <Description>
-          <Text>{authorName || "--"}</Text>
-          <Text color="gray.400">{` submitted to `}</Text>
-          <Link variant="link">{bountyTitle}</Link>
+          <Text fontWeight="medium">{authorName || "--"}</Text>
+          <Text color="gray.400" mx="1">{`submitted to`}</Text>
+          <Link fontWeight="medium">{bountyTitle}</Link>
         </Description>
         <MetaData
           timestamp={timestamp}
           communityName={communityName}
           communityId={communityId}
         />
-      </DescriptionContainer>
-    </Content>
+      </Flex>
+    </ContentContainer>
     <Divider />
-  </Container>
+  </ActivityItem>
 );
 
 export default Submission;
