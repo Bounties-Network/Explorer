@@ -2,61 +2,45 @@ import { theme as cTheme } from "@chakra-ui/core";
 import { colors, colorAliases } from "./colors";
 import typography from "./typography";
 
-// MEDIA QUERIES
-const createMediaQuery = n => `@media screen and (min-width:${n})`;
-
-const addAliases = (arr, aliases) =>
-  aliases.forEach((key, i) =>
-    Object.defineProperty(arr, key, {
-      enumerable: false,
-      get() {
-        return this[i];
-      }
-    })
-  );
-
-// Break-points
-export const breakpoints = [40, 52, 64, 80].map(n => n + "em");
-
-export const mediaQueries = breakpoints.map(createMediaQuery);
-
-const aliases = ["sm", "md", "lg", "xl"];
-
-addAliases(breakpoints, aliases);
-addAliases(mediaQueries, aliases);
+// BREAK-POINTS
+export const breakpoints = ["30em", "48em", "62em", "80em"];
+// Aliases
+breakpoints.sm = breakpoints[0];
+breakpoints.md = breakpoints[1];
+breakpoints.lg = breakpoints[2];
+breakpoints.xl = breakpoints[3];
 
 // SPACING SCALE
 export const space = [0, 4, 8, 16, 24, 32, 40, 128].map(n => n / 16 + "em");
 export const sizes = cTheme.sizes;
 
-// BORDERS
+// BORDERS & BORDER-RADII
 // styled-system's 'borderRadius' function can hook into the 'radii' object/array
 export const radii = [0, 4, 8, "50%"];
 export const radius = "8px";
 
-const baseBorder = `1px solid ${colorAliases.baseBorderColor}`;
-const primaryActiveBorder = `1px solid ${colors.seaGlass["200"]}`;
-const activeBorder = `1px solid ${colors.gray["300"]}`;
-const focusBorder = `2px solid ${colors.seaGlass["200"]}`;
-const tertiaryActiveBorder = `1px solid ${colors.amber["200"]}`;
-const avatarBorder = `2px solid ${colors.white}`;
-const lightBorder = `1px solid ${colors.gray["100"]}`;
-const errorBorder = `2px solid ${colors.rose["200"]}`;
-const radioCheckboxBorder = `2px solid ${colors.seaGlass["300"]}`;
+export const borders = {
+  base: `1px solid ${colorAliases.baseBorderColor}`,
+  light: `1px solid ${colors.gray["100"]}`,
 
-const borders = {
-  base: baseBorder,
-  active: activeBorder,
-  focus: focusBorder,
-  primaryActive: primaryActiveBorder,
-  tertiaryActive: tertiaryActiveBorder,
-  avatar: avatarBorder,
-  light: lightBorder,
-  error: errorBorder,
-  radioCheckbox: radioCheckboxBorder
+  avatar: {
+    default: `2px solid ${colors.white}`,
+    large: `4px solid ${colors.white}`
+  },
+
+  input: {
+    default: `2px solid ${colors.gray["300"]}`,
+    focused: `2px solid ${colors.seaGlass["200"]}`,
+    active: `2px solid ${colors.seaGlass["200"]}`,
+    invalid: `2px solid ${colors.rose["200"]}`
+  },
+
+  button: {
+    primary: `1px solid ${colors.seaGlass["200"]}`,
+    secondary: `1px solid ${colors.gray["300"]}`,
+    tertiary: `1px solid ${colors.amber["200"]}`
+  }
 };
-
-export { borders };
 
 // PAGE WRAPPER
 export const maxContainerWidth = "1280px";
@@ -79,18 +63,16 @@ export const zIndices = cTheme.zIndices;
 const primaryButton = {
   backgroundColor: colors.seaGlass["200"],
   borderRadius: 2,
-  border: borders.base,
+  border: borders.button.primary,
   color: colors.seaGlass["500"],
   cursor: "pointer",
   boxSizing: "border-box",
   ":hover": {
     background: colors.seaGlass["100"],
-    boxShadow: shadows[0],
-    border: borders.primaryActive
+    boxShadow: shadows[0]
   },
   ":active, :focus": {
-    background: colors.seaGlass["100"],
-    border: borders.primaryActive
+    background: colors.seaGlass["100"]
   },
   ":disabled": {
     background: colors.seaGlass["100"],
@@ -124,20 +106,18 @@ const primarySmall = {
 const secondaryButton = {
   backgroundColor: colors.white,
   borderRadius: 2,
-  border: borders.base,
+  border: borders.button.secondary,
   color: colors.gray["500"],
   cursor: "pointer",
   boxSizing: "border-box",
   ":hover": {
     boxSizing: "border-box",
     boxShadow: shadows[0],
-    color: colors.black,
-    border: borders.active
+    color: colors.black
   },
   ":active, :focus": {
     boxSizing: "border-box",
-    color: colors.black,
-    border: borders.active
+    color: colors.black
   },
   ":disabled": {
     background: colors.gray["100"],
@@ -347,11 +327,10 @@ const tertiary = {
     boxSizing: "border-box",
     color: colors.amber["300"],
     background: colors.amber["100"],
-    border: borders.tertiaryActive
+    border: borders.button.tertiary
   },
   ":active, :focus": {
-    boxSizing: "border-box",
-    border: borders.tertiaryActive
+    boxSizing: "border-box"
   },
   ":disabled": {
     background: colors.amber["100"],
@@ -500,7 +479,7 @@ export const pill = {
       fontSize: "xs",
       textTransform: "capitalize",
       color: colors.gray["400"],
-      border: `1px solid ${colors.gray["200"]}`
+      border: borders.base
     }
   },
   network: {
@@ -510,13 +489,13 @@ export const pill = {
   },
   notificationCount: {
     backgroundColor: colors.rose["200"],
-    px: `${space[1]}px !important`,
+    px: `${space[0]}px !important`,
     py: `${space[1]}px !important`
   },
   tabNotificationCount: {
     backgroundColor: colors.gray["200"],
-    px: `${space[2]}px !important`,
-    py: `${space[2]}px !important`
+    px: `${space[0]}px !important`,
+    py: `${space[1]}px !important`
   }
 };
 
@@ -535,7 +514,7 @@ export const forms = {
   },
   error: {
     bg: `${colors.white} !important`,
-    border: `${borders.error} !important`
+    border: `${borders.input.invalid} !important`
   },
   valid: {}
 };
@@ -600,22 +579,22 @@ const styles = {
 
 // EXPORT THEME
 const theme = {
+  breakpoints,
+  space,
+  sizes,
   colors,
   colorAliases,
   ...typography,
-  breakpoints,
-  mediaQueries,
-  space,
-  sizes,
   radii,
   radius,
-  borders,
+  ...borders,
   shadows,
   zIndices,
   buttons,
   avatarResourceTypes,
   textFormat,
   maxContainerWidth,
+  ...pill,
   forms,
   variants,
   icons,
