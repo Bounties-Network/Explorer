@@ -5,7 +5,7 @@ import Attachment from '.';
 
 addDecorator(centered);
 
-storiesOf('Attachment', module)
+storiesOf('SubmissionAttachment', module)
   .add('File attachment', () => {
   return (
     <Attachment fileExtensionType={'pdf'} ipfsHash={'abc'} fileName={'fileName345345434MrLee'} />

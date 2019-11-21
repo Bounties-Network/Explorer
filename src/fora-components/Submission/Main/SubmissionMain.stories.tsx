@@ -15,7 +15,7 @@ const attachments = [
   { ipfsHash: 'QmRB6uPrCFPouSJsdYuCVCURUvfWXiXFjb6WtJQXFLZrUr', fileExtensionType: '.png', fileName: 'code.png' }
 ]
 
-storiesOf("Main", module)
+storiesOf("SubmissionMain", module)
   .add("Mi Fora", () => {
   return (
     <div sx={{ maxWidth: "70vw" }}>

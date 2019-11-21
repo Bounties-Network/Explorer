@@ -6,7 +6,7 @@ import Header from ".";
 
 addDecorator(centered);
 
-storiesOf("Header", module).add("Mi Fora", () => {
+storiesOf("SubmissionHeader", module).add("Mi Fora", () => {
   return (
     <div sx={{ minWidth: "70vw" }}>
       <Header
