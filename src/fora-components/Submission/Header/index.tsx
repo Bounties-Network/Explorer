@@ -6,12 +6,12 @@ import Avatar, { AvatarProps } from "fora-components/Avatar";
 import Divider from "fora-components/Divider";
 import Pill from "fora-components/Pill";
 
-interface IProps {
+export interface IHeaderProps {
   handleSubmit: any
   avatar: AvatarProps
 }
 
-const Header: React.FunctionComponent<IProps> = props => {
+const Header: React.FunctionComponent<IHeaderProps> = props => {
   const [state, setState] = React.useState<boolean>(false)
   return ((
     <Flex  flexDirection="column">

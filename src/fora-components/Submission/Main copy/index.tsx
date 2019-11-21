@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CommentForm from "fora-components/Form/CommentForm";
 import Attachment, { IAttachmentProps } from "../Attachment";
 
-export interface IMainProps {
+interface IProps {
   timestamp: any;
   content: string;
   imageSrc?: string;
@@ -19,7 +19,7 @@ export interface IMainProps {
   attachments: IAttachmentProps[];
 }
 
-const Main: React.FunctionComponent<IMainProps> = props => {
+const Main: React.FunctionComponent<IProps> = props => {
   const [state, setState] = React.useState<boolean>(false);
 
   return (
