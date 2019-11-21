@@ -1,15 +1,41 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import React from 'react'
-import { Flex } from '@theme-ui/components'
-import { IMainProps } from './Main'
-import { IHeaderProps } from './Header'
-import { IAttachmentProps } from './Attachment'
+import { Flex, Text } from '@theme-ui/components'
+import Header, { IHeaderProps } from './Header'
+import Main, { IMainProps } from './Main'
+import CommentThread, { ICommentThreadProps } from 'fora-components/Comment/CommentThread'
+import { faArrowDown, faArrowUp } from '@fortawesome/pro-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Divider from 'fora-components/Divider'
 
-type SubmissionProps = IMainProps & IAttachmentProps & IHeaderProps
-
-const Submission: React.FunctionComponent<SubmissionProps> = (props) => (
-  <Flex>Hello world</Flex>
+interface IShowCommentsProps {
+  commentsLength: number;
+  showComments: boolean;
+  setShowComments: any
+}
+const ShowComments: React.FC<IShowCommentsProps> = (props) => (
+  <Flex onClick={() => props.setShowComments(!props.showComments)} sx={{ cursor: 'pointer', justifyContent: 'center', alignItems: 'center', '> svg': { mr: 2 } }}>
+    <FontAwesomeIcon icon={props.showComments ? faArrowUp : faArrowDown} sx={{ color: 'seaGlass400' }}></FontAwesomeIcon>
+    <Text fontFamily="secondary" variant='bodyStrong'>
+      {props.showComments ? `Hide Comments` : `Show Comments (${props.commentsLength})`}
+    </Text>
+  </Flex>
 )
+
+type SubmissionProps =  IHeaderProps & IMainProps & ICommentThreadProps
+
+const Submission: React.FunctionComponent<SubmissionProps> = (props) => {
+  const [showComments, setShowComments] = React.useState<boolean>(false)
+  return (
+    <Flex sx={{ flexDirection: 'column', border: 'base', borderRadius: 2, boxShadow: 0, px: 3, py: 4 }}>
+      <Header {...props} />
+      <Main {...props} />
+      {showComments && <CommentThread {...props} />}
+      {showComments && <Divider></Divider>}
+      <ShowComments commentsLength={props.comments.length} showComments={showComments} setShowComments={setShowComments} />
+    </Flex>
+  )
+}
 
 export default Submission

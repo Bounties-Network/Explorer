@@ -22,12 +22,12 @@ const comment = {
   commenter: mockCommenter
 }
 
-const comments = [comment, comment, comment]
+export const mockComments = [comment, comment, comment]
 
 storiesOf('CommentThread', module)
   .add('Threaded', () =>
     <CommentThread
       replySubmitHandler={() => alert('submitted woo')}
-      comments={comments}
+      comments={mockComments}
     />
   )

@@ -38,12 +38,12 @@ const Content = emotionStyled(Flex)(props =>
   })
 );
 
-interface IProps {
+export interface ICommentThreadProps {
   comments: ISingleCommentProps[];
   replySubmitHandler: any;
 }
 
-const CommentThread: React.FunctionComponent<IProps> = props => {
+const CommentThread: React.FunctionComponent<ICommentThreadProps> = props => {
   const [isReplyOpen, setState] = React.useState<boolean>(true);
 
   return (

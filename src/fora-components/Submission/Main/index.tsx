@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import React from "react";
+import React, { Fragment } from "react";
 import { Flex, Button, Text, Image } from "rebass";
 import Avatar, { AvatarProps } from "fora-components/Avatar";
 import Divider from "fora-components/Divider";
@@ -15,7 +15,7 @@ export interface IMainProps {
   timestamp: any;
   content: string;
   imageSrc?: string;
-  replySubmitHandler: any;
+  commentSubmitHandler: any;
   attachments: IAttachmentProps[];
 }
 
@@ -51,12 +51,15 @@ const Main: React.FunctionComponent<IMainProps> = props => {
       </Flex>
 
       {state && (
-        <CommentForm
-          value="lol"
-          handleChange={() => {}}
-          handleCancel={() => setState(false)}
-          handleSubmit={props.replySubmitHandler}
-        />
+        <Fragment>
+          <Divider></Divider>
+          <CommentForm
+            value="lol"
+            handleChange={() => {}}
+            handleCancel={() => setState(false)}
+            handleSubmit={props.commentSubmitHandler}
+          />
+        </Fragment>
       )}
       <Divider></Divider>
     </Flex>

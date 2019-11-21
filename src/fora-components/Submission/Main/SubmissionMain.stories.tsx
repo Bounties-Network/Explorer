@@ -23,7 +23,7 @@ storiesOf("SubmissionMain", module)
         content={content}
         timestamp={timestamp}
         attachments={[]}
-        replySubmitHandler={console.log}
+        commentSubmitHandler={console.log}
       />
     </div>
   );
@@ -35,7 +35,7 @@ storiesOf("SubmissionMain", module)
         content={content}
         timestamp={timestamp}
         attachments={attachments}
-        replySubmitHandler={console.log}
+        commentSubmitHandler={console.log}
       />
     </div>
   );
@@ -48,7 +48,7 @@ storiesOf("SubmissionMain", module)
         timestamp={timestamp}
         attachments={[]}
         imageSrc={'https://pmcvariety.files.wordpress.com/2019/04/ourplanet_fdtg_30_screengrab.jpg?w=1000&h=563'}
-        replySubmitHandler={console.log}
+        commentSubmitHandler={console.log}
       />
     </div>
   );
