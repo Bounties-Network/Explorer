@@ -40,11 +40,9 @@ const Button: React.FC<ButtonProps> = ({
       ":disabled": {
         border: "none",
         boxShadow: "none",
-        opacity: 0.3
-      },
-
-      ":disabled:hover": {
-        cursor: "not-allowed"
+        cursor: "not-allowed",
+        opacity: 0.3,
+        pointerEvents: "none"
       },
 
       "> svg": {
