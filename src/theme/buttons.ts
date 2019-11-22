@@ -1,4 +1,4 @@
-import { colors } from "./colors";
+import { colors, colorAliases } from "./colors";
 
 const buttonGradients = {
   primary: {
@@ -19,7 +19,7 @@ const buttonGradients = {
   }
 };
 
-const buttonShadows = {
+const buttonInsetShadows = {
   primary: {
     default:
       "inset 0px 1px 2px rgba(226, 244, 246, 0.9), inset 0px -1px 2px rgba(17, 105, 125, 0.17)",
@@ -28,12 +28,62 @@ const buttonShadows = {
     active: "inset 0px 2px 4px rgba(17, 105, 125, 0.5)"
   },
   secondary: {
-    default: "",
-    active: ""
+    default: "inset 0px -1px 2px #E6E6E6",
+    hover: "inset 0px -1px 2px #E0E0E0, inset 0px 1px 2px #FFFFFF",
+    active: "inset 0px 2px 4px rgba(71, 75, 77, 0.18)"
   },
   tertiary: {
-    default: "",
-    active: ""
+    default:
+      "inset 0px 1px 2px rgba(255, 255, 255, 0.54), inset 0px -1px 2px rgba(163, 63, 20, 0.16)",
+    hover:
+      "inset 0px 1px 2px rgba(255, 255, 255, 0.5), inset 0px -1px 2px rgba(174, 59, 9, 0.22)",
+    active: "inset 0px 2px 4px rgba(154, 67, 29, 0.32)"
+  },
+  destructive: {
+    default:
+      "inset 0px 1px 2px #FFFFFF, inset 0px -1px 2px rgba(113, 21, 43, 0.28)",
+    hover:
+      "inset 0px 1px 2px #FFFFFF, inset 0px -1px 2px rgba(113, 21, 43, 0.35)",
+    active: "inset 0px 2px 4px rgba(113, 21, 43, 0.39)"
+  }
+};
+
+const buttonSecondaryBase = {
+  background: buttonGradients.secondary.default,
+  borderColor: colors.gray["300"],
+  boxShadow: buttonInsetShadows.secondary.default,
+
+  ":hover, :focus": {
+    background: buttonGradients.secondary.hover,
+    boxShadow: buttonInsetShadows.secondary.hover,
+    outline: "none"
+  },
+
+  ":active": {
+    backgroundColor: colors.gray["200"],
+    borderColor: "rgba(71, 75, 77, 0.18)",
+    boxShadow: buttonInsetShadows.secondary.active
+  },
+
+  ":disabled": {
+    background: colors.gray["300"]
+  }
+};
+
+const buttonLinkBase = {
+  border: "none",
+
+  ":hover, :focus": {
+    textDecoration: "underline",
+    outline: "none"
+  },
+
+  ":active, :focus": {
+    background: colors.gray["100"]
+  },
+
+  ":disabled:hover": {
+    textDecoration: "none"
   }
 };
 
@@ -41,311 +91,104 @@ const buttons = {
   primary: {
     background: buttonGradients.primary.default,
     borderColor: colors.seaGlass["200"],
-    boxShadow: buttonShadows.primary.default,
+    boxShadow: buttonInsetShadows.primary.default,
     color: colors.seaGlass["500"],
 
     ":hover, :focus": {
       background: buttonGradients.primary.hover,
-      boxShadow: buttonShadows.primary.hover,
+      boxShadow: buttonInsetShadows.primary.hover,
       outline: "none"
     },
 
     ":active": {
       backgroundColor: colors.seaGlass["200"],
       borderColor: "rgba(17, 105, 125, 0.28)",
-      boxShadow: buttonShadows.primary.active
+      boxShadow: buttonInsetShadows.primary.active
     },
 
     ":disabled": {
-      background: colors.seaGlass["200"],
-      border: "none",
-      boxShadow: "none",
-      opacity: 0.3
+      background: colors.seaGlass["200"]
+    }
+  },
+
+  secondary: {
+    ...buttonSecondaryBase,
+    color: colors.gray["500"],
+
+    affirmative: {
+      ...buttonSecondaryBase,
+      color: colorAliases.brandPrimary
+    },
+
+    destructive: {
+      ...buttonSecondaryBase,
+      color: colorAliases.brandDestructive
+    }
+  },
+
+  tertiary: {
+    background: buttonGradients.tertiary.default,
+    borderColor: colorAliases.brandTertiary,
+    boxShadow: buttonInsetShadows.tertiary.default,
+    color: colors.amber["300"],
+
+    ":hover, :focus": {
+      background: buttonGradients.tertiary.hover,
+      boxShadow: buttonInsetShadows.tertiary.hover,
+      outline: "none"
+    },
+
+    ":active": {
+      backgroundColor: colorAliases.brandTertiary,
+      borderColor: "rgba(174, 59, 9, 0.22)",
+      boxShadow: buttonInsetShadows.tertiary.active
+    },
+
+    ":disabled": {
+      background: colorAliases.brandTertiary
+    }
+  },
+
+  destructive: {
+    background: buttonGradients.destructive.default,
+    borderColor: colorAliases.brandDestructive,
+    boxShadow: buttonInsetShadows.destructive.default,
+    color: colors.rose["300"],
+
+    ":hover, :focus": {
+      background: buttonGradients.destructive.hover,
+      boxShadow: buttonInsetShadows.destructive.hover,
+      outline: "none"
+    },
+
+    ":active": {
+      backgroundColor: colorAliases.brandDestructive,
+      borderColor: "rgba(113, 21, 43, 0.35)",
+      boxShadow: buttonInsetShadows.destructive.active
+    },
+
+    ":disabled": {
+      background: colorAliases.brandDestructive
+    }
+  },
+
+  link: {
+    ...buttonLinkBase,
+    color: colors.gray["500"],
+
+    affirmative: {
+      ...buttonLinkBase,
+      color: colorAliases.brandPrimary
+    },
+
+    destructive: {
+      ...buttonLinkBase,
+      color: colorAliases.brandDestructive
     }
   }
 };
 
 export default buttons;
-
-// Button variants
-// const primaryButton = {
-//   backgroundColor: colors.seaGlass["200"],
-//   borderRadius: 2,
-//   border: borders.button.primary,
-//   color: colors.seaGlass["500"],
-//   cursor: "pointer",
-//   boxSizing: "border-box",
-//   ":hover": {
-//     background: colors.seaGlass["100"],
-//     boxShadow: shadows[0]
-//   },
-//   ":active, :focus": {
-//     background: colors.seaGlass["100"]
-//   },
-//   ":disabled": {
-//     background: colors.seaGlass["100"],
-//     cursor: "not-allowed",
-//     pointerEvents: "disabled",
-//     color: colors.gray["200"]
-//   }
-// };
-
-// const primaryIcon = {
-//   ...primaryButton,
-//   display: "flex",
-//   justifyContent: "center",
-//   alignItems: "center",
-//   "> :first-of-type": { mr: 2 }
-// };
-
-// const primaryIconOnly = {
-//   ...primaryIcon,
-//   height: "40px",
-//   width: "40px",
-//   "> :first-of-type": { mr: 0 }
-// };
-
-// const primarySmall = {
-//   ...primaryButton,
-//   py: 1,
-//   px: 4
-// };
-
-// const secondaryButton = {
-//   backgroundColor: colors.white,
-//   borderRadius: 2,
-//   border: borders.button.secondary,
-//   color: colors.gray["500"],
-//   cursor: "pointer",
-//   boxSizing: "border-box",
-//   ":hover": {
-//     boxSizing: "border-box",
-//     boxShadow: shadows[0],
-//     color: colors.black
-//   },
-//   ":active, :focus": {
-//     boxSizing: "border-box",
-//     color: colors.black
-//   },
-//   ":disabled": {
-//     background: colors.gray["100"],
-//     cursor: "not-allowed",
-//     color: colors.gray["300"]
-//   }
-// };
-
-// const secondaryIcon = {
-//   ...secondaryButton,
-//   display: "flex",
-//   justifyContent: "center",
-//   alignItems: "center",
-//   "> :first-of-type": { mr: 2 }
-// };
-
-// const secondaryIconOnly = {
-//   ...secondaryIcon,
-//   width: "40px",
-//   height: "40px",
-//   "> :first-of-type": { mr: 0 }
-// };
-
-// const secondarySmall = {
-//   ...secondaryButton,
-//   py: 1,
-//   px: 4
-// };
-
-// const secondarySmallIconOnly = {
-//   ...secondarySmall,
-//   py: 0,
-//   px: 2,
-//   "> :first-of-type": { mr: 0 }
-// };
-
-// const secondaryAffirmative = {
-//   ...secondaryButton,
-//   color: colors.seaGlass["300"],
-//   ":hover": {
-//     ...secondaryButton[":hover"],
-//     color: colors.seaGlass["400"]
-//   },
-//   ":active": {
-//     ...secondaryButton[":active"],
-//     color: colors.seaGlass["400"]
-//   }
-// };
-
-// const secondaryAffirmativeIcon = {
-//   ...secondaryAffirmative,
-//   display: "flex",
-//   justifyContent: "center",
-//   alignItems: "center",
-//   "> :first-of-type": { mr: 2 }
-// };
-
-// const secondaryAffirmativeIconOnly = {
-//   ...secondaryAffirmativeIcon,
-//   width: "40px",
-//   height: "40px",
-//   "> :only-child": { mr: 0 }
-// };
-
-// const secondaryAffirmativeSmall = {
-//   ...secondaryAffirmative,
-//   py: 1,
-//   px: 4
-// };
-
-// const secondaryDestructive = {
-//   ...secondaryAffirmative,
-//   color: colors.rose["200"],
-//   ":hover": {
-//     ...secondaryAffirmative[":hover"],
-//     color: colors.rose["300"]
-//   },
-//   ":active": {
-//     ...secondaryAffirmative[":active"],
-//     color: colors.rose["300"]
-//   }
-// };
-
-// const secondaryDestructiveIcon = {
-//   ...secondaryDestructive,
-//   display: "flex",
-//   justifyContent: "center",
-//   alignItems: "center",
-//   "> :first-of-type": { mr: 2 }
-// };
-
-// const secondaryDestructiveIconOnly = {
-//   ...secondaryDestructiveIcon,
-//   width: "40px",
-//   height: "40px",
-//   "> :only-child": { mr: 0 }
-// };
-
-// const secondaryDestructiveSmall = {
-//   ...secondaryDestructive,
-//   py: 1,
-//   px: 4
-// };
-
-// const special = {
-//   ...primaryButton,
-//   backgroundColor: colors.amber["200"],
-//   color: colors.amber["300"],
-//   ":hover": {
-//     ...primaryButton[":hover"],
-//     backgroundColor: colors.amber["100"],
-//     borderColor: colors.amber["200"],
-//     color: colors.rose["300"]
-//   },
-//   ":active": {
-//     ...primaryButton[":active"],
-//     backgroundColor: colors.amber["100"],
-//     color: colors.rose["300"]
-//   },
-//   ":disabled": {
-//     ...primaryButton[":disabled"],
-//     color: primaryButton[":disabled"].color,
-//     backgroundColor: colors.amber["100"]
-//   }
-// };
-
-// const specialIcon = { ...primaryIcon, ...special };
-
-// const specialIconOnly = {
-//   ...specialIcon,
-//   width: "40px",
-//   height: "40px",
-//   "> :only-child": { mr: 0 }
-// };
-
-// const specialSmall = {
-//   ...special,
-//   py: 1,
-//   px: 4
-// };
-
-// const destructive = {
-//   ...primaryButton,
-//   backgroundColor: colors.rose["200"],
-//   color: colors.rose["300"],
-//   ":hover": {
-//     ...primaryButton[":hover"],
-//     backgroundColor: colors.rose["100"],
-//     borderColor: colors.rose["200"],
-//     color: colors.rose["300"]
-//   },
-//   ":active, :focus": {
-//     ...primaryButton[":active"],
-//     backgroundColor: colors.rose["100"],
-//     color: colors.rose["300"]
-//   },
-//   ":disabled": {
-//     ...primaryButton[":disabled"],
-//     color: primaryButton[":disabled"].color,
-//     backgroundColor: colors.rose["100"]
-//   }
-// };
-
-// const destructiveLink = {
-//   ...typography.text.link,
-//   color: colors.rose["200"],
-//   "&[disabled]": {
-//     colors: colors.rose["200"],
-//     opacity: 0.3,
-//     pointerEvents: "disabled",
-//     cursor: "not-allowed"
-//   },
-//   ":active": {
-//     color: colors.rose["300"]
-//   }
-// };
-
-// const destructiveIcon = {
-//   ...destructive,
-//   display: "flex",
-//   justifyContent: "center",
-//   alignItems: "center",
-//   "> :first-of-type": { mr: 2 }
-// };
-
-// const destructiveIconOnly = {
-//   ...destructiveIcon,
-//   width: "40px",
-//   height: "40px",
-//   "> :first-of-type": { mr: 0 }
-// };
-
-// const destructiveSmall = {
-//   ...destructive,
-//   py: 1,
-//   px: 4
-// };
-
-// const tertiary = {
-//   backgroundColor: colors.amber["200"],
-//   borderRadius: 2,
-//   color: colors.amber["300"],
-//   cursor: "pointer",
-//   boxSizing: "border-box",
-//   ":hover": {
-//     boxShadow: shadows[0],
-//     boxSizing: "border-box",
-//     color: colors.amber["300"],
-//     background: colors.amber["100"],
-//     border: borders.button.tertiary
-//   },
-//   ":active, :focus": {
-//     boxSizing: "border-box"
-//   },
-//   ":disabled": {
-//     background: colors.amber["100"],
-//     cursor: "not-allowed",
-//     color: colors.gray["100"]
-//   }
-// };
 
 // const upload = {
 //   cursor: "pointer",
@@ -359,35 +202,4 @@ export default buttons;
 //   width: "106px",
 //   color: "black",
 //   border: "base"
-// };
-
-// export const buttons = {
-//   primary: primaryButton,
-//   primaryIcon,
-//   primaryIconOnly,
-//   primarySmall,
-//   secondary: secondaryButton,
-//   secondaryIcon,
-//   secondaryIconOnly,
-//   secondarySmall,
-//   secondarySmallIconOnly,
-//   secondaryAffirmative,
-//   secondaryAffirmativeIcon,
-//   secondaryAffirmativeIconOnly,
-//   secondaryAffirmativeSmall,
-//   secondaryDestructive,
-//   secondaryDestructiveIcon,
-//   secondaryDestructiveIconOnly,
-//   secondaryDestructiveSmall,
-//   special,
-//   specialSmall,
-//   specialIcon,
-//   specialIconOnly,
-//   destructive,
-//   destructiveLink,
-//   destructiveIcon,
-//   destructiveIconOnly,
-//   destructiveSmall,
-//   tertiary,
-//   upload
 // };

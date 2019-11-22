@@ -21,8 +21,8 @@ const Button: React.FC<ButtonProps> = ({
       appearance: "none",
       display: "inline-block",
       textAlign: "center",
-      height: size === "small" ? "32px" : "48px",
-      lineHeight: size === "small" ? "32px" : "48px",
+      height: size === "small" ? "2rem" : "3rem",
+      lineHeight: size === "small" ? "2rem" : "3rem",
       textDecoration: "none",
       fontSize: "sm",
       fontWeight: "medium",
@@ -37,12 +37,18 @@ const Button: React.FC<ButtonProps> = ({
       // pass variant prop to sx
       variant: `buttons.${variant}`,
 
+      ":disabled": {
+        border: "none",
+        boxShadow: "none",
+        opacity: 0.3
+      },
+
       ":disabled:hover": {
         cursor: "not-allowed"
       },
 
       "> svg": {
-        mr: label ? 3 : null,
+        mr: label ? 2 : null,
         textAlign: "center"
       }
     }}

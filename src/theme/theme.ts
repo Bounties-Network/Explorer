@@ -48,10 +48,9 @@ export const maxContainerWidth = "1280px";
 
 // BOX SHADOWS
 export const shadows = [
-  "0px 2px 4px rgba(17, 22, 24, 0.08)", //buttonShadow1, cardShadow
-  "0px 3px 5px rgba(17, 22, 24, 0.15)", //buttonShadow2
+  "0px 2px 4px rgba(17, 22, 24, 0.08)", //cardShadow
   "0px 9px 24px rgba(0, 0, 0, 0.08)", //shadowLarge
-  `inset 0px 1px 4px rgba(0, 0, 0, 0.14)`, // innerShadows
+  `inset 0px 1px 4px rgba(0, 0, 0, 0.14)`, //innerShadows
   `0 0 10px ${colors.gray["200"]}`,
   `inset 0 0 0 1px ${colorAliases.brandSecondary}`,
   `inset 0 0 0 1px ${colorAliases.brandDestructive}`
@@ -268,7 +267,6 @@ const theme = {
   avatarResourceTypes,
   textFormat,
   maxContainerWidth,
-  ...pill,
   forms,
   variants,
   icons,

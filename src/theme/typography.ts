@@ -18,8 +18,8 @@ const typography = {
   },
 
   fontWeights: {
-    regular: 400,
-    medium: 500,
+    regular: "normal",
+    medium: 400,
     semiBold: 600,
     bold: 700
   },
@@ -50,7 +50,7 @@ const typography = {
 
     label: {
       fontSize: "xs",
-      fontWeight: "medium"
+      fontWeight: "normal"
     },
 
     labelCaps: {

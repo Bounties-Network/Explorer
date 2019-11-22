@@ -2491,6 +2491,14 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
+"@theme-ui/color@^0.2.49":
+  version "0.2.49"
+  resolved "https://registry.yarnpkg.com/@theme-ui/color/-/color-0.2.49.tgz#599276ca0dcf94c00c4f35a7b38b6833b3b35bfe"
+  integrity sha512-vUs1SnIzhDjYDyXzidtE62gKELylSw79fSYeNM//DQrNngupTZFWlyAga+MdcS9UYjWJ9Z/ueR0mfy6qlWdlpQ==
+  dependencies:
+    "@styled-system/css" "^5.0.23"
+    polished "^3.4.1"
+
 "@theme-ui/components@^0.2.49":
   version "0.2.49"
   resolved "https://registry.yarnpkg.com/@theme-ui/components/-/components-0.2.49.tgz#3c7e02ec96aac790d1d9408cd3f1591cef3168c6"
@@ -11681,6 +11689,13 @@ polished@^3.3.1:
   integrity sha512-GflTnlP5rrpDoigjczEkS6Ye7NDA4sFvAnlr5hSDrEvjiVj97Xzev3hZlLi3UB27fpxyTS9rWU64VzVLWkG+mg==
   dependencies:
     "@babel/runtime" "^7.4.5"
+
+polished@^3.4.1:
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-3.4.2.tgz#b4780dad81d64df55615fbfc77acb52fd17d88cd"
+  integrity sha512-9Rch6iMZckABr6EFCLPZsxodeBpXMo9H4fRlfR/9VjMEyy5xpo1/WgXlJGgSjPyVhEZNycbW7UmYMNyWS5MI0g==
+  dependencies:
+    "@babel/runtime" "^7.6.3"
 
 popper.js@^1.14.1:
   version "1.14.3"

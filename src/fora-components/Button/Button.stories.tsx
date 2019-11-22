@@ -33,7 +33,7 @@ const ButtonContainer = emotionStyled(Flex)(() =>
 );
 
 storiesOf("Button", module)
-  .add("PrimaryButton", () => (
+  .add("Primary", () => (
     <Container flexDirection="column">
       <Text variant="headingSans">Primary Buttons</Text>
       <ButtonContainer flexDirection="column">
@@ -80,329 +80,312 @@ storiesOf("Button", module)
       </ButtonContainer>
     </Container>
   ))
-  .add("PrimaryLinkButton", () => (
+
+  .add("Secondary", () => (
     <Container flexDirection="column">
-      <Label variant="h4">Primary Link Buttons</Label>
-      <ButtonContainer flexDirection="row">
+      <Text variant="headingSans">Secondary Buttons</Text>
+      <ButtonContainer flexDirection="column">
         <div>
-          <Label variant="label">Primary Link component</Label>
-          <Link variant="link">Cancel</Link>
+          <Label variant="label">Default</Label>
+          <Button variant="secondary" label="Button" />
         </div>
 
         <div>
-          <Label variant="label">Disabled Primary Link component</Label>
-          <Link disabled variant="link">
-            Cancel
-          </Link>
+          <Label variant="label">Disabled</Label>
+          <Button disabled variant="secondary" label="Button" />
         </div>
 
         <div>
-          <Label variant="label">Primary Link Icon component</Label>
-          <Link variant="linkIcon">
-            <FontAwesomeIcon icon={faReply} />
-            <Label>Reply</Label>
-          </Link>
-        </div>
-
-        <div>
-          <Label variant="label">Disabled Primary Link Icon component</Label>
-          <Link disabled variant="linkIcon">
-            <FontAwesomeIcon icon={faReply} />
-            <Label>Reply</Label>
-          </Link>
-        </div>
-      </ButtonContainer>
-    </Container>
-  ))
-  .add("SecondaryButton", () => (
-    <Container flexDirection="column">
-      <Label variant="h4">Secondary Buttons</Label>
-      <ButtonContainer flexDirection="row">
-        <div>
-          <Label variant="label">Secondary</Label>
-          <Button variant="secondary">Explore</Button>
-        </div>
-
-        <div>
-          <Label variant="label">Secondary Disabled</Label>
-          <Button disabled variant="secondary">
-            Explore
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Secondary Loading</Label>
+          <Label variant="label">Loading</Label>
           <Button variant="secondary">
             <LoadingIcon variant="secondary" />
           </Button>
         </div>
 
         <div>
-          <Label variant="label">Secondary with icon</Label>
-          <Button variant="secondaryIcon">
+          <Label variant="label">hasIcon</Label>
+          <Button variant="secondary" label="Button">
+            <FontAwesomeIcon icon={faPlus} />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">iconOnly</Label>
+          <Button variant="secondary">
             <FontAwesomeIcon icon={faPencil} />
-            <Label>Explore</Label>
           </Button>
         </div>
 
         <div>
-          <Label variant="label">Secondary icon only</Label>
-          <Button variant="secondaryIconOnly">
-            <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
-          </Button>
+          <Label variant="label">Small</Label>
+          <Button variant="secondary" size="small" label="Button" />
         </div>
 
         <div>
-          <Label variant="label">Secondary small</Label>
-          <Button variant="secondarySmall">Explore</Button>
-        </div>
-
-        <div>
-          <Label variant="label">Secondary small icon only</Label>
-          <Button variant="secondarySmallIconOnly">
-            <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Disabled Secondary small</Label>
-          <Button disabled variant="secondarySmall">
-            Explore
-          </Button>
+          <Label variant="label">Small/Disabled</Label>
+          <Button disabled variant="secondary" size="small" label="Button" />
         </div>
       </ButtonContainer>
     </Container>
   ))
-  .add("SecondaryLinkButton", () => (
+
+  .add("Secondary Affirmative", () => (
     <Container flexDirection="column">
-      <Label variant="h4">Secondary Link Buttons</Label>
-      <ButtonContainer flexDirection="row">
+      <Text variant="headingSans">Secondary Affirmative Buttons</Text>
+      <ButtonContainer flexDirection="column">
+        <div>
+          <Label variant="label">Default</Label>
+          <Button variant="secondary.affirmative" label="Button" />
+        </div>
+
+        <div>
+          <Label variant="label">Disabled</Label>
+          <Button disabled variant="secondary.affirmative" label="Button" />
+        </div>
+
+        <div>
+          <Label variant="label">Loading</Label>
+          <Button variant="secondary.affirmative">
+            <LoadingIcon variant="secondary" />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">hasIcon</Label>
+          <Button variant="secondary.affirmative" label="Button">
+            <FontAwesomeIcon icon={faPlus} />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">iconOnly</Label>
+          <Button variant="secondary.affirmative">
+            <FontAwesomeIcon icon={faPencil} />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">Small</Label>
+          <Button variant="secondary.affirmative" size="small" label="Button" />
+        </div>
+
+        <div>
+          <Label variant="label">Small/Disabled</Label>
+          <Button
+            disabled
+            variant="secondary.affirmative"
+            size="small"
+            label="Button"
+          />
+        </div>
+      </ButtonContainer>
+    </Container>
+  ))
+
+  .add("Secondary Destructive", () => (
+    <Container flexDirection="column">
+      <Text variant="headingSans">Secondary Destructive Buttons</Text>
+      <ButtonContainer flexDirection="column">
+        <div>
+          <Label variant="label">Default</Label>
+          <Button variant="secondary.destructive" label="Button" />
+        </div>
+
+        <div>
+          <Label variant="label">Disabled</Label>
+          <Button disabled variant="secondary.destructive" label="Button" />
+        </div>
+
+        <div>
+          <Label variant="label">Loading</Label>
+          <Button variant="secondary.destructive">
+            <LoadingIcon variant="secondary" />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">hasIcon</Label>
+          <Button variant="secondary.destructive" label="Button">
+            <FontAwesomeIcon icon={faPlus} />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">iconOnly</Label>
+          <Button variant="secondary.destructive">
+            <FontAwesomeIcon icon={faPencil} />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">Small</Label>
+          <Button variant="secondary.destructive" size="small" label="Button" />
+        </div>
+
+        <div>
+          <Label variant="label">Small/Disabled</Label>
+          <Button
+            disabled
+            variant="secondary.destructive"
+            size="small"
+            label="Button"
+          />
+        </div>
+      </ButtonContainer>
+    </Container>
+  ))
+
+  .add("Tertiary", () => (
+    <Container flexDirection="column">
+      <Text variant="headingSans">Tertiary Buttons</Text>
+      <ButtonContainer flexDirection="column">
+        <div>
+          <Label variant="label">Default</Label>
+          <Button variant="tertiary" label="Button" />
+        </div>
+
+        <div>
+          <Label variant="label">Disabled</Label>
+          <Button disabled variant="tertiary" label="Button" />
+        </div>
+
+        <div>
+          <Label variant="label">Loading</Label>
+          <Button variant="tertiary">
+            <LoadingIcon />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">hasIcon</Label>
+          <Button variant="tertiary" label="Button">
+            <FontAwesomeIcon icon={faPlus} />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">iconOnly</Label>
+          <Button variant="tertiary">
+            <FontAwesomeIcon icon={faPencil} />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">Small</Label>
+          <Button variant="tertiary" size="small" label="Button" />
+        </div>
+
+        <div>
+          <Label variant="label">Small/Disabled</Label>
+          <Button disabled variant="tertiary" size="small" label="Button" />
+        </div>
+      </ButtonContainer>
+    </Container>
+  ))
+
+  .add("Destructive", () => (
+    <Container flexDirection="column">
+      <Text variant="headingSans">Destructive Buttons</Text>
+      <ButtonContainer flexDirection="column">
+        <div>
+          <Label variant="label">Default</Label>
+          <Button variant="destructive" label="Button" />
+        </div>
+
+        <div>
+          <Label variant="label">Disabled</Label>
+          <Button disabled variant="destructive" label="Button" />
+        </div>
+
+        <div>
+          <Label variant="label">Loading</Label>
+          <Button variant="destructive">
+            <LoadingIcon variant="destructive" />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">hasIcon</Label>
+          <Button variant="destructive" label="Button">
+            <FontAwesomeIcon icon={faPlus} />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">iconOnly</Label>
+          <Button variant="destructive">
+            <FontAwesomeIcon icon={faPencil} />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">Small</Label>
+          <Button variant="destructive" size="small" label="Button" />
+        </div>
+
+        <div>
+          <Label variant="label">Small/Disabled</Label>
+          <Button disabled variant="destructive" size="small" label="Button" />
+        </div>
+      </ButtonContainer>
+    </Container>
+  ))
+
+  .add("Secondary Link Button", () => (
+    <Container flexDirection="column">
+      <Text variant="headingSans">Secondary Link Buttons</Text>
+      <ButtonContainer flexDirection="column">
         <div>
           <Label variant="label">Secondary Link component</Label>
-          <Link variant="secondaryLink">Cancel</Link>
+          <Button variant="link">Cancel</Button>
         </div>
 
         <div>
           <Label variant="label">Disabled Secondary Link component</Label>
-          <Link disabled variant="secondaryLink">
+          <Button disabled variant="link">
             Cancel
-          </Link>
+          </Button>
         </div>
       </ButtonContainer>
     </Container>
   ))
-  .add("SecondaryAffirmativeButton", () => (
+
+  .add("Affirmative Link Button", () => (
     <Container flexDirection="column">
-      <Label variant="h4">Secondary Affirmative Buttons</Label>
-      <ButtonContainer flexDirection="row">
+      <Text variant="headingSans">Primary Link Buttons</Text>
+      <ButtonContainer flexDirection="column">
         <div>
-          <Label variant="label">Secondary Affirmative Button component</Label>
-          <Button variant="secondaryAffirmative">Activate</Button>
+          <Label variant="label">Default</Label>
+          <Button variant="link.affirmative">Cancel</Button>
         </div>
 
         <div>
-          <Label variant="label">
-            Disabled Secondary Affirmative Button component
-          </Label>
-          <Button disabled variant="secondaryAffirmative">
-            Activate
-          </Button>
+          <Label variant="label">Disabled</Label>
+          <Button disabled variant="link.affirmative" label="Button" />
         </div>
 
         <div>
-          <Label variant="label">Secondary Affirimative with icon</Label>
-          <Button variant="secondaryAffirmativeIcon">
-            <FontAwesomeIcon icon={faPencil} />
-            <Label>Explore</Label>
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Secondary Affirmative icon only</Label>
-          <Button variant="secondaryAffirmativeIconOnly">
-            <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Secondary Affirmative small</Label>
-          <Button variant="secondaryAffirmativeSmall">Activate</Button>
-        </div>
-
-        <div>
-          <Label variant="label">Disabled Secondary Affirmative small</Label>
-          <Button disabled variant="secondaryAffirmativeSmall">
-            Activate
+          <Label variant="label">hasIcon</Label>
+          <Button variant="link.affirmative" label="Reply">
+            <FontAwesomeIcon icon={faReply} />
           </Button>
         </div>
       </ButtonContainer>
     </Container>
   ))
-  .add("SecondaryDestructiveButton", () => (
-    <Container flexDirection="column">
-      <Label variant="h4">Secondary Destructive Buttons</Label>
-      <ButtonContainer flexDirection="row">
-        <div>
-          <Label variant="label">Secondary Destructive Button component</Label>
-          <Button variant="secondaryDestructive">Delete</Button>
-        </div>
 
-        <div>
-          <Label variant="label">
-            Disabled Secondary Destructive Button component
-          </Label>
-          <Button disabled variant="secondaryDestructive">
-            Delete
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Secondary Destructive with icon</Label>
-          <Button variant="secondaryDestructiveIcon">
-            <FontAwesomeIcon icon={faPencil} />
-            <Label>Explore</Label>
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Secondary Destructive icon only</Label>
-          <Button variant="secondaryDestructiveIconOnly">
-            <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Secondary Destructive small</Label>
-          <Button variant="secondaryDestructiveSmall">Deactivate</Button>
-        </div>
-
-        <div>
-          <Label variant="label">Disabled Secondary Destructive small</Label>
-          <Button disabled variant="secondaryDestructiveSmall">
-            Deactivate
-          </Button>
-        </div>
-      </ButtonContainer>
-    </Container>
-  ))
-  .add("SpecialButton", () => (
-    <Container flexDirection="column">
-      <Label variant="h4">Special Buttons</Label>
-      <ButtonContainer flexDirection="row">
-        <div>
-          <Label variant="label">Special Button component</Label>
-          <Button variant="special">Create Bounty</Button>
-        </div>
-
-        <div>
-          <Label variant="label">Disabled Special Button component</Label>
-          <Button disabled variant="special">
-            Create Bounty
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Loading Special Button component</Label>
-          <Button variant="special">
-            <LoadingIcon variant="special"></LoadingIcon>
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Special Button with icon</Label>
-          <Button variant="specialIcon">
-            <FontAwesomeIcon icon={faPlus} />
-            <Label>Create new bounty</Label>
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Special Button with icon only</Label>
-          <Button variant="specialIconOnly">
-            <FontAwesomeIcon icon={faPlus} />
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Special small</Label>
-          <Button variant="specialSmall">Create</Button>
-        </div>
-
-        <div>
-          <Label variant="label">Disabled Special small</Label>
-          <Button disabled variant="specialSmall">
-            Create
-          </Button>
-        </div>
-      </ButtonContainer>
-    </Container>
-  ))
-  .add("DestructiveButton", () => (
-    <Container flexDirection="column">
-      <Label variant="h4">Destructive Buttons</Label>
-      <ButtonContainer flexDirection="row">
-        <div>
-          <Label variant="label">Destructive Button component</Label>
-          <Button variant="destructive">Delete</Button>
-        </div>
-
-        <div>
-          <Label variant="label">Disabled Destructive Button component</Label>
-          <Button disabled variant="destructive">
-            Delete
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Loading Destructive Button component</Label>
-          <Button variant="destructive">
-            <LoadingIcon variant="destructive"></LoadingIcon>
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Destructive Button with icon</Label>
-          <Button variant="destructiveIcon">
-            <FontAwesomeIcon icon={faPlus} />
-            <Label>Create new bounty</Label>
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Destructive Button with icon only</Label>
-          <Button variant="destructiveIconOnly">
-            <FontAwesomeIcon icon={faPlus} />
-          </Button>
-        </div>
-
-        <div>
-          <Label variant="label">Destructive small</Label>
-          <Button variant="destructiveSmall">Leave</Button>
-        </div>
-
-        <div>
-          <Label variant="label">Disabled Destructive small</Label>
-          <Button disabled variant="destructiveSmall">
-            Leave
-          </Button>
-        </div>
-      </ButtonContainer>
-    </Container>
-  ))
-  .add("DestructiveLink", () => (
+  .add("Destructive Link Button", () => (
     <Container flexDirection="column">
       <Label variant="h4">Destructive Links</Label>
-      <ButtonContainer flexDirection="row">
+      <ButtonContainer flexDirection="column">
         <div>
-          <Label variant="label">Destructive Link component</Label>
-          <Link variant="destructiveLink">Delete</Link>
+          <Label variant="label">Default</Label>
+          <Button variant="link.destructive" label="Delete" />
         </div>
 
         <div>
-          <Label variant="label">Disabled Destructive Link component</Label>
-          <Link disabled variant="destructiveLink">
-            Delete
-          </Link>
+          <Label variant="label">Disabled</Label>
+          <Button disabled variant="link.destructive" label="Delete" />
         </div>
       </ButtonContainer>
     </Container>

@@ -42,14 +42,14 @@ const SecondaryLoadingIcon = () => (
       cx="11"
       cy="11"
       r="9"
-      stroke="#111618"
-      strokeOpacity="0.15"
+      stroke="#EAEBEB"
+      strokeOpacity="1"
       strokeWidth="3"
       style={{ mixBlendMode: "multiply" }}
     />
     <path
       d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20"
-      stroke="#158E9E"
+      stroke="#8D9496"
       strokeWidth="3"
     />
   </svg>
@@ -116,7 +116,7 @@ const LoadingIcon: React.FC<{ variant?: string }> = ({
   >
     {variant === "primary" && <PrimaryLoadingIcon />}
     {variant === "secondary" && <SecondaryLoadingIcon />}
-    {variant === "special" && <SpecialLoadingIcon />}
+    {variant === "tertiary" && <SpecialLoadingIcon />}
     {variant === "destructive" && <DestructiveLoadingIcon />}
   </CenterContainer>
 );
