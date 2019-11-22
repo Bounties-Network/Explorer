@@ -49,7 +49,8 @@ const typography = {
     },
 
     label: {
-      fontSize: "xs"
+      fontSize: "xs",
+      fontWeight: "medium"
     },
 
     labelCaps: {

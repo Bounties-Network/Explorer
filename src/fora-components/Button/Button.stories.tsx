@@ -1,12 +1,14 @@
 import React from "react";
 import centered from "@storybook/addon-centered/react";
 import { storiesOf, addDecorator } from "@storybook/react";
-import { Button, Text, Flex, Link } from "rebass";
+import { Text, Flex, Link } from "rebass";
+import Button from ".";
 import LoadingIcon from "assets/loading";
 import css from "@styled-system/css";
 import emotionStyled from "lib/emotion-styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faPlus, faReply } from "@fortawesome/pro-regular-svg-icons";
+import { colors } from "theme/colors";
 
 addDecorator(centered);
 
@@ -15,98 +17,98 @@ const Container = emotionStyled(Flex)(() =>
     "> :first-of-type": { mb: 3 }
   })
 );
+
+const Label = emotionStyled(Text)(() =>
+  css({
+    mb: 2,
+    color: colors.gray["400"]
+  })
+);
+
 const ButtonContainer = emotionStyled(Flex)(() =>
   css({
-    "> :not(:last-child)": { mr: 3 }
+    mt: 5,
+    "> :not(:last-child)": { mb: 5 }
   })
 );
 
 storiesOf("Button", module)
   .add("PrimaryButton", () => (
     <Container flexDirection="column">
-      <Text variant="h4">Primary Buttons</Text>
-      <ButtonContainer flexDirection="row">
+      <Text variant="headingSans">Primary Buttons</Text>
+      <ButtonContainer flexDirection="column">
         <div>
-          <Text variant="h5">Primary</Text>
-          <Button width={"100%"} variant="primary">
-            Accept
-          </Button>
+          <Label variant="label">Default</Label>
+          <Button variant="primary" label="Button" />
         </div>
 
         <div>
-          <Text variant="h5">Primary Disabled</Text>
-          <Button disabled={true} width={"100%"} variant="primary">
-            Accept
-          </Button>
+          <Label variant="label">Disabled</Label>
+          <Button disabled variant="primary" label="Button" />
         </div>
 
         <div>
-          <Text variant="h5">Loading</Text>
-          <Button width={"100%"} variant="primary">
+          <Label variant="label">Loading</Label>
+          <Button variant="primary">
             <LoadingIcon />
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Primary with Icon</Text>
-          <Button width={"100%"} variant="primaryIcon">
+          <Label variant="label">hasIcon</Label>
+          <Button variant="primary" label="Button">
+            <FontAwesomeIcon icon={faPlus} />
+          </Button>
+        </div>
+
+        <div>
+          <Label variant="label">iconOnly</Label>
+          <Button variant="primary">
             <FontAwesomeIcon icon={faPencil} />
-            <Text>Edit bounty</Text>
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Primary with icon only</Text>
-          <Button variant="primaryIconOnly">
-            <FontAwesomeIcon icon={faPencil} />
-          </Button>
+          <Label variant="label">Small</Label>
+          <Button variant="primary" size="small" label="Button" />
         </div>
 
         <div>
-          <Text variant="h5">Primary small</Text>
-          <Button variant="primarySmall">Join</Button>
-        </div>
-
-        <div>
-          <Text variant="h5">Disabled Primary small</Text>
-          <Button disabled={true} variant="primarySmall">
-            Join
-          </Button>
+          <Label variant="label">Small/Disabled</Label>
+          <Button disabled variant="primary" size="small" label="Button" />
         </div>
       </ButtonContainer>
     </Container>
   ))
   .add("PrimaryLinkButton", () => (
     <Container flexDirection="column">
-      <Text variant="h4">Primary Link Buttons</Text>
+      <Label variant="h4">Primary Link Buttons</Label>
       <ButtonContainer flexDirection="row">
         <div>
-          <Text variant="h5">Primary Link component</Text>
-          <Link width={"100%"} variant="link">
+          <Label variant="label">Primary Link component</Label>
+          <Link variant="link">Cancel</Link>
+        </div>
+
+        <div>
+          <Label variant="label">Disabled Primary Link component</Label>
+          <Link disabled variant="link">
             Cancel
           </Link>
         </div>
 
         <div>
-          <Text variant="h5">Disabled Primary Link component</Text>
-          <Link disabled={true} width={"100%"} variant="link">
-            Cancel
+          <Label variant="label">Primary Link Icon component</Label>
+          <Link variant="linkIcon">
+            <FontAwesomeIcon icon={faReply} />
+            <Label>Reply</Label>
           </Link>
         </div>
 
         <div>
-          <Text variant="h5">Primary Link Icon component</Text>
-          <Link width={"100%"} variant="linkIcon">
+          <Label variant="label">Disabled Primary Link Icon component</Label>
+          <Link disabled variant="linkIcon">
             <FontAwesomeIcon icon={faReply} />
-            <Text>Reply</Text>
-          </Link>
-        </div>
-
-        <div>
-          <Text variant="h5">Disabled Primary Link Icon component</Text>
-          <Link disabled={true} width={"100%"} variant="linkIcon">
-            <FontAwesomeIcon icon={faReply} />
-            <Text>Reply</Text>
+            <Label>Reply</Label>
           </Link>
         </div>
       </ButtonContainer>
@@ -114,59 +116,57 @@ storiesOf("Button", module)
   ))
   .add("SecondaryButton", () => (
     <Container flexDirection="column">
-      <Text variant="h4">Secondary Buttons</Text>
+      <Label variant="h4">Secondary Buttons</Label>
       <ButtonContainer flexDirection="row">
         <div>
-          <Text variant="h5">Secondary</Text>
-          <Button width={"100%"} variant="secondary">
+          <Label variant="label">Secondary</Label>
+          <Button variant="secondary">Explore</Button>
+        </div>
+
+        <div>
+          <Label variant="label">Secondary Disabled</Label>
+          <Button disabled variant="secondary">
             Explore
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Secondary Disabled</Text>
-          <Button disabled={true} width={"100%"} variant="secondary">
-            Explore
-          </Button>
-        </div>
-
-        <div>
-          <Text variant="h5">Secondary Loading</Text>
-          <Button width={"100%"} variant="secondary">
+          <Label variant="label">Secondary Loading</Label>
+          <Button variant="secondary">
             <LoadingIcon variant="secondary" />
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Secondary with icon</Text>
+          <Label variant="label">Secondary with icon</Label>
           <Button variant="secondaryIcon">
             <FontAwesomeIcon icon={faPencil} />
-            <Text>Explore</Text>
+            <Label>Explore</Label>
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Secondary icon only</Text>
+          <Label variant="label">Secondary icon only</Label>
           <Button variant="secondaryIconOnly">
             <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Secondary small</Text>
+          <Label variant="label">Secondary small</Label>
           <Button variant="secondarySmall">Explore</Button>
         </div>
 
         <div>
-          <Text variant="h5">Secondary small icon only</Text>
+          <Label variant="label">Secondary small icon only</Label>
           <Button variant="secondarySmallIconOnly">
             <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Disabled Secondary small</Text>
-          <Button disabled={true} variant="secondarySmall">
+          <Label variant="label">Disabled Secondary small</Label>
+          <Button disabled variant="secondarySmall">
             Explore
           </Button>
         </div>
@@ -175,18 +175,16 @@ storiesOf("Button", module)
   ))
   .add("SecondaryLinkButton", () => (
     <Container flexDirection="column">
-      <Text variant="h4">Secondary Link Buttons</Text>
+      <Label variant="h4">Secondary Link Buttons</Label>
       <ButtonContainer flexDirection="row">
         <div>
-          <Text variant="h5">Secondary Link component</Text>
-          <Link width={"100%"} variant="secondaryLink">
-            Cancel
-          </Link>
+          <Label variant="label">Secondary Link component</Label>
+          <Link variant="secondaryLink">Cancel</Link>
         </div>
 
         <div>
-          <Text variant="h5">Disabled Secondary Link component</Text>
-          <Link disabled={true} width={"100%"} variant="secondaryLink">
+          <Label variant="label">Disabled Secondary Link component</Label>
+          <Link disabled variant="secondaryLink">
             Cancel
           </Link>
         </div>
@@ -195,45 +193,45 @@ storiesOf("Button", module)
   ))
   .add("SecondaryAffirmativeButton", () => (
     <Container flexDirection="column">
-      <Text variant="h4">Secondary Affirmative Buttons</Text>
+      <Label variant="h4">Secondary Affirmative Buttons</Label>
       <ButtonContainer flexDirection="row">
         <div>
-          <Text variant="h5">Secondary Affirmative Button component</Text>
-          <Button width={"100%"} variant="secondaryAffirmative">
+          <Label variant="label">Secondary Affirmative Button component</Label>
+          <Button variant="secondaryAffirmative">Activate</Button>
+        </div>
+
+        <div>
+          <Label variant="label">
+            Disabled Secondary Affirmative Button component
+          </Label>
+          <Button disabled variant="secondaryAffirmative">
             Activate
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Disabled Secondary Affirmative Button component</Text>
-          <Button disabled={true} width={"100%"} variant="secondaryAffirmative">
-            Activate
-          </Button>
-        </div>
-
-        <div>
-          <Text variant="h5">Secondary Affirimative with icon</Text>
+          <Label variant="label">Secondary Affirimative with icon</Label>
           <Button variant="secondaryAffirmativeIcon">
             <FontAwesomeIcon icon={faPencil} />
-            <Text>Explore</Text>
+            <Label>Explore</Label>
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Secondary Affirmative icon only</Text>
+          <Label variant="label">Secondary Affirmative icon only</Label>
           <Button variant="secondaryAffirmativeIconOnly">
             <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Secondary Affirmative small</Text>
+          <Label variant="label">Secondary Affirmative small</Label>
           <Button variant="secondaryAffirmativeSmall">Activate</Button>
         </div>
 
         <div>
-          <Text variant="h5">Disabled Secondary Affirmative small</Text>
-          <Button disabled={true} variant="secondaryAffirmativeSmall">
+          <Label variant="label">Disabled Secondary Affirmative small</Label>
+          <Button disabled variant="secondaryAffirmativeSmall">
             Activate
           </Button>
         </div>
@@ -242,45 +240,45 @@ storiesOf("Button", module)
   ))
   .add("SecondaryDestructiveButton", () => (
     <Container flexDirection="column">
-      <Text variant="h4">Secondary Destructive Buttons</Text>
+      <Label variant="h4">Secondary Destructive Buttons</Label>
       <ButtonContainer flexDirection="row">
         <div>
-          <Text variant="h5">Secondary Destructive Button component</Text>
-          <Button width={"100%"} variant="secondaryDestructive">
+          <Label variant="label">Secondary Destructive Button component</Label>
+          <Button variant="secondaryDestructive">Delete</Button>
+        </div>
+
+        <div>
+          <Label variant="label">
+            Disabled Secondary Destructive Button component
+          </Label>
+          <Button disabled variant="secondaryDestructive">
             Delete
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Disabled Secondary Destructive Button component</Text>
-          <Button disabled={true} width={"100%"} variant="secondaryDestructive">
-            Delete
-          </Button>
-        </div>
-
-        <div>
-          <Text variant="h5">Secondary Destructive with icon</Text>
+          <Label variant="label">Secondary Destructive with icon</Label>
           <Button variant="secondaryDestructiveIcon">
             <FontAwesomeIcon icon={faPencil} />
-            <Text>Explore</Text>
+            <Label>Explore</Label>
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Secondary Destructive icon only</Text>
+          <Label variant="label">Secondary Destructive icon only</Label>
           <Button variant="secondaryDestructiveIconOnly">
             <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Secondary Destructive small</Text>
+          <Label variant="label">Secondary Destructive small</Label>
           <Button variant="secondaryDestructiveSmall">Deactivate</Button>
         </div>
 
         <div>
-          <Text variant="h5">Disabled Secondary Destructive small</Text>
-          <Button disabled={true} variant="secondaryDestructiveSmall">
+          <Label variant="label">Disabled Secondary Destructive small</Label>
+          <Button disabled variant="secondaryDestructiveSmall">
             Deactivate
           </Button>
         </div>
@@ -289,52 +287,50 @@ storiesOf("Button", module)
   ))
   .add("SpecialButton", () => (
     <Container flexDirection="column">
-      <Text variant="h4">Special Buttons</Text>
+      <Label variant="h4">Special Buttons</Label>
       <ButtonContainer flexDirection="row">
         <div>
-          <Text variant="h5">Special Button component</Text>
-          <Button width={"100%"} variant="special">
+          <Label variant="label">Special Button component</Label>
+          <Button variant="special">Create Bounty</Button>
+        </div>
+
+        <div>
+          <Label variant="label">Disabled Special Button component</Label>
+          <Button disabled variant="special">
             Create Bounty
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Disabled Special Button component</Text>
-          <Button disabled={true} width={"100%"} variant="special">
-            Create Bounty
-          </Button>
-        </div>
-
-        <div>
-          <Text variant="h5">Loading Special Button component</Text>
-          <Button width={"100%"} variant="special">
+          <Label variant="label">Loading Special Button component</Label>
+          <Button variant="special">
             <LoadingIcon variant="special"></LoadingIcon>
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Special Button with icon</Text>
-          <Button width={"100%"} variant="specialIcon">
+          <Label variant="label">Special Button with icon</Label>
+          <Button variant="specialIcon">
             <FontAwesomeIcon icon={faPlus} />
-            <Text>Create new bounty</Text>
+            <Label>Create new bounty</Label>
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Special Button with icon only</Text>
+          <Label variant="label">Special Button with icon only</Label>
           <Button variant="specialIconOnly">
             <FontAwesomeIcon icon={faPlus} />
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Special small</Text>
+          <Label variant="label">Special small</Label>
           <Button variant="specialSmall">Create</Button>
         </div>
 
         <div>
-          <Text variant="h5">Disabled Special small</Text>
-          <Button disabled={true} variant="specialSmall">
+          <Label variant="label">Disabled Special small</Label>
+          <Button disabled variant="specialSmall">
             Create
           </Button>
         </div>
@@ -343,52 +339,50 @@ storiesOf("Button", module)
   ))
   .add("DestructiveButton", () => (
     <Container flexDirection="column">
-      <Text variant="h4">Destructive Buttons</Text>
+      <Label variant="h4">Destructive Buttons</Label>
       <ButtonContainer flexDirection="row">
         <div>
-          <Text variant="h5">Destructive Button component</Text>
-          <Button width={"100%"} variant="destructive">
+          <Label variant="label">Destructive Button component</Label>
+          <Button variant="destructive">Delete</Button>
+        </div>
+
+        <div>
+          <Label variant="label">Disabled Destructive Button component</Label>
+          <Button disabled variant="destructive">
             Delete
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Disabled Destructive Button component</Text>
-          <Button disabled={true} width={"100%"} variant="destructive">
-            Delete
-          </Button>
-        </div>
-
-        <div>
-          <Text variant="h5">Loading Destructive Button component</Text>
-          <Button width={"100%"} variant="destructive">
+          <Label variant="label">Loading Destructive Button component</Label>
+          <Button variant="destructive">
             <LoadingIcon variant="destructive"></LoadingIcon>
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Destructive Button with icon</Text>
-          <Button width={"100%"} variant="destructiveIcon">
+          <Label variant="label">Destructive Button with icon</Label>
+          <Button variant="destructiveIcon">
             <FontAwesomeIcon icon={faPlus} />
-            <Text>Create new bounty</Text>
+            <Label>Create new bounty</Label>
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Destructive Button with icon only</Text>
+          <Label variant="label">Destructive Button with icon only</Label>
           <Button variant="destructiveIconOnly">
             <FontAwesomeIcon icon={faPlus} />
           </Button>
         </div>
 
         <div>
-          <Text variant="h5">Destructive small</Text>
+          <Label variant="label">Destructive small</Label>
           <Button variant="destructiveSmall">Leave</Button>
         </div>
 
         <div>
-          <Text variant="h5">Disabled Destructive small</Text>
-          <Button disabled={true} variant="destructiveSmall">
+          <Label variant="label">Disabled Destructive small</Label>
+          <Button disabled variant="destructiveSmall">
             Leave
           </Button>
         </div>
@@ -397,18 +391,16 @@ storiesOf("Button", module)
   ))
   .add("DestructiveLink", () => (
     <Container flexDirection="column">
-      <Text variant="h4">Destructive Links</Text>
+      <Label variant="h4">Destructive Links</Label>
       <ButtonContainer flexDirection="row">
         <div>
-          <Text variant="h5">Destructive Link component</Text>
-          <Link width={"100%"} variant="destructiveLink">
-            Delete
-          </Link>
+          <Label variant="label">Destructive Link component</Label>
+          <Link variant="destructiveLink">Delete</Link>
         </div>
 
         <div>
-          <Text variant="h5">Disabled Destructive Link component</Text>
-          <Link disabled={true} width={"100%"} variant="destructiveLink">
+          <Label variant="label">Disabled Destructive Link component</Label>
+          <Link disabled variant="destructiveLink">
             Delete
           </Link>
         </div>

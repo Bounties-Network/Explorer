@@ -6,11 +6,17 @@ import css from "@styled-system/css";
 const CenterContainer = emotionStyled(Flex)(() => css({}));
 
 const PrimaryLoadingIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 22 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <circle
       cx="11"
       cy="11"
-      r="8.5"
+      r="9"
       stroke="#111618"
       strokeOpacity="0.3"
       strokeWidth="3"
@@ -25,11 +31,17 @@ const PrimaryLoadingIcon = () => (
 );
 
 const SecondaryLoadingIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 22 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <circle
       cx="11"
       cy="11"
-      r="8.5"
+      r="9"
       stroke="#111618"
       strokeOpacity="0.15"
       strokeWidth="3"
@@ -44,11 +56,17 @@ const SecondaryLoadingIcon = () => (
 );
 
 const SpecialLoadingIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 22 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <circle
       cx="11"
       cy="11"
-      r="8.5"
+      r="9"
       stroke="#111618"
       strokeOpacity="0.3"
       strokeWidth="3"
@@ -63,11 +81,17 @@ const SpecialLoadingIcon = () => (
 );
 
 const DestructiveLoadingIcon = () => (
-  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 22 22"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <circle
       cx="11"
       cy="11"
-      r="8.5"
+      r="9"
       stroke="#111618"
       strokeOpacity="0.3"
       strokeWidth="3"
@@ -81,8 +105,15 @@ const DestructiveLoadingIcon = () => (
   </svg>
 );
 
-const LoadingIcon: React.FC<{ variant?: string }> = ({ variant = "primary" }) => (
-  <CenterContainer justifyContent={"center"} alignItems={"center"} width="100%" height="100%">
+const LoadingIcon: React.FC<{ variant?: string }> = ({
+  variant = "primary"
+}) => (
+  <CenterContainer
+    justifyContent={"center"}
+    alignItems={"center"}
+    width="100%"
+    height="100%"
+  >
     {variant === "primary" && <PrimaryLoadingIcon />}
     {variant === "secondary" && <SecondaryLoadingIcon />}
     {variant === "special" && <SpecialLoadingIcon />}

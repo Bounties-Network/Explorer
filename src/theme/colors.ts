@@ -56,15 +56,10 @@ const colors = {
 // Brand color aliases
 const colorAliases = {
   brandPrimary: colors.seaGlass["300"],
-  brandPrimaryHover: colors.seaGlass["100"],
-  brandSecondary: colors.white,
-  brandSecondaryHover: colors.white,
-  brandDestructive: colors.rose["200"],
-  brandDestructiveHover: colors.rose["100"],
-  brandSpecial: colors.amber["200"],
-  brandSpecialHover: colors.amber["100"],
+  brandTertiary: colors.amber["200"],
   brandAffirmative: colors.seaGlass["200"],
-  brandAffirmativeHover: colors.seaGlass["100"],
+  brandCaution: colors.gold["200"],
+  brandDestructive: colors.rose["200"],
 
   // Misc
   inputBg: colors.gray["100"],
