@@ -23,7 +23,7 @@ const Members: React.FC<IProps> = ({ data, loadMore }) => (
     <Button
       onClick={loadMore}
       variant="secondary"
-      color="seaGlass300"
+      color="seaGlass.300"
       width={"100%"}
     >
       Load More

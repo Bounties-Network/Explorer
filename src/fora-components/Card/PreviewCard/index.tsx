@@ -57,28 +57,28 @@ const PreviewCard: React.FC<PreviewCardProps> = ({
           {title}
         </Link>
         <Description>
-          <Text variant="small" color="gray400">
+          <Text variant="small" color="gray.400">
             <FormatExpiration variant="preview" expirationTimestamp={expirationTimestamp}></FormatExpiration>
           </Text>
-          <Text variant="small" color="gray400">
+          <Text variant="small" color="gray.400">
             •
           </Text>
-          <Text variant="small" color="gray400">
+          <Text variant="small" color="gray.400">
             {`${submissionCount} submissions`}
           </Text>
           {community !== undefined && (
             <>
-              <Text variant="small" color="gray400">
+              <Text variant="small" color="gray.400">
                 •
               </Text>
-              <Link color='gray400' variant='linkSmall' href={community?.href}>{`f • ${community?.name}`}</Link>
+              <Link color='gray.400' variant='linkSmall' href={community?.href}>{`f • ${community?.name}`}</Link>
             </>
           )}
         </Description>
       </Flex>
       <ValueContainer flexDirection="column">
         <Text fontFamily="secondary" variant="h5">{`$${ethInUSD}`}</Text>
-        <Text fontFamily="secondary" variant="label" color="gray400">{`${ethAmount} ETH`}</Text>
+        <Text fontFamily="secondary" variant="label" color="gray.400">{`${ethAmount} ETH`}</Text>
       </ValueContainer>
     </Content>
   </CardContainer>

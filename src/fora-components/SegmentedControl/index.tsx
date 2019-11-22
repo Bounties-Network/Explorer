@@ -18,13 +18,13 @@ interface IOptionProps {
 const Option = emotionStyled(Flex)<IOptionProps>(
   props =>
     css({
-      height: '24px',
-      minWidth: '80px',
+      height: "24px",
+      minWidth: "80px",
       width: "fit-content",
       cursor: "pointer",
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: props.isActive ? "white" : "gray100",
+      backgroundColor: props.isActive ? "white" : "gray.100",
       mixBlendMode: "normal",
       boxSizing: "border-box"
     }),
@@ -71,7 +71,7 @@ const SegmentedControl: React.FC<IProps> = ({
         firstOption={true}
       >
         <Text
-          color={activeSegment === "first" ? "black" : "gray400"}
+          color={activeSegment === "first" ? "black" : "gray.400"}
           variant="small"
         >
           {firstOption}
@@ -87,7 +87,7 @@ const SegmentedControl: React.FC<IProps> = ({
         isActive={activeSegment === "second"}
       >
         <Text
-          color={activeSegment === "second" ? "black" : "gray400"}
+          color={activeSegment === "second" ? "black" : "gray.400"}
           variant="small"
         >
           {secondOption}

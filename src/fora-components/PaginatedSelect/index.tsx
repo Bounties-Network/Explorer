@@ -13,7 +13,7 @@ const reactPaginateStyle = {
     justifyContent: 'center',
     textAlign: 'center',
     px: 3, py: 2, bg: 'white', border: 'base', boxSizing: 'border-box', borderRadius: 2,
-    color: 'gray400',
+    color: 'gray.400',
     cursor: 'pointer',
     '&:hover': { border: 'active' }
   },
@@ -29,7 +29,7 @@ const reactPaginateStyle = {
     borderRadius: 2,
     '> *': theme => ({
       ...theme.text.bodyStrong,
-      color: 'gray400'
+      color: 'gray.400'
     })
   },
   [prefixer('page')]: { display: 'flex' },
@@ -42,11 +42,11 @@ const reactPaginateStyle = {
     height: 5,
     border: 'base',
     borderRadius: 2,
-    color: 'gray400'
-    
+    color: 'gray.400'
+
   },
   [prefixer('active')]: { display: 'flex' },
-  [prefixer('activeLink')]: { display: 'flex', border: 'primaryActive', color: 'seaGlass300' },
+  [prefixer('activeLink')]: { display: 'flex', border: 'primaryActive', color: 'seaGlass.300' },
   [prefixer('disabled')]: { display: 'none' },
 }
 

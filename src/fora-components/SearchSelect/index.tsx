@@ -60,10 +60,10 @@ const SelectTrigger: React.FC<{
       props.setVisible(true);
     }}
   >
-    <Text fontFamily="secondary" color="gray400" variant="body">
+    <Text fontFamily="secondary" color="gray.400" variant="body">
       {props.placeholder}
     </Text>
-    <FontAwesomeIcon sx={{ color: "seaGlass300" }} icon={faChevronDown} />
+    <FontAwesomeIcon sx={{ color: "seaGlass.300" }} icon={faChevronDown} />
   </Flex>
 ));
 
@@ -81,7 +81,7 @@ const Option: React.FC<IOptionProps> = props => (
     }}
     alignItems={"center"}
     sx={{
-      "&:hover": { bg: "gray100", "> *": { color: "seaGlass300" } },
+      "&:hover": { bg: "gray.100", "> *": { color: "seaGlass.300" } },
       borderRadius: 1,
       py: 4,
       px: 2,
@@ -90,10 +90,10 @@ const Option: React.FC<IOptionProps> = props => (
     }}
   >
     <Text
-      sx={{ "&:hover": { color: "seaGlass300" } }}
+      sx={{ "&:hover": { color: "seaGlass.300" } }}
       variant="body"
       fontFamily="secondary"
-      color="gray500"
+      color="gray.500"
     >
       {props.option}
     </Text>
@@ -116,8 +116,8 @@ const Options: React.FC<IOptionsProps> = props => (
       width: defaultWidth,
       minHeight: defaultHeight,
       maxHeight: `calc((48px * 4) + (4px * 4))`,
-      overflow: 'auto',
-      overflowX: 'hidden',
+      overflow: "auto",
+      overflowX: "hidden",
       px: 2,
       py: 2
     }}

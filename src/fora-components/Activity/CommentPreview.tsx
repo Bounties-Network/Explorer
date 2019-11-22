@@ -52,7 +52,7 @@ const CommentPreview: React.FC<ICommentPreviewProps> = ({
       <DescriptionContainer flexDirection="column">
         <Description>
           <Text variant="bodyStrong">{authorName || '--'}</Text>
-          <Text variant="body" color="gray400">{` commented on `}</Text>
+          <Text variant="body" color="gray.400">{` commented on `}</Text>
           <Link variant="link">{bountyTitle}</Link>
         </Description>
         <MetaData

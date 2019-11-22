@@ -50,9 +50,9 @@ const Contribution: React.FC<IContributionProps> = ({
       <DescriptionContainer flexDirection="column">
         <Description>
           <Text variant="bodyStrong">{authorName || '--'}</Text>
-          <Text variant="body" color="gray400">{` just contributed `}</Text>
+          <Text variant="body" color="gray.400">{` just contributed `}</Text>
           <Text variant="bodyStrong">{`${ethContributionAmount} ETH`}</Text>
-          <Text variant="body" color="gray400">{` to  `}</Text>
+          <Text variant="body" color="gray.400">{` to  `}</Text>
           <Link variant="link" color="">
             {bountyTitle}
           </Link>

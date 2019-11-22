@@ -64,7 +64,7 @@ const DeadlineExtension: React.FC<IDeadlineExtensionProps> = ({
           <Text variant="bodyStrong">{authorName || '--'}</Text>
           <Text
             variant="body"
-            color="gray400"
+            color="gray.400"
           >{` extended their bounty's deadline to `}</Text>
           <Text variant="bodyStrong">
             {moment(bountyExtensionDate).format('DD/MM/YY')}

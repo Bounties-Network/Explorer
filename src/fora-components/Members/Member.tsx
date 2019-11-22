@@ -35,7 +35,7 @@ const Member: React.FC<IMember> = ({
       <Text
         fontFamily="secondary"
         variant="body"
-        color="gray400"
+        color="gray.400"
       >{`Joined ${moment(joinedTimestamp).fromNow()}`}</Text>
     </Container>
     <Divider></Divider>

@@ -1,14 +1,22 @@
-import React from 'react';
-import { Flex, Text, Link } from 'rebass';
-import emotionStyled from 'lib/emotion-styled';
-import css from '@styled-system/css';
-import moment from 'moment';
+/** @jsx jsx */
+import { jsx } from "theme-ui";
+import React from "react";
+import { Flex, Text, Link } from "@theme-ui/components";
+import moment from "moment";
+import { colorAliases } from "theme/colors";
 
-const Container = emotionStyled(Flex)(() =>
-  css({ '> :nth-child(2)': { mx: 1 } })
+const Container = props => (
+  <Flex
+    {...props}
+    sx={{
+      color: "gray.400",
+      fontSize: "sm",
+      mt: "3"
+    }}
+  />
 );
 
-interface IProps {
+export default interface IProps {
   communityId: string;
   communityName: string;
   timestamp: number | string;
@@ -19,14 +27,16 @@ const MetaData: React.FC<IProps> = ({
   communityId
 }) => (
   <Container>
-    <Text variant="body" color="gray400">
-      {moment(timestamp).fromNow()}
-    </Text>
-    <Text variant="body" color="gray400">
-      {'•'}
-    </Text>
-    <Link href={`/community/${communityId}`} variant="link">
-      <Text color="gray400" variant="body">{`f/${communityName}`}</Text>
+    <Text>{moment(timestamp).fromNow()}</Text>
+    <Text as="span">{"・"}</Text>
+    <Link
+      href={`/community/${communityId}`}
+      sx={{
+        color: "gray.400",
+        "&:hover": { color: colorAliases.brandPrimary }
+      }}
+    >
+      {`f/${communityName}`}
     </Link>
   </Container>
 );

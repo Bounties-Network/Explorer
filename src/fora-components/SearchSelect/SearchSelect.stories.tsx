@@ -28,14 +28,14 @@ storiesOf('SearchSelect', module)
     <div sx={{ width: '50vw', pt: 3, pl: 5 }}>
       <SearchSelect handleSelect={(option: string) => setState(state.concat(option))} options={['React', 'HTML', 'CSS', 'JavaScript', 'Rust', 'Clojure']} placeholder='Placeholder..' />
       <div sx={{ display: 'flex', '> :not(:last-of-type)': { mr: 2 }, mt: 3 }}>
-        {state.map((option) => 
+        {state.map((option) =>
           <div sx={{ cursor: 'pointer' }} onClick={() => setState(
             state.filter(x => x !== option)
           )}>
             <Pill css={css({ height: 'unset' })} variant="pill.tag.explorer">
               <div sx={{ minHeight: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', '> :first-of-type': { mr: 2 } }}>
-              <Text color={'gray400'} variant='body'>{option}</Text>
-              <FontAwesomeIcon sx={{ color: 'seaGlass300' }} icon={faTimes}></FontAwesomeIcon>
+              <Text color={'gray.400'} variant='body'>{option}</Text>
+              <FontAwesomeIcon sx={{ color: 'seaGlass.300' }} icon={faTimes}></FontAwesomeIcon>
               </div>
             </Pill>
         </div>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const MustardLogo = () => (
+const GoldLogo = () => (
   <svg
     width="74"
     height="31"
@@ -36,4 +36,4 @@ const MustardLogo = () => (
   </svg>
 );
 
-export default MustardLogo;
+export default GoldLogo;

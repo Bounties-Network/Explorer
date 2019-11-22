@@ -1,6 +1,6 @@
-import styled from 'lib/emotion-styled';
-import css from '@styled-system/css';
-import { Box } from 'rebass';
+import styled from "lib/emotion-styled";
+import css from "@styled-system/css";
+import { Box } from "rebass";
 
 interface IDividerProps {
   backgroundColor?: string;
@@ -14,9 +14,9 @@ const Divider = styled(Box)<IDividerProps>(props =>
   css({
     mt: props.mt || props.marginTop || 3,
     mb: props.mb || props.marginBottom || 3,
-    width: '100%',
-    height: '1px',
-    backgroundColor: props.backgroundColor || 'gray200'
+    width: "100%",
+    height: "1px",
+    backgroundColor: props.backgroundColor || "gray.200"
   })
 );
 
