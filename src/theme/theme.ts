@@ -11,9 +11,30 @@ breakpoints.md = breakpoints[1];
 breakpoints.lg = breakpoints[2];
 breakpoints.xl = breakpoints[3];
 
-// SPACING SCALE
-export const space = [0, 4, 8, 16, 24, 32, 40, 128].map(n => n / 16 + "em");
-export const sizes = cTheme.sizes;
+// SPACING & SIZE SCALES
+export const space = [0, 4, 8, 16, 24, 32, 40, 128].map(n => n / 16 + "rem");
+export const sizeScale = [24, 32, 40, 44, 48, 52, 100, 152].map(
+  n => n / 16 + "rem"
+);
+
+// SIZES
+export const sizes = {
+  avatarImage: {
+    sm: sizeScale[1],
+    md: sizeScale[3],
+    lg: sizeScale[6]
+  },
+
+  inputHeight: {
+    sm: sizeScale[1],
+    lg: sizeScale[4]
+  },
+
+  buttonWidth: {
+    sm: sizeScale[5],
+    lg: sizeScale[7]
+  }
+};
 
 // BORDERS & BORDER-RADII
 // styled-system's 'borderRadius' function can hook into the 'radii' object/array
@@ -103,8 +124,8 @@ export const pill = {
     pendingAcceptance: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.brandCaution["300"],
-      backgroundColor: colors.brandCaution["100"]
+      color: colors.brandPending["300"],
+      backgroundColor: colors.brandPending["100"]
     },
     declined: {
       fontSize: "xs",
@@ -121,8 +142,8 @@ export const pill = {
     processing: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.brandCaution["300"],
-      backgroundColor: colors.brandCaution["100"]
+      color: colors.brandPending["300"],
+      backgroundColor: colors.brandPending["100"]
     },
     confirmed: {
       fontSize: "xs",
@@ -139,8 +160,8 @@ export const pill = {
     pending: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.brandCaution["300"],
-      backgroundColor: colors.brandCaution["100"]
+      color: colors.brandPending["300"],
+      backgroundColor: colors.brandPending["100"]
     }
   },
   tag: {

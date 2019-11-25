@@ -4,6 +4,18 @@ const colorPalette = {
   black: "#111618",
   white: "#fff",
 
+  blackAlpha: {
+    100: "rgba(0, 0, 0, 0.06)",
+    200: "rgba(0, 0, 0, 0.08)",
+    300: "rgba(0, 0, 0, 0.16)",
+    400: "rgba(0, 0, 0, 0.24)",
+    500: "rgba(0, 0, 0, 0.36)",
+    600: "rgba(0, 0, 0, 0.48)",
+    700: "rgba(0, 0, 0, 0.64)",
+    800: "rgba(0, 0, 0, 0.80)",
+    900: "rgba(0, 0, 0, 0.92)"
+  },
+
   whiteAlpha: {
     50: "rgba(255, 255, 255, 0.04)",
     100: "rgba(255, 255, 255, 0.06)",
@@ -60,11 +72,12 @@ const colors = {
   white: colorPalette.white,
   whiteAlpha: colorPalette.whiteAlpha,
   black: colorPalette.black,
+  blackAlpha: colorPalette.blackAlpha,
   brandPrimary: colorPalette.seaGlass,
   brandSecondary: colorPalette.gray,
   brandTertiary: colorPalette.amber,
   brandAffirmative: colorPalette.seaGlass,
-  brandCaution: colorPalette.gold,
+  brandPending: colorPalette.gold,
   brandDestructive: colorPalette.rose,
   brandGray: colorPalette.gray,
 
@@ -73,7 +86,7 @@ const colors = {
   baseBorderColor: colorPalette.gray["200"]
 };
 
-const gradientColorStop = {
+const colorGradientStops = {
   primary: [
     colors.brandPrimary["100"],
     darken(0.05, colors.brandPrimary["100"]),
@@ -89,10 +102,10 @@ const gradientColorStop = {
     darken(0.05, colors.brandTertiary["100"]),
     darken(0.125, colors.brandTertiary["100"])
   ],
-  caution: [
-    colors.brandCaution["100"],
-    darken(0.05, colors.brandCaution["100"]),
-    darken(0.125, colors.brandCaution["100"])
+  pending: [
+    colors.brandPending["100"],
+    darken(0.05, colors.brandPending["100"]),
+    darken(0.125, colors.brandPending["100"])
   ],
   destructive: [
     colors.brandDestructive["100"],
@@ -101,4 +114,4 @@ const gradientColorStop = {
   ]
 };
 
-export { colorPalette, colors, gradientColorStop };
+export { colorPalette, colors, colorGradientStops };

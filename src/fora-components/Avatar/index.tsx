@@ -1,7 +1,6 @@
 import React from "react";
 import { css } from "@styled-system/css";
 import styled from "lib/emotion-styled";
-import Blockies from "react-blockies";
 import { Text, Image, Flex, Link, Box } from "rebass";
 import { shortenAddress } from "utils/helpers";
 import AvatarImage from "fora-components/AvatarImage";
@@ -9,13 +8,13 @@ import AvatarImage from "fora-components/AvatarImage";
 let imageContainerVariantSize = variant => {
   switch (variant) {
     case "small":
-      return 4;
+      return 0;
     case "medium":
-      return 5;
+      return 1;
     case "large":
-      return 7;
+      return 3;
     default:
-      return 4;
+      return 1;
   }
 };
 
@@ -77,7 +76,10 @@ const TextContainer = styled(Flex)<TextContainerProps>(props =>
   })
 );
 
-type AvatarNameProps = Pick<AvatarProps, "variant" | "textFormat" | "onDark" | "name">;
+type AvatarNameProps = Pick<
+  AvatarProps,
+  "variant" | "textFormat" | "onDark" | "name"
+>;
 const AvatarName = styled(Text)<AvatarNameProps>(props =>
   css({
     color: props.onDark ? "white" : "black",
@@ -122,7 +124,9 @@ export type AvatarProps = {
   resourceType: string; // "user" | "community";
   textFormat?: "block" | "inline";
   onDark: boolean;
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>) => void;
+  onClick?: (
+    event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>
+  ) => void;
   src?: string;
   img?: string;
   address?: string;
@@ -143,10 +147,24 @@ const Avatar: React.FC<AvatarProps> = props => {
 
   return (
     <Box css={{ display: "inline-block" }}>
-      <AvatarWrapper src={src ? src : "/profile/" + address} onClick={onClick} textFormat={textFormat}>
-        <AvatarImage resourceType={resourceType} variant={variant} src={img} address={address} />
+      <AvatarWrapper
+        src={src ? src : "/profile/" + address}
+        onClick={onClick}
+        textFormat={textFormat}
+      >
+        <AvatarImage
+          resourceType={resourceType}
+          variant={variant}
+          src={img}
+          address={address}
+        />
         <TextContainer textFormat={textFormat} variant={variant}>
-          <AvatarName variant={variant} name={name} onDark={onDark} textFormat={textFormat}>
+          <AvatarName
+            variant={variant}
+            name={name}
+            onDark={onDark}
+            textFormat={textFormat}
+          >
             {name || "--"}
           </AvatarName>
           {screenName ? (

@@ -3,7 +3,6 @@ import centered from "@storybook/addon-centered/react";
 import { storiesOf, addDecorator } from "@storybook/react";
 import { Text, Flex, Link } from "rebass";
 import Button from ".";
-import LoadingIcon from "assets/loading";
 import css from "@styled-system/css";
 import emotionStyled from "lib/emotion-styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -49,9 +48,7 @@ storiesOf("Button", module)
 
         <div>
           <Label variant="label">Loading</Label>
-          <Button variant="primary">
-            <LoadingIcon />
-          </Button>
+          <Button variant="primary" isLoading />
         </div>
 
         <div>
@@ -97,9 +94,7 @@ storiesOf("Button", module)
 
         <div>
           <Label variant="label">Loading</Label>
-          <Button variant="secondary">
-            <LoadingIcon variant="secondary" />
-          </Button>
+          <Button variant="secondary" isLoading></Button>
         </div>
 
         <div>
@@ -145,9 +140,7 @@ storiesOf("Button", module)
 
         <div>
           <Label variant="label">Loading</Label>
-          <Button variant="secondary.affirmative">
-            <LoadingIcon variant="secondary" />
-          </Button>
+          <Button variant="secondary.affirmative" isLoading />
         </div>
 
         <div>
@@ -198,9 +191,7 @@ storiesOf("Button", module)
 
         <div>
           <Label variant="label">Loading</Label>
-          <Button variant="secondary.destructive">
-            <LoadingIcon variant="secondary" />
-          </Button>
+          <Button variant="secondary.destructive" isLoading />
         </div>
 
         <div>
@@ -251,9 +242,7 @@ storiesOf("Button", module)
 
         <div>
           <Label variant="label">Loading</Label>
-          <Button variant="tertiary">
-            <LoadingIcon />
-          </Button>
+          <Button variant="tertiary" isLoading />
         </div>
 
         <div>
@@ -299,9 +288,7 @@ storiesOf("Button", module)
 
         <div>
           <Label variant="label">Loading</Label>
-          <Button variant="destructive">
-            <LoadingIcon variant="destructive" />
-          </Button>
+          <Button variant="destructive" isLoading />
         </div>
 
         <div>
@@ -337,14 +324,12 @@ storiesOf("Button", module)
       <ButtonContainer flexDirection="column">
         <div>
           <Label variant="label">Secondary Link component</Label>
-          <Button variant="link">Cancel</Button>
+          <Button variant="link" label="Cancel" />
         </div>
 
         <div>
           <Label variant="label">Disabled Secondary Link component</Label>
-          <Button disabled variant="link">
-            Cancel
-          </Button>
+          <Button disabled variant="link" label="Cancel" />
         </div>
       </ButtonContainer>
     </Container>
@@ -352,11 +337,11 @@ storiesOf("Button", module)
 
   .add("Affirmative Link Button", () => (
     <Container flexDirection="column">
-      <Text variant="headingSans">Primary Link Buttons</Text>
+      <Text variant="headingSans">Affirmative Link Buttons</Text>
       <ButtonContainer flexDirection="column">
         <div>
           <Label variant="label">Default</Label>
-          <Button variant="link.affirmative">Cancel</Button>
+          <Button variant="link.affirmative" label="Cancel" />
         </div>
 
         <div>
@@ -376,7 +361,7 @@ storiesOf("Button", module)
 
   .add("Destructive Link Button", () => (
     <Container flexDirection="column">
-      <Label variant="h4">Destructive Links</Label>
+      <Text variant="headingSans">Destructive Link Buttons</Text>
       <ButtonContainer flexDirection="column">
         <div>
           <Label variant="label">Default</Label>
