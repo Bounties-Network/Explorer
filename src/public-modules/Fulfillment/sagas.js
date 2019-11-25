@@ -182,9 +182,14 @@ export function* createFulfillment(action) {
         // Use meta transaction relayer, user does not have enough funds
         const sender = web3.utils.toChecksumAddress(userAddress);
         const fulfillers = [sender];
-        const latestNonce = yield bountiesMetaTxRelayer.methods
-          .replayNonce(sender)
-          .call();
+        const { latestNonce } = yield call(
+          request,
+          `${siteConfig.relayerApiURL}/${contractVersion}/relay/nonce/${sender}`,
+          'GET',
+          {
+            withCredentials: null
+          }
+        );
         // console.log(relayer);
         // console.log("latestNonce from meta tx contract: ", latestNonce);
         const nonce = web3.utils.hexToNumber(latestNonce);
@@ -332,9 +337,14 @@ export function* updateFulfillment(action) {
         updateFulfillmentEstimateGasCost + 50000 > accountbalanceWei
       ) {
         const sender = web3.utils.toChecksumAddress(userAddress);
-        const latestNonce = yield bountiesMetaTxRelayer.methods
-          .replayNonce(sender)
-          .call();
+        const { latestNonce } = yield call(
+          request,
+          `${siteConfig.relayerApiURL}/${contractVersion}/relay/nonce/${sender}`,
+          'GET',
+          {
+            withCredentials: null
+          }
+        );
         // console.log(relayer);
         // console.log("latestNonce from meta tx contract: ", latestNonce);
         const nonce = web3.utils.hexToNumber(latestNonce);
