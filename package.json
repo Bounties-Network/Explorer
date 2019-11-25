@@ -58,7 +58,7 @@
     "numbro": "^2.1.2",
     "object-assign": "4.1.1",
     "pluralize": "^7.0.0",
-    "polished": "^3.2.0",
+    "polished": "^3.4.2",
     "promise": "8.0.1",
     "prop-types": "^15.6.2",
     "raf": "3.4.0",

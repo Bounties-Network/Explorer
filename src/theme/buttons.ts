@@ -1,21 +1,21 @@
-import { colors, colorAliases } from "./colors";
+import { colors, gradientColorStop } from "./colors";
 
 const buttonGradients = {
   primary: {
-    default: `linear-gradient(180deg, ${colors.seaGlass["100"]} 0%, #98D4DC 100%)`,
-    hover: "linear-gradient(180deg, #8CD0D9 0%, #66C0CC 100%)"
+    default: `linear-gradient(180deg, ${gradientColorStop.primary[0]} 0%, ${gradientColorStop.primary[1]} 100%)`,
+    hover: `linear-gradient(180deg, ${gradientColorStop.primary[1]} 0%, ${gradientColorStop.primary[2]} 100%)`
   },
   secondary: {
-    default: `linear-gradient(180deg, ${colors.white} 0%, #F8F9F9 100%)`,
-    hover: "linear-gradient(180deg, #F8F9FB 0%, #F4F4F6 100%)"
+    default: `linear-gradient(180deg, ${gradientColorStop.secondary[0]} 0%, ${gradientColorStop.secondary[1]} 100%)`,
+    hover: `linear-gradient(180deg, ${gradientColorStop.secondary[1]} 0%, ${gradientColorStop.secondary[2]} 100%)`
   },
   tertiary: {
-    default: `linear-gradient(180deg, ${colors.amber["100"]} 0%, #FCB992 100%)`,
-    hover: "linear-gradient(180deg, #FABC99 0%, #F79964 100%)"
+    default: `linear-gradient(180deg, ${gradientColorStop.tertiary[0]} 0%, ${gradientColorStop.tertiary[1]} 100%)`,
+    hover: `linear-gradient(180deg, ${gradientColorStop.tertiary[1]} 0%, ${gradientColorStop.tertiary[2]} 100%)`
   },
   destructive: {
-    default: `linear-gradient(180deg, ${colors.rose["100"]} 0%, #E997A2 100%)`,
-    hover: "linear-gradient(180deg, #ED9CA6 0%, #E17582 100%)"
+    default: `linear-gradient(180deg, ${gradientColorStop.destructive[0]} 0%, ${gradientColorStop.destructive[1]} 100%)`,
+    hover: `linear-gradient(180deg, ${gradientColorStop.destructive[1]} 0%, ${gradientColorStop.destructive[2]} 100%)`
   }
 };
 
@@ -41,16 +41,16 @@ const buttonInsetShadows = {
   },
   destructive: {
     default:
-      "inset 0px 1px 2px #FFFFFF, inset 0px -1px 2px rgba(113, 21, 43, 0.28)",
+      "inset 0px 1px 2px rgba(255, 255, 255, 0.54), inset 0px -1px 2px rgba(113, 21, 43, 0.28)",
     hover:
-      "inset 0px 1px 2px #FFFFFF, inset 0px -1px 2px rgba(113, 21, 43, 0.35)",
+      "inset 0px 1px 2px rgba(255, 255, 255, 0.54), inset 0px -1px 2px rgba(113, 21, 43, 0.35)",
     active: "inset 0px 2px 4px rgba(113, 21, 43, 0.39)"
   }
 };
 
 const buttonSecondaryBase = {
   background: buttonGradients.secondary.default,
-  borderColor: colors.gray["300"],
+  borderColor: colors.brandGray["300"],
   boxShadow: buttonInsetShadows.secondary.default,
 
   ":hover, :focus": {
@@ -60,13 +60,13 @@ const buttonSecondaryBase = {
   },
 
   ":active": {
-    backgroundColor: colors.gray["200"],
+    backgroundColor: colors.brandGray["200"],
     borderColor: "rgba(71, 75, 77, 0.18)",
     boxShadow: buttonInsetShadows.secondary.active
   },
 
   ":disabled": {
-    background: colors.gray["300"]
+    background: colors.brandGray["300"]
   }
 };
 
@@ -79,7 +79,7 @@ const buttonLinkBase = {
   },
 
   ":active, :focus": {
-    background: colors.gray["100"]
+    background: colors.brandGray["100"]
   },
 
   ":disabled:hover": {
@@ -90,9 +90,9 @@ const buttonLinkBase = {
 const buttons = {
   primary: {
     background: buttonGradients.primary.default,
-    borderColor: colors.seaGlass["200"],
+    borderColor: colors.brandPrimary["200"],
     boxShadow: buttonInsetShadows.primary.default,
-    color: colors.seaGlass["500"],
+    color: colors.brandPrimary["500"],
 
     ":hover, :focus": {
       background: buttonGradients.primary.hover,
@@ -101,36 +101,36 @@ const buttons = {
     },
 
     ":active": {
-      backgroundColor: colors.seaGlass["200"],
+      backgroundColor: colors.brandPrimary["200"],
       borderColor: "rgba(17, 105, 125, 0.28)",
       boxShadow: buttonInsetShadows.primary.active
     },
 
     ":disabled": {
-      background: colors.seaGlass["200"]
+      background: colors.brandPrimary["200"]
     }
   },
 
   secondary: {
     ...buttonSecondaryBase,
-    color: colors.gray["500"],
+    color: colors.brandGray["500"],
 
     affirmative: {
       ...buttonSecondaryBase,
-      color: colorAliases.brandPrimary
+      color: colors.brandPrimary["300"]
     },
 
     destructive: {
       ...buttonSecondaryBase,
-      color: colorAliases.brandDestructive
+      color: colors.brandDestructive["200"]
     }
   },
 
   tertiary: {
     background: buttonGradients.tertiary.default,
-    borderColor: colorAliases.brandTertiary,
+    borderColor: colors.brandTertiary["200"],
     boxShadow: buttonInsetShadows.tertiary.default,
-    color: colors.amber["300"],
+    color: colors.brandTertiary["300"],
 
     ":hover, :focus": {
       background: buttonGradients.tertiary.hover,
@@ -139,21 +139,21 @@ const buttons = {
     },
 
     ":active": {
-      backgroundColor: colorAliases.brandTertiary,
+      backgroundColor: colors.brandTertiary["200"],
       borderColor: "rgba(174, 59, 9, 0.22)",
       boxShadow: buttonInsetShadows.tertiary.active
     },
 
     ":disabled": {
-      background: colorAliases.brandTertiary
+      background: colors.brandTertiary
     }
   },
 
   destructive: {
     background: buttonGradients.destructive.default,
-    borderColor: colorAliases.brandDestructive,
+    borderColor: colors.brandDestructive["200"],
     boxShadow: buttonInsetShadows.destructive.default,
-    color: colors.rose["300"],
+    color: colors.brandDestructive["300"],
 
     ":hover, :focus": {
       background: buttonGradients.destructive.hover,
@@ -162,28 +162,28 @@ const buttons = {
     },
 
     ":active": {
-      backgroundColor: colorAliases.brandDestructive,
+      backgroundColor: colors.brandDestructive["200"],
       borderColor: "rgba(113, 21, 43, 0.35)",
       boxShadow: buttonInsetShadows.destructive.active
     },
 
     ":disabled": {
-      background: colorAliases.brandDestructive
+      background: colors.brandDestructive["200"]
     }
   },
 
   link: {
     ...buttonLinkBase,
-    color: colors.gray["500"],
+    color: colors.brandGray["500"],
 
     affirmative: {
       ...buttonLinkBase,
-      color: colorAliases.brandPrimary
+      color: colors.brandPrimary["300"]
     },
 
     destructive: {
       ...buttonLinkBase,
-      color: colorAliases.brandDestructive
+      color: colors.brandDestructive["200"]
     }
   }
 };

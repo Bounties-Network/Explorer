@@ -19,7 +19,7 @@ const typography = {
 
   fontWeights: {
     regular: "normal",
-    medium: 400,
+    medium: 500,
     semiBold: 600,
     bold: 700
   },
@@ -30,7 +30,7 @@ const typography = {
     reset: 1
   },
 
-  // Text Variants
+  // Theme-UI Text Component Variants
   text: {
     body: {
       fontSize: "sm",

@@ -21,7 +21,7 @@ const Container = emotionStyled(Flex)(() =>
 const Label = emotionStyled(Text)(() =>
   css({
     mb: 2,
-    color: colors.gray["400"]
+    color: colors.brandGray["400"]
   })
 );
 
@@ -70,12 +70,12 @@ storiesOf("Button", module)
 
         <div>
           <Label variant="label">Small</Label>
-          <Button variant="primary" size="small" label="Button" />
+          <Button variant="primary" size="small" label="Join" />
         </div>
 
         <div>
           <Label variant="label">Small/Disabled</Label>
-          <Button disabled variant="primary" size="small" label="Button" />
+          <Button disabled variant="primary" size="small" label="Join" />
         </div>
       </ButtonContainer>
     </Container>

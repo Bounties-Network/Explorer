@@ -1,5 +1,5 @@
 import { theme as cTheme } from "@chakra-ui/core";
-import { colors, colorAliases } from "./colors";
+import { colors } from "./colors";
 import typography from "./typography";
 import buttons from "./buttons";
 
@@ -21,8 +21,8 @@ export const radii = [0, 4, 8, "50%"];
 export const radius = "8px";
 
 export const borders = {
-  base: `1px solid ${colorAliases.baseBorderColor}`,
-  light: `1px solid ${colors.gray["100"]}`,
+  base: `1px solid ${colors.baseBorderColor}`,
+  light: `1px solid ${colors.brandGray["100"]}`,
 
   avatar: {
     default: `2px solid ${colors.white}`,
@@ -30,16 +30,10 @@ export const borders = {
   },
 
   input: {
-    default: `2px solid ${colors.gray["300"]}`,
-    focused: `2px solid ${colors.seaGlass["200"]}`,
-    active: `2px solid ${colors.seaGlass["200"]}`,
-    invalid: `2px solid ${colors.rose["200"]}`
-  },
-
-  button: {
-    primary: `1px solid ${colors.seaGlass["200"]}`,
-    secondary: `1px solid ${colors.gray["300"]}`,
-    tertiary: `1px solid ${colors.amber["200"]}`
+    default: `2px solid ${colors.brandGray["300"]}`,
+    focused: `2px solid ${colors.brandPrimary["200"]}`,
+    active: `2px solid ${colors.brandPrimary["200"]}`,
+    invalid: `2px solid ${colors.brandDestructive["200"]}`
   }
 };
 
@@ -51,9 +45,9 @@ export const shadows = [
   "0px 2px 4px rgba(17, 22, 24, 0.08)", //cardShadow
   "0px 9px 24px rgba(0, 0, 0, 0.08)", //shadowLarge
   `inset 0px 1px 4px rgba(0, 0, 0, 0.14)`, //innerShadows
-  `0 0 10px ${colors.gray["200"]}`,
-  `inset 0 0 0 1px ${colorAliases.brandSecondary}`,
-  `inset 0 0 0 1px ${colorAliases.brandDestructive}`
+  `0 0 10px ${colors.brandGray["200"]}`,
+  `inset 0 0 0 1px ${colors.brandGray["200"]}`,
+  `inset 0 0 0 1px ${colors.brandDestructive["200"]}`
 ]; //Card //Avatar
 
 //Z-INDEX
@@ -83,77 +77,77 @@ export const pill = {
     active: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.seaGlass["500"],
-      backgroundColor: colors.seaGlass["100"]
+      color: colors.brandPrimary["500"],
+      backgroundColor: colors.brandPrimary["100"]
     },
     expired: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.rose["300"],
-      backgroundColor: colors.rose["100"]
+      color: colors.brandDestructive["300"],
+      backgroundColor: colors.brandDestructive["100"]
     },
     dead: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.gray["500"],
+      color: colors.brandGray["500"],
       backgroundColor: colors.white,
       border: borders.base
     },
     completed: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.gray["500"],
+      color: colors.brandGray["500"],
       backgroundColor: colors.white,
       border: borders.base
     },
     pendingAcceptance: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.gold["300"],
-      backgroundColor: colors.gold["100"]
+      color: colors.brandCaution["300"],
+      backgroundColor: colors.brandCaution["100"]
     },
     declined: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.rose["300"],
-      backgroundColor: colors.rose["200"]
+      color: colors.brandDestructive["300"],
+      backgroundColor: colors.brandDestructive["200"]
     },
     accepted: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.seaGlass["500"],
-      backgroundColor: colors.seaGlass["200"]
+      color: colors.brandPrimary["500"],
+      backgroundColor: colors.brandPrimary["200"]
     },
     processing: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.gold["300"],
-      backgroundColor: colors.gold["100"]
+      color: colors.brandCaution["300"],
+      backgroundColor: colors.brandCaution["100"]
     },
     confirmed: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.seaGlass["500"],
-      backgroundColor: colors.seaGlass["100"]
+      color: colors.brandPrimary["500"],
+      backgroundColor: colors.brandPrimary["100"]
     },
     failed: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.rose["300"],
-      backgroundColor: colors.rose["200"]
+      color: colors.brandDestructive["300"],
+      backgroundColor: colors.brandDestructive["200"]
     },
     pending: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.gold["300"],
-      backgroundColor: colors.gold["100"]
+      color: colors.brandCaution["300"],
+      backgroundColor: colors.brandCaution["100"]
     }
   },
   tag: {
     explorer: {
       fontSize: "xs",
       textTransform: "capitalize",
-      color: colors.gray["400"],
+      color: colors.brandGray["400"],
       border: borders.base
     }
   },
@@ -163,12 +157,12 @@ export const pill = {
     border: borders.base
   },
   notificationCount: {
-    backgroundColor: colors.rose["200"],
+    backgroundColor: colors.brandDestructive["200"],
     px: `${space[0]}px !important`,
     py: `${space[1]}px !important`
   },
   tabNotificationCount: {
-    backgroundColor: colors.gray["200"],
+    backgroundColor: colors.brandGray["200"],
     px: `${space[0]}px !important`,
     py: `${space[1]}px !important`
   }
@@ -179,13 +173,13 @@ export const forms = {
     ...typography.text.body,
     resize: "none",
     border: "none",
-    color: colors.gray["500"],
+    color: colors.brandGray["500"],
     "&:active": {
       border: "none",
       outline: "none"
     },
     "&:focus, &:active": { border: "none", outline: "none" },
-    "::placeholder": { color: colors.gray["400"] }
+    "::placeholder": { color: colors.brandGray["400"] }
   },
   error: {
     bg: `${colors.white} !important`,
@@ -202,35 +196,12 @@ export const variants = {
     boxSizing: "border-box",
     borderRadius: 2
   },
-  link: {
-    color: colorAliases.brandPrimary,
-    cursor: "pointer",
-    "&:hover": {
-      textDecoration: "underline"
-    }
-  },
-  linkIcon: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    "> :first-of-type": { mr: 2 }
-  },
-  secondaryLink: {
-    color: colors.gray["400"],
-    "&[disabled]": {
-      colors: colors.gray["400"],
-      opacity: 0.3
-    },
-    ":active": {
-      color: colors.gray["500"]
-    }
-  },
   pill,
   networkDot: {
     mainnet: {
       height: 2,
       width: 2,
-      backgroundColor: colors.seaGlass["200"],
+      backgroundColor: colors.brandPrimary["200"],
       borderRadius: "50%"
     }
   }
@@ -242,7 +213,7 @@ const icons = {
 
 const styles = {
   a: {
-    color: colorAliases.brandPrimary,
+    color: colors.brandPrimary["300"],
     cursor: "pointer",
     "&:hover": {
       textDecoration: "underline"
@@ -256,7 +227,6 @@ const theme = {
   space,
   sizes,
   colors,
-  colorAliases,
   ...typography,
   radii,
   radius,

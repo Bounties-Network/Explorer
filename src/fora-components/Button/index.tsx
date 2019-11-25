@@ -22,12 +22,13 @@ const Button: React.FC<ButtonProps> = ({
       display: "inline-block",
       textAlign: "center",
       height: size === "small" ? "2rem" : "3rem",
+      minWidth: size === "small" || !label ? "3.25rem" : "9.5rem",
       lineHeight: size === "small" ? "2rem" : "3rem",
       textDecoration: "none",
       fontSize: "sm",
       fontWeight: "medium",
       m: 0,
-      px: size === "small" ? 3 : 4,
+      px: 3,
       py: 0,
       borderRadius: 2,
       borderWidth: "1px",
@@ -36,6 +37,7 @@ const Button: React.FC<ButtonProps> = ({
       cursor: "pointer",
       // pass variant prop to sx
       variant: `buttons.${variant}`,
+      verticalAlign: "baseline",
 
       ":disabled": {
         border: "none",

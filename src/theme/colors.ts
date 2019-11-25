@@ -1,6 +1,6 @@
-const colors = {
-  transparent: "transparent",
-  current: "currentColor",
+import { darken } from "polished";
+
+const colorPalette = {
   black: "#111618",
   white: "#fff",
 
@@ -53,18 +53,52 @@ const colors = {
   }
 };
 
-// Brand color aliases
-const colorAliases = {
-  brandPrimary: colors.seaGlass["300"],
-  brandTertiary: colors.amber["200"],
-  brandAffirmative: colors.seaGlass["200"],
-  brandCaution: colors.gold["200"],
-  brandDestructive: colors.rose["200"],
+// Brand color aliases. The sx prop's 'color' property automatically references this object. Always default to using keys from this object throughout the application in order to favor semantics.
+const colors = {
+  transparent: "transparent",
+  current: "currentColor",
+  white: colorPalette.white,
+  whiteAlpha: colorPalette.whiteAlpha,
+  black: colorPalette.black,
+  brandPrimary: colorPalette.seaGlass,
+  brandSecondary: colorPalette.gray,
+  brandTertiary: colorPalette.amber,
+  brandAffirmative: colorPalette.seaGlass,
+  brandCaution: colorPalette.gold,
+  brandDestructive: colorPalette.rose,
+  brandGray: colorPalette.gray,
 
   // Misc
-  inputBg: colors.gray["100"],
-  baseBorderColor: colors.gray["200"]
+  inputBg: colorPalette.gray["100"],
+  baseBorderColor: colorPalette.gray["200"]
 };
 
-export { colors };
-export { colorAliases };
+const gradientColorStop = {
+  primary: [
+    colors.brandPrimary["100"],
+    darken(0.05, colors.brandPrimary["100"]),
+    darken(0.125, colors.brandPrimary["100"])
+  ],
+  secondary: [
+    colors.white,
+    colors.brandSecondary["100"],
+    darken(0.02, colors.brandSecondary["100"])
+  ],
+  tertiary: [
+    colors.brandTertiary["100"],
+    darken(0.05, colors.brandTertiary["100"]),
+    darken(0.125, colors.brandTertiary["100"])
+  ],
+  caution: [
+    colors.brandCaution["100"],
+    darken(0.05, colors.brandCaution["100"]),
+    darken(0.125, colors.brandCaution["100"])
+  ],
+  destructive: [
+    colors.brandDestructive["100"],
+    darken(0.05, colors.brandDestructive["100"]),
+    darken(0.125, colors.brandDestructive["100"])
+  ]
+};
+
+export { colorPalette, colors, gradientColorStop };
