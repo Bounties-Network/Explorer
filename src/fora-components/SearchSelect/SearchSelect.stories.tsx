@@ -37,8 +37,9 @@ storiesOf("SearchSelect", module)
     return (
       <div sx={{ width: "300px", pt: 3, pl: 5 }}>
         <SearchSelect
+          value={null}
           handleChange={(option) => setState(state.concat(option))}
-          options={options}
+          options={options.filter(x => !state.includes(x))}
           placeholder="Placeholder.."
         />
         <div sx={{ display: "flex", "> :not(:last-of-type)": { mr: 2 }, mt: 3 }}>
@@ -57,7 +58,7 @@ storiesOf("SearchSelect", module)
                   <Text color={"gray.400"} variant="body">
                     {option.label}
                   </Text>
-                  <FontAwesomeIcon sx={{ color: "seaGlass.300" }} icon={faTimes}></FontAwesomeIcon>
+                  <FontAwesomeIcon sx={{ color: "brandPrimary.300" }} icon={faTimes}></FontAwesomeIcon>
                 </div>
               </Pill>
             </div>
