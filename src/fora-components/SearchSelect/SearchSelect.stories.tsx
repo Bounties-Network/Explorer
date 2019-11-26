@@ -33,17 +33,17 @@ storiesOf("SearchSelect", module)
     );
   })
   .add("Scrollable Tag example", () => {
-    const [state, setState] = React.useState<string[]>([]);
+    const [state, setState] = React.useState <{value: string, label: string}[]>([]);
     return (
       <div sx={{ width: "300px", pt: 3, pl: 5 }}>
         <SearchSelect
-          handleChange={(option: string) => setState(state.concat(option))}
+          handleChange={(option) => setState(state.concat(option))}
           options={options}
           placeholder="Placeholder.."
         />
         <div sx={{ display: "flex", "> :not(:last-of-type)": { mr: 2 }, mt: 3 }}>
           {state.map(option => (
-            <div sx={{ cursor: "pointer" }} onClick={() => setState(state.filter(x => x !== option))}>
+            <div sx={{ cursor: "pointer" }} onClick={() => setState(state.filter(x => x.value !== option.value))}>
               <Pill css={css({ height: "unset" })} variant="pill.tag.explorer">
                 <div
                   sx={{
@@ -55,7 +55,7 @@ storiesOf("SearchSelect", module)
                   }}
                 >
                   <Text color={"gray.400"} variant="body">
-                    {option}
+                    {option.label}
                   </Text>
                   <FontAwesomeIcon sx={{ color: "seaGlass.300" }} icon={faTimes}></FontAwesomeIcon>
                 </div>
