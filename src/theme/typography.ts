@@ -2,7 +2,7 @@ const typography = {
   fonts: {
     headingSans: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,`,
     headingSerif: `"Domine", Lucida Bright, Georgia, serif`,
-    body: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,`,
+    body: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
     monospace: `"Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace"`
   },
 
@@ -18,7 +18,7 @@ const typography = {
   },
 
   fontWeights: {
-    regular: "normal",
+    regular: 400,
     medium: 500,
     semiBold: 600,
     bold: 700
