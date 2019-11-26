@@ -1282,6 +1282,11 @@
   resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.22.tgz#3f1328d232a0fd5de8484d833c8519426f39f016"
   integrity sha512-QmEuZsipX5/cR9JOg0fsTN4Yr/9lieYWM8AQpmRa0eIfeOcl/HLYoEa366BCGRSrgNJEexuvOgbq9jnJ22IY5g==
 
+"@fortawesome/fontawesome-common-types@^0.2.25":
+  version "0.2.25"
+  resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-common-types/-/0.2.25/fontawesome-common-types-0.2.25.tgz#6df015905081f2762e5cfddeb7a20d2e9b16c786"
+  integrity sha512-3RuZPDuuPELd7RXtUqTCfed14fcny9UiPOkdr2i+cYxBoTOfQgxcDoq77fHiiHcgWuo1LoBUpvGxFF1H/y7s3Q==
+
 "@fortawesome/fontawesome-svg-core@^1.2.22":
   version "1.2.22"
   resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.22.tgz#9a6117c96c8b823c7d531000568ac75c3c02e123"
@@ -1309,6 +1314,13 @@
   integrity sha512-9Os/GRUcy+iVaznlg8GKcPSQFpIQpAg14jF0DWsMdnpJfIftlvfaQCWniR/ex9FoOpSEOrlXqmUCFL+JGeciuA==
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.22"
+
+"@fortawesome/pro-duotone-svg-icons@^5.11.2":
+  version "5.11.2"
+  resolved "https://npm.fontawesome.com/@fortawesome/pro-duotone-svg-icons/-/5.11.2/pro-duotone-svg-icons-5.11.2.tgz#c565a0f8c39acc3f7b3c2a8b77e636ce13265fb2"
+  integrity sha512-Fqm+V5CqvYG48oBJjAfDIX3SKMqvD6hJ1asE6z/J1RhZtO7Y/4la6DVPxOdGvPu1aJutELa2wmNL100RMG/bvg==
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.25"
 
 "@fortawesome/pro-light-svg-icons@^5.10.2":
   version "5.10.2"
@@ -11676,13 +11688,6 @@ pnp-webpack-plugin@1.4.3:
   dependencies:
     ts-pnp "^1.1.2"
 
-polished@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/polished/-/polished-3.2.0.tgz#65045e080704a6ba524fb3f32eb99d4ed2e46c91"
-  integrity sha512-uXIr2Nu5SU5khDa4JwWh8q5czi4GoJf+U1za5LN59Tk0mL/W3egZrPL0H0ADXeompCp0QhmiK9zs06gw0J5m4Q==
-  dependencies:
-    "@babel/runtime" "^7.4.2"
-
 polished@^3.3.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/polished/-/polished-3.4.1.tgz#1eb5597ec1792206365635811d465751f5cbf71c"
@@ -11690,7 +11695,7 @@ polished@^3.3.1:
   dependencies:
     "@babel/runtime" "^7.4.5"
 
-polished@^3.4.1:
+polished@^3.4.1, polished@^3.4.2:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/polished/-/polished-3.4.2.tgz#b4780dad81d64df55615fbfc77acb52fd17d88cd"
   integrity sha512-9Rch6iMZckABr6EFCLPZsxodeBpXMo9H4fRlfR/9VjMEyy5xpo1/WgXlJGgSjPyVhEZNycbW7UmYMNyWS5MI0g==

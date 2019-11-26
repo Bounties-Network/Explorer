@@ -7,24 +7,24 @@ import Blockies from "react-blockies";
 let blockBySize = variant => {
   switch (variant) {
     case "small":
-      return { size: "8", scale: "4" };
+      return { size: "9", scale: "4" };
     case "medium":
-      return { size: "8", scale: "5" };
+      return { size: "9", scale: "6" };
     case "large":
-      return { size: "8", scale: "10" };
+      return { size: "9", scale: "11" };
     default:
-      return { size: "8", scale: "4" };
+      return { size: "9", scale: "6" };
   }
 };
 
 let imageContainerVariantSize = variant => {
   switch (variant) {
     case "small":
-      return 8;
+      return "avatarImage.sm";
     case "medium":
-      return 10;
+      return "avatarImage.md";
     case "large":
-      return 24;
+      return "avatarImage.lg";
   }
 };
 

@@ -1,18 +1,23 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import React from "react";
-import { Text } from "@theme-ui/components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinnerThird } from "@fortawesome/pro-solid-svg-icons";
 
 export type ButtonProps = {
   variant: string;
   size?: string; // "default" || "small"
   label?: string;
+  isLoading?: boolean;
+  fullWidth?: boolean;
 };
 
 const Button: React.FC<ButtonProps> = ({
   variant = "secondary",
   size = "default",
   label,
+  isLoading,
+  fullWidth,
   ...props
 }) => (
   <button
@@ -21,29 +26,26 @@ const Button: React.FC<ButtonProps> = ({
       appearance: "none",
       display: "inline-block",
       textAlign: "center",
-      height: size === "small" ? "2rem" : "3rem",
-      lineHeight: size === "small" ? "2rem" : "3rem",
+      height: size === "small" ? "inputHeight.sm" : "inputHeight.lg",
+      minWidth:
+        size === "small" || !label || variant.includes("link")
+          ? "buttonWidth.sm"
+          : "buttonWidth.lg",
       textDecoration: "none",
       fontSize: "sm",
       fontWeight: "medium",
       m: 0,
-      px: size === "small" ? 3 : 4,
+      px: 3,
       py: 0,
       borderRadius: 2,
       borderWidth: "1px",
       borderStyle: "solid",
       borderColor: "transparent",
       cursor: "pointer",
-      // pass variant prop to sx
+      width: fullWidth ? "100%" : "auto",
+      // pass variant to sx prop
       variant: `buttons.${variant}`,
-
-      ":disabled": {
-        border: "none",
-        boxShadow: "none",
-        cursor: "not-allowed",
-        opacity: 0.3,
-        pointerEvents: "none"
-      },
+      verticalAlign: "middle",
 
       "> svg": {
         mr: label ? 2 : null,
@@ -52,7 +54,10 @@ const Button: React.FC<ButtonProps> = ({
     }}
   >
     {props.children}
-    <Text sx={{ display: "inline-block" }}>{label}</Text>
+    {label}
+    {isLoading ? (
+      <FontAwesomeIcon icon={faSpinnerThird} sx={{ fontSize: "lg" }} spin />
+    ) : null}
   </button>
 );
 

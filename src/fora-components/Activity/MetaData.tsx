@@ -3,13 +3,13 @@ import { jsx } from "theme-ui";
 import React from "react";
 import { Flex, Text, Link } from "@theme-ui/components";
 import moment from "moment";
-import { colorAliases } from "theme/colors";
+import colors from "theme/colors";
 
 const Container = props => (
   <Flex
     {...props}
     sx={{
-      color: "gray.400",
+      color: "brandGray.400",
       fontSize: "sm",
       mt: "3"
     }}
@@ -32,8 +32,8 @@ const MetaData: React.FC<IProps> = ({
     <Link
       href={`/community/${communityId}`}
       sx={{
-        color: "gray.400",
-        "&:hover": { color: colorAliases.brandPrimary }
+        color: "brandGray.400",
+        "&:hover": { color: "brandPrimary.300" }
       }}
     >
       {`f/${communityName}`}

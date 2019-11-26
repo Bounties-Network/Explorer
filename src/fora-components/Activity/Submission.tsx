@@ -49,7 +49,7 @@ const Submission: React.FC<ISubmissionProps> = ({
       <Flex sx={{ flexDirection: "column", ml: "3" }}>
         <Description>
           <Text sx={{ fontWeight: "medium" }}>{authorName || "--"}</Text>
-          <Text color="gray.400" mx="1">{`submitted to`}</Text>
+          <Text color="brandGray.400" mx="1">{`submitted to`}</Text>
           <Link sx={{ fontWeight: "medium" }}>{bountyTitle}</Link>
         </Description>
         <MetaData

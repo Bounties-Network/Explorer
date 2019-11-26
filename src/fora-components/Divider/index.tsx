@@ -16,7 +16,7 @@ const Divider = styled(Box)<IDividerProps>(props =>
     mb: props.mb || props.marginBottom || 3,
     width: "100%",
     height: "1px",
-    backgroundColor: props.backgroundColor || "gray.200"
+    backgroundColor: props.backgroundColor || "brandGray.200"
   })
 );
 

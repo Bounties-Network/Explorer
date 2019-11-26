@@ -1,72 +1,77 @@
-import { colors, colorAliases } from "./colors";
+import { colors, colorGradientStops } from "./colors";
+import { darken, lighten, desaturate } from "polished";
 
 const buttonGradients = {
   primary: {
-    default: `linear-gradient(180deg, ${colors.seaGlass["100"]} 0%, #98D4DC 100%)`,
-    hover: "linear-gradient(180deg, #8CD0D9 0%, #66C0CC 100%)"
+    default: `linear-gradient(180deg, ${colorGradientStops.primary[0]} 0%, ${colorGradientStops.primary[1]} 100%)`,
+    hover: `linear-gradient(180deg, ${colorGradientStops.primary[1]} 0%, ${colorGradientStops.primary[2]} 100%)`
   },
   secondary: {
-    default: `linear-gradient(180deg, ${colors.white} 0%, #F8F9F9 100%)`,
-    hover: "linear-gradient(180deg, #F8F9FB 0%, #F4F4F6 100%)"
+    default: `linear-gradient(180deg, ${colorGradientStops.secondary[0]} 0%, ${colorGradientStops.secondary[1]} 100%)`,
+    hover: `linear-gradient(180deg, ${colorGradientStops.secondary[1]} 0%, ${colorGradientStops.secondary[2]} 100%)`
   },
   tertiary: {
-    default: `linear-gradient(180deg, ${colors.amber["100"]} 0%, #FCB992 100%)`,
-    hover: "linear-gradient(180deg, #FABC99 0%, #F79964 100%)"
+    default: `linear-gradient(180deg, ${colorGradientStops.tertiary[0]} 0%, ${colorGradientStops.tertiary[1]} 100%)`,
+    hover: `linear-gradient(180deg, ${colorGradientStops.tertiary[1]} 0%, ${colorGradientStops.tertiary[2]} 100%)`
   },
   destructive: {
-    default: `linear-gradient(180deg, ${colors.rose["100"]} 0%, #E997A2 100%)`,
-    hover: "linear-gradient(180deg, #ED9CA6 0%, #E17582 100%)"
+    default: `linear-gradient(180deg, ${colorGradientStops.destructive[0]} 0%, ${colorGradientStops.destructive[1]} 100%)`,
+    hover: `linear-gradient(180deg, ${colorGradientStops.destructive[1]} 0%, ${colorGradientStops.destructive[2]} 100%)`
   }
 };
 
 const buttonInsetShadows = {
   primary: {
-    default:
-      "inset 0px 1px 2px rgba(226, 244, 246, 0.9), inset 0px -1px 2px rgba(17, 105, 125, 0.17)",
-    hover:
-      "inset 0px 1px 2px rgba(226, 244, 246, 0.63), inset 0px -1px 2px rgba(17, 105, 125, 0.28)",
-    active: "inset 0px 2px 4px rgba(17, 105, 125, 0.5)"
+    default: `inset 0px 1px 2px ${colors.whiteAlpha["700"]}, inset 0px -1px 2px ${colors.blackAlpha["300"]}`,
+    hover: `inset 0px 1px 2px ${colors.whiteAlpha["600"]}, inset 0px -1px 2px ${colors.blackAlpha["300"]}`,
+    active: `inset 0px 2px 4px ${colors.blackAlpha["300"]}`
   },
   secondary: {
-    default: "inset 0px -1px 2px #E6E6E6",
-    hover: "inset 0px -1px 2px #E0E0E0, inset 0px 1px 2px #FFFFFF",
-    active: "inset 0px 2px 4px rgba(71, 75, 77, 0.18)"
+    default: `inset 0px 1px 2px ${colors.white}, inset 0px -1px 2px ${colors.blackAlpha["200"]}`,
+    hover: `inset 0px 1px 2px ${colors.white}, inset 0px -1px 2px ${colors.blackAlpha["200"]}`,
+    active: `inset 0px 2px 4px ${colors.blackAlpha["200"]}`
   },
   tertiary: {
-    default:
-      "inset 0px 1px 2px rgba(255, 255, 255, 0.54), inset 0px -1px 2px rgba(163, 63, 20, 0.16)",
-    hover:
-      "inset 0px 1px 2px rgba(255, 255, 255, 0.5), inset 0px -1px 2px rgba(174, 59, 9, 0.22)",
-    active: "inset 0px 2px 4px rgba(154, 67, 29, 0.32)"
+    default: `inset 0px 1px 2px ${colors.whiteAlpha["700"]}, inset 0px -1px 2px ${colors.blackAlpha["300"]}`,
+    hover: `inset 0px 1px 2px ${colors.whiteAlpha["600"]}, inset 0px -1px 2px ${colors.blackAlpha["300"]}`,
+    active: `inset 0px 2px 4px ${colors.blackAlpha["300"]}`
   },
   destructive: {
-    default:
-      "inset 0px 1px 2px #FFFFFF, inset 0px -1px 2px rgba(113, 21, 43, 0.28)",
-    hover:
-      "inset 0px 1px 2px #FFFFFF, inset 0px -1px 2px rgba(113, 21, 43, 0.35)",
-    active: "inset 0px 2px 4px rgba(113, 21, 43, 0.39)"
+    default: `inset 0px 1px 2px ${colors.whiteAlpha["700"]}, inset 0px -1px 2px ${colors.blackAlpha["300"]}`,
+    hover: `inset 0px 1px 2px ${colors.whiteAlpha["600"]}, inset 0px -1px 2px ${colors.blackAlpha["300"]}`,
+    active: `inset 0px 2px 4px ${colors.blackAlpha["300"]}`
   }
 };
 
+const buttonDisabled = {
+  backgroundImage: "none",
+  border: "none",
+  boxShadow: "none",
+  cursor: "not-allowed",
+  pointerEvents: "none"
+};
+
 const buttonSecondaryBase = {
-  background: buttonGradients.secondary.default,
-  borderColor: colors.gray["300"],
+  backgroundImage: buttonGradients.secondary.default,
+  borderColor: colors.brandSecondary["300"],
   boxShadow: buttonInsetShadows.secondary.default,
 
   ":hover, :focus": {
-    background: buttonGradients.secondary.hover,
+    backgroundImage: buttonGradients.secondary.hover,
     boxShadow: buttonInsetShadows.secondary.hover,
     outline: "none"
   },
 
   ":active": {
-    backgroundColor: colors.gray["200"],
-    borderColor: "rgba(71, 75, 77, 0.18)",
+    backgroundColor: colors.brandSecondary["200"],
+    borderColor: darken(0.05, colors.brandSecondary["200"]),
     boxShadow: buttonInsetShadows.secondary.active
   },
 
   ":disabled": {
-    background: colors.gray["300"]
+    ...buttonDisabled,
+    backgroundColor: colors.brandSecondary["100"],
+    color: colors.brandSecondary["300"]
   }
 };
 
@@ -79,7 +84,12 @@ const buttonLinkBase = {
   },
 
   ":active, :focus": {
-    background: colors.gray["100"]
+    background: colors.brandGray["100"]
+  },
+
+  ":disabled": {
+    opacity: 0.3,
+    pointerEvents: "none"
   },
 
   ":disabled:hover": {
@@ -89,101 +99,107 @@ const buttonLinkBase = {
 
 const buttons = {
   primary: {
-    background: buttonGradients.primary.default,
-    borderColor: colors.seaGlass["200"],
+    backgroundImage: buttonGradients.primary.default,
+    borderColor: colors.brandPrimary["200"],
     boxShadow: buttonInsetShadows.primary.default,
-    color: colors.seaGlass["500"],
+    color: colors.brandPrimary["500"],
 
     ":hover, :focus": {
-      background: buttonGradients.primary.hover,
+      backgroundImage: buttonGradients.primary.hover,
       boxShadow: buttonInsetShadows.primary.hover,
       outline: "none"
     },
 
     ":active": {
-      backgroundColor: colors.seaGlass["200"],
-      borderColor: "rgba(17, 105, 125, 0.28)",
+      backgroundColor: colors.brandPrimary["100"],
+      borderColor: darken(0.05, colors.brandPrimary["200"]),
       boxShadow: buttonInsetShadows.primary.active
     },
 
     ":disabled": {
-      background: colors.seaGlass["200"]
+      ...buttonDisabled,
+      backgroundColor: lighten(0.1, colors.brandPrimary["100"]),
+      color: desaturate(0.25, colors.brandPrimary["200"])
     }
   },
 
   secondary: {
     ...buttonSecondaryBase,
-    color: colors.gray["500"],
+    color: colors.brandGray["500"],
 
     affirmative: {
       ...buttonSecondaryBase,
-      color: colorAliases.brandPrimary
+      color: colors.brandPrimary["300"]
     },
 
     destructive: {
       ...buttonSecondaryBase,
-      color: colorAliases.brandDestructive
+      color: colors.brandDestructive["200"]
     }
   },
 
   tertiary: {
-    background: buttonGradients.tertiary.default,
-    borderColor: colorAliases.brandTertiary,
+    backgroundImage: buttonGradients.tertiary.default,
+    borderColor: colors.brandTertiary["200"],
     boxShadow: buttonInsetShadows.tertiary.default,
-    color: colors.amber["300"],
+    color: colors.brandTertiary["300"],
 
     ":hover, :focus": {
-      background: buttonGradients.tertiary.hover,
+      backgroundImage: buttonGradients.tertiary.hover,
       boxShadow: buttonInsetShadows.tertiary.hover,
       outline: "none"
     },
 
     ":active": {
-      backgroundColor: colorAliases.brandTertiary,
-      borderColor: "rgba(174, 59, 9, 0.22)",
+      backgroundColor: colors.brandTertiary["200"],
+      borderColor: darken(0.05, colors.brandTertiary["200"]),
       boxShadow: buttonInsetShadows.tertiary.active
     },
 
     ":disabled": {
-      background: colorAliases.brandTertiary
+      ...buttonDisabled,
+      backgroundColor: lighten(0.1, colors.brandTertiary["100"]),
+      color: desaturate(0.25, colors.brandTertiary["200"])
     }
   },
 
   destructive: {
-    background: buttonGradients.destructive.default,
-    borderColor: colorAliases.brandDestructive,
+    backgroundImage: buttonGradients.destructive.default,
+    borderColor: colors.brandDestructive["200"],
     boxShadow: buttonInsetShadows.destructive.default,
-    color: colors.rose["300"],
+    color: colors.brandDestructive["300"],
 
     ":hover, :focus": {
-      background: buttonGradients.destructive.hover,
+      backgroundImage: buttonGradients.destructive.hover,
       boxShadow: buttonInsetShadows.destructive.hover,
       outline: "none"
     },
 
     ":active": {
-      backgroundColor: colorAliases.brandDestructive,
-      borderColor: "rgba(113, 21, 43, 0.35)",
+      backgroundColor: colors.brandDestructive["200"],
+      borderColor: darken(0.025, colors.brandDestructive["200"]),
       boxShadow: buttonInsetShadows.destructive.active
     },
 
     ":disabled": {
-      background: colorAliases.brandDestructive
+      ...buttonDisabled,
+      backgroundColor: lighten(0.1, colors.brandDestructive["100"]),
+      color: desaturate(0.25, colors.brandDestructive["200"])
     }
   },
 
   link: {
     ...buttonLinkBase,
-    color: colors.gray["500"],
+    color: colors.brandGray["500"],
 
     affirmative: {
       ...buttonLinkBase,
-      color: colorAliases.brandPrimary
+      color: colors.brandPrimary["300"]
     },
 
     destructive: {
       ...buttonLinkBase,
-      color: colorAliases.brandDestructive
+      color: colors.brandDestructive["200"]
     }
   }
 };
