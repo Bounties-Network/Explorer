@@ -9,11 +9,6 @@
     "mainNet": "https://api.bounties.network",
     "rinkeby": "https://api.bounties.network"
   },
-  "defaultToken": {
-    "symbol": "BST",
-    "address": "0x17A3914C7F06d09A0E396E55B126f4897711216c",
-    "decimals": 18
-  },
   "requiredNetwork": "mainNet",
   "contractVersion": "2.3",
   "mainNet": {
