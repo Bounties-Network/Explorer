@@ -3,9 +3,6 @@ import { jsx } from "theme-ui";
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import ExplorerDropdown from ".";
-import { faHome, faBox } from "@fortawesome/pro-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Text, Flex } from '@theme-ui/components'
 
 const communities = [
   {

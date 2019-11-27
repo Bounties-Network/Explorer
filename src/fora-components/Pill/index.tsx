@@ -9,7 +9,7 @@ const Container = emotionStyled(Flex)(props =>
   ssCSS({
     borderRadius: 100,
     height: '20px',
-    py: 2,
+    py: 1,
     px: 3,
   })
 );
