@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React from 'react';
 import { Link, Text, Flex } from 'rebass';
 import styled from 'lib/emotion-styled';
@@ -22,19 +24,22 @@ interface ICommunityProps {
   name: string;
   id: string;
   memberCount: number;
+  isOption: boolean;
 }
-const Community: React.FC<ICommunityProps> = ({
+
+export const Community: React.FC<ICommunityProps> = ({
   src,
   name,
   memberCount,
-  id
+  id,
+  isOption
 }) => (
-  <Link href={`/community/${id}`}>
+  <Link href={isOption ? undefined : `/community/${id}`}>
     <CommunityContainer alignItems="center">
       <AvatarImage resourceType={'community'} src={src} />
       <Flex flexDirection="column">
-        <Text color="black" variant="text.bodyStrong">
-          {name}
+        <Text color="black" variant="body" sx={{ fontWeight: 'medium' }}>
+          {`f • ${name}`}
         </Text>
         <Text variant="text.small" color="gray.400">
           {`${memberCount} members`}
