@@ -1,6 +1,6 @@
 import React from "react";
 import emotionStyled from "lib/emotion-styled";
-import { Flex, Card, Text, Box, Link } from "rebass";
+import { Flex, Card, Text, Box, Link } from "@theme-ui/components";
 import css from "@styled-system/css";
 import Pill from "fora-components/Pill";
 import FormatExpiration from "lib/format-expiration";
@@ -9,7 +9,6 @@ import typography from "theme/typography";
 
 const CardContainer = emotionStyled(Card)(props =>
   css({
-    variant: "card",
     position: "relative",
     py: 3,
     px: 3,
@@ -53,7 +52,7 @@ const PreviewCard: React.FC<PreviewCardProps> = ({
   <CardContainer>
     <Pill variant={`pill.status.${status}`} resourceType={status} />
     <Content>
-      <Flex flexDirection="column">
+      <Flex sx={{ flexDirection: "column" }}>
         <Link href={href} variant="text.link">
           {title}
         </Link>

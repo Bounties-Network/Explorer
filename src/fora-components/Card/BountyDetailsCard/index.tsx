@@ -1,33 +1,19 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React from "react";
 import emotionStyled from "lib/emotion-styled";
-import { Flex, Card, Text, Link, Button } from "rebass";
+import { Flex, Card, Text } from "@theme-ui/components";
 import css from "@styled-system/css";
-import AvatarImage, { AvatarImageProps } from "fora-components/AvatarImage";
-import AvatarGroup from "fora-components/AvatarGroup";
-import Divider from "fora-components/Divider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faEllipsisH,
   faQuestionCircle
 } from "@fortawesome/pro-regular-svg-icons";
 import Pill from "fora-components/Pill";
 
-let getResourceTypeWidth = resourceType => {
-  switch (resourceType) {
-    case "preview": {
-      return 270;
-    }
-    default: {
-      return 370;
-    }
-  }
-};
-
-const CardContainer = emotionStyled(Card)(props =>
+const CardContainer = emotionStyled(Card)(() =>
   css({
     display: "flex",
-    backgroundColor: "seaGlass.500",
-    variant: "card",
+    backgroundColor: "brandPrimary.500",
     flexDirection: "column",
     position: "relative",
     py: 6,
@@ -41,17 +27,17 @@ const CardContainer = emotionStyled(Card)(props =>
   })
 );
 
-const Header = emotionStyled(Flex)(() => css({}));
 const Content = emotionStyled(Flex)(() =>
-  css({ "> :first-of-type": { mb: 5 } })
+  css({ flexDirection : "column", "> :first-of-type": { mb: 5 } })
 );
 const ContentSection = emotionStyled(Flex)(() =>
-  css({ "> :last-of-type": { mt: 1 } })
+  css({ flexDirection : "column", "> :not(:last-of-type)": { mb: 1 } })
 );
-const PayoutTextContainer = emotionStyled(Flex)(props =>
+const PayoutTextContainer = emotionStyled(Flex)(() =>
   css({
+    alignItems: "center",
     "> :first-of-type": { mr: 2 },
-    "> svg": { color: "seaGlass.100", mixBlendMode: "normal" }
+    "> svg": { color: "brandPrimary.100", mixBlendMode: "normal" }
   })
 );
 
@@ -70,19 +56,19 @@ const BountyDetailsCard: React.FC<BountyDetailsCardProps> = ({
   usdRemainingBalanceValue
 }) => (
   <CardContainer>
-    <Pill variant={`pill.status.${status}`}>{status}</Pill>
-    <Content flexDirection="column">
-      <ContentSection flexDirection="column">
+      <Pill resourceType={status} variant={`pill.status.${status}`} />
+    <Content>
+      <ContentSection>
         <PayoutTextContainer>
           <Text css={{ mixBlendMode: "normal" }} variant="label" color="white">
             Payout
           </Text>
-          <FontAwesomeIcon icon={faQuestionCircle}></FontAwesomeIcon>
+          <FontAwesomeIcon sx={{ color: 'brandPrimary.100' }} icon={faQuestionCircle}></FontAwesomeIcon>
         </PayoutTextContainer>
-        <Text color="gold.200" variant="numeralMonospaceLarge">
+        <Text color="brandGold.200" variant="numeric" sx={{ fontSize: 'xl' }}>
           {ethPayoutValue}
         </Text>
-        <Text color="seaGlass.100" variant="numeralMonospaceSmall">
+        <Text color="brandPrimary.100" variant="numeric" sx={{ fontSize: 'md' }}>
           ${usdPayoutValue}
         </Text>
       </ContentSection>
@@ -90,10 +76,10 @@ const BountyDetailsCard: React.FC<BountyDetailsCardProps> = ({
         <Text css={{ mixBlendMode: "normal" }} variant="label" color="white">
           Remaining Balance
         </Text>
-        <Text variant="numeralMonospaceLarge" color="seaGlass.200">
+        <Text  variant="numeric" sx={{ fontSize: 'xl' }} color="brandPrimary.200">
           {ethRemainingBalanceValue}
         </Text>
-        <Text variant="numeralMonospaceSmall" color="seaGlass.100">
+        <Text  variant="numeric" sx={{ fontSize: 'md' }} color="brandPrimary.100">
           ${usdRemainingBalanceValue}
         </Text>
       </ContentSection>

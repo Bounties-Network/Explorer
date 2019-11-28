@@ -80,6 +80,7 @@ const colors = {
   brandPending: colorPalette.gold,
   brandDestructive: colorPalette.rose,
   brandGray: colorPalette.gray,
+  brandGold: colorPalette.gold,
 
   // Misc
   inputBg: colorPalette.gray["100"],

@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React from 'react';
 import { Flex, Text, Box } from 'rebass';
 import Divider from 'fora-components/Divider';
