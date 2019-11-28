@@ -5,10 +5,9 @@ import ssCSS from "@styled-system/css";
 import { Flex, Text } from "@theme-ui/components";
 import emotionStyled from "lib/emotion-styled";
 
-const Container = emotionStyled(Flex)(props =>
+const Container = emotionStyled(Flex)(() =>
   ssCSS({
     borderRadius: 100,
-    height: '20px',
     px: 3,
   })
 );

@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import emotionStyled from "./emotion-styled";
 import css from "@styled-system/css";
-import { Text, Flex } from "rebass";
+import { Text, Flex } from "@theme-ui/components";
 
 const MetaDetail = emotionStyled(Flex)(() =>
   css({ "> :first-of-type": { mr: 1 }, textAlign: "center" })
@@ -18,7 +18,7 @@ const NotExpired: React.FC<{
     case "preview": {
       return (
         <MetaDetail>
-          <Text variant="small" color="gray.400">{`${moment(
+          <Text variant="body" color="brandGray.400">{`${moment(
             props.expirationTimestamp
           ).fromNow(true)} remaining`}</Text>
         </MetaDetail>
@@ -27,10 +27,10 @@ const NotExpired: React.FC<{
     default: {
       return (
         <MetaDetail>
-          <Text variant="bodyStrong">
+          <Text variant="body" sx={{ fontWeight: 'medium' }}>
             {moment(props.expirationTimestamp).fromNow(true)}
           </Text>
-          <Text variant="bodyStrong" color="gray.300">
+          <Text variant="body" sx={{ fontWeight: 'medium' }} color="brandGray.300">
             remaining
           </Text>
         </MetaDetail>

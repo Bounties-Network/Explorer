@@ -1,7 +1,9 @@
-import * as React from "react";
+/** @jsx jsx */
+import { jsx } from "theme-ui";
+import React from "react";
 import emotionStyled from "lib/emotion-styled";
 import css from "@styled-system/css";
-import { Card, Text, Flex, Link } from "rebass";
+import { Card, Text, Flex, Link } from "@theme-ui/components";
 import Pill from "fora-components/Pill";
 import Avatar, { AvatarProps } from "fora-components/Avatar";
 import {
@@ -13,7 +15,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FormatExpiration from "lib/format-expiration";
 
-const Container = emotionStyled(Card)(props =>
+const Container = emotionStyled(Card)(() =>
   css({
     display: "flex",
     position: "relative",
@@ -26,27 +28,26 @@ const Container = emotionStyled(Card)(props =>
 
 const MainDetails = emotionStyled(Flex)(() =>
   css({
-    display: "flex",
     flexDirection: "column",
     "> :first-of-type": {
       mb: 3
     }
   })
 );
-const Tags = emotionStyled(Flex)(props =>
+const Tags = emotionStyled(Flex)(() =>
   css({ display: "flex", "> :not(:last-of-type)": { mr: 2 } })
 );
-const BountyMainDetails = emotionStyled(Flex)(props =>
+const BountyMainDetails = emotionStyled(Flex)(() =>
   css({
     display: "flex",
     flexDirection: "column",
     "> :first-of-type": { mb: 3 }
   })
 );
-const IssuerDetails = emotionStyled(Flex)(props =>
+const IssuerDetails = emotionStyled(Flex)(() =>
   css({ display: "flex", flexDirection: "column" })
 );
-const MetaDetails = emotionStyled(Flex)(props =>
+const MetaDetails = emotionStyled(Flex)(() =>
   css({
     display: "flex",
     flexDirection: "row",
@@ -54,14 +55,14 @@ const MetaDetails = emotionStyled(Flex)(props =>
     "> :first-of-type": { mr: 6 }
   })
 );
-const BountyMetaDetails = emotionStyled(Flex)(props =>
+const BountyMetaDetails = emotionStyled(Flex)(() =>
   css({
     display: "flex",
     flexDirection: "column",
     "> :not(:last-child)": { mb: 2 }
   })
 );
-const BountyValue = emotionStyled(Flex)(props =>
+const BountyValue = emotionStyled(Flex)(() =>
   css({
     display: "flex",
     flexDirection: "column",
@@ -83,7 +84,7 @@ export type CommunityProps = {
 };
 const Community: React.FC<CommunityProps> = props => (
   <MetaDetail>
-    <FontAwesomeIcon icon={faPeopleCarry}></FontAwesomeIcon>
+    <FontAwesomeIcon sx={{ color: 'brandGray.300' }} icon={faPeopleCarry}></FontAwesomeIcon>
     <Link href={props.href}>{`f • ${props.name}`}</Link>
   </MetaDetail>
 );
@@ -95,8 +96,9 @@ interface IProps {
   submissionCount: number;
   href: string;
   difficulty: string;
-  ethInUSD: number;
-  ethValue: number;
+  token: string;
+  tokenInUSD: number;
+  tokenValue: number;
   deadline: any;
   tags: Tag[];
   avatar: AvatarProps;
@@ -104,17 +106,17 @@ interface IProps {
 }
 
 const ExplorerCard: React.FunctionComponent<IProps> = props => (
-  <Container variant="card">
-    <Pill variant={`pill.status.${props.status}`}>{props.status}</Pill>
+  <Container>
+    <Pill resourceType={props.status} variant={`pill.status.${props.status}`} />
     <MainDetails>
       <BountyMainDetails>
-        <Link href={props.href}>
-          <Text variant="h4">{props.title}</Text>
+        <Link variant='text.link' href={props.href}>
+          <Text variant="headingSans">{props.title}</Text>
         </Link>
         <Tags>
           {props.tags.map(({ href, tag }) => (
             <Link href={href}>
-              <Pill variant={`pill.tag.explorer`}>{tag}</Pill>
+              <Pill resourceType={tag} variant={`pill.tag.explorer`}></Pill>
             </Link>
           ))}
         </Tags>
@@ -129,14 +131,14 @@ const ExplorerCard: React.FunctionComponent<IProps> = props => (
         {props.community && <Community {...props.community}></Community>}
         {props.difficulty && (
           <MetaDetail>
-            <FontAwesomeIcon icon={faPuzzlePiece}></FontAwesomeIcon>
-            <Text variant="bodyStrong">{`${props.difficulty}`}</Text>
-            <Text variant="bodyStrong" color={"gray.300"}>{`difficulty`}</Text>
+            <FontAwesomeIcon sx={{ color: 'brandGray.300' }} icon={faPuzzlePiece}></FontAwesomeIcon>
+            <Text variant="body" sx={{ fontWeight: 'medium' }}>{`${props.difficulty}`}</Text>
+            <Text variant="body" color={"brandGray.300"}>{`difficulty`}</Text>
           </MetaDetail>
         )}
         {props.deadline && (
           <MetaDetail>
-            <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>
+            <FontAwesomeIcon sx={{ color: 'brandGray.300' }} icon={faClock}></FontAwesomeIcon>
             <FormatExpiration
               variant="explorer"
               expirationTimestamp={props.deadline}
@@ -145,22 +147,29 @@ const ExplorerCard: React.FunctionComponent<IProps> = props => (
         )}
         {props.submissionCount && (
           <MetaDetail>
-            <FontAwesomeIcon icon={faArrowUp}></FontAwesomeIcon>
-            <Text variant="bodyStrong">{`${props.submissionCount}`}</Text>
-            <Text variant="bodyStrong" color={"gray.300"}>{`submissions`}</Text>
+            <FontAwesomeIcon sx={{ color: 'brandGray.300' }} icon={faArrowUp}></FontAwesomeIcon>
+            <Text variant="body" sx={{ fontWeight: 'medium' }}>{`${props.submissionCount}`}</Text>
+            <Text variant="body" color={"brandGray.300"}>{`submissions`}</Text>
           </MetaDetail>
         )}
       </BountyMetaDetails>
       <BountyValue>
         <Text
-          variant="h2"
-          fontWeight={"normal"}
-          color="rose.200"
-        >{`$${props.ethInUSD}`}</Text>
+          variant="numeric"
+          sx={{
+            fontSize: "2xl",
+            fontWeight: "regular"
+          }}
+          color="brandDestructive.200"
+        >{`$${props.tokenInUSD}`}</Text>
         <Text
-          variant="bodyStrong"
-          color="gray.400"
-        >{`${props.ethValue} ETH`}</Text>
+          variant="body"
+          sx={{
+            fontWeight: 'medium',
+            textTransform: "capitalize"
+          }}
+          color="black"
+        >{`${props.tokenValue} ${props.token}`}</Text>
       </BountyValue>
     </MetaDetails>
   </Container>

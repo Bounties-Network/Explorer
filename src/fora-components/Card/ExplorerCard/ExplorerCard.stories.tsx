@@ -34,8 +34,9 @@ storiesOf("ExplorerCard", module)
   .add("Mi Fora", () => (
   <Container>
     <ExplorerCard
-      ethInUSD={26}
-      ethValue={0.05}
+      token={'ETH'}
+      tokenInUSD={26}
+      tokenValue={0.05}
       submissionCount={6}
       community={{
         name: "frontendDev",
@@ -60,8 +61,9 @@ storiesOf("ExplorerCard", module)
   .add("Expired", () => (
     <Container>
       <ExplorerCard
-        ethInUSD={26}
-        ethValue={0.05}
+        token={'ETH'}
+        tokenInUSD={26}
+        tokenValue={0.05}
         submissionCount={6}
         community={{
           name: "frontendDev",
