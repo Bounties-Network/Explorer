@@ -3,7 +3,6 @@ import { jsx } from "theme-ui";
 import React from "react";
 import { Flex, Text, Link } from "@theme-ui/components";
 import moment from "moment";
-import colors from "theme/colors";
 
 const Container = props => (
   <Flex
@@ -16,11 +15,12 @@ const Container = props => (
   />
 );
 
-export default interface IProps {
+export interface IProps {
   communityId: string;
   communityName: string;
   timestamp: number | string;
 }
+
 const MetaData: React.FC<IProps> = ({
   timestamp,
   communityName,

@@ -4,7 +4,7 @@ import React from "react";
 import Select, { Props as RSProps, StylesConfig } from "react-select";
 import { Text, Flex } from "@theme-ui/components";
 import theme from "theme/theme";
-import { faHome, faBox, faTimes, faGift } from "@fortawesome/pro-regular-svg-icons";
+import { faHome, faGift } from "@fortawesome/pro-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Community } from "../TopCommunities";
 
