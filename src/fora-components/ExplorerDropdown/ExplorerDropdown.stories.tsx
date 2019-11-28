@@ -53,13 +53,10 @@ storiesOf("ExplorerDropdown", module)
     const [state, setState] = React.useState<{ value: string; label: string } | null>(null);
 
     return (
-      <div sx={{ width: "500px", pt: 3, pl: 5 }}>
+      <div sx={{ width: "350px", pt: 3, pl: 5 }}>
         <ExplorerDropdown
           value={state}
-          handleChange={(option, action) => {
-            console.log(action)
-            setState(option)
-          }}
+          handleChange={(option) => setState(option)}
           options={options}
           placeholder="Placeholder.."
         />

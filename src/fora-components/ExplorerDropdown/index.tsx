@@ -4,12 +4,11 @@ import React from "react";
 import Select, { Props as RSProps, StylesConfig } from "react-select";
 import { Text, Flex } from "@theme-ui/components";
 import theme from "theme/theme";
-import { faHome, faBox, faTimes } from "@fortawesome/pro-regular-svg-icons";
+import { faHome, faBox, faTimes, faGift } from "@fortawesome/pro-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Community } from "../TopCommunities";
-import Pill from "fora-components/Pill";
 
-const optionStyles = {
+const optionStyles = (isOption = true) => ({
   cursor: "pointer",
   fontSize: theme.fontSizes.sm,
   fontWeight: theme.fontWeights.regular,
@@ -17,26 +16,26 @@ const optionStyles = {
   fontFamily: theme.fonts.body,
   borderRadius: theme.radius,
   backgroundColor: theme.colors.white,
-  padding: `${theme.space[3]} ${theme.space[4]}`,
+  padding: isOption ? `${theme.space[3]} ${theme.space[4]}` : undefined,
   color: theme.colors.brandGray[500],
-  "&:hover": {
+  "&:hover": isOption ? {
     color: theme.colors.brandPrimary[300],
     background: theme.colors.brandGray[100]
-  }
-};
+  } : undefined
+});
 
 const YourCommunitiesOption = props => (
   <Flex
     {...props}
     {...props.innerProps}
     sx={{
-      ...optionStyles,
+      ...optionStyles(props.isOption),
       alignItems: "center",
       "> svg": { mr: 2 },
       color: props.isSelected ? theme.colors.brandPrimary[300] : theme.colors.brandGray[500]
     }}
   >
-    <FontAwesomeIcon icon={faHome}></FontAwesomeIcon>
+    <FontAwesomeIcon sx={{ color: theme.colors.brandPrimary[300] }} icon={faHome}></FontAwesomeIcon>
     <Text>Your Communities</Text>
   </Flex>
 );
@@ -46,13 +45,13 @@ const AllBountiesOption = props => (
     {...props}
     {...props.innerProps}
     sx={{
-      ...optionStyles,
+      ...optionStyles(props.isOption),
       alignItems: "center",
       "> svg": { mr: 2 },
       color: props.isSelected ? theme.colors.brandPrimary[300] : theme.colors.brandGray[500]
     }}
   >
-    <FontAwesomeIcon icon={faBox}></FontAwesomeIcon>
+    <FontAwesomeIcon sx={{ color: theme.colors.brandPrimary[300] }} icon={faGift}></FontAwesomeIcon>
     <Text>All Bounties</Text>
   </Flex>
 );
@@ -62,7 +61,7 @@ const CommunityOption = props => (
     {...props}
     {...props.innerProps}
     sx={{
-      ...optionStyles,
+      ...optionStyles(props.isOption),
       "> a": {
         color: props.isSelected ? theme.colors.brandPrimary[300] : theme.colors.brandGray[500],
         "*": {
@@ -93,20 +92,19 @@ const Option = props => {
   }
 };
 
-const MultiValue = props => (
-  <div
-    {...props.innerProps}
-    ref={props.innerRef}
-    onClick={props.removeProps.onClick}
-    sx={{ cursor: "pointer", mr: 1 }}
-  >
-    <Pill styles={{ height: "unset" }} variant="pill.tag.explorer">
-      <Text color={"brandPrimary.300"} fontFamily="body" variant="body">
-        {props.data.community ? `f • ${props.data.label}` : props.data.label}
-      </Text>
-    </Pill>
-  </div>
-);
+const SingleValue = props => {
+  switch (props.data.value) {
+    case "yourCommunities": {
+      return <YourCommunitiesOption {...props} isOption={false}></YourCommunitiesOption>;
+    }
+    case "allBounties": {
+      return <AllBountiesOption {...props} isOption={ false }></AllBountiesOption>;
+    }
+    default: {
+      return <CommunityOption {...props} isOption={false}></CommunityOption>;
+    }
+  }
+}
 
 const selectStyles = (optionsLength): StylesConfig => ({
   indicatorsContainer: provided => ({
@@ -168,10 +166,7 @@ const ExplorerDropdown: React.FunctionComponent<RSProps> = props => {
       value={props.value}
       onChange={props.handleChange}
       options={props.options}
-      components={{ GroupHeading, Option, MultiValue }}
-      isMulti={true}
-      hideSelectedOptions={false}
-      closeMenuOnSelect={false}
+      components={{ GroupHeading, Option, SingleValue }}
     ></Select>
   );
 };
