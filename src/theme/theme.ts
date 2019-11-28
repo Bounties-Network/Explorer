@@ -210,7 +210,7 @@ export const forms = {
 const cards = {
   primary: {
     border: borders.base,
-    padding: 5,
+    padding: 4,
     boxShadow: shadows[0],
     boxSizing: "border-box",
     borderRadius: 2

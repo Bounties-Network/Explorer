@@ -17,7 +17,7 @@ const Container = emotionStyled(Flex)(() =>
   css({ flexDirection: "column", "> :first-of-type": { mb: 4 } })
 );
 const Header = emotionStyled(Flex)(() =>
-  css({ "> :first-of-type": { mr: "auto", textTransform: "capitalize" } })
+  css({ alignItems: 'center', "> :first-of-type": { mr: "auto", textTransform: "capitalize" } })
 );
 const RatingReceivedHeader = emotionStyled(Flex)(() =>
   css({ width: '100%', alignItems: 'center', "> a:first-of-type": { ml: "auto" } })

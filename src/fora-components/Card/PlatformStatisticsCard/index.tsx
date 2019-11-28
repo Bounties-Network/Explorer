@@ -1,13 +1,14 @@
 import React from "react";
-import { Text, Card, Button } from "rebass";
+import { Text, Card, Link } from "@theme-ui/components";
 import styled from "lib/emotion-styled";
 import css from "@styled-system/css";
 import numbro from "numbro";
+import Button from "fora-components/Button";
 
 const Container = styled(Card)(() =>
   css({
     flexDirection: "column",
-    variant: "card",
+    "> *:nth-of-type(odd)": { mb: 1 },
     "> *:nth-of-type(2n)": { mb: 4 }
   })
 );
@@ -27,30 +28,30 @@ const PlatformStatisticsCard: React.FC<IProps> = ({
 }) => (
   <Container>
     {resourceType === "communities" && (
-      <Text variant="label">Active bounties in your communities</Text>
+      <Text variant="label" color='brandGray.400'>Active bounties in your communities</Text>
     )}
     {resourceType === "platform" && (
-      <Text variant="label">Active platform bounties</Text>
+      <Text variant="label" color='brandGray.400'>Active platform bounties</Text>
     )}
-    <Text color={"seaGlass.200"} variant="numeralMonospaceLarge">
+    <Text color={"brandPrimary.200"} sx={{ fontSize: '2xl' }} variant="numeric">
       {activePlatformBounties}
     </Text>
     {resourceType === "communities" && (
-      <Text variant="label">Bounties issued in your communities</Text>
+      <Text variant="label" color='brandGray.400'>Bounties issued in your communities</Text>
     )}
     {resourceType === "platform" && (
-      <Text variant="label">Platform bounties issued</Text>
+      <Text variant="label" color='brandGray.400'>Platform bounties issued</Text>
     )}
-    <Text variant="numeralMonospaceLarge">{platformBountiesIssued}</Text>
-    <Text variant="label">Total value of bounties issued</Text>
-    <Text variant="numeralMonospaceLarge">
+    <Text  sx={{ fontSize: '2xl' }} variant="numeric">{platformBountiesIssued}</Text>
+    <Text color='brandGray.400' variant="label">Total value of bounties issued</Text>
+    <Text  sx={{ fontSize: '2xl' }} variant="numeric">
       {numbro(totalBountyIssuedValueInUSD)
         .formatCurrency({ thousandSeparated: true })
         .replace(/,/gi, ", ")}
     </Text>
-    <Button width={"100%"} variant="primary">
-      View bounties
-    </Button>
+      <Link href={'/view-bounties'}>
+    <Button fullWidth={true} label="View bounties" variant="primary" />
+      </Link>
   </Container>
 );
 
