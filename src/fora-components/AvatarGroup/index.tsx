@@ -38,7 +38,7 @@ const AvatarGroup: React.FC<AvatarGroupProps> = props => {
   return (
     <AvatarGroupLink href={href}>
       {Array.isArray(avatars) && avatars.slice(0, 5).map(AvatarImage)}
-      <Link>{`+ ${avatars.length - 5} more`}</Link>
+      <Link variant='text.link'>{`+ ${avatars.length - 5} more`}</Link>
     </AvatarGroupLink>
   );
 };

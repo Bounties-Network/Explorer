@@ -21,11 +21,11 @@ let imageContainerVariantSize = variant => {
 let nameSize = variant => {
   switch (variant) {
     case "small" || "medium":
-      return "bodyStrong";
+      return "body";
     case "large":
       return "h2";
     default:
-      return "bodyStrong";
+      return "body";
   }
 };
 
@@ -34,7 +34,7 @@ let addressSize = variant => {
     case "small" || "medium":
       return "link";
     case "large":
-      return "linkStrong";
+      return "link";
     default:
       return "link";
   }
@@ -48,23 +48,6 @@ const AvatarWrapper = styled(Link)<AvatarWrapperProps>(props =>
     alignItems: props.textFormat === "inline" ? "flex-start" : "center",
     "&:hover": { textDecoration: "none" }
   })
-);
-
-type ImageContainerProps = Pick<AvatarProps, "variant" | "resourceType">;
-const ImageContainer = styled(Flex)<ImageContainerProps>(
-  props =>
-    css({
-      alignItems: "center",
-      flexShrink: 0,
-      justifyContent: "center",
-      bg: "white",
-      border: props.variant === "small" ? "none" : "avatar",
-      boxShadow: props.variant === "small" ? "none" : 1,
-      overflow: "hidden",
-      size: imageContainerVariantSize(props.variant),
-      variant: `avatarResourceTypes.${props.resourceType}`
-    })
-  // props => props.theme.avatarResourceTypes[props.resourceType] or use this instead of the variant key above
 );
 
 type TextContainerProps = Pick<AvatarProps, "variant" | "textFormat">;
@@ -87,7 +70,7 @@ const AvatarName = styled(Text)<AvatarNameProps>(props =>
     mr: props.textFormat === "inline" ? 2 : "",
     textAlign: "left",
     variant: "text." + nameSize(props.variant),
-    fontFamily: "secondary",
+    fontWeight: "medium",
     lineHeight: "reset",
     "&:not(:last-child):not(:only-child)": {
       mb: 1
@@ -100,7 +83,7 @@ const AvatarScreenName = styled(Text)<AvatarScreenNameProps>(props =>
   css({
     color: props.onDark ? "transparentWhite" : "seaGlass.300",
     variant: "text." + addressSize(props.variant),
-    fontFamily: "secondary",
+    fontWeight: "medium",
     lineHeight: "reset",
     "a:hover &": { textDecoration: "underline" }
   })
@@ -111,7 +94,7 @@ const AvatarAddress = styled(Text)<AvatarAddressProps>(props =>
   css({
     color: props.onDark ? "transparentWhite" : "seaGlass.300",
     variant: "text." + addressSize(props.variant),
-    fontFamily: "secondary",
+    fontWeight: "medium",
     lineHeight: "reset",
     "a:hover &": { textDecoration: "underline" }
   })
