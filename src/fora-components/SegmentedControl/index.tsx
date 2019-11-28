@@ -1,13 +1,14 @@
 import React from "react";
-import { Text, Flex } from "rebass";
+import { Text, Flex } from "@theme-ui/components";
 import emotionStyled from "lib/emotion-styled";
 import css from "@styled-system/css";
 
 const Container = emotionStyled(Flex)(() =>
   css({
     mixBlendMode: "normal",
-    boxShadow: 3,
-    borderRadius: 1
+    boxShadow: 2,
+    borderRadius: 1,
+    p: 1,
   })
 );
 
@@ -24,24 +25,13 @@ const Option = emotionStyled(Flex)<IOptionProps>(
       cursor: "pointer",
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: props.isActive ? "white" : "gray.100",
+      backgroundColor: props.isActive ? "white" : "transparent",
       mixBlendMode: "normal",
-      boxSizing: "border-box"
+      boxSizing: "border-box",
+      boxShadow: props.isActive ? 0 : undefined,
+      borderRadius: 1
     }),
-  props =>
-    props.firstOption
-      ? {
-          border: props.theme.borders.base,
-          borderRight: "none",
-          borderTopLeftRadius: props.theme.radii[1],
-          borderBottomLeftRadius: props.theme.radii[1]
-        }
-      : {
-          border: props.theme.borders.base,
-          borderTopRightRadius: props.theme.radii[1],
-          borderBottomRightRadius: props.theme.radii[1]
-        }
-);
+  );
 
 interface IProps {
   firstOption: string;
@@ -71,8 +61,9 @@ const SegmentedControl: React.FC<IProps> = ({
         firstOption={true}
       >
         <Text
-          color={activeSegment === "first" ? "black" : "gray.400"}
-          variant="small"
+          color={activeSegment === "first" ? "black" : "brandGray.400"}
+          variant="body"
+          fontSize={'xs'}
         >
           {firstOption}
         </Text>
@@ -87,8 +78,9 @@ const SegmentedControl: React.FC<IProps> = ({
         isActive={activeSegment === "second"}
       >
         <Text
-          color={activeSegment === "second" ? "black" : "gray.400"}
-          variant="small"
+          color={activeSegment === "second" ? "black" : "brandGray.400"}
+          variant="body"
+          fontSize={'xs'}
         >
           {secondOption}
         </Text>

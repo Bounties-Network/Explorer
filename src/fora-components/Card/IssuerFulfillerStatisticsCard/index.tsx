@@ -1,31 +1,35 @@
 import React from "react";
-import { Card, Flex, Text } from "rebass";
+import { Card, Flex, Text, Link } from "@theme-ui/components";
 import emotionStyled from "lib/emotion-styled";
 import css from "@styled-system/css";
 import SegmentedControl from "fora-components/SegmentedControl";
-import Pill from "fora-components/Pill";
+import Button from "fora-components/Button";
 
 const CardContainer = emotionStyled(Card)(() =>
   css({
+    display: 'flex',
     flexDirection: "column",
-    variant: "card",
     "> *:not(:last-of-type)": { mb: 5 }
   })
 );
 
 const Container = emotionStyled(Flex)(() =>
-  css({ "> :first-of-type": { mb: 4 } })
+  css({ flexDirection: "column", "> :first-of-type": { mb: 4 } })
 );
 const Header = emotionStyled(Flex)(() =>
   css({ "> :first-of-type": { mr: "auto", textTransform: "capitalize" } })
 );
-const RatingReceivedHeader = emotionStyled(Flex)(props =>
-  css({ "> :first-of-type": { mr: "auto" } })
+const RatingReceivedHeader = emotionStyled(Flex)(() =>
+  css({ width: '100%', alignItems: 'center', "> a:first-of-type": { ml: "auto" } })
 );
 const RatingReceivedText = emotionStyled(Text)<{
   state: "issuer" | "fulfiller";
 }>(props =>
-  css({ color: props.state === "issuer" ? "rose.200" : "seaGlass.300" })
+  css({
+    variant: 'numeric',
+    fontSize: '2xl',
+    color: props.state === "issuer" ? "brandDestructive.200" : "brandPrimary.300",
+  })
 );
 
 interface IProps {
@@ -34,7 +38,7 @@ interface IProps {
   averageReceivedGivenRating: number;
 }
 
-const RatingBarContainer = emotionStyled(Flex)(props =>
+const RatingBarContainer = emotionStyled(Flex)(() =>
   css({ "> *:not(:last-of-type)": { mr: 1 } })
 );
 const SomeBar = emotionStyled("div")<{
@@ -42,12 +46,12 @@ const SomeBar = emotionStyled("div")<{
   state: "issuer" | "fulfiller";
   resourceType?: "given";
 }>(props => {
-  let backgroundColor = "gray.200";
+  let backgroundColor = "brandGray.200";
   if (props.fillMe) {
     if (props.resourceType === "given") {
-      backgroundColor = props.state === "issuer" ? "amber.200" : "rose.200";
+      backgroundColor = props.state === "issuer" ? "brandTertiary.200" : "brandDestructive.200";
     } else {
-      backgroundColor = props.state === "issuer" ? "rose.200" : "seaGlass.300";
+      backgroundColor = props.state === "issuer" ? "brandDestructive.200" : "brandPrimary.300";
     }
   }
 
@@ -75,59 +79,67 @@ const RatingBar: React.FC<Pick<IProps, "averageRatingReceived"> & {
   </RatingBarContainer>
 );
 
-const RatingReceivedContent = emotionStyled(Flex)(props =>
-  css({ "> :first-of-type": { mb: 2 } })
+const RatingReceivedContent = emotionStyled(Flex)(() =>
+  css({ flexDirection: "column", "> :first-of-type": { mb: 2 } })
 );
-const RatingReceivedContainer = emotionStyled(Flex)(props =>
-  css({ "> :first-of-type": { mb: 2 } })
+const RatingReceivedContainer = emotionStyled(Flex)(() =>
+  css({
+    width: '100%',
+    flexDirection: "column",
+    "> :first-of-type": { mb: 2 }
+  })
 );
 const AverageRatingReceived: React.FC<Pick<IProps, "averageRatingReceived"> & {
   state: "issuer" | "fulfiller";
 }> = ({ averageRatingReceived, state }) => (
-  <RatingReceivedContainer flexDirection="column">
-    <RatingReceivedHeader alignItems="flex-end">
+  <RatingReceivedContainer>
+    <RatingReceivedHeader>
       <RatingReceivedText
-        variant="numeralMonospaceLarge"
+        variant="numeric"
         state={state}
       >{`${averageRatingReceived} / 5`}</RatingReceivedText>
-      <Pill variant="pill.status.completed">{"Reviews"}</Pill>
+      <Link href={'/reviews'}>
+        <Button size="small" variant="secondary" label={'Reviews'}></Button>
+      </Link>
     </RatingReceivedHeader>
-    <RatingReceivedContent flexDirection="column">
+    <RatingReceivedContent>
       <RatingBar
         state={state}
         averageRatingReceived={averageRatingReceived}
       ></RatingBar>
-      <Text variant="label">{`Avg ${state} rating received`}</Text>
+      <Text variant="label"  color='brandGray.400'>{`Avg ${state} rating received`}</Text>
     </RatingReceivedContent>
   </RatingReceivedContainer>
 );
 
-const AcceptanceRateBar = emotionStyled("div")(props =>
-  css({ backgroundColor: "gray.200", height: "4px", borderRadius: 1 })
+const AcceptanceRateBar = emotionStyled("div")(() =>
+  css({ backgroundColor: "brandGray.200", height: "4px", borderRadius: 1 })
 );
 const ProgressBar = emotionStyled("div")<{ acceptanceRate: number }>(props =>
   css({
-    backgroundColor: "seaGlass.300",
+    backgroundColor: "brandGray.300",
     width: `${props.acceptanceRate}%`,
     height: "4px",
     borderRadius: 1
   })
 );
-const AcceptanceRateContainer = emotionStyled(Flex)(props =>
-  css({ "> :first-of-type": { mb: 2 }, "> :nth-of-type(2)": { mb: 1 } })
+const AcceptanceRateContainer = emotionStyled(Flex)(() =>
+  css({ flexDirection: 'column' ,"> :first-of-type": { mb: 2 }, "> :nth-of-type(2)": { mb: 1 } })
 );
 const AcceptanceRate: React.FC<Pick<IProps, "acceptanceRate">> = ({
   acceptanceRate
 }) => (
-  <AcceptanceRateContainer flexDirection="column">
-    <Text
-      color="seaGlass.300"
-      variant="numeralMonospaceLarge"
-    >{`${acceptanceRate}%`}</Text>
+  <AcceptanceRateContainer>
+    <RatingReceivedText
+      color="brandPrimary.300"
+      variant="numeric"
+    >
+      {`${acceptanceRate}%`}
+    </RatingReceivedText>
     <AcceptanceRateBar>
       <ProgressBar acceptanceRate={acceptanceRate}></ProgressBar>
     </AcceptanceRateBar>
-    <Text variant="label">{"Submission acceptance rate"}</Text>
+    <Text variant="label" color='brandGray.400'>{"Submission acceptance rate"}</Text>
   </AcceptanceRateContainer>
 );
 
@@ -135,27 +147,27 @@ const AverageReceivedGivenRatingContainer = RatingReceivedContainer;
 const AverageReceivedGivenRatingHeader = RatingReceivedHeader;
 const AverageReceivedGivenRatingText = emotionStyled(
   RatingReceivedText
-)(props => css({ color: props.state === "issuer" ? "amber.200" : "rose.200" }));
+)(props => css({ color: props.state === "issuer" ? "brandTertiary.200" : "brandDestructive.200" }));
 const AverageReceivedGivenRatingContent = RatingReceivedContent;
 
 const AverageReceivedGivenRating: React.FC<{
   averageReceivedGivenRating: IProps["averageReceivedGivenRating"];
   state: "issuer" | "fulfiller";
 }> = ({ averageReceivedGivenRating, state }) => (
-  <AverageReceivedGivenRatingContainer flexDirection="column">
-    <AverageReceivedGivenRatingHeader alignItems="flex-end">
+  <AverageReceivedGivenRatingContainer>
+    <AverageReceivedGivenRatingHeader>
       <AverageReceivedGivenRatingText
         variant="numeralMonospaceLarge"
         state={state}
       >{`${averageReceivedGivenRating} / 5`}</AverageReceivedGivenRatingText>
     </AverageReceivedGivenRatingHeader>
-    <AverageReceivedGivenRatingContent flexDirection="column">
+    <AverageReceivedGivenRatingContent>
       <RatingBar
         resourceType={"given"}
         state={state}
         averageRatingReceived={averageReceivedGivenRating}
       ></RatingBar>
-      <Text variant="label">
+      <Text variant="label" color='brandGray.400'>
         {state === "issuer"
           ? `Avg rating given to fulfillers`
           : `Avg rating given to issuers`}
@@ -172,9 +184,9 @@ const IssuerFulfillerStatisticsCard: React.FC<IProps> = ({
   const [state, setState] = React.useState<"issuer" | "fulfiller">("issuer");
 
   return (
-    <Container flexDirection="column">
+    <Container>
       <Header>
-        <Text variant="h3">{`${state} stats`}</Text>
+        <Text variant="headingSans">{`${state} stats`}</Text>
         <SegmentedControl
           firstOption={"Issuer"}
           firstOptionHandleClick={() => setState("issuer")}
