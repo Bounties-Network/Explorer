@@ -7,10 +7,10 @@ import styled from 'lib/emotion-styled';
 import PreviewCard from 'fora-components/Card/PreviewCard';
 import MetaData from './MetaData';
 
-const Container = styled(Flex)(() => css({ maxWidth: 570 }));
-const Content = styled(Flex)(() => css({ '> *:first-child': { mr: 3 } }));
+const Container = styled(Flex)(() => css({ maxWidth: 570, flexDirection: "column"}));
+const Content = styled(Flex)(() => css({ '> *:first-of-type': { mr: 3 } }));
 const DescriptionContainer = styled(Flex)(() =>
-  css({ '> :not(:last-child)': { mb: 3 } })
+  css({ flexDirection: 'column', '> :first-of-type': { mb: 4 } })
 );
 const Description = styled(Box)(() =>
   css({
@@ -23,7 +23,6 @@ const Description = styled(Box)(() =>
     }
   })
 );
-
 export interface IPayoutIncreaseProps {
   activityType: 'payoutIncrease';
   avatarSrc: string | undefined;
@@ -51,21 +50,21 @@ const PayoutIncrease: React.FC<IPayoutIncreaseProps> = ({
   authorAddress,
   submissionCount
 }) => (
-  <Container flexDirection="column">
+  <Container>
     <Content>
       <AvatarImage
         address={authorAddress}
         src={avatarSrc}
         resourceType="user"
       />
-      <DescriptionContainer flexDirection="column">
+      <DescriptionContainer>
         <Description>
-          <Text variant="bodyStrong">{authorName || '--'}</Text>
+          <Text variant="body" sx={{ fontWeight: 'medium' }}>{authorName || '--'}</Text>
           <Text
             variant="body"
-            color="gray.400"
+            color="brandGray.400"
           >{` increased their bounty's payout to `}</Text>
-          <Text variant="bodyStrong">{`${bountyPayoutIncreaseAmount} ETH`}</Text>
+          <Text variant="body" sx={{ fontWeight: 'medium' }}>{`${bountyPayoutIncreaseAmount} ETH`}</Text>
         </Description>
         <PreviewCard
           status={bountyStatus}

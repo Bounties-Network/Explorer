@@ -9,6 +9,7 @@ addDecorator(centered);
 storiesOf('Activity', module)
   .add('Submission', () => (
     <Activity
+      href={'https://www.google.co.uk'}
       activityType={'submission'}
       authorAddress={'0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67'}
       avatarSrc={

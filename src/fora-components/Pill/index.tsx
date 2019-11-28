@@ -27,7 +27,7 @@ const Pill: React.FC<IProps> = ({ resourceType, variant, styles, children }) => 
       variant={variant}
       sx={styles}
     >
-      {children || <Text>{resourceType}</Text>}
+      {children || <Text variant='body'>{resourceType}</Text>}
     </Container>
   );
 };

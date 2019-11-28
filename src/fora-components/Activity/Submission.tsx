@@ -32,6 +32,7 @@ export interface ISubmissionProps {
   timestamp: string;
   communityName: string;
   communityId: string;
+  href: string;
 }
 
 const Submission: React.FC<ISubmissionProps> = ({
@@ -41,16 +42,17 @@ const Submission: React.FC<ISubmissionProps> = ({
   bountyTitle,
   timestamp,
   communityName,
-  communityId
+  communityId,
+  href
 }) => (
   <ActivityItem>
     <ContentContainer>
       <AvatarImage address={authorAddress} src={avatarSrc} />
       <Flex sx={{ flexDirection: "column", ml: "3" }}>
         <Description>
-          <Text sx={{ fontWeight: "medium" }}>{authorName || "--"}</Text>
-          <Text color="brandGray.400" mx="1">{`submitted to`}</Text>
-          <Link sx={{ fontWeight: "medium" }}>{bountyTitle}</Link>
+          <Text variant='body' sx={{ fontWeight: "medium" }}>{authorName || "--"}</Text>
+          <Text variant='body' color="brandGray.400" mx="1">{`submitted to`}</Text>
+          <Link href={href} variant='text.link' sx={{ fontWeight: "medium" }}>{bountyTitle}</Link>
         </Description>
         <MetaData
           timestamp={timestamp}

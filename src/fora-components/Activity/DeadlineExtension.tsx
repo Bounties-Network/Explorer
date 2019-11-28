@@ -1,5 +1,7 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React from 'react';
-import { Flex, Text, Box } from 'rebass';
+import { Flex, Text, Box } from '@theme-ui/components';
 import Divider from 'fora-components/Divider';
 import AvatarImage from 'fora-components/AvatarImage';
 import css from '@styled-system/css';
@@ -8,10 +10,10 @@ import moment from 'moment';
 import PreviewCard from 'fora-components/Card/PreviewCard';
 import MetaData from './MetaData';
 
-const Container = styled(Flex)(() => css({ maxWidth: 570 }));
-const Content = styled(Flex)(() => css({ '> *:first-child': { mr: 3 } }));
+const Container = styled(Flex)(() => css({ maxWidth: 570, flexDirection: "column"}));
+const Content = styled(Flex)(() => css({ '> *:first-of-type': { mr: 3 } }));
 const DescriptionContainer = styled(Flex)(() =>
-  css({ '> :not(:last-child)': { mb: 3 } })
+  css({ flexDirection: 'column', '> :first-of-type': { mb: 4 } })
 );
 const Description = styled(Box)(() =>
   css({
@@ -52,21 +54,21 @@ const DeadlineExtension: React.FC<IDeadlineExtensionProps> = ({
   authorAddress,
   submissionCount
 }) => (
-  <Container flexDirection="column">
+  <Container>
     <Content>
       <AvatarImage
         address={authorAddress}
         src={avatarSrc}
         resourceType="user"
       />
-      <DescriptionContainer flexDirection="column">
+      <DescriptionContainer>
         <Description>
-          <Text variant="bodyStrong">{authorName || '--'}</Text>
+          <Text variant="body" sx={{ fontWeight: 'medium' }}>{authorName || '--'}</Text>
           <Text
             variant="body"
-            color="gray.400"
+            color="brandGray.400"
           >{` extended their bounty's deadline to `}</Text>
-          <Text variant="bodyStrong">
+          <Text variant="body" sx={{ fontWeight: 'medium' }}>
             {moment(bountyExtensionDate).format('DD/MM/YY')}
           </Text>
         </Description>

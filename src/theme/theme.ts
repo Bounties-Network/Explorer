@@ -225,7 +225,7 @@ export const variants = {
       backgroundColor: colors.brandPrimary["200"],
       borderRadius: "50%"
     }
-  }
+  },
 };
 
 const icons = {

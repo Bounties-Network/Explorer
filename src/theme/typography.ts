@@ -1,6 +1,6 @@
 const typography = {
   fonts: {
-    headingSans: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,`,
+    headingSans: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
     headingSerif: `"Domine", Lucida Bright, Georgia, serif`,
     body: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
     monospace: `"Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace"`
@@ -33,6 +33,7 @@ const typography = {
   // Theme-UI Text Component Variants
   text: {
     body: {
+      fontFamily: 'body',
       fontSize: "sm",
       fontWeight: "regular",
       lineHeight: "standard"
@@ -49,6 +50,7 @@ const typography = {
     },
 
     label: {
+      fontFamily: "body",
       fontSize: "xs",
       fontWeight: "normal"
     },
@@ -60,6 +62,14 @@ const typography = {
 
     numeric: {
       fontVariantNumeric: "tabular-nums"
+    },
+
+    link: { // text.link, hmm should we keep this?
+      fontFamily: 'body',
+      fontSize: "sm",
+      fontWeight: "regular",
+      lineHeight: "standard",
+      color: 'brandPrimary.300'
     }
   }
 };

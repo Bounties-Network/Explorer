@@ -1,5 +1,7 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React from 'react';
-import { Flex, Text, Link, Box } from 'rebass';
+import { Flex, Text, Link, Box } from '@theme-ui/components';
 import Divider from 'fora-components/Divider';
 import AvatarImage from 'fora-components/AvatarImage';
 import css from '@styled-system/css';
@@ -7,10 +9,10 @@ import styled from 'lib/emotion-styled';
 import numbro from 'numbro';
 import MetaData from './MetaData';
 
-const Container = styled(Flex)(() => css({ maxWidth: 570 }));
-const Content = styled(Flex)(() => css({ '> *:first-child': { mr: 3 } }));
+const Container = styled(Flex)(() => css({ maxWidth: 570,  flexDirection: "column" }));
+const Content = styled(Flex)(() => css({ '> *:first-of-type': { mr: 3 } }));
 const DescriptionContainer = styled(Flex)(() =>
-  css({ '> :first-child': { mb: 3 } })
+  css({  flexDirection: "column" })
 );
 const Description = styled(Box)(() =>
   css({
@@ -43,23 +45,23 @@ const LeaderboardRank: React.FC<ILeaderboardRankProps> = ({
   communityName,
   communityId
 }) => (
-  <Container flexDirection="column">
+  <Container>
     <Content>
       <AvatarImage address={authorAddress} src={avatarSrc} />
-      <DescriptionContainer flexDirection="column">
+      <DescriptionContainer>
         <Description>
-          <Text variant="bodyStrong">{authorName || '--'}</Text>
+          <Text variant="body" sx={{ fontWeight: 'medium' }}>{authorName || '--'}</Text>
           <Text
             variant="body"
-            color="gray.400"
+            color="brandGray.400"
           >{` moved up the ranks to `}</Text>
-          <Text variant="bodyStrong">
+          <Text variant="body" sx={{ fontWeight: 'medium' }}>
             {numbro(rankChangeAmount).format({
               output: 'ordinal'
             })}
           </Text>
-          <Text variant="body" color="gray.400">{` on the  `}</Text>
-          <Link variant="link" color="">{`leaderboard!`}</Link>
+          <Text variant="body" color="brandGray.400">{` on the  `}</Text>
+          <Link variant="text.link">{`leaderboard!`}</Link>
         </Description>
         <MetaData
           timestamp={timestamp}

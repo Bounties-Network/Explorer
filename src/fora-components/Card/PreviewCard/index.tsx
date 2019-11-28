@@ -5,6 +5,7 @@ import css from "@styled-system/css";
 import Pill from "fora-components/Pill";
 import FormatExpiration from "lib/format-expiration";
 import { CommunityProps } from "../ExplorerCard";
+import typography from "theme/typography";
 
 const CardContainer = emotionStyled(Card)(props =>
   css({
@@ -21,13 +22,13 @@ const CardContainer = emotionStyled(Card)(props =>
 );
 const Description = emotionStyled(Box)(() =>
   css({
-    "> *": { display: "inline-block", textAlign: "left" },
+    "> *": { display: "inline-block", textAlign: "left", ...typography.text.body, fontSize: 'xs' },
     "> *:not(*:first-of-type)": { ml: 1 },
     "> a": { ml: 1 }
   })
 );
 const Content = emotionStyled(Flex)(() => css({ "> :first-child": { mr: 5 } }));
-const ValueContainer = emotionStyled(Flex)(() =>  css({ '> :first-of-type': { mb: 1 } }) );
+const ValueContainer = emotionStyled(Flex)(() =>  css({ '> *:first-of-type': { mb: 2 }, flexDirection: "column" }) );
 
 type PreviewCardProps = {
   href: string;
@@ -53,32 +54,32 @@ const PreviewCard: React.FC<PreviewCardProps> = ({
     <Pill variant={`pill.status.${status}`} resourceType={status} />
     <Content>
       <Flex flexDirection="column">
-        <Link href={href} variant="link">
+        <Link href={href} variant="text.link">
           {title}
         </Link>
         <Description>
-          <Text variant="small" color="gray.400">
+          <Text color="brandGray.400">
             <FormatExpiration variant="preview" expirationTimestamp={expirationTimestamp}></FormatExpiration>
           </Text>
-          <Text variant="small" color="gray.400">
+          <Text color="brandGray.400">
             •
           </Text>
-          <Text variant="small" color="gray.400">
+          <Text color="brandGray.400">
             {`${submissionCount} submissions`}
           </Text>
           {community !== undefined && (
             <>
-              <Text variant="small" color="gray.400">
+              <Text color="brandGray.400">
                 •
               </Text>
-              <Link color='gray.400' variant='linkSmall' href={community?.href}>{`f • ${community?.name}`}</Link>
+              <Link variant='text.link' href={community?.href}>{`f • ${community?.name}`}</Link>
             </>
           )}
         </Description>
       </Flex>
-      <ValueContainer flexDirection="column">
-        <Text fontFamily="secondary" variant="h5">{`$${ethInUSD}`}</Text>
-        <Text fontFamily="secondary" variant="label" color="gray.400">{`${ethAmount} ETH`}</Text>
+      <ValueContainer>
+        <Text variant='headingSans' color='black' sx={{ fontWeight: 'semiBold' }}>{`$${ethInUSD}`}</Text>
+        <Text variant="label" color="brandGray.400">{`${ethAmount} ETH`}</Text>
       </ValueContainer>
     </Content>
   </CardContainer>

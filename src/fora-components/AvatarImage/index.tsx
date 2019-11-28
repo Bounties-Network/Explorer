@@ -33,9 +33,9 @@ let getBoxShadow = (variant, resourceType) => {
     return "none";
   } else {
     if (resourceType === "community") {
-      return 1;
+      return 0;
     }
-    return 1;
+    return 0;
   }
 };
 
@@ -43,10 +43,13 @@ let getBorder = (variant, resourceType) => {
   if (variant === "small") {
     return "none";
   } else {
-    if (resourceType === "community") {
-      return "avatar";
+    if (variant === "large") {
+      return "avatar.large";
     }
-    return "avatar";
+    if (resourceType === "community") {
+      return "avatar.default";
+    }
+    return "avatar.default";
   }
 };
 
