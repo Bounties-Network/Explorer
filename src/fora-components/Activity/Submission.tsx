@@ -50,9 +50,17 @@ const Submission: React.FC<ISubmissionProps> = ({
       <AvatarImage address={authorAddress} src={avatarSrc} />
       <Flex sx={{ flexDirection: "column", ml: "3" }}>
         <Description>
-          <Text variant='body' sx={{ fontWeight: "medium" }}>{authorName || "--"}</Text>
-          <Text variant='body' color="brandGray.400" mx="1">{`submitted to`}</Text>
-          <Link href={href} variant='text.link' sx={{ fontWeight: "medium" }}>{bountyTitle}</Link>
+          <Text variant="body" sx={{ fontWeight: "medium" }}>
+            {authorName || "--"}
+          </Text>
+          <Text
+            variant="body"
+            color="brandGray.400"
+            mx="1"
+          >{`submitted to`}</Text>
+          <Link href={href} sx={{ fontWeight: "medium" }}>
+            {bountyTitle}
+          </Link>
         </Description>
         <MetaData
           timestamp={timestamp}

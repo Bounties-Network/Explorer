@@ -2,23 +2,24 @@ const typography = {
   fonts: {
     headingSans: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
     headingSerif: `"Domine", Lucida Bright, Georgia, serif`,
-    body: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
+    base: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
     monospace: `"Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace"`
   },
 
   // Typographic Scale
   fontSizes: {
-    xs: "0.75rem", // 12px
-    sm: "0.875rem", // 14px
-    md: "1rem", // 16px
-    lg: "1.125rem", // 18px
-    xl: "1.25rem", // 20px
-    "2xl": "1.5625rem", // 25px
-    "3xl": "1.9375rem" // 31px
+    small: "0.75rem", // 12px
+    base: "0.875rem", // 14px
+    large: "1rem", // 16px
+    h5: "1rem", // 16px
+    h4: "1.125rem", // 18px
+    h3: "1.25rem", // 20px
+    h2: "1.5625rem", // 25px
+    h1: "1.9375rem" // 31px
   },
 
   fontWeights: {
-    regular: 400,
+    normal: 400,
     medium: 500,
     semiBold: 600,
     bold: 700
@@ -32,10 +33,30 @@ const typography = {
 
   // Theme-UI Text Component Variants
   text: {
+    small: {
+      fontFamily: "body",
+      fontSize: "small",
+      lineHeight: "standard"
+    },
+
     body: {
-      fontFamily: 'body',
-      fontSize: "sm",
-      fontWeight: "regular",
+      fontFamily: "body",
+      fontSize: "base",
+      fontWeight: "normal",
+      lineHeight: "standard"
+    },
+
+    bodyStrong: {
+      fontFamily: "body",
+      fontSize: "bodyLarge",
+      fontWeight: "medium",
+      lineHeight: "standard"
+    },
+
+    bodyLarge: {
+      fontFamily: "body",
+      fontSize: "large",
+      fontWeight: "normal",
       lineHeight: "standard"
     },
 
@@ -51,12 +72,13 @@ const typography = {
 
     label: {
       fontFamily: "body",
-      fontSize: "xs",
-      fontWeight: "normal"
+      fontSize: "small",
+      fontWeight: "normal",
+      lineHeight: "reset"
     },
 
     labelCaps: {
-      fontSize: "xs",
+      fontSize: "small",
       textTransform: "uppercase"
     },
 
@@ -64,12 +86,13 @@ const typography = {
       fontVariantNumeric: "tabular-nums"
     },
 
-    link: { // text.link, hmm should we keep this?
-      fontFamily: 'body',
+    link: {
+      // text.link, hmm should we keep this?
+      fontFamily: "body",
       fontSize: "sm",
-      fontWeight: "regular",
+      fontWeight: "normal",
       lineHeight: "standard",
-      color: 'brandPrimary.300'
+      color: "brandPrimary.300"
     }
   }
 };

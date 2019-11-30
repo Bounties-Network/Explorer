@@ -32,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({
           ? "buttonWidth.sm"
           : "buttonWidth.lg",
       textDecoration: "none",
-      fontSize: "sm",
+      fontSize: "base",
       fontWeight: "medium",
       m: 0,
       px: 3,
