@@ -33,6 +33,7 @@ const MetaData: React.FC<IProps> = ({
       href={`/community/${communityId}`}
       sx={{
         color: "brandGray.400",
+        fontStyle: "italic",
         "&:hover": { color: "brandPrimary.300" }
       }}
     >
