@@ -48,7 +48,7 @@ const typography = {
 
     bodyStrong: {
       fontFamily: "body",
-      fontSize: "bodyLarge",
+      fontSize: "base",
       fontWeight: "medium",
       lineHeight: "standard"
     },

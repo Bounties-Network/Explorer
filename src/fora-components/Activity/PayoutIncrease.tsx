@@ -1,32 +1,36 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import React from 'react';
-import { Flex, Text, Box } from 'rebass';
-import Divider from 'fora-components/Divider';
-import AvatarImage from 'fora-components/AvatarImage';
-import css from '@styled-system/css';
-import styled from 'lib/emotion-styled';
-import PreviewCard from 'fora-components/Card/PreviewCard';
-import MetaData from './MetaData';
+import React from "react";
+import { Flex, Text, Box } from "rebass";
+import Divider from "fora-components/Divider";
+import AvatarImage from "fora-components/AvatarImage";
+import PreviewCard from "fora-components/Card/PreviewCard";
+import MetaData from "./MetaData";
 
-const Container = styled(Flex)(() => css({ maxWidth: 570, flexDirection: "column"}));
-const Content = styled(Flex)(() => css({ '> *:first-of-type': { mr: 3 } }));
-const DescriptionContainer = styled(Flex)(() =>
-  css({ flexDirection: 'column', '> :first-of-type': { mb: 4 } })
+const ActivityItem = props => <Box {...props} sx={{ px: ["2", "0"] }} />;
+
+const ContentContainer = props => <Flex {...props} sx={{ mb: "3" }} />;
+
+const Description = props => (
+  <Box
+    {...props}
+    sx={{
+      color: "brandGray.400",
+      "> *": {
+        display: "inline",
+        fontSize: "base",
+        lineHeight: "standard"
+      }
+    }}
+  />
 );
-const Description = styled(Box)(() =>
-  css({
-    '> *': {
-      display: 'inline-block',
-      textAlign: 'left'
-    },
-    '> *:nth-child(2)': {
-      mx: 1
-    }
-  })
+
+const AuthorName = props => (
+  <Text {...props} sx={{ fontWeight: "medium", color: "black" }}></Text>
 );
+
 export interface IPayoutIncreaseProps {
-  activityType: 'payoutIncrease';
+  activityType: "payoutIncrease";
   avatarSrc: string | undefined;
   authorName: string | undefined;
   authorAddress: string;
@@ -52,21 +56,21 @@ const PayoutIncrease: React.FC<IPayoutIncreaseProps> = ({
   authorAddress,
   submissionCount
 }) => (
-  <Container>
-    <Content>
+  <ActivityItem>
+    <ContentContainer>
       <AvatarImage
         address={authorAddress}
         src={avatarSrc}
         resourceType="user"
       />
-      <DescriptionContainer>
-        <Description>
-          <Text variant="body" sx={{ fontWeight: 'medium' }}>{authorName || '--'}</Text>
+      <Flex sx={{ flexDirection: "column", ml: "3" }}>
+        <Description sx={{ mb: 4 }}>
+          <AuthorName>{authorName || "--"}</AuthorName>
+          <Text>{` increased their bounty's payout to `}</Text>
           <Text
             variant="body"
-            color="brandGray.400"
-          >{` increased their bounty's payout to `}</Text>
-          <Text variant="body" sx={{ fontWeight: 'medium' }}>{`${bountyPayoutIncreaseAmount} ETH`}</Text>
+            sx={{ fontWeight: "medium" }}
+          >{`${bountyPayoutIncreaseAmount} ETH`}</Text>
         </Description>
         <PreviewCard
           status={bountyStatus}
@@ -82,10 +86,10 @@ const PayoutIncrease: React.FC<IPayoutIncreaseProps> = ({
           communityName={communityName}
           communityId={communityId}
         />
-      </DescriptionContainer>
-    </Content>
+      </Flex>
+    </ContentContainer>
     <Divider />
-  </Container>
+  </ActivityItem>
 );
 
 export default PayoutIncrease;

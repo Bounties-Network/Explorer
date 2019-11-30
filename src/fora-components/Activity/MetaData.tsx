@@ -3,16 +3,13 @@ import { jsx } from "theme-ui";
 import React from "react";
 import { Flex, Text, Link } from "@theme-ui/components";
 import moment from "moment";
-import typography from "theme/typography";
 
 const Container = props => (
   <Flex
     {...props}
     sx={{
       color: "brandGray.400",
-      '> *': {
-        ...typography.text.body
-      },
+      fontSize: "base",
       mt: "3"
     }}
   />

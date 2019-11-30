@@ -14,9 +14,10 @@ const Description = props => (
   <Box
     {...props}
     sx={{
+      color: "brandGray.400",
       "> *": {
         display: "inline",
-        fontSize: "sm",
+        fontSize: "base",
         lineHeight: "standard"
       }
     }}
@@ -50,14 +51,8 @@ const Submission: React.FC<ISubmissionProps> = ({
       <AvatarImage address={authorAddress} src={avatarSrc} />
       <Flex sx={{ flexDirection: "column", ml: "3" }}>
         <Description>
-          <Text variant="body" sx={{ fontWeight: "medium" }}>
-            {authorName || "--"}
-          </Text>
-          <Text
-            variant="body"
-            color="brandGray.400"
-            mx="1"
-          >{`submitted to`}</Text>
+          <Text sx={{ color: "black" }}>{authorName || "--"}</Text>
+          <Text mx="1">{`submitted to`}</Text>
           <Link href={href} sx={{ fontWeight: "medium" }}>
             {bountyTitle}
           </Link>

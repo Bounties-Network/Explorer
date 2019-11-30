@@ -1,33 +1,36 @@
-import React from 'react';
-import { Flex, Text, Box } from '@theme-ui/components';
-import Divider from 'fora-components/Divider';
-import AvatarImage from 'fora-components/AvatarImage';
-import css from '@styled-system/css';
-import emotionStyled from 'lib/emotion-styled';
-import PreviewCard from 'fora-components/Card/PreviewCard';
-import MetaData from './MetaData';
+/** @jsx jsx */
+import { jsx } from "theme-ui";
+import React from "react";
+import { Flex, Text, Box } from "@theme-ui/components";
+import Divider from "fora-components/Divider";
+import AvatarImage from "fora-components/AvatarImage";
+import PreviewCard from "fora-components/Card/PreviewCard";
+import MetaData from "./MetaData";
 
-const Container = emotionStyled(Flex)(() => css({ maxWidth: 570,  flexDirection: "column" }));
-const Content = emotionStyled(Flex)(() =>
-  css({ '> *:first-of-type': { mr: 3 } })
+const ActivityItem = props => <Box {...props} sx={{ px: ["2", "0"] }} />;
+
+const ContentContainer = props => <Flex {...props} sx={{ mb: "3" }} />;
+
+const Description = props => (
+  <Box
+    {...props}
+    sx={{
+      color: "brandGray.400",
+      "> *": {
+        display: "inline",
+        fontSize: "base",
+        lineHeight: "standard"
+      }
+    }}
+  />
 );
-const DescriptionContainer = emotionStyled(Flex)(() =>
-  css({  flexDirection: "column" ,'> :first-of-type': { mb: 4 } })
-);
-const Description = emotionStyled(Box)(() =>
-  css({
-    '> *': {
-      display: 'inline-block',
-      textAlign: 'left'
-    },
-    '> *:nth-child(2)': {
-      mx: 1
-    }
-  })
+
+const AuthorName = props => (
+  <Text {...props} sx={{ fontWeight: "medium", color: "black" }}></Text>
 );
 
 export interface IBountyCreatedProps {
-  activityType: 'bountyCreated';
+  activityType: "bountyCreated";
   avatarSrc: string | undefined;
   authorName: string | undefined;
   authorAddress: string;
@@ -51,17 +54,17 @@ const BountyCreated: React.FC<IBountyCreatedProps> = ({
   authorAddress,
   submissionCount
 }) => (
-  <Container>
-    <Content>
+  <ActivityItem>
+    <ContentContainer>
       <AvatarImage
         address={authorAddress}
         src={avatarSrc}
         resourceType="user"
       />
-      <DescriptionContainer>
-        <Description>
-          <Text variant="body" sx={{ fontWeight: 'medium' }}>{authorName || '--'}</Text>
-          <Text variant="body" color="brandGray.400">{` created a bounty`}</Text>
+      <Flex sx={{ flexDirection: "column", ml: "3" }}>
+        <Description mb="4">
+          <AuthorName>{authorName || "--"}</AuthorName>
+          <Text>{` created a bounty`}</Text>
         </Description>
         <PreviewCard
           status={bountyStatus}
@@ -77,10 +80,10 @@ const BountyCreated: React.FC<IBountyCreatedProps> = ({
           communityName={communityName}
           communityId={communityId}
         />
-      </DescriptionContainer>
-    </Content>
+      </Flex>
+    </ContentContainer>
     <Divider />
-  </Container>
+  </ActivityItem>
 );
 
 export default BountyCreated;

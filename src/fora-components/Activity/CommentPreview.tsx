@@ -1,33 +1,29 @@
-import React from 'react';
-import { Flex, Text, Link, Box } from '@theme-ui/components';
-import Divider from 'fora-components/Divider';
-import AvatarImage from 'fora-components/AvatarImage';
-import css from '@styled-system/css';
-import styled from 'lib/emotion-styled';
-import MetaData from './MetaData';
+import React from "react";
+import { Flex, Text, Link, Box } from "@theme-ui/components";
+import Divider from "fora-components/Divider";
+import AvatarImage from "fora-components/AvatarImage";
+import MetaData from "./MetaData";
 
-const Container = styled(Flex)(() => css({ maxWidth: 570, flexDirection: "column" }));
-const Content = styled(Flex)(() => css({ '> *:first-of-type': { mr: 3 } }));
-const DescriptionContainer = styled(Flex)(() =>
-  css({
-    flexDirection: "column",
-    // '> :first-of-type': { mb: 1 }
-  })
-);
-const Description = styled(Box)(() =>
-  css({
-    '> *': {
-      display: 'inline-block',
-      textAlign: 'left'
-    },
-    '> *:nth-child(2)': {
-      mx: 1
-    }
-  })
+const ActivityItem = props => <Box {...props} sx={{ px: ["2", "0"] }} />;
+
+const ContentContainer = props => <Flex {...props} sx={{ mb: "3" }} />;
+
+const Description = props => (
+  <Box
+    {...props}
+    sx={{
+      color: "brandGray.400",
+      "> *": {
+        display: "inline",
+        fontSize: "base",
+        lineHeight: "standard"
+      }
+    }}
+  />
 );
 
 export interface ICommentPreviewProps {
-  activityType: 'commentPreview';
+  activityType: "commentPreview";
   avatarSrc: string | undefined;
   authorName: string | undefined;
   authorAddress: string;
@@ -45,28 +41,30 @@ const CommentPreview: React.FC<ICommentPreviewProps> = ({
   communityId,
   authorAddress
 }) => (
-  <Container>
-    <Content>
+  <ActivityItem>
+    <ContentContainer>
       <AvatarImage
         address={authorAddress}
         src={avatarSrc}
         resourceType="user"
       />
-      <DescriptionContainer>
+      <Flex sx={{ flexDirection: "column", ml: "3" }}>
         <Description>
-          <Text variant="body" sx={{ fontWeight: 'medium' }}>{authorName || '--'}</Text>
-          <Text variant="body" color="brandGray.400">{` commented on `}</Text>
-          <Link variant="text.link" sx={{ fontWeight: 'medium' }}>{bountyTitle}</Link>
+          <Text variant="bodyStrong" sx={{ color: "black" }}>
+            {authorName || "--"}
+          </Text>
+          <Text>{` commented on `}</Text>
+          <Link sx={{ fontWeight: "medium" }}>{bountyTitle}</Link>
         </Description>
         <MetaData
           timestamp={timestamp}
           communityName={communityName}
           communityId={communityId}
         />
-      </DescriptionContainer>
-    </Content>
+      </Flex>
+    </ContentContainer>
     <Divider />
-  </Container>
+  </ActivityItem>
 );
 
 export default CommentPreview;

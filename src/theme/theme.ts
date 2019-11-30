@@ -13,7 +13,9 @@ breakpoints.xl = breakpoints[3];
 
 // SPACING & SIZE SCALES
 export const space = [0, 4, 8, 16, 24, 32, 40, 128].map(n => n / 16 + "rem");
-export const sizeScale = [24, 32, 40, 44, 48, 52, 100, 152].map(n => n / 16 + "rem");
+export const sizeScale = [24, 32, 40, 44, 48, 52, 100, 152].map(
+  n => n / 16 + "rem"
+);
 
 // SIZES
 export const sizes = {
@@ -210,7 +212,7 @@ export const forms = {
 const cards = {
   primary: {
     border: borders.base,
-    padding: 4,
+    padding: 3,
     boxShadow: shadows[0],
     boxSizing: "border-box",
     borderRadius: 2

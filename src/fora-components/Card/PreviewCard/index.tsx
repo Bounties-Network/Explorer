@@ -21,13 +21,20 @@ const CardContainer = emotionStyled(Card)(props =>
 );
 const Description = emotionStyled(Box)(() =>
   css({
-    "> *": { display: "inline-block", textAlign: "left", ...typography.text.body, fontSize: 'xs' },
+    "> *": {
+      display: "inline-block",
+      textAlign: "left",
+      ...typography.text.body,
+      fontSize: "xs"
+    },
     "> *:not(*:first-of-type)": { ml: 1 },
     "> a": { ml: 1 }
   })
 );
 const Content = emotionStyled(Flex)(() => css({ "> :first-child": { mr: 5 } }));
-const ValueContainer = emotionStyled(Flex)(() =>  css({ '> *:first-of-type': { mb: 2 }, flexDirection: "column" }) );
+const ValueContainer = emotionStyled(Flex)(() =>
+  css({ "> *:first-of-type": { mb: 2 }, flexDirection: "column" })
+);
 
 type PreviewCardProps = {
   href: string;
@@ -58,26 +65,30 @@ const PreviewCard: React.FC<PreviewCardProps> = ({
         </Link>
         <Description>
           <Text color="brandGray.400">
-            <FormatExpiration variant="preview" expirationTimestamp={expirationTimestamp}></FormatExpiration>
+            <FormatExpiration
+              variant="preview"
+              expirationTimestamp={expirationTimestamp}
+            ></FormatExpiration>
           </Text>
-          <Text color="brandGray.400">
-            •
-          </Text>
-          <Text color="brandGray.400">
-            {`${submissionCount} submissions`}
-          </Text>
+          <Text color="brandGray.400">•</Text>
+          <Text color="brandGray.400">{`${submissionCount} submissions`}</Text>
           {community !== undefined && (
             <>
-              <Text color="brandGray.400">
-                •
-              </Text>
-              <Link variant='text.link' href={community?.href}>{`f • ${community?.name}`}</Link>
+              <Text color="brandGray.400">•</Text>
+              <Link
+                variant="text.link"
+                href={community?.href}
+              >{`f • ${community?.name}`}</Link>
             </>
           )}
         </Description>
       </Flex>
       <ValueContainer>
-        <Text variant='headingSans' color='black' sx={{ fontWeight: 'semiBold' }}>{`$${ethInUSD}`}</Text>
+        <Text
+          variant="headingSans"
+          color="black"
+          sx={{ fontWeight: "semiBold" }}
+        >{`$${ethInUSD}`}</Text>
         <Text variant="label" color="brandGray.400">{`${ethAmount} ETH`}</Text>
       </ValueContainer>
     </Content>
