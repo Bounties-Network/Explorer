@@ -2,6 +2,7 @@ import { theme as cTheme } from "@chakra-ui/core";
 import { colors } from "./colors";
 import typography from "./typography";
 import buttons from "./buttons";
+import AvatarImage from "fora-components/AvatarImage";
 
 // BREAK-POINTS
 export const breakpoints = ["30em", "48em", "62em", "80em"];
@@ -73,16 +74,6 @@ export const shadows = [
 
 //Z-INDEX
 export const zIndices = cTheme.zIndices;
-
-//AVATAR STYLES
-export const avatarResourceTypes = {
-  user: {
-    borderRadius: 3
-  },
-  community: {
-    borderRadius: 2
-  }
-};
 
 export const textFormat = {
   block: {
@@ -219,6 +210,16 @@ const cards = {
   }
 };
 
+const avatars = {
+  user: {
+    borderRadius: 3
+  },
+
+  community: {
+    borderRadius: 2
+  }
+};
+
 export const variants = {
   pill,
   networkDot: {
@@ -247,6 +248,7 @@ const styles = {
 
 // EXPORT THEME
 const theme = {
+  avatars,
   breakpoints,
   space,
   sizes,
@@ -259,7 +261,6 @@ const theme = {
   zIndices,
   buttons,
   cards,
-  avatarResourceTypes,
   textFormat,
   maxContainerWidth,
   forms,

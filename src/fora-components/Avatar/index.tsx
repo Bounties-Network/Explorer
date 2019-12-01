@@ -1,22 +1,9 @@
 import React from "react";
 import { css } from "@styled-system/css";
 import styled from "lib/emotion-styled";
-import { Text, Image, Flex, Link, Box } from "rebass";
+import { Text, Flex, Link, Box } from "rebass";
 import { shortenAddress } from "utils/helpers";
 import AvatarImage from "fora-components/AvatarImage";
-
-let imageContainerVariantSize = variant => {
-  switch (variant) {
-    case "small":
-      return 0;
-    case "medium":
-      return 1;
-    case "large":
-      return 3;
-    default:
-      return 1;
-  }
-};
 
 let nameSize = variant => {
   switch (variant) {
