@@ -2,7 +2,7 @@ const typography = {
   fonts: {
     headingSans: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
     headingSerif: `"Domine", Lucida Bright, Georgia, serif`,
-    base: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
+    body: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
     monospace: `"Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace"`
   },
 
@@ -78,6 +78,7 @@ const typography = {
     },
 
     labelCaps: {
+      fontFamily: "body",
       fontSize: "small",
       textTransform: "uppercase"
     },
@@ -88,7 +89,7 @@ const typography = {
 
     link: {
       // text.link, hmm should we keep this?
-      fontFamily: "body",
+      fontFamily: "base",
       fontSize: "sm",
       fontWeight: "normal",
       lineHeight: "standard",
