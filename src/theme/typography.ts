@@ -90,7 +90,7 @@ const typography = {
     link: {
       // text.link, hmm should we keep this?
       fontFamily: "body",
-      fontSize: "sm",
+      fontSize: "base",
       fontWeight: "normal",
       lineHeight: "standard",
       color: "brandPrimary.300"

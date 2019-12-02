@@ -1,13 +1,14 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React from "react";
 import { css } from "@styled-system/css";
-import { Link, } from "rebass";
+import { Link } from "@theme-ui/components";
 import AvatarImage, { AvatarImageProps } from 'fora-components/AvatarImage'
 import emotionStyled from "lib/emotion-styled";
 
 const AvatarGroupLink = emotionStyled(Link)(() => css({ 
   display: 'flex',
   alignItems: 'center',
-  '> :last-child': { ml: '50px' }, // MMm hardcoded value *shrug* for now
   '> *:nth-child(2)': { 
     transform: 'translateX(-30%)'
    },
@@ -21,7 +22,7 @@ const AvatarGroupLink = emotionStyled(Link)(() => css({
     transform: 'translateX(-120%)'
    },
    '> *:nth-child(6)': { 
-    transform: 'translateX(-150%)'
+    transform: 'translateX(-80%)'
    },
  }));
 
@@ -38,7 +39,7 @@ const AvatarGroup: React.FC<AvatarGroupProps> = props => {
   return (
     <AvatarGroupLink href={href}>
       {Array.isArray(avatars) && avatars.slice(0, 5).map(AvatarImage)}
-      <Link variant='text.link'>{`+ ${avatars.length - 5} more`}</Link>
+      <Link sx={{ display: "inline-block" }} variant='text.link'>{`+ ${avatars.length - 5} more`}</Link>
     </AvatarGroupLink>
   );
 };
