@@ -7,7 +7,7 @@ import { faCheck } from "@fortawesome/pro-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const disabledStyles = {
-  bg: "gray.200",
+  bg: "brandGray.200",
   border: "none",
   cursor: "not-allowed",
   "&:hover": {
@@ -16,7 +16,7 @@ const disabledStyles = {
 };
 
 const checkedStyles = {
-  bg: "seaGlass.300",
+  bg: "brandPrimary.300",
   boxShadow: 3,
   border: "none"
 };
@@ -38,7 +38,7 @@ const checkboxStyles = {
   "&:disabled": {
     borderColor: "transparent",
     bg: "white",
-    color: "gray.500"
+    color: "brandGray.500"
   },
   "&:focus": {
     boxShadow: "outline"
@@ -57,7 +57,7 @@ const Checkbox: React.FC<{
   <Label
     sx={{ "> div:first-of-type": { mr: 2 } }}
     variant="body"
-    color={props.checked ? "seaGlass.300" : "gray.500"}
+    color={props.checked ? "brandPrimary.300" : "brandGray.500"}
     fontFamily="secondary"
     htmlFor={props.name}
   >
