@@ -43,10 +43,10 @@ storiesOf("ExplorerCard", module)
         href: "https://www.google.co.uk"
       }}
       avatar={{
-        resourceType: 'user',
+        variant: 'user',
         name: "firstName LastName",
         screenName: "screenName",
-        variant: "small",
+        size: "small",
         onDark: false
       }}
       deadline={moment().add('5', 'days')}
@@ -70,10 +70,10 @@ storiesOf("ExplorerCard", module)
           href: "https://www.google.co.uk"
         }}
         avatar={{
-          resourceType: 'user',
+          variant: 'user',
           name: "firstName LastName",
           screenName: "screenName",
-          variant: "small",
+          size: "small",
           onDark: false
         }}
         deadline={moment().subtract('5', 'days')}

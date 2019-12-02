@@ -44,8 +44,8 @@ storiesOf("Avatar", module)
     <Avatar
       screenName={undefined}
       name={undefined}
-      variant={"medium"}
-      resourceType={"user"}
+      size={"medium"}
+      variant={"user"}
       onDark={false}
     />
   ))
@@ -53,8 +53,8 @@ storiesOf("Avatar", module)
     <Avatar
       screenName={undefined}
       name={"firstName lastName"}
-      variant={"medium"}
-      resourceType={"user"}
+      size={"medium"}
+      variant={"user"}
       onDark={false}
     />
   ))
@@ -63,8 +63,8 @@ storiesOf("Avatar", module)
       screenName={undefined}
       name={undefined}
       address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
-      variant={"medium"}
-      resourceType={"user"}
+      size={"medium"}
+      variant={"user"}
       onDark={false}
     />
   ))
@@ -73,8 +73,8 @@ storiesOf("Avatar", module)
       screenName={undefined}
       name={"firstname lastName"}
       address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
-      variant={"medium"}
-      resourceType={"user"}
+      size={"medium"}
+      variant={"user"}
       onDark={false}
     />
   ))
@@ -83,8 +83,8 @@ storiesOf("Avatar", module)
       screenName={"helloWorld"}
       name={"firstname lastName"}
       address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
-      variant={"medium"}
-      resourceType={"user"}
+      size={"medium"}
+      variant={"user"}
       onDark={false}
     />
   ))
@@ -92,8 +92,8 @@ storiesOf("Avatar", module)
     <Avatar
       screenName={undefined}
       name={undefined}
-      variant={"small"}
-      resourceType={"user"}
+      size={"small"}
+      variant={"user"}
       onDark={false}
     />
   ))
@@ -101,8 +101,8 @@ storiesOf("Avatar", module)
     <Avatar
       screenName={undefined}
       name={"firstName lastName"}
-      variant={"small"}
-      resourceType={"user"}
+      size={"small"}
+      variant={"user"}
       onDark={false}
     />
   ))
@@ -111,8 +111,8 @@ storiesOf("Avatar", module)
       screenName={undefined}
       name={undefined}
       address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
-      variant={"small"}
-      resourceType={"user"}
+      size={"small"}
+      variant={"user"}
       onDark={false}
     />
   ))
@@ -120,8 +120,8 @@ storiesOf("Avatar", module)
     <Avatar
       screenName={"screenName"}
       name={"firstname lastName"}
-      variant={"small"}
-      resourceType={"user"}
+      size={"small"}
+      variant={"user"}
       onDark={false}
     />
   ));

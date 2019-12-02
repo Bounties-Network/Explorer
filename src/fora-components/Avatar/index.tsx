@@ -88,10 +88,10 @@ const AvatarAddress = styled(Text)<AvatarAddressProps>(props =>
 );
 
 export type AvatarProps = {
-  variant: string; //"small" | "medium" | "large";
+  variant: string; // "user" | "community";
+  size: string; //"small" | "medium" | "large";
   name: string | undefined;
   screenName: string | undefined;
-  resourceType: string; // "user" | "community";
   textFormat?: "block" | "inline";
   onDark: boolean;
   onClick?: (
@@ -103,8 +103,8 @@ export type AvatarProps = {
 };
 const Avatar: React.FC<AvatarProps> = props => {
   const {
-    resourceType = "user",
-    variant = "medium",
+    variant = "user",
+    size = "medium",
     textFormat = "block",
     onDark = false,
     address,
@@ -123,8 +123,8 @@ const Avatar: React.FC<AvatarProps> = props => {
         textFormat={textFormat}
       >
         <AvatarImage
-          resourceType={resourceType}
           variant={variant}
+          size={size}
           src={img}
           address={address}
         />
