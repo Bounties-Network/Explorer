@@ -1,11 +1,10 @@
-import React from "react";
-import styled from "lib/emotion-styled";
-import { Image, Flex } from "rebass";
-import css from "@styled-system/css";
+/** @jsx jsx */
+import { jsx } from "theme-ui";
+import { Flex, Image } from "@theme-ui/components";
 import Blockies from "react-blockies";
 
-let blockBySize = variant => {
-  switch (variant) {
+let getBlockieSize = size => {
+  switch (size) {
     case "small":
       return { size: "9", scale: "4" };
     case "medium":
@@ -17,8 +16,8 @@ let blockBySize = variant => {
   }
 };
 
-let imageContainerVariantSize = variant => {
-  switch (variant) {
+let getAvatarContainerSize = size => {
+  switch (size) {
     case "small":
       return "avatarImage.sm";
     case "medium":
@@ -28,67 +27,53 @@ let imageContainerVariantSize = variant => {
   }
 };
 
-let getBoxShadow = (variant, resourceType) => {
-  if (variant === "small") {
-    return "none";
-  } else {
-    if (resourceType === "community") {
-      return 0;
-    }
-    return 0;
-  }
-};
-
-let getBorder = (variant, resourceType) => {
-  if (variant === "small") {
-    return "none";
-  } else {
-    if (variant === "large") {
-      return "avatar.large";
-    }
-    if (resourceType === "community") {
+let getAvatarBorder = size => {
+  switch (size) {
+    case "small":
+      return "";
+    case "medium":
       return "avatar.default";
-    }
-    return "avatar.default";
+    case "large":
+      return "avatar.large";
   }
 };
 
-type ImageContainerProps = { variant: string; resourceType: string };
-const ImageContainer = styled(Flex)<ImageContainerProps>(
-  props =>
-    css({
+const ImageContainer = props => (
+  <Flex
+    {...props}
+    sx={{
       boxSizing: "content-box",
       alignItems: "center",
       flexShrink: 0,
       justifyContent: "center",
+      border: getAvatarBorder(props.size),
       bg: "white",
-      border: getBorder(props.variant, props.resourceType),
-      boxShadow: getBoxShadow(props.variant, props.resourceType),
+      boxShadow: 0,
       overflow: "hidden",
-      size: imageContainerVariantSize(props.variant),
-      variant: `avatarResourceTypes.${props.resourceType}`
-    })
-  // props => props.theme.avatarResourceTypes[props.resourceType] or use this instead of the variant key above
+      size: getAvatarContainerSize(props.size),
+      variant: `avatars.${props.variant}`
+    }}
+  />
 );
 
 export type AvatarImageProps = {
   variant?: string;
-  resourceType?: string;
+  size?: string;
   src: string | undefined;
   address?: string;
 };
 
 const AvatarImage: React.FC<AvatarImageProps> = ({
-  variant = "medium",
-  resourceType = "user",
-  src,
+  variant = "user",
+  size = "medium",
+  src = undefined,
   address
 }) => (
-  <ImageContainer variant={variant} resourceType={resourceType}>
+  <ImageContainer variant={variant} size={size}>
     {typeof src === "string" ? (
-      <Image src={src} height="100%" width="auto" />
+      <Image src={src} sx={{ height: "100%", width: "auto" }} />
     ) : (
-      <Blockies seed={address} {...blockBySize(variant)} />
+      <Blockies seed={address} {...getBlockieSize(size)} />
     )}
   </ImageContainer>
 );

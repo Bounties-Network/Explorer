@@ -1,11 +1,15 @@
 import React from "react";
+import { storiesOf, addDecorator } from "@storybook/react";
+import centered from "@storybook/addon-centered/react";
+import Activity from ".";
 import moment from "moment";
-import { Flex } from "rebass";
-import ActivityItem from "../ActivityItem";
 
-const ActivityFeed = () => (
-  <Flex flexDirection="column">
-    <ActivityItem
+addDecorator(centered);
+
+storiesOf("Activity Item", module)
+  .add("Submission", () => (
+    <Activity
+      href={"https://www.google.co.uk"}
       activityType={"submission"}
       authorAddress={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
       avatarSrc={
@@ -17,10 +21,12 @@ const ActivityFeed = () => (
         .subtract(4, "hours")
         .toISOString()}
       communityName={"frontend"}
-      communityId={"123456789"}
+      communityId={"frontend"}
     />
+  ))
 
-    <ActivityItem
+  .add("CommentPreview", () => (
+    <Activity
       activityType={"commentPreview"}
       authorAddress={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
       avatarSrc={undefined}
@@ -30,10 +36,12 @@ const ActivityFeed = () => (
         .subtract(4, "hours")
         .toISOString()}
       communityName={"frontend"}
-      communityId={"123456789"}
+      communityId={"frontend"}
     />
+  ))
 
-    <ActivityItem
+  .add("BountyCreated", () => (
+    <Activity
       activityType={"bountyCreated"}
       bountyStatus={"active"}
       authorAddress={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
@@ -49,11 +57,13 @@ const ActivityFeed = () => (
       timestamp={moment()
         .subtract(4, "hours")
         .toISOString()}
+      communityId={"1234567890"}
       communityName={"frontend"}
-      communityId={"123456789"}
     />
+  ))
 
-    <ActivityItem
+  .add("LeaderboardRank", () => (
+    <Activity
       activityType={"leaderboardRank"}
       rankChangeAmount={12}
       authorAddress={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
@@ -65,10 +75,12 @@ const ActivityFeed = () => (
         .subtract(4, "hours")
         .toISOString()}
       communityName={"frontend"}
-      communityId={"123456789"}
+      communityId={"frontend"}
     />
+  ))
 
-    <ActivityItem
+  .add("SubmissionAccepted", () => (
+    <Activity
       activityType={"submissionAccepted"}
       bountyTitle={"This is some placeholder text for a long Bounty title... "}
       authorAddress={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
@@ -80,10 +92,12 @@ const ActivityFeed = () => (
         .subtract(4, "hours")
         .toISOString()}
       communityName={"frontend"}
-      communityId={"123456789"}
+      communityId={"frontend"}
     />
+  ))
 
-    <ActivityItem
+  .add("Contribution", () => (
+    <Activity
       activityType={"contribution"}
       bountyTitle={"This is some placeholder text for a long Bounty title... "}
       authorAddress={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
@@ -96,10 +110,12 @@ const ActivityFeed = () => (
         .subtract(4, "hours")
         .toISOString()}
       communityName={"frontend"}
-      communityId={"123456789"}
+      communityId={"frontend"}
     />
+  ))
 
-    <ActivityItem
+  .add("DeadlineExtension", () => (
+    <Activity
       activityType={"deadlineExtension"}
       bountyStatus={"active"}
       bountyExtensionDate={1568553110000}
@@ -119,8 +135,10 @@ const ActivityFeed = () => (
       communityName={"frontend"}
       communityId={"frontend"}
     />
+  ))
 
-    <ActivityItem
+  .add("PayoutIncrease", () => (
+    <Activity
       activityType={"payoutIncrease"}
       bountyStatus={"active"}
       bountyPayoutIncreaseAmount={0.56}
@@ -140,6 +158,4 @@ const ActivityFeed = () => (
       communityName={"frontend"}
       communityId={"frontend"}
     />
-  </Flex>
-);
-export default ActivityFeed;
+  ));

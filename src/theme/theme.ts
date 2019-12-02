@@ -2,6 +2,7 @@ import { theme as cTheme } from "@chakra-ui/core";
 import { colors } from "./colors";
 import typography from "./typography";
 import buttons from "./buttons";
+import AvatarImage from "fora-components/AvatarImage";
 
 // BREAK-POINTS
 export const breakpoints = ["30em", "48em", "62em", "80em"];
@@ -13,7 +14,9 @@ breakpoints.xl = breakpoints[3];
 
 // SPACING & SIZE SCALES
 export const space = [0, 4, 8, 16, 24, 32, 40, 128].map(n => n / 16 + "rem");
-export const sizeScale = [24, 32, 40, 44, 48, 52, 100, 152].map(n => n / 16 + "rem");
+export const sizeScale = [24, 32, 40, 44, 48, 52, 100, 152].map(
+  n => n / 16 + "rem"
+);
 
 // SIZES
 export const sizes = {
@@ -71,16 +74,6 @@ export const shadows = [
 
 //Z-INDEX
 export const zIndices = cTheme.zIndices;
-
-//AVATAR STYLES
-export const avatarResourceTypes = {
-  user: {
-    borderRadius: 3
-  },
-  community: {
-    borderRadius: 2
-  }
-};
 
 export const textFormat = {
   block: {
@@ -210,9 +203,19 @@ export const forms = {
 const cards = {
   primary: {
     border: borders.base,
-    padding: 4,
+    padding: 3,
     boxShadow: shadows[0],
     boxSizing: "border-box",
+    borderRadius: 2
+  }
+};
+
+const avatars = {
+  user: {
+    borderRadius: 3
+  },
+
+  community: {
     borderRadius: 2
   }
 };
@@ -245,6 +248,7 @@ const styles = {
 
 // EXPORT THEME
 const theme = {
+  avatars,
   breakpoints,
   space,
   sizes,
@@ -257,7 +261,6 @@ const theme = {
   zIndices,
   buttons,
   cards,
-  avatarResourceTypes,
   textFormat,
   maxContainerWidth,
   forms,
