@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import React from "react";
-import { Radio as RRadio, Label } from "@rebass/forms";
-import { Text, Flex, Box } from "rebass";
+import { Label } from "@rebass/forms";
+import { Box } from "rebass";
 import { faCheck } from "@fortawesome/pro-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

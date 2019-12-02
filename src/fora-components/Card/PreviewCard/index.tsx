@@ -1,4 +1,6 @@
-import React from "react";
+/** @jsx jsx */
+import { jsx } from "theme-ui";
+import React, { Fragment } from "react";
 import emotionStyled from "lib/emotion-styled";
 import { Flex, Card, Text, Box, Link } from "@theme-ui/components";
 import css from "@styled-system/css";
@@ -73,13 +75,13 @@ const PreviewCard: React.FC<PreviewCardProps> = ({
           <Text color="brandGray.400">•</Text>
           <Text color="brandGray.400">{`${submissionCount} submissions`}</Text>
           {community !== undefined && (
-            <>
+            <Fragment>
               <Text color="brandGray.400">•</Text>
               <Link
                 variant="text.link"
                 href={community?.href}
               >{`f • ${community?.name}`}</Link>
-            </>
+            </Fragment>
           )}
         </Description>
       </Flex>

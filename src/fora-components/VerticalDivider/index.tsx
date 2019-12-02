@@ -1,6 +1,6 @@
 import styled from "lib/emotion-styled";
 import css from "@styled-system/css";
-import { Box } from "rebass";
+import { Box } from "@theme-ui/components";
 
 interface IVerticalDividerProps {
   backgroundColor?: string;
@@ -16,9 +16,9 @@ const VerticalDivider = styled(Box)<IVerticalDividerProps>(props =>
     display: "flex",
     ml: props.ml || props.marginLeft || 3,
     mr: props.mr || props.marginRight || 3,
-    width: "1px",
+    width: "2px",
     minHeight: "100%",
-    backgroundColor: props.backgroundColor || "gray.200"
+    backgroundColor: props.backgroundColor || "brandGray.200"
   })
 );
 
