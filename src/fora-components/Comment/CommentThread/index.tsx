@@ -3,19 +3,21 @@ import { jsx } from "theme-ui";
 import React from "react";
 import emotionStyled from "lib/emotion-styled";
 import SingleComment, { ISingleCommentProps } from "../SingleComment";
-import { Flex } from "rebass";
+import { Flex } from "@theme-ui/components";
 import css from "@styled-system/css";
 import VerticalDivider from "fora-components/VerticalDivider";
 import CommentForm from "fora-components/Form/CommentForm";
 import Divider from "fora-components/Divider";
 
-const Container = emotionStyled(Flex)(props =>
+const Container = emotionStyled(Flex)(() =>
   css({
+    flexDirection:"row",
     position: "relative"
   })
 );
-const CommentsContainer = emotionStyled(Flex)(props =>
+const CommentsContainer = emotionStyled(Flex)(() =>
   css({
+    flexDirection: "column",
     "> *:not(:first-of-type)": {
       pl: "56px" // mm 40 + 16
     },
@@ -25,12 +27,13 @@ const CommentsContainer = emotionStyled(Flex)(props =>
   })
 );
 
-const Content = emotionStyled(Flex)(props =>
+const Content = emotionStyled(Flex)(() =>
   css({
+    flexDirection:"row",
     position: "relative",
     "> div:first-of-type": {
       position: "absolute",
-      left: "2px",
+      left: "6px",
       top: "60px",
       height: "calc(100% - 80px)",
       minHeight: "unset !important"
@@ -47,10 +50,10 @@ const CommentThread: React.FunctionComponent<ICommentThreadProps> = props => {
   const [isReplyOpen, setState] = React.useState<boolean>(true);
 
   return (
-    <Container flexDirection="row">
-      <Content flexDirection="row">
+    <Container>
+      <Content>
         <VerticalDivider></VerticalDivider>
-        <CommentsContainer flexDirection="column">
+        <CommentsContainer>
           {Array.isArray(props.comments) &&
             props.comments.map((comment, index) => {
               if (index === 1 && isReplyOpen) {
