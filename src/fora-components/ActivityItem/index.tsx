@@ -144,7 +144,7 @@ const ActivityItem: React.FC<ActivityItemProps> = ({
       <AvatarImage
         address={authorAddress}
         src={avatarSrc}
-        resourceType="user"
+        variant="user"
       />
       <Flex sx={{ flexDirection: "column", ml: "3" }}>
         <ActivityItemContent {...props} authorName={authorName} />

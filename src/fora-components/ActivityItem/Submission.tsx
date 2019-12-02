@@ -18,7 +18,7 @@ const Submission: React.FC<ISubmissionProps> = ({
 }) => (
   <Description authorName={authorName}>
     <Text mx="1">{`submitted to`}</Text>
-    <Link href={href} sx={{ fontWeight: "medium" }}>
+    <Link variant='text.link' href={href} sx={{ fontWeight: "medium" }}>
       {bountyTitle}
     </Link>
   </Description>

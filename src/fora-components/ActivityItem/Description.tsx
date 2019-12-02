@@ -13,6 +13,7 @@ const Description = props => (
     sx={{
       color: "brandGray.400",
       fontSize: "base",
+      fontFamily: 'body',
       lineHeight: "standard",
 
       "> *": {
