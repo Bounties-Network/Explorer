@@ -8,14 +8,14 @@ const reactPaginateStyle = {
   '> ul > *:not(:last-of-type)': { mr: 2 },
   [prefixer('arrow')]: {
     display: 'flex',
-    height: 5,
+    height: theme => theme.space[5],
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    px: 3, py: 2, bg: 'white', border: 'base', boxSizing: 'border-box', borderRadius: 2,
-    color: 'gray.400',
+    px: theme => theme.space[3], py: theme => theme.space[2], bg: 'white', border: 'base', boxSizing: 'border-box', borderRadius: 2,
+    color: 'brandGray.400',
     cursor: 'pointer',
-    '&:hover': { border: 'active' }
+    '&:hover': { border: 'input.default' }
   },
   [prefixer('container')]: { display: 'flex' },
   [prefixer('break')]: {
@@ -23,13 +23,13 @@ const reactPaginateStyle = {
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    width: 5,
-    height: 5,
+    width: theme => theme.space[5],
+    height: theme => theme.space[5],
     border: 'base',
     borderRadius: 2,
     '> *': theme => ({
       ...theme.text.bodyStrong,
-      color: 'gray.400'
+      color: 'brandGray.400'
     })
   },
   [prefixer('page')]: { display: 'flex' },
@@ -38,15 +38,15 @@ const reactPaginateStyle = {
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    width: 5,
-    height: 5,
-    border: 'base',
+    width: theme => theme.space[5],
+    height: theme => theme.space[5],
     borderRadius: 2,
-    color: 'gray.400'
+    border: 'base',
+    color: 'brandGray.400'
 
   },
   [prefixer('active')]: { display: 'flex' },
-  [prefixer('activeLink')]: { display: 'flex', border: 'primaryActive', color: 'seaGlass.300' },
+  [prefixer('activeLink')]: { display: 'flex', border: 'input.active', color: 'brandPrimary.300' },
   [prefixer('disabled')]: { display: 'none' },
 }
 
