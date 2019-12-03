@@ -1,21 +1,21 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import React from 'react';
-import { Link, Text, Flex } from 'rebass';
-import styled from 'lib/emotion-styled';
-import css from '@styled-system/css';
-import Divider from 'fora-components/Divider';
-import AvatarImage from 'fora-components/AvatarImage';
+import React from "react";
+import { Link, Text, Flex } from "rebass";
+import styled from "lib/emotion-styled";
+import css from "@styled-system/css";
+import Divider from "fora-components/Divider";
+import AvatarImage from "fora-components/AvatarImage";
 
 const Container = styled(Flex)(() => css({ width: 270 }));
-const Header = styled(Flex)(() => css({ '> :first-child': { mr: 'auto' } }));
+const Header = styled(Flex)(() => css({ "> :first-child": { mr: "auto" } }));
 const CommunitiesContainer = styled(Flex)(() =>
-  css({ '> *:not(:last-child)': { mb: 3 } })
+  css({ "> *:not(:last-child)": { mb: 3 } })
 );
 const CommunityContainer = styled(Flex)(() =>
   css({
-    cursor: 'pointer',
-    '> :first-of-type': { mr: 3 }
+    cursor: "pointer",
+    "> :first-of-type": { mr: 3 }
   })
 );
 
@@ -36,9 +36,9 @@ export const Community: React.FC<ICommunityProps> = ({
 }) => (
   <Link href={isOption ? undefined : `/community/${id}`}>
     <CommunityContainer alignItems="center">
-      <AvatarImage resourceType={'community'} src={src} />
+      <AvatarImage variant={"community"} src={src} />
       <Flex flexDirection="column">
-        <Text color="black" variant="body" sx={{ fontWeight: 'medium' }}>
+        <Text color="black" variant="body" sx={{ fontWeight: "medium" }}>
           {`f • ${name}`}
         </Text>
         <Text variant="text.small" color="gray.400">

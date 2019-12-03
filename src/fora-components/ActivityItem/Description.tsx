@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import React from "react";
 import { Box, Text } from "@theme-ui/components";
 
 const AuthorName = props => (
@@ -13,7 +12,7 @@ const Description = props => (
     sx={{
       color: "brandGray.400",
       fontSize: "base",
-      fontFamily: 'body',
+      fontFamily: "body",
       lineHeight: "standard",
 
       "> *": {

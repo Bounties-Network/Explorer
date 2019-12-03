@@ -2,7 +2,6 @@ import { theme as cTheme } from "@chakra-ui/core";
 import { colors } from "./colors";
 import typography from "./typography";
 import buttons from "./buttons";
-import AvatarImage from "fora-components/AvatarImage";
 
 // BREAK-POINTS
 export const breakpoints = ["30em", "48em", "62em", "80em"];
@@ -48,7 +47,7 @@ export const borders = {
 
   avatar: {
     default: `2px solid ${colors.white}`,
-    large: `4px solid ${colors.white}`
+    large: `3px solid ${colors.white}`
   },
 
   input: {
@@ -69,7 +68,8 @@ export const shadows = [
   `inset 0px 1px 4px rgba(0, 0, 0, 0.14)`, //innerShadows
   `0 0 10px ${colors.brandGray["200"]}`,
   `inset 0 0 0 1px ${colors.brandGray["200"]}`,
-  `inset 0 0 0 1px ${colors.brandDestructive["200"]}`
+  `inset 0 0 0 1px ${colors.brandDestructive["200"]}`,
+  "0px 3px 5px rgba(17, 22, 24, 0.15);"
 ]; //Card //Avatar
 
 //Z-INDEX

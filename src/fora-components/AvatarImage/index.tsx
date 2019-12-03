@@ -8,7 +8,7 @@ let getBlockieSize = size => {
     case "small":
       return { size: "9", scale: "4" };
     case "medium":
-      return { size: "9", scale: "6" };
+      return { size: "9", scale: "5" };
     case "large":
       return { size: "9", scale: "11" };
     default:
@@ -42,13 +42,12 @@ const ImageContainer = props => (
   <Flex
     {...props}
     sx={{
-      boxSizing: "content-box",
       alignItems: "center",
       flexShrink: 0,
       justifyContent: "center",
       border: getAvatarBorder(props.size),
       bg: "white",
-      boxShadow: 0,
+      boxShadow: props.size === "small" || props.hasShadow === false ? null : 6,
       overflow: "hidden",
       size: getAvatarContainerSize(props.size),
       variant: `avatars.${props.variant}`
@@ -59,6 +58,7 @@ const ImageContainer = props => (
 export type AvatarImageProps = {
   variant?: string;
   size?: string;
+  hasShadow?: boolean;
   src: string | undefined;
   address?: string;
 };
@@ -66,10 +66,11 @@ export type AvatarImageProps = {
 const AvatarImage: React.FC<AvatarImageProps> = ({
   variant = "user",
   size = "medium",
+  hasShadow = true,
   src = undefined,
   address
 }) => (
-  <ImageContainer variant={variant} size={size}>
+  <ImageContainer variant={variant} size={size} hasShadow={hasShadow}>
     {typeof src === "string" ? (
       <Image src={src} sx={{ height: "100%", width: "auto" }} />
     ) : (

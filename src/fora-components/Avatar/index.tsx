@@ -1,156 +1,97 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React from "react";
-import { css } from "@styled-system/css";
-import styled from "lib/emotion-styled";
-import { Text, Flex, Link, Box } from "rebass";
+import { Text, Flex, Link } from "@theme-ui/components";
 import { shortenAddress } from "utils/helpers";
 import AvatarImage from "fora-components/AvatarImage";
 
-let nameSize = variant => {
-  switch (variant) {
-    case "small" || "medium":
-      return "body";
-    case "large":
-      return "h2";
-    default:
-      return "body";
-  }
-};
-
-let addressSize = variant => {
-  switch (variant) {
-    case "small" || "medium":
-      return "link";
-    case "large":
-      return "link";
-    default:
-      return "link";
-  }
-};
-
-type AvatarWrapperProps = Pick<AvatarProps, "textFormat">;
-const AvatarWrapper = styled(Link)<AvatarWrapperProps>(props =>
-  css({
-    display: "flex",
-    justifyContent: "flex-start",
-    alignItems: props.textFormat === "inline" ? "flex-start" : "center",
-    "&:hover": { textDecoration: "none" }
-  })
+const AvatarWrapper = props => (
+  <Link
+    {...props}
+    sx={{
+      display: "flex",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      "&:hover": { textDecoration: "none" }
+    }}
+  />
 );
 
-type TextContainerProps = Pick<AvatarProps, "variant" | "textFormat">;
-const TextContainer = styled(Flex)<TextContainerProps>(props =>
-  css({
-    flexShrink: 0,
-    pl: props.variant === "large" || props.textFormat === "inline" ? 3 : 2,
-    variant: "textFormat." + props.textFormat
-  })
+const TextContainer = props => (
+  <Flex
+    {...props}
+    sx={{
+      fontSize: "base",
+      flexShrink: 0,
+      flexDirection: "column",
+      ml: "0.75rem"
+    }}
+  />
 );
 
-type AvatarNameProps = Pick<
-  AvatarProps,
-  "variant" | "textFormat" | "onDark" | "name"
->;
-const AvatarName = styled(Text)<AvatarNameProps>(props =>
-  css({
-    color: props.onDark ? "white" : "black",
-    mt: !props.name ? -1 : "",
-    mr: props.textFormat === "inline" ? 2 : "",
-    textAlign: "left",
-    variant: "text." + nameSize(props.variant),
-    fontWeight: "medium",
-    lineHeight: "reset",
-    "&:not(:last-child):not(:only-child)": {
-      mb: 1
-    }
-  })
+type AvatarNameProps = Pick<AvatarProps, "onDark" | "name">;
+const AvatarName: React.FC<AvatarNameProps> = props => (
+  <Text
+    {...props}
+    sx={{
+      color: props.onDark ? "white" : "black",
+      mt: props.name ? "" : -1,
+      mb: props.name ? 2 : 1,
+      fontWeight: "medium"
+    }}
+  />
 );
 
-type AvatarScreenNameProps = Pick<AvatarProps, "onDark" | "variant">;
-const AvatarScreenName = styled(Text)<AvatarScreenNameProps>(props =>
-  css({
-    color: props.onDark ? "transparentWhite" : "seaGlass.300",
-    variant: "text." + addressSize(props.variant),
-    fontWeight: "medium",
-    lineHeight: "reset",
-    "a:hover &": { textDecoration: "underline" }
-  })
-);
-
-type AvatarAddressProps = Pick<AvatarProps, "onDark" | "variant">;
-const AvatarAddress = styled(Text)<AvatarAddressProps>(props =>
-  css({
-    color: props.onDark ? "transparentWhite" : "seaGlass.300",
-    variant: "text." + addressSize(props.variant),
-    fontWeight: "medium",
-    lineHeight: "reset",
-    "a:hover &": { textDecoration: "underline" }
-  })
+type AvatarAddressProps = Pick<AvatarProps, "onDark">;
+const AvatarAddress: React.FC<AvatarAddressProps> = props => (
+  <Link
+    {...props}
+    sx={{
+      color: props.onDark ? "transparentWhite" : "seaGlass.300",
+      "a:hover &": { textDecoration: "underline" }
+    }}
+  />
 );
 
 export type AvatarProps = {
-  variant: string; // "user" | "community";
-  size: string; //"small" | "medium" | "large";
-  name: string | undefined;
-  screenName: string | undefined;
-  textFormat?: "block" | "inline";
-  onDark: boolean;
+  name?: string | undefined;
+  onDark?: boolean;
+  hasShadow?: boolean;
   onClick?: (
     event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>
   ) => void;
   src?: string;
+  size?: string; // "small", "medium", "large"
   img?: string;
   address?: string;
 };
 const Avatar: React.FC<AvatarProps> = props => {
   const {
-    variant = "user",
-    size = "medium",
-    textFormat = "block",
     onDark = false,
     address,
     name,
-    screenName,
+    size = "medium",
+    hasShadow = true,
     src,
     onClick,
     img
   } = props;
 
   return (
-    <Box css={{ display: "inline-block" }}>
-      <AvatarWrapper
-        src={src ? src : "/profile/" + address}
-        onClick={onClick}
-        textFormat={textFormat}
-      >
-        <AvatarImage
-          variant={variant}
-          size={size}
-          src={img}
-          address={address}
-        />
-        <TextContainer textFormat={textFormat} variant={variant}>
-          <AvatarName
-            variant={variant}
-            name={name}
-            onDark={onDark}
-            textFormat={textFormat}
-          >
-            {name || "--"}
-          </AvatarName>
-          {screenName ? (
-            <AvatarScreenName variant={variant} onDark={onDark}>
-              {`@${screenName}`}
-            </AvatarScreenName>
-          ) : (
-            address && (
-              <AvatarAddress variant={variant} onDark={onDark}>
-                {shortenAddress(address)}
-              </AvatarAddress>
-            )
-          )}
-        </TextContainer>
-      </AvatarWrapper>
-    </Box>
+    <AvatarWrapper src={src ? src : "/profile/" + address} onClick={onClick}>
+      <AvatarImage
+        hasShadow={hasShadow}
+        src={img}
+        size={size}
+        address={address}
+      />
+      <TextContainer>
+        <AvatarName name={name} onDark={onDark}>
+          {name || "--"}
+        </AvatarName>
+        <AvatarAddress onDark={onDark}>{shortenAddress(address)}</AvatarAddress>
+      </TextContainer>
+    </AvatarWrapper>
   );
 };
 

@@ -1,12 +1,21 @@
 import React from "react";
 import { storiesOf, addDecorator } from "@storybook/react";
 import centered from "@storybook/addon-centered/react";
+import { withKnobs, text } from "@storybook/addon-knobs";
 import Avatar from ".";
 import AvatarImage from "fora-components/AvatarImage";
 
 addDecorator(centered);
+addDecorator(withKnobs);
 
 storiesOf("Avatar", module)
+  .add("Avatar with Knobs", () => (
+    <Avatar
+      src={undefined}
+      name={text("name", "firstName lastName")}
+      address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
+    />
+  ))
   .add("AvatarImage without src", () => (
     <AvatarImage
       src={undefined}
@@ -42,39 +51,28 @@ storiesOf("Avatar", module)
   ))
   .add("noName", () => (
     <Avatar
-      screenName={undefined}
-      name={undefined}
-      size={"medium"}
-      variant={"user"}
+      address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
       onDark={false}
     />
   ))
   .add("hasName", () => (
     <Avatar
-      screenName={undefined}
       name={"firstName lastName"}
-      size={"medium"}
-      variant={"user"}
+      address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
       onDark={false}
     />
   ))
   .add("noName + address", () => (
     <Avatar
-      screenName={undefined}
       name={undefined}
       address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
-      size={"medium"}
-      variant={"user"}
       onDark={false}
     />
   ))
   .add("hasName + address", () => (
     <Avatar
-      screenName={undefined}
       name={"firstname lastName"}
       address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
-      size={"medium"}
-      variant={"user"}
       onDark={false}
     />
   ))
@@ -83,45 +81,38 @@ storiesOf("Avatar", module)
       screenName={"helloWorld"}
       name={"firstname lastName"}
       address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
-      size={"medium"}
-      variant={"user"}
       onDark={false}
     />
   ))
   .add("Small noName", () => (
     <Avatar
-      screenName={undefined}
       name={undefined}
-      size={"small"}
-      variant={"user"}
+      address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
       onDark={false}
+      size="small"
     />
   ))
   .add("Small hasName", () => (
     <Avatar
-      screenName={undefined}
       name={"firstName lastName"}
-      size={"small"}
-      variant={"user"}
+      address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
       onDark={false}
+      size="small"
     />
   ))
   .add("Small noName + address", () => (
     <Avatar
-      screenName={undefined}
       name={undefined}
       address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
-      size={"small"}
-      variant={"user"}
       onDark={false}
+      size="small"
     />
   ))
   .add("Small hasName + address", () => (
     <Avatar
-      screenName={"screenName"}
       name={"firstname lastName"}
-      size={"small"}
-      variant={"user"}
+      address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
       onDark={false}
+      size="small"
     />
   ));
