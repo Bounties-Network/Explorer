@@ -12,7 +12,6 @@ import DeadlineExtension, {
 } from "./DeadlineExtension";
 import PayoutIncrease, { IPayoutIncreaseProps } from "./PayoutIncrease";
 import { Flex, Box } from "@theme-ui/components";
-import Divider from "fora-components/Divider";
 import AvatarImage from "fora-components/AvatarImage";
 import MetaData from "./MetaData";
 
@@ -140,13 +139,9 @@ const ActivityItem: React.FC<ActivityItemProps> = ({
   ...props
 }) => (
   <Box sx={{ px: ["2", "0"] }}>
-    <Flex sx={{ mb: "3" }}>
-      <AvatarImage
-        address={authorAddress}
-        src={avatarSrc}
-        variant="user"
-      />
-      <Flex sx={{ flexDirection: "column", ml: "3" }}>
+    <Flex sx={{ my: "3" }}>
+      <AvatarImage address={authorAddress} src={avatarSrc} variant="user" />
+      <Flex sx={{ width: "100%", flexDirection: "column", ml: "3" }}>
         <ActivityItemContent {...props} authorName={authorName} />
         <MetaData
           timestamp={timestamp}
@@ -155,7 +150,6 @@ const ActivityItem: React.FC<ActivityItemProps> = ({
         />
       </Flex>
     </Flex>
-    <Divider />
   </Box>
 );
 

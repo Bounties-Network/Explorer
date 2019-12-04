@@ -2,6 +2,7 @@ import { theme as cTheme } from "@chakra-ui/core";
 import { colors } from "./colors";
 import typography from "./typography";
 import buttons from "./buttons";
+import pills from "./pills";
 
 // BREAK-POINTS
 export const breakpoints = ["30em", "48em", "62em", "80em"];
@@ -75,111 +76,7 @@ export const shadows = [
 //Z-INDEX
 export const zIndices = cTheme.zIndices;
 
-export const textFormat = {
-  block: {
-    flexDirection: "column"
-  },
-  inline: {
-    flexDirection: "row"
-  }
-};
-
-export const pill = {
-  status: {
-    active: {
-      fontSize: "xs",
-      textTransform: "capitalize",
-      color: colors.brandPrimary["500"],
-      backgroundColor: colors.brandPrimary["100"]
-    },
-    expired: {
-      fontSize: "xs",
-      textTransform: "capitalize",
-      color: colors.brandDestructive["300"],
-      backgroundColor: colors.brandDestructive["100"]
-    },
-    dead: {
-      fontSize: "xs",
-      textTransform: "capitalize",
-      color: colors.brandGray["500"],
-      backgroundColor: colors.white,
-      border: borders.base
-    },
-    completed: {
-      fontSize: "xs",
-      textTransform: "capitalize",
-      color: colors.brandGray["500"],
-      backgroundColor: colors.white,
-      border: borders.base
-    },
-    pendingAcceptance: {
-      fontSize: "xs",
-      textTransform: "capitalize",
-      color: colors.brandPending["300"],
-      backgroundColor: colors.brandPending["100"]
-    },
-    declined: {
-      fontSize: "xs",
-      textTransform: "capitalize",
-      color: colors.brandDestructive["300"],
-      backgroundColor: colors.brandDestructive["200"]
-    },
-    accepted: {
-      fontSize: "xs",
-      textTransform: "capitalize",
-      color: colors.brandPrimary["500"],
-      backgroundColor: colors.brandPrimary["200"]
-    },
-    processing: {
-      fontSize: "xs",
-      textTransform: "capitalize",
-      color: colors.brandPending["300"],
-      backgroundColor: colors.brandPending["100"]
-    },
-    confirmed: {
-      fontSize: "xs",
-      textTransform: "capitalize",
-      color: colors.brandPrimary["500"],
-      backgroundColor: colors.brandPrimary["100"]
-    },
-    failed: {
-      fontSize: "xs",
-      textTransform: "capitalize",
-      color: colors.brandDestructive["300"],
-      backgroundColor: colors.brandDestructive["200"]
-    },
-    pending: {
-      fontSize: "xs",
-      textTransform: "capitalize",
-      color: colors.brandPending["300"],
-      backgroundColor: colors.brandPending["100"]
-    }
-  },
-  tag: {
-    explorer: {
-      fontSize: "xs",
-      textTransform: "capitalize",
-      color: colors.brandGray["400"],
-      border: borders.base
-    }
-  },
-  network: {
-    textTransform: "uppercase",
-    backgroundColor: colors.white,
-    border: borders.base
-  },
-  notificationCount: {
-    backgroundColor: colors.brandDestructive["200"],
-    px: `${space[0]}px !important`,
-    py: `${space[1]}px !important`
-  },
-  tabNotificationCount: {
-    backgroundColor: colors.brandGray["200"],
-    px: `${space[0]}px !important`,
-    py: `${space[1]}px !important`
-  }
-};
-
+// FORMS
 export const forms = {
   textarea: {
     ...typography.text.body,
@@ -221,7 +118,6 @@ const avatars = {
 };
 
 export const variants = {
-  pill,
   networkDot: {
     mainnet: {
       height: 2,
@@ -261,7 +157,7 @@ const theme = {
   zIndices,
   buttons,
   cards,
-  textFormat,
+  pills,
   maxContainerWidth,
   forms,
   variants,

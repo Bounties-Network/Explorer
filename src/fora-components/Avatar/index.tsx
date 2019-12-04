@@ -63,7 +63,7 @@ export type AvatarProps = {
   src?: string;
   size?: string; // "small", "medium", "large"
   img?: string;
-  address?: string;
+  address: string;
 };
 const Avatar: React.FC<AvatarProps> = props => {
   const {

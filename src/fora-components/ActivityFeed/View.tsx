@@ -1,10 +1,17 @@
 import React from "react";
 import moment from "moment";
-import { Flex } from "rebass";
+import { Flex } from "@theme-ui/components";
 import ActivityItem from "../ActivityItem";
 
 const ActivityFeed = () => (
-  <Flex flexDirection="column">
+  <Flex
+    sx={{
+      flexDirection: "column",
+      "> *:not(:last-child)": {
+        borderBottom: "base"
+      }
+    }}
+  >
     <ActivityItem
       activityType={"submission"}
       authorAddress={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}

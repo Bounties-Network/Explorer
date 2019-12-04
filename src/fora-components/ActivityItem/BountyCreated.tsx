@@ -2,7 +2,7 @@
 import { jsx } from "theme-ui";
 import React from "react";
 import { Text } from "@theme-ui/components";
-import PreviewCard from "fora-components/Card/PreviewCard";
+import PreviewCard from "fora-components/Card/BountyPreviewCard";
 import Description from "./Description";
 
 export interface IBountyCreatedProps {

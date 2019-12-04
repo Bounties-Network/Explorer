@@ -16,7 +16,8 @@ const Description = props => (
       lineHeight: "standard",
 
       "> *": {
-        display: "inline"
+        display: "inline",
+        hyphens: "none"
       }
     }}
   >

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import { Flex, Image } from "@theme-ui/components";
+import { Link, Image } from "@theme-ui/components";
 import Blockies from "react-blockies";
 
 let getBlockieSize = size => {
@@ -39,9 +39,10 @@ let getAvatarBorder = size => {
 };
 
 const ImageContainer = props => (
-  <Flex
+  <Link
     {...props}
     sx={{
+      display: "flex",
       alignItems: "center",
       flexShrink: 0,
       justifyContent: "center",
@@ -61,6 +62,7 @@ export type AvatarImageProps = {
   hasShadow?: boolean;
   src: string | undefined;
   address?: string;
+  linkToProfile?: boolean;
 };
 
 const AvatarImage: React.FC<AvatarImageProps> = ({
@@ -68,9 +70,15 @@ const AvatarImage: React.FC<AvatarImageProps> = ({
   size = "medium",
   hasShadow = true,
   src = undefined,
-  address
+  address,
+  linkToProfile = true
 }) => (
-  <ImageContainer variant={variant} size={size} hasShadow={hasShadow}>
+  <ImageContainer
+    href={linkToProfile ? "/profile/" + address : null}
+    variant={variant}
+    size={size}
+    hasShadow={hasShadow}
+  >
     {typeof src === "string" ? (
       <Image src={src} sx={{ height: "100%", width: "auto" }} />
     ) : (
