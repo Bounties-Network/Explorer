@@ -32,36 +32,9 @@ addDecorator(centered);
 
 storiesOf("ExplorerCard", module)
   .add("Mi Fora", () => (
-  <Container>
-    <ExplorerCard
-      token={'ETH'}
-      tokenInUSD={26}
-      tokenValue={0.05}
-      submissionCount={6}
-      community={{
-        name: "frontendDev",
-        href: "https://www.google.co.uk"
-      }}
-      avatar={{
-        variant: 'user',
-        name: "firstName LastName",
-        screenName: "screenName",
-        size: "small",
-        onDark: false
-      }}
-      deadline={moment().add('5', 'days')}
-      difficulty={'Beginner'}
-      tags={tags}
-      href={"https://www.google.co.uk"}
-      title={"🗺 ️BOOST Bounty - Mentorship Reward 🗺️"}
-      status={"active"}
-    />
-  </Container>
-  ))
-  .add("Expired", () => (
     <Container>
       <ExplorerCard
-        token={'ETH'}
+        token={"ETH"}
         tokenInUSD={26}
         tokenValue={0.05}
         submissionCount={6}
@@ -70,14 +43,39 @@ storiesOf("ExplorerCard", module)
           href: "https://www.google.co.uk"
         }}
         avatar={{
-          variant: 'user',
+          address: "0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67",
           name: "firstName LastName",
-          screenName: "screenName",
           size: "small",
           onDark: false
         }}
-        deadline={moment().subtract('5', 'days')}
-        difficulty={'Beginner'}
+        deadline={moment().add("5", "days")}
+        difficulty={"Beginner"}
+        tags={tags}
+        href={"https://www.google.co.uk"}
+        title={"🗺 ️BOOST Bounty - Mentorship Reward 🗺️"}
+        status={"active"}
+      />
+    </Container>
+  ))
+  .add("Expired", () => (
+    <Container>
+      <ExplorerCard
+        token={"ETH"}
+        tokenInUSD={26}
+        tokenValue={0.05}
+        submissionCount={6}
+        community={{
+          name: "frontendDev",
+          href: "https://www.google.co.uk"
+        }}
+        avatar={{
+          address: "0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67",
+          name: "firstName LastName",
+          size: "small",
+          onDark: false
+        }}
+        deadline={moment().subtract("5", "days")}
+        difficulty={"Beginner"}
         tags={tags}
         href={"https://www.google.co.uk"}
         title={"🗺 ️BOOST Bounty - Mentorship Reward 🗺️"}
@@ -85,5 +83,3 @@ storiesOf("ExplorerCard", module)
       />
     </Container>
   ));
-  
-  ;

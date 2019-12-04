@@ -55,22 +55,13 @@ const NotificationCount: React.FC<{ notificationCount?: number }> = ({
 }) => (
   <NotificationContainer justifyContent={"center"} alignItems="center">
     <BellIcon size={"lg"} icon={faBell} />
-    <Pill variant={"pill.notificationCount"}>
-      <Text variant="smallStrong" color="white">
-        {notificationCount}
-      </Text>
-    </Pill>
+    <Pill variant={"notificationCounter"}>{notificationCount}</Pill>
   </NotificationContainer>
 );
 
 const LoggedInRHSContent = () => (
   <>
-    <Pill variant={`pill.network`}>
-      <NetworkDot variant="networkDot.mainnet" />
-      <Text variant="small" color={"seaGlass.400"}>
-        {"Main Ethereum Network"}
-      </Text>
-    </Pill>
+    <Pill variant={`networkIndicator.mainnet`}>Main Ethereum Network</Pill>
     <Button variant="tertiary">
       <PlusIcon icon={faPlus} />
       Create New Bounty
@@ -88,12 +79,7 @@ const LoggedInRHSContent = () => (
 
 const LoggedOutRHSContent = () => (
   <>
-    <Pill variant={`pill.network`}>
-      <NetworkDot variant="networkDot.mainnet" />
-      <Text variant="small" color={"seaGlass.400"}>
-        {"Main Ethereum Network"}
-      </Text>
-    </Pill>
+    <Pill variant={`networkIndicator.mainnet`}>Main Ethereum Network</Pill>
     <Button variant="secondary">Log in</Button>
     <Button variant="tertiary">Sign up</Button>
   </>

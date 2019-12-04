@@ -7,31 +7,33 @@ import Divider from "fora-components/Divider";
 import Pill from "fora-components/Pill";
 
 export interface IHeaderProps {
-  handleSubmit: any
-  avatar: AvatarProps
+  handleSubmit: any;
+  avatar: AvatarProps;
 }
 
 const Header: React.FunctionComponent<IHeaderProps> = props => {
-  const [state, setState] = React.useState<boolean>(false)
-  return ((
-    <Flex  flexDirection="column">
-    <Flex alignItems={'center'} sx={{ 'div:first-of-type': { mr: 'auto' } }}>
-      <Avatar
-      {...props.avatar}
-      >
-    </Avatar>
-        {state ? <Pill variant='pill.status.pending'>{'Pending'}</Pill> :
-          <Button onClick={() => {
-            props.handleSubmit(() => setState(false))
-            setState(true)
-          }
-          } variant='secondaryAffirmative'>
+  const [state, setState] = React.useState<boolean>(false);
+  return (
+    <Flex flexDirection="column">
+      <Flex alignItems={"center"} sx={{ "div:first-of-type": { mr: "auto" } }}>
+        <Avatar {...props.avatar}></Avatar>
+        {state ? (
+          <Pill variant="status.pending">Pending</Pill>
+        ) : (
+          <Button
+            onClick={() => {
+              props.handleSubmit(() => setState(false));
+              setState(true);
+            }}
+            variant="secondaryAffirmative"
+          >
             Accept
-    </Button>}
+          </Button>
+        )}
+      </Flex>
+      <Divider></Divider>
     </Flex>
-    <Divider></Divider>
-    </Flex>
-  ))
+  );
 };
 
 export default Header;

@@ -14,6 +14,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Divider from "fora-components/Divider";
 import Pill from "fora-components/Pill";
 
+let getPillVariant = status => {
+  switch (status) {
+    case "processing":
+      return "status.pending";
+    case "confirmed":
+      return "status.affirmative";
+    case "failed":
+      return "status.negative";
+    default:
+      return "status.neutral";
+  }
+};
+
 type RecentTransactionsProps = {
   transactions: ITransactionProps[];
   totalTransactionCount: number;
@@ -82,7 +95,7 @@ const RenderCell: React.FC<IRenderCellProps> = props => {
       );
     }
     case "status": {
-      return <Pill variant={`pill.status.${props.value}`}>{props.value}</Pill>;
+      return <Pill variant={getPillVariant(status)}>{status}</Pill>;
     }
     case "ethAmount": {
       return (

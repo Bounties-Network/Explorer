@@ -17,10 +17,11 @@ const variantOptions = {
   pending: "status.pending",
   draft: "status.draft",
   tag: "tag.explorer",
-  networkIndicator: "networkIndicator",
+  "networkIndicator.rinkeby": "networkIndicator.rinkeby",
+  "networkIndicator.mainnet": "networkIndicator.mainnet",
   notificationCounter: "notificationCounter",
-  tabCounterDeselected: "tabCounter.deselected",
-  tabCounterSelected: "tabCounter.selected"
+  "tabCounter.deselected": "tabCounter.deselected",
+  "tabCounter.selected": "tabCounter.selected"
 };
 const variantDefaultValue = "status.affirmative";
 

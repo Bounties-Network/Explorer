@@ -58,7 +58,7 @@ const LandingPage = () => (
       <Flex>
         <Statistics flexDirection="column">
           <PlatformStatisticsCard
-            resourceType={'platform'}
+            resourceType={"platform"}
             activePlatformBounties={999}
             platformBountiesIssued={9999}
             totalBountyIssuedValueInUSD={9999999}
@@ -72,10 +72,7 @@ const LandingPage = () => (
               <Tab>Leaderboard</Tab>
               <Tab>
                 Members{" "}
-                <Pill
-                  css={css({ ml: 2 })}
-                  variant={"pill.tabNotificationCount"}
-                >
+                <Pill css={css({ ml: 2 })} variant={"tabCounter.deselected"}>
                   {20}
                 </Pill>
               </Tab>

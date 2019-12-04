@@ -20,7 +20,10 @@ const options = [
 
 storiesOf("SearchSelect", module)
   .add("Mi Fora", () => {
-    const [state, setState] = React.useState<{ value: string; label: string } | null>(null);
+    const [state, setState] = React.useState<{
+      value: string;
+      label: string;
+    } | null>(null);
     return (
       <div sx={{ width: "300px", pt: 3, pl: 5 }}>
         <SearchSelect
@@ -33,33 +36,31 @@ storiesOf("SearchSelect", module)
     );
   })
   .add("Scrollable Tag example", () => {
-    const [state, setState] = React.useState <{value: string, label: string}[]>([]);
+    const [state, setState] = React.useState<
+      { value: string; label: string }[]
+    >([]);
     return (
       <div sx={{ width: "300px", pt: 3, pl: 5 }}>
         <SearchSelect
           value={null}
-          handleChange={(option) => setState(state.concat(option))}
+          handleChange={option => setState(state.concat(option))}
           options={options.filter(x => !state.includes(x))}
           placeholder="Placeholder.."
         />
-        <div sx={{ display: "flex", "> :not(:last-of-type)": { mr: 2 }, mt: 3 }}>
+        <div
+          sx={{ display: "flex", "> :not(:last-of-type)": { mr: 2 }, mt: 3 }}
+        >
           {state.map(option => (
-            <div sx={{ cursor: "pointer" }} onClick={() => setState(state.filter(x => x.value !== option.value))}>
-              <Pill css={css({ height: "unset" })} variant="pill.tag.explorer">
-                <div
-                  sx={{
-                    minHeight: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    "> :first-of-type": { mr: 2 }
-                  }}
-                >
-                  <Text color={"gray.400"} variant="body">
-                    {option.label}
-                  </Text>
-                  <FontAwesomeIcon sx={{ color: "brandPrimary.300" }} icon={faTimes}></FontAwesomeIcon>
-                </div>
+            <div>
+              <Pill css={css({ height: "unset" })} variant="tag.explorer">
+                {option.label}
+                <FontAwesomeIcon
+                  sx={{ color: "brandPrimary.300", cursor: "pointer", ml: 2 }}
+                  icon={faTimes}
+                  onClick={() =>
+                    setState(state.filter(x => x.value !== option.value))
+                  }
+                ></FontAwesomeIcon>
               </Pill>
             </div>
           ))}

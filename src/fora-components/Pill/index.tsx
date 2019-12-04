@@ -22,7 +22,7 @@ const Pill: React.FC<PillProps> = ({
       alignItems: "center",
       variant: `pills.${variant}`,
       fontSize: size === "large" ? "body" : "small",
-      px: "0.75rem",
+      px: size === "large" ? "0.75rem" : 2,
       py: 1
     }}
   >

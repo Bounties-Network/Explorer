@@ -9,6 +9,23 @@ import FormatExpiration from "lib/format-expiration";
 import { CommunityProps } from "../ExplorerCard";
 import typography from "theme/typography";
 
+let getPillVariant = status => {
+  switch (status) {
+    case "draft":
+      return "status.draft";
+    case "active":
+      return "status.affirmative";
+    case "completed":
+      return "status.neutral";
+    case "dead":
+      return "status.negative";
+    case "expired":
+      return "status.negative";
+    default:
+      return "status.neutral";
+  }
+};
+
 const CardContainer = emotionStyled(Card)(props =>
   css({
     position: "relative",
@@ -59,7 +76,7 @@ const PreviewCard: React.FC<PreviewCardProps> = ({
   ethAmount
 }) => (
   <CardContainer>
-    <Pill variant={`pill.status.${status}`} resourceType={status} />
+    <Pill variant={getPillVariant(status)}>{status}</Pill>
     <Content>
       <Flex sx={{ flexDirection: "column" }}>
         <Link href={href} variant="text.link">

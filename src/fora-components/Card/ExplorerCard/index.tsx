@@ -15,6 +15,23 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FormatExpiration from "lib/format-expiration";
 
+let getPillVariant = status => {
+  switch (status) {
+    case "draft":
+      return "status.draft";
+    case "active":
+      return "status.affirmative";
+    case "completed":
+      return "status.neutral";
+    case "dead":
+      return "status.negative";
+    case "expired":
+      return "status.negative";
+    default:
+      return "status.neutral";
+  }
+};
+
 const Container = emotionStyled(Card)(() =>
   css({
     display: "flex",
@@ -84,7 +101,10 @@ export type CommunityProps = {
 };
 const Community: React.FC<CommunityProps> = props => (
   <MetaDetail>
-    <FontAwesomeIcon sx={{ color: 'brandGray.300' }} icon={faPeopleCarry}></FontAwesomeIcon>
+    <FontAwesomeIcon
+      sx={{ color: "brandGray.300" }}
+      icon={faPeopleCarry}
+    ></FontAwesomeIcon>
     <Link href={props.href}>{`f • ${props.name}`}</Link>
   </MetaDetail>
 );
@@ -107,16 +127,16 @@ interface IProps {
 
 const ExplorerCard: React.FunctionComponent<IProps> = props => (
   <Container>
-    <Pill resourceType={props.status} variant={`pill.status.${props.status}`} />
+    <Pill variant={getPillVariant(props.status)}>{props.status}</Pill>
     <MainDetails>
       <BountyMainDetails>
-        <Link variant='text.link' href={props.href}>
+        <Link variant="text.link" href={props.href}>
           <Text variant="headingSans">{props.title}</Text>
         </Link>
         <Tags>
           {props.tags.map(({ href, tag }) => (
             <Link href={href}>
-              <Pill resourceType={tag} variant={`pill.tag.explorer`}></Pill>
+              <Pill variant="tag.explorer">{tag}</Pill>
             </Link>
           ))}
         </Tags>
@@ -131,14 +151,23 @@ const ExplorerCard: React.FunctionComponent<IProps> = props => (
         {props.community && <Community {...props.community}></Community>}
         {props.difficulty && (
           <MetaDetail>
-            <FontAwesomeIcon sx={{ color: 'brandGray.300' }} icon={faPuzzlePiece}></FontAwesomeIcon>
-            <Text variant="body" sx={{ fontWeight: 'medium' }}>{`${props.difficulty}`}</Text>
+            <FontAwesomeIcon
+              sx={{ color: "brandGray.300" }}
+              icon={faPuzzlePiece}
+            ></FontAwesomeIcon>
+            <Text
+              variant="body"
+              sx={{ fontWeight: "medium" }}
+            >{`${props.difficulty}`}</Text>
             <Text variant="body" color={"brandGray.300"}>{`difficulty`}</Text>
           </MetaDetail>
         )}
         {props.deadline && (
           <MetaDetail>
-            <FontAwesomeIcon sx={{ color: 'brandGray.300' }} icon={faClock}></FontAwesomeIcon>
+            <FontAwesomeIcon
+              sx={{ color: "brandGray.300" }}
+              icon={faClock}
+            ></FontAwesomeIcon>
             <FormatExpiration
               variant="explorer"
               expirationTimestamp={props.deadline}
@@ -147,8 +176,14 @@ const ExplorerCard: React.FunctionComponent<IProps> = props => (
         )}
         {props.submissionCount && (
           <MetaDetail>
-            <FontAwesomeIcon sx={{ color: 'brandGray.300' }} icon={faArrowUp}></FontAwesomeIcon>
-            <Text variant="body" sx={{ fontWeight: 'medium' }}>{`${props.submissionCount}`}</Text>
+            <FontAwesomeIcon
+              sx={{ color: "brandGray.300" }}
+              icon={faArrowUp}
+            ></FontAwesomeIcon>
+            <Text
+              variant="body"
+              sx={{ fontWeight: "medium" }}
+            >{`${props.submissionCount}`}</Text>
             <Text variant="body" color={"brandGray.300"}>{`submissions`}</Text>
           </MetaDetail>
         )}
@@ -165,7 +200,7 @@ const ExplorerCard: React.FunctionComponent<IProps> = props => (
         <Text
           variant="body"
           sx={{
-            fontWeight: 'medium',
+            fontWeight: "medium",
             textTransform: "capitalize"
           }}
           color="black"

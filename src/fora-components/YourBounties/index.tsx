@@ -127,11 +127,9 @@ const YourBountiesTab = React.forwardRef<
           {props.label}
         </Text>
         <Pill
-          styles={{
-            bg: props.isSelected ? "seaGlass.400" : "gray.200",
-            color: props.isSelected ? "white" : "gray.500"
-          }}
-          variant="tabNotificationCount"
+          variant={
+            props.isSelected ? "tabCounter.selected" : "tabCounter.deselected"
+          }
         >
           {props.notificationCount}
         </Pill>

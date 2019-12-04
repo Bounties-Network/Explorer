@@ -5,10 +5,25 @@ import emotionStyled from "lib/emotion-styled";
 import { Flex, Card, Text } from "@theme-ui/components";
 import css from "@styled-system/css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faQuestionCircle
-} from "@fortawesome/pro-regular-svg-icons";
+import { faQuestionCircle } from "@fortawesome/pro-regular-svg-icons";
 import Pill from "fora-components/Pill";
+
+let getPillVariant = status => {
+  switch (status) {
+    case "draft":
+      return "status.draft";
+    case "active":
+      return "status.affirmative";
+    case "completed":
+      return "status.neutral";
+    case "dead":
+      return "status.negative";
+    case "expired":
+      return "status.negative";
+    default:
+      return "status.neutral";
+  }
+};
 
 const CardContainer = emotionStyled(Card)(() =>
   css({
@@ -28,10 +43,10 @@ const CardContainer = emotionStyled(Card)(() =>
 );
 
 const Content = emotionStyled(Flex)(() =>
-  css({ flexDirection : "column", "> :first-of-type": { mb: 5 } })
+  css({ flexDirection: "column", "> :first-of-type": { mb: 5 } })
 );
 const ContentSection = emotionStyled(Flex)(() =>
-  css({ flexDirection : "column", "> :not(:last-of-type)": { mb: 1 } })
+  css({ flexDirection: "column", "> :not(:last-of-type)": { mb: 1 } })
 );
 const PayoutTextContainer = emotionStyled(Flex)(() =>
   css({
@@ -56,19 +71,26 @@ const BountyDetailsCard: React.FC<BountyDetailsCardProps> = ({
   usdRemainingBalanceValue
 }) => (
   <CardContainer>
-      <Pill resourceType={status} variant={`pill.status.${status}`} />
+    <Pill variant={getPillVariant(status)}>{status}</Pill>
     <Content>
       <ContentSection>
         <PayoutTextContainer>
           <Text css={{ mixBlendMode: "normal" }} variant="label" color="white">
             Payout
           </Text>
-          <FontAwesomeIcon sx={{ color: 'brandPrimary.100' }} icon={faQuestionCircle}></FontAwesomeIcon>
+          <FontAwesomeIcon
+            sx={{ color: "brandPrimary.100" }}
+            icon={faQuestionCircle}
+          ></FontAwesomeIcon>
         </PayoutTextContainer>
-        <Text color="brandGold.200" variant="numeric" sx={{ fontSize: 'xl' }}>
+        <Text color="brandGold.200" variant="numeric" sx={{ fontSize: "xl" }}>
           {ethPayoutValue}
         </Text>
-        <Text color="brandPrimary.100" variant="numeric" sx={{ fontSize: 'md' }}>
+        <Text
+          color="brandPrimary.100"
+          variant="numeric"
+          sx={{ fontSize: "md" }}
+        >
           ${usdPayoutValue}
         </Text>
       </ContentSection>
@@ -76,10 +98,18 @@ const BountyDetailsCard: React.FC<BountyDetailsCardProps> = ({
         <Text css={{ mixBlendMode: "normal" }} variant="label" color="white">
           Remaining Balance
         </Text>
-        <Text  variant="numeric" sx={{ fontSize: 'xl' }} color="brandPrimary.200">
+        <Text
+          variant="numeric"
+          sx={{ fontSize: "xl" }}
+          color="brandPrimary.200"
+        >
           {ethRemainingBalanceValue}
         </Text>
-        <Text  variant="numeric" sx={{ fontSize: 'md' }} color="brandPrimary.100">
+        <Text
+          variant="numeric"
+          sx={{ fontSize: "md" }}
+          color="brandPrimary.100"
+        >
           ${usdRemainingBalanceValue}
         </Text>
       </ContentSection>
