@@ -1,10 +1,9 @@
-import moment from 'moment'
-import momentTz from 'moment-timezone'
+import moment from "moment";
+import momentTz from "moment-timezone";
 
 export function getTimezone() {
-  return momentTz.tz.guess(true)
+  return momentTz.tz.guess(true);
 }
-
 
 export function shortenAddress(address) {
   return address.slice(0, 6) + "..." + address.slice(-4);
@@ -48,7 +47,7 @@ export function currentRouteSelector(pathname) {
 }
 
 export function ipfsToHttp(directoryHash, fileName) {
-  const config = require('../../src/public-modules/config').default;
+  const config = require("../../src/public-modules/config").default;
   return `${config.ipfs.apiViewURL}${directoryHash}/${fileName}`;
 }
 
@@ -126,3 +125,26 @@ export const newTabExtension = () => [
     replace: (_, content) => '<a target="_blank"' + content + ">"
   }
 ];
+
+export function getStatusPillVariant(status) {
+  switch (status) {
+    case "draft":
+      return "status.draft";
+    case "pending":
+    case "processing":
+      return "status.pending";
+    case "active":
+    case "accepted":
+    case "confirmed":
+      return "status.affirmative";
+    case "completed":
+      return "status.neutral";
+    case "dead":
+    case "expired":
+    case "declined":
+    case "failed":
+      return "status.negative";
+    default:
+      return "status.neutral";
+  }
+}

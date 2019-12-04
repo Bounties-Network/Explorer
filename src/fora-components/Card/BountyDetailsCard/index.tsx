@@ -7,23 +7,7 @@ import css from "@styled-system/css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from "@fortawesome/pro-regular-svg-icons";
 import Pill from "fora-components/Pill";
-
-let getPillVariant = status => {
-  switch (status) {
-    case "draft":
-      return "status.draft";
-    case "active":
-      return "status.affirmative";
-    case "completed":
-      return "status.neutral";
-    case "dead":
-      return "status.negative";
-    case "expired":
-      return "status.negative";
-    default:
-      return "status.neutral";
-  }
-};
+import { getStatusPillVariant } from "../../../utils/helpers";
 
 const CardContainer = emotionStyled(Card)(() =>
   css({
@@ -71,7 +55,7 @@ const BountyDetailsCard: React.FC<BountyDetailsCardProps> = ({
   usdRemainingBalanceValue
 }) => (
   <CardContainer>
-    <Pill variant={getPillVariant(status)}>{status}</Pill>
+    <Pill variant={getStatusPillVariant(status)}>{status}</Pill>
     <Content>
       <ContentSection>
         <PayoutTextContainer>

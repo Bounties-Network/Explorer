@@ -14,23 +14,7 @@ import {
 } from "@fortawesome/pro-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FormatExpiration from "lib/format-expiration";
-
-let getPillVariant = status => {
-  switch (status) {
-    case "draft":
-      return "status.draft";
-    case "active":
-      return "status.affirmative";
-    case "completed":
-      return "status.neutral";
-    case "dead":
-      return "status.negative";
-    case "expired":
-      return "status.negative";
-    default:
-      return "status.neutral";
-  }
-};
+import { getStatusPillVariant } from "../../../utils/helpers";
 
 const Container = emotionStyled(Card)(() =>
   css({
@@ -127,7 +111,7 @@ interface IProps {
 
 const ExplorerCard: React.FunctionComponent<IProps> = props => (
   <Container>
-    <Pill variant={getPillVariant(props.status)}>{props.status}</Pill>
+    <Pill variant={getStatusPillVariant(props.status)}>{props.status}</Pill>
     <MainDetails>
       <BountyMainDetails>
         <Link variant="text.link" href={props.href}>
