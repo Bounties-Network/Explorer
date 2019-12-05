@@ -211,7 +211,7 @@ const FilterNav = props => {
           <div sx={{ cursor: "pointer", display: "flex", mt: 2, "> :not(:last-of-type)": { mr: 1 } }}>
             {currentSelectedCategories.map(category => {
               return (
-                <Pill variant="pill.tag.explorer" onClick={() => removeCategoryFilterAction(category)}>
+                <Pill variant="tag.explorer" onClick={() => removeCategoryFilterAction(category)}>
                   <div
                     sx={{
                       height: "100%",

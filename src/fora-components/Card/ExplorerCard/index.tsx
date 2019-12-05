@@ -128,7 +128,9 @@ const ExplorerCard: React.FunctionComponent<IProps> = props => (
                   : ""
               }`}
             >
-              {tag}
+              <Text variant='body'>
+                {tag}
+              </Text>
             </Pill>
           ))}
         </Tags>
