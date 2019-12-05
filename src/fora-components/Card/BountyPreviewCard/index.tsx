@@ -46,7 +46,10 @@ const Metadata = props => (
 );
 
 const ValueContainer = props => (
-  <Flex {...props} sx={{ flexDirection: "column", ml: 4 }} />
+  <Flex
+    {...props}
+    sx={{ flexDirection: "column", ml: 4, textAlign: "right" }}
+  />
 );
 
 type PreviewCardProps = {
@@ -72,15 +75,13 @@ const PreviewCard: React.FC<PreviewCardProps> = ({
   <CardContainer>
     <Pill variant={getStatusPillVariant(status)}>{status}</Pill>
     <CardContent>
-      <Flex sx={{ flexDirection: "column" }}>
+      <Flex sx={{ flexDirection: "column", justifyContent: "space-between" }}>
         <Title href={href}>{title}</Title>
         <Metadata>
-          <Text>
-            <FormatExpiration
-              variant="preview"
-              expirationTimestamp={expirationTimestamp}
-            ></FormatExpiration>
-          </Text>
+          <FormatExpiration
+            variant="preview"
+            expirationTimestamp={expirationTimestamp}
+          ></FormatExpiration>
           <Text as="span">・</Text>
           <Text>{`${submissionCount} submissions`}</Text>
           {community !== undefined && (
@@ -95,13 +96,22 @@ const PreviewCard: React.FC<PreviewCardProps> = ({
         <Text
           variant="bodyStrong"
           sx={{
-            textAlign: "right",
             color: "black",
             lineHeight: "reset",
             mb: 2
           }}
-        >{`$${ethInUSD}`}</Text>
-        <Text variant="small" color="brandGray.400">{`${ethAmount} ETH`}</Text>
+        >
+          {`${ethInUSD} `}
+          <Text as="span" sx={{ fontSize: "small" }}>
+            USD
+          </Text>
+        </Text>
+        <Text variant="small" color="brandGray.400">
+          {`${ethAmount} `}
+          <Text as="span" sx={{ fontSize: "small" }}>
+            ETH
+          </Text>
+        </Text>
       </ValueContainer>
     </CardContent>
   </CardContainer>

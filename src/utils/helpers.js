@@ -148,3 +148,17 @@ export function getStatusPillVariant(status) {
       return "status.neutral";
   }
 }
+
+export function lineHeightCrop(lineHeight) {
+  let calcCropAmount = (1 - lineHeight) * 0.5 + "rem";
+  let styles = {
+    "&::before": {
+      content: `""`,
+      display: "block",
+      height: 0,
+      width: 0,
+      mt: calcCropAmount
+    }
+  };
+  return styles;
+}

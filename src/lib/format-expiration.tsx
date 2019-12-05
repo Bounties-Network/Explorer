@@ -1,8 +1,6 @@
 import React from "react";
 import moment from "moment";
-import emotionStyled from "./emotion-styled";
-import css from "@styled-system/css";
-import { Text, Flex } from "@theme-ui/components";
+import { Text } from "@theme-ui/components";
 
 moment.updateLocale("en", {
   relativeTime: {
@@ -23,8 +21,6 @@ moment.updateLocale("en", {
   }
 });
 
-const MetaDetail = emotionStyled(Flex)(() => css({}));
-
 type NotExpiredVariants = "preview" | "explorer";
 
 const NotExpired: React.FC<{
@@ -34,16 +30,16 @@ const NotExpired: React.FC<{
   switch (props.variant) {
     case "preview": {
       return (
-        <MetaDetail>
+        <React.Fragment>
           <Text variant="small" color="brandGray.400">{`${moment(
             props.expirationTimestamp
           ).fromNow(true)} remaining`}</Text>
-        </MetaDetail>
+        </React.Fragment>
       );
     }
     default: {
       return (
-        <MetaDetail>
+        <React.Fragment>
           <Text variant="small" sx={{ fontWeight: "medium" }}>
             {moment(props.expirationTimestamp).fromNow(true)}
           </Text>
@@ -54,7 +50,7 @@ const NotExpired: React.FC<{
           >
             remaining
           </Text>
-        </MetaDetail>
+        </React.Fragment>
       );
     }
   }
@@ -67,21 +63,21 @@ const Expired: React.FC<{
   switch (props.variant) {
     case "preview": {
       return (
-        <MetaDetail>
+        <React.Fragment>
           <Text variant="small" color="gray.400">{`Expired ${moment(
             props.expirationTimestamp
           ).fromNow(false)}`}</Text>
-        </MetaDetail>
+        </React.Fragment>
       );
     }
     default: {
       return (
-        <MetaDetail>
+        <React.Fragment>
           <Text variant="smallStrong">Expired</Text>
           <Text variant="smallStrong" color="gray.300">
             {moment(props.expirationTimestamp).fromNow(false)}
           </Text>
-        </MetaDetail>
+        </React.Fragment>
       );
     }
   }
