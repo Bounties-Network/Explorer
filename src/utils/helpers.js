@@ -6,7 +6,7 @@ export function getTimezone() {
 }
 
 export function shortenAddress(address) {
-  return address.slice(0, 6) + "..." + address.slice(-4);
+  return address && address.slice(0, 6) + "..." + address.slice(-4);
 }
 
 export function shortenUrl(url) {

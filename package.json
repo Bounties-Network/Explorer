@@ -230,7 +230,7 @@
     "gqt": "apollo client:codegen --target=typescript --config=apollo.config.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "storybook": "start-storybook -p 3000",
+    "storybook": "APP_SETTINGS_FILE=staging start-storybook -p 3000",
     "typesync": "typesync",
     "build-storybook": "build-storybook",
     "deploy-storybook": "build-storybook && aws s3 sync storybook-static s3://components.bounties.network/ --acl public-read",

@@ -8,18 +8,7 @@ import { Flex } from "rebass";
 import moment from "moment";
 
 const tags = [
-  {
-    tag: "React",
-    href: "https://www.google.co.uk"
-  },
-  {
-    tag: "Javascript",
-    href: "https://www.google.co.uk"
-  },
-  {
-    tag: "CSS",
-    href: "https://www.google.co.uk"
-  }
+  "React", "Javascript", "CSS"
 ];
 
 const Container = emotionStyled(Flex)(() =>

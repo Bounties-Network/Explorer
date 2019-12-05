@@ -10,8 +10,8 @@ import { Community } from "../TopCommunities";
 
 const optionStyles = (isOption = true) => ({
   cursor: "pointer",
-  fontSize: theme.fontSizes.sm,
-  fontWeight: theme.fontWeights.regular,
+  fontSize: theme.fontSizes.base,
+  fontWeight: theme.fontWeights.medium,
   lineHeight: theme.lineHeights.standard,
   fontFamily: theme.fonts.body,
   borderRadius: theme.radius,
@@ -135,16 +135,16 @@ const selectStyles = (optionsLength): StylesConfig => ({
   }),
   placeholder: provided => ({
     ...provided,
-    fontSize: theme.fontSizes.sm,
-    fontWeight: theme.fontWeights.regular,
+    fontSize: theme.fontSizes.base,
+    fontWeight: theme.fontWeights.medium,
     lineHeight: theme.lineHeights.standard,
     fontFamily: theme.fonts.body,
     color: theme.colors.brandGray[400]
   }),
   singleValue: provided => ({
     ...provided,
-    fontSize: theme.fontSizes.sm,
-    fontWeight: theme.fontWeights.regular,
+    fontSize: theme.fontSizes.base,
+    fontWeight: theme.fontWeights.medium,
     lineHeight: theme.lineHeights.standard,
     fontFamily: theme.fonts.body
   })

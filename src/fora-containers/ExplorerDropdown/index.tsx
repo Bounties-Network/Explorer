@@ -22,7 +22,7 @@ const query = gql`
 const allBountiesQuery = gql`
   query($platform: String!, $tags: jsonb = []) {
     std_bounties_bounty(
-      limit: 10,
+      limit: 10
       where: { platform: { _in: [$platform] }, bounty_stage: { _in: [1] }, data_categories: { _contains: $tags } }
       order_by: { deadline: asc }
     ) {
@@ -57,7 +57,7 @@ const collectionOptions = [
   }
 ];
 
-const PlatformStatisticsContainer: React.FunctionComponent<RSProps> = props => {
+const ExplorerDropdownContainer: React.FunctionComponent<RSProps> = props => {
   const [state, setState] = React.useState<{ value: string; label: string } | null>(null);
   const [tags, setTag] = React.useState<string[]>([]);
   const { data: communitiesData, loading, error } = useQuery(query);
@@ -105,18 +105,16 @@ const PlatformStatisticsContainer: React.FunctionComponent<RSProps> = props => {
           options={options}
         />
         <div sx={{ display: "flex", flexDirection: "column", "> *": { mb: 5 }, mt: 5 }}>
-          {!bountiesError && !bountiesLoading &&
+          {!bountiesError &&
+            !bountiesLoading &&
             platform.length > 0 &&
             data?.std_bounties_bounty.map(bounty => {
-              // console.log(bounty)
               return (
                 <ExplorerCard
                   key={bounty.id}
                   avatar={{
-                    screenName: bounty?.user_user?.name,
                     name: bounty?.user_user?.name,
                     address: bounty?.user_user?.public_address,
-                    variant: "user",
                     size: "small",
                     onDark: false
                   }}
@@ -130,7 +128,12 @@ const PlatformStatisticsContainer: React.FunctionComponent<RSProps> = props => {
                   href={`/bounty/${bounty.id}`}
                   title={bounty.title}
                   status={"active"}
-                  handleTagClick={tag => setTag(tag)}
+                  handleTagClick={(tag: string) => {
+                    tags.map(currentTag => currentTag.toLowerCase()).includes(tag.toLowerCase())
+                      ? setTag(tags.filter(currentTag => currentTag !== tag))
+                      : setTag(tags.concat(tag));
+                  }}
+                  currentTags={tags}
                 ></ExplorerCard>
               );
             })}
@@ -141,4 +144,4 @@ const PlatformStatisticsContainer: React.FunctionComponent<RSProps> = props => {
   return <LoadingIcon></LoadingIcon>;
 };
 
-export default PlatformStatisticsContainer;
+export default ExplorerDropdownContainer;

@@ -6,12 +6,7 @@ import css from "@styled-system/css";
 import { Card, Text, Flex, Link } from "@theme-ui/components";
 import Pill from "fora-components/Pill";
 import Avatar, { AvatarProps } from "fora-components/Avatar";
-import {
-  faPeopleCarry,
-  faPuzzlePiece,
-  faClock,
-  faArrowUp
-} from "@fortawesome/pro-regular-svg-icons";
+import { faPeopleCarry, faPuzzlePiece, faClock, faArrowUp } from "@fortawesome/pro-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FormatExpiration from "lib/format-expiration";
 import { getStatusPillVariant } from "../../../utils/helpers";
@@ -19,7 +14,7 @@ import { getStatusPillVariant } from "../../../utils/helpers";
 const Container = emotionStyled(Card)(() =>
   css({
     display: "flex",
-    background: 'white',
+    background: "white",
     position: "relative",
     flexDirection: "row",
     width: "100%",
@@ -31,7 +26,7 @@ const Container = emotionStyled(Card)(() =>
 const MainDetails = emotionStyled(Flex)(() =>
   css({
     flexDirection: "column",
-    maxWidth: '60%',
+    maxWidth: "60%",
     "> :first-of-type": {
       mb: 3
     }
@@ -40,9 +35,9 @@ const MainDetails = emotionStyled(Flex)(() =>
 const Tags = emotionStyled(Flex)(() =>
   css({
     display: "flex",
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     mt: -1,
-    "> :not(:last-of-type)": { mr: 2, mb: 1 },
+    "> :not(:last-of-type)": { mr: 2, mb: 1 }
   })
 );
 const BountyMainDetails = emotionStyled(Flex)(() =>
@@ -52,9 +47,7 @@ const BountyMainDetails = emotionStyled(Flex)(() =>
     "> a:first-of-type": { mb: 3 }
   })
 );
-const IssuerDetails = emotionStyled(Flex)(() =>
-  css({ display: "flex", flexDirection: "column" })
-);
+const IssuerDetails = emotionStyled(Flex)(() => css({ display: "flex", flexDirection: "column" }));
 const MetaDetails = emotionStyled(Flex)(() =>
   css({
     display: "flex",
@@ -77,10 +70,10 @@ const BountyValue = emotionStyled(Flex)(() =>
     "> :first-of-type": { mb: 2 }
   })
 );
-const MetaDetail = emotionStyled(Flex)(props =>
+const MetaDetail = emotionStyled(Flex)(() =>
   css({
     alignItems: "center",
-    "> svg:first-of-type": { mr: 2, color: "gray.300" },
+    "> svg:first-of-type": { mr: 2, color: "brandGray.300" },
     "> div:nth-of-type(2)": { ml: 1 },
     textAlign: "center"
   })
@@ -92,7 +85,7 @@ export type CommunityProps = {
 };
 const Community: React.FC<CommunityProps> = props => (
   <MetaDetail>
-    <FontAwesomeIcon sx={{ color: 'brandGray.300' }} icon={faPeopleCarry}></FontAwesomeIcon>
+    <FontAwesomeIcon sx={{ color: "brandGray.300" }} icon={faPeopleCarry}></FontAwesomeIcon>
     <Link variant="text.link" href={props.href}>{`f • ${props.name}`}</Link>
   </MetaDetail>
 );
@@ -111,25 +104,37 @@ interface IProps {
   avatar: AvatarProps;
   currentTags?: string[];
   community?: CommunityProps;
-  handleTagClick?: any;
+  handleTagClick?: (tag: string) => void;
 }
 const ExplorerCard: React.FunctionComponent<IProps> = props => (
   <Container>
     <Pill variant={getStatusPillVariant(props.status)}>{props.status}</Pill>
     <MainDetails>
       <BountyMainDetails>
-        <Link variant='text.link' href={props.href}>
-          <Text variant="headingSans" sx={{ fontSize: 'h5' }}>{props.title}</Text>
+        <Link variant="text.link" href={props.href}>
+          <Text variant="headingSans" sx={{ fontSize: "h5" }}>
+            {props.title}
+          </Text>
         </Link>
         <Tags>
-          {props.tags.map((tag) => (
-            <Pill key={tag} onClick={() => props.handleTagClick(tag.toLowerCase())} resourceType={tag}
-              variant={`pill.tag.explorer${Array.isArray(props.currentTags) && props.currentTags.map(tag => tag.toLowerCase()).includes(tag.toLowerCase()) ? '.active' : ''}`}></Pill>
+          {props.tags.map(tag => (
+            <Pill
+              key={tag}
+              onClick={() => props.handleTagClick && props.handleTagClick(tag.toLowerCase())}
+              variant={`tag.explorer${
+                Array.isArray(props.currentTags) &&
+                props.currentTags.map(tag => tag.toLowerCase()).includes(tag.toLowerCase())
+                  ? ".active"
+                  : ""
+              }`}
+            >
+              {tag}
+            </Pill>
           ))}
         </Tags>
       </BountyMainDetails>
       <IssuerDetails>
-        <Link variant='text.link' href={`/profile/${props.avatar.address}`}>
+        <Link variant="text.link" href={`/profile/${props.avatar.address}`}>
           <Avatar {...props.avatar}></Avatar>
         </Link>
       </IssuerDetails>
@@ -140,32 +145,20 @@ const ExplorerCard: React.FunctionComponent<IProps> = props => (
         {props.community && <Community {...props.community}></Community>}
         {props.difficulty && (
           <MetaDetail>
-            <FontAwesomeIcon
-              sx={{ color: "brandGray.300" }}
-              icon={faPuzzlePiece}
-            ></FontAwesomeIcon>
-            <Text
-              variant="body"
-              sx={{ fontWeight: "medium" }}
-            >{`${props.difficulty}`}</Text>
+            <FontAwesomeIcon sx={{ color: "brandGray.300" }} icon={faPuzzlePiece}></FontAwesomeIcon>
+            <Text variant="body" sx={{ fontWeight: "medium" }}>{`${props.difficulty}`}</Text>
             <Text variant="body" color={"brandGray.300"}>{`difficulty`}</Text>
           </MetaDetail>
         )}
         {props.deadline && (
           <MetaDetail>
-            <FontAwesomeIcon
-              sx={{ color: "brandGray.300" }}
-              icon={faClock}
-            ></FontAwesomeIcon>
-            <FormatExpiration
-              variant="explorer"
-              expirationTimestamp={props.deadline}
-            ></FormatExpiration>
+            <FontAwesomeIcon sx={{ color: "brandGray.300" }} icon={faClock}></FontAwesomeIcon>
+            <FormatExpiration variant="explorer" expirationTimestamp={props.deadline}></FormatExpiration>
           </MetaDetail>
         )}
         <MetaDetail>
-          <FontAwesomeIcon sx={{ color: 'brandGray.300' }} icon={faArrowUp}></FontAwesomeIcon>
-          <Text variant="body" sx={{ fontWeight: 'medium' }}>{`${props.submissionCount}`}</Text>
+          <FontAwesomeIcon sx={{ color: "brandGray.300" }} icon={faArrowUp}></FontAwesomeIcon>
+          <Text variant="body" sx={{ fontWeight: "medium" }}>{`${props.submissionCount}`}</Text>
           <Text variant="body" color={"brandGray.300"}>{`submissions`}</Text>
         </MetaDetail>
       </BountyMetaDetails>

@@ -7,15 +7,17 @@ export type PillProps = {
   variant?: string;
   size?: string;
   shape?: string;
-  children?: any;
+  onClick?: any;
 };
 const Pill: React.FC<PillProps> = ({
   variant = "primary",
   shape = "rounded",
   size = "small",
+  onClick,
   children
 }) => (
   <Flex
+    onClick={onClick}
     sx={{
       borderRadius: shape === "square" ? 1 : "100px",
       justifyContent: "center",
@@ -23,7 +25,8 @@ const Pill: React.FC<PillProps> = ({
       variant: `pills.${variant}`,
       fontSize: size === "large" ? "body" : "small",
       px: size === "large" ? "0.75rem" : 2,
-      py: 1
+      py: 1,
+      cursor: onClick ? 'pointer' : 'default'
     }}
   >
     {children}

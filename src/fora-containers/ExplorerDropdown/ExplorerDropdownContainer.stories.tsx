@@ -1,14 +1,13 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import React from "react";
 import { storiesOf } from "@storybook/react";
-import ExplorerDropdown from ".";
+import ExplorerDropdownContainer from ".";
 
 storiesOf("fora-app/ExplorerDropdownContainer", module)
   .add("Mi Fora", () => {
     return (
       <div sx={{ width: "60vw" }}>
-        <ExplorerDropdown
+        <ExplorerDropdownContainer
           placeholder="Placeholder.."
         />
       </div>

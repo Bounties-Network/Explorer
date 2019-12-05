@@ -78,7 +78,6 @@ storiesOf("Avatar", module)
   ))
   .add("hasName + screenName", () => (
     <Avatar
-      screenName={"helloWorld"}
       name={"firstname lastName"}
       address={"0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"}
       onDark={false}

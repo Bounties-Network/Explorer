@@ -57,7 +57,13 @@ const pills = {
       textTransform: "capitalize",
       color: colors.brandGray["400"],
       backgroundColor: colors.white,
-      border: pillBorder
+      border: pillBorder,
+      active: {
+        textTransform: "capitalize",
+        color: colors.brandGray["400"],
+        backgroundColor: colors.brandGray["200"],
+        border: pillBorder
+      }
     }
   },
 
