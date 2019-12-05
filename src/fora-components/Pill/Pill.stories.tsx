@@ -41,7 +41,7 @@ const shapeOptions = {
 };
 const shapeDefaultValue = "rounded";
 
-storiesOf("Pill", module).add("Pill", () => (
+storiesOf("Pills", module).add("Playground", () => (
   <Pill
     variant={select(variantLabel, variantOptions, variantDefaultValue)}
     size={radios(sizeLabel, sizeOptions, sizeDefaultValue)}

@@ -4,9 +4,26 @@ import emotionStyled from "./emotion-styled";
 import css from "@styled-system/css";
 import { Text, Flex } from "@theme-ui/components";
 
-const MetaDetail = emotionStyled(Flex)(() =>
-  css({ "> :first-of-type": { mr: 1 }, textAlign: "center" })
-);
+moment.updateLocale("en", {
+  relativeTime: {
+    future: "in %s",
+    past: "%s",
+    s: "a few seconds",
+    ss: "%dsecs",
+    m: "a minute",
+    mm: "%dmins",
+    h: "an hour",
+    hh: "%dhr",
+    d: "a day",
+    dd: "%d days",
+    M: "a month",
+    MM: "%d months ago",
+    y: "a year",
+    yy: "%dy"
+  }
+});
+
+const MetaDetail = emotionStyled(Flex)(() => css({}));
 
 type NotExpiredVariants = "preview" | "explorer";
 
@@ -18,7 +35,7 @@ const NotExpired: React.FC<{
     case "preview": {
       return (
         <MetaDetail>
-          <Text variant="body" color="brandGray.400">{`${moment(
+          <Text variant="small" color="brandGray.400">{`${moment(
             props.expirationTimestamp
           ).fromNow(true)} remaining`}</Text>
         </MetaDetail>
@@ -27,10 +44,14 @@ const NotExpired: React.FC<{
     default: {
       return (
         <MetaDetail>
-          <Text variant="body" sx={{ fontWeight: 'medium' }}>
+          <Text variant="small" sx={{ fontWeight: "medium" }}>
             {moment(props.expirationTimestamp).fromNow(true)}
           </Text>
-          <Text variant="body" sx={{ fontWeight: 'medium' }} color="brandGray.300">
+          <Text
+            variant="small"
+            sx={{ fontWeight: "medium" }}
+            color="brandGray.300"
+          >
             remaining
           </Text>
         </MetaDetail>
@@ -56,8 +77,8 @@ const Expired: React.FC<{
     default: {
       return (
         <MetaDetail>
-          <Text variant="bodyStrong">Expired</Text>
-          <Text variant="bodyStrong" color="gray.300">
+          <Text variant="smallStrong">Expired</Text>
+          <Text variant="smallStrong" color="gray.300">
             {moment(props.expirationTimestamp).fromNow(false)}
           </Text>
         </MetaDetail>

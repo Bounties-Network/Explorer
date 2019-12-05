@@ -36,6 +36,7 @@ const typography = {
     small: {
       fontFamily: "body",
       fontSize: "small",
+      fontWeight: "normal",
       lineHeight: "standard"
     },
 

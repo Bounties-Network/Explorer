@@ -1,42 +1,52 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import React, { Fragment } from "react";
-import emotionStyled from "lib/emotion-styled";
 import { Flex, Card, Text, Box, Link } from "@theme-ui/components";
-import css from "@styled-system/css";
 import Pill from "fora-components/Pill";
 import FormatExpiration from "lib/format-expiration";
 import { CommunityProps } from "../ExplorerCard";
-import typography from "theme/typography";
 import { getStatusPillVariant } from "../../../utils/helpers";
 
-const CardContainer = emotionStyled(Card)(props =>
-  css({
-    position: "relative",
-    py: 3,
-    px: 3,
-    "> div:first-of-type": {
-      position: "absolute",
-      left: props.theme.space[3],
-      top: "-10px"
-    }
-  })
+const CardContainer = props => (
+  <Card
+    {...props}
+    sx={{
+      position: "relative",
+      pt: 4,
+      pb: 3,
+      px: 3,
+      "> div:first-of-type": {
+        position: "absolute",
+        left: 3,
+        top: "-10px"
+      }
+    }}
+  />
 );
-const Description = emotionStyled(Box)(() =>
-  css({
-    "> *": {
-      display: "inline-block",
-      textAlign: "left",
-      ...typography.text.body,
-      fontSize: "xs"
-    },
-    "> *:not(*:first-of-type)": { ml: 1 },
-    "> a": { ml: 1 }
-  })
+
+const CardContent = props => (
+  <Flex {...props} sx={{ justifyContent: "space-between" }} />
 );
-const Content = emotionStyled(Flex)(() => css({ "> :first-child": { mr: 5 } }));
-const ValueContainer = emotionStyled(Flex)(() =>
-  css({ "> *:first-of-type": { mb: 2 }, flexDirection: "column" })
+
+const Title = props => (
+  <Link {...props} sx={{ mb: 2, fontSize: "base", fontWeight: "medium" }} />
+);
+
+const Metadata = props => (
+  <Box
+    {...props}
+    sx={{
+      "> *": {
+        color: "brandGray.400",
+        display: "inline-block",
+        fontSize: "small"
+      }
+    }}
+  />
+);
+
+const ValueContainer = props => (
+  <Flex {...props} sx={{ flexDirection: "column", ml: 4 }} />
 );
 
 type PreviewCardProps = {
@@ -61,40 +71,39 @@ const PreviewCard: React.FC<PreviewCardProps> = ({
 }) => (
   <CardContainer>
     <Pill variant={getStatusPillVariant(status)}>{status}</Pill>
-    <Content>
+    <CardContent>
       <Flex sx={{ flexDirection: "column" }}>
-        <Link href={href} variant="text.link">
-          {title}
-        </Link>
-        <Description>
-          <Text color="brandGray.400">
+        <Title href={href}>{title}</Title>
+        <Metadata>
+          <Text>
             <FormatExpiration
               variant="preview"
               expirationTimestamp={expirationTimestamp}
             ></FormatExpiration>
           </Text>
-          <Text color="brandGray.400">•</Text>
-          <Text color="brandGray.400">{`${submissionCount} submissions`}</Text>
+          <Text as="span">・</Text>
+          <Text>{`${submissionCount} submissions`}</Text>
           {community !== undefined && (
             <Fragment>
-              <Text color="brandGray.400">•</Text>
-              <Link
-                variant="text.link"
-                href={community?.href}
-              >{`f • ${community?.name}`}</Link>
+              <Text as="span">・</Text>
+              <Link href={community?.href}>{`f/${community?.name}`}</Link>
             </Fragment>
           )}
-        </Description>
+        </Metadata>
       </Flex>
       <ValueContainer>
         <Text
-          variant="headingSans"
-          color="black"
-          sx={{ fontWeight: "semiBold" }}
+          variant="bodyStrong"
+          sx={{
+            textAlign: "right",
+            color: "black",
+            lineHeight: "reset",
+            mb: 2
+          }}
         >{`$${ethInUSD}`}</Text>
-        <Text variant="label" color="brandGray.400">{`${ethAmount} ETH`}</Text>
+        <Text variant="small" color="brandGray.400">{`${ethAmount} ETH`}</Text>
       </ValueContainer>
-    </Content>
+    </CardContent>
   </CardContainer>
 );
 
