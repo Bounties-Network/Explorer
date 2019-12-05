@@ -19,7 +19,7 @@ const Container = emotionStyled(Card)(() =>
     flexDirection: "row",
     width: "100%",
     padding: 4,
-    "> div:first-of-type": { position: "absolute", top: -2, left: 3 }
+    "> div:first-of-type": { position: "absolute", top: -3, left: 3 }
   })
 );
 
@@ -108,7 +108,9 @@ interface IProps {
 }
 const ExplorerCard: React.FunctionComponent<IProps> = props => (
   <Container>
-    <Pill variant={getStatusPillVariant(props.status)}>{props.status}</Pill>
+    <Pill variant={getStatusPillVariant(props.status)}>
+      <Text variant="body">{props.status}</Text>
+    </Pill>
     <MainDetails>
       <BountyMainDetails>
         <Link variant="text.link" href={props.href}>
@@ -128,9 +130,7 @@ const ExplorerCard: React.FunctionComponent<IProps> = props => (
                   : ""
               }`}
             >
-              <Text variant='body'>
-                {tag}
-              </Text>
+              <Text variant="body">{tag}</Text>
             </Pill>
           ))}
         </Tags>

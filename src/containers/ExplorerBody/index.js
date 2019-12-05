@@ -104,7 +104,7 @@ const ExplorerBodyComponent = props => {
           >
             {count}
           </Text>
-          <Text color="brandGray.400" sx={{ display: 'inline-block' }}>
+          <Text variant='body' color="brandGray.400" sx={{ display: 'inline-block' }}>
             {intl.get('sections.explorer_body.bounty_count', { count })}
           </Text>
         </div>

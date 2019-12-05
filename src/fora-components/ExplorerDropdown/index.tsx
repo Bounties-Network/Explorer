@@ -126,7 +126,7 @@ const selectStyles = (optionsLength): StylesConfig => ({
     ...provided,
     boxSizing: "border-box",
     borderRadius: theme.radius,
-    padding: `${theme.space[2]} ${theme.space[3]}`,
+    padding: `${theme.space[2]} ${theme.space[2]}`,
     border: state.isHovered || state.isFocused || state.isActive ? theme.borders.input.active : theme.borders.base,
     boxShadow: theme.shadows[0],
     "&:hover": {

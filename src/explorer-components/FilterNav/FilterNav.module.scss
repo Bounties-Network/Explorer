@@ -17,7 +17,7 @@
 
   @media only screen and (min-width: 65em) {
     width: $filterNav-width-large;
-    padding: $l-spacing;
+    padding: $m-spacing;
   }
 }
 
@@ -26,11 +26,10 @@
   @media only screen and (min-width: 48em) {
     top: $header-height-sm;
   }
-   @media only screen and (min-width: 65em) {
+  @media only screen and (min-width: 65em) {
     top: $header-height-lg;
   }
 }
-
 
 .searchWrapper {
   padding-bottom: $l-spacing;
