@@ -2,9 +2,10 @@
 import { jsx } from "theme-ui";
 import React from "react";
 import { Label } from "@rebass/forms";
-import { Box } from "rebass";
+import { Box, Text } from "@theme-ui/components";
 import { faCheck } from "@fortawesome/pro-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import typography from "theme/typography";
 
 const disabledStyles = {
   bg: "brandGray.200",
@@ -55,10 +56,18 @@ const Checkbox: React.FC<{
   onChange: any;
 }> = props => (
   <Label
-    sx={{ "> div:first-of-type": { mr: 2 } }}
-    variant="body"
+    sx={{
+      "> div:first-of-type": { mr: 2 },
+      "&:hover": {
+        color: "brandPrimary.300",
+        cursor: "pointer",
+        "> *": {
+          color: "brandPrimary.300"
+        }
+      }
+    }}
+    variant="text.body"
     color={props.checked ? "brandPrimary.300" : "brandGray.500"}
-    fontFamily="secondary"
     htmlFor={props.name}
   >
     <input {...props} type="checkbox" />

@@ -1,9 +1,12 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React from 'react';
 import styles from './ExplorerBody.module.scss';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Text, Loader, ZeroState, Button } from 'components';
+import {  Loader, ZeroState } from 'components';
+import { Text } from '@theme-ui/components'
 import { BountyCard } from 'explorer-components';
 import { map } from 'lodash';
 import { PAGE_SIZE } from 'public-modules/Bounties/constants';
@@ -14,6 +17,9 @@ import {
 import { actions } from 'public-modules/Bounties';
 import intl from 'react-intl-universal';
 import { faSlidersH } from '@fortawesome/pro-regular-svg-icons';
+import ExplorerCard from 'fora-components/Card/ExplorerCard';
+import { DIFFICULTY_MAPPINGS, STAGE_VALUES } from "public-modules/Bounty/constants";
+import Button from 'fora-components/Button'
 
 const ExplorerBodyComponent = props => {
   const {
@@ -46,22 +52,33 @@ const ExplorerBodyComponent = props => {
         bounty_stage
       } = bounty;
       return (
-        <BountyCard
+        <ExplorerCard
           key={id}
-          id={id}
+          token={token_symbol}
+          tokenInUSD={Number(Number(usd_price).toFixed(2))}
+          tokenValue={Number(calculated_fulfillment_amount)}
+          submissionCount={Number(fulfillment_count)}
+          community={{
+            name: "frontendDev",
+            href: "https://www.google.co.uk"
+          }}
+          avatar={{
+            img: user.small_profile_image_url,
+            variant: 'user',
+            name: user.name,
+            screenName: user.name,
+            address: user.public_address,
+            size: "small",
+            onDark: false
+          }}
+          deadline={moment(deadline)}
+          difficulty={intl.get(`sections.bounty.difficulties.${DIFFICULTY_MAPPINGS[experience_level]}`)}
+          tags={categories.map(category => category && category.name)}
+          currentTags={categoryFilters}
+          href={`/bounty/${id}`}
           title={title}
-          categories={categories}
-          img={user.small_profile_image_url}
-          address={user.public_address}
-          experience_level={experience_level}
-          submissions={fulfillment_count}
-          deadline={moment.utc(deadline, 'YYYY-MM-DDThh:mm:ssZ').fromNow(true)}
-          value={Number(calculated_fulfillment_amount)}
-          usd={Number(usd_price)}
-          currency={token_symbol}
-          onPillClick={toggleCategoryFilter}
-          selectedCategories={categoryFilters}
-          stage={bounty_stage}
+          status={String(STAGE_VALUES[bounty_stage]).replace('stages.', '')}
+          handleTagClick={toggleCategoryFilter}
         />
       );
     }, bounties);
@@ -78,16 +95,16 @@ const ExplorerBodyComponent = props => {
   return (
     <div className={`${bodyClass} explorer-body`}>
       <div className={styles.bodyHeading}>
-        <div>
+        <div sx={{  display: 'inline-block' }}>
           <Text
-            inline
-            color="purple"
-            typeScale="h2"
+            sx={{ display: 'inline-block', mr: 1, fontSize: 'h2' }}
+            color="brandPrimary.300"
+            typeScale="numeric"
             className={styles.bountyNumber}
           >
             {count}
           </Text>
-          <Text color="defaultGrey" inline>
+          <Text color="brandGray.400" sx={{ display: 'inline-block' }}>
             {intl.get('sections.explorer_body.bounty_count', { count })}
           </Text>
         </div>
@@ -103,11 +120,11 @@ const ExplorerBodyComponent = props => {
         </div>
       ) : null}
       {!loading && bounties.length !== 0 ? (
-        <div className={styles.bountyList}>
+        <div sx={{ '> :not( :last-child )': { mb: 5 }, py: 4 }}>
           {renderBounties()}
           {offset + PAGE_SIZE < count ? (
             <div className={styles.loadMoreButton}>
-              <Button loading={loadingMore} onClick={loadMoreBounties}>
+              <Button fullWidth={true} variant='secondary' isLoading={loadingMore} onClick={loadMoreBounties}>
                 {intl.get('actions.load_more')}
               </Button>
             </div>

@@ -38,6 +38,7 @@ function FilterNavComponentHOC(WrappedComponent, config) {
         toggleStageFilter: bountiesActions.toggleStageFilter,
         toggleDifficultyFilter: bountiesActions.toggleDifficultyFilter,
         togglePlatformFilter: bountiesActions.togglePlatformFilter,
+        removePlatformFilter: bountiesActions.removePlatformFilter,
         addCategoryFilter: bountiesActions.addCategoryFilter,
         addPlatformFilter: bountiesActions.addPlatformFilter,
         removeCategoryFilter: bountiesActions.removeCategoryFilter,

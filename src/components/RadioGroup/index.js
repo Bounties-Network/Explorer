@@ -1,8 +1,11 @@
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './RadioGroup.module.scss';
 import { map as fpMap } from 'lodash';
 import { Text } from 'components';
+import Radio from 'fora-components/Radio';
 
 const map = fpMap.convert({ cap: false });
 
@@ -24,19 +27,18 @@ class RadioGroup extends React.Component {
 
     return map(
       (option, idx) => (
-        <label key={'radio' + idx} className={`${styles.radioContainer}`}>
-          <input
-            className={`${styles.radio}`}
-            disabled={disabled}
-            type="radio"
-            checked={selectedValue === option[valueKey]}
-            onChange={() => this.onChange(option[valueKey])}
-          />{' '}
-          <span className={`${styles.customRadio}`} />
-          <Text type="Body" color="darkGrey" className={`${styles.radioLabel}`}>
-            {option[labelKey]}
-          </Text>{' '}
-        </label>
+        <Radio
+          key={`radio${idx}`}
+          id={`radio${idx}`}
+          checked={selectedValue === option[valueKey]}
+          label={option[labelKey]}
+          name={option[labelKey]}
+          value={option[labelKey]}
+          disabled={false}
+          onClick={() => {
+            this.onChange(option[valueKey])
+          }}
+        /> 
       ),
       options
     );
@@ -62,7 +64,7 @@ class RadioGroup extends React.Component {
             <Text inputLabel>{labelText}</Text>
           </div>
         ) : null}
-        <div className={`${styles.stagesBody}`}>
+        <div sx={{ '> :not(:last-of-type)': { mb: 2 } }}>
           {this.renderRadioButtons()}
         </div>
       </div>

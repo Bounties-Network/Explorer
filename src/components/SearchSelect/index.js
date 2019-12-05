@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SearchSelect.module.scss';
 import Select from 'react-select';
-import CreatableSelect from 'react-select/lib/Creatable';
+import CreatableSelect from 'react-select/creatable';
 import { reject, includes, map, find, isUndefined, unionBy } from 'lodash';
 import '../../styles/ReactSelect.scss';
 

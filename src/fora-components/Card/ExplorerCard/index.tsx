@@ -19,6 +19,7 @@ import { getStatusPillVariant } from "../../../utils/helpers";
 const Container = emotionStyled(Card)(() =>
   css({
     display: "flex",
+    background: 'white',
     position: "relative",
     flexDirection: "row",
     width: "100%",
@@ -30,19 +31,25 @@ const Container = emotionStyled(Card)(() =>
 const MainDetails = emotionStyled(Flex)(() =>
   css({
     flexDirection: "column",
+    maxWidth: '60%',
     "> :first-of-type": {
       mb: 3
     }
   })
 );
 const Tags = emotionStyled(Flex)(() =>
-  css({ display: "flex", "> :not(:last-of-type)": { mr: 2 } })
+  css({
+    display: "flex",
+    flexWrap: 'wrap',
+    mt: -1,
+    "> :not(:last-of-type)": { mr: 2, mb: 1 },
+  })
 );
 const BountyMainDetails = emotionStyled(Flex)(() =>
   css({
     display: "flex",
     flexDirection: "column",
-    "> :first-of-type": { mb: 3 }
+    "> a:first-of-type": { mb: 3 }
   })
 );
 const IssuerDetails = emotionStyled(Flex)(() =>
@@ -85,15 +92,11 @@ export type CommunityProps = {
 };
 const Community: React.FC<CommunityProps> = props => (
   <MetaDetail>
-    <FontAwesomeIcon
-      sx={{ color: "brandGray.300" }}
-      icon={faPeopleCarry}
-    ></FontAwesomeIcon>
-    <Link href={props.href}>{`f • ${props.name}`}</Link>
+    <FontAwesomeIcon sx={{ color: 'brandGray.300' }} icon={faPeopleCarry}></FontAwesomeIcon>
+    <Link variant="text.link" href={props.href}>{`f • ${props.name}`}</Link>
   </MetaDetail>
 );
 
-type Tag = { tag: string; href: string };
 interface IProps {
   status: string;
   title: string;
@@ -104,29 +107,31 @@ interface IProps {
   tokenInUSD: number;
   tokenValue: number;
   deadline: any;
-  tags: Tag[];
+  tags: string[];
   avatar: AvatarProps;
+  currentTags?: string[];
   community?: CommunityProps;
+  handleTagClick?: any;
 }
-
 const ExplorerCard: React.FunctionComponent<IProps> = props => (
   <Container>
     <Pill variant={getStatusPillVariant(props.status)}>{props.status}</Pill>
     <MainDetails>
       <BountyMainDetails>
-        <Link variant="text.link" href={props.href}>
-          <Text variant="headingSans">{props.title}</Text>
+        <Link variant='text.link' href={props.href}>
+          <Text variant="headingSans" sx={{ fontSize: 'h5' }}>{props.title}</Text>
         </Link>
         <Tags>
-          {props.tags.map(({ href, tag }) => (
-            <Link href={href}>
-              <Pill variant="tag.explorer">{tag}</Pill>
-            </Link>
+          {props.tags.map((tag) => (
+            <Pill key={tag} onClick={() => props.handleTagClick(tag.toLowerCase())} resourceType={tag}
+              variant={`pill.tag.explorer${Array.isArray(props.currentTags) && props.currentTags.map(tag => tag.toLowerCase()).includes(tag.toLowerCase()) ? '.active' : ''}`}></Pill>
           ))}
         </Tags>
       </BountyMainDetails>
       <IssuerDetails>
-        <Avatar {...props.avatar}></Avatar>
+        <Link variant='text.link' href={`/profile/${props.avatar.address}`}>
+          <Avatar {...props.avatar}></Avatar>
+        </Link>
       </IssuerDetails>
     </MainDetails>
 
@@ -158,26 +163,18 @@ const ExplorerCard: React.FunctionComponent<IProps> = props => (
             ></FormatExpiration>
           </MetaDetail>
         )}
-        {props.submissionCount && (
-          <MetaDetail>
-            <FontAwesomeIcon
-              sx={{ color: "brandGray.300" }}
-              icon={faArrowUp}
-            ></FontAwesomeIcon>
-            <Text
-              variant="body"
-              sx={{ fontWeight: "medium" }}
-            >{`${props.submissionCount}`}</Text>
-            <Text variant="body" color={"brandGray.300"}>{`submissions`}</Text>
-          </MetaDetail>
-        )}
+        <MetaDetail>
+          <FontAwesomeIcon sx={{ color: 'brandGray.300' }} icon={faArrowUp}></FontAwesomeIcon>
+          <Text variant="body" sx={{ fontWeight: 'medium' }}>{`${props.submissionCount}`}</Text>
+          <Text variant="body" color={"brandGray.300"}>{`submissions`}</Text>
+        </MetaDetail>
       </BountyMetaDetails>
       <BountyValue>
         <Text
           variant="numeric"
           sx={{
-            fontSize: "2xl",
-            fontWeight: "regular"
+            fontSize: "h2",
+            fontWeight: "normal"
           }}
           color="brandDestructive.200"
         >{`$${props.tokenInUSD}`}</Text>

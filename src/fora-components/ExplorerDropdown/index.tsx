@@ -63,11 +63,13 @@ const CommunityOption = props => (
     sx={{
       ...optionStyles(props.isOption),
       "> a": {
+        textDecoration: 'unset',
         color: props.isSelected ? theme.colors.brandPrimary[300] : theme.colors.brandGray[500],
         "*": {
           color: props.isSelected ? theme.colors.brandPrimary[300] : theme.colors.brandGray[500]
         },
         "&:hover": {
+          textDecoration: 'unset',
           color: theme.colors.brandPrimary[300],
           "*": { color: theme.colors.brandPrimary[300] }
         }
@@ -98,7 +100,7 @@ const SingleValue = props => {
       return <YourCommunitiesOption {...props} isOption={false}></YourCommunitiesOption>;
     }
     case "allBounties": {
-      return <AllBountiesOption {...props} isOption={ false }></AllBountiesOption>;
+      return <AllBountiesOption {...props} isOption={false}></AllBountiesOption>;
     }
     default: {
       return <CommunityOption {...props} isOption={false}></CommunityOption>;
@@ -162,6 +164,7 @@ const ExplorerDropdown: React.FunctionComponent<RSProps> = props => {
 
   return (
     <Select
+      defaultValue={props.defaultValue}
       styles={selectStyles(optionsLength)}
       value={props.value}
       onChange={props.handleChange}

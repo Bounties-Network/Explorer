@@ -18,19 +18,19 @@ const isStaging =
 // Create an http link:
 const httpLink = new HttpLink({
   headers: {
-    Authorization: authCookie()
+    Authorization: authCookie(),
   },
   uri:
     typeof process.env.APP_SETTINGS_FILE === "string" && process.env.APP_SETTINGS_FILE.includes("local")
       ? `http://localhost:8080/v1/graphql`
-      : `https://graphql-${isStaging ? "staging" : "production"}.bounties-network-flow.com/v1/graphql`,
+      : `https://graphql-${isStaging ? 'staging' : 'production'}.bounties-network-flow.com/v1/graphql`,
   credentials: "include"
 });
 
 let wsClient = new SubscriptionClient(
   typeof process.env.APP_SETTINGS_FILE === "string" && process.env.APP_SETTINGS_FILE.includes("local")
     ? `ws://localhost:8080/v1/graphql`
-    : `wss://graphql-${isStaging ? "staging" : "production"}.bounties-network-flow.com/v1/graphql`,
+    : `wss://graphql-${isStaging ? 'staging' : 'production'}.bounties-network-flow.com/v1/graphql`,
   {
     reconnect: true,
     connectionParams: () => ({
@@ -62,31 +62,31 @@ let client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-export default function apolloClient(reInit: boolean = false) {
+export default function apolloClient(reInit: boolean = false, token?: string) {
   if (!reInit) {
     return client
   }
   // Create an http link:
   const httpLink = new HttpLink({
     headers: {
-      Authorization: authCookie()
+      Authorization: token || authCookie()
     },
     uri:
       typeof process.env.APP_SETTINGS_FILE === "string" && process.env.APP_SETTINGS_FILE.includes("local")
         ? `http://localhost:8080/v1/graphql`
-        : `https://graphql-${isStaging ? "staging" : "production"}.bounties-network-flow.com/v1/graphql`,
+        : `https://graphql-${isStaging ? 'staging' : 'production'}.bounties-network-flow.com/v1/graphql`,
     credentials: "include"
   });
 
   wsClient = new SubscriptionClient(
     typeof process.env.APP_SETTINGS_FILE === "string" && process.env.APP_SETTINGS_FILE.includes("local")
       ? `ws://localhost:8080/v1/graphql`
-      : `wss://graphql-${isStaging ? "staging" : "production"}.bounties-network-flow.com/v1/graphql`,
+      : `wss://graphql-${isStaging ? 'staging' : 'production'}.bounties-network-flow.com/v1/graphql`,
     {
       reconnect: true,
       connectionParams: () => ({
         headers: {
-          Authorization: authCookie()
+          Authorization: token || authCookie()
         }
       })
     }
