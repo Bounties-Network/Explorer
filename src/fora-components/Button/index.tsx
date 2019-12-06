@@ -10,6 +10,9 @@ export type ButtonProps = {
   label?: string;
   isLoading?: boolean;
   fullWidth?: boolean;
+  onClick?: (
+    event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>
+  ) => void;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,6 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   label,
   isLoading,
   fullWidth,
+  onClick,
   ...props
 }) => (
   <button

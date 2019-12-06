@@ -71,9 +71,11 @@ const AvatarImage: React.FC<AvatarImageProps> = ({
   hasShadow = true,
   src = undefined,
   address,
-  linkToProfile = true
+  linkToProfile = true,
+  ...props
 }) => (
   <ImageContainer
+    {...props}
     href={linkToProfile ? "/profile/" + address : null}
     variant={variant}
     size={size}
