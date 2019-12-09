@@ -33,11 +33,12 @@ type AvatarNameProps = Pick<AvatarProps, "onDark" | "name">;
 const AvatarName: React.FC<AvatarNameProps> = props => (
   <Text
     {...props}
+    variant='bodyStrong'
     sx={{
+      fontWeight: "medium",
       color: props.onDark ? "white" : "black",
       mt: props.name ? "" : -1,
       mb: props.name ? 2 : 1,
-      fontWeight: "medium"
     }}
   />
 );
@@ -46,6 +47,7 @@ type AvatarAddressProps = Pick<AvatarProps, "onDark">;
 const AvatarAddress: React.FC<AvatarAddressProps> = props => (
   <Link
     {...props}
+    variant='text.link'
     sx={{
       color: props.onDark ? "transparentWhite" : "seaGlass.300",
       "a:hover &": { textDecoration: "underline" }

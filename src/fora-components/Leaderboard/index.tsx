@@ -1,5 +1,6 @@
 import React from "react";
-import { Flex, Button } from "rebass";
+import { Flex } from "@theme-ui/components";
+import Button from 'fora-components/Button'
 import styled from "lib/emotion-styled";
 import css from "@styled-system/css";
 import LeaderboardEntry from "./LeaderboardEntry";
@@ -14,7 +15,7 @@ const Container = styled(Flex)(() =>
 
 interface IProps {
   data: typeof mockLeaderboardData;
-  loadMore: () => void;
+  loadMore: any;
 }
 
 const Leaderboard: React.FC<IProps> = ({ data, loadMore }) => (
@@ -24,9 +25,8 @@ const Leaderboard: React.FC<IProps> = ({ data, loadMore }) => (
     ))}
     <Button
       onClick={loadMore}
-      variant="secondary"
-      color="seaGlass.300"
-      width={"100%"}
+      variant="secondary.affirmative"
+      fullWidth={true}
     >
       Load More
     </Button>

@@ -10,6 +10,7 @@ export type ButtonProps = {
   label?: string;
   isLoading?: boolean;
   fullWidth?: boolean;
+  onClick: any;
 };
 
 const Button: React.FC<ButtonProps> = ({
