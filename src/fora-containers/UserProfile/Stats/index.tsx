@@ -9,7 +9,7 @@ import { Community } from 'fora-components/TopCommunities';
 interface IProps {  }
 
 const CommunityMemberOf = () => (
-  <Flex sx={{ flexDirection: "column" }}>
+  <Flex sx={{ flexDirection: "column", '> a:not(:last-of-type)': { mb: 2 } }}>
     <Text variant='bodyStrong'>Member of</Text>
     <Divider></Divider>
     <Community
@@ -44,7 +44,7 @@ const CommunityMemberOf = () => (
 )
 
 const Stats: React.FunctionComponent<IProps> = (props) => (
-  <Flex sx={{ flexDirection: "column", }}>
+  <Flex sx={{ flexDirection: "column", pt: 2, '> div:first-of-type': { mb: 5 } }}>
     <IssuerFulfillerStatisticsCard
       averageRatingReceived={2}
       acceptanceRate={85}

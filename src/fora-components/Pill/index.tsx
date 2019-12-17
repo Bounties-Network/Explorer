@@ -8,13 +8,15 @@ export type PillProps = {
   size?: string;
   shape?: string;
   onClick?: any;
+  width?: any;
 };
 const Pill: React.FC<PillProps> = ({
   variant = "primary",
   shape = "rounded",
   size = "small",
   onClick,
-  children
+  children,
+  width
 }) => (
   <Flex
     onClick={onClick}
@@ -26,7 +28,8 @@ const Pill: React.FC<PillProps> = ({
       fontSize: size === "large" ? "body" : "small",
       px: size === "large" ? "0.75rem" : 2,
       py: 1,
-      cursor: onClick ? 'pointer' : 'default'
+      cursor: onClick ? 'pointer' : 'default',
+      width
     }}
   >
     {children}

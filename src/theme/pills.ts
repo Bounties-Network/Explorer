@@ -100,6 +100,10 @@ const pills = {
       backgroundColor: colors.brandPrimary["300"],
       color: colors.white
     }
+  },
+
+  address: {
+    background: 'linear-gradient(180deg, #BCE1E6 0%, #98D4DC 100%)',
   }
 };
 

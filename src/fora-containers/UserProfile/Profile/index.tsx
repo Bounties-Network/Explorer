@@ -8,7 +8,7 @@ import AvatarImage from "fora-components/AvatarImage";
 import Pill from "fora-components/Pill";
 import { shortenAddress } from "utils/helpers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBriefcase, faComments, faGlobe } from "@fortawesome/pro-regular-svg-icons";
+import { faBriefcase, faComments, faGlobe, faClipboard } from "@fortawesome/pro-regular-svg-icons";
 import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 interface IProps {}
@@ -69,8 +69,13 @@ const Profile: React.FunctionComponent<IProps> = props => (
     <Text variant="headingSerif" sx={{ fontSize: "h2" }}>
       Simona Pop
     </Text>
-    <Pill size="large" variant="status.affirmative">
-      {shortenAddress("0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67")}
+    <Pill onClick={() => {}} width="160px" size="large" variant="address">
+      <Flex sx={{ alignItems: 'center', '> div:first-of-type': { mr: 3 } }}>
+        <Text variant='body' color='brandPrimary.400'>
+          {shortenAddress("0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67")}
+        </Text>
+        <FontAwesomeIcon sx={{ color: 'brandPrimary.400' }} icon={faClipboard}></FontAwesomeIcon>
+      </Flex>
     </Pill>
     <Text variant="body">
       Imagination is everything. Co-Founder & CMO of Bounties Network and fora at ConsenSys. Queen bee of the hive. You
@@ -94,7 +99,7 @@ const Profile: React.FunctionComponent<IProps> = props => (
       <Text variant="bodyStrong" sx={{ fontSize: "h5" }}>
         Skills
       </Text>
-      <Flex sx={{ flexWrap: "wrap", minWidth: "250px", m: -1, "> *": { m: 1 } }}>
+      <Flex sx={{ flexWrap: "wrap", minWidth: "250px", "> *:not(:last-of-type)": { mr: 1, mb: 1 } }}>
         <SkillPill category="React"></SkillPill>
         <SkillPill category="CSS"></SkillPill>
         <SkillPill category="HTML"></SkillPill>

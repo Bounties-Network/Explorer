@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import React from "react";
-import { Link, Text, Flex } from "rebass";
+import { Link, Text, Flex } from "@theme-ui/components";
 import styled from "lib/emotion-styled";
 import css from "@styled-system/css";
 import Divider from "fora-components/Divider";
@@ -14,6 +14,7 @@ const CommunitiesContainer = styled(Flex)(() =>
 );
 const CommunityContainer = styled(Flex)(() =>
   css({
+    alignItems: 'center',
     cursor: "pointer",
     "> :first-of-type": { mr: 3 }
   })
@@ -34,10 +35,10 @@ export const Community: React.FC<ICommunityProps> = ({
   id,
   isOption
 }) => (
-  <Link href={isOption ? undefined : `/community/${id}`}>
-    <CommunityContainer alignItems="center">
+  <Link variant="text.link" href={isOption ? undefined : `/community/${id}`}>
+    <CommunityContainer>
       <AvatarImage variant={"community"} src={src} />
-      <Flex flexDirection="column">
+      <Flex sx={{ flexDirection: 'column' }}>
         <Text color="black" variant="body" sx={{ fontWeight: "medium" }}>
           {`f • ${name}`}
         </Text>
