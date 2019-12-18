@@ -34,9 +34,9 @@ const Description = emotionStyled(Box)(() =>
     "> a": { ml: 1 }
   })
 );
-const Content = emotionStyled(Flex)(() => css({ "> :first-child": { mr: 5 } }));
+const Content = emotionStyled(Flex)(() => css({ "> :first-child": { mr: 'auto' } }));
 const ValueContainer = emotionStyled(Flex)(() =>
-  css({ "> *:first-of-type": { mb: 2 }, flexDirection: "column" })
+  css({ "> *:first-of-type": { mb: 2 }, flexDirection: "column", alignItems: 'flex-end' })
 );
 
 type PreviewCardProps = {
