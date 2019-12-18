@@ -176,7 +176,9 @@ export function* createFulfillment(action) {
       // console.log(fulfillEstimateGasCost);
       // console.log(accountbalanceWei);
       if (
-        (contract_version == '2.2' || contract_version == '2.3') &&
+        (contract_version == '2.2' ||
+          contract_version == '2.3' ||
+          contract_version == '2.4') &&
         fulfillEstimateGasCost + 50000 > accountbalanceWei
       ) {
         // Use meta transaction relayer, user does not have enough funds
@@ -184,7 +186,9 @@ export function* createFulfillment(action) {
         const fulfillers = [sender];
         const { latestNonce } = yield call(
           request,
-          `${siteConfig.relayerApiURL}/${contractVersion}/relay/nonce/${sender}`,
+          `${
+            siteConfig.relayerApiURL
+          }/${contractVersion}/relay/nonce/${sender}`,
           'GET',
           {
             withCredentials: null
@@ -333,13 +337,17 @@ export function* updateFulfillment(action) {
       );
 
       if (
-        (contract_version == '2.2' || contract_version == '2.3') &&
+        (contract_version == '2.2' ||
+          contract_version == '2.3' ||
+          contract_version == '2.4') &&
         updateFulfillmentEstimateGasCost + 50000 > accountbalanceWei
       ) {
         const sender = web3.utils.toChecksumAddress(userAddress);
         const { latestNonce } = yield call(
           request,
-          `${siteConfig.relayerApiURL}/${contractVersion}/relay/nonce/${sender}`,
+          `${
+            siteConfig.relayerApiURL
+          }/${contractVersion}/relay/nonce/${sender}`,
           'GET',
           {
             withCredentials: null
