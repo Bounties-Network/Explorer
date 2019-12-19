@@ -807,6 +807,18 @@ export function* transferIssuer(action) {
         id,
         address
       );
+    } else if (contract_version === '2.4') {
+      txHash = yield call(
+        promisifyContractCall(standardBounties.changeIssuerAndApprover, {
+          from: userAddress
+        }),
+        userAddress,
+        id,
+        0,
+        0,
+        0,
+        address
+      );
     } else if (
       typeof contract_version === 'string' &&
       contract_version.split('.')[0] === '2'

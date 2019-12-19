@@ -10,19 +10,21 @@
     "rinkeby": "https://api.bounties.network"
   },
   "requiredNetwork": "mainNet",
-  "contractVersion": "2.3",
+  "contractVersion": "2.4",
   "mainNet": {
     "standardBountiesAddressV1": "0x2af47a65da8CD66729b4209C22017d6A5C2d2400",
     "standardBountiesAddressV2": "0xe7f69ea2a79521136ee0bf3c50f6b5f1ea0ab0cd",
     "standardBountiesAddressV2.1": "0x43ee232734097B07803Ea605b49C6eE6Bf10f8cc",
     "standardBountiesAddressV2.2": "0x6e77f91ba0ae5278763ec3f044a1f0e5f85fac0a",
-    "standardBountiesAddressV2.3": "0xa7135d0a62939501b5304a04bf00d1a9a22f6623"
+    "standardBountiesAddressV2.3": "0xa7135d0a62939501b5304a04bf00d1a9a22f6623",
+    "standardBountiesAddressV2.4": "0x51598ae36102010feca5322098b22dd5b773428b"
   },
   "rinkeby": {
     "standardBountiesAddressV1": "0x2af47a65da8CD66729b4209C22017d6A5C2d2400",
     "standardBountiesAddressV2": "0xe7f69ea2a79521136ee0bf3c50f6b5f1ea0ab0cd",
     "standardBountiesAddressV2.1": "0x43ee232734097B07803Ea605b49C6eE6Bf10f8cc",
     "standardBountiesAddressV2.2": "0x6e77f91ba0ae5278763ec3f044a1f0e5f85fac0a",
-    "standardBountiesAddressV2.3": "0xa7135d0a62939501b5304a04bf00d1a9a22f6623"
+    "standardBountiesAddressV2.3": "0xa7135d0a62939501b5304a04bf00d1a9a22f6623",
+    "standardBountiesAddressV2.4": "0x51598ae36102010feca5322098b22dd5b773428b"
   }
 }
