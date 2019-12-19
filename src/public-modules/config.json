@@ -8715,82 +8715,47 @@
         "type": "function"
       }
     ],
-    "StandardBountiesV1": [
+    "BountiesMetaTxRelayerV2.4": [
       {
-        "constant": false,
         "inputs": [
           {
-            "name": "_bountyId",
-            "type": "uint256"
-          }
-        ],
-        "name": "killBounty",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          }
-        ],
-        "name": "getBountyToken",
-        "outputs": [
-          {
-            "name": "",
+            "internalType": "address",
+            "name": "_contract",
             "type": "address"
           }
         ],
         "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          },
-          {
-            "name": "_data",
-            "type": "string"
-          }
-        ],
-        "name": "fulfillBounty",
-        "outputs": [],
-        "payable": false,
         "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          },
-          {
-            "name": "_newDeadline",
-            "type": "uint256"
-          }
-        ],
-        "name": "extendDeadline",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
+        "type": "constructor"
       },
       {
         "constant": true,
         "inputs": [],
-        "name": "getNumBounties",
+        "name": "bountiesContract",
         "outputs": [
           {
+            "internalType": "contract StandardBounties",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "replayNonce",
+        "outputs": [
+          {
+            "internalType": "uint256",
             "name": "",
             "type": "uint256"
           }
@@ -8803,135 +8768,50 @@
         "constant": false,
         "inputs": [
           {
-            "name": "_bountyId",
-            "type": "uint256"
+            "internalType": "bytes",
+            "name": "signature",
+            "type": "bytes"
           },
           {
-            "name": "_fulfillmentId",
-            "type": "uint256"
+            "internalType": "address payable[]",
+            "name": "_issuers",
+            "type": "address[]"
           },
           {
+            "internalType": "address[]",
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "string",
             "name": "_data",
             "type": "string"
-          }
-        ],
-        "name": "updateFulfillment",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
           },
           {
-            "name": "_newFulfillmentAmount",
-            "type": "uint256"
-          },
-          {
-            "name": "_value",
-            "type": "uint256"
-          }
-        ],
-        "name": "increasePayout",
-        "outputs": [],
-        "payable": true,
-        "stateMutability": "payable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          },
-          {
-            "name": "_newFulfillmentAmount",
-            "type": "uint256"
-          }
-        ],
-        "name": "changeBountyFulfillmentAmount",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          },
-          {
-            "name": "_newIssuer",
-            "type": "address"
-          }
-        ],
-        "name": "transferIssuer",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          },
-          {
-            "name": "_value",
-            "type": "uint256"
-          }
-        ],
-        "name": "activateBounty",
-        "outputs": [],
-        "payable": true,
-        "stateMutability": "payable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_issuer",
-            "type": "address"
-          },
-          {
+            "internalType": "uint256",
             "name": "_deadline",
             "type": "uint256"
           },
           {
-            "name": "_data",
-            "type": "string"
+            "internalType": "address",
+            "name": "_token",
+            "type": "address"
           },
           {
-            "name": "_fulfillmentAmount",
+            "internalType": "uint256",
+            "name": "_tokenVersion",
             "type": "uint256"
           },
           {
-            "name": "_arbiter",
-            "type": "address"
-          },
-          {
-            "name": "_paysTokens",
-            "type": "bool"
-          },
-          {
-            "name": "_tokenContract",
-            "type": "address"
+            "internalType": "uint256",
+            "name": "_nonce",
+            "type": "uint256"
           }
         ],
-        "name": "issueBounty",
+        "name": "metaIssueBounty",
         "outputs": [
           {
+            "internalType": "uint256",
             "name": "",
             "type": "uint256"
           }
@@ -8944,163 +8824,248 @@
         "constant": false,
         "inputs": [
           {
-            "name": "_issuer",
-            "type": "address"
+            "internalType": "bytes",
+            "name": "signature",
+            "type": "bytes"
           },
           {
+            "internalType": "address payable[]",
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "address[]",
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
             "name": "_deadline",
             "type": "uint256"
           },
           {
+            "internalType": "address",
+            "name": "_token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_tokenVersion",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_depositAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaIssueAndContribute",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaContribute",
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_contributionId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaRefundContribution",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "_contributionIds",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaRefundMyContributions",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "_contributionIds",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaRefundContributions",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "_amounts",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaDrainBounty",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
             "name": "_data",
             "type": "string"
           },
           {
-            "name": "_fulfillmentAmount",
-            "type": "uint256"
-          },
-          {
-            "name": "_arbiter",
-            "type": "address"
-          },
-          {
-            "name": "_paysTokens",
-            "type": "bool"
-          },
-          {
-            "name": "_tokenContract",
-            "type": "address"
-          },
-          {
-            "name": "_value",
+            "internalType": "uint256",
+            "name": "_nonce",
             "type": "uint256"
           }
         ],
-        "name": "issueAndActivateBounty",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": true,
-        "stateMutability": "payable",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          }
-        ],
-        "name": "getBountyArbiter",
-        "outputs": [
-          {
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          },
-          {
-            "name": "_value",
-            "type": "uint256"
-          }
-        ],
-        "name": "contribute",
-        "outputs": [],
-        "payable": true,
-        "stateMutability": "payable",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "owner",
-        "outputs": [
-          {
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          }
-        ],
-        "name": "getBountyData",
-        "outputs": [
-          {
-            "name": "",
-            "type": "string"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          },
-          {
-            "name": "_fulfillmentId",
-            "type": "uint256"
-          }
-        ],
-        "name": "getFulfillment",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          },
-          {
-            "name": "",
-            "type": "address"
-          },
-          {
-            "name": "",
-            "type": "string"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          },
-          {
-            "name": "_newArbiter",
-            "type": "address"
-          }
-        ],
-        "name": "changeBountyArbiter",
+        "name": "metaPerformAction",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
@@ -9110,967 +9075,323 @@
         "constant": false,
         "inputs": [
           {
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
             "name": "_bountyId",
             "type": "uint256"
           },
           {
-            "name": "_newDeadline",
-            "type": "uint256"
-          }
-        ],
-        "name": "changeBountyDeadline",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
+            "internalType": "address payable[]",
+            "name": "_fulfillers",
+            "type": "address[]"
           },
           {
-            "name": "_fulfillmentId",
-            "type": "uint256"
-          }
-        ],
-        "name": "acceptFulfillment",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "name": "bounties",
-        "outputs": [
-          {
-            "name": "issuer",
-            "type": "address"
-          },
-          {
-            "name": "deadline",
-            "type": "uint256"
-          },
-          {
-            "name": "data",
+            "internalType": "string",
+            "name": "_data",
             "type": "string"
           },
           {
-            "name": "fulfillmentAmount",
-            "type": "uint256"
-          },
-          {
-            "name": "arbiter",
-            "type": "address"
-          },
-          {
-            "name": "paysTokens",
-            "type": "bool"
-          },
-          {
-            "name": "bountyStage",
-            "type": "uint8"
-          },
-          {
-            "name": "balance",
+            "internalType": "uint256",
+            "name": "_nonce",
             "type": "uint256"
           }
         ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          }
-        ],
-        "name": "getBounty",
-        "outputs": [
-          {
-            "name": "",
-            "type": "address"
-          },
-          {
-            "name": "",
-            "type": "uint256"
-          },
-          {
-            "name": "",
-            "type": "uint256"
-          },
-          {
-            "name": "",
-            "type": "bool"
-          },
-          {
-            "name": "",
-            "type": "uint256"
-          },
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_bountyId",
-            "type": "uint256"
-          },
-          {
-            "name": "_newData",
-            "type": "string"
-          }
-        ],
-        "name": "changeBountyData",
+        "name": "metaFulfillBounty",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
       },
       {
-        "constant": true,
+        "constant": false,
         "inputs": [
           {
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
             "name": "_bountyId",
             "type": "uint256"
-          }
-        ],
-        "name": "getNumFulfillments",
-        "outputs": [
+          },
           {
-            "name": "",
+            "internalType": "uint256",
+            "name": "_fulfillmentId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable[]",
+            "name": "_fulfillers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
             "type": "uint256"
           }
         ],
+        "name": "metaUpdateFulfillment",
+        "outputs": [],
         "payable": false,
-        "stateMutability": "view",
+        "stateMutability": "nonpayable",
         "type": "function"
       },
       {
+        "constant": false,
         "inputs": [
           {
-            "name": "_owner",
-            "type": "address"
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_fulfillmentId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_approverId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "_tokenAmounts",
+            "type": "uint256[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
+            "type": "uint256"
           }
         ],
+        "name": "metaAcceptFulfillment",
+        "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
-        "type": "constructor"
+        "type": "function"
       },
       {
-        "anonymous": false,
+        "constant": false,
         "inputs": [
           {
-            "indexed": false,
-            "name": "bountyId",
-            "type": "uint256"
-          }
-        ],
-        "name": "BountyIssued",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "bountyId",
-            "type": "uint256"
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
           },
           {
-            "indexed": false,
-            "name": "issuer",
-            "type": "address"
-          }
-        ],
-        "name": "BountyActivated",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "bountyId",
-            "type": "uint256"
-          },
-          {
-            "indexed": true,
-            "name": "fulfiller",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "name": "_fulfillmentId",
-            "type": "uint256"
-          }
-        ],
-        "name": "BountyFulfilled",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
+            "internalType": "uint256",
             "name": "_bountyId",
             "type": "uint256"
           },
           {
-            "indexed": false,
-            "name": "_fulfillmentId",
-            "type": "uint256"
-          }
-        ],
-        "name": "FulfillmentUpdated",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
+            "internalType": "address payable[]",
+            "name": "_fulfillers",
+            "type": "address[]"
+          },
           {
-            "indexed": false,
-            "name": "bountyId",
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_approverId",
             "type": "uint256"
           },
           {
-            "indexed": true,
-            "name": "fulfiller",
-            "type": "address"
+            "internalType": "uint256[]",
+            "name": "_tokenAmounts",
+            "type": "uint256[]"
           },
           {
-            "indexed": true,
-            "name": "_fulfillmentId",
+            "internalType": "uint256",
+            "name": "_nonce",
             "type": "uint256"
           }
         ],
-        "name": "FulfillmentAccepted",
-        "type": "event"
+        "name": "metaFulfillAndAccept",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
       },
       {
-        "anonymous": false,
+        "constant": false,
         "inputs": [
           {
-            "indexed": false,
-            "name": "bountyId",
-            "type": "uint256"
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
           },
           {
-            "indexed": true,
-            "name": "issuer",
-            "type": "address"
-          }
-        ],
-        "name": "BountyKilled",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "bountyId",
-            "type": "uint256"
-          },
-          {
-            "indexed": true,
-            "name": "contributor",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "value",
-            "type": "uint256"
-          }
-        ],
-        "name": "ContributionAdded",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "bountyId",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "newDeadline",
-            "type": "uint256"
-          }
-        ],
-        "name": "DeadlineExtended",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
-            "name": "bountyId",
-            "type": "uint256"
-          }
-        ],
-        "name": "BountyChanged",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": false,
+            "internalType": "uint256",
             "name": "_bountyId",
             "type": "uint256"
           },
           {
-            "indexed": true,
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable[]",
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "address payable[]",
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_deadline",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "metaChangeBounty",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerIdToChange",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable",
             "name": "_newIssuer",
             "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
+            "type": "uint256"
           }
         ],
-        "name": "IssuerTransferred",
-        "type": "event"
+        "name": "metaChangeIssuer",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
       },
       {
-        "anonymous": false,
+        "constant": false,
         "inputs": [
           {
-            "indexed": false,
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
             "name": "_bountyId",
             "type": "uint256"
           },
           {
-            "indexed": false,
-            "name": "_newFulfillmentAmount",
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_approverId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable",
+            "name": "_approver",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
             "type": "uint256"
           }
         ],
-        "name": "PayoutIncreased",
-        "type": "event"
-      }
-    ],
-    "DSToken": [
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "name",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bytes32"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [],
-        "name": "stop",
+        "name": "metaChangeApprover",
         "outputs": [],
         "payable": false,
+        "stateMutability": "nonpayable",
         "type": "function"
       },
       {
         "constant": false,
         "inputs": [
           {
-            "name": "guy",
-            "type": "address"
-          },
-          {
-            "name": "wad",
-            "type": "uint256"
-          }
-        ],
-        "name": "approve",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "owner_",
-            "type": "address"
-          }
-        ],
-        "name": "setOwner",
-        "outputs": [],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "totalSupply",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "src",
-            "type": "address"
-          },
-          {
-            "name": "dst",
-            "type": "address"
-          },
-          {
-            "name": "wad",
-            "type": "uint256"
-          }
-        ],
-        "name": "transferFrom",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "decimals",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "dst",
-            "type": "address"
-          },
-          {
-            "name": "wad",
-            "type": "uint128"
-          }
-        ],
-        "name": "push",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "name_",
-            "type": "bytes32"
-          }
-        ],
-        "name": "setName",
-        "outputs": [],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "wad",
-            "type": "uint128"
-          }
-        ],
-        "name": "mint",
-        "outputs": [],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "src",
-            "type": "address"
-          }
-        ],
-        "name": "balanceOf",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "stopped",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "authority_",
-            "type": "address"
-          }
-        ],
-        "name": "setAuthority",
-        "outputs": [],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "src",
-            "type": "address"
-          },
-          {
-            "name": "wad",
-            "type": "uint128"
-          }
-        ],
-        "name": "pull",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "owner",
-        "outputs": [
-          {
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "wad",
-            "type": "uint128"
-          }
-        ],
-        "name": "burn",
-        "outputs": [],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "symbol",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bytes32"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "dst",
-            "type": "address"
-          },
-          {
-            "name": "wad",
-            "type": "uint256"
-          }
-        ],
-        "name": "transfer",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [],
-        "name": "start",
-        "outputs": [],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "authority",
-        "outputs": [
-          {
-            "name": "",
-            "type": "address"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "src",
-            "type": "address"
-          },
-          {
-            "name": "guy",
-            "type": "address"
-          }
-        ],
-        "name": "allowance",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "name": "symbol_",
-            "type": "bytes32"
-          }
-        ],
-        "payable": false,
-        "type": "constructor"
-      },
-      {
-        "anonymous": true,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "sig",
-            "type": "bytes4"
-          },
-          {
-            "indexed": true,
-            "name": "guy",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "name": "foo",
-            "type": "bytes32"
-          },
-          {
-            "indexed": true,
-            "name": "bar",
-            "type": "bytes32"
-          },
-          {
-            "indexed": false,
-            "name": "wad",
-            "type": "uint256"
-          },
-          {
-            "indexed": false,
-            "name": "fax",
+            "internalType": "bytes",
+            "name": "_signature",
             "type": "bytes"
-          }
-        ],
-        "name": "LogNote",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "authority",
-            "type": "address"
-          }
-        ],
-        "name": "LogSetAuthority",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "owner",
-            "type": "address"
-          }
-        ],
-        "name": "LogSetOwner",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "from",
-            "type": "address"
           },
           {
-            "indexed": true,
-            "name": "to",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "value",
+            "internalType": "uint256",
+            "name": "_bountyId",
             "type": "uint256"
-          }
-        ],
-        "name": "Transfer",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "owner",
-            "type": "address"
           },
           {
-            "indexed": true,
-            "name": "spender",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "value",
+            "internalType": "uint256",
+            "name": "_issuerId",
             "type": "uint256"
-          }
-        ],
-        "name": "Approval",
-        "type": "event"
-      }
-    ],
-    "HumanStandardToken": [
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "name",
-        "outputs": [
+          },
           {
-            "name": "",
+            "internalType": "string",
+            "name": "_data",
             "type": "string"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_spender",
-            "type": "address"
           },
           {
-            "name": "_value",
+            "internalType": "uint256",
+            "name": "_nonce",
             "type": "uint256"
           }
         ],
-        "name": "approve",
-        "outputs": [
-          {
-            "name": "success",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "totalSupply",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_from",
-            "type": "address"
-          },
-          {
-            "name": "_to",
-            "type": "address"
-          },
-          {
-            "name": "_value",
-            "type": "uint256"
-          }
-        ],
-        "name": "transferFrom",
-        "outputs": [
-          {
-            "name": "success",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "decimals",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint8"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "version",
-        "outputs": [
-          {
-            "name": "",
-            "type": "string"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "_owner",
-            "type": "address"
-          }
-        ],
-        "name": "balanceOf",
-        "outputs": [
-          {
-            "name": "balance",
-            "type": "uint256"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "symbol",
-        "outputs": [
-          {
-            "name": "",
-            "type": "string"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "_to",
-            "type": "address"
-          },
-          {
-            "name": "_value",
-            "type": "uint256"
-          }
-        ],
-        "name": "transfer",
-        "outputs": [
-          {
-            "name": "success",
-            "type": "bool"
-          }
-        ],
+        "name": "metaChangeData",
+        "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
@@ -10079,118 +9400,106 @@
         "constant": false,
         "inputs": [
           {
-            "name": "_spender",
-            "type": "address"
-          },
-          {
-            "name": "_value",
-            "type": "uint256"
-          },
-          {
-            "name": "_extraData",
+            "internalType": "bytes",
+            "name": "_signature",
             "type": "bytes"
-          }
-        ],
-        "name": "approveAndCall",
-        "outputs": [
+          },
           {
-            "name": "success",
-            "type": "bool"
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_deadline",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
+            "type": "uint256"
           }
         ],
+        "name": "metaChangeDeadline",
+        "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
         "type": "function"
       },
       {
-        "constant": true,
+        "constant": false,
         "inputs": [
           {
-            "name": "_owner",
-            "type": "address"
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
           },
           {
-            "name": "_spender",
-            "type": "address"
-          }
-        ],
-        "name": "allowance",
-        "outputs": [
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
           {
-            "name": "remaining",
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable[]",
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_nonce",
             "type": "uint256"
           }
         ],
+        "name": "metaAddIssuers",
+        "outputs": [],
         "payable": false,
-        "stateMutability": "view",
+        "stateMutability": "nonpayable",
         "type": "function"
       },
       {
+        "constant": false,
         "inputs": [
           {
-            "name": "_initialAmount",
+            "internalType": "bytes",
+            "name": "_signature",
+            "type": "bytes"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
             "type": "uint256"
           },
           {
-            "name": "_tokenName",
-            "type": "string"
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
           },
           {
-            "name": "_decimalUnits",
-            "type": "uint8"
+            "internalType": "address[]",
+            "name": "_approvers",
+            "type": "address[]"
           },
           {
-            "name": "_tokenSymbol",
-            "type": "string"
+            "internalType": "uint256",
+            "name": "_nonce",
+            "type": "uint256"
           }
         ],
+        "name": "metaAddApprovers",
+        "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
-        "type": "constructor"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "_from",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "name": "_to",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "_value",
-            "type": "uint256"
-          }
-        ],
-        "name": "Transfer",
-        "type": "event"
-      },
-      {
-        "anonymous": false,
-        "inputs": [
-          {
-            "indexed": true,
-            "name": "_owner",
-            "type": "address"
-          },
-          {
-            "indexed": true,
-            "name": "_spender",
-            "type": "address"
-          },
-          {
-            "indexed": false,
-            "name": "_value",
-            "type": "uint256"
-          }
-        ],
-        "name": "Approval",
-        "type": "event"
+        "type": "function"
       }
     ],
     "StandardBountiesV2.3": [
@@ -11375,6 +10684,1357 @@
           {
             "name": "",
             "type": "bool"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ],
+    "StandardBountiesV2.4": [
+      {
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "_fulfiller",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          }
+        ],
+        "name": "ActionPerformed",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "_changer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "address[]",
+            "name": "_approvers",
+            "type": "address[]"
+          }
+        ],
+        "name": "BountyApproversUpdated",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "_changer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "address payable[]",
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "indexed": false,
+            "internalType": "address payable[]",
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_deadline",
+            "type": "uint256"
+          }
+        ],
+        "name": "BountyChanged",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "_changer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          }
+        ],
+        "name": "BountyDataChanged",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "_changer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_deadline",
+            "type": "uint256"
+          }
+        ],
+        "name": "BountyDeadlineChanged",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "_issuer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256[]",
+            "name": "_amounts",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "BountyDrained",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_fulfillmentId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address payable[]",
+            "name": "_fulfillers",
+            "type": "address[]"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "_submitter",
+            "type": "address"
+          }
+        ],
+        "name": "BountyFulfilled",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address payable",
+            "name": "_creator",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "address payable[]",
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "indexed": false,
+            "internalType": "address[]",
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_deadline",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "_token",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_tokenVersion",
+            "type": "uint256"
+          }
+        ],
+        "name": "BountyIssued",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "_changer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "address payable[]",
+            "name": "_issuers",
+            "type": "address[]"
+          }
+        ],
+        "name": "BountyIssuersUpdated",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_contributionId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address payable",
+            "name": "_contributor",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "ContributionAdded",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_contributionId",
+            "type": "uint256"
+          }
+        ],
+        "name": "ContributionRefunded",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "_issuer",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256[]",
+            "name": "_contributionIds",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "ContributionsRefunded",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_fulfillmentId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "_approver",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256[]",
+            "name": "_tokenAmounts",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "FulfillmentAccepted",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "_fulfillmentId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address payable[]",
+            "name": "_fulfillers",
+            "type": "address[]"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          }
+        ],
+        "name": "FulfillmentUpdated",
+        "type": "event"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "bounties",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "deadline",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokenVersion",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "balance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "hasPaidOut",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "callStarted",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "metaTxRelayer",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "numBounties",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "tokenBalances",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_relayer",
+            "type": "address"
+          }
+        ],
+        "name": "setMetaTxRelayer",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address payable",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "address payable[]",
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "address[]",
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_deadline",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "_token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_tokenVersion",
+            "type": "uint256"
+          }
+        ],
+        "name": "issueBounty",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address payable",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "address payable[]",
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "address[]",
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_deadline",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "_token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_tokenVersion",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_depositAmount",
+            "type": "uint256"
+          }
+        ],
+        "name": "issueAndContribute",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address payable",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "contribute",
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_contributionId",
+            "type": "uint256"
+          }
+        ],
+        "name": "refundContribution",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "_contributionIds",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "refundMyContributions",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "_contributionIds",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "refundContributions",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address payable",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "_amounts",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "drainBounty",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          }
+        ],
+        "name": "performAction",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable[]",
+            "name": "_fulfillers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          }
+        ],
+        "name": "fulfillBounty",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_fulfillmentId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable[]",
+            "name": "_fulfillers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          }
+        ],
+        "name": "updateFulfillment",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_fulfillmentId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_approverId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "_tokenAmounts",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "acceptFulfillment",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable[]",
+            "name": "_fulfillers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_approverId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "_tokenAmounts",
+            "type": "uint256[]"
+          }
+        ],
+        "name": "fulfillAndAccept",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable[]",
+            "name": "_issuers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "address payable[]",
+            "name": "_approvers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_deadline",
+            "type": "uint256"
+          }
+        ],
+        "name": "changeBounty",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerIdToChange",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable",
+            "name": "_newIssuer",
+            "type": "address"
+          }
+        ],
+        "name": "changeIssuer",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_approverId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable",
+            "name": "_approver",
+            "type": "address"
+          }
+        ],
+        "name": "changeApprover",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerIdToChange",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_approverIdToChange",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable",
+            "name": "_issuer",
+            "type": "address"
+          }
+        ],
+        "name": "changeIssuerAndApprover",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "_data",
+            "type": "string"
+          }
+        ],
+        "name": "changeData",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_deadline",
+            "type": "uint256"
+          }
+        ],
+        "name": "changeDeadline",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address payable[]",
+            "name": "_issuers",
+            "type": "address[]"
+          }
+        ],
+        "name": "addIssuers",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_sender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_issuerId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address[]",
+            "name": "_approvers",
+            "type": "address[]"
+          }
+        ],
+        "name": "addApprovers",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_bountyId",
+            "type": "uint256"
+          }
+        ],
+        "name": "getBounty",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "address payable[]",
+                "name": "issuers",
+                "type": "address[]"
+              },
+              {
+                "internalType": "address[]",
+                "name": "approvers",
+                "type": "address[]"
+              },
+              {
+                "internalType": "uint256",
+                "name": "deadline",
+                "type": "uint256"
+              },
+              {
+                "internalType": "address",
+                "name": "token",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "tokenVersion",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "balance",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "hasPaidOut",
+                "type": "bool"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "address payable[]",
+                    "name": "fulfillers",
+                    "type": "address[]"
+                  },
+                  {
+                    "internalType": "address",
+                    "name": "submitter",
+                    "type": "address"
+                  }
+                ],
+                "internalType": "struct StandardBounties.Fulfillment[]",
+                "name": "fulfillments",
+                "type": "tuple[]"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "address payable",
+                    "name": "contributor",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                  },
+                  {
+                    "internalType": "bool",
+                    "name": "refunded",
+                    "type": "bool"
+                  }
+                ],
+                "internalType": "struct StandardBounties.Contribution[]",
+                "name": "contributions",
+                "type": "tuple[]"
+              }
+            ],
+            "internalType": "struct StandardBounties.Bounty",
+            "name": "",
+            "type": "tuple"
           }
         ],
         "payable": false,
