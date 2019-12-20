@@ -14,3 +14,6 @@ storiesOf("fora-app/UserProfileContainer", module)
         <UserProfileContainer address={'0x54becc7560a7be76d72ed76a1f5fee6c5a2a7ab6'} />
     );
   })
+  .add("Eric", () =>     (
+    <UserProfileContainer address={'0x1322dd1fa43891086c90424c1a919f008e390bd2'} />
+))

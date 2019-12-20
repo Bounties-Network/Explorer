@@ -5,6 +5,7 @@ import { Tabs, TabList, Tab, TabPanels, TabPanel } from "fora-components/Tabs";
 import ActivityFeed from 'fora-components/ActivityFeed/View';
 import Bounties from './Bounties';
 import { Text } from '@theme-ui/components'
+import Submissions from './Submissions';
 
 interface IProps { address: string }
 
@@ -30,7 +31,7 @@ const Content: React.FunctionComponent<IProps> = ({ address }) => (
         <Bounties address={address}></Bounties>
       </TabPanel>
       <TabPanel>
-        Submissions
+        <Submissions address={address}></Submissions>
       </TabPanel>
     </TabPanels>
   </Tabs>

@@ -48,7 +48,7 @@ const ReplyContainer = emotionStyled(Flex)(() =>
 
 export type Commenter = Pick<
   AvatarProps,
-  "name" | "screenName" | "address" | "src" | "onDark"
+  "name" | "address" | "src" | "onDark"
 >;
 export interface ISingleCommentProps {
   isReply?: boolean;

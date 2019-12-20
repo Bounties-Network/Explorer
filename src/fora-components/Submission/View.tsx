@@ -31,9 +31,9 @@ const Submission: React.FunctionComponent<SubmissionProps> = (props) => {
     <Flex sx={{ flexDirection: 'column', border: 'base', borderRadius: 2, boxShadow: 0, px: 3, py: 4 }}>
       <Header {...props} />
       <Main {...props} />
-      {showComments && <CommentThread {...props} />}
-      {showComments && <Divider></Divider>}
-      <ShowComments commentsLength={props.comments.length} showComments={showComments} setShowComments={setShowComments} />
+      {props.comments.length && showComments ? <CommentThread {...props} /> : null}
+      {props.comments.length && showComments ? <Divider></Divider> : null}
+      {props.comments.length ? <ShowComments commentsLength={props.comments.length} showComments={showComments} setShowComments={setShowComments} /> : null}
     </Flex>
   )
 }
