@@ -6,9 +6,10 @@ import gql from "graphql-tag";
 import LoadingIcon from 'assets/loading';
 import PreviewCard from 'fora-components/Card/BountyPreviewCard';
 import { STAGE_VALUES } from 'public-modules/Bounty/constants';
+import { userProfileBounties, userProfileBountiesVariables } from './__generated__/userProfileBounties';
 
-const query = gql`
-  query($address: String) {
+const userProfileBountiesQuery = gql`
+  query userProfileBounties($address: String) {
     std_bounties_bounty(
       where: { 
         user_user: { public_address: { _eq: $address } },
@@ -31,49 +32,47 @@ const query = gql`
   }
 `
 
-interface IProps {  }
+interface IProps { address: string }
 
 const Bounties: React.FunctionComponent<IProps> = (props) => {
-  const { data, loading, error } = useQuery(query, { variables: { address: "0x0f7977cfa7fba5921ff52d9cacd844eeac0eb421" } })
+  const { address } = props
+  const { data, error } = useQuery<userProfileBounties, userProfileBountiesVariables>(userProfileBountiesQuery, { variables: { address } })
   if (error) {
     console.error(error)
     return <div>{JSON.stringify(error, null)}</div>
   }
   if (data) {
     const bounties = data?.std_bounties_bounty
-    console.log(bounties)
-    return Array.isArray(bounties) && bounties.length ? 
-      <div sx={{ '> :not(:last-of-type)': { mb: 5 } }}>
+    if (Array.isArray(bounties) && bounties.length) {
+      return ( <div sx={{ '> :not(:last-of-type)': { mb: 5 } }}>
         {
-              bounties.map(({
-                id,
-                title,
-                deadline,
-                bounty_stage,
-                usd_price,
-                calculated_fulfillment_amount,
-                // community,
-                std_bounties_fulfillments_aggregate: { aggregate: { count } }
-              }) =>
-                <PreviewCard
+          bounties.map(({
+            id,
+            title,
+            deadline,
+            bounty_stage,
+            usd_price,
+            calculated_fulfillment_amount,
+            // community,
+            std_bounties_fulfillments_aggregate: { aggregate }
+          }) => (
+              <PreviewCard
                 key={id}
                 title={title}
                 href={`/bounty/${id}`}
                 expirationTimestamp={deadline}
-                submissionCount={count}
+                submissionCount={aggregate?.count || 0}
                 status={String(STAGE_VALUES[bounty_stage]).replace('stages.', '')}
                 ethInUSD={Number(Number(usd_price).toFixed(2))}
                 ethAmount={Number(Number(calculated_fulfillment_amount).toFixed(2))}
-                // community?: CommunityProps;
+              // community?: CommunityProps;
               />
-              )
-}
-    </div>
-
-     : <div>This user has no bounties</div>
-  }
-  if (loading) {
-    return <LoadingIcon></LoadingIcon>
+            )
+          )
+        }
+      </div> )
+    }
+      return  <div>This user has no bounties</div>
   }
   return <LoadingIcon></LoadingIcon>
 }

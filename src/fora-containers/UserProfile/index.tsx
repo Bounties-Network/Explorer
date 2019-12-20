@@ -14,10 +14,6 @@ import Profile from './Profile/index'
 import Content from './Content/index'
 import Stats from './Stats/index'
 
-// const query = gql`
-
-// `;
-
 const mobileLayoutGrid = `
   "background"
   "profile"
@@ -40,7 +36,11 @@ const gridLayoutStyle = {
   ],
 };
 
-const UserProfileContainer: React.FC = props => {
+type IProps = {
+  address: string
+}
+const UserProfileContainer: React.FC<IProps> = props => {
+  const { address } = props
   return (
     <div sx={gridLayoutStyle}>
       <div
@@ -52,10 +52,10 @@ const UserProfileContainer: React.FC = props => {
         }}
       />
         <div sx={{ gridArea: "profile", px: 4, pl: [4, 7] }}>
-          <Profile></Profile>
+          <Profile address={address}></Profile>
         </div>
         <div sx={{ gridArea: "content", px: [4, 0] }}>
-          <Content></Content>
+          <Content address={address}></Content>
         </div>
         <div sx={{ gridArea: "stats", px: 4, pr: [4, 7] }}>
           <Stats></Stats>

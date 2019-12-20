@@ -95,7 +95,7 @@ interface IProps {
   title: string;
   submissionCount: number;
   href: string;
-  difficulty: string;
+  difficulty: string | null;
   token: string;
   tokenInUSD: number;
   tokenValue: number;

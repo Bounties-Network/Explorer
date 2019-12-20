@@ -9,9 +9,36 @@ import Pill from "fora-components/Pill";
 import { shortenAddress } from "utils/helpers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBriefcase, faComments, faGlobe, faClipboard } from "@fortawesome/pro-regular-svg-icons";
-import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faTwitter, faGithub, faDribbble, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { useQuery } from "@apollo/react-hooks";
+import { userProfileVariables, userProfile } from "./__generated__/userProfile";
 
-interface IProps {}
+const userProfileQuery = gql`
+  query userProfile($address: String!) {
+    user_user(limit: 1, where: { public_address: { _eq: $address } }) {
+      id
+      name
+      public_address
+      large_profile_image_url
+      twitter
+      github
+      dribble
+      linkedin
+      website
+      organization
+      user_user_skills {
+        user_skill {
+          name
+        }
+      }
+      user_user_languages {
+        user_language {
+          name
+        }
+      }
+    }
+  }
+`;
 
 const SkillPill = ({ category }) => (
   <Pill shape="square" variant="tag.explorer">
@@ -22,7 +49,7 @@ const SkillPill = ({ category }) => (
 );
 
 const ElsewhereLink = ({ icon, href, linkText }) => (
-  <Flex sx={{ alignItems: "center", '> svg:first-of-type': { mr: 1 } }}>
+  <Flex sx={{ alignItems: "center", "> svg:first-of-type": { mr: 1 } }}>
     <FontAwesomeIcon sx={{ color: "brandGray.400" }} icon={icon}></FontAwesomeIcon>
     <Link href={href} variant="text.link">
       {linkText}
@@ -56,69 +83,121 @@ const profileContainerStyle = {
   ...profileChildSpacingStyles
 };
 
-const Profile: React.FunctionComponent<IProps> = props => (
-  <Flex sx={profileContainerStyle}>
-    <AvatarImage
-      size="large"
-      src={
-        "https://messari.s3.amazonaws.com/images/agora-images/0%3Fe%3D1554940800%26v%3Dbeta%26t%3DJIYqRj4hFp_woU4aOT7i6VVCH613wozFeVfWztcORVo"
-      }
-      address="0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67"
-      linkToProfile={false}
-    />
-    <Text variant="headingSerif" sx={{ fontSize: "h2" }}>
-      Simona Pop
-    </Text>
-    <Pill onClick={() => {}} width="160px" size="large" variant="address">
-      <Flex sx={{ alignItems: 'center', '> div:first-of-type': { mr: 3 } }}>
-        <Text variant='body' color='brandPrimary.400'>
-          {shortenAddress("0xbfeceC47dD8bf5F6264A9830A9d26ef387c38A67")}
-        </Text>
-        <FontAwesomeIcon sx={{ color: 'brandPrimary.400' }} icon={faClipboard}></FontAwesomeIcon>
-      </Flex>
-    </Pill>
-    <Text variant="body">
-      Imagination is everything. Co-Founder & CMO of Bounties Network and fora at ConsenSys. Queen bee of the hive. You
-      test me I sting you.
-    </Text>
+interface IProps {
+  address: string;
+}
+const Profile: React.FunctionComponent<IProps> = props => {
+  const { address } = props;
+  if (!address) {
+    return <div>Need an address</div>;
+  }
+  const { data, error } = useQuery<userProfile, userProfileVariables>(userProfileQuery, { variables: { address } });
 
-    <Flex sx={{ "> svg:first-of-type": { mr: 2 }, alignItems: "center" }}>
-      <FontAwesomeIcon sx={{ color: "brandGray.400" }} icon={faBriefcase}></FontAwesomeIcon>
-      <Text variant="body" color="brandGray.400">
-        Bounties Network
-      </Text>
-    </Flex>
-    <Flex sx={{ "> svg:first-of-type": { mr: 2 }, alignItems: "center" }}>
-      <FontAwesomeIcon sx={{ color: "brandGray.400" }} icon={faComments}></FontAwesomeIcon>
-      <Text variant="body" color="brandGray.400">
-        English, Romanian
-      </Text>
-    </Flex>
+  if (error) {
+    return <div>{JSON.stringify(error, null)}</div>;
+  }
+  if (data) {
+    if (data?.user_user.length) {
+      const user = data.user_user[0];
+      return (
+        <Flex sx={profileContainerStyle}>
+          <AvatarImage
+            size="large"
+            src={user.large_profile_image_url}
+            address={address}
+            linkToProfile={false}
+          />
+          <Text variant="headingSerif" sx={{ fontSize: "h2" }}>
+            {user.name}
+          </Text>
+          <Pill onClick={() => {}} width="160px" size="large" variant="address">
+            <Flex sx={{ alignItems: "center", "> div:first-of-type": { mr: 3 } }}>
+              <Text variant="body" color="brandPrimary.400">
+                {shortenAddress(address)}
+              </Text>
+              <FontAwesomeIcon sx={{ color: "brandPrimary.400" }} icon={faClipboard}></FontAwesomeIcon>
+            </Flex>
+          </Pill>
+          <Text variant="body">
+            {/* user?.description */}
+            Imagination is everything. Co-Founder & CMO of Bounties Network and fora at ConsenSys. Queen bee of the
+            hive. You test me I sting you.
+          </Text>
 
-    <Flex sx={{ flexDirection: "column", "> div:first-of-type": { mb: 2 } }}>
-      <Text variant="bodyStrong" sx={{ fontSize: "h5" }}>
-        Skills
-      </Text>
-      <Flex sx={{ flexWrap: "wrap", minWidth: "250px", "> *:not(:last-of-type)": { mr: 1, mb: 1 } }}>
-        <SkillPill category="React"></SkillPill>
-        <SkillPill category="CSS"></SkillPill>
-        <SkillPill category="HTML"></SkillPill>
-        <SkillPill category="Translations"></SkillPill>
-        <SkillPill category="JavaScript"></SkillPill>
-      </Flex>
-    </Flex>
+          {user.organization && (
+            <Flex sx={{ "> svg:first-of-type": { mr: 2 }, alignItems: "center" }}>
+              <FontAwesomeIcon sx={{ color: "brandGray.400" }} icon={faBriefcase}></FontAwesomeIcon>
+              <Text variant="body" color="brandGray.400">
+                {user.organization}
+              </Text>
+            </Flex>
+          )}
+          {user.user_user_languages.length && (
+            <Flex sx={{ "> svg:first-of-type": { mr: 2 }, alignItems: "center" }}>
+              <FontAwesomeIcon sx={{ color: "brandGray.400" }} icon={faComments}></FontAwesomeIcon>
+              <Text variant="body" color="brandGray.400">
+                {user.user_user_languages.map(({ user_language }) => user_language.name).join(", ")}
+              </Text>
+            </Flex>
+          )}
+          {user.user_user_skills.length && (
+            <Flex sx={{ flexDirection: "column", "> div:first-of-type": { mb: 2 } }}>
+              <Text variant="bodyStrong" sx={{ fontSize: "h5" }}>
+                Skills
+              </Text>
+              <Flex sx={{ flexWrap: "wrap", minWidth: "250px", "> *:not(:last-of-type)": { mr: 1, mb: 1 } }}>
+                {user.user_user_skills.map(skill => (
+                  <SkillPill category={skill?.user_skill?.name}></SkillPill>
+                ))}
+              </Flex>
+            </Flex>
+          )}
 
-    <Flex sx={{ flexDirection: "column", "> div:first-of-type": { mb: 2 } }}>
-      <Text variant="bodyStrong" sx={{ fontSize: "h5" }}>
-        Elsewhere
-      </Text>
-      <Flex sx={{ flexDirection: "column", "> *:not(:last-of-type)": { mb: 2 } }}>
-        <ElsewhereLink icon={faGlobe} href={"www.google.co.uk"} linkText="firstNameLastName.com"></ElsewhereLink>
-        <ElsewhereLink icon={faTwitter} href={"www.google.co.uk"} linkText="@twitterUsername"></ElsewhereLink>
-        <ElsewhereLink icon={faGithub} href={"www.google.co.uk"} linkText="@githubUsername"></ElsewhereLink>
-      </Flex>
-    </Flex>
-  </Flex>
-);
+          {(user.website || user.twitter || user.github || user.dribble || user.linkedin) && (
+            <Flex sx={{ flexDirection: "column", "> div:first-of-type": { mb: 2 } }}>
+              <Text variant="bodyStrong" sx={{ fontSize: "h5" }}>
+                Elsewhere
+              </Text>
+              <Flex sx={{ flexDirection: "column", "> *:not(:last-of-type)": { mb: 2 } }}>
+                {user.website && (
+                  <ElsewhereLink icon={faGlobe} href={user.website} linkText={user.website}></ElsewhereLink>
+                )}
+                {user.twitter && (
+                  <ElsewhereLink
+                    icon={faTwitter}
+                    href={`https://twitter.com/${user.twitter}`}
+                    linkText={`@${user.twitter}`}
+                  ></ElsewhereLink>
+                )}
+                {user.github && (
+                  <ElsewhereLink
+                    icon={faGithub}
+                    href={`https://github.com/${user.github}`}
+                    linkText={`@${user.github}`}
+                  ></ElsewhereLink>
+                )}
+                {user.dribble && (
+                  <ElsewhereLink
+                    icon={faDribbble}
+                    href={`https://dribbble.com/${user.dribble}`}
+                    linkText={`@${user.dribble}`}
+                  ></ElsewhereLink>
+                )}
+                {user.linkedin && (
+                  <ElsewhereLink
+                    icon={faLinkedin}
+                    href={`https://www.linkedin.com/in/${user.linkedin}`}
+                    linkText={`@${user.linkedin}`}
+                  ></ElsewhereLink>
+                )}
+              </Flex>
+            </Flex>
+          )}
+        </Flex>
+      );
+    }
+  }
+  return <LoadingIcon></LoadingIcon>;
+};
 
 export default Profile;

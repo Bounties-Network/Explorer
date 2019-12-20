@@ -6,9 +6,9 @@ import ActivityFeed from 'fora-components/ActivityFeed/View';
 import Bounties from './Bounties';
 import { Text } from '@theme-ui/components'
 
-interface IProps {  }
+interface IProps { address: string }
 
-const Content: React.FunctionComponent<IProps> = (props) => (
+const Content: React.FunctionComponent<IProps> = ({ address }) => (
   <Tabs size='lg'>
     <TabList>
       <Tab>
@@ -27,7 +27,7 @@ const Content: React.FunctionComponent<IProps> = (props) => (
         <ActivityFeed />
       </TabPanel>
       <TabPanel>
-        <Bounties></Bounties>
+        <Bounties address={address}></Bounties>
       </TabPanel>
       <TabPanel>
         Submissions

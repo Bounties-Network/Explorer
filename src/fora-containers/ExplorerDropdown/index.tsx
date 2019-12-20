@@ -10,17 +10,19 @@ import ExplorerCard from "fora-components/Card/ExplorerCard";
 import moment from "moment";
 import { BigNumber } from "bignumber.js";
 import { DIFFICULTY_MAPPINGS } from "public-modules/Bounty/constants";
+import { userCommunities } from "./__generated__/userCommunities";
+import { explorerBounties, explorerBountiesVariables } from "./__generated__/explorerBounties";
 
-const query = gql`
-  query {
+const userCommunitiesQuery = gql`
+  query userCommunities {
     user_user {
       id
     }
   }
 `;
 
-const allBountiesQuery = gql`
-  query($platform: String!, $tags: jsonb = []) {
+const explorerBountiesQuery = gql`
+  query explorerBounties($platform: String!, $tags: jsonb = []) {
     std_bounties_bounty(
       limit: 10
       where: { platform: { _in: [$platform] }, bounty_stage: { _in: [1] }, data_categories: { _contains: $tags } }
@@ -60,7 +62,7 @@ const collectionOptions = [
 const ExplorerDropdownContainer: React.FunctionComponent<RSProps> = props => {
   const [state, setState] = React.useState<{ value: string; label: string } | null>(null);
   const [tags, setTag] = React.useState<string[]>([]);
-  const { data: communitiesData, loading, error } = useQuery(query);
+  const { data: communitiesData, loading, error } = useQuery<userCommunities>(userCommunitiesQuery);
   const options = [
     { label: "Bounty collections", options: collectionOptions },
     { label: "From your communities", options: [] }
@@ -72,8 +74,8 @@ const ExplorerDropdownContainer: React.FunctionComponent<RSProps> = props => {
     return "";
   };
   const platform = getPlatformVariable(state?.value);
-  const { data, loading: bountiesLoading, error: bountiesError } = useQuery<any, { platform: string; tags: string[] }>(
-    allBountiesQuery,
+  const { data, loading: bountiesLoading, error: bountiesError } = useQuery<explorerBounties, explorerBountiesVariables>(
+    explorerBountiesQuery,
     {
       variables: {
         platform,
@@ -114,12 +116,12 @@ const ExplorerDropdownContainer: React.FunctionComponent<RSProps> = props => {
                   key={bounty.id}
                   avatar={{
                     name: bounty?.user_user?.name,
-                    address: bounty?.user_user?.public_address,
+                    address: String(bounty?.user_user?.public_address),
                     size: "small",
                     onDark: false
                   }}
                   token={bounty.token_symbol}
-                  difficulty={DIFFICULTY_MAPPINGS[bounty.experience_level]}
+                  difficulty={bounty.experience_level && DIFFICULTY_MAPPINGS[bounty.experience_level]}
                   tags={bounty.data_categories}
                   tokenInUSD={Number(bounty.usd_price.toFixed(2))}
                   tokenValue={Number(new BigNumber(bounty.calculated_fulfillment_amount, 10).toString())}

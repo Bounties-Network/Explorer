@@ -5,13 +5,14 @@ import { useQuery } from '@apollo/react-hooks'
 import React from 'react'
 import gql from 'graphql-tag';
 import LoadingIcon from 'assets/loading';
+import { platformStatistics } from './__generated__/platformStatistics';
 
 interface IProps {
   resourceType: 'platform' | 'communities' // platform || community
 }
 
-const query = gql`
-  query {
+const platformStatisticsQuery = gql`
+  query platformStatistics {
     activePlatformBountiesQuery:std_bounties_bounty_aggregate(where: { bounty_stage:  { _in:  [1]} }) {
       aggregate {
         count
@@ -33,10 +34,10 @@ const query = gql`
 `
 
 const PlatformStatisticsContainer: React.FunctionComponent<IProps> = ({ resourceType }) => {
-  const { data, loading, error } = useQuery(query)
+  const { data, loading, error } = useQuery<platformStatistics>(platformStatisticsQuery)
   // console.log(data)
-  const activePlatformBounties = data?.activePlatformBountiesQuery?.aggregate?.count
-  const issuedPlatformBounties = data?.issuedPlatformBountiesQuery?.aggregate?.count
+  const activePlatformBounties = Number(data?.activePlatformBountiesQuery?.aggregate?.count)
+  const issuedPlatformBounties = Number(data?.issuedPlatformBountiesQuery?.aggregate?.count)
   let totalValueBountiesIssued: number = data?.totalValueBountiesIssuedQuery?.aggregate?.sum?.usd_price
 
   if (error) {

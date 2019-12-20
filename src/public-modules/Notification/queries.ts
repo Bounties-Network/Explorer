@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 const userDashboardNotificationsSubscription = gql`
-  subscription userDashboardNotifications(
+  subscription userDashboardNotificationsSubscription(
     $platforms: [String!]
     $offset: Int = 0
   ) {
@@ -31,7 +31,7 @@ const userDashboardNotificationsSubscription = gql`
 `;
 
 const userDashboardNotificationsQuery = gql`
-  query userDashboardNotifications($platforms: [String!], $offset: Int = 0) {
+  query userDashboardNotificationsQuery($platforms: [String!], $offset: Int = 0) {
     notifications_dashboardnotification(
       order_by: { notifications_notification: { created: desc } }
       offset: $offset

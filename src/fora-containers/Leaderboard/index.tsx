@@ -7,9 +7,11 @@ import SegmentedControl from "fora-components/SegmentedControl";
 import Leaderboard from "fora-components/Leaderboard";
 import gql from "graphql-tag";
 import LoadingIcon from "assets/loading";
+import { issuerLeaderboard, issuerLeaderboardVariables } from "./__generated__/issuerLeaderboard";
+import { fulfillerLeaderboard, fulfillerLeaderboardVariables } from "./__generated__/fulfillerLeaderboard";
 
-const fulfillerQuery = gql`
-  query($offset: Int = 0, $limit: Int = 10) {
+const fulfillerLeaderboardQuery = gql`
+  query fulfillerLeaderboard($offset: Int = 0, $limit: Int = 10) {
     std_bounties_token(where: { name: { _eq: "Ethereum" } }) {
       name
       price_usd
@@ -34,8 +36,8 @@ const fulfillerQuery = gql`
   }
 `;
 
-const issuerQuery = gql`
-  query($offset: Int = 0, $limit: Int = 10) {
+const issuerLeaderboardQuery = gql`
+  query issuerLeaderboard($offset: Int = 0, $limit: Int = 10) {
     std_bounties_token(where: { name: { _eq: "Ethereum" } }) {
       name
       price_usd
@@ -86,13 +88,20 @@ const extractIssuerData = currentETHUsdPrice => issuer => ({
 const LeaderboardContainer: React.FC = () => {
   const [state, setState] = useState<string>("Issuers");
   const [page, setPage] = useState<number>(0);
-  const { data, error, loading, fetchMore } = useQuery<any, any>(state === "Issuers" ? issuerQuery : fulfillerQuery);
+  const { data, error, loading, fetchMore } = useQuery<
+    issuerLeaderboard | fulfillerLeaderboard,
+    issuerLeaderboardVariables | fulfillerLeaderboardVariables
+  >(state === "Issuers" ? issuerLeaderboardQuery : fulfillerLeaderboardQuery);
 
   const currentETHUsdPrice = data?.std_bounties_token[0]?.price_usd;
   const leaderboardData =
+    data?.user_user &&
     Array.isArray(data?.user_user) &&
+    // @ts-ignore - TypeScript doesn't understand union types with .map =_=
     data?.user_user.map(
-      state === "Issuers" ? extractIssuerData(currentETHUsdPrice) : extractFulfillerData(currentETHUsdPrice)
+      state === "Issuers"
+        ? (extractIssuerData(currentETHUsdPrice) as any)
+        : (extractFulfillerData(currentETHUsdPrice) as any)
     );
 
   // console.log(data, error);
@@ -111,7 +120,7 @@ const LeaderboardContainer: React.FC = () => {
             setPage(0);
             setState("Fulfillers");
           }}
-        ></SegmentedControl>
+        />
         <Leaderboard
           loadMore={() => {
             const offset = page + 1;
@@ -132,7 +141,7 @@ const LeaderboardContainer: React.FC = () => {
             });
           }}
           data={leaderboardData}
-        ></Leaderboard>
+        />
       </Flex>
     );
   }
@@ -140,7 +149,7 @@ const LeaderboardContainer: React.FC = () => {
     console.error(error);
     return <div>{JSON.stringify(error, null)}</div>;
   }
-  return <LoadingIcon></LoadingIcon>;
+  return <LoadingIcon />;
 };
 
 export default LeaderboardContainer;
