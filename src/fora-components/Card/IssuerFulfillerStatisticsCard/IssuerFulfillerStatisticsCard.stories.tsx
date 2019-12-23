@@ -8,7 +8,7 @@ addDecorator(centered);
 storiesOf("IssuerFulfillerStatisticsCard", module)
   .add("Mi Fora", () => (
     <IssuerFulfillerStatisticsCard
-      averageRatingReceived={2}
+      averageRatingGiven={2}
       acceptanceRate={85}
       averageReceivedGivenRating={3}
     />

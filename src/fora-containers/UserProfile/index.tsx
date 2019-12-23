@@ -1,15 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import { useQuery } from "@apollo/react-hooks";
 import React from "react";
-import { Flex, Text, Link } from "@theme-ui/components";
-import gql from "graphql-tag";
-import LoadingIcon from "assets/loading";
-import AvatarImage from "fora-components/AvatarImage";
-import Pill from "fora-components/Pill";
-import { shortenAddress } from "utils/helpers";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBriefcase, faComments, faGlobe } from "@fortawesome/pro-regular-svg-icons";
 import Profile from './Profile/index'
 import Content from './Content/index'
 import Stats from './Stats/index'
@@ -58,24 +49,9 @@ const UserProfileContainer: React.FC<IProps> = props => {
           <Content address={address}></Content>
         </div>
         <div sx={{ gridArea: "stats", px: 4, pr: [4, 7] }}>
-          <Stats></Stats>
+          <Stats address={address}></Stats>
         </div>
     </div>
   );
-  // // const { data, loading, error } = useQuery(query)
-
-  // if (data) {
-  //   return (<div>Hello world</div>)
-  // }
-  // if (error) {
-  //   error && console.error(error);
-  //   return (
-  //     <div>
-  //       {JSON.stringify(error, null)}
-  //     </div>
-  //   );
-  // }
-
-  // return <LoadingIcon></LoadingIcon>;
 };
 export default UserProfileContainer;
