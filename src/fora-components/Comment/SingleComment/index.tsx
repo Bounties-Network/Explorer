@@ -62,7 +62,7 @@ export interface ISingleCommentProps {
 const SingleComment: React.FunctionComponent<ISingleCommentProps> = props => (
   <Container>
     <Link href={`/address/${props.commenter.address}`}>
-      <AvatarImage src={props.commenter.src}></AvatarImage>
+      <AvatarImage address={props.commenter.address} src={props.commenter.src}></AvatarImage>
     </Link>
     <Flex sx={{ flexDirection: 'column' }}>
       <DetailsContainer>
@@ -70,7 +70,7 @@ const SingleComment: React.FunctionComponent<ISingleCommentProps> = props => (
           <Text variant="body" color="black">
             {props.commenter.name}
           </Text>
-          <Text>@{props.commenter.screenName}</Text>
+          {/* <Text>@{props.commenter.screenName}</Text> */}
         </NameLink>
         <Text>{` ∙ `}</Text>
         <Text variant="body" color="brandGray.400">
@@ -91,7 +91,8 @@ const SingleComment: React.FunctionComponent<ISingleCommentProps> = props => (
           </Text>
         )}
       </ContentContainer>
-      {!props.isReply && (
+      {/* TODO: */}
+      {false && !props.isReply && (
         <ReplyContainer onClick={props.replyOnClickHandler}>
           <FontAwesomeIcon icon={faReply}></FontAwesomeIcon>
           <Text variant="body" color="brandPrimary.300">{`Reply`}</Text>

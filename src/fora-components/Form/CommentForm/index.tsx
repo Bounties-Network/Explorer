@@ -28,7 +28,10 @@ const CommentForm: React.FC<{
   handleChange: any;
   value: any;
   width?: number
-}> = ({ handleSubmit, handleCancel, handleChange, value, width = 400 }) => {
+  userImg: string | undefined
+  address: string | undefined
+  setShowComments?: any
+}> = ({ address, userImg, setShowComments, handleSubmit, handleCancel, handleChange, value, width = 400 }) => {
   const [{ loading },setState] = React.useState<{loading: boolean}>({ loading: false })
 
   return (
@@ -36,11 +39,15 @@ const CommentForm: React.FC<{
       if (e.preventDefault) e.preventDefault()
       if (value) {
         setState({ loading: true })
-        const callback = () => setState({ loading: false })
+        const callback = () => {
+          setState({ loading: false })
+          handleChange('')
+          setShowComments && setShowComments(true)
+        }
         return handleSubmit(value, callback)
       }
     }}>
-      <AvatarImage src={undefined}></AvatarImage>
+      <AvatarImage address={address} src={userImg}></AvatarImage>
       <FormContainer flexDirection="column">
         <Textarea
           width={width}

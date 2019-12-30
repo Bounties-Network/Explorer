@@ -44,10 +44,12 @@ const Content = emotionStyled(Flex)(() =>
 export interface ICommentThreadProps {
   comments: ISingleCommentProps[];
   replySubmitHandler: any;
+  userImg: string | undefined
+  address: string | undefined
 }
 
 const CommentThread: React.FunctionComponent<ICommentThreadProps> = props => {
-  const [isReplyOpen, setState] = React.useState<boolean>(true);
+  const [isReplyOpen, setState] = React.useState<boolean>(false);
 
   return (
     <Container>
@@ -60,13 +62,13 @@ const CommentThread: React.FunctionComponent<ICommentThreadProps> = props => {
                 return (
                   <div >
                     <Divider marginTop={0}></Divider>
-                    <CommentForm value='lol' handleChange={() => {}} handleCancel={() => setState(false)} handleSubmit={props.replySubmitHandler} />
+                    <CommentForm address={props.address} userImg={props.userImg} value='lol' handleChange={() => {}} handleCancel={() => setState(false)} handleSubmit={props.replySubmitHandler} />
                     <Divider></Divider>
-                    <SingleComment replyOnClickHandler={() => setState(true)} isReply={Boolean(index)} {...comment} />
+                    <SingleComment replyOnClickHandler={() => setState(!isReplyOpen)} isReply={Boolean(index)} {...comment} />
                   </div>
                 );
               }
-              return <SingleComment replyOnClickHandler={() => setState(true)} isReply={Boolean(index)} {...comment} />;
+              return <SingleComment replyOnClickHandler={() => setState(!isReplyOpen)} isReply={Boolean(index)} {...comment} />;
             })}
         </CommentsContainer>
       </Content>

@@ -14,11 +14,15 @@ export interface IMainProps {
   content: string;
   imageSrc?: string;
   commentSubmitHandler: any;
+  setShowComments: any;
   attachments: IAttachmentProps[];
+  userImg: string | undefined
+  address: string | undefined
 }
 
 const Main: React.FunctionComponent<IMainProps> = props => {
   const [state, setState] = React.useState<boolean>(false);
+  const [comment, setComment] = React.useState<string>("")
 
   return (
     <Flex sx={{ "> form": { mt: 3 }, flexDirection: "column" }}>
@@ -57,8 +61,13 @@ const Main: React.FunctionComponent<IMainProps> = props => {
         <Fragment>
           <Divider></Divider>
           <CommentForm
-            value="lol"
-            handleChange={() => {}}
+            setShowComments={props.setShowComments}
+            userImg={props.userImg}
+            address={props.address}
+            value={comment}
+            handleChange={(comment: string) => {
+              setComment(comment)
+            }}
             handleCancel={() => setState(false)}
             handleSubmit={props.commentSubmitHandler}
           />

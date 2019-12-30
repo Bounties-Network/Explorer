@@ -27,10 +27,11 @@ type SubmissionProps =  IHeaderProps & IMainProps & ICommentThreadProps
 
 const Submission: React.FunctionComponent<SubmissionProps> = (props) => {
   const [showComments, setShowComments] = React.useState<boolean>(false)
+
   return (
     <Flex sx={{ flexDirection: 'column', border: 'base', borderRadius: 2, boxShadow: 0, px: 3, py: 4 }}>
       <Header {...props} />
-      <Main {...props} />
+      <Main {...props} setShowComments={setShowComments} />
       {props.comments.length && showComments ? <CommentThread {...props} /> : null}
       {props.comments.length && showComments ? <Divider></Divider> : null}
       {props.comments.length ? <ShowComments commentsLength={props.comments.length} showComments={showComments} setShowComments={setShowComments} /> : null}

@@ -6,6 +6,12 @@
 // GraphQL query operation: userProfileSubmissions
 // ====================================================
 
+export interface userProfileSubmissions_user_user {
+  __typename: "user_user";
+  id: number;
+  small_profile_image_url: string;
+}
+
 export interface userProfileSubmissions_std_bounties_fulfillment_user_user {
   __typename: "user_user";
   name: string;
@@ -85,6 +91,10 @@ export interface userProfileSubmissions_std_bounties_fulfillment {
 }
 
 export interface userProfileSubmissions {
+  /**
+   * fetch data from the table: "user_user"
+   */
+  user_user: userProfileSubmissions_user_user[];
   /**
    * fetch data from the table: "std_bounties_fulfillment"
    */
