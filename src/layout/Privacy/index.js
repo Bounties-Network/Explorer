@@ -357,7 +357,34 @@ const Privacy = () => (
         may reach the Complaint Assistance Unit of the Division of Consumer
         Services of the California Department of Consumer Affairs by mail at
         1625 North Market Blvd., Sacramento, CA 95834, or by telephone at (916)
-        445-1254 or (800) 952-5210.
+        445-1254 or (800) 952-5210. This section provides additional details
+        about the personal information we collect about California consumers and
+        the rights afforded to them under the California Consumer Privacy Act or
+        “CCPA.” For more details about the personal information we collect from
+        you, please see the “What We Collect” section above. We collect this
+        information for the business and commercial purposes described in the
+        “Use of Personal Information” section above. We share this information
+        with the categories of third parties described in the “Sharing of
+        Personal Information” section above. Company does not sell (as such term
+        is defined in the CCPA) the personal information we collect (and will
+        not sell it without providing a right to opt out). Please refer to our
+        Cookie Policy below for more information regarding the types of
+        third-party cookies, if any, that we use. Subject to certain
+        limitations, the CCPA provides California consumers the right to request
+        to know more details about the categories or specific pieces of personal
+        information we collect (including how we use and disclose this
+        information), to delete their personal information, to opt out of any
+        “sales” that may be occurring, and to not be discriminated against for
+        exercising these rights. California consumers may make a request
+        pursuant to their rights under the CCPA by contacting us at
+        legal@consensys.net. Please note that you must verify your identity and
+        request before further action is taken. As a part of this process,
+        government identification may be required. Consistent with California
+        law, you may designate an authorized agent to make a request on your
+        behalf. In order to designate an authorized agent to make a request on
+        your behalf, you must provide a valid power of attorney, the requester’s
+        valid government issued identification, and the authorized agent’s valid
+        government issued identification.
       </p>
       <h4>NOTICE TO EU DATA SUBJECTS</h4>
       <p>
