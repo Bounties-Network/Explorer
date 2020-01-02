@@ -7,7 +7,7 @@ const Privacy = () => (
       <PageCard.Title>Privacy Terms</PageCard.Title>
     </PageCard.Header>
     <PageCard.Content key="leaderboard" className="markdownContent">
-      <p>Last Updated: May 23, 2018</p>
+      <p>Last Updated: January 2, 2019</p>
       <p>
         This privacy policy (“<b>Policy</b>”) describes how ConsenSys AG’s
         Bounties (“<b>Bounties</b>” “<b>Company</b>”, “<b>we</b>”, “<b>our</b>”,
