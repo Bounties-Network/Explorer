@@ -19,7 +19,7 @@ export function* issuePageView(action) {
       location.pathname !== '/' &&
       location.pathname !== '/profile')
   ) {
-    yield call(request, 'analytics/ping/', 'GET');
+    //yield call(request, 'analytics/ping/', 'GET');
   }
 
   yield put(setLastLocation(action.payload));

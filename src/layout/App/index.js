@@ -231,7 +231,11 @@ class AppComponent extends React.Component {
     } = this.props;
     const isPageLoading =
       loadingUser || translationsLoading || !clientInitialized;
-
+    /*<Route
+        exact
+        path="/createBounty"
+        component={RequireLoginComponent(CreateBounty)}
+      />*/
     return (
       <div className={styles.app}>
         <ToastContainer
@@ -246,6 +250,7 @@ class AppComponent extends React.Component {
             <Loader size="medium" />
           </div>
         )}
+
         {!isPageLoading &&
           !userFail && (
             <React.Fragment>
@@ -255,11 +260,7 @@ class AppComponent extends React.Component {
                 <Switch>
                   <Route exact path="/leaderboard" component={Leaderboard} />
                   <Route exact path="/explorer" component={Explorer} />
-                  <Route
-                    exact
-                    path="/createBounty"
-                    component={RequireLoginComponent(CreateBounty)}
-                  />
+
                   <Route
                     exact
                     path="/createBounty/draft/:id/"

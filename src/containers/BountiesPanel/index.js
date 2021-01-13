@@ -105,25 +105,23 @@ class BountiesPanelComponent extends React.Component {
 
     if (count <= 0) {
       zeroStateClass = styles.bodyLoading;
-      body = (
-        <div className={styles.zeroState}>
-          <ZeroState
-            title={intl.get('sections.bounties.zero_state.title', {
-              tab: currentTab
-            })}
-            text={intl.get('sections.bounties.zero_state.description', {
-              tab: currentTab
-            })}
-            action
-            actionText={intl.get(
-              'sections.bounties.zero_state.actions.new_bounty'
-            )}
-            onActionClick={() => history.push('/createBounty')}
-            faIcon={faExpand}
-            iconColor="blue"
-          />
-        </div>
-      );
+      body = <div className={styles.zeroState} />;
+      /*
+        <ZeroState
+          title={intl.get('sections.bounties.zero_state.title', {
+            tab: currentTab
+          })}
+          text={intl.get('sections.bounties.zero_state.description', {
+            tab: currentTab
+          })}
+          action
+          actionText={intl.get(
+            'sections.bounties.zero_state.actions.new_bounty'
+          )}
+          onActionClick={() => history.push('/createBounty')}
+          faIcon={faExpand}
+          iconColor="blue"
+        />*/
     }
 
     if (loading) {

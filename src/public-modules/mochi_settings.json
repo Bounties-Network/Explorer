@@ -1,0 +1,35 @@
+{
+  "platform": "mochi",
+  "postingPlatform": "mochi",
+  "postingSchema": "standardSchema",
+  "postingSchemaVersion": "1.0",
+  "categoryPlatform": "mochi",
+  "networkName": "mochi.bounties.network",
+  "url": {
+    "mainNet": "https://rinkeby.api.bounties.network",
+    "rinkeby": "https://rinkeby.api.bounties.network"
+  },
+  "defaultToken": {
+    "symbol": "mochi",
+    "address": "0x46b6c0bf9dde15beebb675824e6150e84098bd76",
+    "decimals": 18
+  },
+  "requiredNetwork": "rinkeby",
+  "contractVersion": "2.4",
+  "mainNet": {
+    "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
+    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c",
+    "standardBountiesAddressV2.1": "0x38f1886081759f7d352c28984908d04e8d2205a6",
+    "standardBountiesAddressV2.2": "0x9142dd986fe36952c1f8f5d68b814217dee45186",
+    "standardBountiesAddressV2.3": "0x1ca6b906917167366324aed6c6a708131136bea9",
+    "standardBountiesAddressV2.4": "0x6ac6baf770b3ffe2ddb3c5797e47c17cebef2ec4"
+  },
+  "rinkeby": {
+    "standardBountiesAddressV1": "0xf209d2b723b6417cbf04c07e733bee776105a073",
+    "standardBountiesAddressV2": "0xa78c680ceaa0de08ee58a28c82193fcfae22379c",
+    "standardBountiesAddressV2.1": "0x38f1886081759f7d352c28984908d04e8d2205a6",
+    "standardBountiesAddressV2.2": "0x9142dd986fe36952c1f8f5d68b814217dee45186",
+    "standardBountiesAddressV2.3": "0x1ca6b906917167366324aed6c6a708131136bea9",
+    "standardBountiesAddressV2.4": "0x6ac6baf770b3ffe2ddb3c5797e47c17cebef2ec4"
+  }
+}

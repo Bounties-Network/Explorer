@@ -119,7 +119,7 @@ let FulfillBountyFormModalComponent = props => {
           </div>
           <div
             className={`row ${styles.fulfillmentInput}`}
-            style={{ display: 'none' }}
+            style={{ display: '' }}
           >
             <div className="col-xs">
               <Text inputLabel>Attachment</Text>

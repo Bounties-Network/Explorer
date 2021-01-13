@@ -32,6 +32,23 @@ const HeaderComponent = props => {
 
   const loginStatus = !!user;
 
+  /*{history.location.pathname !== '/createBounty' &&
+  !includes(['createBounty/draft'], history.location.pathname) && (
+    <Button
+      type="primary"
+      onClick={() => {
+        history.push('/createBounty');
+      }}
+      className={styles.button}
+    >
+      <Text className={styles.mobileButtonText}>
+        <FontAwesomeIcon icon={faPlus} />
+      </Text>
+      <Text className={styles.desktopButtonText}>
+        {intl.get('actions.create_bounty')}
+      </Text>
+    </Button>
+)}*/
   return (
     <div className={`${styles.header} page-header`}>
       <div className={`${styles.iconArea}`}>
@@ -47,23 +64,6 @@ const HeaderComponent = props => {
       </div>
       {loginStatus ? (
         <div className={`${styles.buttonArea}`}>
-          {history.location.pathname !== '/createBounty' &&
-            !includes(['createBounty/draft'], history.location.pathname) && (
-              <Button
-                type="primary"
-                onClick={() => {
-                  history.push('/createBounty');
-                }}
-                className={styles.button}
-              >
-                <Text className={styles.mobileButtonText}>
-                  <FontAwesomeIcon icon={faPlus} />
-                </Text>
-                <Text className={styles.desktopButtonText}>
-                  {intl.get('actions.create_bounty')}
-                </Text>
-              </Button>
-            )}
           <div className={styles.notification}>
             <NotificationDropdown />
           </div>
