@@ -168,7 +168,7 @@
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "prettier": "^1.11.1",
-    "react-dev-utils": "^9.0.3",
+    "react-dev-utils": "^11.0.4",
     "react-hot-loader": "^4.12.11",
     "rollbar-sourcemap-webpack-plugin": "^2.5.1",
     "sass-extract": "^2.1.0",
