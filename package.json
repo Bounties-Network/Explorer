@@ -43,7 +43,7 @@
     "history": "^4.7.2",
     "husky": "^0.14.3",
     "ipfs-mini": "^1.1.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.27",
     "object-assign": "4.1.1",
     "pluralize": "^7.0.0",
